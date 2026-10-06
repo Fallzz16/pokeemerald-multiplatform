@@ -188,9 +188,9 @@ static const struct WindowTemplate sWindowTemplate_PyramidPeak = {
 static const struct WindowTemplate sWindowTemplate_StoryStatus = {
     .bg = 0,
     .tilemapLeft = 1,
-    .tilemapTop = 14,
-    .width = 19,
-    .height = 4,
+    .tilemapTop = 15,
+    .width = 18,
+    .height = 3,
     .paletteNum = 15,
     .baseBlock = 0x1C0
 };
@@ -468,8 +468,8 @@ static void ShowStoryStatusWindow(void)
     ConvertIntToDecimalStringN(gStringVar1, QuestLog_GetStoryProgress(), STR_CONV_MODE_LEFT_ALIGN, 2);
     ConvertIntToDecimalStringN(gStringVar2, QuestLog_GetStoryTotal(), STR_CONV_MODE_LEFT_ALIGN, 2);
     StringExpandPlaceholders(gStringVar4, sText_StoryStatus);
-    AddTextPrinterParameterized(sStoryStatusWindowId, FONT_SMALL_NARROW, gStringVar4, 0, 1, TEXT_SKIP_DRAW, NULL);
-    AddTextPrinterParameterized(sStoryStatusWindowId, FONT_SMALL_NARROW, QuestLog_GetCurrentTitle(), 0, 17, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(sStoryStatusWindowId, FONT_SMALL_NARROW, gStringVar4, 0, 0, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(sStoryStatusWindowId, FONT_SMALL_NARROW, QuestLog_GetCurrentTitle(), 0, 12, TEXT_SKIP_DRAW, NULL);
     CopyWindowToVram(sStoryStatusWindowId, COPYWIN_GFX);
 }
 

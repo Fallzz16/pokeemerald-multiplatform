@@ -1,8 +1,13 @@
-# Emerald Vanilla+ v0.3 — Classic Enhanced UI
+# Emerald Vanilla+ v0.3.1 — Classic Enhanced UI Hotfix
 
 **Emerald Vanilla+** keeps Pokémon Emerald's original English campaign, maps, encounters, battles, graphics, audio and balance while adding carefully scoped quality-of-life features to the native SDL2 port.
 
 The project executes the decompiled game code directly as a native program. It does **not** bundle or load a commercial `.gba` ROM through an emulator.
+
+
+## v0.3.1 — Quest UI hotfix
+
+This hotfix fixes a runtime VRAM overlap in the v0.3 Quest Log that could overwrite overworld tilemap data and produce missing/magenta scenery after opening QUESTS. The Quest screen is now split into two compact card-style panels with explicit VRAM-safe tile ranges, and the Start Menu Story card is smaller. Gameplay/content remain unchanged.
 
 
 ## v0.3 — Classic Enhanced UI

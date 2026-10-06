@@ -45,7 +45,7 @@ jobs:
           test -f ".deps/SDL2-${SDL_VERSION}/i686-w64-mingw32/bin/SDL2.dll"
 
       - name: Verify Classic Enhanced payload
-        run: bash scripts/verify_modern_ui.sh
+        run: bash scripts/verify_v031.sh
 
       - name: Build Windows executable
         shell: bash
@@ -65,7 +65,7 @@ jobs:
           cp pokeemerald.exe dist/Emerald-Vanilla-Plus/
           cp ".deps/SDL2-${SDL_VERSION}/i686-w64-mingw32/bin/SDL2.dll" dist/Emerald-Vanilla-Plus/
           cat > dist/Emerald-Vanilla-Plus/README.txt <<'EOF'
-          Emerald Vanilla+ v0.3 - Windows x86
+          Emerald Vanilla+ v0.3.1 - Windows x86
 
           Run: pokeemerald.exe
           Save: pokeemerald.sav (created beside the executable)
@@ -93,6 +93,6 @@ jobs:
       - name: Upload portable Windows build
         uses: actions/upload-artifact@v4
         with:
-          name: Emerald-Vanilla-Plus-v0.3-Classic-Enhanced-Windows-x86
+          name: Emerald-Vanilla-Plus-v0.3.1-Quest-UI-Hotfix-Windows-x86
           path: dist/Emerald-Vanilla-Plus/
           if-no-files-found: error

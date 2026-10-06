@@ -12,7 +12,7 @@
 #include "constants/songs.h"
 #include "constants/vars.h"
 
-#define QUESTS_VISIBLE_COMPLETED 6
+#define QUESTS_VISIBLE_COMPLETED 4
 
 enum
 {
@@ -62,15 +62,30 @@ struct MainQuest
     u16 mapSecId;
 };
 
-static const struct WindowTemplate sQuestWindowTemplate =
+// Keep quest UI pixel tiles away from the overworld screen blocks.
+// BG0 uses charbase 2 while the field map screen blocks begin at tile 0x300.
+// Standard window-frame graphics occupy 0x214-0x21C, so the UI is split
+// into two independent panels around that reserved range.
+static const struct WindowTemplate sQuestHeaderWindowTemplate =
 {
     .bg = 0,
     .tilemapLeft = 1,
     .tilemapTop = 1,
-    .width = 28,
-    .height = 18,
+    .width = 27,
+    .height = 7,
     .paletteNum = 15,
     .baseBlock = 0x139
+};
+
+static const struct WindowTemplate sQuestBodyWindowTemplate =
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 11,
+    .width = 27,
+    .height = 8,
+    .paletteNum = 15,
+    .baseBlock = 0x220
 };
 
 static const u8 sText_QuestLog[] = _("QUEST LOG");
@@ -87,7 +102,8 @@ static const u8 sText_NoCompleted[] = _("No main-story milestones completed yet.
 static const u8 sText_Checkmark[] = _("- ");
 static const u8 sText_TabCurrentSelected[] = _("> CURRENT");
 static const u8 sText_TabCompletedSelected[] = _("> COMPLETED");
-static const u8 sText_Showing[] = _("SHOWING {STR_VAR_1}-{STR_VAR_2} OF {STR_VAR_3}");
+static const u8 sText_Showing[] = _("{STR_VAR_1}-{STR_VAR_2} OF {STR_VAR_3}");
+static const u8 sText_MainStoryMilestones[] = _("MAIN STORY MILESTONES");
 
 static const u8 sQuestTitle0[] = _("A PROFESSOR IN TROUBLE");
 static const u8 sQuestObjective0[] = _("Find Prof. Birch on Route 101 and\nhelp him escape the wild Pokémon.");
@@ -209,11 +225,12 @@ static const struct MainQuest sMainQuests[QUEST_COUNT] =
     [27] = {sQuestTitle27, sQuestObjective27, sQuestLocation27, MAPSEC_VICTORY_ROAD},
     [28] = {sQuestTitle28, sQuestObjective28, sQuestLocation28, MAPSEC_EVER_GRANDE_CITY},
 };
-static u8 sQuestWindowId = WINDOW_NONE;
+static u8 sQuestHeaderWindowId = WINDOW_NONE;
+static u8 sQuestBodyWindowId = WINDOW_NONE;
 static u8 sQuestTab = QUEST_TAB_CURRENT;
 static u8 sCompletedScroll = 0;
 
-static void PrintText(const u8 *text, u8 x, u8 y, u8 font);
+static void PrintText(u8 windowId, const u8 *text, u8 x, u8 y, u8 font);
 
 static bool8 IsQuestComplete(u8 questId)
 {
@@ -309,32 +326,6 @@ static u8 CountCompletedQuests(void)
     return count;
 }
 
-static void DrawStoryProgress(void)
-{
-    u8 progress = CountCompletedQuests();
-
-    ConvertIntToDecimalStringN(gStringVar1, progress, STR_CONV_MODE_LEFT_ALIGN, 2);
-    ConvertIntToDecimalStringN(gStringVar2, QUEST_COUNT, STR_CONV_MODE_LEFT_ALIGN, 2);
-    StringExpandPlaceholders(gStringVar4, sText_StoryProgress);
-    PrintText(gStringVar4, 134, 2, FONT_SMALL_NARROW);
-}
-
-static s8 GetPreviousMilestone(u8 currentQuest)
-{
-    s8 i;
-
-    if (currentQuest == 0 || currentQuest > QUEST_COUNT)
-        return -1;
-
-    for (i = currentQuest - 1; i >= 0; i--)
-    {
-        if (IsQuestComplete(i))
-            return i;
-    }
-
-    return -1;
-}
-
 static u8 GetCompletedQuestByListIndex(u8 listIndex)
 {
     u8 i;
@@ -353,53 +344,52 @@ static u8 GetCompletedQuestByListIndex(u8 listIndex)
     return QUEST_COUNT;
 }
 
-static void PrintText(const u8 *text, u8 x, u8 y, u8 font)
+static void PrintText(u8 windowId, const u8 *text, u8 x, u8 y, u8 font)
 {
-    AddTextPrinterParameterized(sQuestWindowId, font, text, x, y, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(windowId, font, text, x, y, TEXT_SKIP_DRAW, NULL);
+}
+
+static void DrawStoryProgress(void)
+{
+    u8 progress = CountCompletedQuests();
+
+    ConvertIntToDecimalStringN(gStringVar1, progress, STR_CONV_MODE_LEFT_ALIGN, 2);
+    ConvertIntToDecimalStringN(gStringVar2, QUEST_COUNT, STR_CONV_MODE_LEFT_ALIGN, 2);
+    StringExpandPlaceholders(gStringVar4, sText_StoryProgress);
+    PrintText(sQuestHeaderWindowId, gStringVar4, 132, 1, FONT_SMALL_NARROW);
 }
 
 static void DrawTabs(void)
 {
     if (sQuestTab == QUEST_TAB_CURRENT)
     {
-        PrintText(sText_TabCurrentSelected, 8, 18, FONT_NARROW);
-        PrintText(sText_TabCompleted, 94, 18, FONT_NARROW);
+        PrintText(sQuestHeaderWindowId, sText_TabCurrentSelected, 8, 18, FONT_NARROW);
+        PrintText(sQuestHeaderWindowId, sText_TabCompleted, 94, 18, FONT_NARROW);
     }
     else
     {
-        PrintText(sText_TabCurrent, 8, 18, FONT_NARROW);
-        PrintText(sText_TabCompletedSelected, 82, 18, FONT_NARROW);
+        PrintText(sQuestHeaderWindowId, sText_TabCurrent, 8, 18, FONT_NARROW);
+        PrintText(sQuestHeaderWindowId, sText_TabCompletedSelected, 82, 18, FONT_NARROW);
     }
 }
 
 static void DrawCurrentQuest(void)
 {
     u8 currentQuest = GetCurrentQuestId();
-    s8 previousQuest;
 
     if (currentQuest >= QUEST_COUNT)
     {
-        PrintText(sText_StoryComplete, 8, 38, FONT_NORMAL);
-        PrintText(sText_StoryCompleteDesc, 8, 62, FONT_NARROW);
-        StringCopy(gStringVar4, sText_PreviousMilestone);
-        StringAppend(gStringVar4, sMainQuests[QUEST_POKEMON_LEAGUE].title);
-        PrintText(gStringVar4, 8, 132, FONT_SMALL_NARROW);
+        PrintText(sQuestHeaderWindowId, sText_StoryComplete, 8, 38, FONT_NORMAL);
+        PrintText(sQuestBodyWindowId, sText_StoryCompleteDesc, 8, 8, FONT_NARROW);
         return;
     }
 
-    PrintText(sMainQuests[currentQuest].title, 8, 38, FONT_NORMAL);
-    PrintText(sText_Objective, 8, 57, FONT_SMALL_NARROW);
-    PrintText(sMainQuests[currentQuest].objective, 8, 69, FONT_NARROW);
-    PrintText(sText_Location, 8, 105, FONT_SMALL_NARROW);
-    PrintText(sMainQuests[currentQuest].location, 8, 115, FONT_NARROW);
+    PrintText(sQuestHeaderWindowId, sMainQuests[currentQuest].title, 8, 38, FONT_NORMAL);
 
-    previousQuest = GetPreviousMilestone(currentQuest);
-    StringCopy(gStringVar4, sText_PreviousMilestone);
-    if (previousQuest >= 0)
-        StringAppend(gStringVar4, sMainQuests[previousQuest].title);
-    else
-        StringAppend(gStringVar4, sText_NoPreviousMilestone);
-    PrintText(gStringVar4, 8, 134, FONT_SMALL_NARROW);
+    PrintText(sQuestBodyWindowId, sText_Objective, 8, 3, FONT_SMALL_NARROW);
+    PrintText(sQuestBodyWindowId, sMainQuests[currentQuest].objective, 8, 14, FONT_SMALL_NARROW);
+    PrintText(sQuestBodyWindowId, sText_Location, 8, 40, FONT_SMALL_NARROW);
+    PrintText(sQuestBodyWindowId, sMainQuests[currentQuest].location, 8, 50, FONT_NARROW);
 }
 
 static void DrawCompletedQuests(void)
@@ -407,10 +397,12 @@ static void DrawCompletedQuests(void)
     u8 completedCount = CountCompletedQuests();
     u8 row;
 
+    PrintText(sQuestHeaderWindowId, sText_MainStoryMilestones, 8, 38, FONT_NORMAL);
+
     if (completedCount == 0)
     {
-        PrintText(sText_NoCompleted, 8, 48, FONT_NARROW);
-        return;
+        PrintText(sQuestBodyWindowId, sText_NoCompleted, 8, 8, FONT_SMALL_NARROW);
+            return;
     }
 
     for (row = 0; row < QUESTS_VISIBLE_COMPLETED; row++)
@@ -426,7 +418,7 @@ static void DrawCompletedQuests(void)
         {
             StringCopy(gStringVar4, sText_Checkmark);
             StringAppend(gStringVar4, sMainQuests[questId].title);
-            PrintText(gStringVar4, 8, 42 + row * 16, FONT_NARROW);
+            PrintText(sQuestBodyWindowId, gStringVar4, 8, 4 + row * 13, FONT_SMALL_NARROW);
         }
     }
 
@@ -436,16 +428,19 @@ static void DrawCompletedQuests(void)
                                STR_CONV_MODE_LEFT_ALIGN, 2);
     ConvertIntToDecimalStringN(gStringVar3, completedCount, STR_CONV_MODE_LEFT_ALIGN, 2);
     StringExpandPlaceholders(gStringVar4, sText_Showing);
-    PrintText(gStringVar4, 8, 133, FONT_SMALL_NARROW);
+    PrintText(sQuestBodyWindowId, gStringVar4, 144, 54, FONT_SMALL_NARROW);
 }
 
 static void DrawQuestLog(void)
 {
-    FillWindowPixelBuffer(sQuestWindowId, PIXEL_FILL(1));
-    PutWindowTilemap(sQuestWindowId);
-    DrawStdWindowFrame(sQuestWindowId, FALSE);
+    FillWindowPixelBuffer(sQuestHeaderWindowId, PIXEL_FILL(1));
+    FillWindowPixelBuffer(sQuestBodyWindowId, PIXEL_FILL(1));
+    PutWindowTilemap(sQuestHeaderWindowId);
+    PutWindowTilemap(sQuestBodyWindowId);
+    DrawStdWindowFrame(sQuestHeaderWindowId, FALSE);
+    DrawStdWindowFrame(sQuestBodyWindowId, FALSE);
 
-    PrintText(sText_QuestLog, 8, 1, FONT_NORMAL);
+    PrintText(sQuestHeaderWindowId, sText_QuestLog, 8, 1, FONT_NORMAL);
     DrawStoryProgress();
     DrawTabs();
 
@@ -454,7 +449,8 @@ static void DrawQuestLog(void)
     else
         DrawCompletedQuests();
 
-    CopyWindowToVram(sQuestWindowId, COPYWIN_FULL);
+    CopyWindowToVram(sQuestHeaderWindowId, COPYWIN_FULL);
+    CopyWindowToVram(sQuestBodyWindowId, COPYWIN_FULL);
 }
 
 void QuestLog_Open(void)
@@ -466,18 +462,32 @@ void QuestLog_Open(void)
                      ? completedCount - QUESTS_VISIBLE_COMPLETED
                      : 0;
 
-    sQuestWindowId = AddWindow(&sQuestWindowTemplate);
-    if (sQuestWindowId != WINDOW_NONE)
-        DrawQuestLog();
+    sQuestHeaderWindowId = AddWindow(&sQuestHeaderWindowTemplate);
+    sQuestBodyWindowId = AddWindow(&sQuestBodyWindowTemplate);
+
+    if (sQuestHeaderWindowId == WINDOW_NONE || sQuestBodyWindowId == WINDOW_NONE)
+    {
+        QuestLog_Close();
+        return;
+    }
+
+    DrawQuestLog();
 }
 
 void QuestLog_Close(void)
 {
-    if (sQuestWindowId != WINDOW_NONE)
+    if (sQuestHeaderWindowId != WINDOW_NONE)
     {
-        ClearStdWindowAndFrameToTransparent(sQuestWindowId, TRUE);
-        RemoveWindow(sQuestWindowId);
-        sQuestWindowId = WINDOW_NONE;
+        ClearStdWindowAndFrameToTransparent(sQuestHeaderWindowId, TRUE);
+        RemoveWindow(sQuestHeaderWindowId);
+        sQuestHeaderWindowId = WINDOW_NONE;
+    }
+
+    if (sQuestBodyWindowId != WINDOW_NONE)
+    {
+        ClearStdWindowAndFrameToTransparent(sQuestBodyWindowId, TRUE);
+        RemoveWindow(sQuestBodyWindowId);
+        sQuestBodyWindowId = WINDOW_NONE;
     }
 }
 
@@ -485,7 +495,7 @@ bool8 QuestLog_Update(void)
 {
     u8 completedCount = CountCompletedQuests();
 
-    if (sQuestWindowId == WINDOW_NONE)
+    if (sQuestHeaderWindowId == WINDOW_NONE || sQuestBodyWindowId == WINDOW_NONE)
         return TRUE;
 
     if (JOY_NEW(B_BUTTON))
