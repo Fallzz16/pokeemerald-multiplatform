@@ -1,6 +1,9 @@
 #include "global.h"
 #include "cgb_audio.h"
 #include "cgb_tables.h"
+#include "platform.h"
+
+extern bool32 FastForward_ShouldMuteCgbChannel(u8 channel);
 
 struct AudioCGB gb;
 float soundChannelPos[4];
@@ -108,6 +111,13 @@ void cgb_trigger_note(u8 channel){
 
 void cgb_audio_generate(u16 samplesPerFrame){
     float *outBuffer = gb.outBuffer;
+    bool8 muteChannel[4] = {FALSE, FALSE, FALSE, FALSE};
+
+    if (Platform_IsFastForwarding())
+    {
+        for (u8 ch = 0; ch < 4; ch++)
+            muteChannel[ch] = FastForward_ShouldMuteCgbChannel(ch);
+    }
     switch(REG_NR11 & 0xC0){
         case 0x00:
             PU1Table = PU0;
@@ -204,19 +214,19 @@ void cgb_audio_generate(u16 samplesPerFrame){
         float outputL = 0;
         float outputR = 0;
         if(REG_NR52 & 0x80){
-            if((gb.DAC[0]) && (REG_NR52 & 0x01)){
+            if(!muteChannel[0] && (gb.DAC[0]) && (REG_NR52 & 0x01)){
                 if(REG_NR51 & 0x10) outputL += gb.Vol[0] * PU1Table[(int)(soundChannelPos[0])] / 15.0f;
                 if(REG_NR51 & 0x01) outputR += gb.Vol[0] * PU1Table[(int)(soundChannelPos[0])] / 15.0f;
             }
-            if((gb.DAC[1]) && (REG_NR52 & 0x02)){
+            if(!muteChannel[1] && (gb.DAC[1]) && (REG_NR52 & 0x02)){
                 if(REG_NR51 & 0x20) outputL += gb.Vol[1] * PU2Table[(int)(soundChannelPos[1])] / 15.0f;
                 if(REG_NR51 & 0x02) outputR += gb.Vol[1] * PU2Table[(int)(soundChannelPos[1])] / 15.0f;
             }
-            if((REG_NR30 & 0x80) && (REG_NR52 & 0x04)){
+            if(!muteChannel[2] && (REG_NR30 & 0x80) && (REG_NR52 & 0x04)){
                 if(REG_NR51 & 0x40) outputL += gb.Vol[2] * gb.WAVRAM[(int)(soundChannelPos[2])] / 4.0f;
                 if(REG_NR51 & 0x04) outputR += gb.Vol[2] * gb.WAVRAM[(int)(soundChannelPos[2])] / 4.0f;
             }
-            if((gb.DAC[3]) && (REG_NR52 & 0x08)){
+            if(!muteChannel[3] && (gb.DAC[3]) && (REG_NR52 & 0x08)){
                 bool32 lfsrMode = ((REG_NR43 & 0x08) == 8);
                 ch4Samples += freqTableNSE[REG_SOUND4CNT_H & 0xFF] / sampleRate;
                 int ch4Out = 0;

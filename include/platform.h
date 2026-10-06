@@ -7,6 +7,9 @@
 void Platform_StoreSaveFile(void);
 void Platform_ReadFlash(u16 sectorNum, u32 offset, u8 *dest, u32 size);
 void Platform_QueueAudio(float *audioBuffer, s32 samplesPerFrame);
+bool8 Platform_IsFastForwarding(void);
+bool8 Platform_ShouldAdvanceAudioFrame(void);
+u8 Platform_GetFastForwardMultiplier(void);
 u16 Platform_GetKeyInput(void);
 void Platform_GetStatus(struct SiiRtcInfo *rtc);
 void Platform_SetStatus(struct SiiRtcInfo *rtc);

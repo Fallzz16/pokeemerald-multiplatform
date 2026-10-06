@@ -45,7 +45,7 @@ jobs:
           test -f ".deps/SDL2-${SDL_VERSION}/i686-w64-mingw32/bin/SDL2.dll"
 
       - name: Verify Classic Enhanced payload
-        run: bash scripts/verify_v031.sh
+        run: bash scripts/verify_v032.sh
 
       - name: Build Windows executable
         shell: bash
@@ -65,7 +65,7 @@ jobs:
           cp pokeemerald.exe dist/Emerald-Vanilla-Plus/
           cp ".deps/SDL2-${SDL_VERSION}/i686-w64-mingw32/bin/SDL2.dll" dist/Emerald-Vanilla-Plus/
           cat > dist/Emerald-Vanilla-Plus/README.txt <<'EOF'
-          Emerald Vanilla+ v0.3.1 - Windows x86
+          Emerald Vanilla+ v0.3.2 - Windows x86
 
           Run: pokeemerald.exe
           Save: pokeemerald.sav (created beside the executable)
@@ -78,6 +78,12 @@ jobs:
             Select = Backslash
             L      = A
             R      = S
+
+          Fast Forward:
+            Hold Tab             = fast forward gameplay
+            F6                   = cycle 2x / 4x / 8x
+            BGM                  = stays at normal speed
+            SFX / Pokemon cries  = muted while fast-forward is held
 
           QoL:
             Start Menu > QUESTS = current objective and completed main-story milestones
@@ -93,6 +99,6 @@ jobs:
       - name: Upload portable Windows build
         uses: actions/upload-artifact@v4
         with:
-          name: Emerald-Vanilla-Plus-v0.3.1-Quest-UI-Hotfix-Windows-x86
+          name: Emerald-Vanilla-Plus-v0.3.2-Audio-Safe-Fast-Forward-Windows-x86
           path: dist/Emerald-Vanilla-Plus/
           if-no-files-found: error

@@ -112,6 +112,8 @@ struct SoundMixerState {
     //s8 outBuffer[MIXED_AUDIO_BUFFER_SIZE * 2];
 };
 
+bool32 SoundMixer_IsFastForwardMutedTrack(const void *track);
+
 typedef void (*MixerRamFunc)(struct SoundMixerState *, u32, u16, s8 *, u16);
 
 #ifndef NOT_GBA

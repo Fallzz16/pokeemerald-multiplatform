@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
 #ifdef _WIN32
@@ -33,11 +34,17 @@ SDL_Renderer *sdlRenderer;
 SDL_Texture *sdlTexture;
 SDL_sem *vBlankSemaphore;
 SDL_atomic_t isFrameAvailable;
+SDL_atomic_t fastForwardActive;
+SDL_atomic_t fastForwardAudioFrame;
 unsigned int videoScale = 1;
 bool isRunning = true;
 double lastGameTime = 0;
 double curGameTime = 0;
 double fixedTimestep = 1.0 / 60.0; // Port timing; one game tick per frame
+
+static unsigned int sFastForwardMultiplier = 2;
+static unsigned int sFastForwardAudioPhase = 0;
+
 struct SiiRtcInfo internalClock;
 
 static FILE *sSaveFile = NULL;
@@ -47,6 +54,10 @@ extern void AgbMain(void);
 int DoMain(void *param);
 void ProcessEvents(void);
 void VDraw(SDL_Texture *texture);
+
+static void PrepareFastForwardFrame(void);
+static void RenderFastForwardIndicator(void);
+static void CycleFastForwardMultiplier(void);
 
 static void ReadSaveFile(char *path);
 static void StoreSaveFile(void);
@@ -97,6 +108,8 @@ int main(int argc, char **argv)
     curGameTime = lastGameTime = SDL_GetPerformanceCounter();
 
     isFrameAvailable.value = 0;
+    fastForwardActive.value = 0;
+    fastForwardAudioFrame.value = 1;
     vBlankSemaphore = SDL_CreateSemaphore(0);
 
     SDL_AudioSpec want;
@@ -131,7 +144,8 @@ int main(int argc, char **argv)
     {
         ProcessEvents();
 
-        const double dt = fixedTimestep;
+        const unsigned int speedMultiplier = SDL_AtomicGet(&fastForwardActive) ? sFastForwardMultiplier : 1;
+        const double dt = fixedTimestep / speedMultiplier;
 
         curGameTime = SDL_GetPerformanceCounter();
         double deltaTime = (double)((curGameTime - lastGameTime) / (double)SDL_GetPerformanceFrequency());
@@ -145,6 +159,7 @@ int main(int argc, char **argv)
         {
             if (SDL_AtomicGet(&isFrameAvailable))
             {
+                PrepareFastForwardFrame();
                 VDraw(sdlTexture);
                 SDL_RenderClear(sdlRenderer);
                 SDL_RenderCopy(sdlRenderer, sdlTexture, NULL, NULL);
@@ -163,6 +178,9 @@ int main(int argc, char **argv)
                 accumulator -= dt;
             }
         }
+
+        if (SDL_AtomicGet(&fastForwardActive))
+            RenderFastForwardIndicator();
 
         SDL_RenderPresent(sdlRenderer);
     }
@@ -295,6 +313,11 @@ void ProcessEvents(void)
             HANDLE_KEYUP(DPAD_DOWN)
             HANDLE_KEYUP(DPAD_LEFT)
             HANDLE_KEYUP(DPAD_RIGHT)
+            case SDLK_TAB:
+                SDL_AtomicSet(&fastForwardActive, 0);
+                SDL_AtomicSet(&fastForwardAudioFrame, 1);
+                sFastForwardAudioPhase = 0;
+                break;
             }
             break;
         case SDL_KEYDOWN:
@@ -310,6 +333,17 @@ void ProcessEvents(void)
             HANDLE_KEYDOWN(DPAD_DOWN)
             HANDLE_KEYDOWN(DPAD_LEFT)
             HANDLE_KEYDOWN(DPAD_RIGHT)
+            case SDLK_TAB:
+                if (!event.key.repeat)
+                {
+                    SDL_AtomicSet(&fastForwardActive, 1);
+                    sFastForwardAudioPhase = 0;
+                }
+                break;
+            case SDLK_F6:
+                if (!event.key.repeat)
+                    CycleFastForwardMultiplier();
+                break;
             }
             break;
         }
@@ -353,6 +387,111 @@ u16 GetXInputKeys()
     return xinputKeys;
 }
 #endif // _WIN32
+
+
+static void PrepareFastForwardFrame(void)
+{
+    if (!SDL_AtomicGet(&fastForwardActive))
+    {
+        sFastForwardAudioPhase = 0;
+        SDL_AtomicSet(&fastForwardAudioFrame, 1);
+        return;
+    }
+
+    SDL_AtomicSet(&fastForwardAudioFrame, sFastForwardAudioPhase == 0);
+
+    sFastForwardAudioPhase++;
+    if (sFastForwardAudioPhase >= sFastForwardMultiplier)
+        sFastForwardAudioPhase = 0;
+}
+
+static void CycleFastForwardMultiplier(void)
+{
+    switch (sFastForwardMultiplier)
+    {
+    case 2:
+        sFastForwardMultiplier = 4;
+        break;
+    case 4:
+        sFastForwardMultiplier = 8;
+        break;
+    default:
+        sFastForwardMultiplier = 2;
+        break;
+    }
+
+    sFastForwardAudioPhase = 0;
+}
+
+static void DrawFastForwardGlyph(const u8 rows[5], int x, int y)
+{
+    SDL_Rect pixel = {0, 0, 1, 1};
+
+    for (int row = 0; row < 5; row++)
+    {
+        for (int col = 0; col < 3; col++)
+        {
+            if (rows[row] & (1 << (2 - col)))
+            {
+                pixel.x = x + col;
+                pixel.y = y + row;
+                SDL_RenderFillRect(sdlRenderer, &pixel);
+            }
+        }
+    }
+}
+
+static void RenderFastForwardIndicator(void)
+{
+    static const u8 glyphGreater[5] = {0x4, 0x2, 0x1, 0x2, 0x4};
+    static const u8 glyph2[5]       = {0x7, 0x1, 0x7, 0x4, 0x7};
+    static const u8 glyph4[5]       = {0x5, 0x5, 0x7, 0x1, 0x1};
+    static const u8 glyph8[5]       = {0x7, 0x5, 0x7, 0x5, 0x7};
+    static const u8 glyphX[5]       = {0x5, 0x5, 0x2, 0x5, 0x5};
+    const u8 *digit;
+    SDL_Rect box = {DISPLAY_WIDTH - 27, 4, 23, 9};
+
+    switch (sFastForwardMultiplier)
+    {
+    case 4:
+        digit = glyph4;
+        break;
+    case 8:
+        digit = glyph8;
+        break;
+    default:
+        digit = glyph2;
+        break;
+    }
+
+    SDL_SetRenderDrawBlendMode(sdlRenderer, SDL_BLENDMODE_BLEND);
+    SDL_SetRenderDrawColor(sdlRenderer, 0, 0, 0, 190);
+    SDL_RenderFillRect(sdlRenderer, &box);
+
+    SDL_SetRenderDrawColor(sdlRenderer, 255, 255, 255, 255);
+    DrawFastForwardGlyph(glyphGreater, DISPLAY_WIDTH - 24, 6);
+    DrawFastForwardGlyph(glyphGreater, DISPLAY_WIDTH - 20, 6);
+    DrawFastForwardGlyph(digit,        DISPLAY_WIDTH - 14, 6);
+    DrawFastForwardGlyph(glyphX,       DISPLAY_WIDTH - 10, 6);
+
+    SDL_SetRenderDrawBlendMode(sdlRenderer, SDL_BLENDMODE_NONE);
+    SDL_SetRenderDrawColor(sdlRenderer, 0, 0, 0, 255);
+}
+
+bool8 Platform_IsFastForwarding(void)
+{
+    return SDL_AtomicGet(&fastForwardActive) ? TRUE : FALSE;
+}
+
+bool8 Platform_ShouldAdvanceAudioFrame(void)
+{
+    return SDL_AtomicGet(&fastForwardAudioFrame) ? TRUE : FALSE;
+}
+
+u8 Platform_GetFastForwardMultiplier(void)
+{
+    return (u8)sFastForwardMultiplier;
+}
 
 u16 Platform_GetKeyInput(void)
 {
