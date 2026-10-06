@@ -1,4 +1,4 @@
-const struct Item gItems_ROM[] =
+const struct Item gItems[] =
 {
     [ITEM_NONE] =
     {

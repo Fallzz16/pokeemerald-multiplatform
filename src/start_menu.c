@@ -29,6 +29,7 @@
 #include "party_menu.h"
 #include "pokedex.h"
 #include "pokenav.h"
+#include "quest_log.h"
 #include "safari_zone.h"
 #include "save.h"
 #include "scanline_effect.h"
@@ -54,6 +55,7 @@ enum
     MENU_ACTION_POKEMON,
     MENU_ACTION_BAG,
     MENU_ACTION_POKENAV,
+    MENU_ACTION_QUESTS,
     MENU_ACTION_PLAYER,
     MENU_ACTION_SAVE,
     MENU_ACTION_OPTION,
@@ -80,6 +82,8 @@ COMMON_DATA bool8 (*gMenuCallback)(void) = NULL;
 // EWRAM
 EWRAM_DATA static u8 sSafariBallsWindowId = 0;
 EWRAM_DATA static u8 sBattlePyramidFloorWindowId = 0;
+EWRAM_DATA static u8 sStoryStatusWindowId = WINDOW_NONE;
+EWRAM_DATA static bool8 sShowStoryStatusWindow = FALSE;
 EWRAM_DATA static u8 sStartMenuCursorPos = 0;
 EWRAM_DATA static u8 sNumStartMenuActions = 0;
 EWRAM_DATA static u8 sCurrentStartMenuActions[9] = {0};
@@ -95,6 +99,8 @@ static bool8 StartMenuPokedexCallback(void);
 static bool8 StartMenuPokemonCallback(void);
 static bool8 StartMenuBagCallback(void);
 static bool8 StartMenuPokeNavCallback(void);
+static bool8 StartMenuQuestCallback(void);
+static bool8 QuestLogMenuCallback(void);
 static bool8 StartMenuPlayerNameCallback(void);
 static bool8 StartMenuSaveCallback(void);
 static bool8 StartMenuOptionCallback(void);
@@ -179,12 +185,27 @@ static const struct WindowTemplate sWindowTemplate_PyramidPeak = {
     .baseBlock = 0x8
 };
 
+static const struct WindowTemplate sWindowTemplate_StoryStatus = {
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 14,
+    .width = 19,
+    .height = 4,
+    .paletteNum = 15,
+    .baseBlock = 0x1C0
+};
+
+static const u8 sText_StoryStatus[] = _("STORY {STR_VAR_1}/{STR_VAR_2}");
+
+static const u8 sText_MenuQuests[] = _("QUESTS");
+
 static const struct MenuAction sStartMenuItems[] =
 {
     [MENU_ACTION_POKEDEX]         = {gText_MenuPokedex, {.u8_void = StartMenuPokedexCallback}},
     [MENU_ACTION_POKEMON]         = {gText_MenuPokemon, {.u8_void = StartMenuPokemonCallback}},
     [MENU_ACTION_BAG]             = {gText_MenuBag,     {.u8_void = StartMenuBagCallback}},
     [MENU_ACTION_POKENAV]         = {gText_MenuPokenav, {.u8_void = StartMenuPokeNavCallback}},
+    [MENU_ACTION_QUESTS]          = {sText_MenuQuests,  {.u8_void = StartMenuQuestCallback}},
     [MENU_ACTION_PLAYER]          = {gText_MenuPlayer,  {.u8_void = StartMenuPlayerNameCallback}},
     [MENU_ACTION_SAVE]            = {gText_MenuSave,    {.u8_void = StartMenuSaveCallback}},
     [MENU_ACTION_OPTION]          = {gText_MenuOption,  {.u8_void = StartMenuOptionCallback}},
@@ -245,6 +266,7 @@ static void BuildBattlePyramidStartMenu(void);
 static void BuildMultiPartnerRoomStartMenu(void);
 static void ShowSafariBallsWindow(void);
 static void ShowPyramidFloorWindow(void);
+static void ShowStoryStatusWindow(void);
 static void RemoveExtraStartMenuWindows(void);
 static bool32 PrintStartMenuActions(s8 *pIndex, u32 count);
 static bool32 InitStartMenuStep(void);
@@ -276,6 +298,7 @@ void SetDexPokemonPokenavFlags(void) // unused
 static void BuildStartMenuActions(void)
 {
     sNumStartMenuActions = 0;
+    sShowStoryStatusWindow = FALSE;
 
     if (IsOverworldLinkActive() == TRUE)
     {
@@ -314,6 +337,7 @@ static void AddStartMenuAction(u8 action)
 
 static void BuildNormalStartMenu(void)
 {
+    sShowStoryStatusWindow = TRUE;
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
     {
         AddStartMenuAction(MENU_ACTION_POKEDEX);
@@ -330,6 +354,7 @@ static void BuildNormalStartMenu(void)
         AddStartMenuAction(MENU_ACTION_POKENAV);
     }
 
+    AddStartMenuAction(MENU_ACTION_QUESTS);
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
     AddStartMenuAction(MENU_ACTION_OPTION);
@@ -431,6 +456,23 @@ static void ShowPyramidFloorWindow(void)
     CopyWindowToVram(sBattlePyramidFloorWindowId, COPYWIN_GFX);
 }
 
+static void ShowStoryStatusWindow(void)
+{
+    sStoryStatusWindowId = AddWindow(&sWindowTemplate_StoryStatus);
+    if (sStoryStatusWindowId == WINDOW_NONE)
+        return;
+
+    PutWindowTilemap(sStoryStatusWindowId);
+    DrawStdWindowFrame(sStoryStatusWindowId, FALSE);
+
+    ConvertIntToDecimalStringN(gStringVar1, QuestLog_GetStoryProgress(), STR_CONV_MODE_LEFT_ALIGN, 2);
+    ConvertIntToDecimalStringN(gStringVar2, QuestLog_GetStoryTotal(), STR_CONV_MODE_LEFT_ALIGN, 2);
+    StringExpandPlaceholders(gStringVar4, sText_StoryStatus);
+    AddTextPrinterParameterized(sStoryStatusWindowId, FONT_SMALL_NARROW, gStringVar4, 0, 1, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(sStoryStatusWindowId, FONT_SMALL_NARROW, QuestLog_GetCurrentTitle(), 0, 17, TEXT_SKIP_DRAW, NULL);
+    CopyWindowToVram(sStoryStatusWindowId, COPYWIN_GFX);
+}
+
 static void RemoveExtraStartMenuWindows(void)
 {
     if (GetSafariZoneFlag())
@@ -444,6 +486,17 @@ static void RemoveExtraStartMenuWindows(void)
         ClearStdWindowAndFrameToTransparent(sBattlePyramidFloorWindowId, FALSE);
         RemoveWindow(sBattlePyramidFloorWindowId);
     }
+    if (sStoryStatusWindowId != WINDOW_NONE)
+    {
+        ClearStdWindowAndFrameToTransparent(sStoryStatusWindowId, FALSE);
+        RemoveWindow(sStoryStatusWindowId);
+        sStoryStatusWindowId = WINDOW_NONE;
+    }
+}
+
+static u8 GetStartMenuTextY(u8 index)
+{
+    return (sNumStartMenuActions >= 9 ? 0 : 9) + (index << 4);
 }
 
 static bool32 PrintStartMenuActions(s8 *pIndex, u32 count)
@@ -454,12 +507,12 @@ static bool32 PrintStartMenuActions(s8 *pIndex, u32 count)
     {
         if (sStartMenuItems[sCurrentStartMenuActions[index]].func.u8_void == StartMenuPlayerNameCallback)
         {
-            PrintPlayerNameOnWindow(GetStartMenuWindowId(), sStartMenuItems[sCurrentStartMenuActions[index]].text, 8, (index << 4) + 9);
+            PrintPlayerNameOnWindow(GetStartMenuWindowId(), sStartMenuItems[sCurrentStartMenuActions[index]].text, 8, GetStartMenuTextY(index));
         }
         else
         {
             StringExpandPlaceholders(gStringVar4, sStartMenuItems[sCurrentStartMenuActions[index]].text);
-            AddTextPrinterParameterized(GetStartMenuWindowId(), FONT_NORMAL, gStringVar4, 8, (index << 4) + 9, TEXT_SKIP_DRAW, NULL);
+            AddTextPrinterParameterized(GetStartMenuWindowId(), FONT_NORMAL, gStringVar4, 8, GetStartMenuTextY(index), TEXT_SKIP_DRAW, NULL);
         }
 
         index++;
@@ -501,6 +554,8 @@ static bool32 InitStartMenuStep(void)
             ShowSafariBallsWindow();
         if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
             ShowPyramidFloorWindow();
+        if (sShowStoryStatusWindow)
+            ShowStoryStatusWindow();
         sInitStartMenuData[0]++;
         break;
     case 4:
@@ -508,7 +563,7 @@ static bool32 InitStartMenuStep(void)
             sInitStartMenuData[0]++;
         break;
     case 5:
-        sStartMenuCursorPos = InitMenuNormal(GetStartMenuWindowId(), FONT_NORMAL, 0, 9, 16, sNumStartMenuActions, sStartMenuCursorPos);
+        sStartMenuCursorPos = InitMenuNormal(GetStartMenuWindowId(), FONT_NORMAL, 0, sNumStartMenuActions >= 9 ? 0 : 9, 16, sNumStartMenuActions, sStartMenuCursorPos);
         CopyWindowToVram(GetStartMenuWindowId(), COPYWIN_MAP);
         return TRUE;
     }
@@ -616,6 +671,7 @@ static bool8 HandleStartMenuInput(void)
         gMenuCallback = sStartMenuItems[sCurrentStartMenuActions[sStartMenuCursorPos]].func.u8_void;
 
         if (gMenuCallback != StartMenuSaveCallback
+            && gMenuCallback != StartMenuQuestCallback
             && gMenuCallback != StartMenuExitCallback
             && gMenuCallback != StartMenuSafariZoneRetireCallback
             && gMenuCallback != StartMenuBattlePyramidRetireCallback)
@@ -697,6 +753,28 @@ static bool8 StartMenuPokeNavCallback(void)
     return FALSE;
 }
 
+static bool8 StartMenuQuestCallback(void)
+{
+    RemoveExtraStartMenuWindows();
+    ClearStdWindowAndFrameToTransparent(GetStartMenuWindowId(), TRUE);
+    RemoveStartMenuWindow();
+    QuestLog_Open();
+    gMenuCallback = QuestLogMenuCallback;
+    return FALSE;
+}
+
+static bool8 QuestLogMenuCallback(void)
+{
+    if (QuestLog_Update())
+    {
+        QuestLog_Close();
+        InitStartMenu();
+        gMenuCallback = HandleStartMenuInput;
+    }
+
+    return FALSE;
+}
+
 static bool8 StartMenuPlayerNameCallback(void)
 {
     if (!gPaletteFade.active)
@@ -720,9 +798,7 @@ static bool8 StartMenuPlayerNameCallback(void)
 
 static bool8 StartMenuSaveCallback(void)
 {
-    if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
-        RemoveExtraStartMenuWindows();
-
+    RemoveExtraStartMenuWindows();
     gMenuCallback = SaveStartCallback; // Display save menu
 
     return FALSE;

@@ -1,0 +1,98 @@
+name: Build Emerald Vanilla+ (Windows)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - emerald-vanilla-native
+      - emerald-vanilla-plus
+      - emerald-modern-ui
+    paths-ignore:
+      - '**/*.md'
+
+jobs:
+  windows-x86:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Install host and MinGW build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            gcc-mingw-w64-i686 \
+            binutils-mingw-w64-i686 \
+            libpng-dev \
+            zlib1g-dev \
+            curl \
+            ca-certificates \
+            file
+
+      - name: Download SDL2 MinGW development package
+        shell: bash
+        run: |
+          set -euxo pipefail
+          SDL_VERSION=2.30.7
+          mkdir -p .deps
+          curl -fL --retry 3 \
+            "https://www.libsdl.org/release/SDL2-devel-${SDL_VERSION}-mingw.tar.gz" \
+            -o ".deps/SDL2-devel-${SDL_VERSION}-mingw.tar.gz"
+          tar -xzf ".deps/SDL2-devel-${SDL_VERSION}-mingw.tar.gz" -C .deps
+          test -f ".deps/SDL2-${SDL_VERSION}/i686-w64-mingw32/include/SDL2/SDL.h"
+          test -f ".deps/SDL2-${SDL_VERSION}/i686-w64-mingw32/bin/SDL2.dll"
+
+      - name: Verify Classic Enhanced payload
+        run: bash scripts/verify_modern_ui.sh
+
+      - name: Build Windows executable
+        shell: bash
+        run: |
+          set -euxo pipefail
+          SDL_VERSION=2.30.7
+          make -f Makefile_pc -j2 \
+            SDL_DIR="$PWD/.deps/SDL2-${SDL_VERSION}/i686-w64-mingw32"
+          file pokeemerald.exe
+
+      - name: Assemble portable folder
+        shell: bash
+        run: |
+          set -euxo pipefail
+          SDL_VERSION=2.30.7
+          mkdir -p dist/Emerald-Vanilla-Plus
+          cp pokeemerald.exe dist/Emerald-Vanilla-Plus/
+          cp ".deps/SDL2-${SDL_VERSION}/i686-w64-mingw32/bin/SDL2.dll" dist/Emerald-Vanilla-Plus/
+          cat > dist/Emerald-Vanilla-Plus/README.txt <<'EOF'
+          Emerald Vanilla+ v0.3 - Windows x86
+
+          Run: pokeemerald.exe
+          Save: pokeemerald.sav (created beside the executable)
+
+          Keyboard:
+            D-pad  = Arrow keys
+            A      = Z
+            B      = X
+            Start  = Enter
+            Select = Backslash
+            L      = A
+            R      = S
+
+          QoL:
+            Start Menu > QUESTS = current objective and completed main-story milestones
+            Quest Log L/R       = change tab
+            Quest Log Up/Down   = scroll Completed
+            Quest Log B         = back
+            PokéNav region map  = approximate current-objective marker
+
+          The original in-game soft-reset combination A+B+Start+Select is retained.
+          No emulator or commercial ROM is loaded by this executable.
+          EOF
+
+      - name: Upload portable Windows build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Emerald-Vanilla-Plus-v0.3-Classic-Enhanced-Windows-x86
+          path: dist/Emerald-Vanilla-Plus/
+          if-no-files-found: error

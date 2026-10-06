@@ -26,8 +26,7 @@ struct WildPokemonHeader
     const struct WildPokemonInfo *fishingMonsInfo;
 };
 
-extern struct WildPokemonHeader *gWildMonHeaders;
-extern const struct WildPokemonHeader gWildMonHeaders_ROM[];
+extern const struct WildPokemonHeader gWildMonHeaders[];
 
 void DisableWildEncounters(bool8 disabled);
 bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior);

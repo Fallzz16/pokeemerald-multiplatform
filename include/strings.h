@@ -316,17 +316,6 @@ extern const u8 gText_Sound[];
 extern const u8 gText_Frame[];
 extern const u8 gText_OptionMenuCancel[];
 extern const u8 gText_ButtonMode[];
-extern const u8 gText_BorderBackground[];
-extern const u8 gText_BorderBackgroundName[];
-extern const u8 gText_BorderBackgroundOff[];
-extern const u8 gText_DisplaySettings[];
-extern const u8 gText_Fullscreen[];
-extern const u8 gText_WindowScale[];
-extern const u8 gText_IntegerScale[];
-extern const u8 gText_VSync[];
-extern const u8 gText_BorderFrame[];
-extern const u8 gText_Volume[];
-extern const u8 gText_Back[];
 
 extern const u8 gText_MaleSymbol[];
 extern const u8 gText_FemaleSymbol[];

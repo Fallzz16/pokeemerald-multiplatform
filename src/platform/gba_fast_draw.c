@@ -2565,7 +2565,7 @@ static void DrawScanline(uint16_t *pixels, uint16_t vcount)
     case 0:
         for (prnum = 3; prnum >= 0; prnum--)
         {
-            for (int prsub = scanline.prioritySortedBgsCount[prnum] - 1; prsub >= 0; prsub--)
+            for (char prsub = scanline.prioritySortedBgsCount[prnum] - 1; prsub >= 0; prsub--)
             {
                 bgnum = scanline.prioritySortedBgs[prnum][prsub];
                 if (isbgEnabled(bgnum))
@@ -2600,7 +2600,7 @@ static void DrawScanline(uint16_t *pixels, uint16_t vcount)
     case 1:
         for (prnum = 3; prnum >= 0; prnum--)
         {
-            for (int prsub = scanline.prioritySortedBgsCount[prnum] - 1; prsub >= 0; prsub--)
+            for (char prsub = scanline.prioritySortedBgsCount[prnum] - 1; prsub >= 0; prsub--)
             {
                 bgnum = scanline.prioritySortedBgs[prnum][prsub];
                 if (isbgEnabled(bgnum))
@@ -2681,11 +2681,7 @@ void DrawFrame(uint16_t *pixels)
         if(((REG_DISPSTAT >> 8) & 0xFF) == REG_VCOUNT)
         {
             REG_DISPSTAT |= INTR_FLAG_VCOUNT;
-#ifdef __ANDROID__
-                if (REG_IE & INTR_FLAG_VCOUNT)
-#else
-                if (REG_DISPSTAT & DISPSTAT_VCOUNT_INTR)
-#endif
+            if(REG_DISPSTAT & DISPSTAT_VCOUNT_INTR)
                     gIntrTable[0]();
         }
         

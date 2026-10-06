@@ -32,7 +32,7 @@
         .noFlip = FALSE,                                                                \
     }
 
-const struct SpeciesInfo gSpeciesInfo_ROM[] =
+const struct SpeciesInfo gSpeciesInfo[] =
 {
     [SPECIES_NONE] = {0},
 

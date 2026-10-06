@@ -773,11 +773,7 @@ void m4aSoundVSync(void)
             if (cgbSample != cgbSample)
                 cgbSample = 0.0f;
 
-#ifdef __ANDROID__
-            sample = (m4aSample + cgbSample) * 0.5f;
-#else
             sample = (m4aSample + cgbSample) * 0.125f;
-#endif
             if (sample > 1.0f)
                 sample = 1.0f;
             else if (sample < -1.0f)

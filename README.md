@@ -1,36 +1,67 @@
-# pokeemerald-multiplatform
+# Emerald Vanilla+ v0.3 — Classic Enhanced UI
 
-Based on the existing pokeemerald PC/SDL port work by Kurausukun, NT_x86, Normmatt, camthesaxman and other contributors. This fork focuses on multiplatform support, Android, ROM-hack importing, and experimental 2.5D rendering.
+**Emerald Vanilla+** keeps Pokémon Emerald's original English campaign, maps, encounters, battles, graphics, audio and balance while adding carefully scoped quality-of-life features to the native SDL2 port.
 
-The project runs the decompiled game code directly. It is not a bundled GBA emulator and does not include a commercial ROM.
+The project executes the decompiled game code directly as a native program. It does **not** bundle or load a commercial `.gba` ROM through an emulator.
 
-## Platform Status
 
-| Platform | Status | Output |
-| --- | --- | --- |
-| Windows | Working through the SDL2 backend | `pokeemerald.exe` |
-| Linux | Working native 32-bit SDL2 build | `pokeemerald` |
-| Android | Working experimental ARMv7 SDL2 build | `android/app/build/outputs/apk/debug/app-debug.apk` |
-| GBA ROM | Upstream target | `pokeemerald.gba` |
+## v0.3 — Classic Enhanced UI
 
-## Port Changes
+This release modernizes the presentation while deliberately preserving Emerald's pixel-art language and game rules. The first UI pass focuses on **Pokédex, Party, Pokémon Summary, Quest Log, Start Menu story status, and the PokéNav quest marker**.
 
-- Repaired the portable MP2K/M4A music player and sound mixer build.
-- Added SDL2 float audio output at 42060 Hz.
-- Sanitized invalid floating-point samples independently in the M4A and CGB audio paths, eliminating loud buzzing without discarding valid audio.
-- Added output headroom and clipping protection.
-- Fixed structure and pointer conversions required by the portable audio engine.
-- Fixed portable BIOS, DMA, flash-save, trainer-card, and sound-related compilation errors.
-- Added working save-file access through `pokeemerald.sav`.
-- Added a Wine launcher for the Windows build.
-- Added native 32-bit Linux compilation and SDL2 linkage.
-- Added aspect-ratio-preserving 3:2 rendering with independently scaled background artwork and a transparent frame.
-- Added persistent display settings with automatic support for additional numbered background images.
-- Added an experimental Android SDL2/Gradle project and an ARMv7 cross-compilation pipeline.
-- Added Android rendering, frame pacing, audio output, writable save storage, and lifecycle handling.
-- Added an Android-native labeled multitouch overlay and SDL game-controller input.
-- Added launcher icons on Android and an embedded multi-resolution icon on Windows.
-- Added an experimental 2.5D voxel renderer engine for Pokémon maps (`--voxel`).
+### Visual language
+
+- Emerald/teal surfaces instead of the harsh olive/neon combinations used by several original screens.
+- Warm ivory information panels for stronger text contrast.
+- Gold accents for progression and Skills information.
+- Controlled violet accents for move pages, retaining the original page identity without the saturated magenta/blue look.
+- Original tile geometry, pixel grid and screen resolution are preserved.
+
+### Start Menu story card
+
+The normal Start Menu now shows a small classic Emerald-style status window on the left with `STORY xx/29` and the current main-story objective title. It is read-only and derives from the same quest flags/variables as the v0.2 Quest Log.
+
+### Quest Log refinement
+
+The Quest Log now uses clearer information hierarchy, shows `STORY xx/29` in the header, uses **NEXT LOCATION** and **LAST** labels, and keeps Current/Completed navigation unchanged.
+
+### Gameplay preservation
+
+No species data, encounters, trainers, moves, items, maps, story scripts, battle logic, music or SFX are changed by the Modern UI pass. The UI source assets remain 4bpp-compatible and were validated through the project's graphics converter.
+
+## v0.2 — Main Story Quest Guide
+
+This release adds a non-invasive main-story guide designed to help players resume the adventure without changing the campaign itself.
+
+### Quest Log
+
+A new **QUESTS** entry appears in the normal Start Menu. It contains:
+
+- **CURRENT** — the next unfinished main-story milestone.
+- **WHAT WAS I DOING?** — a concise reminder of the current objective.
+- **LOCATION** — the relevant city, route or dungeon, without exact NPC/path GPS.
+- **PREV** — the last completed main-story milestone.
+- **COMPLETED** — a scrollable history of completed main-story milestones.
+
+Controls inside the Quest Log:
+
+| Action | Control |
+| --- | --- |
+| Change Current / Completed tab | `L` / `R` |
+| Scroll completed milestones | D-pad Up / Down |
+| Return | `B` |
+
+The tracker does **not** rewrite story scripts and does not add quest-state fields to the save. It derives progress from Emerald's existing flags, variables and badges, so existing saves can be interpreted automatically.
+
+### PokéNav objective marker
+
+The PokéNav region map now displays a small blinking marker for the **approximate region** of the active main-story objective. Dungeon targets are translated to the corresponding map region where appropriate. This is intentionally not an exact GPS arrow.
+
+## Scope
+
+v0.2 intentionally does **not** add side quests, new Pokémon, Fairy type, Mega Evolution, new encounters, balance changes, modern EXP Share, altered HMs, autosave, fast travel, voxel rendering, mod loading or other gameplay-overhaul features.
+
+The original v0.1 native-port cleanup remains in place: desktop fast-forward, desktop pause and extra keyboard-reset shortcuts are disabled, while Emerald's original `A+B+Start+Select` soft reset remains.
 
 ## Controls
 
@@ -43,117 +74,53 @@ The project runs the decompiled game code directly. It is not a bundled GBA emul
 | L | `A` |
 | R | `S` |
 | D-pad | Arrow keys |
-| Fast-forward | `Space` |
-| Pause | `Ctrl+P` |
-| Soft reset | `Ctrl+R` |
 
-Windows XInput controllers are supported by the SDL2 backend. Android supports SDL-compatible gamepads, including D-pad and left analog-stick movement. Native Linux currently uses keyboard input.
+Windows XInput controllers remain mapped to equivalent GBA controls.
 
-## Windows Build
+## Windows build
 
-The Windows target uses the 32-bit MinGW toolchain, SDL2, and ImageMagick. ImageMagick converts the PNG border assets to alpha-preserving BMP files supported by the Windows SDL2 build:
+The current native target is 32-bit because the portable code/data layout relies on 32-bit pointers.
 
-```sh
-make -f Makefile_pc -j4
-```
-
-Place `SDL2.dll` beside `pokeemerald.exe`. On Linux, the Windows build can be launched through Wine with:
+With the required MinGW and SDL2 development files installed:
 
 ```sh
-./launch.sh
+make -f Makefile_pc -j2
 ```
 
-## Linux Build
+Output:
 
-The game data contains 32-bit pointers, so the native Linux target must currently be built as a 32-bit executable. Install a multilib C toolchain plus 32-bit SDL2 and SDL2_image development files, then run:
-
-```sh
-make -f Makefile_pc linux -j4
-./pokeemerald
+```text
+pokeemerald.exe
 ```
 
-Linux objects are kept separately under `build/linux`, so they do not interfere with the Windows build.
+Place the matching 32-bit `SDL2.dll` beside the executable. The included GitHub Actions workflow can build and package the portable Windows folder automatically.
 
-The resulting executable is `pokeemerald` in the repository root.
+## Save file
 
-## Display Settings
-
-The in-game Options menu includes a `DISPLAY` page. Settings apply immediately and are written to `pokeemerald.cfg`; Android stores the same config in the app's private storage.
-
-Desktop builds support fullscreen, window size, integer scaling, VSync, border frame visibility, background selection, and volume. Android supports border frame visibility, background selection, and volume.
-
-## Border Artwork
-
-Windows, Linux, and Android use the same border assets from the repository root:
-
-- `Border.png` is the transparent frame fitted around the centered 3:2 gameplay viewport.
-- `BG.png` is the default background and scales independently to fill the complete output.
-- `BG1.png`, `BG2.png`, and subsequent sequentially numbered files add selectable backgrounds after the default `BG` entry.
-
-The background selector order is `BG`, `BG 1`, `BG 2`, and so on, followed by `OFF` for a plain black background. Numbered files must be contiguous; for example, `BG2.png` is only detected when `BG1.png` is also present.
-
-Backgrounds and the frame should use a 1280x720 canvas. Keep the frame opening centered at the same location and dimensions as `Border.png` so it remains aligned at different output aspect ratios.
-
-## Saving
-
-Save data is read from and written to:
+The native port stores save data as:
 
 ```text
 pokeemerald.sav
 ```
 
-Keep this file if you clean or move the build.
+The Quest Log derives its state from the existing Emerald save data and does not require a separate quest save file.
 
-## Voxel Engine (Experimental)
+## Verification
 
-This repository includes an experimental 2.5D voxel renderer. Instead of drawing flat 2D tilemaps, the engine extrapolates Pokémon map collision and metadata into a 3D environment with seamless map connections, structure grouping, and dynamic camera cutaways.
-
-To run the game in voxel mode on Linux, pass the `--voxel` flag:
+For the current v0.3 Classic Enhanced source, run:
 
 ```sh
-./pokeemerald --voxel
+bash scripts/verify_modern_ui.sh
 ```
 
-To enable a free-roaming 3D First-Person camera instead of the fixed isometric follow-camera, press `F7` in-game while in voxel mode. Use `W`/`A`/`S`/`D` to move and `Space`/`Shift` to ascend/descend.
+The v0.3 verifier confirms that files outside the explicitly approved Modern UI surface remain byte-for-byte identical to v0.2, rejects known experimental systems outside the Vanilla+ scope, and checks that the native-only speed/pause/reset shortcuts remain absent.
 
-## Android Build
+`bash scripts/verify_vanilla.sh` routes to the current release verifier. The older `scripts/verify_vanillaplus.sh` is retained as historical v0.2 QA documentation.
 
-The Android project targets API 36 and `armeabi-v7a`. The 32-bit ABI is required by the game's current pointer layout. Android SDK 36, NDK `26.3.11579264`, CMake 3.22.1, and a compatible JDK are required.
-
-Initialize SDL2 and apply the Android lifecycle patch once after cloning:
-
-```sh
-git submodule update --init --recursive
-git -C android/SDL2 apply ../patches/sdl2-android-lifecycle.patch
-```
-
-Set `JAVA_HOME` and `ANDROID_HOME`, then build with SDL2's Gradle wrapper:
-
-```sh
-android/SDL2/android-project/gradlew -p android :app:assembleDebug
-```
-
-Install the debug APK on a connected device with:
-
-```sh
-adb install -r android/app/build/outputs/apk/debug/app-debug.apk
-```
-
-Android saves are stored in the app's writable private storage. Windows and Linux continue to use `pokeemerald.sav` in the working directory.
-
-Android includes a labeled multitouch overlay for the D-pad, A, B, Start, Select, L, and R.
-
-## Upstream Project
-
-This repository is based on the Pokémon Emerald decompilation. The upstream project builds the following ROM:
-
-- `pokeemerald.gba`
-- SHA-1: `f3ae088181bf583e55daf962a92bb46f4f1d07b7`
-
-See [INSTALL.md](INSTALL.md) for the original decompilation setup and [pret.github.io](https://pret.github.io/) for other pret projects.
+See [`MODERN_UI_V0.3_AUDIT.md`](MODERN_UI_V0.3_AUDIT.md) and [`docs/MODERN_UI_V0.3.md`](docs/MODERN_UI_V0.3.md) for the current implementation/QA report. The v0.2 and v0.1 audits remain included for lineage.
 
 ## Legal
 
 Pokémon and Pokémon Emerald are trademarks of Nintendo, Creatures Inc., and GAME FREAK inc. This is an unofficial fan project and is not affiliated with or endorsed by those companies.
 
-The scoped license in [LICENSE](LICENSE) applies only to original multiplatform-port modifications contributed through this fork. It does not relicense upstream code, third-party components, or copyrighted game assets.
+The repository's scoped `LICENSE` applies only to original multiplatform-port modifications contributed through the fork. It does not relicense upstream code, third-party components or copyrighted game assets.

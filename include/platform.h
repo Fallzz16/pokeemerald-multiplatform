@@ -8,23 +8,6 @@ void Platform_StoreSaveFile(void);
 void Platform_ReadFlash(u16 sectorNum, u32 offset, u8 *dest, u32 size);
 void Platform_QueueAudio(float *audioBuffer, s32 samplesPerFrame);
 u16 Platform_GetKeyInput(void);
-u8 Platform_GetBorderBackgroundCount(void);
-u8 Platform_GetBorderBackground(void);
-void Platform_SetBorderBackground(u8 selection);
-
-enum PlatformSetting
-{
-    PLATFORM_SETTING_FULLSCREEN,
-    PLATFORM_SETTING_WINDOW_SCALE,
-    PLATFORM_SETTING_INTEGER_SCALE,
-    PLATFORM_SETTING_VSYNC,
-    PLATFORM_SETTING_BORDER,
-    PLATFORM_SETTING_VOLUME,
-    PLATFORM_SETTING_COUNT,
-};
-
-u8 Platform_GetSetting(enum PlatformSetting setting);
-void Platform_SetSetting(enum PlatformSetting setting, u8 value);
 void Platform_GetStatus(struct SiiRtcInfo *rtc);
 void Platform_SetStatus(struct SiiRtcInfo *rtc);
 static void UpdateInternalClock(void);

@@ -8,7 +8,6 @@
 #include "main.h"
 #include "menu.h"
 #include "palette.h"
-#include "platform/mods/mod_manager.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "scanline_effect.h"
@@ -351,15 +350,9 @@ static const struct SpriteTemplate sSpriteTemplate_StarterCircle =
 // .text
 u16 GetStarterPokemon(u16 chosenStarterId)
 {
-    u16 override;
     if (chosenStarterId > STARTER_MON_COUNT)
         chosenStarterId = 0;
-
-    override = ModManager_GetStarterSpecies(chosenStarterId, sStarterMon[chosenStarterId]);
-    if (override >= NUM_SPECIES)
-        override = sStarterMon[chosenStarterId];
-        
-    return override;
+    return sStarterMon[chosenStarterId];
 }
 
 static void VblankCB_StarterChoose(void)

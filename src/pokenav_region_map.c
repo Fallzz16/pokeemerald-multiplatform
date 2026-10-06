@@ -6,6 +6,7 @@
 #include "menu.h"
 #include "palette.h"
 #include "pokenav.h"
+#include "quest_log.h"
 #include "region_map.h"
 #include "sound.h"
 #include "sprite.h"
@@ -19,6 +20,8 @@
 
 #define GFXTAG_CITY_ZOOM 6
 #define PALTAG_CITY_ZOOM 11
+#define GFXTAG_QUEST_MARKER 0x2710
+#define PALTAG_QUEST_MARKER 0x2711
 
 #define NUM_CITY_MAPS 22
 
@@ -35,6 +38,7 @@ struct Pokenav_RegionMapGfx
     u32 loopTaskId;
     u16 infoWindowId;
     struct Sprite *cityZoomTextSprites[3];
+    struct Sprite *questMarkerSprite;
     u8 ALIGNED(2) tilemapBuffer[BG_SCREEN_SIZE];
     u8 cityZoomPics[NUM_CITY_MAPS][200];
 };
@@ -73,12 +77,74 @@ static u32 LoopedTask_UpdateInfoAfterCursorMove(s32);
 static u32 LoopedTask_RegionMapZoomOut(s32);
 static u32 LoopedTask_RegionMapZoomIn(s32);
 static u32 LoopedTask_ExitRegionMap(s32);
+static void CreateQuestMarker(struct Pokenav_RegionMapGfx *state);
+static void DestroyQuestMarker(struct Pokenav_RegionMapGfx *state);
+static void SpriteCB_QuestMarker(struct Sprite *sprite);
 
 extern const u16 gRegionMapCityZoomTiles_Pal[];
 extern const u32 gRegionMapCityZoomText_Gfx[];
 
 static const u16 sMapSecInfoWindow_Pal[] = INCBIN_U16("graphics/pokenav/region_map/info_window.gbapal");
 static const u32 sRegionMapCityZoomTiles_Gfx[] = INCBIN_U32("graphics/pokenav/region_map/zoom_tiles.4bpp.lz");
+
+static const u16 sQuestMarkerPal[] =
+{
+    RGB(0, 0, 0),
+    RGB(4, 15, 12),
+    RGB(31, 27, 10),
+    RGB(18, 31, 24),
+};
+
+static const ALIGNED(4) u8 sQuestMarkerGfx[] =
+{
+    0x00, 0x10, 0x01, 0x00,
+    0x00, 0x21, 0x12, 0x00,
+    0x10, 0x22, 0x22, 0x01,
+    0x21, 0x22, 0x22, 0x12,
+    0x21, 0x22, 0x22, 0x12,
+    0x10, 0x22, 0x22, 0x01,
+    0x00, 0x21, 0x12, 0x00,
+    0x00, 0x10, 0x01, 0x00,
+};
+
+static const struct OamData sQuestMarkerOam =
+{
+    .y = 0,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .mosaic = FALSE,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(8x8),
+    .x = 0,
+    .matrixNum = 0,
+    .size = SPRITE_SIZE(8x8),
+    .tileNum = 0,
+    .priority = 0,
+    .paletteNum = 0,
+    .affineParam = 0,
+};
+
+static const union AnimCmd sQuestMarkerAnim[] =
+{
+    ANIMCMD_FRAME(0, 0),
+    ANIMCMD_END
+};
+
+static const union AnimCmd *const sQuestMarkerAnimTable[] =
+{
+    sQuestMarkerAnim
+};
+
+static const struct SpriteTemplate sQuestMarkerTemplate =
+{
+    .tileTag = GFXTAG_QUEST_MARKER,
+    .paletteTag = PALTAG_QUEST_MARKER,
+    .oam = &sQuestMarkerOam,
+    .anims = sQuestMarkerAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_QuestMarker,
+};
 
 #include "data/region_map/city_map_tilemaps.h"
 
@@ -248,6 +314,7 @@ bool32 OpenPokenavRegionMap(void)
     if (!state)
         return FALSE;
 
+    state->questMarkerSprite = NULL;
     state->loopTaskId = CreateLoopedTask(LoopedTask_OpenRegionMap, 1);
     state->isTaskActiveCB = GetCurrentLoopedTaskActive;
     return TRUE;
@@ -269,6 +336,7 @@ bool32 IsRegionMapLoopedTaskActive(void)
 void FreeRegionMapSubstruct2(void)
 {
     struct Pokenav_RegionMapGfx *state = GetSubstructPtr(POKENAV_SUBSTRUCT_REGION_MAP_ZOOM);
+    DestroyQuestMarker(state);
     FreeRegionMapIconResources();
     FreeCityZoomViewGfx();
     RemoveWindow(state->infoWindowId);
@@ -327,6 +395,7 @@ static u32 LoopedTask_OpenRegionMap(s32 taskState)
             CreateRegionMapPlayerIcon(4, 9);
             CreateRegionMapCursor(5, 10);
             TrySetPlayerIconBlink();
+            CreateQuestMarker(state);
         }
         else
         {
@@ -376,6 +445,82 @@ static u32 LoopedTask_OpenRegionMap(s32 taskState)
     default:
         return LT_FINISH;
     }
+}
+
+static void CreateQuestMarker(struct Pokenav_RegionMapGfx *state)
+{
+    struct SpriteSheet sheet = {sQuestMarkerGfx, sizeof(sQuestMarkerGfx), GFXTAG_QUEST_MARKER};
+    struct SpritePalette palette = {sQuestMarkerPal, PALTAG_QUEST_MARKER};
+    u8 spriteId;
+
+    if (!QuestLog_HasActiveQuest())
+        return;
+
+    LoadSpriteSheet(&sheet);
+    LoadSpritePalette(&palette);
+    spriteId = CreateSprite(&sQuestMarkerTemplate, 0, 0, 0);
+    if (spriteId != MAX_SPRITES)
+    {
+        state->questMarkerSprite = &gSprites[spriteId];
+        SpriteCB_QuestMarker(state->questMarkerSprite);
+    }
+}
+
+static void DestroyQuestMarker(struct Pokenav_RegionMapGfx *state)
+{
+    if (state->questMarkerSprite != NULL)
+    {
+        DestroySprite(state->questMarkerSprite);
+        state->questMarkerSprite = NULL;
+    }
+
+    FreeSpriteTilesByTag(GFXTAG_QUEST_MARKER);
+    FreeSpritePaletteByTag(PALTAG_QUEST_MARKER);
+}
+
+static void SpriteCB_QuestMarker(struct Sprite *sprite)
+{
+    struct RegionMap *regionMap = GetSubstructPtr(POKENAV_SUBSTRUCT_REGION_MAP);
+    u16 mapSecId = QuestLog_GetCurrentTargetMapSecId();
+    const struct RegionMapLocation *location;
+    s16 mapX;
+    s16 mapY;
+    s16 screenX;
+    s16 screenY;
+    bool8 blinkVisible;
+
+    if (mapSecId == MAPSEC_NONE)
+    {
+        sprite->invisible = TRUE;
+        return;
+    }
+
+    mapSecId = CorrectSpecialMapSecId(mapSecId);
+    location = &gRegionMapEntries[mapSecId];
+    mapX = location->x + 1;
+    mapY = location->y + 2;
+
+    if (IsRegionMapZoomed())
+    {
+        sprite->x = mapX * 16 - 0x30 + (location->width - 1) * 8;
+        sprite->y = mapY * 16 - 0x42 + (location->height - 1) * 8;
+        sprite->x2 = -2 * regionMap->scrollX;
+        sprite->y2 = -2 * regionMap->scrollY;
+    }
+    else
+    {
+        sprite->x = mapX * 8 + 4 + (location->width - 1) * 4;
+        sprite->y = mapY * 8 + 4 + (location->height - 1) * 4;
+        sprite->x2 = 0;
+        sprite->y2 = 0;
+    }
+
+    screenX = sprite->x + sprite->x2;
+    screenY = sprite->y + sprite->y2;
+    blinkVisible = ((sprite->data[0]++ >> 4) & 1) == 0;
+    sprite->invisible = !blinkVisible
+                     || screenX < -8 || screenX > DISPLAY_WIDTH + 8
+                     || screenY < -8 || screenY > DISPLAY_HEIGHT + 8;
 }
 
 static u32 LoopedTask_UpdateInfoAfterCursorMove(s32 taskState)
