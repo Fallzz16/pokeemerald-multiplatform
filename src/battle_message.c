@@ -3012,7 +3012,13 @@ void BattlePutTextOnWindow(const u8 *text, u8 windowId)
         else if (gBattleTypeFlags & BATTLE_TYPE_RECORDED)
             speed = sRecordedBattleTextSpeeds[GetTextSpeedInRecordedBattle()];
         else
+        {
             speed = GetPlayerTextSpeedDelay();
+            if (gSaveBlock2Ptr->optionsBattleSpeed == 1 && speed > 1)
+                speed = 1;
+            else if (gSaveBlock2Ptr->optionsBattleSpeed == 2)
+                speed = 0;
+        }
 
         gTextFlags.canABSpeedUpPrint = 1;
     }

@@ -1,6 +1,11 @@
 static const u8 sDummyDesc[] = _(
     "?????");
 
+static const u8 sLinkCableDesc[] = _(
+    "A special cable that\n"
+    "evolves POKéMON\n"
+    "without trading.");
+
 // Pokeballs
 static const u8 sMasterBallDesc[] = _(
     "The best BALL that\n"

@@ -23,6 +23,8 @@
 #define tSound data[4]
 #define tButtonMode data[5]
 #define tWindowFrameType data[6]
+#define tExpShare data[7]
+#define tBattleSpeed data[8]
 
 enum
 {
@@ -69,8 +71,19 @@ static void ButtonMode_DrawChoices(u8 selection);
 static void DrawHeaderText(void);
 static void DrawOptionMenuTexts(void);
 static void DrawBgWindowFrames(void);
+static void DrawExtraOptionChoices(u8 taskId);
 
 EWRAM_DATA static bool8 sArrowPressed = FALSE;
+EWRAM_DATA static u8 sOptionMenuPage = 0;
+
+static const u8 sTextExtraOptionsHint[] = _("L/R: MORE");
+static const u8 sTextExpShareLabel[] = _("EXP. SHARE");
+static const u8 sTextBattleSpeedLabel[] = _("BATTLE TEXT");
+static const u8 sTextExtraOn[] = _("ON");
+static const u8 sTextExtraOff[] = _("OFF");
+static const u8 sTextExtraNormal[] = _("NORMAL");
+static const u8 sTextExtraFast[] = _("FAST");
+static const u8 sTextExtraVeryFast[] = _("VERY FAST");
 
 static const u16 sOptionMenuText_Pal[] = INCBIN_U16("graphics/interface/option_menu_text.gbapal");
 // note: this is only used in the Japanese release
@@ -155,6 +168,7 @@ void CB2_InitOptionMenu(void)
     {
     default:
     case 0:
+        sOptionMenuPage = 0;
         SetVBlankCallback(NULL);
         gMain.state++;
         break;
@@ -234,6 +248,10 @@ void CB2_InitOptionMenu(void)
         gTasks[taskId].tSound = gSaveBlock2Ptr->optionsSound;
         gTasks[taskId].tButtonMode = gSaveBlock2Ptr->optionsButtonMode;
         gTasks[taskId].tWindowFrameType = gSaveBlock2Ptr->optionsWindowFrameType;
+        gTasks[taskId].tExpShare = gSaveBlock2Ptr->optionsExpShare;
+        gTasks[taskId].tBattleSpeed = gSaveBlock2Ptr->optionsBattleSpeed;
+        if (gTasks[taskId].tBattleSpeed > 2)
+            gTasks[taskId].tBattleSpeed = 0;
 
         TextSpeed_DrawChoices(gTasks[taskId].tTextSpeed);
         BattleScene_DrawChoices(gTasks[taskId].tBattleSceneOff);
@@ -263,7 +281,27 @@ static void Task_OptionMenuFadeIn(u8 taskId)
 
 static void Task_OptionMenuProcessInput(u8 taskId)
 {
-    if (JOY_NEW(A_BUTTON))
+    // Two pages share the same existing 7-row layout, avoiding UI overflow.
+    if (JOY_NEW(L_BUTTON | R_BUTTON))
+    {
+        sOptionMenuPage ^= 1;
+        gTasks[taskId].tMenuSelection = 0;
+        DrawOptionMenuTexts();
+        if (sOptionMenuPage)
+            DrawExtraOptionChoices(taskId);
+        else
+        {
+            TextSpeed_DrawChoices(gTasks[taskId].tTextSpeed);
+            BattleScene_DrawChoices(gTasks[taskId].tBattleSceneOff);
+            BattleStyle_DrawChoices(gTasks[taskId].tBattleStyle);
+            Sound_DrawChoices(gTasks[taskId].tSound);
+            ButtonMode_DrawChoices(gTasks[taskId].tButtonMode);
+            FrameType_DrawChoices(gTasks[taskId].tWindowFrameType);
+        }
+        HighlightOptionMenuItem(0);
+        CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
+    }
+    else if (JOY_NEW(A_BUTTON))
     {
         if (gTasks[taskId].tMenuSelection == MENUITEM_CANCEL)
             gTasks[taskId].func = Task_OptionMenuSave;
@@ -274,7 +312,16 @@ static void Task_OptionMenuProcessInput(u8 taskId)
     }
     else if (JOY_NEW(DPAD_UP))
     {
-        if (gTasks[taskId].tMenuSelection > 0)
+        if (sOptionMenuPage)
+        {
+            if (gTasks[taskId].tMenuSelection == MENUITEM_CANCEL)
+                gTasks[taskId].tMenuSelection = 1;
+            else if (gTasks[taskId].tMenuSelection > 0)
+                gTasks[taskId].tMenuSelection--;
+            else
+                gTasks[taskId].tMenuSelection = MENUITEM_CANCEL;
+        }
+        else if (gTasks[taskId].tMenuSelection > 0)
             gTasks[taskId].tMenuSelection--;
         else
             gTasks[taskId].tMenuSelection = MENUITEM_CANCEL;
@@ -282,7 +329,16 @@ static void Task_OptionMenuProcessInput(u8 taskId)
     }
     else if (JOY_NEW(DPAD_DOWN))
     {
-        if (gTasks[taskId].tMenuSelection < MENUITEM_CANCEL)
+        if (sOptionMenuPage)
+        {
+            if (gTasks[taskId].tMenuSelection == 0)
+                gTasks[taskId].tMenuSelection = 1;
+            else if (gTasks[taskId].tMenuSelection == 1)
+                gTasks[taskId].tMenuSelection = MENUITEM_CANCEL;
+            else
+                gTasks[taskId].tMenuSelection = 0;
+        }
+        else if (gTasks[taskId].tMenuSelection < MENUITEM_CANCEL)
             gTasks[taskId].tMenuSelection++;
         else
             gTasks[taskId].tMenuSelection = 0;
@@ -291,6 +347,21 @@ static void Task_OptionMenuProcessInput(u8 taskId)
     else
     {
         u8 previousOption;
+
+        if (sOptionMenuPage)
+        {
+            if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
+            {
+                if (gTasks[taskId].tMenuSelection == 0)
+                    gTasks[taskId].tExpShare ^= 1;
+                else if (gTasks[taskId].tMenuSelection == 1)
+                    gTasks[taskId].tBattleSpeed = (gTasks[taskId].tBattleSpeed + (JOY_NEW(DPAD_RIGHT) ? 1 : 2)) % 3;
+                DrawOptionMenuTexts();
+                DrawExtraOptionChoices(taskId);
+                CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
+            }
+            return;
+        }
 
         switch (gTasks[taskId].tMenuSelection)
         {
@@ -356,6 +427,8 @@ static void Task_OptionMenuSave(u8 taskId)
     gSaveBlock2Ptr->optionsSound = gTasks[taskId].tSound;
     gSaveBlock2Ptr->optionsButtonMode = gTasks[taskId].tButtonMode;
     gSaveBlock2Ptr->optionsWindowFrameType = gTasks[taskId].tWindowFrameType;
+    gSaveBlock2Ptr->optionsExpShare = gTasks[taskId].tExpShare;
+    gSaveBlock2Ptr->optionsBattleSpeed = gTasks[taskId].tBattleSpeed;
 
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_OptionMenuFadeOut;
@@ -619,6 +692,7 @@ static void DrawHeaderText(void)
 {
     FillWindowPixelBuffer(WIN_HEADER, PIXEL_FILL(1));
     AddTextPrinterParameterized(WIN_HEADER, FONT_NORMAL, gText_Option, 8, 1, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(WIN_HEADER, FONT_NORMAL, sTextExtraOptionsHint, 112, 1, TEXT_SKIP_DRAW, NULL);
     CopyWindowToVram(WIN_HEADER, COPYWIN_FULL);
 }
 
@@ -627,9 +701,30 @@ static void DrawOptionMenuTexts(void)
     u8 i;
 
     FillWindowPixelBuffer(WIN_OPTIONS, PIXEL_FILL(1));
-    for (i = 0; i < MENUITEM_COUNT; i++)
-        AddTextPrinterParameterized(WIN_OPTIONS, FONT_NORMAL, sOptionMenuItemsNames[i], 8, (i * 16) + 1, TEXT_SKIP_DRAW, NULL);
+    if (sOptionMenuPage)
+    {
+        AddTextPrinterParameterized(WIN_OPTIONS, FONT_NORMAL, sTextExpShareLabel, 8, 1, TEXT_SKIP_DRAW, NULL);
+        AddTextPrinterParameterized(WIN_OPTIONS, FONT_NORMAL, sTextBattleSpeedLabel, 8, 17, TEXT_SKIP_DRAW, NULL);
+        AddTextPrinterParameterized(WIN_OPTIONS, FONT_NORMAL, sOptionMenuItemsNames[MENUITEM_CANCEL], 8, YPOS_FRAMETYPE + 17, TEXT_SKIP_DRAW, NULL);
+    }
+    else
+    {
+        for (i = 0; i < MENUITEM_COUNT; i++)
+            AddTextPrinterParameterized(WIN_OPTIONS, FONT_NORMAL, sOptionMenuItemsNames[i], 8, (i * 16) + 1, TEXT_SKIP_DRAW, NULL);
+    }
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
+}
+
+static void DrawExtraOptionChoices(u8 taskId)
+{
+    DrawOptionMenuChoice(sTextExtraOn, 116, YPOS_TEXTSPEED, gTasks[taskId].tExpShare != 0);
+    DrawOptionMenuChoice(sTextExtraOff, 180, YPOS_TEXTSPEED, gTasks[taskId].tExpShare == 0);
+    if (gTasks[taskId].tBattleSpeed == 0)
+        DrawOptionMenuChoice(sTextExtraNormal, 127, YPOS_BATTLESCENE, 1);
+    else if (gTasks[taskId].tBattleSpeed == 1)
+        DrawOptionMenuChoice(sTextExtraFast, 127, YPOS_BATTLESCENE, 1);
+    else
+        DrawOptionMenuChoice(sTextExtraVeryFast, 127, YPOS_BATTLESCENE, 1);
 }
 
 #define TILE_TOP_CORNER_L 0x1A2

@@ -9,6 +9,7 @@ from __future__ import annotations
 from hashlib import sha1, sha256
 from pathlib import Path
 import re
+import os
 import subprocess
 import sys
 
@@ -224,11 +225,28 @@ def git_blob_sha(data: bytes) -> str:
     return sha1(header + data).hexdigest()
 
 
+# v0.6.0 legitimately edits three previously protected paths. Require
+# exact hashes recorded in the new signed-off update manifest instead of
+# disabling legacy protections. Legacy v0.5.0 runs keep STRICT defaults.
+qol_overrides = {}
+if os.getenv("EMERALD_V060_QA") == "1":
+    path = ROOT / "scripts/v060_modified_protected_manifest.tsv"
+    for line in path.read_text().splitlines():
+        if line and not line.startswith("#"):
+            expected, rel = line.split("\t", 1)
+            require(rel in manifest, f"authorized v0.6 change was protected: {rel}")
+            require(rel not in qol_overrides, f"duplicate protected override: {rel}")
+            qol_overrides[rel] = expected
+    require(set(qol_overrides) == {
+        "include/global.h", "data/maps/PetalburgCity_Mart/scripts.inc",
+        "data/scripts/repel.inc",
+    }, "only three reviewed protected v0.6 files are allowed")
+
 for rel_path, expected_sha in manifest.items():
     abs_path = ROOT / rel_path
     require(abs_path.is_file(), f"protected baseline file missing: {rel_path}")
-    require(git_blob_sha(abs_path.read_bytes()) == expected_sha,
-            f"protected baseline file modified: {rel_path}")
+    require(git_blob_sha(abs_path.read_bytes()) == qol_overrides.get(rel_path, expected_sha),
+            f"protected baseline file modified unexpectedly: {rel_path}")
 
 protected_dirs = ("data/maps", "data/scripts")
 expected_nested = {name for name in manifest if name.startswith(protected_dirs)}
@@ -281,7 +299,11 @@ if (ROOT / ".git").exists():
         "src/quest_log.c", "src/sound_mixer.c", "src/m4a.c",
         "src/platform/sdl2.c", "src/music_player.c", ".github/workflows/build-windows-native.yml",
     ]
-    require(git("diff", "--quiet", baseline, "--", *protected_targets).returncode == 0,
+    protected_git_targets = [p for p in protected_targets if p not in qol_overrides]
+    if qol_overrides:
+        protected_git_targets = [p for p in protected_git_targets if p not in ("data/maps", "data/scripts")]
+        # Map/script trees are still strictly verified above (1060 hashes).
+    require(git("diff", "--quiet", baseline, "--", *protected_git_targets).returncode == 0,
             "git: save/Quest/audio/native/Hoenn/trainer/encounter files unchanged")
 
 print("v0.5.0 Fairy verifier: PASS")

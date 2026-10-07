@@ -270,6 +270,7 @@ static void PrintEggMemo(void);
 static void Task_PrintSkillsPage(u8);
 static void PrintHeldItemName(void);
 static void PrintSkillsPageText(void);
+static void PrintNatureStatLabels(void);
 static void PrintRibbonCount(void);
 static void BufferLeftColumnStats(void);
 static void PrintLeftColumnStats(void);
@@ -3276,8 +3277,41 @@ static void PrintEggMemo(void)
     PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_MEMO), text, 0, 1, 0, 0);
 }
 
+// v0.6.0: highlight Nature increases/decreases on the Skills tab.
+// gNatureStatTable order: Atk, Def, Speed, Sp.Atk, Sp.Def (HP is neutral).
+// The window is redrawn for each Pokemon, not only on screen creation.
+static void PrintNatureStatLabels(void)
+{
+    const s8 *modifiers = gNatureStatTable[sMonSummaryScreen->summary.nature];
+    s32 x;
+    u8 colors[5];
+    u8 i;
+
+    for (i = 0; i < 5; i++)
+        colors[i] = modifiers[i] > 0 ? 3 : (modifiers[i] < 0 ? 2 : 1);
+
+    FillWindowPixelBuffer(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT, PIXEL_FILL(0));
+    FillWindowPixelBuffer(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT, PIXEL_FILL(0));
+
+    x = 6 + GetStringCenterAlignXOffset(FONT_NORMAL, gText_HP4, 42);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT, gText_HP4, x, 1, 0, 1);
+    x = 6 + GetStringCenterAlignXOffset(FONT_NORMAL, gText_Attack3, 42);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT, gText_Attack3, x, 17, 0, colors[0]);
+    x = 6 + GetStringCenterAlignXOffset(FONT_NORMAL, gText_Defense3, 42);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT, gText_Defense3, x, 33, 0, colors[1]);
+    x = 2 + GetStringCenterAlignXOffset(FONT_NORMAL, gText_SpAtk4, 36);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT, gText_SpAtk4, x, 1, 0, colors[3]);
+    x = 2 + GetStringCenterAlignXOffset(FONT_NORMAL, gText_SpDef4, 36);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT, gText_SpDef4, x, 17, 0, colors[4]);
+    x = 2 + GetStringCenterAlignXOffset(FONT_NORMAL, gText_Speed2, 36);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT, gText_Speed2, x, 33, 0, colors[2]);
+    CopyWindowToVram(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT, COPYWIN_GFX);
+    CopyWindowToVram(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT, COPYWIN_GFX);
+}
+
 static void PrintSkillsPageText(void)
 {
+    PrintNatureStatLabels();
     PrintHeldItemName();
     PrintRibbonCount();
     BufferLeftColumnStats();
@@ -3294,6 +3328,7 @@ static void Task_PrintSkillsPage(u8 taskId)
     switch (data[0])
     {
     case 1:
+        PrintNatureStatLabels();
         PrintHeldItemName();
         break;
     case 2:

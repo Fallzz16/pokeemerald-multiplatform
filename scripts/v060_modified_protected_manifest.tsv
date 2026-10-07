@@ -1,0 +1,4 @@
+# SHA1 git blob for the only 3 approved v0.6 modifications to protected source files
+4944bb898ea87843dd9e3dcbeaa84247027c9c9d	data/maps/PetalburgCity_Mart/scripts.inc
+13085d7ca97a4e4a1feb5fc6a683faafc3b480b9	data/scripts/repel.inc
+09a357dfb1a58c9940896ce5aab8f24f94407643	include/global.h

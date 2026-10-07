@@ -4109,6 +4109,7 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
 {
     u8 str[16];
     u8 str2[32];
+    u8 typeLine[40];
     u16 natNum;
     const u8 *name;
     const u8 *category;
@@ -4138,6 +4139,20 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
         category = gText_5MarksPokemon;
     }
     PrintInfoScreenText(category, 0x64, 0x29);
+    // Owned species: show typing in the free 85px row above description.
+    // Do not reveal uncaught Pokemon details. Uses the shared Fairy-aware
+    // species metadata, so changes to typing require no separate Dex table.
+    if (owned && natNum != SPECIES_NONE)
+    {
+        StringCopy(typeLine, gText_TypeSlash);
+        StringAppend(typeLine, gTypeNames[gSpeciesInfo[natNum].types[0]]);
+        if (gSpeciesInfo[natNum].types[0] != gSpeciesInfo[natNum].types[1])
+        {
+            StringAppend(typeLine, gText_Slash);
+            StringAppend(typeLine, gTypeNames[gSpeciesInfo[natNum].types[1]]);
+        }
+        PrintInfoScreenText(typeLine, 0x60, 0x55);
+    }
     PrintInfoScreenText(gText_HTHeight, 0x60, 0x39);
     PrintInfoScreenText(gText_WTWeight, 0x60, 0x49);
     if (owned)

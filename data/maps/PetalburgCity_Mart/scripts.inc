@@ -35,6 +35,7 @@ PetalburgCity_Mart_EventScript_ExpandedItems::
 
 	.align 2
 PetalburgCity_Mart_Pokemart_Expanded:
+	.short ITEM_LINK_CABLE
 	.short ITEM_POKE_BALL
 	.short ITEM_GREAT_BALL
 	.short ITEM_POTION

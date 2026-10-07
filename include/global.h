@@ -540,7 +540,9 @@ struct SaveBlock2
              u16 optionsBattleStyle:1; // OPTIONS_BATTLE_STYLE_[SHIFT/SET]
              u16 optionsBattleSceneOff:1; // whether battle animations are disabled
              u16 regionMapZoom:1; // whether the map is zoomed in
-             //u16 padding1:4;
+             u16 optionsExpShare:1; // QoL v0.6, 0=classic, 1=party-wide
+             u16 optionsBattleSpeed:2; // QoL v0.6, 0=normal, 1=fast, 2=very fast
+             // remaining 1 bit reserved
              //u16 padding2;
     /*0x18*/ struct Pokedex pokedex;
     /*0x90*/ u8 filler_90[0x8];

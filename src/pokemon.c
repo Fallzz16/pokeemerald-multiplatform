@@ -5593,8 +5593,19 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem)
     case EVO_MODE_ITEM_CHECK:
         for (i = 0; i < EVOS_PER_MON; i++)
         {
-            if (gEvolutionTable[species][i].method == EVO_ITEM
-             && gEvolutionTable[species][i].param == evolutionItem)
+            u16 method = gEvolutionTable[species][i].method;
+            u16 requirement = gEvolutionTable[species][i].param;
+
+            if (method == EVO_ITEM && requirement == evolutionItem)
+            {
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            }
+            // Reproduce the trade preconditions without triggering a real link.
+            // Do not mutate a held item during ITEM_CHECK or before the
+            // evolution animation completes (the player can cancel it).
+            if (evolutionItem == ITEM_LINK_CABLE
+             && (method == EVO_TRADE || (method == EVO_TRADE_ITEM && requirement == heldItem)))
             {
                 targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
