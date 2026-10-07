@@ -20,7 +20,26 @@ for path in "${required[@]}"; do
 done
 
 # Everything outside the approved v0.3.2 native FF/audio surface must still match v0.3.1.
-sha256sum -c docs/vanillaplus-v0.3.2-preserved.sha256 >/dev/null
+# .gitattributes forces *.pal to CRLF on checkout, while the preserved manifest was
+# generated from canonical LF source files. Check non-palette files byte-for-byte,
+# then normalize CRLF/LF for the four text palette files before hashing.
+tmp_manifest="$(mktemp)"
+trap 'rm -f "$tmp_manifest"' EXIT
+grep -vE '  graphics/pokedex/(bg_hoenn|bg_national|search_menu|search_results_bg)\.pal$' \
+  docs/vanillaplus-v0.3.2-preserved.sha256 > "$tmp_manifest"
+sha256sum -c "$tmp_manifest" >/dev/null
+
+for path in \
+  graphics/pokedex/bg_hoenn.pal \
+  graphics/pokedex/bg_national.pal \
+  graphics/pokedex/search_menu.pal \
+  graphics/pokedex/search_results_bg.pal
+do
+  expected="$(awk -v p="$path" '$2 == p { print $1 }' docs/vanillaplus-v0.3.2-preserved.sha256)"
+  [[ -n "$expected" ]] || { echo "ERROR: missing preserved hash for $path"; exit 1; }
+  actual="$(tr -d '\r' < "$path" | sha256sum | awk '{ print $1 }')"
+  [[ "$actual" == "$expected" ]] || { echo "ERROR: normalized palette hash mismatch: $path"; exit 1; }
+done
 
 # Keep the v0.3.1 Quest UI inside the verified VRAM budget.
 python3 - <<'PY'
