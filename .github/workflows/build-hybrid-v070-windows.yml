@@ -1,0 +1,98 @@
+name: Emerald Hybrid v0.7.0 Windows x86 (experimental)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - emerald-hybrid-v0.7.0
+    paths-ignore:
+      - '**/*.md'
+  pull_request:
+    branches:
+      - emerald-vanilla-plus
+    paths-ignore:
+      - '**/*.md'
+
+jobs:
+  windows-x86:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out the exact candidate source and its ancestry
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # v0.7.0 verifier needs the actual bced8c64 v0.3.4 ancestor.
+
+      - name: Install build and MinGW dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            gcc-mingw-w64-i686 \
+            binutils-mingw-w64-i686 \
+            libpng-dev \
+            zlib1g-dev \
+            curl \
+            ca-certificates \
+            file
+
+      - name: Set up Python for sprite QA
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install image-test dependency
+        run: python -m pip install Pillow
+
+      - name: Verify all candidate mechanics and the sprite import pipeline
+        run: bash scripts/verify_v070.sh
+
+      - name: Download SDL2 MinGW development headers and DLL
+        shell: bash
+        run: |
+          set -euxo pipefail
+          SDL_VERSION=2.30.7
+          mkdir -p .deps
+          curl -fL --retry 3 \
+            "https://www.libsdl.org/release/SDL2-devel-${SDL_VERSION}-mingw.tar.gz" \
+            -o ".deps/SDL2-devel-${SDL_VERSION}-mingw.tar.gz"
+          tar -xzf ".deps/SDL2-devel-${SDL_VERSION}-mingw.tar.gz" -C .deps
+          test -f ".deps/SDL2-${SDL_VERSION}/i686-w64-mingw32/include/SDL2/SDL.h"
+          test -f ".deps/SDL2-${SDL_VERSION}/i686-w64-mingw32/bin/SDL2.dll"
+
+      - name: Build the unchanged SDL2 native port with Hybrid battles
+        shell: bash
+        run: |
+          set -euxo pipefail
+          SDL_VERSION=2.30.7
+          make -f Makefile_pc -j2 \
+            SDL_DIR="$PWD/.deps/SDL2-${SDL_VERSION}/i686-w64-mingw32"
+          file pokeemerald.exe
+
+      - name: Assemble test candidate (not a stable release)
+        shell: bash
+        run: |
+          set -euxo pipefail
+          SDL_VERSION=2.30.7
+          mkdir -p dist/Emerald-Hybrid-v0.7.0-TestCandidate
+          cp pokeemerald.exe dist/Emerald-Hybrid-v0.7.0-TestCandidate/
+          cp ".deps/SDL2-${SDL_VERSION}/i686-w64-mingw32/bin/SDL2.dll" dist/Emerald-Hybrid-v0.7.0-TestCandidate/
+          cat > dist/Emerald-Hybrid-v0.7.0-TestCandidate/README.txt <<'EOF'
+          Emerald Vanilla+ Hybrid v0.7.0 — experimental Windows x86 candidate
+          BASE: emerald-vanilla-plus at bced8c64a5a043438858165b55405906ebdd5301
+
+          Battles: Fairy and Physical/Special/Status split from v0.5.0, plus optional team EXP and battle-text speed.
+          QoL: TM reuse, running indoors, Link Cable, modern EXP, Repel reuse, Nature and Dex typing.
+          Sprite Bridge: optional safe donor importer; no new Gen4 species or donor sprites bundled.
+          The game sprites remain Emerald originals until the user imports donor PNGs explicitly.
+          Original fast-forward (Tab/F6), Quest UI, audio, native SDL2 and save code remain unchanged.
+
+          Test with a copy of your pokeemerald.sav. Do not overwrite your only save.
+          Full game/runtime QA and save round-trip still required before calling stable.
+          EOF
+
+      - name: Upload candidate Windows build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Emerald-VanillaPlus-Hybrid-v0.7.0-Candidate-Windows-x86
+          path: dist/Emerald-Hybrid-v0.7.0-TestCandidate/
+          if-no-files-found: error
