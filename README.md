@@ -1,10 +1,21 @@
-# Emerald Vanilla+ v0.3.3 — Classic Enhanced + Full-Speed Fast Forward
+# Emerald Vanilla+ v0.3.4 — Classic Enhanced Quest UI + Full-Speed Fast Forward
 
 **Emerald Vanilla+** keeps Pokémon Emerald's original English campaign, maps, encounters, battles, graphics, audio and balance while adding carefully scoped quality-of-life features to the native SDL2 port.
 
 The project executes the decompiled game code directly as a native program. It does **not** bundle or load a commercial `.gba` ROM through an emulator.
 
 
+
+## v0.3.4 — Quest UI visual rework
+
+The Quest Log is now presented as one opaque Classic Enhanced menu instead of two framed panels over the overworld.
+
+- The overworld can no longer show through the middle of the Quest Log.
+- One full-screen outer frame and two internal separators create a single continuous composition.
+- Header, body and footer remain separate VRAM-safe windows internally.
+- Current objective lines are printed independently so multiline text cannot be clipped by newline rendering.
+- `CURRENT` / `COMPLETED`, story progress, scrolling and PokéNav targeting are unchanged.
+- Fast-forward and all v0.3.3 audio code are intentionally untouched.
 
 ## v0.3.3 — Full-speed fast forward
 
@@ -133,13 +144,13 @@ The Quest Log derives its state from the existing Emerald save data and does not
 
 ## Verification
 
-For the current v0.3.3 source, run:
+For the current v0.3.4 source, run:
 
 ```sh
-bash scripts/verify_v033.sh
+bash scripts/verify_v034.sh
 ```
 
-The v0.3.3 verifier confirms the v0.3.1 audio core was restored exactly, the Quest UI stays inside its VRAM budget, and the new SDL-only Tab/F6 turbo is present without the retired v0.3.2 audio-decoupling hooks.
+The v0.3.4 verifier first runs all v0.3.3 fast-forward/audio checks, then validates the new opaque Quest layout, its split VRAM budget, frame-tile reservation, and removal of the old two-panel framed presentation.
 
 `bash scripts/verify_vanilla.sh` routes to the current release verifier. Older verifiers remain as historical QA documentation.
 

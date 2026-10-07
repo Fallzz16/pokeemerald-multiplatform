@@ -1,4 +1,5 @@
 #include "global.h"
+#include "bg.h"
 #include "event_data.h"
 #include "main.h"
 #include "menu.h"
@@ -62,29 +63,55 @@ struct MainQuest
     u16 mapSecId;
 };
 
-// Keep quest UI pixel tiles away from the overworld screen blocks.
-// BG0 uses charbase 2 while the field map screen blocks begin at tile 0x300.
-// Standard window-frame graphics occupy 0x214-0x21C, so the UI is split
-// into two independent panels around that reserved range.
+// v0.3.4 Quest UI: one opaque full-screen presentation assembled from
+// multiple small windows so the pixel data never reaches the overworld
+// screen blocks at tile 0x300. Standard frame graphics stay at 0x214-0x21C.
+#define QUEST_BACKDROP_TILE       0x138
+#define QUEST_FRAME_BASE_TILE     0x214
+#define QUEST_FRAME_PALETTE       14
+#define QUEST_CONTENT_PALETTE     15
+
+static const struct WindowTemplate sQuestBackdropTileWindowTemplate =
+{
+    .bg = 0,
+    .tilemapLeft = 0,
+    .tilemapTop = 0,
+    .width = 1,
+    .height = 1,
+    .paletteNum = QUEST_CONTENT_PALETTE,
+    .baseBlock = QUEST_BACKDROP_TILE
+};
+
 static const struct WindowTemplate sQuestHeaderWindowTemplate =
 {
     .bg = 0,
     .tilemapLeft = 1,
     .tilemapTop = 1,
     .width = 27,
-    .height = 7,
-    .paletteNum = 15,
+    .height = 6,
+    .paletteNum = QUEST_CONTENT_PALETTE,
     .baseBlock = 0x139
+};
+
+static const struct WindowTemplate sQuestFooterWindowTemplate =
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 17,
+    .width = 27,
+    .height = 2,
+    .paletteNum = QUEST_CONTENT_PALETTE,
+    .baseBlock = 0x1DB
 };
 
 static const struct WindowTemplate sQuestBodyWindowTemplate =
 {
     .bg = 0,
     .tilemapLeft = 1,
-    .tilemapTop = 11,
+    .tilemapTop = 8,
     .width = 27,
     .height = 8,
-    .paletteNum = 15,
+    .paletteNum = QUEST_CONTENT_PALETTE,
     .baseBlock = 0x220
 };
 
@@ -104,6 +131,8 @@ static const u8 sText_TabCurrentSelected[] = _("> CURRENT");
 static const u8 sText_TabCompletedSelected[] = _("> COMPLETED");
 static const u8 sText_Showing[] = _("{STR_VAR_1}-{STR_VAR_2} OF {STR_VAR_3}");
 static const u8 sText_MainStoryMilestones[] = _("MAIN STORY MILESTONES");
+static const u8 sText_FooterCurrent[] = _("L/R TABS              B BACK");
+static const u8 sText_FooterCompleted[] = _("L/R TABS   UP/DOWN   B BACK");
 
 static const u8 sQuestTitle0[] = _("A PROFESSOR IN TROUBLE");
 static const u8 sQuestObjective0[] = _("Find Prof. Birch on Route 101 and\nhelp him escape the wild Pokémon.");
@@ -225,8 +254,10 @@ static const struct MainQuest sMainQuests[QUEST_COUNT] =
     [27] = {sQuestTitle27, sQuestObjective27, sQuestLocation27, MAPSEC_VICTORY_ROAD},
     [28] = {sQuestTitle28, sQuestObjective28, sQuestLocation28, MAPSEC_EVER_GRANDE_CITY},
 };
+static u8 sQuestBackdropWindowId = WINDOW_NONE;
 static u8 sQuestHeaderWindowId = WINDOW_NONE;
 static u8 sQuestBodyWindowId = WINDOW_NONE;
+static u8 sQuestFooterWindowId = WINDOW_NONE;
 static u8 sQuestTab = QUEST_TAB_CURRENT;
 static u8 sCompletedScroll = 0;
 
@@ -349,27 +380,85 @@ static void PrintText(u8 windowId, const u8 *text, u8 x, u8 y, u8 font)
     AddTextPrinterParameterized(windowId, font, text, x, y, TEXT_SKIP_DRAW, NULL);
 }
 
+static void PrintTwoLineObjective(const u8 *text, u8 firstY, u8 secondY)
+{
+    u8 firstLine[96];
+    u8 i = 0;
+
+    while (text[i] != EOS && text[i] != CHAR_NEWLINE && i < sizeof(firstLine) - 1)
+    {
+        firstLine[i] = text[i];
+        i++;
+    }
+    firstLine[i] = EOS;
+
+    PrintText(sQuestBodyWindowId, firstLine, 8, firstY, FONT_SMALL_NARROW);
+
+    if (text[i] == CHAR_NEWLINE)
+        PrintText(sQuestBodyWindowId, &text[i + 1], 8, secondY, FONT_SMALL_NARROW);
+}
+
+static void DrawQuestFrame(void)
+{
+    // Full-screen classic Emerald frame: x 0-29, y 0-19.
+    FillBgTilemapBufferRect(0, QUEST_FRAME_BASE_TILE + 0, 0, 0, 1, 1, QUEST_FRAME_PALETTE);
+    FillBgTilemapBufferRect(0, QUEST_FRAME_BASE_TILE + 1, 1, 0, 28, 1, QUEST_FRAME_PALETTE);
+    FillBgTilemapBufferRect(0, QUEST_FRAME_BASE_TILE + 2, 29, 0, 1, 1, QUEST_FRAME_PALETTE);
+    FillBgTilemapBufferRect(0, QUEST_FRAME_BASE_TILE + 3, 0, 1, 1, 18, QUEST_FRAME_PALETTE);
+    FillBgTilemapBufferRect(0, QUEST_FRAME_BASE_TILE + 5, 29, 1, 1, 18, QUEST_FRAME_PALETTE);
+    FillBgTilemapBufferRect(0, QUEST_FRAME_BASE_TILE + 6, 0, 19, 1, 1, QUEST_FRAME_PALETTE);
+    FillBgTilemapBufferRect(0, QUEST_FRAME_BASE_TILE + 7, 1, 19, 28, 1, QUEST_FRAME_PALETTE);
+    FillBgTilemapBufferRect(0, QUEST_FRAME_BASE_TILE + 8, 29, 19, 1, 1, QUEST_FRAME_PALETTE);
+
+    // Internal Classic Enhanced dividers.
+    FillBgTilemapBufferRect(0, QUEST_FRAME_BASE_TILE + 1, 1, 7, 28, 1, QUEST_FRAME_PALETTE);
+    FillBgTilemapBufferRect(0, QUEST_FRAME_BASE_TILE + 1, 1, 16, 28, 1, QUEST_FRAME_PALETTE);
+}
+
+static void DrawQuestBackdrop(void)
+{
+    FillWindowPixelBuffer(sQuestBackdropWindowId, PIXEL_FILL(1));
+    CopyWindowToVram(sQuestBackdropWindowId, COPYWIN_GFX);
+
+    // Reuse one solid ivory/white tile over the entire visible BG0.
+    FillBgTilemapBufferRect(0, QUEST_BACKDROP_TILE, 0, 0, 30, 20, QUEST_CONTENT_PALETTE);
+}
+
+static void DrawQuestFooter(void)
+{
+    const u8 *text = (sQuestTab == QUEST_TAB_CURRENT)
+                   ? sText_FooterCurrent
+                   : sText_FooterCompleted;
+
+    PrintText(sQuestFooterWindowId, text, 8, 4, FONT_SMALL_NARROW);
+}
+
 static void DrawStoryProgress(void)
 {
     u8 progress = CountCompletedQuests();
+    u16 width;
+    u8 x;
 
     ConvertIntToDecimalStringN(gStringVar1, progress, STR_CONV_MODE_LEFT_ALIGN, 2);
     ConvertIntToDecimalStringN(gStringVar2, QUEST_COUNT, STR_CONV_MODE_LEFT_ALIGN, 2);
     StringExpandPlaceholders(gStringVar4, sText_StoryProgress);
-    PrintText(sQuestHeaderWindowId, gStringVar4, 132, 1, FONT_SMALL_NARROW);
+
+    width = GetStringWidth(FONT_SMALL_NARROW, gStringVar4, 0);
+    x = (width < 208) ? 208 - width : 132;
+    PrintText(sQuestHeaderWindowId, gStringVar4, x, 4, FONT_SMALL_NARROW);
 }
 
 static void DrawTabs(void)
 {
     if (sQuestTab == QUEST_TAB_CURRENT)
     {
-        PrintText(sQuestHeaderWindowId, sText_TabCurrentSelected, 8, 18, FONT_NARROW);
-        PrintText(sQuestHeaderWindowId, sText_TabCompleted, 94, 18, FONT_NARROW);
+        PrintText(sQuestHeaderWindowId, sText_TabCurrentSelected, 8, 22, FONT_NARROW);
+        PrintText(sQuestHeaderWindowId, sText_TabCompleted, 104, 22, FONT_NARROW);
     }
     else
     {
-        PrintText(sQuestHeaderWindowId, sText_TabCurrent, 8, 18, FONT_NARROW);
-        PrintText(sQuestHeaderWindowId, sText_TabCompletedSelected, 82, 18, FONT_NARROW);
+        PrintText(sQuestHeaderWindowId, sText_TabCurrent, 8, 22, FONT_NARROW);
+        PrintText(sQuestHeaderWindowId, sText_TabCompletedSelected, 96, 22, FONT_NARROW);
     }
 }
 
@@ -379,31 +468,42 @@ static void DrawCurrentQuest(void)
 
     if (currentQuest >= QUEST_COUNT)
     {
-        PrintText(sQuestHeaderWindowId, sText_StoryComplete, 8, 38, FONT_NORMAL);
-        PrintText(sQuestBodyWindowId, sText_StoryCompleteDesc, 8, 8, FONT_NARROW);
+        PrintText(sQuestBodyWindowId, sText_StoryComplete, 8, 1, FONT_NORMAL);
+        PrintTwoLineObjective(sText_StoryCompleteDesc, 27, 40);
         return;
     }
 
-    PrintText(sQuestHeaderWindowId, sMainQuests[currentQuest].title, 8, 38, FONT_NORMAL);
+    PrintText(sQuestBodyWindowId, sMainQuests[currentQuest].title, 8, 1, FONT_NORMAL);
 
-    PrintText(sQuestBodyWindowId, sText_Objective, 8, 3, FONT_SMALL_NARROW);
-    PrintText(sQuestBodyWindowId, sMainQuests[currentQuest].objective, 8, 14, FONT_SMALL_NARROW);
-    PrintText(sQuestBodyWindowId, sText_Location, 8, 40, FONT_SMALL_NARROW);
-    PrintText(sQuestBodyWindowId, sMainQuests[currentQuest].location, 8, 50, FONT_NARROW);
+    PrintText(sQuestBodyWindowId, sText_Objective, 8, 20, FONT_SMALL_NARROW);
+    PrintTwoLineObjective(sMainQuests[currentQuest].objective, 31, 42);
+
+    PrintText(sQuestBodyWindowId, sText_Location, 8, 53, FONT_SMALL_NARROW);
+    PrintText(sQuestBodyWindowId, sMainQuests[currentQuest].location, 78, 53, FONT_SMALL_NARROW);
 }
 
 static void DrawCompletedQuests(void)
 {
     u8 completedCount = CountCompletedQuests();
     u8 row;
+    u16 width;
 
-    PrintText(sQuestHeaderWindowId, sText_MainStoryMilestones, 8, 38, FONT_NORMAL);
+    PrintText(sQuestBodyWindowId, sText_MainStoryMilestones, 8, 1, FONT_NARROW);
 
     if (completedCount == 0)
     {
-        PrintText(sQuestBodyWindowId, sText_NoCompleted, 8, 8, FONT_SMALL_NARROW);
-            return;
+        PrintText(sQuestBodyWindowId, sText_NoCompleted, 8, 24, FONT_SMALL_NARROW);
+        return;
     }
+
+    ConvertIntToDecimalStringN(gStringVar1, sCompletedScroll + 1, STR_CONV_MODE_LEFT_ALIGN, 2);
+    ConvertIntToDecimalStringN(gStringVar2,
+                               min(sCompletedScroll + QUESTS_VISIBLE_COMPLETED, completedCount),
+                               STR_CONV_MODE_LEFT_ALIGN, 2);
+    ConvertIntToDecimalStringN(gStringVar3, completedCount, STR_CONV_MODE_LEFT_ALIGN, 2);
+    StringExpandPlaceholders(gStringVar4, sText_Showing);
+    width = GetStringWidth(FONT_SMALL_NARROW, gStringVar4, 0);
+    PrintText(sQuestBodyWindowId, gStringVar4, (width < 208) ? 208 - width : 156, 5, FONT_SMALL_NARROW);
 
     for (row = 0; row < QUESTS_VISIBLE_COMPLETED; row++)
     {
@@ -418,27 +518,23 @@ static void DrawCompletedQuests(void)
         {
             StringCopy(gStringVar4, sText_Checkmark);
             StringAppend(gStringVar4, sMainQuests[questId].title);
-            PrintText(sQuestBodyWindowId, gStringVar4, 8, 4 + row * 13, FONT_SMALL_NARROW);
+            PrintText(sQuestBodyWindowId, gStringVar4, 8, 20 + row * 11, FONT_SMALL_NARROW);
         }
     }
-
-    ConvertIntToDecimalStringN(gStringVar1, sCompletedScroll + 1, STR_CONV_MODE_LEFT_ALIGN, 2);
-    ConvertIntToDecimalStringN(gStringVar2,
-                               min(sCompletedScroll + QUESTS_VISIBLE_COMPLETED, completedCount),
-                               STR_CONV_MODE_LEFT_ALIGN, 2);
-    ConvertIntToDecimalStringN(gStringVar3, completedCount, STR_CONV_MODE_LEFT_ALIGN, 2);
-    StringExpandPlaceholders(gStringVar4, sText_Showing);
-    PrintText(sQuestBodyWindowId, gStringVar4, 144, 54, FONT_SMALL_NARROW);
 }
 
 static void DrawQuestLog(void)
 {
+    DrawQuestBackdrop();
+
     FillWindowPixelBuffer(sQuestHeaderWindowId, PIXEL_FILL(1));
     FillWindowPixelBuffer(sQuestBodyWindowId, PIXEL_FILL(1));
+    FillWindowPixelBuffer(sQuestFooterWindowId, PIXEL_FILL(1));
+
     PutWindowTilemap(sQuestHeaderWindowId);
     PutWindowTilemap(sQuestBodyWindowId);
-    DrawStdWindowFrame(sQuestHeaderWindowId, FALSE);
-    DrawStdWindowFrame(sQuestBodyWindowId, FALSE);
+    PutWindowTilemap(sQuestFooterWindowId);
+    DrawQuestFrame();
 
     PrintText(sQuestHeaderWindowId, sText_QuestLog, 8, 1, FONT_NORMAL);
     DrawStoryProgress();
@@ -449,8 +545,14 @@ static void DrawQuestLog(void)
     else
         DrawCompletedQuests();
 
-    CopyWindowToVram(sQuestHeaderWindowId, COPYWIN_FULL);
-    CopyWindowToVram(sQuestBodyWindowId, COPYWIN_FULL);
+    DrawQuestFooter();
+
+    // Pixel data and tilemap are copied separately so the hand-built frame
+    // and opaque backdrop remain authoritative.
+    CopyWindowToVram(sQuestHeaderWindowId, COPYWIN_GFX);
+    CopyWindowToVram(sQuestBodyWindowId, COPYWIN_GFX);
+    CopyWindowToVram(sQuestFooterWindowId, COPYWIN_GFX);
+    CopyBgTilemapBufferToVram(0);
 }
 
 void QuestLog_Open(void)
@@ -462,10 +564,15 @@ void QuestLog_Open(void)
                      ? completedCount - QUESTS_VISIBLE_COMPLETED
                      : 0;
 
+    sQuestBackdropWindowId = AddWindow(&sQuestBackdropTileWindowTemplate);
     sQuestHeaderWindowId = AddWindow(&sQuestHeaderWindowTemplate);
     sQuestBodyWindowId = AddWindow(&sQuestBodyWindowTemplate);
+    sQuestFooterWindowId = AddWindow(&sQuestFooterWindowTemplate);
 
-    if (sQuestHeaderWindowId == WINDOW_NONE || sQuestBodyWindowId == WINDOW_NONE)
+    if (sQuestBackdropWindowId == WINDOW_NONE
+     || sQuestHeaderWindowId == WINDOW_NONE
+     || sQuestBodyWindowId == WINDOW_NONE
+     || sQuestFooterWindowId == WINDOW_NONE)
     {
         QuestLog_Close();
         return;
@@ -476,18 +583,35 @@ void QuestLog_Open(void)
 
 void QuestLog_Close(void)
 {
+    // Clear the entire Quest overlay from BG0 before Start Menu rebuilds.
+    if (GetBgTilemapBuffer(0) != NULL)
+    {
+        FillBgTilemapBufferRect(0, 0, 0, 0, 30, 20, 0);
+        CopyBgTilemapBufferToVram(0);
+    }
+
     if (sQuestHeaderWindowId != WINDOW_NONE)
     {
-        ClearStdWindowAndFrameToTransparent(sQuestHeaderWindowId, TRUE);
         RemoveWindow(sQuestHeaderWindowId);
         sQuestHeaderWindowId = WINDOW_NONE;
     }
 
     if (sQuestBodyWindowId != WINDOW_NONE)
     {
-        ClearStdWindowAndFrameToTransparent(sQuestBodyWindowId, TRUE);
         RemoveWindow(sQuestBodyWindowId);
         sQuestBodyWindowId = WINDOW_NONE;
+    }
+
+    if (sQuestFooterWindowId != WINDOW_NONE)
+    {
+        RemoveWindow(sQuestFooterWindowId);
+        sQuestFooterWindowId = WINDOW_NONE;
+    }
+
+    if (sQuestBackdropWindowId != WINDOW_NONE)
+    {
+        RemoveWindow(sQuestBackdropWindowId);
+        sQuestBackdropWindowId = WINDOW_NONE;
     }
 }
 
