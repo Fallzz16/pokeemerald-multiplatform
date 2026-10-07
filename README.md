@@ -1,4 +1,4 @@
-# Emerald Vanilla+ v0.3.2 — Classic Enhanced + Audio-Safe Fast Forward
+# Emerald Vanilla+ v0.3.3 — Classic Enhanced + Full-Speed Fast Forward
 
 **Emerald Vanilla+** keeps Pokémon Emerald's original English campaign, maps, encounters, battles, graphics, audio and balance while adding carefully scoped quality-of-life features to the native SDL2 port.
 
@@ -6,18 +6,15 @@ The project executes the decompiled game code directly as a native program. It d
 
 
 
-## v0.3.2 — Audio-safe fast forward
+## v0.3.3 — Full-speed fast forward
 
-This update adds an mGBA-style **hold-to-fast-forward** mode to the native SDL2 build without speeding up the background music.
+This update replaces the experimental v0.3.2 audio-decoupling approach with a simpler SDL-only turbo. The internal Emerald audio engine is restored to the stable v0.3.1 state.
 
-- Hold **Tab** to fast-forward gameplay.
-- Press **F6** to cycle the selected speed: **2x → 4x → 8x → 2x**.
-- A small `>> 2x`, `>> 4x`, or `>> 8x` indicator is drawn by SDL in the top-right corner and does not consume GBA VRAM.
-- The BGM clock remains at normal 60 Hz while extra gameplay frames are simulated.
-- Sound-effect and Pokémon-cry players continue to advance with the accelerated game so waits do not become artificially slow, but their mixer output is muted while fast-forward is held.
-- Releasing Tab immediately returns gameplay and audio to normal timing.
-
-The original Emerald soft-reset combination `A+B+Start+Select` is unchanged.
+- Hold **Tab** to fast-forward.
+- Press **F6** to cycle **2x → 4x → 8x → 2x**.
+- Gameplay, BGM, SFX and Pokémon cries all accelerate together.
+- A small SDL overlay shows `>> 2x`, `>> 4x`, or `>> 8x`.
+- At normal speed, the audio path matches the stable v0.3.1 build.
 
 ## v0.3.1 — Quest UI hotfix
 
@@ -78,9 +75,9 @@ The PokéNav region map now displays a small blinking marker for the **approxima
 
 ## Scope
 
-v0.2 intentionally does **not** add side quests, new Pokémon, Fairy type, Mega Evolution, new encounters, balance changes, modern EXP Share, altered HMs, autosave, fast travel, voxel rendering, mod loading or other gameplay-overhaul features. v0.3.2 adds only a native fast-forward convenience layer; it does not alter saved game state or campaign data.
+v0.2 intentionally does **not** add side quests, new Pokémon, Fairy type, Mega Evolution, new encounters, balance changes, modern EXP Share, altered HMs, autosave, fast travel, voxel rendering, mod loading or other gameplay-overhaul features.
 
-The original v0.1 cleanup of the old Space/Ctrl+P/Ctrl+R shortcuts remains in place. v0.3.2 introduces a replacement fast-forward implementation on **Tab** with audio decoupling, while Emerald's original `A+B+Start+Select` soft reset remains.
+The retired v0.1 Space/Ctrl+P/Ctrl+R desktop shortcuts remain disabled. v0.3.3 adds a replacement hold-to-fast-forward on `Tab`, with `F6` cycling 2x/4x/8x, while Emerald's original `A+B+Start+Select` soft reset remains unchanged.
 
 ## Controls
 
@@ -96,15 +93,15 @@ The original v0.1 cleanup of the old Space/Ctrl+P/Ctrl+R shortcuts remains in pl
 
 Windows XInput controllers remain mapped to equivalent GBA controls.
 
-### Native fast-forward controls
+### Native fast-forward
 
 | Action | Control |
 | --- | --- |
-| Hold fast forward | `Tab` |
-| Cycle FF speed | `F6` |
+| Hold turbo | `Tab` |
+| Cycle turbo speed | `F6` |
 | Available speeds | `2x`, `4x`, `8x` |
 
-During fast-forward the BGM remains at normal speed and SFX/cry output is muted.
+BGM, SFX and Pokémon cries speed up together with gameplay while turbo is held.
 
 ## Windows build
 
@@ -136,15 +133,15 @@ The Quest Log derives its state from the existing Emerald save data and does not
 
 ## Verification
 
-For the current v0.3.2 source, run:
+For the current v0.3.3 source, run:
 
 ```sh
-bash scripts/verify_v032.sh
+bash scripts/verify_v033.sh
 ```
 
-The v0.3.2 verifier preserves everything outside the explicitly approved fast-forward/audio surface, re-checks the v0.3.1 Quest VRAM budget, rejects the retired Space/Ctrl+P/Ctrl+R shortcuts, and verifies the Tab/F6 fast-forward and audio-decoupling hooks.
+The v0.3.3 verifier confirms the v0.3.1 audio core was restored exactly, the Quest UI stays inside its VRAM budget, and the new SDL-only Tab/F6 turbo is present without the retired v0.3.2 audio-decoupling hooks.
 
-`bash scripts/verify_vanilla.sh` routes to the current release verifier. Older verifiers are retained as historical QA documentation.
+`bash scripts/verify_vanilla.sh` routes to the current release verifier. Older verifiers remain as historical QA documentation.
 
 See [`MODERN_UI_V0.3_AUDIT.md`](MODERN_UI_V0.3_AUDIT.md) and [`docs/MODERN_UI_V0.3.md`](docs/MODERN_UI_V0.3.md) for the current implementation/QA report. The v0.2 and v0.1 audits remain included for lineage.
 

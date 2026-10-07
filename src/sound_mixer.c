@@ -5,38 +5,7 @@
 
 #ifdef PORTABLE
     #include "cgb_audio.h"
-    #include "platform.h"
 #endif
-
-
-extern struct MP2KTrack gMPlayTrack_SE1[3];
-extern struct MP2KTrack gMPlayTrack_SE2[9];
-extern struct MP2KTrack gMPlayTrack_SE3[1];
-extern struct MP2KTrack gPokemonCryTracks[4];
-
-bool32 SoundMixer_IsFastForwardMutedTrack(const void *track)
-{
-    if (track == NULL)
-        return FALSE;
-
-    for (u32 i = 0; i < ARRAY_COUNT(gMPlayTrack_SE1); i++)
-        if (track == &gMPlayTrack_SE1[i])
-            return TRUE;
-
-    for (u32 i = 0; i < ARRAY_COUNT(gMPlayTrack_SE2); i++)
-        if (track == &gMPlayTrack_SE2[i])
-            return TRUE;
-
-    for (u32 i = 0; i < ARRAY_COUNT(gMPlayTrack_SE3); i++)
-        if (track == &gMPlayTrack_SE3[i])
-            return TRUE;
-
-    for (u32 i = 0; i < ARRAY_COUNT(gPokemonCryTracks); i++)
-        if (track == &gPokemonCryTracks[i])
-            return TRUE;
-
-    return FALSE;
-}
 
 #define VCOUNT_VBLANK 160
 #define TOTAL_SCANLINES 228
@@ -139,10 +108,8 @@ void SampleMixer(struct SoundMixerState *mixer, u32 scanlineLimit, u16 samplesPe
         
         if (TickEnvelope(chan, wav)) 
         {
-#ifdef PORTABLE
-            if (!(Platform_IsFastForwarding() && SoundMixer_IsFastForwardMutedTrack(chan->track)))
-#endif
-                GenerateAudio(mixer, chan, wav, outBuffer, samplesPerFrame, sampleRateReciprocal);
+
+            GenerateAudio(mixer, chan, wav, outBuffer, samplesPerFrame, sampleRateReciprocal);
         }
     }
 returnEarly:

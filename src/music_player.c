@@ -751,9 +751,6 @@ void m4aSoundVSync(void)
 {
     struct SoundMixerState *mixer = (struct SoundMixerState *)SOUND_INFO_PTR;
 #ifdef PORTABLE
-    if (!Platform_ShouldAdvanceAudioFrame())
-        return;
-
     if(mixer->lockStatus-PLAYER_UNLOCKED <= 1)
     {
         s32 samplesPerFrame = mixer->samplesPerFrame * 2;

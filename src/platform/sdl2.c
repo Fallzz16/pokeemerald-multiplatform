@@ -2,7 +2,6 @@
 #include <assert.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
 
 #ifdef _WIN32
@@ -35,16 +34,12 @@ SDL_Texture *sdlTexture;
 SDL_sem *vBlankSemaphore;
 SDL_atomic_t isFrameAvailable;
 SDL_atomic_t fastForwardActive;
-SDL_atomic_t fastForwardAudioFrame;
+SDL_atomic_t fastForwardMultiplier;
 unsigned int videoScale = 1;
 bool isRunning = true;
 double lastGameTime = 0;
 double curGameTime = 0;
 double fixedTimestep = 1.0 / 60.0; // Port timing; one game tick per frame
-
-static unsigned int sFastForwardMultiplier = 2;
-static unsigned int sFastForwardAudioPhase = 0;
-
 struct SiiRtcInfo internalClock;
 
 static FILE *sSaveFile = NULL;
@@ -55,7 +50,6 @@ int DoMain(void *param);
 void ProcessEvents(void);
 void VDraw(SDL_Texture *texture);
 
-static void PrepareFastForwardFrame(void);
 static void RenderFastForwardIndicator(void);
 static void CycleFastForwardMultiplier(void);
 
@@ -108,8 +102,8 @@ int main(int argc, char **argv)
     curGameTime = lastGameTime = SDL_GetPerformanceCounter();
 
     isFrameAvailable.value = 0;
-    fastForwardActive.value = 0;
-    fastForwardAudioFrame.value = 1;
+    SDL_AtomicSet(&fastForwardActive, 0);
+    SDL_AtomicSet(&fastForwardMultiplier, 2);
     vBlankSemaphore = SDL_CreateSemaphore(0);
 
     SDL_AudioSpec want;
@@ -144,7 +138,9 @@ int main(int argc, char **argv)
     {
         ProcessEvents();
 
-        const unsigned int speedMultiplier = SDL_AtomicGet(&fastForwardActive) ? sFastForwardMultiplier : 1;
+        const int speedMultiplier = SDL_AtomicGet(&fastForwardActive)
+                                  ? SDL_AtomicGet(&fastForwardMultiplier)
+                                  : 1;
         const double dt = fixedTimestep / speedMultiplier;
 
         curGameTime = SDL_GetPerformanceCounter();
@@ -159,7 +155,6 @@ int main(int argc, char **argv)
         {
             if (SDL_AtomicGet(&isFrameAvailable))
             {
-                PrepareFastForwardFrame();
                 VDraw(sdlTexture);
                 SDL_RenderClear(sdlRenderer);
                 SDL_RenderCopy(sdlRenderer, sdlTexture, NULL, NULL);
@@ -255,9 +250,35 @@ void Platform_ReadFlash(u16 sectorNum, u32 offset, u8 *dest, u32 size)
     fclose(savefile);
 }
 
-void Platform_QueueAudio(float *audioBuffer, s32 samplesPerFrame)
+void Platform_QueueAudio(float *audioBuffer, s32 audioBytes)
 {
-    SDL_QueueAudio(1, audioBuffer, samplesPerFrame);
+    // Keep the normal-speed path exactly equivalent to the stable v0.3.1 build.
+    if (!SDL_AtomicGet(&fastForwardActive))
+    {
+        SDL_QueueAudio(1, audioBuffer, audioBytes);
+        return;
+    }
+
+    // During fast-forward the whole game clock runs N times faster, including
+    // BGM, sound effects and cries. Compact the final interleaved stereo stream
+    // by the same factor so SDL still receives roughly one real-time second of
+    // audio per real-time second. This produces traditional turbo pitch/tempo.
+    enum { MAX_FAST_FORWARD_AUDIO_FLOATS = 4096 };
+    static float compressedAudio[MAX_FAST_FORWARD_AUDIO_FLOATS];
+    const int multiplier = SDL_AtomicGet(&fastForwardMultiplier);
+    const s32 inputFrames = audioBytes / (s32)(sizeof(float) * 2);
+    s32 outputFrames = 0;
+
+    for (s32 sourceFrame = 0;
+         sourceFrame < inputFrames && (outputFrames * 2 + 1) < MAX_FAST_FORWARD_AUDIO_FLOATS;
+         sourceFrame += multiplier)
+    {
+        compressedAudio[outputFrames * 2]     = audioBuffer[sourceFrame * 2];
+        compressedAudio[outputFrames * 2 + 1] = audioBuffer[sourceFrame * 2 + 1];
+        outputFrames++;
+    }
+
+    SDL_QueueAudio(1, compressedAudio, outputFrames * 2 * (s32)sizeof(float));
 }
 
 
@@ -315,8 +336,6 @@ void ProcessEvents(void)
             HANDLE_KEYUP(DPAD_RIGHT)
             case SDLK_TAB:
                 SDL_AtomicSet(&fastForwardActive, 0);
-                SDL_AtomicSet(&fastForwardAudioFrame, 1);
-                sFastForwardAudioPhase = 0;
                 break;
             }
             break;
@@ -335,10 +354,7 @@ void ProcessEvents(void)
             HANDLE_KEYDOWN(DPAD_RIGHT)
             case SDLK_TAB:
                 if (!event.key.repeat)
-                {
                     SDL_AtomicSet(&fastForwardActive, 1);
-                    sFastForwardAudioPhase = 0;
-                }
                 break;
             case SDLK_F6:
                 if (!event.key.repeat)
@@ -388,39 +404,25 @@ u16 GetXInputKeys()
 }
 #endif // _WIN32
 
-
-static void PrepareFastForwardFrame(void)
-{
-    if (!SDL_AtomicGet(&fastForwardActive))
-    {
-        sFastForwardAudioPhase = 0;
-        SDL_AtomicSet(&fastForwardAudioFrame, 1);
-        return;
-    }
-
-    SDL_AtomicSet(&fastForwardAudioFrame, sFastForwardAudioPhase == 0);
-
-    sFastForwardAudioPhase++;
-    if (sFastForwardAudioPhase >= sFastForwardMultiplier)
-        sFastForwardAudioPhase = 0;
-}
-
 static void CycleFastForwardMultiplier(void)
 {
-    switch (sFastForwardMultiplier)
+    const int current = SDL_AtomicGet(&fastForwardMultiplier);
+    int next;
+
+    switch (current)
     {
     case 2:
-        sFastForwardMultiplier = 4;
+        next = 4;
         break;
     case 4:
-        sFastForwardMultiplier = 8;
+        next = 8;
         break;
     default:
-        sFastForwardMultiplier = 2;
+        next = 2;
         break;
     }
 
-    sFastForwardAudioPhase = 0;
+    SDL_AtomicSet(&fastForwardMultiplier, next);
 }
 
 static void DrawFastForwardGlyph(const u8 rows[5], int x, int y)
@@ -448,10 +450,11 @@ static void RenderFastForwardIndicator(void)
     static const u8 glyph4[5]       = {0x5, 0x5, 0x7, 0x1, 0x1};
     static const u8 glyph8[5]       = {0x7, 0x5, 0x7, 0x5, 0x7};
     static const u8 glyphX[5]       = {0x5, 0x5, 0x2, 0x5, 0x5};
+    const int multiplier = SDL_AtomicGet(&fastForwardMultiplier);
     const u8 *digit;
     SDL_Rect box = {DISPLAY_WIDTH - 27, 4, 23, 9};
 
-    switch (sFastForwardMultiplier)
+    switch (multiplier)
     {
     case 4:
         digit = glyph4;
@@ -476,21 +479,6 @@ static void RenderFastForwardIndicator(void)
 
     SDL_SetRenderDrawBlendMode(sdlRenderer, SDL_BLENDMODE_NONE);
     SDL_SetRenderDrawColor(sdlRenderer, 0, 0, 0, 255);
-}
-
-bool8 Platform_IsFastForwarding(void)
-{
-    return SDL_AtomicGet(&fastForwardActive) ? TRUE : FALSE;
-}
-
-bool8 Platform_ShouldAdvanceAudioFrame(void)
-{
-    return SDL_AtomicGet(&fastForwardAudioFrame) ? TRUE : FALSE;
-}
-
-u8 Platform_GetFastForwardMultiplier(void)
-{
-    return (u8)sFastForwardMultiplier;
 }
 
 u16 Platform_GetKeyInput(void)

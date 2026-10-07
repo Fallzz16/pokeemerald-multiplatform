@@ -3,7 +3,6 @@
 
 #ifdef PORTABLE
     #include "cgb_audio.h"
-    #include "platform.h"
 #endif
 
 extern const u8 gCgb3Vol[];
@@ -34,9 +33,6 @@ u8 gMPlayMemAccArea[0x10];
 void MP2K_event_nxx();
 void MP2KPlayerMain();
 extern void RunMixerFrame(void);
-#ifdef PORTABLE
-extern bool32 SoundMixer_IsFastForwardMutedTrack(const void *track);
-#endif
 
 u32 MidiKeyToFreq(struct WaveData *wav, u8 key, u8 fineAdjust)
 {
@@ -118,50 +114,11 @@ void m4aSoundInit(void)
     }
 }
 
-#ifdef PORTABLE
-bool32 FastForward_ShouldMuteCgbChannel(u8 channel)
-{
-    if (channel >= 4 || !Platform_IsFastForwarding())
-        return FALSE;
-
-    return SoundMixer_IsFastForwardMutedTrack(gCgbChans[channel].track);
-}
-
-static void AdvanceFastForwardPlayerIsolated(struct MusicPlayerInfo *player)
-{
-    MPlayMainFunc savedNextFunc = player->MPlayMainNext;
-    struct MusicPlayerInfo *savedNextPlayer = player->musicPlayerNext;
-
-    player->MPlayMainNext = NULL;
-    player->musicPlayerNext = NULL;
-    MP2KPlayerMain(player);
-    player->MPlayMainNext = savedNextFunc;
-    player->musicPlayerNext = savedNextPlayer;
-}
-
-static void AdvanceFastForwardSilentPlayers(void)
-{
-    AdvanceFastForwardPlayerIsolated(&gMPlayInfo_SE1);
-    AdvanceFastForwardPlayerIsolated(&gMPlayInfo_SE2);
-    AdvanceFastForwardPlayerIsolated(&gMPlayInfo_SE3);
-
-    for (u32 i = 0; i < MAX_POKEMON_CRIES; i++)
-        AdvanceFastForwardPlayerIsolated(&gPokemonCryMusicPlayers[i]);
-}
-#endif
-
 void m4aSoundMain(void)
 {
 #ifndef PORTABLE
     SoundMain();
 #else
-    if (!Platform_ShouldAdvanceAudioFrame())
-    {
-        if (Platform_IsFastForwarding())
-            AdvanceFastForwardSilentPlayers();
-        return;
-    }
-
     RunMixerFrame();
 #endif
 }
