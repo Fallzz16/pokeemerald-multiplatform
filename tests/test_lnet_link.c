@@ -26,6 +26,7 @@ static HANDLE g_ht, g_ct;
 #else
 #include <pthread.h>
 #include <sched.h>
+#include <unistd.h>
 #define RUN_BOTH()                              \
     do                                          \
     {                                           \
@@ -40,6 +41,13 @@ static HANDLE g_ht, g_ct;
 
 #define PORT 45679u
 #define ROUND 8
+#ifdef _WIN32
+#define YIELD() Sleep(1)
+#define DELAY_FIRST_SLOT() Sleep(150)
+#else
+#define YIELD() sched_yield()
+#define DELAY_FIRST_SLOT() usleep(150000)
+#endif
 
 static int g_passed = 0;
 static int g_failed = 0;
@@ -67,6 +75,7 @@ static unsigned short g_clientPeer[ROUND];
 static unsigned long long g_clientRecv[ROUND];
 static int g_hostOk = 1;
 static int g_clientOk = 1;
+static int g_hostObservedPending = 0;
 
 static THREAD_RET host_main(void *arg)
 {
@@ -100,7 +109,11 @@ static THREAD_RET host_main(void *arg)
         {
             result = lnet_link_slot(l, g_hSend[k], &g_hostPeer[k], &recvView);
             if (result == 0)
-                sched_yield();
+            {
+                if (k == 0)
+                    g_hostObservedPending = 1;
+                YIELD();
+            }
         } while (result == 0);
         if (result != 1)
         {
@@ -139,6 +152,7 @@ static THREAD_RET client_main(void *arg)
         }
         sched_yield();
     }
+    DELAY_FIRST_SLOT();
     for (k = 0; k < ROUND; k++)
     {
         int result;
@@ -146,7 +160,7 @@ static THREAD_RET client_main(void *arg)
         {
             result = lnet_link_slot(l, g_cSend[k], &g_clientPeer[k], &recvView);
             if (result == 0)
-                sched_yield();
+                YIELD();
         } while (result == 0);
         if (result != 1)
         {
@@ -169,6 +183,7 @@ int main(void)
 
     CHECK(g_hostOk == 1, "host completed every slot");
     CHECK(g_clientOk == 1, "client completed every slot");
+    CHECK(g_hostObservedPending, "host yields while first peer slot is delayed");
 
     for (k = 0; k < ROUND; k++)
     {
