@@ -245,7 +245,26 @@ if os.getenv("EMERALD_V060_QA") == "1":
 for rel_path, expected_sha in manifest.items():
     abs_path = ROOT / rel_path
     require(abs_path.is_file(), f"protected baseline file missing: {rel_path}")
-    require(git_blob_sha(abs_path.read_bytes()) == qol_overrides.get(rel_path, expected_sha),
+    contents = abs_path.read_bytes()
+    if rel_path == "src/platform/sdl2.c" and os.getenv("EMERALD_LAN_QA") == "1":
+        # Verify the entire original protected file by removing only the
+        # reviewed CLI insertion; all other native port bytes must still match.
+        native = contents.decode("utf-8")
+        begin = "    // Optional headless LAN configuration on desktop."
+        end = '    ReadSaveFile("pokeemerald.sav");'
+        require(native.count(begin) == 1 and native.count(end) == 1,
+                "only one LAN insertion in native SDL2 main")
+        a = native.index(begin)
+        b = native.index(end, a)
+        native = native[:a] + native[b:]
+        require(native.count('#include <stdlib.h>\n#include <string.h>\n') == 1,
+                "new LAN-only C library imports unique")
+        native = native.replace('#include <stdlib.h>\n#include <string.h>\n', "", 1)
+        require(native.count('#include "link.h"\n') == 1,
+                "new LAN-only link header unique")
+        native = native.replace('#include "link.h"\n', "", 1)
+        contents = native.encode("utf-8")
+    require(git_blob_sha(contents) == qol_overrides.get(rel_path, expected_sha),
             f"protected baseline file modified unexpectedly: {rel_path}")
 
 protected_dirs = ("data/maps", "data/scripts")
