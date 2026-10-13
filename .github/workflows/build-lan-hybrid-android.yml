@@ -13,11 +13,16 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
-      - name: Checkout game code and SDL2 submodule
+      - name: Checkout game code
         uses: actions/checkout@v4
         with:
-          submodules: recursive
           fetch-depth: 0
+
+      - name: Restore pinned SDL2 source (missing gitlink in Hybrid branch)
+        run: |
+          test ! -e android/SDL2
+          git clone --depth 1 --branch release-2.30.7 https://github.com/libsdl-org/SDL.git android/SDL2
+          test -f android/SDL2/android-project/gradlew
 
       - name: Java 17 for Android Gradle
         uses: actions/setup-java@v4
