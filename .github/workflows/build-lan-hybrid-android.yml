@@ -51,6 +51,7 @@ jobs:
           make -f make_tools.mk -j2
           make -f Makefile_pc -j2 generated
           python3 scripts/prepare_android_assets.py
+          python3 scripts/prepare_android_map_assets.py
           python3 - <<'PY'
           from pathlib import Path
           import subprocess
