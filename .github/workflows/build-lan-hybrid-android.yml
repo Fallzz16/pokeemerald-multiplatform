@@ -51,12 +51,27 @@ jobs:
           make -f make_tools.mk -j2
           make -f Makefile_pc -j2 generated
           python3 scripts/prepare_android_assets.py
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          tracks = sorted(str(p.with_suffix('.s')) for p in Path('sound/songs/midi').glob('*.mid'))
+          assert tracks, "No MIDI songs found in Emerald source"
+          subprocess.run(['make', '-f', 'Makefile_pc', '-j6', *tracks], check=True)
+          print('Prepared', len(tracks), 'MIDI assembly tracks')
+          PY
+          grep -n 'gMapGroups' data/maps/groups.inc | head -n 3
 
       - name: Build experimental LAN APK
         run: |
           chmod +x android/SDL2/android-project/gradlew
           android/SDL2/android-project/gradlew -p android :app:assembleDebug --stacktrace --no-daemon
           test -s android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Diagnose generated ARM symbols after linker failure
+        if: failure()
+        run: |
+          find android/app/.cxx -name 'game_data.o' -print -exec sh -c 'arm-none-eabi-nm -g "$1" | grep -E "gMapGroups|mus_dummy|se_use_item" || true' sh {} \;
+          find android/app/.cxx -name '*maps.s.o' -print
 
       - name: Upload unsigned-development APK candidate
         uses: actions/upload-artifact@v4
