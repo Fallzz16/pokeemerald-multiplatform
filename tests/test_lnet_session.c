@@ -14,6 +14,12 @@
 #include <stdio.h>
 #ifndef _WIN32
 #include <sched.h>
+#include <unistd.h>
+#define YIELD() sched_yield()
+#define DELAY_FIRST_SLOT() usleep(150000)
+#else
+#define YIELD() Sleep(1)
+#define DELAY_FIRST_SLOT() Sleep(150)
 #endif
 
 #ifdef _WIN32
@@ -68,6 +74,7 @@ static unsigned long long g_hostRecv[ROUND];
 static unsigned long long g_clientRecv[ROUND];
 static int g_hostFail = 0;
 static int g_clientFail = 0;
+static int g_hostObservedPending = 0;
 
 static THREAD_RET host_main(void *arg)
 {
@@ -91,14 +98,25 @@ static THREAD_RET host_main(void *arg)
             g_hostFail = 1;
             break;
         }
-        sched_yield();
+        YIELD();
     }
     CHECK(lnet_session_role(s) == LNET_ROLE_HOST, "host role is HOST");
     sio = lnet_sio_new(LNET_ROLE_HOST);
     for (k = 0; k < ROUND; k++)
     {
         g_hostRecv[k] = lnet_sio_recv_current(sio);
-        if (lnet_session_exchange(s, g_hSend[k], &peer) != 1 || peer != g_cSend[k])
+        int result;
+        do
+        {
+            result = lnet_session_exchange(s, g_hSend[k], &peer);
+            if (result == 0)
+            {
+                if (k == 0)
+                    g_hostObservedPending = 1;
+                YIELD();
+            }
+        } while (result == 0);
+        if (result != 1 || peer != g_cSend[k])
         {
             g_hostFail = 1;
             break;
@@ -133,14 +151,22 @@ static THREAD_RET client_main(void *arg)
             g_clientFail = 1;
             break;
         }
-        sched_yield();
+        YIELD();
     }
     CHECK(lnet_session_role(s) == LNET_ROLE_CLIENT, "client role is CLIENT");
     sio = lnet_sio_new(LNET_ROLE_CLIENT);
+    DELAY_FIRST_SLOT(); /* Host must yield frames, not block awaiting our first SLOT. */
     for (k = 0; k < ROUND; k++)
     {
         g_clientRecv[k] = lnet_sio_recv_current(sio);
-        if (lnet_session_exchange(s, g_cSend[k], &peer) != 1 || peer != g_hSend[k])
+        int result;
+        do
+        {
+            result = lnet_session_exchange(s, g_cSend[k], &peer);
+            if (result == 0)
+                YIELD();
+        } while (result == 0);
+        if (result != 1 || peer != g_hSend[k])
         {
             g_clientFail = 1;
             break;
@@ -162,6 +188,7 @@ int main(void)
 
     CHECK(g_hostFail == 0, "host completed every slot");
     CHECK(g_clientFail == 0, "client completed every slot");
+    CHECK(g_hostObservedPending, "host observes a pending slot while peer is delayed");
 
     for (k = 0; k + 1 < ROUND; k++)
     {

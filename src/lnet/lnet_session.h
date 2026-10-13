@@ -52,7 +52,7 @@ int lnet_session_is_ready(const LNetSession *s);
  * peer's SEND for the same slot. Never blocks: each call advances the in-flight
  * slot by at most one send and one recv and returns immediately.
  * Returns 1 on success, 0 if the peer's data is not ready yet (call again
- * later), and -1 on a permanent/protocol error or a peer that closed.
+ * later), and -1 on a permanent/protocol error, timeout, or peer closure.
  */
 int lnet_session_exchange(LNetSession *s, unsigned short myVal, unsigned short *peerVal);
 

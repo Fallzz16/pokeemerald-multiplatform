@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - feature/lan-hybrid-v070
+      - feature/lan-v070-async-slot-hardening
     paths-ignore:
       - '**/*.md'
 

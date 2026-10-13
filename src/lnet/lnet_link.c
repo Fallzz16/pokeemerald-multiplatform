@@ -86,7 +86,7 @@ int lnet_link_slot(LNetLink *l, unsigned short mySend, unsigned short *peerSend,
         return 0;
     r = lnet_session_exchange(l->session, mySend, peerSend);
     if (r != 1)
-        return 0; /* -1: peer gone/error -> link failed */
+        return r; /* 0: slot pending; -1: link failed */
     /* RECV must reflect the just-completed slot; commit then expose it. */
     lnet_sio_commit(l->sio, mySend, *peerSend);
     *recvView = lnet_sio_recv_current(l->sio);

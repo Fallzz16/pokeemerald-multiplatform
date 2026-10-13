@@ -2024,12 +2024,17 @@ bool32 PortLanIsConnecting(void)
 // slots), bounded so a freak frame can't stall the loop forever.
 #define PORTABLE_LAN_SLOTS_PER_FRAME 9
 #define PORTABLE_LAN_MAX_SLOTS_PER_FRAME 192
+/* Reserve space for incoming bursts when serial throughput falls behind. */
+#define PORTABLE_LAN_SOFT_SEND_QUEUE_LIMIT 4
 
 // Set the multi-player SIO uart role so LinkMain1's CheckMasterOrSlave and
 // SerialCB see the same host/client topology as a 2-player GBA cable.
 static void PortableLanConfigRegisters(void)
 {
-    if (IsLanLinkLive() && lnet_link_role(sPortableLanLink) == LNET_ROLE_HOST)
+    /* Do not spoof SIO registers during ordinary offline gameplay. */
+    if (!IsLanLinkLive())
+        return;
+    if (lnet_link_role(sPortableLanLink) == LNET_ROLE_HOST)
     {
         SIO_MULTI_CNT->id = 0;
         SIO_MULTI_CNT->sd = 1; // master holds SD high, SI low
@@ -2062,14 +2067,15 @@ static int PortableLanSlot(void)
         return 0;
 
     mySend = REG_SIOMLT_SEND;
-    if (lnet_link_slot(sPortableLanLink, mySend, &peerSend, &recvView))
     {
-        REG_SIOMLT_RECV = (vu64)recvView;
-        if (gMain.serialCallback)
-            gMain.serialCallback();
-        return 1;
+        int result = lnet_link_slot(sPortableLanLink, mySend, &peerSend, &recvView);
+        if (result != 1)
+            return result; /* 0: still pending; -1: peer lost */
     }
-    return -1;
+    REG_SIOMLT_RECV = (vu64)recvView;
+    if (gMain.serialCallback)
+        gMain.serialCallback();
+    return 1;
 }
 
 // The peer closed the TCP session (e.g. the other instance was terminated
@@ -2096,6 +2102,7 @@ bool8 HandleLinkConnection(void)
 {
     int slots;
     bool8 peerGone = FALSE;
+    bool8 waitForQueue = FALSE;
 
     PortLanDebugPump();
     if (gWirelessCommType == 0)
@@ -2110,7 +2117,14 @@ bool8 HandleLinkConnection(void)
          * throughput heuristic that does not apply to this emulated link, so
          * clear it before LinkMain1 folds it into the status word. */
         gLink.lag = LAG_NONE;
-        gLinkStatus = LinkMain1(&gShouldAdvanceLinkState, gSendCmd, gRecvCmds);
+        /* Slow TCP links must not overflow the original 50-entry command
+         * queue. Pause game callbacks until already-enqueued words drain;
+         * do not drop the pending command or stop polling the socket. */
+        if (IsLanLinkLive() && gLink.state == LINK_STATE_CONN_ESTABLISHED
+            && gLink.sendQueue.count >= PORTABLE_LAN_SOFT_SEND_QUEUE_LIMIT)
+            waitForQueue = TRUE;
+        else
+            gLinkStatus = LinkMain1(&gShouldAdvanceLinkState, gSendCmd, gRecvCmds);
         /* Drain our own send queue within this frame (floor PORTABLE_LAN_SLOTS
          * keeps the handshake cadence; the drain loop lets real-battle bursts
          * flush faster than 1 command/frame so they never back up to the
@@ -2121,11 +2135,22 @@ bool8 HandleLinkConnection(void)
                               && gLink.sendQueue.count > 0);
              slots++)
         {
-            if (PortableLanSlot() < 0)
+            int result = PortableLanSlot();
+            if (result == 0)
+                break; /* Never spin on a pending peer transfer. */
+            if (result < 0)
+            {
                 peerGone = TRUE;
+                break;
+            }
         }
         if (peerGone)
+        {
             HandleLanDisconnect();
+            return TRUE; /* Do not execute callbacks on a dead link. */
+        }
+        if (waitForQueue)
+            return TRUE;
         LinkMain2(&gMain.heldKeys);
         if ((gLinkStatus & LINK_STAT_RECEIVED_NOTHING) && IsSendingKeysOverCable() == TRUE)
             return TRUE;

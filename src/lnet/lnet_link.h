@@ -37,7 +37,7 @@ int lnet_link_ready(const LNetLink *l);
  * Perform one 16-bit SIO slot exchange.  Sends `mySend`, sets *peerSend to the
  * peer's value for the same slot, and writes *recvView to the 4-player RECV the
  * GBA would present (slot0 = host SEND, slot1 = client SEND, others 0).
- * Returns 1 on success, 0 if the transport has failed.
+ * Returns 1 on success, 0 if the slot is pending, -1 on failure.
  */
 int lnet_link_slot(LNetLink *l, unsigned short mySend, unsigned short *peerSend, unsigned long long *recvView);
 
