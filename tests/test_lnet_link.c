@@ -100,7 +100,7 @@ static THREAD_RET host_main(void *arg)
             g_hostOk = 0;
             break;
         }
-        sched_yield();
+        YIELD();
     }
     for (k = 0; k < ROUND; k++)
     {
@@ -150,7 +150,7 @@ static THREAD_RET client_main(void *arg)
             printf("FAIL: client link setup failed (err=%d)\n", err);
             break;
         }
-        sched_yield();
+        YIELD();
     }
     DELAY_FIRST_SLOT();
     for (k = 0; k < ROUND; k++)
