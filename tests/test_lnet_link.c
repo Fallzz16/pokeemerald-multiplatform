@@ -95,7 +95,14 @@ static THREAD_RET host_main(void *arg)
     }
     for (k = 0; k < ROUND; k++)
     {
-        if (!lnet_link_slot(l, g_hSend[k], &g_hostPeer[k], &recvView))
+        int result;
+        do
+        {
+            result = lnet_link_slot(l, g_hSend[k], &g_hostPeer[k], &recvView);
+            if (result == 0)
+                sched_yield();
+        } while (result == 0);
+        if (result != 1)
         {
             printf("FAIL: host slot %d failed\n", k);
             g_hostOk = 0;
@@ -134,7 +141,14 @@ static THREAD_RET client_main(void *arg)
     }
     for (k = 0; k < ROUND; k++)
     {
-        if (!lnet_link_slot(l, g_cSend[k], &g_clientPeer[k], &recvView))
+        int result;
+        do
+        {
+            result = lnet_link_slot(l, g_cSend[k], &g_clientPeer[k], &recvView);
+            if (result == 0)
+                sched_yield();
+        } while (result == 0);
+        if (result != 1)
         {
             printf("FAIL: client slot %d failed\n", k);
             g_clientOk = 0;
