@@ -15,6 +15,8 @@ ROOT = Path(__file__).resolve().parents[1]
 INPUT_FOLDERS = ("src", "gflib", "data", "sound", "include")
 EXTENSIONS = {".c", ".h", ".s", ".inc"}
 PATTERNS = (
+    # Include multiple string arguments to INCBIN macros, not just the first.
+    re.compile(r'"((?:graphics|data|sound)/[^"\r\n]+)"'),
     re.compile(r'INCBIN(?:_[A-Z0-9]+)?\s*\(\s*"([^"]+)"'),
     re.compile(r'\.incbin\s+"([^"]+)"', re.I),
 )
