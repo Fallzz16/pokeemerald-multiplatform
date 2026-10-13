@@ -2029,7 +2029,10 @@ bool32 PortLanIsConnecting(void)
 // SerialCB see the same host/client topology as a 2-player GBA cable.
 static void PortableLanConfigRegisters(void)
 {
-    if (IsLanLinkLive() && lnet_link_role(sPortableLanLink) == LNET_ROLE_HOST)
+    /* Do not spoof SIO registers during ordinary offline gameplay. */
+    if (!IsLanLinkLive())
+        return;
+    if (lnet_link_role(sPortableLanLink) == LNET_ROLE_HOST)
     {
         SIO_MULTI_CNT->id = 0;
         SIO_MULTI_CNT->sd = 1; // master holds SD high, SI low
@@ -2062,14 +2065,15 @@ static int PortableLanSlot(void)
         return 0;
 
     mySend = REG_SIOMLT_SEND;
-    if (lnet_link_slot(sPortableLanLink, mySend, &peerSend, &recvView))
     {
-        REG_SIOMLT_RECV = (vu64)recvView;
-        if (gMain.serialCallback)
-            gMain.serialCallback();
-        return 1;
+        int result = lnet_link_slot(sPortableLanLink, mySend, &peerSend, &recvView);
+        if (result != 1)
+            return result; /* 0: still pending; -1: peer lost */
     }
-    return -1;
+    REG_SIOMLT_RECV = (vu64)recvView;
+    if (gMain.serialCallback)
+        gMain.serialCallback();
+    return 1;
 }
 
 // The peer closed the TCP session (e.g. the other instance was terminated
@@ -2121,11 +2125,20 @@ bool8 HandleLinkConnection(void)
                               && gLink.sendQueue.count > 0);
              slots++)
         {
-            if (PortableLanSlot() < 0)
+            int result = PortableLanSlot();
+            if (result == 0)
+                break; /* Never spin on a pending peer transfer. */
+            if (result < 0)
+            {
                 peerGone = TRUE;
+                break;
+            }
         }
         if (peerGone)
+        {
             HandleLanDisconnect();
+            return TRUE; /* Do not execute callbacks on a dead link. */
+        }
         LinkMain2(&gMain.heldKeys);
         if ((gLinkStatus & LINK_STAT_RECEIVED_NOTHING) && IsSendingKeysOverCable() == TRUE)
             return TRUE;
