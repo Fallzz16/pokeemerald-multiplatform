@@ -11,7 +11,7 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-LABEL = re.compile(r"(?m)^([A-Za-z_][A-Za-z_0-9]*):{2}(?=\s*(?:$|@|//))")
+LABEL = re.compile(r"(?m)^([A-Za-z_][A-Za-z_0-9]*):{1,2}(?=\s*(?:$|@|//))")
 INCLUDE = re.compile(r'^\s*\.include\s+"(data/maps/[^"]+)"\s*$')
 
 
