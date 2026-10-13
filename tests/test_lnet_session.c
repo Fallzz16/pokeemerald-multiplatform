@@ -98,7 +98,14 @@ static THREAD_RET host_main(void *arg)
     for (k = 0; k < ROUND; k++)
     {
         g_hostRecv[k] = lnet_sio_recv_current(sio);
-        if (lnet_session_exchange(s, g_hSend[k], &peer) != 1 || peer != g_cSend[k])
+        int result;
+        do
+        {
+            result = lnet_session_exchange(s, g_hSend[k], &peer);
+            if (result == 0)
+                sched_yield();
+        } while (result == 0);
+        if (result != 1 || peer != g_cSend[k])
         {
             g_hostFail = 1;
             break;
@@ -140,7 +147,14 @@ static THREAD_RET client_main(void *arg)
     for (k = 0; k < ROUND; k++)
     {
         g_clientRecv[k] = lnet_sio_recv_current(sio);
-        if (lnet_session_exchange(s, g_cSend[k], &peer) != 1 || peer != g_hSend[k])
+        int result;
+        do
+        {
+            result = lnet_session_exchange(s, g_cSend[k], &peer);
+            if (result == 0)
+                sched_yield();
+        } while (result == 0);
+        if (result != 1 || peer != g_hSend[k])
         {
             g_clientFail = 1;
             break;
