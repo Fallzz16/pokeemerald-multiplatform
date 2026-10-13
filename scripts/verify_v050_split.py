@@ -84,6 +84,8 @@ for p in protected:
             reconstructed = reconstructed.replace('#include <stdlib.h>\n#include <string.h>\n', '', 1)
             require(reconstructed.count('#include "link.h"\n') == 1, 'LAN link include unique')
             reconstructed = reconstructed.replace('#include "link.h"\n', '', 1)
+            from verify_android_sdl_patch import strip_android_save_patch
+            reconstructed = strip_android_save_patch(reconstructed)
             raw = reconstructed.encode('utf-8')
             restored_sha = hashlib.sha1(f'blob {len(raw)}\0'.encode('ascii') + raw).hexdigest()
             require(restored_sha == expected[p], 'SDL native port still identical after exact inverse LAN patch')

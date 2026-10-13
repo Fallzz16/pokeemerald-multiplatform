@@ -263,6 +263,8 @@ for rel_path, expected_sha in manifest.items():
         require(native.count('#include "link.h"\n') == 1,
                 "new LAN-only link header unique")
         native = native.replace('#include "link.h"\n', "", 1)
+        from verify_android_sdl_patch import strip_android_save_patch
+        native = strip_android_save_patch(native)
         contents = native.encode("utf-8")
     require(git_blob_sha(contents) == qol_overrides.get(rel_path, expected_sha),
             f"protected baseline file modified unexpectedly: {rel_path}")

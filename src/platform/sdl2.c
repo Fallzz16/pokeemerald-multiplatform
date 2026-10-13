@@ -46,6 +46,9 @@ double fixedTimestep = 1.0 / 60.0; // Port timing; one game tick per frame
 struct SiiRtcInfo internalClock;
 
 static FILE *sSaveFile = NULL;
+#ifdef __ANDROID__
+static char sAndroidSavePath[1024] = "pokeemerald.sav";
+#endif
 
 extern void AgbMain(void);
 
@@ -102,13 +105,31 @@ int main(int argc, char **argv)
         }
     }
 
+#ifndef __ANDROID__
     ReadSaveFile("pokeemerald.sav");
+#endif
 
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
     {
         DBGPRINTF("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
         return 1;
     }
+
+#ifdef __ANDROID__
+    // Android must open save files inside the application's writable storage.
+    // SDL_GetPrefPath is available only after SDL_Init.
+    {
+        char *prefPath = SDL_GetPrefPath("EmeraldHybrid", "EmeraldHybrid");
+        if (prefPath == NULL)
+        {
+            SDL_Log("Unable to obtain Android writable save path");
+            return 1;
+        }
+        SDL_snprintf(sAndroidSavePath, sizeof(sAndroidSavePath), "%spokeemerald.sav", prefPath);
+        SDL_free(prefPath);
+        ReadSaveFile(sAndroidSavePath);
+    }
+#endif
 
     sdlWindow = SDL_CreateWindow("pokeemerald", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, DISPLAY_WIDTH * videoScale, DISPLAY_HEIGHT * videoScale, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (sdlWindow == NULL)
@@ -238,6 +259,15 @@ static void ReadSaveFile(char *path)
         sSaveFile = fopen(path, "w+b");
     }
 
+#ifdef __ANDROID__
+    if (sSaveFile == NULL)
+    {
+        memset(FLASH_BASE, 0xFF, sizeof(FLASH_BASE));
+        SDL_Log("Unable to open Android save file: %s", path);
+        return;
+    }
+#endif
+
     fseek(sSaveFile, 0, SEEK_END);
     int fileSize = ftell(sSaveFile);
     fseek(sSaveFile, 0, SEEK_SET);
@@ -272,7 +302,11 @@ void Platform_StoreSaveFile(void)
 void Platform_ReadFlash(u16 sectorNum, u32 offset, u8 *dest, u32 size)
 {
     DBGPRINTF("ReadFlash(sectorNum=0x%04X,offset=0x%08X,size=0x%02X)\n",sectorNum,offset,size);
+#ifdef __ANDROID__
+    FILE * savefile = fopen(sAndroidSavePath, "r+b");
+#else
     FILE * savefile = fopen("pokeemerald.sav", "r+b");
+#endif
     if (savefile == NULL)
     {
         puts("Error opening save file.");
