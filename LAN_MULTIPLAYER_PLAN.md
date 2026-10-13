@@ -54,3 +54,33 @@ After link battles/trades prove reliable, implement a separate map-player replic
 
 ## Licensing
 The adapted LAN networking code is based on the upstream fork's MIT-scoped **original port modifications**. Its license and copyright notice apply to those parts; this does not license Pokémon names, sprites, music or the upstream decompilation. Avoid publishing copyrighted game data without the appropriate rights.
+
+
+## Follow-up candidate: asynchronous serial-slot hardening (isolated branch)
+
+Branch: `feature/lan-v070-async-slot-hardening`, derived from `feature/lan-hybrid-v070`. This branch has **not** been merged. It changes only the LAN transport/controller/tests/CI, not the baseline ROM's Fairy/PSS, Quest UI, maps, sprite pipeline, or save layout.
+
+### Motivation
+
+The original TCP HELLO/setup polls non-blockingly, but `lnet_session_exchange` used blocking `send_all` / `recv_all` on each serial word. That could hold the game's own native thread for up to the socket timeout when a peer paused, lost Wi-Fi, or closed. To avoid game-thread stalls, this candidate:
+
+- Keeps a partially-sent or partially-received three-byte SLOT frame in the session across game frames, with return values `1=complete`, `0=pending`, `-1=failure`.
+- Adds client-connect, HELLO, and active-slot deadlines. The host listener intentionally has no connection-wait deadline.
+- Makes the serial callback run **only after** the pair of slot values is fully exchanged.
+- Stops further callbacks after a failed exchange; preserves serial register behavior when offline.
+- Applies conservative send-queue backpressure: the game callback pauses when four outgoing commands await serial delivery; SIO continues pumping, rather than discarding queued commands.
+- Extends the native session/link tests with a deliberately delayed client and adds a mid-slot peer-disconnect regression check.
+- Enables the existing Windows and Android Actions workflows on this test branch too.
+
+### Required validation before merge
+
+The earlier 71 passing checks and green Windows/Android artifacts apply to the previous `feature/lan-hybrid-v070` HEAD, **not automatically to this new candidate**. Re-run:
+
+```bash
+bash scripts/verify_lan_foundation.sh
+EMERALD_LAN_QA=1 bash scripts/verify_v070.sh
+```
+
+Then inspect the candidate branch's Windows and Android workflow results, plus perform the physical-device and full Cable Club battle/trade acceptance matrix. In particular verify that asynchronous one-word RTT and queue backpressure do not reduce link throughput unacceptably, deadlock the Cable Club, overflow receive queues, or desynchronize transfers. Do not mark the candidate stable from static inspection alone.
+
+**Known remaining risks:** the serial protocol still pays per-word TCP round-trip time; heavy Wi-Fi latency can make gameplay pause while the queue drains, and the Android app lifecycle, real game/save round-trips and cross-platform trade/battle have not been verified. A frame-batched protocol or dedicated, well-specified serial service may be needed after measuring two-player traces. Shared Hoenn overworld is still out of scope.
