@@ -98,7 +98,7 @@ static THREAD_RET host_main(void *arg)
             g_hostFail = 1;
             break;
         }
-        sched_yield();
+        YIELD();
     }
     CHECK(lnet_session_role(s) == LNET_ROLE_HOST, "host role is HOST");
     sio = lnet_sio_new(LNET_ROLE_HOST);
@@ -151,7 +151,7 @@ static THREAD_RET client_main(void *arg)
             g_clientFail = 1;
             break;
         }
-        sched_yield();
+        YIELD();
     }
     CHECK(lnet_session_role(s) == LNET_ROLE_CLIENT, "client role is CLIENT");
     sio = lnet_sio_new(LNET_ROLE_CLIENT);
