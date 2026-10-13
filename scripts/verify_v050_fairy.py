@@ -322,6 +322,11 @@ if (ROOT / ".git").exists():
     if qol_overrides:
         protected_git_targets = [p for p in protected_git_targets if p not in ("data/maps", "data/scripts")]
         # Map/script trees are still strictly verified above (1060 hashes).
+    if os.getenv("EMERALD_LAN_QA") == "1":
+        # SDL was already validated above against the exact original Git blob
+        # after reversing only the approved LAN CLI insertion. Keep every
+        # other protected path in the strict ancestry diff.
+        protected_git_targets = [p for p in protected_git_targets if p != "src/platform/sdl2.c"]
     require(git("diff", "--quiet", baseline, "--", *protected_git_targets).returncode == 0,
             "git: save/Quest/audio/native/Hoenn/trainer/encounter files unchanged")
 
