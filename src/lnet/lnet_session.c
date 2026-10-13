@@ -10,9 +10,15 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #define MSG_HELLO 0x10
 #define MSG_SLOT  0x20
+
+/* Socket operations never wait for a peer on the game thread. */
+#define LNET_HELLO_TIMEOUT_SECONDS 8
+#define LNET_CONNECT_TIMEOUT_SECONDS 10
+#define LNET_SLOT_TIMEOUT_SECONDS 6
 
 /* Non-blocking handshake phases. The HELLO exchange is driven a few bytes at a
  * time from poll(): the peer is allowed to connect but then send nothing (a
@@ -37,6 +43,14 @@ struct LNetSession
     int hsOutSent;
     unsigned char hsIn[3];
     int hsInGot;
+    time_t connectStarted;
+    time_t helloStarted;
+    time_t slotStarted;
+    int slotPending;
+    unsigned char slotOut[3];
+    unsigned char slotIn[3];
+    size_t slotOutSent;
+    size_t slotInGot;
 };
 
 /* Send our HELLO message without blocking. Returns 1 once all 3 bytes are
@@ -135,6 +149,7 @@ LNetSession *lnet_session_join(const char *host, unsigned short port, int *err)
     s->role = LNET_ROLE_CLIENT;
     s->alive = 1;
     s->connecting = 1;
+    s->connectStarted = time(NULL);
     (void)strncpy(s->host, host, sizeof(s->host) - 1);
     s->host[sizeof(s->host) - 1] = '\0';
     s->port = port;
@@ -155,6 +170,14 @@ int lnet_session_poll(LNetSession *s, int *err)
         return -1;
     if (s->helloDone)
         return 1;
+    if (s->role == LNET_ROLE_CLIENT && s->sock == NULL
+        && time(NULL) - s->connectStarted > LNET_CONNECT_TIMEOUT_SECONDS)
+    {
+        s->alive = 0;
+        if (err)
+            *err = LNET_ERR_CONNECT;
+        return -1;
+    }
     if (err)
         *err = LNET_ERR_OK;
 
@@ -178,6 +201,7 @@ int lnet_session_poll(LNetSession *s, int *err)
             s->hsStep = HS_STEP_FIRST;
             s->hsOutSent = 0;
             s->hsInGot = 0;
+            s->helloStarted = time(NULL);
         }
         else
         {
@@ -193,7 +217,16 @@ int lnet_session_poll(LNetSession *s, int *err)
             s->hsStep = HS_STEP_FIRST;
             s->hsOutSent = 0;
             s->hsInGot = 0;
+            s->helloStarted = time(NULL);
         }
+    }
+
+    if (time(NULL) - s->helloStarted > LNET_HELLO_TIMEOUT_SECONDS)
+    {
+        s->alive = 0;
+        if (err)
+            *err = LNET_ERR_RECV;
+        return -1;
     }
 
     /* 2) Non-blocking HELLO handshake. Each step only makes progress when data
@@ -248,47 +281,73 @@ int lnet_session_is_ready(const LNetSession *s)
 }
 
 /*
- * Exchange one SIO slot value with the peer. Each call blocks (via
- * send_all/recv_all) until the whole 3-byte slot has been written and read, so
- * it is atomic per slot; the blocking recv keeps the two slot streams in
- * lock-step across independent frame rates.
- * Returns 1 when a full slot was exchanged (*peerVal is valid), -1 on a
- * permanent error or a peer that closed - in which case the session is marked
- * dead.
+ * Advance one 3-byte SIO exchange without ever blocking the game loop.
+ * A slot is captured once, then partial sends and receives are resumed on
+ * subsequent calls. SerialCB must run only after both messages are complete.
+ * Returns 1 = complete, 0 = pending, -1 = closed/error/timeout.
  */
 int lnet_session_exchange(LNetSession *s, unsigned short myVal, unsigned short *peerVal)
 {
-    unsigned char out[3];
-    unsigned char in[3];
+    size_t advanced = 0;
     int err;
+    int r;
 
-    if (s == NULL || s->sock == NULL)
+    if (s == NULL || s->sock == NULL || !s->alive || !s->helloDone)
         return -1;
 
-    out[0] = MSG_SLOT;
-    out[1] = (unsigned char)(myVal >> 8);
-    out[2] = (unsigned char)(myVal & 0xFF);
-
-    /* Send the whole slot first, then read the peer's slot - a single atomic
-     * transfer. The blocking recv doubles as a barrier that keeps the two
-     * devices' slot streams in lock-step across independent frame rates. */
-    if (!lnet_net_send_all(s->sock, out, sizeof(out), &err))
+    if (!s->slotPending)
+    {
+        s->slotPending = 1;
+        s->slotStarted = time(NULL);
+        s->slotOutSent = 0;
+        s->slotInGot = 0;
+        s->slotOut[0] = MSG_SLOT;
+        s->slotOut[1] = (unsigned char)(myVal >> 8);
+        s->slotOut[2] = (unsigned char)(myVal & 0xFF);
+    }
+    if (time(NULL) - s->slotStarted > LNET_SLOT_TIMEOUT_SECONDS)
     {
         s->alive = 0;
         return -1;
     }
-    if (!lnet_net_recv_all(s->sock, in, sizeof(in), &err))
+
+    if (s->slotOutSent < sizeof(s->slotOut))
+    {
+        r = lnet_net_send_nb(s->sock, s->slotOut + s->slotOutSent,
+                             sizeof(s->slotOut) - s->slotOutSent, &advanced, &err);
+        if (r < 0)
+        {
+            s->alive = 0;
+            return -1;
+        }
+        if (r == 0)
+            return 0;
+        s->slotOutSent += advanced;
+        if (s->slotOutSent < sizeof(s->slotOut))
+            return 0;
+    }
+
+    advanced = 0;
+    r = lnet_net_recv_nb(s->sock, s->slotIn + s->slotInGot,
+                         sizeof(s->slotIn) - s->slotInGot, &advanced, &err);
+    if (r < 0)
     {
         s->alive = 0;
         return -1;
     }
-    if (in[0] != MSG_SLOT)
+    if (r == 0)
+        return 0;
+    s->slotInGot += advanced;
+    if (s->slotInGot < sizeof(s->slotIn))
+        return 0;
+    if (s->slotIn[0] != MSG_SLOT)
     {
         s->alive = 0;
         return -1;
     }
-    if (peerVal)
-        *peerVal = (unsigned short)(((unsigned short)in[1] << 8) | in[2]);
+    if (peerVal != NULL)
+        *peerVal = (unsigned short)(((unsigned short)s->slotIn[1] << 8) | s->slotIn[2]);
+    s->slotPending = 0;
     return 1;
 }
 #endif /* PORTABLE */
