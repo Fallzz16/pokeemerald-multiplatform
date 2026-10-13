@@ -14,6 +14,12 @@
 #include <stdio.h>
 #ifndef _WIN32
 #include <sched.h>
+#include <unistd.h>
+#define YIELD() sched_yield()
+#define DELAY_FIRST_SLOT() usleep(150000)
+#else
+#define YIELD() Sleep(1)
+#define DELAY_FIRST_SLOT() Sleep(150)
 #endif
 
 #ifdef _WIN32
@@ -68,6 +74,7 @@ static unsigned long long g_hostRecv[ROUND];
 static unsigned long long g_clientRecv[ROUND];
 static int g_hostFail = 0;
 static int g_clientFail = 0;
+static int g_hostObservedPending = 0;
 
 static THREAD_RET host_main(void *arg)
 {
@@ -103,7 +110,11 @@ static THREAD_RET host_main(void *arg)
         {
             result = lnet_session_exchange(s, g_hSend[k], &peer);
             if (result == 0)
-                sched_yield();
+            {
+                if (k == 0)
+                    g_hostObservedPending = 1;
+                YIELD();
+            }
         } while (result == 0);
         if (result != 1 || peer != g_cSend[k])
         {
@@ -144,6 +155,7 @@ static THREAD_RET client_main(void *arg)
     }
     CHECK(lnet_session_role(s) == LNET_ROLE_CLIENT, "client role is CLIENT");
     sio = lnet_sio_new(LNET_ROLE_CLIENT);
+    DELAY_FIRST_SLOT(); /* Host must yield frames, not block awaiting our first SLOT. */
     for (k = 0; k < ROUND; k++)
     {
         g_clientRecv[k] = lnet_sio_recv_current(sio);
@@ -152,7 +164,7 @@ static THREAD_RET client_main(void *arg)
         {
             result = lnet_session_exchange(s, g_cSend[k], &peer);
             if (result == 0)
-                sched_yield();
+                YIELD();
         } while (result == 0);
         if (result != 1 || peer != g_hSend[k])
         {
@@ -176,6 +188,7 @@ int main(void)
 
     CHECK(g_hostFail == 0, "host completed every slot");
     CHECK(g_clientFail == 0, "client completed every slot");
+    CHECK(g_hostObservedPending, "host observes a pending slot while peer is delayed");
 
     for (k = 0; k + 1 < ROUND; k++)
     {
