@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Complete *generated* ARM map assembly using Emerald's mapjson outputs.
+"""Expand generated Emerald map/layout includes for the Android ARM assembler.
 
-No tracked GBA maps, map JSON, scripts or native Windows sources are changed.
-The original ARM assembly preprocessing skips generated Hoenn map headers.
-Expand them into an Android-only assembly file and translate exported :: labels
-to GNU-as-compatible .global + : labels.
+The original C/GBA sources, map JSON, PC objects and generated mapjson files
+are never modified. Only the temporary CMake assembly copy is normalized.
+This does NOT append a second map table: it replaces each existing .include
+with that file's content, recursively, exactly once.
 """
 from pathlib import Path
 import re
@@ -12,62 +12,57 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 LABEL = re.compile(r"(?m)^([A-Za-z_][A-Za-z_0-9]*):{1,2}(?=\s*(?:$|@|//))")
-INCLUDE = re.compile(r'^\s*\.include\s+"(data/maps/[^"]+)"\s*$')
+INCLUDE = re.compile(r'^\s*\.include\s+"((?:data/maps|data/layouts)/[^"]+)"\s*$')
+MAX_DEPTH = 12
 
 
-def map_headers(path: Path, stack: frozenset[Path] = frozenset()) -> str:
-    if path in stack:
-        raise ValueError(f"Cyclic Hoenn include: {path}")
-    if not path.is_file():
-        raise FileNotFoundError(f"Generated map header missing: {path}; run mapjson first")
-    expanded = []
-    for line in path.read_text(encoding="utf-8").splitlines(keepends=True):
-        match = INCLUDE.match(line.strip())
-        if match:
-            rel = Path(match.group(1))
-            if ".." in rel.parts:
-                raise ValueError(f"Unsafe map include: {rel}")
-            expanded.append(map_headers(ROOT / rel, stack | {path}))
-        else:
-            expanded.append(line)
-    return "".join(expanded)
-
-
-def to_gnu_as(data: str) -> str:
-    return LABEL.sub(lambda match: ".globl " + match.group(1) + "\n" + match.group(1) + ":", data)
+def expand(text: str, stack: tuple[Path, ...] = ()) -> tuple[str, int]:
+    if len(stack) >= MAX_DEPTH:
+        raise ValueError("Map include depth exceeded; refusing cyclic expansion")
+    result = []
+    count = 0
+    for line in text.splitlines(keepends=True):
+        found = INCLUDE.fullmatch(line.strip())
+        if found is None:
+            result.append(line)
+            continue
+        rel = Path(found.group(1))
+        if ".." in rel.parts or rel.is_absolute():
+            raise ValueError(f"Unsafe generated map include: {rel}")
+        absolute = ROOT / rel
+        if absolute in stack:
+            raise ValueError(f"Cyclic generated map include: {absolute}")
+        if not absolute.is_file():
+            raise FileNotFoundError(f"Missing mapjson output: {absolute}")
+        nested, n = expand(absolute.read_text(encoding="utf-8"), stack + (absolute,))
+        result.append(f"\n@ Android expanded generated map include: {rel}\n")
+        result.append(nested)
+        result.append("\n")
+        count += n + 1
+    return "".join(result), count
 
 
 def complete(filename: Path, source: str) -> bool:
-    if source.replace("\\", "/") != "data/maps.s":
+    normalized_source = source.replace("\\", "/")
+    if normalized_source not in ("data/maps.s", "data/map_events.s"):
         return False
     current = filename.read_text(encoding="utf-8")
-    existing = set(re.findall(r"(?m)^([A-Za-z_][A-Za-z_0-9]*):{1,2}\s*$", current))
-    # Map headers define PetalburgCity, Route101 etc.; groups point to them.
-    headers = map_headers(ROOT / "data/maps/headers.inc")
-    groups = (ROOT / "data/maps/groups.inc").read_text(encoding="utf-8")
-    header_labels = set(LABEL.findall(headers))
-    group_labels = set(LABEL.findall(groups))
-    if "PetalburgCity" not in header_labels or "gMapGroups" not in group_labels:
-        raise ValueError("mapjson headers/groups do not contain the expected Hoenn symbols")
-    # With every mapjson output present the original preprocessor usually
-    # expands all maps by itself. Do not append a second copy of that data.
-    present_headers = existing & header_labels
-    present_groups = existing & group_labels
-    if present_headers and present_headers != header_labels:
-        raise ValueError(f"Partially expanded Hoenn map headers: {len(present_headers)} of {len(header_labels)}")
-    if present_groups and present_groups != group_labels:
-        raise ValueError(f"Partially expanded Hoenn map groups: {len(present_groups)} of {len(group_labels)}")
-    result = to_gnu_as(current)
-    missing_headers = not present_headers
-    missing_groups = not present_groups
-    if missing_headers or missing_groups:
-        result += "\n.section .rodata\n"
-        if missing_headers:
-            result += to_gnu_as(headers) + "\n"
-        if missing_groups:
-            result += to_gnu_as(groups) + "\n"
-    filename.write_text(result, encoding="utf-8")
-    print(f"Android map symbols: {len(header_labels)} headers, {len(group_labels)} groups, generated missing components: headers={missing_headers}, groups={missing_groups}", flush=True)
+    expanded, count = expand(current)
+    if count < 1:
+        raise ValueError(f"Expected generated map includes missing from {source}")
+    if normalized_source == "data/maps.s":
+        if not re.search(r"(?m)^gMapGroups:{1,2}\s*$", expanded):
+            raise ValueError("mapjson groups not present after expanding original include")
+        if not re.search(r"(?m)^PetalburgCity:{1,2}\s*$", expanded):
+            raise ValueError("mapjson headers not present after expanding original include")
+    converted = LABEL.sub(
+        lambda match: ".globl " + match.group(1) + "\n" + match.group(1) + ":",
+        expanded,
+    )
+    # Match the already-established Emerald portable compiler pseudo-op policy.
+    converted = converted.replace(".4byte", ".word").replace(".2byte", ".short")
+    filename.write_text(converted, encoding="utf-8")
+    print(f"Android: expanded {count} generated map/layout includes into {source}", flush=True)
     return True
 
 
