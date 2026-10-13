@@ -54,11 +54,11 @@ def complete(filename: Path, source: str) -> bool:
     # mapjson outputs may already have been expanded by the upstream preproc.
     # Zero pending includes is valid when the expected map definitions exist.
     if normalized_source == "data/maps.s":
-        if not re.search(r"(?m)^gMapGroups:{1,2}\s*$", expanded):
+        if not re.search(r"(?m)^gMapGroups:{1,2}(?:[ \t]|$)", expanded):
             raise ValueError("mapjson groups not present after expanding original include")
-        if not re.search(r"(?m)^PetalburgCity:{1,2}\s*$", expanded):
+        if not re.search(r"(?m)^PetalburgCity:{1,2}(?:[ \t]|$)", expanded):
             raise ValueError("mapjson headers not present after expanding original include")
-    elif not re.search(r"(?m)^PetalburgCity_MapEvents:{1,2}\s*$", expanded):
+    elif not re.search(r"(?m)^PetalburgCity_MapEvents:{1,2}(?:[ \t]|$)", expanded):
         raise ValueError("mapjson event definitions absent from generated event assembly")
     if count == 0:
         print(f"Android: original preproc expanded {source}; normalizing labels only", flush=True)
