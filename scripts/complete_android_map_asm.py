@@ -48,6 +48,9 @@ def complete(filename: Path, source: str) -> bool:
         return False
     current = filename.read_text(encoding="utf-8")
     expanded, count = expand(current)
+    print(f"Android assembly diagnostic {source}: {len(current)} bytes; matched map includes: {count}", flush=True)
+    for line in [line for line in current.splitlines() if ".include" in line or "gMapGroups" in line][:28]:
+        print(f"  ASMINC: {line[:250]!r}", flush=True)
     # mapjson outputs may already have been expanded by the upstream preproc.
     # Zero pending includes is valid when the expected map definitions exist.
     if normalized_source == "data/maps.s":
