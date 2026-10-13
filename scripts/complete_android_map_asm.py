@@ -61,7 +61,7 @@ def complete(filename: Path, source: str) -> bool:
     missing_headers = not present_headers
     missing_groups = not present_groups
     if missing_headers or missing_groups:
-        result += "\n.section .rodata\\n"
+        result += "\n.section .rodata\n"
         if missing_headers:
             result += to_gnu_as(headers) + "\n"
         if missing_groups:
