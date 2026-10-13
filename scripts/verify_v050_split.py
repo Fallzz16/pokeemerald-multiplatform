@@ -73,7 +73,7 @@ for p in protected:
             # must still match its verified upstream blob.
             original = read(p)
             cli_begin = '    // Optional headless LAN configuration on desktop.'
-            cli_end = '    ReadSaveFile("pokeemerald.sav");'
+            cli_end = '#ifndef __ANDROID__\n    ReadSaveFile("pokeemerald.sav");\n#endif'
             require(original.count(cli_begin) == 1, 'unique SDL LAN insertion start')
             require(original.count(cli_end) == 1, 'unique save-file entry anchor')
             start = original.index(cli_begin)

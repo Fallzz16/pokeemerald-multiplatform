@@ -251,7 +251,7 @@ for rel_path, expected_sha in manifest.items():
         # reviewed CLI insertion; all other native port bytes must still match.
         native = contents.decode("utf-8")
         begin = "    // Optional headless LAN configuration on desktop."
-        end = '    ReadSaveFile("pokeemerald.sav");'
+        end = '#ifndef __ANDROID__\n    ReadSaveFile("pokeemerald.sav");\n#endif'
         require(native.count(begin) == 1 and native.count(end) == 1,
                 "only one LAN insertion in native SDL2 main")
         a = native.index(begin)
