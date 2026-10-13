@@ -289,6 +289,18 @@ void SetLinkStandbyCallback(void);
 void SetWirelessCommType1(void);
 void CheckShouldAdvanceLinkState(void);
 void SetCloseLinkCallback(void);
+#ifdef PORTABLE
+// Native SDL2 LAN link-cable transport. Does not change GBA ROM builds.
+void LanLinkOpenAsHost(u16 port);
+void LanLinkOpenAsClient(const char *host, u16 port);
+void LanLinkClose(void);
+bool32 IsLanLinkLive(void);
+bool32 PortLanIsConnecting(void);
+void PortLanRequestHost(u16 port);
+void PortLanRequestClient(const char *host, u16 port);
+void PortLanSetLogFile(const char *path);
+void PortLanRequestOpenLink(void);
+#endif
 bool8 HandleLinkConnection(void);
 void SetLinkDebugValues(u32 seed, u32 flags);
 void SetBerryBlenderLinkCallback(void);

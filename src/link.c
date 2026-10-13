@@ -1784,6 +1784,356 @@ void LinkPlayerFromBlock(u32 who)
         SetMainCallback2(CB2_LinkError);
 }
 
+#ifdef PORTABLE
+#include <stdarg.h>
+#include <stdio.h>
+#include <string.h>
+#include "lnet_link.h"
+
+static LNetLink *sPortableLanLink;
+
+// LAN debug entry for the PC build. A pending connect recorded here (via
+// command-line args) is realized on the first game-frame pump so TCP setup
+// happens inside the emulated game's own thread and frame cadence.
+typedef struct
+{
+    bool32 queued;
+    u8     role; // 1 host, 2 client
+    u16    port;
+    char   host[64];
+} PortLanAutoRequest;
+
+static PortLanAutoRequest sLanAuto;
+static s32 sLanLastLive = -1;
+static bool32 sLanLoggedHandshake;
+static const char *sLanLogPath;
+static bool32 sLanOpenLink;
+static bool32 sLanLinkOpened;
+
+static void PortLanLog(const char *fmt, ...);
+
+void PortLanSetLogFile(const char *path)
+{
+    sLanLogPath = path;
+}
+
+void PortLanRequestOpenLink(void)
+{
+    sLanOpenLink = TRUE;
+    sLanLinkOpened = FALSE;
+    PortLanLog("[LAN] serial link requested\n");
+}
+
+static void PortLanLog(const char *fmt, ...)
+{
+    va_list args;
+    FILE *fp;
+
+    va_start(args, fmt);
+    if (sLanLogPath != NULL)
+        fp = fopen(sLanLogPath, "a");
+    else
+        fp = NULL;
+    if (fp != NULL)
+    {
+        vfprintf(fp, fmt, args);
+        fclose(fp);
+    }
+    va_end(args);
+}
+
+void PortLanRequestHost(u16 port)
+{
+    LanLinkClose();
+    sLanAuto.queued = FALSE;
+    sLanAuto.role = 1;
+    sLanAuto.port = port;
+    sLanAuto.host[0] = '\0';
+    sLanLastLive = -1;
+    sLanLoggedHandshake = FALSE;
+    // Open the listener right away so sPortableLanLink is live the moment the
+    // player presses A; the settings UI reads PortLanIsConnecting() to show
+    // "connecting" immediately instead of waiting for the peer to join. The
+    // non-blocking accept/poll is still advanced later by PortLanDebugPump
+    // once the game enters the link screen (HandleLinkConnection).
+    PortLanLog("[LAN] opening host on port %u\n", (unsigned)port);
+    LanLinkOpenAsHost(port);
+}
+
+void PortLanRequestClient(const char *host, u16 port)
+{
+    LanLinkClose();
+    sLanAuto.queued = FALSE;
+    sLanAuto.role = 2;
+    sLanAuto.port = port;
+    sLanAuto.host[0] = '\0';
+    (void)strncpy(sLanAuto.host, host, sizeof(sLanAuto.host) - 1);
+    sLanAuto.host[sizeof(sLanAuto.host) - 1] = '\0';
+    sLanLastLive = -1;
+    sLanLoggedHandshake = FALSE;
+    // As above: issue the non-blocking connect immediately so the UI flips to
+    // "connecting" on the press, independent of the peer's state.
+    PortLanLog("[LAN] opening client to %s:%u\n", host, (unsigned)port);
+    LanLinkOpenAsClient(sLanAuto.host, sLanAuto.port);
+}
+
+static void PortLanDebugPump(void)
+{
+    int live;
+
+    if (sLanAuto.queued)
+    {
+        sLanAuto.queued = FALSE;
+        if (sLanAuto.role == 1)
+        {
+            PortLanLog("[LAN] opening host on port %u\n", (unsigned)sLanAuto.port);
+            LanLinkOpenAsHost(sLanAuto.port);
+        }
+        else if (sLanAuto.role == 2)
+        {
+            PortLanLog("[LAN] opening client to %s:%u\n", sLanAuto.host, (unsigned)sLanAuto.port);
+            LanLinkOpenAsClient(sLanAuto.host, sLanAuto.port);
+        }
+        sLanLastLive = -1;
+    }
+
+    /* Drive the non-blocking connection + HELLO handshake. When the host has
+     * opened a listener (or the client issued a connect) this advances the
+     * accept/connect and HELLO a few bytes per frame without ever blocking the
+     * game loop; until it completes IsLanLinkLive() stays false. */
+    if (sPortableLanLink != NULL)
+    {
+        int herr;
+        if (lnet_link_poll(sPortableLanLink, &herr) < 0)
+        {
+            PortLanLog("[LAN] link setup failed (err=%d), closing\n", herr);
+            LanLinkClose();
+        }
+    }
+
+    live = IsLanLinkLive();
+    if (live != sLanLastLive)
+    {
+        if (sLanLastLive >= 0)
+            PortLanLog("[LAN] status: %s\n", live ? "connected" : "disconnected");
+        else if (live)
+            PortLanLog("[LAN] status: connected\n");
+        sLanLastLive = live;
+    }
+
+    if (live && sLanOpenLink && !sLanLinkOpened)
+    {
+        sLanLinkOpened = TRUE;
+        PortLanLog("[LAN] starting serial handshake (OpenLink)\n");
+        OpenLink();
+    }
+
+    if (live && sLanOpenLink)
+    {
+        /* The CLI harness boots to a non-link screen, so no Cable Club UI
+         * raises the advance trigger. Mimic CheckShouldAdvanceLinkState, but
+         * crucially do NOT force the trigger during HANDSHAKE: LinkMain1's
+         * HANDSHAKE `default` arm calls CheckMasterOrSlave(), which assigns
+         * isMaster from the SD/SI terminals (host -> master). Forcing the
+         * advance every frame skips that and leaves both sides slave, so
+         * neither ever sends MASTER_HANDSHAKE and DoHandshake can't settle.
+         * Before HANDSHAKE we still force it to march START1 -> HANDSHAKE. */
+        if (gLink.state < LINK_STATE_HANDSHAKE)
+        {
+            gShouldAdvanceLinkState = 1;
+        }
+        else if (gLink.state == LINK_STATE_HANDSHAKE
+                 && (gLinkStatus & LINK_STAT_MASTER)
+                 && EXTRACT_PLAYER_COUNT(gLinkStatus) > 1)
+        {
+            gShouldAdvanceLinkState = 1;
+        }
+    }
+
+    if (live && gReceivedRemoteLinkPlayers && !sLanLoggedHandshake)
+    {
+        sLanLoggedHandshake = TRUE;
+        PortLanLog("[LAN] handshake: remote link player(s) received, count=%u\n",
+                   (unsigned)GetLinkPlayerCount());
+    }
+    else if (live && !gReceivedRemoteLinkPlayers)
+    {
+        sLanLoggedHandshake = FALSE;
+    }
+}
+
+void LanLinkOpenAsHost(u16 port)
+{
+    int err;
+
+    if (sPortableLanLink != NULL)
+    {
+        lnet_link_close(sPortableLanLink);
+        sPortableLanLink = NULL;
+    }
+    sPortableLanLink = lnet_link_host(port, &err);
+}
+
+void LanLinkOpenAsClient(const char *host, u16 port)
+{
+    int err;
+
+    if (sPortableLanLink != NULL)
+    {
+        lnet_link_close(sPortableLanLink);
+        sPortableLanLink = NULL;
+    }
+    sPortableLanLink = lnet_link_join(host, port, &err);
+}
+
+void LanLinkClose(void)
+{
+    if (sPortableLanLink != NULL)
+    {
+        lnet_link_close(sPortableLanLink);
+        sPortableLanLink = NULL;
+    }
+}
+
+bool32 IsLanLinkLive(void)
+{
+    /* "Live" means the LAN link is fully up - the peer has connected and the
+     * HELLO role handshake completed. Before that the session is still in
+     * non-blocking connect/accept (see lnet_link_poll) and must NOT be treated
+     * as ready, otherwise the game would OpenLink too early. */
+    return sPortableLanLink != NULL && lnet_link_ready(sPortableLanLink);
+}
+
+/* True once the player has started a LAN session (host listening / client
+ * connect issued) but the link may not yet be connected+handshaken. This lets
+ * the settings UI show "connecting" the moment the player presses A, before
+ * the peer joins. */
+bool32 PortLanIsConnecting(void)
+{
+    return sPortableLanLink != NULL;
+}
+
+// A GBA SIO bus is clocked at 2Mbps and shifts out every word the software
+// enqueued by the end of the frame it was produced, so a battle handshake /
+// block burst is drained within that same frame instead of backing up in the
+// 50-entry queue. A fixed 9-slot budget (1 queued command per frame) keeps the
+// idle seat-handshake balanced but lets real battle bursts outpace the flush,
+// filling the send queue (LINK_STAT_ERROR_QUEUE_FULL -> CloseLink -> 通信错误).
+// Floor the slot budget at 9 so the handshake cadence is preserved, then keep
+// slotting until our own send queue is drained (a full command flushes every 9
+// slots), bounded so a freak frame can't stall the loop forever.
+#define PORTABLE_LAN_SLOTS_PER_FRAME 9
+#define PORTABLE_LAN_MAX_SLOTS_PER_FRAME 192
+
+// Set the multi-player SIO uart role so LinkMain1's CheckMasterOrSlave and
+// SerialCB see the same host/client topology as a 2-player GBA cable.
+static void PortableLanConfigRegisters(void)
+{
+    if (IsLanLinkLive() && lnet_link_role(sPortableLanLink) == LNET_ROLE_HOST)
+    {
+        SIO_MULTI_CNT->id = 0;
+        SIO_MULTI_CNT->sd = 1; // master holds SD high, SI low
+        SIO_MULTI_CNT->si = 0;
+    }
+    else
+    {
+        SIO_MULTI_CNT->id = 1;
+        SIO_MULTI_CNT->sd = 0;
+        SIO_MULTI_CNT->si = 1;
+    }
+}
+
+// Drive one SIO slot transaction over the LAN session, feeding the game's
+// existing serial engine (DoHandshake / DoRecv / DoSend) exactly as the GBA
+// serial interrupt would after SIO_START.
+// Returns 1 if the slot was exchanged, 0 if it was skipped (not applicable),
+// or -1 if the peer is gone / the transport failed (the game must surface a
+// link error instead of silently stalling).
+static int PortableLanSlot(void)
+{
+    u16 mySend;
+    u16 peerSend;
+    u64 recvView;
+
+    if (!IsLanLinkLive())
+        return 0;
+
+    if (gLink.state != LINK_STATE_HANDSHAKE && gLink.state != LINK_STATE_CONN_ESTABLISHED)
+        return 0;
+
+    mySend = REG_SIOMLT_SEND;
+    if (lnet_link_slot(sPortableLanLink, mySend, &peerSend, &recvView))
+    {
+        REG_SIOMLT_RECV = (vu64)recvView;
+        if (gMain.serialCallback)
+            gMain.serialCallback();
+        return 1;
+    }
+    return -1;
+}
+
+// The peer closed the TCP session (e.g. the other instance was terminated
+// mid-battle). Tear the link down and route the surviving player to the game's
+// standard "通信错误 / linked error" screen so the battle unblocks instead of
+// hanging on a dead socket.
+static void HandleLanDisconnect(void)
+{
+    if (!IsLanLinkLive())
+        return;
+
+    PortLanLog("[LAN] peer disconnected, closing link\n");
+    LanLinkClose();
+    sLanLinkOpened = FALSE;
+    sLanLoggedHandshake = FALSE;
+
+    SetLinkErrorBuffer(gLinkStatus, gLink.sendQueue.count, gLastRecvQueueCount, TRUE);
+    gLinkErrorOccurred = TRUE;
+    if (gMain.callback2 != CB2_LinkError)
+        SetMainCallback2(CB2_LinkError);
+}
+// When this function returns TRUE the callbacks are skipped
+bool8 HandleLinkConnection(void)
+{
+    int slots;
+    bool8 peerGone = FALSE;
+
+    PortLanDebugPump();
+    if (gWirelessCommType == 0)
+    {
+        PortableLanConfigRegisters();
+        /* The GBA reports LINK_STAT_ERROR_LAG_MASTER when the master sees
+         * fewer than 9 serial transfers between LinkVSync ticks. Our LAN
+         * transport swaps exactly one SIO slot per game frame over TCP, so the
+         * master is perpetually "lagging" by that heuristic and LinkMain2's
+         * TrySetLinkErrorBuffer would tear down the connection (CloseLink) the
+         * instant CONN_ESTABLISHED is reached. The lag check is a real-bus
+         * throughput heuristic that does not apply to this emulated link, so
+         * clear it before LinkMain1 folds it into the status word. */
+        gLink.lag = LAG_NONE;
+        gLinkStatus = LinkMain1(&gShouldAdvanceLinkState, gSendCmd, gRecvCmds);
+        /* Drain our own send queue within this frame (floor PORTABLE_LAN_SLOTS
+         * keeps the handshake cadence; the drain loop lets real-battle bursts
+         * flush faster than 1 command/frame so they never back up to the
+         * 50-entry cap). Both peers run this same rule, so the exchange stays
+         * lock-step. Guarded so a pathological frame can't stall the loop. */
+        for (slots = 0; slots < PORTABLE_LAN_SLOTS_PER_FRAME
+                          || (slots < PORTABLE_LAN_MAX_SLOTS_PER_FRAME
+                              && gLink.sendQueue.count > 0);
+             slots++)
+        {
+            if (PortableLanSlot() < 0)
+                peerGone = TRUE;
+        }
+        if (peerGone)
+            HandleLanDisconnect();
+        LinkMain2(&gMain.heldKeys);
+        if ((gLinkStatus & LINK_STAT_RECEIVED_NOTHING) && IsSendingKeysOverCable() == TRUE)
+            return TRUE;
+    }
+    return FALSE;
+}
+#endif
+
 #ifndef PORTABLE
 // When this function returns TRUE the callbacks are skipped
 bool8 HandleLinkConnection(void)

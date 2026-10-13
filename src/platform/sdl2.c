@@ -2,6 +2,8 @@
 #include <assert.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 #ifdef _WIN32
@@ -17,6 +19,7 @@
 
 #include "global.h"
 #include "platform.h"
+#include "link.h"
 #include "rtc.h"
 #include "gba/defines.h"
 #include "gba/m4a_internal.h"
@@ -61,6 +64,44 @@ static void UpdateInternalClock(void);
 
 int main(int argc, char **argv)
 {
+    // Optional headless LAN configuration on desktop. The in-game Cable Club
+    // still performs the real Emerald link handshake after the TCP peer joins.
+    // Accept only valid 1..65535 ports; never auto-advance game state.
+    for (int i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "--lan-log") == 0 && i + 1 < argc)
+        {
+            PortLanSetLogFile(argv[++i]);
+        }
+    }
+    for (int i = 1; i < argc; i++)
+    {
+        if (strncmp(argv[i], "--lan-host=", 11) == 0)
+        {
+            char *end = NULL;
+            unsigned long port = strtoul(argv[i] + 11, &end, 10);
+            if (end && *end == '\0' && port > 0 && port <= 65535)
+                PortLanRequestHost((u16)port);
+        }
+        else if (strncmp(argv[i], "--lan-client=", 13) == 0)
+        {
+            const char *spec = argv[i] + 13;
+            const char *colon = strrchr(spec, ':');
+            if (colon != NULL && colon > spec && (colon - spec) < 64)
+            {
+                char ip[64];
+                char *end = NULL;
+                unsigned long port = strtoul(colon + 1, &end, 10);
+                if (end && *end == '\0' && port > 0 && port <= 65535)
+                {
+                    memcpy(ip, spec, colon - spec);
+                    ip[colon - spec] = '\0';
+                    PortLanRequestClient(ip, (u16)port);
+                }
+            }
+        }
+    }
+
     ReadSaveFile("pokeemerald.sav");
 
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
