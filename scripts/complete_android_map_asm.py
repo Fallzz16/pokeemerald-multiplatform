@@ -55,7 +55,7 @@ def complete(filename: Path, source: str) -> bool:
             raise ValueError("mapjson groups not present after expanding original include")
         if not re.search(r"(?m)^PetalburgCity:{1,2}\s*$", expanded):
             raise ValueError("mapjson headers not present after expanding original include")
-    elif not re.search(r"(?m)^PetalburgCity_MapEvents:{1,2}\\s*$", expanded):
+    elif not re.search(r"(?m)^PetalburgCity_MapEvents:{1,2}\s*$", expanded):
         raise ValueError("mapjson event definitions absent from generated event assembly")
     if count == 0:
         print(f"Android: original preproc expanded {source}; normalizing labels only", flush=True)
