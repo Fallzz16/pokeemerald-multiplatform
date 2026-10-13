@@ -3,6 +3,10 @@ package com.pokeemerald.experimental;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.Enumeration;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Gravity;
@@ -57,14 +61,50 @@ public final class LanLauncherActivity extends Activity {
         port.setSingleLine(true);
         port.setInputType(InputType.TYPE_CLASS_NUMBER);
         port.setText(Integer.toString(DEFAULT_PORT));
-        new AlertDialog.Builder(this).setTitle("Host TCP port")
-                .setView(port)
+        int pad = (int) (20 * getResources().getDisplayMetrics().density);
+        LinearLayout panel = new LinearLayout(this);
+        panel.setOrientation(LinearLayout.VERTICAL);
+        panel.setPadding(pad, pad / 2, pad, pad / 2);
+        TextView address = new TextView(this);
+        address.setText("Local IPv4: " + findLanIpv4()
+                + "\nShare this address and TCP port with the other player."
+                + "\nBoth devices must be on the same local network.");
+        panel.addView(address);
+        panel.addView(port);
+        new AlertDialog.Builder(this).setTitle("Host LAN session")
+                .setView(panel)
                 .setNegativeButton("Cancel", null)
                 .setPositiveButton("Host", (dialog, which) -> {
-                    int p = validPort(port.getText().toString());
-                    if (p == 0) showError("Port must be between 1 and 65535.");
-                    else openGame(1, null, p);
+                    int value = validPort(port.getText().toString());
+                    if (value == 0) showError("Port must be between 1 and 65535.");
+                    else openGame(1, null, value);
                 }).show();
+    }
+
+    // Find a private IPv4 address without location, Wi-Fi or network-state
+    // permissions. Fall back gracefully when Android hides interface details.
+    private static String findLanIpv4() {
+        String fallback = null;
+        try {
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            while (interfaces != null && interfaces.hasMoreElements()) {
+                NetworkInterface network = interfaces.nextElement();
+                if (!network.isUp() || network.isLoopback()) continue;
+                Enumeration<InetAddress> addresses = network.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+                    InetAddress ip = addresses.nextElement();
+                    if (!(ip instanceof Inet4Address) || !ip.isSiteLocalAddress()) continue;
+                    String candidate = ip.getHostAddress();
+                    String name = network.getName();
+                    if (name.startsWith("wlan") || name.startsWith("ap")
+                            || name.startsWith("eth")) return candidate;
+                    if (fallback == null) fallback = candidate;
+                }
+            }
+        } catch (Exception ignored) {
+            // Connection remains available even when Android restricts network info.
+        }
+        return fallback != null ? fallback : "unavailable (check Wi-Fi settings)";
     }
 
     private void showJoinDialog() {

@@ -68,6 +68,12 @@ jobs:
           android/SDL2/android-project/gradlew -p android :app:assembleDebug --stacktrace --no-daemon
           test -s android/app/build/outputs/apk/debug/app-debug.apk
 
+      - name: Verify APK contents, LAN launcher, ABI and debug signature
+        run: |
+          python3 scripts/verify_android_apk.py \
+            android/app/build/outputs/apk/debug/app-debug.apk \
+            "$ANDROID_HOME/build-tools/34.0.0"
+
       - name: Diagnose generated ARM symbols after linker failure
         if: failure()
         run: |
@@ -76,7 +82,7 @@ jobs:
           find android/app/.cxx -name 'maps.s.o.s' -print -exec sh -c 'echo MAPS_GENERATED_REFERENCES; grep -nE "gMapGroups|groups.inc|gMapGroup" "$1" | head -n 12 || true' sh {} \;
           sed -n '586,600p' data/maps/groups.inc
 
-      - name: Upload unsigned-development APK candidate
+      - name: Upload signed debug APK candidate
         uses: actions/upload-artifact@v4
         with:
           name: Emerald-Hybrid-LAN-v0.7.0-Android-armv7-Experimental
