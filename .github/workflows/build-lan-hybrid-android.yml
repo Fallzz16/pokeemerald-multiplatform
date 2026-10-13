@@ -1,0 +1,57 @@
+name: Emerald Hybrid LAN Android candidate
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/lan-hybrid-v070
+    paths-ignore:
+      - '**/*.md'
+
+jobs:
+  android-armv7:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Checkout game code and SDL2 submodule
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Java 17 for Android Gradle
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Android SDK command line tools
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android platforms NDK CMake
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager "platforms;android-34" "build-tools;34.0.0" "ndk;26.3.11579264" "cmake;3.22.1"
+
+      - name: Install source generation dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential binutils-arm-none-eabi libpng-dev zlib1g-dev
+
+      - name: Generate Emerald source assets and tools
+        run: |
+          make -f make_tools.mk -j2
+          make -f Makefile_pc -j2 generated
+
+      - name: Build experimental LAN APK
+        run: |
+          chmod +x android/SDL2/android-project/gradlew
+          android/SDL2/android-project/gradlew -p android :app:assembleDebug --stacktrace --no-daemon
+          test -s android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload unsigned-development APK candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: Emerald-Hybrid-LAN-v0.7.0-Android-armv7-Experimental
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
