@@ -50,6 +50,7 @@ jobs:
         run: |
           make -f make_tools.mk -j2
           make -f Makefile_pc -j2 generated
+          python3 scripts/prepare_android_assets.py
 
       - name: Build experimental LAN APK
         run: |
