@@ -9,7 +9,7 @@ This branch is deliberately **not** merged into the released Hybrid source. All 
 - The existing Emerald serial SIO transfer path for normal wired link operations, activated only with `PORTABLE`. The GBA ROM path remains conditional.
 - Native Windows command-line connection options; Android `INTERNET` permission and a minimal platform launcher (offline/host/client). The Android launcher supplies arguments to SDL; no save migration.
 - Isolated Linux TCP transport unit tests in `tests/`, runnable with `bash scripts/verify_lan_foundation.sh`.
-- A CI candidate build workflow with Windows artifact for testing, **not** a stable release.
+- CI candidate builds for **Windows x86** and **Android ARMv7**. Both compile and produce downloadable artifacts; neither is a stable release.
 
 ## PC setup (experimental)
 1. Run the same Hybrid LAN candidate build on both PCs. Back up `pokeemerald.sav` first.
@@ -19,8 +19,28 @@ This branch is deliberately **not** merged into the released Hybrid source. All 
 5. To gather logs use `--lan-log path/to/file.log` **before** the networking flag (e.g. `pokeemerald.exe --lan-log host.log --lan-host=45680`).
 6. Without flags, the original offline mode should behave as before.
 
-## Android setup (experimental, APK **not yet verified**)
-Android SDK/NDK/SDL2 sources and a compatible Android build environment are required to build the app. The Android launcher offers **Play offline**, **Host LAN**, and **Join LAN** with a host IPv4 and TCP port (default 45680). Both peers must join the same local network. No internet relay server is provided. The target is still 32-bit ARMv7; 64-bit-only Android devices are not supported in this phase.
+## Android setup — compiled APK, device gameplay not yet verified
+
+The Android ARMv7 **debug APK has passed Gradle/CMake compilation and the static packaging smoke test** (debug signature, package ID, app launcher, `INTERNET` permission, Android API level and SDL2/native game libraries). This does **not** prove it will open and play successfully on a specific phone, nor that battles and trades work between two players.
+
+1. Open [Android Actions run 38481403085](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38481403085), find **Artifacts**, download `Emerald-Hybrid-LAN-v0.7.0-Android-armv7-Experimental`, extract `app-debug.apk` and install it on a compatible Android device.
+2. Use **Play offline** first. Verify the game starts, controls respond, save/reload works, and the Quest UI/Fairy/PSS features remain correct.
+3. Use **Host LAN** on one device: its local IPv4 is displayed before starting the game; port defaults to `45680`.
+4. Use **Join LAN** on the other device, entering `HOST_IP:45680` (or just `HOST_IP`). Both must be on the same local Wi-Fi/accessible LAN. Avoid guest Wi-Fi with client isolation.
+5. Enter the in-game Cable Club on both players and attempt a linked battle and trade. Both devices must run this same experimental build.
+6. For a cross-platform test, run `LAN_HOST.bat` or `LAN_JOIN.bat` from the matching [Windows Actions run 38481402987](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38481402987), and use the same IPv4/port.
+
+**Limitations:** This APK packages **32-bit ARMv7 only**; some 64-bit-only Android phones cannot install it. It does not include an Internet matchmaking/relay service or shared overworld. Only the original link-cable flow is the current test target.
+
+**Save/signature warning:** GitHub Actions debug APKs may be signed with different temporary signing keys on different runs. If Android reports an incompatible-signature update, **do not uninstall first without backing up your existing in-app save**. These are independent experimental builds, not a guaranteed seamless upgrade path. Keep backup copies of every Windows `pokeemerald.sav` as well.
+
+## QA observations / current evidence (2026-10-13)
+
+- ✅ Windows x86 build, Hybrid v0.7.0 regression suite, and 71 native LAN transport checks completed successfully.
+- ✅ Android ARMv7 Gradle/CMake build completed; package signature, contents, ABI and launcher validation passed.
+- ☐ Android installation and real in-game startup on a physical device: not yet verified.
+- ☐ Windows ↔ Windows, Android ↔ Android and Windows ↔ Android Cable Club battles and trades: not yet verified.
+- ☐ Disconnect/reconnect, Wi-Fi interruptions, simultaneous save, latency, lifecycle, fast-forward and multi-hour gameplay: not yet verified.
 
 ## Required acceptance gates before stable
 - Clean Windows native compilation and Android Gradle/CMake compilation; inspect CI logs.
