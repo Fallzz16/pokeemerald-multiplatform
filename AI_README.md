@@ -526,3 +526,30 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 **Recomendação e próximo passo:** preservar PR #10 experimental e solicitar QA do usuário no Windows com **3 máquinas lógicas** (servidor EHL8 + 2 clientes Emerald com perfis diferentes) antes de declarar jogabilidade dedicada validada. Se aprovar, implementar lista real de participantes/Ready UI e reconexão, depois até 4 players. README obrigatório em cada atualização.
 
 **Rollback:** `feature/lan-v080-mega-desktop-polish` (instalador previamente confirmado pelo usuário), backup LAN validado `feature/lan-v0721-viewport-culling`. Nunca modificar arquivos de save originais.
+
+
+## 23. v0.8.4 M2/4 — Lobby real observável no launcher (2026-10-14)
+
+**Pedido:** usuário pediu duas vezes “Continue de onde parou” sobre a conexão do Emerald com o servidor dedicado e exigiu polimento/QA antes da entrega. O histórico da branch `feature/lan-v0803-dedicated-session-core` já inclui cliente C nativo, launcher com host/join, testes C↔Python e instalador preview. **Não reiniciar a partir dos códigos de M2/1**: esta continuação corrige um comportamento real faltante, não repete a ponte.
+
+**Branch de trabalho:** `feature/lan-v0804-lobby-observability`, baseada no commit `4ed079c23a6ea5eb6e396a277b61c715ce05e322` de `feature/lan-v0803-dedicated-session-core`. [PR #12](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/12) **DRAFT**. Base da instalação confirmada pelo usuário permanece `feature/lan-v080-mega-desktop-polish`; última prova LAN P2P `feature/lan-v0721-viewport-culling`.
+
+**Antes:** launcher mostrava `Servidor EHL8 ativo` apenas por `Popen.poll() is None`, o que poderia ser falso se a porta não estivesse pronta ou não houvesse jogadores. **Depois:** servidor emite snapshot local validado ao abrir listener, entrar/sair, marcar Pronto e começar a partida; GUI indica `Lobby aguardando · X/2 conectados` ou `Em jogo · X/2 conectados`, com IDs e flags de pronto. Nunca mostrar status antigo se o arquivo não foi recriado após abrir a nova instância.
+
+**Adicionado/modificado:**
+- `tools/emerald_session_server.py`: flag opcional `--status-file` (não altera EHL8 wire protocol); grava arquivo JSON atomicamente com `fsync` e `os.replace`, sem PIN, endereço IP nem qualquer `.sav`. Não grava snapshots remotamente; somente diretório local.
+- `tools/emerald_launcher.py`: passa `--status-file` ao servidor, remove snapshot velho antes da nova sessão, lê schema/porta/IDs validados e apresenta **ocupação real** e readiness.
+- `tests/test_emerald_session_server.py`: sockets reais com 2 membros, etapas READY/START, leave/stop, privacidade do snapshot.
+- `tests/test_emerald_launcher.py`: valida JSON de sala real e rejeita arquivos inválidos/sobretamanho/porta errada.
+- `docs/LAN_V0804_LOBBY_OBSERVABILITY.md`: contrato local, limites, testes, roteiro e rollback.
+- Workflows do servidor EHL8 e launcher GUI foram configurados para compilar nesta branch experimental.
+- **Removido:** nenhum sistema ou recurso antigo. **Não alterado:** `src/`, scripts GBA, saves, opções gráficas, sprite/culling e o P2P Cable Club. Zero save de usuário foi aberto pelo código adicionado.
+
+**QA / pendências:**
+- Verificar nas execuções GitHub Actions **do HEAD** testes do servidor (Linux/Windows + C client loopback) e do launcher Windows; CI genérico de ROM pode falhar independentemente por `Compare`. **NÃO declarar tudo verde antes de resultados.**
+- Estado do servidor em arquivo não é comunicação segura entre máquinas, nem admin GUI completa; serve apenas a um launcher que hospeda localmente.
+- PIN é apenas barreira na LAN, nunca criptografia; não expor servidor diretamente à WAN.
+- Ainda não validado pelo usuário: 2 janelas reais Emerald vendo movimento, mapa, saving/reload e latência. Necessária validação humana antes de release estável.
+- Faltam reserva 60s, reconnect, Kick, convites, proxy SIO para trocas e batalhas, 3/4 players, lançamento Android equivalente e auto-backup pós-save; todas escolhas 1–116 continuam válidas.
+- **Próximo passo:** obter CI no HEAD; publicar *somente pacote completo e SHA-pinados* com launcher+server atualizados e game/perfil existentes após QA; convidar usuário para teste em duas máquinas reais.
+- **Rollback:** branch base M2/3 `feature/lan-v0803-dedicated-session-core` ou v0.8.2 confirmado; nunca apagar perfis ao mudar de release.
