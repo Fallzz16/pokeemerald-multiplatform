@@ -61,7 +61,7 @@ As letras são exatamente as respostas do usuário. Reconsultar a descrição de
 - **33–40:** 33C 34A 35A 36A 37A 38A 39A 40A
 - **41–50:** 41B 42A 43C 44A 45B 46A 47B 48A 49A 50C
 - **51–60:** 51C 52A 53A 54C 55A 56B 57A 58C 59B 60A
-- **61–70:** 61A 62C 63C 64A 65A 66C 67A 68A 69A 70A
+- **61–70:** 61A 62C 63C 64A 65A 66C 67A 68A 69A 70B
 - **71–75:** 71A 72A 73B 74A 75B
 
 ## 4. Ordem das futuras entregas — recomendação, ainda sujeita a novas perguntas
@@ -161,10 +161,10 @@ Para executar a suite nativa é necessário ambiente Linux/Windows adequado com 
 - **Branch / PR:** `feature/lan-v080-architecture-spec` / [PR #5](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/5), derivada da v0.7.2.1 funcional. Confirmar HEAD do momento antes de prosseguir.
 - **Pedido do usuário:** registrar suas respostas `1C 2A 3A 4C 5A 6B 7A 8C 9B 10A 11A 12C 13C 14A 15A 16C 17A 18A 19A 20B 21A 22A 23B 24A 25B` como **51C 52A ... 75B**. O usuário convidou mais perguntas e exige README para outras IAs a cada atualização.
 - **Modificado:** `docs/LAN_V080_ARCHITECTURE.md` ganhou tabela 51–75 e consequências técnicas; `AI_README.md` ganhou mapa de decisões e este registro; `AGENTS.md` deverá manter contagem e obrigação de handoff atualizadas.
-- **Adicionado (documentação):** requisitos de perfil portátil/normal, backup configurável, 60s de reconexão, late-join, portas avançadas, PIN de seis dígitos, nomes sempre acima do personagem, conectividade PvP direta com fallback futuro, Android 10+ como alvo, updates apenas com confirmação.
+- **Adicionado (documentação):** requisitos de perfil portátil/normal, backup configurável, 60s de reconexão, late-join, portas avançadas, PIN de seis dígitos, nomes visíveis apenas quando próximos ou selecionados (#70B), conectividade PvP direta com fallback futuro, Android 10+ como alvo, updates apenas com confirmação.
 - **Removido:** nenhum recurso do jogo, save ou protocolo.
 - **Testes desta atualização:** revisão de presença e ordem das decisões, consistência da especificação e diff do PR. Não houve alteração em `.c`, build ou execução de gameplay; não declarar teste de 4 jogadores/servidor pronto.
 - **Ainda NÃO implementado:** servidor dedicado, sessão de até quatro jogadores, launcher moderno, perfis multi-save, backup/restore, nomes sobre sprites, PIN, QR, ARM64, serviço Android, batalha por relé, updater.
-- **Riscos:** rótulos sempre visíveis ocupam a viewport GBA 240x160, exigindo QA de colisão visual e FPS; fallback de Cable Club por relé pode ser sensível à latência; identificar clones de save por identidade de perfil sem sobrescrever Trainer ID; Android 10+ RAM 4GB são metas, não promessa universal.
+- **Riscos:** rótulos contextuais (#70B) devem caber na viewport GBA 240x160 sem sobreposição ou queda de FPS; fallback de Cable Club por relé pode ser sensível à latência; identificar clones de save por identidade de perfil sem sobrescrever Trainer ID; Android 10+ RAM 4GB são metas, não promessa universal.
 - **Rollback:** retornar à `feature/lan-v0721-viewport-culling` (commit-base `a87e2c49e453db32def5e71ba2a2e696a911d504`), que já foi validada visualmente pelo usuário. Somente Markdown foi alterado nesta branch de planejamento.
 - **Próximo passo:** rodada de respostas 76–100; depois separar M0 protocolo de M1 perfis sem modificar o jogo antes de verificar compatibilidade e saves reais.
