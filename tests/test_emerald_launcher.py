@@ -34,6 +34,21 @@ class GraphicalLauncherTests(unittest.TestCase):
             launcher.make_command("pokeemerald.exe","profiles","trainer",
                                   "dedicated","not-a-host","45680","123456")
 
+    def test_real_dedicated_room_count_from_bounded_server_log(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            log=Path(tmp)/"server.log"
+            self.assertIsNone(launcher.read_room_occupancy(log))
+            log.write_text("INFO EHL8_ROOM_COUNT=0/2\n"
+                           "INFO EHL8_ROOM_COUNT=1/2\n"
+                           "INFO unrelated log\n",encoding="utf-8")
+            self.assertEqual(launcher.read_room_occupancy(log),(1,2))
+            with log.open("a",encoding="utf-8") as out:
+                out.write("ignored line\n"*1000)
+                out.write("INFO EHL8_ROOM_COUNT=2/2\n")
+            self.assertEqual(launcher.read_room_occupancy(log),(2,2))
+            log.write_text("INFO EHL8_ROOM_COUNT=2/1\n",encoding="utf-8")
+            self.assertIsNone(launcher.read_room_occupancy(log))
+
     def test_invalid_network(self):
         for port in ("0","65535","abc","1.5"):
             with self.assertRaises(ValueError): launcher.validate_port(port)
