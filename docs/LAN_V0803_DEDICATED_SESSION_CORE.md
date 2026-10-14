@@ -1,6 +1,6 @@
-# Emerald Hybrid Multiplayer — EHL8 Dedicated SessionServer v0.8.3 M2/1
+# Emerald Hybrid Multiplayer — EHL8 Dedicated SessionServer v0.8.3 M2/1–M2/3 Preview
 
-**Experimental networking component. NOT PLAYABLE AS A DEDICATED GAME SESSION YET.** This service receives EHL8 clients, not the existing raw SIO/Presence sockets used by `pokeemerald.exe` from v0.7.2.1. **Do not enable the dedicated-server UI mode for ordinary players until a compatible game-side SessionClient exists and has passed QA.**
+**Experimental two-player overworld-preview.** O adaptador de cliente EHL8 agora existe no próprio Emerald e compila, usando o renderizador remoto anterior. O servidor dedicado e o launcher estão integrados, **mas a jogabilidade com dois Emeralds reais ainda não foi validada pelo usuário**. Não confundir este modo com batalhas/trocas via Cable Club: ainda são P2P e usam bytes TCP diferentes.
 
 ## Scope and rationale
 
@@ -8,7 +8,7 @@ The user confirmed v0.8.2 Windows installer works and authorized a MEGA update. 
 
 **Why separate protocol?** EHL8 is a versioned framed session transport. Legacy Cable Club TCP 45680 and Presence 45681 use different byte layouts. Mixing them would misinterpret handshakes, corrupt link state or cause stalls. This code does not alter any legacy code path.
 
-## Implemented in this PR (first M2 server milestone)
+## Implemented in this PR (M2 server, native game client and launcher beta)
 
 - `tools/emerald_session_server.py`: dedicated network service using Python stdlib `asyncio`; no SDL/game rendering, no AgbMain, no `.sav` access.
 - Accept up to **two authenticated profiles** concurrently, plus bounded connections pending handshake.
@@ -68,8 +68,8 @@ Do not interpret passing CI as in-game integration. No launcher button activated
 
 ## Known limitations / required next milestones
 
-1. **M2/2 — Client adapter:** integrate `EHL8` SessionClient with existing game's presence renderer for 2 remote clients, with load/save local profile as already designed; keep legacy P2P mode as fallback.
-2. **M2/3 — Lobby integration:** launcher connects to server, shows PIN, player count, ready/start and error details. Dedicated server start/stop and logs from GUI. Cannot claim this before it works.
+1. **M2/2 — Cliente nativo implementado:** `src/lnet/lnet_session_client.c` e `src/link.c` já integram EHL8 ao renderizador. **PENDENTE** a confirmação visual com dois Emeralds reais e salvamentos preservados; modo P2P antigo segue separado.
+2. **M2/3 — Launcher parcialmente implementado:** GUI já inicia/para processo dedicado, captura PIN sem expor argv e conecta um cliente EHL8. **PENDENTE:** lista dinâmica de participantes, ready/start visual, kick/admin e QR; não chamar de lobby completo.
 3. **M2/4 — Reconnect:** #60A/#86A need 60-second reserved slots and authenticated session-bound reconnect tokens; absent in this milestone.
 4. **M3 — Four players:** change session + viewport adapter to 3 remotes; only after 2-client real gameplay and regression QA.
 5. **Security:** PIN is basic LAN authorization only; no encryption or trust-bound account authentication. Rate limit improvement and testing against resource exhaustion required prior to broader distribution.
@@ -79,10 +79,10 @@ Do not interpret passing CI as in-game integration. No launcher button activated
 ## Changes / verification / rollback
 
 - **Added:** `tools/emerald_session_server.py`, `tests/test_emerald_session_server.py`, `.github/workflows/test-v0803-dedicated-server.yml`, this document; `AI_README.md` and `AGENTS.md` updated.
-- **Modified game files:** NONE. No alterations to `src/`, maps, characters, save logic, assets, SIO, UI, or Quest system.
+- **Modified game files:** `src/link.c`, `src/platform/sdl2.c`, `include/link.h`; novos `src/lnet/lnet_session_client.{c,h}`. Reutilizam sprites/remoto, não alteram mapas, eventos, save, batalha, audio, SIO, Quest UI, assets ou gameplay Hybrid original.
 - **Removed:** NONE.
 - **Rollback:** branch `feature/lan-v080-mega-desktop-polish` at SHA `3f94a665bc742d2130a856b5b153596def8445a4`; ultimate user-proven LAN v0.7.2.1 branch `feature/lan-v0721-viewport-culling` at SHA `a87e2c49e453db32def5e71ba2a2e696a911d504`.
-- **Review status:** experimental draft; update this section with **real CI run IDs/conclusions** and any bugs discovered before claiming tested Windows binary.
+- **Review status:** experimental draft; builds Windows/Android e testes C↔Python EHL8 aprovados, instalador/ZIP Preview validado no CI. **Somente a execução no Windows com dois personagens em Hoenn + saves ainda exige QA do usuário.** Consultar AI_README.md seção 21 para runs e hashes.
 
 
 ## M2/2–M2/3 — Cliente nativo + launcher Windows (2026-10-14)
