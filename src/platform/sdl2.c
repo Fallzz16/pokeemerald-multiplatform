@@ -27,6 +27,8 @@
 #include "gba/flash_internal.h"
 #include "platform/dma.h"
 #include "platform/framedraw.h"
+/* Optional v0.8 managed profiles; legacy save remains the default. */
+#include "../profile/save_profiles.h"
 
 extern void (*const gIntrTable[])(void);
 
@@ -46,6 +48,9 @@ double fixedTimestep = 1.0 / 60.0; // Port timing; one game tick per frame
 struct SiiRtcInfo internalClock;
 
 static FILE *sSaveFile = NULL;
+static char sActiveSavePath[SP_PATH_CAP] = "pokeemerald.sav";
+static SpProfileLock sActiveProfileLock;
+static bool sProfileLocked = false;
 #ifdef __ANDROID__
 static char sAndroidSavePath[1024] = "pokeemerald.sav";
 #endif
@@ -67,6 +72,8 @@ static void UpdateInternalClock(void);
 
 int main(int argc, char **argv)
 {
+    const char *profileRoot = NULL;
+    const char *profileId = NULL;
     // Optional headless LAN configuration on desktop. The in-game Cable Club
     // still performs the real Emerald link handshake after the TCP peer joins.
     // Accept only valid 1..65535 ports; never auto-advance game state.
@@ -79,7 +86,11 @@ int main(int argc, char **argv)
     }
     for (int i = 1; i < argc; i++)
     {
-        if (strncmp(argv[i], "--lan-host=", 11) == 0)
+        if (strncmp(argv[i], "--profile-root=", 15) == 0)
+            profileRoot = argv[i] + 15;
+        else if (strncmp(argv[i], "--profile-id=", 13) == 0)
+            profileId = argv[i] + 13;
+        else if (strncmp(argv[i], "--lan-host=", 11) == 0)
         {
             char *end = NULL;
             unsigned long port = strtoul(argv[i] + 11, &end, 10);
@@ -105,8 +116,42 @@ int main(int argc, char **argv)
         }
     }
 
+    /* Managed profiles opt in explicitly; missing/busy profiles must fail
+     * rather than silently open the wrong trainer's legacy save. */
+    if (profileRoot != NULL || profileId != NULL)
+    {
+        int n;
+        SpStatus status;
+        if (profileRoot == NULL || profileId == NULL ||
+            !*profileRoot || !sp_valid_id(profileId))
+        {
+            fprintf(stderr, "Invalid profile: supply --profile-root and --profile-id\n");
+            return 2;
+        }
+        status = sp_lock(profileRoot, profileId, &sActiveProfileLock);
+        if (status != SP_OK)
+        {
+            fprintf(stderr, "Could not lock selected profile (code %d)\n", (int)status);
+            return 2;
+        }
+        n = snprintf(sActiveSavePath, sizeof(sActiveSavePath),
+                     "%s/pokeemerald.sav", sActiveProfileLock.directory);
+        if (n < 0 || n >= (int)sizeof(sActiveSavePath))
+        {
+            sp_unlock(&sActiveProfileLock);
+            fprintf(stderr, "Selected profile path is too long\n");
+            return 2;
+        }
+        sProfileLocked = true;
+    }
 #ifndef __ANDROID__
-    ReadSaveFile("pokeemerald.sav");
+    ReadSaveFile(sActiveSavePath);
+    if (sSaveFile == NULL)
+    {
+        if (sProfileLocked)
+            sp_unlock(&sActiveProfileLock);
+        return 2;
+    }
 #endif
 
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
@@ -125,9 +170,18 @@ int main(int argc, char **argv)
             SDL_Log("Unable to obtain Android writable save path");
             return 1;
         }
-        SDL_snprintf(sAndroidSavePath, sizeof(sAndroidSavePath), "%spokeemerald.sav", prefPath);
+        if (!sProfileLocked)
+            SDL_snprintf(sActiveSavePath, sizeof(sActiveSavePath),
+                         "%spokeemerald.sav", prefPath);
         SDL_free(prefPath);
-        ReadSaveFile(sAndroidSavePath);
+        ReadSaveFile(sActiveSavePath);
+        if (sSaveFile == NULL)
+        {
+            if (sProfileLocked)
+                sp_unlock(&sActiveProfileLock);
+            SDL_Quit();
+            return 2;
+        }
     }
 #endif
 
@@ -244,6 +298,9 @@ int main(int argc, char **argv)
 
     //StoreSaveFile();
     CloseSaveFile();
+    /* Hold this OS lock until every flash read/write thread has stopped. */
+    if (sProfileLocked)
+        sp_unlock(&sActiveProfileLock);
 
     SDL_DestroyWindow(sdlWindow);
     SDL_Quit();
@@ -256,7 +313,8 @@ static void ReadSaveFile(char *path)
     sSaveFile = fopen(path, "r+b");
     if (sSaveFile == NULL)
     {
-        sSaveFile = fopen(path, "w+b");
+        if (!sProfileLocked)
+            sSaveFile = fopen(path, "w+b");
     }
 
 #ifdef __ANDROID__
@@ -267,6 +325,13 @@ static void ReadSaveFile(char *path)
         return;
     }
 #endif
+
+    if (sSaveFile == NULL)
+    {
+        memset(FLASH_BASE, 0xFF, sizeof(FLASH_BASE));
+        fprintf(stderr, "Unable to open save file: %s\n", path);
+        return;
+    }
 
     fseek(sSaveFile, 0, SEEK_END);
     int fileSize = ftell(sSaveFile);
@@ -302,11 +367,8 @@ void Platform_StoreSaveFile(void)
 void Platform_ReadFlash(u16 sectorNum, u32 offset, u8 *dest, u32 size)
 {
     DBGPRINTF("ReadFlash(sectorNum=0x%04X,offset=0x%08X,size=0x%02X)\n",sectorNum,offset,size);
-#ifdef __ANDROID__
-    FILE * savefile = fopen(sAndroidSavePath, "r+b");
-#else
-    FILE * savefile = fopen("pokeemerald.sav", "r+b");
-#endif
+    /* Use the same managed profile for flash reads as for save writes. */
+    FILE * savefile = fopen(sActiveSavePath, "rb");
     if (savefile == NULL)
     {
         puts("Error opening save file.");
@@ -362,6 +424,7 @@ static void CloseSaveFile()
     if (sSaveFile != NULL)
     {
         fclose(sSaveFile);
+        sSaveFile = NULL;
     }
 }
 

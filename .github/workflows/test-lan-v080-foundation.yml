@@ -1,0 +1,74 @@
+name: Emerald Hybrid LAN v0.8 M0/M1 foundation
+
+on:
+  push:
+    branches:
+      - feature/lan-v080-m0-m1-foundation
+    paths:
+      - 'src/profile/**'
+      - 'src/platform/sdl2.c'
+      - 'src/lnet/lnet_session_v1.*'
+      - 'tests/test_save_profiles.c'
+      - 'tests/test_lnet_session_v1.c'
+      - 'scripts/verify_lan_v080_foundation.sh'
+      - 'tools/emerald_profilectl.c'
+      - '.github/workflows/test-lan-v080-foundation.yml'
+  pull_request:
+    paths:
+      - 'src/profile/**'
+      - 'src/platform/sdl2.c'
+      - 'src/lnet/lnet_session_v1.*'
+      - 'tests/test_save_profiles.c'
+      - 'tests/test_lnet_session_v1.c'
+      - 'scripts/verify_lan_v080_foundation.sh'
+      - 'tools/emerald_profilectl.c'
+      - '.github/workflows/test-lan-v080-foundation.yml'
+
+jobs:
+  linux-standalone:
+    name: Linux profile/protocol tests with sanitizers
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Plain C99 unit tests
+        run: bash scripts/verify_lan_v080_foundation.sh
+      - name: Address and undefined-behavior sanitizers
+        run: SANITIZE=1 bash scripts/verify_lan_v080_foundation.sh
+      - name: Check SDL2 selected profile isolation
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q -- '--profile-root=' src/platform/sdl2.c
+          grep -q -- '--profile-id=' src/platform/sdl2.c
+          grep -q 'sp_lock(profileRoot, profileId' src/platform/sdl2.c
+          grep -q 'ReadSaveFile(sActiveSavePath)' src/platform/sdl2.c
+          grep -q 'fopen(sActiveSavePath, "rb")' src/platform/sdl2.c
+          if grep -q 'ReadSaveFile("pokeemerald.sav")' src/platform/sdl2.c; then
+            echo "ERROR: legacy save overrides selected profile"
+            exit 1
+          fi
+          echo "Static SDL2 path/lock checks passed. Runtime gameplay still unverified."
+
+  windows-cross-compile:
+    name: Windows x86 compilation of standalone cores
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install MinGW cross-compiler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-mingw-w64-i686
+      - name: Compile independent cores without game changes
+        run: |
+          i686-w64-mingw32-gcc -std=c99 -Wall -Wextra -Werror -pedantic -I src/lnet -c src/lnet/lnet_session_v1.c -o /tmp/lnet_session_v1.o
+          i686-w64-mingw32-gcc -std=c99 -Wall -Wextra -Werror -pedantic -I src/profile -c src/profile/save_profiles.c -o /tmp/save_profiles.o
+          i686-w64-mingw32-gcc -std=c99 -Wall -Wextra -Werror -pedantic -I src/profile src/profile/save_profiles.c tools/emerald_profilectl.c -o /tmp/emerald_profilectl.exe
+      - name: Upload developer profile CLI (not the game)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Emerald-Hybrid-v080-Profile-CLI-Windows-x86-Experimental
+          path: /tmp/emerald_profilectl.exe
+          if-no-files-found: error
+          retention-days: 14

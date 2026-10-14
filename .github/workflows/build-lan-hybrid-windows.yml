@@ -4,11 +4,14 @@ on:
   workflow_dispatch:
   pull_request:
     branches:
+      - feature/lan-v080-architecture-spec
+      - feature/lan-v080-m0-m1-foundation
       - feature/lan-v070-async-slot-hardening
       - feature/lan-v071-connection-stability
       - feature/lan-v072-overworld-presence
   push:
     branches:
+      - feature/lan-v080-m0-m1-foundation
       - feature/lan-hybrid-v070
       - feature/lan-v070-async-slot-hardening
       - feature/lan-v071-connection-stability
@@ -51,7 +54,7 @@ jobs:
         run: bash scripts/verify_lan_foundation.sh
 
       - name: Verify all candidate mechanics and the sprite import pipeline
-        run: EMERALD_LAN_QA=1 bash scripts/verify_v070.sh
+        run: EMERALD_LAN_QA=1 EMERALD_V080_QA=1 bash scripts/verify_v070.sh
 
       - name: Download SDL2 MinGW development headers and DLL
         shell: bash

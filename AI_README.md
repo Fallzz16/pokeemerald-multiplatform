@@ -185,3 +185,97 @@ Para executar a suite nativa é necessário ambiente Linux/Windows adequado com 
 - **Riscos:** #77A sem contas significa que um ID de perfil pode ser clonado; bloquear sessão duplicada apenas como best-effort e não confundir com autenticação. #93A troca exige fluxo comprovadamente recuperável; não anunciar atomicidade sem teste. #100A aceita primeiro **dois jogadores**; o limite final de quatro (#3B/#35A) só estará pronto depois. Metas Android 10+, 4GB RAM são alvo, não garantias.
 - **Rollback:** não mesclar PR #5 ou retornar à branch `feature/lan-v0721-viewport-culling` em commit-base `a87e2c49e453db32def5e71ba2a2e696a911d504`. Nenhum `.sav` foi acessado ou modificado.
 - **Próximo passo**: branch independente de desenvolvimento para M0 (framing/decoder/session states, tests) e M1 (SaveProfileManager protegido, sem integração inicial com `AgbMain`), atualização obrigatória deste README em cada PR; depois M2 servidor headless para dois clientes.
+
+
+## 11. Retomada M0/M1 — testes e ferramentas (2026-10-14)
+
+- **Branch/PR:** `feature/lan-v080-m0-m1-foundation`, [PR #6](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/6) em rascunho. Confirmar último SHA via GitHub; o primeiro commit-base deste incremento foi `7007c6704f113d102e8a80b09d13bf7ad95a6043`.
+- **Adicionado:** `tools/emerald_profilectl.c`, ferramenta CLI para validar/importar/criar/backupar/restaurar/prunar perfis sem executar o Emerald. A suite `scripts/verify_lan_v080_foundation.sh` testa criação de flash apagada, rejeição de backup do perfil vazio e path traversal.
+- **Modificado:** `src/profile/save_profiles.c` revalida arquivo importado **após a cópia** e backup recém-criado, excluindo uma cópia inválida; corrige limpeza de diretórios vazios em falhas ao criar perfil. Workflow Linux/MinGW verifica CLI. Atualização de documentação neste arquivo e `docs/LAN_V080_M0_M1_FOUNDATION.md`.
+- **Removido:** nenhum recurso do jogo, save original, personagem, mapa ou sistema Cable Club.
+- **Testes:** `bash scripts/verify_lan_v080_foundation.sh` e `SANITIZE=1 bash ...` passaram localmente após ajustes. GitHub Actions [M0/M1](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/workflows/test-lan-v080-foundation.yml) concluiu Linux com sanitizers e compilação cruzada Windows x86 com sucesso antes desta atualização documental; checar novamente status do último HEAD.
+- **NÃO implementado:** selector integrado ao jogo, app gráfico, save metadata/UUID automático, Android SAF, checksums completos do save, servidor dedicado, lobby, multiplayer a quatro, PIN, QR, ARM64, trocas transacionais. Ferramenta CLI é apenas suporte de desenvolvimento.
+- **Limites de segurança:** os checksums dos setores GBA ainda não são validados de ponta a ponta; lock vale somente para programas que cooperem; preservar backups antes de tocar arquivos de usuários. Não distribuir fixtures sintéticas como saves jogáveis; testes reais no jogo ainda pendentes.
+- **Rollback:** para o último estado jogável aprovado, usar `feature/lan-v0721-viewport-culling` em `a87e2c49e453db32def5e71ba2a2e696a911d504`. Para somente fundação M0/M1 anterior a essa retomada, commit `7007c6704f113d102e8a80b09d13bf7ad95a6043`. Nunca sobrescrever `.sav` existente.
+- **Próximo passo:** ligar escolha explícita de perfil com lock ao ciclo SDL2, resolver todos os pontos de leitura/gravação de save, testar no Windows e Android, e então iniciar SessionServer headless para dois peers. Não liberar ao público sem QA real e revisão de durabilidade.
+
+
+## 11. Implementação experimental M0/M1 — integração opcional de perfis com SDL2
+
+**Branch:** `feature/lan-v080-m0-m1-foundation`. **Base de rollback:** `feature/lan-v0721-viewport-culling` aprovada em gameplay, commit `a87e2c49e453db32def5e71ba2a2e696a911d504`. Conferir sempre HEAD e PR de implementação antes de continuar.
+
+### Adicionado
+- `src/lnet/lnet_session_v1.{c,h}`: envelope EHL8 v1 com header 28 bytes, payload máximo 4096, parsing incremental validado, sem rede TCP ou autenticação ainda.
+- `src/profile/save_profiles.{c,h}`: núcleo de perfis independentes; importação sem alterar a origem, perfis blank, lock interprocessos, backup/restauração/prune; **ver limitações abaixo**.
+- `tests/test_lnet_session_v1.c`, `tests/test_save_profiles.c`, `scripts/verify_lan_v080_foundation.sh`, `.github/workflows/test-lan-v080-foundation.yml`.
+- `docs/LAN_V080_M0_M1_FOUNDATION.md`: documentação detalhada do código, testes, limites e rollback.
+
+### Modificado
+- **`src/platform/sdl2.c`**: aceitou `--profile-root=<diretorio> --profile-id=<identificador>` com **ambos obrigatórios** para seleção. Bloqueia o perfil antes do início e mantém bloqueio até após fechar arquivo; `ReadSaveFile`, `Platform_ReadFlash` e gravação existente referem-se ao mesmo `sActiveSavePath`. Perfil inexistente/ocupado/argumentos incompletos resultam em erro, nunca fallback silencioso para outro save. **Sem switches mantém `pokeemerald.sav` anterior**.
+- Workflows candidatos Windows/Android: branch experimental adicionada a gatilhos; testes específicos de caminho/lock na suíte M0/M1.
+
+### Removido
+- **Nada**: nenhuma alteração de espécies, mapas, NPCs, batalhas, Cable Club, Quest UI, sprites, turbo, regras ou estrutura GBA de 128 KiB. Nenhum save de usuário foi acessado.
+
+### Testado (não exagerar)
+- Suíte standalone local Linux com C99 (192 roundtrips com fragmentação, limites, flags inválidas), import/lock/backup/restore de **fixtures sintéticos não jogáveis**; compilação/execução local normal e ASan/UBSan OK.
+- GitHub Actions standalone Linux + Windows x86 cross compile dos núcleos M0/M1 passaram em runs anteriores desta branch (confirmar resultado no HEAD).
+- **Não houve QA real nesta atualização** com dois jogos selecionando perfis. CI verde do núcleo NÃO prova integração GBA Windows/Android e backups durante saves.
+
+### Riscos / NÃO IMPLEMENTADO
+- `sp_validate_file` valida somente tamanho e estrutura de identificadores, assinatura e contadores dos setores. **Não verifica checksums** nem conteúdo semântico; dado estruturalmente válido pode estar corrompido.
+- Backup automático **não está conectado ao salvamento manual**; é uma API offline a chamar com game parado e perfil bloqueado. Não restaurar um arquivo enquanto o jogo escreve flash.
+- Ainda faltam IDs persistentes de perfil, enumeração/metadata e launcher com seleção; Android não expõe os switches no launcher atual; paths Windows não garantem Unicode.
+- Sem servidor dedicado TCP real, 4 jogadores, lobby, PIN, QR, ARM64, chat, PokéNav de amigos, auto update, proxy SIO com par paralelo. **Não chamar de v0.8 jogável.**
+- O modo default sem parâmetros não usa lock de perfil, para preservar o legado; duas instâncias legacy no mesmo diretório ainda poderiam acessar o mesmo save. Utilizar **pastas separadas** no baseline.
+- Scripts de backup devem considerar falhas de energia/atomicidade/assinaturas de setores antes de receber selo de robustez.
+
+### Próximos passos
+1. Conferir Windows x86 e Android ARMv7 nativos no **commit exato** do PR; resolver eventuais erros antes de apresentar build para teste.
+2. Criar ferramenta CLI segura para importar/criar perfis de teste e visualizar status, ou implementar esse controle no launcher, sem tocar no save original; usuário não deve editar .sav manualmente.
+3. Testar com **dois saves Emerald originais íntegros**, Windows x2 e Android, incluindo perfil ocupado, salvar/reabrir, Cable Club, multi-mapa e rollback. Somente depois conectar backups pós-save.
+4. Em branch separada, iniciar servidor de sessões real (`EHL8`) para 2 clientes e suas máquinas de estado, sem substituir LAN antiga.
+
+
+## 12. Evidências finais da retomada M0/M1 + ponte experimental SDL2 (2026-10-14)
+
+- **PR/branch:** [#6](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/6), `feature/lan-v080-m0-m1-foundation`; revisão do **código** aprovada pela CI em `98d3d24ab4144d9e83f1bd92ac2d16d6b74ab0ec`. Commits de Markdown posteriores não modificam o código; verificar HEAD.
+- **Adicionado:** CLI developer `tools/emerald_profilectl.c` para `validate,new,import,backup,restore,prune`, verificação de cópias pós-import/pós-backup e limpeza parcial de erro; código de protocolo `EHL8` e testes M0/M1. Executável CLI foi gerado pela CI; não é launcher de usuário final.
+- **Integrado experimentalmente:** `src/platform/sdl2.c` aceita `--profile-root=... --profile-id=...`; em modo opt-in, guarda lock do perfil durante a execução e lê `Platform_ReadFlash` do mesmo caminho do save. Sem argumentos, preserva modo legado, inclusive o caminho antigo. Android compila essa integração nativa mas launcher Android **ainda não fornece seleção gráfica de perfil**.
+- **Não alterado:** lógica P2P da v0.7.2.1, mapas, Pokémon, scripts, flags de saves, UI antiga, batalhas/trocas do Cable Club. Nenhum .sav de usuário foi modificado.
+- **Testes por SHA específico `98d3d24`:** [fundação M0/M1](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38506500365) **SUCESSO**, com Linux normal/sanitizers e cross-compile Win32 + CLI; [regressão TCP](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38506500556) **SUCESSO**; [build jogo Windows x86](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38506500373) **SUCESSO**; [build jogo Android ARMv7](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38506500408) **SUCESSO**. Builds nativos são compilados, **não QA de gameplay**.
+- **CI GBA legado:** [execução](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38506500386) **FALHOU** na ROM GBA tradicional em `src/AgbRfu_LinkManager.c`, `_Static_assert` tratado como implicit declaration pelo compilador histórico `agbcc`. Não ocultar, nem relacionar automaticamente ao módulo de perfis (este é nativo). Exige investigação de baseline antes de corrigir.
+- **Correção verificável:** a CI Windows antiga inicialmente falhou em guard de SDL2 porque esse arquivo passou a ter integração opt-in. Foi adicionado `scripts/verify_v080_profile_patch.py` que reverte **somente o patch aprovado** antes da checagem de hash histórico. Não é uma exceção genérica para mudanças arbitrárias; workflow Windows candidato passou depois.
+- **Ainda NÃO implementado:** servidor dedicado multi-cliente, lobby, menus Offline/Host/Join modernos, UUID aleatório/manifestos, backup automático após save manual, validação checksum profunda, import/export Android SAF, duplicação protegida por identidade persistente, ARM64, até 4 jogadores. A opção de perfil é experimental e requer teste real de salvar/reabrir com arquivos **originalmente válidos**.
+- **QA manual que ainda BLOQUEIA entrega estável:** duas instâncias selecionando perfis distintos, leitura+salvamento+reabertura, recusa de perfil em uso, cliente Windows/Android, backup/restore com jogo fechado, regressão Cable Club, seleção sem flags e sem conflito com pastas legadas. Não distribuir saves sintéticos dos testes como saves jogáveis.
+- **Rollback seguro:** usar branch testada `feature/lan-v0721-viewport-culling` no commit `a87e2c49e453db32def5e71ba2a2e696a911d504`; não fazer merge deste PR antes de QA; manter backups dos .sav originais fora do diretório modificado.
+- **Próximo passo:** importar **cópias** de saves reais previamente validados, realizar teste de round-trip do mecanismo SDL2 com dois perfis em Windows; implementar integridade de setores/metadata e backups pós-save; somente então iniciar SessionServer dedicado para 2 clientes. Atualizar este README novamente ao mudar qualquer código.
+
+
+## 12. QA do perfil opt-in e auditoria SDL2 — 2026-10-14
+
+**Código avaliado:** commit `98d3d24ab4144d9e83f1bd92ac2d16d6b74ab0ec` na branch `feature/lan-v080-m0-m1-foundation` / [PR #6](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/6) **DRAFT**. Atualizações documentais posteriores não alteram o binário até novo código.
+
+### Resultado
+- **Suíte C99/ASan/UBSan e cross-compile Win32 dos módulos:** [Actions 38506500365](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38506500365) — PASS; CLI de desenvolvimento `emerald_profilectl.exe` gerado.
+- **Transporte TCP legado:** PASS — [Actions 38506500556](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38506500556).
+- **Windows jogo completo:** PASS — [Actions 38506500373](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38506500373), artefato `11868265679`. A execução inicial anterior [38506140151](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38506140151) falhou **somente** porque o auditor v0.5 exigia o arquivo SDL original sem o novo recurso.
+- **Correção auditada:** `scripts/verify_v080_profile_patch.py` faz inversão estrita da extensão de perfil em `src/platform/sdl2.c` **apenas quando `EMERALD_V080_QA=1`**. Os verficadores `verify_v050_split.py` e `verify_v050_fairy.py` continuam checando hash exato da versão histórica (após retirar o patch documentado), não foram desligados. Workflow Windows recebeu explicitamente essa flag; o build seguinte passou.
+- **Android ARMv7 jogo completo:** PASS — [Actions 38506500408](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38506500408), artefato `11868630245`. **Este build compila o código de perfil mas o launcher Android ainda não expõe seleção de perfis.**
+- **Distribuição de QA local:** ZIP `Emerald_Hybrid_v080_M1_Windows_Experimental_Seguro.zip` criado no container do chat, contendo executável Windows/SDL2 + CLI + BATs/README em português. SHA256 `5f60c0bf22d9a392f326d62ecbadfa872ddf8555708eb3b533eb0e4b6c3b6f1a`. Não é release estável do GitHub nem build de servidor dedicado. Arquivos artificiais de save **não** foram incluídos.
+
+### Modificações adicionais neste ciclo
+- `src/platform/sdl2.c`: flags opt-in `--profile-root`/`--profile-id`, lock e caminho único; nenhum comportamento de gameplay alterado deliberadamente.
+- `scripts/verify_v080_profile_patch.py` adicionado; verificadores históricos adicionaram etapa de inversão controlada; fluxos Windows/Android e QA M0/M1 habilitados.
+- `docs/LAN_V080_M0_M1_FOUNDATION.md` + este README atualizados; PR #6 corrigido para não alegar que SDL2 ainda não tinha integração.
+- **Removido:** nada do jogo/saves anteriores.
+
+### Pendências e riscos NÃO resolvidos
+- **In-game:** não houve teste em duas instâncias real de saves distintos usando os novos parâmetros, portanto compilação verde não comprova persistência de perfis.
+- **Integridade:** `sp_validate_file` é **apenas estrutural** (não verifica checksums); um save estragado pode passar no import.
+- **Segurança:** nenhum auto-backup no hook do save manual; não restaurar enquanto o jogo está aberto. A ordem de parada do thread `AgbMain` e fclose deve ser revista antes de afirmar encerramento atômico; nos builds legados esse thread não possui join explícito.
+- **Plataformas:** ainda não há launcher Android escolhendo perfis, ARM64 ou serviço dedicado real; não mostrar novo APK como se fizesse servidor no celular.
+- **Rollback:** manter usuário no jogo funcional `feature/lan-v0721-viewport-culling`; qualquer teste v0.8 deve ocorrer em **uma pasta NOVA** e somente com cópias verificáveis de .sav. Não mesclar a PR #6 até QA real.
+
+### Próximo passo recomendado
+Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de carregar/salvar/reabrir; corrigir quaisquer bugs de I/O. Depois acrescentar validação real de checksum e hooks de backup pós-save, importação/exportação SAF Android e início do servidor TCP de sessões M2. Não expandir para quatro ainda.
