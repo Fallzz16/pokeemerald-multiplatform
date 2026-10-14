@@ -74,6 +74,9 @@ int main(int argc, char **argv)
 {
     const char *profileRoot = NULL;
     const char *profileId = NULL;
+    const char *sessionEndpoint = NULL;
+    const char *sessionPin = NULL;
+    bool legacyLinkRequested = false;
     // Optional headless LAN configuration on desktop. The in-game Cable Club
     // still performs the real Emerald link handshake after the TCP peer joins.
     // Accept only valid 1..65535 ports; never auto-advance game state.
@@ -90,8 +93,13 @@ int main(int argc, char **argv)
             profileRoot = argv[i] + 15;
         else if (strncmp(argv[i], "--profile-id=", 13) == 0)
             profileId = argv[i] + 13;
+        else if (strncmp(argv[i], "--session-client=", 17) == 0)
+            sessionEndpoint = argv[i] + 17;
+        else if (strncmp(argv[i], "--session-pin=", 14) == 0)
+            sessionPin = argv[i] + 14;
         else if (strncmp(argv[i], "--lan-host=", 11) == 0)
         {
+            legacyLinkRequested = true;
             char *end = NULL;
             unsigned long port = strtoul(argv[i] + 11, &end, 10);
             if (end && *end == '\0' && port > 0 && port <= 65535)
@@ -99,6 +107,7 @@ int main(int argc, char **argv)
         }
         else if (strncmp(argv[i], "--lan-client=", 13) == 0)
         {
+            legacyLinkRequested = true;
             const char *spec = argv[i] + 13;
             const char *colon = strrchr(spec, ':');
             if (colon != NULL && colon > spec && (colon - spec) < 64)
@@ -144,6 +153,46 @@ int main(int argc, char **argv)
         }
         sProfileLocked = true;
     }
+    /* An EHL8 session is NOT the legacy raw-SIO LAN connection.
+     * Both a selected profile and a six-digit PIN are mandatory.
+     * Reject mixed modes; never quietly fall back to another save/trainer. */
+    if (sessionEndpoint || sessionPin)
+    {
+        const char *colon = sessionEndpoint ? strrchr(sessionEndpoint, ':') : NULL;
+        char host[64];
+        char *end = NULL;
+        unsigned long port = 0;
+        bool valid = sessionEndpoint && sessionPin && profileId &&
+                     !legacyLinkRequested && strlen(sessionPin) == 6 &&
+                     colon && colon > sessionEndpoint &&
+                     (colon - sessionEndpoint) < (int)sizeof(host);
+        if (valid)
+        {
+            int n;
+            for (n = 0; n < 6; n++)
+                if (sessionPin[n] < '0' || sessionPin[n] > '9')
+                    valid = false;
+            port = strtoul(colon + 1, &end, 10);
+            if (!end || *end != '\0' || port < 1 || port > 65534)
+                valid = false;
+        }
+        if (valid)
+        {
+            memcpy(host, sessionEndpoint, colon - sessionEndpoint);
+            host[colon - sessionEndpoint] = '\0';
+            valid = PortLanRequestDedicatedClient(host, (u16)port, sessionPin, profileId);
+        }
+        if (!valid)
+        {
+            fprintf(stderr, "Invalid EHL8 session configuration: "
+                    "requires selected profile, IPv4:port and 6-digit PIN; "
+                    "cannot mix with legacy LAN flags.\\n");
+            if (sProfileLocked)
+                sp_unlock(&sActiveProfileLock);
+            return 2;
+        }
+    }
+
 #ifndef __ANDROID__
     ReadSaveFile(sActiveSavePath);
     if (sSaveFile == NULL)
