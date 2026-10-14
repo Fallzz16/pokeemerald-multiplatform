@@ -10,7 +10,7 @@
 - **Estado do usuário:** confirmou que o Cable Club funcionou em gameplay e que a v0.7.2.1 (personagem remoto/culling) funcionou muito bem em gameplay com dois jogadores. Isto **não é** confirmação automática de testes com quatro jogadores, servidor dedicado, lobby, ARM64, importação múltipla de saves ou migração de sessão.
 - O protocolo de presença atual é **P2P para 2 jogadores**, não servidor dedicado.
 - Branch com a primeira implementação/culling: `feature/lan-v0721-viewport-culling` (base para este plano).
-- Branch de planejamento: `feature/lan-v080-architecture-spec`. **Esta branch é somente documentação; v0.8 NÃO foi implementada.**
+- Branch de planejamento: `feature/lan-v080-architecture-spec`, [PR #5](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/5), criada sobre o commit base `a87e2c49e453db32def5e71ba2a2e696a911d504` (v0.7.2.1). **Esta branch é somente documentação; v0.8 NÃO foi implementada.** Verificar sempre o HEAD com `git rev-parse HEAD`; o SHA da branch muda a cada commit.
 - Outras referências: `LAN_V071_QA.md`, `LAN_V072_OVERWORLD_QA.md`, `LAN_V0721_CAMERA_CULLING_QA.md`, `LAN_OVERWORLD_DESIGN.md`, `scripts/verify_lan_foundation.sh`.
 - Arquitetura futura detalhada: [docs/LAN_V080_ARCHITECTURE.md](docs/LAN_V080_ARCHITECTURE.md).
 
@@ -138,3 +138,16 @@ bash scripts/verify_lan_foundation.sh
 Para executar a suite nativa é necessário ambiente Linux/Windows adequado com `cc`, bash, pthread e timeout. Builds Windows e Android devem rodar no GitHub Actions e logs avaliados por SHA exato. A aprovação anterior de dois jogadores foi relatada pelo usuário; não inventar capturas que não foram anexadas.
 
 **Próxima decisão:** coletar respostas 51+ sobre save / lobby / segurança / discovery antes de congelar session-v1. Este documento deve ser atualizado com as respostas posteriores.
+
+## 8. Registro desta atualização documental
+
+- **Versão visada:** arquitetura de v0.8.0+, não execução do produto final.
+- **Branch e PR:** `feature/lan-v080-architecture-spec`, PR #5 em rascunho; base do trabalho `a87e2c49e453db32def5e71ba2a2e696a911d504`.
+- **Adicionado:** `AI_README.md`, `AGENTS.md`, `docs/LAN_V080_ARCHITECTURE.md`.
+- **Modificado no gameplay:** nenhum arquivo de jogo, save, servidor, gráficos ou rede.
+- **Removido:** nada.
+- **Validado nesta entrega:** conteúdo documentado confrontado com decisões explícitas e arquivos-fonte da branch de origem; nenhum build/gameloop da v0.8 foi executado porque não há código v0.8.
+- **Não implementado:** servidor dedicado, perfis multi-save, lobby de quatro jogadores, importador Android, auto-update, ARM64, chat, PokéNav de amigos.
+- **Riscos conhecidos:** portas v0.7 P2P não são compatíveis diretamente com o protocolo futuro; Android 64 bits pede trabalho no port; proteção do save; evitar duplicar Trainer ID ou destruir identidades originais.
+- **Rollback:** branch base `feature/lan-v0721-viewport-culling`; como esta PR contém apenas arquivos Markdown, basta não mesclá-la para retornar ao estado anterior. Nenhum .sav foi tocado.
+- **Próximo passo:** colher respostas 51–75; congelar session-v1; implementar SaveProfileManager atrás de feature flag, com testes offline e backups.
