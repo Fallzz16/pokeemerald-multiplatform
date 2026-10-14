@@ -6,6 +6,7 @@ on:
     branches:
       - feature/lan-hybrid-v070
       - feature/lan-v070-async-slot-hardening
+      - feature/lan-v071-connection-stability
     paths-ignore:
       - '**/*.md'
 
