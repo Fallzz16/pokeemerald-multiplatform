@@ -430,16 +430,20 @@ int lnet_net_send_nb(LNetSock *s, const void *data, size_t n, size_t *sent, int 
     tv.tv_sec = 0;
     tv.tv_usec = 0;
 #ifdef _WIN32
-    if (select(0, NULL, &wfds, NULL, &tv) <= 0)
-#else
-    if (select(s->fd + 1, NULL, &wfds, NULL, &tv) <= 0)
-#endif
     {
-        if (sent)
-            *sent = 0;
-        if (err)
-            *err = LNET_ERR_AGAIN;
-        return 0;
+        int ready = select(0, NULL, &wfds, NULL, &tv);
+#else
+    {
+        int ready = select(s->fd + 1, NULL, &wfds, NULL, &tv);
+#endif
+        if (ready <= 0)
+        {
+            if (sent)
+                *sent = 0;
+            if (err)
+                *err = ready == 0 ? LNET_ERR_AGAIN : LNET_ERR_SEND;
+            return ready == 0 ? 0 : -1;
+        }
     }
 #ifdef _WIN32
     r = send(s->fd, (const char *)data, (int)n, 0);
@@ -503,16 +507,20 @@ int lnet_net_recv_nb(LNetSock *s, void *data, size_t n, size_t *got, int *err)
     tv.tv_sec = 0;
     tv.tv_usec = 0;
 #ifdef _WIN32
-    if (select(0, &rfds, NULL, NULL, &tv) <= 0)
-#else
-    if (select(s->fd + 1, &rfds, NULL, NULL, &tv) <= 0)
-#endif
     {
-        if (got)
-            *got = 0;
-        if (err)
-            *err = LNET_ERR_AGAIN;
-        return 0;
+        int ready = select(0, &rfds, NULL, NULL, &tv);
+#else
+    {
+        int ready = select(s->fd + 1, &rfds, NULL, NULL, &tv);
+#endif
+        if (ready <= 0)
+        {
+            if (got)
+                *got = 0;
+            if (err)
+                *err = ready == 0 ? LNET_ERR_AGAIN : LNET_ERR_RECV;
+            return ready == 0 ? 0 : -1;
+        }
     }
 #ifdef _WIN32
     r = recv(s->fd, (char *)data, (int)n, 0);
