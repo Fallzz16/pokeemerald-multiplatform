@@ -31,6 +31,7 @@ jobs:
         shell: pwsh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
           $ErrorActionPreference = 'Stop'
           $required=@{
@@ -41,22 +42,22 @@ jobs:
           }
           $selected=@{}
           for ($attempt=0; $attempt -lt 90; $attempt++) {
-            $url="/repos/$env:GITHUB_REPOSITORY/actions/runs?head_sha=$env:GITHUB_SHA&per_page=100"
+            $url="/repos/$env:GITHUB_REPOSITORY/actions/runs?head_sha=$env:SOURCE_SHA&per_page=100"
             $response=gh api $url | ConvertFrom-Json
             if ($LASTEXITCODE -ne 0) { throw "Falha ao consultar os workflows no GitHub" }
             foreach ($key in $required.Keys) {
               if ($selected.ContainsKey($key)) { continue }
               $matches=@($response.workflow_runs | Where-Object {
-                $_.name -eq $required[$key] -and $_.head_sha -eq $env:GITHUB_SHA
+                $_.name -eq $required[$key] -and $_.head_sha -eq $env:SOURCE_SHA
               } | Sort-Object id -Descending)
               if ($matches.Count -eq 0) { continue }
               $job=$matches[0]
               if ($job.status -eq 'completed') {
                 if ($job.conclusion -ne 'success') {
-                  throw "Build obrigatorio $key no commit $env:GITHUB_SHA terminou com $($job.conclusion). Nao distribuir."
+                  throw "Build obrigatorio $key no commit $env:SOURCE_SHA terminou com $($job.conclusion). Nao distribuir."
                 }
                 $selected[$key]=[string]$job.id
-                Write-Host "VERIFICADO $key = $($job.id) [SHA $env:GITHUB_SHA]"
+                Write-Host "VERIFICADO $key = $($job.id) [SHA $env:SOURCE_SHA]"
               }
             }
             if ($selected.Count -eq $required.Count) { break }
@@ -100,11 +101,13 @@ jobs:
 
       - name: Verify all five executables and write a same-commit SHA256 manifest
         shell: pwsh
+        env:
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
           $ErrorActionPreference='Stop'
           $names=@('EmeraldLauncher.exe','pokeemerald.exe','SDL2.dll',
                    'emerald_profilectl.exe','EmeraldSessionServer.exe')
-          $manifest=@("SOURCE_COMMIT=$env:GITHUB_SHA")
+          $manifest=@("SOURCE_COMMIT=$env:SOURCE_SHA")
           foreach($name in $names) {
             $p=Join-Path payload $name
             if (!(Test-Path -LiteralPath $p -PathType Leaf)) { throw "Falta dependencia: $name" }
@@ -115,7 +118,7 @@ jobs:
             } finally { $fs.Dispose() }
             $hash=(Get-FileHash -LiteralPath $p -Algorithm SHA256).Hash.ToLowerInvariant()
             $manifest+=("$hash  $name")
-            Write-Host "SOURCE SHA $env:GITHUB_SHA; componente $name = $hash"
+            Write-Host "SOURCE SHA $env:SOURCE_SHA; componente $name = $hash"
           }
           if (@(Get-ChildItem -Path payload -Recurse -File -Filter *.sav).Count -gt 0) {
             throw "Nenhum save de jogador pode entrar no instalador!"
