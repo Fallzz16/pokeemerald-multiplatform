@@ -526,3 +526,30 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 **Recomendação e próximo passo:** preservar PR #10 experimental e solicitar QA do usuário no Windows com **3 máquinas lógicas** (servidor EHL8 + 2 clientes Emerald com perfis diferentes) antes de declarar jogabilidade dedicada validada. Se aprovar, implementar lista real de participantes/Ready UI e reconexão, depois até 4 players. README obrigatório em cada atualização.
 
 **Rollback:** `feature/lan-v080-mega-desktop-polish` (instalador previamente confirmado pelo usuário), backup LAN validado `feature/lan-v0721-viewport-culling`. Nunca modificar arquivos de save originais.
+
+## 23. Retomada: consertar late-join no EHL8 e mostrar jogadores reais no launcher (2026-10-14)
+
+**Usuário pediu continuar a implementação e polir antes de entregar.** Recuperei HEAD do GitHub em vez de recomeçar. PR #10 (`feature/lan-v0803-dedicated-session-core`) já continha servidor EHL8, cliente C integrado no Emerald, launcher gráfico e instalador PREVIEW testados em CI. A v0.8.2 instalada pelo usuário e a v0.7.2.1 LAN aprovada continuam preservadas.
+
+### Bug confirmado por leitura do código e resolvido
+
+- **Entrada tardia** (#9A/#38A/#61A): o servidor deixava um novo jogador entrar quando `in_game=True` e enviava `START`, mas rejeitava o `READY=1` enviado automaticamente pelo cliente C após JOIN, resultando em desconexão. `tools/emerald_session_server.py` agora aceita o primeiro `READY=1` de um cliente no estado `GAME`; READY repetido é idempotente, **não** gera broadcasts redundantes. Outros payloads continuam inválidos.
+- Novo teste TCP `test_running_room_ready_ack_does_not_disconnect`: duas pessoas entram e ficam prontas; uma sai; novo perfil ocupa slot aberto numa partida já iniciada; READY/HEARTBEAT continuam funcionando; seu POSE é retransmitido ao primeiro jogador. READY duplicado não gera `PLAYER_LIST` extra.
+- **Sem afirmar reconexão pronta**: entrar no slot livre NÃO equivale a reservar a mesma vaga por 60 segundos com token autenticado. O requisito #60A/#86A continua pendente.
+
+### Melhoria de qualidade do launcher
+
+- Servidor emite eventos de contagem `EHL8_ROOM_COUNT=0/2`, `1/2`, `2/2` em mensagens INFO no log **sem IP, PIN ou ID de perfil**.
+- `tools/emerald_launcher.py` usa `read_room_occupancy()` para ler no máximo os últimos 8192 bytes do log deste processo; status no painel apresenta **ocupação real** em vez de `até 2 jogadores`. Ausência de dados não é interpretada como zero confirmado.
+- `tests/test_emerald_launcher.py` cobrem formato multilinha, log ausente, cauda grande e contagem inválida. O servidor real continua rodando separado do Emerald.
+- **Não é lobby completo ainda**: lista de membros, ping, pronta/recusar, expulsar e convites com UI continuam pendentes.
+
+### Registros de alteração obrigatórios
+
+**Adicionado:** testes de entrada tardia + mensagens repetidas de READY + movimento pela sessão já iniciada; teste do parser de ocupação. **Modificado:** `tools/emerald_session_server.py`, `tools/emerald_launcher.py`, testes e `docs/LAN_V0803_DEDICATED_SESSION_CORE.md`. **Removido:** nada; nenhum arquivo `src/`, gameplay, mapa, Quest UI, sprites, arquivos .sav ou dados de usuário foi alterado nesta retomada.
+
+**QA:** consultar a matriz do workflow EHL8 Linux/Windows, CLI/PIN, launcher Windows, construção do jogo Windows/Android e instalador de preview no commit mais recente. Não supor sucesso de runs anteriores como validação do HEAD atual. **Testes reais com duas janelas Emerald em Hoenn ainda não foram executados pelo usuário.** CI genérico de comparação ROM é separado do build PC/Android.
+
+**Rollback:** `feature/lan-v080-mega-desktop-polish` (instalador v0.8.2 confirmado no PC pelo usuário), ou `feature/lan-v0721-viewport-culling` SHA `a87e2c49e453db32def5e71ba2a2e696a911d504` (LAN P2P testada). Não misturar perfis preview com saves originais; preservar `EmeraldHybridEHL8Preview` e `profiles/` ao atualizar uma preview.
+
+**Próxima etapa:** verificar todos os workflows no mesmo SHA; enviar apenas build de preview quando íntegro, com roteiro QA e limitações; investigar integração de rendering em 2 PCs reais; depois implementar reserva de vaga por 60 segundos com identidade de sessão, painel lobby real e trade/battle SIO separado.
