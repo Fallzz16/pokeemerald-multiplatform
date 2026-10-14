@@ -24,6 +24,10 @@ def profile_root():
     here=application_dir()
     if (here/"PORTABLE_MODE.txt").exists():
         return here/"profiles"
+    if (here/"EHL8_PREVIEW_MODE.txt").exists():
+        # The beta installer must not open the user's already-proven v0.8.2
+        # save profiles without an explicit import/backup step.
+        return Path(os.environ.get("LOCALAPPDATA",str(Path.home()))) / "EmeraldHybridEHL8Preview" / "profiles"
     return Path(os.environ.get("LOCALAPPDATA",str(Path.home()))) / "EmeraldHybrid" / "profiles"
 
 def settings_path(root):
