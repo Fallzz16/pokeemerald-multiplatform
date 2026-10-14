@@ -11,6 +11,7 @@ on:
       - feature/lan-v072-overworld-presence
   push:
     branches:
+      - feature/lan-v080-mega-desktop-polish
       - feature/lan-v080-m0-m1-foundation
       - feature/lan-hybrid-v070
       - feature/lan-v070-async-slot-hardening
