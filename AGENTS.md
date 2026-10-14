@@ -2,7 +2,7 @@
 
 **Antes de planejar, analisar ou modificar arquivos, leia integralmente:**
 1. [AI_README.md](AI_README.md) — histórico, decisões do usuário, estrutura, riscos, ferramentas, QA e instruções de passagem de contexto.
-2. [docs/LAN_V080_ARCHITECTURE.md](docs/LAN_V080_ARCHITECTURE.md) — requisitos aprovados 1–100, arquitetura v0.8 planejada, saves, servidor, protocolo e matriz de testes.
+2. [docs/LAN_V080_ARCHITECTURE.md](docs/LAN_V080_ARCHITECTURE.md) — requisitos aprovados 1–116 (as 16 últimas em docs/LAN_V080_MEGA_DESKTOP_PASS1.md), arquitetura v0.8 planejada, saves, servidor, protocolo e matriz de testes.
 3. Documentos de QA relacionados à branch atual: `LAN_V071_QA.md`, `LAN_V0721_CAMERA_CULLING_QA.md`.
 
 **Regras:**
@@ -18,3 +18,5 @@
 - Responder em português brasileiro para este projeto.
 
 - As **100 decisões** foram concluídas: encerrar questionários amplos e avançar com M0/M1 em branch isolada. Ao surgir impedimento real, perguntar apenas o essencial; caso contrário manter as decisões existentes.
+
+- As respostas 101–116 são `101B 102B 103B 104B 105C 106C 107B 108B 109C 110C 111C 112A 113B 114C 115A 116A`. Ver `docs/LAN_V080_MEGA_DESKTOP_PASS1.md` antes de interpretar cada opção. O primeiro incremento 0.8 MEGA só corrige desktop, logs, video e backup manual; não declarar servidor/4 players/instalador pronto.
