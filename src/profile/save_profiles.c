@@ -154,6 +154,8 @@ SpStatus sp_import(const char *root,const char *id,const char *source)
     if(st!=SP_OK) return st;
     if(!path2(dst,dir,"pokeemerald.sav")){SP_RMDIR(dir);return SP_BAD_ARG;}
     st=copy_atomic(source,dst);
+    /* Verify after copy too: source may have changed during transfer. */
+    if(st==SP_OK) st=sp_validate_file(dst);
     if(st!=SP_OK) {
         remove(dst);
         SP_RMDIR(dir);
@@ -170,13 +172,16 @@ SpStatus sp_create_empty(const char *root,const char *id)
     if(!root || !*root) return SP_BAD_ARG;
     st=ensure_profile(root,id,dir);
     if(st!=SP_OK) return st;
-    if(!path2(file,dir,"pokeemerald.sav")) return SP_BAD_ARG;
+    if(!path2(file,dir,"pokeemerald.sav")){
+        SP_RMDIR(dir);
+        return SP_BAD_ARG;
+    }
     f=fopen(file,"wb");
-    if(!f) return SP_IO;
+    if(!f){SP_RMDIR(dir);return SP_IO;}
     memset(buf,0xff,sizeof(buf));
     for(i=0;i<32;i++) if(fwrite(buf,1,sizeof(buf),f)!=sizeof(buf)) {good=0;break;}
     if(!close_sync(f)) good=0;
-    if(!good){remove(file);return SP_IO;}
+    if(!good){remove(file);SP_RMDIR(dir);return SP_IO;}
     return SP_OK;
 }
 SpStatus sp_lock(const char *root,const char *id,SpProfileLock *lock)
@@ -307,7 +312,9 @@ SpStatus sp_backup(const SpProfileLock *lock,unsigned *sequence)
     free(numbers);
     if(!backup_name(name,sizeof(name),next) || !path2(out,backups,name)) return SP_IO;
     st=copy_atomic(src,out);
+    if(st==SP_OK) st=sp_validate_file(out);
     if(st==SP_OK) *sequence=next;
+    else remove(out); /* Do not retain an incomplete ordinary backup. */
     return st;
 }
 SpStatus sp_restore(const SpProfileLock *lock,unsigned sequence)
