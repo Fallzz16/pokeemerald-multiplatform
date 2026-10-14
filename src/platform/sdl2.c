@@ -76,6 +76,8 @@ int main(int argc, char **argv)
     const char *profileId = NULL;
     const char *sessionEndpoint = NULL;
     const char *sessionPin = NULL;
+    bool sessionPinFromStdin = false;
+    char sessionPinBuffer[16] = {0};
     bool legacyLinkRequested = false;
     // Optional headless LAN configuration on desktop. The in-game Cable Club
     // still performs the real Emerald link handshake after the TCP peer joins.
@@ -97,6 +99,8 @@ int main(int argc, char **argv)
             sessionEndpoint = argv[i] + 17;
         else if (strncmp(argv[i], "--session-pin=", 14) == 0)
             sessionPin = argv[i] + 14;
+        else if (strcmp(argv[i], "--session-pin-stdin") == 0)
+            sessionPinFromStdin = true;
         else if (strncmp(argv[i], "--lan-host=", 11) == 0)
         {
             legacyLinkRequested = true;
@@ -156,8 +160,18 @@ int main(int argc, char **argv)
     /* An EHL8 session is NOT the legacy raw-SIO LAN connection.
      * Both a selected profile and a six-digit PIN are mandatory.
      * Reject mixed modes; never quietly fall back to another save/trainer. */
-    if (sessionEndpoint || sessionPin)
+    if (sessionEndpoint || sessionPin || sessionPinFromStdin)
     {
+        if (sessionPinFromStdin && sessionPin == NULL &&
+            fgets(sessionPinBuffer, sizeof(sessionPinBuffer), stdin) != NULL)
+        {
+            sessionPinBuffer[strcspn(sessionPinBuffer, "\\r\\n")] = '\\0';
+            sessionPin = sessionPinBuffer;
+        }
+        else if (sessionPinFromStdin)
+        {
+            sessionPin = NULL; /* wrong/missing PIN or mixed secret sources */
+        }
         const char *colon = sessionEndpoint ? strrchr(sessionEndpoint, ':') : NULL;
         char host[64];
         char *end = NULL;
@@ -182,6 +196,7 @@ int main(int argc, char **argv)
             host[colon - sessionEndpoint] = '\0';
             valid = PortLanRequestDedicatedClient(host, (u16)port, sessionPin, profileId);
         }
+        memset(sessionPinBuffer, 0, sizeof(sessionPinBuffer));
         if (!valid)
         {
             fprintf(stderr, "Invalid EHL8 session configuration: "
