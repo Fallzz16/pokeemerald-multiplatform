@@ -117,7 +117,9 @@ LNetSessionClient *lnet_session_client_new(const char *host, unsigned short port
     strcpy(c->profile, profile);
     c->port = port;
     c->state = EHL_CLIENT_CONNECTING;
-    c->began = now_ms();
+    /* Clock starts with first in-game network pump, NOT launcher startup.
+     * Intro/story loading may delay the first frame by many seconds. */
+    c->began = 0;
     ehl_session_decoder_init(&c->decoder);
     return c;
 }
@@ -217,6 +219,8 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     now = now_ms();
     if (c->state == EHL_CLIENT_CONNECTING)
     {
+        if (c->began == 0)
+            c->began = now ? now : 1;
         if ((unsigned long)(now - c->began) > EHL_CONNECT_TIMEOUT_MS)
         {
             close_failed(c);
