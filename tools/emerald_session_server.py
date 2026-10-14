@@ -184,8 +184,13 @@ class SessionServer:
             if not secrets.compare_digest(msg.payload, self.pin):
                 ip = peer.address[0] if peer.address else "unknown"
                 failures, until = self.invalid_attempts.get(ip, (0, 0.0))
-                failures = (failures if until > time.monotonic() else 0) + 1
-                self.invalid_attempts[ip] = (failures, time.monotonic() + min(300, 10 * 2**min(failures, 5)) if failures >= 3 else 0.0)
+                # Failure count is retained even before cooldown begins; never
+                # reset on the second wrong PIN by treating until=0 as expiry.
+                failures += 1
+                self.invalid_attempts[ip] = (
+                    failures,
+                    time.monotonic() + min(300, 10 * 2 ** min(failures, 5))
+                    if failures >= 3 else 0.0)
                 await peer.send(KICK, b"Invalid PIN", self.session)
                 raise ProtocolError("invalid PIN")
             peer.stage = "JOIN"
