@@ -379,3 +379,27 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 **Rollback:** versão v0.7.2.1 testada em branch `feature/lan-v0721-viewport-culling`, SHA `a87e2c49e453db32def5e71ba2a2e696a911d504`; extração sempre em diretório separado, perfis locais não devem ser substituídos ou excluídos ao trocar de build.
 
 **QA humana seguinte:** abrir launcher SEM CMD visível; perfil lembrado; zoom inteiro em monitor do usuário; F11/Alt+Enter; save/reopen; criar backup com jogo fechado e recuperar; encerrar, observar launcher retornar; conferir logs. Validar visual abaixo da tela com prints antes/depois. Depois abrir nova fase: safe save lifecycle, instalador e SessionServer com dois jogadores.
+
+
+## 18. Distribuição corrigida: primeiro instalador Windows REAL (2026-10-14)
+
+**Problema do usuário:** ao clicar em links anteriores do ChatGPT, não conseguia baixar/"instalar" a versão MEGA v0.8.2. Pacotes anteriores eram ZIPs portáteis, não instaladores, e o artefato GitHub do launcher isolado não continha o gerenciador de perfis.
+
+**Solução aplicada:** branch `feature/lan-v080-mega-desktop-polish` / [PR #9](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/9) (DRAFT) agora contém:
+- `packaging/emerald_hybrid_setup.nsi`: script de setup NSIS por usuário (`RequestExecutionLevel user`), cria shortcut do launcher no Menu Iniciar, desinstalador HKCU, instala sem `PORTABLE_MODE.txt`; **desinstalar preserva** `%LOCALAPPDATA%\\EmeraldHybrid\\profiles` e `logs`.
+- `.github/workflows/package-v0802-complete.yml`: baixa binários já validados por GitHub CI, verifica tamanho/conteúdo e hashes SHA256 dos quatro arquivos do app (C++ jogo, Python launcher GUI compilado, SDL2, CLI), falha diante de ausentes ou saves incluídos; publica **um único artifact GitHub** com instalador e ZIP portátil completos.
+- `docs/LAN_V0802_INSTALL_WINDOWS.md`: explicação dos dois métodos e passos em português.
+
+**Build & QA:** [GitHub Actions RUN 38524395485 — SUCCESS](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38524395485), artifact ID **11875457719**, nome `BAIXAR_AQUI_Emerald_v0802_INSTALADOR_e_PORTATIL_COMPLETOS`. Download obtido e verificado no container do chat:
+- ZIP externo `Emerald_Hybrid_v0802_INSTALADOR_e_PORTATIL_GITHUB.zip` — 44.604.935 bytes, CRC íntegro.
+- `Emerald_Hybrid_v0802_INSTALADOR_Windows.exe` — 20.900.097 bytes, PE/MZ válido, SHA256 `0ef9e823932e0f3b3a0d25ae5e1a8a313aec538c109ca84b1c3f07eba11773f0`. Setup NSIS compilou no Windows CI. **Ainda não instalado/testado no PC do usuário.**
+- `Emerald_Hybrid_v0802_PORTATIL_Windows.zip` — 23.743.567 bytes, CRC íntegro, contém `EmeraldLauncher.exe`, `pokeemerald.exe`, `SDL2.dll`, `emerald_profilectl.exe`, `ABRIR_LAUNCHER.bat`, `PORTABLE_MODE.txt` e instruções, **zero arquivos .sav**.
+- O workflow teve 2 falhas iniciais CORRIGIDAS: (1) hash do CLI previamente usado não era o hash do artifact oficial — agora hash fixado `09a865bc08bed2d5d7673114db1f381a5a12ce2df260c89ae7e9bc0fe6d52679`; (2) NSIS resolvia caminhos relativos à subpasta `packaging/`; correção estrita `!cd ".."`. Apenas após ambas passou o run 38524395485.
+
+**Alterado neste incremento:** distribuição/instalador/documentação. **Não alterado/removido:** código do game, sprites, saves, LAN, SDL2, cliente launcher, gameplay. As versões binárias embutidas são builds testados antes e hash-pinned; geração de instalador não prova funcionamento de gameplay no Windows final.
+
+**Limitações:** binário NÃO assinado; Windows SmartScreen pode avisar e não deve ser desativado às cegas. GitHub Actions artifacts duram 30 dias e podem exigir login. Ainda falta QA usuário: instalar, criar/importar perfil, salvar/reabrir, desinstalar preservando save, CMD oculto e zoom. Conta online, servidor dedicado, lobby 4 jogadores, instalador Android e saves automáticos seguem pendentes.
+
+**Rollback:** manter v0.7.2.1 aprovada em pasta separada; qualquer nova instalação não deve apagar/migrar perfis portáteis anteriores sem backup. Falhas de download do sandbox devem ser contornadas pelo link GitHub Actions acima, **não insistir apenas no mesmo sandbox**.
+
+**Próxima IA:** abrir `docs/LAN_V0802_INSTALL_WINDOWS.md` e este registro; não afirmar instalação em PC do usuário já confirmada. Atualizar handoff a cada patch com IDs de run, SHA, falhas e pendências.
