@@ -170,12 +170,27 @@ jobs:
           Copy-Item payload/LEIA_QA_PTBR.md,payload/AI_README.md,payload/SHA256_COMPONENTES.txt portable
           Compress-Archive -Path portable/* -DestinationPath release/Emerald_Hybrid_EHL8_M2_PREVIEW_PORTATIL_Windows.zip -CompressionLevel Optimal
 
+      - name: Install NSIS from GitHub releases (third-party action pinned by SHA)
+        id: nsis_release
+        uses: negrutiu/nsis-install@f3339c88dba6fd08910d5275a943f8f746d94876
+        with:
+          distro: negrutiu
+          arch: x86
+        continue-on-error: true
+
       - name: Locate NSIS or fetch official portable archive
         shell: pwsh
+        env:
+          NSIS_GITHUB_DIR: ${{ steps.nsis_release.outputs.instdir }}
         run: |
           $ErrorActionPreference='Stop'
           $baseX86=[Environment]::GetFolderPath('ProgramFilesX86')
-          $possible=@((Join-Path $baseX86 'NSIS\makensis.exe'),(Join-Path $env:ProgramFiles 'NSIS\makensis.exe'))
+          $possible=@()
+          if ($env:NSIS_GITHUB_DIR) {
+            $possible+=Join-Path $env:NSIS_GITHUB_DIR 'makensis.exe'
+          }
+          $possible+=Join-Path $baseX86 'NSIS\makensis.exe'
+          $possible+=Join-Path $env:ProgramFiles 'NSIS\makensis.exe'
           $compiler=$possible | Where-Object { Test-Path -LiteralPath $_ -PathType Leaf } | Select-Object -First 1
           if (!$compiler) {
             # Official standalone NSIS archive, without Chocolatey or UAC.
