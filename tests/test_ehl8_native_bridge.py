@@ -26,6 +26,9 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
                "src/lnet/lnet_presence.c", "src/lnet/lnet_session_client.c",
                "tests/native_ehl8_client.c", "-o", cls.exe]
         subprocess.run(cmd, cwd=ROOT, check=True, timeout=45)
+        cls.reconnect_exe = str(Path(cls.tmp.name) / "native_ehl8_reconnect")
+        resume_cmd = cmd[:-3] + ["tests/native_ehl8_reconnect.c", "-o", cls.reconnect_exe]
+        subprocess.run(resume_cmd, cwd=ROOT, check=True, timeout=45)
 
     @classmethod
     def tearDownClass(cls):
@@ -52,6 +55,39 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
                 if p.returncode is None:
                     p.kill()
                     await p.wait()
+            await server.stop()
+
+    async def test_native_client_recovers_after_forced_tcp_disconnect(self):
+        # This launches TWO real C processes, not simulated protocol stubs.
+        server = server_module.SessionServer("123456", 2, idle_seconds=300)
+        listener = await server.start("127.0.0.1", 0)
+        port = str(listener.sockets[0].getsockname()[1])
+        a = await asyncio.create_subprocess_exec(
+            self.reconnect_exe, "127.0.0.1", port, "123456", "trainer_A",
+            stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+        b = await asyncio.create_subprocess_exec(
+            self.reconnect_exe, "127.0.0.1", port, "123456", "trainer_B",
+            stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+        try:
+            for _ in range(160):
+                if server.in_game and len(server.players) == 2 and all(
+                        peer.stage == "GAME" for peer in server.players.values()):
+                    break
+                await asyncio.sleep(.03)
+            self.assertTrue(server.in_game, "Native clients never entered game")
+            self.assertEqual(len(server.players), 2)
+            original = server.players[1].profile
+            server.players[1].close()   # Simulated Wi-Fi transport disruption
+            stdout, stderr = await asyncio.wait_for(a.communicate(), 12)
+            self.assertEqual(a.returncode, 0, (stdout, stderr))
+            self.assertIn(b"resumed with original slot", stdout)
+            self.assertEqual(server.players[1].profile, original)
+            self.assertFalse(server.reservations)
+        finally:
+            for proc in (a, b):
+                if proc.returncode is None:
+                    proc.kill()
+                    await proc.wait()
             await server.stop()
 
     async def test_wrong_pin_native_client_fails_without_changing_existing_lobby(self):
