@@ -2,6 +2,8 @@
 ; This installer bundles only reviewed Windows binaries.
 ; Saves remain outside the installed app in %LOCALAPPDATA%\EmeraldHybrid.
 Unicode True
+; Resolve File/OutFile paths from the repository root, not packaging/.
+!cd ".."
 !include "MUI2.nsh"
 Name "Emerald Hybrid v0.8.2 (Experimental)"
 OutFile "release\Emerald_Hybrid_v0802_INSTALADOR_Windows.exe"
