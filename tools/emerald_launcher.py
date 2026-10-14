@@ -60,6 +60,44 @@ def write_settings(root, selected, diagnostics, ip, port):
         try: temporary.unlink(missing_ok=True)
         except OSError: pass
 
+def read_server_status(path, expected_port):
+    """Read only a complete same-device status snapshot, never a room PIN."""
+    try:
+        path = Path(path)
+        if path.stat().st_size > 8192:
+            return None
+        data = json.loads(path.read_text(encoding="utf-8"))
+        if (not isinstance(data, dict) or data.get("schema") != 1 or
+                data.get("port") != expected_port or
+                data.get("state") not in ("lobby", "playing", "stopped") or
+                data.get("capacity") not in (1, 2)):
+            return None
+        players = data.get("players")
+        if not isinstance(players, list) or len(players) > data["capacity"]:
+            return None
+        for p in players:
+            if (not isinstance(p, dict) or p.get("slot") not in (1, 2) or
+                    not isinstance(p.get("profile"), str) or
+                    not PATTERN.fullmatch(p["profile"]) or
+                    not isinstance(p.get("ready"), bool)):
+                return None
+        return data
+    except (OSError, ValueError, UnicodeError, TypeError):
+        return None
+
+def format_server_status(data):
+    if not data:
+        return "Servidor iniciando ou status indisponível"
+    if data["state"] == "stopped":
+        return "Servidor desligado"
+    stage = "Em jogo" if data["state"] == "playing" else "Lobby aguardando"
+    names = ", ".join(
+        (p["profile"][:15] + (" ✓" if p["ready"] else " …"))
+        for p in data["players"])
+    return "{} · {}/{} conectados{}".format(
+        stage, len(data["players"]), data["capacity"],
+        " · " + names if names else "")
+
 def validate_port(value):
     try: p=int(str(value).strip())
     except ValueError: raise ValueError("A porta precisa ser um número.")
@@ -127,6 +165,8 @@ class EmeraldLauncher(tk.Tk):
         self.cli=application_dir()/"emerald_profilectl.exe"
         self.server_exe=application_dir()/"EmeraldSessionServer.exe"
         self.server_process=None
+        self.server_status_file=None
+        self.server_port=None
         settings=read_settings(self.root_dir)
         selected=settings.get("selected_profile")
         self.selected=selected if isinstance(selected,str) and PATTERN.fullmatch(selected) else None
@@ -199,7 +239,7 @@ class EmeraldLauncher(tk.Tk):
         self.card(cards,"Hospedar servidor dedicado","Servidor independente EHL8 beta: 2 jogadores, sem jogo no host.",self.start_server,"INICIAR SERVIDOR")
         rowserver=tk.Frame(f,bg=INK);rowserver.pack(fill="x",padx=32,pady=(1,0))
         tk.Label(rowserver,textvariable=self.server_status,fg=GREEN,bg=INK,
-                 font=("Segoe UI",9),anchor="w").pack(side="left",fill="x",expand=True)
+                 font=("Segoe UI",9),anchor="w",justify="left",wraplength=470).pack(side="left",fill="x",expand=True)
         self.btn(rowserver,"Parar servidor",self.stop_server).pack(side="right")
         section=tk.Frame(f,bg=INK);section.pack(fill="x",padx=32,pady=(19,6))
         self.text(section,"CONFIGURAÇÕES DA CONEXÃO",10,MUTED,True).pack(anchor="w")
@@ -335,11 +375,15 @@ class EmeraldLauncher(tk.Tk):
             logs=self.root_dir.parent/"logs"
             logs.mkdir(parents=True,exist_ok=True)
             path=logs/("servidor-"+datetime.now().strftime("%Y%m%d-%H%M%S")+".log")
+            # Delete previous snapshot BEFORE starting; never show stale room
+            # members or claim that an old process is listening.
+            status_file=logs/"ehl8-lobby-status.json"
+            status_file.unlink(missing_ok=True)
             flags=(getattr(subprocess,"CREATE_NO_WINDOW",0) if sys.platform=="win32" else 0)
             with path.open("ab") as log:
                 proc=subprocess.Popen([str(self.server_exe),"--bind","0.0.0.0",
                      "--port",str(port),"--slots","2","--idle-minutes","15",
-                     "--pin-stdin"],cwd=str(application_dir()),creationflags=flags,
+                     "--pin-stdin","--status-file",str(status_file)],cwd=str(application_dir()),creationflags=flags,
                      stdin=subprocess.PIPE,stdout=log,stderr=subprocess.STDOUT)
                 try:
                     proc.stdin.write((pin+"\n").encode("ascii"))
@@ -347,7 +391,9 @@ class EmeraldLauncher(tk.Tk):
                 finally:
                     proc.stdin.close()
             self.server_process=proc
-            self.server_status.set("Servidor EHL8 iniciando · porta "+str(port)+" · até 2 jogadores")
+            self.server_status_file=status_file
+            self.server_port=port
+            self.server_status.set("Servidor iniciando · verificando porta "+str(port))
             self.after(1500,self.watch_server)
         except (OSError,ValueError) as exc:
             messagebox.showerror("Não foi possível hospedar",str(exc))
@@ -359,7 +405,8 @@ class EmeraldLauncher(tk.Tk):
             self.server_process=None
             self.server_status.set("Servidor desligado (código "+str(rc)+"). Veja os logs.")
         else:
-            self.server_status.set("Servidor EHL8 ativo (beta) · até 2 jogadores")
+            status=read_server_status(self.server_status_file,self.server_port)
+            self.server_status.set(format_server_status(status))
             self.after(1300,self.watch_server)
 
     def stop_server(self):
