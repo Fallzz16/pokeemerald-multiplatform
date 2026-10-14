@@ -94,14 +94,14 @@ O usuário respondeu às perguntas numeradas 51–75 com a sequência `1C 2A 3A 
 | 67 | A | Indicar jogador “Em batalha” na lista, sem exigir indicador visual no mapa. |
 | 68 | A | Poses a ~10 atualizações por segundo com interpolação; escalar só após medições. |
 | 69 | A | Apenas um convite pendente por jogador; serializar/concluir antes do próximo. |
-| 70 | A | **Nome SEMPRE visível** acima de cada personagem remoto na tela (difere da recomendação anterior de proximidade). |
+| 70 | B | Mostrar nome do treinador **somente quando estiver próximo ou selecionado**, evitando poluição na tela de 240×160. |
 | 71 | A | Hotspot via controles nativos do Android; app detecta rede, não precisa ligar hotspot automaticamente. |
 | 72 | A | QR com IP/endereço, porta e ID da sessão; **não incluir PIN por padrão**. |
 | 73 | B | PIN de seis dígitos, com limite de tentativas e mensagens de erro adequadas. |
 | 74 | A | Atualização verificada e oferecida ao usuário; instalar somente após confirmação. |
 | 75 | B | Compatibilidade-alvo inicial **Android 10+**; expandir depois se os testes permitirem. |
 
-**Diferença de preferência relevante:** #70A exige nomes sempre visíveis no campo — há pouco espaço na tela nativa 240×160. Implementar rótulo compacto, recorte/posicionamento seguro, no mesmo ciclo de culling do sprite e sem sobrepor UI crítica ou derrubar FPS. Não substituir #70A por exibição só ao se aproximar sem perguntar.
+**Escolha correta #70B:** exibir nome apenas quando o amigo estiver próximo ou selecionado. O rótulo acompanha o culling do sprite e deve evitar sobreposição à interface de 240×160. A resposta literal do usuário foi `20B` na rodada 51–75; **não interpretar como #70A**.
 
 **Em aberto:** decisões 76+ (p.ex., nome duplicado, medição de desempenho, retenção e proteção dos backups, controles do launcher, segurança e acessibilidade). Não preencher automaticamente como se o usuário já houvesse respondido.
 
@@ -283,7 +283,7 @@ Ver respostas futuras das perguntas 51+ antes de implementar mecanismos com efei
 4. Discovery mDNS/hotspot e permissões Android, fallback.
 5. Fluxo de atualização Windows/Android e proteção de downloads.
 6. Servidor com presença autoritativa vs relé simples; anti-cheat com custo mínimo.
-7. Privacidade no chat, ausência de dados pessoais/saves na rede, e exibição permanente de nomes com proteção de sobreposição na tela.
+7. Privacidade no chat, ausência de dados pessoais/saves na rede, e exibição contextual (#70B) de nomes com proteção de sobreposição na tela.
 8. Handshake SIO via proxy isolado ou canal p2p negociado.
 9. Android serviço foreground e suporte ARM64: fase separada de análise técnica.
 10. Ordem das features antes do primeiro release usuário, limites exatos de QA.
@@ -320,7 +320,7 @@ Ver respostas futuras das perguntas 51+ antes de implementar mecanismos com efei
 - Pareamento 1v1 simultâneo a outras explorações: o servidor negocia um socket direto temporário quando seguro/viável. Em redes/telefones nos quais não seja possível, projeto para retransmissão isolada de stream SIO por par, **sem pressupor que a latência será tolerável**. Medir handshake, slots, filas, timeout e limites por par antes de declarar fallback funcional.
 - A lista de participantes sinaliza “Em batalha”; um único convite pendente por jogador; dois jogadores combatendo não devem bloquear outros.
 - Poses de 10 Hz por jogador: para quatro participantes, broadcast no máximo aos outros três, com quotas. O culling visual não interrompe posição de rede.
-- **Sempre renderizar nomes dos remotos visíveis (70A)**: desenhar somente quando sprite também é visível; recortar com tela e evitar nome quebrado, sobreposição com outras etiquetas, mosaico/tile budget. Ainda pendente decisão sobre ocultação manual como opção de acessibilidade.
+- **Nomes contextuais (70B):** desenhar rótulo somente quando o jogador remoto estiver próximo ou selecionado **e** o sprite visível; recortar com tela, limitar sobreposição e custo de sprites/tile budget. Definir distância e mecanismo de seleção na rodada 76+.
 
 ### 9.4 Rede local e plataformas (71–75)
 
@@ -335,7 +335,7 @@ Ver respostas futuras das perguntas 51+ antes de implementar mecanismos com efei
 2. Escrita local/portátil Windows, save manual, backup com retenção configurável, import/export SAF e ZIP corrompido com arquivo malicioso.
 3. Queda da rede: 60 segundos de vaga reservada, reconectar antes/depois da expiração, jogador desaparece do mapa apropriadamente.
 4. Host sem jogadores: timeout configurável e confirmação ao fechar painel; não derrubar sessão indevidamente.
-5. Nomes sempre visíveis: quatro personagens próximos em tela de 240×160, sobreposição e culling com zoom/resize nativo.
+5. Nomes contextuais (#70B): quatro personagens próximos em tela 240×160, seleção, sobreposição, limites e culling.
 6. PIN de 6 dígitos: repetição de tentativas bloqueada; logs sem PIN nem dados completos do save.
 7. PvP entre dois com conexão direta, fallback por servidor e terceiro jogador livre; medir SIO e tempos antes de afirmar estabilidade.
 8. Android 10+ ARMv7/ARM64, Wi-Fi roteador/hotspot; comparar FPS/latência em celulares com ≥4 GB de RAM.
