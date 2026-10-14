@@ -553,3 +553,33 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 - Faltam reserva 60s, reconnect, Kick, convites, proxy SIO para trocas e batalhas, 3/4 players, lançamento Android equivalente e auto-backup pós-save; todas escolhas 1–116 continuam válidas.
 - **Próximo passo:** obter CI no HEAD; publicar *somente pacote completo e SHA-pinados* com launcher+server atualizados e game/perfil existentes após QA; convidar usuário para teste em duas máquinas reais.
 - **Rollback:** branch base M2/3 `feature/lan-v0803-dedicated-session-core` ou v0.8.2 confirmado; nunca apagar perfis ao mudar de release.
+
+
+## 24. QA e distribuição verificadas — v0.8.4 EHL8 Lobby Preview (14/10/2026)
+
+**Origem:** `feature/lan-v0804-lobby-observability`, [PR #12](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/12) DRAFT, base `feature/lan-v0803-dedicated-session-core` (PR #10). O usuário pediu para continuar de onde parou; esta atualização NÃO substitui a v0.8.2 confirmada funcionando nem remove nenhum recurso ou save.
+
+### Resultados realmente concluídos (por execução GitHub)
+
+- **[Actions 38537764287](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38537764287): SUCCESS** — servidor EHL8 nos testes reais de sockets Linux/Windows, incluindo nova telemetria local JOIN/READY/START/LEAVE, mais clientes C nativos conectando por TCP real; executável Windows PyInstaller aprovado.
+- **[Actions 38537764011](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38537764011): SUCCESS** — testes unitários do launcher e PyInstaller Windows com leitor/validador de JSON de status real do servidor.
+- **[Actions 38538345101](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38538345101): SUCCESS** — workflow de empacotamento comparou hashes SHA256 dos cinco binários necessários e montou instalador NSIS real + ZIP portátil, separados da v0.8.2.
+- **Artifact GitHub:** ID `11881307824` / `BAIXAR_AQUI_Emerald_EHL8_M2_LOBBY_INSTALADOR_e_PORTATIL`, tamanho 63.734.665 bytes. Download e verificação local independentes feitos na conversa: arquivo externo `Emerald_Hybrid_v0804_LOBBY_Instalador_e_Portatil_GITHUB.zip` CRC íntegro e SHA256 `f43ca2316019edd4749f92bff1de95b8693cb85c0ef543afa8094e544a0a5d11`.
+- **Instalador:** `Emerald_Hybrid_EHL8_M2_LOBBY_INSTALADOR_Windows.exe`, 30.471.276 bytes, PE/MZ válido, SHA256 `d6dae447566a8f52bd8b0f755bf93ede334d939b08b2741c3cda30fd4bb28be6`.
+- **Portátil:** `Emerald_Hybrid_EHL8_M2_LOBBY_PORTATIL_Windows.zip`, 33.295.969 bytes, SHA256 `3ef7bee14ea02be58b62375ad85ba137d11189cf389f674e38181f9fa0890c4d`, CRC interno íntegro, **zero .sav**, contém launcher, servidor, jogo, SDL2, profilectl, `LEIA_LOBBY_PTBR.md` e demais instruções.
+- **Revisão de diff da branch:** alterações limitadas a `tools/emerald_session_server.py`, `tools/emerald_launcher.py`, testes Python, workflows, empacotamento NSIS e documentação. **Nenhum arquivo `src/`, `data/`, `include/`, `graphics/` ou `android/` alterado** nesta branch.
+- CI genérico de ROM é outro workflow e não certifica runtime EHL8; não confundir sucesso de compilação com gameplay real. Windows SmartScreen pode alertar por instalador sem assinatura; NÃO orientar desativar proteção.
+
+### O que usuário poderá conferir agora
+
+No host, clicar **Iniciar servidor dedicado** e verificar status `Lobby aguardando · 0/2`; quando dois clientes EHL8 entrarem, `1/2`, `2/2` e `Em jogo`. Estado gerado pelo processo servidor ao ouvir a porta e receber autenticação/JOIN/READY reais; não por processo vivo apenas. Ver guia `docs/LAN_V0804_LOBBY_GUIA_PTBR.md`.
+
+### Ainda NÃO validado / implementado
+
+- **QA em Windows do usuário com duas janelas do Emerald realmente renderizando cada treinador** na rota/cidade, transições de mapa, latência, persistência de saves. Ainda precisa de teste humano.
+- Lobby administrativo completo (kick/stop individual, discovery/QR, regras, chat), reconexão com 60s de slot reservado, 3/4 jogadores, SIO de batalhas/trocas via dedicado, server Android e backup automático pós-save.
+- Este arquivo de status é LOCAL e não inclui PIN, IP, localização, party ou save; não é conta online nem API segura de administração remota.
+
+### Próximos passos e recuperação
+
+Após QA humana de duas partidas reais, coletar bugs de mapa/câmera e corrigir sem alterar SIO P2P. Depois implementar reserva de vaga/reconexão 60s e controle do lobby com aceitação explícita; escala para 3/4 só após QA. **Rollback:** instalação v0.8.2 previamente confirmada pelo usuário; para a LAN P2P testada, `feature/lan-v0721-viewport-culling`. Nunca sobrescrever originais .sav nem apagar os perfis para atualizar launcher.
