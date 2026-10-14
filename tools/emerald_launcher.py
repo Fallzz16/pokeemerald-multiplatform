@@ -60,6 +60,25 @@ def write_settings(root, selected, diagnostics, ip, port):
         try: temporary.unlink(missing_ok=True)
         except OSError: pass
 
+def read_room_occupancy(log_path):
+    """Read only the tail of this launcher's server log; never parse secrets."""
+    if not log_path:
+        return None
+    try:
+        with open(log_path, "rb") as stream:
+            stream.seek(0, os.SEEK_END)
+            end = stream.tell()
+            stream.seek(max(0, end - 8192))
+            tail = stream.read(8192).decode("utf-8", "replace")
+    except OSError:
+        return None
+    matches = re.findall(r"EHL8_ROOM_COUNT=([0-2])/([12])(?:\\s|$)", tail)
+    if not matches:
+        return None
+    current, capacity = map(int, matches[-1])
+    return (current, capacity) if current <= capacity else None
+
+
 def validate_port(value):
     try: p=int(str(value).strip())
     except ValueError: raise ValueError("A porta precisa ser um número.")
@@ -127,6 +146,7 @@ class EmeraldLauncher(tk.Tk):
         self.cli=application_dir()/"emerald_profilectl.exe"
         self.server_exe=application_dir()/"EmeraldSessionServer.exe"
         self.server_process=None
+        self.server_log_path=None
         settings=read_settings(self.root_dir)
         selected=settings.get("selected_profile")
         self.selected=selected if isinstance(selected,str) and PATTERN.fullmatch(selected) else None
@@ -347,6 +367,7 @@ class EmeraldLauncher(tk.Tk):
                 finally:
                     proc.stdin.close()
             self.server_process=proc
+            self.server_log_path=path
             self.server_status.set("Servidor EHL8 iniciando · porta "+str(port)+" · até 2 jogadores")
             self.after(1500,self.watch_server)
         except (OSError,ValueError) as exc:
@@ -359,7 +380,13 @@ class EmeraldLauncher(tk.Tk):
             self.server_process=None
             self.server_status.set("Servidor desligado (código "+str(rc)+"). Veja os logs.")
         else:
-            self.server_status.set("Servidor EHL8 ativo (beta) · até 2 jogadores")
+            occupancy=read_room_occupancy(self.server_log_path)
+            if occupancy is None:
+                self.server_status.set("Servidor EHL8 ativo (beta) · aguardando participantes")
+            else:
+                connected, limit=occupancy
+                self.server_status.set(
+                    f"Servidor EHL8 ativo (beta) · jogadores conectados: {connected}/{limit}")
             self.after(1300,self.watch_server)
 
     def stop_server(self):
