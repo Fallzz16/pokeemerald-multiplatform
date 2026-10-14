@@ -198,3 +198,40 @@ Para executar a suite nativa é necessário ambiente Linux/Windows adequado com 
 - **Limites de segurança:** os checksums dos setores GBA ainda não são validados de ponta a ponta; lock vale somente para programas que cooperem; preservar backups antes de tocar arquivos de usuários. Não distribuir fixtures sintéticas como saves jogáveis; testes reais no jogo ainda pendentes.
 - **Rollback:** para o último estado jogável aprovado, usar `feature/lan-v0721-viewport-culling` em `a87e2c49e453db32def5e71ba2a2e696a911d504`. Para somente fundação M0/M1 anterior a essa retomada, commit `7007c6704f113d102e8a80b09d13bf7ad95a6043`. Nunca sobrescrever `.sav` existente.
 - **Próximo passo:** ligar escolha explícita de perfil com lock ao ciclo SDL2, resolver todos os pontos de leitura/gravação de save, testar no Windows e Android, e então iniciar SessionServer headless para dois peers. Não liberar ao público sem QA real e revisão de durabilidade.
+
+
+## 11. Implementação experimental M0/M1 — integração opcional de perfis com SDL2
+
+**Branch:** `feature/lan-v080-m0-m1-foundation`. **Base de rollback:** `feature/lan-v0721-viewport-culling` aprovada em gameplay, commit `a87e2c49e453db32def5e71ba2a2e696a911d504`. Conferir sempre HEAD e PR de implementação antes de continuar.
+
+### Adicionado
+- `src/lnet/lnet_session_v1.{c,h}`: envelope EHL8 v1 com header 28 bytes, payload máximo 4096, parsing incremental validado, sem rede TCP ou autenticação ainda.
+- `src/profile/save_profiles.{c,h}`: núcleo de perfis independentes; importação sem alterar a origem, perfis blank, lock interprocessos, backup/restauração/prune; **ver limitações abaixo**.
+- `tests/test_lnet_session_v1.c`, `tests/test_save_profiles.c`, `scripts/verify_lan_v080_foundation.sh`, `.github/workflows/test-lan-v080-foundation.yml`.
+- `docs/LAN_V080_M0_M1_FOUNDATION.md`: documentação detalhada do código, testes, limites e rollback.
+
+### Modificado
+- **`src/platform/sdl2.c`**: aceitou `--profile-root=<diretorio> --profile-id=<identificador>` com **ambos obrigatórios** para seleção. Bloqueia o perfil antes do início e mantém bloqueio até após fechar arquivo; `ReadSaveFile`, `Platform_ReadFlash` e gravação existente referem-se ao mesmo `sActiveSavePath`. Perfil inexistente/ocupado/argumentos incompletos resultam em erro, nunca fallback silencioso para outro save. **Sem switches mantém `pokeemerald.sav` anterior**.
+- Workflows candidatos Windows/Android: branch experimental adicionada a gatilhos; testes específicos de caminho/lock na suíte M0/M1.
+
+### Removido
+- **Nada**: nenhuma alteração de espécies, mapas, NPCs, batalhas, Cable Club, Quest UI, sprites, turbo, regras ou estrutura GBA de 128 KiB. Nenhum save de usuário foi acessado.
+
+### Testado (não exagerar)
+- Suíte standalone local Linux com C99 (192 roundtrips com fragmentação, limites, flags inválidas), import/lock/backup/restore de **fixtures sintéticos não jogáveis**; compilação/execução local normal e ASan/UBSan OK.
+- GitHub Actions standalone Linux + Windows x86 cross compile dos núcleos M0/M1 passaram em runs anteriores desta branch (confirmar resultado no HEAD).
+- **Não houve QA real nesta atualização** com dois jogos selecionando perfis. CI verde do núcleo NÃO prova integração GBA Windows/Android e backups durante saves.
+
+### Riscos / NÃO IMPLEMENTADO
+- `sp_validate_file` valida somente tamanho e estrutura de identificadores, assinatura e contadores dos setores. **Não verifica checksums** nem conteúdo semântico; dado estruturalmente válido pode estar corrompido.
+- Backup automático **não está conectado ao salvamento manual**; é uma API offline a chamar com game parado e perfil bloqueado. Não restaurar um arquivo enquanto o jogo escreve flash.
+- Ainda faltam IDs persistentes de perfil, enumeração/metadata e launcher com seleção; Android não expõe os switches no launcher atual; paths Windows não garantem Unicode.
+- Sem servidor dedicado TCP real, 4 jogadores, lobby, PIN, QR, ARM64, chat, PokéNav de amigos, auto update, proxy SIO com par paralelo. **Não chamar de v0.8 jogável.**
+- O modo default sem parâmetros não usa lock de perfil, para preservar o legado; duas instâncias legacy no mesmo diretório ainda poderiam acessar o mesmo save. Utilizar **pastas separadas** no baseline.
+- Scripts de backup devem considerar falhas de energia/atomicidade/assinaturas de setores antes de receber selo de robustez.
+
+### Próximos passos
+1. Conferir Windows x86 e Android ARMv7 nativos no **commit exato** do PR; resolver eventuais erros antes de apresentar build para teste.
+2. Criar ferramenta CLI segura para importar/criar perfis de teste e visualizar status, ou implementar esse controle no launcher, sem tocar no save original; usuário não deve editar .sav manualmente.
+3. Testar com **dois saves Emerald originais íntegros**, Windows x2 e Android, incluindo perfil ocupado, salvar/reabrir, Cable Club, multi-mapa e rollback. Somente depois conectar backups pós-save.
+4. Em branch separada, iniciar servidor de sessões real (`EHL8`) para 2 clientes e suas máquinas de estado, sem substituir LAN antiga.
