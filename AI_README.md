@@ -1,6 +1,6 @@
 # AI README — Emerald Hybrid Multiplayer: passagem de contexto entre IAs
 > **LEITURA OBRIGATÓRIA ANTES DE EDITAR QUALQUER COISA NESTE REPOSITÓRIO.**
-> Atualizado em 2026-10-13 (planejamento v0.8). Documento específico deste fork, para evitar recomeços, erros de branch, perda de recursos ou afirmações de testes inexistentes.
+> Atualizado em 2026-10-13 (planejamento v0.8, decisões **1–75** confirmadas). Documento específico deste fork, para evitar recomeços, erros de branch, perda de recursos ou afirmações de testes inexistentes.
 
 ## 0. Resumo e fontes de verdade
 
@@ -49,9 +49,9 @@
 | `scripts/verify_lan_foundation.sh` | Testes nativos sessão/ligação/presença/culling. |
 | `docs/LAN_V080_ARCHITECTURE.md` | Protocolo, roadmap, matriz QA, decisão por pergunta. |
 
-## 3. Decisões aprovadas pelo usuário (1–50)
+## 3. Decisões aprovadas pelo usuário (1–75)
 
-As letras são exatamente as respostas do usuário. Reconsultar a descrição de cada decisão em `docs/LAN_V080_ARCHITECTURE.md` antes de interpretar letra isoladamente.
+As letras são exatamente as respostas do usuário. Reconsultar a descrição de **cada uma das 75 decisões** em `docs/LAN_V080_ARCHITECTURE.md` antes de interpretar letra isoladamente. **A rodada final veio numerada 1–25 pelo usuário, mas corresponde a 51–75**; não sobrescrever as primeiras 25.
 
 - **1–10:** 1B 2A 3B 4B 5B 6C 7A 8B 9A 10A
 - **11–20:** 11A 12B 13B 14B 15A 16A 17A 18A 19A 20B
@@ -60,6 +60,9 @@ As letras são exatamente as respostas do usuário. Reconsultar a descrição de
 - **32:** usuário aprovou gameplay real da v0.7.2.1.
 - **33–40:** 33C 34A 35A 36A 37A 38A 39A 40A
 - **41–50:** 41B 42A 43C 44A 45B 46A 47B 48A 49A 50C
+- **51–60:** 51C 52A 53A 54C 55A 56B 57A 58C 59B 60A
+- **61–70:** 61A 62C 63C 64A 65A 66C 67A 68A 69A 70A
+- **71–75:** 71A 72A 73B 74A 75B
 
 ## 4. Ordem das futuras entregas — recomendação, ainda sujeita a novas perguntas
 
@@ -137,7 +140,7 @@ bash scripts/verify_lan_foundation.sh
 
 Para executar a suite nativa é necessário ambiente Linux/Windows adequado com `cc`, bash, pthread e timeout. Builds Windows e Android devem rodar no GitHub Actions e logs avaliados por SHA exato. A aprovação anterior de dois jogadores foi relatada pelo usuário; não inventar capturas que não foram anexadas.
 
-**Próxima decisão:** coletar respostas 51+ sobre save / lobby / segurança / discovery antes de congelar session-v1. Este documento deve ser atualizado com as respostas posteriores.
+**Próxima decisão:** coletar respostas 76–100 sobre experiência, segurança, UX, identidade e operação antes de congelar session-v1. Este documento deve ser atualizado com as respostas posteriores.
 
 ## 8. Registro desta atualização documental
 
@@ -150,4 +153,18 @@ Para executar a suite nativa é necessário ambiente Linux/Windows adequado com 
 - **Não implementado:** servidor dedicado, perfis multi-save, lobby de quatro jogadores, importador Android, auto-update, ARM64, chat, PokéNav de amigos.
 - **Riscos conhecidos:** portas v0.7 P2P não são compatíveis diretamente com o protocolo futuro; Android 64 bits pede trabalho no port; proteção do save; evitar duplicar Trainer ID ou destruir identidades originais.
 - **Rollback:** branch base `feature/lan-v0721-viewport-culling`; como esta PR contém apenas arquivos Markdown, basta não mesclá-la para retornar ao estado anterior. Nenhum .sav foi tocado.
-- **Próximo passo:** colher respostas 51–75; congelar session-v1; implementar SaveProfileManager atrás de feature flag, com testes offline e backups.
+- **Próximo passo:** colher respostas 76–100; congelar session-v1 após as respostas; implementar SaveProfileManager atrás de feature flag, com testes offline e backups.
+
+
+## 9. Registro de atualização — respostas 51–75 (documentação apenas)
+
+- **Branch / PR:** `feature/lan-v080-architecture-spec` / [PR #5](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/5), derivada da v0.7.2.1 funcional. Confirmar HEAD do momento antes de prosseguir.
+- **Pedido do usuário:** registrar suas respostas `1C 2A 3A 4C 5A 6B 7A 8C 9B 10A 11A 12C 13C 14A 15A 16C 17A 18A 19A 20B 21A 22A 23B 24A 25B` como **51C 52A ... 75B**. O usuário convidou mais perguntas e exige README para outras IAs a cada atualização.
+- **Modificado:** `docs/LAN_V080_ARCHITECTURE.md` ganhou tabela 51–75 e consequências técnicas; `AI_README.md` ganhou mapa de decisões e este registro; `AGENTS.md` deverá manter contagem e obrigação de handoff atualizadas.
+- **Adicionado (documentação):** requisitos de perfil portátil/normal, backup configurável, 60s de reconexão, late-join, portas avançadas, PIN de seis dígitos, nomes sempre acima do personagem, conectividade PvP direta com fallback futuro, Android 10+ como alvo, updates apenas com confirmação.
+- **Removido:** nenhum recurso do jogo, save ou protocolo.
+- **Testes desta atualização:** revisão de presença e ordem das decisões, consistência da especificação e diff do PR. Não houve alteração em `.c`, build ou execução de gameplay; não declarar teste de 4 jogadores/servidor pronto.
+- **Ainda NÃO implementado:** servidor dedicado, sessão de até quatro jogadores, launcher moderno, perfis multi-save, backup/restore, nomes sobre sprites, PIN, QR, ARM64, serviço Android, batalha por relé, updater.
+- **Riscos:** rótulos sempre visíveis ocupam a viewport GBA 240x160, exigindo QA de colisão visual e FPS; fallback de Cable Club por relé pode ser sensível à latência; identificar clones de save por identidade de perfil sem sobrescrever Trainer ID; Android 10+ RAM 4GB são metas, não promessa universal.
+- **Rollback:** retornar à `feature/lan-v0721-viewport-culling` (commit-base `a87e2c49e453db32def5e71ba2a2e696a911d504`), que já foi validada visualmente pelo usuário. Somente Markdown foi alterado nesta branch de planejamento.
+- **Próximo passo:** rodada de respostas 76–100; depois separar M0 protocolo de M1 perfis sem modificar o jogo antes de verificar compatibilidade e saves reais.
