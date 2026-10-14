@@ -526,3 +526,36 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 **Recomendação e próximo passo:** preservar PR #10 experimental e solicitar QA do usuário no Windows com **3 máquinas lógicas** (servidor EHL8 + 2 clientes Emerald com perfis diferentes) antes de declarar jogabilidade dedicada validada. Se aprovar, implementar lista real de participantes/Ready UI e reconexão, depois até 4 players. README obrigatório em cada atualização.
 
 **Rollback:** `feature/lan-v080-mega-desktop-polish` (instalador previamente confirmado pelo usuário), backup LAN validado `feature/lan-v0721-viewport-culling`. Nunca modificar arquivos de save originais.
+
+
+## 23. EHL8 Lobby observável + QA reforçado (2026-10-14)
+
+**Usuário:** solicitou `Continue de onde parou` sobre a integração real servidor dedicado / Emerald. O trabalho M2/1–M2/3 já existia no PR #10 e **não foi refeito**. Branch incremental: `feature/lan-v0803-ehl8-lobby-observability` (PR #11, draft); base `feature/lan-v0803-dedicated-session-core`.
+
+### Achado de auditoria e correção
+- A UI anterior dizia `Servidor EHL8 ativo` apenas porque `EmeraldSessionServer.exe` não havia terminado. Isso não comprovava que dois jogadores tinham autenticado nem estado Ready/Start.
+- Agora o servidor publica **snapshot LOCAL** `--status-file` atômico, somente em transições de entrada, pronto/iniciar, saída e parada (não a cada frame): `schema=1`, `phase`, `slots`, `players` contendo IDs de perfis locais e Ready. **Nunca PIN, endereço IP ou Pokémon/save**. Erros de escrita do snapshot são avisados mas não interrompem a rede.
+- O launcher cria um caminho aleatório em `logs/`, lê no máximo 8192 bytes, valida rigorosamente tipos/valores antes de mostrar `Lobby · n/2` com IDs de quem está pronto, ou `Em jogo · n/2`. Antes do primeiro snapshot mostra **iniciando**, sem fingir confirmação de conexão.
+- `tests/test_emerald_session_server.py`: teste **real de sockets** cobrindo dois clientes, Ready, Start, saída, snapshot sem PIN e estado parado.
+- `tests/test_emerald_launcher.py`: arquivo ausente/malformado, identificadores perigosos, estados/slots inválidos e status >8KiB recusados.
+- `.github/workflows/test-v0803-dedicated-server.yml`, `.github/workflows/build-v080-graphical-launcher.yml`: executam novamente testes e compilações Windows + Linux nesta branch.
+- Guia: `docs/LAN_V0803_LOBBY_OBSERVABILITY_QA.md`.
+
+### Resultado de QA atual (não confundir com gameplay)
+- ✅ [Run 38534564447](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38534564447) **SUCCESS**: servidor Python em **Windows + Linux**, incluindo testes TCP do lobby e **integração nativa C SessionClient ↔ servidor EHL8** no Linux.
+- ✅ [Run 38534564224](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38534564224) **SUCCESS**: launcher gráfico Windows, unit tests com status de lobby e compilação PyInstaller.
+- Novos binários baixados do GitHub, ZIP CRC OK, PE MZ:
+  - `EmeraldLauncher.exe` (artefato `11879343202`): **11.382.443 bytes**, SHA256 `a98bd3da8d4ad7743e62e3c9055ba5598d9411e8f0ae485351a1e73cccb28862`.
+  - `EmeraldSessionServer.exe` (artefato `11879442751`): **9.697.053 bytes**, SHA256 `730727d8ecc55d5eb9d056194f414635f61233a08dcea369d3bf7086a9a71f6c`.
+- Jogo EHL8/SDL2 e gerenciador de perfis **não foram recompilados para este patch**, pois não houve alteração do código de gameplay/SDL/protocolo nativo. Reuso de builds anteriores da base com hashes `pokeemerald.exe=c899a9046723f0217301c07ae325517cad4150ac29b935eb91ddf82d94b763e0`, `SDL2.dll=eb323e920739ff48f72b28cd20f0cf6a58507bff852cbf1bacb4fb6fa07d1a3d`, `emerald_profilectl.exe=f60b8346d8a978b79bd503d1358fb986b62c03cb5f939921594c2f208d141f4d`.
+- **Ainda NÃO testado** com dois jogadores reais em Hoenn na preview, saves autênticos, perdas de rede ou combate/troca via servidor dedicado. Cable Club segue P2P; Android não recebeu nova UI. NÃO declarar multiplayer completo, WAN público, quatro jogadores nem integridade de save sem teste.
+- CI ROM GBA genérico pode falhar no comparador histórico independentemente deste patch; reportar falha e não afirmar conjunto inteiro verde.
+
+### Adicionado/modificado/removido
+**Alterado:** backend do servidor, launcher, testes, workflows e scripts de distribuição + instalador/README. **Não alterado:** `src/`, Android, GBA, código de jogo e formato .sav. **Removido: nada**. Saves originais do usuário nunca foram lidos ou sobrescritos.
+
+### Distribuição e rollback
+O empacotamento EHL8 é **preview isolada** com instalador real NSIS e ZIP portátil completo, vinculando binários validados por SHA256. Publicar link apenas após testar pipeline e conferir o ZIP inteiro, **nunca só o launcher**. Separar pastas para não substituir v0.8.2 instalada pelo usuário. Rollback: `feature/lan-v080-mega-desktop-polish` (instalador aprovado) ou, para P2P gameplay comprovado, `feature/lan-v0721-viewport-culling` SHA `a87e2c49e453db32def5e71ba2a2e696a911d504`.
+
+### Próximas etapas
+Após user QA em dois PCs: corrigir bugs de abertura, salvamento, warp, renderização e desconexão; tratar fila/reconexão com reserva de 60s, lobby com nomes amigáveis, status por jogador e erro explicativo; ampliar slots somente após 2 reais; manter independentes Cable Club/Trocas/PvP até proxy SIO seguro. Atualizar este arquivo a cada patch.
