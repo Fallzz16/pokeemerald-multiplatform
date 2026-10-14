@@ -65,3 +65,10 @@ jobs:
           i686-w64-mingw32-gcc -std=c99 -Wall -Wextra -Werror -pedantic -I src/lnet -c src/lnet/lnet_session_v1.c -o /tmp/lnet_session_v1.o
           i686-w64-mingw32-gcc -std=c99 -Wall -Wextra -Werror -pedantic -I src/profile -c src/profile/save_profiles.c -o /tmp/save_profiles.o
           i686-w64-mingw32-gcc -std=c99 -Wall -Wextra -Werror -pedantic -I src/profile src/profile/save_profiles.c tools/emerald_profilectl.c -o /tmp/emerald_profilectl.exe
+      - name: Upload developer profile CLI (not the game)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Emerald-Hybrid-v080-Profile-CLI-Windows-x86-Experimental
+          path: /tmp/emerald_profilectl.exe
+          if-no-files-found: error
+          retention-days: 14
