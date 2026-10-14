@@ -10,6 +10,7 @@ import logging
 import re
 import secrets
 import signal
+import sys
 import struct
 import time
 from dataclasses import dataclass
@@ -267,7 +268,10 @@ def main():
     parser = argparse.ArgumentParser(description="Emerald EHL8 LAN dedicated server (game adapter not implemented yet)")
     parser.add_argument("--bind", default="127.0.0.1", help="Localhost by default. Use 0.0.0.0 only on trusted private LAN.")
     parser.add_argument("--port", type=int, default=45680)
-    parser.add_argument("--pin", required=True, help="Six digits; not secure authentication for public internet")
+    credentials = parser.add_mutually_exclusive_group(required=True)
+    credentials.add_argument("--pin", help="Legacy CLI 6-digit PIN (visible in process arguments)")
+    credentials.add_argument("--pin-stdin", action="store_true",
+                             help="Read 6-digit PIN from stdin so it is not exposed in the command line")
     parser.add_argument("--slots", type=int, choices=(1, 2), default=2)
     parser.add_argument("--idle-minutes", type=int, default=15)
     args = parser.parse_args()
@@ -277,6 +281,10 @@ def main():
         parser.error("bind must be a numeric IPv4 address")
     if not 1 <= args.port <= 65534 or not 1 <= args.idle_minutes <= 1440:
         parser.error("port or idle minutes out of range")
+    if args.pin_stdin:
+        args.pin = sys.stdin.readline(16).strip()
+    if not re.fullmatch(r"[0-9]{6}", args.pin or ""):
+        parser.error("PIN must contain exactly six digits")
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     try:
         asyncio.run(serve(args))
