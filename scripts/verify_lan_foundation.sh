@@ -9,6 +9,11 @@ test -f src/lnet/lnet_session.c
 test -f src/lnet/lnet_sio.c
 grep -q 'void LanLinkOpenAsHost' src/link.c
 grep -q 'bool8 HandleLinkConnection' src/link.c
+# The native emulation must deliver completed TCP SIO words through Emerald's
+# real serial interrupt callback. A missing registration silently kills the
+# Cable Club handshake even when TCP connect and HELLO tests pass.
+grep -q 'SetSerialCallback(SerialCB)' src/link.c
+grep -q 'SetSerialCallback(NULL)' src/link.c
 grep -q 'android.permission.INTERNET' android/app/src/main/AndroidManifest.xml
 grep -q -- '--lan-host=' src/platform/sdl2.c
 grep -q -- '--lan-client=' src/platform/sdl2.c
