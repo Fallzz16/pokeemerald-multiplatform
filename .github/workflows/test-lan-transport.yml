@@ -5,6 +5,7 @@ on:
     branches:
       - feature/lan-v071-connection-stability
       - feature/lan-v072-overworld-presence
+      - feature/lan-v0721-viewport-culling
     paths:
       - 'src/lnet/**'
       - 'src/link.c'
