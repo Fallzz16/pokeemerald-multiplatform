@@ -88,7 +88,7 @@ def make_command(game,root,pid,mode,ip="",port="45680",pin=""):
         if not re.fullmatch(r"[0-9]{6}",pin):
             raise ValueError("Informe o PIN de seis dígitos do servidor dedicado.")
         return args+["--lan-log","cliente-ehl8.log",
-                     "--session-client="+validate_ipv4(ip)+":"+str(p),"--session-pin="+pin]
+                     "--session-client="+validate_ipv4(ip)+":"+str(p),"--session-pin-stdin"]
     raise ValueError("Modo de jogo desconhecido.")
 
 def find_profiles(root):
@@ -460,7 +460,8 @@ class EmeraldLauncher(tk.Tk):
                 flags=(getattr(subprocess,"CREATE_NEW_CONSOLE",0) if self.diagnostics.get()
                        else getattr(subprocess,"CREATE_NO_WINDOW",0))
             if self.diagnostics.get():
-                p=subprocess.Popen(args,cwd=str(application_dir()),creationflags=flags)
+                p=subprocess.Popen(args,cwd=str(application_dir()),creationflags=flags,
+                                   stdin=subprocess.PIPE if mode=="dedicated" else subprocess.DEVNULL)
             else:
                 # ReadFlash normally prints huge amounts of debug lines. Avoid
                 # spawning a console or growing a multi-gigabyte stdout log.
@@ -469,7 +470,15 @@ class EmeraldLauncher(tk.Tk):
                            +"-"+secrets.token_hex(3)+".log")
                 with diag.open("wb") as errfile:
                     p=subprocess.Popen(args,cwd=str(application_dir()),creationflags=flags,
-                                       stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=errfile)
+                                       stdin=subprocess.PIPE if mode=="dedicated" else subprocess.DEVNULL,
+                                       stdout=subprocess.DEVNULL,stderr=errfile)
+            if mode=="dedicated":
+                # Never place a LAN room PIN in argv, persisted settings or logs.
+                try:
+                    p.stdin.write((self.pin.get()+"\\n").encode("ascii"))
+                    p.stdin.flush()
+                finally:
+                    p.stdin.close()
             self.active_process=p
             self.active_mode=mode
             self.active_log=logs
