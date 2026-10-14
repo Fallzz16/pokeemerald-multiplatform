@@ -125,3 +125,23 @@ Consultar workflows para o **SHA exato da última revisão**:
 - `test-lan-v080-foundation.yml`: perfil seguro em fixtures sintéticas e decoder.
 
 O instalador v0.8.2 confirmado funcionando pelo usuário permanece na branch **`feature/lan-v080-mega-desktop-polish`**. Para rollback LAN/P2P, usar `feature/lan-v0721-viewport-culling` commit `a87e2c49e453db32def5e71ba2a2e696a911d504`. **Não substituir instalação anterior sem backup**.
+
+
+## Incremento de estabilidade: entrada tardia + ocupação real do lobby (2026-10-14)
+
+**Problema detectado na revisão do código:** o servidor admite que um jogador entre quando a sessão já está no estado `GAME`, mas o cliente nativo EHL8 sempre envia `READY=1` depois de receber `JOIN`. Antes desta correção, o servidor aceitava READY somente em `LOBBY`, portanto a entrada tardia era rejeitada imediatamente após `START`. Isso contrariava as decisões #9A/#38A/#61A e interrompia a substituição de um jogador que saiu.
+
+**Corrigido:**
+- `tools/emerald_session_server.py`: em `GAME`, o primeiro `READY=1` válido da pessoa que acabou de entrar é aceito como confirmação. Mensagens READY repetidas são idempotentes e **não geram broadcasts extras**. Payload diferente de `1` continua inválido; outras mensagens não autorizadas continuam rejeitadas.
+- `tests/test_emerald_session_server.py`: teste de socket real inicia uma sala com 2 jogadores, aguarda `START`, desconecta um, entra terceiro perfil substituto no slot liberado, confirma `START`, envia READY e HEARTBEAT e recebe o encaminhamento correto de uma pose. Também verifica que READY duplicado não injeta `PLAYER_LIST` extra.
+- `tools/emerald_session_server.py` registra somente `EHL8_ROOM_COUNT=N/2` para início, entrada e saída, sem expor nome de treinador, IP ou PIN.
+- `tools/emerald_launcher.py`: painel de servidor mostra ocupação **real e atualizada** no formato `jogadores conectados: N/2`, lendo somente os 8192 bytes finais do log da instância iniciada. Logs ausentes/malformados deixam o texto em estado de aguardo, sem inventar números.
+- `tests/test_emerald_launcher.py`: testes de parser com várias linhas, logs ausentes, dados inválidos e final de arquivo longo.
+
+**Não alterado:** `src/` e comunicação do Emerald, grafismo/culling, progresso, saves, Cable Club e binários já instalados. **Não removido:** nenhuma funcionalidade. As alterações são de servidor, painel administrativo, testes e documentação.
+
+**Limites que permanecem:** este caso cobre *entrada tardia com slot livre*, mas **não implementa reconexão com reserva de 60 segundos ou autenticação de sessão retomada**. O novo contador é apenas uma informação resumida — ainda falta lobby gráfico completo com participantes/Pronto/kick, admin avançado e interação dentro do jogo. PIN continua adequado apenas a LAN/VPN privada. Builds CI e teste de sockets não substituem QA real de duas janelas Emerald no Windows.
+
+**Validação:** conferir `.github/workflows/test-v0803-dedicated-server.yml` (Linux, Windows, ponte C nativa), `build-v080-graphical-launcher.yml`, builds completos Windows/Android e packaging EHL8 Preview **na revisão exata** do último commit. O CI genérico da ROM é independente e pode continuar falhando no alvo antigo. Não declarar a correção pronta para release se esses checks ou a QA humana falharem.
+
+**Rollback e handoff:** a branch de trabalho continua `feature/lan-v0803-dedicated-session-core` / PR #10 draft. A instalação v0.8.2 anteriormente aprovada permanece inalterada; todos os testes devem usar a preview EHL8 em pasta/instalação separada com **cópias dos saves**. Registrar resultados finais com SHA e IDs de runs também em `AI_README.md`.
