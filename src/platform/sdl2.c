@@ -165,7 +165,7 @@ int main(int argc, char **argv)
         if (sessionPinFromStdin && sessionPin == NULL &&
             fgets(sessionPinBuffer, sizeof(sessionPinBuffer), stdin) != NULL)
         {
-            sessionPinBuffer[strcspn(sessionPinBuffer, "\\r\\n")] = '\\0';
+            sessionPinBuffer[strcspn(sessionPinBuffer, "\r\n")] = '\0';
             sessionPin = sessionPinBuffer;
         }
         else if (sessionPinFromStdin)
