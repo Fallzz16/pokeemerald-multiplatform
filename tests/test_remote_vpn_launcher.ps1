@@ -42,3 +42,6 @@ Assert-Run @('-Mode','Join','-Address','100.999.2.3','-Port','45680','-DryRun') 
 Assert-Run @('-Mode','Join','-Address','0.0.0.0','-Port','45680','-DryRun') $false 'IPv4'
 Assert-Run @('-Mode','Join','-Address','255.255.255.255','-Port','45680','-DryRun') $false 'IPv4'
 Write-Host 'Passed: PowerShell parser + 11 standalone launch checks; no game, network or saves touched.'
+# The final negative test intentionally exits 1. Do not propagate that known
+# child-process code as the test script result after all assertions pass.
+exit 0
