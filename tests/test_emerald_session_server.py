@@ -1,6 +1,8 @@
 """Real loopback TCP tests against the EHL8 dedicated session server."""
 import asyncio
 import importlib.util
+import json
+import tempfile
 from pathlib import Path
 import struct
 import sys
@@ -164,6 +166,55 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
         await b.recv(S.LEAVE)
         await b.recv(S.PLAYER_LIST)
         self.assertEqual(len(self.server.players), 1)
+
+    async def test_status_file_tracks_real_connections_without_pin(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/"lobby.json"
+            room=S.SessionServer("987654", slots=2, status_file=path)
+            listener=await room.start("127.0.0.1", 0)
+            port=listener.sockets[0].getsockname()[1]
+            first=second=None
+            async def add(profile):
+                reader, writer=await asyncio.open_connection("127.0.0.1", port)
+                client=Client(reader,writer)
+                await client.send(S.HELLO)
+                client.session=(await client.recv(S.WELCOME)).session
+                await client.send(S.AUTH_PIN,b"987654")
+                await client.recv(S.AUTH_PIN)
+                await client.send(S.JOIN,profile)
+                await client.recv(S.JOIN)
+                await client.recv(S.PLAYER_LIST)
+                return client
+            try:
+                self.assertEqual(json.loads(path.read_text())["players"],[])
+                first=await add(b"trainer_A")
+                info=json.loads(path.read_text())
+                self.assertEqual(info["phase"],"lobby")
+                self.assertEqual(info["players"][0]["profile"],"trainer_A")
+                self.assertNotIn("987654",path.read_text())
+                await first.send(S.READY,b"\\x01")
+                await first.recv(S.PLAYER_LIST)
+                self.assertTrue(json.loads(path.read_text())["players"][0]["ready"])
+                second=await add(b"trainer_B")
+                await first.recv(S.PLAYER_LIST)
+                await second.send(S.READY,b"\\x01")
+                await first.recv(S.PLAYER_LIST)
+                await second.recv(S.PLAYER_LIST)
+                await first.recv(S.START)
+                await second.recv(S.START)
+                info=json.loads(path.read_text())
+                self.assertEqual(info["phase"],"playing")
+                self.assertEqual(len(info["players"]),2)
+                await second.close()
+                await first.recv(S.LEAVE)
+                await first.recv(S.PLAYER_LIST)
+                self.assertEqual(len(json.loads(path.read_text())["players"]),1)
+            finally:
+                for client in (first,second):
+                    if client: await client.close()
+                await room.stop()
+            self.assertEqual(json.loads(path.read_text())["phase"],"stopped")
+            self.assertNotIn("987654",path.read_text())
 
     def test_validation(self):
         x = bytearray(18)
