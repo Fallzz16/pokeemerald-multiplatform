@@ -49,7 +49,7 @@
 | `scripts/verify_lan_foundation.sh` | Testes nativos sessão/ligação/presença/culling. |
 | `docs/LAN_V080_ARCHITECTURE.md` | Protocolo, roadmap, matriz QA, decisão por pergunta. |
 
-## 3. Decisões aprovadas pelo usuário (1–100)
+## 3. Decisões aprovadas pelo usuário (1–116)
 
 As letras são exatamente as respostas do usuário. Reconsultar a descrição de **cada uma das 100 decisões** em `docs/LAN_V080_ARCHITECTURE.md` antes de interpretar letra isoladamente. **A rodada final veio numerada 1–25 pelo usuário, mas corresponde a 51–75**; não sobrescrever as primeiras 25.
 
@@ -66,6 +66,8 @@ As letras são exatamente as respostas do usuário. Reconsultar a descrição de
 - **76–85:** 76C 77A 78A 79A 80A 81A 82A 83A 84A 85A
 - **86–95:** 86A 87B 88A 89A 90A 91A 92A 93A 94A 95A
 - **96–100:** 96A 97A 98A 99A 100A
+- **101–110:** 101B 102B 103B 104B 105C 106C 107B 108B 109C 110C
+- **111–116:** 111C 112A 113B 114C 115A 116A
 
 ## 4. Ordem das futuras entregas — recomendação, ainda sujeita a novas perguntas
 
@@ -331,3 +333,32 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 - **Alterações no código do jogo, CLI ou launcher Python:** nenhuma. **Removido:** nada. Erro corrigido pelo empacotamento completo e diagnóstico no `.bat`.
 - **Atenção a futuros agentes/distribuição:** NUNCA orientar usuário a baixar o artifact do **launcher isolado** como se fosse um pacote pronto para jogo. Publicar somente pacote FINAL DE QA que contenha os quatro componentes com hash, README de dependências e verificador. Se Windows Security colocar um componente em quarentena, não sugerir desligar antivírus; verificar detalhes e fonte assinada/legítima.
 - **Rollback:** preservar pasta v0.7.2.1 e saves originais; extrair novo ZIP em pasta separada. Não copiar saves originais sem backup. **Ainda não implementado:** servidor dedicado, 4 jogadores, login online, backups automáticos em cada save, launcher Android equivalente.
+
+
+## 16. MEGA atualização v0.8 / Pass 1 (decisões 101–116) — 2026-10-14
+
+**User vote:** `101B 102B 103B 104B 105C 106C 107B 108B 109C 110C 111C 112A 113B 114C 115A 116A`. **NÃO interpretar como substituição das 100 escolhas antigas.** Arquivo exaustivo de decisões e plano de QA em [docs/LAN_V080_MEGA_DESKTOP_PASS1.md](docs/LAN_V080_MEGA_DESKTOP_PASS1.md).
+
+**Branch:** `feature/lan-v080-mega-desktop-polish` sobre PR #8; [PR #9](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/9) draft. Último commit DEV deve ser lido do HEAD (muda após updates de docs). Baseline aprovado pelo usuário: `feature/lan-v0721-viewport-culling`, SHA `a87e2c49e453db32def5e71ba2a2e696a911d504`. **Não mesclar com base estável sem QA real.**
+
+### Adicionado / modificado
+- `tools/emerald_launcher.py`: sessão sem console CMD em modo normal com `CREATE_NO_WINDOW`, stdout verboso descartado e stderr limitado por execução em arquivo; CMD reaparece somente quando usuário ativa diagnóstico; lembrar último perfil e configurar IP/porta e diagnóstico num JSON externo ao save; minimizar launcher durante o jogo e reabrir ao encerrar, avisar erro e caminho de logs; impedir outro jogo simultâneo pelo mesmo launcher.
+- Gerenciamento de backups: botões de criar backup e recuperar backup escolhido por número, somente com jogo fechado, via `emerald_profilectl.exe` existente (que controla lock e recusa saves estruturalmente inválidos); exigir confirmação antes de restaurar. **Não prometer verificação completa do checksum.**
+- `src/platform/sdl2.c`: escala inicial inteira adaptada à área de trabalho, F11/Alt+Enter para alternar janela e fullscreen-desktop. Mantidos nearest neighbor, SDL integer scale e lógica SDL para Android inalterada.
+- `scripts/verify_v080_profile_patch.py`: inversão somente dos trechos de vídeo **exatos e autorizados** antes da auditoria hash SDL antiga.
+- `tests/test_emerald_launcher.py`: novos testes para persistência, configurações malformadas e proteção dos bytes do .sav.
+- `docs/LAN_V080_MEGA_DESKTOP_PASS1.md`: decisões 101–116, implementação real, limites, QA e rollback.
+- Workflows Windows/Android e launcher estendidos para executar na nova branch e no PR.
+
+### Removido
+- **Nada:** battle logic, NPCs, menus Emerald, maps, Pokedex, Quest UI, Fairy, physical/special, fast-forward, áudios, LAN SIO e formato do save continuam os antigos. Nenhum save pessoal foi aberto ou modificado.
+
+### Testes e limitações
+- Rastrear GitHub Actions: `build-v080-graphical-launcher.yml`, `build-lan-hybrid-windows.yml`, `build-lan-hybrid-android.yml`, `test-lan-v080-foundation.yml`, e regressões. Não declarar todos verdes até ler conclusões exatas e comparar SHA.
+- Ainda sem teste do usuário da nova versão com escalonamento ou CMD, backup real, saída do jogo e retorno à interface.
+- #106C: zona preta no frame vista no screenshot precisa ser investigada, sem inferir que fullscreen resolve corte interno.
+- #109C: instalador completo Windows ainda pendente; #110C: filtros opcionais ainda pendentes; #111C: desenvolvimento paralelo por marcos, sem fingir que servidor existe; #112A: servidor dedicado terá controle no próprio launcher; #113B e #114C convites e atalho configurável futuros; #115A Windows primeiro; #116A 2/3/4 jogadores em etapas.
+- **NÃO implementado:** SessionServer headless EHL8, lobby real, 4 participantes, autenticação opcional online, streamer de eventos multiplayer, Android GUI equivalente e backups automáticos a cada save manual.
+- **Risco importante:** saída de `AgbMain`/flush ainda depende de revisão de ciclo de vida; backups manuais somente com jogo fechado; integração de saves tem validação estrutural sem checksum completo. **Teste em pasta nova e somente com cópias dos seus saves reais.**
+- **Rollback:** usar jogo anterior aprovado v0.7.2.1 / branch `feature/lan-v0721-viewport-culling`. Não reescrever outro save durante teste.
+- **Próximo passo:** validar compilação, testar GUI e viewport em Windows real, depois corrigir quaisquer bugs observados e iniciar estabilização de saves, M2 servidor dedicado.
