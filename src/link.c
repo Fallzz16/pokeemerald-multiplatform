@@ -1802,6 +1802,8 @@ void LinkPlayerFromBlock(u32 who)
 static LNetLink *sPortableLanLink;
 static LNetPresence *sLanPresence;
 static LNetSessionClient *sLanDedicatedSession;
+static int sLanDedicatedStateLogged = -1;
+static void PortLanLog(const char *fmt, ...);
 
 #define LAN_VIRTUAL_PLAYER_ID 0xFC
 #define LAN_MOVE_MAX_PX_PER_FRAME 3
@@ -1880,7 +1882,17 @@ static void PortLanPresencePump(void)
     if (sLanPresence || sLanDedicatedSession)
     {
         if (sLanDedicatedSession)
+        {
+            int state;
             lnet_session_client_poll(sLanDedicatedSession, &local);
+            state = lnet_session_client_state(sLanDedicatedSession);
+            if (state != sLanDedicatedStateLogged)
+            {
+                PortLanLog("[EHL8] session state=%d (playing=%d, failed=%d)\\n",
+                           state, EHL_CLIENT_PLAYING, EHL_CLIENT_FAILED);
+                sLanDedicatedStateLogged = state;
+            }
+        }
         else
             lnet_presence_poll(sLanPresence, &local);
         if (inField &&
@@ -2105,6 +2117,7 @@ bool32 PortLanRequestDedicatedClient(const char *host, u16 port,
     sLanAuto.queued = FALSE;
     sLanAuto.role = 0;
     sLanLinkOpened = FALSE;
+    sLanDedicatedStateLogged = -1;
     if (!host || !pin || !profileId)
         return FALSE;
     sLanDedicatedSession =
