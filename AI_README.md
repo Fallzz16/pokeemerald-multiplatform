@@ -576,3 +576,54 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 **Riscos/pêndencias:** reconexão com vaga por 60 segundos e token de retomada não implementada; lobby gráfico ainda sem nomes/ping/kick; troca/batalha EHL8 ainda sem proxy Cable Club, má qualidade de WAN pública (PIN não substitui criptografia), suporte a quatro participantes e a UI Android dedicados ausentes. Não promover PR #10 a release estável ainda. Testar novo pacote M2 em instalação separada da v0.8.2 previamente aprovada.
 
 **Rollback:** `feature/lan-v080-mega-desktop-polish` é o instalador v0.8.2 confirmado pelo usuário; `feature/lan-v0721-viewport-culling` SHA `a87e2c49e453db32def5e71ba2a2e696a911d504` é a LAN P2P funcional. Preservar todos os perfis originais e nunca transportar `.sav` dentro do instalador.
+
+## 25. Continuação — reconexão automática de sessão EHL8 (v0.8 M2/4, 14/10/2026)
+
+**Pedido do usuário:** `Continue de onde parou`. Retomada sem reiniciar projeto e sem tocar na versão instalada. Ao consultar o HEAD do GitHub, PR #10 já incluía jogo C EHL8 + Python server + GUI M2 preview e pipeline SHA-sincronizada. A primeira prioridade pendente 1–116 era **vaga 60s e reconexão automática** (#60A/#86A).
+
+**Nova branch experimental:** `feature/lan-v0804-reconnect-hardening` sobre `feature/lan-v0803-dedicated-session-core`. [PR #14](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/14) **DRAFT**; manter v0.8.2 instalada e M2 preview da branch anterior intactas.
+
+### Adicionado
+- `docs/LAN_V0804_RECONNECT_QA.md`: documentação de protocolos, critérios de aceite e rollback.
+- Casos Python TCP reais no `tests/test_emerald_session_server.py`: reserva por queda, recusa terceiro, retomada mesma vaga, expiração de vaga, idle shutdown depois da expiração, `LEAVE` voluntário.
+- `tests/native_ehl8_client.c` e `tests/test_ehl8_native_bridge.py`: teste end-to-end C ↔ servidor Python, encerramento forçado de socket EHL8 e nova pose remota após reconectar.
+
+### Modificado
+- `tools/emerald_session_server.py`: servidor mantém em RAM `reservations[profile_id]=(slot,deadline_monotonic)` durante **60 s** após queda; terceiros não ocupam vaga, o mesmo profile ID autenticado por PIN resgata slot; LEAVE explícito liberta imediatamente; expiração inicia o timeout padrão de 15 min da sala vazia; `stop()` de administrador não cria novas reservas.
+- `src/lnet/lnet_session_client.h/.c`: novo estado `EHL_CLIENT_RECONNECTING`; cliente nativo em jogo retenta a cada 1,5s dentro de janela de 60s se já fez JOIN válido, limpa sprite antigo na queda, não bloqueia o loop; heartbeat a cada 10s inclusive em movimento contínuo detecta socket silencioso (timeout 45s), sem salvar alteração automática. Rejeição de PIN/protocolo continuam fatais. PIN fica apenas na memória nativa para retry, apagado em `close()`. Em encerramento limpo faz envio best-effort EHL8 `LEAVE`.
+- Workflows Windows/Android da branch adicionados para tentar compilações completas desta revisão.
+- **Nenhum .sav, Quest UI, movimento Emerald, áudio, mapas, batalha/troca Cable Club, assets ou NPCs alterados.** Servidor dedicado continua sem acesso ao save; P2P bruto 45680/45681 continua isolado.
+- **Removido:** nada do jogo e nenhum arquivo de saves.
+
+### QA, erros corrigidos e resultado real
+- **Primeiras tentativas falharam** por sequências `b"\\x01"` erradas nos testes inseridos (enviavam barra literal em vez de byte 01), e um teste antigo supunha que o slot da conexão perdida ficava imediatamente livre, o que contradiz #60A. Corrigidos *os testes*, não afrouxada a validação do servidor: o teste antigo usa LEAVE voluntário.
+- Também corrigido teste C que comparava reservas **depois** que o processo de QA havia fechado (novo fechamento muda estado do slot); agora comprova retorno de pose antes e valida coerência após o fim sem corrida.
+- ✅ [GitHub Actions 38557785982](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38557785982): **SUCCESS** Linux+Windows testes TCP Python, e native C bridge ↔ servidor real, incluindo reconexão forçada.
+- ✅ [LAN TCP antigo 38557785833](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38557785833): **SUCCESS**.
+- **Compilação Windows e Android do jogo completo nesta branch**: conferir runs do PR #14 no HEAD **antes de declarar sucesso**. O fluxo de GBA ROM `CI` continua historicamente falhando na compilação `AgbRfu_LinkManager.o`, separado dos executáveis PC/Android; não ocultar falha.
+- **Ainda NÃO houve QA de duas instâncias reais do jogo exibindo sprites em Hoenn com queda de Wi-Fi**, nem validação no PC do usuário desta revisão. Não distribuir instalador final nem mesclar PR #14 antes da checagem completa.
+
+### Segurança / limitações
+- Perfil+PIN em rede privada só protegem contra duplicação casual; **não há token de retomada criptográfico nem TLS**. Não expor porta pública. PIN não fica em argv/log, mas o cliente precisa mantê-lo em RAM para retry.
+- O limite de 60s começa quando o **cliente percebe** a perda, que em socket silencioso pode levar 45s; grace do servidor começa na detecção da queda pelo servidor. Em rede instável podem expirar em momentos diferentes; testar.
+- LEAVE normal é best effort; perda do frame pode resultar em espera máxima de 60s para entrada com perfil diferente.
+- Quatro jogadores, servidor Android completo, lobby detalhado, SIO de troca/batalha via EHL8, backup automático pós-save continuam **pendentes**.
+- **Próximo passo:** confirmar compilação Windows/Android no mesmo código; fazer QA com 3 máquinas lógicas, 2 saves cópias e Wi-Fi desconectado/reconectado. Se aprovar, juntar os novos binários num pacote de preview separado da v0.8.2 e continuar o lobby/mundo 4-player.
+
+**Rollback:** PR #10/branch `feature/lan-v0803-dedicated-session-core` é a preview M2 anterior; `feature/lan-v080-mega-desktop-polish` instalada pelo usuário; v0.7.2.1 aprovada `feature/lan-v0721-viewport-culling` SHA `a87e2c49e453db32def5e71ba2a2e696a911d504`. Não copiar nem sobrescrever saves de um perfil original.
+
+### QA final desta revisão de código — commit d9d673e4 (2026-10-14)
+
+**GitHub HEAD verificado:** `d9d673e4fa09bcb65be93375714c2c4b5c52bcd1`. Todos os passos a seguir reportam a **mesma revisão**:
+
+| Verificação | Run | Resultado |
+|---|---|---|
+| EHL8 sockets Python Ubuntu/Windows + clientes C nativos incluindo reconexão forçada | [38558150186](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38558150186) | **SUCCESS** |
+| Antigo TCP LAN/SIO regression | [38558150293](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38558150293) | **SUCCESS** |
+| Compilação jogo Windows x86 completo | [38558150203](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38558150203) | **SUCCESS** |
+| Compilação jogo Android ARMv7 completo, launcher Android ainda antigo | [38558150245](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38558150245) | **SUCCESS** |
+| CI genérico GBA ROM | [38558150222](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38558150222) | **FAILURE**; verificar separadamente, não afirmar todos os checks verdes |
+
+**Conclusão restrita:** código cliente/servidor EHL8 compila nos ports suportados e testes reais de sockets em loopback estão passando, mas **NÃO houve execução visual real do Emerald via servidor M2 com dois jogadores desconectando/reconectando**. O modo é **preview**; PR #14 ainda DRAFT. Nenhum instalador novo nem rollback do usuário foi substituído nesta etapa.
+
+**Atenção para próximas IAs:** `--session-client` exige EHL8 e PIN por stdin; P2P legado é protocolo diferente. Reusar somente os binários produzidos neste SHA ao empacotar nova preview, sem renomear artefatos antigos como se tivessem as melhorias recentes. Adicionar UI legível de estado "Reconectando" sem quebrar FPS/viewport permanece pendente; por enquanto estado 7 é visível nos logs de sessão (não prometer HUD).

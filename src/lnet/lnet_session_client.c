@@ -21,6 +21,9 @@
 #define EHL_STALE_MS 3000UL
 #define EHL_POSE_INTERVAL_MS 100UL
 #define EHL_HEARTBEAT_INTERVAL_MS 10000UL
+#define EHL_RECEIVE_TIMEOUT_MS 45000UL
+#define EHL_RECONNECT_GRACE_MS 60000UL
+#define EHL_RETRY_DELAY_MS 1500UL
 
 struct LNetSessionClient
 {
@@ -33,6 +36,8 @@ struct LNetSessionClient
     int state;
     uint64_t session;
     unsigned long began, lastRx, lastTx, lastPose, lastRemote;
+    unsigned long lastHeartbeat, reconnectBegan, retryAfter;
+    uint8_t everJoined;
     uint16_t localSeq, lastRemoteSeq;
     uint8_t haveRemoteSeq, haveRemote;
     LNetPose remote;
@@ -62,6 +67,38 @@ static void close_failed(LNetSessionClient *c)
     c->state = EHL_CLIENT_FAILED;
     c->haveRemote = 0;
     c->txLength = c->txOffset = 0;
+}
+
+/* A true link loss after JOIN gets a bounded 60-second recovery window.
+ * Wrong PIN, invalid frames and initial setup errors remain terminal.
+ * No remote sprite survives a disconnected or reconnecting state. */
+static void reconnect_or_fail(LNetSessionClient *c)
+{
+    unsigned long now = now_ms();
+    if (!c->everJoined)
+    {
+        close_failed(c);
+        return;
+    }
+    if (!c->reconnectBegan)
+        c->reconnectBegan = now ? now : 1;
+    if ((unsigned long)(now - c->reconnectBegan) >= EHL_RECONNECT_GRACE_MS)
+    {
+        close_failed(c);
+        return;
+    }
+    lnet_net_close(c->socket);
+    lnet_net_close(c->pending);
+    c->socket = NULL;
+    c->pending = NULL;
+    c->session = 0;
+    c->state = EHL_CLIENT_RECONNECTING;
+    c->retryAfter = now + EHL_RETRY_DELAY_MS;
+    c->began = 0;
+    c->lastRx = c->lastTx = c->lastPose = c->lastHeartbeat = 0;
+    c->haveRemote = c->haveRemoteSeq = 0;
+    c->txLength = c->txOffset = 0;
+    ehl_session_decoder_init(&c->decoder);
 }
 
 static int queue(LNetSessionClient *c, uint16_t type,
@@ -128,6 +165,24 @@ void lnet_session_client_close(LNetSessionClient *c)
 {
     if (!c)
         return;
+    /* Voluntary shutdown: send EHL8 LEAVE so the room can reuse the slot
+     * immediately. Network failures never call this path with a live socket,
+     * and continue receiving their 60s reservation. Best effort: closing a
+     * broken socket cannot guarantee delivery; server grace is the fallback. */
+    if (c->socket && c->session && c->everJoined &&
+        c->state != EHL_CLIENT_RECONNECTING &&
+        c->state != EHL_CLIENT_FAILED)
+    {
+        EhlSessionFrame leave;
+        unsigned char wire[EHL_SESSION_HEADER_SIZE];
+        size_t length = 0, moved = 0;
+        int err = 0;
+        memset(&leave, 0, sizeof(leave));
+        leave.type = EHL_LEAVE;
+        leave.session_id = c->session;
+        if (ehl_session_encode(&leave, wire, sizeof(wire), &length) == 0)
+            (void)lnet_net_send_nb(c->socket, wire, length, &moved, &err);
+    }
     lnet_net_close(c->socket);
     lnet_net_close(c->pending);
     /* Never retain a live PIN in freed memory. */
@@ -156,11 +211,12 @@ static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
         if (frame->type != EHL_AUTH_PIN || frame->payload_size != 1 ||
             frame->payload[0] != 1)
             return -1;
-        /* PIN is no longer needed after authentication. */
+        /* PIN stays only in locked-down process memory for a bounded
+         * automatic reconnect. It is never written to logs/argv/files,
+         * and lnet_session_client_close wipes it. */
         if (!queue(c, EHL_JOIN, (const unsigned char *)c->profile,
                    strlen(c->profile)))
             return -1;
-        memset(c->pin, 0, sizeof(c->pin));
         c->state = EHL_CLIENT_WAIT_JOIN;
         return 0;
     }
@@ -171,6 +227,8 @@ static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
             return -1;
         if (!queue(c, EHL_READY, (const unsigned char *)"\1", 1))
             return -1;
+        c->everJoined = 1;
+        c->reconnectBegan = 0;
         c->state = EHL_CLIENT_WAIT_START;
         return 0;
     }
@@ -217,24 +275,36 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     if (!c || c->state == EHL_CLIENT_FAILED)
         return;
     now = now_ms();
+    if (c->reconnectBegan &&
+        (unsigned long)(now - c->reconnectBegan) >= EHL_RECONNECT_GRACE_MS)
+    {
+        close_failed(c);
+        return;
+    }
+    if (c->state == EHL_CLIENT_RECONNECTING)
+    {
+        if ((int32_t)(now - c->retryAfter) < 0)
+            return;
+        c->state = EHL_CLIENT_CONNECTING;
+    }
     if (c->state == EHL_CLIENT_CONNECTING)
     {
         if (c->began == 0)
             c->began = now ? now : 1;
         if ((unsigned long)(now - c->began) > EHL_CONNECT_TIMEOUT_MS)
         {
-            close_failed(c);
+            reconnect_or_fail(c);
             return;
         }
         c->socket = lnet_net_connect_nb(c->host, c->port, &c->pending, &err);
         if (!c->socket)
         {
             if (err != LNET_ERR_AGAIN)
-                close_failed(c);
+                reconnect_or_fail(c);
             return;
         }
         c->pending = NULL;
-        c->lastRx = c->lastTx = now;
+        c->lastRx = c->lastTx = c->lastHeartbeat = now;
         if (!queue(c, EHL_HELLO, NULL, 0))
         {
             close_failed(c);
@@ -242,10 +312,11 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
         }
         c->state = EHL_CLIENT_WAIT_WELCOME;
     }
-    if ((unsigned long)(now - c->lastRx) > EHL_AUTH_TIMEOUT_MS &&
-        c->state != EHL_CLIENT_PLAYING)
+    if ((unsigned long)(now - c->lastRx) >
+        (c->state == EHL_CLIENT_PLAYING ?
+         EHL_RECEIVE_TIMEOUT_MS : EHL_AUTH_TIMEOUT_MS))
     {
-        close_failed(c);
+        reconnect_or_fail(c);
         return;
     }
     if (c->txLength > c->txOffset)
@@ -255,7 +326,7 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
                              c->txLength - c->txOffset, &moved, &err);
         if (r < 0)
         {
-            close_failed(c);
+            reconnect_or_fail(c);
             return;
         }
         c->txOffset += moved;
@@ -273,7 +344,7 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
         r = lnet_net_recv_nb(c->socket, bytes, want, &moved, &err);
         if (r < 0)
         {
-            close_failed(c);
+            reconnect_or_fail(c);
             return;
         }
         if (!moved)
@@ -297,6 +368,18 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     if (c->txLength != c->txOffset)
         return;
     if (c->state == EHL_CLIENT_PLAYING &&
+        (unsigned long)(now - c->lastHeartbeat) >= EHL_HEARTBEAT_INTERVAL_MS)
+    {
+        /* Even a solo player broadcasting poses needs a server reply.
+         * Otherwise a silent dead TCP socket could never be detected. */
+        if (!queue(c, EHL_HEARTBEAT, NULL, 0))
+        {
+            close_failed(c);
+            return;
+        }
+        c->lastHeartbeat = now;
+    }
+    else if (c->state == EHL_CLIENT_PLAYING &&
         (c->lastPose == 0 ||
          (unsigned long)(now - c->lastPose) >= EHL_POSE_INTERVAL_MS))
     {

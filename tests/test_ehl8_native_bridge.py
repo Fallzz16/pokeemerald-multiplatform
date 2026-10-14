@@ -103,5 +103,84 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
                 await a.wait()
             await server.stop()
 
+
+    async def test_native_auto_rejoins_same_reserved_slot_after_tcp_failure(self):
+        """Drop the real C client's socket mid-game and verify recovery."""
+        server = server_module.SessionServer("123456", 2, idle_seconds=300)
+        listener = await server.start("127.0.0.1", 0)
+        port = str(listener.sockets[0].getsockname()[1])
+        native = await asyncio.create_subprocess_exec(
+            self.exe, "127.0.0.1", port, "123456", "trainer_A",
+            "21", "34", "--expect-reconnect", stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE)
+        writer = None
+        try:
+            reader, writer = await asyncio.open_connection("127.0.0.1", int(port))
+            async def send(kind, data=b"", sid=0):
+                writer.write(server_module.encode(server_module.Packet(kind, data, sid)))
+                await writer.drain()
+            await send(server_module.HELLO)
+            welcome = await server_module.read_frame(reader)
+            self.assertEqual(welcome.kind, server_module.WELCOME)
+            sid = welcome.session
+            await send(server_module.AUTH_PIN, b"123456", sid)
+            self.assertEqual((await server_module.read_frame(reader)).kind,
+                             server_module.AUTH_PIN)
+            await send(server_module.JOIN, b"python_peer", sid)
+            self.assertEqual((await server_module.read_frame(reader)).kind,
+                             server_module.JOIN)
+            await send(server_module.READY, b"\x01", sid)
+            for _ in range(100):
+                if server.in_game and len(server.players) == 2:
+                    break
+                await asyncio.sleep(.04)
+            self.assertTrue(server.in_game)
+            self.assertEqual(len(server.players), 2)
+            await asyncio.sleep(.25)
+            original_slot = next(slot for slot,p in server.players.items()
+                                 if p.profile == b"trainer_A")
+            server.players[original_slot].close()
+            for _ in range(80):
+                if b"trainer_A" in server.reservations:
+                    break
+                await asyncio.sleep(.02)
+            self.assertEqual(server.reservations[b"trainer_A"][0], original_slot)
+            result_task = asyncio.create_task(native.communicate())
+            for seq in range(1, 130):
+                if result_task.done():
+                    break
+                pose=bytearray(18)
+                pose[:5]=b"LANP\x01"
+                pose[5], pose[14] = 1, 2
+                pose[6:8] = seq.to_bytes(2, "big")
+                pose[10:12] = (34).to_bytes(2, "big")
+                await send(server_module.POSE, bytes(pose), sid)
+                await asyncio.sleep(.13)
+            out, err = await asyncio.wait_for(result_task, 5)
+            self.assertEqual(native.returncode, 0, (out,err))
+            self.assertIn(b"native reconnect and remote pose verified", out)
+            # The real native process shuts down immediately after reporting
+            # recovery. Its final close may already have freed the slot (LEAVE)
+            # or briefly reserved it again (best-effort LEAVE loss). The
+            # completed native pose proves it reclaimed the original identity.
+            # Do not race a post-process-close server cleanup here.
+            if b"trainer_A" in server.reservations:
+                self.assertEqual(server.reservations[b"trainer_A"][0],
+                                 original_slot)
+            if original_slot in server.players:
+                self.assertEqual(server.players[original_slot].profile,
+                                 b"trainer_A")
+        finally:
+            if native.returncode is None:
+                native.kill()
+                await native.wait()
+            if writer is not None:
+                writer.close()
+                try:
+                    await writer.wait_closed()
+                except (ConnectionError, OSError):
+                    pass
+            await server.stop()
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

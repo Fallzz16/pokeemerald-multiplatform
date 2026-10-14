@@ -22,6 +22,7 @@ MAX_PAYLOAD = 4096
 HELLO, WELCOME, INCOMPATIBLE, AUTH_PIN, JOIN, PLAYER_LIST, READY, START, LEAVE, KICK, HEARTBEAT, POSE = range(1, 13)
 PROFILE_ID = re.compile(rb"[A-Za-z0-9_-]{1,48}\Z")
 READ_TIMEOUT = 35
+RECONNECT_GRACE_SECONDS = 60
 
 class ProtocolError(Exception):
     pass
@@ -63,6 +64,7 @@ class Peer:
         self.last_pose = 0.0
         self.last_seq = None
         self.closed = False
+        self.graceful_leave = False
         self.last_heard = time.monotonic()
         self.address = writer.get_extra_info("peername")
 
@@ -87,6 +89,9 @@ class SessionServer:
         self.idle_seconds = idle_seconds
         self.session = secrets.randbits(64) or 1
         self.players = {}
+        # Profile ID -> (slot, expiry), for transient network loss only.
+        # Reservations contain no save data, PIN or IP information.
+        self.reservations = {}
         self.connected = set()
         self.invalid_attempts = {}  # IP -> (failure count, blocked_until)
         self.in_game = False
@@ -103,6 +108,9 @@ class SessionServer:
         return self.listener
 
     async def stop(self):
+        # A deliberate administrator shutdown must never create new
+        # reconnect reservations while closing connected clients.
+        self.stopped.set()
         if self.listener is not None:
             self.listener.close()
             await self.listener.wait_closed()
@@ -111,10 +119,26 @@ class SessionServer:
             peer.close()
         self.stopped.set()
 
+    def expire_reservations(self):
+        now = time.monotonic()
+        expired = [profile for profile, (_, until) in self.reservations.items()
+                   if until <= now]
+        for profile in expired:
+            del self.reservations[profile]
+        if not self.players and not self.reservations:
+            if expired:
+                # Start idle-timeout *after* the final 60s grace expires,
+                # not from startup or from the last active game frame.
+                self.empty_since = now
+            self.in_game = False
+        return len(expired)
+
     async def sweep(self):
         while not self.stopped.is_set():
             await asyncio.sleep(1)
-            if not self.connected and not self.players and time.monotonic() - self.empty_since >= self.idle_seconds:
+            self.expire_reservations()
+            if (not self.connected and not self.players and not self.reservations and
+                    time.monotonic() - self.empty_since >= self.idle_seconds):
                 self.log.info("Empty session timed out")
                 await self.stop()
                 return
@@ -159,15 +183,21 @@ class SessionServer:
         finally:
             if peer.slot is not None and self.players.get(peer.slot) is peer:
                 del self.players[peer.slot]
+                if (not peer.graceful_leave and not self.stopped.is_set()
+                        and peer.profile is not None):
+                    self.reservations[peer.profile] = (
+                        peer.slot, time.monotonic() + RECONNECT_GRACE_SECONDS)
+                    self.log.info("EHL8_SLOT_RESERVED=%d/60", peer.slot)
                 self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
                 if self.players:
                     await self.broadcast(LEAVE, bytes([peer.slot]))
                     await self.broadcast(PLAYER_LIST, self.snapshot())
                 else:
-                    self.in_game = False
+                    if not self.reservations:
+                        self.in_game = False
             peer.close()
             self.connected.discard(peer)
-            if not self.players and not self.connected:
+            if not self.players and not self.reservations and not self.connected:
                 self.empty_since = time.monotonic()
             try:
                 await writer.wait_closed()
@@ -207,7 +237,18 @@ class SessionServer:
             if any(p.profile == msg.payload for p in self.players.values()):
                 await peer.send(KICK, b"Profile already active", self.session)
                 raise ProtocolError("duplicate identity")
-            free = next((slot for slot in range(1, self.slots + 1) if slot not in self.players), None)
+            self.expire_reservations()
+            reserved = self.reservations.get(msg.payload)
+            if reserved is not None:
+                free = reserved[0]
+                if free in self.players:
+                    raise ProtocolError("reserved slot already occupied")
+                del self.reservations[msg.payload]
+                self.log.info("EHL8_SLOT_RECLAIMED=%d", free)
+            else:
+                held = {slot for slot, _ in self.reservations.values()}
+                free = next((slot for slot in range(1, self.slots + 1)
+                             if slot not in self.players and slot not in held), None)
             if free is None:
                 await peer.send(KICK, b"Lobby full", self.session)
                 raise ProtocolError("session full")
@@ -235,6 +276,7 @@ class SessionServer:
             await peer.send(HEARTBEAT, b"", self.session, msg.request)
             return
         if msg.kind == LEAVE:
+            peer.graceful_leave = True
             peer.close()
             return
         if msg.kind == READY and peer.stage == "LOBBY":
