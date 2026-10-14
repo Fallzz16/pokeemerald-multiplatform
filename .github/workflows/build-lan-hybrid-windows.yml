@@ -108,3 +108,25 @@ jobs:
           name: Emerald-Hybrid-v0.7.0-LAN-Candidate-Windows-x86
           path: dist/Emerald-Hybrid-v0.7.0-TestCandidate/
           if-no-files-found: error
+
+  lan-qa-save-pack:
+    name: Generate portable Cable Club QA saves
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Generate host and client saves
+        run: python3 scripts/build_lan_qa_saves.py dist/lan-qa-saves
+      - name: Pack and verify
+        run: |
+          cd dist
+          zip -qr Emerald-Hybrid-LAN-Saves-de-Teste-Host-Cliente.zip lan-qa-saves
+          unzip -t Emerald-Hybrid-LAN-Saves-de-Teste-Host-Cliente.zip
+      - name: Upload tested LAN saves
+        uses: actions/upload-artifact@v4
+        with:
+          name: Emerald-Hybrid-LAN-Saves-de-Teste-Host-Cliente
+          path: dist/Emerald-Hybrid-LAN-Saves-de-Teste-Host-Cliente.zip
+          if-no-files-found: error
+          retention-days: 30
