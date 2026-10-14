@@ -6,7 +6,10 @@ from __future__ import annotations
 import argparse
 import asyncio
 import ipaddress
+import json
 import logging
+import os
+from pathlib import Path
 import re
 import secrets
 import signal
@@ -79,7 +82,7 @@ class Peer:
         self.writer.close()
 
 class SessionServer:
-    def __init__(self, pin: str, slots=2, idle_seconds=900):
+    def __init__(self, pin: str, slots=2, idle_seconds=900, status_file=None):
         if not re.fullmatch(r"[0-9]{6}", pin) or not 1 <= slots <= 2:
             raise ValueError("PIN must be six digits; M2 currently supports 1-2 players")
         self.pin = pin.encode("ascii")
@@ -94,11 +97,48 @@ class SessionServer:
         self.listener = None
         self.stopped = asyncio.Event()
         self.log = logging.getLogger("emerald.session")
+        self.status_file = Path(status_file) if status_file is not None else None
+
+    def publish_status(self):
+        """Atomic local-only state for the launcher; never includes PIN or IPs.
+
+        Failures in this optional diagnostic channel must never terminate
+        gameplay or disconnect legitimate clients.
+        """
+        if self.status_file is None:
+            return
+        target = self.status_file
+        snapshot = {
+            "schema": 1, "phase": "stopped" if self.stopped.is_set()
+            else ("playing" if self.in_game else "lobby"),
+            "slots": self.slots,
+            "players": [
+                {"slot": slot, "profile": peer.profile.decode("ascii"),
+                 "ready": peer.ready}
+                for slot, peer in sorted(self.players.items())
+            ],
+        }
+        temporary = target.with_name(target.name + "." + secrets.token_hex(6) + ".tmp")
+        try:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            with temporary.open("x", encoding="utf-8") as stream:
+                json.dump(snapshot, stream, separators=(",", ":"))
+                stream.flush()
+                os.fsync(stream.fileno())
+            os.replace(temporary, target)
+        except OSError as exc:
+            self.log.warning("Could not publish local lobby status: %s", exc)
+        finally:
+            try:
+                temporary.unlink(missing_ok=True)
+            except OSError:
+                pass
 
     async def start(self, bind="127.0.0.1", port=45680):
         self.listener = await asyncio.start_server(self.handle, bind, port, limit=8192, backlog=8)
-        self.log.info("EHL8 session listening on %s:%s (%s slots). No gameplay adapter yet.",
+        self.log.info("EHL8 session listening on %s:%s (%s slots); overworld only.",
                       bind, self.listener.sockets[0].getsockname()[1], self.slots)
+        self.publish_status()
         return self.listener
 
     async def stop(self):
@@ -109,6 +149,7 @@ class SessionServer:
         for peer in tuple(self.connected):
             peer.close()
         self.stopped.set()
+        self.publish_status()
 
     async def sweep(self):
         while not self.stopped.is_set():
@@ -163,6 +204,7 @@ class SessionServer:
                     await self.broadcast(PLAYER_LIST, self.snapshot())
                 else:
                     self.in_game = False
+                self.publish_status()
             peer.close()
             self.connected.discard(peer)
             if not self.players and not self.connected:
@@ -212,6 +254,7 @@ class SessionServer:
             peer.slot, peer.profile = free, msg.payload
             peer.stage = "GAME" if self.in_game else "LOBBY"
             self.players[free] = peer
+            self.publish_status()
             await peer.send(JOIN, bytes([free]), self.session, msg.request)
             await self.broadcast(PLAYER_LIST, self.snapshot())
             if self.in_game:
@@ -233,6 +276,7 @@ class SessionServer:
                 for p in self.players.values():
                     p.stage = "GAME"
                 await self.broadcast(START, b"")
+            self.publish_status()
             return
         if msg.kind == POSE and peer.stage == "GAME":
             if not valid_pose(msg.payload):
@@ -249,7 +293,8 @@ class SessionServer:
         raise ProtocolError("message invalid in current state")
 
 async def serve(args):
-    session = SessionServer(args.pin, args.slots, args.idle_minutes * 60)
+    session = SessionServer(args.pin, args.slots, args.idle_minutes * 60,
+                            status_file=args.status_file)
     await session.start(args.bind, args.port)
     loop = asyncio.get_running_loop()
     for name in ("SIGINT", "SIGTERM"):
@@ -274,6 +319,8 @@ def main():
                              help="Read 6-digit PIN from stdin so it is not exposed in the command line")
     parser.add_argument("--slots", type=int, choices=(1, 2), default=2)
     parser.add_argument("--idle-minutes", type=int, default=15)
+    parser.add_argument("--status-file", default=None,
+                        help="Optional LOCAL JSON lobby snapshot for the launcher; never contains PIN or IP")
     args = parser.parse_args()
     try:
         ipaddress.IPv4Address(args.bind)

@@ -2,9 +2,12 @@ name: Emerald Hybrid v0.8.3 Dedicated EHL8 Session Server
 on:
   push:
     branches:
+      - feature/lan-v0803-ehl8-lobby-observability
       - feature/lan-v0803-dedicated-session-core
     paths:
       - 'tools/emerald_session_server.py'
+      - 'tools/emerald_launcher.py'
+      - 'tests/test_emerald_launcher.py'
       - 'tests/test_emerald_session_server.py'
       - 'src/lnet/lnet_session_client.*'
       - 'tests/native_ehl8_client.c'
@@ -13,6 +16,8 @@ on:
   pull_request:
     paths:
       - 'tools/emerald_session_server.py'
+      - 'tools/emerald_launcher.py'
+      - 'tests/test_emerald_launcher.py'
       - 'tests/test_emerald_session_server.py'
       - 'src/lnet/lnet_session_client.*'
       - 'tests/native_ehl8_client.c'

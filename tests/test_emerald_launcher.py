@@ -107,4 +107,25 @@ class GraphicalLauncherTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 launcher.make_command("pokeemerald.exe",root,"../trainer","host")
 
+    def test_dedicated_lobby_file_is_bounded_and_sanitized(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path=Path(folder)/"status.json"
+            valid={"schema":1,"phase":"lobby","slots":2,
+                   "players":[{"slot":1,"profile":"trainer_A","ready":True}]}
+            path.write_text(json.dumps(valid),encoding="utf-8")
+            self.assertEqual(launcher.read_server_status(path),valid)
+            for changed in (
+                dict(valid,players=[{"slot":1,"profile":"../evil","ready":True}]),
+                dict(valid,players=[{"slot":3,"profile":"trainer_A","ready":True}]),
+                dict(valid,players=[{"slot":1,"profile":"trainer_A","ready":1}]),
+                dict(valid,phase="online!"),
+                dict(valid,slots=3),
+            ):
+                path.write_text(json.dumps(changed),encoding="utf-8")
+                self.assertIsNone(launcher.read_server_status(path))
+            path.write_text("x"*9000,encoding="utf-8")
+            self.assertIsNone(launcher.read_server_status(path))
+            path.unlink()
+            self.assertIsNone(launcher.read_server_status(path))
+
 if __name__ == "__main__": unittest.main(verbosity=2)

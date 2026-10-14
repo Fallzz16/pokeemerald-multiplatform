@@ -28,6 +28,7 @@ Section "Emerald M2 Preview" SecMain
   File "payload\EHL8_PREVIEW_MODE.txt"
   File "payload\LEIA_PRIMEIRO.txt"
   File "payload\LEIA_QA_PTBR.md"
+  File "payload\LEIA_QA_STATUS_LOBBY.md"
   File "payload\AI_README.md"
   ; Profiles are deliberately isolated from the approved stable install:
   ; %LOCALAPPDATA%\EmeraldHybridEHL8Preview\profiles
@@ -54,6 +55,7 @@ Section "Uninstall"
   Delete "$INSTDIR\EHL8_PREVIEW_MODE.txt"
   Delete "$INSTDIR\LEIA_PRIMEIRO.txt"
   Delete "$INSTDIR\LEIA_QA_PTBR.md"
+  Delete "$INSTDIR\LEIA_QA_STATUS_LOBBY.md"
   Delete "$INSTDIR\AI_README.md"
   Delete "$INSTDIR\Desinstalar_EHL8_Preview.exe"
   RMDir "$INSTDIR"
