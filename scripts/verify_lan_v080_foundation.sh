@@ -17,4 +17,21 @@ fi
   src/profile/save_profiles.c tests/test_save_profiles.c \
   -o "$DIR/test_profiles"
 "$DIR/test_profiles"
+"$CC" "${BASE_FLAGS[@]}" -I src/profile \
+  src/profile/save_profiles.c tools/emerald_profilectl.c \
+  -o "$DIR/emerald_profilectl"
+"$DIR/emerald_profilectl" --help > /dev/null
+mkdir -p "$DIR/profiles"
+"$DIR/emerald_profilectl" new "$DIR/profiles" new_game > /dev/null
+test -s "$DIR/profiles/new_game/pokeemerald.sav"
+# Erased flash is intentionally not yet a valid saved game.
+if "$DIR/emerald_profilectl" backup "$DIR/profiles" new_game > /dev/null 2>&1; then
+  echo "ERROR: erased-flash new game was incorrectly accepted for backup" >&2
+  exit 1
+fi
+if "$DIR/emerald_profilectl" new "$DIR/profiles" ../escape > /dev/null 2>&1; then
+  echo "ERROR: profile path traversal was accepted" >&2
+  exit 1
+fi
+echo 'passed: developer CLI new/profile isolation/invalid save rejected'
 echo 'v0.8 M0/M1 standalone tests: PASS (does not prove gameplay integration)'
