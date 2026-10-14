@@ -1,0 +1,41 @@
+name: Emerald Hybrid v0.8 Windows graphical launcher
+on:
+  push:
+    branches:
+      - feature/lan-v080-desktop-graphical-launcher
+    paths:
+      - 'tools/emerald_launcher.py'
+      - 'tests/test_emerald_launcher.py'
+      - '.github/workflows/build-v080-graphical-launcher.yml'
+  pull_request:
+    paths:
+      - 'tools/emerald_launcher.py'
+      - 'tests/test_emerald_launcher.py'
+      - '.github/workflows/build-v080-graphical-launcher.yml'
+  workflow_dispatch:
+jobs:
+  windows-graphical-launcher:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Unit tests, no save writes and no network
+        shell: pwsh
+        run: |
+          python tools/emerald_launcher.py --self-test
+          python -m unittest discover -s tests -p test_emerald_launcher.py -v
+      - name: Create stand-alone windowed launcher executable
+        shell: pwsh
+        run: |
+          python -m pip install --disable-pip-version-check pyinstaller==6.16.0
+          python -m PyInstaller --noconfirm --clean --onefile --windowed --name EmeraldLauncher tools/emerald_launcher.py
+          if (!(Test-Path dist/EmeraldLauncher.exe)) { throw "Launcher executable was not generated" }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Emerald-Hybrid-v080-GraphicalLauncher-Windows-x64-Experimental
+          path: dist/EmeraldLauncher.exe
+          retention-days: 14
+          if-no-files-found: error

@@ -279,3 +279,55 @@ Para executar a suite nativa é necessário ambiente Linux/Windows adequado com 
 
 ### Próximo passo recomendado
 Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de carregar/salvar/reabrir; corrigir quaisquer bugs de I/O. Depois acrescentar validação real de checksum e hooks de backup pós-save, importação/exportação SAF Android e início do servidor TCP de sessões M2. Não expandir para quatro ainda.
+
+
+## 13. Início do launcher gráfico Windows v0.8 — M3 parcial, sem servidor dedicado
+
+**Branch:** `feature/lan-v080-desktop-graphical-launcher`, criada sobre a fundação funcional experimental `feature/lan-v080-m0-m1-foundation` (último commit conhecido `e5485e74fa3607a9d647cb9cf7339085c5fed91c`). O rollback **definitivo de gameplay já aprovado pelo usuário** ainda é `feature/lan-v0721-viewport-culling` SHA `a87e2c49e453db32def5e71ba2a2e696a911d504`. Consulte sempre HEAD / workflow exatos.
+
+**Motivo:** usuário corrigiu expectativa: precisava de LAUNCHER GRÁFICO real com `conta/perfil -> Hospedar servidor / Hospedar e jogar / Jogar com amigos`, e não só console PowerShell. Confirmar explicitamente que conta online não foi autorizada como obrigatória (#81A: LAN sem registro); modo atual é **perfil local com apelido**.
+
+### Adicionado
+- `tools/emerald_launcher.py`: launcher GUI Windows, visual escuro esmeralda, sidebar de perfis locais, criação/importação por `emerald_profilectl.exe`, armazenamento de apelido em profile.json, modos offline/host/join que executam o jogo M1 com flags de perfil. **Servidor dedicado aparece desabilitado intencionalmente:** não há processo de servidor implementado, portanto não inventar um botão que parece funcional.
+- `tests/test_emerald_launcher.py`: testes de comandos offline/host/join, rejeição de rede inválida e IDs perigosos, verificação de que metadados não mudam bytes de save de laboratório.
+- `.github/workflows/build-v080-graphical-launcher.yml`: Windows CI Python 3.12 + PyInstaller (self-contained `EmeraldLauncher.exe`) com execução de testes.
+- `docs/LAN_V080_GRAPHICAL_LAUNCHER.md`: uso, status, QA, riscos, rollback e diferença da v0.7.2.2.
+
+### Não alterado/removido
+- Não modifica `src/`, dados GBA, SIO, protocolos, sprites, batalha, servidor, save format ou APK. Não removemos nenhuma função. O código Python apenas chama o executável e CLI da fundação, que já existiam.
+- Todos os saves do usuário permanecem externos ao GitHub e não foram acessados. Ferramenta `emerald_profilectl` ainda faz validação **somente estrutural**, não checksum completo; usuários devem fazer backup.
+
+### Testes e estado
+- Testes do launcher GUI em Python via GitHub Actions, incluindo criar EXE Windows, dependem da execução da branch/commit; checar o status real antes de declarar pronto. Um pacote integrado exige baixar launcher.exe e os binários M1 reais, validar ZIP e verificar a interação no Windows.
+- Ainda não houve QA real no desktop do usuário de criar dois perfis, carregar/salvar, entrar numa sessão e executar Cable Club pelo launcher. Compilação ≠ sucesso em gameplay.
+
+### Ainda não implementado
+- Servidor dedicado e lobby de 4 jogadores, descoberta LAN e QR, conta na nuvem/autenticação por e-mail, lista de membros, chat, Android UI equivalente, auto-backup pós-save, updater e sync transparente dos saves.
+- O botão de servidor dedicado deve permanecer **visivelmente indisponível** até existir e passar pelos testes o binário de servidor real; não descrever como concluído em qualquer README.
+
+### Próximos passos
+- Concluir build Windows GUI, empacotar com `pokeemerald.exe`, `SDL2.dll`, `emerald_profilectl.exe` em pasta isolada, testar com saves copiados, obter feedback.
+- Implementar M2 servidor dedicado EHL8 real com dois clientes, depois conectar lobby e habilitar botão; implementar Android launcher equivalente em Kotlin/Java após garantir seleção de perfis segura.
+- Em toda entrega: registrar SHA, funções implementadas, não implementadas, testes/resultados, alterações e rollback neste README.
+
+
+## 14. Primeira compilação e pacote do launcher gráfico Windows — 2026-10-14
+
+- **Código do PR #8:** branch `feature/lan-v080-desktop-graphical-launcher`, [PR #8](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/8) draft. Baseline M0/M1 `feature/lan-v080-m0-m1-foundation`, rollback de gameplay anterior `feature/lan-v0721-viewport-culling`.
+- **Launcher Windows real:** [Actions 38515194543](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38515194543) **SUCCESS**; artefato `11872050448`: `EmeraldLauncher.exe` Windows x64, 11.37MB sem Python externo. Testes Python locais de comandos, identidade e não edição de save passam no CI; empacotamento PyInstaller foi aprovado.
+- **Jogo M1 Windows compilado no PR:** [Actions 38515194575](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38515194575) **SUCCESS**. Pacote integrado atual foi montado usando os binários previamente compilados/validados da fundação M1, não inventar que houve gameplay real novo.
+- **Auditoria genérica da ROM:** [Actions 38515194315](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38515194315) **FAILURE** independente do launcher. **Android candidate:** em compilação na última verificação, não possui a nova UI/seleção de perfis de qualquer modo.
+- **Pacote de teste gerado no container do chat:** `Emerald_Hybrid_v080_Launcher_Grafico_Windows_Experimental.zip`, tamanho 23.428.533 bytes, SHA256 `bab52b190bbf73d4b3171b51d26837f4be63758d85637b631091b3b2c0d0df79`. Contém `EmeraldLauncher.exe`, `pokeemerald.exe`, `SDL2.dll`, `emerald_profilectl.exe`, `PORTABLE_MODE.txt`, `LEIA_PRIMEIRO_LAUNCHER.md` e `SHA256_COMPONENTES.txt`; ZIP CRC e hashes internos verificados, sem qualquer `.sav` de teste.
+- **Resultado:** visual e comandos funcionam em testes automáticos do novo launcher, **não foi validado em dois jogos reais em Windows ainda**. Usuário deve testar criar/importar perfil a partir de CÓPIA de .sav, salvar/reabrir offline, host/join, Cable Club, conexão e logs. Não há servidor dedicado: opção intencionalmente bloqueada na UI. Conta = perfil LOCAL, não credencial online. Esta atualização **não implementou nenhum dos recursos incompletos** citados na seção 13.
+- **Arquivos alterados/adicionados:** source GUI e testes, workflow PyInstaller, docs. Nenhum gameplay antigo removido e nenhum usuário save editado. **Rollback:** descompactar em pasta nova e, se falhar, retornar à v0.7.2.1 salva separadamente, preservando os backups.
+- **Próximo passo recomendado:** validar runtime com perfis originais, corrigir bugs de interface, implementar SessionServer dedicado real antes de habilitar a opção correspondente, depois fazer UI equivalente no Android.
+
+
+## 15. Correção de distribuição: launcher avulso não abre perfis (relato do usuário, 2026-10-14)
+
+- **Erro reproduzível pela inspeção do pacote/artifact:** usuário baixou o artefato isolado `Emerald-Hybrid-v080-GraphicalLauncher-Windows-x64-Experimental`, contendo **somente** `EmeraldLauncher.exe`, e recebeu `emerald_profilectl.exe precisa estar ao lado do launcher` ao pressionar `Criar ou importar conta`. Não é falha no save: **faltam dependências no pacote avulso**. Também faltariam `pokeemerald.exe` e `SDL2.dll` para iniciar uma partida.
+- **Correção realizada nesta conversa (empacotamento, não código):** criado e validado `Emerald_Hybrid_v080_Launcher_COMPLETO_CORRIGIDO.zip`, 23.420.651 bytes, SHA256 `a440ee40e1906af20dadd323678f2161def588876d44942195c8fd6492a113f3`. O ZIP contém `EmeraldLauncher.exe`, `emerald_profilectl.exe`, `pokeemerald.exe`, `SDL2.dll`, `PORTABLE_MODE.txt`, `SHA256_COMPONENTES.txt`, `LEIA_PRIMEIRO_LAUNCHER.md`, `ABRIR_LAUNCHER.bat` (verifica componentes e inicia o launcher) e `LEIA_PRIMEIRO_CORRECAO.txt`.
+- **Validação:** ZIP CRC OK, cabeçalhos PE `MZ` dos executáveis/DLL OK, hashes de todos os componentes originais idênticos aos do pacote completo anterior, nenhum `.sav` incluído. **Não houve QA de execução Windows neste chat** além das compilações e testes anteriores, portanto não dizer que botão de criar perfil foi exercitado em hardware real após reempacotamento.
+- **Alterações no código do jogo, CLI ou launcher Python:** nenhuma. **Removido:** nada. Erro corrigido pelo empacotamento completo e diagnóstico no `.bat`.
+- **Atenção a futuros agentes/distribuição:** NUNCA orientar usuário a baixar o artifact do **launcher isolado** como se fosse um pacote pronto para jogo. Publicar somente pacote FINAL DE QA que contenha os quatro componentes com hash, README de dependências e verificador. Se Windows Security colocar um componente em quarentena, não sugerir desligar antivírus; verificar detalhes e fonte assinada/legítima.
+- **Rollback:** preservar pasta v0.7.2.1 e saves originais; extrair novo ZIP em pasta separada. Não copiar saves originais sem backup. **Ainda não implementado:** servidor dedicado, 4 jogadores, login online, backups automáticos em cada save, launcher Android equivalente.

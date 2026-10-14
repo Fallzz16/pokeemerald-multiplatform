@@ -1,0 +1,224 @@
+"""Emerald Hybrid experimental graphic launcher v0.8 for Windows.
+Local accounts are save PROFILES, not Internet authentication.
+Dedicated server is intentionally unavailable until the EHL8 server is real.
+"""
+import ipaddress
+import json
+import os
+from pathlib import Path
+import re
+import secrets
+import subprocess
+import sys
+import tkinter as tk
+from tkinter import filedialog, messagebox
+
+INK="#091510"; LEFT="#10231c"; PANEL="#18352a"; GREEN="#49d5a0"; WHITE="#e9fff5"; MUTED="#9dbbaa"
+PATTERN=re.compile(r"^[A-Za-z0-9_-]{1,48}$")
+
+def application_dir():
+    return Path(sys.executable).resolve().parent if getattr(sys,"frozen",False) else Path(__file__).resolve().parent.parent
+
+def profile_root():
+    here=application_dir()
+    if (here/"PORTABLE_MODE.txt").exists():
+        return here/"profiles"
+    return Path(os.environ.get("LOCALAPPDATA",str(Path.home()))) / "EmeraldHybrid" / "profiles"
+
+def validate_port(value):
+    try: p=int(str(value).strip())
+    except ValueError: raise ValueError("A porta precisa ser um número.")
+    if p < 1 or p > 65534:
+        raise ValueError("Porta inválida: use 1 a 65534 (a segunda conexão usa porta + 1).")
+    return p
+
+def validate_ipv4(value):
+    try: addr=ipaddress.IPv4Address(value.strip())
+    except ipaddress.AddressValueError: raise ValueError("Use o IPv4 numérico do host (ex.: 100.101.102.103).")
+    if addr.is_unspecified or addr.is_multicast or str(addr)=="255.255.255.255":
+        raise ValueError("Esse endereço IP não pode ser utilizado.")
+    return str(addr)
+
+def validate_nickname(value):
+    value=value.strip()
+    if not 1 <= len(value) <= 18 or any(ord(c)<32 for c in value):
+        raise ValueError("O apelido deve ter de 1 a 18 caracteres.")
+    return value
+
+def make_command(game,root,pid,mode,ip="",port="45680"):
+    if not PATTERN.fullmatch(pid):
+        raise ValueError("Identificador de perfil inválido.")
+    args=[str(game),"--profile-root="+str(root),"--profile-id="+pid]
+    if mode=="offline": return args
+    p=validate_port(port)
+    if mode=="host":return args+["--lan-log","host-launcher.log","--lan-host="+str(p)]
+    if mode=="join":return args+["--lan-log","cliente-launcher.log","--lan-client="+validate_ipv4(ip)+":"+str(p)]
+    raise ValueError("Modo indisponível: servidor dedicado ainda não implementado.")
+
+def find_profiles(root):
+    if not root.is_dir():return []
+    out=[]
+    for folder in root.iterdir():
+        if not folder.is_dir() or not PATTERN.fullmatch(folder.name) or not (folder/"pokeemerald.sav").is_file():continue
+        nick=folder.name
+        try:
+            meta=json.loads((folder/"profile.json").read_text(encoding="utf-8"))
+            nick=validate_nickname(meta.get("nickname",nick))
+        except (OSError,ValueError,TypeError):
+            pass
+        out.append((folder.name,nick))
+    return sorted(out,key=lambda x:x[1].casefold())
+
+def write_nickname(folder,nick):
+    meta=folder/"profile.json";tmp=folder/"profile.json.tmp"
+    with tmp.open("x",encoding="utf-8") as fp:
+        json.dump({"schema":1,"nickname":nick,"profile_id":folder.name},fp,ensure_ascii=False,indent=2)
+        fp.flush();os.fsync(fp.fileno())
+    os.replace(tmp,meta)
+
+class EmeraldLauncher(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Emerald Hybrid — Multiplayer Launcher")
+        self.geometry("1040x715"); self.minsize(880,640)
+        self.configure(bg=INK)
+        self.root_dir=profile_root()
+        self.game=application_dir()/"pokeemerald.exe"
+        self.cli=application_dir()/"emerald_profilectl.exe"
+        self.selected=None
+        self.ip=tk.StringVar();self.port=tk.StringVar(value="45680")
+        self.status=tk.StringVar(value="Selecione ou crie um perfil para começar.")
+        self.sidebar=tk.Frame(self,bg=LEFT,width=275)
+        self.sidebar.pack(side="left",fill="y");self.sidebar.pack_propagate(False)
+        self.main=tk.Frame(self,bg=INK);self.main.pack(side="left",fill="both",expand=True)
+        self.sidebar_ui();self.main_ui();self.refresh()
+
+    def text(self,parent,value,sz=11,color=WHITE,bold=False):
+        return tk.Label(parent,text=value,fg=color,bg=parent["bg"],
+                        font=("Segoe UI",sz,"bold" if bold else "normal"),justify="left",anchor="w")
+
+    def btn(self,parent,name,callback,accent=False,disabled=False):
+        button=tk.Button(parent,text=name,command=callback,relief="flat",bd=0,
+                         bg="#1b654d" if accent else "#264739",fg=WHITE,
+                         activebackground="#338e69",activeforeground=WHITE,
+                         disabledforeground="#789188",font=("Segoe UI",10,"bold"),padx=15,pady=10,
+                         cursor="arrow" if disabled else "hand2")
+        if disabled:button.configure(state="disabled")
+        return button
+
+    def sidebar_ui(self):
+        f=self.sidebar
+        tk.Frame(f,bg=GREEN,height=5).pack(fill="x")
+        self.text(f,"EMERALD",22,GREEN,True).pack(anchor="w",padx=22,pady=(33,0))
+        self.text(f,"HYBRID MULTIPLAYER",11,WHITE,True).pack(anchor="w",padx=22)
+        self.text(f,"VERSÃO EXPERIMENTAL v0.8",9,MUTED).pack(anchor="w",padx=22,pady=(4,36))
+        self.text(f,"CONTA / PERFIL LOCAL",10,MUTED,True).pack(anchor="w",padx=22)
+        self.choices=tk.Frame(f,bg=LEFT);self.choices.pack(fill="x",padx=16,pady=(10,6))
+        self.btn(f,"+ Criar ou importar conta",self.new_profile,accent=True).pack(fill="x",padx=16,pady=6)
+        self.btn(f,"Atualizar lista",self.refresh).pack(fill="x",padx=16,pady=6)
+        tk.Frame(f,bg=LEFT).pack(expand=True)
+        self.text(f,"Progresso individual",10,MUTED,True).pack(anchor="w",padx=20)
+        self.text(f,"Nenhuma conta online é exigida.\nSeus saves permanecem locais.",9,MUTED).pack(anchor="w",padx=20,pady=(6,25))
+
+    def card(self,parent,title,subtitle,action,label,available=True,accent=False):
+        card=tk.Frame(parent,bg=PANEL,highlightbackground="#325344",highlightthickness=1)
+        card.pack(fill="x",pady=5,ipady=8)
+        box=tk.Frame(card,bg=PANEL);box.pack(side="left",fill="x",expand=True,padx=20,pady=5)
+        self.text(box,title,13,WHITE,True).pack(anchor="w")
+        self.text(box,subtitle,9,MUTED).pack(anchor="w",pady=(5,0))
+        self.btn(card,label,action,accent,not available).pack(side="right",padx=17)
+
+    def main_ui(self):
+        f=self.main
+        heading=tk.Frame(f,bg=INK);heading.pack(fill="x",padx=32,pady=(31,14))
+        self.text(heading,"SUA AVENTURA EM HOENN",20,WHITE,True).pack(anchor="w")
+        self.text(heading,"Escolha um perfil e como deseja jogar.",10,MUTED).pack(anchor="w",pady=(6,0))
+        info=tk.Frame(f,bg="#194131",padx=17,pady=12);info.pack(fill="x",padx=32,pady=(0,12))
+        tk.Label(info,textvariable=self.status,fg=GREEN,bg=info["bg"],font=("Segoe UI",11,"bold"),anchor="w").pack(fill="x")
+        self.text(info,"Conta = perfil local. O servidor dedicado da v0.8 ainda está em desenvolvimento.",9,MUTED).pack(anchor="w",pady=(3,0))
+        cards=tk.Frame(f,bg=INK);cards.pack(fill="x",padx=32)
+        self.card(cards,"Jogar offline","Seu save, sem precisar de Internet.",lambda:self.play("offline"),"JOGAR",accent=True)
+        self.card(cards,"Hospedar e jogar","Seu PC hospeda a sessão LAN/VPN para 2 jogadores.",lambda:self.play("host"),"HOSPEDAR")
+        self.card(cards,"Jogar com amigos","Conectar no IPv4 do amigo pela LAN ou VPN privada.",lambda:self.play("join"),"ENTRAR")
+        self.card(cards,"Hospedar servidor dedicado","Servidor independente, lobby e 4 jogadores são a próxima etapa.",lambda:None,"EM BREVE",available=False)
+        section=tk.Frame(f,bg=INK);section.pack(fill="x",padx=32,pady=(19,6))
+        self.text(section,"CONFIGURAÇÕES DA CONEXÃO",10,MUTED,True).pack(anchor="w")
+        row=tk.Frame(f,bg=INK);row.pack(fill="x",padx=32)
+        self.text(row,"IP do host:",10,MUTED).pack(side="left")
+        tk.Entry(row,textvariable=self.ip,width=20,bg=PANEL,fg=WHITE,insertbackground=WHITE,relief="flat",font=("Consolas",11)).pack(side="left",padx=(10,22),ipady=7)
+        self.text(row,"Porta:",10,MUTED).pack(side="left")
+        tk.Entry(row,textvariable=self.port,width=7,bg=PANEL,fg=WHITE,insertbackground=WHITE,relief="flat",font=("Consolas",11)).pack(side="left",padx=9,ipady=7)
+        self.text(f,"Conexão remota: use VPN privada; não exponha as portas no roteador.",9,"#ffc783").pack(anchor="w",padx=32,pady=(18,0))
+
+    def refresh(self):
+        for child in self.choices.winfo_children():child.destroy()
+        profiles=find_profiles(self.root_dir)
+        if self.selected not in [id for id,_ in profiles]:
+            self.selected=None
+            self.status.set("Selecione ou crie um perfil para começar.")
+        for pid,nick in profiles:
+            chosen=pid==self.selected
+            self.btn(self.choices,("● " if chosen else "○ ")+nick,
+                     lambda pid=pid:self.select(pid),accent=chosen).pack(fill="x",pady=3)
+
+    def select(self,pid):
+        self.selected=pid
+        name=next((nick for id,nick in find_profiles(self.root_dir) if id==pid),pid)
+        self.status.set("Perfil ativo: "+name)
+        self.refresh()
+
+    def new_profile(self):
+        if not self.cli.is_file():
+            messagebox.showerror("Arquivo necessário","emerald_profilectl.exe precisa estar ao lado do launcher.")
+            return
+        modal=tk.Toplevel(self);modal.title("Criar conta local");modal.geometry("470x300")
+        modal.transient(self);modal.grab_set();modal.configure(bg=PANEL)
+        self.text(modal,"CRIAR PERFIL LOCAL",17,GREEN,True).pack(anchor="w",padx=24,pady=(24,13))
+        self.text(modal,"Seu apelido (o Trainer ID original não muda):",10).pack(anchor="w",padx=24)
+        name=tk.StringVar()
+        entry=tk.Entry(modal,textvariable=name,bg="#264739",fg=WHITE,insertbackground=WHITE,font=("Segoe UI",12),relief="flat")
+        entry.pack(fill="x",padx=24,pady=(7,13),ipady=6);entry.focus_set()
+        def create(import_save):
+            try:
+                nickname=validate_nickname(name.get())
+                save=None
+                if import_save:
+                    save=filedialog.askopenfilename(parent=modal,filetypes=[("Emerald Save","*.sav"),("Todos","*.*")])
+                    if not save:return
+                self.root_dir.mkdir(parents=True,exist_ok=True)
+                pid="profile_"+secrets.token_hex(6)
+                argv=[str(self.cli),"import" if import_save else "new",str(self.root_dir),pid]
+                if save:argv.append(save)
+                proc=subprocess.run(argv,cwd=str(application_dir()),capture_output=True,text=True,timeout=45,
+                                    creationflags=getattr(subprocess,"CREATE_NO_WINDOW",0))
+                if proc.returncode:raise RuntimeError("O save não foi importado.\n"+(proc.stderr or proc.stdout)[:350])
+                write_nickname(self.root_dir/pid,nickname)
+                modal.destroy();self.selected=pid
+                self.status.set("Perfil ativo: "+nickname);self.refresh()
+            except (OSError,ValueError,RuntimeError,subprocess.TimeoutExpired) as err:
+                messagebox.showerror("Não foi possível criar",str(err),parent=modal)
+        self.btn(modal,"Começar do zero",lambda:create(False),accent=True).pack(fill="x",padx=24,pady=5)
+        self.btn(modal,"Importar meu save .sav",lambda:create(True)).pack(fill="x",padx=24,pady=5)
+
+    def play(self,mode):
+        if self.selected is None:
+            messagebox.showwarning("Falta um perfil","Crie ou selecione uma conta local primeiro.");return
+        if not self.game.is_file():
+            messagebox.showerror("Jogo não encontrado","Coloque pokeemerald.exe ao lado do launcher.");return
+        if not (self.root_dir/self.selected/"pokeemerald.sav").is_file():
+            messagebox.showerror("Save não encontrado","O arquivo de save deste perfil não existe.");return
+        try:
+            args=make_command(self.game,self.root_dir,self.selected,mode,self.ip.get(),self.port.get())
+            subprocess.Popen(args,cwd=str(application_dir()),close_fds=True)
+            if mode!="offline":
+                messagebox.showinfo("P2P experimental","Esta sessão é para 2 jogadores, pela LAN ou VPN privada.\nServidor dedicado e 4 jogadores ainda não estão disponíveis.")
+        except (OSError,ValueError) as err:messagebox.showerror("Falha ao iniciar",str(err))
+
+def main():
+    if "--self-test" in sys.argv:
+        assert validate_port("45680")==45680
+        assert make_command("pokeemerald.exe","profiles","trainer","host")[-1]=="--lan-host=45680"
+        print("PASS: launcher offline/host/join command tests");return
+    EmeraldLauncher().mainloop()
+
+if __name__=="__main__":main()
