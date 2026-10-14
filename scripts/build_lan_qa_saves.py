@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Create isolated Emerald Hybrid LAN test saves near the Oldale Cable Club.
 
+QA-only fixtures: never import this generated data into a real player save.
+
 Source is one *publicly provided* vanilla Emerald test save from the
 PokemonBoxSaveEditor repository. No ROM data is included in this output.
 
