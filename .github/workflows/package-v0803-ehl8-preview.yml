@@ -1,0 +1,153 @@
+name: Emerald Hybrid M2 EHL8 PREVIEW - Instalador e Portatil completos
+on:
+  push:
+    branches:
+      - feature/lan-v0803-dedicated-session-core
+    paths:
+      - 'packaging/emerald_hybrid_m2_preview.nsi'
+      - '.github/workflows/package-v0803-ehl8-preview.yml'
+      - 'docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md'
+  pull_request:
+    branches:
+      - feature/lan-v080-mega-desktop-polish
+    paths:
+      - 'packaging/emerald_hybrid_m2_preview.nsi'
+      - '.github/workflows/package-v0803-ehl8-preview.yml'
+      - 'docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  package-preview:
+    name: Verify and package dedicated EHL8 beta separately from stable version
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download exact validated Emerald native Windows build
+        uses: actions/download-artifact@v4
+        with:
+          name: Emerald-Hybrid-LAN-v0.7.2.1-ViewportCulling-Windows-x86
+          path: payload
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: 38530326166
+      - name: Download exact validated GUI launcher
+        uses: actions/download-artifact@v4
+        with:
+          name: Emerald-Hybrid-v0802-GraphicalLauncher-Windows-x64-Experimental
+          path: payload
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: 38530326649
+      - name: Download exact validated EHL8 headless server executable
+        uses: actions/download-artifact@v4
+        with:
+          name: Emerald-v0803-EHL8-SessionServer-Windows-DEV-NOT-GAMEPLAY
+          path: payload
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: 38530326482
+      - name: Download exact validated profile-manager executable
+        uses: actions/download-artifact@v4
+        with:
+          name: Emerald-Hybrid-v080-Profile-CLI-Windows-x86-Experimental
+          path: payload
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: 38530326395
+
+      - name: Verify component hashes, sizes and absence of save data
+        shell: pwsh
+        run: |
+          $expected=@{
+            'EmeraldLauncher.exe'='8361588c2889f8ddf554c7313687cf7c5ff35d4d327ac1a8e67efa1a4fa5ca88'
+            'pokeemerald.exe'='c899a9046723f0217301c07ae325517cad4150ac29b935eb91ddf82d94b763e0'
+            'SDL2.dll'='eb323e920739ff48f72b28cd20f0cf6a58507bff852cbf1bacb4fb6fa07d1a3d'
+            'emerald_profilectl.exe'='f60b8346d8a978b79bd503d1358fb986b62c03cb5f939921594c2f208d141f4d'
+            'EmeraldSessionServer.exe'='4ec6d3641297aa6a7b21927c5fdebe8dc70281fba38a21be66eb6bde8e2e6c05'
+          }
+          foreach($name in $expected.Keys) {
+            $p=Join-Path payload $name
+            if (!(Test-Path -LiteralPath $p -PathType Leaf)) { throw "Falta dependencia: $name" }
+            $got=(Get-FileHash -LiteralPath $p -Algorithm SHA256).Hash.ToLowerInvariant()
+            if ($got -ne $expected[$name]) { throw "SHA diferente: $name" }
+            if ((Get-Item $p).Length -lt 50000) { throw "Arquivo inesperadamente pequeno: $name" }
+            Write-Host "Verificado $name - $got"
+          }
+          if (@(Get-ChildItem -Path payload -Recurse -File -Filter *.sav).Count -gt 0) {
+            throw "Nenhum save de jogador pode entrar no instalador!"
+          }
+
+      - name: Include Portuguese instructions and separate beta-profile marker
+        shell: pwsh
+        run: |
+          @'
+          EMERALD HYBRID EHL8 M2 PREVIEW — AINDA EXPERIMENTAL
+          Este pacote nao substitui o Emerald Hybrid v0.8.2 instalado.
+          Inclui jogo Windows, SDL2, launcher, perfis e servidor dedicado.
+          Selecionar perfil LOCAL e criar/importar COPIA de save pessoal.
+          Servidor EHL8 tem ate 2 participantes e retransmite POSICOES no mapa.
+          Trocas e batalhas ainda NAO funcionam pelo servidor dedicado EHL8.
+          O modo P2P antigo continua disponivel no launcher, separado.
+          Use somente LAN privada/VPN confiavel, nunca portas publicas abertas.
+          INSTALADOR: perfis em %LOCALAPPDATA%\EmeraldHybridEHL8Preview\profiles
+          PORTATIL: perfis na pasta profiles do pacote extraido.
+          NUNCA baixar apenas EmeraldLauncher.exe sem as dependencias.
+          Leia docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md na branch de desenvolvimento.
+          '@ | Set-Content payload/LEIA_PRIMEIRO.txt -Encoding UTF8
+          "EHL8 PREVIEW - ISOLATE PROFILES FROM STABLE" | Set-Content payload/EHL8_PREVIEW_MODE.txt
+          New-Item -Path release -ItemType Directory -Force | Out-Null
+          New-Item -Path portable -ItemType Directory -Force | Out-Null
+          @'
+          @echo off
+          cd /d "%~dp0"
+          for %%F in (EmeraldLauncher.exe pokeemerald.exe SDL2.dll emerald_profilectl.exe EmeraldSessionServer.exe) do (
+            if not exist "%%F" (
+              echo [ERRO] Falta %%F. Extraia TODO o pacote.
+              pause
+              exit /b 1
+            )
+          )
+          start "" "%~dp0EmeraldLauncher.exe"
+          '@ | Set-Content -LiteralPath portable/ABRIR_LAUNCHER.bat -Encoding ASCII
+
+      - name: Build complete PORTABLE ZIP
+        shell: pwsh
+        run: |
+          Copy-Item payload/EmeraldLauncher.exe,payload/pokeemerald.exe,payload/SDL2.dll,payload/emerald_profilectl.exe,payload/EmeraldSessionServer.exe,payload/LEIA_PRIMEIRO.txt portable
+          "PORTABLE PROFILE LOCATION: ./profiles" | Set-Content -LiteralPath portable/PORTABLE_MODE.txt
+          Copy-Item docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md portable/LEIA_QA_PTBR.md
+          Compress-Archive -Path portable/* -DestinationPath release/Emerald_Hybrid_EHL8_M2_PREVIEW_PORTATIL_Windows.zip -CompressionLevel Optimal
+
+      - name: Install NSIS for real per-user installer build
+        shell: pwsh
+        run: |
+          choco install nsis --yes --no-progress --limit-output
+          if ($LASTEXITCODE -ne 0) { throw "Nao foi possivel instalar NSIS" }
+          $possible=@("${env:ProgramFiles(x86)}\NSIS\makensis.exe","$env:ProgramFiles\NSIS\makensis.exe")
+          $compiler=$possible | Where-Object { Test-Path $_ } | Select-Object -First 1
+          if (!$compiler) { throw "NSIS nao encontrado" }
+          "NSIS_COMPILER=$compiler" >> $env:GITHUB_ENV
+
+      - name: Build isolated beta .exe INSTALLER
+        shell: pwsh
+        run: |
+          & $env:NSIS_COMPILER /V3 packaging/emerald_hybrid_m2_preview.nsi
+          if ($LASTEXITCODE -ne 0) { throw "Instalador NSIS falhou" }
+          if (!(Test-Path release/Emerald_Hybrid_EHL8_M2_PREVIEW_INSTALADOR_Windows.exe)) { throw "Sem instalador gerado" }
+          if ((Get-Item release/Emerald_Hybrid_EHL8_M2_PREVIEW_INSTALADOR_Windows.exe).Length -lt 1000000) { throw "Instalador invalido" }
+
+      - name: Verify that exactly both complete builds were generated
+        shell: pwsh
+        run: |
+          $items=@(Get-ChildItem release -File)
+          if ($items.Count -ne 2) { throw "Esperado instalador + ZIP portatil" }
+          $items | Select-Object Name,Length | Format-Table
+          Get-FileHash release/* -Algorithm SHA256 | Format-Table
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BAIXAR_AQUI_Emerald_EHL8_M2_PREVIEW_INSTALADOR_e_PORTATIL
+          path: release/*
+          if-no-files-found: error
+          retention-days: 30
