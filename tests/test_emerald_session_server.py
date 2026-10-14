@@ -198,6 +198,87 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
         await b.recv(S.PLAYER_LIST)
         self.assertEqual(len(self.server.players), 1)
 
+
+    async def test_disconnected_profile_reclaims_same_slot_during_60s_grace(self):
+        a, b = await self.connect(), await self.connect()
+        self.assertEqual((await a.begin("one")).payload, b"\\x01")
+        self.assertEqual((await b.begin("two")).payload, b"\\x02")
+        await a.recv(S.PLAYER_LIST)
+        for peer, other in ((a,b),(b,a)):
+            await peer.send(S.READY, b"\\x01")
+            await peer.recv(S.PLAYER_LIST)
+            await other.recv(S.PLAYER_LIST)
+        await a.recv(S.START)
+        await b.recv(S.START)
+        await b.close()    # Unexpected transport EOF, not a voluntary LEAVE
+        await a.recv(S.LEAVE)
+        await a.recv(S.PLAYER_LIST)
+        self.assertEqual(self.server.reservations[b"two"][0], 2)
+        self.assertEqual(len(self.server.players), 1)
+        self.assertTrue(self.server.in_game)
+        new = await self.connect()
+        await new.send(S.HELLO)
+        new.session = (await new.recv(S.WELCOME)).session
+        await new.send(S.AUTH_PIN, b"123456")
+        await new.recv(S.AUTH_PIN)
+        await new.send(S.JOIN, b"third")
+        self.assertIn(b"full", (await new.recv(S.KICK)).payload)
+        back = await self.connect()
+        self.assertEqual((await back.begin("two")).payload, b"\\x02")
+        await a.recv(S.PLAYER_LIST)
+        await back.recv(S.START)
+        await back.send(S.READY, b"\\x01")
+        await a.recv(S.PLAYER_LIST)
+        await back.recv(S.PLAYER_LIST)
+        await back.send(S.HEARTBEAT)
+        await back.recv(S.HEARTBEAT)
+        self.assertNotIn(b"two", self.server.reservations)
+        self.assertEqual(len(self.server.players), 2)
+
+    async def test_expired_reservation_can_be_reassigned_without_early_shutdown(self):
+        a, b = await self.connect(), await self.connect()
+        await a.begin("one")
+        await b.begin("two")
+        await a.recv(S.PLAYER_LIST)
+        await b.close()
+        await a.recv(S.LEAVE)
+        await a.recv(S.PLAYER_LIST)
+        self.assertIn(b"two", self.server.reservations)
+        self.server.reservations[b"two"] = (2, S.time.monotonic()-0.01)
+        self.server.empty_since = S.time.monotonic()-3000
+        self.assertEqual(self.server.expire_reservations(), 1)
+        self.assertFalse(self.server.reservations)
+        replacement = await self.connect()
+        self.assertEqual((await replacement.begin("third")).payload, b"\\x02")
+
+    async def test_expiry_starts_idle_clock_when_last_player_is_gone(self):
+        a = await self.connect()
+        await a.begin("solo")
+        await a.close()
+        # There are no other players, but session remains resumable.
+        for _ in range(30):
+            await asyncio.sleep(.01)
+            if b"solo" in self.server.reservations:
+                break
+        self.assertTrue(self.server.in_game is False)
+        self.assertIn(b"solo", self.server.reservations)
+        self.server.empty_since = S.time.monotonic()-3000
+        self.server.reservations[b"solo"] = (1, S.time.monotonic()-0.01)
+        self.server.expire_reservations()
+        self.assertGreater(self.server.empty_since, S.time.monotonic()-1)
+
+    async def test_voluntary_leave_releases_slot_without_grace(self):
+        a = await self.connect()
+        await a.begin("one")
+        await a.send(S.LEAVE)
+        for _ in range(30):
+            await asyncio.sleep(.01)
+            if not self.server.players:
+                break
+        self.assertFalse(self.server.reservations)
+        b = await self.connect()
+        self.assertEqual((await b.begin("other")).payload, b"\\x01")
+
     def test_validation(self):
         x = bytearray(18)
         x[:5] = b"LANP\x01"
