@@ -1,6 +1,6 @@
 # AI README — Emerald Hybrid Multiplayer: passagem de contexto entre IAs
 > **LEITURA OBRIGATÓRIA ANTES DE EDITAR QUALQUER COISA NESTE REPOSITÓRIO.**
-> Atualizado em 2026-10-13 (planejamento v0.8, decisões **1–75** confirmadas). Documento específico deste fork, para evitar recomeços, erros de branch, perda de recursos ou afirmações de testes inexistentes.
+> Atualizado em 2026-10-13 (planejamento v0.8, decisões **1–100** confirmadas). Documento específico deste fork, para evitar recomeços, erros de branch, perda de recursos ou afirmações de testes inexistentes.
 
 ## 0. Resumo e fontes de verdade
 
@@ -49,9 +49,9 @@
 | `scripts/verify_lan_foundation.sh` | Testes nativos sessão/ligação/presença/culling. |
 | `docs/LAN_V080_ARCHITECTURE.md` | Protocolo, roadmap, matriz QA, decisão por pergunta. |
 
-## 3. Decisões aprovadas pelo usuário (1–75)
+## 3. Decisões aprovadas pelo usuário (1–100)
 
-As letras são exatamente as respostas do usuário. Reconsultar a descrição de **cada uma das 75 decisões** em `docs/LAN_V080_ARCHITECTURE.md` antes de interpretar letra isoladamente. **A rodada final veio numerada 1–25 pelo usuário, mas corresponde a 51–75**; não sobrescrever as primeiras 25.
+As letras são exatamente as respostas do usuário. Reconsultar a descrição de **cada uma das 100 decisões** em `docs/LAN_V080_ARCHITECTURE.md` antes de interpretar letra isoladamente. **A rodada final veio numerada 1–25 pelo usuário, mas corresponde a 51–75**; não sobrescrever as primeiras 25.
 
 - **1–10:** 1B 2A 3B 4B 5B 6C 7A 8B 9A 10A
 - **11–20:** 11A 12B 13B 14B 15A 16A 17A 18A 19A 20B
@@ -63,6 +63,9 @@ As letras são exatamente as respostas do usuário. Reconsultar a descrição de
 - **51–60:** 51C 52A 53A 54C 55A 56B 57A 58C 59B 60A
 - **61–70:** 61A 62C 63C 64A 65A 66C 67A 68A 69A 70B
 - **71–75:** 71A 72A 73B 74A 75B
+- **76–85:** 76C 77A 78A 79A 80A 81A 82A 83A 84A 85A
+- **86–95:** 86A 87B 88A 89A 90A 91A 92A 93A 94A 95A
+- **96–100:** 96A 97A 98A 99A 100A
 
 ## 4. Ordem das futuras entregas — recomendação, ainda sujeita a novas perguntas
 
@@ -140,7 +143,7 @@ bash scripts/verify_lan_foundation.sh
 
 Para executar a suite nativa é necessário ambiente Linux/Windows adequado com `cc`, bash, pthread e timeout. Builds Windows e Android devem rodar no GitHub Actions e logs avaliados por SHA exato. A aprovação anterior de dois jogadores foi relatada pelo usuário; não inventar capturas que não foram anexadas.
 
-**Próxima decisão:** coletar respostas 76–100 sobre experiência, segurança, UX, identidade e operação antes de congelar session-v1. Este documento deve ser atualizado com as respostas posteriores.
+**Decisões de produto 1–100 concluídas.** Congelar a primeira especificação de session-v1 de forma incremental e entrar em M0/M1. Evitar mais questionários gerais; perguntar apenas quando bloqueado por ambiguidade técnica real.
 
 ## 8. Registro desta atualização documental
 
@@ -153,7 +156,7 @@ Para executar a suite nativa é necessário ambiente Linux/Windows adequado com 
 - **Não implementado:** servidor dedicado, perfis multi-save, lobby de quatro jogadores, importador Android, auto-update, ARM64, chat, PokéNav de amigos.
 - **Riscos conhecidos:** portas v0.7 P2P não são compatíveis diretamente com o protocolo futuro; Android 64 bits pede trabalho no port; proteção do save; evitar duplicar Trainer ID ou destruir identidades originais.
 - **Rollback:** branch base `feature/lan-v0721-viewport-culling`; como esta PR contém apenas arquivos Markdown, basta não mesclá-la para retornar ao estado anterior. Nenhum .sav foi tocado.
-- **Próximo passo:** colher respostas 76–100; congelar session-v1 após as respostas; implementar SaveProfileManager atrás de feature flag, com testes offline e backups.
+- **Próximo passo:** especificação 1–100 concluída; iniciar M0/M1 em branch de implementação isolada: parser de sessão com testes e SaveProfileManager seguro, antes de ativar UI/servidor em jogo.
 
 
 ## 9. Registro de atualização — respostas 51–75 (documentação apenas)
@@ -167,4 +170,18 @@ Para executar a suite nativa é necessário ambiente Linux/Windows adequado com 
 - **Ainda NÃO implementado:** servidor dedicado, sessão de até quatro jogadores, launcher moderno, perfis multi-save, backup/restore, nomes sobre sprites, PIN, QR, ARM64, serviço Android, batalha por relé, updater.
 - **Riscos:** rótulos contextuais (#70B) devem caber na viewport GBA 240x160 sem sobreposição ou queda de FPS; fallback de Cable Club por relé pode ser sensível à latência; identificar clones de save por identidade de perfil sem sobrescrever Trainer ID; Android 10+ RAM 4GB são metas, não promessa universal.
 - **Rollback:** retornar à `feature/lan-v0721-viewport-culling` (commit-base `a87e2c49e453db32def5e71ba2a2e696a911d504`), que já foi validada visualmente pelo usuário. Somente Markdown foi alterado nesta branch de planejamento.
-- **Próximo passo:** rodada de respostas 76–100; depois separar M0 protocolo de M1 perfis sem modificar o jogo antes de verificar compatibilidade e saves reais.
+- **Próximo passo:** iniciar M0 parser/tests e M1 gerenciador de perfis em branch distinta, garantindo .sav original intacto e testes de rollback.
+
+
+## 10. Registro de atualização — perguntas 76–100 aprovadas (somente documentação)
+
+- **Data:** 2026-10-13; **branch:** `feature/lan-v080-architecture-spec`, [PR #5](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/5), derivada de `feature/lan-v0721-viewport-culling` no commit-base `a87e2c49e453db32def5e71ba2a2e696a911d504`. Consultar HEAD do GitHub antes de qualquer próxima edição.
+- **Pedido:** resposta literal do usuário à rodada 76–100, novamente numerada 1–25: `1C 2A 3A 4A 5A 6A 7A 8A 9A 10A 11A 12B 13A 14A 15A 16A 17A 18A 19A 20A 21A 22A 23A 24A 25A`. Interpretar como `76C ... 87B ... 100A` — não alterar escolhas 1–25 anteriores. Não há mais rodadas gerais pendentes.
+- **Modificado:** `AI_README.md`, `AGENTS.md`, `docs/LAN_V080_ARCHITECTURE.md`, com todas as decisões 1–100 e aceites M0/M1/M2/M3.
+- **Adicionado (somente documentação):** nickname externo e nome original no perfil, ID persistente exportável e sessão não duplicada, save single-writer, backup após salvar manualmente, lista de restauro, modo LAN sem contas, reconexão automática até 60 s, servidor sem jogadores fecha após 15 min padrão, QR/IP manual, bloqueio temporário, rate limit de PIN, privacidade de localização PokéNav, chat opcional sem histórico, protocolo seguro de trade (a desenvolver), regras PvP acordadas, turbo seguro em link, pixel-perfect, painel Android recolhível, atualizador verificado e logs locais voluntários.
+- **Removido:** nada de código, saves, UI, GBA, funcionalidades pré-existentes; nenhuma função retirada.
+- **Teste realizado nesta etapa:** conferência de cada letra da rodada 76–100 contra a tabela numerada na especificação e diff GitHub para garantir alterações apenas Markdown. Nenhum build Windows/Android ou partida v0.8 foi produzido nesta etapa.
+- **NÃO IMPLEMENTADO:** servidor dedicado LAN para dois/quatro clientes, PIN autenticação, lobby, gerenciador multi-profile, backups/restauração, identidade persistente, chat, painel, ARM64, suporte real de nomes de jogadores/QR no novo launcher, transações de trocas, updater. A versão jogável anterior v0.7.2.1 permanece a única fonte de gameplay validada pelo usuário.
+- **Riscos:** #77A sem contas significa que um ID de perfil pode ser clonado; bloquear sessão duplicada apenas como best-effort e não confundir com autenticação. #93A troca exige fluxo comprovadamente recuperável; não anunciar atomicidade sem teste. #100A aceita primeiro **dois jogadores**; o limite final de quatro (#3B/#35A) só estará pronto depois. Metas Android 10+, 4GB RAM são alvo, não garantias.
+- **Rollback:** não mesclar PR #5 ou retornar à branch `feature/lan-v0721-viewport-culling` em commit-base `a87e2c49e453db32def5e71ba2a2e696a911d504`. Nenhum `.sav` foi acessado ou modificado.
+- **Próximo passo**: branch independente de desenvolvimento para M0 (framing/decoder/session states, tests) e M1 (SaveProfileManager protegido, sem integração inicial com `AgbMain`), atualização obrigatória deste README em cada PR; depois M2 servidor headless para dois clientes.
