@@ -553,3 +553,26 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 **Rollback:** `feature/lan-v080-mega-desktop-polish` (instalador v0.8.2 confirmado no PC pelo usuário), ou `feature/lan-v0721-viewport-culling` SHA `a87e2c49e453db32def5e71ba2a2e696a911d504` (LAN P2P testada). Não misturar perfis preview com saves originais; preservar `EmeraldHybridEHL8Preview` e `profiles/` ao atualizar uma preview.
 
 **Próxima etapa:** verificar todos os workflows no mesmo SHA; enviar apenas build de preview quando íntegro, com roteiro QA e limitações; investigar integração de rendering em 2 PCs reais; depois implementar reserva de vaga por 60 segundos com identidade de sessão, painel lobby real e trade/battle SIO separado.
+
+## 24. Gate de distribuição M2: artefatos testados no MESMO SHA (2026-10-14)
+
+**Falha de processo detectada:** `.github/workflows/package-v0803-ehl8-preview.yml` buscava automaticamente componentes de runs antigos (`38530326166`, `38530326649`, `38530326482`, `38530326395`), sem garantir que o usuário recebesse correções recém-adicionadas. O ZIP poderia ser publicado como atualizado enquanto continha **executáveis antigos**, contrariando a política de QA da equipe.
+
+**Corrigido:** o workflow agora aguarda as quatro compilações obrigatórias (jogo Windows, launcher gráfico, servidor dedicado EHL8 e núcleo de perfis) de **exatamente `GITHUB_SHA`**, consulta a API de Actions com permissão `actions:read`, exige conclusão `success` para cada uma, falha se alguma delas falhar ou não terminar, baixa os artefatos correspondentes e verifica assinatura PE MZ, tamanho mínimo e ausência de `.sav` em cada pacote. Emite `SHA256_COMPONENTES.txt` contendo `SOURCE_COMMIT` e hash real de cada um dos cinco binários (SDL2 incluída). Instalador NSIS e ZIP portátil incluem esse arquivo e continuam usando perfis beta isolados.
+
+**Arquivos alterados/adicionados na retomada:**
+- `tools/emerald_session_server.py`: READY tardio aceito exatamente quando o novo jogador entrou em jogo iniciado, idempotência sem flood; evento `EHL8_ROOM_COUNT` emitido apenas com ocupação, sem divulgar credenciais/IDs.
+- `tests/test_emerald_session_server.py`: novo caso TCP da entrada tardia e pose do substituto após partida iniciada.
+- `tools/emerald_launcher.py`: contador real lido do próprio log do servidor, limitado aos 8 KiB finais; logs ausentes deixam o estado como aguardo.
+- `tests/test_emerald_launcher.py`: parser de eventos com multiline, logs ausentes, inválidos, tail grande.
+- `.github/workflows/package-v0803-ehl8-preview.yml`: componentes do mesmo commit + manifest SHA256.
+- `packaging/emerald_hybrid_m2_preview.nsi`: instala/remove `SHA256_COMPONENTES.txt` sem tocar nos saves do usuário.
+- `docs/LAN_V0803_DEDICATED_SESSION_CORE.md`, `docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md` e este `AI_README.md`: QA/rollback/continuidade.
+
+**Removido:** nenhuma funcionalidade de gameplay, arquivo de save, mapa, mecânica, áudio, opção P2P ou Quest UI; nenhum `src/` foi modificado nesta retomada, apenas servidor, launcher, testes, empacotamento e documentação.
+
+**QA de aprovação:** devem passar os mesmos testes Linux/Windows de socket e cliente C, builds Windows/Android, testes de launcher, regressão LAN e **o novo workflow de pacote sincronizado por SHA**. O workflow `CI` genérico de comparação ROM é uma etapa separada e historicamente falha; não afirmar `100% CI verde` se ela continuar vermelha. A conexão de dois processos completos `pokeemerald.exe` em máquinas físicas ainda requer teste pelo usuário com cópias de saves.
+
+**Riscos/pêndencias:** reconexão com vaga por 60 segundos e token de retomada não implementada; lobby gráfico ainda sem nomes/ping/kick; troca/batalha EHL8 ainda sem proxy Cable Club, má qualidade de WAN pública (PIN não substitui criptografia), suporte a quatro participantes e a UI Android dedicados ausentes. Não promover PR #10 a release estável ainda. Testar novo pacote M2 em instalação separada da v0.8.2 previamente aprovada.
+
+**Rollback:** `feature/lan-v080-mega-desktop-polish` é o instalador v0.8.2 confirmado pelo usuário; `feature/lan-v0721-viewport-culling` SHA `a87e2c49e453db32def5e71ba2a2e696a911d504` é a LAN P2P funcional. Preservar todos os perfis originais e nunca transportar `.sav` dentro do instalador.
