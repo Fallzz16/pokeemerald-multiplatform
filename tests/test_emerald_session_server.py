@@ -121,6 +121,9 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
             await other.recv(S.PLAYER_LIST)
         await a.recv(S.START)
         await b.recv(S.START)
+        # Explicit LEAVE frees the slot immediately. Accidental transport
+        # loss instead reserves it for the returning profile for 60 seconds.
+        await b.send(S.LEAVE)
         await b.close()
         await a.recv(S.LEAVE)
         await a.recv(S.PLAYER_LIST)
@@ -201,11 +204,11 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
 
     async def test_disconnected_profile_reclaims_same_slot_during_60s_grace(self):
         a, b = await self.connect(), await self.connect()
-        self.assertEqual((await a.begin("one")).payload, b"\\x01")
-        self.assertEqual((await b.begin("two")).payload, b"\\x02")
+        self.assertEqual((await a.begin("one")).payload, b"\x01")
+        self.assertEqual((await b.begin("two")).payload, b"\x02")
         await a.recv(S.PLAYER_LIST)
         for peer, other in ((a,b),(b,a)):
-            await peer.send(S.READY, b"\\x01")
+            await peer.send(S.READY, b"\x01")
             await peer.recv(S.PLAYER_LIST)
             await other.recv(S.PLAYER_LIST)
         await a.recv(S.START)
@@ -224,10 +227,10 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
         await new.send(S.JOIN, b"third")
         self.assertIn(b"full", (await new.recv(S.KICK)).payload)
         back = await self.connect()
-        self.assertEqual((await back.begin("two")).payload, b"\\x02")
+        self.assertEqual((await back.begin("two")).payload, b"\x02")
         await a.recv(S.PLAYER_LIST)
         await back.recv(S.START)
-        await back.send(S.READY, b"\\x01")
+        await back.send(S.READY, b"\x01")
         await a.recv(S.PLAYER_LIST)
         await back.recv(S.PLAYER_LIST)
         await back.send(S.HEARTBEAT)
@@ -249,7 +252,7 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(self.server.expire_reservations(), 1)
         self.assertFalse(self.server.reservations)
         replacement = await self.connect()
-        self.assertEqual((await replacement.begin("third")).payload, b"\\x02")
+        self.assertEqual((await replacement.begin("third")).payload, b"\x02")
 
     async def test_expiry_starts_idle_clock_when_last_player_is_gone(self):
         a = await self.connect()
@@ -277,7 +280,7 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
                 break
         self.assertFalse(self.server.reservations)
         b = await self.connect()
-        self.assertEqual((await b.begin("other")).payload, b"\\x01")
+        self.assertEqual((await b.begin("other")).payload, b"\x01")
 
     def test_validation(self):
         x = bytearray(18)
