@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import re
 import secrets
+from datetime import datetime
 import subprocess
 import sys
 import tkinter as tk
@@ -24,6 +25,36 @@ def profile_root():
     if (here/"PORTABLE_MODE.txt").exists():
         return here/"profiles"
     return Path(os.environ.get("LOCALAPPDATA",str(Path.home()))) / "EmeraldHybrid" / "profiles"
+
+def settings_path(root):
+    # Local profiles live under %LOCALAPPDATA%/EmeraldHybrid or portable ./profiles.
+    return root.parent / "launcher-settings.json"
+
+def read_settings(root):
+    path = settings_path(root)
+    try:
+        if path.stat().st_size > 32768:
+            return {}
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) and data.get("schema") == 1 else {}
+    except (OSError, UnicodeError, ValueError, TypeError):
+        return {}
+
+def write_settings(root, selected, diagnostics, ip, port):
+    data = {"schema": 1, "selected_profile": selected, "diagnostics": bool(diagnostics),
+            "last_host": ip, "last_port": port}
+    target = settings_path(root)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    temporary = target.with_name(target.name + "." + secrets.token_hex(5) + ".tmp")
+    try:
+        with temporary.open("x", encoding="utf-8") as stream:
+            json.dump(data, stream, indent=2, ensure_ascii=False)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, target)
+    finally:
+        try: temporary.unlink(missing_ok=True)
+        except OSError: pass
 
 def validate_port(value):
     try: p=int(str(value).strip())
@@ -85,13 +116,21 @@ class EmeraldLauncher(tk.Tk):
         self.root_dir=profile_root()
         self.game=application_dir()/"pokeemerald.exe"
         self.cli=application_dir()/"emerald_profilectl.exe"
-        self.selected=None
-        self.ip=tk.StringVar();self.port=tk.StringVar(value="45680")
+        settings=read_settings(self.root_dir)
+        selected=settings.get("selected_profile")
+        self.selected=selected if isinstance(selected,str) and PATTERN.fullmatch(selected) else None
+        self.ip=tk.StringVar(value=str(settings.get("last_host",""))[:48])
+        self.port=tk.StringVar(value=str(settings.get("last_port","45680"))[:6])
+        self.diagnostics=tk.BooleanVar(value=settings.get("diagnostics",False) is True)
+        self.active_process=None
+        self.active_log=None
+        self.active_mode=None
         self.status=tk.StringVar(value="Selecione ou crie um perfil para começar.")
         self.sidebar=tk.Frame(self,bg=LEFT,width=275)
         self.sidebar.pack(side="left",fill="y");self.sidebar.pack_propagate(False)
         self.main=tk.Frame(self,bg=INK);self.main.pack(side="left",fill="both",expand=True)
         self.sidebar_ui();self.main_ui();self.refresh()
+        self.protocol("WM_DELETE_WINDOW",self.shutdown)
 
     def text(self,parent,value,sz=11,color=WHITE,bold=False):
         return tk.Label(parent,text=value,fg=color,bg=parent["bg"],
@@ -116,6 +155,7 @@ class EmeraldLauncher(tk.Tk):
         self.choices=tk.Frame(f,bg=LEFT);self.choices.pack(fill="x",padx=16,pady=(10,6))
         self.btn(f,"+ Criar ou importar conta",self.new_profile,accent=True).pack(fill="x",padx=16,pady=6)
         self.btn(f,"Atualizar lista",self.refresh).pack(fill="x",padx=16,pady=6)
+        self.btn(f,"Abrir pasta de logs",self.open_logs).pack(fill="x",padx=16,pady=6)
         tk.Frame(f,bg=LEFT).pack(expand=True)
         self.text(f,"Progresso individual",10,MUTED,True).pack(anchor="w",padx=20)
         self.text(f,"Nenhuma conta online é exigida.\nSeus saves permanecem locais.",9,MUTED).pack(anchor="w",padx=20,pady=(6,25))
@@ -148,7 +188,10 @@ class EmeraldLauncher(tk.Tk):
         tk.Entry(row,textvariable=self.ip,width=20,bg=PANEL,fg=WHITE,insertbackground=WHITE,relief="flat",font=("Consolas",11)).pack(side="left",padx=(10,22),ipady=7)
         self.text(row,"Porta:",10,MUTED).pack(side="left")
         tk.Entry(row,textvariable=self.port,width=7,bg=PANEL,fg=WHITE,insertbackground=WHITE,relief="flat",font=("Consolas",11)).pack(side="left",padx=9,ipady=7)
-        self.text(f,"Conexão remota: use VPN privada; não exponha as portas no roteador.",9,"#ffc783").pack(anchor="w",padx=32,pady=(18,0))
+        tk.Checkbutton(f,text="Diagnóstico opcional: mostrar console CMD",variable=self.diagnostics,
+                       command=self.persist,selectcolor=PANEL,activebackground=INK,activeforeground=WHITE,
+                       bg=INK,fg=MUTED,font=("Segoe UI",10),anchor="w").pack(anchor="w",padx=32,pady=(13,0))
+        self.text(f,"Conexão remota: use VPN privada; não exponha as portas no roteador.",9,"#ffc783").pack(anchor="w",padx=32,pady=(8,0))
 
     def refresh(self):
         for child in self.choices.winfo_children():child.destroy()
@@ -161,11 +204,55 @@ class EmeraldLauncher(tk.Tk):
             self.btn(self.choices,("● " if chosen else "○ ")+nick,
                      lambda pid=pid:self.select(pid),accent=chosen).pack(fill="x",pady=3)
 
+    def persist(self):
+        try:
+            write_settings(self.root_dir,self.selected,self.diagnostics.get(),self.ip.get(),self.port.get())
+        except OSError:
+            self.status.set("Não foi possível salvar as preferências do launcher.")
+
     def select(self,pid):
         self.selected=pid
         name=next((nick for id,nick in find_profiles(self.root_dir) if id==pid),pid)
         self.status.set("Perfil ativo: "+name)
         self.refresh()
+        self.persist()
+
+    def open_logs(self):
+        directory=self.root_dir.parent/"logs"
+        try:
+            directory.mkdir(parents=True,exist_ok=True)
+            if sys.platform=="win32": os.startfile(directory)
+            else: messagebox.showinfo("Logs",str(directory))
+        except OSError as exc:
+            messagebox.showerror("Logs indisponíveis",str(exc))
+
+    def shutdown(self):
+        self.persist()
+        self.destroy()
+
+    def watch_game(self):
+        if self.active_process is None:
+            return
+        rc=self.active_process.poll()
+        if rc is None:
+            self.after(900,self.watch_game)
+            return
+        self.active_process=None
+        mode=self.active_mode
+        logfile=self.active_log
+        self.active_mode=None
+        self.active_log=None
+        self.deiconify()
+        self.lift()
+        if rc==0:
+            self.status.set("Jogo encerrado normalmente. Seu perfil continua selecionado.")
+        else:
+            self.status.set(f"O jogo terminou com erro ({rc}). Consulte os logs.")
+            messagebox.showwarning("Diagnóstico da execução",
+               f"O Emerald terminou com código {rc}.\n"
+               f"Confira o perfil e os logs em:\n{self.root_dir.parent / 'logs'}\n"
+               "Ative 'Diagnóstico opcional' para ver mensagens de console.")
+        self.persist()
 
     def new_profile(self):
         if not self.cli.is_file():
@@ -194,13 +281,16 @@ class EmeraldLauncher(tk.Tk):
                 if proc.returncode:raise RuntimeError("O save não foi importado.\n"+(proc.stderr or proc.stdout)[:350])
                 write_nickname(self.root_dir/pid,nickname)
                 modal.destroy();self.selected=pid
-                self.status.set("Perfil ativo: "+nickname);self.refresh()
+                self.status.set("Perfil ativo: "+nickname);self.refresh();self.persist()
             except (OSError,ValueError,RuntimeError,subprocess.TimeoutExpired) as err:
                 messagebox.showerror("Não foi possível criar",str(err),parent=modal)
         self.btn(modal,"Começar do zero",lambda:create(False),accent=True).pack(fill="x",padx=24,pady=5)
         self.btn(modal,"Importar meu save .sav",lambda:create(True)).pack(fill="x",padx=24,pady=5)
 
     def play(self,mode):
+        if self.active_process is not None and self.active_process.poll() is None:
+            messagebox.showinfo("Jogo em execução","O Emerald já está aberto. Feche-o antes de iniciar outra partida.")
+            return
         if self.selected is None:
             messagebox.showwarning("Falta um perfil","Crie ou selecione uma conta local primeiro.");return
         if not self.game.is_file():
@@ -209,9 +299,34 @@ class EmeraldLauncher(tk.Tk):
             messagebox.showerror("Save não encontrado","O arquivo de save deste perfil não existe.");return
         try:
             args=make_command(self.game,self.root_dir,self.selected,mode,self.ip.get(),self.port.get())
-            subprocess.Popen(args,cwd=str(application_dir()),close_fds=True)
+            self.persist()
+            logs=self.root_dir.parent/"logs"
+            logs.mkdir(parents=True,exist_ok=True)
             if mode!="offline":
-                messagebox.showinfo("P2P experimental","Esta sessão é para 2 jogadores, pela LAN ou VPN privada.\nServidor dedicado e 4 jogadores ainda não estão disponíveis.")
+                # The older P2P link uses an independent --lan-log file.
+                pos=args.index("--lan-log")
+                args[pos+1]=str(logs/("host-lan.log" if mode=="host" else "cliente-lan.log"))
+            flags=0
+            if sys.platform=="win32":
+                flags=(getattr(subprocess,"CREATE_NEW_CONSOLE",0) if self.diagnostics.get()
+                       else getattr(subprocess,"CREATE_NO_WINDOW",0))
+            if self.diagnostics.get():
+                p=subprocess.Popen(args,cwd=str(application_dir()),creationflags=flags)
+            else:
+                # ReadFlash normally prints huge amounts of debug lines. Avoid
+                # spawning a console or growing a multi-gigabyte stdout log.
+                # Keep stderr (startup and crash diagnostics) in a dated file.
+                diag=logs/("jogo-"+datetime.now().strftime("%Y%m%d-%H%M%S")
+                           +"-"+secrets.token_hex(3)+".log")
+                with diag.open("wb") as errfile:
+                    p=subprocess.Popen(args,cwd=str(application_dir()),creationflags=flags,
+                                       stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=errfile)
+            self.active_process=p
+            self.active_mode=mode
+            self.active_log=logs
+            self.status.set("Emerald em execução. O launcher acompanha o processo em segundo plano.")
+            self.iconify()
+            self.after(900,self.watch_game)
         except (OSError,ValueError) as err:messagebox.showerror("Falha ao iniciar",str(err))
 
 def main():
