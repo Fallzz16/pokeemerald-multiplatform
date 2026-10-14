@@ -72,7 +72,7 @@ def read_room_occupancy(log_path):
             tail = stream.read(8192).decode("utf-8", "replace")
     except OSError:
         return None
-    matches = re.findall(r"EHL8_ROOM_COUNT=([0-2])/([12])(?:\\s|$)", tail)
+    matches = re.findall(r"EHL8_ROOM_COUNT=([0-2])/([12])(?:\s|$)", tail)
     if not matches:
         return None
     current, capacity = map(int, matches[-1])
