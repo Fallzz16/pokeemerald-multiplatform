@@ -1,6 +1,6 @@
 # AI README — Emerald Hybrid Multiplayer: passagem de contexto entre IAs
 > **LEITURA OBRIGATÓRIA ANTES DE EDITAR QUALQUER COISA NESTE REPOSITÓRIO.**
-> Atualizado em 2026-10-13 (planejamento v0.8, decisões **1–100** confirmadas). Documento específico deste fork, para evitar recomeços, erros de branch, perda de recursos ou afirmações de testes inexistentes.
+> Atualizado em 2026-10-14 (v0.8 MEGA/M2, decisões **1–116** confirmadas; estado da implementação por capítulo abaixo). Documento específico deste fork, para evitar recomeços, erros de branch, perda de recursos ou afirmações de testes inexistentes.
 
 ## 0. Resumo e fontes de verdade
 
@@ -438,3 +438,5 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 - **Estado:** [PR #10](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/10) permanece DRAFT. O CI pode ter outro check legado de ROM em execução ou falha independente; não declarar todo o conjunto de workflows verde sem verificar.
 - **Teste funcional importante NÃO feito:** duas partidas reais do Emerald conectadas nesse servidor; ainda não existe adaptador de cliente EHL8 no jogo. Também permanecem pendentes slots reservados por 60s e autenticação forte para internet. 
 - **Próximo trabalho:** M2/2 client adapter + testes host dedicado (um Windows servidor sem jogo e dois jogadores com saves separados), depois M2/3 integrar GUI lobby ao launcher; não reintroduzir confusão entre EHL8 e P2P Cable Club.
+
+- **Artefato DEV conferido no contêiner do chat:** `Emerald_v0803_EHL8_SessionServer_WINDOWS_DEV.zip` (9.485.973 bytes), CRC OK, `EmeraldSessionServer.exe` (9.673.607 bytes) com PE `MZ` e SHA256 `00a45d6a474bafbad98d943dfae2f203a2e9e470bd2b9e5e39b0e4a82571f3d5`. Não é um instalador nem a versão de multiplayer jogável; não integrar ao pacote do jogador sem M2/2.
