@@ -170,14 +170,77 @@ jobs:
           Copy-Item payload/LEIA_QA_PTBR.md,payload/AI_README.md,payload/SHA256_COMPONENTES.txt portable
           Compress-Archive -Path portable/* -DestinationPath release/Emerald_Hybrid_EHL8_M2_PREVIEW_PORTATIL_Windows.zip -CompressionLevel Optimal
 
-      - name: Install NSIS for real per-user installer build
+      - name: Locate NSIS or download official portable archive (no Chocolatey feed dependency)
         shell: pwsh
         run: |
-          choco install nsis --yes --no-progress --limit-output
-          if ($LASTEXITCODE -ne 0) { throw "Nao foi possivel instalar NSIS" }
+          $ErrorActionPreference='Stop'
           $possible=@("${env:ProgramFiles(x86)}\NSIS\makensis.exe","$env:ProgramFiles\NSIS\makensis.exe")
-          $compiler=$possible | Where-Object { Test-Path $_ } | Select-Object -First 1
-          if (!$compiler) { throw "NSIS nao encontrado" }
+          $compiler=$possible | Where-Object { Test-Path -LiteralPath $_ -PathType Leaf } | Select-Object -First 1
+          if (!$compiler) {
+            # Official NSIS distribution (ZIP, no system installation or UAC).
+            # Chocolatey community feed returned HTTP 503 in run 38561477655.
+            $zip=Join-Path $env:RUNNER_TEMP 'nsis-3.13.zip'
+            $extract=Join-Path $env:RUNNER_TEMP 'nsis-3.13-portable'
+            $url='https://downloads.sourceforge.net/project/nsis/NSIS%203/3.13/nsis-3.13.zip'
+            $downloaded=$false
+            for ($attempt=1; $attempt -le 3; $attempt++) {
+              try {
+                Invoke-WebRequest -Uri $url -OutFile $zip -MaximumRedirection 10 -TimeoutSec 90
+                if ((Get-Item -LiteralPath $zip).Length -lt 1000000) {
+                  throw 'Arquivo NSIS inesperadamente pequeno'
+                }
+                Expand-Archive -LiteralPath $zip -DestinationPath $extract -Force
+                $compiler=Get-ChildItem -Path $extract -Recurse -File -Filter 'makensis.exe' |
+                          Where-Object { $_.DirectoryName -notmatch '\\Bin
+      - name: Build isolated beta .exe INSTALLER
+        shell: pwsh
+        run: |
+          & $env:NSIS_COMPILER /V3 packaging/emerald_hybrid_m2_preview.nsi
+          if ($LASTEXITCODE -ne 0) { throw "Instalador NSIS falhou" }
+          if (!(Test-Path release/Emerald_Hybrid_EHL8_M2_PREVIEW_INSTALADOR_Windows.exe)) { throw "Sem instalador gerado" }
+          if ((Get-Item release/Emerald_Hybrid_EHL8_M2_PREVIEW_INSTALADOR_Windows.exe).Length -lt 1000000) { throw "Instalador invalido" }
+
+      - name: Verify that exactly both complete builds were generated
+        shell: pwsh
+        run: |
+          $items=@(Get-ChildItem release -File)
+          if ($items.Count -ne 2) { throw "Esperado instalador + ZIP portatil" }
+          $items | Select-Object Name,Length | Format-Table
+          Get-FileHash release/* -Algorithm SHA256 | Format-Table
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BAIXAR_AQUI_Emerald_EHL8_M2_PREVIEW_INSTALADOR_e_PORTATIL
+          path: release/*
+          if-no-files-found: error
+          retention-days: 30
+ } |
+                          Select-Object -First 1 -ExpandProperty FullName
+                if (!$compiler) { throw 'Compilador ausente no ZIP NSIS' }
+                $downloaded=$true
+                break
+              } catch {
+                Write-Warning "Falha tentativa $attempt no NSIS oficial: $_"
+                Remove-Item -LiteralPath $extract -Recurse -Force -ErrorAction SilentlyContinue
+              }
+            }
+            if (!$downloaded) {
+              Write-Warning 'NSIS oficial indisponivel; usando Chocolatey como alternativa'
+              choco install nsis --yes --no-progress --limit-output
+              $compiler=$possible | Where-Object { Test-Path -LiteralPath $_ -PathType Leaf } |
+                        Select-Object -First 1
+            }
+          }
+          if (!$compiler -or !(Test-Path -LiteralPath $compiler -PathType Leaf)) {
+            throw 'NSIS nao encontrado; empacotamento deve falhar, nunca enviar ZIP parcial'
+          }
+          $fs=[System.IO.File]::OpenRead($compiler)
+          try {
+            if ($fs.ReadByte() -ne 77 -or $fs.ReadByte() -ne 90) {
+              throw 'makensis.exe nao e executavel Windows valido'
+            }
+          } finally { $fs.Dispose() }
+          Write-Host "Compiler: $compiler"
           "NSIS_COMPILER=$compiler" >> $env:GITHUB_ENV
 
       - name: Build isolated beta .exe INSTALLER

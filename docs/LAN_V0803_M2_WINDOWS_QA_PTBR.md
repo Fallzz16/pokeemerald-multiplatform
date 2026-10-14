@@ -53,3 +53,8 @@ Leia `AI_README.md`, `AGENTS.md` e `docs/LAN_V0803_DEDICATED_SESSION_CORE.md` pa
 ## Nova verificação do loop de quadros SDL (14/10/2026)
 
 A revisão do PR #10 identificou por inspeção de fonte (não por teste visual) que a thread de interface poderia ficar em laço infinito quando um quadro do AgbMain ainda não estivesse disponível. A guarda adicionada interrompe somente a iteração do acumulador até chegar novo quadro. O teste em `tests/test_sdl2_frame_pacing.py` verifica o código estaticamente; o build Windows continua sendo a prova de compilação, **não de FPS ou gameplay**. Teste no Windows abrir, andar, trocar de mapa, turbo, fechar durante uma tela lenta e voltar offline ao mesmo perfil, sempre com cópias de saves e sem substituir a versão 0.8.2 aprovada.
+
+
+## Aviso sobre download dos arquivos da revisão 1851588
+
+A compilação Windows e os testes EHL8 no GitHub Actions passaram para o SHA `1851588`, porém o empacotador falhou ao instalar NSIS por erro HTTP 503 externo do Chocolatey. Não baixar arquivos soltos nem atribuir a esse run um instalador que não foi disponibilizado. A branch contém hotfix de bootstrap do NSIS oficial em ZIP portátil (sem UAC, com fallback); verificar **novo run** e manifesto SOURCE_COMMIT antes de instalar. A v0.8.2 aprovada permanece intacta, e testes em dois jogos com saves reais continuam pendentes.

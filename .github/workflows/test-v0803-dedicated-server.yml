@@ -6,6 +6,7 @@ on:
     paths:
       - 'tools/emerald_session_server.py'
       - 'tests/test_emerald_session_server.py'
+      - '.github/workflows/package-v0803-ehl8-preview.yml' # rebuild components for packaging-only fixes
       - 'src/platform/sdl2.c' # same-commit server artifact for preview packaging
       - 'src/lnet/lnet_session_client.*'
       - 'tests/native_ehl8_client.c'
