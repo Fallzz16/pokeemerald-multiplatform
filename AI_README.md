@@ -505,3 +505,24 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 - **Próxima etapa:** instalar preview separada em 2 PCs, fazer QA com cópias de dois saves e comparar regressões. Só depois implementar lobby gráfico completo, recuperação, extensão para 4 e SIO de batalhas/trocas no dedicado.
 
 **Nenhuma ação desta etapa acessou ou modificou os saves pessoais do usuário.**
+
+
+## 22. M2 — reforço de QA da ponte C nativa e reconfirmação de contexto (2026-10-14)
+
+**Pedido:** o usuário aprovou implementar/conectar EHL8 ao Emerald e solicitou análise, polimento e verificação antes de qualquer entrega. Ao retomar `feature/lan-v0803-dedicated-session-core`, a integração **já estava presente**, não recomeçar do zero: `src/lnet/lnet_session_client.c/.h`, `src/link.c`, `src/platform/sdl2.c`, GUI com controles dedicados e um workflow de pacote PREVIEW. GitHub HEAD deve ser consultado; PR #10 ainda draft.
+
+**Verificação em commit pré-QA** `3757ecd0b2c6d38c1921b085575209ea205c6c0e`: builds Windows x86 e Android ARMv7, testes LAN, M0/M1 perfis, GUI, servidor EHL8 e pacote de preview **SUCCESS** no GitHub. Workflow `CI` genérico da ROM **FAILURE** separada, não chamar todos os checks verdes nem mesclar PR prematuramente.
+
+**Adicionado nesta retomada (código de testes, sem gameplay modificado):**
+- `tests/test_ehl8_native_bridge.py`: casos end-to-end reais com cliente nativo C contra servidor Python para (a) rejeitar PIN errado sem entrar no lobby; (b) negar conexão duplicada do mesmo profile ID sem substituir jogador existente.
+- Testes anteriores de dois clientes C jogando poses em TCP localhost, handshake PIN/ready/start, falhas de framing e retransmissão permanecem ativos.
+
+**QA novo:** [Actions 38533591020](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38533591020) foi executado sobre `2664c58a1089228c5276b27d4d0a67bd0bae5094`. Testes Linux de servidor e ponte nativa C/servidor Python **SUCCESS**; job Windows de servidor compila executable PyInstaller (verificar conclusão antes de declarar verde). Builds Android/Windows/native serão avaliados separadamente, nunca assumidos.
+
+**Segurança e isolamento:** nenhum `.sav` foi carregado nos novos testes; todos os binários de teste são efêmeros; não houve alteração de mapas, batalha, SIO, áudio, sprites ou gameplay. O novo protocolo de sessão dedicado permanece separado do Cable Club P2P anterior. ID de perfil impede duplicação acidental de sessão, mas não é prova de identidade criptográfica em LAN.
+
+**NÃO IMPLEMENTADO/NÃO VALIDADO:** QA em dois PCs reais com Emerald completo e saves independentes, reconexão com reserva de 60 segundos, robustez de trocas/duelos dedicados (ainda no P2P antigo), lobby gráfico com lista de conectados, Android servidor dedicado, quatro jogadores, proteção/backup automáticos pós-save. O preview **NÃO é release estável**.
+
+**Recomendação e próximo passo:** preservar PR #10 experimental e solicitar QA do usuário no Windows com **3 máquinas lógicas** (servidor EHL8 + 2 clientes Emerald com perfis diferentes) antes de declarar jogabilidade dedicada validada. Se aprovar, implementar lista real de participantes/Ready UI e reconexão, depois até 4 players. README obrigatório em cada atualização.
+
+**Rollback:** `feature/lan-v080-mega-desktop-polish` (instalador previamente confirmado pelo usuário), backup LAN validado `feature/lan-v0721-viewport-culling`. Nunca modificar arquivos de save originais.
