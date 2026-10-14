@@ -97,8 +97,9 @@ class SessionServer:
 
     async def start(self, bind="127.0.0.1", port=45680):
         self.listener = await asyncio.start_server(self.handle, bind, port, limit=8192, backlog=8)
-        self.log.info("EHL8 session listening on %s:%s (%s slots). No gameplay adapter yet.",
+        self.log.info("EHL8 session listening on %s:%s (%s slots).",
                       bind, self.listener.sockets[0].getsockname()[1], self.slots)
+        self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
         return self.listener
 
     async def stop(self):
@@ -158,6 +159,7 @@ class SessionServer:
         finally:
             if peer.slot is not None and self.players.get(peer.slot) is peer:
                 del self.players[peer.slot]
+                self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
                 if self.players:
                     await self.broadcast(LEAVE, bytes([peer.slot]))
                     await self.broadcast(PLAYER_LIST, self.snapshot())
@@ -212,6 +214,7 @@ class SessionServer:
             peer.slot, peer.profile = free, msg.payload
             peer.stage = "GAME" if self.in_game else "LOBBY"
             self.players[free] = peer
+            self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
             await peer.send(JOIN, bytes([free]), self.session, msg.request)
             await self.broadcast(PLAYER_LIST, self.snapshot())
             if self.in_game:
