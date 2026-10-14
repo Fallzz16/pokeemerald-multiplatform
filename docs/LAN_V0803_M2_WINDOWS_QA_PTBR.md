@@ -58,3 +58,8 @@ A revisão do PR #10 identificou por inspeção de fonte (não por teste visual)
 ## Aviso sobre download dos arquivos da revisão 1851588
 
 A compilação Windows e os testes EHL8 no GitHub Actions passaram para o SHA `1851588`, porém o empacotador falhou ao instalar NSIS por erro HTTP 503 externo do Chocolatey. Não baixar arquivos soltos nem atribuir a esse run um instalador que não foi disponibilizado. A branch contém hotfix de bootstrap do NSIS oficial em ZIP portátil (sem UAC, com fallback); verificar **novo run** e manifesto SOURCE_COMMIT antes de instalar. A v0.8.2 aprovada permanece intacta, e testes em dois jogos com saves reais continuam pendentes.
+
+
+## Regressão do CI GBA legado após heartbeat EHL8
+
+O build Windows/Android da revisão c109a48 foi aprovado e seu instalador gerado, mas o workflow CI da ROM GBA (Compare, run 38564429341) acusou erros do compilador agbcc relacionados a _Static_assert, _Alignof e __builtin_choose_expr. No código, MODERN=0 era tratado indevidamente como modo moderno no cabeçalho BIOS syscall. A revisão corrige só a condição de compilação e adiciona testes para MODERN=0, MODERN=1 e PORTABLE. Mesmo com estes testes passando, conferir o próximo workflow CI de ROM e a integridade de save antes de considerar o projeto integralmente validado.
