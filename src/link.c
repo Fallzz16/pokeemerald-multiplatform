@@ -1791,6 +1791,7 @@ void LinkPlayerFromBlock(u32 who)
 #include <string.h>
 #include "lnet_link.h"
 #include "lnet_presence.h"
+#include "lnet_culling.h"
 #include "event_object_movement.h"
 #include "field_player_avatar.h"
 #include "fieldmap.h"
@@ -1802,12 +1803,41 @@ static LNetPresence *sLanPresence;
 
 #define LAN_VIRTUAL_PLAYER_ID 0xFC
 #define LAN_MOVE_MAX_PX_PER_FRAME 3
+#define LAN_REMOTE_PREFETCH_PX 32
+#define LAN_REMOTE_RETAIN_PX 48
 static s16 sLanRemotePosX;
 static s16 sLanRemotePosY;
 static u8 sLanRemoteGender;
 static u8 sLanRemoteMapGroup;
 static u8 sLanRemoteMapNum;
 static bool8 sLanRemoteInitialized;
+
+/* Project the remote sprite through Emerald's ACTUAL moving-camera helper.
+ * Unlike a tile-distance check, this accounts for scrolling/camera panning,
+ * the sprite's real dimensions and the current OAM coordinate offset.
+ *
+ * Virtual sprites place their Y origin a half-height above the tile's foot,
+ * and the object callback subtracts the second half-height during clipping.
+ * Therefore the rectangle starts at the projected foot Y minus gfx height.
+ */
+static bool32 LanRemoteIntersectsCamera(u8 gender, s16 mapPixelX,
+                                       s16 mapPixelY, int margin)
+{
+    u8 gfxId = gender ? OBJ_EVENT_GFX_MAY_NORMAL : OBJ_EVENT_GFX_BRENDAN_NORMAL;
+    const struct ObjectEventGraphicsInfo *graphicsInfo =
+        GetObjectEventGraphicsInfo(gfxId);
+    s16 screenX = (mapPixelX >> 4) + MAP_OFFSET;
+    s16 screenY = (mapPixelY >> 4) + MAP_OFFSET;
+
+    SetSpritePosToOffsetMapCoords(&screenX, &screenY, 8, 16);
+    return lnet_culling_intersects(
+        (int)screenX + (mapPixelX & 15) +
+            (int)gSpriteCoordOffsetX - graphicsInfo->width / 2,
+        (int)screenY + (mapPixelY & 15) +
+            (int)gSpriteCoordOffsetY - graphicsInfo->height,
+        graphicsInfo->width, graphicsInfo->height,
+        DISPLAY_WIDTH, DISPLAY_HEIGHT, margin) != 0;
+}
 
 /* Presence runs independently from the serial Cable Club emulation.
  * Never touch map events or saves; the guest is purely a virtual sprite. */
@@ -1870,6 +1900,20 @@ static void PortLanPresencePump(void)
     {
         u8 gfx = remote.gender ? OBJ_EVENT_GFX_MAY_NORMAL
                                : OBJ_EVENT_GFX_BRENDAN_NORMAL;
+
+        /* Keep receiving remote location while offscreen, but do NOT allocate
+         * a sprite until it approaches the camera. This matters more with
+         * multiple players and avoids expensive offscreen OAM updates. */
+        if (!LanRemoteIntersectsCamera(remote.gender,
+                                       (s16)remote.x * 16,
+                                       (s16)remote.y * 16,
+                                       LAN_REMOTE_PREFETCH_PX))
+        {
+            if (LanVirtualObjectExists(LAN_VIRTUAL_PLAYER_ID))
+                LanVirtualObjectDestroy(LAN_VIRTUAL_PLAYER_ID);
+            sLanRemoteInitialized = FALSE;
+            return;
+        }
         LanVirtualObjectDestroy(LAN_VIRTUAL_PLAYER_ID);
         sLanRemotePosX = (s16)remote.x * 16;
         sLanRemotePosY = (s16)remote.y * 16;
@@ -1904,9 +1948,28 @@ static void PortLanPresencePump(void)
                 LAN_MOVE_MAX_PX_PER_FRAME : (dy < -LAN_MOVE_MAX_PX_PER_FRAME ?
                                              -LAN_MOVE_MAX_PX_PER_FRAME : dy);
         }
+        /* A slightly wider retention band avoids allocation/deallocation
+         * thrashing while the camera moves along the screen edge. */
+        if (!LanRemoteIntersectsCamera(remote.gender, sLanRemotePosX,
+                                       sLanRemotePosY,
+                                       LAN_REMOTE_RETAIN_PX))
+        {
+            LanVirtualObjectDestroy(LAN_VIRTUAL_PLAYER_ID);
+            sLanRemoteInitialized = FALSE;
+            return;
+        }
+
         walking = sLanRemotePosX != tx || sLanRemotePosY != ty;
         LanVirtualObjectMove(LAN_VIRTUAL_PLAYER_ID, sLanRemotePosX,
                              sLanRemotePosY, remote.direction, walking);
+
+        /* Near camera: retain the virtual sprite but NEVER draw it when its
+         * actual rectangle is wholly outside the 240x160 viewport. The
+         * Emerald sprite callback also applies its normal clipping. */
+        SetVirtualObjectInvisibility(
+            LAN_VIRTUAL_PLAYER_ID,
+            !LanRemoteIntersectsCamera(remote.gender, sLanRemotePosX,
+                                       sLanRemotePosY, 0));
     }
 }
 
