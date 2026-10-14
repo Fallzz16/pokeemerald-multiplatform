@@ -379,8 +379,10 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
         return;
     /* Poses run at ~10 Hz. Heartbeat needs separate priority; otherwise
      * continuous pose traffic can starve HEARTBEAT forever, hiding a dead
-     * server from the client on Wi-Fi half-open sockets. */
-    if (c->state == EHL_CLIENT_PLAYING &&
+     * server from the client on Wi-Fi half-open sockets. While waiting in the
+     * lobby, heartbeat is equally important: READY alone is not enough. */
+    if ((c->state == EHL_CLIENT_PLAYING ||
+         c->state == EHL_CLIENT_WAIT_START) &&
         (unsigned long)(now - c->lastHeartbeat) >= EHL_HEARTBEAT_INTERVAL_MS)
     {
         if (!queue(c, EHL_HEARTBEAT, NULL, 0))
