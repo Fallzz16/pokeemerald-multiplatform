@@ -51,3 +51,17 @@ Read this document, `README_VPN_PTBR.md`, `LAN_V0722_REMOTE_VPN_QA.md` and the b
 Delete added scripts and return to base branch commit `a87e2c49e453db32def5e71ba2a2e696a911d504` to recover the user-tested LAN code. Preserve backups and personal saves. The full modern launcher's offline/host/join menus, Android profile selection, dedicated server and four-player multiplayer belong to v0.8 work and must not be claimed for this remote VPN script.
 
 Every further change must update this document with: branch, SHA, what added/modified/removed, tests (actual results), rollback, bugs/risks, what's NOT implemented, and next steps. Do not rebuild from zero after interruption.
+
+## QA record — 2026-10-14
+
+**Reviewed code commit:** `c4c833f5397bf76b6744caa1beece68dbb991b35`; **PR:** [#7](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/7), draft.
+
+- **Windows PowerShell AST parser + 11 validation scenarios:** [Actions 38508291457](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38508291457), SUCCESS. Earlier 2 workflow attempts failed due to **harness only**: capturing expected negative-case STDERR and propagating the final test's expected child exit code 1. Both were corrected and the final run passed.
+- **Windows x86 full game build + previous serial/transport regressions:** [Actions 38508291481](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38508291481), SUCCESS; workflow artifact ID **11869081465**, `Emerald-Hybrid-LAN-v0.7.2.2-RemoteVPN-Windows-x86-EXPERIMENTAL`. Includes Win32 `pokeemerald.exe`, `SDL2.dll`, launcher, wrapper and AI+PTBR README. ZIP verified in current assistant container via `zipfile.testzip()`, no .sav included, about 12.45 MB compressed. SHA256 of original artifact `e27c4cfd87234d4747adda1230083e8b1dffabf807e407848a32ba5844d19cd8`.
+- **Generic legacy ROM compare CI:** [Actions 38508291511](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38508291511), FAILURE during `Compare`. Record it, do not imply all workflows green. Windows P2P build is a separate successful job.
+- **Diff from user's prior-working LAN commit:** only remote VPN scripts, test runner, CI packaging workflow and Markdown; no changes under `src/`, `include/`, `data/`, saves or game logic.
+- **CRITICAL STILL OPEN:** The two-ISP/two-PC Tailscale gameplay acceptance checklist has NOT been executed by user. Neither trade nor battle/save reliability over actual Internet RTT is verified. Do not claim "full multiplayer Internet finished". This is a **ready-to-test candidate**, not a stable WAN release.
+
+**Update / removal summary:** added remote menu and dry-run tests, detailed manual and handoff; changed packaging workflow; removed nothing. **Not implemented:** native account/auth, dedicated server, four players, cross-network Android UI, automatic VPN install, public Internet multiplayer.
+**Rollback:** v0.7.2.1 `feature/lan-v0721-viewport-culling` SHA `a87e2c49e453db32def5e71ba2a2e696a911d504`.
+**Next step:** have user test with two PCs in separate networks and different original saves; capture logs/latency, transitions, battle/trade, save/restore, and only then consider PR graduation from draft. Maintain this handoff on every subsequent update.
