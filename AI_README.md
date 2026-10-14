@@ -598,3 +598,10 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 - **Testes:** informações confirmadas pelo log completo do GitHub Actions; novo workflow precisa concluir no SHA desta correção antes de afirmar que NSIS/instalador funcionou. Preservar `SOURCE_COMMIT` igual no manifesto de componentes, NSIS+ZIP e teste de que não há .sav no pacote. Os testes de socket e build não comprovam dois avatares em PCs reais.
 - **Ainda NÃO implementado:** 60s reconnect/reserva autenticada, lobby visual com estado dos jogadores, batalha/troca dedicada, quatro clientes e teste visual/round-trip de dois saves. Todos os sistemas aprovados 1–116, SIO antigo, Quest UI, áudio e turbo preservados.
 - **Rollback:** `1851588` para o patch SDL2 anterior; baseline v0.8.2 em `feature/lan-v080-mega-desktop-polish`. Após CI, testar a preview de forma isolada em 2 PCs com cópias de saves e reter PR em draft até QA humano.
+
+
+### Correção da definição YAML do instalador (seguimento da seção 23)
+
+- O primeiro patch do NSIS em `6bcd81abae6b8cbc7c335605f3a9f18602ee941f` gerou uma definição YAML inválida: a rotina de substituição de texto expandiu o trecho especial `$'` do JavaScript e duplicou o final do workflow. A Action [38562358203](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38562358203) falhou **antes de iniciar qualquer job**. Isso é erro na criação do workflow, NÃO no jogo.
+- Corrigido reconstruindo a etapa por intervalos a partir do arquivo original íntegro do SHA 1851588, sem substituição de string com marcadores especiais. A validação estática confirmou apenas uma etapa de NSIS, uma de instalador, uma de upload, sem cauda duplicada. O workflow continua baixando NSIS 3.13 oficial em ZIP, conferindo executável MZ e usando Chocolatey somente como fallback.
+- **Modificados:** `.github/workflows/package-v0803-ehl8-preview.yml` e `AI_README.md`. **Adicionados/removidos:** nenhum. **Ainda depende:** novo workflow rodar com sucesso no HEAD corrigido; dois jogadores reais, reconexão 60s e lobby completo continuam pendentes. Preservado rollback `1851588` e instalação estável v0.8.2.
