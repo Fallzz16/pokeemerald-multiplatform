@@ -5,11 +5,13 @@ on:
   pull_request:
     branches:
       - feature/lan-v070-async-slot-hardening
+      - feature/lan-v071-connection-stability
   push:
     branches:
       - feature/lan-hybrid-v070
       - feature/lan-v070-async-slot-hardening
       - feature/lan-v071-connection-stability
+      - feature/lan-v072-overworld-presence
     paths-ignore:
       - '**/*.md'
 
