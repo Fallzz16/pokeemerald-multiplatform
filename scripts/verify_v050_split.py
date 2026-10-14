@@ -72,6 +72,9 @@ for p in protected:
             # The entire pre-existing native SDL/fast-forward implementation
             # must still match its verified upstream blob.
             original = read(p)
+            if os.environ.get('EMERALD_V080_QA') == '1':
+                from verify_v080_profile_patch import strip_v080_profile_patch
+                original = strip_v080_profile_patch(original)
             cli_begin = '    // Optional headless LAN configuration on desktop.'
             cli_end = '#ifndef __ANDROID__\n    ReadSaveFile("pokeemerald.sav");\n#endif'
             require(original.count(cli_begin) == 1, 'unique SDL LAN insertion start')
