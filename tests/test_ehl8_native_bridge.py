@@ -54,5 +54,54 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
                     await p.wait()
             await server.stop()
 
+    async def test_wrong_pin_native_client_fails_without_changing_existing_lobby(self):
+        server = server_module.SessionServer("123456", 2, idle_seconds=300)
+        listener = await server.start("127.0.0.1", 0)
+        port = str(listener.sockets[0].getsockname()[1])
+        bad = await asyncio.create_subprocess_exec(self.exe, "127.0.0.1", port,
+            "555555", "wrong_pin", "21", "34", stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE)
+        try:
+            await asyncio.wait_for(bad.communicate(), 8)
+            self.assertNotEqual(bad.returncode, 0)
+            self.assertFalse(server.players, "Failed PIN must never create a lobby member")
+            self.assertFalse(server.in_game)
+        finally:
+            if bad.returncode is None:
+                bad.kill()
+                await bad.wait()
+            await server.stop()
+
+    async def test_native_rejected_duplicate_profile_cannot_replace_existing(self):
+        server = server_module.SessionServer("123456", 2, idle_seconds=300)
+        listener = await server.start("127.0.0.1", 0)
+        port = str(listener.sockets[0].getsockname()[1])
+        a = await asyncio.create_subprocess_exec(self.exe, "127.0.0.1", port,
+            "123456", "trainer_A", "21", "34", stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE)
+        try:
+            for _ in range(80):
+                await asyncio.sleep(.025)
+                if server.players:
+                    break
+            self.assertEqual(len(server.players), 1)
+            duplicate = await asyncio.create_subprocess_exec(self.exe, "127.0.0.1", port,
+                "123456", "trainer_A", "34", "21", stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE)
+            try:
+                await asyncio.wait_for(duplicate.communicate(), 8)
+                self.assertNotEqual(duplicate.returncode, 0)
+                self.assertEqual(len(server.players), 1)
+                self.assertEqual(next(iter(server.players.values())).profile, b"trainer_A")
+            finally:
+                if duplicate.returncode is None:
+                    duplicate.kill()
+                    await duplicate.wait()
+        finally:
+            if a.returncode is None:
+                a.kill()
+                await a.wait()
+            await server.stop()
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
