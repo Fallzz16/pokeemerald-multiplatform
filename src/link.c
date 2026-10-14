@@ -1790,8 +1790,126 @@ void LinkPlayerFromBlock(u32 who)
 #include <stdio.h>
 #include <string.h>
 #include "lnet_link.h"
+#include "lnet_presence.h"
+#include "event_object_movement.h"
+#include "field_player_avatar.h"
+#include "fieldmap.h"
+#include "sprite.h"
+#include "constants/event_objects.h"
 
 static LNetLink *sPortableLanLink;
+static LNetPresence *sLanPresence;
+
+#define LAN_VIRTUAL_PLAYER_ID 0xFC
+#define LAN_MOVE_MAX_PX_PER_FRAME 3
+static s16 sLanRemotePosX;
+static s16 sLanRemotePosY;
+static u8 sLanRemoteGender;
+static u8 sLanRemoteMapGroup;
+static u8 sLanRemoteMapNum;
+static bool8 sLanRemoteInitialized;
+
+/* Presence runs independently from the serial Cable Club emulation.
+ * Never touch map events or saves; the guest is purely a virtual sprite. */
+static void PortLanPresencePump(void)
+{
+    LNetPose local;
+    LNetPose remote;
+    bool32 inField = FALSE;
+    bool32 showRemote = FALSE;
+    memset(&local, 0, sizeof(local));
+
+    if (gSaveBlock1Ptr && gSaveBlock2Ptr && gMain.callback2 == CB2_Overworld
+        && !sLinkOpen && gPlayerAvatar.objectEventId < OBJECT_EVENTS_COUNT
+        && gObjectEvents[gPlayerAvatar.objectEventId].active
+        && gMapHeader.mapLayout != NULL)
+    {
+        const struct ObjectEvent *player = &gObjectEvents[gPlayerAvatar.objectEventId];
+        s16 px = player->currentCoords.x - MAP_OFFSET;
+        s16 py = player->currentCoords.y - MAP_OFFSET;
+        u8 dir = GetPlayerFacingDirection();
+        if (px >= 0 && py >= 0 && px < 2048 && py < 2048 &&
+            px < (s16)gMapHeader.mapLayout->width &&
+            py < (s16)gMapHeader.mapLayout->height &&
+            dir >= DIR_SOUTH && dir <= DIR_EAST)
+        {
+            inField = TRUE;
+            local.active = 1;
+            local.x = px;
+            local.y = py;
+            local.direction = dir;
+            local.gender = gSaveBlock2Ptr->playerGender == 1 ? 1 : 0;
+            local.mapGroup = (u8)gSaveBlock1Ptr->location.mapGroup;
+            local.mapNum = (u8)gSaveBlock1Ptr->location.mapNum;
+            local.elevation = player->currentElevation & 15;
+        }
+    }
+
+    if (sLanPresence)
+    {
+        lnet_presence_poll(sLanPresence, &local);
+        if (inField && lnet_presence_get_remote(sLanPresence, &remote)
+            && remote.mapGroup == local.mapGroup
+            && remote.mapNum == local.mapNum
+            && remote.x < gMapHeader.mapLayout->width
+            && remote.y < gMapHeader.mapLayout->height)
+            showRemote = TRUE;
+    }
+    if (!showRemote)
+    {
+        if (LanVirtualObjectExists(LAN_VIRTUAL_PLAYER_ID))
+            LanVirtualObjectDestroy(LAN_VIRTUAL_PLAYER_ID);
+        sLanRemoteInitialized = FALSE;
+        return;
+    }
+    if (!sLanRemoteInitialized ||
+        sLanRemoteMapGroup != remote.mapGroup ||
+        sLanRemoteMapNum != remote.mapNum ||
+        sLanRemoteGender != remote.gender ||
+        !LanVirtualObjectExists(LAN_VIRTUAL_PLAYER_ID))
+    {
+        u8 gfx = remote.gender ? OBJ_EVENT_GFX_MAY_NORMAL
+                               : OBJ_EVENT_GFX_BRENDAN_NORMAL;
+        LanVirtualObjectDestroy(LAN_VIRTUAL_PLAYER_ID);
+        sLanRemotePosX = (s16)remote.x * 16;
+        sLanRemotePosY = (s16)remote.y * 16;
+        sLanRemoteMapGroup = remote.mapGroup;
+        sLanRemoteMapNum = remote.mapNum;
+        sLanRemoteGender = remote.gender;
+        sLanRemoteInitialized =
+            CreateVirtualObject(gfx, LAN_VIRTUAL_PLAYER_ID,
+                                remote.x, remote.y, remote.elevation,
+                                remote.direction) != MAX_SPRITES;
+    }
+    if (sLanRemoteInitialized)
+    {
+        s16 tx = (s16)remote.x * 16;
+        s16 ty = (s16)remote.y * 16;
+        s16 dx = tx - sLanRemotePosX;
+        s16 dy = ty - sLanRemotePosY;
+        bool8 walking;
+
+        /* Snap on warps/large jumps, smooth normal tile movement. */
+        if (dx > 64 || dx < -64 || dy > 64 || dy < -64)
+        {
+            sLanRemotePosX = tx;
+            sLanRemotePosY = ty;
+        }
+        else
+        {
+            sLanRemotePosX += dx > LAN_MOVE_MAX_PX_PER_FRAME ?
+                LAN_MOVE_MAX_PX_PER_FRAME : (dx < -LAN_MOVE_MAX_PX_PER_FRAME ?
+                                             -LAN_MOVE_MAX_PX_PER_FRAME : dx);
+            sLanRemotePosY += dy > LAN_MOVE_MAX_PX_PER_FRAME ?
+                LAN_MOVE_MAX_PX_PER_FRAME : (dy < -LAN_MOVE_MAX_PX_PER_FRAME ?
+                                             -LAN_MOVE_MAX_PX_PER_FRAME : dy);
+        }
+        walking = sLanRemotePosX != tx || sLanRemotePosY != ty;
+        LanVirtualObjectMove(LAN_VIRTUAL_PLAYER_ID, sLanRemotePosX,
+                             sLanRemotePosY, remote.direction, walking);
+    }
+}
+
 
 // LAN debug entry for the PC build. A pending connect recorded here (via
 // command-line args) is realized on the first game-frame pump so TCP setup
@@ -1847,7 +1965,17 @@ static void PortLanLog(const char *fmt, ...)
 
 void PortLanRequestHost(u16 port)
 {
+    int presenceErr = 0;
     LanLinkClose();
+    lnet_presence_close(sLanPresence);
+    sLanPresence = NULL;
+    if (port < 65535)
+    {
+        sLanPresence = lnet_presence_host((u16)(port + 1), &presenceErr);
+        if (sLanPresence == NULL)
+            PortLanLog("[LAN] overworld presence host disabled (port %u err %d)\n",
+                       (unsigned)(port + 1), presenceErr);
+    }
     sLanAuto.queued = FALSE;
     sLanAuto.role = 1;
     sLanAuto.port = port;
@@ -1865,7 +1993,16 @@ void PortLanRequestHost(u16 port)
 
 void PortLanRequestClient(const char *host, u16 port)
 {
+    int presenceErr = 0;
     LanLinkClose();
+    lnet_presence_close(sLanPresence);
+    sLanPresence = NULL;
+    if (port < 65535)
+    {
+        sLanPresence = lnet_presence_join(host, (u16)(port + 1), &presenceErr);
+        if (sLanPresence == NULL)
+            PortLanLog("[LAN] overworld presence join disabled (err %d)\n", presenceErr);
+    }
     sLanAuto.queued = FALSE;
     sLanAuto.role = 2;
     sLanAuto.port = port;
@@ -1883,6 +2020,10 @@ void PortLanRequestClient(const char *host, u16 port)
 static void PortLanDebugPump(void)
 {
     int live;
+
+    /* Run independent TCP pose stream and virtual trainer in all game states.
+     * The peer is hidden outside compatible field maps automatically. */
+    PortLanPresencePump();
 
     if (sLanAuto.queued)
     {
