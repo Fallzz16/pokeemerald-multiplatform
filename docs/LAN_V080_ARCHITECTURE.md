@@ -276,7 +276,7 @@ Abrir aplicativo
 
 ## 7. Perguntas técnicas ainda em aberto
 
-Ver respostas futuras das perguntas 51+ antes de implementar mecanismos com efeitos irreversíveis. Temas principais:
+Ver respostas futuras das perguntas 76+ antes de implementar mecanismos com efeitos irreversíveis. Temas principais:
 1. Política de backup (limite, frequência e local) e falha/recuperação.
 2. Identidade de perfil duplicado por dispositivos distintos, sem usar Trainer ID como credencial.
 3. Política de desligar lobby/servidor e escolher perfil em tempo de jogo.
