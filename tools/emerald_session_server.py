@@ -108,6 +108,9 @@ class SessionServer:
         return self.listener
 
     async def stop(self):
+        # A deliberate administrator shutdown must never create new
+        # reconnect reservations while closing connected clients.
+        self.stopped.set()
         if self.listener is not None:
             self.listener.close()
             await self.listener.wait_closed()
