@@ -9,6 +9,8 @@
 #include <string.h>
 #include <time.h>
 #ifdef _WIN32
+#include <winsock2.h>
+#include <ws2tcpip.h>
 #include <windows.h>
 #else
 #include <arpa/inet.h>
