@@ -2,8 +2,8 @@
 Unicode True
 !cd ".."
 !include "MUI2.nsh"
-Name "Emerald Hybrid EHL8 M2 PREVIEW"
-OutFile "release\Emerald_Hybrid_EHL8_M2_PREVIEW_INSTALADOR_Windows.exe"
+Name "Emerald Hybrid EHL8 M2 LOBBY PREVIEW"
+OutFile "release\Emerald_Hybrid_EHL8_M2_LOBBY_INSTALADOR_Windows.exe"
 InstallDir "$LOCALAPPDATA\Programs\EmeraldHybridM2Preview"
 RequestExecutionLevel user
 SetCompressor /SOLID lzma
@@ -28,6 +28,7 @@ Section "Emerald M2 Preview" SecMain
   File "payload\EHL8_PREVIEW_MODE.txt"
   File "payload\LEIA_PRIMEIRO.txt"
   File "payload\LEIA_QA_PTBR.md"
+  File "payload\LEIA_LOBBY_PTBR.md"
   File "payload\AI_README.md"
   ; Profiles are deliberately isolated from the approved stable install:
   ; %LOCALAPPDATA%\EmeraldHybridEHL8Preview\profiles
@@ -36,7 +37,7 @@ Section "Emerald M2 Preview" SecMain
   CreateDirectory "$SMPROGRAMS\Emerald Hybrid EHL8 Preview"
   CreateShortCut "$SMPROGRAMS\Emerald Hybrid EHL8 Preview\Emerald Launcher.lnk" "$INSTDIR\EmeraldLauncher.exe"
   CreateShortCut "$SMPROGRAMS\Emerald Hybrid EHL8 Preview\Desinstalar.lnk" "$INSTDIR\Desinstalar_EHL8_Preview.exe"
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\EmeraldHybridEHL8Preview" "DisplayName" "Emerald Hybrid EHL8 M2 PREVIEW"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\EmeraldHybridEHL8Preview" "DisplayName" "Emerald Hybrid EHL8 M2 LOBBY PREVIEW"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\EmeraldHybridEHL8Preview" "UninstallString" '"$INSTDIR\Desinstalar_EHL8_Preview.exe"'
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\EmeraldHybridEHL8Preview" "InstallLocation" "$INSTDIR"
   WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\EmeraldHybridEHL8Preview" "NoModify" 1
@@ -54,6 +55,7 @@ Section "Uninstall"
   Delete "$INSTDIR\EHL8_PREVIEW_MODE.txt"
   Delete "$INSTDIR\LEIA_PRIMEIRO.txt"
   Delete "$INSTDIR\LEIA_QA_PTBR.md"
+  Delete "$INSTDIR\LEIA_LOBBY_PTBR.md"
   Delete "$INSTDIR\AI_README.md"
   Delete "$INSTDIR\Desinstalar_EHL8_Preview.exe"
   RMDir "$INSTDIR"
