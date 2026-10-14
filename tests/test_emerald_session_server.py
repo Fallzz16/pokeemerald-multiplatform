@@ -131,9 +131,17 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
         await late.send(S.READY, bytes([1]))
         await a.recv(S.PLAYER_LIST)
         await late.recv(S.PLAYER_LIST)
+        # Repeated READY is harmless and must not flood PLAYER_LIST.
+        await late.send(S.READY, bytes([1]))
         await late.send(S.HEARTBEAT)
         await late.recv(S.HEARTBEAT)
         self.assertEqual(len(self.server.players), 2)
+        pose = bytearray(18)
+        pose[:5] = bytes([76, 65, 78, 80, 1])
+        pose[5], pose[14] = 1, 2
+        pose[6:8] = (1).to_bytes(2, "big")
+        await late.send(S.POSE, bytes(pose))
+        self.assertEqual((await a.recv(S.POSE)).payload, bytes([2]) + bytes(pose))
 
     async def test_bad_header_and_excess_payload_never_crash_listener(self):
         for bad in (
