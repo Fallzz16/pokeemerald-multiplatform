@@ -611,3 +611,19 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 - **Próximo passo:** confirmar compilação Windows/Android no mesmo código; fazer QA com 3 máquinas lógicas, 2 saves cópias e Wi-Fi desconectado/reconectado. Se aprovar, juntar os novos binários num pacote de preview separado da v0.8.2 e continuar o lobby/mundo 4-player.
 
 **Rollback:** PR #10/branch `feature/lan-v0803-dedicated-session-core` é a preview M2 anterior; `feature/lan-v080-mega-desktop-polish` instalada pelo usuário; v0.7.2.1 aprovada `feature/lan-v0721-viewport-culling` SHA `a87e2c49e453db32def5e71ba2a2e696a911d504`. Não copiar nem sobrescrever saves de um perfil original.
+
+### QA final desta revisão de código — commit d9d673e4 (2026-10-14)
+
+**GitHub HEAD verificado:** `d9d673e4fa09bcb65be93375714c2c4b5c52bcd1`. Todos os passos a seguir reportam a **mesma revisão**:
+
+| Verificação | Run | Resultado |
+|---|---|---|
+| EHL8 sockets Python Ubuntu/Windows + clientes C nativos incluindo reconexão forçada | [38558150186](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38558150186) | **SUCCESS** |
+| Antigo TCP LAN/SIO regression | [38558150293](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38558150293) | **SUCCESS** |
+| Compilação jogo Windows x86 completo | [38558150203](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38558150203) | **SUCCESS** |
+| Compilação jogo Android ARMv7 completo, launcher Android ainda antigo | [38558150245](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38558150245) | **SUCCESS** |
+| CI genérico GBA ROM | [38558150222](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38558150222) | **FAILURE**; verificar separadamente, não afirmar todos os checks verdes |
+
+**Conclusão restrita:** código cliente/servidor EHL8 compila nos ports suportados e testes reais de sockets em loopback estão passando, mas **NÃO houve execução visual real do Emerald via servidor M2 com dois jogadores desconectando/reconectando**. O modo é **preview**; PR #14 ainda DRAFT. Nenhum instalador novo nem rollback do usuário foi substituído nesta etapa.
+
+**Atenção para próximas IAs:** `--session-client` exige EHL8 e PIN por stdin; P2P legado é protocolo diferente. Reusar somente os binários produzidos neste SHA ao empacotar nova preview, sem renomear artefatos antigos como se tivessem as melhorias recentes. Adicionar UI legível de estado "Reconectando" sem quebrar FPS/viewport permanece pendente; por enquanto estado 7 é visível nos logs de sessão (não prometer HUD).
