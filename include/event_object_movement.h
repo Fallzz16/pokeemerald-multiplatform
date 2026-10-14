@@ -446,10 +446,12 @@ bool32 IsVirtualObjectInvisible(u8 virtualObjId);
 void SetVirtualObjectSpriteAnim(u8 virtualObjId, u8 animNum);
 /* Transient multiplayer sprite, no NPC collision, no map template and no save.
  * Coordinates are map-relative pixel coordinates (tile * 16 + fraction). */
+#ifdef PORTABLE
 bool32 LanVirtualObjectExists(u8 virtualObjId);
 void LanVirtualObjectDestroy(u8 virtualObjId);
 void LanVirtualObjectMove(u8 virtualObjId, s16 mapPixelX, s16 mapPixelY,
                           u8 direction, bool8 walking);
+#endif
 
 bool32 IsVirtualObjectAnimating(u8 virtualObjId);
 
