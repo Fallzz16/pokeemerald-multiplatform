@@ -24,6 +24,7 @@
 #include "trade.h"
 #include "battle.h"
 #include "link.h"
+#include "main.h"
 #include "link_rfu.h"
 #include "constants/rgb.h"
 #include "constants/trade.h"
@@ -2262,6 +2263,11 @@ void ConvertLinkPlayerName(struct LinkPlayer *player)
 
 static void DisableSerial(void)
 {
+#ifdef PORTABLE
+    /* Native SIO is dispatched by PortableLanSlot through gMain.serialCallback.
+     * Never leave a callback installed after closing/resetting the link. */
+    SetSerialCallback(NULL);
+#endif
     DisableInterrupts(INTR_FLAG_TIMER3 | INTR_FLAG_SERIAL);
     REG_SIOCNT = SIO_MULTI_MODE;
     REG_TMCNT_H(3) = 0;
@@ -2273,6 +2279,12 @@ static void DisableSerial(void)
 
 static void EnableSerial(void)
 {
+#ifdef PORTABLE
+    /* The SDL port has no hardware SERIAL interrupt. Register the original
+     * Emerald serial ISR explicitly so every completed LAN slot feeds the
+     * unmodified DoHandshake/DoRecv/DoSend state machine. */
+    SetSerialCallback(SerialCB);
+#endif
     DisableInterrupts(INTR_FLAG_TIMER3 | INTR_FLAG_SERIAL);
     REG_RCNT = 0;
     REG_SIOCNT = SIO_MULTI_MODE;
