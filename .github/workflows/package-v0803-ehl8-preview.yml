@@ -2,6 +2,7 @@ name: Emerald Hybrid M2 EHL8 PREVIEW - Instalador e Portatil completos
 on:
   push:
     branches:
+      - feature/lan-v0804-reconnect-60s
       - feature/lan-v0803-dedicated-session-core
     paths:
       - 'packaging/emerald_hybrid_m2_preview.nsi'
@@ -9,6 +10,7 @@ on:
       - 'docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md'
   pull_request:
     branches:
+      - feature/lan-v0803-dedicated-session-core
       - feature/lan-v080-mega-desktop-polish
     paths:
       - 'packaging/emerald_hybrid_m2_preview.nsi'
