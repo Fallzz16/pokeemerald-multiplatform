@@ -44,6 +44,26 @@ def strip_v080_profile_patch(native: str) -> str:
          '            /* V0802_VIDEO_KEYS_END */\n'
          '#endif\n', '')
 
+    # M2/2 parser additions are separately enumerated and reversed; the
+    # actual profile block below is already reverted as one audited region.
+    once('    const char *sessionEndpoint = NULL;\n'
+         '    const char *sessionPin = NULL;\n'
+         '    bool legacyLinkRequested = false;\n', '')
+    once('        else if (strncmp(argv[i], "--session-client=", 17) == 0)\n'
+         '            sessionEndpoint = argv[i] + 17;\n'
+         '        else if (strncmp(argv[i], "--session-pin=", 14) == 0)\n'
+         '            sessionPin = argv[i] + 14;\n', '')
+    once('        {\n'
+         '            legacyLinkRequested = true;\n'
+         '            char *end = NULL;', 
+         '        {\n'
+         '            char *end = NULL;')
+    once('        {\n'
+         '            legacyLinkRequested = true;\n'
+         '            const char *spec = argv[i] + 13;',
+         '        {\n'
+         '            const char *spec = argv[i] + 13;')
+
     once('/* Optional v0.8 managed profiles; legacy save remains the default. */\n'
          '#include "../profile/save_profiles.h"\n', '')
     once('static FILE *sSaveFile = NULL;\n'
@@ -71,7 +91,8 @@ def strip_v080_profile_patch(native: str) -> str:
     old = native[a:b]
     expected_tail = '#endif\n\n'
     if not old.endswith(expected_tail) or 'sp_lock(profileRoot, profileId' not in old or \
-            'ReadSaveFile(sActiveSavePath)' not in old or 'sp_unlock(&sActiveProfileLock)' not in old:
+            'ReadSaveFile(sActiveSavePath)' not in old or 'sp_unlock(&sActiveProfileLock)' not in old or \
+            old.count('PortLanRequestDedicatedClient(host, (u16)port, sessionPin, profileId)') != 1:
         raise AssertionError("unexpected managed profile block: review before updating audit")
     native = native[:a] + '#ifndef __ANDROID__\n    ReadSaveFile("pokeemerald.sav");\n#endif\n\n' + native[b:]
 
