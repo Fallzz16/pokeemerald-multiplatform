@@ -236,6 +236,9 @@ static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
             return -1;
         memcpy(c->resumeSecret, frame->payload + 1, sizeof(c->resumeSecret));
         c->haveResume = 1;
+        /* JOIN proves the slot is ours again, even if a restarted room still
+         * waits for a second player. Do not run the old 60s timer forever. */
+        c->reconnecting = 0;
         if (!queue(c, EHL_READY, (const unsigned char *)"\1", 1))
             return -1;
         c->state = EHL_CLIENT_WAIT_START;
