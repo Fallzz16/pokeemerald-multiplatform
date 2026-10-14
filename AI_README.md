@@ -279,3 +279,33 @@ Para executar a suite nativa é necessário ambiente Linux/Windows adequado com 
 
 ### Próximo passo recomendado
 Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de carregar/salvar/reabrir; corrigir quaisquer bugs de I/O. Depois acrescentar validação real de checksum e hooks de backup pós-save, importação/exportação SAF Android e início do servidor TCP de sessões M2. Não expandir para quatro ainda.
+
+
+## 13. Início do launcher gráfico Windows v0.8 — M3 parcial, sem servidor dedicado
+
+**Branch:** `feature/lan-v080-desktop-graphical-launcher`, criada sobre a fundação funcional experimental `feature/lan-v080-m0-m1-foundation` (último commit conhecido `e5485e74fa3607a9d647cb9cf7339085c5fed91c`). O rollback **definitivo de gameplay já aprovado pelo usuário** ainda é `feature/lan-v0721-viewport-culling` SHA `a87e2c49e453db32def5e71ba2a2e696a911d504`. Consulte sempre HEAD / workflow exatos.
+
+**Motivo:** usuário corrigiu expectativa: precisava de LAUNCHER GRÁFICO real com `conta/perfil -> Hospedar servidor / Hospedar e jogar / Jogar com amigos`, e não só console PowerShell. Confirmar explicitamente que conta online não foi autorizada como obrigatória (#81A: LAN sem registro); modo atual é **perfil local com apelido**.
+
+### Adicionado
+- `tools/emerald_launcher.py`: launcher GUI Windows, visual escuro esmeralda, sidebar de perfis locais, criação/importação por `emerald_profilectl.exe`, armazenamento de apelido em profile.json, modos offline/host/join que executam o jogo M1 com flags de perfil. **Servidor dedicado aparece desabilitado intencionalmente:** não há processo de servidor implementado, portanto não inventar um botão que parece funcional.
+- `tests/test_emerald_launcher.py`: testes de comandos offline/host/join, rejeição de rede inválida e IDs perigosos, verificação de que metadados não mudam bytes de save de laboratório.
+- `.github/workflows/build-v080-graphical-launcher.yml`: Windows CI Python 3.12 + PyInstaller (self-contained `EmeraldLauncher.exe`) com execução de testes.
+- `docs/LAN_V080_GRAPHICAL_LAUNCHER.md`: uso, status, QA, riscos, rollback e diferença da v0.7.2.2.
+
+### Não alterado/removido
+- Não modifica `src/`, dados GBA, SIO, protocolos, sprites, batalha, servidor, save format ou APK. Não removemos nenhuma função. O código Python apenas chama o executável e CLI da fundação, que já existiam.
+- Todos os saves do usuário permanecem externos ao GitHub e não foram acessados. Ferramenta `emerald_profilectl` ainda faz validação **somente estrutural**, não checksum completo; usuários devem fazer backup.
+
+### Testes e estado
+- Testes do launcher GUI em Python via GitHub Actions, incluindo criar EXE Windows, dependem da execução da branch/commit; checar o status real antes de declarar pronto. Um pacote integrado exige baixar launcher.exe e os binários M1 reais, validar ZIP e verificar a interação no Windows.
+- Ainda não houve QA real no desktop do usuário de criar dois perfis, carregar/salvar, entrar numa sessão e executar Cable Club pelo launcher. Compilação ≠ sucesso em gameplay.
+
+### Ainda não implementado
+- Servidor dedicado e lobby de 4 jogadores, descoberta LAN e QR, conta na nuvem/autenticação por e-mail, lista de membros, chat, Android UI equivalente, auto-backup pós-save, updater e sync transparente dos saves.
+- O botão de servidor dedicado deve permanecer **visivelmente indisponível** até existir e passar pelos testes o binário de servidor real; não descrever como concluído em qualquer README.
+
+### Próximos passos
+- Concluir build Windows GUI, empacotar com `pokeemerald.exe`, `SDL2.dll`, `emerald_profilectl.exe` em pasta isolada, testar com saves copiados, obter feedback.
+- Implementar M2 servidor dedicado EHL8 real com dois clientes, depois conectar lobby e habilitar botão; implementar Android launcher equivalente em Kotlin/Java após garantir seleção de perfis segura.
+- Em toda entrega: registrar SHA, funções implementadas, não implementadas, testes/resultados, alterações e rollback neste README.
