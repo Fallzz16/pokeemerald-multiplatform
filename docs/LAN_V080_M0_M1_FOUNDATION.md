@@ -54,3 +54,34 @@ Resultados esperados no Linux:
 - Baseline de gameplay validado pelo usuário: `feature/lan-v0721-viewport-culling`, commit `a87e2c49e453db32def5e71ba2a2e696a911d504`.
 - **Nenhum código pré-existente foi alterado:** basta não mesclar a branch para manter o jogo idêntico.
 - `AI_README.md` é documento obrigatório de transferência entre IAs, com registro do que se implementou e do que ainda não foi.
+
+
+## Experimental opt-in selected save in native SDL2 (M1 bridge)
+
+The existing game can be started, *after using a separate trusted profile-management tool to create/import a profile directory*, with:
+
+```text
+pokeemerald.exe --profile-root="C:\\EmeraldProfiles" --profile-id=Player_A
+```
+
+Example expected folder: `C:\EmeraldProfiles\Player_A\pokeemerald.sav`. The root directory and profile must **already exist**; no migration or import is performed by launching the game.
+
+- Requires **both** arguments; an invalid/missing/busy profile returns a nonzero exit instead of falling back to the default save.
+- The `.profile.lock` OS lock is held for the game's lifetime (when a managed profile was selected). Other cooperating instances are denied until it closes.
+- Both the flash image loader and `Platform_ReadFlash` now refer to `sActiveSavePath`. Legacy startup with no profile switches continues using `pokeemerald.sav`.
+- On Android, the same native code can accept profile arguments, but the existing launcher does **not yet offer profile selection or pass these arguments**. Default Android private save storage remains unchanged.
+- **No auto-backups happen during game saving yet**; backup/restore remain independent offline operations in `sp_backup/sp_restore`. This is intentionally NOT called inside flash I/O or Cable Club.
+- Existing UI, battle, multiplayer, Quest UI and ROM rules were not modified. This change only selects a file for save/flash operations.
+
+### Verification of the bridge
+
+- GitHub Actions `test-lan-v080-foundation.yml` runs C99 unit tests and Windows x86 cross-compilation for the standalone modules. Added source assertions check both startup arguments and consistent selected file usage.
+- Full native Windows x86 and Android candidate builds should be run on the exact commit SHA and log their conclusions separately. These builds do **not** prove actual multi-profile gameplay.
+- Next runtime QA: create 2 profiles from two **unaltered real compatible .sav files**, launch two game processes with separate selected profile flags, load/save/relaunch, compare checksums and isolated content and test duplicate locks, missing/corrupt profile, path spaces, Android resume and offline legacy behavior.
+- **Do not distribute** any synthetic fixture as gameplay save. Standalone tests generate sector footer mock data which intentionally cannot be used in the game.
+
+### Known limitations and rollback
+
+The manager only validates flash slot structure, **not checksums or semantic integrity**; filenames and metadata are not yet Unicode-safe on all Windows installations. Backups need safe post-commit hooks and verified recovery before the feature can be advertised as resilient to crashes. Invalid save path fail-closed is the intended behavior, not an attempt to fix corrupted saves.
+
+Rollback: use unchanged user-tested branch `feature/lan-v0721-viewport-culling`; current branch `feature/lan-v080-m0-m1-foundation` must stay experimental until real QA.
