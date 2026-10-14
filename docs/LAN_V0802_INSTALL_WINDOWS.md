@@ -15,7 +15,7 @@ O workflow `.github/workflows/package-v0802-complete.yml` baixa **binários já 
 
 - Windows GUI `EmeraldLauncher.exe`: run `38522309384`, artifact `11874218835`. SHA256 `3e2b7a885a22c075d04b87d97b4dab05cee68098375e692e30f47f7c2bdcc239`.
 - Jogo `pokeemerald.exe` + SDL2.dll: run `38522309182`, artifact `11874860082`. SHA256 jogo `2e00b3099a47f7fe5e49a886885a7847b781159e0a00159cdfbe111b2229b2d7`; SDL2 `eb323e920739ff48f72b28cd20f0cf6a58507bff852cbf1bacb4fb6fa07d1a3d`.
-- `emerald_profilectl.exe` perfis: run `38522309249`, artifact `11873839627`. SHA256 `ba20510115e2a449a27a1b3685946b334d970e41c5886265b975adc4a34a59c7`.
+- `emerald_profilectl.exe` perfis: run `38522309249`, artifact `11873839627`. SHA256 `09a865bc08bed2d5d7673114db1f381a5a12ce2df260c89ae7e9bc0fe6d52679`.
 
 O workflow falha se qualquer executável faltar, tiver hash diferente ou se encontrar `.sav` nos arquivos baixados.
 
