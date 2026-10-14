@@ -22,6 +22,7 @@ MAX_PAYLOAD = 4096
 HELLO, WELCOME, INCOMPATIBLE, AUTH_PIN, JOIN, PLAYER_LIST, READY, START, LEAVE, KICK, HEARTBEAT, POSE = range(1, 13)
 PROFILE_ID = re.compile(rb"[A-Za-z0-9_-]{1,48}\Z")
 READ_TIMEOUT = 35
+RECONNECT_GRACE = 60  # approved #60A / #86A
 
 class ProtocolError(Exception):
     pass
@@ -53,12 +54,21 @@ def valid_pose(p: bytes) -> bool:
     return (p[5] <= 1 and p[14] <= 4 and p[15] <= 1 and p[16] <= 15
             and x <= 2047 and y <= 2047 and (p[5] == 0 or p[14] > 0))
 
+@dataclass(frozen=True)
+class Reservation:
+    slot: int
+    profile: bytes
+    secret: bytes
+    expires: float
+
 class Peer:
     def __init__(self, reader, writer):
         self.reader, self.writer = reader, writer
         self.slot = None
         self.profile = None
         self.stage = "HELLO"
+        self.resume_secret = None
+        self.intentional_leave = False
         self.ready = False
         self.last_pose = 0.0
         self.last_seq = None
@@ -87,6 +97,7 @@ class SessionServer:
         self.idle_seconds = idle_seconds
         self.session = secrets.randbits(64) or 1
         self.players = {}
+        self.reservations = {}  # slot -> 60s secure resume reservation
         self.connected = set()
         self.invalid_attempts = {}  # IP -> (failure count, blocked_until)
         self.in_game = False
@@ -102,6 +113,16 @@ class SessionServer:
         self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
         return self.listener
 
+    def prune_reservations(self):
+        now = time.monotonic()
+        expired = [slot for slot, hold in self.reservations.items()
+                   if hold.expires <= now]
+        for slot in expired:
+            del self.reservations[slot]
+        if not self.players and not self.reservations:
+            self.in_game = False
+        return len(expired)
+
     async def stop(self):
         if self.listener is not None:
             self.listener.close()
@@ -109,12 +130,15 @@ class SessionServer:
             self.listener = None
         for peer in tuple(self.connected):
             peer.close()
+        self.reservations.clear()
         self.stopped.set()
 
     async def sweep(self):
         while not self.stopped.is_set():
             await asyncio.sleep(1)
-            if not self.connected and not self.players and time.monotonic() - self.empty_since >= self.idle_seconds:
+            self.prune_reservations()
+            if (not self.connected and not self.players and not self.reservations
+                    and time.monotonic() - self.empty_since >= self.idle_seconds):
                 self.log.info("Empty session timed out")
                 await self.stop()
                 return
@@ -159,11 +183,16 @@ class SessionServer:
         finally:
             if peer.slot is not None and self.players.get(peer.slot) is peer:
                 del self.players[peer.slot]
+                if (peer.resume_secret is not None and not peer.intentional_leave
+                        and self.listener is not None):
+                    self.reservations[peer.slot] = Reservation(
+                        peer.slot, peer.profile, peer.resume_secret,
+                        time.monotonic() + RECONNECT_GRACE)
                 self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
                 if self.players:
                     await self.broadcast(LEAVE, bytes([peer.slot]))
                     await self.broadcast(PLAYER_LIST, self.snapshot())
-                else:
+                elif not self.reservations:
                     self.in_game = False
             peer.close()
             self.connected.discard(peer)
@@ -235,6 +264,7 @@ class SessionServer:
             await peer.send(HEARTBEAT, b"", self.session, msg.request)
             return
         if msg.kind == LEAVE:
+            peer.intentional_leave = True
             peer.close()
             return
         if msg.kind == READY and peer.stage == "LOBBY":
