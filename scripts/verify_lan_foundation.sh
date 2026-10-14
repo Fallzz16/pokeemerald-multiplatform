@@ -4,6 +4,10 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 test -f src/lnet/lnet_link.c
+test -f src/lnet/lnet_culling.c
+grep -q 'LanRemoteIntersectsCamera' src/link.c
+grep -q 'LAN_REMOTE_PREFETCH_PX 32' src/link.c
+grep -q 'LAN_REMOTE_RETAIN_PX 48' src/link.c
 test -f src/lnet/lnet_net.c
 test -f src/lnet/lnet_session.c
 test -f src/lnet/lnet_sio.c
@@ -23,8 +27,8 @@ if grep -q 'STUB_FUNC_QUIET_BLOCK(bool8 HandleLinkConnection' src/stub.c; then
 fi
 tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
-source_files=(src/lnet/lnet_net.c src/lnet/lnet_session.c src/lnet/lnet_sio.c src/lnet/lnet_link.c src/lnet/lnet_presence.c)
-for test_name in session link disconnect cable_handshake presence; do
+source_files=(src/lnet/lnet_net.c src/lnet/lnet_session.c src/lnet/lnet_sio.c src/lnet/lnet_link.c src/lnet/lnet_presence.c src/lnet/lnet_culling.c)
+for test_name in session link disconnect cable_handshake presence culling; do
     cc -DPORTABLE -std=gnu99 -Wall -Wextra -O2 -pthread \
        -I src/lnet "tests/test_lnet_${test_name}.c" \
        "${source_files[@]}" -o "$tmp/test_lnet_${test_name}"
