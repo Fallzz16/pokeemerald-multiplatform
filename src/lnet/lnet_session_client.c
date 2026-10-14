@@ -165,6 +165,24 @@ void lnet_session_client_close(LNetSessionClient *c)
 {
     if (!c)
         return;
+    /* Voluntary shutdown: send EHL8 LEAVE so the room can reuse the slot
+     * immediately. Network failures never call this path with a live socket,
+     * and continue receiving their 60s reservation. Best effort: closing a
+     * broken socket cannot guarantee delivery; server grace is the fallback. */
+    if (c->socket && c->session && c->everJoined &&
+        c->state != EHL_CLIENT_RECONNECTING &&
+        c->state != EHL_CLIENT_FAILED)
+    {
+        EhlSessionFrame leave;
+        unsigned char wire[EHL_SESSION_HEADER_SIZE];
+        size_t length = 0, moved = 0;
+        int err = 0;
+        memset(&leave, 0, sizeof(leave));
+        leave.type = EHL_LEAVE;
+        leave.session_id = c->session;
+        if (ehl_session_encode(&leave, wire, sizeof(wire), &length) == 0)
+            (void)lnet_net_send_nb(c->socket, wire, length, &moved, &err);
+    }
     lnet_net_close(c->socket);
     lnet_net_close(c->pending);
     /* Never retain a live PIN in freed memory. */
