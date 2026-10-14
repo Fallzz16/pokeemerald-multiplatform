@@ -369,6 +369,13 @@ int main(int argc, char **argv)
 
                 accumulator -= dt;
             }
+            else
+            {
+                /* EHL8_FRAME_WAIT: AgbMain has not produced a new frame yet.
+                 * Leave the accumulator loop; otherwise the UI thread can
+                 * spin forever without processing SDL input or shutdown. */
+                break;
+            }
         }
 
         if (SDL_AtomicGet(&fastForwardActive))

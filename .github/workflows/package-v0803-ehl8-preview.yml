@@ -4,6 +4,8 @@ on:
     branches:
       - feature/lan-v0803-dedicated-session-core
     paths:
+      - 'src/platform/sdl2.c'
+      - 'tests/test_sdl2_frame_pacing.py'
       - 'packaging/emerald_hybrid_m2_preview.nsi'
       - '.github/workflows/package-v0803-ehl8-preview.yml'
       - 'docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md'

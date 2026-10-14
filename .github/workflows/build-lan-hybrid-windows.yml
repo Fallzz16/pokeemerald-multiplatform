@@ -57,6 +57,9 @@ jobs:
       - name: Verify LAN transport on Linux (real host/client TCP)
         run: bash scripts/verify_lan_foundation.sh
 
+      - name: SDL pending frame loop must not spin (static regression)
+        run: python -m unittest discover -s tests -p test_sdl2_frame_pacing.py -v
+
       - name: Verify all candidate mechanics and the sprite import pipeline
         run: EMERALD_LAN_QA=1 EMERALD_V080_QA=1 bash scripts/verify_v070.sh
 

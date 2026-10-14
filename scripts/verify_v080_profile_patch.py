@@ -10,6 +10,9 @@ def strip_v080_profile_patch(native: str) -> str:
             raise AssertionError("v0.8 profile integration drift: " + old[:60])
         native = native.replace(old, new, 1)
 
+    # Exact inverse of only the reviewed SDL pending-frame guard.
+    once("            else\n            {\n                /* EHL8_FRAME_WAIT: AgbMain has not produced a new frame yet.\n                 * Leave the accumulator loop; otherwise the UI thread can\n                 * spin forever without processing SDL input or shutdown. */\n                break;\n            }\n", '')
+
     # v0.8 video improvements are small, explicitly allowlisted changes.
     # Remove ONLY these reviewed fragments before hashing the exact old SDL2.
     # Any other change (audio, gameplay, flash, turbo) still fails the audit.

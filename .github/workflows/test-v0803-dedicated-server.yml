@@ -6,6 +6,7 @@ on:
     paths:
       - 'tools/emerald_session_server.py'
       - 'tests/test_emerald_session_server.py'
+      - 'src/platform/sdl2.c' # same-commit server artifact for preview packaging
       - 'src/lnet/lnet_session_client.*'
       - 'tests/native_ehl8_client.c'
       - 'tests/test_ehl8_native_bridge.py'

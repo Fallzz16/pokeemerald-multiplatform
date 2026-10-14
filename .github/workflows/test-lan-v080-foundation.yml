@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - feature/lan-v080-m0-m1-foundation
+      - feature/lan-v0803-dedicated-session-core
     paths:
       - 'src/profile/**'
       - 'src/platform/sdl2.c'
