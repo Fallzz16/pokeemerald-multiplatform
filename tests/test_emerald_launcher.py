@@ -74,6 +74,20 @@ class GraphicalLauncherTests(unittest.TestCase):
             self.assertTrue(launcher.read_settings(root)["diagnostics"])
             self.assertEqual((profile/"pokeemerald.sav").read_bytes(),before)
 
+    def test_preview_installer_uses_its_own_local_save_directory(self):
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as tmp:
+            here=Path(tmp)/"release"
+            here.mkdir()
+            (here/"EHL8_PREVIEW_MODE.txt").write_text("preview",encoding="utf-8")
+            with mock.patch.object(launcher,"application_dir",return_value=here), \
+                 mock.patch.dict("os.environ",{"LOCALAPPDATA":tmp}):
+                preview=launcher.profile_root()
+                self.assertEqual(preview,Path(tmp)/"EmeraldHybridEHL8Preview"/"profiles")
+                (here/"PORTABLE_MODE.txt").touch()
+                self.assertEqual(launcher.profile_root(),here/"profiles")
+                self.assertNotEqual(preview,Path(tmp)/"EmeraldHybrid"/"profiles")
+
     def test_corrupt_and_excessive_preferences_are_ignored(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp)/"profiles"
