@@ -1888,7 +1888,7 @@ static void PortLanPresencePump(void)
             state = lnet_session_client_state(sLanDedicatedSession);
             if (state != sLanDedicatedStateLogged)
             {
-                PortLanLog("[EHL8] session state=%d (playing=%d, failed=%d)\\n",
+                PortLanLog("[EHL8] session state=%d (playing=%d, failed=%d)\n",
                            state, EHL_CLIENT_PLAYING, EHL_CLIENT_FAILED);
                 sLanDedicatedStateLogged = state;
             }
