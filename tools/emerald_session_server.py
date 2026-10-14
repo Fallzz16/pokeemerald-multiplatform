@@ -224,8 +224,9 @@ class SessionServer:
         if msg.kind == READY and peer.stage == "GAME":
             if msg.payload != b"\x01":
                 raise ProtocolError("invalid ready acknowledgement in running room")
-            peer.ready = True
-            await self.broadcast(PLAYER_LIST, self.snapshot())
+            if not peer.ready:
+                peer.ready = True
+                await self.broadcast(PLAYER_LIST, self.snapshot())
             return
         if msg.kind == HEARTBEAT:
             await peer.send(HEARTBEAT, b"", self.session, msg.request)
