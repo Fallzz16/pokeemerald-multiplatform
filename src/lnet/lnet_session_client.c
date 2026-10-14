@@ -297,7 +297,6 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
         /* Bounded backoff avoids tight reconnect loops when Wi-Fi is down. */
         if (c->reconnecting && (long)(now - c->retryAt) < 0)
             return;
-    {
         if (c->began == 0)
             c->began = now ? now : 1;
         if ((unsigned long)(now - c->began) > EHL_CONNECT_TIMEOUT_MS)
