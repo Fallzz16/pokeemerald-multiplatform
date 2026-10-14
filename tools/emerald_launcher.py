@@ -95,6 +95,36 @@ def make_command(game,root,pid,mode,ip="",port="45680",pin=""):
                      "--session-client="+validate_ipv4(ip)+":"+str(p),"--session-pin-stdin"]
     raise ValueError("Modo de jogo desconhecido.")
 
+def read_server_status(path):
+    """Validate untrusted on-disk diagnostic data before displaying it.
+
+    This is only a LOCAL status snapshot; it is NOT evidence of authentication
+    or server authority. The guest game still has its own EHL8 handshake.
+    """
+    if not path: return None
+    try:
+        p=Path(path)
+        if p.stat().st_size > 8192: return None
+        data=json.loads(p.read_text(encoding="utf-8"))
+    except (OSError,UnicodeError,ValueError,TypeError):
+        return None
+    if (not isinstance(data,dict) or data.get("schema") != 1 or
+            data.get("phase") not in ("lobby","playing","stopped")):
+        return None
+    if data.get("slots") not in (1,2) or not isinstance(data.get("players"),list):
+        return None
+    players=data["players"]
+    if len(players)>data["slots"]:return None
+    seen=set()
+    for peer in players:
+        if not isinstance(peer,dict): return None
+        slot, nick, ready=peer.get("slot"),peer.get("profile"),peer.get("ready")
+        if (type(slot) is not int or slot not in (1,2) or slot>data["slots"] or slot in seen
+                or not isinstance(nick,str) or not PATTERN.fullmatch(nick)
+                or type(ready) is not bool): return None
+        seen.add(slot)
+    return data
+
 def find_profiles(root):
     if not root.is_dir():return []
     out=[]
@@ -127,6 +157,7 @@ class EmeraldLauncher(tk.Tk):
         self.cli=application_dir()/"emerald_profilectl.exe"
         self.server_exe=application_dir()/"EmeraldSessionServer.exe"
         self.server_process=None
+        self.server_status_file=None
         settings=read_settings(self.root_dir)
         selected=settings.get("selected_profile")
         self.selected=selected if isinstance(selected,str) and PATTERN.fullmatch(selected) else None
@@ -334,12 +365,15 @@ class EmeraldLauncher(tk.Tk):
                 return
             logs=self.root_dir.parent/"logs"
             logs.mkdir(parents=True,exist_ok=True)
-            path=logs/("servidor-"+datetime.now().strftime("%Y%m%d-%H%M%S")+".log")
+            identifier=secrets.token_hex(4)
+            path=logs/("servidor-"+datetime.now().strftime("%Y%m%d-%H%M%S")+"-"+identifier+".log")
+            status_path=logs/("servidor-ehl8-"+identifier+"-status.json")
             flags=(getattr(subprocess,"CREATE_NO_WINDOW",0) if sys.platform=="win32" else 0)
             with path.open("ab") as log:
                 proc=subprocess.Popen([str(self.server_exe),"--bind","0.0.0.0",
                      "--port",str(port),"--slots","2","--idle-minutes","15",
-                     "--pin-stdin"],cwd=str(application_dir()),creationflags=flags,
+                     "--pin-stdin","--status-file",str(status_path)],
+                      cwd=str(application_dir()),creationflags=flags,
                      stdin=subprocess.PIPE,stdout=log,stderr=subprocess.STDOUT)
                 try:
                     proc.stdin.write((pin+"\n").encode("ascii"))
@@ -347,6 +381,7 @@ class EmeraldLauncher(tk.Tk):
                 finally:
                     proc.stdin.close()
             self.server_process=proc
+            self.server_status_file=status_path
             self.server_status.set("Servidor EHL8 iniciando · porta "+str(port)+" · até 2 jogadores")
             self.after(1500,self.watch_server)
         except (OSError,ValueError) as exc:
@@ -359,7 +394,17 @@ class EmeraldLauncher(tk.Tk):
             self.server_process=None
             self.server_status.set("Servidor desligado (código "+str(rc)+"). Veja os logs.")
         else:
-            self.server_status.set("Servidor EHL8 ativo (beta) · até 2 jogadores")
+            snapshot=read_server_status(self.server_status_file)
+            if snapshot is None:
+                self.server_status.set("Servidor EHL8 iniciando · confira os logs se demorar")
+            else:
+                count=len(snapshot["players"])
+                connected=" · ".join(p["profile"]+(" ✓" if p["ready"] else " aguardando")
+                                   for p in snapshot["players"])
+                phase="Em jogo" if snapshot["phase"]=="playing" else "Lobby"
+                self.server_status.set(
+                    f"{phase} EHL8 · {count}/{snapshot['slots']} jogadores"
+                    + ((" · "+connected) if connected else " · aguardando jogadores"))
             self.after(1300,self.watch_server)
 
     def stop_server(self):
