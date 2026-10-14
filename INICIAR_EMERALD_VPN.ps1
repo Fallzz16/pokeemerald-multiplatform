@@ -87,18 +87,18 @@ try {
     if ($Mode -ne 'Offline') { Assert-Port $Port }
     switch ($Mode) {
         'Offline' {
-            Launch-Emerald @()
+            Launch-Emerald -Arguments @()
         }
         'Host' {
             Write-Host ("Portas de jogo: TCP $Port e TCP " + ($Port+1))
             Write-Host 'No Tailscale, procure seu IP de 100.x.y.z com: tailscale ip -4'
             Write-Host 'Nao configure encaminhamento dessas portas para a Internet publica.'
-            Launch-Emerald @('--lan-log','host-vpn.log',("--lan-host=$Port"))
+            Launch-Emerald -Arguments @('--lan-log','host-vpn.log',("--lan-host=$Port"))
         }
         'Join' {
             Assert-IPv4 $Address
             Write-Host ("Conectando a $Address na porta $Port (presenca: " + ($Port+1) + ').')
-            Launch-Emerald @('--lan-log','cliente-vpn.log',("--lan-client=${Address}:$Port"))
+            Launch-Emerald -Arguments @('--lan-log','cliente-vpn.log',("--lan-client=${Address}:$Port"))
         }
         'Check' {
             Assert-IPv4 $Address
@@ -117,6 +117,6 @@ try {
         default { throw 'Modo desconhecido.' }
     }
 } catch {
-    Write-Error ("Erro no launcher: " + $_.Exception.Message)
+    [Console]::Error.WriteLine("Erro no launcher: " + $_.Exception.Message)
     exit 1
 }
