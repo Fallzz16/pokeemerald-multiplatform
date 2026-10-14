@@ -185,6 +185,23 @@ int main(int argc, char **argv)
     }
 #endif
 
+#ifndef __ANDROID__
+    /* V0802_VIDEO_INIT_BEGIN: auto integer zoom, never force a window offscreen. */
+    {
+        SDL_Rect area;
+        videoScale = 3;
+        if (SDL_GetDisplayUsableBounds(0, &area) == 0)
+        {
+            int maxW = (area.w - 32) / DISPLAY_WIDTH;
+            int maxH = (area.h - 48) / DISPLAY_HEIGHT;
+            int fit = maxW < maxH ? maxW : maxH;
+            if (fit >= 1)
+                videoScale = (unsigned int)fit;
+        }
+    }
+    /* V0802_VIDEO_INIT_END */
+#endif
+
     sdlWindow = SDL_CreateWindow("pokeemerald", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, DISPLAY_WIDTH * videoScale, DISPLAY_HEIGHT * videoScale, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (sdlWindow == NULL)
     {
@@ -478,6 +495,19 @@ void ProcessEvents(void)
             }
             break;
         case SDL_KEYDOWN:
+#ifndef __ANDROID__
+            /* V0802_VIDEO_KEYS_BEGIN: F11 or Alt+Enter switch borderless fullscreen. */
+            if (!event.key.repeat && (event.key.keysym.sym == SDLK_F11 ||
+                (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
+            {
+                Uint32 next = (SDL_GetWindowFlags(sdlWindow) & SDL_WINDOW_FULLSCREEN_DESKTOP)
+                            ? 0 : SDL_WINDOW_FULLSCREEN_DESKTOP;
+                if (SDL_SetWindowFullscreen(sdlWindow, next) != 0)
+                    SDL_Log("Fullscreen toggle failed: %s", SDL_GetError());
+                break;
+            }
+            /* V0802_VIDEO_KEYS_END */
+#endif
             switch (event.key.keysym.sym)
             {
             HANDLE_KEYDOWN(A_BUTTON)

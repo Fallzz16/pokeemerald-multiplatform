@@ -1,0 +1,146 @@
+name: Emerald Hybrid v0.8.2 COMPLETO - Instalador e Portatil
+on:
+  push:
+    branches:
+      - feature/lan-v080-mega-desktop-polish
+    paths:
+      - 'packaging/emerald_hybrid_setup.nsi'
+      - '.github/workflows/package-v0802-complete.yml'
+      - 'docs/LAN_V0802_INSTALL_WINDOWS.md'
+  pull_request:
+    branches:
+      - feature/lan-v080-desktop-graphical-launcher
+    paths:
+      - 'packaging/emerald_hybrid_setup.nsi'
+      - '.github/workflows/package-v0802-complete.yml'
+      - 'docs/LAN_V0802_INSTALL_WINDOWS.md'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  package-complete:
+    name: Installable and portable Windows build without touching saves
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download tested graphical launcher from its successful Windows run
+        uses: actions/download-artifact@v4
+        with:
+          name: Emerald-Hybrid-v0802-GraphicalLauncher-Windows-x64-Experimental
+          path: payload
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: 38522309384
+      - name: Download tested Windows game and SDL2 DLL from its successful run
+        uses: actions/download-artifact@v4
+        with:
+          name: Emerald-Hybrid-LAN-v0.7.2.1-ViewportCulling-Windows-x86
+          path: payload
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: 38522309182
+      - name: Download tested profile-manager tool
+        uses: actions/download-artifact@v4
+        with:
+          name: Emerald-Hybrid-v080-Profile-CLI-Windows-x86-Experimental
+          path: payload
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: 38522309249
+
+      - name: Verify executable signatures by pinned SHA256 hashes
+        shell: pwsh
+        run: |
+          $expected=@{
+            'EmeraldLauncher.exe'='3e2b7a885a22c075d04b87d97b4dab05cee68098375e692e30f47f7c2bdcc239'
+            'pokeemerald.exe'='2e00b3099a47f7fe5e49a886885a7847b781159e0a00159cdfbe111b2229b2d7'
+            'SDL2.dll'='eb323e920739ff48f72b28cd20f0cf6a58507bff852cbf1bacb4fb6fa07d1a3d'
+            'emerald_profilectl.exe'='09a865bc08bed2d5d7673114db1f381a5a12ce2df260c89ae7e9bc0fe6d52679'
+          }
+          foreach($file in $expected.Keys) {
+            $path=Join-Path "payload" $file
+            if (!(Test-Path -LiteralPath $path -PathType Leaf)) { throw "Falta arquivo: $file" }
+            $hash=(Get-FileHash -Algorithm SHA256 -LiteralPath $path).Hash.ToLowerInvariant()
+            if ($hash -ne $expected[$file]) { throw "Arquivo nao corresponde ao build testado: $file" }
+            Write-Host "OK: $file"
+          }
+          if ((Get-ChildItem payload -Recurse -File | Where-Object { $_.Extension -eq '.sav' }).Count -gt 0) {
+            throw 'Nunca incluir save em distribuicao!'
+          }
+      - name: Add installation instructions and portable entrypoint
+        shell: pwsh
+        run: |
+          @'
+          Emerald Hybrid v0.8.2 - MEGA Desktop Pass 1 (EXPERIMENTAL)
+          Escolha:
+          A) INSTALADOR: Execute Emerald_Hybrid_v0802_INSTALADOR_Windows.exe.
+             Instala na pasta local do usuario, sem permissao de administrador.
+             O jogo fica acessivel pelo menu Iniciar -> Emerald Hybrid.
+             Saves instalados: %LOCALAPPDATA%\EmeraldHybrid\profiles.
+          B) PORTATIL: extraia Emerald_Hybrid_v0802_PORTATIL_Windows.zip por completo
+             em pasta nova e execute ABRIR_LAUNCHER.bat.
+             Perfis portateis ficam na subpasta profiles.
+          NAO execute ZIP sem extrair. Nao use somente EmeraldLauncher.exe.
+          Esta versao e experimental: faca backup dos saves reais antes de testar.
+          O instalador e nao-assinado. Se o Windows sinalizar um arquivo inseguro,
+          verifique sua origem/hash; nao desative protecoes do Windows.
+          Servidor dedicado, lobby de 4 jogadores e conta online ainda nao existem.
+          Desinstalar NAO remove os saves e logs do perfil.
+          '@ | Set-Content -LiteralPath payload/LEIA_PRIMEIRO.txt -Encoding UTF8
+          @'
+          @echo off
+          cd /d "%~dp0"
+          for %%F in (EmeraldLauncher.exe pokeemerald.exe SDL2.dll emerald_profilectl.exe) do (
+            if not exist "%%F" (
+              echo [ERRO] Falta %%F. Extraia TODO o ZIP antes de abrir.
+              pause
+              exit /b 1
+            )
+          )
+          start "" "%~dp0EmeraldLauncher.exe"
+          '@ | Set-Content -LiteralPath payload/ABRIR_LAUNCHER.bat -Encoding ASCII
+          New-Item -Path release -ItemType Directory -Force | Out-Null
+
+      - name: Package PORTABLE ZIP with all dependencies and portable profile marker
+        shell: pwsh
+        run: |
+          New-Item -Path portable -ItemType Directory -Force | Out-Null
+          Copy-Item payload/EmeraldLauncher.exe,payload/pokeemerald.exe,payload/SDL2.dll,payload/emerald_profilectl.exe,payload/ABRIR_LAUNCHER.bat,payload/LEIA_PRIMEIRO.txt portable
+          "MODO PORTATIL - salva na subpasta profiles desta pasta." | Set-Content portable/PORTABLE_MODE.txt
+          Compress-Archive -Path portable/* -DestinationPath release/Emerald_Hybrid_v0802_PORTATIL_Windows.zip -CompressionLevel Optimal
+
+      - name: Install NSIS compiler
+        shell: pwsh
+        run: |
+          choco install nsis --yes --no-progress --limit-output
+          if ($LASTEXITCODE -ne 0) { throw "Falha ao instalar NSIS" }
+          $possible=@("${env:ProgramFiles(x86)}\NSIS\makensis.exe","$env:ProgramFiles\NSIS\makensis.exe")
+          $compiler=$possible | Where-Object { Test-Path $_ } | Select-Object -First 1
+          if (!$compiler) { throw "NSIS makensis.exe nao encontrado" }
+          "NSIS_COMPILER=$compiler" >> $env:GITHUB_ENV
+
+      - name: Build actual per-user Windows .exe installer
+        shell: pwsh
+        run: |
+          & $env:NSIS_COMPILER /V3 packaging/emerald_hybrid_setup.nsi
+          if ($LASTEXITCODE -ne 0) { throw "Falha ao gerar instalador NSIS" }
+          if (!(Test-Path release/Emerald_Hybrid_v0802_INSTALADOR_Windows.exe)) { throw "Instalador inexistente" }
+          if ((Get-Item release/Emerald_Hybrid_v0802_INSTALADOR_Windows.exe).Length -lt 1000000) {
+            throw "Instalador gerado tem tamanho inesperado"
+          }
+
+      - name: Final archive contents and checksums
+        shell: pwsh
+        run: |
+          Get-ChildItem release | Format-Table Name,Length
+          Get-FileHash release/* -Algorithm SHA256 | Format-Table
+          if ((Get-ChildItem release -File).Count -ne 2) { throw "Esperados 2 produtos completos" }
+
+      - name: Publish ONE GitHub Actions download containing both options
+        uses: actions/upload-artifact@v4
+        with:
+          name: BAIXAR_AQUI_Emerald_v0802_INSTALADOR_e_PORTATIL_COMPLETOS
+          path: release/*
+          retention-days: 30
+          if-no-files-found: error

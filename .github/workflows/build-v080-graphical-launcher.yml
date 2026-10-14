@@ -2,6 +2,7 @@ name: Emerald Hybrid v0.8 Windows graphical launcher
 on:
   push:
     branches:
+      - feature/lan-v080-mega-desktop-polish
       - feature/lan-v080-desktop-graphical-launcher
     paths:
       - 'tools/emerald_launcher.py'
@@ -35,7 +36,7 @@ jobs:
           if (!(Test-Path dist/EmeraldLauncher.exe)) { throw "Launcher executable was not generated" }
       - uses: actions/upload-artifact@v4
         with:
-          name: Emerald-Hybrid-v080-GraphicalLauncher-Windows-x64-Experimental
+          name: Emerald-Hybrid-v0802-GraphicalLauncher-Windows-x64-Experimental
           path: dist/EmeraldLauncher.exe
           retention-days: 14
           if-no-files-found: error

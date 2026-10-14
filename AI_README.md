@@ -49,7 +49,7 @@
 | `scripts/verify_lan_foundation.sh` | Testes nativos sessão/ligação/presença/culling. |
 | `docs/LAN_V080_ARCHITECTURE.md` | Protocolo, roadmap, matriz QA, decisão por pergunta. |
 
-## 3. Decisões aprovadas pelo usuário (1–100)
+## 3. Decisões aprovadas pelo usuário (1–116)
 
 As letras são exatamente as respostas do usuário. Reconsultar a descrição de **cada uma das 100 decisões** em `docs/LAN_V080_ARCHITECTURE.md` antes de interpretar letra isoladamente. **A rodada final veio numerada 1–25 pelo usuário, mas corresponde a 51–75**; não sobrescrever as primeiras 25.
 
@@ -66,6 +66,8 @@ As letras são exatamente as respostas do usuário. Reconsultar a descrição de
 - **76–85:** 76C 77A 78A 79A 80A 81A 82A 83A 84A 85A
 - **86–95:** 86A 87B 88A 89A 90A 91A 92A 93A 94A 95A
 - **96–100:** 96A 97A 98A 99A 100A
+- **101–110:** 101B 102B 103B 104B 105C 106C 107B 108B 109C 110C
+- **111–116:** 111C 112A 113B 114C 115A 116A
 
 ## 4. Ordem das futuras entregas — recomendação, ainda sujeita a novas perguntas
 
@@ -331,3 +333,73 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 - **Alterações no código do jogo, CLI ou launcher Python:** nenhuma. **Removido:** nada. Erro corrigido pelo empacotamento completo e diagnóstico no `.bat`.
 - **Atenção a futuros agentes/distribuição:** NUNCA orientar usuário a baixar o artifact do **launcher isolado** como se fosse um pacote pronto para jogo. Publicar somente pacote FINAL DE QA que contenha os quatro componentes com hash, README de dependências e verificador. Se Windows Security colocar um componente em quarentena, não sugerir desligar antivírus; verificar detalhes e fonte assinada/legítima.
 - **Rollback:** preservar pasta v0.7.2.1 e saves originais; extrair novo ZIP em pasta separada. Não copiar saves originais sem backup. **Ainda não implementado:** servidor dedicado, 4 jogadores, login online, backups automáticos em cada save, launcher Android equivalente.
+
+
+## 16. MEGA atualização v0.8 / Pass 1 (decisões 101–116) — 2026-10-14
+
+**User vote:** `101B 102B 103B 104B 105C 106C 107B 108B 109C 110C 111C 112A 113B 114C 115A 116A`. **NÃO interpretar como substituição das 100 escolhas antigas.** Arquivo exaustivo de decisões e plano de QA em [docs/LAN_V080_MEGA_DESKTOP_PASS1.md](docs/LAN_V080_MEGA_DESKTOP_PASS1.md).
+
+**Branch:** `feature/lan-v080-mega-desktop-polish` sobre PR #8; [PR #9](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/9) draft. Último commit DEV deve ser lido do HEAD (muda após updates de docs). Baseline aprovado pelo usuário: `feature/lan-v0721-viewport-culling`, SHA `a87e2c49e453db32def5e71ba2a2e696a911d504`. **Não mesclar com base estável sem QA real.**
+
+### Adicionado / modificado
+- `tools/emerald_launcher.py`: sessão sem console CMD em modo normal com `CREATE_NO_WINDOW`, stdout verboso descartado e stderr limitado por execução em arquivo; CMD reaparece somente quando usuário ativa diagnóstico; lembrar último perfil e configurar IP/porta e diagnóstico num JSON externo ao save; minimizar launcher durante o jogo e reabrir ao encerrar, avisar erro e caminho de logs; impedir outro jogo simultâneo pelo mesmo launcher.
+- Gerenciamento de backups: botões de criar backup e recuperar backup escolhido por número, somente com jogo fechado, via `emerald_profilectl.exe` existente (que controla lock e recusa saves estruturalmente inválidos); exigir confirmação antes de restaurar. **Não prometer verificação completa do checksum.**
+- `src/platform/sdl2.c`: escala inicial inteira adaptada à área de trabalho, F11/Alt+Enter para alternar janela e fullscreen-desktop. Mantidos nearest neighbor, SDL integer scale e lógica SDL para Android inalterada.
+- `scripts/verify_v080_profile_patch.py`: inversão somente dos trechos de vídeo **exatos e autorizados** antes da auditoria hash SDL antiga.
+- `tests/test_emerald_launcher.py`: novos testes para persistência, configurações malformadas e proteção dos bytes do .sav.
+- `docs/LAN_V080_MEGA_DESKTOP_PASS1.md`: decisões 101–116, implementação real, limites, QA e rollback.
+- Workflows Windows/Android e launcher estendidos para executar na nova branch e no PR.
+
+### Removido
+- **Nada:** battle logic, NPCs, menus Emerald, maps, Pokedex, Quest UI, Fairy, physical/special, fast-forward, áudios, LAN SIO e formato do save continuam os antigos. Nenhum save pessoal foi aberto ou modificado.
+
+### Testes e limitações
+- Rastrear GitHub Actions: `build-v080-graphical-launcher.yml`, `build-lan-hybrid-windows.yml`, `build-lan-hybrid-android.yml`, `test-lan-v080-foundation.yml`, e regressões. Não declarar todos verdes até ler conclusões exatas e comparar SHA.
+- Ainda sem teste do usuário da nova versão com escalonamento ou CMD, backup real, saída do jogo e retorno à interface.
+- #106C: zona preta no frame vista no screenshot precisa ser investigada, sem inferir que fullscreen resolve corte interno.
+- #109C: instalador completo Windows ainda pendente; #110C: filtros opcionais ainda pendentes; #111C: desenvolvimento paralelo por marcos, sem fingir que servidor existe; #112A: servidor dedicado terá controle no próprio launcher; #113B e #114C convites e atalho configurável futuros; #115A Windows primeiro; #116A 2/3/4 jogadores em etapas.
+- **NÃO implementado:** SessionServer headless EHL8, lobby real, 4 participantes, autenticação opcional online, streamer de eventos multiplayer, Android GUI equivalente e backups automáticos a cada save manual.
+- **Risco importante:** saída de `AgbMain`/flush ainda depende de revisão de ciclo de vida; backups manuais somente com jogo fechado; integração de saves tem validação estrutural sem checksum completo. **Teste em pasta nova e somente com cópias dos seus saves reais.**
+- **Rollback:** usar jogo anterior aprovado v0.7.2.1 / branch `feature/lan-v0721-viewport-culling`. Não reescrever outro save durante teste.
+- **Próximo passo:** validar compilação, testar GUI e viewport em Windows real, depois corrigir quaisquer bugs observados e iniciar estabilização de saves, M2 servidor dedicado.
+
+
+## 17. QA concluído de compilação da MEGA Desktop Pass 1 (2026-10-14)
+
+- **Branch/PR:** `feature/lan-v080-mega-desktop-polish`, [PR #9](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/9), ainda draft. A execução de referência ocorreu na revisão `d70fe058e0408c2c7147542dfbfb54c6ec10cb82` (mesmo código launcher e SDL do incremento; commits posteriores só acrescentaram documentação).
+- **Launcher GUI Windows + unit tests Python + empacotamento PyInstaller:** [Actions 38522309384](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38522309384) **SUCCESS**, artifact `11874218835` contém `EmeraldLauncher.exe`. Testes incluem login local/último perfil e save invariável em laboratório.
+- **Jogo Emerald completo Windows x86, LAN regressão, auditoria SDL legada com patch reverso:** [Actions 38522309182](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38522309182) **SUCCESS**, artifact `11874860082`. Executável contém literal `Fullscreen toggle failed`, parâmetros M1, e a DLL SDL2.
+- **APK Android ARMv7 experimental:** [Actions 38522309156](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38522309156) **SUCCESS**. Isso só prova compilação do código compartilhado; o **launcher Android permanece o antigo** e não implementa a nova UI desktop.
+- **Testes core LAN/profiles C99, sanitizers e Windows cross:** [Actions 38522309249](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38522309249) **SUCCESS**.
+- **Artefato pronto para QA local** criado a partir dos dois builds acima e do CLI win32 existente da M1: `/mnt/data/Emerald_Hybrid_v0802_MEGA_Desktop_Windows_COMPLETO.zip`, **23.428.247 bytes**, **SHA256** `ce407080e021b2a3d3e48ce73de6c1d1e1ab1ac8c2ac0016c946a72508a58feb`. ZIP CRC testado, PE MZ verificados, arquivos com hashes internos: `EmeraldLauncher.exe`, `pokeemerald.exe`, `SDL2.dll`, `emerald_profilectl.exe`, `ABRIR_LAUNCHER.bat`, `PORTABLE_MODE.txt`, `LEIA_PRIMEIRO_MEGA_v0802.txt`, `SHA256_COMPONENTES.txt`. **Nenhum arquivo .sav incluído.**
+- **CI ROM genérico** [Actions 38522309423](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38522309423): **FAILURE na etapa Compare**. Os builds nativos Windows/Android e testes M0/M1 acima são execuções separadas bem-sucedidas; **não declarar todos os checks CI green nem ignorar falha**. A causa exata do Compare não foi resolvida neste incremento.
+
+**Modificado:** launcher GUI, SDL2 vídeo, testes e auditoria reverse-patch exata, workflows e handoff. **Removido do gameplay:** nada. **Não implementado ainda:** instalador, auto-backup pós-save, validação checksum completa, servidor headless, lobby, 3/4 jogadores, login online opcional, novo Android launcher, efeitos visuais opcionais, análise concluída da região preta do screenshot. **Não há gameplay QA de usuário deste ZIP ainda.**
+
+**Rollback:** versão v0.7.2.1 testada em branch `feature/lan-v0721-viewport-culling`, SHA `a87e2c49e453db32def5e71ba2a2e696a911d504`; extração sempre em diretório separado, perfis locais não devem ser substituídos ou excluídos ao trocar de build.
+
+**QA humana seguinte:** abrir launcher SEM CMD visível; perfil lembrado; zoom inteiro em monitor do usuário; F11/Alt+Enter; save/reopen; criar backup com jogo fechado e recuperar; encerrar, observar launcher retornar; conferir logs. Validar visual abaixo da tela com prints antes/depois. Depois abrir nova fase: safe save lifecycle, instalador e SessionServer com dois jogadores.
+
+
+## 18. Distribuição corrigida: primeiro instalador Windows REAL (2026-10-14)
+
+**Problema do usuário:** ao clicar em links anteriores do ChatGPT, não conseguia baixar/"instalar" a versão MEGA v0.8.2. Pacotes anteriores eram ZIPs portáteis, não instaladores, e o artefato GitHub do launcher isolado não continha o gerenciador de perfis.
+
+**Solução aplicada:** branch `feature/lan-v080-mega-desktop-polish` / [PR #9](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/9) (DRAFT) agora contém:
+- `packaging/emerald_hybrid_setup.nsi`: script de setup NSIS por usuário (`RequestExecutionLevel user`), cria shortcut do launcher no Menu Iniciar, desinstalador HKCU, instala sem `PORTABLE_MODE.txt`; **desinstalar preserva** `%LOCALAPPDATA%\\EmeraldHybrid\\profiles` e `logs`.
+- `.github/workflows/package-v0802-complete.yml`: baixa binários já validados por GitHub CI, verifica tamanho/conteúdo e hashes SHA256 dos quatro arquivos do app (C++ jogo, Python launcher GUI compilado, SDL2, CLI), falha diante de ausentes ou saves incluídos; publica **um único artifact GitHub** com instalador e ZIP portátil completos.
+- `docs/LAN_V0802_INSTALL_WINDOWS.md`: explicação dos dois métodos e passos em português.
+
+**Build & QA:** [GitHub Actions RUN 38524395485 — SUCCESS](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38524395485), artifact ID **11875457719**, nome `BAIXAR_AQUI_Emerald_v0802_INSTALADOR_e_PORTATIL_COMPLETOS`. Download obtido e verificado no container do chat:
+- ZIP externo `Emerald_Hybrid_v0802_INSTALADOR_e_PORTATIL_GITHUB.zip` — 44.604.935 bytes, CRC íntegro.
+- `Emerald_Hybrid_v0802_INSTALADOR_Windows.exe` — 20.900.097 bytes, PE/MZ válido, SHA256 `0ef9e823932e0f3b3a0d25ae5e1a8a313aec538c109ca84b1c3f07eba11773f0`. Setup NSIS compilou no Windows CI. **Ainda não instalado/testado no PC do usuário.**
+- `Emerald_Hybrid_v0802_PORTATIL_Windows.zip` — 23.743.567 bytes, CRC íntegro, contém `EmeraldLauncher.exe`, `pokeemerald.exe`, `SDL2.dll`, `emerald_profilectl.exe`, `ABRIR_LAUNCHER.bat`, `PORTABLE_MODE.txt` e instruções, **zero arquivos .sav**.
+- O workflow teve 2 falhas iniciais CORRIGIDAS: (1) hash do CLI previamente usado não era o hash do artifact oficial — agora hash fixado `09a865bc08bed2d5d7673114db1f381a5a12ce2df260c89ae7e9bc0fe6d52679`; (2) NSIS resolvia caminhos relativos à subpasta `packaging/`; correção estrita `!cd ".."`. Apenas após ambas passou o run 38524395485.
+
+**Alterado neste incremento:** distribuição/instalador/documentação. **Não alterado/removido:** código do game, sprites, saves, LAN, SDL2, cliente launcher, gameplay. As versões binárias embutidas são builds testados antes e hash-pinned; geração de instalador não prova funcionamento de gameplay no Windows final.
+
+**Limitações:** binário NÃO assinado; Windows SmartScreen pode avisar e não deve ser desativado às cegas. GitHub Actions artifacts duram 30 dias e podem exigir login. Ainda falta QA usuário: instalar, criar/importar perfil, salvar/reabrir, desinstalar preservando save, CMD oculto e zoom. Conta online, servidor dedicado, lobby 4 jogadores, instalador Android e saves automáticos seguem pendentes.
+
+**Rollback:** manter v0.7.2.1 aprovada em pasta separada; qualquer nova instalação não deve apagar/migrar perfis portáteis anteriores sem backup. Falhas de download do sandbox devem ser contornadas pelo link GitHub Actions acima, **não insistir apenas no mesmo sandbox**.
+
+**Próxima IA:** abrir `docs/LAN_V0802_INSTALL_WINDOWS.md` e este registro; não afirmar instalação em PC do usuário já confirmada. Atualizar handoff a cada patch com IDs de run, SHA, falhas e pendências.
