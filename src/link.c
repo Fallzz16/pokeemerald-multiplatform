@@ -1805,6 +1805,8 @@ typedef struct
 
 static PortLanAutoRequest sLanAuto;
 static s32 sLanLastLive = -1;
+static s32 sLanLastSerialState = -1;
+static s32 sLanLastSerialPlayers = -1;
 static bool32 sLanLoggedHandshake;
 static const char *sLanLogPath;
 static bool32 sLanOpenLink;
@@ -1948,6 +1950,26 @@ static void PortLanDebugPump(void)
         {
             gShouldAdvanceLinkState = 1;
         }
+    }
+
+    /* Emit only state transitions, not a line for every 16-bit transfer.
+     * These breadcrumbs identify which Cable Club stage failed without
+     * degrading normal gameplay or growing unbounded frame-by-frame logs. */
+    if (!live)
+    {
+        sLanLastSerialState = -1;
+        sLanLastSerialPlayers = -1;
+    }
+    else if (sLanLastSerialState != gLink.state
+             || sLanLastSerialPlayers != gLink.playerCount)
+    {
+        sLanLastSerialState = gLink.state;
+        sLanLastSerialPlayers = gLink.playerCount;
+        PortLanLog("[LAN] serial state=%d players=%d status=0x%08lX sendQ=%u recvQ=%u\\n",
+                   (int)gLink.state, (int)gLink.playerCount,
+                   (unsigned long)gLinkStatus,
+                   (unsigned)gLink.sendQueue.count,
+                   (unsigned)gLink.recvQueue.count);
     }
 
     if (live && gReceivedRemoteLinkPlayers && !sLanLoggedHandshake)
