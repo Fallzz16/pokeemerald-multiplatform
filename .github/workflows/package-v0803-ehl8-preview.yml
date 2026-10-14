@@ -162,7 +162,7 @@ jobs:
         run: |
           Copy-Item payload/EmeraldLauncher.exe,payload/pokeemerald.exe,payload/SDL2.dll,payload/emerald_profilectl.exe,payload/EmeraldSessionServer.exe,payload/LEIA_PRIMEIRO.txt portable
           "PORTABLE PROFILE LOCATION: ./profiles" | Set-Content -LiteralPath portable/PORTABLE_MODE.txt
-          Copy-Item payload/LEIA_QA_PTBR.md,payload/AI_README.md portable
+          Copy-Item payload/LEIA_QA_PTBR.md,payload/AI_README.md,payload/SHA256_COMPONENTES.txt portable
           Compress-Archive -Path portable/* -DestinationPath release/Emerald_Hybrid_EHL8_M2_PREVIEW_PORTATIL_Windows.zip -CompressionLevel Optimal
 
       - name: Install NSIS for real per-user installer build
