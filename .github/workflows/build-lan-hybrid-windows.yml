@@ -54,7 +54,7 @@ jobs:
         run: bash scripts/verify_lan_foundation.sh
 
       - name: Verify all candidate mechanics and the sprite import pipeline
-        run: EMERALD_LAN_QA=1 bash scripts/verify_v070.sh
+        run: EMERALD_LAN_QA=1 EMERALD_V080_QA=1 bash scripts/verify_v070.sh
 
       - name: Download SDL2 MinGW development headers and DLL
         shell: bash
