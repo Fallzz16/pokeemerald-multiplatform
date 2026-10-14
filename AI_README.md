@@ -559,3 +559,19 @@ O empacotamento EHL8 é **preview isolada** com instalador real NSIS e ZIP port�
 
 ### Próximas etapas
 Após user QA em dois PCs: corrigir bugs de abertura, salvamento, warp, renderização e desconexão; tratar fila/reconexão com reserva de 60s, lobby com nomes amigáveis, status por jogador e erro explicativo; ampliar slots somente após 2 reais; manter independentes Cable Club/Trocas/PvP até proxy SIO seguro. Atualizar este arquivo a cada patch.
+
+
+## 24. Entrega QA: instalador + ZIP EHL8 Lobby atualizado (2026-10-14)
+
+**Referência auditável:**
+- Branch `feature/lan-v0803-ehl8-lobby-observability`, [PR #11](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/11) em rascunho.
+- **GitHub Actions distribuição:** [run 38535499838](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38535499838), job `Verify and package dedicated EHL8 beta separately from stable version` **SUCCESS**.
+- **Artefato único:** ID `11878919142`, `BAIXAR_AQUI_Emerald_EHL8_LOBBY_ATUALIZADO_INSTALADOR_e_PORTATIL`, janela de retenção de 30 dias segundo workflow. Usuário baixa pelo GitHub e extrai uma vez o artifact externo antes de escolher instalador OU portátil. **Não recomendar só `EmeraldLauncher.exe`: falta jogo e CLI!**
+- Arquivo externo `Emerald_Hybrid_EHL8_Lobby_Instalador_e_Portatil_GITHUB.zip`, 63.737.840 bytes, SHA256 `5f9f59f00f6bb02bf1654b4872db521f7b0a818d08d33245204defe675f5306b`, ZIP CRC OK.
+- Produto 1: `Emerald_Hybrid_EHL8_M2_PREVIEW_INSTALADOR_Windows.exe`, 30.473.495 bytes, SHA256 `c2839cdfb8501620cec1fb3ffd4ec418b1c8a79c2a10f8a62bdfd72b2a5196cf`, cabeçalho PE/MZ válido e NSIS compilado no GitHub Windows. Instalador NSIS não assinado e **não testado pessoalmente no Windows do usuário**.
+- Produto 2: `Emerald_Hybrid_EHL8_M2_PREVIEW_PORTATIL_Windows.zip`, 33.297.014 bytes, SHA256 `905d43355968ff77c698c7b47c16cde7803a8f1773ddb23e05f203c689343086`, ZIP CRC OK, 11 arquivos.
+- Cinco componentes `EmeraldLauncher.exe`, `EmeraldSessionServer.exe`, `pokeemerald.exe`, `SDL2.dll`, `emerald_profilectl.exe` auditados por PE/MZ e SHA256 esperados (vide seção 23 e workflow) — **5/5 coincidem**. Zero `.sav` no pacote. Inclui `AI_README.md`, `LEIA_PRIMEIRO.txt`, `LEIA_QA_PTBR.md`, `LEIA_QA_STATUS_LOBBY.md` e `PORTABLE_MODE.txt` apenas no ZIP portátil.
+- **O que foi alterado neste incremento:** Python SessionServer, GUI, testes, workflows, scripts de empacotamento/NSIS e documentação. **O que foi removido:** nada. **O que NÃO foi alterado:** o cliente nativo EHL8 já testado, o binário Emerald, SDL2, o CLI de perfis e os saves. Base v0.8.2 permanece utilizável.
+- **Ainda não implementado/validado:** gameplay com 2 PCs Windows de pessoas reais e saves independentes, 3–4 jogadores, troca/combate via servidor EHL8, Android launcher novo, reconexão de 60s, conta remota, autenticação/criptografia forte e desempenho no aparelho de 4GB. Não mudar a PR #11 para ready/merge antes do QA humano.
+
+**Teste recomendado ao usuário:** baixar artifact **único** do GitHub (mais confiável que sandbox ChatGPT); instalar Preview EHL8 em pasta própria; em um PC ou terceiro dispositivo abrir launcher e hospedar com PIN 6 dígitos; em dois PCs distintos abrir com perfis próprios e escolher servidor dedicado/IP/PIN; avaliar contador 0/2 → 1/2 → 2/2, Ready/Em jogo, presença no mesmo mapa, transições de área, desconexão, salvar/reabrir. Trocas e batalhas ainda somente por **Hospedar e jogar** / P2P clássico. Usar cópias de saves, nunca a única cópia original. Reverter à v0.8.2 aprovada em caso de falha. Reportar logs sem expor IP/PIN/saves.
