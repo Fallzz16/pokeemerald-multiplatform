@@ -2094,7 +2094,7 @@ void PortLanRequestClient(const char *host, u16 port)
 
 /* Dedicated EHL8 presence only: NEVER feed this protocol to the Cable Club
  * serial transport. Reuse existing sprite/camera, no save or quest changes. */
-void PortLanRequestDedicatedClient(const char *host, u16 port,
+bool32 PortLanRequestDedicatedClient(const char *host, u16 port,
                                    const char *pin, const char *profileId)
 {
     LanLinkClose();
@@ -2106,7 +2106,7 @@ void PortLanRequestDedicatedClient(const char *host, u16 port,
     sLanAuto.role = 0;
     sLanLinkOpened = FALSE;
     if (!host || !pin || !profileId)
-        return;
+        return FALSE;
     sLanDedicatedSession =
         lnet_session_client_new(host, port, pin, profileId);
     if (!sLanDedicatedSession)
@@ -2114,6 +2114,7 @@ void PortLanRequestDedicatedClient(const char *host, u16 port,
     else
         PortLanLog("[SESSION] EHL8 client configured for %s:%u\\n",
                    host, (unsigned)port);
+    return sLanDedicatedSession != NULL;
 }
 
 static void PortLanDebugPump(void)
