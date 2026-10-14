@@ -12,7 +12,7 @@
 - Inicialmente LAN Wi-Fi ou hotspot com descoberta automática + IP manual; Internet é futura e depende de novo modelo de segurança.
 - Jogadores em versões incompatíveis não entram. O launcher deve oferecer atualização quando tecnicamente viável e devidamente verificada; atualizar código não é função do protocolo de gameplay.
 
-## 2. Registro EXAUSTIVO das respostas do usuário 1–50
+## 2. Registro EXAUSTIVO das respostas do usuário 1–75
 
 Estas decisões foram expressamente escolhidas, não inferências de como o código já funciona:
 
@@ -69,7 +69,41 @@ Estas decisões foram expressamente escolhidas, não inferências de como o cód
 | 49 | A | Hotspot do celular e Wi-Fi comum. |
 | 50 | C | Versões incompatíveis bloqueadas, com opção de atualização segura pelo launcher. |
 
-**Em aberto:** decisões técnicas 51+ de autenticação, concorrência, formatos e política de backup. Não preencher automaticamente como se o usuário já houvesse respondido.
+### 2.1. Decisões adicionais 51–75 (resposta de 25 alternativas)
+
+O usuário respondeu às perguntas numeradas 51–75 com a sequência `1C 2A 3A 4C 5A 6B 7A 8C 9B 10A 11A 12C 13C 14A 15A 16C 17A 18A 19A 20B 21A 22A 23B 24A 25B`. **Esses números são RELATIVOS à última rodada**: `1C` equivale a `51C` (e assim por diante). Não tratar como revisão das escolhas 1–25 anteriores.
+
+| Nº | Escolha | Decisão |
+|---|---|---|
+| 51 | C | Saves Windows: pasta de dados do usuário **e** opção de modo portátil ao lado do EXE. |
+| 52 | A | Importar criando novo perfil sem modificar o .sav de origem. |
+| 53 | A | Perfil com ID persistente fora do save, preservado na exportação; alertar para .sav importado sem metadados. |
+| 54 | C | Quantidade de backups automáticos configurável pelo usuário. **O padrão 10 é recomendação anterior, não decisão expressa.** |
+| 55 | A | Salvamento manual original do Emerald, com backups de segurança; **autosave não é requisito nesta fase**. |
+| 56 | B | Diagnóstico de corrupção e restauração de backup, **sem reparo silencioso**. |
+| 57 | A | Trocar de perfil somente após encerrar a partida e retornar ao launcher. |
+| 58 | C | Android: importação/exportação via seletor de arquivos **e** pacote ZIP de backup compartilhável. |
+| 59 | B | Servidor dedicado encerra por inatividade, após tempo configurável sem jogadores. |
+| 60 | A | Reservar vaga por 60 segundos para reconexão após perda breve da rede. |
+| 61 | A | Entrada tardia durante a sessão, com próprio save e posição; sem teletransporte. |
+| 62 | C | Porta principal no modo simples; configurações avançadas opcionais de portas. |
+| 63 | C | Ao fechar painel do servidor perguntar se continua hospedando ou encerra. |
+| 64 | A | Alterar limite de jogadores em sessão sem ultrapassar 4 e sem remover participantes ativos. |
+| 65 | A | Lista de participantes: nome, conexão e latência; **sem expor equipe/progresso por padrão**. |
+| 66 | C | Batalhas entre pares: **preferir conexão direta**; retransmissão pelo servidor como fallback quando necessário. **Ainda não implementado.** |
+| 67 | A | Indicar jogador “Em batalha” na lista, sem exigir indicador visual no mapa. |
+| 68 | A | Poses a ~10 atualizações por segundo com interpolação; escalar só após medições. |
+| 69 | A | Apenas um convite pendente por jogador; serializar/concluir antes do próximo. |
+| 70 | A | **Nome SEMPRE visível** acima de cada personagem remoto na tela (difere da recomendação anterior de proximidade). |
+| 71 | A | Hotspot via controles nativos do Android; app detecta rede, não precisa ligar hotspot automaticamente. |
+| 72 | A | QR com IP/endereço, porta e ID da sessão; **não incluir PIN por padrão**. |
+| 73 | B | PIN de seis dígitos, com limite de tentativas e mensagens de erro adequadas. |
+| 74 | A | Atualização verificada e oferecida ao usuário; instalar somente após confirmação. |
+| 75 | B | Compatibilidade-alvo inicial **Android 10+**; expandir depois se os testes permitirem. |
+
+**Diferença de preferência relevante:** #70A exige nomes sempre visíveis no campo — há pouco espaço na tela nativa 240×160. Implementar rótulo compacto, recorte/posicionamento seguro, no mesmo ciclo de culling do sprite e sem sobrepor UI crítica ou derrubar FPS. Não substituir #70A por exibição só ao se aproximar sem perguntar.
+
+**Em aberto:** decisões 76+ (p.ex., nome duplicado, medição de desempenho, retenção e proteção dos backups, controles do launcher, segurança e acessibilidade). Não preencher automaticamente como se o usuário já houvesse respondido.
 
 ## 3. Arquitetura lógica recomendada (não concluída)
 
@@ -189,13 +223,13 @@ Abrir aplicativo
   -> Queda LAN -> notificação discreta -> continuar offline com save local
 ```
 
-**Conflito de decisão resolvível:** 8B pede todos prontos para início, 9A/38A pedem entrada tardia. Implementar fase de início com READY antes da primeira partida; após START, novos participantes podem entrar em uma sessão marcada como 'aceita entrada tardia', sem teleporte e sem forçar reinício dos demais.
+**Conflito de decisão resolvível:** 8B pede todos prontos para início, 9A/38A/61A pedem entrada tardia. Implementar fase de início com READY antes da primeira partida; após START, novos participantes podem entrar em uma sessão marcada como 'aceita entrada tardia', sem teleporte e sem forçar reinício dos demais.
 
 **Lobby e administrador:** entrar depois, PIN, mostrar nome+estado, kick, encerrar. Para chat futuro, moderação e bloqueio por sessão serão decisões explícitas; não implementar coleta contínua de dados pessoais.
 
 **Descoberta LAN:** Windows mDNS/DNS-SD compatível com Android NSD, ou fallback por broadcast local se necessário e autorizado na plataforma; IP manual sempre disponível. QR deve codificar endereço+porta e identificador de sessão, **não embutir PIN** por padrão.
 
-**Atualizações:** comparar buildId e protocolo; download assinado/hash conferido, link oficial e confirmação do usuário; não executar atualização silenciosa. Windows e Android possuem fluxos de atualização diferentes; detalhar depois das decisões.
+**Atualizações (#50C/#74A):** comparar buildId e protocolo; download assinado/hash conferido, link oficial e confirmação do usuário; não executar atualização silenciosa. Windows e Android possuem fluxos de atualização diferentes; detalhar depois das decisões.
 
 ## 5. Roadmap revisado — marcos de aceite, sem promessa de prazo
 
@@ -249,7 +283,7 @@ Ver respostas futuras das perguntas 51+ antes de implementar mecanismos com efei
 4. Discovery mDNS/hotspot e permissões Android, fallback.
 5. Fluxo de atualização Windows/Android e proteção de downloads.
 6. Servidor com presença autoritativa vs relé simples; anti-cheat com custo mínimo.
-7. Privacidade no chat, ausência de dados pessoais/saves na rede.
+7. Privacidade no chat, ausência de dados pessoais/saves na rede, e exibição permanente de nomes com proteção de sobreposição na tela.
 8. Handshake SIO via proxy isolado ou canal p2p negociado.
 9. Android serviço foreground e suporte ARM64: fase separada de análise técnica.
 10. Ordem das features antes do primeiro release usuário, limites exatos de QA.
@@ -258,7 +292,50 @@ Ver respostas futuras das perguntas 51+ antes de implementar mecanismos com efei
 
 1. Ler `AI_README.md` e este arquivo **inteiros**, registrar HEAD SHA.
 2. Verificar que funcionalidades existem no HEAD por arquivos reais; não declarar M1/M2 como prontas.
-3. Atualizar decisão 51+ apenas com resposta explícita do usuário; registrar divergências recomendadas vs escolhidas.
+3. Atualizar decisão 76+ apenas com resposta explícita do usuário; registrar divergências recomendadas vs escolhidas.
 4. Criar branch por marco; manter PR draft até testes automáticos/funcionais; não alterar branch anterior funcional.
 5. Não entregar builds nomeados como 'completo' sem testar; nunca gerar saves com reposicionamento manual.
 6. Atualizar `AI_README.md` com SHA, arquivos, testes, pendências, rollback e próximo passo **a cada atualização**.
+
+
+## 9. Consequências arquiteturais específicas das decisões 51–75
+
+### 9.1 Persistência e importação (51–58)
+
+- Salvar no perfil selecionado em diretório próprio, sob app-data, ou em diretório portátil escolhido (Windows). Impedir que duas instâncias usem o mesmo arquivo em escrita simultânea; fornecer erro compreensível.
+- Importar um `.sav` preservando exatamente os bytes de origem. Criar perfil com `profile_id` em metadados, guardar checksum e coletar nome/tempo/insígnias quando o parser suportar; nunca reescrever offsets de mapa.
+- **Backup configurável (#54C)**: UI deve oferecer quantidade e política de retenção; frequência de captura nos eventos de save ainda é detalhe técnico a validar. Padrão 10 é apenas sugestão.
+- Gravação manual (#55A): backup e validação sem impor autosave; conservar arquivo original, especialmente no Android.
+- Exportar um arquivo .sav pelo SAF e, opcionalmente, ZIP com metadados/backups; o ZIP deve prevenir path traversal na importação e não expor arquivos de outros perfis.
+
+### 9.2 Ciclo de servidor/lobby (59–65)
+
+- Sessão tem períodos distintos: lobby pré-START com ready; in-game permite late join sem teleporte; 60 s de reserva para reconnect, expiração e remoção segura do sprite.
+- Inatividade do servidor dedicado: timeout configurável sem jogadores, atenção para não encerrar após perda momentânea do único jogador antes do grace period.
+- Admin pode alterar limite 1..4 em execução, mas nunca abaixo da quantidade de participantes atuais; ao tentar, mostrar erro contextual.
+- Fechar o painel: confirmar continuar/encerrar; distinguir **fechar UI** de **terminar processo/serviço**. Android foreground permanece limitado por plataforma e etapa planejada.
+
+### 9.3 Encaminhamento de Cable Club e nomes (66–70)
+
+- Pareamento 1v1 simultâneo a outras explorações: o servidor negocia um socket direto temporário quando seguro/viável. Em redes/telefones nos quais não seja possível, projeto para retransmissão isolada de stream SIO por par, **sem pressupor que a latência será tolerável**. Medir handshake, slots, filas, timeout e limites por par antes de declarar fallback funcional.
+- A lista de participantes sinaliza “Em batalha”; um único convite pendente por jogador; dois jogadores combatendo não devem bloquear outros.
+- Poses de 10 Hz por jogador: para quatro participantes, broadcast no máximo aos outros três, com quotas. O culling visual não interrompe posição de rede.
+- **Sempre renderizar nomes dos remotos visíveis (70A)**: desenhar somente quando sprite também é visível; recortar com tela e evitar nome quebrado, sobreposição com outras etiquetas, mosaico/tile budget. Ainda pendente decisão sobre ocultação manual como opção de acessibilidade.
+
+### 9.4 Rede local e plataformas (71–75)
+
+- Hotspot Wi-Fi pelo Android Settings; apresentar instrução e fallback IP manual se a descoberta falhar.
+- QR não inclui PIN; PIN de seis dígitos e controle de tentativas. Em LAN o código é um requisito de acesso à sessão, não substitui autenticação criptográfica segura na WAN.
+- Atualizações: confirmação explícita, hash/assinatura, instalação segura, recuperação se falhar, salvamento/backup antes de atualizar. Android e Windows têm processos de instalação diferentes.
+- Android 10+ como alvo de versão de SO; **isso não prova ABI ARM64 ou compatibilidade geral com qualquer dispositivo 4GB**. O port ARMv7 existente continua baseline; migração ARM64 requer auditoria e QA.
+
+### 9.5 QA adicional de aceite
+
+1. Dois perfis com mesmo Trainer ID porém profile IDs diferentes; bloquear somente duplicidade verdadeira de perfil conforme política final de identidade.
+2. Escrita local/portátil Windows, save manual, backup com retenção configurável, import/export SAF e ZIP corrompido com arquivo malicioso.
+3. Queda da rede: 60 segundos de vaga reservada, reconectar antes/depois da expiração, jogador desaparece do mapa apropriadamente.
+4. Host sem jogadores: timeout configurável e confirmação ao fechar painel; não derrubar sessão indevidamente.
+5. Nomes sempre visíveis: quatro personagens próximos em tela de 240×160, sobreposição e culling com zoom/resize nativo.
+6. PIN de 6 dígitos: repetição de tentativas bloqueada; logs sem PIN nem dados completos do save.
+7. PvP entre dois com conexão direta, fallback por servidor e terceiro jogador livre; medir SIO e tempos antes de afirmar estabilidade.
+8. Android 10+ ARMv7/ARM64, Wi-Fi roteador/hotspot; comparar FPS/latência em celulares com ≥4 GB de RAM.
