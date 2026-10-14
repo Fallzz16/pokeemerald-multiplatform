@@ -89,6 +89,27 @@ int main(void)
         fprintf(stderr, "FAIL: closed peer must end pending SIO exchange (host=%d client=%d)\n", hostResult, clientResult);
         return 1;
     }
-    puts("passed: peer disconnect detected during incomplete slot");
+    /* Hostnames and malformed IPv4 strings must be rejected immediately.
+     * Blocking gethostbyname() in the game thread is not acceptable. */
+    {
+        const char *invalid[] = {"example.invalid", "256.1.2.3", "not-an-ip"};
+        int i;
+        for (i = 0; i < 3; i++)
+        {
+            int err = LNET_ERR_OK;
+            int result;
+            LNetSession *bad = lnet_session_join(invalid[i], TEST_PORT, &err);
+            if (!bad)
+                return 3;
+            result = lnet_session_poll(bad, &err);
+            lnet_session_close(bad);
+            if (result != -1 || err != LNET_ERR_CONNECT)
+            {
+                fprintf(stderr, "FAIL: invalid IPv4 was accepted: %s (result=%d err=%d)\n", invalid[i], result, err);
+                return 1;
+            }
+        }
+    }
+    puts("passed: peer disconnect detected during incomplete slot; invalid IPv4 rejected");
     return 0;
 }
