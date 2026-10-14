@@ -11,6 +11,7 @@ on:
       - 'docs/LAN_V0803_LOBBY_OBSERVABILITY_QA.md'
   pull_request:
     branches:
+      - feature/lan-v0803-dedicated-session-core
       - feature/lan-v080-mega-desktop-polish
     paths:
       - 'packaging/emerald_hybrid_m2_preview.nsi'
