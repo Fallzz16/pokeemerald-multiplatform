@@ -56,7 +56,7 @@ jobs:
             'EmeraldLauncher.exe'='3e2b7a885a22c075d04b87d97b4dab05cee68098375e692e30f47f7c2bdcc239'
             'pokeemerald.exe'='2e00b3099a47f7fe5e49a886885a7847b781159e0a00159cdfbe111b2229b2d7'
             'SDL2.dll'='eb323e920739ff48f72b28cd20f0cf6a58507bff852cbf1bacb4fb6fa07d1a3d'
-            'emerald_profilectl.exe'='ba20510115e2a449a27a1b3685946b334d970e41c5886265b975adc4a34a59c7'
+            'emerald_profilectl.exe'='09a865bc08bed2d5d7673114db1f381a5a12ce2df260c89ae7e9bc0fe6d52679'
           }
           foreach($file in $expected.Keys) {
             $path=Join-Path "payload" $file
