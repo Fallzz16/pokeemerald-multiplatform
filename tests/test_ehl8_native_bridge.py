@@ -77,12 +77,22 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
             self.assertTrue(server.in_game, "Native clients never entered game")
             self.assertEqual(len(server.players), 2)
             original = server.players[1].profile
+            previous_token = server.players[1].resume_secret
+            self.assertIsNotNone(previous_token)
             server.players[1].close()   # Simulated Wi-Fi transport disruption
             stdout, stderr = await asyncio.wait_for(a.communicate(), 12)
             self.assertEqual(a.returncode, 0, (stdout, stderr))
             self.assertIn(b"resumed with original slot", stdout)
-            self.assertEqual(server.players[1].profile, original)
-            self.assertFalse(server.reservations)
+            # The tiny C test intentionally exits immediately after successful
+            # reconnect; by the time communicate() completes the slot is
+            # RESERVED again, not necessarily an active player anymore.
+            for _ in range(90):
+                if 1 in server.reservations:
+                    break
+                await asyncio.sleep(.01)
+            self.assertIn(1, server.reservations)
+            self.assertEqual(server.reservations[1].profile, original)
+            self.assertNotEqual(server.reservations[1].secret, previous_token)
         finally:
             for proc in (a, b):
                 if proc.returncode is None:
