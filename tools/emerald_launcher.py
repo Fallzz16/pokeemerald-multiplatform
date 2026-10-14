@@ -475,7 +475,7 @@ class EmeraldLauncher(tk.Tk):
             if mode=="dedicated":
                 # Never place a LAN room PIN in argv, persisted settings or logs.
                 try:
-                    p.stdin.write((self.pin.get()+"\\n").encode("ascii"))
+                    p.stdin.write((self.pin.get()+"\n").encode("ascii"))
                     p.stdin.flush()
                 finally:
                     p.stdin.close()
