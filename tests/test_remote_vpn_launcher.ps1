@@ -11,8 +11,17 @@ if ($errors.Count -ne 0) {
     throw 'PowerShell launcher has parser errors.'
 }
 function Assert-Run([string[]]$Arguments, [bool]$ShouldSucceed, [string]$Expected) {
-    $output = & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $launcher @Arguments 2>&1
-    $status = $LASTEXITCODE
+    # The negative cases intentionally write to STDERR. PowerShell's
+    # ErrorActionPreference=Stop must not abort our *test harness* before the
+    # expected exit code and diagnostic have been inspected.
+    $oldAction = $ErrorActionPreference
+    try {
+        $ErrorActionPreference = 'Continue'
+        $output = & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $launcher @Arguments 2>&1
+        $status = $LASTEXITCODE
+    } finally {
+        $ErrorActionPreference = $oldAction
+    }
     $result = ($output | Out-String)
     if ((($status -eq 0) -ne $ShouldSucceed)) {
         throw "Unexpected exit code $status for $($Arguments -join ' '): $result"
