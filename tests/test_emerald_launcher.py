@@ -19,6 +19,20 @@ class GraphicalLauncherTests(unittest.TestCase):
             launcher.make_command("game.exe","profiles","user_1","dedicated")
         with self.assertRaises(ValueError):
             launcher.make_command("game.exe","profiles","../bad","offline")
+    def test_dedicated_session_requires_six_digit_pin_and_valid_ipv4(self):
+        args = launcher.make_command("pokeemerald.exe","profiles","trainer",
+                                     "dedicated","127.0.0.1","45680","123456")
+        self.assertIn("--session-client=127.0.0.1:45680",args)
+        self.assertIn("--session-pin=123456",args)
+        self.assertNotIn("--lan-client=127.0.0.1:45680",args)
+        for bad in ("","123","abcdef","1234567"):
+            with self.assertRaises(ValueError):
+                launcher.make_command("pokeemerald.exe","profiles","trainer",
+                                      "dedicated","127.0.0.1","45680",bad)
+        with self.assertRaises(ValueError):
+            launcher.make_command("pokeemerald.exe","profiles","trainer",
+                                  "dedicated","not-a-host","45680","123456")
+
     def test_invalid_network(self):
         for port in ("0","65535","abc","1.5"):
             with self.assertRaises(ValueError): launcher.validate_port(port)
