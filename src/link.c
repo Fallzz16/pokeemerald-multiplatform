@@ -1965,7 +1965,7 @@ static void PortLanDebugPump(void)
     {
         sLanLastSerialState = gLink.state;
         sLanLastSerialPlayers = gLink.playerCount;
-        PortLanLog("[LAN] serial state=%d players=%d status=0x%08lX sendQ=%u recvQ=%u\\n",
+        PortLanLog("[LAN] serial state=%d players=%d status=0x%08lX sendQ=%u recvQ=%u\n",
                    (int)gLink.state, (int)gLink.playerCount,
                    (unsigned long)gLinkStatus,
                    (unsigned)gLink.sendQueue.count,
