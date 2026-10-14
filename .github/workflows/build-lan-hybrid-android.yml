@@ -13,6 +13,7 @@ on:
       - feature/lan-v072-overworld-presence
   push:
     branches:
+      - feature/lan-v0804-reconnect-hardening
       - feature/lan-v0803-dedicated-session-core
       - feature/lan-v080-mega-desktop-polish
       - feature/lan-v080-m0-m1-foundation
