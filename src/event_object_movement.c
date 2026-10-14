@@ -8622,6 +8622,7 @@ static int GetVirtualObjectSpriteId(u8 virtualObjId)
     return MAX_SPRITES;
 }
 
+#ifdef PORTABLE
 bool32 LanVirtualObjectExists(u8 virtualObjId)
 {
     return GetVirtualObjectSpriteId(virtualObjId) != MAX_SPRITES;
@@ -8662,6 +8663,8 @@ void LanVirtualObjectMove(u8 virtualObjId, s16 mapPixelX, s16 mapPixelY,
     }
     sprite->animPaused = !walking;
 }
+
+#endif /* PORTABLE: world multiplayer virtual object API */
 
 void TurnVirtualObject(u8 virtualObjId, u8 direction)
 {
