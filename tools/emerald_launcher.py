@@ -12,7 +12,7 @@ from datetime import datetime
 import subprocess
 import sys
 import tkinter as tk
-from tkinter import filedialog, messagebox
+from tkinter import filedialog, messagebox, simpledialog
 
 INK="#091510"; LEFT="#10231c"; PANEL="#18352a"; GREEN="#49d5a0"; WHITE="#e9fff5"; MUTED="#9dbbaa"
 PATTERN=re.compile(r"^[A-Za-z0-9_-]{1,48}$")
@@ -156,6 +156,8 @@ class EmeraldLauncher(tk.Tk):
         self.btn(f,"+ Criar ou importar conta",self.new_profile,accent=True).pack(fill="x",padx=16,pady=6)
         self.btn(f,"Atualizar lista",self.refresh).pack(fill="x",padx=16,pady=6)
         self.btn(f,"Abrir pasta de logs",self.open_logs).pack(fill="x",padx=16,pady=6)
+        self.btn(f,"Criar backup do perfil",self.backup_selected).pack(fill="x",padx=16,pady=6)
+        self.btn(f,"Recuperar backup",self.restore_selected).pack(fill="x",padx=16,pady=6)
         tk.Frame(f,bg=LEFT).pack(expand=True)
         self.text(f,"Progresso individual",10,MUTED,True).pack(anchor="w",padx=20)
         self.text(f,"Nenhuma conta online é exigida.\nSeus saves permanecem locais.",9,MUTED).pack(anchor="w",padx=20,pady=(6,25))
@@ -225,6 +227,65 @@ class EmeraldLauncher(tk.Tk):
             else: messagebox.showinfo("Logs",str(directory))
         except OSError as exc:
             messagebox.showerror("Logs indisponíveis",str(exc))
+
+    def profile_can_be_edited(self):
+        if self.active_process is not None and self.active_process.poll() is None:
+            messagebox.showwarning("Feche o jogo","O Emerald precisa estar fechado antes de acessar backups.")
+            return False
+        if self.selected is None:
+            messagebox.showwarning("Selecione um perfil","Escolha um perfil antes de criar ou recuperar backups.")
+            return False
+        if not self.cli.is_file():
+            messagebox.showerror("Dependência ausente","emerald_profilectl.exe não foi encontrado.")
+            return False
+        return True
+
+    def run_profile_tool(self, *options):
+        result=subprocess.run([str(self.cli),*map(str,options)],
+                              cwd=str(application_dir()), capture_output=True,text=True,
+                              timeout=45,creationflags=getattr(subprocess,"CREATE_NO_WINDOW",0))
+        if result.returncode != 0:
+            raise RuntimeError((result.stderr or result.stdout).strip()[:450] or
+                               "O gerenciador recusou a operação. Seu save não foi alterado.")
+        return result.stdout.strip()
+
+    def backup_selected(self):
+        if not self.profile_can_be_edited(): return
+        try:
+            result=self.run_profile_tool("backup",self.root_dir,self.selected)
+            messagebox.showinfo("Backup criado",result+"\nO .sav original continua intacto.")
+        except (OSError,RuntimeError,subprocess.TimeoutExpired) as err:
+            messagebox.showerror("Backup não criado",str(err)+
+                                 "\nUm perfil novo sem save completo ainda pode ser recusado.")
+
+    def restore_selected(self):
+        if not self.profile_can_be_edited(): return
+        folder=self.root_dir/self.selected/"backups"
+        items=sorted((p for p in folder.glob("[0-9][0-9][0-9][0-9][0-9][0-9].sav") if p.is_file()),
+                     key=lambda p:p.name) if folder.is_dir() else []
+        if not items:
+            messagebox.showinfo("Nenhum backup","Este perfil ainda não possui backups disponíveis.")
+            return
+        latest=items[-1]
+        ask=simpledialog.askinteger("Recuperar backup",
+                f"Backup mais recente: {latest.name}\n"
+                f"Criado/modificado: {datetime.fromtimestamp(latest.stat().st_mtime):%d/%m/%Y %H:%M}\n"
+                "Informe o número do backup que deseja restaurar:",parent=self,
+                initialvalue=int(latest.stem),minvalue=1,maxvalue=999999)
+        if ask is None:return
+        if not any(int(p.stem)==ask for p in items):
+            messagebox.showerror("Backup ausente","Não existe backup com esse número.")
+            return
+        if not messagebox.askyesno("Confirmar recuperação",
+              f"Substituir o save atual pelo backup {ask:06d}.sav?\n"
+              "O gerenciador tentará preservar uma cópia de segurança do save atual.\n"
+              "Confirme somente após fechar o Emerald."):
+            return
+        try:
+            result=self.run_profile_tool("restore",self.root_dir,self.selected,ask)
+            messagebox.showinfo("Recuperação concluída",result or "Backup restaurado. Abra o Emerald para conferir o progresso.")
+        except (OSError,RuntimeError,subprocess.TimeoutExpired) as err:
+            messagebox.showerror("Não foi possível recuperar",str(err))
 
     def shutdown(self):
         self.persist()
