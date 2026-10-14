@@ -23,8 +23,8 @@ if grep -q 'STUB_FUNC_QUIET_BLOCK(bool8 HandleLinkConnection' src/stub.c; then
 fi
 tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
-source_files=(src/lnet/lnet_net.c src/lnet/lnet_session.c src/lnet/lnet_sio.c src/lnet/lnet_link.c)
-for test_name in session link disconnect cable_handshake; do
+source_files=(src/lnet/lnet_net.c src/lnet/lnet_session.c src/lnet/lnet_sio.c src/lnet/lnet_link.c src/lnet/lnet_presence.c)
+for test_name in session link disconnect cable_handshake presence; do
     cc -DPORTABLE -std=gnu99 -Wall -Wextra -O2 -pthread \
        -I src/lnet "tests/test_lnet_${test_name}.c" \
        "${source_files[@]}" -o "$tmp/test_lnet_${test_name}"
