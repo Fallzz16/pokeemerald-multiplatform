@@ -217,6 +217,16 @@ class SessionServer:
             if self.in_game:
                 await peer.send(START, b"", self.session)
             return
+        # A late joiner receives START immediately in a running room.
+        # The native SessionClient sends READY after JOIN regardless of room
+        # state. Treat this final READY as an idempotent acknowledgement;
+        # otherwise a replacement player disconnects on entering mid-game.
+        if msg.kind == READY and peer.stage == "GAME":
+            if msg.payload != b"\x01":
+                raise ProtocolError("invalid ready acknowledgement in running room")
+            peer.ready = True
+            await self.broadcast(PLAYER_LIST, self.snapshot())
+            return
         if msg.kind == HEARTBEAT:
             await peer.send(HEARTBEAT, b"", self.session, msg.request)
             return
