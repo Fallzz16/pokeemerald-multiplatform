@@ -22,7 +22,7 @@
 - No launcher, o PIN só é enviado por **stdin local**, não fica guardado no arquivo de preferências nem é mostrado na lista de argumentos do processo. Mesmo assim, o protocolo EHL8 na rede **não criptografa** os dados.
 - Se o launcher fechar enquanto hospeda, ele pede confirmação e encerra o processo de servidor. Os `.sav` não ficam no servidor; não são afetados.
 - **Dois jogadores** é o limite nesta etapa. O objetivo de quatro continua planejado; não exceder dois no servidor atual.
-- A interface do servidor neste incremento só mostra estado de processo; lista de participantes, convites, kick/admin, reconexão 60s, QR e Android launcher moderno ainda são pendências.
+- A interface agora mostra **o número real de participantes (0/2, 1/2, 2/2)** lendo somente um trecho limitado do log do servidor. A lista de nomes, convites, kick/admin, reconexão 60s, QR e Android launcher moderno ainda são pendências.
 
 ## Aceite exigido para promover a versão
 
@@ -41,3 +41,10 @@
 Leia `AI_README.md`, `AGENTS.md` e `docs/LAN_V0803_DEDICATED_SESSION_CORE.md` para continuar este desenvolvimento. Se o teste falhar, não altere a instalação v0.8.2; volte a ela e preserve as cópias externas dos saves. Base do M2: `feature/lan-v080-mega-desktop-polish`. O rollback LAN antigo comprovado pelo usuário: `feature/lan-v0721-viewport-culling` commit `a87e2c49e453db32def5e71ba2a2e696a911d504`.
 
 **QA automatizado de sockets não equivale a QA visual no jogo**; registrar feedback real do usuário antes de classificar como lançamento final.
+
+
+## Testes novos da retomada (não ignorar)
+
+- **Entrada tardia:** inicie EHL8 com duas pessoas, aguarde os personagens aparecerem, feche um dos jogos, espere a sala mostrar `1/2` e entre com outro perfil no slot disponível. O novo jogo deve permanecer conectado; não pode cair por READY duplicado. A segunda pessoa precisa ver as poses do recém-entrado. Esta correção **não** reserva uma vaga para o mesmo usuário por 60 segundos; essa exigência permanece planejada.
+- **Contador real do launcher:** antes de alguém entrar, observar `0/2`; ao entrar uma pessoa, `1/2`; duas, `2/2`; após alguém sair, `1/2`. Se os logs ainda não estiverem disponíveis, o launcher informa aguardo em vez de inventar uma contagem.
+- **Empacotamento por commit:** nova distribuição exige que `pokeemerald.exe`, `EmeraldLauncher.exe`, `EmeraldSessionServer.exe` e `emerald_profilectl.exe` tenham sido compilados e aprovados **no mesmo SHA de origem do pacote**. O arquivo `SHA256_COMPONENTES.txt` na distribuição apresenta os hashes. Nunca entregue o artefato de um workflow antigo como se contivesse a correção atual. A versão experimentada pelo usuário v0.8.2 é uma instalação distinta.
