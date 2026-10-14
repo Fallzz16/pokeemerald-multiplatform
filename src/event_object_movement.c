@@ -8622,6 +8622,47 @@ static int GetVirtualObjectSpriteId(u8 virtualObjId)
     return MAX_SPRITES;
 }
 
+bool32 LanVirtualObjectExists(u8 virtualObjId)
+{
+    return GetVirtualObjectSpriteId(virtualObjId) != MAX_SPRITES;
+}
+
+void LanVirtualObjectDestroy(u8 virtualObjId)
+{
+    u8 id = GetVirtualObjectSpriteId(virtualObjId);
+    if (id != MAX_SPRITES)
+        DestroySprite(&gSprites[id]);
+}
+
+void LanVirtualObjectMove(u8 virtualObjId, s16 mapPixelX, s16 mapPixelY,
+                          u8 direction, bool8 walking)
+{
+    u8 id = GetVirtualObjectSpriteId(virtualObjId);
+    s16 x;
+    s16 y;
+    struct Sprite *sprite;
+    u8 anim;
+    if (id == MAX_SPRITES)
+        return;
+
+    sprite = &gSprites[id];
+    x = (mapPixelX >> 4) + MAP_OFFSET;
+    y = (mapPixelY >> 4) + MAP_OFFSET;
+    SetSpritePosToOffsetMapCoords(&x, &y, 8, 16);
+    sprite->x = x + (mapPixelX & 15);
+    sprite->y = y + (mapPixelY & 15) + sprite->centerToCornerVecY;
+
+    /* Use the original Emerald walk/face animations. Do not restart them
+     * every network update; that would freeze both legs on frame zero. */
+    anim = walking ? GetMoveDirectionAnimNum(direction) : GetFaceDirectionAnimNum(direction);
+    if (sprite->data[5] != (s16)(anim + 1))
+    {
+        StartSpriteAnim(sprite, anim);
+        sprite->data[5] = anim + 1;
+    }
+    sprite->animPaused = !walking;
+}
+
 void TurnVirtualObject(u8 virtualObjId, u8 direction)
 {
     u8 spriteId = GetVirtualObjectSpriteId(virtualObjId);
