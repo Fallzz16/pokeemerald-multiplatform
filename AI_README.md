@@ -576,3 +576,33 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 **Riscos/pêndencias:** reconexão com vaga por 60 segundos e token de retomada não implementada; lobby gráfico ainda sem nomes/ping/kick; troca/batalha EHL8 ainda sem proxy Cable Club, má qualidade de WAN pública (PIN não substitui criptografia), suporte a quatro participantes e a UI Android dedicados ausentes. Não promover PR #10 a release estável ainda. Testar novo pacote M2 em instalação separada da v0.8.2 previamente aprovada.
 
 **Rollback:** `feature/lan-v080-mega-desktop-polish` é o instalador v0.8.2 confirmado pelo usuário; `feature/lan-v0721-viewport-culling` SHA `a87e2c49e453db32def5e71ba2a2e696a911d504` é a LAN P2P funcional. Preservar todos os perfis originais e nunca transportar `.sav` dentro do instalador.
+
+
+## 25. Continuação M2/4: reconexão em 60s, reserva por token (2026-10-14)
+
+**Pedido:** usuário repetiu "Continue de onde parou". A recuperação do estado do repositório mostrou que o PR #10 já tinha cliente EHL8 integrado ao Emerald, launcher que hospeda servidor real e pacote PREVIEW aprovado em builds do mesmo SHA `849929db684ca651abe8308878e3cba03837febb`. **Não recomeçar**. O usuário havia confirmado a instalação da v0.8.2, NÃO testado ainda dois Emeralds em sessão dedicada.
+
+**Branch/PR deste incremento:** `feature/lan-v0804-reconnect-60s`, [PR #13](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/13) **DRAFT**, derivada da `feature/lan-v0803-dedicated-session-core` SHA `849929db684ca651abe8308878e3cba03837febb`. Preservar a v0.8.2 que instalou no Windows e a v0.7.2.1 com LAN validada.
+
+### Implementado (código real, sujeito à auditoria CI)
+- `tools/emerald_session_server.py`: credenciais aleatórias de 16 bytes para retomar uma vaga após queda inesperada; reserva de **60 segundos** (#60A/#86A) e rotação do segredo a cada retomada. A vaga não pode ser roubada só com o mesmo ID/perfil ou PIN; `LEAVE` explícito encerra sem reserva. O antigo JOIN de apenas ID continua aceito sem reconexão, evitando quebra da versão previamente distribuída.
+- `src/lnet/lnet_session_client.c`: envia `JOIN profile\x00` para requisitar segredo novo, e `JOIN profile\x00<16 bytes>` para retomar; armazena segredo só na memória, reenvia PIN **somente pela conexão EHL8**, com retry limitado em ~1,75s e deadline total de 60s. O cliente não trava o frame-loop nem escreve saves. Token/PIN apagados quando cliente fecha/falha definitivamente.
+- **Correção de bug de rede:** heartbeat a cada 10 segundos tem prioridade independente das poses (~10 Hz); antes, poses contínuas poderiam adiar indefinidamente as mensagens de manutenção. Timeout de ausência de resposta do servidor ~35s leva a tentativas de recuperação.
+- Ao confirmar JOIN em servidor reiniciado, o cliente encerra o antigo timer de recuperação, ainda que fique aguardando no lobby outro jogador.
+- **Contas/saves continuam LOCAIS**; servidor só administra ID de perfil e poses, sem abrir .sav. Não transportar segredo em logs, lista de jogadores, QR ou manifestos.
+
+### Testes adicionados / ajustados
+- `tests/test_ehl8_reconnect.py`: sessões TCP reais para token renovado, slot reservado e expiração, rejeição de retorno sem token e `LEAVE` voluntário.
+- `tests/native_ehl8_reconnect.c` e `tests/test_ehl8_native_bridge.py`: dois processos C nativos conectados ao Python, um tem TCP fechado pelo servidor e deve retornar ao MESMO SLOT; confere renovação de segredo. Primeiro teste CI detectou falso negativo porque checava `server.players[1]` DEPOIS que C já havia encerrado; o slot estava em `server.reservations[1]` como previsto. Ajustado teste para conferir reserva e segredo rotacionado, sem esconder o problema.
+- `.github/workflows/test-v0803-dedicated-server.yml` passou a rodar teste de reconexão em Linux e Windows, e as matrizes Windows/Android/game/launcher/profile/regressão LAN foram habilitadas na branch para uma distribuição de mesmo SHA. Empacotamento aguarda builds bem-sucedidos.
+
+### Arquivos alterados / removidos
+**Modificados:** `tools/emerald_session_server.py`, `src/lnet/lnet_session_client.c`, `tests/test_ehl8_native_bridge.py`, `docs/LAN_V0803_DEDICATED_SESSION_CORE.md`, workflows citados, este handoff. **Adicionados:** `tests/test_ehl8_reconnect.py`, `tests/native_ehl8_reconnect.c`. **Removido:** NADA dos sistemas antigos, mapas, sprites, NPCs, Quest UI, SIO Cable Club, saves, instalador original.
+
+### Estado de QA / riscos ainda reais
+- **Consultar CI RUNS sobre o último commit SHA antes de anunciar aprovação.** As alterações foram publicadas em PR #13 para tests+builds; a rodada inicial de native C encontrou um erro de expectativa de teste e foi corrigida. Nunca chamar versões com regressão/erro de build de pacote final.
+- A reserva de 60s **não funciona se o jogo fechar**, pois o token é somente em memória, nem substitui autenticação criptográfica de Internet. A rede é TCP simples: **LAN/VPN confiável somente**, não abrir portas públicas.
+- **Faltam em gameplay:** teste do usuário com DOIS `pokeemerald.exe` exibindo um ao outro, identificação de falha/reconexão no launcher, interrupção/reparo de batalha e troca EHL8 (ainda legadas P2P), lobby completo, 3/4 jogadores, Android servidor.
+- **Rollback:** branch PREVIEW anterior `feature/lan-v0803-dedicated-session-core` SHA `849929db684ca651abe8308878e3cba03837febb`; v0.8.2 instalada `feature/lan-v080-mega-desktop-polish`; v0.7.2.1 testada `a87e2c49e453db32def5e71ba2a2e696a911d504`.
+
+**Próximos passos:** 1) confirmar todos os builds/testes no SHA atual; 2) corrigir quaisquer falhas reproduzíveis; 3) publicar apenas PREVIEW isolada com manifest `SOURCE_COMMIT` correto, sem saves; 4) pedir ao usuário QA em dois PCs com saves copiados antes de declarar multiplayer dedicado estável.

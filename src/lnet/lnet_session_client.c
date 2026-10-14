@@ -21,6 +21,9 @@
 #define EHL_STALE_MS 3000UL
 #define EHL_POSE_INTERVAL_MS 100UL
 #define EHL_HEARTBEAT_INTERVAL_MS 10000UL
+#define EHL_PEER_TIMEOUT_MS 35000UL
+#define EHL_RECONNECT_GRACE_MS 60000UL
+#define EHL_RETRY_INTERVAL_MS 1750UL
 
 struct LNetSessionClient
 {
@@ -33,6 +36,10 @@ struct LNetSessionClient
     int state;
     uint64_t session;
     unsigned long began, lastRx, lastTx, lastPose, lastRemote;
+    unsigned long lastHeartbeat, retryAt, reconnectSince;
+    uint64_t previousSession;
+    uint8_t resumeSecret[16];
+    uint8_t haveResume, reconnecting;
     uint16_t localSeq, lastRemoteSeq;
     uint8_t haveRemoteSeq, haveRemote;
     LNetPose remote;
@@ -62,6 +69,44 @@ static void close_failed(LNetSessionClient *c)
     c->state = EHL_CLIENT_FAILED;
     c->haveRemote = 0;
     c->txLength = c->txOffset = 0;
+    c->haveResume = 0;
+    memset(c->resumeSecret, 0, sizeof(c->resumeSecret));
+    memset(c->pin, 0, sizeof(c->pin));
+}
+
+/* Reconnect only after an opt-in 17-byte JOIN supplied a random resume key.
+ * Keep the old session in memory solely to distinguish a restarted server.
+ * Never retry indefinitely or rejoin a different player's reserved slot. */
+static void disconnected(LNetSessionClient *c)
+{
+    unsigned long now = now_ms();
+    if (!c->haveResume)
+    {
+        close_failed(c);
+        return;
+    }
+    if (!c->reconnecting)
+    {
+        c->reconnecting = 1;
+        c->reconnectSince = now;
+        c->previousSession = c->session;
+    }
+    if ((unsigned long)(now - c->reconnectSince) >= EHL_RECONNECT_GRACE_MS)
+    {
+        close_failed(c);
+        return;
+    }
+    lnet_net_close(c->socket);
+    lnet_net_close(c->pending);
+    c->socket = c->pending = NULL;
+    c->state = EHL_CLIENT_CONNECTING;
+    c->began = 0;
+    c->session = 0;
+    c->retryAt = now + EHL_RETRY_INTERVAL_MS;
+    c->txLength = c->txOffset = 0;
+    c->haveRemote = c->haveRemoteSeq = 0;
+    c->lastHeartbeat = c->lastPose = 0;
+    ehl_session_decoder_init(&c->decoder);
 }
 
 static int queue(LNetSessionClient *c, uint16_t type,
@@ -132,6 +177,7 @@ void lnet_session_client_close(LNetSessionClient *c)
     lnet_net_close(c->pending);
     /* Never retain a live PIN in freed memory. */
     memset(c->pin, 0, sizeof(c->pin));
+    memset(c->resumeSecret, 0, sizeof(c->resumeSecret));
     free(c);
 }
 
@@ -142,6 +188,12 @@ static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
         if (frame->type != EHL_WELCOME || frame->payload_size != 1 ||
             frame->payload[0] != 2 || frame->session_id == 0)
             return -1;
+        if (c->reconnecting && c->previousSession != frame->session_id)
+        {
+            /* The server restarted: do NOT present a stale resume token. */
+            c->haveResume = 0;
+            memset(c->resumeSecret, 0, sizeof(c->resumeSecret));
+        }
         c->session = frame->session_id;
         if (!queue(c, EHL_AUTH_PIN, (const unsigned char *)c->pin, 6))
             return -1;
@@ -156,19 +208,37 @@ static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
         if (frame->type != EHL_AUTH_PIN || frame->payload_size != 1 ||
             frame->payload[0] != 1)
             return -1;
-        /* PIN is no longer needed after authentication. */
-        if (!queue(c, EHL_JOIN, (const unsigned char *)c->profile,
-                   strlen(c->profile)))
-            return -1;
-        memset(c->pin, 0, sizeof(c->pin));
+        /* JOIN protocol extension: id + NUL, optionally followed by
+         * a 128-bit one-use resume credential after a transient disconnect. */
+        {
+            unsigned char request[49 + 16];
+            size_t n = strlen(c->profile);
+            memcpy(request, c->profile, n);
+            request[n++] = 0;
+            if (c->haveResume)
+            {
+                memcpy(request + n, c->resumeSecret, sizeof(c->resumeSecret));
+                n += sizeof(c->resumeSecret);
+            }
+            if (!queue(c, EHL_JOIN, request, n))
+                return -1;
+            memset(request, 0, sizeof(request));
+        }
+        /* PIN kept only in process memory for subsequent 60s re-auth.
+         * Never passed on argv, never written to log, wiped on close. */
         c->state = EHL_CLIENT_WAIT_JOIN;
         return 0;
     }
     if (c->state == EHL_CLIENT_WAIT_JOIN)
     {
-        if (frame->type != EHL_JOIN || frame->payload_size != 1 ||
+        if (frame->type != EHL_JOIN || frame->payload_size != 17 ||
             frame->payload[0] < 1 || frame->payload[0] > 2)
             return -1;
+        memcpy(c->resumeSecret, frame->payload + 1, sizeof(c->resumeSecret));
+        c->haveResume = 1;
+        /* JOIN proves the slot is ours again, even if a restarted room still
+         * waits for a second player. Do not run the old 60s timer forever. */
+        c->reconnecting = 0;
         if (!queue(c, EHL_READY, (const unsigned char *)"\1", 1))
             return -1;
         c->state = EHL_CLIENT_WAIT_START;
@@ -180,6 +250,8 @@ static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
         frame->payload_size == 0)
     {
         c->state = EHL_CLIENT_PLAYING;
+        c->reconnecting = 0;
+        c->lastHeartbeat = now_ms();
         return 0;
     }
     if (frame->type == EHL_LEAVE && frame->payload_size == 1)
@@ -217,35 +289,44 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     if (!c || c->state == EHL_CLIENT_FAILED)
         return;
     now = now_ms();
+    if (c->reconnecting &&
+        (unsigned long)(now - c->reconnectSince) >= EHL_RECONNECT_GRACE_MS)
+    {
+        close_failed(c);
+        return;
+    }
     if (c->state == EHL_CLIENT_CONNECTING)
     {
+        /* Bounded backoff avoids tight reconnect loops when Wi-Fi is down. */
+        if (c->reconnecting && (long)(now - c->retryAt) < 0)
+            return;
         if (c->began == 0)
             c->began = now ? now : 1;
         if ((unsigned long)(now - c->began) > EHL_CONNECT_TIMEOUT_MS)
         {
-            close_failed(c);
+            disconnected(c);
             return;
         }
         c->socket = lnet_net_connect_nb(c->host, c->port, &c->pending, &err);
         if (!c->socket)
         {
             if (err != LNET_ERR_AGAIN)
-                close_failed(c);
+                disconnected(c);
             return;
         }
         c->pending = NULL;
         c->lastRx = c->lastTx = now;
         if (!queue(c, EHL_HELLO, NULL, 0))
         {
-            close_failed(c);
+            disconnected(c);
             return;
         }
         c->state = EHL_CLIENT_WAIT_WELCOME;
     }
-    if ((unsigned long)(now - c->lastRx) > EHL_AUTH_TIMEOUT_MS &&
-        c->state != EHL_CLIENT_PLAYING)
+    if ((unsigned long)(now - c->lastRx) >
+        (c->state == EHL_CLIENT_PLAYING ? EHL_PEER_TIMEOUT_MS : EHL_AUTH_TIMEOUT_MS))
     {
-        close_failed(c);
+        disconnected(c);
         return;
     }
     if (c->txLength > c->txOffset)
@@ -255,7 +336,7 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
                              c->txLength - c->txOffset, &moved, &err);
         if (r < 0)
         {
-            close_failed(c);
+            disconnected(c);
             return;
         }
         c->txOffset += moved;
@@ -273,7 +354,7 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
         r = lnet_net_recv_nb(c->socket, bytes, want, &moved, &err);
         if (r < 0)
         {
-            close_failed(c);
+            disconnected(c);
             return;
         }
         if (!moved)
@@ -282,13 +363,13 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
                                      &consumed, &received);
         if (r < 0 || consumed != moved)
         {
-            close_failed(c);
+            disconnected(c);
             return;
         }
         c->lastRx = now;
         if (r == 1 && handle_frame(c, &received) < 0)
         {
-            close_failed(c);
+            disconnected(c);
             return;
         }
     }
@@ -296,9 +377,24 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     /* Initial READY/HELLO/etc always takes precedence over pose updates. */
     if (c->txLength != c->txOffset)
         return;
-    if (c->state == EHL_CLIENT_PLAYING &&
-        (c->lastPose == 0 ||
-         (unsigned long)(now - c->lastPose) >= EHL_POSE_INTERVAL_MS))
+    /* Poses run at ~10 Hz. Heartbeat needs separate priority; otherwise
+     * continuous pose traffic can starve HEARTBEAT forever, hiding a dead
+     * server from the client on Wi-Fi half-open sockets. While waiting in the
+     * lobby, heartbeat is equally important: READY alone is not enough. */
+    if ((c->state == EHL_CLIENT_PLAYING ||
+         c->state == EHL_CLIENT_WAIT_START) &&
+        (unsigned long)(now - c->lastHeartbeat) >= EHL_HEARTBEAT_INTERVAL_MS)
+    {
+        if (!queue(c, EHL_HEARTBEAT, NULL, 0))
+        {
+            disconnected(c);
+            return;
+        }
+        c->lastHeartbeat = now;
+    }
+    else if (c->state == EHL_CLIENT_PLAYING &&
+             (c->lastPose == 0 ||
+              (unsigned long)(now - c->lastPose) >= EHL_POSE_INTERVAL_MS))
     {
         LNetPose value;
         unsigned char wire[LNET_PRESENCE_PACKET_SIZE];
@@ -309,18 +405,10 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
         if (lnet_presence_pack(&value, wire) < 0 ||
             !queue(c, EHL_POSE, wire, sizeof(wire)))
         {
-            close_failed(c);
+            disconnected(c);
             return;
         }
         c->lastPose = now;
-    }
-    else if ((unsigned long)(now - c->lastTx) >= EHL_HEARTBEAT_INTERVAL_MS)
-    {
-        if (!queue(c, EHL_HEARTBEAT, NULL, 0))
-        {
-            close_failed(c);
-            return;
-        }
     }
     if (c->txLength != c->txOffset)
         c->lastTx = now;

@@ -22,6 +22,7 @@ MAX_PAYLOAD = 4096
 HELLO, WELCOME, INCOMPATIBLE, AUTH_PIN, JOIN, PLAYER_LIST, READY, START, LEAVE, KICK, HEARTBEAT, POSE = range(1, 13)
 PROFILE_ID = re.compile(rb"[A-Za-z0-9_-]{1,48}\Z")
 READ_TIMEOUT = 35
+RECONNECT_GRACE = 60  # approved #60A / #86A
 
 class ProtocolError(Exception):
     pass
@@ -53,12 +54,21 @@ def valid_pose(p: bytes) -> bool:
     return (p[5] <= 1 and p[14] <= 4 and p[15] <= 1 and p[16] <= 15
             and x <= 2047 and y <= 2047 and (p[5] == 0 or p[14] > 0))
 
+@dataclass(frozen=True)
+class Reservation:
+    slot: int
+    profile: bytes
+    secret: bytes
+    expires: float
+
 class Peer:
     def __init__(self, reader, writer):
         self.reader, self.writer = reader, writer
         self.slot = None
         self.profile = None
         self.stage = "HELLO"
+        self.resume_secret = None
+        self.intentional_leave = False
         self.ready = False
         self.last_pose = 0.0
         self.last_seq = None
@@ -87,6 +97,7 @@ class SessionServer:
         self.idle_seconds = idle_seconds
         self.session = secrets.randbits(64) or 1
         self.players = {}
+        self.reservations = {}  # slot -> 60s secure resume reservation
         self.connected = set()
         self.invalid_attempts = {}  # IP -> (failure count, blocked_until)
         self.in_game = False
@@ -102,6 +113,16 @@ class SessionServer:
         self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
         return self.listener
 
+    def prune_reservations(self):
+        now = time.monotonic()
+        expired = [slot for slot, hold in self.reservations.items()
+                   if hold.expires <= now]
+        for slot in expired:
+            del self.reservations[slot]
+        if not self.players and not self.reservations:
+            self.in_game = False
+        return len(expired)
+
     async def stop(self):
         if self.listener is not None:
             self.listener.close()
@@ -109,12 +130,15 @@ class SessionServer:
             self.listener = None
         for peer in tuple(self.connected):
             peer.close()
+        self.reservations.clear()
         self.stopped.set()
 
     async def sweep(self):
         while not self.stopped.is_set():
             await asyncio.sleep(1)
-            if not self.connected and not self.players and time.monotonic() - self.empty_since >= self.idle_seconds:
+            self.prune_reservations()
+            if (not self.connected and not self.players and not self.reservations
+                    and time.monotonic() - self.empty_since >= self.idle_seconds):
                 self.log.info("Empty session timed out")
                 await self.stop()
                 return
@@ -159,11 +183,16 @@ class SessionServer:
         finally:
             if peer.slot is not None and self.players.get(peer.slot) is peer:
                 del self.players[peer.slot]
+                if (peer.resume_secret is not None and not peer.intentional_leave
+                        and self.listener is not None):
+                    self.reservations[peer.slot] = Reservation(
+                        peer.slot, peer.profile, peer.resume_secret,
+                        time.monotonic() + RECONNECT_GRACE)
                 self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
                 if self.players:
                     await self.broadcast(LEAVE, bytes([peer.slot]))
                     await self.broadcast(PLAYER_LIST, self.snapshot())
-                else:
+                elif not self.reservations:
                     self.in_game = False
             peer.close()
             self.connected.discard(peer)
@@ -202,20 +231,45 @@ class SessionServer:
         if msg.session != self.session:
             raise ProtocolError("invalid session id")
         if peer.stage == "JOIN":
-            if msg.kind != JOIN or not PROFILE_ID.fullmatch(msg.payload):
-                raise ProtocolError("invalid profile identity")
-            if any(p.profile == msg.payload for p in self.players.values()):
+            if msg.kind != JOIN:
+                raise ProtocolError("JOIN expected")
+            # Backward-compatible wire extension: older clients send ID only;
+            # new clients send ID + NUL (new) or ID + NUL + 16-byte credential.
+            parts = msg.payload.split(b"\x00", 1)
+            profile = parts[0]
+            extended = len(parts) == 2
+            resume = parts[1] if extended else None
+            if (not PROFILE_ID.fullmatch(profile) or
+                    (extended and len(resume) not in (0, 16))):
+                raise ProtocolError("bad profile or resume credential")
+            self.prune_reservations()
+            if any(p.profile == profile for p in self.players.values()):
                 await peer.send(KICK, b"Profile already active", self.session)
                 raise ProtocolError("duplicate identity")
-            free = next((slot for slot in range(1, self.slots + 1) if slot not in self.players), None)
-            if free is None:
-                await peer.send(KICK, b"Lobby full", self.session)
-                raise ProtocolError("session full")
-            peer.slot, peer.profile = free, msg.payload
+            held = next((r for r in self.reservations.values() if r.profile == profile), None)
+            if held is not None:
+                if (resume is None or len(resume) != 16 or
+                        not secrets.compare_digest(resume, held.secret)):
+                    await peer.send(KICK, b"Slot reserved", self.session)
+                    raise ProtocolError("wrong or missing resume credential")
+                free = held.slot
+                del self.reservations[free]
+            else:
+                if resume:
+                    await peer.send(KICK, b"Resume expired", self.session)
+                    raise ProtocolError("expired or unknown resume credential")
+                free = next((slot for slot in range(1, self.slots + 1)
+                             if slot not in self.players and slot not in self.reservations), None)
+                if free is None:
+                    await peer.send(KICK, b"Lobby full", self.session)
+                    raise ProtocolError("session full including reserved slots")
+            new_secret = secrets.token_bytes(16) if extended else None
+            peer.slot, peer.profile, peer.resume_secret = free, profile, new_secret
             peer.stage = "GAME" if self.in_game else "LOBBY"
             self.players[free] = peer
             self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
-            await peer.send(JOIN, bytes([free]), self.session, msg.request)
+            await peer.send(JOIN, bytes([free]) + (new_secret or b""),
+                            self.session, msg.request)
             await self.broadcast(PLAYER_LIST, self.snapshot())
             if self.in_game:
                 await peer.send(START, b"", self.session)
@@ -235,6 +289,7 @@ class SessionServer:
             await peer.send(HEARTBEAT, b"", self.session, msg.request)
             return
         if msg.kind == LEAVE:
+            peer.intentional_leave = True
             peer.close()
             return
         if msg.kind == READY and peer.stage == "LOBBY":

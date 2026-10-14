@@ -145,3 +145,44 @@ O instalador v0.8.2 confirmado funcionando pelo usuário permanece na branch **`
 **Validação:** conferir `.github/workflows/test-v0803-dedicated-server.yml` (Linux, Windows, ponte C nativa), `build-v080-graphical-launcher.yml`, builds completos Windows/Android e packaging EHL8 Preview **na revisão exata** do último commit. O CI genérico da ROM é independente e pode continuar falhando no alvo antigo. Não declarar a correção pronta para release se esses checks ou a QA humana falharem.
 
 **Rollback e handoff:** a branch de trabalho continua `feature/lan-v0803-dedicated-session-core` / PR #10 draft. A instalação v0.8.2 anteriormente aprovada permanece inalterada; todos os testes devem usar a preview EHL8 em pasta/instalação separada com **cópias dos saves**. Registrar resultados finais com SHA e IDs de runs também em `AI_README.md`.
+
+
+## M2/4 — Reserva de vaga e reconexão automática por 60 segundos (PR #13)
+
+**Situação:** código experimental; validar no GitHub Actions e depois em dois jogos Windows reais. Decisões do usuário #60A/#86A. Este documento tem seções históricas; esta seção substitui a anotação anterior de que reconexão não existia.
+
+### Contrato compatível com EHL8 1.0
+
+O framing EHL8 de 28 bytes, tipos, porta e stream de poses LANP **não mudam**. O tipo `JOIN=5` ganha uma extensão opcional no **payload**:
+
+| JOIN do cliente | Resposta JOIN do servidor | Resultado |
+|---|---|---|
+| `profile_id` ASCII puro (legado) | 1 byte `slot` | Modo antigo, sem reserva/reconexão |
+| `profile_id + 0x00` | `slot:u8 + resume_secret[16]` | Credencial aleatória de retomada |
+| `profile_id + 0x00 + resume_secret[16]` | `slot:u8 + new_resume_secret[16]` | Retomada autenticada, **mesmo slot**, credencial antiga descartada |
+
+Regras de segurança:
+- `resume_secret` contém **128 bits imprevisíveis** (`secrets.token_bytes(16)`) e é enviado exclusivamente por dentro da conexão TCP privada; nunca incluí-lo em `PLAYER_LIST`, arquivo .sav, README, QR ou logs. É **token de posse transitória**, não login online criptográfico; EHL8 ainda **não é cifrado**.
+- O segredo precisa coincidir com a identidade e com a vaga reservada. `profile_id` sozinho **não** permite recuperar a vaga; outros perfis são impedidos de ocupar a vaga reservada enquanto a janela não expirar.
+- Após **60 segundos**, a reserva expira, o slot fica disponível e o token anterior é invalidado. `LEAVE` explícito libera imediatamente; desconexão imprevista reserva.
+- A credencial é **rotacionada em cada retomada**. Se o servidor reiniciar e apresentar outro `session_id`, o cliente invalida o segredo da sessão antiga e cria uma nova entrada (caso haja espaço na nova sala).
+- Compatibilidade retroativa: clientes EHL8 que usam JOIN puro continuam aceitos com resposta de 1 byte, **sem** novo contrato. Clientes novos exigem resposta estendida para usar a retomada.
+- `PLAYER_LIST` e contador da interface mostram apenas participantes **conectados**; vagas temporariamente reservadas contam para o limite máximo de 2, mas não são apresentadas como jogadores conectados. Ainda falta interface visual específica de “vaga reservada”.
+
+### Ciclo de vida do cliente nativo
+
+- Após JOIN estendido, C armazena o segredo somente na memória do processo. `close` ou falha definitiva limpam o segredo e PIN de memória.
+- Perda inesperada de TCP causa tentativa de recuperação com intervalo de aproximadamente **1,75s**, limitada a 60s; processo de jogo e save local continuam executando sem bloquear o loop de frames.
+- Heartbeat EHL8 enviado a cada **10s independentemente** das poses (~10 Hz), corrigindo a possibilidade anterior de heartbeats permanentemente adiados. Sem resposta por ~35s, o cliente inicia reconexão. O avatar remoto desaparece durante o período sem estado válido e retorna após nova pose.
+- Retomar JOIN cancela a contagem de recuperação mesmo que a sala tenha reiniciado e ainda esteja aguardando outro participante; não encerra prematuramente uma partida na fila de lobby.
+- **Ainda não implementado:** reconectar após fechar o jogo inteiro (o token é apenas em memória), resgate após expiração, migração de host, reserva em servidor substituído, autenticação forte para WAN, garantir operação de batalha/troca durante queda ou reinício. Não chamar esses cenários de recuperados.
+
+### Critérios de QA adicionados
+
+1. Teste TCP Linux/Windows para reserva, token incorreto, segredo rotacionado, liberação por `LEAVE` explícito e prazo expirado.
+2. Integração de **dois processos nativos C** com servidor Python, desconectar à força apenas um e observar que retorna ao **mesmo slot** sem modificar um save.
+3. Builds completos Windows x86 e Android ARMv7; verificação de regressão LAN P2P e framing C99; não desativar o auditor de SDL.
+4. Somente após CI aprovado, gerar candidato beta cujo manifesto `SOURCE_COMMIT` seja **igual ao commit testado**; preservar instalador v0.8.2 estável e os perfis da PREVIEW.
+5. QA no hardware do usuário: host servidor + 2 Emeralds com saves copiados; tirar o Wi‑Fi de um jogador por aproximadamente 5–10s e confirmar retorno ao mesmo mapa/slot; repetir próximo a 60s, observar aviso de falha se exceder; garantir que saves e Quest UI não mudem.
+
+**Fonte de rollback:** branch `feature/lan-v0803-dedicated-session-core` commit `849929db684ca651abe8308878e3cba03837febb` (preview EHL8 sem esta extensão) e, para jogo Windows já validado pelo usuário, `feature/lan-v080-mega-desktop-polish` (`3f94a665bc742d2130a856b5b153596def8445a4`). Nenhum .sav foi aberto neste desenvolvimento.

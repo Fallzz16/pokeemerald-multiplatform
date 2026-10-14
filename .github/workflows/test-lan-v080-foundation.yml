@@ -3,6 +3,7 @@ name: Emerald Hybrid LAN v0.8 M0/M1 foundation
 on:
   push:
     branches:
+      - feature/lan-v0804-reconnect-60s
       - feature/lan-v080-m0-m1-foundation
     paths:
       - 'src/profile/**'
