@@ -135,7 +135,13 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
         self.assertGreater(blocked_until, S.time.monotonic())
         peer = await self.connect()
         await peer.send(S.HELLO)
-        self.assertEqual(await asyncio.wait_for(peer.reader.read(), 2), b"")
+        try:
+            # On Linux, closing a socket with unread handshake bytes may
+            # produce ECONNRESET; Windows may report EOF. Both indicate
+            # correctly refused new clients after the PIN cooldown.
+            self.assertEqual(await asyncio.wait_for(peer.reader.read(), 2), b"")
+        except ConnectionResetError:
+            pass
 
     async def test_invalid_pose_disconnected_and_peer_survives(self):
         a, b = await self.connect(), await self.connect()
