@@ -12,7 +12,7 @@
 - Inicialmente LAN Wi-Fi ou hotspot com descoberta automática + IP manual; Internet é futura e depende de novo modelo de segurança.
 - Jogadores em versões incompatíveis não entram. O launcher deve oferecer atualização quando tecnicamente viável e devidamente verificada; atualizar código não é função do protocolo de gameplay.
 
-## 2. Registro EXAUSTIVO das respostas do usuário 1–75
+## 2. Registro EXAUSTIVO das respostas do usuário 1–100
 
 Estas decisões foram expressamente escolhidas, não inferências de como o código já funciona:
 
@@ -103,7 +103,72 @@ O usuário respondeu às perguntas numeradas 51–75 com a sequência `1C 2A 3A 
 
 **Escolha correta #70B:** exibir nome apenas quando o amigo estiver próximo ou selecionado. O rótulo acompanha o culling do sprite e deve evitar sobreposição à interface de 240×160. A resposta literal do usuário foi `20B` na rodada 51–75; **não interpretar como #70A**.
 
-**Em aberto:** decisões 76+ (p.ex., nome duplicado, medição de desempenho, retenção e proteção dos backups, controles do launcher, segurança e acessibilidade). Não preencher automaticamente como se o usuário já houvesse respondido.
+**Em aberto:** apenas decisões técnicas de implementação ou requisitos novos que não estavam nas 100 perguntas. Não criar mais questionários gerais sem necessidade; priorizar execução e QA.
+
+
+### 2.2. Decisões finais 76–100 (terceira rodada de 25 respostas)
+
+O usuário respondeu **novamente numerando 1–25**, desta vez à rodada **76–100**. Resposta literal: `1C 2A 3A 4A 5A 6A 7A 8A 9A 10A 11A 12B 13A 14A 15A 16A 17A 18A 19A 20A 21A 22A 23A 24A 25A`. Equivalência: `1C = 76C`, `12B = 87B`, `25A = 100A`. **Não sobrescrever respostas 1–25 ou 51–75 anteriores.**
+
+| Nº | Escolha | Decisão literal |
+|---|---|---|
+| 76 | C | Mostrar apelido configurado no launcher; nome original do treinador acessível no perfil. |
+| 77 | A | Perfil exportado mantém identificador persistente externo ao .sav; impedir duas sessões simultâneas com o mesmo profile ID. |
+| 78 | A | Não permitir duas instâncias escrevendo no mesmo save no mesmo dispositivo. |
+| 79 | A | Backup antes de importar/substituir e após cada salvamento manual concluído. |
+| 80 | A | Restauração por lista de backups com data, treinador, prévia e confirmação. |
+| 81 | A | LAN sem criar conta; perfil local basta. |
+| 82 | A | Falhou descoberta automática: oferecer imediatamente conexão por IP ou QR. |
+| 83 | A | Host falhou: convidados continuam offline e podem reconectar quando o servidor retornar. |
+| 84 | A | Servidor dedicado persiste apenas configuração de sala; nunca posições ou saves pessoais. |
+| 85 | A | Descoberta mostra nome, ocupação, latência e presença de senha. |
+| 86 | A | Reconexão automática durante os 60 segundos de reserva de vaga, indicando estado ao jogador. |
+| 87 | B | Servidor dedicado vazio encerra após **15 minutos por padrão**, configurável. |
+| 88 | A | Sala com 4/4 fica cheia; recusar novas entradas sem remover ninguém. |
+| 89 | A | Administrador pode bloquear temporariamente um jogador expulso naquela sessão. |
+| 90 | A | PIN com limite de tentativas por janela e espera progressiva, sem bloqueio permanente injustificado. |
+| 91 | A | Cada jogador pode ocultar sua localização dos amigos no PokéNav; opção de privacidade. |
+| 92 | A | Chat opcional na sala, com controles de silenciar e sem histórico persistente por padrão. |
+| 93 | A | Trocas com procedimento de confirmação e recuperação, mantendo backups até o resultado validado. |
+| 94 | A | Quem convida propõe regras de PvP; o convidado aceita ou recusa. |
+| 95 | A | Turbo funciona offline; em multiplayer não deve comprometer sincronização, sendo desativado em operações de link sensíveis. |
+| 96 | A | Jogo preserva pixel-perfect, escala inteira quando possível; launcher moderno usa resolução adequada ao dispositivo. |
+| 97 | A | Android: pequeno botão discreto e painel rápido recolhível/reposicionável. |
+| 98 | A | Verificação de versão em fonte oficial + integridade/autenticidade; instalar somente com confirmação. |
+| 99 | A | Logs locais de erro, visualização e exportação apenas quando o usuário autorizar. |
+| 100 | A | **Primeiro aceite v0.8:** perfis funcionais, servidor dedicado, lobby e **dois jogadores** usando seus próprios saves e explorando sem regressões; só depois escalar para quatro. |
+
+**Resolução de aparentes conflitos:**
+- #3B/#35A continuam definindo limite **final** de 4; #100A delimita o **primeiro marco de aceite em 2**. Não entregar algo de 2 jogadores alegando estar completo para 4.
+- #76C (apelido) e #70B (rótulo apenas próximo/selecionado) são compatíveis: quando o rótulo aparece, usa **apelido do launcher**; o nome original fica no perfil.
+- #77A controla duplicidade por ID persistente exportado; **sem conta online (#81A)** não comprova exclusividade criptográfica entre cópias maliciosas. A prevenção será melhor esforço na sessão LAN (e nunca baseada unicamente em Trainer ID ou hash mutável).
+- #79A complementa #55A: o jogo continua com **salvamento manual**; o gerenciador cria cópias de proteção em eventos de salvamento, não autosave do mundo.
+- #87B especifica o padrão **15 min** para timeout configurável do servidor vazio definido em #59B.
+- #91A permite ocultar localização no PokéNav; a presença em campo no mesmo mapa permanece separada da divulgação da localização remota, a menos que uma política distinta seja aprovada.
+- #93A **não prova troca atômica**. A implementação precisa de estados verificáveis, ensaios de desconexão durante handshake e salvamentos locais, rollback/reconciliação quando possível; nunca duplicar/remover Pokémon silenciosamente.
+- #95A preserva turbo offline, mas protege SIO e estados de link; jogo online não precisa bloquear turbo indiscriminadamente se a simulação sincronizada estiver sob controle.
+
+### 2.3. Encerramento da especificação funcional
+
+**As 100 perguntas estão respondidas.** Não abrir nova rodada ampla apenas para prolongar planejamento. Perguntar diretamente apenas por uma decisão absolutamente bloqueadora ou oferecer escolhas objetivas quando surgir uma incompatibilidade real. Iniciar implementação controlada por marcos M0/M1 sem alterar o executável funcional v0.7.2.1.
+
+#### Critério exato para declarar o primeiro incremento jogável v0.8 (#100A)
+
+1. Dois perfis reais distintos, cada um no seu diretório. Importação de .sav íntegra, seleção e backup recuperável.
+2. Servidor dedicado Windows/Android funcional na LAN, sem renderizar Pokémon/sem salvar estados dos jogadores; lobby conecta dois clientes e verifica versão/PIN.
+3. Ambos entram com seu próprio progresso e personagens renderizados como sprites temporários no mesmo mapa; terceiro dispositivo pode hospedar sem jogar.
+4. Perda de conexão não corrompe saves; modo offline e reconexão; logs locais, privacidade, portas e controles claros.
+5. Regressão do Cable Club, fluxo offline, audio, turbo, Quest UI/PokéNav e saves. Testes Android e Windows em hardware real.
+6. Somente depois validar quatro simultâneos e múltiplos pares de batalha/troca.
+
+#### Tarefas iniciais concretas recomendadas
+
+- **M0:** conjunto de testes puros para parser do envelope de sessão, timeouts e perfis + máquina de estados, sem abrir jogo nem ouvir porta pública.
+- **M1:** `SaveProfileManager` standalone C/C++ testado, diretórios dados de usuário/portátil, importação intacta, lock por perfil, backup+restauração, proteção contra path traversal em ZIP, caminhos Android SAF por integração nativa. Só então conectar a opção de caminho de save existente no `src/platform/sdl2.c`.
+- **M2:** servidor headless real com até 2 clientes em LAN, configurável e compatível com o contrato, com loop bounded sem frames SIO do legacy P2P.
+- **M3:** UI moderna alimentada pelo M1/M2 funcional. Evolução até 4 clientes + interações e proxy SIO por pares só depois de QA independente.
+
+Status de todas as seções anteriores: continuam como **proposta** até PR de implementação testado e validado. Não converter respostas em alegações de recurso já existente.
 
 ## 3. Arquitetura lógica recomendada (não concluída)
 
@@ -276,7 +341,7 @@ Abrir aplicativo
 
 ## 7. Perguntas técnicas ainda em aberto
 
-Ver respostas futuras das perguntas 76+ antes de implementar mecanismos com efeitos irreversíveis. Temas principais:
+Todas as escolhas 1–100 foram respondidas; antes de implementar mecanismos irreversíveis, confirmar apenas detalhes ainda necessários de implementação e executar QA. Temas principais:
 1. Política de backup (limite, frequência e local) e falha/recuperação.
 2. Identidade de perfil duplicado por dispositivos distintos, sem usar Trainer ID como credencial.
 3. Política de desligar lobby/servidor e escolher perfil em tempo de jogo.
@@ -292,7 +357,7 @@ Ver respostas futuras das perguntas 76+ antes de implementar mecanismos com efei
 
 1. Ler `AI_README.md` e este arquivo **inteiros**, registrar HEAD SHA.
 2. Verificar que funcionalidades existem no HEAD por arquivos reais; não declarar M1/M2 como prontas.
-3. Atualizar decisão 76+ apenas com resposta explícita do usuário; registrar divergências recomendadas vs escolhidas.
+3. Atualizar decisões adicionais apenas com resposta explícita do usuário; registrar divergências recomendadas vs escolhidas. O questionário principal 1–100 está encerrado.
 4. Criar branch por marco; manter PR draft até testes automáticos/funcionais; não alterar branch anterior funcional.
 5. Não entregar builds nomeados como 'completo' sem testar; nunca gerar saves com reposicionamento manual.
 6. Atualizar `AI_README.md` com SHA, arquivos, testes, pendências, rollback e próximo passo **a cada atualização**.
@@ -320,7 +385,7 @@ Ver respostas futuras das perguntas 76+ antes de implementar mecanismos com efei
 - Pareamento 1v1 simultâneo a outras explorações: o servidor negocia um socket direto temporário quando seguro/viável. Em redes/telefones nos quais não seja possível, projeto para retransmissão isolada de stream SIO por par, **sem pressupor que a latência será tolerável**. Medir handshake, slots, filas, timeout e limites por par antes de declarar fallback funcional.
 - A lista de participantes sinaliza “Em batalha”; um único convite pendente por jogador; dois jogadores combatendo não devem bloquear outros.
 - Poses de 10 Hz por jogador: para quatro participantes, broadcast no máximo aos outros três, com quotas. O culling visual não interrompe posição de rede.
-- **Nomes contextuais (70B):** desenhar rótulo somente quando o jogador remoto estiver próximo ou selecionado **e** o sprite visível; recortar com tela, limitar sobreposição e custo de sprites/tile budget. Definir distância e mecanismo de seleção na rodada 76+.
+- **Nomes contextuais (70B):** desenhar rótulo somente quando o jogador remoto estiver próximo ou selecionado **e** o sprite visível; recortar com tela, limitar sobreposição e custo de sprites/tile budget. Definir distância e mecanismo de seleção durante a implementação de UI, sem alterar o comportamento aprovado em #70B.
 
 ### 9.4 Rede local e plataformas (71–75)
 
