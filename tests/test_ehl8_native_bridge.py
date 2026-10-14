@@ -129,7 +129,7 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
             await send(server_module.JOIN, b"python_peer", sid)
             self.assertEqual((await server_module.read_frame(reader)).kind,
                              server_module.JOIN)
-            await send(server_module.READY, b"\\x01", sid)
+            await send(server_module.READY, b"\x01", sid)
             for _ in range(100):
                 if server.in_game and len(server.players) == 2:
                     break
@@ -150,7 +150,7 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
                 if result_task.done():
                     break
                 pose=bytearray(18)
-                pose[:5]=b"LANP\\x01"
+                pose[:5]=b"LANP\x01"
                 pose[5], pose[14] = 1, 2
                 pose[6:8] = seq.to_bytes(2, "big")
                 pose[10:12] = (34).to_bytes(2, "big")
