@@ -48,7 +48,11 @@ def strip_v080_profile_patch(native: str) -> str:
     # actual profile block below is already reverted as one audited region.
     once('    const char *sessionEndpoint = NULL;\n'
          '    const char *sessionPin = NULL;\n'
+         '    bool sessionPinFromStdin = false;\n'
+         '    char sessionPinBuffer[16] = {0};\n'
          '    bool legacyLinkRequested = false;\n', '')
+    once('        else if (strcmp(argv[i], "--session-pin-stdin") == 0)\n'
+         '            sessionPinFromStdin = true;\n', '')
     once('        else if (strncmp(argv[i], "--session-client=", 17) == 0)\n'
          '            sessionEndpoint = argv[i] + 17;\n'
          '        else if (strncmp(argv[i], "--session-pin=", 14) == 0)\n'
