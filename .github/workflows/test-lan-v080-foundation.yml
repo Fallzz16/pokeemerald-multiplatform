@@ -6,6 +6,7 @@ on:
       - feature/lan-v080-m0-m1-foundation
     paths:
       - 'src/profile/**'
+      - 'src/platform/sdl2.c'
       - 'src/lnet/lnet_session_v1.*'
       - 'tests/test_save_profiles.c'
       - 'tests/test_lnet_session_v1.c'
@@ -14,6 +15,7 @@ on:
   pull_request:
     paths:
       - 'src/profile/**'
+      - 'src/platform/sdl2.c'
       - 'src/lnet/lnet_session_v1.*'
       - 'tests/test_save_profiles.c'
       - 'tests/test_lnet_session_v1.c'
@@ -31,6 +33,20 @@ jobs:
         run: bash scripts/verify_lan_v080_foundation.sh
       - name: Address and undefined-behavior sanitizers
         run: SANITIZE=1 bash scripts/verify_lan_v080_foundation.sh
+      - name: Check SDL2 selected profile isolation
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q -- '--profile-root=' src/platform/sdl2.c
+          grep -q -- '--profile-id=' src/platform/sdl2.c
+          grep -q 'sp_lock(profileRoot, profileId' src/platform/sdl2.c
+          grep -q 'ReadSaveFile(sActiveSavePath)' src/platform/sdl2.c
+          grep -q 'fopen(sActiveSavePath, "rb")' src/platform/sdl2.c
+          if grep -q 'ReadSaveFile("pokeemerald.sav")' src/platform/sdl2.c; then
+            echo "ERROR: legacy save overrides selected profile"
+            exit 1
+          fi
+          echo "Static SDL2 path/lock checks passed. Runtime gameplay still unverified."
 
   windows-cross-compile:
     name: Windows x86 compilation of standalone cores
