@@ -362,3 +362,20 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 - **Risco importante:** saída de `AgbMain`/flush ainda depende de revisão de ciclo de vida; backups manuais somente com jogo fechado; integração de saves tem validação estrutural sem checksum completo. **Teste em pasta nova e somente com cópias dos seus saves reais.**
 - **Rollback:** usar jogo anterior aprovado v0.7.2.1 / branch `feature/lan-v0721-viewport-culling`. Não reescrever outro save durante teste.
 - **Próximo passo:** validar compilação, testar GUI e viewport em Windows real, depois corrigir quaisquer bugs observados e iniciar estabilização de saves, M2 servidor dedicado.
+
+
+## 17. QA concluído de compilação da MEGA Desktop Pass 1 (2026-10-14)
+
+- **Branch/PR:** `feature/lan-v080-mega-desktop-polish`, [PR #9](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/9), ainda draft. A execução de referência ocorreu na revisão `d70fe058e0408c2c7147542dfbfb54c6ec10cb82` (mesmo código launcher e SDL do incremento; commits posteriores só acrescentaram documentação).
+- **Launcher GUI Windows + unit tests Python + empacotamento PyInstaller:** [Actions 38522309384](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38522309384) **SUCCESS**, artifact `11874218835` contém `EmeraldLauncher.exe`. Testes incluem login local/último perfil e save invariável em laboratório.
+- **Jogo Emerald completo Windows x86, LAN regressão, auditoria SDL legada com patch reverso:** [Actions 38522309182](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38522309182) **SUCCESS**, artifact `11874860082`. Executável contém literal `Fullscreen toggle failed`, parâmetros M1, e a DLL SDL2.
+- **APK Android ARMv7 experimental:** [Actions 38522309156](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38522309156) **SUCCESS**. Isso só prova compilação do código compartilhado; o **launcher Android permanece o antigo** e não implementa a nova UI desktop.
+- **Testes core LAN/profiles C99, sanitizers e Windows cross:** [Actions 38522309249](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38522309249) **SUCCESS**.
+- **Artefato pronto para QA local** criado a partir dos dois builds acima e do CLI win32 existente da M1: `/mnt/data/Emerald_Hybrid_v0802_MEGA_Desktop_Windows_COMPLETO.zip`, **23.428.247 bytes**, **SHA256** `ce407080e021b2a3d3e48ce73de6c1d1e1ab1ac8c2ac0016c946a72508a58feb`. ZIP CRC testado, PE MZ verificados, arquivos com hashes internos: `EmeraldLauncher.exe`, `pokeemerald.exe`, `SDL2.dll`, `emerald_profilectl.exe`, `ABRIR_LAUNCHER.bat`, `PORTABLE_MODE.txt`, `LEIA_PRIMEIRO_MEGA_v0802.txt`, `SHA256_COMPONENTES.txt`. **Nenhum arquivo .sav incluído.**
+- **CI ROM genérico** tem falhas históricas de compare no fluxo GBA não equivalente ao build nativo de Windows; não declarar todos os workflows green sem verificação separada.
+
+**Modificado:** launcher GUI, SDL2 vídeo, testes e auditoria reverse-patch exata, workflows e handoff. **Removido do gameplay:** nada. **Não implementado ainda:** instalador, auto-backup pós-save, validação checksum completa, servidor headless, lobby, 3/4 jogadores, login online opcional, novo Android launcher, efeitos visuais opcionais, análise concluída da região preta do screenshot. **Não há gameplay QA de usuário deste ZIP ainda.**
+
+**Rollback:** versão v0.7.2.1 testada em branch `feature/lan-v0721-viewport-culling`, SHA `a87e2c49e453db32def5e71ba2a2e696a911d504`; extração sempre em diretório separado, perfis locais não devem ser substituídos ou excluídos ao trocar de build.
+
+**QA humana seguinte:** abrir launcher SEM CMD visível; perfil lembrado; zoom inteiro em monitor do usuário; F11/Alt+Enter; save/reopen; criar backup com jogo fechado e recuperar; encerrar, observar launcher retornar; conferir logs. Validar visual abaixo da tela com prints antes/depois. Depois abrir nova fase: safe save lifecycle, instalador e SessionServer com dois jogadores.
