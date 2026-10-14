@@ -4,6 +4,8 @@ on:
     branches:
       - feature/lan-v0803-dedicated-session-core
     paths:
+      - 'src/lnet/lnet_session_client.c'
+      - 'tests/test_ehl8_native_bridge.py'
       - 'src/platform/sdl2.c'
       - 'tests/test_sdl2_frame_pacing.py'
       - 'packaging/emerald_hybrid_m2_preview.nsi'

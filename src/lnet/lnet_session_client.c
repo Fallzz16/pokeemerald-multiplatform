@@ -20,7 +20,10 @@
 #define EHL_AUTH_TIMEOUT_MS 20000UL
 #define EHL_STALE_MS 3000UL
 #define EHL_POSE_INTERVAL_MS 100UL
+#ifndef EHL_HEARTBEAT_INTERVAL_MS
 #define EHL_HEARTBEAT_INTERVAL_MS 10000UL
+#endif
+#define EHL_PLAYING_SILENCE_MS 25000UL
 
 struct LNetSessionClient
 {
@@ -32,7 +35,7 @@ struct LNetSessionClient
     unsigned short port;
     int state;
     uint64_t session;
-    unsigned long began, lastRx, lastTx, lastPose, lastRemote;
+    unsigned long began, lastRx, lastTx, lastPose, lastRemote, lastHeartbeat;
     uint16_t localSeq, lastRemoteSeq;
     uint8_t haveRemoteSeq, haveRemote;
     LNetPose remote;
@@ -217,6 +220,14 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     if (!c || c->state == EHL_CLIENT_FAILED)
         return;
     now = now_ms();
+    /* Server echoes HEARTBEAT even when there is no second player's pose.
+     * Do not leave a socket silently stale forever if Wi-Fi dies mid-game. */
+    if (c->state == EHL_CLIENT_PLAYING &&
+        (unsigned long)(now - c->lastRx) > EHL_PLAYING_SILENCE_MS)
+    {
+        close_failed(c);
+        return;
+    }
     if (c->state == EHL_CLIENT_CONNECTING)
     {
         if (c->began == 0)
@@ -296,9 +307,23 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     /* Initial READY/HELLO/etc always takes precedence over pose updates. */
     if (c->txLength != c->txOffset)
         return;
+    /* Poses are due every 100 ms, so an "else if heartbeat" placed AFTER
+     * pose would never run while the player is moving/connected. Give the
+     * sparse liveness frame priority once every 10 seconds. */
     if (c->state == EHL_CLIENT_PLAYING &&
-        (c->lastPose == 0 ||
-         (unsigned long)(now - c->lastPose) >= EHL_POSE_INTERVAL_MS))
+        (c->lastHeartbeat == 0 ||
+         (unsigned long)(now - c->lastHeartbeat) >= EHL_HEARTBEAT_INTERVAL_MS))
+    {
+        if (!queue(c, EHL_HEARTBEAT, NULL, 0))
+        {
+            close_failed(c);
+            return;
+        }
+        c->lastHeartbeat = now;
+    }
+    else if (c->state == EHL_CLIENT_PLAYING &&
+             (c->lastPose == 0 ||
+              (unsigned long)(now - c->lastPose) >= EHL_POSE_INTERVAL_MS))
     {
         LNetPose value;
         unsigned char wire[LNET_PRESENCE_PACKET_SIZE];

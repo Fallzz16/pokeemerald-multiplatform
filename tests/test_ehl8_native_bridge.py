@@ -21,7 +21,8 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
         cls.tmp = tempfile.TemporaryDirectory()
         cls.exe = str(Path(cls.tmp.name) / "native_ehl8_client")
         cmd = ["gcc", "-std=c99", "-DPORTABLE", "-D_POSIX_C_SOURCE=200809L",
-               "-Wall", "-Wextra", "-Werror", "-O1", "-g", "-Isrc/lnet",
+               "-Wall", "-Wextra", "-Werror", "-O1", "-g",
+               "-DEHL_HEARTBEAT_INTERVAL_MS=250UL", "-Isrc/lnet",
                "src/lnet/lnet_net.c", "src/lnet/lnet_session_v1.c",
                "src/lnet/lnet_presence.c", "src/lnet/lnet_session_client.c",
                "tests/native_ehl8_client.c", "-o", cls.exe]
@@ -49,6 +50,43 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
             self.assertIn(b"remote overworld pose verified", results[1][0])
         finally:
             for p in (a,b):
+                if p.returncode is None:
+                    p.kill()
+                    await p.wait()
+            await server.stop()
+
+    async def test_playing_clients_send_heartbeats_even_while_streaming_poses(self):
+        # The game sends poses every 100 ms. Heartbeats must still be sent;
+        # the test overrides only the heartbeat interval to 250 ms so it runs
+        # in under two seconds rather than sleeping for ten production seconds.
+        class CountingServer(server_module.SessionServer):
+            def __init__(self):
+                super().__init__("123456", 2, idle_seconds=300)
+                self.playing_heartbeats = {}
+
+            async def process(self, peer, msg):
+                if msg.kind == server_module.HEARTBEAT and peer.stage == "GAME":
+                    who = peer.profile
+                    self.playing_heartbeats[who] = self.playing_heartbeats.get(who, 0) + 1
+                await super().process(peer, msg)
+
+        server = CountingServer()
+        listener = await server.start("127.0.0.1", 0)
+        port = str(listener.sockets[0].getsockname()[1])
+        a = await asyncio.create_subprocess_exec(self.exe, "127.0.0.1", port,
+            "123456", "trainer_A", "21", "34", "linger",
+            stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+        b = await asyncio.create_subprocess_exec(self.exe, "127.0.0.1", port,
+            "123456", "trainer_B", "34", "21", "linger",
+            stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+        try:
+            outputs = await asyncio.wait_for(asyncio.gather(a.communicate(), b.communicate()), 8)
+            self.assertEqual(a.returncode, 0, outputs[0])
+            self.assertEqual(b.returncode, 0, outputs[1])
+            self.assertGreaterEqual(server.playing_heartbeats.get(b"trainer_A", 0), 2)
+            self.assertGreaterEqual(server.playing_heartbeats.get(b"trainer_B", 0), 2)
+        finally:
+            for p in (a, b):
                 if p.returncode is None:
                     p.kill()
                     await p.wait()
