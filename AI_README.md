@@ -472,3 +472,36 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 **Instrução de teste seguro:** não sobrescrever v0.8.2 aprovada; instalar/extrair em pasta SEPARADA e criar/importar apenas **cópias** de .sav, garantir dois perfis distintos; iniciar servidor dedicado pelo novo launcher em um PC, entrar com ambos pelos launchers marcando EHL8 (ou via testes nativos), conferir chegada, mapa/camera/ocultação, encerrar e reabrir. Se falhar, enviar logs `cliente-ehl8.log` e `servidor-*.log` sem expor IPs privados.
 
 **Rollback:** `feature/lan-v080-mega-desktop-polish` no commit `3f94a665bc742d2130a856b5b153596def8445a4` (instalador confirmado usuário) ou v0.7.2.1 `a87e2c49e453db32def5e71ba2a2e696a911d504` (LAN P2P aprovado). **Todos os saves fora da branch e intocados.** 
+
+## 21. QA FINAL DO CANDIDATO M2 EHL8 Preview (14/10/2026)
+
+**Status: código/testes e distribuições aprovados no CI, MAS jogabilidade real com dois Emeralds ainda aguarda QA do usuário.** Não classificar como lançamento estável.
+
+### Compilações de mesma revisão de código
+- `ddfdd5b536f49ef227c30bef08e7bbb720f3645b` é o código testado, após integração SDL2, client C, PIN por stdin e countdown no primeiro frame.
+- ✅ **Servidor Python EHL8 e cliente C real / testes reais de dois processos e poses**: [GitHub Actions 38530326482](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38530326482) — Linux/Windows SUCCESS, inclui `EmeraldSessionServer.exe`.
+- ✅ **Emerald jogo Windows x86 / auditoria histórica SDL2 / antigo LAN P2P**: [Actions 38530326166](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38530326166) — SUCCESS, binário `pokeemerald.exe`.
+- ✅ **Emerald APK Android ARMv7 compatibilidade nativa**: [Actions 38530326361](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38530326361) — SUCCESS. **A nova interface dedicada Android NÃO foi implementada**; teste de compilação não equivale a teste com UI Android.
+- ✅ **Launcher gráfico Windows PyInstaller e unit tests**: [Actions 38530326649](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38530326649) — SUCCESS.
+- ✅ **Profile manager e framing C99/sanitizers**: [Actions 38530326395](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38530326395) — SUCCESS.
+- ✅ Teste legado de LAN foi repetido após um evento isolado de timeout 25s e passou, preservando a base antiga sem desligar a auditoria. O CI genérico de ROM tem falhas históricas separadas: não declarar **todos os checks do repositório verdes** indiscriminadamente.
+
+### Pacote distribuído com isolamento de saves
+- `packaging/emerald_hybrid_m2_preview.nsi` — instalador **NSIS real, Windows sem admin**, instala em `%LOCALAPPDATA%\\Programs\\EmeraldHybridM2Preview`, sem sobrescrever v0.8.2. Lê `EHL8_PREVIEW_MODE.txt` para direcionar novos perfis e logs a `%LOCALAPPDATA%\\EmeraldHybridEHL8Preview\\profiles`; desinstalar **NÃO** apaga saves nem logs beta ou da instalação estável.
+- `.github/workflows/package-v0803-ehl8-preview.yml` baixa **cinco binários SHA256-pinados** dos runs acima, valida hashes + tamanhos, recusa arquivos `.sav`, compila instalador NSIS + ZIP portátil em um único GitHub Actions artifact.
+- ✅ [Actions 38530984109 — instalador e ZIP portátil](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38530984109) — SUCCESS, artifact ID **11877557469**, nome `BAIXAR_AQUI_Emerald_EHL8_M2_PREVIEW_INSTALADOR_e_PORTATIL`.
+- Baixado e verificado no container deste chat: arquivo externo `Emerald_Hybrid_EHL8_M2_PREVIEW_GITHUB_COMPLETO.zip` (63.627.378 bytes, CRC OK), contém apenas os dois produtos esperados:
+  - `Emerald_Hybrid_EHL8_M2_PREVIEW_INSTALADOR_Windows.exe`: 30.419.750 bytes, PE/MZ, SHA256 `674d8826e1701cc271672123029672fee97ef9c7eafbc4914b55759f894b38b4`.
+  - `Emerald_Hybrid_EHL8_M2_PREVIEW_PORTATIL_Windows.zip`: 33.240.607 bytes, SHA256 `1edc83884f825d29693d6d39bb550a6c377e90671572df4b6fa68118e1df3082`, CRC interno OK, inclui `EmeraldLauncher.exe`, `pokeemerald.exe`, `SDL2.dll`, `emerald_profilectl.exe`, `EmeraldSessionServer.exe`, `ABRIR_LAUNCHER.bat`, `PORTABLE_MODE.txt`, leia-me/QA, **nenhum .sav**.
+- Uma versão anterior do ZIP portátil tinha confundido o usuário porque baixou somente `EmeraldLauncher.exe`; neste pacote o download é **COMPLETO** e GitHub Actions é rota primária. O instalador é **não-assinado**; não recomendar desativar SmartScreen/AV.
+
+### Resumo exato do incremento
+- **Adicionado:** cliente nativo EHL8 `src/lnet/lnet_session_client.{c,h}`, testes C↔Python em sockets, `docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md`, NSIS preview, workflow de pacote completo.
+- **Alterado:** `src/link.c` reaproveita sprite/culling, `include/link.h`, `src/platform/sdl2.c` aceita modo dedicado com PIN lido via stdin, `tools/emerald_launcher.py` inicia/para servidor real e conecta ao dedicado, `tools/emerald_session_server.py` recebe PIN via pipe, auditoria SDL e testes do launcher, docs/AI handoff.
+- **Removido:** nada do gameplay antigo, nenhuma quest, áudio, FX, batalha, história, mapa, sprite, mecânica ou save original. Os perfis da preview ficam **isolados**.
+- **NÃO implementado:** batalhas/trocas através do novo servidor, proxy SIO entre pares, lobby gráfico completo com lista/ready/kick, 60s reserva de vaga/reconnect, 3/4 participantes, login online opcional, QR/discovery, Android launcher equivalente, criptografia de dados ou infraestrutura WAN. **Não abrir portas públicas.**
+- **Ainda NÃO testado em runtime:** dois Emeralds em Windows exibindo personagens remotos, warp/camera, saves reais, desinstalação e SmartScreen no Windows físico do usuário. Critérios e roteiro em `docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md`; exigir feedback antes de chamar M2/2 estável.
+- **Rollback:** primeira opção `feature/lan-v080-mega-desktop-polish` (v0.8.2 instalador já confirmado pelo usuário); segunda opção `feature/lan-v0721-viewport-culling` SHA `a87e2c49e453db32def5e71ba2a2e696a911d504` para LAN P2P comprovada.
+- **Próxima etapa:** instalar preview separada em 2 PCs, fazer QA com cópias de dois saves e comparar regressões. Só depois implementar lobby gráfico completo, recuperação, extensão para 4 e SIO de batalhas/trocas no dedicado.
+
+**Nenhuma ação desta etapa acessou ou modificou os saves pessoais do usuário.**
