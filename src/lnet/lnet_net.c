@@ -95,17 +95,6 @@ static void set_nonblock(int fd)
 #endif
 }
 
-static void set_block(int fd)
-{
-#ifdef _WIN32
-    u_long nb = 0;
-    ioctlsocket(fd, FIONBIO, &nb);
-#else
-    int flags = fcntl(fd, F_GETFL, 0);
-    fcntl(fd, F_SETFL, flags & ~O_NONBLOCK);
-#endif
-}
-
 LNetSock *lnet_net_listen(unsigned short port, int *err)
 {
 #ifdef _WIN32
@@ -202,7 +191,12 @@ LNetSock *lnet_net_accept_nb(LNetSock *listener, int *err)
                 *err = LNET_ERR_AGAIN;
             return NULL;
         }
-        return lnet_net_accept(listener, err);
+        {
+            LNetSock *peer = lnet_net_accept(listener, err);
+            if (peer != NULL)
+                set_nonblock(peer->fd); /* Keep game-thread I/O genuinely nonblocking. */
+            return peer;
+        }
     }
 }
 
@@ -255,7 +249,6 @@ LNetSock *lnet_net_connect_nb(const char *host, unsigned short port, LNetSock **
 {
     int fd;
     struct sockaddr_in a;
-    struct hostent *he;
     LNetSock *inProgress = (out != NULL) ? *out : NULL;
 
     if (err)
@@ -296,7 +289,6 @@ LNetSock *lnet_net_connect_nb(const char *host, unsigned short port, LNetSock **
                 return NULL;
             }
             set_nodelay(fd);
-            set_block(fd);
             if (out)
                 *out = NULL;
             return c;
@@ -320,11 +312,19 @@ LNetSock *lnet_net_connect_nb(const char *host, unsigned short port, LNetSock **
     memset(&a, 0, sizeof(a));
     a.sin_family = AF_INET;
     a.sin_port = htons(port);
-    he = gethostbyname(host);
-    if (he != NULL && he->h_addrtype == AF_INET)
-        memcpy(&a.sin_addr, he->h_addr_list[0], he->h_length);
-    else
-        a.sin_addr.s_addr = inet_addr(host);
+    /* The LAN UI requires an IPv4 address. Synchronous DNS resolution would
+     * freeze the game thread even though connect() itself is nonblocking. */
+    if (host == NULL || inet_pton(AF_INET, host, &a.sin_addr) != 1)
+    {
+        if (err)
+            *err = LNET_ERR_CONNECT;
+#ifdef _WIN32
+        closesocket(fd);
+#else
+        close(fd);
+#endif
+        return NULL;
+    }
     if (connect(fd, (struct sockaddr *)&a, sizeof(a)) < 0)
     {
 #ifdef _WIN32
@@ -355,7 +355,6 @@ LNetSock *lnet_net_connect_nb(const char *host, unsigned short port, LNetSock **
         }
     }
     set_nodelay(fd);
-    set_block(fd);
     {
         LNetSock *s = (LNetSock *)calloc(1, sizeof(LNetSock));
         s->fd = fd;
@@ -431,16 +430,20 @@ int lnet_net_send_nb(LNetSock *s, const void *data, size_t n, size_t *sent, int 
     tv.tv_sec = 0;
     tv.tv_usec = 0;
 #ifdef _WIN32
-    if (select(0, NULL, &wfds, NULL, &tv) <= 0)
-#else
-    if (select(s->fd + 1, NULL, &wfds, NULL, &tv) <= 0)
-#endif
     {
-        if (sent)
-            *sent = 0;
-        if (err)
-            *err = LNET_ERR_AGAIN;
-        return 0;
+        int ready = select(0, NULL, &wfds, NULL, &tv);
+#else
+    {
+        int ready = select(s->fd + 1, NULL, &wfds, NULL, &tv);
+#endif
+        if (ready <= 0)
+        {
+            if (sent)
+                *sent = 0;
+            if (err)
+                *err = ready == 0 ? LNET_ERR_AGAIN : LNET_ERR_SEND;
+            return ready == 0 ? 0 : -1;
+        }
     }
 #ifdef _WIN32
     r = send(s->fd, (const char *)data, (int)n, 0);
@@ -504,16 +507,20 @@ int lnet_net_recv_nb(LNetSock *s, void *data, size_t n, size_t *got, int *err)
     tv.tv_sec = 0;
     tv.tv_usec = 0;
 #ifdef _WIN32
-    if (select(0, &rfds, NULL, NULL, &tv) <= 0)
-#else
-    if (select(s->fd + 1, &rfds, NULL, NULL, &tv) <= 0)
-#endif
     {
-        if (got)
-            *got = 0;
-        if (err)
-            *err = LNET_ERR_AGAIN;
-        return 0;
+        int ready = select(0, &rfds, NULL, NULL, &tv);
+#else
+    {
+        int ready = select(s->fd + 1, &rfds, NULL, NULL, &tv);
+#endif
+        if (ready <= 0)
+        {
+            if (got)
+                *got = 0;
+            if (err)
+                *err = ready == 0 ? LNET_ERR_AGAIN : LNET_ERR_RECV;
+            return ready == 0 ? 0 : -1;
+        }
     }
 #ifdef _WIN32
     r = recv(s->fd, (char *)data, (int)n, 0);

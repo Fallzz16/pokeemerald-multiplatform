@@ -9,6 +9,8 @@ struct LNetLink
     LNetSession *session;
     LNetSio *sio;
     LNetRole role;
+    int slotPending;
+    unsigned short slotSend; /* must remain identical across partial network polls */
 };
 
 LNetLink *lnet_link_host(unsigned short port, int *err)
@@ -84,11 +86,23 @@ int lnet_link_slot(LNetLink *l, unsigned short mySend, unsigned short *peerSend,
         return 0;
     if (!lnet_session_is_ready(l->session))
         return 0;
-    r = lnet_session_exchange(l->session, mySend, peerSend);
-    if (r != 1)
-        return r; /* 0: slot pending; -1: link failed */
-    /* RECV must reflect the just-completed slot; commit then expose it. */
-    lnet_sio_commit(l->sio, mySend, *peerSend);
+    if (!l->slotPending)
+    {
+        l->slotPending = 1;
+        l->slotSend = mySend;
+    }
+    r = lnet_session_exchange(l->session, l->slotSend, peerSend);
+    if (r < 0)
+    {
+        l->slotPending = 0;
+        return -1;
+    }
+    if (r == 0)
+        return 0;
+    /* The SIO view and outgoing bytes must use the SAME latched local word,
+     * even if the caller updated REG_SIOMLT_SEND while the peer was delayed. */
+    lnet_sio_commit(l->sio, l->slotSend, *peerSend);
+    l->slotPending = 0;
     *recvView = lnet_sio_recv_current(l->sio);
     return 1;
 }

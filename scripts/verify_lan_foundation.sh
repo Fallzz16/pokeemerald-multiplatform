@@ -9,6 +9,11 @@ test -f src/lnet/lnet_session.c
 test -f src/lnet/lnet_sio.c
 grep -q 'void LanLinkOpenAsHost' src/link.c
 grep -q 'bool8 HandleLinkConnection' src/link.c
+# The native emulation must deliver completed TCP SIO words through Emerald's
+# real serial interrupt callback. A missing registration silently kills the
+# Cable Club handshake even when TCP connect and HELLO tests pass.
+grep -q 'SetSerialCallback(SerialCB)' src/link.c
+grep -q 'SetSerialCallback(NULL)' src/link.c
 grep -q 'android.permission.INTERNET' android/app/src/main/AndroidManifest.xml
 grep -q -- '--lan-host=' src/platform/sdl2.c
 grep -q -- '--lan-client=' src/platform/sdl2.c
@@ -19,7 +24,7 @@ fi
 tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 source_files=(src/lnet/lnet_net.c src/lnet/lnet_session.c src/lnet/lnet_sio.c src/lnet/lnet_link.c)
-for test_name in session link disconnect; do
+for test_name in session link disconnect cable_handshake; do
     cc -DPORTABLE -std=gnu99 -Wall -Wextra -O2 -pthread \
        -I src/lnet "tests/test_lnet_${test_name}.c" \
        "${source_files[@]}" -o "$tmp/test_lnet_${test_name}"

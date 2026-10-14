@@ -24,6 +24,7 @@
 #include "trade.h"
 #include "battle.h"
 #include "link.h"
+#include "main.h"
 #include "link_rfu.h"
 #include "constants/rgb.h"
 #include "constants/trade.h"
@@ -1805,6 +1806,8 @@ typedef struct
 
 static PortLanAutoRequest sLanAuto;
 static s32 sLanLastLive = -1;
+static s32 sLanLastSerialState = -1;
+static s32 sLanLastSerialPlayers = -1;
 static bool32 sLanLoggedHandshake;
 static const char *sLanLogPath;
 static bool32 sLanOpenLink;
@@ -1950,6 +1953,26 @@ static void PortLanDebugPump(void)
         }
     }
 
+    /* Emit only state transitions, not a line for every 16-bit transfer.
+     * These breadcrumbs identify which Cable Club stage failed without
+     * degrading normal gameplay or growing unbounded frame-by-frame logs. */
+    if (!live)
+    {
+        sLanLastSerialState = -1;
+        sLanLastSerialPlayers = -1;
+    }
+    else if (sLanLastSerialState != gLink.state
+             || sLanLastSerialPlayers != gLink.playerCount)
+    {
+        sLanLastSerialState = gLink.state;
+        sLanLastSerialPlayers = gLink.playerCount;
+        PortLanLog("[LAN] serial state=%d players=%d status=0x%08lX sendQ=%u recvQ=%u\n",
+                   (int)gLink.state, (int)gLink.playerCount,
+                   (unsigned long)gLinkStatus,
+                   (unsigned)gLink.sendQueue.count,
+                   (unsigned)gLink.recvQueue.count);
+    }
+
     if (live && gReceivedRemoteLinkPlayers && !sLanLoggedHandshake)
     {
         sLanLoggedHandshake = TRUE;
@@ -1972,6 +1995,8 @@ void LanLinkOpenAsHost(u16 port)
         sPortableLanLink = NULL;
     }
     sPortableLanLink = lnet_link_host(port, &err);
+    if (sPortableLanLink == NULL)
+        PortLanLog("[LAN] failed to open host listener (err=%d)\n", err);
 }
 
 void LanLinkOpenAsClient(const char *host, u16 port)
@@ -1984,6 +2009,8 @@ void LanLinkOpenAsClient(const char *host, u16 port)
         sPortableLanLink = NULL;
     }
     sPortableLanLink = lnet_link_join(host, port, &err);
+    if (sPortableLanLink == NULL)
+        PortLanLog("[LAN] failed to start client session (err=%d)\n", err);
 }
 
 void LanLinkClose(void)
@@ -2031,8 +2058,10 @@ bool32 PortLanIsConnecting(void)
 // SerialCB see the same host/client topology as a 2-player GBA cable.
 static void PortableLanConfigRegisters(void)
 {
-    /* Do not spoof SIO registers during ordinary offline gameplay. */
-    if (!IsLanLinkLive())
+    /* A live TCP session is not equivalent to opening the GBA link cable.
+     * Do not spoof serial registers while either player explores offline:
+     * start the virtual SIO bus only when the Cable Club called OpenLink(). */
+    if (!sLinkOpen || !IsLanLinkLive())
         return;
     if (lnet_link_role(sPortableLanLink) == LNET_ROLE_HOST)
     {
@@ -2236,6 +2265,11 @@ void ConvertLinkPlayerName(struct LinkPlayer *player)
 
 static void DisableSerial(void)
 {
+#ifdef PORTABLE
+    /* Native SIO is dispatched by PortableLanSlot through gMain.serialCallback.
+     * Never leave a callback installed after closing/resetting the link. */
+    SetSerialCallback(NULL);
+#endif
     DisableInterrupts(INTR_FLAG_TIMER3 | INTR_FLAG_SERIAL);
     REG_SIOCNT = SIO_MULTI_MODE;
     REG_TMCNT_H(3) = 0;
@@ -2247,6 +2281,12 @@ static void DisableSerial(void)
 
 static void EnableSerial(void)
 {
+#ifdef PORTABLE
+    /* The SDL port has no hardware SERIAL interrupt. Register the original
+     * Emerald serial ISR explicitly so every completed LAN slot feeds the
+     * unmodified DoHandshake/DoRecv/DoSend state machine. */
+    SetSerialCallback(SerialCB);
+#endif
     DisableInterrupts(INTR_FLAG_TIMER3 | INTR_FLAG_SERIAL);
     REG_RCNT = 0;
     REG_SIOCNT = SIO_MULTI_MODE;

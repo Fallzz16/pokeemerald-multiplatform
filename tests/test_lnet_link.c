@@ -105,9 +105,14 @@ static THREAD_RET host_main(void *arg)
     for (k = 0; k < ROUND; k++)
     {
         int result;
+        int tries = 0;
         do
         {
-            result = lnet_link_slot(l, g_hSend[k], &g_hostPeer[k], &recvView);
+            /* Deliberately mutate the caller's value after the first poll.
+             * A pending slot must keep the original word on the virtual bus. */
+            unsigned short proposed = (k == 0 && tries > 0) ? 0xDEAD : g_hSend[k];
+            result = lnet_link_slot(l, proposed, &g_hostPeer[k], &recvView);
+            tries++;
             if (result == 0)
             {
                 if (k == 0)

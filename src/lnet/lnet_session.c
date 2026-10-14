@@ -11,14 +11,36 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
+/* Relative deadlines are monotonic and immune to system clock adjustments.
+ * Unsigned subtraction safely handles 32-bit tick counter wraparound. */
+static unsigned long lnet_now_ms(void)
+{
+#ifdef _WIN32
+    return (unsigned long)GetTickCount();
+#else
+    struct timespec ts;
+    if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0)
+        return 0;
+    return (unsigned long)ts.tv_sec * 1000UL + (unsigned long)ts.tv_nsec / 1000000UL;
+#endif
+}
+
+static int lnet_expired(unsigned long since, unsigned long limitMs)
+{
+    return (unsigned long)(lnet_now_ms() - since) > limitMs;
+}
 
 #define MSG_HELLO 0x10
 #define MSG_SLOT  0x20
 
 /* Socket operations never wait for a peer on the game thread. */
-#define LNET_HELLO_TIMEOUT_SECONDS 8
-#define LNET_CONNECT_TIMEOUT_SECONDS 10
-#define LNET_SLOT_TIMEOUT_SECONDS 6
+#define LNET_HELLO_TIMEOUT_MS 8000UL
+#define LNET_CONNECT_TIMEOUT_MS 10000UL
+#define LNET_SLOT_TIMEOUT_MS 6000UL
 
 /* Non-blocking handshake phases. The HELLO exchange is driven a few bytes at a
  * time from poll(): the peer is allowed to connect but then send nothing (a
@@ -43,9 +65,9 @@ struct LNetSession
     int hsOutSent;
     unsigned char hsIn[3];
     int hsInGot;
-    time_t connectStarted;
-    time_t helloStarted;
-    time_t slotStarted;
+    unsigned long connectStarted;
+    unsigned long helloStarted;
+    unsigned long slotStarted;
     int slotPending;
     unsigned char slotOut[3];
     unsigned char slotIn[3];
@@ -149,7 +171,7 @@ LNetSession *lnet_session_join(const char *host, unsigned short port, int *err)
     s->role = LNET_ROLE_CLIENT;
     s->alive = 1;
     s->connecting = 1;
-    s->connectStarted = time(NULL);
+    s->connectStarted = lnet_now_ms();
     (void)strncpy(s->host, host, sizeof(s->host) - 1);
     s->host[sizeof(s->host) - 1] = '\0';
     s->port = port;
@@ -171,7 +193,7 @@ int lnet_session_poll(LNetSession *s, int *err)
     if (s->helloDone)
         return 1;
     if (s->role == LNET_ROLE_CLIENT && s->sock == NULL
-        && time(NULL) - s->connectStarted > LNET_CONNECT_TIMEOUT_SECONDS)
+        && lnet_expired(s->connectStarted, LNET_CONNECT_TIMEOUT_MS))
     {
         s->alive = 0;
         if (err)
@@ -201,7 +223,7 @@ int lnet_session_poll(LNetSession *s, int *err)
             s->hsStep = HS_STEP_FIRST;
             s->hsOutSent = 0;
             s->hsInGot = 0;
-            s->helloStarted = time(NULL);
+            s->helloStarted = lnet_now_ms();
         }
         else
         {
@@ -217,11 +239,11 @@ int lnet_session_poll(LNetSession *s, int *err)
             s->hsStep = HS_STEP_FIRST;
             s->hsOutSent = 0;
             s->hsInGot = 0;
-            s->helloStarted = time(NULL);
+            s->helloStarted = lnet_now_ms();
         }
     }
 
-    if (time(NULL) - s->helloStarted > LNET_HELLO_TIMEOUT_SECONDS)
+    if (lnet_expired(s->helloStarted, LNET_HELLO_TIMEOUT_MS))
     {
         s->alive = 0;
         if (err)
@@ -298,14 +320,14 @@ int lnet_session_exchange(LNetSession *s, unsigned short myVal, unsigned short *
     if (!s->slotPending)
     {
         s->slotPending = 1;
-        s->slotStarted = time(NULL);
+        s->slotStarted = lnet_now_ms();
         s->slotOutSent = 0;
         s->slotInGot = 0;
         s->slotOut[0] = MSG_SLOT;
         s->slotOut[1] = (unsigned char)(myVal >> 8);
         s->slotOut[2] = (unsigned char)(myVal & 0xFF);
     }
-    if (time(NULL) - s->slotStarted > LNET_SLOT_TIMEOUT_SECONDS)
+    if (lnet_expired(s->slotStarted, LNET_SLOT_TIMEOUT_MS))
     {
         s->alive = 0;
         return -1;

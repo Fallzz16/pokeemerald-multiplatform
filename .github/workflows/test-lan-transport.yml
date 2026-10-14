@@ -1,0 +1,34 @@
+name: LAN TCP transport regression
+
+on:
+  push:
+    branches:
+      - feature/lan-v071-connection-stability
+    paths:
+      - 'src/lnet/**'
+      - 'src/link.c'
+      - 'tests/test_lnet_*.c'
+      - 'scripts/verify_lan_foundation.sh'
+      - '.github/workflows/test-lan-transport.yml'
+  pull_request:
+    paths:
+      - 'src/lnet/**'
+      - 'src/link.c'
+      - 'tests/test_lnet_*.c'
+      - 'scripts/verify_lan_foundation.sh'
+      - '.github/workflows/test-lan-transport.yml'
+
+jobs:
+  tcp-transport:
+    name: Native TCP session and SIO checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Check system C tools
+        run: |
+          cc --version
+          timeout --version
+      - name: Compile and run TCP LAN regression suite
+        run: bash scripts/verify_lan_foundation.sh
