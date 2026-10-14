@@ -34,6 +34,28 @@ class GraphicalLauncherTests(unittest.TestCase):
             launcher.make_command("pokeemerald.exe","profiles","trainer",
                                   "dedicated","not-a-host","45680","123456")
 
+    def test_status_file_renders_real_lobby_and_ignores_inconsistent_data(self):
+        with tempfile.TemporaryDirectory() as temp:
+            file=Path(temp)/"room.json"
+            data={"schema":1,"state":"lobby","port":45680,"capacity":2,
+                  "players":[{"slot":1,"profile":"trainer_A","ready":True},
+                             {"slot":2,"profile":"trainer_B","ready":False}],
+                  "updated_at":1}
+            file.write_text(json.dumps(data),encoding="utf-8")
+            valid=launcher.read_server_status(file,45680)
+            self.assertEqual(len(valid["players"]),2)
+            self.assertIn("2/2",launcher.format_server_status(valid))
+            self.assertIn("trainer_A",launcher.format_server_status(valid))
+            self.assertNotIn("123456",launcher.format_server_status(valid))
+            self.assertIsNone(launcher.read_server_status(file,45681))
+            data["players"][1]["profile"]="../unsafe"
+            file.write_text(json.dumps(data),encoding="utf-8")
+            self.assertIsNone(launcher.read_server_status(file,45680))
+            file.write_text("{" + "?"*10000, encoding="utf-8")
+            self.assertIsNone(launcher.read_server_status(file,45680))
+            file.unlink()
+            self.assertIsNone(launcher.read_server_status(file,45680))
+
     def test_invalid_network(self):
         for port in ("0","65535","abc","1.5"):
             with self.assertRaises(ValueError): launcher.validate_port(port)
