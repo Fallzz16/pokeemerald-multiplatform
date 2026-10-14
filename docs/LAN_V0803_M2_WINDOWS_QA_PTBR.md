@@ -48,3 +48,20 @@ Leia `AI_README.md`, `AGENTS.md` e `docs/LAN_V0803_DEDICATED_SESSION_CORE.md` pa
 - **Entrada tardia:** inicie EHL8 com duas pessoas, aguarde os personagens aparecerem, feche um dos jogos, espere a sala mostrar `1/2` e entre com outro perfil no slot disponível. O novo jogo deve permanecer conectado; não pode cair por READY duplicado. A segunda pessoa precisa ver as poses do recém-entrado. Esta correção **não** reserva uma vaga para o mesmo usuário por 60 segundos; essa exigência permanece planejada.
 - **Contador real do launcher:** antes de alguém entrar, observar `0/2`; ao entrar uma pessoa, `1/2`; duas, `2/2`; após alguém sair, `1/2`. Se os logs ainda não estiverem disponíveis, o launcher informa aguardo em vez de inventar uma contagem.
 - **Empacotamento por commit:** nova distribuição exige que `pokeemerald.exe`, `EmeraldLauncher.exe`, `EmeraldSessionServer.exe` e `emerald_profilectl.exe` tenham sido compilados e aprovados **no mesmo SHA de origem do pacote**. O arquivo `SHA256_COMPONENTES.txt` na distribuição apresenta os hashes. Nunca entregue o artefato de um workflow antigo como se contivesse a correção atual. A versão experimentada pelo usuário v0.8.2 é uma instalação distinta.
+
+
+## Teste da extensão de reconexão automática (M2/4, PR #13)
+
+**Importante:** a seção histórica de entrada tardia acima descreve a versão anterior. Nesta versão experimental, **um jogador que caiu sem encerrar voluntariamente reserva sua vaga durante até 60 segundos**, e outro perfil não pode tomá-la sem a credencial secreta de recuperação.
+
+**Faça estes testes apenas após o pacote CI desta branch ter sido aprovado, em pasta/instalação separada, usando dois saves COPIADOS e diferentes.**
+
+1. Inicie o servidor pelo launcher em um PC e conecte dois jogos Emerald em LAN/VPN privada, com o mesmo PIN da sala. Aguarde `2/2`, START e sprites no mapa de ambos.
+2. Desconecte por 5 a 10 segundos **somente a rede de um cliente**, sem fechar o executável do jogo nem o servidor. O outro jogador deve continuar podendo se mover normalmente e observar o personagem desconectado desaparecer.
+3. Restaure a rede antes do limite de 60 segundos (o cliente pode precisar de alguns segundos para detectar a queda TCP). O cliente deve autenticar-se novamente com o token em memória, recuperar o mesmo slot e reaparecer após enviar poses. Não deve solicitar novo perfil/save.
+4. Experimente ligar um terceiro cliente com outro perfil durante a reserva. A sala de dois slots não deve deixá-lo roubar a vaga reservada. Isso protege a posição, **não prova anti-cheat nem login online**.
+5. Repita com falha superior a 60s. A expectativa é o cliente encerrar tentativas e liberar a reserva no servidor ao expirar. Ele não deve travar, entrar em loop infinito ou apagar o save.
+6. **Sala aguardando outro jogador:** abra apenas o primeiro cliente, aguarde mais de 35 segundos e confirme que a conexão continua ativa graças ao HEARTBEAT. Outro jogador deve conseguir entrar depois para iniciar a sessão.
+7. Volte ao jogo **offline e P2P antigo** para verificar que Cable Club, saving, diálogos rápidos, áudio e Quest UI não sofreram regressões. Faça backup e feche corretamente.
+
+**Limitações desta versão:** o cliente mantém a credencial apenas em RAM — fechar o Emerald definitivamente encerra sua capacidade de retomada. O servidor continua sendo um beta **somente de exploração/presença**, sem repassar batalhas/trocas pelo EHL8, nem autenticação WAN. Jamais abrir TCP do EHL8 no roteador público. Não reportar QA de dois Emeralds como executado pela equipe até o usuário confirmar com prints/logs.
