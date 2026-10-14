@@ -56,3 +56,23 @@ Faça **backup de `pokeemerald.sav` no Windows**. No Android, os saves ficam no 
 - Latência por palavra SIO ainda pode criar pausas: avalie um protocolo de slots em lote **apenas após medir** dados reais. Não apresente sincronização de mapa/mundo compartilhado como implementada.
 
 **Importante:** esta branch não inclui o mundo compartilhado de Hoenn. Isso será uma fase posterior quando o multiplayer do Cable Club estiver validado.
+
+
+## Primeiro teste reproduzível no mesmo PC (Windows)
+
+Usar **dois diretórios independentes**, cada um contendo a **mesma build nova** (`pokeemerald.exe`, `SDL2.dll` e arquivos necessários), com um `pokeemerald.sav` de teste diferente. Isso impede que as duas instâncias disputem o mesmo save.
+
+1. Iniciar o jogo offline em cada pasta e validar que ambos os saves carregam e permitem chegar ao Cable Club.
+2. Na pasta do anfitrião, abrir o Prompt de Comando:
+   `pokeemerald.exe --lan-log host.log --lan-host=45680`
+3. Na pasta do cliente:
+   `pokeemerald.exe --lan-log cliente.log --lan-client=127.0.0.1:45680`
+4. Confirmar `[LAN] status: connected` em ambos os logs (é **só TCP**, ainda não é validação do Cable Club).
+5. Entrar no **Cable Club** em ambos e tentar uma batalha e uma troca. Os logs devem registrar mudanças de `serial state` e, quando o jogo receber os dados dos jogadores, `[LAN] handshake: remote link player(s) received`.
+6. Caso fique preso no handshake, enviar os dois logs e capturas de tela, informando a última linha `serial state` de cada instância. Se a batalha iniciar, registrar **até sua conclusão** e conferir o save após reiniciar as duas instâncias.
+
+**Correção específica desta etapa:** a integração SDL agora registra explicitamente `SetSerialCallback(SerialCB)` ao habilitar o canal serial e limpa o callback em `DisableSerial`. O teste de transporte reproduz o handshake de palavras SIO, mas apenas o teste com duas instâncias acima prova que o Cable Club processou o callback verdadeiro. Não confundir `connected` de TCP com sucesso do jogo.
+
+## Próxima etapa: mundo visível
+
+Regras, isolamento de canal e testes de personagem remoto documentados em [LAN_OVERWORLD_DESIGN.md](LAN_OVERWORLD_DESIGN.md). Nenhum sprite remoto foi ativado nesta branch.
