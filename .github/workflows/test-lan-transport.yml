@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - feature/lan-v071-connection-stability
+      - feature/lan-v072-overworld-presence
     paths:
       - 'src/lnet/**'
       - 'src/link.c'
