@@ -123,6 +123,10 @@ class SessionServer:
         for profile in expired:
             del self.reservations[profile]
         if not self.players and not self.reservations:
+            if expired:
+                # Start idle-timeout *after* the final 60s grace expires,
+                # not from startup or from the last active game frame.
+                self.empty_since = now
             self.in_game = False
         return len(expired)
 
