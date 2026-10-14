@@ -110,6 +110,31 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
         await d.send(S.JOIN, b"third")
         self.assertIn(b"full", (await d.recv(S.KICK)).payload)
 
+    async def test_running_room_ready_ack_does_not_disconnect(self):
+        a, b = await self.connect(), await self.connect()
+        await a.begin("one")
+        await b.begin("two")
+        await a.recv(S.PLAYER_LIST)
+        for player, other in ((a, b), (b, a)):
+            await player.send(S.READY, bytes([1]))
+            await player.recv(S.PLAYER_LIST)
+            await other.recv(S.PLAYER_LIST)
+        await a.recv(S.START)
+        await b.recv(S.START)
+        await b.close()
+        await a.recv(S.LEAVE)
+        await a.recv(S.PLAYER_LIST)
+        late = await self.connect()
+        await late.begin("three")
+        await a.recv(S.PLAYER_LIST)
+        await late.recv(S.START)
+        await late.send(S.READY, bytes([1]))
+        await a.recv(S.PLAYER_LIST)
+        await late.recv(S.PLAYER_LIST)
+        await late.send(S.HEARTBEAT)
+        await late.recv(S.HEARTBEAT)
+        self.assertEqual(len(self.server.players), 2)
+
     async def test_bad_header_and_excess_payload_never_crash_listener(self):
         for bad in (
             b"BAD!" + b"\x00" * 24,
