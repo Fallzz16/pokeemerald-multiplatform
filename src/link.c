@@ -2058,8 +2058,10 @@ bool32 PortLanIsConnecting(void)
 // SerialCB see the same host/client topology as a 2-player GBA cable.
 static void PortableLanConfigRegisters(void)
 {
-    /* Do not spoof SIO registers during ordinary offline gameplay. */
-    if (!IsLanLinkLive())
+    /* A live TCP session is not equivalent to opening the GBA link cable.
+     * Do not spoof serial registers while either player explores offline:
+     * start the virtual SIO bus only when the Cable Club called OpenLink(). */
+    if (!sLinkOpen || !IsLanLinkLive())
         return;
     if (lnet_link_role(sPortableLanLink) == LNET_ROLE_HOST)
     {
