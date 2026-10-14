@@ -286,35 +286,45 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     if (!c || c->state == EHL_CLIENT_FAILED)
         return;
     now = now_ms();
+    if (c->reconnecting &&
+        (unsigned long)(now - c->reconnectSince) >= EHL_RECONNECT_GRACE_MS)
+    {
+        close_failed(c);
+        return;
+    }
     if (c->state == EHL_CLIENT_CONNECTING)
+    {
+        /* Bounded backoff avoids tight reconnect loops when Wi-Fi is down. */
+        if (c->reconnecting && (long)(now - c->retryAt) < 0)
+            return;
     {
         if (c->began == 0)
             c->began = now ? now : 1;
         if ((unsigned long)(now - c->began) > EHL_CONNECT_TIMEOUT_MS)
         {
-            close_failed(c);
+            disconnected(c);
             return;
         }
         c->socket = lnet_net_connect_nb(c->host, c->port, &c->pending, &err);
         if (!c->socket)
         {
             if (err != LNET_ERR_AGAIN)
-                close_failed(c);
+                disconnected(c);
             return;
         }
         c->pending = NULL;
         c->lastRx = c->lastTx = now;
         if (!queue(c, EHL_HELLO, NULL, 0))
         {
-            close_failed(c);
+            disconnected(c);
             return;
         }
         c->state = EHL_CLIENT_WAIT_WELCOME;
     }
-    if ((unsigned long)(now - c->lastRx) > EHL_AUTH_TIMEOUT_MS &&
-        c->state != EHL_CLIENT_PLAYING)
+    if ((unsigned long)(now - c->lastRx) >
+        (c->state == EHL_CLIENT_PLAYING ? EHL_PEER_TIMEOUT_MS : EHL_AUTH_TIMEOUT_MS))
     {
-        close_failed(c);
+        disconnected(c);
         return;
     }
     if (c->txLength > c->txOffset)
@@ -324,7 +334,7 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
                              c->txLength - c->txOffset, &moved, &err);
         if (r < 0)
         {
-            close_failed(c);
+            disconnected(c);
             return;
         }
         c->txOffset += moved;
@@ -342,7 +352,7 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
         r = lnet_net_recv_nb(c->socket, bytes, want, &moved, &err);
         if (r < 0)
         {
-            close_failed(c);
+            disconnected(c);
             return;
         }
         if (!moved)
@@ -351,13 +361,13 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
                                      &consumed, &received);
         if (r < 0 || consumed != moved)
         {
-            close_failed(c);
+            disconnected(c);
             return;
         }
         c->lastRx = now;
         if (r == 1 && handle_frame(c, &received) < 0)
         {
-            close_failed(c);
+            disconnected(c);
             return;
         }
     }
@@ -365,9 +375,22 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     /* Initial READY/HELLO/etc always takes precedence over pose updates. */
     if (c->txLength != c->txOffset)
         return;
+    /* Poses run at ~10 Hz. Heartbeat needs separate priority; otherwise
+     * continuous pose traffic can starve HEARTBEAT forever, hiding a dead
+     * server from the client on Wi-Fi half-open sockets. */
     if (c->state == EHL_CLIENT_PLAYING &&
-        (c->lastPose == 0 ||
-         (unsigned long)(now - c->lastPose) >= EHL_POSE_INTERVAL_MS))
+        (unsigned long)(now - c->lastHeartbeat) >= EHL_HEARTBEAT_INTERVAL_MS)
+    {
+        if (!queue(c, EHL_HEARTBEAT, NULL, 0))
+        {
+            disconnected(c);
+            return;
+        }
+        c->lastHeartbeat = now;
+    }
+    else if (c->state == EHL_CLIENT_PLAYING &&
+             (c->lastPose == 0 ||
+              (unsigned long)(now - c->lastPose) >= EHL_POSE_INTERVAL_MS))
     {
         LNetPose value;
         unsigned char wire[LNET_PRESENCE_PACKET_SIZE];
@@ -378,18 +401,10 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
         if (lnet_presence_pack(&value, wire) < 0 ||
             !queue(c, EHL_POSE, wire, sizeof(wire)))
         {
-            close_failed(c);
+            disconnected(c);
             return;
         }
         c->lastPose = now;
-    }
-    else if ((unsigned long)(now - c->lastTx) >= EHL_HEARTBEAT_INTERVAL_MS)
-    {
-        if (!queue(c, EHL_HEARTBEAT, NULL, 0))
-        {
-            close_failed(c);
-            return;
-        }
     }
     if (c->txLength != c->txOffset)
         c->lastTx = now;
