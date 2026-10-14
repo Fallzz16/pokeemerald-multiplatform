@@ -403,3 +403,28 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 **Rollback:** manter v0.7.2.1 aprovada em pasta separada; qualquer nova instalação não deve apagar/migrar perfis portáteis anteriores sem backup. Falhas de download do sandbox devem ser contornadas pelo link GitHub Actions acima, **não insistir apenas no mesmo sandbox**.
 
 **Próxima IA:** abrir `docs/LAN_V0802_INSTALL_WINDOWS.md` e este registro; não afirmar instalação em PC do usuário já confirmada. Atualizar handoff a cada patch com IDs de run, SHA, falhas e pendências.
+
+
+## 19. MEGA atualização — M2 servidor dedicado EHL8 com dois clientes de protocolo (2026-10-14)
+
+**Confirmação do usuário:** o instalador Windows v0.8.2 gerado pela execução [38524395485](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38524395485) **funcionou no PC dele**. Isso confirma instalação/início, **não** QA completo de saves, multiplayer via servidor ou todos os modos.
+
+**Autorização do usuário:** `funciuonou certinho, podemos partir para a mega atualização`. Decisões anteriores 1–116 continuam em vigor, sem necessidade de novo questionário geral. Prioridade: M2 servidor dedicado **real**, mas preservar jogo v0.8.2 e v0.7.2.1.
+
+### Branch, arquivos e protocolo
+
+- **Branch:** `feature/lan-v0803-dedicated-session-core`, derivada da `feature/lan-v080-mega-desktop-polish` no commit-base `3f94a665bc742d2130a856b5b153596def8445a4`. Após abrir PR, registrar seu número e SHA do HEAD real.
+- **Adicionado:** `tools/emerald_session_server.py` (servidor asyncio dedicado, separado do jogo), `tests/test_emerald_session_server.py` (integração TCP local sem mocks), `.github/workflows/test-v0803-dedicated-server.yml` (testes Linux + Windows e build `EmeraldSessionServer.exe` Windows), `docs/LAN_V0803_DEDICATED_SESSION_CORE.md`.
+- **Sem alterações em gameplay, saves, mapas, áudio, gráficos, UI, SIO, biblioteca C legada ou binário v0.8.2.** `AGENTS.md` e este `AI_README.md` atualizados. **Removido: nada**.
+- **Funcionalidade do núcleo:** framing EHL8 conforme `src/lnet/lnet_session_v1.c` (28-byte header, 4KiB máximo), auth PIN local seis dígitos, identificadores de perfil com bloqueio de duplicidade na sessão, até **dois** slots de jogadores de protocolo, lobby ready/start, heartbeat, presença LANP validada, seq anti-replay, rate limit leve, logs sem PIN, desligamento após 15 min sem clientes.
+- **Compatibilidade**: EHL8 **não pode** ser enviado ao mesmo raw SIO TCP de Cable Club/Presence; separar transporte e exigir ClientAdapter novo, mantendo P2P antigo como fallback. Por isso, apesar de agora existir um núcleo de servidor real, o botão **Hospedar servidor dedicado** do launcher **ainda deve ficar DESABILITADO para gameplay** até existirem cliente/game EHL e lobby operacional.
+- **Saves:** NÃO há dados de save no servidor. No protocolo aparecem apenas profile IDs simples, sem Trainer ID, Pokémon, progresso nem credenciais. Não confundir unicidade local com conta autenticada.
+- **Pin de 6 dígitos** é proteção simples para LAN privada, não serve para hospedar em WAN pública: sem TLS/criptografia/anti-cheat robusto.
+
+### Testes / critérios de publicação
+
+- Suíte local em loopback TCP foi exercitada em ambiente isolado de desenvolvimento, testando diferentes casos; **CI do repositório é a referência final** para Windows/Linux e existência do EXE. Registrar runs/conclusões reais; não declarar artefatos ainda não criados.
+- Testes em `tests/test_emerald_session_server.py`: handshake, PIN incorreto/restrições por IP, entrar com 2, recusar duplicado/terceiro, sincronizar ready/start, retransmitir uma posição, rejeitar header magic/tamanho/versão errados e posição inválida.
+- **Não testado ainda:** dois jogadores **dentro do Emerald** usando esse servidor, reconexão de 60s, lobby com interface, convite/trade, quatro jogadores, Android server, WAN, perfil/save e performance em hardware de 4GB. Não distribuir um pacote para jogar apontando para esse servidor antes do adapter do game.
+- **Próxima etapa M2/2:** implementar SessionClient binário nativo C+SDL que faça handshake e integre PRESENCE ao game; depois M2/3 UI lobby no launcher e controle do servidor, 2 jogadores com save local; validar com hardware do usuário; depois 3/4.
+- **Rollback:** `feature/lan-v080-mega-desktop-polish` é a versão com instalador validado pelo usuário; baseline LAN P2P jogável: `feature/lan-v0721-viewport-culling` commit `a87e2c49e453db32def5e71ba2a2e696a911d504`.
