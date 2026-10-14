@@ -6,11 +6,17 @@ on:
     paths:
       - 'tools/emerald_session_server.py'
       - 'tests/test_emerald_session_server.py'
+      - 'src/lnet/lnet_session_client.*'
+      - 'tests/native_ehl8_client.c'
+      - 'tests/test_ehl8_native_bridge.py'
       - '.github/workflows/test-v0803-dedicated-server.yml'
   pull_request:
     paths:
       - 'tools/emerald_session_server.py'
       - 'tests/test_emerald_session_server.py'
+      - 'src/lnet/lnet_session_client.*'
+      - 'tests/native_ehl8_client.c'
+      - 'tests/test_ehl8_native_bridge.py'
       - '.github/workflows/test-v0803-dedicated-server.yml'
   workflow_dispatch:
 permissions:
@@ -46,3 +52,15 @@ jobs:
           path: dist/EmeraldSessionServer.exe
           retention-days: 14
           if-no-files-found: error
+
+  native-client-bridge:
+    name: Native C SessionClient ↔ EHL8 server (real TCP)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile C SessionClient and exercise native 2-player EHL8 session
+        run: python -m unittest discover -s tests -p test_ehl8_native_bridge.py -v
