@@ -1,0 +1,48 @@
+name: Emerald Hybrid LAN ready-to-test saves
+
+on:
+  push:
+    branches:
+      - feature/lan-v071-connection-stability
+    paths:
+      - 'scripts/build_lan_qa_saves.py'
+      - '.github/workflows/build-lan-qa-saves.yml'
+  workflow_dispatch:
+
+jobs:
+  create-qa-saves:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate two valid Flash128k saves for Oldale Pokemon Center 2F
+        run: python3 scripts/build_lan_qa_saves.py dist/lan-qa-saves
+
+      - name: Validate file sizes and distinct trainer IDs
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path('dist/lan-qa-saves')
+          manifest=json.loads((p/'MANIFESTO.json').read_text())
+          saves=manifest['saves']
+          assert len(saves)==2 and saves[0]['trainer_id'] != saves[1]['trainer_id']
+          assert all((p/rec['path']).stat().st_size==131072 for rec in saves)
+          assert all(rec['party_count'] >= 2 for rec in saves)
+          print('Two 128 KiB test saves verified; location:',manifest['location'])
+          PY
+
+      - name: Compress offline-ready test save pack
+        run: |
+          cd dist
+          zip -r -q Emerald-Hybrid-LAN-Saves-de-Teste-Host-Cliente.zip lan-qa-saves
+          unzip -t Emerald-Hybrid-LAN-Saves-de-Teste-Host-Cliente.zip
+
+      - name: Upload test saves
+        uses: actions/upload-artifact@v4
+        with:
+          name: Emerald-Hybrid-LAN-Saves-de-Teste-Host-Cliente
+          path: dist/Emerald-Hybrid-LAN-Saves-de-Teste-Host-Cliente.zip
+          if-no-files-found: error
+          retention-days: 30
