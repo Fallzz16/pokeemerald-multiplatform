@@ -42,4 +42,40 @@ class GraphicalLauncherTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             self.assertEqual(launcher.find_profiles(Path(tmp)/"not-created"),[])
 
+    def test_launcher_preferences_remember_last_profile_and_preserve_sav(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)/"profiles"
+            root.mkdir()
+            profile=root/"trainer"
+            profile.mkdir()
+            before=b"not-a-real-save-test"+bytes(range(110))
+            (profile/"pokeemerald.sav").write_bytes(before)
+            launcher.write_settings(root,"trainer",False,"100.101.102.103","45680")
+            got=launcher.read_settings(root)
+            self.assertEqual(got["selected_profile"],"trainer")
+            self.assertFalse(got["diagnostics"])
+            self.assertEqual(got["last_port"],"45680")
+            launcher.write_settings(root,"trainer",True,"127.0.0.1","45681")
+            self.assertTrue(launcher.read_settings(root)["diagnostics"])
+            self.assertEqual((profile/"pokeemerald.sav").read_bytes(),before)
+
+    def test_corrupt_and_excessive_preferences_are_ignored(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)/"profiles"
+            root.mkdir()
+            path=launcher.settings_path(root)
+            path.write_text("{broken",encoding="utf-8")
+            self.assertEqual(launcher.read_settings(root),{})
+            path.write_text("x"*40000,encoding="utf-8")
+            self.assertEqual(launcher.read_settings(root),{})
+
+    def test_log_not_inside_save_and_no_command_injection(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)/"profiles"
+            command=launcher.make_command("pokeemerald.exe",root,"trainer","host")
+            self.assertIn("--profile-id=trainer",command)
+            self.assertNotIn(";", "".join(command))
+            with self.assertRaises(ValueError):
+                launcher.make_command("pokeemerald.exe",root,"../trainer","host")
+
 if __name__ == "__main__": unittest.main(verbosity=2)
