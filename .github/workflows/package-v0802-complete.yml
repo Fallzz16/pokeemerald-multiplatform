@@ -7,6 +7,13 @@ on:
       - 'packaging/emerald_hybrid_setup.nsi'
       - '.github/workflows/package-v0802-complete.yml'
       - 'docs/LAN_V0802_INSTALL_WINDOWS.md'
+  pull_request:
+    branches:
+      - feature/lan-v080-desktop-graphical-launcher
+    paths:
+      - 'packaging/emerald_hybrid_setup.nsi'
+      - '.github/workflows/package-v0802-complete.yml'
+      - 'docs/LAN_V0802_INSTALL_WINDOWS.md'
   workflow_dispatch:
 
 permissions:
