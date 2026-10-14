@@ -1,5 +1,8 @@
 """Real loopback TCP tests against the EHL8 dedicated session server."""
 import asyncio
+import json
+from pathlib import Path
+import tempfile
 import importlib.util
 from pathlib import Path
 import struct
@@ -58,6 +61,58 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
         client = Client(reader, writer)
         self.clients.append(client)
         return client
+
+    async def test_local_status_reports_actual_players_ready_and_shutdown(self):
+        with tempfile.TemporaryDirectory() as temp:
+            status_file = Path(temp) / "room.json"
+            self.server.status_file = status_file
+            self.server.write_status()
+            start = json.loads(status_file.read_text(encoding="utf-8"))
+            self.assertEqual(start["state"], "lobby")
+            self.assertEqual(start["capacity"], 2)
+            self.assertEqual(start["port"], self.port)
+            self.assertEqual(start["players"], [])
+
+            a = await self.connect()
+            await a.begin("alpha")
+            snapshot = json.loads(status_file.read_text(encoding="utf-8"))
+            self.assertEqual(snapshot["players"], [
+                {"slot": 1, "profile": "alpha", "ready": False}])
+
+            b = await self.connect()
+            await b.send(S.HELLO)
+            b.session = (await b.recv(S.WELCOME)).session
+            await b.send(S.AUTH_PIN, b"123456")
+            await b.recv(S.AUTH_PIN)
+            await b.send(S.JOIN, b"beta")
+            await b.recv(S.JOIN)
+            await b.recv(S.PLAYER_LIST)
+            await a.recv(S.PLAYER_LIST)
+            await a.send(S.READY, b"\x01")
+            await a.recv(S.PLAYER_LIST)
+            await b.recv(S.PLAYER_LIST)
+            data = json.loads(status_file.read_text(encoding="utf-8"))
+            self.assertEqual([p["ready"] for p in data["players"]], [True, False])
+
+            await b.send(S.READY, b"\x01")
+            await a.recv(S.PLAYER_LIST)
+            await b.recv(S.PLAYER_LIST)
+            await a.recv(S.START)
+            await b.recv(S.START)
+            active = json.loads(status_file.read_text(encoding="utf-8"))
+            self.assertEqual(active["state"], "playing")
+            self.assertEqual(len(active["players"]), 2)
+            self.assertNotIn("123456", status_file.read_text(encoding="utf-8"))
+            self.assertNotIn("pin", active)
+
+            await b.close()
+            await a.recv(S.LEAVE)
+            await a.recv(S.PLAYER_LIST)
+            after = json.loads(status_file.read_text(encoding="utf-8"))
+            self.assertEqual([p["profile"] for p in after["players"]], ["alpha"])
+            await self.server.stop()
+            stopped = json.loads(status_file.read_text(encoding="utf-8"))
+            self.assertEqual(stopped["state"], "stopped")
 
     async def test_two_clients_lobby_ready_start_and_poses(self):
         a, b = await self.connect(), await self.connect()
