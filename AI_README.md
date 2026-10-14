@@ -440,3 +440,35 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 - **Próximo trabalho:** M2/2 client adapter + testes host dedicado (um Windows servidor sem jogo e dois jogadores com saves separados), depois M2/3 integrar GUI lobby ao launcher; não reintroduzir confusão entre EHL8 e P2P Cable Club.
 
 - **Artefato DEV conferido no contêiner do chat:** `Emerald_v0803_EHL8_SessionServer_WINDOWS_DEV.zip` (9.485.973 bytes), CRC OK, `EmeraldSessionServer.exe` (9.673.607 bytes) com PE `MZ` e SHA256 `00a45d6a474bafbad98d943dfae2f203a2e9e470bd2b9e5e39b0e4a82571f3d5`. Não é um instalador nem a versão de multiplayer jogável; não integrar ao pacote do jogador sem M2/2.
+
+
+## 20. M2/2–M2/3 — Conexão EHL8 no próprio jogo e controle pelo launcher (2026-10-14)
+
+**Pedido expresso do usuário:** continuar após M2/1, priorizando análise, polimento e testes antes de entregar. Todos os requisitos 1–116 seguem vinculantes. **Branch/PR:** `feature/lan-v0803-dedicated-session-core`, [PR #10](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/10), sobre v0.8.2 instalada com sucesso no Windows.
+
+**Arquivos adicionados:**
+- `src/lnet/lnet_session_client.h/.c`: cliente nativo C99 EHL8, TCP não bloqueante, frame 28B/4KiB, handshake AUTH PIN e JOIN com identidade de perfil, READY e START automáticos, heartbeat, validação e relay de LANP 18B, monotonic stale timeout de 3s, detecção de desconexão. Isolado do Cable Club e dos saves.
+- `tests/native_ehl8_client.c` e `tests/test_ehl8_native_bridge.py`: compilam dois processos nativos C, conectam ambos no servidor Python EHL8 por TCP real em `127.0.0.1`, verificam movimentação remota nas duas direções e rejeição de protocolo inválido. Sem `.sav`, sem chamar AgbMain.
+- `tools/emerald_session_server.py` agora aceita também `--pin-stdin` com segredo lido de pipe (legacy `--pin` para diagnóstico manual ainda funciona).
+
+**Arquivos modificados:**
+- `src/link.c`, `include/link.h`: entrada `PortLanRequestDedicatedClient`; reutilização EXATA da projeção do avatar remoto, suavização de movimento, culling e limpeza do sprite já aprovados pelo usuário em v0.7.2.1. Evita segunda implementação de sprite; não toca Quest UI.
+- `src/platform/sdl2.c`: modo novo opt-in `--session-client=IPv4:PORT` com `--session-pin-stdin` (opção `--session-pin=...` manual alternativa), **exige perfil local válido e impede mistura com `--lan-host`/client raw SIO**. Sem essas flags funciona como v0.8.2; falhas de configuração retornam erro e não caem silenciosamente no save antigo. Buffer secreto temporário zerado após inicialização.
+- `tools/emerald_launcher.py`: agora pode iniciar/parar **processo dedicado real** `EmeraldSessionServer.exe`, com PIN mascarado; checkbox para jogar usando EHL8 e mesma seção de IPv4/porta; P2P Cable Club antigo preservado como padrão. Launcher envia PIN por stdin tanto ao servidor quanto ao jogo e não persiste PIN em `launcher-settings.json`. O launcher gera logs locais e acompanha o game. Ainda **não** exibe lista de participantes, lobby de amigos com cards, QR nem convites.
+- `scripts/verify_v080_profile_patch.py`: auditoria reversa ampliada **somente** para flags SDL autorizadas; baseline game antigo ainda é verificado.
+- `tests/test_emerald_launcher.py`: validação de PIN seis dígitos, proibição de PIN em argv de game, modos novos.
+- `.github/workflows/test-v0803-dedicated-server.yml`, Windows/Android workflows: executam prova C ↔ servidor Python e compilações full sem modificar o antigo P2P.
+- `docs/LAN_V0803_DEDICATED_SESSION_CORE.md` expandido com protocolos, comandos, uso e riscos.
+- **Removido do gameplay:** nada (sem mudanças de Hoenn, NPC, audio, sprites, Quest UI, batalha, save, Pokédex, turbo ou Fairy).
+
+**Progresso verificado:**
+- O teste `test_ehl8_native_bridge.py` de **dois clientes C** e servidor Python `EHL8` passou no GitHub Linux no [run 38528888486](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38528888486). Servidor Python em Windows/Linux passou unit socket QA da mesma revisão.
+- Os builds nativos Windows/Android do **cliente C inicial** foram aprovados nas execuções [Windows 38528888473](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38528888473), [Android 38528888626](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38528888626). Essas execuções ocorreram ANTES do último refinamento de PIN via stdin e log; **verificar as execuções mais recentes no último código SHA para afirmar aprovação final.**
+- Launcher PyInstaller Windows revisado aprovou no [run 38528894518](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38528894518), mas pré-PIN stdin. Nunca reutilizar build antigo com executável EHL novo sem conferir.
+- **Não validado ainda:** duas janelas Emerald reais em Hoenn usando servidor dedicado, renderização em vídeo no hardware do usuário, saves com sessão EHL8 e evolução de mapa, reconexão 60s, Cable Club através do servidor, servidor Android ou 3/4 jogadores.
+
+**Milestone respeitado:** #100A/#116A = primeiro **2 jogadores** com progresso independente; a integração real de gameplay precisa de QA humano antes de declarar aceite. **O servidor não transporta batalhas/trocas**; modos P2P legados continuam separados. Nenhuma conta online obrigatória (#81A). Servidor não contém saves nem autenticação robusta de internet. Proibir publicação em WAN pública; LAN/VPN confiável apenas.
+
+**Instrução de teste seguro:** não sobrescrever v0.8.2 aprovada; instalar/extrair em pasta SEPARADA e criar/importar apenas **cópias** de .sav, garantir dois perfis distintos; iniciar servidor dedicado pelo novo launcher em um PC, entrar com ambos pelos launchers marcando EHL8 (ou via testes nativos), conferir chegada, mapa/camera/ocultação, encerrar e reabrir. Se falhar, enviar logs `cliente-ehl8.log` e `servidor-*.log` sem expor IPs privados.
+
+**Rollback:** `feature/lan-v080-mega-desktop-polish` no commit `3f94a665bc742d2130a856b5b153596def8445a4` (instalador confirmado usuário) ou v0.7.2.1 `a87e2c49e453db32def5e71ba2a2e696a911d504` (LAN P2P aprovado). **Todos os saves fora da branch e intocados.** 
