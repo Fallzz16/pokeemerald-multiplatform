@@ -2,6 +2,7 @@ name: Emerald Hybrid v0.8 Windows graphical launcher
 on:
   push:
     branches:
+      - feature/lan-v0803-ehl8-lobby-observability
       - feature/lan-v080-mega-desktop-polish
       - feature/lan-v080-desktop-graphical-launcher
     paths:
