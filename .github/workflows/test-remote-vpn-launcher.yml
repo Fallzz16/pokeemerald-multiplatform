@@ -1,0 +1,28 @@
+name: LAN remote private VPN launcher QA
+on:
+  push:
+    branches:
+      - feature/lan-v0722-remote-vpn-readiness
+    paths:
+      - 'INICIAR_EMERALD_VPN.ps1'
+      - 'INICIAR_EMERALD_VPN.bat'
+      - 'tests/test_remote_vpn_launcher.ps1'
+      - '.github/workflows/test-remote-vpn-launcher.yml'
+  pull_request:
+    paths:
+      - 'INICIAR_EMERALD_VPN.ps1'
+      - 'INICIAR_EMERALD_VPN.bat'
+      - 'tests/test_remote_vpn_launcher.ps1'
+      - '.github/workflows/test-remote-vpn-launcher.yml'
+  workflow_dispatch:
+jobs:
+  windows-launcher:
+    name: Validate remote VPN launcher without game or network access
+    runs-on: windows-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: PowerShell parser and safe dry-run scenarios
+        shell: powershell
+        run: |
+          .\tests\test_remote_vpn_launcher.ps1
