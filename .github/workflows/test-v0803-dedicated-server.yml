@@ -6,6 +6,7 @@ on:
     paths:
       - 'tools/emerald_session_server.py'
       - 'tests/test_emerald_session_server.py'
+      - 'tests/test_ehl8_reconnect.py'
       - 'src/lnet/lnet_session_client.*'
       - 'tests/native_ehl8_client.c'
       - 'tests/test_ehl8_native_bridge.py'
@@ -14,6 +15,7 @@ on:
     paths:
       - 'tools/emerald_session_server.py'
       - 'tests/test_emerald_session_server.py'
+      - 'tests/test_ehl8_reconnect.py'
       - 'src/lnet/lnet_session_client.*'
       - 'tests/native_ehl8_client.c'
       - 'tests/test_ehl8_native_bridge.py'
@@ -38,6 +40,7 @@ jobs:
         run: |
           python -m py_compile tools/emerald_session_server.py
           python -m unittest discover -s tests -p test_emerald_session_server.py -v
+          python -m unittest discover -s tests -p test_ehl8_reconnect.py -v
       - name: Build separate Windows headless session-server executable
         if: runner.os == 'Windows'
         shell: pwsh
