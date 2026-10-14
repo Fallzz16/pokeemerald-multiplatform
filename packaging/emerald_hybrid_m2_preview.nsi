@@ -27,6 +27,8 @@ Section "Emerald M2 Preview" SecMain
   File "payload\EmeraldSessionServer.exe"
   File "payload\EHL8_PREVIEW_MODE.txt"
   File "payload\LEIA_PRIMEIRO.txt"
+  File "payload\LEIA_QA_PTBR.md"
+  File "payload\AI_README.md"
   ; Profiles are deliberately isolated from the approved stable install:
   ; %LOCALAPPDATA%\EmeraldHybridEHL8Preview\profiles
   ; NO PORTABLE_MODE marker in installed version.
@@ -51,6 +53,8 @@ Section "Uninstall"
   Delete "$INSTDIR\EmeraldSessionServer.exe"
   Delete "$INSTDIR\EHL8_PREVIEW_MODE.txt"
   Delete "$INSTDIR\LEIA_PRIMEIRO.txt"
+  Delete "$INSTDIR\LEIA_QA_PTBR.md"
+  Delete "$INSTDIR\AI_README.md"
   Delete "$INSTDIR\Desinstalar_EHL8_Preview.exe"
   RMDir "$INSTDIR"
   DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\EmeraldHybridEHL8Preview"
