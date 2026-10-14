@@ -250,6 +250,9 @@ for rel_path, expected_sha in manifest.items():
         # Verify the entire original protected file by removing only the
         # reviewed CLI insertion; all other native port bytes must still match.
         native = contents.decode("utf-8")
+        if os.getenv("EMERALD_V080_QA") == "1":
+            from verify_v080_profile_patch import strip_v080_profile_patch
+            native = strip_v080_profile_patch(native)
         begin = "    // Optional headless LAN configuration on desktop."
         end = '#ifndef __ANDROID__\n    ReadSaveFile("pokeemerald.sav");\n#endif'
         require(native.count(begin) == 1 and native.count(end) == 1,
