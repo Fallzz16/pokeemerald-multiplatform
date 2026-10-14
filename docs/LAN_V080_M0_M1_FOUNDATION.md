@@ -11,9 +11,10 @@
 | `tests/test_lnet_session_v1.c` | 192 roundtrips de payload/tamanho/fragmentação, cabeçalhos inválidos, frames concatenados e limites |
 | `tests/test_save_profiles.c` | Importação bit a bit, formatos 128 KiB e +16 bytes, IDs sem traversal, bloqueio duplo, backups, restauração e recuperação de arquivo corrompido |
 | `scripts/verify_lan_v080_foundation.sh` | Script reproduzível que compila e executa os testes |
+| `tools/emerald_profilectl.c` | Ferramenta nativa de **desenvolvedor** com comandos `validate`, `new`, `import`, `backup`, `restore`, `prune`; não é launcher nem modifica saves fora do perfil selecionado |
 | `.github/workflows/test-lan-v080-foundation.yml` | Linux normal/sanitizers e cross-compilação Windows x86 |
 
-O teste de save **gera arquivo sintético temporário de cabeçalhos**, que não é jogável. **Nunca distribuí-lo como save real**. Os testes não leem, não criam nem alteram saves do usuário.
+As rotinas agora **revalidam o destino após a cópia** de importação e backup; a criação de novo perfil tenta limpar diretórios parciais em caso de falha. O formato ainda recebe validação apenas estrutural (sem checksums completos). O teste de save **gera arquivo sintético temporário de cabeçalhos**, que não é jogável. **Nunca distribuí-lo como save real**. Os testes não leem, não criam nem alteram saves do usuário.
 
 ## Testar
 
@@ -22,9 +23,11 @@ bash scripts/verify_lan_v080_foundation.sh
 SANITIZE=1 bash scripts/verify_lan_v080_foundation.sh
 ```
 
-Resultados esperados no Linux:
+Resultados verificados no Linux local e em GitHub Actions (execução deste incremento deve ser consultada pelo SHA):
 - 192 testes de roundtrip, mais rejeição de pacotes inválidos: PASS
 - Importações intactas, locks, backup/restore/retention, corrupção simulada: PASS
+- CLI de desenvolvedor (novo perfil e recusa de backup do flash apagado, travessia de diretório): PASS
+- Compilação cruzada Windows x86 das bibliotecas e CLI: PASS no workflow do incremento (confirmar em Actions no HEAD)
 
 **O status final de CI dependerá do SHA do último commit.** Verificar workflow antes de declarar Windows aprovado.
 
@@ -50,7 +53,7 @@ Resultados esperados no Linux:
 
 ## Rollback e continuidade
 
-- Branch desta fundação: `feature/lan-v080-m0-m1-foundation`, PR experimental a criar contra `feature/lan-v080-architecture-spec`.
+- Branch desta fundação: `feature/lan-v080-m0-m1-foundation`, [PR #6 experimental](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/6) contra `feature/lan-v080-architecture-spec`.
 - Baseline de gameplay validado pelo usuário: `feature/lan-v0721-viewport-culling`, commit `a87e2c49e453db32def5e71ba2a2e696a911d504`.
 - **Nenhum código pré-existente foi alterado:** basta não mesclar a branch para manter o jogo idêntico.
 - `AI_README.md` é documento obrigatório de transferência entre IAs, com registro do que se implementou e do que ainda não foi.
