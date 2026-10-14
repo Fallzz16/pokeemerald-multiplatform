@@ -2,11 +2,13 @@ name: Emerald Hybrid M2 EHL8 PREVIEW - Instalador e Portatil completos
 on:
   push:
     branches:
+      - feature/lan-v0803-ehl8-lobby-observability
       - feature/lan-v0803-dedicated-session-core
     paths:
       - 'packaging/emerald_hybrid_m2_preview.nsi'
       - '.github/workflows/package-v0803-ehl8-preview.yml'
       - 'docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md'
+      - 'docs/LAN_V0803_LOBBY_OBSERVABILITY_QA.md'
   pull_request:
     branches:
       - feature/lan-v080-mega-desktop-polish
@@ -14,6 +16,7 @@ on:
       - 'packaging/emerald_hybrid_m2_preview.nsi'
       - '.github/workflows/package-v0803-ehl8-preview.yml'
       - 'docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md'
+      - 'docs/LAN_V0803_LOBBY_OBSERVABILITY_QA.md'
   workflow_dispatch:
 
 permissions:
@@ -40,14 +43,14 @@ jobs:
           name: Emerald-Hybrid-v0802-GraphicalLauncher-Windows-x64-Experimental
           path: payload
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: 38530326649
+          run-id: 38534564224
       - name: Download exact validated EHL8 headless server executable
         uses: actions/download-artifact@v4
         with:
           name: Emerald-v0803-EHL8-SessionServer-Windows-DEV-NOT-GAMEPLAY
           path: payload
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: 38530326482
+          run-id: 38534564447
       - name: Download exact validated profile-manager executable
         uses: actions/download-artifact@v4
         with:
@@ -60,11 +63,11 @@ jobs:
         shell: pwsh
         run: |
           $expected=@{
-            'EmeraldLauncher.exe'='8361588c2889f8ddf554c7313687cf7c5ff35d4d327ac1a8e67efa1a4fa5ca88'
+            'EmeraldLauncher.exe'='a98bd3da8d4ad7743e62e3c9055ba5598d9411e8f0ae485351a1e73cccb28862'
             'pokeemerald.exe'='c899a9046723f0217301c07ae325517cad4150ac29b935eb91ddf82d94b763e0'
             'SDL2.dll'='eb323e920739ff48f72b28cd20f0cf6a58507bff852cbf1bacb4fb6fa07d1a3d'
             'emerald_profilectl.exe'='f60b8346d8a978b79bd503d1358fb986b62c03cb5f939921594c2f208d141f4d'
-            'EmeraldSessionServer.exe'='4ec6d3641297aa6a7b21927c5fdebe8dc70281fba38a21be66eb6bde8e2e6c05'
+            'EmeraldSessionServer.exe'='730727d8ecc55d5eb9d056194f414635f61233a08dcea369d3bf7086a9a71f6c'
           }
           foreach($name in $expected.Keys) {
             $p=Join-Path payload $name
@@ -98,6 +101,7 @@ jobs:
           "EHL8 PREVIEW - ISOLATE PROFILES FROM STABLE" | Set-Content payload/EHL8_PREVIEW_MODE.txt
           Copy-Item AI_README.md payload/AI_README.md
           Copy-Item docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md payload/LEIA_QA_PTBR.md
+          Copy-Item docs/LAN_V0803_LOBBY_OBSERVABILITY_QA.md payload/LEIA_QA_STATUS_LOBBY.md
           New-Item -Path release -ItemType Directory -Force | Out-Null
           New-Item -Path portable -ItemType Directory -Force | Out-Null
           @'
@@ -118,7 +122,7 @@ jobs:
         run: |
           Copy-Item payload/EmeraldLauncher.exe,payload/pokeemerald.exe,payload/SDL2.dll,payload/emerald_profilectl.exe,payload/EmeraldSessionServer.exe,payload/LEIA_PRIMEIRO.txt portable
           "PORTABLE PROFILE LOCATION: ./profiles" | Set-Content -LiteralPath portable/PORTABLE_MODE.txt
-          Copy-Item payload/LEIA_QA_PTBR.md,payload/AI_README.md portable
+          Copy-Item payload/LEIA_QA_PTBR.md,payload/LEIA_QA_STATUS_LOBBY.md,payload/AI_README.md portable
           Compress-Archive -Path portable/* -DestinationPath release/Emerald_Hybrid_EHL8_M2_PREVIEW_PORTATIL_Windows.zip -CompressionLevel Optimal
 
       - name: Install NSIS for real per-user installer build
@@ -149,7 +153,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: BAIXAR_AQUI_Emerald_EHL8_M2_PREVIEW_INSTALADOR_e_PORTATIL
+          name: BAIXAR_AQUI_Emerald_EHL8_LOBBY_ATUALIZADO_INSTALADOR_e_PORTATIL
           path: release/*
           if-no-files-found: error
           retention-days: 30
