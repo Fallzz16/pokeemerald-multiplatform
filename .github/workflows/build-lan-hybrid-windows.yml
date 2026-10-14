@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   pull_request:
     branches:
+      - feature/lan-v080-architecture-spec
       - feature/lan-v080-m0-m1-foundation
       - feature/lan-v070-async-slot-hardening
       - feature/lan-v071-connection-stability
