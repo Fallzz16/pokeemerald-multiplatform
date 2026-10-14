@@ -27,7 +27,7 @@ static int number(const char *text,unsigned *value)
 static int result(SpStatus status)
 {
     if(status==SP_OK){puts("OK");return 0;}
-    fprintf(stderr,"Profile operation failed (%d). Source never modified.\n",(int)status);
+    fprintf(stderr,"Profile operation failed (%d). No automatic recovery was attempted.\n",(int)status);
     return 1;
 }
 int main(int argc,char **argv)
