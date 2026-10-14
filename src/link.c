@@ -1994,6 +1994,8 @@ void LanLinkOpenAsHost(u16 port)
         sPortableLanLink = NULL;
     }
     sPortableLanLink = lnet_link_host(port, &err);
+    if (sPortableLanLink == NULL)
+        PortLanLog("[LAN] failed to open host listener (err=%d)\n", err);
 }
 
 void LanLinkOpenAsClient(const char *host, u16 port)
@@ -2006,6 +2008,8 @@ void LanLinkOpenAsClient(const char *host, u16 port)
         sPortableLanLink = NULL;
     }
     sPortableLanLink = lnet_link_join(host, port, &err);
+    if (sPortableLanLink == NULL)
+        PortLanLog("[LAN] failed to start client session (err=%d)\n", err);
 }
 
 void LanLinkClose(void)
