@@ -76,7 +76,7 @@ def validate_nickname(value):
         raise ValueError("O apelido deve ter de 1 a 18 caracteres.")
     return value
 
-def make_command(game,root,pid,mode,ip="",port="45680"):
+def make_command(game,root,pid,mode,ip="",port="45680",pin=""):
     if not PATTERN.fullmatch(pid):
         raise ValueError("Identificador de perfil inválido.")
     args=[str(game),"--profile-root="+str(root),"--profile-id="+pid]
@@ -84,7 +84,12 @@ def make_command(game,root,pid,mode,ip="",port="45680"):
     p=validate_port(port)
     if mode=="host":return args+["--lan-log","host-launcher.log","--lan-host="+str(p)]
     if mode=="join":return args+["--lan-log","cliente-launcher.log","--lan-client="+validate_ipv4(ip)+":"+str(p)]
-    raise ValueError("Modo indisponível: servidor dedicado ainda não implementado.")
+    if mode=="dedicated":
+        if not re.fullmatch(r"[0-9]{6}",pin):
+            raise ValueError("Informe o PIN de seis dígitos do servidor dedicado.")
+        return args+["--lan-log","cliente-ehl8.log",
+                     "--session-client="+validate_ipv4(ip)+":"+str(p),"--session-pin="+pin]
+    raise ValueError("Modo de jogo desconhecido.")
 
 def find_profiles(root):
     if not root.is_dir():return []
@@ -116,12 +121,17 @@ class EmeraldLauncher(tk.Tk):
         self.root_dir=profile_root()
         self.game=application_dir()/"pokeemerald.exe"
         self.cli=application_dir()/"emerald_profilectl.exe"
+        self.server_exe=application_dir()/"EmeraldSessionServer.exe"
+        self.server_process=None
         settings=read_settings(self.root_dir)
         selected=settings.get("selected_profile")
         self.selected=selected if isinstance(selected,str) and PATTERN.fullmatch(selected) else None
         self.ip=tk.StringVar(value=str(settings.get("last_host",""))[:48])
         self.port=tk.StringVar(value=str(settings.get("last_port","45680"))[:6])
         self.diagnostics=tk.BooleanVar(value=settings.get("diagnostics",False) is True)
+        self.pin=tk.StringVar()
+        self.dedicated_mode=tk.BooleanVar(value=False)
+        self.server_status=tk.StringVar(value="Servidor dedicado: desligado")
         self.active_process=None
         self.active_log=None
         self.active_mode=None
@@ -177,12 +187,16 @@ class EmeraldLauncher(tk.Tk):
         self.text(heading,"Escolha um perfil e como deseja jogar.",10,MUTED).pack(anchor="w",pady=(6,0))
         info=tk.Frame(f,bg="#194131",padx=17,pady=12);info.pack(fill="x",padx=32,pady=(0,12))
         tk.Label(info,textvariable=self.status,fg=GREEN,bg=info["bg"],font=("Segoe UI",11,"bold"),anchor="w").pack(fill="x")
-        self.text(info,"Conta = perfil local. O servidor dedicado da v0.8 ainda está em desenvolvimento.",9,MUTED).pack(anchor="w",pady=(3,0))
+        self.text(info,"Conta = perfil local. EHL8 dedicado: beta para 2, presença apenas; batalhas/trocas usam P2P.",9,MUTED).pack(anchor="w",pady=(3,0))
         cards=tk.Frame(f,bg=INK);cards.pack(fill="x",padx=32)
         self.card(cards,"Jogar offline","Seu save, sem precisar de Internet.",lambda:self.play("offline"),"JOGAR",accent=True)
         self.card(cards,"Hospedar e jogar","Seu PC hospeda a sessão LAN/VPN para 2 jogadores.",lambda:self.play("host"),"HOSPEDAR")
-        self.card(cards,"Jogar com amigos","Conectar no IPv4 do amigo pela LAN ou VPN privada.",lambda:self.play("join"),"ENTRAR")
-        self.card(cards,"Hospedar servidor dedicado","Servidor independente, lobby e 4 jogadores são a próxima etapa.",lambda:None,"EM BREVE",available=False)
+        self.card(cards,"Jogar com amigos","Entrar por IP: P2P Cable Club ou servidor EHL8 com PIN.",self.play_with_friends,"ENTRAR")
+        self.card(cards,"Hospedar servidor dedicado","Servidor independente EHL8 beta: 2 jogadores, sem jogo no host.",self.start_server,"INICIAR SERVIDOR")
+        rowserver=tk.Frame(f,bg=INK);rowserver.pack(fill="x",padx=32,pady=(1,0))
+        tk.Label(rowserver,textvariable=self.server_status,fg=GREEN,bg=INK,
+                 font=("Segoe UI",9),anchor="w").pack(side="left",fill="x",expand=True)
+        self.btn(rowserver,"Parar servidor",self.stop_server).pack(side="right")
         section=tk.Frame(f,bg=INK);section.pack(fill="x",padx=32,pady=(19,6))
         self.text(section,"CONFIGURAÇÕES DA CONEXÃO",10,MUTED,True).pack(anchor="w")
         row=tk.Frame(f,bg=INK);row.pack(fill="x",padx=32)
@@ -190,6 +204,13 @@ class EmeraldLauncher(tk.Tk):
         tk.Entry(row,textvariable=self.ip,width=20,bg=PANEL,fg=WHITE,insertbackground=WHITE,relief="flat",font=("Consolas",11)).pack(side="left",padx=(10,22),ipady=7)
         self.text(row,"Porta:",10,MUTED).pack(side="left")
         tk.Entry(row,textvariable=self.port,width=7,bg=PANEL,fg=WHITE,insertbackground=WHITE,relief="flat",font=("Consolas",11)).pack(side="left",padx=9,ipady=7)
+        secretrow=tk.Frame(f,bg=INK);secretrow.pack(fill="x",padx=32,pady=(6,0))
+        tk.Checkbutton(secretrow,text="Entrar via servidor dedicado EHL8",variable=self.dedicated_mode,
+                       selectcolor=PANEL,activebackground=INK,activeforeground=WHITE,
+                       bg=INK,fg=MUTED,font=("Segoe UI",9)).pack(side="left")
+        self.text(secretrow,"PIN:",9,MUTED).pack(side="left",padx=(8,2))
+        tk.Entry(secretrow,textvariable=self.pin,show="*",width=8,bg=PANEL,fg=WHITE,
+                 insertbackground=WHITE,relief="flat",font=("Consolas",10)).pack(side="left",ipady=5)
         tk.Checkbutton(f,text="Diagnóstico opcional: mostrar console CMD",variable=self.diagnostics,
                        command=self.persist,selectcolor=PANEL,activebackground=INK,activeforeground=WHITE,
                        bg=INK,fg=MUTED,font=("Segoe UI",10),anchor="w").pack(anchor="w",padx=32,pady=(13,0))
@@ -287,7 +308,70 @@ class EmeraldLauncher(tk.Tk):
         except (OSError,RuntimeError,subprocess.TimeoutExpired) as err:
             messagebox.showerror("Não foi possível recuperar",str(err))
 
+    def play_with_friends(self):
+        self.play("dedicated" if self.dedicated_mode.get() else "join")
+
+    def start_server(self):
+        if self.server_process is not None and self.server_process.poll() is None:
+            messagebox.showinfo("Servidor ativo","Já existe um servidor em execução neste launcher.")
+            return
+        if not self.server_exe.is_file():
+            messagebox.showerror("Servidor ausente","EmeraldSessionServer.exe não foi encontrado. Use o pacote completo EHL8.")
+            return
+        try:
+            port=validate_port(self.port.get())
+            pin=self.pin.get()
+            if not re.fullmatch(r"[0-9]{6}",pin):
+                raise ValueError("Informe um PIN de seis dígitos antes de hospedar.")
+            if not messagebox.askyesno("Servidor experimental LAN",
+                  "Iniciar servidor EHL8 na rede local privada?\n"
+                  "Somente personagens no mapa; batalhas e trocas ainda usam P2P.\n"
+                  "Não abra portas públicas no roteador."):
+                return
+            logs=self.root_dir.parent/"logs"
+            logs.mkdir(parents=True,exist_ok=True)
+            path=logs/("servidor-"+datetime.now().strftime("%Y%m%d-%H%M%S")+".log")
+            flags=(getattr(subprocess,"CREATE_NO_WINDOW",0) if sys.platform=="win32" else 0)
+            with path.open("ab") as log:
+                proc=subprocess.Popen([str(self.server_exe),"--bind","0.0.0.0",
+                     "--port",str(port),"--slots","2","--idle-minutes","15",
+                     "--pin-stdin"],cwd=str(application_dir()),creationflags=flags,
+                     stdin=subprocess.PIPE,stdout=log,stderr=subprocess.STDOUT)
+                try:
+                    proc.stdin.write((pin+"\n").encode("ascii"))
+                    proc.stdin.flush()
+                finally:
+                    proc.stdin.close()
+            self.server_process=proc
+            self.server_status.set("Servidor EHL8 iniciando · porta "+str(port)+" · até 2 jogadores")
+            self.after(1500,self.watch_server)
+        except (OSError,ValueError) as exc:
+            messagebox.showerror("Não foi possível hospedar",str(exc))
+
+    def watch_server(self):
+        if self.server_process is None:return
+        rc=self.server_process.poll()
+        if rc is not None:
+            self.server_process=None
+            self.server_status.set("Servidor desligado (código "+str(rc)+"). Veja os logs.")
+        else:
+            self.server_status.set("Servidor EHL8 ativo (beta) · até 2 jogadores")
+            self.after(1300,self.watch_server)
+
+    def stop_server(self):
+        if self.server_process is not None and self.server_process.poll() is None:
+            if not messagebox.askyesno("Parar servidor","Desconectar os jogadores e encerrar o servidor EHL8?"):
+                return
+            self.server_process.terminate()
+            self.server_status.set("Servidor encerrando...")
+        else:
+            self.server_status.set("Servidor dedicado: desligado")
+
     def shutdown(self):
+        if self.server_process is not None and self.server_process.poll() is None:
+            if not messagebox.askyesno("Encerrar servidor","Fechar o launcher também encerrará a sala dedicada. Continuar?"):
+                return
+            self.server_process.terminate()
         self.persist()
         self.destroy()
 
@@ -359,14 +443,18 @@ class EmeraldLauncher(tk.Tk):
         if not (self.root_dir/self.selected/"pokeemerald.sav").is_file():
             messagebox.showerror("Save não encontrado","O arquivo de save deste perfil não existe.");return
         try:
-            args=make_command(self.game,self.root_dir,self.selected,mode,self.ip.get(),self.port.get())
+            host=self.ip.get().strip()
+            if mode=="dedicated" and not host and self.server_process is not None and self.server_process.poll() is None:
+                host="127.0.0.1"
+            args=make_command(self.game,self.root_dir,self.selected,mode,host,self.port.get(),self.pin.get())
             self.persist()
             logs=self.root_dir.parent/"logs"
             logs.mkdir(parents=True,exist_ok=True)
             if mode!="offline":
                 # The older P2P link uses an independent --lan-log file.
                 pos=args.index("--lan-log")
-                args[pos+1]=str(logs/("host-lan.log" if mode=="host" else "cliente-lan.log"))
+                args[pos+1]=str(logs/("host-lan.log" if mode=="host" else
+                                     "cliente-ehl8.log" if mode=="dedicated" else "cliente-lan.log"))
             flags=0
             if sys.platform=="win32":
                 flags=(getattr(subprocess,"CREATE_NEW_CONSOLE",0) if self.diagnostics.get()
