@@ -8,6 +8,8 @@ on:
     paths:
       - 'tools/emerald_qa_lab.py'
       - 'tools/emerald_qa_lobby.py'
+      - 'tools/emerald_session_server.py'
+      - 'tests/test_emerald_session_admin.py'
       - 'tests/test_emerald_qa_lab.py'
       - 'tests/test_emerald_qa_lobby.py'
       - 'tools/emerald_qa_bots.py'
@@ -17,6 +19,8 @@ on:
     paths:
       - 'tools/emerald_qa_lab.py'
       - 'tools/emerald_qa_lobby.py'
+      - 'tools/emerald_session_server.py'
+      - 'tests/test_emerald_session_admin.py'
       - 'tests/test_emerald_qa_lab.py'
       - 'tests/test_emerald_qa_lobby.py'
       - 'tools/emerald_qa_bots.py'
@@ -40,6 +44,8 @@ jobs:
           python -m py_compile tools/emerald_qa_lab.py tools/emerald_qa_lobby.py tools/emerald_qa_bots.py
           python -m unittest discover -s tests -p test_emerald_qa_lab.py -v
           python -m unittest discover -s tests -p test_emerald_qa_lobby.py -v
+          python -m unittest discover -s tests -p test_emerald_session_admin.py -v
+          python -m unittest discover -s tests -p test_emerald_session_server.py -v
           python -m unittest discover -s tests -p test_emerald_qa_bots.py -v
       - name: Build windowed lab.exe
         shell: pwsh
@@ -47,7 +53,8 @@ jobs:
           python -m pip install --disable-pip-version-check pyinstaller==6.16.0
           python -m PyInstaller --noconfirm --clean --onefile --windowed --paths tools --hidden-import emerald_qa_lobby --name EmeraldQALab tools/emerald_qa_lab.py
           python -m PyInstaller --noconfirm --clean --onefile --console --name EmeraldQABots tools/emerald_qa_bots.py
-          foreach ($exe in @('EmeraldQALab.exe','EmeraldQABots.exe')) {
+          python -m PyInstaller --noconfirm --clean --onefile --console --name EmeraldSessionServerM21 tools/emerald_session_server.py
+          foreach ($exe in @('EmeraldQALab.exe','EmeraldQABots.exe','EmeraldSessionServerM21.exe')) {
             if (!(Test-Path ("dist/" + $exe))) { throw "$exe not generated" }
             if ((Get-Item ("dist/" + $exe)).Length -lt 100000) { throw "$exe unexpectedly small" }
           }
@@ -57,6 +64,8 @@ jobs:
           New-Item -ItemType Directory -Force -Path qa-package | Out-Null
           Copy-Item dist/EmeraldQALab.exe qa-package/
           Copy-Item dist/EmeraldQABots.exe qa-package/
+          Copy-Item dist/EmeraldSessionServerM21.exe qa-package/
+          Copy-Item docs/V100_M21B_ADMIN_QA_PTBR.md qa-package/LEIA_ADMIN_M21.md
           Copy-Item docs/V100_M0_M1_QA_LAB.md qa-package/LEIA_LABORATORIO.md
           @'
           @echo off
