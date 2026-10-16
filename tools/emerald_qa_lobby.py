@@ -102,7 +102,7 @@ def show_lobby(parent, manager, bg="#091611", panel="#142c23",
     tk.Label(win, text="Status dos logs reais da sessão local.",
              bg=bg, fg=muted, font=("Segoe UI", 10)).pack(anchor="w", padx=24)
     variables = [(name, tk.StringVar(value="AGUARDANDO")) for name in
-                 ("SALA (2 slots)", "SERVIDOR", "JOGADOR QA_A", "JOGADOR QA_B", "ENTRADAS NOVAS")]
+                 ("SALA (2 slots)", "SERVIDOR", "VAGAS RESERVADAS", "JOGADOR QA_A", "JOGADOR QA_B", "ENTRADAS NOVAS")]
     for name, var in variables:
         area = tk.Frame(win, bg=panel, padx=12, pady=8)
         area.pack(fill="x", padx=24, pady=(9, 0))
@@ -117,7 +117,9 @@ def show_lobby(parent, manager, bg="#091611", panel="#142c23",
         state = lobby_snapshot(manager)
         lock_label = ("BLOQUEADAS" if state["locked"] else "PERMITIDAS"
                       if state["locked"] is not None else "NÃO DISPONÍVEL")
-        values = (state["room"], state["server"],
+        reservation_label = (str(state["reserved"]) + "/2" if state["reserved"] is not None
+                             else "NÃO DISPONÍVEL")
+        values = (state["room"], state["server"], reservation_label,
                   state["players"]["QA_A"], state["players"]["QA_B"], lock_label)
         for (_, var), value in zip(variables, values):
             var.set(value)
