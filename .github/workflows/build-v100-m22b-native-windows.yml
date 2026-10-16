@@ -64,6 +64,7 @@ jobs:
           python -m unittest discover -s tests -p test_emerald_session_admin.py -v
           python -m unittest discover -s tests -p test_ehl8_resume_v1.py -v
           python -m unittest discover -s tests -p test_emerald_qa_lab.py -v
+          python -m unittest discover -s tests -p test_ehl8_m22b_bundle_safety.py -v
           python -m unittest discover -s tests -p test_emerald_qa_lobby.py -v
           python -m unittest discover -s tests -p test_emerald_qa_bots.py -v
       - name: Build companion Windows executables
