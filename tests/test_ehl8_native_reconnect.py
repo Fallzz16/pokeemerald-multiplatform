@@ -46,7 +46,7 @@ class NativeResume(unittest.IsolatedAsyncioTestCase):
                     break
                 await asyncio.sleep(.025)
             else:
-                self.fail("two playing native clients not connected")
+                self.fail("native peers not ready: " + repr([(key, p.profile, p.stage, p.ready, bool(p.resume_token)) for key, p in server.players.items()]) + " reservations=" + repr(server.reservations) + " clients=" + repr((a.returncode, b.returncode)))
             await asyncio.sleep(.45)
             target = next(p for p in server.players.values() if p.profile == b"trainer_A")
             previous_slot = target.slot
