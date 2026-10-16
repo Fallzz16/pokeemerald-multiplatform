@@ -11,9 +11,11 @@ import sys
 ROOM = re.compile(r"EHL8_ROOM_COUNT=(\d+)/(\d+)")
 STATE = re.compile(r"\[EHL8\] session state=(\d+)")
 ROOM_LOCKED = re.compile(r"EHL8_ROOM_LOCKED=([01])")
+ROOM_RESERVED = re.compile(r"EHL8_ROOM_RESERVED=(\d+)/(\d+)")
 LABELS = {0: "CONECTANDO", 1: "NEGOCIANDO", 2: "AUTENTICANDO",
           3: "ENTRANDO NA SALA", 4: "AGUARDANDO SEGUNDO JOGADOR",
-          5: "EM JOGO", 6: "ERRO DE CONEXÃO"}
+          5: "EM JOGO", 6: "ERRO DE CONEXÃO",
+          7: "RECONECTANDO (ATÉ 60s)"}
 
 
 def tail_text(path, limit=8192):
@@ -42,6 +44,14 @@ def latest_room_lock(log_text):
     return bool(int(found[-1])) if found else None
 
 
+def latest_reservations(log_text):
+    values = ROOM_RESERVED.findall(log_text)
+    if not values:
+        return None
+    used, capacity = (int(n) for n in values[-1])
+    return used if capacity == 2 and 0 <= used <= 2 else None
+
+
 def latest_client_state(log_text):
     found = STATE.findall(log_text)
     return LABELS.get(int(found[-1]), "ESTADO DESCONHECIDO") if found else None
@@ -57,6 +67,7 @@ def lobby_snapshot(manager):
     server_log = tail_text(logdir / "servidor.log")
     reported = latest_room(server_log)
     locked = latest_room_lock(server_log) if live else None
+    reserved = latest_reservations(server_log) if live else None
     room = (f"{reported[0]}/{reported[1]}" if live and reported else
             "AGUARDANDO DADOS" if live else "ENCERRADA")
     for i, profile in enumerate(("QA_A", "QA_B")):
@@ -71,6 +82,7 @@ def lobby_snapshot(manager):
                 tail_text(logdir / (profile + "-rede.log"))) or "INICIANDO"
     return {"room": room, "server": "ATIVO (localhost)" if live else "DESLIGADO",
             "players": players, "live": live, "locked": locked,
+            "reserved": reserved,
             "admin": bool(live and getattr(manager, "admin_enabled", False))}
 
 
