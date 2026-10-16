@@ -286,6 +286,7 @@ class QASession:
         self.app, self.root = Path(app).resolve(), Path(root).resolve()
         self.session = None
         self.games = []
+        self.game_profiles = []
         self.server = None
         self.mode = "offline"
         self.backups_done = False
@@ -304,7 +305,8 @@ class QASession:
         """New session, or attach games to a lobby started without any games."""
         if self.running():
             if (not server_only and mode == "ehl8" and
-                self.server is not None and self.server.poll() is None and not self.games):
+                self.server is not None and self.server.poll() is None and
+                len(self.game_profiles) < 2):
                 return self.launch_games(port, pin)
             raise RuntimeError("Uma sessão de testes ainda está executando.")
         if server_only and mode != "ehl8":
@@ -326,6 +328,7 @@ class QASession:
         self.mode = mode
         self.session = prepare_session(self.app, self.root, sources, mode)
         self.games = []
+        self.game_profiles = []
         self.server = None
         self.backups_done = False
         self.backup_status = []
@@ -363,28 +366,37 @@ class QASession:
         """
         return self.launch("ehl8", sources, port, pin, server_only=True)
 
-    def launch_games(self, port=45680, pin=""):
-        """Attach exactly two games to this Lab's *existing* localhost server."""
+    def _check_existing_server(self, port, pin):
         if (self.mode != "ehl8" or self.server is None or
-            self.server.poll() is not None or self.session is None):
-            raise RuntimeError("Inicie o servidor EHL8 local antes de entrar na sala.")
-        if self.games:
-            raise RuntimeError("As contas desta sessão já foram iniciadas.")
+            self.server.poll() is not None or self.session is None or self.backups_done):
+            raise RuntimeError("Inicie uma sala EHL8 local ativa antes de abrir uma conta.")
         if validate_port(port) != self._server_port or validate_pin(pin) != self._server_pin:
             raise ValueError("Porta ou PIN diferentes dos usados ao iniciar o servidor.")
-        # Revalidate the QA-owned save paths before any process is started.
         existing_session(self.root, self.session)
-        try:
-            self._spawn_games("ehl8", port, pin)
-        except Exception:
-            self.stop()
-            raise
+
+    def launch_single(self, profile_id, port=45680, pin=""):
+        """Join one existing local lobby without recreating a save or server."""
+        if profile_id not in PROFILE_IDS:
+            raise ValueError("Conta de teste inválida.")
+        self._check_existing_server(port, pin)
+        if profile_id in self.game_profiles:
+            raise RuntimeError(profile_id + " já foi aberta nesta sessão. Não duplicar processos nem logs.")
+        self._spawn_games("ehl8", port, pin, (profile_id,))
         return self.session
 
-    def _spawn_games(self, mode, port, pin):
+    def launch_games(self, port=45680, pin=""):
+        """Join missing QA slots on the same server, preserving existing games."""
+        self._check_existing_server(port, pin)
+        missing = tuple(pid for pid in PROFILE_IDS if pid not in self.game_profiles)
+        if not missing:
+            raise RuntimeError("As duas contas desta sessão já foram iniciadas.")
+        self._spawn_games("ehl8", port, pin, missing)
+        return self.session
+
+    def _spawn_games(self, mode, port, pin, profile_ids=PROFILE_IDS):
         profiles = self.session / "profiles"
         logs = self.session / "logs"
-        for profile_id in PROFILE_IDS:
+        for profile_id in profile_ids:
             argv = game_command(self.app, profiles, profile_id, mode, port)
             argv += ["--lan-log", str(logs / (profile_id + "-rede.log"))]
             with (logs / (profile_id + "-jogo.log")).open("wb") as err:
@@ -394,6 +406,7 @@ class QASession:
                     stdout=subprocess.DEVNULL, stderr=err,
                     creationflags=no_window_flags())
             self.games.append(process)
+            self.game_profiles.append(profile_id)
             if mode == "ehl8":
                 self._send_pin(process, pin)
 
@@ -416,6 +429,7 @@ class QASession:
         self.session = selected
         self.mode = "offline"
         self.games = []
+        self.game_profiles = [profile_id]
         self.server = None
         self.backups_done = False
         self.backup_status = []
@@ -483,7 +497,7 @@ class QASession:
         if self.server is not None and self.server.poll() is None:
             self.server.terminate()
         profiles = self.session / "profiles"
-        for profile_id in self.active_profiles:
+        for profile_id in self.game_profiles:
             command = [str(self.app / "emerald_profilectl.exe"),
                        "backup", str(profiles), profile_id]
             try:
@@ -500,7 +514,7 @@ class QASession:
                 message = profile_id + ": falha ao executar backup; save mantido"
             self.backup_status.append(message)
         report = {"schema": 1, "mode": self.mode,
-                  "profiles": list(self.active_profiles),
+                  "profiles": list(self.game_profiles),
                   "exit_codes": [p.poll() for p in self.games],
                   "backups": self.backup_status,
                   "finished": datetime.now().isoformat(timespec="seconds")}
@@ -685,7 +699,7 @@ def main():
             return
         try:
             was_waiting = bool(manager.mode == "ehl8" and manager.server is not None
-                               and manager.server.poll() is None and not manager.games)
+                               and manager.server.poll() is None)
             folder = manager.launch(mode.get(),
                                     tuple(s.get().strip() or None for s in sources),
                                     port.get(), pin.get())
@@ -697,6 +711,17 @@ def main():
         except (OSError, ValueError, RuntimeError, subprocess.TimeoutExpired) as exc:
             messagebox.showerror("Não foi possível iniciar", str(exc), parent=gui)
             status.set("Falha no início; consulte os logs da pasta de testes.")
+
+    def join_one(profile_id):
+        if mode.get() != "ehl8" or bot_manager.running():
+            messagebox.showwarning("Modo indisponível", "Selecione EHL8 local e encerre os bots.", parent=gui)
+            return
+        try:
+            folder = manager.launch_single(profile_id, port.get(), pin.get())
+            status.set(profile_id + " aberto na sala já ativa: " + str(folder) +
+                       ". Aguarde o outro treinador ou clique ABRIR 2 JOGOS para completar.")
+        except (OSError, ValueError, RuntimeError, subprocess.TimeoutExpired) as exc:
+            messagebox.showerror("Não foi possível entrar", str(exc), parent=gui)
 
     def stop():
         if manager.running() and messagebox.askyesno(
@@ -738,6 +763,14 @@ def main():
         tk.Button(buttons, text=text, command=callback, bg="#176449" if text.startswith("ABRIR")
                   else PANEL, fg=FG, activebackground="#277d5e", relief="flat",
                   font=("Segoe UI", 10, "bold"), padx=11, pady=9).pack(side="left", padx=(0, 7))
+    join_row = tk.Frame(gui, bg=BG)
+    join_row.pack(fill="x", padx=27, pady=(0, 7))
+    tk.Label(join_row, text="ENTRADA INDIVIDUAL NA SALA ATIVA:", bg=BG, fg=MUTED,
+             font=("Segoe UI", 9)).pack(side="left", padx=(0, 10))
+    for profile_id in PROFILE_IDS:
+        tk.Button(join_row, text="ENTRAR " + profile_id,
+                  command=lambda p=profile_id: join_one(p), bg="#236448", fg=FG,
+                  relief="flat", padx=11, pady=5).pack(side="left", padx=(0, 8))
     # M2.1-A monitor reads real localhost session logs; READY stays automatic.
     def show_lobby_monitor():
         from emerald_qa_lobby import show_lobby
@@ -845,7 +878,7 @@ def main():
 
     def monitor():
         if manager.session and not manager.backups_done and manager.games:
-            if all(p.poll() is not None for p in manager.games):
+            if (len(manager.game_profiles) == 2 or not manager.running()) and all(p.poll() is not None for p in manager.games):
                 manager.complete()
                 status.set("Jogos encerrados. " + "; ".join(manager.backup_status) +
                            ". Logs e relatório preservados.")
