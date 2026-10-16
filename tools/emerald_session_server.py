@@ -173,6 +173,19 @@ class SessionServer:
             self.locked = False
             self.log.info("EHL8_ROOM_LOCKED=0")
             return True
+        if command.startswith("DROP ") and self.resume_enabled:
+            # Local QA-only transport interruption; preserve the recoverable token.
+            identity = command[5:].encode("ascii", errors="ignore")
+            if not PROFILE_ID.fullmatch(identity):
+                return False
+            peer = next((p for p in self.players.values()
+                         if p.profile == identity and p.stage == "GAME"), None)
+            if peer is None:
+                self.log.info("EHL8_ADMIN_DROP_OK=0")
+                return False
+            peer.close()
+            self.log.info("EHL8_ADMIN_DROP_OK=1")
+            return True
         if command.startswith("KICK "):
             identity = command[5:].encode("ascii", errors="ignore")
             if not PROFILE_ID.fullmatch(identity):
@@ -400,7 +413,7 @@ async def serve(args):
                     return
                 command = line.strip()
                 if command not in ("LOCK ON", "LOCK OFF") and not re.fullmatch(
-                        r"KICK [A-Za-z0-9_-]{1,48}", command):
+                        r"(KICK|DROP) [A-Za-z0-9_-]{1,48}", command):
                     continue
                 try:
                     loop.call_soon_threadsafe(
