@@ -77,10 +77,17 @@ def game_command(app, profiles, profile_id, mode, port):
     return argv
 
 
-def server_command(app, port):
-    return [str(app / "EmeraldSessionServer.exe"), "--bind", "127.0.0.1",
-            "--port", str(validate_port(port)), "--slots", "2",
-            "--idle-minutes", "15", "--pin-stdin"]
+def server_command(app, port, admin=False):
+    """M2.1 admin server is an optional separate EXE; never replace legacy."""
+    app = Path(app)
+    advanced = app / "EmeraldSessionServerM21.exe"
+    binary = advanced if advanced.is_file() else app / "EmeraldSessionServer.exe"
+    command = [str(binary), "--bind", "127.0.0.1",
+               "--port", str(validate_port(port)), "--slots", "2",
+               "--idle-minutes", "15", "--pin-stdin"]
+    if admin and binary == advanced:
+        command.append("--admin-stdin")
+    return command
 
 
 def file_digest(path):
@@ -248,6 +255,7 @@ class QASession:
         self.backup_status = []
         self.active_profiles = PROFILE_IDS
         self.report_name = "report.json"
+        self.admin_enabled = False
 
     def running(self):
         return any(p.poll() is None for p in self.games) or (
@@ -276,15 +284,18 @@ class QASession:
         self.backup_status = []
         self.active_profiles = PROFILE_IDS
         self.report_name = "report.json"
+        self.admin_enabled = False
         profiles = self.session / "profiles"
         logs = self.session / "logs"
         try:
             if mode == "ehl8":
                 with (logs / "servidor.log").open("wb") as out:
-                    self.server = subprocess.Popen(server_command(self.app, port),
+                    server_args = server_command(self.app, port, admin=True)
+                    self.server = subprocess.Popen(server_args,
                         cwd=str(self.app), stdin=subprocess.PIPE, stdout=out,
                         stderr=subprocess.STDOUT, creationflags=no_window_flags())
-                self._send_pin(self.server, pin)
+                self.admin_enabled = "--admin-stdin" in server_args
+                self._send_pin(self.server, pin, keep_open=self.admin_enabled)
                 if self.server.poll() is not None:
                     raise RuntimeError("Servidor EHL8 encerrou ao iniciar. Verifique servidor.log.")
             for profile_id in PROFILE_IDS:
@@ -327,6 +338,7 @@ class QASession:
         self.backup_status = []
         self.active_profiles = (profile_id,)
         run_id = datetime.now().strftime("%Y%m%d-%H%M%S") + "-" + secrets.token_hex(4)
+        self.admin_enabled = False
         self.report_name = "reopen-" + profile_id + "-" + run_id + ".json"
         argv = game_command(self.app, selected / "profiles", profile_id, "offline", 45680)
         argv += ["--lan-log", str(logs / (profile_id + "-" + run_id + "-rede.log"))]
@@ -338,12 +350,33 @@ class QASession:
         return selected
 
     @staticmethod
-    def _send_pin(process, pin):
+    def _send_pin(process, pin, keep_open=False):
         try:
             process.stdin.write((pin + "\n").encode("ascii"))
             process.stdin.flush()
         finally:
-            process.stdin.close()
+            if not keep_open:
+                process.stdin.close()
+
+    def admin_command(self, action, profile=None):
+        """Allowlisted commands to our own child server's private stdin pipe."""
+        actions = {"lock": "LOCK ON", "unlock": "LOCK OFF"}
+        if action == "kick" and profile in PROFILE_IDS:
+            command = "KICK " + profile
+        elif action in actions and profile is None:
+            command = actions[action]
+        else:
+            raise ValueError("Comando administrativo desconhecido.")
+        if (self.mode != "ehl8" or not self.admin_enabled or self.server is None
+                or self.server.poll() is not None or self.server.stdin is None
+                or self.server.stdin.closed):
+            raise RuntimeError("Servidor M2.1 com administração não está ativo.")
+        try:
+            self.server.stdin.write((command + "\n").encode("ascii"))
+            self.server.stdin.flush()
+        except (OSError, ValueError) as exc:
+            raise RuntimeError("Não foi possível enviar o comando à sala.") from exc
+        return command
 
     def stop(self):
         for process in self.games + ([self.server] if self.server else []):
