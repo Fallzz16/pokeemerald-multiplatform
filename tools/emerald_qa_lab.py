@@ -87,7 +87,21 @@ def server_command(app, port, admin=False):
     advanced = app / "EmeraldSessionServerM21.exe"
     matched = app / "EHL8_M22B_GAME_MATCHED.txt"
     resume = app / "EmeraldSessionServerM22.exe"
-    if admin and matched.is_file():
+    host_marker = app / "EHL8_M23_GAME_MATCHED.txt"
+    host_binary = app / "EmeraldSessionServerM23.exe"
+    if admin and host_marker.is_file():
+        if not host_binary.is_file():
+            raise FileNotFoundError("Servidor M2.3 ausente; o lobby não pode iniciar com binários misturados.")
+        try:
+            expected = json.loads(host_marker.read_text(encoding="utf-8-sig"))
+            verified = (expected["game_sha256"] == file_digest(app / "pokeemerald.exe")
+                        and expected["server_sha256"] == file_digest(host_binary))
+        except (OSError, ValueError, KeyError, TypeError):
+            verified = False
+        if not verified:
+            raise RuntimeError("Hashes jogo/servidor M2.3 não conferem. Instale o ZIP completo em outra pasta.")
+        binary = host_binary
+    elif admin and matched.is_file():
         if not resume.is_file():
             raise FileNotFoundError("Servidor M2.2-B ausente; não iniciar servidor incompatível.")
         try:
@@ -104,10 +118,12 @@ def server_command(app, port, admin=False):
     command = [str(binary), "--bind", "127.0.0.1",
                "--port", str(validate_port(port)), "--slots", "2",
                "--idle-minutes", "15", "--pin-stdin"]
-    if admin and binary in (advanced, resume):
+    if admin and binary in (advanced, resume, host_binary):
         command.append("--admin-stdin")
-    if binary == resume:
+    if binary in (resume, host_binary):
         command.append("--resume-v1")
+    if binary == host_binary:
+        command.append("--host-start")
     return command
 
 
@@ -381,11 +397,12 @@ class QASession:
 
     def admin_command(self, action, profile=None):
         """Allowlisted commands to our own child server's private stdin pipe."""
-        actions = {"lock": "LOCK ON", "unlock": "LOCK OFF"}
+        actions = {"lock": "LOCK ON", "unlock": "LOCK OFF", "start": "START"}
         if action == "kick" and profile in PROFILE_IDS:
             command = "KICK " + profile
         elif action == "drop" and profile in PROFILE_IDS:
-            if not (self.app / "EHL8_M22B_GAME_MATCHED.txt").is_file():
+            if not ((self.app / "EHL8_M22B_GAME_MATCHED.txt").is_file()
+                    or (self.app / "EHL8_M23_GAME_MATCHED.txt").is_file()):
                 raise ValueError("Simulação de queda somente na preview M2.2-B.")
             command = "DROP " + profile
         elif action in actions and profile is None:
