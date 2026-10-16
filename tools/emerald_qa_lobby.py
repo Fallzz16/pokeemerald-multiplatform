@@ -111,6 +111,7 @@ def show_lobby(parent, manager, bg="#091611", panel="#142c23",
                  font=("Segoe UI", 11, "bold")).pack(side="right")
 
     buttons_admin = []
+    buttons_drop = []
     lock_button = [None]
 
     def refresh():
@@ -125,6 +126,10 @@ def show_lobby(parent, manager, bg="#091611", panel="#142c23",
             var.set(value)
         for btn in buttons_admin:
             btn.configure(state="normal" if state["admin"] else "disabled")
+        resume_qa = bool(state["admin"] and getattr(manager, "app", None) and
+                         (Path(manager.app) / "EHL8_M22B_GAME_MATCHED.txt").is_file())
+        for btn in buttons_drop:
+            btn.configure(state="normal" if resume_qa else "disabled")
         if lock_button[0] is not None:
             lock_button[0].configure(text="PERMITIR ENTRADAS" if state["locked"]
                                      else "BLOQUEAR ENTRADAS")
@@ -177,8 +182,16 @@ def show_lobby(parent, manager, bg="#091611", panel="#142c23",
         bg=panel, fg=fg, relief="flat", padx=10, pady=8)
     lock_button[0].pack(side="left")
     buttons_admin.append(lock_button[0])
-    tk.Label(win, text="Comandos do lobby usam apenas o stdin privado do servidor M2.1.\n"
-             "READY/START continuam automáticos; reconexão ainda não implementada.",
+    reconnection = tk.Frame(win, bg=bg)
+    reconnection.pack(anchor="w", padx=24, pady=(10, 0))
+    for profile in ("QA_A", "QA_B"):
+        button = tk.Button(reconnection, text="SIMULAR QUEDA " + profile,
+                           command=lambda profile=profile: admin("drop", profile),
+                           bg=panel, fg=fg, relief="flat", padx=10, pady=8)
+        button.pack(side="left", padx=(0, 9))
+        buttons_drop.append(button)
+    tk.Label(win, text="Comandos do lobby usam apenas o stdin privado do servidor.\n"
+             "SIMULAR QUEDA interrompe só o TCP, não fecha jogo/saves. READY/START automáticos.",
              bg=bg, fg=muted, justify="left").pack(anchor="w", padx=24, pady=(15, 0))
 
     scheduled = [None]
