@@ -13,6 +13,7 @@ import signal
 import sys
 import struct
 import time
+import threading
 from dataclasses import dataclass
 
 MAGIC = b"EHL8"
@@ -90,6 +91,7 @@ class SessionServer:
         self.connected = set()
         self.invalid_attempts = {}  # IP -> (failure count, blocked_until)
         self.in_game = False
+        self.locked = False
         self.empty_since = time.monotonic()
         self.listener = None
         self.stopped = asyncio.Event()
@@ -100,6 +102,7 @@ class SessionServer:
         self.log.info("EHL8 session listening on %s:%s (%s slots).",
                       bind, self.listener.sockets[0].getsockname()[1], self.slots)
         self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
+        self.log.info("EHL8_ROOM_LOCKED=0")
         return self.listener
 
     async def stop(self):
@@ -121,6 +124,33 @@ class SessionServer:
             for peer in tuple(self.connected):
                 if time.monotonic() - peer.last_heard > READ_TIMEOUT + 5:
                     peer.close()
+
+    async def admin_command(self, command):
+        """Private stdin-only administration; never an EHL8 network message."""
+        if command == "LOCK ON":
+            self.locked = True
+            self.log.info("EHL8_ROOM_LOCKED=1")
+            return True
+        if command == "LOCK OFF":
+            self.locked = False
+            self.log.info("EHL8_ROOM_LOCKED=0")
+            return True
+        if command.startswith("KICK "):
+            identity = command[5:].encode("ascii", errors="ignore")
+            if not PROFILE_ID.fullmatch(identity):
+                return False
+            peer = next((p for p in self.players.values() if p.profile == identity), None)
+            if peer is None:
+                self.log.info("EHL8_ADMIN_KICK_OK=0")
+                return False
+            try:
+                await peer.send(KICK, b"Removed by host", self.session)
+            except (OSError, ConnectionError, asyncio.TimeoutError, ProtocolError):
+                pass
+            peer.close()
+            self.log.info("EHL8_ADMIN_KICK_OK=1")
+            return True
+        return False
 
     def snapshot(self):
         data = bytearray([len(self.players)])
@@ -204,6 +234,9 @@ class SessionServer:
         if peer.stage == "JOIN":
             if msg.kind != JOIN or not PROFILE_ID.fullmatch(msg.payload):
                 raise ProtocolError("invalid profile identity")
+            if self.locked:
+                await peer.send(KICK, b"Lobby locked", self.session)
+                raise ProtocolError("lobby locked")
             if any(p.profile == msg.payload for p in self.players.values()):
                 await peer.send(KICK, b"Profile already active", self.session)
                 raise ProtocolError("duplicate identity")
@@ -266,6 +299,23 @@ async def serve(args):
     session = SessionServer(args.pin, args.slots, args.idle_minutes * 60)
     await session.start(args.bind, args.port)
     loop = asyncio.get_running_loop()
+    if args.admin_stdin:
+        def private_stdin_commands():
+            while True:
+                line = sys.stdin.readline(64)
+                if not line:
+                    return
+                command = line.strip()
+                if command not in ("LOCK ON", "LOCK OFF") and not re.fullmatch(
+                        r"KICK [A-Za-z0-9_-]{1,48}", command):
+                    continue
+                try:
+                    loop.call_soon_threadsafe(
+                        lambda value=command: asyncio.create_task(session.admin_command(value)))
+                except RuntimeError:
+                    return
+        threading.Thread(target=private_stdin_commands, name="EHL8-LocalAdmin",
+                         daemon=True).start()
     for name in ("SIGINT", "SIGTERM"):
         try:
             loop.add_signal_handler(getattr(signal, name), lambda: asyncio.create_task(session.stop()))
@@ -286,9 +336,13 @@ def main():
     credentials.add_argument("--pin", help="Legacy CLI 6-digit PIN (visible in process arguments)")
     credentials.add_argument("--pin-stdin", action="store_true",
                              help="Read 6-digit PIN from stdin so it is not exposed in the command line")
+    parser.add_argument("--admin-stdin", action="store_true",
+                        help="Private lobby commands via stdin; requires --pin-stdin")
     parser.add_argument("--slots", type=int, choices=(1, 2), default=2)
     parser.add_argument("--idle-minutes", type=int, default=15)
     args = parser.parse_args()
+    if args.admin_stdin and not args.pin_stdin:
+        parser.error("--admin-stdin requires --pin-stdin")
     try:
         ipaddress.IPv4Address(args.bind)
     except ipaddress.AddressValueError:
