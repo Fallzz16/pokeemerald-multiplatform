@@ -11,10 +11,16 @@ int main(int argc, char **argv)
     LNetPose local, remote;
     unsigned short port;
     int i;
-    int linger = (argc == 8 && strcmp(argv[7], "linger") == 0);
+    int linger = (argc == 8 &&
+                 (strcmp(argv[7], "linger") == 0 ||
+                  strcmp(argv[7], "lingerlong") == 0));
+    int reconnect = (argc == 8 && strcmp(argv[7], "reconnect") == 0);
+    int reconnectObserved = 0;
+    int lingerCount = (argc == 8 && strcmp(argv[7], "lingerlong") == 0)
+        ? 650 : 180;
     int witnessed = 0;
     struct timespec pauseTime = { 0, 10000000L };
-    if (argc != 7 && !linger)
+    if (argc != 7 && !linger && !reconnect)
     {
         fprintf(stderr, "usage: native_ehl8_client IPv4 port pin profile x expected_remote_x [linger]\n");
         return 2;
@@ -32,9 +38,11 @@ int main(int argc, char **argv)
     local.direction = 1;
     local.gender = 0;
     local.elevation = 0;
-    for (i = 0; i < (linger ? 180 : 800); ++i)
+    for (i = 0; i < (linger ? lingerCount : 800); ++i)
     {
         lnet_session_client_poll(client, &local);
+        if (lnet_session_client_state(client) == EHL_CLIENT_RECONNECTING)
+            reconnectObserved = 1;
         if (lnet_session_client_state(client) == EHL_CLIENT_FAILED)
         {
             lnet_session_client_close(client);
@@ -44,7 +52,13 @@ int main(int argc, char **argv)
             remote.x == (unsigned short)atoi(argv[6]) && remote.active)
         {
             witnessed = 1;
-            if (!linger)
+            if (reconnect && reconnectObserved)
+            {
+                puts("EHL8 native token resume and fresh remote pose verified");
+                lnet_session_client_close(client);
+                return 0;
+            }
+            if (!linger && !reconnect)
             {
                 puts("EHL8 native client remote overworld pose verified");
                 lnet_session_client_close(client);
