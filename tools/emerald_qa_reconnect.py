@@ -113,4 +113,8 @@ def main():
 
 
 if __name__ == "__main__":
+    import sys
+    if "--selftest" in sys.argv:
+        result, report_path = run_suite()
+        raise SystemExit(0 if result["passed"] and result["tests_run"] >= 4 else 2)
     main()
