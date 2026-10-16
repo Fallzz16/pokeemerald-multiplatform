@@ -43,6 +43,10 @@ jobs:
             if (!(Test-Path -LiteralPath ("dist/" + $name))) { throw "$name missing" }
             if ((Get-Item ("dist/" + $name)).Length -lt 100000) { throw "$name suspiciously small" }
           }
+          # Execute the actual windowed PyInstaller binary, not only Python source.
+          $exe=(Resolve-Path -LiteralPath 'dist/EmeraldQAReconnect.exe').Path
+          $smoke=Start-Process -FilePath $exe -ArgumentList '--selftest' -PassThru -Wait -WindowStyle Hidden
+          if ($smoke.ExitCode -ne 0) { throw "Packaged GUI QA selftest failed: $($smoke.ExitCode)" }
           New-Item -ItemType Directory -Force -Path qa-package | Out-Null
           Copy-Item dist/EmeraldSessionServerM22.exe,dist/EmeraldQAReconnect.exe qa-package/
           Copy-Item docs/V100_M22A_RECONNECT_QA_PTBR.md qa-package/LEIA_RECONEXAO_PTBR.md
