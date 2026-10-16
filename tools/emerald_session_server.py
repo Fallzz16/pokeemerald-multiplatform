@@ -234,15 +234,25 @@ class SessionServer:
                 peer.last_heard = time.monotonic()
                 await self.process(peer, msg)
         except (ProtocolError, OSError, ConnectionError) as ex:
+            if isinstance(ex, ProtocolError):
+                peer.allow_resume = False  # invalid traffic never reserves a slot
             self.log.debug("Session peer dropped: %s", ex)
         finally:
             if peer.slot is not None and self.players.get(peer.slot) is peer:
                 del self.players[peer.slot]
+                if (self.resume_enabled and peer.allow_resume and
+                    peer.stage == "GAME" and peer.resume_token is not None and
+                    not self.stopped.is_set()):
+                    self.reservations[peer.slot] = Reservation(
+                        peer.profile, peer.resume_token,
+                        time.monotonic() + self.reservation_seconds)
+                    self.log.info("EHL8_ROOM_RESERVED=%d/%d",
+                                  len(self.reservations), self.slots)
                 self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
                 if self.players:
                     await self.broadcast(LEAVE, bytes([peer.slot]))
                     await self.broadcast(PLAYER_LIST, self.snapshot())
-                else:
+                elif not self.reservations:
                     self.in_game = False
             peer.close()
             self.connected.discard(peer)
@@ -281,15 +291,45 @@ class SessionServer:
         if msg.session != self.session:
             raise ProtocolError("invalid session id")
         if peer.stage == "JOIN":
+            self.expire_reservations()
+            if msg.kind == RESUME and self.resume_enabled:
+                identity, sep, token = msg.payload.partition(b"\0")
+                held_slot = next(
+                    (slot for slot, hold in self.reservations.items()
+                     if hold.profile == identity), None)
+                hold = self.reservations.get(held_slot)
+                if (not sep or not PROFILE_ID.fullmatch(identity) or
+                    len(token) != RESUME_TOKEN_BYTES or hold is None or
+                    not secrets.compare_digest(token, hold.token) or
+                    hold.expires_at <= time.monotonic()):
+                    await peer.send(KICK, b"Invalid resume credentials", self.session)
+                    raise ProtocolError("invalid resume credentials")
+                del self.reservations[held_slot]
+                peer.slot, peer.profile, peer.stage, peer.ready = (
+                    held_slot, identity, "GAME", True)
+                self.players[held_slot] = peer
+                self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
+                self.log.info("EHL8_ROOM_RESERVED=%d/%d",
+                              len(self.reservations), self.slots)
+                self.log.info("EHL8_RESUMED=1")
+                await peer.send(JOIN, bytes([held_slot]), self.session, msg.request)
+                await self.broadcast(PLAYER_LIST, self.snapshot())
+                await peer.send(START, b"", self.session)
+                await self.issue_resume_token(peer)
+                return
             if msg.kind != JOIN or not PROFILE_ID.fullmatch(msg.payload):
                 raise ProtocolError("invalid profile identity")
             if self.locked:
                 await peer.send(KICK, b"Lobby locked", self.session)
                 raise ProtocolError("lobby locked")
-            if any(p.profile == msg.payload for p in self.players.values()):
+            if (any(p.profile == msg.payload for p in self.players.values()) or
+                any(hold.profile == msg.payload for hold in self.reservations.values())):
                 await peer.send(KICK, b"Profile already active", self.session)
                 raise ProtocolError("duplicate identity")
-            free = next((slot for slot in range(1, self.slots + 1) if slot not in self.players), None)
+            free = next(
+                (slot for slot in range(1, self.slots + 1)
+                 if slot not in self.players and slot not in self.reservations),
+                None)
             if free is None:
                 await peer.send(KICK, b"Lobby full", self.session)
                 raise ProtocolError("session full")
@@ -299,6 +339,8 @@ class SessionServer:
             self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
             await peer.send(JOIN, bytes([free]), self.session, msg.request)
             await self.broadcast(PLAYER_LIST, self.snapshot())
+            if self.resume_enabled:
+                await self.issue_resume_token(peer)
             if self.in_game:
                 await peer.send(START, b"", self.session)
             return
@@ -317,6 +359,7 @@ class SessionServer:
             await peer.send(HEARTBEAT, b"", self.session, msg.request)
             return
         if msg.kind == LEAVE:
+            peer.allow_resume = False
             peer.close()
             return
         if msg.kind == READY and peer.stage == "LOBBY":
@@ -345,7 +388,8 @@ class SessionServer:
         raise ProtocolError("message invalid in current state")
 
 async def serve(args):
-    session = SessionServer(args.pin, args.slots, args.idle_minutes * 60)
+    session = SessionServer(args.pin, args.slots, args.idle_minutes * 60,
+                            resume_enabled=args.resume_v1)
     await session.start(args.bind, args.port)
     loop = asyncio.get_running_loop()
     if args.admin_stdin:
@@ -385,6 +429,8 @@ def main():
     credentials.add_argument("--pin", help="Legacy CLI 6-digit PIN (visible in process arguments)")
     credentials.add_argument("--pin-stdin", action="store_true",
                              help="Read 6-digit PIN from stdin so it is not exposed in the command line")
+    parser.add_argument("--resume-v1", action="store_true",
+                        help="Opt-in type 18 resume tokens; requires an updated client")
     parser.add_argument("--admin-stdin", action="store_true",
                         help="Private lobby commands via stdin; requires --pin-stdin")
     parser.add_argument("--slots", type=int, choices=(1, 2), default=2)
