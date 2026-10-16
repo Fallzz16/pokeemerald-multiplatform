@@ -1,0 +1,72 @@
+name: Emerald Hybrid v1.0 M1 QA Laboratory Windows
+
+on:
+  push:
+    branches:
+      - feature/lan-v0803-dedicated-session-core
+    paths:
+      - 'tools/emerald_qa_lab.py'
+      - 'tests/test_emerald_qa_lab.py'
+      - 'tools/emerald_qa_bots.py'
+      - 'tests/test_emerald_qa_bots.py'
+      - '.github/workflows/build-v100-qa-lab.yml'
+  pull_request:
+    paths:
+      - 'tools/emerald_qa_lab.py'
+      - 'tests/test_emerald_qa_lab.py'
+      - 'tools/emerald_qa_bots.py'
+      - 'tests/test_emerald_qa_bots.py'
+      - '.github/workflows/build-v100-qa-lab.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+jobs:
+  isolated-lab:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify lab, socket protocol bots and production EHL8 server
+        run: |
+          python -m py_compile tools/emerald_qa_lab.py tools/emerald_qa_bots.py
+          python -m unittest discover -s tests -p test_emerald_qa_lab.py -v
+          python -m unittest discover -s tests -p test_emerald_qa_bots.py -v
+      - name: Build windowed lab.exe
+        shell: pwsh
+        run: |
+          python -m pip install --disable-pip-version-check pyinstaller==6.16.0
+          python -m PyInstaller --noconfirm --clean --onefile --windowed --name EmeraldQALab tools/emerald_qa_lab.py
+          python -m PyInstaller --noconfirm --clean --onefile --console --name EmeraldQABots tools/emerald_qa_bots.py
+          foreach ($exe in @('EmeraldQALab.exe','EmeraldQABots.exe')) {
+            if (!(Test-Path ("dist/" + $exe))) { throw "$exe not generated" }
+            if ((Get-Item ("dist/" + $exe)).Length -lt 100000) { throw "$exe unexpectedly small" }
+          }
+      - name: Prepare lab-only ZIP (requires existing M2 preview complete game)
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path qa-package | Out-Null
+          Copy-Item dist/EmeraldQALab.exe qa-package/
+          Copy-Item dist/EmeraldQABots.exe qa-package/
+          Copy-Item docs/V100_M0_M1_QA_LAB.md qa-package/LEIA_LABORATORIO.md
+          @'
+          @echo off
+          cd /d "%~dp0"
+          if not exist "pokeemerald.exe" (
+            echo Copie os arquivos deste ZIP para a pasta extraida do Emerald EHL8 M2 Preview.
+            echo O Laboratorio precisa de pokeemerald.exe, SDL2.dll, emerald_profilectl.exe e EmeraldSessionServer.exe.
+            pause
+            exit /b 1
+          )
+          start "" "%~dp0EmeraldQALab.exe"
+          '@ | Set-Content -Encoding ascii qa-package/ABRIR_LABORATORIO.bat
+          Compress-Archive qa-package/* -DestinationPath Emerald_Hybrid_v1_M1_M2_Laboratorio_Bots_Windows.zip -CompressionLevel Optimal
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Emerald_Hybrid_v1_M1_M2_Laboratorio_Bots_Windows_Sem_Jogo
+          path: Emerald_Hybrid_v1_M1_M2_Laboratorio_Bots_Windows.zip
+          if-no-files-found: error
+          retention-days: 30
