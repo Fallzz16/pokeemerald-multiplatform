@@ -718,3 +718,64 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 - **Testes novos:** `tests/test_ehl8_m23a_server_first.py` cobre 0 jogos com servidor ativo, ingresso tardio dos 2 jogos, reutilização da sessão, proteção dos arquivos fonte, PIN/porta errados e backups somente após jogos encerrarem. `.github/workflows/test-v100-m23a-server-first.yml` valida testes no Windows/Linux (sucesso inicial); `.github/workflows/build-v100-m23a-server-first-windows.yml` gera ZIP portátil completo e verifica mesma revisão e SHA256 jogo/servidor.
 - **Instruções exatas:** `docs/V100_M23A_SERVER_FIRST_QA_PTBR.md`. Testar no Windows: iniciar servidor sem jogo, abrir Lobby e verificar 0/2, depois abrir 2 jogos e verificar 2/2, aguardar 30s, clicar INICIAR SALA, testar SIMULAR QUEDA B/A, kick, sprites, saves e voltar para CONTINUAR SOZINHO.
 - **Status:** correção implementada e QA de integração em andamento. **Não chamar QA humano aprovado antes do usuário reportar.** O pacote M2.2-B `5e53e40` continua sendo o baseline com 5/5 testes aprovados.
+
+
+## 32. PASSAGEM DE BASTÃO PARA O PRÓXIMO CHAT — M2.3-A, build Windows VALIDADA no CI (2026-10-16)
+
+### Origem da tarefa e solicitação expressa do usuário
+O usuário enviou screenshot do Lab M2.3: ao abrir o LOBBY AO VIVO antes do jogo, a sala estava em SEM SESSÃO EHL8 / SERVIDOR DESLIGADO; o botão ENCERRAR SALA avisou Nenhum servidor local ativo. O usuário explicou: ABRIR 2 JOGOS sempre iniciava servidor e duas janelas simultaneamente, impedindo preparar o servidor antes. Depois pediu: "cadê? faz um log no arquivo que vc estava mexendo agr com tudo que for preciso para o proximo chat saber por onde começar ou continuar. junto, faça um prompt." Esta seção é a passagem de bastão explícita. NÃO recomeçar o desenvolvimento do zero.
+
+### Branch, PR, commits e arquivo de continuação
+- Repo: https://github.com/Fallzz16/pokeemerald-multiplatform
+- Branch de desenvolvimento M2.3-A: feature/emerald-v100-m23a-server-first-lab
+- PR draft #19: https://github.com/Fallzz16/pokeemerald-multiplatform/pull/19
+- Base M2.3: feature/emerald-v100-m23-host-start-lobby, PR draft #18, base SHA 27f7d8ab081b3390bf03904a960c348d378bba3f.
+- Último commit de **código** usado no ZIP Windows M2.3-A: a0fd2ac9f2eb8833c019728e4b44d8493cd47bd0. Há commits posteriores somente para documentação/handoff; sempre buscar HEAD atualizado antes de modificar arquivos.
+- Código mais importante: tools/emerald_qa_lab.py. Outros arquivos: tools/emerald_qa_lobby.py, tools/emerald_session_server.py, src/lnet/lnet_session_client.c, tests/test_ehl8_m23a_server_first.py.
+- Documento de aceitação: docs/V100_M23A_SERVER_FIRST_QA_PTBR.md. Consultar também AGENTS.md, capítulos anteriores deste AI_README e as decisões da v1.0 (72 escolhas, com batalhas P2P e saves independentes).
+
+### M2.3-A implementada — fluxo correto da sala
+1. Novo botão INICIAR SERVIDOR (SEM JOGO) junto das opções de porta e PIN, sem aumentar a altura da janela.
+2. QASession.start_server_only(sources,port,pin) chama launch(...,server_only=True), usa emerald_profilectl para criar/importar apenas CÓPIAS isoladas de dois saves de QA, inicia UM servidor EHL8 em 127.0.0.1 e não abre pokeemerald.exe. Sessão do Lab e logs já existem e o LOBBY AO VIVO pode exibir 0/2 e READY 0/2.
+3. Depois ABRIR 2 JOGOS (NOVO) detecta o mesmo servidor ativo sem jogos e chama launch_games(), criando somente os dois processos do jogo, reutilizando exatamente o mesmo diretório de sessão, porta/PIN e saves; não inicia servidor extra nem cria perfis novos.
+4. O Lab rejeita PIN/porta diferentes, servidor encerrado e múltiplas sessões simultâneas. PIN apenas em RAM e pipe privado, não em argv/logs. Backups e report.json só após os jogos realmente iniciarem e terminarem; não backup prematuro ao criar só a sala.
+5. M2.3 anterior permanece: READY é enviado automaticamente pelos jogos; o anfitrião controla START manualmente, depois de PRONTOS 2/2. Reconexão 60s, KICK, LOCK, SIMULAR QUEDA, emotes existentes, sprites e Continuar Sozinho não foram removidos.
+6. A build M2.3 usa somente jogo e servidor da mesma edição com marcadores/verificação SHA-256. Não copiar executáveis isolados em outras versões.
+
+### Estado de compilação verificado — IMPORTANTE, já existe o ZIP, não duplicar trabalho
+- Workflow específico Emerald M2.3-A Server First Windows Preview: run 38869447665, SUCCESS em todos os jobs game, gui-tools, portable. https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38869447665
+- Artefato PORTÁTIL COMPLETO aprovado do commit de código a0fd2ac9: ID 12032023830, nome BAIXAR_AQUI_Emerald_M23A_SERVIDOR_PRIMEIRO_COMPLETO_Windows. Download: https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38869447665/artifacts/12032023830
+- Artefatos parciais (NÃO indicar para instalação combinada): game 12033235696; tools 12032745902.
+- Workflow Emerald M2.3-A Server-First Lobby QA: run 38869447647, SUCCESS Windows e Linux. https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38869447647
+- Workflow Emerald Hybrid v1.0 M1 QA Laboratory Windows: run 38869453864, SUCCESS.
+- Workflow CI GBA legado: run 38869453799, FAILURE na etapa Compare. Não confundir com o build Windows bem-sucedido; investigar separadamente. NÃO afirmar que todos workflows do repo passaram.
+- **A M2.3-A NÃO foi validada ainda jogando no PC do usuário.** Um teste com Popen mockado e CI não substitui teste humano. Não publicar v1.0 stable.
+
+### Testes humanos confirmados antes desta entrega
+- Paleta May/Brendan 8e519e0: 6/6 OK.
+- Continuar Sozinho M1.2 11f4742: 4/4 OK.
+- Lobby M2.1-B 2d0cb13: bloqueio/liberação e remoção individual OK.
+- Protocolo M2.2-A: 4/4, falhas 0, erros 0, screenshot real de Windows.
+- M2.2-B 5e53e40: **5/5 OK no Windows**, conexão 2/2, reconexão automática de QA_B, reconexão QA_A, kick que não reconecta e integridade dos saves, observações nenhuma. É o último baseline de gameplay integralmente validado nesses critérios; mantê-lo para rollback.
+- M2.3 PR #18 e M2.3-A PR #19 ainda não receberam aprovação visual no Windows.
+
+### Teste IMEDIATO que o próximo chat deve solicitar
+Pedir que usuário extraia o ZIP completo M2.3-A em NOVA pasta, mantendo a M2.2-B intacta. Usar apenas cópias de saves ou criar QA novas. Abrir EmeraldQALab.exe:
+1. Selecionar EHL8 local, configurar PIN/porta, clicar INICIAR SERVIDOR (SEM JOGO). Esperado: nenhuma janela pokeemerald.exe; LOBBY AO VIVO mostra SERVIDOR ATIVO, SALA 0/2, PRONTOS 0/2, PARTIDA INICIADA NÃO.
+2. Clicar ABRIR 2 JOGOS (NOVO). Esperado: exatamente duas janelas, MESMO servidor, SALA 2/2, PRONTOS 2/2, PARTIDA INICIADA NÃO.
+3. Esperar 30 segundos antes do START; ninguém cai/desconecta.
+4. Clicar INICIAR SALA (2/2 PRONTOS); dois avatares se enxergam, andam e têm sprites May/Brendan corretos.
+5. SIMULAR QUEDA QA_B e QA_A separadamente; cada um recupera sozinho em até 60 s, QA restante não congela.
+6. REMOVER QA_B; B NÃO deve reconectar, A continua jogando.
+7. Salvar e reabrir QA_A e QA_B por CONTINUAR SOZINHO; nenhum progresso ou save original é alterado.
+Se falhar: pedir print do Lobby e logs servidor.log, QA_A-rede.log, QA_B-rede.log e report.json (sem PIN ou saves pessoais). Corrigir de modo reprodutível, recompilar pacote inteiro e atualizar este AI_README.
+
+### O que falta no desenvolvimento v1.0
+- Registrar QA real da M2.3-A; **não saltar esse gate**.
+- M2.4: permitir Pronto/Cancelar real e INDIVIDUAL dos dois jogadores (hoje READY automático, START manual). Priorizar simplicidade e proteger protocolo.
+- Depois: convites/aceite/recusa de batalhas P2P 1v1, retorno seguro ao overworld, UX launcher e QA com 2 PCs físicos. Não confundir EHL8 com Cable Club original.
+- Regressões de saves, KICK, 60s, bots 50 identidades em 25 pares, paleta, desempenho, LAN; sem destruir M1.2.
+- Installer/updater, multilíngue, backup/rollback e aprovação final do usuário são outros marcos; não declarar completos sem evidência.
+
+### PROMPT SUGERIDO PARA O NOVO CHAT
+"Continue o Pokémon Emerald Hybrid v1.0 do estado verificável M2.3-A, sem recomeçar nem perder sistemas ou saves. Leia AGENTS.md e AI_README.md (especialmente capítulo 32), no GitHub Fallzz16/pokeemerald-multiplatform, branch feature/emerald-v100-m23a-server-first-lab, PR #19. Confira HEAD e CI antes de editar. O novo botão INICIAR SERVIDOR (SEM JOGO) permite abrir lobby EHL8 0/2 antes de ABRIR 2 JOGOS, e depois usar START manual com 2/2 READY. Build Windows da revisão de código a0fd2ac9 passou: run 38869447665, artefato completo 12032023830; testes Windows/Linux passaram no run 38869447647. O CI genérico da ROM GBA ainda falha em Compare, separadamente. NÃO afirme QA humano M2.3-A aprovado: ainda aguardamos meu teste. M2.2-B 5e53e40 passou 5/5 testes humanos e é a versão de rollback. Primeiro me oriente a testar: servidor sozinho 0/2; ingresso de dois jogos 2/2; esperar 30s; START; quedas A/B; KICK; sprites; saves e Continuar Sozinho. Se eu relatar bug, corrija com testes automatizados e nova build completa, preservando o resto. Se passar, registre no AI_README e continue o roadmap com READY/CANCELAR individual, depois batalhas P2P 1v1. SEMPRE diga exatamente o que devo testar após cada entrega."
