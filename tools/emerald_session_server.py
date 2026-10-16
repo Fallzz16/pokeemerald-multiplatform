@@ -93,7 +93,8 @@ class Peer:
 
 class SessionServer:
     def __init__(self, pin: str, slots=2, idle_seconds=900,
-                 resume_enabled=False, reservation_seconds=RESUME_HOLD_SECONDS):
+                 resume_enabled=False, reservation_seconds=RESUME_HOLD_SECONDS,
+                 manual_start=False):
         if not re.fullmatch(r"[0-9]{6}", pin) or not 1 <= slots <= 2:
             raise ValueError("PIN must be six digits; M2 currently supports 1-2 players")
         self.pin = pin.encode("ascii")
@@ -110,6 +111,7 @@ class SessionServer:
         self.reservations = {}
         self.in_game = False
         self.locked = False
+        self.manual_start = bool(manual_start)
         self.empty_since = time.monotonic()
         self.listener = None
         self.stopped = asyncio.Event()
@@ -121,6 +123,8 @@ class SessionServer:
                       bind, self.listener.sockets[0].getsockname()[1], self.slots)
         self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
         self.log.info("EHL8_ROOM_LOCKED=0")
+        self.log.info("EHL8_READY_COUNT=0/%d", self.slots)
+        self.log.info("EHL8_ROOM_STARTED=0")
         return self.listener
 
     async def stop(self):
@@ -163,8 +167,31 @@ class SessionServer:
         peer.resume_token = secrets.token_bytes(RESUME_TOKEN_BYTES)
         await peer.send(RESUME, peer.resume_token, self.session)
 
+    def log_ready_count(self):
+        self.log.info("EHL8_READY_COUNT=%d/%d",
+                      sum(peer.ready for peer in self.players.values()), self.slots)
+
+    async def start_ready_room(self):
+        # READY remains a native client acknowledgement; only the local host
+        # can authorize START when --host-start is enabled.
+        if (self.in_game or len(self.players) != self.slots or
+            self.reservations or not all(
+                peer.ready and peer.stage == "LOBBY"
+                for peer in self.players.values())):
+            return False
+        self.in_game = True
+        for peer in self.players.values():
+            peer.stage = "GAME"
+        self.log.info("EHL8_ROOM_STARTED=1")
+        await self.broadcast(START, b"")
+        return True
+
     async def admin_command(self, command):
         """Private stdin-only administration; never an EHL8 network message."""
+        if command == "START" and self.manual_start:
+            started = await self.start_ready_room()
+            self.log.info("EHL8_ADMIN_START_OK=%d", int(started))
+            return started
         if command == "LOCK ON":
             self.locked = True
             self.log.info("EHL8_ROOM_LOCKED=1")
@@ -262,11 +289,13 @@ class SessionServer:
                     self.log.info("EHL8_ROOM_RESERVED=%d/%d",
                                   len(self.reservations), self.slots)
                 self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
+                self.log_ready_count()
                 if self.players:
                     await self.broadcast(LEAVE, bytes([peer.slot]))
                     await self.broadcast(PLAYER_LIST, self.snapshot())
                 elif not self.reservations:
                     self.in_game = False
+                    self.log.info("EHL8_ROOM_STARTED=0")
             peer.close()
             self.connected.discard(peer)
             if not self.players and not self.connected:
@@ -325,6 +354,7 @@ class SessionServer:
                 self.log.info("EHL8_ROOM_RESERVED=%d/%d",
                               len(self.reservations), self.slots)
                 self.log.info("EHL8_RESUMED=1")
+                self.log_ready_count()
                 await peer.send(JOIN, bytes([held_slot]), self.session, msg.request)
                 await self.broadcast(PLAYER_LIST, self.snapshot())
                 await peer.send(START, b"", self.session)
@@ -350,6 +380,7 @@ class SessionServer:
             peer.stage = "GAME" if self.in_game else "LOBBY"
             self.players[free] = peer
             self.log.info("EHL8_ROOM_COUNT=%d/%d", len(self.players), self.slots)
+            self.log_ready_count()
             await peer.send(JOIN, bytes([free]), self.session, msg.request)
             await self.broadcast(PLAYER_LIST, self.snapshot())
             if self.resume_enabled:
@@ -379,12 +410,10 @@ class SessionServer:
             if msg.payload not in (b"\x00", b"\x01"):
                 raise ProtocolError("invalid ready state")
             peer.ready = msg.payload == b"\x01"
+            self.log_ready_count()
             await self.broadcast(PLAYER_LIST, self.snapshot())
-            if len(self.players) == self.slots and all(p.ready for p in self.players.values()):
-                self.in_game = True
-                for p in self.players.values():
-                    p.stage = "GAME"
-                await self.broadcast(START, b"")
+            if not self.manual_start:
+                await self.start_ready_room()
             return
         if msg.kind == POSE and peer.stage == "GAME":
             if not valid_pose(msg.payload):
@@ -402,7 +431,8 @@ class SessionServer:
 
 async def serve(args):
     session = SessionServer(args.pin, args.slots, args.idle_minutes * 60,
-                            resume_enabled=args.resume_v1)
+                            resume_enabled=args.resume_v1,
+                            manual_start=args.host_start)
     await session.start(args.bind, args.port)
     loop = asyncio.get_running_loop()
     if args.admin_stdin:
@@ -412,7 +442,7 @@ async def serve(args):
                 if not line:
                     return
                 command = line.strip()
-                if command not in ("LOCK ON", "LOCK OFF") and not re.fullmatch(
+                if command not in ("LOCK ON", "LOCK OFF", "START") and not re.fullmatch(
                         r"(KICK|DROP) [A-Za-z0-9_-]{1,48}", command):
                     continue
                 try:
@@ -442,6 +472,8 @@ def main():
     credentials.add_argument("--pin", help="Legacy CLI 6-digit PIN (visible in process arguments)")
     credentials.add_argument("--pin-stdin", action="store_true",
                              help="Read 6-digit PIN from stdin so it is not exposed in the command line")
+    parser.add_argument("--host-start", action="store_true",
+                        help="Require local administrator START after both clients READY")
     parser.add_argument("--resume-v1", action="store_true",
                         help="Opt-in type 18 resume tokens; requires an updated client")
     parser.add_argument("--admin-stdin", action="store_true",
@@ -451,6 +483,8 @@ def main():
     args = parser.parse_args()
     if args.admin_stdin and not args.pin_stdin:
         parser.error("--admin-stdin requires --pin-stdin")
+    if args.host_start and not args.admin_stdin:
+        parser.error("--host-start requires --admin-stdin")
     try:
         ipaddress.IPv4Address(args.bind)
     except ipaddress.AddressValueError:
