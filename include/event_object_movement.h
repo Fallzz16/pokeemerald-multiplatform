@@ -449,6 +449,8 @@ void SetVirtualObjectSpriteAnim(u8 virtualObjId, u8 animNum);
 #ifdef PORTABLE
 bool32 LanVirtualObjectExists(u8 virtualObjId);
 void LanVirtualObjectDestroy(u8 virtualObjId);
+/* Give the transient remote trainer a palette independent from local player. */
+bool32 LanVirtualObjectSetRemotePalette(u8 virtualObjId, u8 graphicsId);
 void LanVirtualObjectMove(u8 virtualObjId, s16 mapPixelX, s16 mapPixelY,
                           u8 direction, bool8 walking);
 #endif
