@@ -26,13 +26,15 @@
 ## Testes do usuário — reportar cada resultado
 1. **Conexão:** com duas contas no mesmo mapa, verifique sala 2/2 e movimento
    bidirecional, cores corretas de May/Brendan. Resultado esperado: EM JOGO.
-2. **Reconexão real:** com A e B jogando, desconecte SOMENTE B temporariamente
-   da rede, **sem encerrar seu processo**. Para ambiente local com os dois
-   jogos na mesma máquina, interromper o servidor derruba ambos e não testa
-   a retomada! Neste caso, execute primeiro o teste automático nativo do CI.
-   Para dois PCs LAN, interrompa temporariamente a conexão TCP de B por
-   menos de 60s (sem fechar o jogo nem mudar o PIN), restaurando-a.
-   Esperado: B recebe token novo e volta a EM JOGO; A nunca congela.
+2. **Reconexão real no mesmo PC:** com A e B jogando, abra
+   `LOBBY AO VIVO` e clique em `SIMULAR QUEDA QA_B` (confirme). O
+   servidor fecha somente o socket de QA_B, como uma falha inesperada.
+   **Não fecha o jogo nem toca no save.** Esperado: QA_B entra no estado
+   `RECONECTANDO (ATÉ 60s)`, uma vaga fica reservada (1/2) e a
+   sessão volta a 2/2 / EM JOGO; QA_A nunca congela.
+   Repita com `SIMULAR QUEDA QA_A`. Registre print dos estados.
+   **Não use REMOVER QA_B para testar reconexão**: um kick do
+   administrador é final e intencionalmente não reconecta.
 3. **Abandono >60 segundos:** com queda de rede prolongada, a tentativa deve
    encerrar em ERRO DE CONEXÃO, sem fechar o Emerald nem tocar nos saves.
 4. **Admin Kick:** remover QA_B deve ser definitivo, **sem religar
