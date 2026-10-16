@@ -588,6 +588,16 @@ def main():
         tk.Button(buttons, text=text, command=callback, bg="#176449" if text.startswith("ABRIR")
                   else PANEL, fg=FG, activebackground="#277d5e", relief="flat",
                   font=("Segoe UI", 10, "bold"), padx=11, pady=9).pack(side="left", padx=(0, 7))
+    # M2.1-A monitor reads real localhost session logs; READY stays automatic.
+    def show_lobby_monitor():
+        from emerald_qa_lobby import show_lobby
+        show_lobby(gui, manager, bg=BG, panel=PANEL, green=GREEN,
+                   fg=FG, muted=MUTED)
+
+    tk.Button(buttons, text="LOBBY AO VIVO", command=show_lobby_monitor,
+              bg=PANEL, fg=FG, activebackground="#277d5e", relief="flat",
+              font=("Segoe UI", 10, "bold"), padx=11, pady=9).pack(
+                  side="left", padx=(0, 7))
     # Solo continuation uses a previously created, isolated QA session.
     # It never starts a new game/save and never joins EHL8 (requires 2 ready).
     solo_area = tk.Frame(gui, bg=PANEL, padx=11, pady=9)

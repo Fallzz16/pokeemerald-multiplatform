@@ -126,3 +126,25 @@ continuação visual. Nenhum `.sav` é incluído na build.
 **Rollback:** basta substituir apenas o executável do Laboratório pelo M1.1
 anterior, sem mexer no jogo nem nos diretórios
 `%LOCALAPPDATA%\\EmeraldHybridV1QALab\\sessions`.
+
+## M2.1-A — Lobby EHL8 ao vivo (monitor sem mudar o protocolo)
+
+**Contexto:** usuário validou M1.2 no Windows 4/4 (reabrir QA_A, QA_B, reiniciar o Lab e regressão multiplayer). O jogo EHL8 com paletas corrigidas foi testado visualmente em outra branch.
+
+**Adicionado:** botão LOBBY AO VIVO abre janela independente, atualizada a cada 800 ms, com ocupação real 0/2–2/2 do log do servidor (EHL8_ROOM_COUNT), status de QA_A / QA_B pelos estados 0–6 de cada cliente e indicação de servidor ativo ou encerrado. Logs são lidos com limite de 8192 bytes; ausência de log não inventa conexões.
+
+**Ações reais:** Atualizar, Abrir logs, ENCERRAR SALA. Encerrar sala pede confirmação e termina SOMENTE o processo EHL8 local iniciado pelo Laboratório; não fecha os jogos, não toca saves nem outros servidores. As janelas do jogo continuam abertas sem rede.
+
+**Limites:** o cliente C envia READY automaticamente e o servidor emite START após os dois participantes estarem prontos. Nesta etapa, o lobby é SOMENTE um monitor: botões manuais de Pronto/Iniciar, kick de indivíduo, chat e reconexão de 60 segundos ainda não são suportados. Não apresentar controles falsos.
+
+### Testes para o usuário
+
+1. Copiar os dois executáveis novos do Laboratório na pasta do EHL8 corrigido, mantendo jogo e saves anteriores.
+2. Abrir LOBBY AO VIVO antes da partida: deve aparecer SEM SESSÃO EHL8.
+3. Iniciar EHL8 local com dois jogos; aguardar 2/2 e QA_A / QA_B em EM JOGO; ambos se movimentam e aparecem normalmente.
+4. Fechar somente a conta B normalmente: observar 1/2 e QA_B FECHADO, com QA_A ainda funcionando.
+5. Clicar ENCERRAR SALA com A ativa; confirmar: servidor desligado e sala ENCERRADA, sem fechar o jogo A. Fechar o jogo A normalmente, conferir backups e continuar sozinho.
+6. Abrir Offline: lobby deve dizer SEM SESSÃO EHL8. Testar 25/25 bots como regressão opcional.
+7. Se falhar: prints + servidor.log, QA_A-rede.log, QA_B-rede.log e report.json. Nunca enviar PIN ou saves.
+
+**CI:** tests/test_emerald_qa_lobby.py cobre contagem real, estados EHL8, fechamento, offline, tail limitada, symlinks. CI Windows inclui import explícito no PyInstaller e testa junto com módulos anteriores. Somente o PC do usuário pode validar renderização e reabertura de save.

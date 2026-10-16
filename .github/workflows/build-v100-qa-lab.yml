@@ -7,14 +7,18 @@ on:
       - feature/emerald-v100-m11-50bots-lab
     paths:
       - 'tools/emerald_qa_lab.py'
+      - 'tools/emerald_qa_lobby.py'
       - 'tests/test_emerald_qa_lab.py'
+      - 'tests/test_emerald_qa_lobby.py'
       - 'tools/emerald_qa_bots.py'
       - 'tests/test_emerald_qa_bots.py'
       - '.github/workflows/build-v100-qa-lab.yml'
   pull_request:
     paths:
       - 'tools/emerald_qa_lab.py'
+      - 'tools/emerald_qa_lobby.py'
       - 'tests/test_emerald_qa_lab.py'
+      - 'tests/test_emerald_qa_lobby.py'
       - 'tools/emerald_qa_bots.py'
       - 'tests/test_emerald_qa_bots.py'
       - '.github/workflows/build-v100-qa-lab.yml'
@@ -33,14 +37,15 @@ jobs:
           python-version: '3.12'
       - name: Verify lab, socket protocol bots and production EHL8 server
         run: |
-          python -m py_compile tools/emerald_qa_lab.py tools/emerald_qa_bots.py
+          python -m py_compile tools/emerald_qa_lab.py tools/emerald_qa_lobby.py tools/emerald_qa_bots.py
           python -m unittest discover -s tests -p test_emerald_qa_lab.py -v
+          python -m unittest discover -s tests -p test_emerald_qa_lobby.py -v
           python -m unittest discover -s tests -p test_emerald_qa_bots.py -v
       - name: Build windowed lab.exe
         shell: pwsh
         run: |
           python -m pip install --disable-pip-version-check pyinstaller==6.16.0
-          python -m PyInstaller --noconfirm --clean --onefile --windowed --name EmeraldQALab tools/emerald_qa_lab.py
+          python -m PyInstaller --noconfirm --clean --onefile --windowed --paths tools --hidden-import emerald_qa_lobby --name EmeraldQALab tools/emerald_qa_lab.py
           python -m PyInstaller --noconfirm --clean --onefile --console --name EmeraldQABots tools/emerald_qa_bots.py
           foreach ($exe in @('EmeraldQALab.exe','EmeraldQABots.exe')) {
             if (!(Test-Path ("dist/" + $exe))) { throw "$exe not generated" }

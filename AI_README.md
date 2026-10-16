@@ -656,3 +656,12 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 - Segurança: verifica localização, marcador de QA, logs, symlinks/junctions e save de tamanho esperado; respeita bloqueio nativo de perfil. Backups são feitos somente depois de fechar a instância e apenas do perfil aberto. Relatórios novos `reopen-QA_...json` não sobrescrevem `report.json` existente. Não alterar saves reais do launcher, P2P, EHL8, sprites, ROM nem instalação estável.
 - QA: testes locais do Lab 15/15 passaram e bots 4/4 passaram (1 teste de integração real SKIP no pacote sem servidor). Windows GitHub Actions é responsável por compilar `EmeraldQALab.exe` e validar integração no repo inteiro. QA com saves reais no Windows continua necessária para aprovação.
 - Atenção: EHL8 exige 2 prontos para iniciar; a opção solo é offline, não reconexão protegida de 60 s. O jogo Windows recomendado é a preview com correção de paleta commit `8e519e0` do PR #10; a M1.2 distribui somente o Laboratório. Rollback do Lab para `704f48b7647b58bf628218d022ea0fb1ed4d0f33`.
+
+
+## 28. M2.1-A — Monitor de lobby EHL8 (2026-10-16)
+
+- M1.2 passou 4/4 testes com o usuário (abrir QA_A, QA_B, reiniciar Lab e multiplayer). Correção visual de paleta de avatar validada na PR #10.
+- tools/emerald_qa_lobby.py cria janela LOBBY AO VIVO: monitora ocupação e estados reais apenas pelos logs de servidor e jogos locais da sessão, sem portas, PIN, saves ou processos de terceiros.
+- ENCERRAR SALA termina somente o servidor gerenciado pelo Lab, com confirmação; duas instâncias e continuar sozinho permanecem funcionais. Ainda não suporta Pronto/Iniciar manuais, kick individual ou token de reconexão 60s: protocolo atual tem READY automático.
+- Novo test_emerald_qa_lobby.py e CI Windows com hidden import explícito; QA visual obrigatória com 2/2, queda 1/2, encerrar servidor e reabertura offline de save.
+- Entrega experimental PR #15, rollback para M1.2 commit 11f4742; preservar v0.8.2 estável e o pacote EHL8 com sprites corrigidos.
