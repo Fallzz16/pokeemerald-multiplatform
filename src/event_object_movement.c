@@ -8623,6 +8623,11 @@ static int GetVirtualObjectSpriteId(u8 virtualObjId)
 }
 
 #ifdef PORTABLE
+/* A separate, dynamically allocated OBJ palette prevents the remote May's
+ * colors from being interpreted with the local Brendan palette (or vice
+ * versa). The tag is private to the transient LAN avatar, not a save asset. */
+#define LAN_REMOTE_PALETTE_TAG 0xECF0
+
 bool32 LanVirtualObjectExists(u8 virtualObjId)
 {
     return GetVirtualObjectSpriteId(virtualObjId) != MAX_SPRITES;
@@ -8632,7 +8637,41 @@ void LanVirtualObjectDestroy(u8 virtualObjId)
 {
     u8 id = GetVirtualObjectSpriteId(virtualObjId);
     if (id != MAX_SPRITES)
+    {
+        u8 paletteSlot = IndexOfSpritePaletteTag(LAN_REMOTE_PALETTE_TAG);
+        if (paletteSlot != 0xFF && gSprites[id].oam.paletteNum == paletteSlot)
+            FreeSpritePaletteByTag(LAN_REMOTE_PALETTE_TAG);
         DestroySprite(&gSprites[id]);
+    }
+}
+
+/* Virtual objects default to PALSLOT_PLAYER, a slot shared by the *local*
+ * protagonist. Assign this specific remote sprite its own dynamic palette
+ * slot; never overwrite PALSLOT_PLAYER or the NPC/reflection palettes.
+ * If all dynamic slots are occupied, the caller hides the remote rather
+ * than displaying misleading/broken colors. */
+bool32 LanVirtualObjectSetRemotePalette(u8 virtualObjId, u8 graphicsId)
+{
+    int spriteId = GetVirtualObjectSpriteId(virtualObjId);
+    const struct ObjectEventGraphicsInfo *graphicsInfo;
+    struct SpritePalette palette;
+    u8 paletteIndex, slot;
+
+    if (spriteId == MAX_SPRITES)
+        return FALSE;
+    graphicsInfo = GetObjectEventGraphicsInfo(graphicsId);
+    paletteIndex = FindObjectEventPaletteIndexByTag(graphicsInfo->paletteTag);
+    if (paletteIndex == 0xFF)
+        return FALSE;
+    palette.data = sObjectEventSpritePalettes[paletteIndex].data;
+    palette.tag = LAN_REMOTE_PALETTE_TAG;
+    slot = LoadSpritePalette(&palette);
+    if (slot == 0xFF)
+        return FALSE;
+    /* Refresh even when the slot existed from an earlier remote gender. */
+    PatchObjectPalette(graphicsInfo->paletteTag, slot);
+    gSprites[spriteId].oam.paletteNum = slot;
+    return TRUE;
 }
 
 void LanVirtualObjectMove(u8 virtualObjId, s16 mapPixelX, s16 mapPixelY,

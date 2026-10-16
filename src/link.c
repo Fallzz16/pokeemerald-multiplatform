@@ -1944,6 +1944,14 @@ static void PortLanPresencePump(void)
             CreateVirtualObject(gfx, LAN_VIRTUAL_PLAYER_ID,
                                 remote.x, remote.y, remote.elevation,
                                 remote.direction) != MAX_SPRITES;
+        /* Both protagonists normally share PALSLOT_PLAYER. Assign the remote
+         * avatar its own palette, or discard the sprite on slot exhaustion. */
+        if (sLanRemoteInitialized &&
+            !LanVirtualObjectSetRemotePalette(LAN_VIRTUAL_PLAYER_ID, gfx))
+        {
+            LanVirtualObjectDestroy(LAN_VIRTUAL_PLAYER_ID);
+            sLanRemoteInitialized = FALSE;
+        }
     }
     if (sLanRemoteInitialized)
     {

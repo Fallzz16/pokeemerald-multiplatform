@@ -78,15 +78,36 @@ def game_command(app, profiles, profile_id, mode, port):
 
 
 def server_command(app, port, admin=False):
-    """M2.1 admin server is an optional separate EXE; never replace legacy."""
+    """Activate resume ONLY for an explicitly marked matched M2.2-B game build.
+
+    Bots use the legacy protocol, never type 18. Existing portable installs
+    without the marker retain the original M2.1 server behavior.
+    """
     app = Path(app)
     advanced = app / "EmeraldSessionServerM21.exe"
-    binary = advanced if advanced.is_file() else app / "EmeraldSessionServer.exe"
+    matched = app / "EHL8_M22B_GAME_MATCHED.txt"
+    resume = app / "EmeraldSessionServerM22.exe"
+    if admin and matched.is_file():
+        if not resume.is_file():
+            raise FileNotFoundError("Servidor M2.2-B ausente; não iniciar servidor incompatível.")
+        try:
+            expected = json.loads(matched.read_text(encoding="utf-8"))
+            verified = (expected["game_sha256"] == file_digest(app / "pokeemerald.exe")
+                        and expected["server_sha256"] == file_digest(resume))
+        except (OSError, ValueError, KeyError, TypeError):
+            verified = False
+        if not verified:
+            raise RuntimeError("Versões do jogo e servidor M2.2-B não correspondem ao pacote validado. Não iniciar a reconexão.")
+        binary = resume
+    else:
+        binary = advanced if advanced.is_file() else app / "EmeraldSessionServer.exe"
     command = [str(binary), "--bind", "127.0.0.1",
                "--port", str(validate_port(port)), "--slots", "2",
                "--idle-minutes", "15", "--pin-stdin"]
-    if admin and binary == advanced:
+    if admin and binary in (advanced, resume):
         command.append("--admin-stdin")
+    if binary == resume:
+        command.append("--resume-v1")
     return command
 
 
@@ -363,6 +384,10 @@ class QASession:
         actions = {"lock": "LOCK ON", "unlock": "LOCK OFF"}
         if action == "kick" and profile in PROFILE_IDS:
             command = "KICK " + profile
+        elif action == "drop" and profile in PROFILE_IDS:
+            if not (self.app / "EHL8_M22B_GAME_MATCHED.txt").is_file():
+                raise ValueError("Simulação de queda somente na preview M2.2-B.")
+            command = "DROP " + profile
         elif action in actions and profile is None:
             command = actions[action]
         else:

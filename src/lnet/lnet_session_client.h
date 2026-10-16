@@ -11,7 +11,8 @@ enum {
     EHL_CLIENT_WAIT_JOIN,
     EHL_CLIENT_WAIT_START,
     EHL_CLIENT_PLAYING,
-    EHL_CLIENT_FAILED
+    EHL_CLIENT_FAILED,
+    EHL_CLIENT_RECONNECTING
 };
 LNetSessionClient *lnet_session_client_new(const char *ipv4, unsigned short port,
                                            const char *pin, const char *profile);

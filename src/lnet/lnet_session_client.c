@@ -8,6 +8,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#ifdef EHL_DEBUG_HANDSHAKE
+#include <stdio.h>
+#endif
 #ifdef _WIN32
 #include <winsock2.h>
 #include <ws2tcpip.h>
@@ -24,6 +27,11 @@
 #define EHL_HEARTBEAT_INTERVAL_MS 10000UL
 #endif
 #define EHL_PLAYING_SILENCE_MS 25000UL
+#define EHL_RESUME_TOKEN_SIZE 32u
+#define EHL_RECONNECT_WINDOW_MS 60000UL
+#define EHL_RECONNECT_DELAY_MS 500UL
+#define EHL_RECONNECT_RETRY_DELAY_MS 1500UL
+
 
 struct LNetSessionClient
 {
@@ -38,6 +46,10 @@ struct LNetSessionClient
     unsigned long began, lastRx, lastTx, lastPose, lastRemote, lastHeartbeat;
     uint16_t localSeq, lastRemoteSeq;
     uint8_t haveRemoteSeq, haveRemote;
+    uint8_t haveResumeToken, resumeInFlight;
+    unsigned char resumeToken[EHL_RESUME_TOKEN_SIZE];
+    unsigned long reconnectSince, retryAt;
+    unsigned int reconnectAttempts;
     LNetPose remote;
     EhlSessionDecoder decoder;
     unsigned char tx[EHL_SESSION_MAX_FRAME];
@@ -56,15 +68,46 @@ static unsigned long now_ms(void)
 #endif
 }
 
+/* Only an authenticated session that actually received type-18 capability
+ * may attempt resume. This is never enabled for legacy EHL8 servers. */
 static void close_failed(LNetSessionClient *c)
 {
+    unsigned long now = now_ms();
+#ifdef EHL_DEBUG_HANDSHAKE
+    fprintf(stderr, "close_failed state=%d token=%u retry=%u\\n", c->state, c->haveResumeToken, c->resumeInFlight);
+#endif
+    int mayRetry = c->haveResumeToken &&
+        (c->state == EHL_CLIENT_PLAYING || c->resumeInFlight);
     lnet_net_close(c->socket);
     lnet_net_close(c->pending);
     c->socket = NULL;
     c->pending = NULL;
-    c->state = EHL_CLIENT_FAILED;
     c->haveRemote = 0;
+    c->haveRemoteSeq = 0;
     c->txLength = c->txOffset = 0;
+    ehl_session_decoder_init(&c->decoder);
+    if (mayRetry)
+    {
+        if (!c->resumeInFlight)
+        {
+            c->reconnectSince = now ? now : 1;
+            c->reconnectAttempts = 0;
+        }
+        if ((unsigned long)(now - c->reconnectSince) < EHL_RECONNECT_WINDOW_MS)
+        {
+            c->resumeInFlight = 1;
+            c->reconnectAttempts++;
+            c->retryAt = now +
+                (c->reconnectAttempts <= 1 ? EHL_RECONNECT_DELAY_MS :
+                                               EHL_RECONNECT_RETRY_DELAY_MS);
+            c->state = EHL_CLIENT_RECONNECTING;
+            return;
+        }
+    }
+    c->state = EHL_CLIENT_FAILED;
+    c->resumeInFlight = c->haveResumeToken = 0;
+    memset(c->pin, 0, sizeof(c->pin));
+    memset(c->resumeToken, 0, sizeof(c->resumeToken));
 }
 
 static int queue(LNetSessionClient *c, uint16_t type,
@@ -75,7 +118,8 @@ static int queue(LNetSessionClient *c, uint16_t type,
         return 0;
     memset(&frame, 0, sizeof(frame));
     frame.type = type;
-    frame.session_id = c->session;
+    /* HELLO is always a fresh transport handshake, even for token resume. */
+    frame.session_id = (type == EHL_HELLO) ? 0 : c->session;
     frame.payload_size = (uint16_t)size;
     if (size)
         memcpy(frame.payload, payload, size);
@@ -135,24 +179,40 @@ void lnet_session_client_close(LNetSessionClient *c)
     lnet_net_close(c->pending);
     /* Never retain a live PIN in freed memory. */
     memset(c->pin, 0, sizeof(c->pin));
+    memset(c->resumeToken, 0, sizeof(c->resumeToken));
     free(c);
 }
 
 static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
 {
+#ifdef EHL_DEBUG_HANDSHAKE
+    fprintf(stderr, "frame state=%d kind=%u size=%u\\n", c->state, frame->type, frame->payload_size);
+#endif
     if (c->state == EHL_CLIENT_WAIT_WELCOME)
     {
         if (frame->type != EHL_WELCOME || frame->payload_size != 1 ||
             frame->payload[0] != 2 || frame->session_id == 0)
             return -1;
+        /* A replacement server has no reservation for this token. */
+        if (c->resumeInFlight && frame->session_id != c->session)
+        {
+            c->haveResumeToken = 0;
+            return -1;
+        }
         c->session = frame->session_id;
         if (!queue(c, EHL_AUTH_PIN, (const unsigned char *)c->pin, 6))
             return -1;
         c->state = EHL_CLIENT_WAIT_AUTH;
         return 0;
     }
-    if (frame->session_id != c->session || frame->type == EHL_KICK ||
-        frame->type == EHL_INCOMPATIBLE || frame->type == EHL_SERVER_CLOSE)
+    if (frame->type == EHL_KICK || frame->type == EHL_INCOMPATIBLE ||
+        frame->type == EHL_SERVER_CLOSE)
+    {
+        /* Host kick, protocol rejection and server shutdown are final. */
+        c->haveResumeToken = 0;
+        return -1;
+    }
+    if (frame->session_id != c->session)
         return -1;
     if (c->state == EHL_CLIENT_WAIT_AUTH)
     {
@@ -160,10 +220,26 @@ static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
             frame->payload[0] != 1)
             return -1;
         /* PIN is no longer needed after authentication. */
-        if (!queue(c, EHL_JOIN, (const unsigned char *)c->profile,
-                   strlen(c->profile)))
+        if (c->resumeInFlight)
+        {
+            unsigned char payload[49 + EHL_RESUME_TOKEN_SIZE];
+            size_t length = strlen(c->profile);
+            if (!c->haveResumeToken || length >= 49)
+                return -1;
+            memcpy(payload, c->profile, length);
+            payload[length] = 0;
+            memcpy(payload + length + 1, c->resumeToken,
+                   EHL_RESUME_TOKEN_SIZE);
+            if (!queue(c, EHL_RESUME, payload,
+                       length + 1 + EHL_RESUME_TOKEN_SIZE))
+                return -1;
+            memset(payload, 0, sizeof(payload));
+        }
+        else if (!queue(c, EHL_JOIN, (const unsigned char *)c->profile,
+                        strlen(c->profile)))
             return -1;
-        memset(c->pin, 0, sizeof(c->pin));
+        /* Retain the PIN only in RAM while resumable; never log or persist it.
+         * On legacy servers it is wiped once PLAYING begins. */
         c->state = EHL_CLIENT_WAIT_JOIN;
         return 0;
     }
@@ -177,12 +253,29 @@ static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
         c->state = EHL_CLIENT_WAIT_START;
         return 0;
     }
+    if (frame->type == EHL_RESUME &&
+        (c->state == EHL_CLIENT_WAIT_START || c->state == EHL_CLIENT_PLAYING))
+    {
+        if (frame->payload_size != EHL_RESUME_TOKEN_SIZE)
+            return -1;
+        memcpy(c->resumeToken, frame->payload, EHL_RESUME_TOKEN_SIZE);
+        c->haveResumeToken = 1;
+        return 0;
+    }
     if (frame->type == EHL_PLAYER_LIST || frame->type == EHL_HEARTBEAT)
         return 0;
     if (frame->type == EHL_START && c->state == EHL_CLIENT_WAIT_START &&
         frame->payload_size == 0)
     {
         c->state = EHL_CLIENT_PLAYING;
+        c->resumeInFlight = 0;
+        c->reconnectSince = 0;
+        c->reconnectAttempts = 0;
+        c->haveRemote = 0;
+        c->haveRemoteSeq = 0;
+        c->lastHeartbeat = 0;
+        if (!c->haveResumeToken)
+            memset(c->pin, 0, sizeof(c->pin));
         return 0;
     }
     if (frame->type == EHL_LEAVE && frame->payload_size == 1)
@@ -220,6 +313,19 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     if (!c || c->state == EHL_CLIENT_FAILED)
         return;
     now = now_ms();
+    if (c->state == EHL_CLIENT_RECONNECTING)
+    {
+        if ((unsigned long)(now - c->reconnectSince) >= EHL_RECONNECT_WINDOW_MS)
+        {
+            c->haveResumeToken = 0;
+            close_failed(c);
+            return;
+        }
+        if ((long)(now - c->retryAt) < 0)
+            return;
+        c->state = EHL_CLIENT_CONNECTING;
+        c->began = now ? now : 1;
+    }
     /* Server echoes HEARTBEAT even when there is no second player's pose.
      * Do not leave a socket silently stale forever if Wi-Fi dies mid-game. */
     if (c->state == EHL_CLIENT_PLAYING &&
@@ -232,7 +338,8 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     {
         if (c->began == 0)
             c->began = now ? now : 1;
-        if ((unsigned long)(now - c->began) > EHL_CONNECT_TIMEOUT_MS)
+        if ((unsigned long)(now - c->began) >
+            (c->resumeInFlight ? 5000UL : EHL_CONNECT_TIMEOUT_MS))
         {
             close_failed(c);
             return;

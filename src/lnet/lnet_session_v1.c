@@ -22,7 +22,7 @@ int ehl_session_encode(const EhlSessionFrame *f, uint8_t *out,
     size_t total;
     if (written != NULL) *written = 0;
     if (f == NULL || out == NULL || written == NULL ||
-        f->type < EHL_HELLO || f->type > EHL_SERVER_CLOSE ||
+        f->type < EHL_HELLO || f->type > EHL_RESUME ||
         f->payload_size > EHL_SESSION_MAX_PAYLOAD) return -1;
     total = EHL_SESSION_HEADER_SIZE + (size_t)f->payload_size;
     if (capacity < total) return -1;
@@ -62,7 +62,7 @@ int ehl_session_decoder_feed(EhlSessionDecoder *d, const uint8_t *src,
         length32 = rd32(h+12);
         if (h[0]!='E' || h[1]!='H' || h[2]!='L' || h[3]!='8' ||
             rd16(h+4)!=EHL_SESSION_MAJOR || rd16(h+6)!=EHL_SESSION_MINOR ||
-            type<EHL_HELLO || type>EHL_SERVER_CLOSE || rd16(h+10)!=0 ||
+            type<EHL_HELLO || type>EHL_RESUME || rd16(h+10)!=0 ||
             length32>EHL_SESSION_MAX_PAYLOAD) {
             ehl_session_decoder_init(d);
             return -1;
