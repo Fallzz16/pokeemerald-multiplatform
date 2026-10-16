@@ -10,6 +10,7 @@ import sys
 
 ROOM = re.compile(r"EHL8_ROOM_COUNT=(\d+)/(\d+)")
 STATE = re.compile(r"\[EHL8\] session state=(\d+)")
+ROOM_LOCKED = re.compile(r"EHL8_ROOM_LOCKED=([01])")
 LABELS = {0: "CONECTANDO", 1: "NEGOCIANDO", 2: "AUTENTICANDO",
           3: "ENTRANDO NA SALA", 4: "AGUARDANDO SEGUNDO JOGADOR",
           5: "EM JOGO", 6: "ERRO DE CONEXÃO"}
@@ -36,6 +37,11 @@ def latest_room(log_text):
     return (used, slots) if slots == 2 and 0 <= used <= slots else None
 
 
+def latest_room_lock(log_text):
+    found = ROOM_LOCKED.findall(log_text)
+    return bool(int(found[-1])) if found else None
+
+
 def latest_client_state(log_text):
     found = STATE.findall(log_text)
     return LABELS.get(int(found[-1]), "ESTADO DESCONHECIDO") if found else None
@@ -45,10 +51,12 @@ def lobby_snapshot(manager):
     players = {"QA_A": "NÃO INICIADO", "QA_B": "NÃO INICIADO"}
     if manager.session is None or manager.mode != "ehl8":
         return {"room": "SEM SESSÃO EHL8", "server": "DESLIGADO",
-                "players": players, "live": False}
+                "players": players, "live": False, "locked": None, "admin": False}
     live = manager.server is not None and manager.server.poll() is None
     logdir = Path(manager.session) / "logs"
-    reported = latest_room(tail_text(logdir / "servidor.log"))
+    server_log = tail_text(logdir / "servidor.log")
+    reported = latest_room(server_log)
+    locked = latest_room_lock(server_log) if live else None
     room = (f"{reported[0]}/{reported[1]}" if live and reported else
             "AGUARDANDO DADOS" if live else "ENCERRADA")
     for i, profile in enumerate(("QA_A", "QA_B")):
@@ -62,7 +70,8 @@ def lobby_snapshot(manager):
             players[profile] = latest_client_state(
                 tail_text(logdir / (profile + "-rede.log"))) or "INICIANDO"
     return {"room": room, "server": "ATIVO (localhost)" if live else "DESLIGADO",
-            "players": players, "live": live}
+            "players": players, "live": live, "locked": locked,
+            "admin": bool(live and getattr(manager, "admin_enabled", False))}
 
 
 def show_lobby(parent, manager, bg="#091611", panel="#142c23",
@@ -72,8 +81,8 @@ def show_lobby(parent, manager, bg="#091611", panel="#142c23",
 
     win = tk.Toplevel(parent)
     win.title("Emerald Hybrid — Lobby EHL8 ao vivo")
-    win.geometry("570x440")
-    win.minsize(510, 390)
+    win.geometry("660x580")
+    win.minsize(600, 530)
     win.configure(bg=bg)
     win.transient(parent)
     tk.Label(win, text="LOBBY EHL8 — MONITOR AO VIVO", bg=bg, fg=green,
@@ -81,7 +90,7 @@ def show_lobby(parent, manager, bg="#091611", panel="#142c23",
     tk.Label(win, text="Status dos logs reais da sessão local.",
              bg=bg, fg=muted, font=("Segoe UI", 10)).pack(anchor="w", padx=24)
     variables = [(name, tk.StringVar(value="AGUARDANDO")) for name in
-                 ("SALA (2 slots)", "SERVIDOR", "JOGADOR QA_A", "JOGADOR QA_B")]
+                 ("SALA (2 slots)", "SERVIDOR", "JOGADOR QA_A", "JOGADOR QA_B", "ENTRADAS NOVAS")]
     for name, var in variables:
         area = tk.Frame(win, bg=panel, padx=12, pady=8)
         area.pack(fill="x", padx=24, pady=(9, 0))
@@ -89,12 +98,22 @@ def show_lobby(parent, manager, bg="#091611", panel="#142c23",
         tk.Label(area, textvariable=var, bg=panel, fg=green,
                  font=("Segoe UI", 11, "bold")).pack(side="right")
 
+    buttons_admin = []
+    lock_button = [None]
+
     def refresh():
         state = lobby_snapshot(manager)
+        lock_label = ("BLOQUEADAS" if state["locked"] else "PERMITIDAS"
+                      if state["locked"] is not None else "NÃO DISPONÍVEL")
         values = (state["room"], state["server"],
-                  state["players"]["QA_A"], state["players"]["QA_B"])
+                  state["players"]["QA_A"], state["players"]["QA_B"], lock_label)
         for (_, var), value in zip(variables, values):
             var.set(value)
+        for btn in buttons_admin:
+            btn.configure(state="normal" if state["admin"] else "disabled")
+        if lock_button[0] is not None:
+            lock_button[0].configure(text="PERMITIR ENTRADAS" if state["locked"]
+                                     else "BLOQUEAR ENTRADAS")
 
     def open_logs():
         folder = Path(manager.session) / "logs" if manager.session else None
@@ -121,8 +140,31 @@ def show_lobby(parent, manager, bg="#091611", panel="#142c23",
                         ("ENCERRAR SALA", stop_server)):
         tk.Button(controls, text=title, command=func, bg=panel, fg=fg,
                   relief="flat", padx=10, pady=8).pack(side="left", padx=(0, 9))
-    tk.Label(win, text="READY/START são automáticos nesta versão.\n"
-             "Controles manuais e reconexão segura serão desenvolvidos depois.",
+    def admin(action, profile=None):
+        target = "a conta " + profile if profile else "as entradas na sala"
+        if not messagebox.askyesno("Confirmar administração",
+                "Alterar " + target + "?", parent=win):
+            return
+        try:
+            manager.admin_command(action, profile)
+        except (OSError, ValueError, RuntimeError) as exc:
+            messagebox.showerror("Falha ao administrar", str(exc), parent=win)
+
+    extra = tk.Frame(win, bg=bg)
+    extra.pack(anchor="w", padx=24, pady=(12, 0))
+    for profile in ("QA_A", "QA_B"):
+        button = tk.Button(extra, text="REMOVER " + profile,
+                           command=lambda profile=profile: admin("kick", profile),
+                           bg=panel, fg=fg, relief="flat", padx=10, pady=8)
+        button.pack(side="left", padx=(0, 9))
+        buttons_admin.append(button)
+    lock_button[0] = tk.Button(extra, text="BLOQUEAR ENTRADAS",
+        command=lambda: admin("unlock" if lobby_snapshot(manager)["locked"] else "lock"),
+        bg=panel, fg=fg, relief="flat", padx=10, pady=8)
+    lock_button[0].pack(side="left")
+    buttons_admin.append(lock_button[0])
+    tk.Label(win, text="Comandos do lobby usam apenas o stdin privado do servidor M2.1.\n"
+             "READY/START continuam automáticos; reconexão ainda não implementada.",
              bg=bg, fg=muted, justify="left").pack(anchor="w", padx=24, pady=(15, 0))
 
     scheduled = [None]
