@@ -90,6 +90,14 @@ def server_command(app, port, admin=False):
     if admin and matched.is_file():
         if not resume.is_file():
             raise FileNotFoundError("Servidor M2.2-B ausente; não iniciar servidor incompatível.")
+        try:
+            expected = json.loads(matched.read_text(encoding="utf-8"))
+            verified = (expected["game_sha256"] == file_digest(app / "pokeemerald.exe")
+                        and expected["server_sha256"] == file_digest(resume))
+        except (OSError, ValueError, KeyError, TypeError):
+            verified = False
+        if not verified:
+            raise RuntimeError("Versões do jogo e servidor M2.2-B não correspondem ao pacote validado. Não iniciar a reconexão.")
         binary = resume
     else:
         binary = advanced if advanced.is_file() else app / "EmeraldSessionServer.exe"
