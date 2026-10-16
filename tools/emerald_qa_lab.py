@@ -610,8 +610,8 @@ def main():
     app, root = application_dir(), lab_root()
     gui = tk.Tk()
     gui.title("Emerald Hybrid v1.0 - Laboratório de Contas")
-    gui.geometry("850x915")
-    gui.minsize(800, 840)
+    gui.geometry("850x845")
+    gui.minsize(800, 780)
     gui.configure(bg=BG)
     manager = QASession(app, root)
     bot_manager = QABotSession(app, root)
@@ -728,14 +728,9 @@ def main():
             except (OSError, ValueError) as exc:
                 messagebox.showerror("Remoção recusada", str(exc))
 
-    lobby_actions = tk.Frame(gui, bg=BG)
-    lobby_actions.pack(fill="x", padx=27, pady=(4, 5))
-    tk.Button(lobby_actions, text="INICIAR SERVIDOR (SEM ABRIR JOGO)",
+    tk.Button(options, text="INICIAR SERVIDOR (SEM JOGO)",
               command=start_server_first, bg="#236448", fg=FG,
-              activebackground="#277d5e", relief="flat",
-              font=("Segoe UI", 10, "bold"), padx=12, pady=9).pack(side="left")
-    tk.Label(lobby_actions, text="Sala 0/2 → abrir jogadores → INICIAR SALA",
-             bg=BG, fg=MUTED, font=("Segoe UI", 9)).pack(side="left", padx=(12, 0))
+              relief="flat", font=("Segoe UI", 9, "bold"), padx=9, pady=5).pack(side="left", padx=(12, 0))
     buttons = tk.Frame(gui, bg=BG)
     buttons.pack(fill="x", padx=27, pady=(6, 12))
     for text, callback in (("ABRIR 2 JOGOS (NOVO)", start), ("Parar testes", stop),
