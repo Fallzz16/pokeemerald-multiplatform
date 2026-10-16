@@ -2,10 +2,13 @@
 import hashlib
 import importlib.util
 import json
+import sys
 from pathlib import Path
 import tempfile
 import unittest
-MODULE = Path(__file__).resolve().parents[1] / "tools" / "emerald_qa_lab.py"
+TOOLS = Path(__file__).resolve().parents[1] / "tools"
+sys.path.insert(0, str(TOOLS))
+MODULE = TOOLS / "emerald_qa_lab.py"
 spec = importlib.util.spec_from_file_location("emerald_qa_lab_m22_test", MODULE)
 L = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(L)
