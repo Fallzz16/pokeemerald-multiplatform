@@ -16,7 +16,7 @@ class NativeResume(unittest.IsolatedAsyncioTestCase):
         cls.tmp = tempfile.TemporaryDirectory()
         cls.exe = str(Path(cls.tmp.name) / "native_resume_client")
         cmd = ["gcc", "-std=c99", "-DPORTABLE", "-D_POSIX_C_SOURCE=200809L",
-               "-Wall", "-Wextra", "-Werror", "-O1", "-g",
+               "-Wall", "-Wextra", "-Werror", "-O1", "-g", "-DEHL_DEBUG_HANDSHAKE=1",
                "-DEHL_HEARTBEAT_INTERVAL_MS=250UL", "-Isrc/lnet",
                "src/lnet/lnet_net.c", "src/lnet/lnet_session_v1.c",
                "src/lnet/lnet_presence.c", "src/lnet/lnet_session_client.c",
@@ -46,7 +46,8 @@ class NativeResume(unittest.IsolatedAsyncioTestCase):
                     break
                 await asyncio.sleep(.025)
             else:
-                self.fail("native peers not ready: " + repr([(key, p.profile, p.stage, p.ready, bool(p.resume_token)) for key, p in server.players.items()]) + " reservations=" + repr(server.reservations) + " clients=" + repr((a.returncode, b.returncode)))
+                traces = await asyncio.gather(a.communicate(), b.communicate())
+                self.fail("native peers not ready: " + repr([(key, p.profile, p.stage, p.ready, bool(p.resume_token)) for key, p in server.players.items()]) + " reservations=" + repr(server.reservations) + " clients=" + repr((a.returncode, b.returncode)) + " TRACE=" + repr([x[1][-2500:] for x in traces]))
             await asyncio.sleep(.45)
             target = next(p for p in server.players.values() if p.profile == b"trainer_A")
             previous_slot = target.slot
