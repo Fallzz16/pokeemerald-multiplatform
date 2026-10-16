@@ -341,3 +341,36 @@ class ReopenSingleSavedTrainerTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             manager.reopen_single(bot,'QA_A')
         self.assertFalse(list(bot.rglob('*.sav')))
+
+class M21AdminPipeTests(unittest.TestCase):
+    def test_admin_companion_is_selected_without_replacing_legacy(self):
+        with tempfile.TemporaryDirectory() as temp:
+            folder = Path(temp)
+            (folder / "EmeraldSessionServer.exe").touch()
+            self.assertNotIn("--admin-stdin", L.server_command(folder, 45680, admin=True))
+            (folder / "EmeraldSessionServerM21.exe").touch()
+            self.assertIn("--admin-stdin", L.server_command(folder, 45680, admin=True))
+            self.assertNotIn("--admin-stdin", L.server_command(folder, 45680, admin=False))
+
+    def test_private_pipe_allowlist_and_no_leaked_pin(self):
+        class Fake:
+            def __init__(self):
+                self.stdin = io.BytesIO()
+                self.returncode = None
+            def poll(self):
+                return self.returncode
+        with tempfile.TemporaryDirectory() as temp:
+            manager = L.QASession(temp, temp)
+            manager.mode = "ehl8"
+            manager.admin_enabled = True
+            manager.server = Fake()
+            self.assertEqual(manager.admin_command("lock"), "LOCK ON")
+            self.assertEqual(manager.admin_command("kick", "QA_B"), "KICK QA_B")
+            self.assertEqual(manager.admin_command("unlock"), "LOCK OFF")
+            self.assertEqual(manager.server.stdin.getvalue(), b"LOCK ON\nKICK QA_B\nLOCK OFF\n")
+            for action, profile in (("kick", "BAD"), ("lock", "QA_A"), ("reset", None)):
+                with self.assertRaises(ValueError):
+                    manager.admin_command(action, profile)
+            manager.admin_enabled = False
+            with self.assertRaises(RuntimeError):
+                manager.admin_command("lock")
