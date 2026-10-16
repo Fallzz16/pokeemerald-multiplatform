@@ -1,0 +1,56 @@
+name: Emerald Hybrid M2.2-A Secure Resume QA (opt-in)
+on:
+  push:
+    branches:
+      - feature/emerald-v100-m22-reconnect-core
+    paths:
+      - 'tools/emerald_session_server.py'
+      - 'tools/emerald_qa_reconnect.py'
+      - 'tests/test_ehl8_resume_v1.py'
+      - '.github/workflows/test-v100-m22-reconnect.yml'
+      - 'docs/V100_M22A_RECONNECT_QA_PTBR.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  protocol:
+    name: EHL8 resume TCP tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and test old plus optional new server protocol
+        run: |
+          python -m py_compile tools/emerald_session_server.py tools/emerald_qa_reconnect.py
+          python -m unittest discover -s tests -p test_emerald_session_server.py -v
+          python -m unittest discover -s tests -p test_emerald_session_admin.py -v
+          python -m unittest discover -s tests -p test_ehl8_resume_v1.py -v
+      - name: Build M22 server and no-CMD QA window
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          python -m pip install --disable-pip-version-check pyinstaller==6.16.0
+          python -m PyInstaller --noconfirm --clean --onefile --console --name EmeraldSessionServerM22 tools/emerald_session_server.py
+          python -m PyInstaller --noconfirm --clean --onefile --windowed --paths tools --paths tests --hidden-import test_ehl8_resume_v1 --name EmeraldQAReconnect tools/emerald_qa_reconnect.py
+          foreach ($name in @('EmeraldSessionServerM22.exe','EmeraldQAReconnect.exe')) {
+            if (!(Test-Path -LiteralPath ("dist/" + $name))) { throw "$name missing" }
+            if ((Get-Item ("dist/" + $name)).Length -lt 100000) { throw "$name suspiciously small" }
+          }
+          New-Item -ItemType Directory -Force -Path qa-package | Out-Null
+          Copy-Item dist/EmeraldSessionServerM22.exe,dist/EmeraldQAReconnect.exe qa-package/
+          Copy-Item docs/V100_M22A_RECONNECT_QA_PTBR.md qa-package/LEIA_RECONEXAO_PTBR.md
+          Compress-Archive qa-package/* -DestinationPath Emerald_Hybrid_v1_M22A_Reconexao_QA_Windows.zip -CompressionLevel Optimal
+      - uses: actions/upload-artifact@v4
+        if: runner.os == 'Windows'
+        with:
+          name: Emerald_Hybrid_v1_M22A_Reconexao_QA_Windows_Experimental
+          path: Emerald_Hybrid_v1_M22A_Reconexao_QA_Windows.zip
+          retention-days: 30
+          if-no-files-found: error
