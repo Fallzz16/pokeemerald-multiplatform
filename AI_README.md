@@ -1,6 +1,6 @@
 # AI README — Emerald Hybrid Multiplayer: passagem de contexto entre IAs
 > **LEITURA OBRIGATÓRIA ANTES DE EDITAR QUALQUER COISA NESTE REPOSITÓRIO.**
-> Atualizado em 2026-10-13 (planejamento v0.8, decisões **1–100** confirmadas). Documento específico deste fork, para evitar recomeços, erros de branch, perda de recursos ou afirmações de testes inexistentes.
+> Atualizado em 2026-10-14 (v0.8 MEGA/M2, decisões **1–116** confirmadas; estado da implementação por capítulo abaixo). Documento específico deste fork, para evitar recomeços, erros de branch, perda de recursos ou afirmações de testes inexistentes.
 
 ## 0. Resumo e fontes de verdade
 
@@ -403,3 +403,243 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 **Rollback:** manter v0.7.2.1 aprovada em pasta separada; qualquer nova instalação não deve apagar/migrar perfis portáteis anteriores sem backup. Falhas de download do sandbox devem ser contornadas pelo link GitHub Actions acima, **não insistir apenas no mesmo sandbox**.
 
 **Próxima IA:** abrir `docs/LAN_V0802_INSTALL_WINDOWS.md` e este registro; não afirmar instalação em PC do usuário já confirmada. Atualizar handoff a cada patch com IDs de run, SHA, falhas e pendências.
+
+
+## 19. MEGA atualização — M2 servidor dedicado EHL8 com dois clientes de protocolo (2026-10-14)
+
+**Confirmação do usuário:** o instalador Windows v0.8.2 gerado pela execução [38524395485](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38524395485) **funcionou no PC dele**. Isso confirma instalação/início, **não** QA completo de saves, multiplayer via servidor ou todos os modos.
+
+**Autorização do usuário:** `funciuonou certinho, podemos partir para a mega atualização`. Decisões anteriores 1–116 continuam em vigor, sem necessidade de novo questionário geral. Prioridade: M2 servidor dedicado **real**, mas preservar jogo v0.8.2 e v0.7.2.1.
+
+### Branch, arquivos e protocolo
+
+- **Branch:** `feature/lan-v0803-dedicated-session-core`, derivada da `feature/lan-v080-mega-desktop-polish` no commit-base `3f94a665bc742d2130a856b5b153596def8445a4`. Após abrir PR, registrar seu número e SHA do HEAD real.
+- **Adicionado:** `tools/emerald_session_server.py` (servidor asyncio dedicado, separado do jogo), `tests/test_emerald_session_server.py` (integração TCP local sem mocks), `.github/workflows/test-v0803-dedicated-server.yml` (testes Linux + Windows e build `EmeraldSessionServer.exe` Windows), `docs/LAN_V0803_DEDICATED_SESSION_CORE.md`.
+- **Sem alterações em gameplay, saves, mapas, áudio, gráficos, UI, SIO, biblioteca C legada ou binário v0.8.2.** `AGENTS.md` e este `AI_README.md` atualizados. **Removido: nada**.
+- **Funcionalidade do núcleo:** framing EHL8 conforme `src/lnet/lnet_session_v1.c` (28-byte header, 4KiB máximo), auth PIN local seis dígitos, identificadores de perfil com bloqueio de duplicidade na sessão, até **dois** slots de jogadores de protocolo, lobby ready/start, heartbeat, presença LANP validada, seq anti-replay, rate limit leve, logs sem PIN, desligamento após 15 min sem clientes.
+- **Compatibilidade**: EHL8 **não pode** ser enviado ao mesmo raw SIO TCP de Cable Club/Presence; separar transporte e exigir ClientAdapter novo, mantendo P2P antigo como fallback. Por isso, apesar de agora existir um núcleo de servidor real, o botão **Hospedar servidor dedicado** do launcher **ainda deve ficar DESABILITADO para gameplay** até existirem cliente/game EHL e lobby operacional.
+- **Saves:** NÃO há dados de save no servidor. No protocolo aparecem apenas profile IDs simples, sem Trainer ID, Pokémon, progresso nem credenciais. Não confundir unicidade local com conta autenticada.
+- **Pin de 6 dígitos** é proteção simples para LAN privada, não serve para hospedar em WAN pública: sem TLS/criptografia/anti-cheat robusto.
+
+### Testes / critérios de publicação
+
+- Suíte local em loopback TCP foi exercitada em ambiente isolado de desenvolvimento, testando diferentes casos; **CI do repositório é a referência final** para Windows/Linux e existência do EXE. Registrar runs/conclusões reais; não declarar artefatos ainda não criados.
+- Testes em `tests/test_emerald_session_server.py`: handshake, PIN incorreto/restrições por IP, entrar com 2, recusar duplicado/terceiro, sincronizar ready/start, retransmitir uma posição, rejeitar header magic/tamanho/versão errados e posição inválida.
+- **Não testado ainda:** dois jogadores **dentro do Emerald** usando esse servidor, reconexão de 60s, lobby com interface, convite/trade, quatro jogadores, Android server, WAN, perfil/save e performance em hardware de 4GB. Não distribuir um pacote para jogar apontando para esse servidor antes do adapter do game.
+- **Próxima etapa M2/2:** implementar SessionClient binário nativo C+SDL que faça handshake e integre PRESENCE ao game; depois M2/3 UI lobby no launcher e controle do servidor, 2 jogadores com save local; validar com hardware do usuário; depois 3/4.
+- **Rollback:** `feature/lan-v080-mega-desktop-polish` é a versão com instalador validado pelo usuário; baseline LAN P2P jogável: `feature/lan-v0721-viewport-culling` commit `a87e2c49e453db32def5e71ba2a2e696a911d504`.
+
+### M2/1 — Verificação final de CI
+
+- **Build/QA confirmado** na revisão `f8c8aaec520c8033a549775cff12885bcd7fa7bd`: [Actions 38526266976](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38526266976), **SUCCESS** em duas plataformas. Ubuntu 24.04 + Windows GitHub Actions executaram testes `unittest` com sockets reais (6 testes: protocolo válido/inválido, PIN e cooldown, recusa de duplicado/terceiro, ready/start, relay de pose, desconexão), Python 3.12 e `py_compile`. O job Windows gerou `EmeraldSessionServer.exe` via PyInstaller.
+- **Artefato Windows confirmado:** ID `11875946788`, `Emerald-v0803-EHL8-SessionServer-Windows-DEV-NOT-GAMEPLAY`, cerca de 9,5 MB. É ferramenta de desenvolvimento do núcleo de sessão; NÃO distribuir como launcher ou como jogo dedicado completo.
+- **Primeira tentativa CI:** teste de recusa de conexão por PIN esperava só EOF; Linux reportou TCP `ECONNRESET`, que é comportamento normal para recusa de conexão que ainda tem bytes pendentes. Correção na suíte para aceitar EOF **ou** reset, mantendo a exigência de que o peer é rejeitado. Após alteração, jobs Linux/Windows passaram.
+- **Diff revisado contra base:** `.github/workflows/test-v0803-dedicated-server.yml`, `tools/emerald_session_server.py`, `tests/test_emerald_session_server.py`, `docs/LAN_V0803_DEDICATED_SESSION_CORE.md`, `AI_README.md`, `AGENTS.md`. **Zero alterações em src/, dados, sprites, saves, Android ou jogo antigo.**
+- **Estado:** [PR #10](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/10) permanece DRAFT. O CI pode ter outro check legado de ROM em execução ou falha independente; não declarar todo o conjunto de workflows verde sem verificar.
+- **Teste funcional importante NÃO feito:** duas partidas reais do Emerald conectadas nesse servidor; ainda não existe adaptador de cliente EHL8 no jogo. Também permanecem pendentes slots reservados por 60s e autenticação forte para internet. 
+- **Próximo trabalho:** M2/2 client adapter + testes host dedicado (um Windows servidor sem jogo e dois jogadores com saves separados), depois M2/3 integrar GUI lobby ao launcher; não reintroduzir confusão entre EHL8 e P2P Cable Club.
+
+- **Artefato DEV conferido no contêiner do chat:** `Emerald_v0803_EHL8_SessionServer_WINDOWS_DEV.zip` (9.485.973 bytes), CRC OK, `EmeraldSessionServer.exe` (9.673.607 bytes) com PE `MZ` e SHA256 `00a45d6a474bafbad98d943dfae2f203a2e9e470bd2b9e5e39b0e4a82571f3d5`. Não é um instalador nem a versão de multiplayer jogável; não integrar ao pacote do jogador sem M2/2.
+
+
+## 20. M2/2–M2/3 — Conexão EHL8 no próprio jogo e controle pelo launcher (2026-10-14)
+
+**Pedido expresso do usuário:** continuar após M2/1, priorizando análise, polimento e testes antes de entregar. Todos os requisitos 1–116 seguem vinculantes. **Branch/PR:** `feature/lan-v0803-dedicated-session-core`, [PR #10](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/10), sobre v0.8.2 instalada com sucesso no Windows.
+
+**Arquivos adicionados:**
+- `src/lnet/lnet_session_client.h/.c`: cliente nativo C99 EHL8, TCP não bloqueante, frame 28B/4KiB, handshake AUTH PIN e JOIN com identidade de perfil, READY e START automáticos, heartbeat, validação e relay de LANP 18B, monotonic stale timeout de 3s, detecção de desconexão. Isolado do Cable Club e dos saves.
+- `tests/native_ehl8_client.c` e `tests/test_ehl8_native_bridge.py`: compilam dois processos nativos C, conectam ambos no servidor Python EHL8 por TCP real em `127.0.0.1`, verificam movimentação remota nas duas direções e rejeição de protocolo inválido. Sem `.sav`, sem chamar AgbMain.
+- `tools/emerald_session_server.py` agora aceita também `--pin-stdin` com segredo lido de pipe (legacy `--pin` para diagnóstico manual ainda funciona).
+
+**Arquivos modificados:**
+- `src/link.c`, `include/link.h`: entrada `PortLanRequestDedicatedClient`; reutilização EXATA da projeção do avatar remoto, suavização de movimento, culling e limpeza do sprite já aprovados pelo usuário em v0.7.2.1. Evita segunda implementação de sprite; não toca Quest UI.
+- `src/platform/sdl2.c`: modo novo opt-in `--session-client=IPv4:PORT` com `--session-pin-stdin` (opção `--session-pin=...` manual alternativa), **exige perfil local válido e impede mistura com `--lan-host`/client raw SIO**. Sem essas flags funciona como v0.8.2; falhas de configuração retornam erro e não caem silenciosamente no save antigo. Buffer secreto temporário zerado após inicialização.
+- `tools/emerald_launcher.py`: agora pode iniciar/parar **processo dedicado real** `EmeraldSessionServer.exe`, com PIN mascarado; checkbox para jogar usando EHL8 e mesma seção de IPv4/porta; P2P Cable Club antigo preservado como padrão. Launcher envia PIN por stdin tanto ao servidor quanto ao jogo e não persiste PIN em `launcher-settings.json`. O launcher gera logs locais e acompanha o game. Ainda **não** exibe lista de participantes, lobby de amigos com cards, QR nem convites.
+- `scripts/verify_v080_profile_patch.py`: auditoria reversa ampliada **somente** para flags SDL autorizadas; baseline game antigo ainda é verificado.
+- `tests/test_emerald_launcher.py`: validação de PIN seis dígitos, proibição de PIN em argv de game, modos novos.
+- `.github/workflows/test-v0803-dedicated-server.yml`, Windows/Android workflows: executam prova C ↔ servidor Python e compilações full sem modificar o antigo P2P.
+- `docs/LAN_V0803_DEDICATED_SESSION_CORE.md` expandido com protocolos, comandos, uso e riscos.
+- **Removido do gameplay:** nada (sem mudanças de Hoenn, NPC, audio, sprites, Quest UI, batalha, save, Pokédex, turbo ou Fairy).
+
+**Progresso verificado:**
+- O teste `test_ehl8_native_bridge.py` de **dois clientes C** e servidor Python `EHL8` passou no GitHub Linux no [run 38528888486](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38528888486). Servidor Python em Windows/Linux passou unit socket QA da mesma revisão.
+- Os builds nativos Windows/Android do **cliente C inicial** foram aprovados nas execuções [Windows 38528888473](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38528888473), [Android 38528888626](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38528888626). Essas execuções ocorreram ANTES do último refinamento de PIN via stdin e log; **verificar as execuções mais recentes no último código SHA para afirmar aprovação final.**
+- Launcher PyInstaller Windows revisado aprovou no [run 38528894518](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38528894518), mas pré-PIN stdin. Nunca reutilizar build antigo com executável EHL novo sem conferir.
+- **Não validado ainda:** duas janelas Emerald reais em Hoenn usando servidor dedicado, renderização em vídeo no hardware do usuário, saves com sessão EHL8 e evolução de mapa, reconexão 60s, Cable Club através do servidor, servidor Android ou 3/4 jogadores.
+
+**Milestone respeitado:** #100A/#116A = primeiro **2 jogadores** com progresso independente; a integração real de gameplay precisa de QA humano antes de declarar aceite. **O servidor não transporta batalhas/trocas**; modos P2P legados continuam separados. Nenhuma conta online obrigatória (#81A). Servidor não contém saves nem autenticação robusta de internet. Proibir publicação em WAN pública; LAN/VPN confiável apenas.
+
+**Instrução de teste seguro:** não sobrescrever v0.8.2 aprovada; instalar/extrair em pasta SEPARADA e criar/importar apenas **cópias** de .sav, garantir dois perfis distintos; iniciar servidor dedicado pelo novo launcher em um PC, entrar com ambos pelos launchers marcando EHL8 (ou via testes nativos), conferir chegada, mapa/camera/ocultação, encerrar e reabrir. Se falhar, enviar logs `cliente-ehl8.log` e `servidor-*.log` sem expor IPs privados.
+
+**Rollback:** `feature/lan-v080-mega-desktop-polish` no commit `3f94a665bc742d2130a856b5b153596def8445a4` (instalador confirmado usuário) ou v0.7.2.1 `a87e2c49e453db32def5e71ba2a2e696a911d504` (LAN P2P aprovado). **Todos os saves fora da branch e intocados.** 
+
+## 21. QA FINAL DO CANDIDATO M2 EHL8 Preview (14/10/2026)
+
+**Status: código/testes e distribuições aprovados no CI, MAS jogabilidade real com dois Emeralds ainda aguarda QA do usuário.** Não classificar como lançamento estável.
+
+### Compilações de mesma revisão de código
+- `ddfdd5b536f49ef227c30bef08e7bbb720f3645b` é o código testado, após integração SDL2, client C, PIN por stdin e countdown no primeiro frame.
+- ✅ **Servidor Python EHL8 e cliente C real / testes reais de dois processos e poses**: [GitHub Actions 38530326482](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38530326482) — Linux/Windows SUCCESS, inclui `EmeraldSessionServer.exe`.
+- ✅ **Emerald jogo Windows x86 / auditoria histórica SDL2 / antigo LAN P2P**: [Actions 38530326166](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38530326166) — SUCCESS, binário `pokeemerald.exe`.
+- ✅ **Emerald APK Android ARMv7 compatibilidade nativa**: [Actions 38530326361](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38530326361) — SUCCESS. **A nova interface dedicada Android NÃO foi implementada**; teste de compilação não equivale a teste com UI Android.
+- ✅ **Launcher gráfico Windows PyInstaller e unit tests**: [Actions 38530326649](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38530326649) — SUCCESS.
+- ✅ **Profile manager e framing C99/sanitizers**: [Actions 38530326395](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38530326395) — SUCCESS.
+- ✅ Teste legado de LAN foi repetido após um evento isolado de timeout 25s e passou, preservando a base antiga sem desligar a auditoria. O CI genérico de ROM tem falhas históricas separadas: não declarar **todos os checks do repositório verdes** indiscriminadamente.
+
+### Pacote distribuído com isolamento de saves
+- `packaging/emerald_hybrid_m2_preview.nsi` — instalador **NSIS real, Windows sem admin**, instala em `%LOCALAPPDATA%\\Programs\\EmeraldHybridM2Preview`, sem sobrescrever v0.8.2. Lê `EHL8_PREVIEW_MODE.txt` para direcionar novos perfis e logs a `%LOCALAPPDATA%\\EmeraldHybridEHL8Preview\\profiles`; desinstalar **NÃO** apaga saves nem logs beta ou da instalação estável.
+- `.github/workflows/package-v0803-ehl8-preview.yml` baixa **cinco binários SHA256-pinados** dos runs acima, valida hashes + tamanhos, recusa arquivos `.sav`, compila instalador NSIS + ZIP portátil em um único GitHub Actions artifact.
+- ✅ [Actions 38530984109 — instalador e ZIP portátil](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38530984109) — SUCCESS, artifact ID **11877557469**, nome `BAIXAR_AQUI_Emerald_EHL8_M2_PREVIEW_INSTALADOR_e_PORTATIL`.
+- Baixado e verificado no container deste chat: arquivo externo `Emerald_Hybrid_EHL8_M2_PREVIEW_GITHUB_COMPLETO.zip` (63.627.378 bytes, CRC OK), contém apenas os dois produtos esperados:
+  - `Emerald_Hybrid_EHL8_M2_PREVIEW_INSTALADOR_Windows.exe`: 30.419.750 bytes, PE/MZ, SHA256 `674d8826e1701cc271672123029672fee97ef9c7eafbc4914b55759f894b38b4`.
+  - `Emerald_Hybrid_EHL8_M2_PREVIEW_PORTATIL_Windows.zip`: 33.240.607 bytes, SHA256 `1edc83884f825d29693d6d39bb550a6c377e90671572df4b6fa68118e1df3082`, CRC interno OK, inclui `EmeraldLauncher.exe`, `pokeemerald.exe`, `SDL2.dll`, `emerald_profilectl.exe`, `EmeraldSessionServer.exe`, `ABRIR_LAUNCHER.bat`, `PORTABLE_MODE.txt`, leia-me/QA, **nenhum .sav**.
+- Uma versão anterior do ZIP portátil tinha confundido o usuário porque baixou somente `EmeraldLauncher.exe`; neste pacote o download é **COMPLETO** e GitHub Actions é rota primária. O instalador é **não-assinado**; não recomendar desativar SmartScreen/AV.
+
+### Resumo exato do incremento
+- **Adicionado:** cliente nativo EHL8 `src/lnet/lnet_session_client.{c,h}`, testes C↔Python em sockets, `docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md`, NSIS preview, workflow de pacote completo.
+- **Alterado:** `src/link.c` reaproveita sprite/culling, `include/link.h`, `src/platform/sdl2.c` aceita modo dedicado com PIN lido via stdin, `tools/emerald_launcher.py` inicia/para servidor real e conecta ao dedicado, `tools/emerald_session_server.py` recebe PIN via pipe, auditoria SDL e testes do launcher, docs/AI handoff.
+- **Removido:** nada do gameplay antigo, nenhuma quest, áudio, FX, batalha, história, mapa, sprite, mecânica ou save original. Os perfis da preview ficam **isolados**.
+- **NÃO implementado:** batalhas/trocas através do novo servidor, proxy SIO entre pares, lobby gráfico completo com lista/ready/kick, 60s reserva de vaga/reconnect, 3/4 participantes, login online opcional, QR/discovery, Android launcher equivalente, criptografia de dados ou infraestrutura WAN. **Não abrir portas públicas.**
+- **Ainda NÃO testado em runtime:** dois Emeralds em Windows exibindo personagens remotos, warp/camera, saves reais, desinstalação e SmartScreen no Windows físico do usuário. Critérios e roteiro em `docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md`; exigir feedback antes de chamar M2/2 estável.
+- **Rollback:** primeira opção `feature/lan-v080-mega-desktop-polish` (v0.8.2 instalador já confirmado pelo usuário); segunda opção `feature/lan-v0721-viewport-culling` SHA `a87e2c49e453db32def5e71ba2a2e696a911d504` para LAN P2P comprovada.
+- **Próxima etapa:** instalar preview separada em 2 PCs, fazer QA com cópias de dois saves e comparar regressões. Só depois implementar lobby gráfico completo, recuperação, extensão para 4 e SIO de batalhas/trocas no dedicado.
+
+**Nenhuma ação desta etapa acessou ou modificou os saves pessoais do usuário.**
+
+
+## 22. M2 — reforço de QA da ponte C nativa e reconfirmação de contexto (2026-10-14)
+
+**Pedido:** o usuário aprovou implementar/conectar EHL8 ao Emerald e solicitou análise, polimento e verificação antes de qualquer entrega. Ao retomar `feature/lan-v0803-dedicated-session-core`, a integração **já estava presente**, não recomeçar do zero: `src/lnet/lnet_session_client.c/.h`, `src/link.c`, `src/platform/sdl2.c`, GUI com controles dedicados e um workflow de pacote PREVIEW. GitHub HEAD deve ser consultado; PR #10 ainda draft.
+
+**Verificação em commit pré-QA** `3757ecd0b2c6d38c1921b085575209ea205c6c0e`: builds Windows x86 e Android ARMv7, testes LAN, M0/M1 perfis, GUI, servidor EHL8 e pacote de preview **SUCCESS** no GitHub. Workflow `CI` genérico da ROM **FAILURE** separada, não chamar todos os checks verdes nem mesclar PR prematuramente.
+
+**Adicionado nesta retomada (código de testes, sem gameplay modificado):**
+- `tests/test_ehl8_native_bridge.py`: casos end-to-end reais com cliente nativo C contra servidor Python para (a) rejeitar PIN errado sem entrar no lobby; (b) negar conexão duplicada do mesmo profile ID sem substituir jogador existente.
+- Testes anteriores de dois clientes C jogando poses em TCP localhost, handshake PIN/ready/start, falhas de framing e retransmissão permanecem ativos.
+
+**QA novo:** [Actions 38533591020](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38533591020) foi executado sobre `2664c58a1089228c5276b27d4d0a67bd0bae5094`. Testes Linux de servidor e ponte nativa C/servidor Python **SUCCESS**; job Windows de servidor compila executable PyInstaller (verificar conclusão antes de declarar verde). Builds Android/Windows/native serão avaliados separadamente, nunca assumidos.
+
+**Segurança e isolamento:** nenhum `.sav` foi carregado nos novos testes; todos os binários de teste são efêmeros; não houve alteração de mapas, batalha, SIO, áudio, sprites ou gameplay. O novo protocolo de sessão dedicado permanece separado do Cable Club P2P anterior. ID de perfil impede duplicação acidental de sessão, mas não é prova de identidade criptográfica em LAN.
+
+**NÃO IMPLEMENTADO/NÃO VALIDADO:** QA em dois PCs reais com Emerald completo e saves independentes, reconexão com reserva de 60 segundos, robustez de trocas/duelos dedicados (ainda no P2P antigo), lobby gráfico com lista de conectados, Android servidor dedicado, quatro jogadores, proteção/backup automáticos pós-save. O preview **NÃO é release estável**.
+
+**Recomendação e próximo passo:** preservar PR #10 experimental e solicitar QA do usuário no Windows com **3 máquinas lógicas** (servidor EHL8 + 2 clientes Emerald com perfis diferentes) antes de declarar jogabilidade dedicada validada. Se aprovar, implementar lista real de participantes/Ready UI e reconexão, depois até 4 players. README obrigatório em cada atualização.
+
+**Rollback:** `feature/lan-v080-mega-desktop-polish` (instalador previamente confirmado pelo usuário), backup LAN validado `feature/lan-v0721-viewport-culling`. Nunca modificar arquivos de save originais.
+
+## 23. Retomada: consertar late-join no EHL8 e mostrar jogadores reais no launcher (2026-10-14)
+
+**Usuário pediu continuar a implementação e polir antes de entregar.** Recuperei HEAD do GitHub em vez de recomeçar. PR #10 (`feature/lan-v0803-dedicated-session-core`) já continha servidor EHL8, cliente C integrado no Emerald, launcher gráfico e instalador PREVIEW testados em CI. A v0.8.2 instalada pelo usuário e a v0.7.2.1 LAN aprovada continuam preservadas.
+
+### Bug confirmado por leitura do código e resolvido
+
+- **Entrada tardia** (#9A/#38A/#61A): o servidor deixava um novo jogador entrar quando `in_game=True` e enviava `START`, mas rejeitava o `READY=1` enviado automaticamente pelo cliente C após JOIN, resultando em desconexão. `tools/emerald_session_server.py` agora aceita o primeiro `READY=1` de um cliente no estado `GAME`; READY repetido é idempotente, **não** gera broadcasts redundantes. Outros payloads continuam inválidos.
+- Novo teste TCP `test_running_room_ready_ack_does_not_disconnect`: duas pessoas entram e ficam prontas; uma sai; novo perfil ocupa slot aberto numa partida já iniciada; READY/HEARTBEAT continuam funcionando; seu POSE é retransmitido ao primeiro jogador. READY duplicado não gera `PLAYER_LIST` extra.
+- **Sem afirmar reconexão pronta**: entrar no slot livre NÃO equivale a reservar a mesma vaga por 60 segundos com token autenticado. O requisito #60A/#86A continua pendente.
+
+### Melhoria de qualidade do launcher
+
+- Servidor emite eventos de contagem `EHL8_ROOM_COUNT=0/2`, `1/2`, `2/2` em mensagens INFO no log **sem IP, PIN ou ID de perfil**.
+- `tools/emerald_launcher.py` usa `read_room_occupancy()` para ler no máximo os últimos 8192 bytes do log deste processo; status no painel apresenta **ocupação real** em vez de `até 2 jogadores`. Ausência de dados não é interpretada como zero confirmado.
+- `tests/test_emerald_launcher.py` cobrem formato multilinha, log ausente, cauda grande e contagem inválida. O servidor real continua rodando separado do Emerald.
+- **Não é lobby completo ainda**: lista de membros, ping, pronta/recusar, expulsar e convites com UI continuam pendentes.
+
+### Registros de alteração obrigatórios
+
+**Adicionado:** testes de entrada tardia + mensagens repetidas de READY + movimento pela sessão já iniciada; teste do parser de ocupação. **Modificado:** `tools/emerald_session_server.py`, `tools/emerald_launcher.py`, testes e `docs/LAN_V0803_DEDICATED_SESSION_CORE.md`. **Removido:** nada; nenhum arquivo `src/`, gameplay, mapa, Quest UI, sprites, arquivos .sav ou dados de usuário foi alterado nesta retomada.
+
+**QA:** consultar a matriz do workflow EHL8 Linux/Windows, CLI/PIN, launcher Windows, construção do jogo Windows/Android e instalador de preview no commit mais recente. Não supor sucesso de runs anteriores como validação do HEAD atual. **Testes reais com duas janelas Emerald em Hoenn ainda não foram executados pelo usuário.** CI genérico de comparação ROM é separado do build PC/Android.
+
+**Rollback:** `feature/lan-v080-mega-desktop-polish` (instalador v0.8.2 confirmado no PC pelo usuário), ou `feature/lan-v0721-viewport-culling` SHA `a87e2c49e453db32def5e71ba2a2e696a911d504` (LAN P2P testada). Não misturar perfis preview com saves originais; preservar `EmeraldHybridEHL8Preview` e `profiles/` ao atualizar uma preview.
+
+**Próxima etapa:** verificar todos os workflows no mesmo SHA; enviar apenas build de preview quando íntegro, com roteiro QA e limitações; investigar integração de rendering em 2 PCs reais; depois implementar reserva de vaga por 60 segundos com identidade de sessão, painel lobby real e trade/battle SIO separado.
+
+## 24. Gate de distribuição M2: artefatos testados no MESMO SHA (2026-10-14)
+
+**Falha de processo detectada:** `.github/workflows/package-v0803-ehl8-preview.yml` buscava automaticamente componentes de runs antigos (`38530326166`, `38530326649`, `38530326482`, `38530326395`), sem garantir que o usuário recebesse correções recém-adicionadas. O ZIP poderia ser publicado como atualizado enquanto continha **executáveis antigos**, contrariando a política de QA da equipe.
+
+**Corrigido:** o workflow agora aguarda as quatro compilações obrigatórias (jogo Windows, launcher gráfico, servidor dedicado EHL8 e núcleo de perfis) de **exatamente `GITHUB_SHA`**, consulta a API de Actions com permissão `actions:read`, exige conclusão `success` para cada uma, falha se alguma delas falhar ou não terminar, baixa os artefatos correspondentes e verifica assinatura PE MZ, tamanho mínimo e ausência de `.sav` em cada pacote. Emite `SHA256_COMPONENTES.txt` contendo `SOURCE_COMMIT` e hash real de cada um dos cinco binários (SDL2 incluída). Instalador NSIS e ZIP portátil incluem esse arquivo e continuam usando perfis beta isolados.
+
+**Arquivos alterados/adicionados na retomada:**
+- `tools/emerald_session_server.py`: READY tardio aceito exatamente quando o novo jogador entrou em jogo iniciado, idempotência sem flood; evento `EHL8_ROOM_COUNT` emitido apenas com ocupação, sem divulgar credenciais/IDs.
+- `tests/test_emerald_session_server.py`: novo caso TCP da entrada tardia e pose do substituto após partida iniciada.
+- `tools/emerald_launcher.py`: contador real lido do próprio log do servidor, limitado aos 8 KiB finais; logs ausentes deixam o estado como aguardo.
+- `tests/test_emerald_launcher.py`: parser de eventos com multiline, logs ausentes, inválidos, tail grande.
+- `.github/workflows/package-v0803-ehl8-preview.yml`: componentes do mesmo commit + manifest SHA256.
+- `packaging/emerald_hybrid_m2_preview.nsi`: instala/remove `SHA256_COMPONENTES.txt` sem tocar nos saves do usuário.
+- `docs/LAN_V0803_DEDICATED_SESSION_CORE.md`, `docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md` e este `AI_README.md`: QA/rollback/continuidade.
+
+**Removido:** nenhuma funcionalidade de gameplay, arquivo de save, mapa, mecânica, áudio, opção P2P ou Quest UI; nenhum `src/` foi modificado nesta retomada, apenas servidor, launcher, testes, empacotamento e documentação.
+
+**QA de aprovação:** devem passar os mesmos testes Linux/Windows de socket e cliente C, builds Windows/Android, testes de launcher, regressão LAN e **o novo workflow de pacote sincronizado por SHA**. O workflow `CI` genérico de comparação ROM é uma etapa separada e historicamente falha; não afirmar `100% CI verde` se ela continuar vermelha. A conexão de dois processos completos `pokeemerald.exe` em máquinas físicas ainda requer teste pelo usuário com cópias de saves.
+
+**Riscos/pêndencias:** reconexão com vaga por 60 segundos e token de retomada não implementada; lobby gráfico ainda sem nomes/ping/kick; troca/batalha EHL8 ainda sem proxy Cable Club, má qualidade de WAN pública (PIN não substitui criptografia), suporte a quatro participantes e a UI Android dedicados ausentes. Não promover PR #10 a release estável ainda. Testar novo pacote M2 em instalação separada da v0.8.2 previamente aprovada.
+
+**Rollback:** `feature/lan-v080-mega-desktop-polish` é o instalador v0.8.2 confirmado pelo usuário; `feature/lan-v0721-viewport-culling` SHA `a87e2c49e453db32def5e71ba2a2e696a911d504` é a LAN P2P funcional. Preservar todos os perfis originais e nunca transportar `.sav` dentro do instalador.
+
+
+## 22. Retomada do PR #10 — guarda do loop SDL2 + empacotamento por SHA (2026-10-14)
+
+- **Origem verificada:** branch `feature/lan-v0803-dedicated-session-core`, HEAD antes da alteração `849929db684ca651abe8308878e3cba03837febb`, PR #10 draft. O novo SHA exato deve ser lido no HEAD/manifesto do pacote.
+- **BLOQUEIO DETECTADO NA INSPEÇÃO DE CÓDIGO (não reproduzido visualmente):** em `src/platform/sdl2.c`, o `while (accumulator >= dt)` não tinha caminho de saída quando `isFrameAvailable` era falso. Se a thread AgbMain demorasse a produzir o quadro, o loop de interface poderia girar indefinidamente sem tratar eventos, inputs nem fechar. Adicionado `else { break; }`, mantendo o acumulador e a cadência já existente para a próxima iteração. Não altera as rotinas de vídeo pixel-perfect, Quest UI, fast-forward, áudio nem flash/save.
+- **Alterados:** `src/platform/sdl2.c`; `scripts/verify_v080_profile_patch.py` (reverte somente o novo bloco ao auditar o hash do SDL antigo, continuando estrito para outras regiões); `AGENTS.md` (retira instrução obsoleta que dizia botão EHL8 desativado); `.github/workflows/build-lan-hybrid-windows.yml`, `build-v080-graphical-launcher.yml`, `test-lan-v080-foundation.yml`, `test-v0803-dedicated-server.yml` e `package-v0803-ehl8-preview.yml` (gatilhos push da branch e compilações de componentes mesmo após fix de jogo, por mesmo SHA); este `AI_README.md` e `docs/LAN_V0803_M2_WINDOWS_QA_PTBR.md`.
+- **Adicionado:** `tests/test_sdl2_frame_pacing.py` (regressão estática de saída do loop + strip exato de auditoria). **Removido:** nenhum arquivo ou sistema.
+- **Provas até o momento do commit:** leitura da fonte real e revisão dos workflows no GitHub. Teste novo é **ESTÁTICO**; os workflows precisam ser executados e inspecionados **no novo HEAD** antes de alegar compilação ou package. A compilação não é QA visual com dois Emeralds; CI anterior passou para o SHA 849929db, não automaticamente para o novo.
+- **NÃO implementados:** reserva autenticada de 60s/reconexão automática (#60A/#86A), lobby visual remoto com lista/Ready e admin kick, PvP/troca no dedicado, host Android nativo e quatro jogadores. Falta principalmente testar dois clientes reais com saves/copias, sprite remoto, transição de mapas, fechamento, persistência e abertura de sessão em LAN em PCs reais. Sem teste de corrupção pós-crash, não prometer proteção absoluta.
+- **Rollback:** SHA antigo `849929db684ca651abe8308878e3cba03837febb` para preview; branch `feature/lan-v080-mega-desktop-polish` em `3f94a665bc742d2130a856b5b153596def8445a4` preserva instalador v0.8.2 aprovado. Não tocar saves originais, testar em diretórios/perfis beta com backup recuperável.
+- **Próxima IA:** conferir HEAD PR #10 e status por SHA das Actions, pacote instalador + ZIP portátil com `SOURCE_COMMIT`, validar games em dois PCs e resolver lobby + reconexão antes de sair de DRAFT. Todas as decisões 1–116 continuam válidas.
+
+
+## 23. Hotfix do empacotamento NSIS — falha externa Chocolatey 503 (2026-10-14)
+
+- **Origem:** commit `1851588dc4b5dc7c2bc2dfa20db62761dafca1e6`, PR #10 draft. No exato SHA, o workflow Windows x86, o launcher Windows, o EHL8 Python/C e os perfis M0/M1 passaram; a compilação Android ARMv7 também passou. O job de distribuição do workflow `package-v0803-ehl8-preview.yml` (run [38561477655](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38561477655)) **FALHOU** na instalação do NSIS: Chocolatey community feed retornou HTTP **503**. O ZIP portátil já tinha sido criado dentro do runner, mas o workflow falhou antes do upload, logo NÃO houve distribuição do pacote dessa revisão.
+- **Correção em andamento nesta atualização:** substituir dependência única do Chocolatey por detecção de NSIS preinstalado ou download da distribuição **oficial NSIS 3.13 ZIP portátil** via HTTPS/SourceForge, com 3 tentativas, tamanho mínimo, extração, verificação de cabeçalho PE/MZ e fallback Chocolatey só quando necessário. Usar compilador existente sem instalar globalmente nem exigir UAC. O download do arquivo pelo HTTPS não equivale a verificação criptográfica por SHA256 contra valor previamente confiável; esta segurança adicional permanece possível aprimoramento.
+- **Mudanças:** `.github/workflows/package-v0803-ehl8-preview.yml` (bootstrap resiliente), `build-v080-graphical-launcher.yml`, `test-v0803-dedicated-server.yml` e `test-lan-v080-foundation.yml` (gatilho para reconstruir os respectivos componentes no mesmo SHA até quando apenas workflow de distribuição muda), `AI_README.md` e o guia de QA. O workflow Windows x86 já executa em qualquer push não-Markdown. **Nenhuma fonte de gameplay nem nenhum save mudou. Nenhum arquivo removido.**
+- **Testes:** informações confirmadas pelo log completo do GitHub Actions; novo workflow precisa concluir no SHA desta correção antes de afirmar que NSIS/instalador funcionou. Preservar `SOURCE_COMMIT` igual no manifesto de componentes, NSIS+ZIP e teste de que não há .sav no pacote. Os testes de socket e build não comprovam dois avatares em PCs reais.
+- **Ainda NÃO implementado:** 60s reconnect/reserva autenticada, lobby visual com estado dos jogadores, batalha/troca dedicada, quatro clientes e teste visual/round-trip de dois saves. Todos os sistemas aprovados 1–116, SIO antigo, Quest UI, áudio e turbo preservados.
+- **Rollback:** `1851588` para o patch SDL2 anterior; baseline v0.8.2 em `feature/lan-v080-mega-desktop-polish`. Após CI, testar a preview de forma isolada em 2 PCs com cópias de saves e reter PR em draft até QA humano.
+
+
+### Correção da definição YAML do instalador (seguimento da seção 23)
+
+- O primeiro patch do NSIS em `6bcd81abae6b8cbc7c335605f3a9f18602ee941f` gerou uma definição YAML inválida: a rotina de substituição de texto expandiu o trecho especial `$'` do JavaScript e duplicou o final do workflow. A Action [38562358203](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38562358203) falhou **antes de iniciar qualquer job**. Isso é erro na criação do workflow, NÃO no jogo.
+- Corrigido reconstruindo a etapa por intervalos a partir do arquivo original íntegro do SHA 1851588, sem substituição de string com marcadores especiais. A validação estática confirmou apenas uma etapa de NSIS, uma de instalador, uma de upload, sem cauda duplicada. O workflow continua baixando NSIS 3.13 oficial em ZIP, conferindo executável MZ e usando Chocolatey somente como fallback.
+- **Modificados:** `.github/workflows/package-v0803-ehl8-preview.yml` e `AI_README.md`. **Adicionados/removidos:** nenhum. **Ainda depende:** novo workflow rodar com sucesso no HEAD corrigido; dois jogadores reais, reconexão 60s e lobby completo continuam pendentes. Preservado rollback `1851588` e instalação estável v0.8.2.
+
+
+### Segundo reparo da dependência NSIS (seguimento, 2026-10-14)
+
+- O workflow sintaticamente válido `fb91998b710afd34ea2381fa401c4e2a5bad203f` gerou todos os binários Windows no SHA correto, mas a distribuição [run 38562722390](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38562722390) falhou novamente em instalar NSIS. O URL do SourceForge foi baixado como arquivo **menor que 1 MiB**, incompatível com ZIP oficial de 2,4 MiB (provável página de redirecionamento); depois Chocolatey retornou 503. Confirmado pelos logs reais. Nenhum instalador do SHA novo foi publicado.
+- Adicionada uma terceira rota verificável: action `negrutiu/nsis-install` fixada pelo commit `f3339c88dba6fd08910d5275a943f8f746d94876`, distribuição NSIS fork via **GitHub releases**. A action é externa e não substitui auditoria de origem/cadeia de fornecimento; pode falhar sem interromper os outros fallbacks, porém a entrega só é liberada após presença de compilador PE, EXE instalador, ZIP, cinco executáveis, hashes e ausência de saves reais.
+- **Modificado:** somente `.github/workflows/package-v0803-ehl8-preview.yml` e documentação `AI_README.md`. Nenhuma alteração de gameplay, formatos de save, EHL8, Cable Club, áudio ou imagens. Nenhum arquivo removido; nenhuma nova funcionalidade de jogo alegada.
+- **Status de teste:** a nova Action ainda precisa ser executada no SHA que contém esta seção; aprovação anterior dos builds não certifica o novo pacote. QA real de dois jogadores e tarefas #60/#86 continuam pendentes.
+
+
+## 24. M2 client heartbeat/liveness — correção após preview Windows gerada (2026-10-14)
+
+- **Ponto de partida:** commit `77c8778b339e79cd633d35a995c845c2d0e9ab25` gerou com sucesso [instalador + ZIP portátil no run 38563401981](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38563401981), artefato `11893518458`. Os cinco componentes saíram do mesmo HEAD; isso não substitui QA humano dos dois jogadores.
+- **BUG DETECTADO POR REVISÃO:** `src/lnet/lnet_session_client.c` colocava o HEARTBEAT atrás de uma condição `else if` que enviava POSE a cada ~100 ms. Quando o jogo estava em GAME, o fluxo de poses tornava a condição de heartbeat praticamente inalcançável, sobretudo quando o outro jogador estava ausente e não havia resposta de pose. Uma queda silenciosa de rede poderia ficar sem detecção explícita.
+- **Correção:** agendar heartbeat EHL8 com prioridade a cada 10 s, mesmo enquanto são enviados snapshots; receber o eco do servidor e marcar falha após 25 s sem qualquer resposta durante PLAYING. O jogo continua local/offline quando a sessão falha e o avatar remoto some; sem novo SIO/alterações no Cable Club. O intervalo é configurável SOMENTE no build de testes via macro, a produção usa 10 s.
+- **Teste adicionado:** `tests/test_ehl8_native_bridge.py` recebe teste de loopback real C↔Python com duas instâncias nativas recebendo poses e heartbeats, usando 250 ms de intervalo exclusivo ao teste. `tests/native_ehl8_client.c` ganha modo `linger` de aproximadamente 1,8 s para observar heartbeats sem deixar a suite demorar 10 s. Testes server antigos preservados. **Esse teste não inicializa Emerald/SDL2 nem manipula .sav.**
+- **Modificado:** `src/lnet/lnet_session_client.c`, `tests/native_ehl8_client.c`, `tests/test_ehl8_native_bridge.py`, workflows de pacote/launcher/profile para acionarem rebuild por mesmo SHA, e este `AI_README.md`. **Adicionado/removido:** nenhum arquivo/feature removida.
+- **Validação honesta:** esta atualização tem que passar CI EHL8 real, build Windows e Android, perfil e empacotamento novamente no HEAD. Teste de liveness foi escrito, não declarar verde antes de acompanhar Actions. **Ainda faltam** reconexão automática/reserva de slot de 60 s autenticada, lobby completo/Ready/admin, troca/batalha EHL8, UI Android dedicada e QA dos dois Emeralds Windows com saves pessoais em cópias. Reconhecer que marcar conexão como FAILED não equivale a reconectar automaticamente.
+- **Rollback:** preview anterior `77c8778` (instalador e ZIP válidos no run 38563401981); v0.8.2 estável mantida em `feature/lan-v080-mega-desktop-polish`. Preservar todas as decisões 1–116 e não misturar pacotes entre commits.
+
+
+## 25. Compatibilidade GBA agbcc: guards BIOS em MODERN=0 (2026-10-14)
+
+- **Branch/HEAD de partida:** feature/lan-v0803-dedicated-session-core, commit c109a48e7c2bac6a4ee2093e882ece96ade4f46d; PR #10 draft. Run push 38564420979 PASSOU e gerou instalador+ZIP portátil, artefato 11893820682; todos os jobs de build Windows x86, launcher, perfil, EHL8 native e Android também PASSARAM para esse SHA. **Mas** o workflow legado de ROM CI, run PR 38564429341, FALHOU em Compare. Não declarar tudo verde.
+- **Erro real do log:** agbcc (MODERN=0) tratou warnings como erros em src/AgbRfu_LinkManager.c:74 / CpuFill16, reclamando de declarações implícitas de _Static_assert, _Alignof e __builtin_choose_expr. A causa demonstrada é a condição "#if defined MODERN && !defined PORTABLE" em include/gba/syscall.h: **MODERN=0 ainda está definido** pelo Makefile (-DMODERN=0), ativando indevidamente as macros modernas de CpuSet e CpuFastSet.
+- **Correção restrita:** modificar ambas as condições para "#if defined(MODERN) && MODERN && !defined(PORTABLE)", habilitando as verificações modernas somente quando MODERN=1, sem alterar o caminho PORTABLE nem o código dos jogos. Não remover testes de alinhamento dos builds modernos.
+- **Adicionado:** tests/test_gba_syscall_guards.py (verificação da condição e compilação host C nos modos MODERN=0 gnu89, MODERN=1 gnu11 e MODERN=1+PORTABLE) e etapa leve anterior ao Compare no workflow .github/workflows/build.yml. **Modificados:** include/gba/syscall.h, workflow CI, AI_README.md e guia de QA. **Removidos:** nenhum.
+- **Validação esperada:** confirmar novo workflow CI completo no novo commit. O teste host de header NÃO substitui a compilação agbcc ou um teste real de ROM; se o Compare revelar nova diferença ou restrição de base vanilla, registrar e investigar antes de suprimir. Verificar os demais workflows por mesmo SHA. A preview compilada c109a48 permanece válida como beta anterior; uma eventual correção de ROM não deve substituí-la silenciosamente.
+- **NÃO implementado:** nova reconexão autenticada de 60 segundos, lobby completo, batalhas e trocas no servidor EHL8, quatro jogadores, QA presencial de dois jogos completos. Saves pessoais fora do CI e inalterados; preservar as 116 decisões e rollback de branch anterior.
+
+
+## 26. Correção candidata de paleta remota May/Brendan no EHL8 (2026-10-16)
+
+- **Feedback real:** dois jogos alcançaram `PLAYING` e os dois treinadores aparecem e se movimentam no mundo; o usuário observou **May com visual/cores incorretos na perspectiva de Brendan** (capturas enviadas). A primeira versão da preview foi validada visualmente para movimento, **não para fidelidade do sprite**.
+- **Causa analisada no código:** `src/link.c` seleciona corretamente May/Brendan conforme `remote.gender`, mas `CreateVirtualObject` usa o `PALSLOT_PLAYER` compartilhado com o avatar **local**. Assim a remota pode ser desenhada com paleta do outro gênero.
+- **Mudança candidata:** slot de paleta OBJ dinâmico dedicado ao sprite remoto, com tag exclusiva, liberação ao destruir sprite e falha segura se não houver slot; `PORTABLE` apenas. Nenhuma mudança em `.sav`, assets, sprites locais, EHL8, batalha/troca Cable Club ou sistema de rede. Atualizado `include/event_object_movement.h`, `src/event_object_movement.c`, `src/link.c`, teste estático e `docs/EHL8_REMOTE_PALETTE_QA.md`.
+- **Testes:** checker estático novo + builds/CI Windows, Android e EHL8 devem ser avaliados no HEAD que incluir a correção. **QA de sprite May/Brendan nos dois Windows e reabertura de saves permanecem obrigatórios** antes de chamar fix validado.
+- **Rollback:** `005de5e36bb189ccae49c08a2abe89fdd7f2297d` (última preview que apresentou o bug mas movia ambos). Preservar PR #10 em draft e v0.8.2 estável separado. Não sobrescrever instalações existentes.

@@ -1791,6 +1791,7 @@ void LinkPlayerFromBlock(u32 who)
 #include <string.h>
 #include "lnet_link.h"
 #include "lnet_presence.h"
+#include "lnet_session_client.h"
 #include "lnet_culling.h"
 #include "event_object_movement.h"
 #include "field_player_avatar.h"
@@ -1800,6 +1801,9 @@ void LinkPlayerFromBlock(u32 who)
 
 static LNetLink *sPortableLanLink;
 static LNetPresence *sLanPresence;
+static LNetSessionClient *sLanDedicatedSession;
+static int sLanDedicatedStateLogged = -1;
+static void PortLanLog(const char *fmt, ...);
 
 #define LAN_VIRTUAL_PLAYER_ID 0xFC
 #define LAN_MOVE_MAX_PX_PER_FRAME 3
@@ -1875,10 +1879,26 @@ static void PortLanPresencePump(void)
         }
     }
 
-    if (sLanPresence)
+    if (sLanPresence || sLanDedicatedSession)
     {
-        lnet_presence_poll(sLanPresence, &local);
-        if (inField && lnet_presence_get_remote(sLanPresence, &remote)
+        if (sLanDedicatedSession)
+        {
+            int state;
+            lnet_session_client_poll(sLanDedicatedSession, &local);
+            state = lnet_session_client_state(sLanDedicatedSession);
+            if (state != sLanDedicatedStateLogged)
+            {
+                PortLanLog("[EHL8] session state=%d (playing=%d, failed=%d)\n",
+                           state, EHL_CLIENT_PLAYING, EHL_CLIENT_FAILED);
+                sLanDedicatedStateLogged = state;
+            }
+        }
+        else
+            lnet_presence_poll(sLanPresence, &local);
+        if (inField &&
+            (sLanDedicatedSession
+                ? lnet_session_client_get_remote(sLanDedicatedSession, &remote)
+                : lnet_presence_get_remote(sLanPresence, &remote))
             && remote.mapGroup == local.mapGroup
             && remote.mapNum == local.mapNum
             && remote.x < gMapHeader.mapLayout->width
@@ -1924,6 +1944,14 @@ static void PortLanPresencePump(void)
             CreateVirtualObject(gfx, LAN_VIRTUAL_PLAYER_ID,
                                 remote.x, remote.y, remote.elevation,
                                 remote.direction) != MAX_SPRITES;
+        /* Both protagonists normally share PALSLOT_PLAYER. Assign the remote
+         * avatar its own palette, or discard the sprite on slot exhaustion. */
+        if (sLanRemoteInitialized &&
+            !LanVirtualObjectSetRemotePalette(LAN_VIRTUAL_PLAYER_ID, gfx))
+        {
+            LanVirtualObjectDestroy(LAN_VIRTUAL_PLAYER_ID);
+            sLanRemoteInitialized = FALSE;
+        }
     }
     if (sLanRemoteInitialized)
     {
@@ -2030,6 +2058,8 @@ void PortLanRequestHost(u16 port)
 {
     int presenceErr = 0;
     LanLinkClose();
+    lnet_session_client_close(sLanDedicatedSession);
+    sLanDedicatedSession = NULL;
     lnet_presence_close(sLanPresence);
     sLanPresence = NULL;
     if (port < 65535)
@@ -2058,6 +2088,8 @@ void PortLanRequestClient(const char *host, u16 port)
 {
     int presenceErr = 0;
     LanLinkClose();
+    lnet_session_client_close(sLanDedicatedSession);
+    sLanDedicatedSession = NULL;
     lnet_presence_close(sLanPresence);
     sLanPresence = NULL;
     if (port < 65535)
@@ -2078,6 +2110,32 @@ void PortLanRequestClient(const char *host, u16 port)
     // "connecting" on the press, independent of the peer's state.
     PortLanLog("[LAN] opening client to %s:%u\n", host, (unsigned)port);
     LanLinkOpenAsClient(sLanAuto.host, sLanAuto.port);
+}
+
+/* Dedicated EHL8 presence only: NEVER feed this protocol to the Cable Club
+ * serial transport. Reuse existing sprite/camera, no save or quest changes. */
+bool32 PortLanRequestDedicatedClient(const char *host, u16 port,
+                                   const char *pin, const char *profileId)
+{
+    LanLinkClose();
+    lnet_presence_close(sLanPresence);
+    sLanPresence = NULL;
+    lnet_session_client_close(sLanDedicatedSession);
+    sLanDedicatedSession = NULL;
+    sLanAuto.queued = FALSE;
+    sLanAuto.role = 0;
+    sLanLinkOpened = FALSE;
+    sLanDedicatedStateLogged = -1;
+    if (!host || !pin || !profileId)
+        return FALSE;
+    sLanDedicatedSession =
+        lnet_session_client_new(host, port, pin, profileId);
+    if (!sLanDedicatedSession)
+        PortLanLog("[SESSION] invalid dedicated connection parameters\\n");
+    else
+        PortLanLog("[SESSION] EHL8 client configured for %s:%u\\n",
+                   host, (unsigned)port);
+    return sLanDedicatedSession != NULL;
 }
 
 static void PortLanDebugPump(void)

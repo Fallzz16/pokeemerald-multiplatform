@@ -4,8 +4,11 @@ on:
   push:
     branches:
       - feature/lan-v080-m0-m1-foundation
+      - feature/lan-v0803-dedicated-session-core
     paths:
       - 'src/profile/**'
+      - '.github/workflows/package-v0803-ehl8-preview.yml' # rebuild components for packaging-only fixes
+      - 'src/lnet/lnet_session_client.c' # rebuild same HEAD for preview package
       - 'src/platform/sdl2.c'
       - 'src/lnet/lnet_session_v1.*'
       - 'tests/test_save_profiles.c'

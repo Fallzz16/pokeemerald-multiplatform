@@ -4,7 +4,11 @@ on:
     branches:
       - feature/lan-v080-mega-desktop-polish
       - feature/lan-v080-desktop-graphical-launcher
+      - feature/lan-v0803-dedicated-session-core
     paths:
+      - '.github/workflows/package-v0803-ehl8-preview.yml' # rebuild components for packaging-only fixes
+      - 'src/lnet/lnet_session_client.c' # rebuild same HEAD for preview package
+      - 'src/platform/sdl2.c' # same-SHA preview package rebuild
       - 'tools/emerald_launcher.py'
       - 'tests/test_emerald_launcher.py'
       - '.github/workflows/build-v080-graphical-launcher.yml'

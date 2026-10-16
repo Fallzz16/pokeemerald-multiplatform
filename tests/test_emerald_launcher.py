@@ -19,6 +19,36 @@ class GraphicalLauncherTests(unittest.TestCase):
             launcher.make_command("game.exe","profiles","user_1","dedicated")
         with self.assertRaises(ValueError):
             launcher.make_command("game.exe","profiles","../bad","offline")
+    def test_dedicated_session_requires_six_digit_pin_and_valid_ipv4(self):
+        args = launcher.make_command("pokeemerald.exe","profiles","trainer",
+                                     "dedicated","127.0.0.1","45680","123456")
+        self.assertIn("--session-client=127.0.0.1:45680",args)
+        self.assertIn("--session-pin-stdin",args)
+        self.assertFalse(any("123456" in value for value in args))
+        self.assertNotIn("--lan-client=127.0.0.1:45680",args)
+        for bad in ("","123","abcdef","1234567"):
+            with self.assertRaises(ValueError):
+                launcher.make_command("pokeemerald.exe","profiles","trainer",
+                                      "dedicated","127.0.0.1","45680",bad)
+        with self.assertRaises(ValueError):
+            launcher.make_command("pokeemerald.exe","profiles","trainer",
+                                  "dedicated","not-a-host","45680","123456")
+
+    def test_real_dedicated_room_count_from_bounded_server_log(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            log=Path(tmp)/"server.log"
+            self.assertIsNone(launcher.read_room_occupancy(log))
+            log.write_text("INFO EHL8_ROOM_COUNT=0/2\n"
+                           "INFO EHL8_ROOM_COUNT=1/2\n"
+                           "INFO unrelated log\n",encoding="utf-8")
+            self.assertEqual(launcher.read_room_occupancy(log),(1,2))
+            with log.open("a",encoding="utf-8") as out:
+                out.write("ignored line\n"*1000)
+                out.write("INFO EHL8_ROOM_COUNT=2/2\n")
+            self.assertEqual(launcher.read_room_occupancy(log),(2,2))
+            log.write_text("INFO EHL8_ROOM_COUNT=2/1\n",encoding="utf-8")
+            self.assertIsNone(launcher.read_room_occupancy(log))
+
     def test_invalid_network(self):
         for port in ("0","65535","abc","1.5"):
             with self.assertRaises(ValueError): launcher.validate_port(port)
@@ -58,6 +88,20 @@ class GraphicalLauncherTests(unittest.TestCase):
             launcher.write_settings(root,"trainer",True,"127.0.0.1","45681")
             self.assertTrue(launcher.read_settings(root)["diagnostics"])
             self.assertEqual((profile/"pokeemerald.sav").read_bytes(),before)
+
+    def test_preview_installer_uses_its_own_local_save_directory(self):
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as tmp:
+            here=Path(tmp)/"release"
+            here.mkdir()
+            (here/"EHL8_PREVIEW_MODE.txt").write_text("preview",encoding="utf-8")
+            with mock.patch.object(launcher,"application_dir",return_value=here), \
+                 mock.patch.dict("os.environ",{"LOCALAPPDATA":tmp}):
+                preview=launcher.profile_root()
+                self.assertEqual(preview,Path(tmp)/"EmeraldHybridEHL8Preview"/"profiles")
+                (here/"PORTABLE_MODE.txt").touch()
+                self.assertEqual(launcher.profile_root(),here/"profiles")
+                self.assertNotEqual(preview,Path(tmp)/"EmeraldHybrid"/"profiles")
 
     def test_corrupt_and_excessive_preferences_are_ignored(self):
         with tempfile.TemporaryDirectory() as tmp:

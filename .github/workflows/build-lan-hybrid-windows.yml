@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   pull_request:
     branches:
+      - feature/lan-v080-mega-desktop-polish
       - feature/lan-v080-desktop-graphical-launcher
       - feature/lan-v080-architecture-spec
       - feature/lan-v080-m0-m1-foundation
@@ -12,6 +13,7 @@ on:
       - feature/lan-v072-overworld-presence
   push:
     branches:
+      - feature/lan-v0803-dedicated-session-core
       - feature/lan-v080-mega-desktop-polish
       - feature/lan-v080-m0-m1-foundation
       - feature/lan-hybrid-v070
@@ -54,6 +56,9 @@ jobs:
 
       - name: Verify LAN transport on Linux (real host/client TCP)
         run: bash scripts/verify_lan_foundation.sh
+
+      - name: SDL pending frame loop must not spin (static regression)
+        run: python -m unittest discover -s tests -p test_sdl2_frame_pacing.py -v
 
       - name: Verify all candidate mechanics and the sprite import pipeline
         run: EMERALD_LAN_QA=1 EMERALD_V080_QA=1 bash scripts/verify_v070.sh

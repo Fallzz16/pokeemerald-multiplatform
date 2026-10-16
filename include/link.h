@@ -298,6 +298,9 @@ bool32 IsLanLinkLive(void);
 bool32 PortLanIsConnecting(void);
 void PortLanRequestHost(u16 port);
 void PortLanRequestClient(const char *host, u16 port);
+/* EHL8 dedicated session: overworld presence only; legacy SIO stays separate. */
+bool32 PortLanRequestDedicatedClient(const char *host, u16 port,
+                                   const char *pin, const char *profileId);
 void PortLanSetLogFile(const char *path);
 void PortLanRequestOpenLink(void);
 #endif

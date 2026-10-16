@@ -20,3 +20,5 @@
 - As **100 decisões** foram concluídas: encerrar questionários amplos e avançar com M0/M1 em branch isolada. Ao surgir impedimento real, perguntar apenas o essencial; caso contrário manter as decisões existentes.
 
 - As respostas 101–116 são `101B 102B 103B 104B 105C 106C 107B 108B 109C 110C 111C 112A 113B 114C 115A 116A`. Ver `docs/LAN_V080_MEGA_DESKTOP_PASS1.md` antes de interpretar cada opção. O primeiro incremento 0.8 MEGA só corrige desktop, logs, video e backup manual; não declarar servidor/4 players/instalador pronto.
+
+- **Novo desenvolvimento M2 2026-10-14:** consultar `docs/LAN_V0803_DEDICATED_SESSION_CORE.md`. A ferramenta `tools/emerald_session_server.py` é um serviço EHL8 real para até 2 clientes de protocolo, **NÃO** um servidor de gameplay Emerald já integrado. A branch PR #10 já tem cliente EHL8 nativo, botão experimental de hosting/join no launcher e preview Windows. Porém não possui QA real de dois Emeralds com saves, nem lobby completo; não anunciar release pronta. Cable Club raw v0.7.2.1 continua separado do EHL8. Atualizar `AI_README.md` com os CI runs e limitações de cada entrega. Não tocar nos saves originais.

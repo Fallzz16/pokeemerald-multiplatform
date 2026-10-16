@@ -45,6 +45,9 @@ jobs:
           ./install.sh ../
         working-directory: agbcc
 
+      - name: Validate legacy vs modern GBA BIOS syscall macros
+        run: python3 -m unittest discover -s tests -p test_gba_syscall_guards.py -v
+
       - name: Compare
         run: make -j${nproc} all syms
 
