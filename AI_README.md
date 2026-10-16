@@ -647,3 +647,12 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 - **PENDENTE:** QA do 2/2 no Windows real e saves após roundtrip; teste real do protocolo no CI Windows; LAN 2 PCs; reconexão protegida 60 segundos; convites/batalhas P2P↔EHL8; 4 jogadores, contas online e redesign definitivo launcher. Um print com sprites não substitui testes de duas instâncias de jogo.
 - **Rollback:** PR #10 head \`005de5e\` e versão funcional \`feature/lan-v080-mega-desktop-polish\`. A branch M1.1 nunca substitui saves instalados.
 - **Decisões 1–116 permanecem válidas;** a especificação separada v1.0 usa IDs \`V1-01\` a \`V1-72\`. Não confundir numerações.
+
+
+## 27. Emerald v1.0 M1.2 — Continuar sozinho no mesmo save de QA (2026-10-16)
+
+- Relato de gameplay: depois de abrir 2 jogos EHL8 com progresso separado, usuário não conseguia reabrir apenas um perfil de novo. A M1.1 sempre criava uma sessão nova de QA para 2 jogos.
+- Solução: painel **CONTINUAR SOZINHO** no Laboratório; escolhe sessão QA persistida e QA_A ou QA_B, inicia somente uma instância offline com `--profile-root` e `--profile-id` da própria sessão. Nenhum novo save, pasta de sessão, servidor ou segundo jogo é criado na reabertura. Sessão pode ser encontrada depois de fechar e reabrir o laboratório; um perfil saudável ainda aparece se o save do outro estiver ausente.
+- Segurança: verifica localização, marcador de QA, logs, symlinks/junctions e save de tamanho esperado; respeita bloqueio nativo de perfil. Backups são feitos somente depois de fechar a instância e apenas do perfil aberto. Relatórios novos `reopen-QA_...json` não sobrescrevem `report.json` existente. Não alterar saves reais do launcher, P2P, EHL8, sprites, ROM nem instalação estável.
+- QA: testes locais do Lab 15/15 passaram e bots 4/4 passaram (1 teste de integração real SKIP no pacote sem servidor). Windows GitHub Actions é responsável por compilar `EmeraldQALab.exe` e validar integração no repo inteiro. QA com saves reais no Windows continua necessária para aprovação.
+- Atenção: EHL8 exige 2 prontos para iniciar; a opção solo é offline, não reconexão protegida de 60 s. O jogo Windows recomendado é a preview com correção de paleta commit `8e519e0` do PR #10; a M1.2 distribui somente o Laboratório. Rollback do Lab para `704f48b7647b58bf628218d022ea0fb1ed4d0f33`.

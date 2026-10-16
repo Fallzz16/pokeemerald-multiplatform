@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - feature/lan-v0803-dedicated-session-core
+      - feature/emerald-v100-m11-50bots-lab
     paths:
       - 'tools/emerald_qa_lab.py'
       - 'tests/test_emerald_qa_lab.py'

@@ -224,3 +224,120 @@ class BotsIntegrationSafetyTests(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):
             L.QABotSession(self.app, self.root).launch(45680, '123456')
         self.assertFalse(self.root.exists())
+
+
+class ReopenSingleSavedTrainerTests(unittest.TestCase):
+    """Regression: reopen a prior session *alone*, without a second game/save."""
+    setUp = LabTests.setUp
+    fake_profilectl = LabTests.fake_profilectl
+    def _session(self):
+        with patch.object(L.subprocess, "run", side_effect=self.fake_profilectl):
+            return L.prepare_session(self.app, self.root, (None, None), "ehl8")
+
+    def test_discovery_excludes_bots_and_bad_marker(self):
+        self.assertEqual(L.saved_game_sessions(self.root), [])
+        existing = self._session()
+        bots = L.create_bot_session(self.root)
+        self.assertEqual(L.saved_game_sessions(self.root), [existing])
+        with self.assertRaises(ValueError):
+            L.existing_session(self.root, bots, "QA_A")
+        marker = existing / L.MARKER
+        original = marker.read_bytes()
+        marker.write_text('bad-json', encoding='utf-8')
+        self.assertEqual(L.saved_game_sessions(self.root), [])
+        marker.write_bytes(original)
+        self.assertEqual(L.saved_game_sessions(self.root), [existing])
+
+    def test_reopen_only_a_uses_existing_save_and_preserves_original_report(self):
+        session = self._session()
+        a = session / 'profiles' / 'QA_A' / 'pokeemerald.sav'
+        b = session / 'profiles' / 'QA_B' / 'pokeemerald.sav'
+        # Valid-size byte patterns are QA stand-ins, not distributable save games.
+        a.write_bytes(b'A'*131072)
+        b.write_bytes(b'B'*131072)
+        original_a, original_b = a.read_bytes(), b.read_bytes()
+        (session / 'report.json').write_text('{"original":true}', encoding='utf-8')
+
+        class FakeProcess:
+            def __init__(self): self.code = None
+            def poll(self): return self.code
+        seen=[]
+        def popen(argv, **kw):
+            seen.append((argv,kw))
+            return FakeProcess()
+        manager = L.QASession(self.app, self.root)
+        with patch.object(L.subprocess, 'Popen', side_effect=popen):
+            self.assertEqual(manager.reopen_single(session, 'QA_A'), session)
+        self.assertEqual(len(seen), 1)
+        self.assertIn('--profile-id=QA_A', seen[0][0]); self.assertNotIn('--profile-id=QA_B', seen[0][0])
+        self.assertNotIn('--session-client', ' '.join(seen[0][0]))
+        self.assertFalse(any('EmeraldSessionServer.exe' in x for x in seen[0][0]))
+        self.assertEqual(a.read_bytes(),original_a)
+        self.assertEqual(b.read_bytes(),original_b)
+        self.assertTrue(manager.running())
+        with self.assertRaises(RuntimeError):
+            manager.reopen_single(session,'QA_B')
+        manager.games[0].code=0
+        with patch.object(L.subprocess, 'run', side_effect=self.fake_profilectl) as calls:
+            manager.complete()
+        self.assertEqual(calls.call_count,1)
+        self.assertEqual(calls.call_args.args[0][-1], 'QA_A')
+        report=json.loads((session/manager.report_name).read_text())
+        self.assertEqual(report['profiles'],['QA_A'])
+        self.assertEqual(report['exit_codes'],[0])
+        self.assertEqual((session/'report.json').read_text(),'{"original":true}')
+        self.assertEqual(a.read_bytes(),original_a)
+        self.assertEqual(b.read_bytes(),original_b)
+        self.assertTrue((session/'profiles'/'QA_A'/'backups'/'000001.sav').is_file())
+        self.assertFalse((session/'profiles'/'QA_B'/'backups').exists())
+
+        # A new Lab process can rediscover and reopen the same session later.
+        later=L.QASession(self.app,self.root)
+        with patch.object(L.subprocess, 'Popen', side_effect=popen):
+            later.reopen_single(L.saved_game_sessions(self.root)[0], 'QA_B')
+        self.assertEqual(len(seen),2)
+        self.assertIn('--profile-id=QA_B', seen[-1][0])
+        self.assertNotEqual(manager.report_name, later.report_name)
+
+    def test_reopen_rejects_redirected_save_and_arbitrary_path(self):
+        session=self._session()
+        outside=self.base/'real'
+        outside.mkdir(); (outside/'pokeemerald.sav').write_bytes(b'private')
+        with self.assertRaises(ValueError):
+            L.existing_session(self.root, outside, 'QA_A')
+        with self.assertRaises(ValueError):
+            L.existing_session(self.root, session, '../../escape')
+        a=session/'profiles'/'QA_A'/'pokeemerald.sav'
+        a.unlink()
+        try:
+            a.symlink_to(outside/'pokeemerald.sav')
+        except (OSError, NotImplementedError):
+            self.skipTest('symlink privilege unavailable on Windows runner')
+        with self.assertRaises(ValueError):
+            L.existing_session(self.root, session, 'QA_A')
+        self.assertEqual((outside/'pokeemerald.sav').read_bytes(),b'private')
+
+    def test_good_trainer_remains_listed_if_companion_save_is_missing(self):
+        session = self._session()
+        (session / 'profiles' / 'QA_B' / 'pokeemerald.sav').unlink()
+        self.assertIn(session, L.saved_game_sessions(self.root))
+        L.existing_session(self.root, session, 'QA_A')
+        with self.assertRaises(ValueError):
+            L.existing_session(self.root, session, 'QA_B')
+
+    def test_reopen_rejects_redirected_logs_before_mutating_manager(self):
+        session = self._session()
+        logs = session / 'logs'
+        shutil.rmtree(logs)
+        manager = L.QASession(self.app, self.root)
+        with self.assertRaises(ValueError):
+            manager.reopen_single(session, 'QA_A')
+        self.assertIsNone(manager.session)
+        self.assertEqual(manager.games, [])
+
+    def test_bot_only_session_cannot_reopen_as_game(self):
+        bot=L.create_bot_session(self.root)
+        manager=L.QASession(self.app,self.root)
+        with self.assertRaises(ValueError):
+            manager.reopen_single(bot,'QA_A')
+        self.assertFalse(list(bot.rglob('*.sav')))

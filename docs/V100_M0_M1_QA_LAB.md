@@ -66,3 +66,63 @@ Diretório padrão: `%LOCALAPPDATA%\EmeraldHybridV1QALab\sessions\<data-id>\` (p
 3. Confirme porta local e PIN de seis dígitos. Clique `SIMULAR 50 CONTAS` e aguarde a mensagem do resultado.
 4. Para conferir as falhas, use `Abrir pasta` (sessão do jogo) ou acesse `%LOCALAPPDATA%\EmeraldHybridV1QALab\sessions\<ultimo-teste>\bots-report.json` e `logs\clientes-simulados.log`.
 5. Se a porta já estiver ocupada por um jogo/servidor, escolha outra porta; não tente reaproveitar a sessão de uma partida real. Bot e sessão de dois jogos não devem executar juntos no mesmo Lab.
+
+## M1.2 — Reabrir apenas uma conta com o MESMO save (Windows)
+
+**Problema observado em gameplay real:** após usar `ABRIR 2 JOGOS`, não havia
+controle para abrir somente o jogador A ou B **de novo**, com o progresso da
+sessão anterior. A ação existente sempre criava nova pasta de teste com saves
+novos/importados, gerando confusão sobre persistência de progresso.
+
+**Correção:** novo painel `CONTINUAR SOZINHO` no `EmeraldQALab.exe`:
+- Escolha uma sessão anterior no seletor (a mais recente vem selecionada).
+- Selecione `QA_A` ou `QA_B` e clique `REABRIR 1 CONTA`.
+- O Laboratório abre **uma única janela de `pokeemerald.exe` offline**, apontando
+  diretamente para o arquivo `.sav` daquela conta **na mesma sessão já criada**.
+  Não inicia EHL8 e não cria outra conta, pasta de save ou instância desnecessária.
+- O arquivo da outra conta NÃO é modificado; seu backup não é disparado durante
+  a execução de apenas A (ou vice-versa). Cada reabertura recebe logs únicos e
+  um `reopen-QA_A-<data>-<id>.json` sem apagar o `report.json` anterior.
+- A escolha permanece disponível depois de fechar/reabrir o próprio Laboratório:
+  a lista de sessões vem dos diretórios e marcadores de QA existentes.
+- Proteções: o Laboratório recusa sessões de bots, arquivos ausentes, marcadores
+  adulterados, pastas externas, symlinks e junções do Windows. O bloqueio
+  exclusivo de perfil do `pokeemerald.exe` continua obrigatório para impedir
+  duas gravações simultâneas no mesmo save.
+
+**POR QUE OFFLINE?** O EHL8 v0.8.3 vigente só inicia a sala quando duas pessoas
+estiverem conectadas e prontas (READY 2/2). Reabrir só um treinador diretamente
+no EHL8 deixaria a sessão em espera, sem PLAYING. A continuação individual é
+**offline**, com o mesmo save. *Não significa* reconexão EHL8 de 60 segundos;
+essa funcionalidade ainda falta o protocolo token/reserva/retorno.
+
+### Testar no Windows (obrigatório antes de considerar aprovado)
+
+1. Coloque `EmeraldQALab.exe` **M1.2** na pasta da preview EHL8 atual com o
+   `pokeemerald.exe` da correção visual `8e519e0`, SDL2 e profilectl. Não
+   substitua saves existentes nem copie as pastas de perfis para outra instalação.
+2. Em `ABRIR 2 JOGOS (NOVO)`, selecione EHL8 e jogue com dois perfis de teste.
+   Salve *dentro* de cada jogo e feche ambos normalmente.
+3. Selecione a sessão recém-criada em `CONTINUAR SOZINHO`, marque `QA_A` e
+   pressione `REABRIR 1 CONTA`. **Esperado:** apenas uma janela abre e QA_A
+   continua com os Pokémon, itens e localização da primeira execução.
+4. Salve em QA_A, feche o jogo e reabra o Laboratório. Selecione novamente a
+   mesma sessão e QA_A. **Esperado:** progresso preservado mesmo após fechar
+   e reabrir o app; não há janela B nem EHL8 nesta execução.
+5. Reabra QA_B da MESMA sessão e confira que não recebeu o progresso de QA_A.
+   O `report.json` anterior e os relatórios `reopen-*.json` devem coexistir.
+6. Verifique backups da conta reaberta; a outra conta não sofre backup forçado.
+   Nunca use `Limpar sessão` antes de conferir/copy os saves que deseja guardar.
+7. Volte ao botão antigo `ABRIR 2 JOGOS (NOVO)` para garantir que dois jogos
+   EHL8 e a sincronização de sprites ainda funcionam; teste os 50 bots, se quiser.
+
+**QA automatizado nesta entrega:** testes de listagem de sessões, sessão-bot
+recusada, reabertura solo, caminhos em argumentos, uso do save original da
+sessão, proteção de relatório anterior, backup restrito ao perfil aberto,
+reabertura após reiniciar controlador, links externos/marker inválido. O CI
+compila o novo `EmeraldQALab.exe`; só a execução do PC com save real comprova
+continuação visual. Nenhum `.sav` é incluído na build.
+
+**Rollback:** basta substituir apenas o executável do Laboratório pelo M1.1
+anterior, sem mexer no jogo nem nos diretórios
+`%LOCALAPPDATA%\\EmeraldHybridV1QALab\\sessions`.

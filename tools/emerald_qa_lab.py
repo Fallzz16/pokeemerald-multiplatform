@@ -147,6 +147,74 @@ def prepare_session(app, root, sources=(None, None), mode="ehl8"):
     return session
 
 
+def is_redirected(path):
+    """Cover symlinks and Windows directory junctions before touching a QA save."""
+    return path.is_symlink() or (hasattr(path, "is_junction") and path.is_junction())
+
+
+def existing_session(root, session, profile_id=None):
+    """Validate a previously created lab session, without touching save bytes.
+
+    Never accept a bare arbitrary directory, a bots session, a symbolic link,
+    or a redirected profile/save. These checks are also used by the GUI list.
+    The native profile lock remains authoritative for simultaneous game launches.
+    """
+    base = Path(root).resolve() / "sessions"
+    candidate = Path(session)
+    if is_redirected(base) or not base.is_dir() or is_redirected(candidate):
+        raise ValueError("Diretório da sessão de QA inválido ou redirecionado.")
+    if not candidate.name.startswith("20") or candidate.parent.resolve() != base.resolve():
+        raise ValueError("A sessão precisa estar dentro da pasta de testes do laboratório.")
+    if not candidate.is_dir() or candidate.resolve(strict=True) != base.resolve() / candidate.name:
+        raise ValueError("Sessão ausente ou redirecionada.")
+    marker = candidate / MARKER
+    if is_redirected(marker) or not marker.is_file():
+        raise ValueError("Marcador da sessão não encontrado ou redirecionado.")
+    try:
+        data = json.loads(marker.read_text(encoding="utf-8"))
+    except (ValueError, OSError):
+        raise ValueError("Marcador da sessão é inválido.") from None
+    if (not isinstance(data, dict) or data.get("schema") != 1 or
+            data.get("tool") != "EmeraldHybridV1QALab" or
+            data.get("mode") not in ("offline", "ehl8") or
+            data.get("profiles") != list(PROFILE_IDS)):
+        raise ValueError("Pasta não contém uma sessão de jogos de teste válida.")
+    ids = PROFILE_IDS if profile_id is None else (profile_id,)
+    if any(pid not in PROFILE_IDS for pid in ids):
+        raise ValueError("Conta de QA não permitida.")
+    profiles = candidate / "profiles"
+    if is_redirected(profiles) or not profiles.is_dir():
+        raise ValueError("Diretório de perfis inválido.")
+    for pid in ids:
+        folder = profiles / pid
+        saved = folder / "pokeemerald.sav"
+        if (is_redirected(folder) or not folder.is_dir() or is_redirected(saved)
+                or not saved.is_file() or saved.stat().st_size not in (131072, 131088)):
+            raise ValueError(f"Save de teste {pid} ausente, redirecionado ou com tamanho inválido.")
+    return candidate
+
+
+def saved_game_sessions(root, limit=60):
+    """Return newest re-openable sessions; never list protocol-only bots."""
+    base = Path(root).resolve() / "sessions"
+    if not base.is_dir() or is_redirected(base):
+        return []
+    result = []
+    for session in sorted(base.iterdir(), key=lambda x: x.name, reverse=True):
+        # A missing/invalid companion save must not hide a healthy trainer.
+        # The selected trainer is revalidated right before launch.
+        for pid in PROFILE_IDS:
+            try:
+                existing_session(root, session, pid)
+                result.append(session)
+                break
+            except (OSError, ValueError):
+                continue
+        if len(result) >= limit:
+            break
+    return result
+
+
 def remove_session(session, root):
     """Only explicitly remove a known lab session, never a user profile root."""
     base = (Path(root).resolve() / "sessions").resolve()
@@ -178,6 +246,8 @@ class QASession:
         self.mode = "offline"
         self.backups_done = False
         self.backup_status = []
+        self.active_profiles = PROFILE_IDS
+        self.report_name = "report.json"
 
     def running(self):
         return any(p.poll() is None for p in self.games) or (
@@ -204,6 +274,8 @@ class QASession:
         self.server = None
         self.backups_done = False
         self.backup_status = []
+        self.active_profiles = PROFILE_IDS
+        self.report_name = "report.json"
         profiles = self.session / "profiles"
         logs = self.session / "logs"
         try:
@@ -231,6 +303,40 @@ class QASession:
             raise
         return self.session
 
+    def reopen_single(self, session, profile_id):
+        """Continue one trainer OFFLINE in its original QA session and save.
+
+        The EHL8 server intentionally needs two players to start. Reopening a
+        single account is offline: do not create a server, companion trainer,
+        new flash/save or temporary copy. Old reports are never overwritten.
+        """
+        if self.games and all(p.poll() is not None for p in self.games) and not self.backups_done:
+            self.complete()
+        if self.running():
+            raise RuntimeError("Feche a sessão anterior antes de reabrir um treinador.")
+        check_files(self.app, "offline")
+        selected = existing_session(self.root, session, profile_id)
+        logs = selected / "logs"
+        if is_redirected(logs) or not logs.is_dir():
+            raise ValueError("Diretório de logs da sessão inválido.")
+        self.session = selected
+        self.mode = "offline"
+        self.games = []
+        self.server = None
+        self.backups_done = False
+        self.backup_status = []
+        self.active_profiles = (profile_id,)
+        run_id = datetime.now().strftime("%Y%m%d-%H%M%S") + "-" + secrets.token_hex(4)
+        self.report_name = "reopen-" + profile_id + "-" + run_id + ".json"
+        argv = game_command(self.app, selected / "profiles", profile_id, "offline", 45680)
+        argv += ["--lan-log", str(logs / (profile_id + "-" + run_id + "-rede.log"))]
+        with (logs / (profile_id + "-" + run_id + "-jogo.log")).open("xb") as err:
+            proc = subprocess.Popen(argv, cwd=str(self.app), stdin=subprocess.DEVNULL,
+                                    stdout=subprocess.DEVNULL, stderr=err,
+                                    creationflags=no_window_flags())
+        self.games.append(proc)
+        return selected
+
     @staticmethod
     def _send_pin(process, pin):
         try:
@@ -245,14 +351,14 @@ class QASession:
                 process.terminate()
 
     def complete(self):
-        """Create native backups only after BOTH game processes have exited."""
+        """Back up only launched profiles, after every game process exits."""
         if self.backups_done or not self.session or any(p.poll() is None for p in self.games):
             return
         self.backups_done = True
         if self.server is not None and self.server.poll() is None:
             self.server.terminate()
         profiles = self.session / "profiles"
-        for profile_id in PROFILE_IDS:
+        for profile_id in self.active_profiles:
             command = [str(self.app / "emerald_profilectl.exe"),
                        "backup", str(profiles), profile_id]
             try:
@@ -269,10 +375,11 @@ class QASession:
                 message = profile_id + ": falha ao executar backup; save mantido"
             self.backup_status.append(message)
         report = {"schema": 1, "mode": self.mode,
+                  "profiles": list(self.active_profiles),
                   "exit_codes": [p.poll() for p in self.games],
                   "backups": self.backup_status,
                   "finished": datetime.now().isoformat(timespec="seconds")}
-        (self.session / "report.json").write_text(
+        (self.session / self.report_name).write_text(
             json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
@@ -373,13 +480,13 @@ class QABotSession:
 
 def main():
     import tkinter as tk
-    from tkinter import filedialog, messagebox
+    from tkinter import filedialog, messagebox, ttk
 
     app, root = application_dir(), lab_root()
     gui = tk.Tk()
-    gui.title("Emerald Hybrid v1.0 - Laboratório de 2 Contas")
-    gui.geometry("790x770")
-    gui.minsize(720, 700)
+    gui.title("Emerald Hybrid v1.0 - Laboratório de Contas")
+    gui.geometry("830x845")
+    gui.minsize(770, 780)
     gui.configure(bg=BG)
     manager = QASession(app, root)
     bot_manager = QABotSession(app, root)
@@ -387,7 +494,7 @@ def main():
     mode = tk.StringVar(value="ehl8")
     pin = tk.StringVar(value=f"{secrets.randbelow(1000000):06d}")
     port = tk.StringVar(value="45680")
-    status = tk.StringVar(value="Pronto para criar dois perfis de teste isolados.")
+    status = tk.StringVar(value="Crie duas contas novas ou reabra um save de teste anterior sozinho.")
     bot_status = tk.StringVar(value="Bots EHL8: aguardando. Nunca usam saves.")
 
     def label(text, size=11, color=FG):
@@ -438,7 +545,8 @@ def main():
         try:
             folder = manager.launch(mode.get(), tuple(s.get().strip() or None for s in sources),
                                     port.get(), pin.get())
-            status.set("Sessão iniciada. Pasta isolada: " + str(folder))
+            status.set("Sessão NOVA iniciada: " + str(folder) + ". Para continuar depois, use REABRIR 1 CONTA.")
+            refresh_saved()
         except (OSError, ValueError, RuntimeError, subprocess.TimeoutExpired) as exc:
             messagebox.showerror("Não foi possível iniciar", str(exc))
             status.set("Falha no início; consulte os logs da pasta de testes.")
@@ -468,17 +576,70 @@ def main():
             try:
                 remove_session(manager.session, root)
                 manager.session = None
+                refresh_saved()
                 status.set("Sessão de QA apagada. Perfis reais preservados.")
             except (OSError, ValueError) as exc:
                 messagebox.showerror("Remoção recusada", str(exc))
 
     buttons = tk.Frame(gui, bg=BG)
     buttons.pack(fill="x", padx=27, pady=(6, 12))
-    for text, callback in (("ABRIR 2 JOGOS", start), ("Parar testes", stop),
+    for text, callback in (("ABRIR 2 JOGOS (NOVO)", start), ("Parar testes", stop),
                            ("Abrir pasta", open_dir), ("Limpar sessão", delete)):
         tk.Button(buttons, text=text, command=callback, bg="#176449" if text.startswith("ABRIR")
                   else PANEL, fg=FG, activebackground="#277d5e", relief="flat",
                   font=("Segoe UI", 10, "bold"), padx=11, pady=9).pack(side="left", padx=(0, 7))
+    # Solo continuation uses a previously created, isolated QA session.
+    # It never starts a new game/save and never joins EHL8 (requires 2 ready).
+    solo_area = tk.Frame(gui, bg=PANEL, padx=11, pady=9)
+    solo_area.pack(fill="x", padx=27, pady=(0, 10))
+    tk.Label(solo_area, text="CONTINUAR SOZINHO — mesmo save de teste, modo offline",
+             fg=GREEN, bg=PANEL, font=("Segoe UI", 10, "bold")).pack(anchor="w")
+    solo_line = tk.Frame(solo_area, bg=PANEL)
+    solo_line.pack(fill="x", pady=(6, 0))
+    saved_choice = tk.StringVar()
+    saved_map = {}
+    saved_combo = ttk.Combobox(solo_line, textvariable=saved_choice, state="readonly", width=29)
+    saved_combo.pack(side="left", fill="x", expand=True, padx=(0, 9))
+    selected_solo = tk.StringVar(value="QA_A")
+    for profile_id in PROFILE_IDS:
+        tk.Radiobutton(solo_line, text=profile_id, value=profile_id,
+                       variable=selected_solo, bg=PANEL, fg=FG,
+                       selectcolor=BG, activebackground=PANEL,
+                       activeforeground=GREEN).pack(side="left")
+
+    def refresh_saved():
+        nonlocal saved_map
+        previous = saved_choice.get()
+        sessions = saved_game_sessions(root)
+        saved_map = {f"{p.name} (QA_A e QA_B)": p for p in sessions}
+        saved_combo.configure(values=tuple(saved_map))
+        if previous in saved_map:
+            saved_choice.set(previous)
+        else:
+            saved_choice.set(next(iter(saved_map), ""))
+
+    def reopen_solo():
+        if manager.running() or bot_manager.running():
+            messagebox.showwarning("Sessão ativa", "Feche os jogos e bots antes de continuar.")
+            return
+        folder = saved_map.get(saved_choice.get())
+        if folder is None:
+            messagebox.showinfo("Sem sessão", "Primeiro abra 2 jogos e salve; depois reabra uma conta aqui.")
+            return
+        try:
+            manager.reopen_single(folder, selected_solo.get())
+            status.set("Reaberto " + selected_solo.get() + " OFFLINE, com o MESMO save. "
+                       "Feche normalmente para criar backup somente desta conta.")
+        except (OSError, ValueError, RuntimeError, subprocess.TimeoutExpired) as exc:
+            messagebox.showerror("Não foi possível reabrir", str(exc))
+
+    tk.Button(solo_area, text="Atualizar sessões", command=refresh_saved,
+              bg=PANEL, fg=FG, relief="flat").pack(side="left", pady=(8, 0))
+    tk.Button(solo_area, text="REABRIR 1 CONTA", command=reopen_solo,
+              bg="#176449", fg=FG, font=("Segoe UI", 10, "bold"),
+              relief="flat", padx=11, pady=5).pack(side="right", pady=(8, 0))
+    refresh_saved()
+
     def start_bots():
         if manager.running() or bot_manager.running():
             messagebox.showwarning('Sessão ativa', 'Feche os jogos ou bots antes de iniciar outro teste.')
