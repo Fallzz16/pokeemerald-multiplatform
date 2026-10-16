@@ -665,3 +665,14 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 - ENCERRAR SALA termina somente o servidor gerenciado pelo Lab, com confirmação; duas instâncias e continuar sozinho permanecem funcionais. Ainda não suporta Pronto/Iniciar manuais, kick individual ou token de reconexão 60s: protocolo atual tem READY automático.
 - Novo test_emerald_qa_lobby.py e CI Windows com hidden import explícito; QA visual obrigatória com 2/2, queda 1/2, encerrar servidor e reabertura offline de save.
 - Entrega experimental PR #15, rollback para M1.2 commit 11f4742; preservar v0.8.2 estável e o pacote EHL8 com sprites corrigidos.
+
+
+## 28. Emerald v1.0 M2.1-B — administração local real (2026-10-16)
+
+- **Base aprovada pelo usuário:** M1.2 reabrir QA_A, reabrir QA_B, fechar/reabrir Laboratório e regressão multiplayer EHL8: **4/4 testes manuais OK**; sprites de May/Brendan na preview 8e519e0 também **6/6 OK**. Manter ambas versões de rollback.
+- **M2.1-A:** monitor gráfico 'LOBBY AO VIVO' mostra estados de QA_A/B e ocupação real 0/2–2/2 pelos logs, e encerrar sala sem encerrar saves/jogos.
+- **M2.1-B:** em `tools/emerald_session_server.py`, `--admin-stdin` opcional exige `--pin-stdin` e lê comandos privados `KICK QA_A`, `KICK QA_B`, `LOCK ON` e `LOCK OFF` de um pipe local, sem listener admin em rede. `JOIN` é recusado quando trancado; a remoção fecha somente o peer selecionado. O protocolo EHL8 dos clientes não muda, nem há leitura/escrita de saves.
+- **Compatibilidade e rollback:** PyInstaller gera `EmeraldSessionServerM21.exe` novo e separado, preservando `EmeraldSessionServer.exe` da preview funcional. `EmeraldQALab.exe` prefere M21 somente se instalado; caso contrário, o monitor continua somente leitura e botões admin ficam desabilitados. `EmeraldQABots.exe` permanece no pacote, junto dos demais. Nada altera source de `pokeemerald.exe` nem formatos de save.
+- **Testes:** `tests/test_emerald_session_admin.py` (TCP real/lock, kick nominal), testes laboratoriais de comando por pipe, regressão de estados, suíte server original, CI do Laboratório Windows para 3 executáveis. Validar run e artefato pelo **HEAD SHA exato** antes de distribuir.
+- **QA humano necessário:** exibir 2/2, bloquear/liberar entradas, remover somente QA_B sem fechar QA_A, salvar/reabrir ambos offline, presença remota e simulador 50 contas. Não declarar v1.0 pronta até isso passar.
+- **Não feito:** Ready/Start manual, autenticação de sessão 60 segundos, convites para PvP, transferência de saves, servidor público/internet, mais de 2 jogadores. Manter PR draft e histórico V1-01 a V1-72 e anterior 1–116.
