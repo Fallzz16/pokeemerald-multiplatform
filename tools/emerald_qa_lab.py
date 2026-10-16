@@ -384,6 +384,10 @@ class QASession:
         actions = {"lock": "LOCK ON", "unlock": "LOCK OFF"}
         if action == "kick" and profile in PROFILE_IDS:
             command = "KICK " + profile
+        elif action == "drop" and profile in PROFILE_IDS:
+            if not (self.app / "EHL8_M22B_GAME_MATCHED.txt").is_file():
+                raise ValueError("Simulação de queda somente na preview M2.2-B.")
+            command = "DROP " + profile
         elif action in actions and profile is None:
             command = actions[action]
         else:
