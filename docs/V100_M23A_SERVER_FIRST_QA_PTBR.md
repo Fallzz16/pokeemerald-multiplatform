@@ -65,3 +65,9 @@ PIN e os saves reais não precisam ser enviados.
 - Um servidor vazio encerra após o período ocioso configurado (15 min).
 - **QA humana M2.3-A ainda pendente** até você confirmar.
 - Rollback: use a versão M2.2-B do commit `5e53e40`.
+
+## Entrada individual (correção posterior à M2.3-A)
+
+Após INICIAR SERVIDOR (SEM JOGO), use **ENTRAR QA_A** e depois **ENTRAR QA_B** para conectar um jogador por vez. Cada botão lança apenas a respectiva conta já preparada, sem novo servidor, sem novo save e sem nova importação. ABRIR 2 JOGOS continua disponível: inicia ambas caso nenhuma esteja aberta, ou somente a conta que falta. **REABRIR 1 CONTA é exclusivamente para CONTINUAR SOZINHO offline depois que a sessão anterior terminar**. Não use esse controle para entrar na sala EHL8.
+
+Testar: 0/2 sem jogo; ENTRAR QA_A => 1/2; ENTRAR QA_B => 2/2; 30 s sem START; START manual; KICK/reconexão e integridade dos saves. Também testar uma segunda sala com ENTRAR QA_B seguido de ABRIR 2 JOGOS, que deve acrescentar apenas QA_A. Testes automatizados não equivalem a aprovação Windows real.
