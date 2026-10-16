@@ -118,7 +118,8 @@ static int queue(LNetSessionClient *c, uint16_t type,
         return 0;
     memset(&frame, 0, sizeof(frame));
     frame.type = type;
-    frame.session_id = c->session;
+    /* HELLO is always a fresh transport handshake, even for token resume. */
+    frame.session_id = (type == EHL_HELLO) ? 0 : c->session;
     frame.payload_size = (uint16_t)size;
     if (size)
         memcpy(frame.payload, payload, size);
