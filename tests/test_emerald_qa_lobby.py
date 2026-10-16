@@ -75,3 +75,25 @@ class LobbyTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class M21AdminStatusTests(unittest.TestCase):
+    def test_latest_lock_event_is_authoritative(self):
+        self.assertIsNone(M.latest_room_lock("EHL8_ROOM_COUNT=2/2"))
+        self.assertTrue(M.latest_room_lock("EHL8_ROOM_LOCKED=0\nEHL8_ROOM_LOCKED=1\n"))
+        self.assertFalse(M.latest_room_lock("EHL8_ROOM_LOCKED=1\nEHL8_ROOM_LOCKED=0\n"))
+
+    def test_admin_disabled_on_server_exit(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "logs").mkdir()
+            (root / "logs" / "servidor.log").write_text("EHL8_ROOM_COUNT=2/2\nEHL8_ROOM_LOCKED=1\n")
+            session = Session(root)
+            session.admin_enabled = True
+            current = M.lobby_snapshot(session)
+            self.assertTrue(current["admin"])
+            self.assertTrue(current["locked"])
+            session.server.code = 0
+            ended = M.lobby_snapshot(session)
+            self.assertFalse(ended["admin"])
+            self.assertIsNone(ended["locked"])
