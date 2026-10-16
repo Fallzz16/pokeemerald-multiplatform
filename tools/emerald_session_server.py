@@ -23,6 +23,9 @@ MAX_PAYLOAD = 4096
 HELLO, WELCOME, INCOMPATIBLE, AUTH_PIN, JOIN, PLAYER_LIST, READY, START, LEAVE, KICK, HEARTBEAT, POSE = range(1, 13)
 PROFILE_ID = re.compile(rb"[A-Za-z0-9_-]{1,48}\Z")
 READ_TIMEOUT = 35
+RESUME = 18  # Optional EHL8 type 18, no frame version change
+RESUME_TOKEN_BYTES = 32
+RESUME_HOLD_SECONDS = 60
 
 class ProtocolError(Exception):
     pass
@@ -54,6 +57,13 @@ def valid_pose(p: bytes) -> bool:
     return (p[5] <= 1 and p[14] <= 4 and p[15] <= 1 and p[16] <= 15
             and x <= 2047 and y <= 2047 and (p[5] == 0 or p[14] > 0))
 
+@dataclass(frozen=True)
+class Reservation:
+    profile: bytes
+    token: bytes
+    expires_at: float
+
+
 class Peer:
     def __init__(self, reader, writer):
         self.reader, self.writer = reader, writer
@@ -64,6 +74,8 @@ class Peer:
         self.last_pose = 0.0
         self.last_seq = None
         self.closed = False
+        self.allow_resume = True
+        self.resume_token = None
         self.last_heard = time.monotonic()
         self.address = writer.get_extra_info("peername")
 
@@ -80,7 +92,8 @@ class Peer:
         self.writer.close()
 
 class SessionServer:
-    def __init__(self, pin: str, slots=2, idle_seconds=900):
+    def __init__(self, pin: str, slots=2, idle_seconds=900,
+                 resume_enabled=False, reservation_seconds=RESUME_HOLD_SECONDS):
         if not re.fullmatch(r"[0-9]{6}", pin) or not 1 <= slots <= 2:
             raise ValueError("PIN must be six digits; M2 currently supports 1-2 players")
         self.pin = pin.encode("ascii")
@@ -90,6 +103,11 @@ class SessionServer:
         self.players = {}
         self.connected = set()
         self.invalid_attempts = {}  # IP -> (failure count, blocked_until)
+        self.resume_enabled = bool(resume_enabled)
+        if not 1 <= reservation_seconds <= 60:
+            raise ValueError("resume reservation must be 1..60 seconds")
+        self.reservation_seconds = reservation_seconds
+        self.reservations = {}
         self.in_game = False
         self.locked = False
         self.empty_since = time.monotonic()
@@ -111,19 +129,39 @@ class SessionServer:
             await self.listener.wait_closed()
             self.listener = None
         for peer in tuple(self.connected):
+            peer.allow_resume = False
             peer.close()
+        self.reservations.clear()
         self.stopped.set()
 
     async def sweep(self):
         while not self.stopped.is_set():
             await asyncio.sleep(1)
-            if not self.connected and not self.players and time.monotonic() - self.empty_since >= self.idle_seconds:
+            self.expire_reservations()
+            if not self.connected and not self.players and not self.reservations and time.monotonic() - self.empty_since >= self.idle_seconds:
                 self.log.info("Empty session timed out")
                 await self.stop()
                 return
             for peer in tuple(self.connected):
                 if time.monotonic() - peer.last_heard > READ_TIMEOUT + 5:
                     peer.close()
+
+    def expire_reservations(self):
+        now = time.monotonic()
+        expired = [slot for slot, hold in self.reservations.items()
+                   if hold.expires_at <= now]
+        for slot in expired:
+            del self.reservations[slot]
+            self.log.info("EHL8_RESERVATION_EXPIRED=1")
+        if expired:
+            self.log.info("EHL8_ROOM_RESERVED=%d/%d",
+                          len(self.reservations), self.slots)
+        if not self.players and not self.reservations:
+            self.in_game = False
+
+    async def issue_resume_token(self, peer):
+        peer.resume_token = secrets.token_bytes(RESUME_TOKEN_BYTES)
+        await peer.send(RESUME, peer.resume_token, self.session)
 
     async def admin_command(self, command):
         """Private stdin-only administration; never an EHL8 network message."""
@@ -141,8 +179,19 @@ class SessionServer:
                 return False
             peer = next((p for p in self.players.values() if p.profile == identity), None)
             if peer is None:
-                self.log.info("EHL8_ADMIN_KICK_OK=0")
-                return False
+                held_slot = next(
+                    (slot for slot, hold in self.reservations.items()
+                     if hold.profile == identity), None)
+                if held_slot is None:
+                    self.log.info("EHL8_ADMIN_KICK_OK=0")
+                    return False
+                del self.reservations[held_slot]
+                self.log.info("EHL8_ROOM_RESERVED=%d/%d",
+                              len(self.reservations), self.slots)
+                self.log.info("EHL8_ADMIN_KICK_OK=1")
+                self.expire_reservations()
+                return True
+            peer.allow_resume = False
             try:
                 await peer.send(KICK, b"Removed by host", self.session)
             except (OSError, ConnectionError, asyncio.TimeoutError, ProtocolError):
