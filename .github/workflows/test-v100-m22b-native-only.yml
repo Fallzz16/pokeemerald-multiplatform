@@ -1,0 +1,18 @@
+name: Emerald M2.2-B Fast Native TCP Regression
+on:
+  push:
+    branches:
+      - feature/emerald-v100-m22b-native-reconnect
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-loopback:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Native C real TCP reconnection
+        run: |
+          python3 -m unittest discover -s tests -p test_ehl8_native_reconnect.py -v
+          python3 -m unittest discover -s tests -p test_ehl8_native_bridge.py -v
