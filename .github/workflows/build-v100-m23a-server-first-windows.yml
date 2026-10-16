@@ -1,0 +1,144 @@
+name: Emerald M2.3-A Server First Windows Preview
+on:
+  push:
+    branches:
+      - feature/emerald-v100-m23a-server-first-lab
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  game:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc-mingw-w64-i686 binutils-mingw-w64-i686 libpng-dev zlib1g-dev curl ca-certificates file
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify native client reconnection and established mechanics
+        run: |
+          python -m pip install Pillow
+          python -m unittest discover -s tests -p test_ehl8_native_reconnect.py -v
+          python -m unittest discover -s tests -p test_ehl8_native_bridge.py -v
+          python -m unittest discover -s tests -p test_lan_remote_palette_regression.py -v
+          bash scripts/verify_lan_foundation.sh
+          EMERALD_LAN_QA=1 EMERALD_V080_QA=1 bash scripts/verify_v070.sh
+      - name: Download SDL2 MinGW
+        run: |
+          set -euxo pipefail
+          v=2.30.7
+          mkdir -p .deps
+          curl -fL --retry 3 "https://www.libsdl.org/release/SDL2-devel-${v}-mingw.tar.gz" -o ".deps/SDL2-devel-${v}-mingw.tar.gz"
+          tar -xzf ".deps/SDL2-devel-${v}-mingw.tar.gz" -C .deps
+      - name: Cross-compile Windows game and profile manager
+        run: |
+          set -euxo pipefail
+          make -f Makefile_pc -j2 SDL_DIR="$PWD/.deps/SDL2-2.30.7/i686-w64-mingw32"
+          mkdir -p game-payload
+          cp pokeemerald.exe game-payload/
+          cp .deps/SDL2-2.30.7/i686-w64-mingw32/bin/SDL2.dll game-payload/
+          i686-w64-mingw32-gcc -std=c99 -Wall -Wextra -I src/profile src/profile/save_profiles.c tools/emerald_profilectl.c -o game-payload/emerald_profilectl.exe
+          file game-payload/pokeemerald.exe
+      - uses: actions/upload-artifact@v4
+        with:
+          name: M23A-game
+          path: game-payload/
+          if-no-files-found: error
+  gui-tools:
+    runs-on: windows-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Existing protocol, lab and lobby regression
+        run: |
+          python -m unittest discover -s tests -p test_emerald_session_server.py -v
+          python -m unittest discover -s tests -p test_emerald_session_admin.py -v
+          python -m unittest discover -s tests -p test_ehl8_resume_v1.py -v
+          python -m unittest discover -s tests -p test_emerald_qa_lab.py -v
+          python -m unittest discover -s tests -p test_ehl8_m22b_bundle_safety.py -v
+          python -m unittest discover -s tests -p test_ehl8_m23_host_start.py -v
+          python -m unittest discover -s tests -p test_ehl8_m23_bundle_safety.py -v
+          python -m unittest discover -s tests -p test_ehl8_m23a_server_first.py -v
+          python -m unittest discover -s tests -p test_emerald_qa_lobby.py -v
+          python -m unittest discover -s tests -p test_emerald_qa_bots.py -v
+      - name: Build companion Windows executables
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          python -m pip install --disable-pip-version-check pyinstaller==6.16.0
+          python -m PyInstaller --noconfirm --clean --onefile --windowed --paths tools --hidden-import emerald_qa_lobby --name EmeraldQALab tools/emerald_qa_lab.py
+          python -m PyInstaller --noconfirm --clean --onefile --console --name EmeraldQABots tools/emerald_qa_bots.py
+          python -m PyInstaller --noconfirm --clean --onefile --console --name EmeraldSessionServerM22 tools/emerald_session_server.py
+          python -m PyInstaller --noconfirm --clean --onefile --console --name EmeraldSessionServerM23 tools/emerald_session_server.py
+          python -m PyInstaller --noconfirm --clean --onefile --windowed --name EmeraldLauncher tools/emerald_launcher.py
+          foreach ($n in @('EmeraldQALab.exe','EmeraldQABots.exe','EmeraldSessionServerM22.exe','EmeraldSessionServerM23.exe','EmeraldLauncher.exe')) {
+            if (!(Test-Path ("dist/" + $n))) { throw "Missing $n" }
+          }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: M23A-tools
+          path: dist/*.exe
+          if-no-files-found: error
+  portable:
+    needs: [game, gui-tools]
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: M23A-game
+          path: portable
+      - uses: actions/download-artifact@v4
+        with:
+          name: M23A-tools
+          path: portable
+      - name: Verify and assemble isolated preview
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          Copy-Item portable/EmeraldSessionServerM22.exe portable/EmeraldSessionServer.exe
+          foreach ($n in @('pokeemerald.exe','SDL2.dll','emerald_profilectl.exe','EmeraldSessionServerM22.exe','EmeraldSessionServerM23.exe','EmeraldSessionServer.exe','EmeraldQALab.exe','EmeraldQABots.exe','EmeraldLauncher.exe')) {
+            $p="portable/$n"
+            if (!(Test-Path $p -PathType Leaf)) { throw "Missing: $n" }
+            $b=[IO.File]::ReadAllBytes((Resolve-Path $p).Path)
+            if ($b.Length -lt 50000 -or $b[0] -ne 77 -or $b[1] -ne 90) { throw "Invalid PE: $n" }
+          }
+          if (@(Get-ChildItem portable -Recurse -File -Filter *.sav).Count -gt 0) { throw "Cannot package saves" }
+          $game=(Get-FileHash portable/pokeemerald.exe -Algorithm SHA256).Hash.ToLowerInvariant()
+          $server=(Get-FileHash portable/EmeraldSessionServerM22.exe -Algorithm SHA256).Hash.ToLowerInvariant()
+          @{ game_sha256=$game; server_sha256=$server; source_commit=$env:GITHUB_SHA } | ConvertTo-Json | Set-Content portable/EHL8_M22B_GAME_MATCHED.txt -Encoding UTF8
+          $hostServer=(Get-FileHash portable/EmeraldSessionServerM23.exe -Algorithm SHA256).Hash.ToLowerInvariant()
+          @{ game_sha256=$game; server_sha256=$hostServer; source_commit=$env:GITHUB_SHA } | ConvertTo-Json | Set-Content portable/EHL8_M23_GAME_MATCHED.txt -Encoding UTF8
+          "PORTABLE PROFILE LOCATION: ./profiles" | Set-Content portable/PORTABLE_MODE.txt -Encoding ascii
+          Copy-Item docs/V100_M22B_RECONNECT_WINDOWS_QA_PTBR.md portable/LEIA_M22B_PTBR.md
+          Copy-Item docs/V100_M23_HOST_START_QA_PTBR.md portable/LEIA_M23_PTBR.md
+          Copy-Item docs/V100_M23A_SERVER_FIRST_QA_PTBR.md portable/LEIA_M23A_PTBR.md
+          Copy-Item AI_README.md portable/AI_README.md
+          @'
+          @echo off
+          cd /d "%~dp0"
+          start "" "%~dp0EmeraldQALab.exe"
+          '@ | Set-Content portable/ABRIR_LABORATORIO.bat -Encoding ascii
+          $list=@("SOURCE_COMMIT=$env:GITHUB_SHA")
+          Get-ChildItem portable -File | Sort-Object Name | ForEach-Object {
+            $hash=(Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+            $list+=("$hash  $($_.Name)")
+          }
+          $list | Set-Content portable/SHA256_COMPONENTES.txt -Encoding ascii
+          Compress-Archive portable/* Emerald_Hybrid_M23A_SERVIDOR_PRIMEIRO_COMPLETO_Windows.zip -CompressionLevel Optimal
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BAIXAR_AQUI_Emerald_M23A_SERVIDOR_PRIMEIRO_COMPLETO_Windows
+          path: Emerald_Hybrid_M23A_SERVIDOR_PRIMEIRO_COMPLETO_Windows.zip
+          if-no-files-found: error
+          retention-days: 30
