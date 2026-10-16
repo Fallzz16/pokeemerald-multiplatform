@@ -116,6 +116,55 @@ class ServerFirst(unittest.TestCase):
         self.assertEqual(json.loads((folder / "report.json").read_text())["exit_codes"], [0, 0])
         self.assertTrue(all("--session-pin-stdin" in cmd for cmd, _ in self.launched[1:]))
 
+    def test_join_one_at_a_time_then_start_remaining_without_extra_server(self):
+        manager = L.QASession(self.app, self.root)
+        with patch.object(L.subprocess, "Popen", side_effect=self.popen), \\
+             patch.object(L.subprocess, "run", side_effect=self.fake_profilectl):
+            folder = manager.start_server_only(port=self.port, pin="123456")
+            self.assertEqual(len(self.launched), 1)
+            manager.launch_single("QA_A", self.port, "123456")
+            self.assertEqual(manager.game_profiles, ["QA_A"])
+            self.assertEqual(len(self.launched), 2)
+            with self.assertRaises(RuntimeError):
+                manager.launch_single("QA_A", self.port, "123456")
+            manager.launch_single("QA_B", self.port, "123456")
+            self.assertEqual(manager.game_profiles, ["QA_A", "QA_B"])
+            self.assertEqual(len(self.launched), 3)
+            self.assertEqual(manager.session, folder)
+            with self.assertRaises(RuntimeError):
+                manager.launch_games(self.port, "123456")
+            self.assertEqual(len(self.launched), 3)
+
+    def test_open_two_fills_missing_player_only(self):
+        manager = L.QASession(self.app, self.root)
+        with patch.object(L.subprocess, "Popen", side_effect=self.popen), \\
+             patch.object(L.subprocess, "run", side_effect=self.fake_profilectl):
+            manager.start_server_only(port=self.port, pin="123456")
+            manager.launch_single("QA_B", self.port, "123456")
+            manager.launch_games(self.port, "123456")
+            self.assertEqual(manager.game_profiles, ["QA_B", "QA_A"])
+            self.assertEqual(len(self.launched), 3)
+            for p in manager.games: p.code = 0
+            manager.complete()
+            report = json.loads((manager.session / "report.json").read_text())
+            self.assertEqual(report["profiles"], ["QA_B", "QA_A"])
+
+    def test_single_entry_checks_pin_port_and_live_server(self):
+        manager = L.QASession(self.app, self.root)
+        with patch.object(L.subprocess, "Popen", side_effect=self.popen), \\
+             patch.object(L.subprocess, "run", side_effect=self.fake_profilectl):
+            manager.start_server_only(port=self.port, pin="123456")
+            with self.assertRaises(ValueError):
+                manager.launch_single("QA_A", self.port, "654321")
+            with self.assertRaises(ValueError):
+                manager.launch_single("QA_A", self.port+1, "123456")
+            with self.assertRaises(ValueError):
+                manager.launch_single("OTHER", self.port, "123456")
+            self.assertEqual(len(self.launched), 1)
+            manager.server.code = 1
+            with self.assertRaises(RuntimeError):
+                manager.launch_single("QA_A", self.port, "123456")
+
     def test_wrong_port_or_pin_cannot_join_managed_server(self):
         manager = L.QASession(self.app, self.root)
         with patch.object(L.subprocess, "Popen", side_effect=self.popen), \
