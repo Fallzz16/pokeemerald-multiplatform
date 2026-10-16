@@ -28,7 +28,7 @@
 ## O que testar (obrigatórios)
 1. **Sala aguardando host:** abra `LOBBY AO VIVO` com dois jogos abertos.
    Esperado: **SALA 2/2**, **PRONTOS 2/2**, **PARTIDA INICIADA NÃO**;
-   **INICIAR SALA (2/2 PRONTOS)** habilitado. O jogo aguarda, sem iniciar sozinho.
+   **INICIAR SALA (2/2 PRONTOS)** habilitado. **Aguarde 30 segundos** antes de clicar e confira que os jogos continuam conectados, sem começar sozinhos ou mostrar erro. Isso exercita o heartbeat durante a espera.
 2. **Iniciar manualmente:** clique em `INICIAR SALA (2/2 PRONTOS)`,
    confirme. Esperado: os dois jogos entram em **EM JOGO**,
    **PARTIDA INICIADA SIM**, ambos se enxergam e caminham.
