@@ -8,6 +8,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#ifdef EHL_DEBUG_HANDSHAKE
+#include <stdio.h>
+#endif
 #ifdef _WIN32
 #include <winsock2.h>
 #include <ws2tcpip.h>
@@ -70,6 +73,9 @@ static unsigned long now_ms(void)
 static void close_failed(LNetSessionClient *c)
 {
     unsigned long now = now_ms();
+#ifdef EHL_DEBUG_HANDSHAKE
+    fprintf(stderr, "close_failed state=%d token=%u retry=%u\\n", c->state, c->haveResumeToken, c->resumeInFlight);
+#endif
     int mayRetry = c->haveResumeToken &&
         (c->state == EHL_CLIENT_PLAYING || c->resumeInFlight);
     lnet_net_close(c->socket);
@@ -178,6 +184,9 @@ void lnet_session_client_close(LNetSessionClient *c)
 
 static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
 {
+#ifdef EHL_DEBUG_HANDSHAKE
+    fprintf(stderr, "frame state=%d kind=%u size=%u\\n", c->state, frame->type, frame->payload_size);
+#endif
     if (c->state == EHL_CLIENT_WAIT_WELCOME)
     {
         if (frame->type != EHL_WELCOME || frame->payload_size != 1 ||
