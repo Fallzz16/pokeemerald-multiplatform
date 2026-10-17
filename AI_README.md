@@ -914,3 +914,10 @@ O outro defeito do relatório (continuação Python inválida em `test_ehl8_m23a
 O relatório Auto QA Windows do run `38994562302` agora confirma 12 PASS, 1 FAIL e 2 SKIP; a única falha restante foi `test_failed_second_game_rolls_back_only_new_children`, cuja asserção comparava o caminho do executável por string e divergia entre caminho longo e alias DOS 8.3 do runner. A verificação foi alterada para `Path(...).samefile(...)`, sem reduzir o teste de rollback de filhos recém-criados. Commit: `28b304bf0313718b78fa569948cd4d7e7497abc3`.
 
 Validador YAML já passa em Windows e Linux; teste de ciclo de vida da porta real também passou em ambas no relatório anterior. A próxima execução deve confirmar zero falhas de Auto QA. Build completo Windows e ZIP ainda aguardam término no SHA final; Android/APK e gameplay M3.0 seguem fora do que foi comprovado nesta etapa.
+
+
+## 52. Auto QA verde em Windows e Linux após correções (2026-10-16)
+
+Execução concluída: [Auto QA Windows + Linux, run 38994634156](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38994634156), commit testado `28b304bf0313718b78fa569948cd4d7e7497abc3`, conclusão `success`. Relatórios de artefato confirmam **Linux: 15 PASS / 0 FAIL / 0 SKIP** e **Windows: 13 PASS / 0 FAIL / 2 SKIP** (os dois testes de fixtures nativos POSIX são intencionalmente Linux-only). O teste real de ciclo de vida da porta TCP está incluído e passou nas duas plataformas. Correções que eliminaram os defeitos detectados estão documentadas nas seções 46–51.
+
+Esse sucesso comprova as suítes automatizadas do commit testado, não gameplay gráfico real, integridade de save dentro do jogo, APK Android ou crossplay. O build completo Windows da revisão final `364f3c2f0d04d1f3bdd9db313f45a23e79edea7c` ainda estava aguardando execução/conclusão quando esta nota foi escrita; após esta nota o novo HEAD exigirá build de mesma revisão para obter ZIP final exato. Nenhum save pessoal foi usado.
