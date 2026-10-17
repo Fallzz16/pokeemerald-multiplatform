@@ -1,4 +1,4 @@
-name: Emerald M2.3-A Server First Windows Preview
+name: Emerald M2.3-B2 Windows Complete Preview
 on:
   push:
     branches:
@@ -137,6 +137,8 @@ jobs:
           Copy-Item docs/V100_M23_HOST_START_QA_PTBR.md portable/LEIA_M23_PTBR.md
           Copy-Item docs/V100_M23A_SERVER_FIRST_QA_PTBR.md portable/LEIA_M23A_PTBR.md
           Copy-Item AI_README.md portable/AI_README.md
+          Copy-Item docs/V100_M23A_SERVER_FIRST_QA_PTBR.md portable/TESTAR_ESTA_BUILD.md
+          "SOURCE_COMMIT=$env:GITHUB_SHA" | Set-Content portable/REVISAO_EXATA.txt -Encoding ascii
           @'
           @echo off
           cd /d "%~dp0"
@@ -148,10 +150,10 @@ jobs:
             $list+=("$hash  $($_.Name)")
           }
           $list | Set-Content portable/SHA256_COMPONENTES.txt -Encoding ascii
-          Compress-Archive portable/* Emerald_Hybrid_M23A_SERVIDOR_PRIMEIRO_COMPLETO_Windows.zip -CompressionLevel Optimal
+          Compress-Archive portable/* Emerald_Hybrid_M23B2_PREVIEW_COMPLETO_Windows.zip -CompressionLevel Optimal
       - uses: actions/upload-artifact@v4
         with:
-          name: BAIXAR_AQUI_Emerald_M23A_SERVIDOR_PRIMEIRO_COMPLETO_Windows
-          path: Emerald_Hybrid_M23A_SERVIDOR_PRIMEIRO_COMPLETO_Windows.zip
+          name: BAIXAR_AQUI_Emerald_M23B2_PREVIEW_COMPLETO_Windows
+          path: Emerald_Hybrid_M23B2_PREVIEW_COMPLETO_Windows.zip
           if-no-files-found: error
           retention-days: 30
