@@ -907,3 +907,10 @@ A execução Auto QA do commit `3dc85234c67309520bb08909ee34aedfad366898` confir
 O relatório Auto QA Linux do run `38994445631` detalhou duas falhas em `tests/test_emerald_qa_lab.py`: o mock de processo local não implementava `wait()` (exigido pela parada ordenada do servidor) e um teste que montava o estado da sessão manualmente não preenchia a allowlist `game_profiles`, embora a produção agora só faça backup de perfis realmente lançados. Corrigido adicionando `wait()/kill()` ao mock e inicializando a allowlist no cenário que simula pós-lançamento. Commit: `48babd82f95b0c616e6099af62de7b1bcde268fe`. O ajuste é de teste, preserva a regra de não fazer backup de perfil que não foi aberto e não toca SAV real.
 
 O outro defeito do relatório (continuação Python inválida em `test_ehl8_m23a_server_first.py`) foi corrigido no commit `ae903037bee438316c16d72147190b476757cd7a`; a divergência de caminho 8.3 do Windows foi corrigida no commit `df34ebeeb220bba79262eeb7e952d43c1d09d88f`. A revisão seguinte precisa reexecutar Auto QA e build completos; até lá, os gates continuam pendentes e não existe ZIP final declarado aprovado.
+
+
+## 51. Última falha Windows do Auto QA: comparação textual de caminho (2026-10-16)
+
+O relatório Auto QA Windows do run `38994562302` agora confirma 12 PASS, 1 FAIL e 2 SKIP; a única falha restante foi `test_failed_second_game_rolls_back_only_new_children`, cuja asserção comparava o caminho do executável por string e divergia entre caminho longo e alias DOS 8.3 do runner. A verificação foi alterada para `Path(...).samefile(...)`, sem reduzir o teste de rollback de filhos recém-criados. Commit: `28b304bf0313718b78fa569948cd4d7e7497abc3`.
+
+Validador YAML já passa em Windows e Linux; teste de ciclo de vida da porta real também passou em ambas no relatório anterior. A próxima execução deve confirmar zero falhas de Auto QA. Build completo Windows e ZIP ainda aguardam término no SHA final; Android/APK e gameplay M3.0 seguem fora do que foi comprovado nesta etapa.
