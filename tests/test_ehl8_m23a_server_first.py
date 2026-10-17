@@ -122,7 +122,7 @@ class ServerFirst(unittest.TestCase):
 
     def test_join_one_at_a_time_then_start_remaining_without_extra_server(self):
         manager = L.QASession(self.app, self.root)
-        with patch.object(L.subprocess, "Popen", side_effect=self.popen), \\
+        with patch.object(L.subprocess, "Popen", side_effect=self.popen), \
              patch.object(L.subprocess, "run", side_effect=self.fake_profilectl):
             folder = manager.start_server_only(port=self.port, pin="123456")
             self.assertEqual(len(self.launched), 1)
@@ -141,7 +141,7 @@ class ServerFirst(unittest.TestCase):
 
     def test_open_two_fills_missing_player_only(self):
         manager = L.QASession(self.app, self.root)
-        with patch.object(L.subprocess, "Popen", side_effect=self.popen), \\
+        with patch.object(L.subprocess, "Popen", side_effect=self.popen), \
              patch.object(L.subprocess, "run", side_effect=self.fake_profilectl):
             manager.start_server_only(port=self.port, pin="123456")
             manager.launch_single("QA_B", self.port, "123456")
@@ -155,7 +155,7 @@ class ServerFirst(unittest.TestCase):
 
     def test_single_entry_checks_pin_port_and_live_server(self):
         manager = L.QASession(self.app, self.root)
-        with patch.object(L.subprocess, "Popen", side_effect=self.popen), \\
+        with patch.object(L.subprocess, "Popen", side_effect=self.popen), \
              patch.object(L.subprocess, "run", side_effect=self.fake_profilectl):
             manager.start_server_only(port=self.port, pin="123456")
             with self.assertRaises(ValueError):
