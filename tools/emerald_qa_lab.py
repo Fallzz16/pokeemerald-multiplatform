@@ -379,15 +379,15 @@ class QASession:
         if profile_id not in PROFILE_IDS:
             raise ValueError("Conta de teste inválida.")
         self._check_existing_server(port, pin)
-        if profile_id in self.game_profiles:
-            raise RuntimeError(profile_id + " já foi aberta nesta sessão. Não duplicar processos nem logs.")
+        if profile_id in self.game_profiles and self.games[self.game_profiles.index(profile_id)].poll() is None:
+            raise RuntimeError(profile_id + " já está aberto nesta sessão.")
         self._spawn_games("ehl8", port, pin, (profile_id,))
         return self.session
 
     def launch_games(self, port=45680, pin=""):
         """Join missing QA slots on the same server, preserving existing games."""
         self._check_existing_server(port, pin)
-        missing = tuple(pid for pid in PROFILE_IDS if pid not in self.game_profiles)
+        missing = tuple(pid for pid in PROFILE_IDS if pid not in self.game_profiles or self.games[self.game_profiles.index(pid)].poll() is not None)
         if not missing:
             raise RuntimeError("As duas contas desta sessão já foram iniciadas.")
         self._spawn_games("ehl8", port, pin, missing)
@@ -405,8 +405,11 @@ class QASession:
                     stdin=subprocess.PIPE if mode == "ehl8" else subprocess.DEVNULL,
                     stdout=subprocess.DEVNULL, stderr=err,
                     creationflags=no_window_flags())
-            self.games.append(process)
-            self.game_profiles.append(profile_id)
+            if profile_id in self.game_profiles:
+                self.games[self.game_profiles.index(profile_id)] = process
+            else:
+                self.games.append(process)
+                self.game_profiles.append(profile_id)
             if mode == "ehl8":
                 self._send_pin(process, pin)
 
@@ -480,10 +483,21 @@ class QASession:
             raise RuntimeError("Não foi possível enviar o comando à sala.") from exc
         return command
 
+    @staticmethod
+    def _stop_child(process):
+        if process is None or process.poll() is not None:
+            return
+        process.terminate()
+        try:
+            process.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            process.kill()
+            process.wait(timeout=5)
+
     def stop(self):
-        for process in self.games + ([self.server] if self.server else []):
-            if process is not None and process.poll() is None:
-                process.terminate()
+        for process in self.games:
+            self._stop_child(process)
+        self._stop_child(self.server)
         self._server_pin = None
 
     def complete(self):
@@ -494,8 +508,7 @@ class QASession:
             return
         self.backups_done = True
         self._server_pin = None
-        if self.server is not None and self.server.poll() is None:
-            self.server.terminate()
+        self._stop_child(self.server)
         profiles = self.session / "profiles"
         for profile_id in self.game_profiles:
             command = [str(self.app / "emerald_profilectl.exe"),
@@ -878,7 +891,7 @@ def main():
 
     def monitor():
         if manager.session and not manager.backups_done and manager.games:
-            if (len(manager.game_profiles) == 2 or not manager.running()) and all(p.poll() is not None for p in manager.games):
+            if not manager.running() and all(p.poll() is not None for p in manager.games):
                 manager.complete()
                 status.set("Jogos encerrados. " + "; ".join(manager.backup_status) +
                            ". Logs e relatório preservados.")
