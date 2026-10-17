@@ -32,6 +32,7 @@ SUITES = {
         "test_ehl8_native_reconnect.py",
     ),
     "safety": (
+        "test_emerald_auto_qa_runner.py",
         "test_ehl8_m22b_bundle_safety.py",
         "test_emerald_qa_bots.py",
         "test_lan_remote_palette_regression.py",
