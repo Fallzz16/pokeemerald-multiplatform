@@ -70,6 +70,19 @@ jobs:
           python -m unittest discover -s tests -p test_ehl8_m23a_server_first.py -v
           python -m unittest discover -s tests -p test_emerald_qa_lobby.py -v
           python -m unittest discover -s tests -p test_emerald_qa_bots.py -v
+      - name: Auto QA stability gate before building the Lab
+        run: |
+          python tools/emerald_auto_qa.py --group lab --repeats 1 --report auto-qa-lab.json
+          python tools/emerald_auto_qa.py --group safety --repeats 1 --report auto-qa-safety.json
+      - name: Attach pre-build QA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: M23A-qa-evidence
+          path: |
+            auto-qa-lab.json
+            auto-qa-safety.json
+          if-no-files-found: warn
       - name: Build companion Windows executables
         shell: pwsh
         run: |
