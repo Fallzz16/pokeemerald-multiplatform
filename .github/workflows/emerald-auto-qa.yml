@@ -46,8 +46,9 @@ jobs:
           python tools/emerald_auto_qa.py --group all --repeats "$QA_REPEATS" --report auto-qa-report.json
       - name: Write readable CI summary
         if: always()
-        shell: python
+        shell: bash
         run: |
+          python - <<'PY'
           import json, os
           from pathlib import Path
           p=Path('auto-qa-report.json')
@@ -62,6 +63,7 @@ jobs:
               lines += ['No report generated. Inspect the failing setup or runner step.']
           with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as f:
               f.write('\n'.join(lines)+'\n')
+          PY
       - name: Preserve report even when QA fails
         if: always()
         uses: actions/upload-artifact@v4
