@@ -1,0 +1,72 @@
+name: Emerald Hybrid Auto QA (Windows + Linux)
+on:
+  push:
+    branches:
+      - feature/emerald-v100-m23a-server-first-lab
+    paths:
+      - 'tools/emerald_auto_qa.py'
+      - 'tools/emerald_qa_lab.py'
+      - 'tools/emerald_qa_bots.py'
+      - 'tools/emerald_session_server.py'
+      - 'tests/**'
+      - '.github/workflows/emerald-auto-qa.yml'
+  workflow_dispatch:
+    inputs:
+      repeats:
+        description: "Repeat each regression suite (1 to 20)"
+        required: true
+        type: choice
+        default: '1'
+        options:
+          - '1'
+          - '3'
+          - '5'
+permissions:
+  contents: read
+jobs:
+  simulated-players:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile Python QA and protocol modules
+        run: python -m compileall -q tools/emerald_auto_qa.py tools/emerald_qa_lab.py tools/emerald_qa_bots.py
+      - name: Run simulated player regression QA
+        shell: bash
+        env:
+          QA_REPEATS: ${{ inputs.repeats || '1' }}
+        run: |
+          python tools/emerald_auto_qa.py --group all --repeats "$QA_REPEATS" --report auto-qa-report.json
+      - name: Write readable CI summary
+        if: always()
+        shell: python
+        run: |
+          import json, os
+          from pathlib import Path
+          p=Path('auto-qa-report.json')
+          report=json.loads(p.read_text(encoding='utf-8')) if p.exists() else None
+          lines=['## Emerald Hybrid Auto QA', 'Platform: ${{ matrix.os }}', 'Source commit: ${{ github.sha }}']
+          if report:
+              lines += [f"Passed: {report['passed']} | Failed: {report['failed']}", '',
+                        '| Iteration | Test suite | Status |', '|---:|---|---|']
+              for x in report['results']:
+                  lines.append(f"| {x['iteration']} | {x['suite']} | {x['status']} |")
+          else:
+              lines += ['No report generated. Inspect the failing setup or runner step.']
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as f:
+              f.write('\n'.join(lines)+'\n')
+      - name: Preserve report even when QA fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Emerald-Auto-QA-${{ matrix.os }}
+          path: auto-qa-report.json
+          if-no-files-found: warn
+          retention-days: 30
