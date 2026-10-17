@@ -75,3 +75,20 @@ Testar: 0/2 sem jogo; ENTRAR QA_A => 1/2; ENTRAR QA_B => 2/2; 30 s sem START; ST
 ## Correção M2.3-B2 — reentrada e liberação de porta
 
 Teste adicional no Windows: inicie servidor 0/2, entre QA_A (abre uma instância de jogo), feche QA_A normalmente, reabra QA_A na mesma sala (não deve criar servidor/saves novos), entre QA_B e verifique 2/2; espere 30 segundos sem START e inicie pelo anfitrião; verifique sprites, quedas, KICK e saves. Depois use PARAR TESTES, aguarde saída de todos os processos pertencentes ao Lab, e inicie nova sala na MESMA porta 45680. Caso a porta permaneça ocupada, verifique com `netstat -ano | findstr :45680`; não finalize processos desconhecidos. O botão ENTRAR QA é entrada no cliente de jogo, não comando READY headless. QA humano e CI desta revisão ainda pendentes.
+
+
+## M2.3-B2 Windows Preview — roteiro obrigatório da próxima build
+
+**Atenção:** verifique `REVISAO_EXATA.txt` no ZIP e compare com o commit exibido no GitHub Actions. Extraia o ZIP inteiro em uma pasta NOVA; NÃO copie executáveis individualmente, NÃO substitua versão funcional e NÃO utilize saves pessoais sem backup. O pacote deve conter `pokeemerald.exe`, `SDL2.dll`, `EmeraldQALab.exe`, `EmeraldSessionServerM22.exe`, `EmeraldSessionServerM23.exe`, `emerald_profilectl.exe` e `SHA256_COMPONENTES.txt`.
+
+1. Execute `ABRIR_LABORATORIO.bat`, selecione EHL8 local, porta 45680, PIN de 6 dígitos, perfis isolados QA_A / QA_B.
+2. INICIAR SERVIDOR (SEM JOGO): confira nenhum jogo aberto, lobby 0/2 e servidor ativo.
+3. ENTRAR QA_A: confira apenas um pokeemerald.exe; feche QA_A e clique ENTRAR QA_A outra vez. A sessão/porta/saves devem permanecer os mesmos.
+4. ENTRAR QA_B: confira lobby 2/2, PRONTOS 2/2; aguarde 30s sem início automático.
+5. Clique INICIAR SALA, movimente A e B, observe se sprites, mapas e câmera funcionam.
+6. Feche ambos os jogos **sem fechar servidor**, clique ABRIR 2 JOGOS (NOVO) e confira apenas duas novas janelas usando mesma sessão e servidor.
+7. Simule queda A, depois B; verifique reconexão em até 60s. REMOVER QA_B deve impedir reentrada automática do removido.
+8. PARAR TESTES, aguarde os processos fecharem. Inicie servidor novo **na mesma porta 45680**; não deve dizer ocupada por processo desta versão.
+9. Teste salvar/CONTINUAR SOZINHO para cada treinador e compare o save original com backup; nenhuma modificação direta em saves fonte.
+
+**Se falhar:** guarde `servidor.log`, `QA_A-rede.log`, `QA_B-rede.log` e `report.json` no diretório da sessão, além do print e commit em `REVISAO_EXATA.txt`. Não compartilhe PIN ou seus saves privados. O Auto QA não substitui esses testes gráficos de gameplay.
