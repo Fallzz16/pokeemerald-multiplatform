@@ -390,7 +390,27 @@ class QASession:
         missing = tuple(pid for pid in PROFILE_IDS if pid not in self.game_profiles or self.games[self.game_profiles.index(pid)].poll() is not None)
         if not missing:
             raise RuntimeError("As duas contas desta sessão já foram iniciadas.")
-        self._spawn_games("ehl8", port, pin, missing)
+        # A partial two-game launch must not leave a new game running after
+        # the second process fails. Existing, previously joined games survive.
+        previous = {pid: self.games[self.game_profiles.index(pid)]
+                    for pid in self.game_profiles}
+        try:
+            self._spawn_games("ehl8", port, pin, missing)
+        except Exception:
+            for pid in missing:
+                if pid not in self.game_profiles:
+                    continue
+                index = self.game_profiles.index(pid)
+                process = self.games[index]
+                if process is previous.get(pid):
+                    continue
+                self._stop_child(process)
+                if pid in previous:
+                    self.games[index] = previous[pid]
+                else:
+                    del self.games[index]
+                    del self.game_profiles[index]
+            raise
         return self.session
 
     def _spawn_games(self, mode, port, pin, profile_ids=PROFILE_IDS):
@@ -405,13 +425,19 @@ class QASession:
                     stdin=subprocess.PIPE if mode == "ehl8" else subprocess.DEVNULL,
                     stdout=subprocess.DEVNULL, stderr=err,
                     creationflags=no_window_flags())
+            # Do not expose a half-started game as an active QA profile.
+            # On a PIN pipe error, close only the newly spawned child.
+            try:
+                if mode == "ehl8":
+                    self._send_pin(process, pin)
+            except Exception:
+                self._stop_child(process)
+                raise
             if profile_id in self.game_profiles:
                 self.games[self.game_profiles.index(profile_id)] = process
             else:
                 self.games.append(process)
                 self.game_profiles.append(profile_id)
-            if mode == "ehl8":
-                self._send_pin(process, pin)
 
     def reopen_single(self, session, profile_id):
         """Continue one trainer OFFLINE in its original QA session and save.
