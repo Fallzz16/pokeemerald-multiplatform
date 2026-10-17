@@ -201,6 +201,26 @@ class ServerFirst(unittest.TestCase):
             self.assertEqual(len(manager.games), 2)
             self.assertFalse(manager.backups_done)
 
+    def test_failed_second_game_rolls_back_only_new_children(self):
+        manager = L.QASession(self.app, self.root)
+        with patch.object(L.subprocess, "Popen", side_effect=self.popen), \
+             patch.object(L.subprocess, "run", side_effect=self.fake_profilectl):
+            manager.start_server_only(port=self.port, pin="123456")
+            original_send = manager._send_pin
+            calls = [0]
+            def fail_second(process, pin, keep_open=False):
+                calls[0] += 1
+                if calls[0] == 2:  # QA_A first, QA_B second
+                    raise BrokenPipeError("simulated PIN pipe failure")
+                return original_send(process, pin, keep_open=keep_open)
+            with patch.object(manager, "_send_pin", side_effect=fail_second):
+                with self.assertRaises(BrokenPipeError):
+                    manager.launch_games(self.port, "123456")
+            self.assertEqual(manager.game_profiles, [])
+            self.assertEqual(manager.games, [])
+            self.assertTrue(manager.server.poll() is None)
+            self.assertEqual(len(self.launched), 3)
+
     def test_wrong_port_or_pin_cannot_join_managed_server(self):
         manager = L.QASession(self.app, self.root)
         with patch.object(L.subprocess, "Popen", side_effect=self.popen), \
