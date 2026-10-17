@@ -71,3 +71,7 @@ PIN e os saves reais não precisam ser enviados.
 Após INICIAR SERVIDOR (SEM JOGO), use **ENTRAR QA_A** e depois **ENTRAR QA_B** para conectar um jogador por vez. Cada botão lança apenas a respectiva conta já preparada, sem novo servidor, sem novo save e sem nova importação. ABRIR 2 JOGOS continua disponível: inicia ambas caso nenhuma esteja aberta, ou somente a conta que falta. **REABRIR 1 CONTA é exclusivamente para CONTINUAR SOZINHO offline depois que a sessão anterior terminar**. Não use esse controle para entrar na sala EHL8.
 
 Testar: 0/2 sem jogo; ENTRAR QA_A => 1/2; ENTRAR QA_B => 2/2; 30 s sem START; START manual; KICK/reconexão e integridade dos saves. Também testar uma segunda sala com ENTRAR QA_B seguido de ABRIR 2 JOGOS, que deve acrescentar apenas QA_A. Testes automatizados não equivalem a aprovação Windows real.
+
+## Correção M2.3-B2 — reentrada e liberação de porta
+
+Teste adicional no Windows: inicie servidor 0/2, entre QA_A (abre uma instância de jogo), feche QA_A normalmente, reabra QA_A na mesma sala (não deve criar servidor/saves novos), entre QA_B e verifique 2/2; espere 30 segundos sem START e inicie pelo anfitrião; verifique sprites, quedas, KICK e saves. Depois use PARAR TESTES, aguarde saída de todos os processos pertencentes ao Lab, e inicie nova sala na MESMA porta 45680. Caso a porta permaneça ocupada, verifique com `netstat -ano | findstr :45680`; não finalize processos desconhecidos. O botão ENTRAR QA é entrada no cliente de jogo, não comando READY headless. QA humano e CI desta revisão ainda pendentes.
