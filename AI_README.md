@@ -811,3 +811,8 @@ Relato real e três capturas: entrada individual abre pokeemerald.exe (esperado 
 **Status:** workflow foi commitado, mas jobs ainda precisam ser verificados em seu SHA; não anunciar Auto QA aprovado, nem build Windows completa, sem execução verde. Interface com controle real de NPCs, movimentos em Hoenn, batalha e save visual permanece fora deste executor; QA humano segue necessário. **Rollback:** M2.2-B `5e53e40` aprovada em 5/5.
 
 **Próximo:** verificar resultados Windows/Linux e seus artefatos, corrigir suites quebradas com causa reproduzível e abrir novos cenários; só depois integrar UI Auto QA ao Lab e uma camada opcional de automação de input do jogo isolado.
+
+
+## 37. Escopo de distribuição confirmado pelo usuário — PC e Android (2026-10-16)
+
+O usuário esclareceu expressamente: NÃO é necessário entregar ROM GBA; pretende jogar somente no PC via aplicativo/EXE e no celular via aplicativo/APK. Portanto, priorizar builds, regressões, compatibilidade e lançamento Windows + Android; crossplay EHL8 entre dispositivos é objetivo sujeito a implementação e QA reais. A falha do workflow GBA legado na etapa Compare NÃO bloqueia a aceitação das plataformas-alvo e deve ser reportada separadamente, nunca ocultada. Não excluir nem adulterar pipeline legado como reação automática; apenas removê-lo dos gates de lançamento Windows/Android. Não confundir ausência de obrigação de distribuir ROM GBA com autorização para alterar ou apagar assets e código compartilhados. Auto QA deve evoluir para cobrir builds Windows/Android, clientes e saves isolados; não declarar Android ou crossplay aprovados até haver evidência. Nenhum save ou código alterado nesta nota.
