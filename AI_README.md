@@ -843,3 +843,8 @@ O workflow `.github/workflows/build-v100-m23a-server-first-windows.yml` foi refo
 
 **Link de workflow (não link de artefato):** https://github.com/Fallzz16/pokeemerald-multiplatform/actions/workflows/build-v100-m23a-server-first-windows.yml
 **Gate seguinte:** identificar run de sucesso com os três jobs, hash mesmo SOURCE_COMMIT, obter ID exato do ZIP, enviar URL do artifact, executar QA humano. Baseline rollback continua M2.2-B `5e53e40`.
+
+
+## 41. Verificação destrutivamente isolada do ZIP final — M2.3-B2 (2026-10-16)
+
+No workflow de build Windows `.github/workflows/build-v100-m23a-server-first-windows.yml`, o job `portable` ganhou etapa posterior à compressão que **extrai o ZIP produzido para diretório temporário de verificação** (`verify-portable`) e valida: existência do ZIP, `REVISAO_EXATA.txt` com `GITHUB_SHA` exato, marcador da mesma revisão em `SHA256_COMPONENTES.txt`, presença de executáveis/SDL2/bat/roteiro, SHA256 de cada arquivo listado no manifesto e proibição de `.sav` no ZIP extraído. Qualquer divergência falha o job e impede publicação de artefato final pelo próximo passo. Não usa nem altera perfis do usuário. O arquivo compactado é o mesmo enviado como artefato, sem troca de componentes. **Status:** script commitado, CI do pacote e QA humano ainda precisam ser confirmados; não há download novo verificado nesta etapa. CI M1 da revisão anterior estava verde; GBA Compare legado falha separadamente. Rollback M2.2-B `5e53e40`.
