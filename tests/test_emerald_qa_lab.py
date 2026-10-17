@@ -29,7 +29,7 @@ class LabTests(unittest.TestCase):
         self.root = self.base / "testing"
 
     def fake_profilectl(self, cmd, **kw):
-        self.assertEqual(kw["cwd"], str(self.app))
+        self.assertTrue(Path(kw["cwd"]).samefile(self.app))
         self.assertNotIn("--session-pin", " ".join(cmd))
         action, root, profile = cmd[1:4]
         dest = Path(root) / profile
@@ -112,6 +112,10 @@ class LabTests(unittest.TestCase):
                 return self.code
             def terminate(self):
                 self.code = 143
+            def wait(self, timeout=None):
+                return self.code
+            def kill(self):
+                self.code = 137
 
         launched = []
         def fake_popen(cmd, **kw):
@@ -155,6 +159,9 @@ class LabTests(unittest.TestCase):
             session = L.prepare_session(self.app, self.root)
         manager = L.QASession(self.app, self.root)
         manager.session = session
+        # This test models the post-launch state directly instead of calling
+        # launch(), so populate the launched-profile allowlist explicitly.
+        manager.game_profiles = list(L.PROFILE_IDS)
         manager.games = [type("P", (), {"poll": lambda self: None})(),
                          type("P", (), {"poll": lambda self: 0})()]
         with patch.object(L.subprocess, "run", side_effect=AssertionError("premature backup")):

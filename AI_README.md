@@ -708,3 +708,216 @@ Usuário testa Windows M1 com 2 perfis independentes e devolve evidência de car
 - **Testes novos:** `tests/test_ehl8_m23_host_start.py` simula sockets TCP reais com 0/1/2 prontos, READY revogado, heartbeat enquanto espera, comando local START, manutenção do jogador restante. `tests/test_ehl8_m23_bundle_safety.py` verifica proteção por hash e leitura dos logs.
 - **Build/QA:** `.github/workflows/build-v100-m23-host-start-windows.yml` compila executáveis game + servidor + Lab da mesma revisão, com marcadores de compatibilidade. `docs/V100_M23_HOST_START_QA_PTBR.md` exige testar espera por 30s, START manual, reconexão, sprites, saves e KICK no PC. **Nenhum QA real M2.3 concluído ainda; só o usuário pode confirmar.**
 - **Próximo:** tornar Pronto/CANCELAR individual uma ação real de cada jogador (não apenas confirmação automática), e então os convites de batalha P2P conforme decisões V1-04C, V1-33A, V1-53A.
+
+## 31. M2.3-A — abrir lobby/servidor ANTES dos jogos (2026-10-16)
+
+- **Bug reportado com captura de tela:** em M2.3, o Lab só criava o servidor ao clicar `ABRIR 2 JOGOS (NOVO)`, abrindo as duas janelas simultaneamente. Abrir `LOBBY AO VIVO` antes exibia `SEM SESSÃO EHL8` / `SERVIDOR DESLIGADO`; `ENCERRAR SALA` dizia `Nenhum servidor local ativo`. Esse era um defeito do fluxo da UI, **não falha da reconexão M2.2-B**, que passou 5/5 testes humanos.
+- **Branch isolada** `feature/emerald-v100-m23a-server-first-lab`, PR draft #19, derivada de M2.3, sem alterar os releases experimentais M2.2-B/M2.3 ou perfis reais.
+- **Novo ciclo de vida:** `QASession.start_server_only()` prepara perfis de QA isolados por `emerald_profilectl import/new`, abre apenas `EmeraldSessionServerM23.exe` com PIN por pipe privado e devolve o controle da interface sem abrir `pokeemerald.exe`. O Lobby passa a refletir sala 0/2, pronto 0/2, START pendente. `ABRIR 2 JOGOS (NOVO)` depois chama `launch_games()` e vincula apenas os dois processos à **mesma** sessão, porta e PIN, sem iniciar servidor duplicado nem criar novos perfis. O PIN fica apenas em RAM.
+- **Guardas:** rejeitar PIN/porta divergentes, duplicação de sessão ativa, tentativa de ingresso em servidor encerrado, e não criar backups/relatórios de jogo se nenhum jogo foi aberto. Botão de início manual do anfitrião permanece aguardando 2/2 READY reais; reconexão 60s, kick, travamento de sala, bots e Continuar Sozinho preservados.
+- **Testes novos:** `tests/test_ehl8_m23a_server_first.py` cobre 0 jogos com servidor ativo, ingresso tardio dos 2 jogos, reutilização da sessão, proteção dos arquivos fonte, PIN/porta errados e backups somente após jogos encerrarem. `.github/workflows/test-v100-m23a-server-first.yml` valida testes no Windows/Linux (sucesso inicial); `.github/workflows/build-v100-m23a-server-first-windows.yml` gera ZIP portátil completo e verifica mesma revisão e SHA256 jogo/servidor.
+- **Instruções exatas:** `docs/V100_M23A_SERVER_FIRST_QA_PTBR.md`. Testar no Windows: iniciar servidor sem jogo, abrir Lobby e verificar 0/2, depois abrir 2 jogos e verificar 2/2, aguardar 30s, clicar INICIAR SALA, testar SIMULAR QUEDA B/A, kick, sprites, saves e voltar para CONTINUAR SOZINHO.
+- **Status:** correção implementada e QA de integração em andamento. **Não chamar QA humano aprovado antes do usuário reportar.** O pacote M2.2-B `5e53e40` continua sendo o baseline com 5/5 testes aprovados.
+
+
+## 32. PASSAGEM DE BASTÃO PARA O PRÓXIMO CHAT — M2.3-A, build Windows VALIDADA no CI (2026-10-16)
+
+### Origem da tarefa e solicitação expressa do usuário
+O usuário enviou screenshot do Lab M2.3: ao abrir o LOBBY AO VIVO antes do jogo, a sala estava em SEM SESSÃO EHL8 / SERVIDOR DESLIGADO; o botão ENCERRAR SALA avisou Nenhum servidor local ativo. O usuário explicou: ABRIR 2 JOGOS sempre iniciava servidor e duas janelas simultaneamente, impedindo preparar o servidor antes. Depois pediu: "cadê? faz um log no arquivo que vc estava mexendo agr com tudo que for preciso para o proximo chat saber por onde começar ou continuar. junto, faça um prompt." Esta seção é a passagem de bastão explícita. NÃO recomeçar o desenvolvimento do zero.
+
+### Branch, PR, commits e arquivo de continuação
+- Repo: https://github.com/Fallzz16/pokeemerald-multiplatform
+- Branch de desenvolvimento M2.3-A: feature/emerald-v100-m23a-server-first-lab
+- PR draft #19: https://github.com/Fallzz16/pokeemerald-multiplatform/pull/19
+- Base M2.3: feature/emerald-v100-m23-host-start-lobby, PR draft #18, base SHA 27f7d8ab081b3390bf03904a960c348d378bba3f.
+- Último commit de **código** usado no ZIP Windows M2.3-A: a0fd2ac9f2eb8833c019728e4b44d8493cd47bd0. Há commits posteriores somente para documentação/handoff; sempre buscar HEAD atualizado antes de modificar arquivos.
+- Código mais importante: tools/emerald_qa_lab.py. Outros arquivos: tools/emerald_qa_lobby.py, tools/emerald_session_server.py, src/lnet/lnet_session_client.c, tests/test_ehl8_m23a_server_first.py.
+- Documento de aceitação: docs/V100_M23A_SERVER_FIRST_QA_PTBR.md. Consultar também AGENTS.md, capítulos anteriores deste AI_README e as decisões da v1.0 (72 escolhas, com batalhas P2P e saves independentes).
+
+### M2.3-A implementada — fluxo correto da sala
+1. Novo botão INICIAR SERVIDOR (SEM JOGO) junto das opções de porta e PIN, sem aumentar a altura da janela.
+2. QASession.start_server_only(sources,port,pin) chama launch(...,server_only=True), usa emerald_profilectl para criar/importar apenas CÓPIAS isoladas de dois saves de QA, inicia UM servidor EHL8 em 127.0.0.1 e não abre pokeemerald.exe. Sessão do Lab e logs já existem e o LOBBY AO VIVO pode exibir 0/2 e READY 0/2.
+3. Depois ABRIR 2 JOGOS (NOVO) detecta o mesmo servidor ativo sem jogos e chama launch_games(), criando somente os dois processos do jogo, reutilizando exatamente o mesmo diretório de sessão, porta/PIN e saves; não inicia servidor extra nem cria perfis novos.
+4. O Lab rejeita PIN/porta diferentes, servidor encerrado e múltiplas sessões simultâneas. PIN apenas em RAM e pipe privado, não em argv/logs. Backups e report.json só após os jogos realmente iniciarem e terminarem; não backup prematuro ao criar só a sala.
+5. M2.3 anterior permanece: READY é enviado automaticamente pelos jogos; o anfitrião controla START manualmente, depois de PRONTOS 2/2. Reconexão 60s, KICK, LOCK, SIMULAR QUEDA, emotes existentes, sprites e Continuar Sozinho não foram removidos.
+6. A build M2.3 usa somente jogo e servidor da mesma edição com marcadores/verificação SHA-256. Não copiar executáveis isolados em outras versões.
+
+### Estado de compilação verificado — IMPORTANTE, já existe o ZIP, não duplicar trabalho
+- Workflow específico Emerald M2.3-A Server First Windows Preview: run 38869447665, SUCCESS em todos os jobs game, gui-tools, portable. https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38869447665
+- Artefato PORTÁTIL COMPLETO aprovado do commit de código a0fd2ac9: ID 12032023830, nome BAIXAR_AQUI_Emerald_M23A_SERVIDOR_PRIMEIRO_COMPLETO_Windows. Download: https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38869447665/artifacts/12032023830
+- Artefatos parciais (NÃO indicar para instalação combinada): game 12033235696; tools 12032745902.
+- Workflow Emerald M2.3-A Server-First Lobby QA: run 38869447647, SUCCESS Windows e Linux. https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38869447647
+- Workflow Emerald Hybrid v1.0 M1 QA Laboratory Windows: run 38869453864, SUCCESS.
+- Workflow CI GBA legado: run 38869453799, FAILURE na etapa Compare. Não confundir com o build Windows bem-sucedido; investigar separadamente. NÃO afirmar que todos workflows do repo passaram.
+- **A M2.3-A NÃO foi validada ainda jogando no PC do usuário.** Um teste com Popen mockado e CI não substitui teste humano. Não publicar v1.0 stable.
+
+### Testes humanos confirmados antes desta entrega
+- Paleta May/Brendan 8e519e0: 6/6 OK.
+- Continuar Sozinho M1.2 11f4742: 4/4 OK.
+- Lobby M2.1-B 2d0cb13: bloqueio/liberação e remoção individual OK.
+- Protocolo M2.2-A: 4/4, falhas 0, erros 0, screenshot real de Windows.
+- M2.2-B 5e53e40: **5/5 OK no Windows**, conexão 2/2, reconexão automática de QA_B, reconexão QA_A, kick que não reconecta e integridade dos saves, observações nenhuma. É o último baseline de gameplay integralmente validado nesses critérios; mantê-lo para rollback.
+- M2.3 PR #18 e M2.3-A PR #19 ainda não receberam aprovação visual no Windows.
+
+### Teste IMEDIATO que o próximo chat deve solicitar
+Pedir que usuário extraia o ZIP completo M2.3-A em NOVA pasta, mantendo a M2.2-B intacta. Usar apenas cópias de saves ou criar QA novas. Abrir EmeraldQALab.exe:
+1. Selecionar EHL8 local, configurar PIN/porta, clicar INICIAR SERVIDOR (SEM JOGO). Esperado: nenhuma janela pokeemerald.exe; LOBBY AO VIVO mostra SERVIDOR ATIVO, SALA 0/2, PRONTOS 0/2, PARTIDA INICIADA NÃO.
+2. Clicar ABRIR 2 JOGOS (NOVO). Esperado: exatamente duas janelas, MESMO servidor, SALA 2/2, PRONTOS 2/2, PARTIDA INICIADA NÃO.
+3. Esperar 30 segundos antes do START; ninguém cai/desconecta.
+4. Clicar INICIAR SALA (2/2 PRONTOS); dois avatares se enxergam, andam e têm sprites May/Brendan corretos.
+5. SIMULAR QUEDA QA_B e QA_A separadamente; cada um recupera sozinho em até 60 s, QA restante não congela.
+6. REMOVER QA_B; B NÃO deve reconectar, A continua jogando.
+7. Salvar e reabrir QA_A e QA_B por CONTINUAR SOZINHO; nenhum progresso ou save original é alterado.
+Se falhar: pedir print do Lobby e logs servidor.log, QA_A-rede.log, QA_B-rede.log e report.json (sem PIN ou saves pessoais). Corrigir de modo reprodutível, recompilar pacote inteiro e atualizar este AI_README.
+
+### O que falta no desenvolvimento v1.0
+- Registrar QA real da M2.3-A; **não saltar esse gate**.
+- M2.4: permitir Pronto/Cancelar real e INDIVIDUAL dos dois jogadores (hoje READY automático, START manual). Priorizar simplicidade e proteger protocolo.
+- Depois: convites/aceite/recusa de batalhas P2P 1v1, retorno seguro ao overworld, UX launcher e QA com 2 PCs físicos. Não confundir EHL8 com Cable Club original.
+- Regressões de saves, KICK, 60s, bots 50 identidades em 25 pares, paleta, desempenho, LAN; sem destruir M1.2.
+- Installer/updater, multilíngue, backup/rollback e aprovação final do usuário são outros marcos; não declarar completos sem evidência.
+
+### PROMPT SUGERIDO PARA O NOVO CHAT
+"Continue o Pokémon Emerald Hybrid v1.0 do estado verificável M2.3-A, sem recomeçar nem perder sistemas ou saves. Leia AGENTS.md e AI_README.md (especialmente capítulo 32), no GitHub Fallzz16/pokeemerald-multiplatform, branch feature/emerald-v100-m23a-server-first-lab, PR #19. Confira HEAD e CI antes de editar. O novo botão INICIAR SERVIDOR (SEM JOGO) permite abrir lobby EHL8 0/2 antes de ABRIR 2 JOGOS, e depois usar START manual com 2/2 READY. Build Windows da revisão de código a0fd2ac9 passou: run 38869447665, artefato completo 12032023830; testes Windows/Linux passaram no run 38869447647. O CI genérico da ROM GBA ainda falha em Compare, separadamente. NÃO afirme QA humano M2.3-A aprovado: ainda aguardamos meu teste. M2.2-B 5e53e40 passou 5/5 testes humanos e é a versão de rollback. Primeiro me oriente a testar: servidor sozinho 0/2; ingresso de dois jogos 2/2; esperar 30s; START; quedas A/B; KICK; sprites; saves e Continuar Sozinho. Se eu relatar bug, corrija com testes automatizados e nova build completa, preservando o resto. Se passar, registre no AI_README e continue o roadmap com READY/CANCELAR individual, depois batalhas P2P 1v1. SEMPRE diga exatamente o que devo testar após cada entrega."
+
+
+## 33. M2.3-B — ingresso individual no servidor já iniciado (2026-10-16)
+
+**Relato do usuário:** print confirma servidor 0/2 ativo sem jogo; ao clicar REABRIR 1 CONTA aparece aviso Sessão ativa, enquanto ABRIR 2 JOGOS abre os dois. Causa verificada em `tools/emerald_qa_lab.py`: `reopen_solo()` é offline e bloqueia sessão, e `launch_games()` abria exatamente dois processos. Não é evidência de falha do EHL8 nem dos saves.
+
+**Alteração direcionada:** adicionados botões ENTRAR QA_A / ENTRAR QA_B para aproveitar sessão EHL8 previamente iniciada; `launch_single()` usa perfil existente, porta/PIN preservados e recusa duplicação. ABRIR 2 JOGOS passa a preencher apenas perfis ainda não lançados. Perfis registrados separadamente para backups/relatórios e guarda no monitor para não finalizar uma sala só porque o primeiro jogo individual foi fechado antes do ingresso do segundo. `CONTINUAR SOZINHO` mantém semântica offline. Nenhum código do jogo, servidor, save original, SIO, sprites, Cable Club ou gameplay foi alterado.
+
+**Arquivos:** `tools/emerald_qa_lab.py`, `tests/test_ehl8_m23a_server_first.py`, `docs/V100_M23A_SERVER_FIRST_QA_PTBR.md`, `AI_README.md`. **Build e QA Windows M2.3-B ainda pendentes nesta etapa:** não usar artefato antigo da M2.3-A para alegar presença dos botões novos. Aguardar workflow do novo SHA, conferir pacote integral com hashes, e QA real do usuário. **Rollback:** M2.2-B `5e53e40` com 5/5 testes reais; M2.3-A `a0fd2ac9` para fluxo 0/2 + entrada simultânea. **Testes manuais:** iniciar sala 0/2; ENTRAR QA_A => 1/2; ENTRAR QA_B => 2/2; esperar 30s; START; reconexão B/A, kick, sprites e saves; segundo cenário B primeiro e ABRIR 2 JOGOS acrescentando apenas A. Sem tocar saves originais.
+
+
+## 34. M2.3-B2 — correção do ciclo de vida do Lab (2026-10-16)
+
+Relato real e três capturas: entrada individual abre pokeemerald.exe (esperado para cliente EHL8), mas depois de fechar QA_A não era possível entrar novamente, e uma sala encerrada ainda deixava porta ocupada. Causas no código: `game_profiles` bloqueava relançar slot com processo encerrado; monitor finalizava sala quando ambos processos morreram; stop() terminava servidor sem esperar saída. Corrigido relançamento de slot somente quando seu processo anterior encerrou, preservando caminho de save isolado, sem duplicar registro de backup. O monitor só completa quando servidor e jogos acabaram. stop() aguarda processos filhos e só força o próprio filho após timeout. Novos testes regressivos de reentrada. Não confundir cliente de jogo com futura UI de Pronto/Cancelar independente, ainda não implementada. Nenhum código de ROM, EHL8 servidor, sprites ou SAV original alterado. QA Windows da correção e compilação completa ainda a verificar. Rollback M2.2-B 5e53e40. Teste: iniciar sala 0/2, QA_A 1/2, fechar A e reabrir A na mesma sala, QA_B 2/2, aguardar 30s, START, saves; parar testes e iniciar outro servidor na mesma porta.
+
+
+## 35. Auto QA consolidado — regressão automatizada e jogadores simulados (2026-10-16)
+
+**Pedido:** testar funcionalidades de diversas maneiras simulando jogadores, de forma repetível e sem tocar nos saves pessoais. Implementado o orquestrador `tools/emerald_auto_qa.py`, que reúne suites existentes de protocolo EHL8, servidor de produção via sockets, bots com pares/identidades efêmeras, reconexão, pin/admin, M2.3-A/B/B2 Lab, locks, baseline e regressões de segurança. Execução: `python tools/emerald_auto_qa.py --group all --repeats 1 --report auto-qa-report.json`; intensidade adicional `--repeats 5`; `--group lab|protocol|safety`. Limite de 20 repetições, timeout individual de 5-600 s, sem shell, lista de testes explícita e relatório JSON com PASS/FAIL/TIMEOUT e saída curta. Falhas causam código de saída não zero. O workflow `.github/workflows/test-v100-m23a-server-first.yml` foi alterado para executar Auto QA no Windows/Linux e publicar relatório mesmo se testes anteriores falharem.
+
+**Limitações transparentes:** a simulação já existente de 50 identidades ocorre em 25 pares de dois (NÃO 50 simultâneos); o Auto QA ainda NÃO aciona teclado/GUI real no `pokeemerald.exe`, NÃO observa pixels/sprites nem testa gameplay real de batalhas ou leitura e persistência de .sav dentro do jogo. Ações reproduzidas são no nível de rede, processos mockados e testes de integração do servidor. CI é condição necessária mas insuficiente para chamar v1.0 jogável. Build Windows nova e QA humano devem ser confirmados por SHA. Nenhum código de jogo/servidor ou save foi modificado nesta implementação; rollback último M2.2-B aprovado `5e53e40`.
+
+
+## 36. Automação independente do CI GBA legado (2026-10-16)
+
+**Solicitação:** acelerar o projeto automatizando toda a regressão que for viável. Inspeção do CI no commit 9c19cf60: run 38985643638, job 117256362623, falha **GBA Compare** devido ao compilador antigo (`varasm.c:3013: Internal compiler error`, avisos `_Alignof`/`__builtin_choose_expr`). Isso NÃO valida nem invalida o Auto QA Windows. M1 QA Windows run 38985643623 passou. Não misturar critérios de qualidade de plataformas.
+
+**Adicionado:** workflow independente `.github/workflows/emerald-auto-qa.yml` com eventos push na branch e execução manual com 1/3/5 repetições; matriz Windows/Ubuntu, compilação Python, runner `tools/emerald_auto_qa.py`, resumo por suíte no GitHub Actions e download de relatórios JSON por plataforma mesmo quando falham. Não executa ROM GBA Compare. CI separado continua intacto, sem desabilitar verificações. O workflow anterior de QA específico permanece para regressão. Nenhum .sav, código do jogo/servidor ou protocolo foi alterado nesta etapa.
+
+**Status:** workflow foi commitado, mas jobs ainda precisam ser verificados em seu SHA; não anunciar Auto QA aprovado, nem build Windows completa, sem execução verde. Interface com controle real de NPCs, movimentos em Hoenn, batalha e save visual permanece fora deste executor; QA humano segue necessário. **Rollback:** M2.2-B `5e53e40` aprovada em 5/5.
+
+**Próximo:** verificar resultados Windows/Linux e seus artefatos, corrigir suites quebradas com causa reproduzível e abrir novos cenários; só depois integrar UI Auto QA ao Lab e uma camada opcional de automação de input do jogo isolado.
+
+
+## 37. Escopo de distribuição confirmado pelo usuário — PC e Android (2026-10-16)
+
+O usuário esclareceu expressamente: NÃO é necessário entregar ROM GBA; pretende jogar somente no PC via aplicativo/EXE e no celular via aplicativo/APK. Portanto, priorizar builds, regressões, compatibilidade e lançamento Windows + Android; crossplay EHL8 entre dispositivos é objetivo sujeito a implementação e QA reais. A falha do workflow GBA legado na etapa Compare NÃO bloqueia a aceitação das plataformas-alvo e deve ser reportada separadamente, nunca ocultada. Não excluir nem adulterar pipeline legado como reação automática; apenas removê-lo dos gates de lançamento Windows/Android. Não confundir ausência de obrigação de distribuir ROM GBA com autorização para alterar ou apagar assets e código compartilhados. Auto QA deve evoluir para cobrir builds Windows/Android, clientes e saves isolados; não declarar Android ou crossplay aprovados até haver evidência. Nenhum save ou código alterado nesta nota.
+
+
+## 38. Estabilização v1.0 — correção de reentrada e Auto QA multiplataforma (2026-10-16)
+
+**Pedido:** mega atualização para obter preview jogável/testável, sem perder as versões e saves aprovados. **Entregue nesta iteração:** em `tools/emerald_qa_lab.py`, corrigido fluxo `launch()` para reabrir um ou ambos clientes que já encerraram enquanto o servidor EHL8 da sala continua ativo (antes bloqueava após histórico de dois perfis). Novo teste `test_open_two_again_after_both_windows_closed_same_server` garante não recriar servidor, não duplicar processos/saves nem encerrar a sala antes da hora. `tools/emerald_auto_qa.py` agora marca claramente SKIP dos fixtures C POSIX na matriz Windows (Linux executa os testes nativos), sem transformar skips em PASS nem em falhas; `tests/test_emerald_auto_qa_runner.py` protege limites, comportamento de SKIP e contagem correta de falhas. O Auto QA foi ampliado para executar seus próprios testes em `safety`.
+
+**Não mudou:** código do jogo, servidor, protocolo EHL8, batalhas, sprites, dados originais de save, ROM GBA legada, Android e APK. **Não implementado:** UI de Pronto/Cancelar individual, batalhas P2P por convite, automação gráfica real, crossplay validado ou APK estável. **Build Windows completa e CI deste HEAD:** verificar execuções e SHA exato antes de indicar artefato; não chamar preview de release ou M2.3 aprovado por teste humano até obter QA. O CI Compare da ROM GBA é legado e não gate das entregas desktop/APK. **Rollback:** M2.2-B `5e53e40`, 5/5 testes do usuário aprovados. M2.3-A `a0fd2ac9` apenas para referência do fluxo anterior.
+
+**QA manual obrigatório após build verde:** servidor 0/2 sem jogo; QA_A entra 1/2; fechar QA_A; reentrar QA_A; QA_B 2/2; aguardar 30 segundos sem START; START anfitrião; movimento/sprites; simular queda de A e B; KICK; save e Continuar Sozinho. Novo teste: fechar ambos os jogos, manter servidor, clicar ABRIR 2 JOGOS novamente e conferir 2/2 sem criar outro servidor/perfis. Depois PARAR TESTES e reutilizar mesma porta em sala NOVA. Se falhar, anexar `servidor.log`, `QA_A-rede.log`, `QA_B-rede.log`, `report.json` sem PIN/saves pessoais.
+
+
+### Complemento do incremento 38 — gate de empacotamento Windows
+
+O workflow `.github/workflows/build-v100-m23a-server-first-windows.yml` foi reforçado: antes do PyInstaller do Lab, o job `gui-tools` executa `tools/emerald_auto_qa.py --group lab` e `--group safety`, falha se houver regressão e publica `M23A-qa-evidence` com relatórios JSON mesmo quando os testes não passam. Os executáveis Windows e o ZIP completo só podem seguir pela cadeia `game` + `gui-tools` -> `portable` se seus jobs terminarem com sucesso. Isso é uma proteção de build, NÃO teste de gameplay. O CI GBA Compare continua separado. A revisão final do workflow não havia sido aprovada pelo GitHub Actions na hora da documentação; conferir HEAD, jobs e artefatos antes da distribuição. Nenhum save foi utilizado ou alterado.
+
+
+## 39. Hardening da mega atualização: rollback de lançamento parcial (2026-10-16)
+
+**Diagnóstico:** no Lab `QASession._spawn_games`, o processo recém-criado era adicionado à lista ativa antes de completar o envio do PIN. Se o pipe falhasse, podia sobrar um filho em execução e/ou slot marcado como iniciado. Em `launch_games` um erro no segundo jogo podia deixar o primeiro recém-criado vivo com sala parcialmente preparada. **Correção:** só registrar processo após confirmação do envio de PIN; falha encerra apenas filho criado pelo Lab, e `launch_games` desfaz lançamentos novos dessa operação, preservando instâncias anteriores já ativas e o próprio servidor. Adicionado teste `test_failed_second_game_rolls_back_only_new_children` com BrokenPipeError simulado. Sem alterar save, ROM, servidor ou fluxo offline. **CI e gameplay real da revisão:** ainda exigem conferência; não afirmar QA aprovado. Rollback seguro: M2.2-B `5e53e40`.
+
+
+## 40. M2.3-B2 preview Windows — pacote rastreável para teste (2026-10-16)
+
+**Solicitação:** preparar toda atualização necessária à próxima validação, sempre com link EXATO. O workflow existente `.github/workflows/build-v100-m23a-server-first-windows.yml` disparado por push e manual mantém jobs `game`, `gui-tools`, `portable`, verificações binárias PE, SHA256 do jogo e dos servidores, proibição de arquivos `.sav` no pacote, Auto QA Lab e Safety como gate. Corrigido o nome confuso de distribuição: agora o nome de exibição da execução é `Emerald M2.3-B2 Windows Complete Preview`, e o artefato ZIP é `BAIXAR_AQUI_Emerald_M23B2_PREVIEW_COMPLETO_Windows` com arquivo `Emerald_Hybrid_M23B2_PREVIEW_COMPLETO_Windows.zip`. O pacote inclui `REVISAO_EXATA.txt` com SOURCE_COMMIT do build e `TESTAR_ESTA_BUILD.md` com checklist de QA. Documentação `docs/V100_M23A_SERVER_FIRST_QA_PTBR.md` ampliada para reentrada individual, relançamento dos dois clientes, 30 segundos sem autostart, queda/reconexão, KICK, encerrar e reaproveitar 45680, sprites e saves. **Cuidado:** mudança do nome não é declaração de testes aprovados; workflow/artefato da exata revisão só devem ser oferecidos se comprovados por consulta à execução e ao artifact ID, nunca inventados. GitHub API conectada mostrou M1 QA Windows em verde no commit anterior `e25fa8ee`, e CI GBA Compare legado vermelho; não equivale a aprovação de build M2.3-B2. Não houve alteração de assets, servidor, gameplay ou saves nesta etapa.
+
+**Link de workflow (não link de artefato):** https://github.com/Fallzz16/pokeemerald-multiplatform/actions/workflows/build-v100-m23a-server-first-windows.yml
+**Gate seguinte:** identificar run de sucesso com os três jobs, hash mesmo SOURCE_COMMIT, obter ID exato do ZIP, enviar URL do artifact, executar QA humano. Baseline rollback continua M2.2-B `5e53e40`.
+
+
+## 41. Verificação destrutivamente isolada do ZIP final — M2.3-B2 (2026-10-16)
+
+No workflow de build Windows `.github/workflows/build-v100-m23a-server-first-windows.yml`, o job `portable` ganhou etapa posterior à compressão que **extrai o ZIP produzido para diretório temporário de verificação** (`verify-portable`) e valida: existência do ZIP, `REVISAO_EXATA.txt` com `GITHUB_SHA` exato, marcador da mesma revisão em `SHA256_COMPONENTES.txt`, presença de executáveis/SDL2/bat/roteiro, SHA256 de cada arquivo listado no manifesto e proibição de `.sav` no ZIP extraído. Qualquer divergência falha o job e impede publicação de artefato final pelo próximo passo. Não usa nem altera perfis do usuário. O arquivo compactado é o mesmo enviado como artefato, sem troca de componentes. **Status:** script commitado, CI do pacote e QA humano ainda precisam ser confirmados; não há download novo verificado nesta etapa. CI M1 da revisão anterior estava verde; GBA Compare legado falha separadamente. Rollback M2.2-B `5e53e40`.
+
+
+## 42. Entrega contínua: link EXATO do artefato Windows no próprio GitHub Actions (2026-10-16)
+
+O usuário pediu continuar sem interrupções e sempre fornecer link exato, sem passar páginas genéricas como se fossem o download. O workflow `.github/workflows/build-v100-m23a-server-first-windows.yml` agora dá identificador `upload_portable` ao upload final e, somente após sucesso, insere no `GITHUB_STEP_SUMMARY` do job portable a URL **real** retornada pelo `actions/upload-artifact@v4` via `steps.upload_portable.outputs.artifact-url`, o ID real do artefato e o `GITHUB_SHA`. Se o upload não fornecer URL/ID, o resumo falha; nenhuma URL é inventada. A etapa é posterior às verificações de ZIP, hashes e save. Arquivos anteriores/saves/intensidade dos testes inalterados. Ainda deve-se confirmar execução real deste HEAD e obtenção do artefato; o workflow automático por push pode não estar acessível via conector GitHub que expõe apenas runs do PR, portanto falta de listagem não implica ausência de execução. O usuário quer entrega completa, não pequenos relatos. Base rollback M2.2-B 5e53e40. Commit da correção no resumo de link: 98d41de0acef9cc25532c5fe4ff240271941f0fb.
+
+
+## 43. M3.0 Playable Evolution — decisões 1–24 e sequência vinculante (2026-10-16)
+
+**Escolhas usuário:** Rodada 1: `1D 2D 3D 4D 5C 6D 7D 8D`. Rodada 2: `9D 10D 11A 12C 13D 14D 15C 16D 17D 18D 19D 20D 21D 22D 23D 24D`. **Importante 11A: personalização visual do protagonista ficará somente em Brendan e May; NÃO incluir roupas/cabelos/cosméticos**. Preferência confirmada de evitar repetidas perguntas/entregas fragmentadas; trabalhar autonomamente até obter pacote testável e fornecer link exato.
+
+**Especificação adicionada:** `docs/V100_M30_PLAYABLE_EVOLUTION_ROADMAP_PTBR.md` contém interpretação fiel de cada decisão, marcos M3.0-A a M3.0-F, dependências explícitas, critérios de aceite, riscos e separação de build Windows/Android e QA de protocolo versus gameplay real. Ordem: estabilizar ZIP e gameplay Windows M2.3-B2/M3-A; lobby READY/CANCELAR e amigos; batalhas 1v1 e trocas seguras e coop; UX/desempenho; APK/crossplay; QA completo de beta. **Ainda NÃO implementados** novos recursos de gameplay M3.0, nova APK ou crossplay; esta etapa é planejamento, sem alteração de saves/código executável. Baseline rollback `5e53e40` M2.2-B, QA humano 5/5. Branch `feature/emerald-v100-m23a-server-first-lab`, PR #19, commit da especificação `316b0e9b64687b53d6c10e6998f15461e15fdd0b`. Compilação/QA da especificação: não aplicável (documentação somente); QA prévio do pacote ainda pendente.
+
+
+## 44. M3.0-A — teste de reuso real da porta TCP (2026-10-16)
+
+O usuário solicitou continuar desenvolvimento sem perguntas de confirmação. Adicionado `tests/test_ehl8_m30_port_lifecycle.py`: inicia o servidor EHL8 **real** de `tools/emerald_session_server.py` como subprocesso local isolado por três rodadas, alimenta PIN via stdin (nunca argv), verifica escuta TCP em 127.0.0.1, encerra o filho e tenta bind imediato da mesma porta. Não instancia jogo nem toca saves. Regressão ligada à suíte protocol em `tools/emerald_auto_qa.py` (commit `87c82c4f018d41591e5622d1bfe36b4ae19543e6`), com o teste criado no commit `e348814f521f420c86182e39b8cb12443e4a8fcf`. Teste não equivale a QA do exe Windows, sprites ou APK; aprovação em CI ainda pendente. Branch `feature/emerald-v100-m23a-server-first-lab`, PR #19. M3.0 segue o documento `docs/V100_M30_PLAYABLE_EVOLUTION_ROADMAP_PTBR.md`, inclusive decisão 11A Brendan/May apenas. Rollback M2.2-B `5e53e40`.
+
+
+## 45. M3.0-A lote consolidado — gate Windows de servidor real (2026-10-16)
+
+**Atualização de código e testes:** teste de servidor real `tests/test_ehl8_m30_port_lifecycle.py` já integrado à suite `protocol` de `tools/emerald_auto_qa.py`; agora também exigido explicitamente no job `gui-tools` do workflow de build Windows `.github/workflows/build-v100-m23a-server-first-windows.yml`, commit `916201759ff5bd21f8e472bc7cf0132ad2a40bff`. Regressão adicional de lançamento parcial documentada no teste `tests/test_ehl8_m23a_server_first.py`, commit `2312bc278d152282e13cdcea3f3e7e19da4f8eb1`. Nenhuma mudança no save original, código GBA, batalha ou Android. **Status verificável:** conector retornou M1 Windows success no commit anterior `c3311df5` (run 38993703720), CI GBA Compare legado failure (run 38993703762), mas não expõe a lista de execuções automáticas completas de build acionadas por push. Logo **não há artefato ZIP completo desta revisão verificado**; não inventar link de download nem afirmar nova build jogável. Os testes adicionados ainda devem passar em Windows/Linux e o jogo requer QA humano. O usuário exige trabalho agrupado, sem pequenos informes. Baseline M2.2-B 5e53e40 preservada.
+
+
+## 46. Correção do gate de empacotamento Windows após revisão consolidada (2026-10-16)
+
+Na revisão integral solicitada pelo usuário, foi detectado um defeito de edição no workflow `.github/workflows/build-v100-m23a-server-first-windows.yml`: a validação do manifesto SHA256 tinha uma string PowerShell quebrada por uma quebra de linha e um fragmento duplicado após o fim do YAML. Isso podia impedir o parser/runner de chegar à compilação e ao ZIP, então nenhum artefato dessa revisão deve ser presumido válido.
+
+**Correção aplicada:** regex de validação restaurada para uma linha, fragmento duplicado removido e arquivo reduzido ao fim correto do workflow. Commit de correção do workflow: `9ee088271015d5c9fba8d62863a0a4988fadfbd8`. O pacote continua condicionado aos jobs `game`, `gui-tools` e `portable`, à regressão Auto QA, à verificação SHA256 após extração e à ausência de arquivos `.sav`. A próxima confirmação deve vir de execução Actions no SHA exato; a edição não é prova de build verde.
+
+**Status conservador:** ainda não foi comprovado um ZIP novo para o HEAD corrigido, nem QA humano M2.3/M3.0, nem APK Android/crossplay. Não usar artefato antigo como se contivesse os testes recentes. O rollback conhecido continua M2.2-B `5e53e40`, aprovado pelo usuário em 5/5 testes. Nenhum save pessoal ou código de gameplay foi alterado nesta correção.
+
+
+## 47. Validação preventiva da sintaxe de workflows (2026-10-16)
+
+Após corrigir o workflow de build, foi adicionada uma proteção independente em `.github/workflows/emerald-auto-qa.yml`: a matriz Windows/Linux agora instala PyYAML e faz parse sintático de todos os arquivos `.github/workflows/*.yml` antes da regressão funcional. O filtro de caminhos também inclui alterações em qualquer workflow, para que a edição de um arquivo de build seja coberta pelo verificador. Commit: `eff1b3584603684ef521b2116aea62f8f020362c`.
+
+Esta checagem identifica YAML malformado, mas não substitui validação semântica do GitHub Actions, compilação Windows, Auto QA verde ou QA humano. O próximo gate continua sendo consultar o resultado de CI/build do SHA final e só então publicar o link de um ZIP comprovado. APK Android/crossplay e a beta jogável M3.0 continuam sem evidência de entrega nesta etapa.
+
+
+## 48. Correção do shell do validador YAML em Windows (2026-10-16)
+
+A primeira execução do novo gate preventivo revelou um problema real: no runner Windows, o step de parse YAML estava usando o shell PowerShell padrão, mas o script era sintaxe heredoc de Bash (`python - <<'PY'`). O Auto QA falhou antes de executar suas suítes; isso foi identificado nos logs do run `38994399791`. Corrigido o step para declarar explicitamente `shell: bash`, compatível com Bash do runner Windows e Linux. Commit: `3dc85234c67309520bb08909ee34aedfad366898`.
+
+A nova revisão precisa passar pelo workflow para confirmar que o parse de todos os YAMLs funciona nas duas plataformas; ainda não há aprovação registrada deste SHA. O build completo Windows segue em execução separada e só será divulgado se todos os jobs terminarem verdes e o ZIP final tiver artifact ID real. Nenhum save, gameplay, sprites ou APK foi alterado nesta correção.
+
+
+## 49. Correções guiadas pelos resultados reais do Auto QA (2026-10-16)
+
+A execução Auto QA do commit `3dc85234c67309520bb08909ee34aedfad366898` confirmou que o validador YAML passou em Windows e Linux e que o teste real de ciclo de vida da porta passou nas duas plataformas. O relatório também revelou dois defeitos antigos/regressivos que estavam bloqueando o gate: (1) três continuadores de linha Python foram gravados com duas barras invertidas em `tests/test_ehl8_m23a_server_first.py`, causando `SyntaxError` no import; corrigido no commit `ae903037bee438316c16d72147190b476757cd7a`; (2) `tests/test_emerald_qa_lab.py` comparava o caminho `cwd` por texto, falhando no Windows quando a mesma pasta temporária aparecia em formato curto DOS 8.3; substituído por `Path.samefile` no commit `df34ebeeb220bba79262eeb7e952d43c1d09d88f`.
+
+**Evidência anterior:** o Auto QA Windows marcou 11 PASS / 2 FAIL; Linux 13 PASS / 2 FAIL. Os dois FAIL eram essas suítes, e a nova execução precisa confirmar a correção no HEAD. O teste de porta real foi PASS em Windows/Linux, assim como protocolo, admin, reconexão e safety restantes. Não declarar Auto QA consolidado verde até os novos relatórios terminarem. Nenhum código de gameplay, sprite, SAV ou APK foi alterado.
+
+
+## 50. Ajustes finais dos mocks de processo e dos perfis de backup (2026-10-16)
+
+O relatório Auto QA Linux do run `38994445631` detalhou duas falhas em `tests/test_emerald_qa_lab.py`: o mock de processo local não implementava `wait()` (exigido pela parada ordenada do servidor) e um teste que montava o estado da sessão manualmente não preenchia a allowlist `game_profiles`, embora a produção agora só faça backup de perfis realmente lançados. Corrigido adicionando `wait()/kill()` ao mock e inicializando a allowlist no cenário que simula pós-lançamento. Commit: `48babd82f95b0c616e6099af62de7b1bcde268fe`. O ajuste é de teste, preserva a regra de não fazer backup de perfil que não foi aberto e não toca SAV real.
+
+O outro defeito do relatório (continuação Python inválida em `test_ehl8_m23a_server_first.py`) foi corrigido no commit `ae903037bee438316c16d72147190b476757cd7a`; a divergência de caminho 8.3 do Windows foi corrigida no commit `df34ebeeb220bba79262eeb7e952d43c1d09d88f`. A revisão seguinte precisa reexecutar Auto QA e build completos; até lá, os gates continuam pendentes e não existe ZIP final declarado aprovado.
+
+
+## 51. Última falha Windows do Auto QA: comparação textual de caminho (2026-10-16)
+
+O relatório Auto QA Windows do run `38994562302` agora confirma 12 PASS, 1 FAIL e 2 SKIP; a única falha restante foi `test_failed_second_game_rolls_back_only_new_children`, cuja asserção comparava o caminho do executável por string e divergia entre caminho longo e alias DOS 8.3 do runner. A verificação foi alterada para `Path(...).samefile(...)`, sem reduzir o teste de rollback de filhos recém-criados. Commit: `28b304bf0313718b78fa569948cd4d7e7497abc3`.
+
+Validador YAML já passa em Windows e Linux; teste de ciclo de vida da porta real também passou em ambas no relatório anterior. A próxima execução deve confirmar zero falhas de Auto QA. Build completo Windows e ZIP ainda aguardam término no SHA final; Android/APK e gameplay M3.0 seguem fora do que foi comprovado nesta etapa.
+
+
+## 52. Auto QA verde em Windows e Linux após correções (2026-10-16)
+
+Execução concluída: [Auto QA Windows + Linux, run 38994634156](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38994634156), commit testado `28b304bf0313718b78fa569948cd4d7e7497abc3`, conclusão `success`. Relatórios de artefato confirmam **Linux: 15 PASS / 0 FAIL / 0 SKIP** e **Windows: 13 PASS / 0 FAIL / 2 SKIP** (os dois testes de fixtures nativos POSIX são intencionalmente Linux-only). O teste real de ciclo de vida da porta TCP está incluído e passou nas duas plataformas. Correções que eliminaram os defeitos detectados estão documentadas nas seções 46–51.
+
+Esse sucesso comprova as suítes automatizadas do commit testado, não gameplay gráfico real, integridade de save dentro do jogo, APK Android ou crossplay. O build completo Windows da revisão final `364f3c2f0d04d1f3bdd9db313f45a23e79edea7c` ainda estava aguardando execução/conclusão quando esta nota foi escrita; após esta nota o novo HEAD exigirá build de mesma revisão para obter ZIP final exato. Nenhum save pessoal foi usado.
