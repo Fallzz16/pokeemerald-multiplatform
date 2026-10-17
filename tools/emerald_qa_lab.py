@@ -306,7 +306,7 @@ class QASession:
         if self.running():
             if (not server_only and mode == "ehl8" and
                 self.server is not None and self.server.poll() is None and
-                len(self.game_profiles) < 2):
+                any(pid not in self.game_profiles or self.games[self.game_profiles.index(pid)].poll() is not None for pid in PROFILE_IDS)):
                 return self.launch_games(port, pin)
             raise RuntimeError("Uma sessão de testes ainda está executando.")
         if server_only and mode != "ehl8":
