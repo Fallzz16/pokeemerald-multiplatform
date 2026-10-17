@@ -29,7 +29,7 @@ class LabTests(unittest.TestCase):
         self.root = self.base / "testing"
 
     def fake_profilectl(self, cmd, **kw):
-        self.assertEqual(kw["cwd"], str(self.app))
+        self.assertTrue(Path(kw["cwd"]).samefile(self.app))
         self.assertNotIn("--session-pin", " ".join(cmd))
         action, root, profile = cmd[1:4]
         dest = Path(root) / profile
