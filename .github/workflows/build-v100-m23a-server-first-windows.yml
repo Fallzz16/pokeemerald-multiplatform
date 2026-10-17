@@ -169,7 +169,7 @@ jobs:
             if (!(Test-Path (Join-Path verify-portable $name) -PathType Leaf)) { throw "Missing ZIP component: $name" }
           }
           foreach ($line in $lines | Select-Object -Skip 1) {
-            if ($line -notmatch '^([0-9a-f]{64})  ([^\\/]+)
+            if ($line -notmatch '^([0-9a-f]{64})  ([^\\/]+)$') { throw "Bad SHA256 manifest line" }
             $expected = $Matches[1]
             $name = $Matches[2]
             $item = Join-Path verify-portable $name
