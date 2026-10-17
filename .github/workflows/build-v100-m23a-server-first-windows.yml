@@ -202,11 +202,11 @@ jobs:
           @(
             '## BAIXAR AQUI — Emerald Hybrid M2.3-B2 Windows'
             ''
-            "Build commit: `$env:GITHUB_SHA`"
+            ("Build commit: " + $env:GITHUB_SHA)
             ''
             "[**Download do ZIP completo e verificado**]($env:ARTIFACT_URL)"
             ''
-            "Artifact ID: `$env:ARTIFACT_ID`"
+            ("Artifact ID: " + $env:ARTIFACT_ID)
             ''
             'Este pacote passou pelo gate do job portable, incluindo hashes e ausencia de saves pessoais. Ainda requer QA humano de gameplay.'
           ) | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8 -Append
