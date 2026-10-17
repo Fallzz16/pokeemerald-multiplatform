@@ -220,7 +220,7 @@ class ServerFirst(unittest.TestCase):
             self.assertEqual(manager.games, [])
             self.assertTrue(manager.server.poll() is None)
             self.assertEqual(len(self.launched), 3)
-            self.assertEqual(self.launched[0][0][0], str(self.app / "EmeraldSessionServer.exe"))
+            self.assertTrue(Path(self.launched[0][0][0]).samefile(self.app / "EmeraldSessionServer.exe"))
             # The two newly launched games must not survive a failed PIN.
             # Popen is mocked; retain every fake process for lifecycle assertions.
 
