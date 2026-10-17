@@ -5,6 +5,8 @@ on:
       - feature/emerald-v100-m23a-server-first-lab
     paths:
       - 'tools/emerald_qa_lab.py'
+      - 'tools/emerald_auto_qa.py'
+      - 'tests/test_emerald_qa_bots.py'
       - 'tools/emerald_qa_lobby.py'
       - 'tests/test_ehl8_m23a_server_first.py'
       - '.github/workflows/test-v100-m23a-server-first.yml'
@@ -32,3 +34,12 @@ jobs:
           python -m unittest discover -s tests -p test_emerald_qa_lobby.py -v
           python -m unittest discover -s tests -p test_ehl8_m23_host_start.py -v
           python -m unittest discover -s tests -p test_ehl8_m23_bundle_safety.py -v
+      - name: Auto QA integrated player simulations and regression
+        run: python tools/emerald_auto_qa.py --group all --repeats 1 --report auto-qa-report.json
+        if: always()
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: auto-qa-${{ matrix.os }}
+          path: auto-qa-report.json
+          if-no-files-found: warn
