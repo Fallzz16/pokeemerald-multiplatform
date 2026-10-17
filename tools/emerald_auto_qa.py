@@ -26,6 +26,7 @@ SUITES = {
     "protocol": (
         "test_emerald_qa_bots.py",
         "test_emerald_session_server.py",
+        "test_ehl8_m30_port_lifecycle.py",
         "test_emerald_session_admin.py",
         "test_ehl8_resume_v1.py",
         "test_ehl8_native_bridge.py",
