@@ -185,6 +185,22 @@ class ServerFirst(unittest.TestCase):
             manager.stop()
             self.assertIsNotNone(manager.server.poll())
 
+    def test_open_two_again_after_both_windows_closed_same_server(self):
+        manager = L.QASession(self.app, self.root)
+        with patch.object(L.subprocess, "Popen", side_effect=self.popen), \
+             patch.object(L.subprocess, "run", side_effect=self.fake_profilectl):
+            folder = manager.start_server_only(port=self.port, pin="123456")
+            manager.launch("ehl8", port=self.port, pin="123456")
+            self.assertEqual(len(self.launched), 3)
+            for proc in manager.games:
+                proc.code = 0
+            self.assertTrue(manager.server.poll() is None)
+            self.assertEqual(manager.launch("ehl8", port=self.port, pin="123456"), folder)
+            self.assertEqual(len(self.launched), 5)
+            self.assertEqual(manager.game_profiles, ["QA_A", "QA_B"])
+            self.assertEqual(len(manager.games), 2)
+            self.assertFalse(manager.backups_done)
+
     def test_wrong_port_or_pin_cannot_join_managed_server(self):
         manager = L.QASession(self.app, self.root)
         with patch.object(L.subprocess, "Popen", side_effect=self.popen), \
