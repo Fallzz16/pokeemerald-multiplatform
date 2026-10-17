@@ -886,3 +886,10 @@ Na revisão integral solicitada pelo usuário, foi detectado um defeito de ediç
 Após corrigir o workflow de build, foi adicionada uma proteção independente em `.github/workflows/emerald-auto-qa.yml`: a matriz Windows/Linux agora instala PyYAML e faz parse sintático de todos os arquivos `.github/workflows/*.yml` antes da regressão funcional. O filtro de caminhos também inclui alterações em qualquer workflow, para que a edição de um arquivo de build seja coberta pelo verificador. Commit: `eff1b3584603684ef521b2116aea62f8f020362c`.
 
 Esta checagem identifica YAML malformado, mas não substitui validação semântica do GitHub Actions, compilação Windows, Auto QA verde ou QA humano. O próximo gate continua sendo consultar o resultado de CI/build do SHA final e só então publicar o link de um ZIP comprovado. APK Android/crossplay e a beta jogável M3.0 continuam sem evidência de entrega nesta etapa.
+
+
+## 48. Correção do shell do validador YAML em Windows (2026-10-16)
+
+A primeira execução do novo gate preventivo revelou um problema real: no runner Windows, o step de parse YAML estava usando o shell PowerShell padrão, mas o script era sintaxe heredoc de Bash (`python - <<'PY'`). O Auto QA falhou antes de executar suas suítes; isso foi identificado nos logs do run `38994399791`. Corrigido o step para declarar explicitamente `shell: bash`, compatível com Bash do runner Windows e Linux. Commit: `3dc85234c67309520bb08909ee34aedfad366898`.
+
+A nova revisão precisa passar pelo workflow para confirmar que o parse de todos os YAMLs funciona nas duas plataformas; ainda não há aprovação registrada deste SHA. O build completo Windows segue em execução separada e só será divulgado se todos os jobs terminarem verdes e o ZIP final tiver artifact ID real. Nenhum save, gameplay, sprites ou APK foi alterado nesta correção.
