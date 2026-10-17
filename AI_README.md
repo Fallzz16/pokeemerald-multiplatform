@@ -879,3 +879,10 @@ Na revisão integral solicitada pelo usuário, foi detectado um defeito de ediç
 **Correção aplicada:** regex de validação restaurada para uma linha, fragmento duplicado removido e arquivo reduzido ao fim correto do workflow. Commit de correção do workflow: `9ee088271015d5c9fba8d62863a0a4988fadfbd8`. O pacote continua condicionado aos jobs `game`, `gui-tools` e `portable`, à regressão Auto QA, à verificação SHA256 após extração e à ausência de arquivos `.sav`. A próxima confirmação deve vir de execução Actions no SHA exato; a edição não é prova de build verde.
 
 **Status conservador:** ainda não foi comprovado um ZIP novo para o HEAD corrigido, nem QA humano M2.3/M3.0, nem APK Android/crossplay. Não usar artefato antigo como se contivesse os testes recentes. O rollback conhecido continua M2.2-B `5e53e40`, aprovado pelo usuário em 5/5 testes. Nenhum save pessoal ou código de gameplay foi alterado nesta correção.
+
+
+## 47. Validação preventiva da sintaxe de workflows (2026-10-16)
+
+Após corrigir o workflow de build, foi adicionada uma proteção independente em `.github/workflows/emerald-auto-qa.yml`: a matriz Windows/Linux agora instala PyYAML e faz parse sintático de todos os arquivos `.github/workflows/*.yml` antes da regressão funcional. O filtro de caminhos também inclui alterações em qualquer workflow, para que a edição de um arquivo de build seja coberta pelo verificador. Commit: `eff1b3584603684ef521b2116aea62f8f020362c`.
+
+Esta checagem identifica YAML malformado, mas não substitui validação semântica do GitHub Actions, compilação Windows, Auto QA verde ou QA humano. O próximo gate continua sendo consultar o resultado de CI/build do SHA final e só então publicar o link de um ZIP comprovado. APK Android/crossplay e a beta jogável M3.0 continuam sem evidência de entrega nesta etapa.
