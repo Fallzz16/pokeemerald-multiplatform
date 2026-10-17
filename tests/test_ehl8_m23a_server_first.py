@@ -24,6 +24,10 @@ class FakeProcess:
         return self.code
     def terminate(self):
         self.code = 143
+    def wait(self, timeout=None):
+        return self.code
+    def kill(self):
+        self.code = 137
 
 
 class ServerFirst(unittest.TestCase):
@@ -164,6 +168,22 @@ class ServerFirst(unittest.TestCase):
             manager.server.code = 1
             with self.assertRaises(RuntimeError):
                 manager.launch_single("QA_A", self.port, "123456")
+
+    def test_reopen_finished_qa_in_same_server(self):
+        manager = L.QASession(self.app, self.root)
+        with patch.object(L.subprocess, "Popen", side_effect=self.popen), \
+             patch.object(L.subprocess, "run", side_effect=self.fake_profilectl):
+            manager.start_server_only(port=self.port, pin="123456")
+            manager.launch_single("QA_A", self.port, "123456")
+            manager.games[0].code = 0
+            manager.launch_single("QA_A", self.port, "123456")
+            self.assertEqual(manager.game_profiles, ["QA_A"])
+            self.assertEqual(len(self.launched), 3)
+            manager.launch_games(self.port, "123456")
+            self.assertEqual(manager.game_profiles, ["QA_A", "QA_B"])
+            self.assertEqual(len(self.launched), 4)
+            manager.stop()
+            self.assertIsNotNone(manager.server.poll())
 
     def test_wrong_port_or_pin_cannot_join_managed_server(self):
         manager = L.QASession(self.app, self.root)
