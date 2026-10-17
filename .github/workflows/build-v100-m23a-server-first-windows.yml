@@ -61,6 +61,7 @@ jobs:
       - name: Existing protocol, lab and lobby regression
         run: |
           python -m unittest discover -s tests -p test_emerald_session_server.py -v
+          python -m unittest discover -s tests -p test_ehl8_m30_port_lifecycle.py -v
           python -m unittest discover -s tests -p test_emerald_session_admin.py -v
           python -m unittest discover -s tests -p test_ehl8_resume_v1.py -v
           python -m unittest discover -s tests -p test_emerald_qa_lab.py -v
