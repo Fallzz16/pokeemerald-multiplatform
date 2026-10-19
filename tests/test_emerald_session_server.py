@@ -163,8 +163,9 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
         for _ in range(3):
             peer = await self.connect()
             await peer.begin("unused", pin=b"000000")
-        attempts, blocked_until = self.server.invalid_attempts["127.0.0.1"]
+        attempts, blocked_until, last_failed = self.server.invalid_attempts["127.0.0.1"]
         self.assertEqual(attempts, 3)
+        self.assertGreater(last_failed, 0)
         self.assertGreater(blocked_until, S.time.monotonic())
         peer = await self.connect()
         await peer.send(S.HELLO)
@@ -175,6 +176,48 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
             self.assertEqual(await asyncio.wait_for(peer.reader.read(), 2), b"")
         except ConnectionResetError:
             pass
+
+    async def test_valid_pin_clears_previous_typo_count(self):
+        # A correct PIN must reset ordinary mistakes for this address.
+        for _ in range(2):
+            peer = await self.connect()
+            await peer.begin("unused", pin=b"000000")
+        self.assertEqual(self.server.invalid_attempts["127.0.0.1"][0], 2)
+        good = await self.connect()
+        await good.begin("safe")
+        self.assertNotIn("127.0.0.1", self.server.invalid_attempts)
+        again = await self.connect()
+        await again.begin("unused", pin=b"000000")
+        self.assertEqual(self.server.invalid_attempts["127.0.0.1"][0], 1)
+
+    def test_pin_failure_window_expires_and_resets(self):
+        address = "192.168.0.11"
+        s = self.server
+        s._record_invalid_pin(address, 100.0)
+        s._record_invalid_pin(address, 101.0)
+        self.assertEqual(s.invalid_attempts[address][0], 2)
+        s._prune_pin_failures(101.0 + S.PIN_FAILURE_WINDOW_SECONDS + 1)
+        self.assertNotIn(address, s.invalid_attempts)
+        s._record_invalid_pin(address, 2000.0)
+        self.assertEqual(s.invalid_attempts[address][0], 1)
+
+    def test_pin_failure_tracking_is_bounded_and_respects_cooldowns(self):
+        s = self.server
+        now = 5000.0
+        for n in range(S.PIN_MAX_TRACKED_ADDRESSES + 40):
+            address = f"192.0.{n // 256}.{n % 256}"
+            self.assertTrue(s._allow_pin_address(address, now))
+            s._record_invalid_pin(address, now)
+            self.assertLessEqual(len(s.invalid_attempts), S.PIN_MAX_TRACKED_ADDRESSES)
+        self.assertEqual(len(s.invalid_attempts), S.PIN_MAX_TRACKED_ADDRESSES)
+        # Active blocks must not be evicted solely to admit a new source.
+        s.invalid_attempts = {
+            f"blocked-{n}": (3, now + 100, now)
+            for n in range(S.PIN_MAX_TRACKED_ADDRESSES)
+        }
+        self.assertFalse(s._allow_pin_address("new", now))
+        self.assertEqual(len(s.invalid_attempts), S.PIN_MAX_TRACKED_ADDRESSES)
+        self.assertTrue(s._allow_pin_address("new", now + 101))
 
     async def test_invalid_pose_disconnected_and_peer_survives(self):
         a, b = await self.connect(), await self.connect()
