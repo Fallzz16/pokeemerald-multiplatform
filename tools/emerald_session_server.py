@@ -355,8 +355,14 @@ class SessionServer:
         if peer.stage == "AUTH":
             if msg.kind != AUTH_PIN or len(msg.payload) != 6:
                 raise ProtocolError("six-digit PIN expected")
+            ip = peer.address[0] if peer.address else "unknown"
+            # Already-open connections must not bypass a cooldown triggered
+            # by another connection from the same address.
+            _, blocked_until, _ = self.invalid_attempts.get(ip, (0, 0.0, 0.0))
+            if blocked_until > time.monotonic():
+                await peer.send(KICK, b"PIN cooldown active", self.session)
+                raise ProtocolError("PIN cooldown active")
             if not secrets.compare_digest(msg.payload, self.pin):
-                ip = peer.address[0] if peer.address else "unknown"
                 now = time.monotonic()
                 # Multiple connections can finish AUTH after passing handle's
                 # capacity gate. Enforce the bound again before recording.
