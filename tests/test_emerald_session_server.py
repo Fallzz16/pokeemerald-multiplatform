@@ -177,6 +177,21 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
         except ConnectionResetError:
             pass
 
+    async def test_pending_auth_cannot_bypass_an_active_cooldown(self):
+        # Open a legitimate-looking socket before the wrong-PIN failures.
+        pending = await self.connect()
+        await pending.send(S.HELLO)
+        pending.session = (await pending.recv(S.WELCOME)).session
+        for _ in range(3):
+            offender = await self.connect()
+            await offender.begin("unused", pin=b"000000")
+        # A correct PIN on that already-open socket must still be refused.
+        await pending.send(S.AUTH_PIN, b"123456")
+        response = await pending.recv(S.KICK)
+        self.assertIn(b"cooldown", response.payload)
+        self.assertEqual(self.server.invalid_attempts["127.0.0.1"][0], 3)
+        self.assertFalse(self.server.players)
+
     async def test_valid_pin_clears_previous_typo_count(self):
         # A correct PIN must reset ordinary mistakes for this address.
         for _ in range(2):
