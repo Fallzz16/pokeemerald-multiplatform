@@ -2,12 +2,14 @@
 Local accounts are save PROFILES, not Internet authentication.
 EHL8 presence mode is distinct from the legacy P2P Cable Club link.
 """
+import hashlib
 import ipaddress
 import json
 import os
 from pathlib import Path
 import re
 import secrets
+import socket
 from datetime import datetime
 import subprocess
 import sys
@@ -79,7 +81,83 @@ def read_room_occupancy(log_path):
     return (current, capacity) if current <= capacity else None
 
 
-def deliver_pin_or_terminate(process, pin):
+def file_sha256(path):
+    digest = hashlib.sha256()
+    with open(path, "rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def server_launch_plan(app_dir, game_path, port):
+    """Prefer matched M2.3 host-controlled server; never mix mismatched EXEs.
+
+    Returns (argv, is_manual_start). An older ZIP without a marker retains
+    its previous automatic READY/START behavior.
+    """
+    app_dir = Path(app_dir)
+    marker = app_dir / "EHL8_M23_GAME_MATCHED.txt"
+    server = app_dir / "EmeraldSessionServer.exe"
+    manual = marker.is_file()
+    if manual:
+        server = app_dir / "EmeraldSessionServerM23.exe"
+        if not server.is_file() or not Path(game_path).is_file():
+            raise ValueError("Pacote M2.3 incompleto. Extraia o ZIP inteiro em pasta nova.")
+        try:
+            if marker.stat().st_size > 4096:
+                raise ValueError("Manifesto EHL8 grande demais.")
+            data = json.loads(marker.read_text(encoding="utf-8-sig"))
+            if not isinstance(data, dict) or (
+                data.get("game_sha256") != file_sha256(game_path) or
+                data.get("server_sha256") != file_sha256(server)
+            ):
+                raise ValueError("Hashes de jogo/servidor incompatíveis.")
+        except (OSError, ValueError, UnicodeError) as error:
+            raise ValueError("Par jogo/servidor M2.3 não verificado; use o ZIP completo.") from error
+    elif not server.is_file():
+        raise ValueError("EmeraldSessionServer.exe ausente; use o pacote completo.")
+    command = [str(server), "--bind", "0.0.0.0", "--port", str(validate_port(port)),
+               "--slots", "2", "--idle-minutes", "15", "--pin-stdin"]
+    if manual:
+        command.extend(["--admin-stdin", "--resume-v1", "--host-start"])
+    return command, manual
+
+
+def read_lobby_gate(log_path):
+    """Read bounded server log tail; never infer readiness from occupancy."""
+    if not log_path:
+        return None
+    try:
+        with open(log_path, "rb") as stream:
+            stream.seek(0, os.SEEK_END)
+            end = stream.tell()
+            stream.seek(max(0, end - 16384))
+            tail = stream.read(16384).decode("utf-8", "replace")
+    except OSError:
+        return None
+    def most_recent(pattern):
+        items = re.findall(pattern, tail)
+        return items[-1] if items else None
+    occupancy = most_recent(r"EHL8_ROOM_COUNT=([0-2])/2(?:\s|$)")
+    ready = most_recent(r"EHL8_READY_COUNT=([0-2])/2(?:\s|$)")
+    started = most_recent(r"EHL8_ROOM_STARTED=([01])(?:\s|$)")
+    if occupancy is None or ready is None or started is None:
+        return None
+    return {"players": int(occupancy), "ready": int(ready),
+            "started": started == "1"}
+
+
+def send_lobby_admin(process, command):
+    """Only recognized local host commands are sent via an open private pipe."""
+    if command != "START":
+        raise ValueError("Comando administrativo inválido.")
+    if process is None or process.poll() is not None or process.stdin is None or process.stdin.closed:
+        raise OSError("Servidor não está ativo ou canal administrativo indisponível.")
+    process.stdin.write(b"START\n")
+    process.stdin.flush()
+
+
+def deliver_pin_or_terminate(process, pin, keep_open=False):
     """Deliver the private EHL8 PIN or stop a child that was not adopted.
 
     The launcher must only track the new process after PIN delivery succeeds.
@@ -104,7 +182,7 @@ def deliver_pin_or_terminate(process, pin):
             "O jogo/servidor não recebeu o PIN; o processo foi encerrado ou já havia terminado."
         ) from cause
     finally:
-        if process.stdin is not None:
+        if process.stdin is not None and (not keep_open or process.poll() is not None):
             try:
                 process.stdin.close()
             except OSError:
@@ -124,6 +202,16 @@ def validate_ipv4(value):
     if addr.is_unspecified or addr.is_multicast or str(addr)=="255.255.255.255":
         raise ValueError("Esse endereço IP não pode ser utilizado.")
     return str(addr)
+
+def test_tcp_reachability(host, port, timeout=2.0):
+    """Connect-only preflight. A TCP handshake does NOT verify EHL8 gameplay."""
+    address = validate_ipv4(host)
+    number = validate_port(port)
+    if timeout <= 0 or timeout > 10:
+        raise ValueError("Tempo limite de teste inválido.")
+    with socket.create_connection((address, number), timeout=timeout):
+        return True
+
 
 def validate_nickname(value):
     value=value.strip()
@@ -179,6 +267,7 @@ class EmeraldLauncher(tk.Tk):
         self.server_exe=application_dir()/"EmeraldSessionServer.exe"
         self.server_process=None
         self.server_log_path=None
+        self.manual_start_available=False
         settings=read_settings(self.root_dir)
         selected=settings.get("selected_profile")
         self.selected=selected if isinstance(selected,str) and PATTERN.fullmatch(selected) else None
@@ -253,6 +342,9 @@ class EmeraldLauncher(tk.Tk):
         tk.Label(rowserver,textvariable=self.server_status,fg=GREEN,bg=INK,
                  font=("Segoe UI",9),anchor="w").pack(side="left",fill="x",expand=True)
         self.btn(rowserver,"Parar servidor",self.stop_server).pack(side="right")
+        self.start_room_button = self.btn(rowserver, "INICIAR SALA (2/2)", self.start_room,
+                                          accent=True, disabled=True)
+        self.start_room_button.pack(side="right", padx=(0, 9))
         section=tk.Frame(f,bg=INK);section.pack(fill="x",padx=32,pady=(19,6))
         self.text(section,"CONFIGURAÇÕES DA CONEXÃO",10,MUTED,True).pack(anchor="w")
         row=tk.Frame(f,bg=INK);row.pack(fill="x",padx=32)
@@ -264,6 +356,7 @@ class EmeraldLauncher(tk.Tk):
         tk.Checkbutton(secretrow,text="Entrar via servidor dedicado EHL8",variable=self.dedicated_mode,
                        selectcolor=PANEL,activebackground=INK,activeforeground=WHITE,
                        bg=INK,fg=MUTED,font=("Segoe UI",9)).pack(side="left")
+        self.btn(secretrow, "TESTAR CONEXÃO", self.check_network).pack(side="right",padx=(12,0))
         self.text(secretrow,"PIN:",9,MUTED).pack(side="left",padx=(8,2))
         tk.Entry(secretrow,textvariable=self.pin,show="*",width=8,bg=PANEL,fg=WHITE,
                  insertbackground=WHITE,relief="flat",font=("Consolas",10)).pack(side="left",ipady=5)
@@ -364,6 +457,21 @@ class EmeraldLauncher(tk.Tk):
         except (OSError,RuntimeError,subprocess.TimeoutExpired) as err:
             messagebox.showerror("Não foi possível recuperar",str(err))
 
+    def check_network(self):
+        address = self.ip.get().strip()
+        if not address and self.server_process is not None and self.server_process.poll() is None:
+            address = "127.0.0.1"
+        try:
+            test_tcp_reachability(address, self.port.get())
+            messagebox.showinfo("Rede acessível",
+                "A porta TCP respondeu neste IP. Isso confirma somente alcance de rede, "
+                "NÃO autenticação EHL8 ou gameplay. Abra o jogo para validar a sessão.")
+        except (OSError, ValueError) as exc:
+            messagebox.showwarning("Falha de conectividade",
+                "Não foi possível alcançar este IP/porta. Confira servidor ligado, "
+                "IP correto, VPN privada e Firewall de rede privada. "
+                "Não abra portas públicas.\nDetalhes: " + str(exc))
+
     def play_with_friends(self):
         self.play("dedicated" if self.dedicated_mode.get() else "join")
 
@@ -388,12 +496,12 @@ class EmeraldLauncher(tk.Tk):
             logs.mkdir(parents=True,exist_ok=True)
             path=logs/("servidor-"+datetime.now().strftime("%Y%m%d-%H%M%S")+".log")
             flags=(getattr(subprocess,"CREATE_NO_WINDOW",0) if sys.platform=="win32" else 0)
+            command, manual = server_launch_plan(application_dir(), self.game, port)
             with path.open("ab") as log:
-                proc=subprocess.Popen([str(self.server_exe),"--bind","0.0.0.0",
-                     "--port",str(port),"--slots","2","--idle-minutes","15",
-                     "--pin-stdin"],cwd=str(application_dir()),creationflags=flags,
+                proc=subprocess.Popen(command,cwd=str(application_dir()),creationflags=flags,
                      stdin=subprocess.PIPE,stdout=log,stderr=subprocess.STDOUT)
-                deliver_pin_or_terminate(proc, pin)
+                deliver_pin_or_terminate(proc, pin, keep_open=manual)
+            self.manual_start_available=manual
             self.server_process=proc
             self.server_log_path=path
             self.server_status.set("Servidor EHL8 iniciando · porta "+str(port)+" · até 2 jogadores")
@@ -406,10 +514,20 @@ class EmeraldLauncher(tk.Tk):
         rc=self.server_process.poll()
         if rc is not None:
             self.server_process=None
+            self.manual_start_available=False
+            self.start_room_button.configure(state="disabled")
             self.server_status.set("Servidor desligado (código "+str(rc)+"). Veja os logs.")
         else:
             occupancy=read_room_occupancy(self.server_log_path)
-            if occupancy is None:
+            state=read_lobby_gate(self.server_log_path) if self.manual_start_available else None
+            can_start=bool(state and state["players"]==2 and state["ready"]==2
+                           and not state["started"])
+            self.start_room_button.configure(state="normal" if can_start else "disabled")
+            if state:
+                self.server_status.set(
+                    f"Sala EHL8 {state['players']}/2 · prontos {state['ready']}/2 · "
+                    + ("EM JOGO" if state["started"] else "aguardando START do anfitrião"))
+            elif occupancy is None:
                 self.server_status.set("Servidor EHL8 ativo (beta) · aguardando participantes")
             else:
                 connected, limit=occupancy
@@ -417,11 +535,25 @@ class EmeraldLauncher(tk.Tk):
                     f"Servidor EHL8 ativo (beta) · jogadores conectados: {connected}/{limit}")
             self.after(1300,self.watch_server)
 
+    def start_room(self):
+        state = read_lobby_gate(self.server_log_path) if self.manual_start_available else None
+        if not state or state["players"] != 2 or state["ready"] != 2 or state["started"]:
+            messagebox.showwarning("Sala indisponível",
+                                   "São necessários 2/2 jogadores prontos; aguarde o lobby.")
+            return
+        try:
+            send_lobby_admin(self.server_process, "START")
+            self.start_room_button.configure(state="disabled")
+            self.server_status.set("Solicitação START enviada; aguardando confirmação do servidor.")
+        except (OSError, ValueError) as exc:
+            messagebox.showerror("Não foi possível iniciar a sala", str(exc))
+
     def stop_server(self):
         if self.server_process is not None and self.server_process.poll() is None:
             if not messagebox.askyesno("Parar servidor","Desconectar os jogadores e encerrar o servidor EHL8?"):
                 return
             self.server_process.terminate()
+            self.start_room_button.configure(state="disabled")
             self.server_status.set("Servidor encerrando...")
         else:
             self.server_status.set("Servidor dedicado: desligado")
