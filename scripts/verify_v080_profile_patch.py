@@ -10,6 +10,27 @@ def strip_v080_profile_patch(native: str) -> str:
             raise AssertionError("v0.8 profile integration drift: " + old[:60])
         native = native.replace(old, new, 1)
 
+    # M3.0 EHL8 gameplay START input gate: reverse only nine precisely
+    # enumerated additions. Keep the historic SDL2 blob hash check strict.
+    # Reviewed M3.0 START gate addition 1
+    once("#include \"../lnet/lnet_start_gate.h\"\n\n/* Controlled on the GBA game thread; no access to renderer from link.c. */\nextern int PortLanDedicatedSessionGate(void);\n\n", "\n")
+    # Reviewed M3.0 START gate addition 2
+    once("static LNetStartGate sEhl8StartGate;\nstatic SDL_atomic_t sEhl8WaitUiState; /* 0=normal, 1=waiting, 2=ready, 3=failed */\n", "")
+    # Reviewed M3.0 START gate addition 3
+    once("    bool sessionWaitForStart = false;\n", "")
+    # Reviewed M3.0 START gate addition 4
+    once("        else if (strcmp(argv[i], \"--session-wait-for-start\") == 0)\n            sessionWaitForStart = true;\n", "")
+    # Reviewed M3.0 START gate addition 5
+    once("    if (sessionWaitForStart && !sessionEndpoint)\n    {\n        fprintf(stderr, \"START wait requires an EHL8 session endpoint.\\n\");\n        if (sProfileLocked)\n            sp_unlock(&sActiveProfileLock);\n        return 2;\n    }\n", "")
+    # Reviewed M3.0 START gate addition 6
+    once("    /* No gameplay key reaches Emerald before EHL8 START on opted-in launches.\n     * The engine must keep running to poll TCP and draw frames while waiting. */\n    sEhl8StartGate.enabled = sessionWaitForStart;\n    sEhl8StartGate.released = 0;\n    SDL_AtomicSet(&sEhl8WaitUiState, sessionWaitForStart ? 1 : 0);\n\n", "")
+    # Reviewed M3.0 START gate addition 7
+    once("    int lastWaitUiState = -1;\n", "")
+    # Reviewed M3.0 START gate addition 8
+    once("        if (sessionWaitForStart)\n        {\n            int waitUiState = SDL_AtomicGet(&sEhl8WaitUiState);\n            if (waitUiState != lastWaitUiState)\n            {\n                const char *caption = \"Emerald Hybrid — EHL8 iniciado\";\n                if (waitUiState == 1)\n                    caption = \"Emerald Hybrid — aguardando segundo jogador e START\";\n                else if (waitUiState == 3)\n                    caption = \"Emerald Hybrid — EHL8 falhou; feche para tentar novamente\";\n                SDL_SetWindowTitle(sdlWindow, caption);\n                lastWaitUiState = waitUiState;\n            }\n        }\n\n", "\n")
+    # Reviewed M3.0 START gate addition 9
+    once("    /* Game-thread input gate: do not pause VBlank, gameplay callbacks or\n     * PortLanDebugPump; START can only arrive while frames are progressing.\n     * Once released, a network drop does not re-lock the local trainer. */\n    if (sEhl8StartGate.enabled && !sEhl8StartGate.released)\n    {\n        int state = PortLanDedicatedSessionGate();\n        if (lnet_start_gate_blocked(&sEhl8StartGate, state))\n        {\n            SDL_AtomicSet(&sEhl8WaitUiState, state < 0 ? 3 : 1);\n            return 0;\n        }\n        SDL_AtomicSet(&sEhl8WaitUiState, 2);\n    }\n", "")
+
     # Exact inverse of only the reviewed SDL pending-frame guard.
     once("            else\n            {\n                /* EHL8_FRAME_WAIT: AgbMain has not produced a new frame yet.\n                 * Leave the accumulator loop; otherwise the UI thread can\n                 * spin forever without processing SDL input or shutdown. */\n                break;\n            }\n", '')
 
