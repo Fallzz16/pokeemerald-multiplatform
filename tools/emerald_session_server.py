@@ -130,6 +130,7 @@ class SessionServer:
         self.log.info("EHL8_ROOM_LOCKED=0")
         self.log.info("EHL8_READY_COUNT=0/%d", self.slots)
         self.log.info("EHL8_ROOM_STARTED=0")
+        self.log_room_state()
         return self.listener
 
     async def stop(self):
@@ -165,16 +166,27 @@ class SessionServer:
         if expired:
             self.log.info("EHL8_ROOM_RESERVED=%d/%d",
                           len(self.reservations), self.slots)
-        if not self.players and not self.reservations:
+        if not self.players and not self.reservations and self.in_game:
             self.in_game = False
+            self.log.info("EHL8_ROOM_STARTED=0")
+        if expired:
+            self.log_room_state()
 
     async def issue_resume_token(self, peer):
         peer.resume_token = secrets.token_bytes(RESUME_TOKEN_BYTES)
         await peer.send(RESUME, peer.resume_token, self.session)
 
+    def log_room_state(self):
+        """One complete state record for the GUI; never includes PIN or saves."""
+        self.log.info("EHL8_ROOM_STATE=%d/%d,%d/%d,%d,%d/%d",
+                      len(self.players), self.slots,
+                      sum(peer.ready for peer in self.players.values()), self.slots,
+                      int(self.in_game), len(self.reservations), self.slots)
+
     def log_ready_count(self):
         self.log.info("EHL8_READY_COUNT=%d/%d",
                       sum(peer.ready for peer in self.players.values()), self.slots)
+        self.log_room_state()
 
     async def start_ready_room(self):
         # READY remains a native client acknowledgement; only the local host
@@ -188,6 +200,7 @@ class SessionServer:
         for peer in self.players.values():
             peer.stage = "GAME"
         self.log.info("EHL8_ROOM_STARTED=1")
+        self.log_room_state()
         await self.broadcast(START, b"")
         return True
 
@@ -234,6 +247,7 @@ class SessionServer:
                 self.log.info("EHL8_ROOM_RESERVED=%d/%d",
                               len(self.reservations), self.slots)
                 self.log.info("EHL8_ADMIN_KICK_OK=1")
+                self.log_room_state()
                 self.expire_reservations()
                 return True
             peer.allow_resume = False
@@ -336,6 +350,7 @@ class SessionServer:
                 elif not self.reservations:
                     self.in_game = False
                     self.log.info("EHL8_ROOM_STARTED=0")
+                    self.log_room_state()
             peer.close()
             self.connected.discard(peer)
             if not self.players and not self.connected:
