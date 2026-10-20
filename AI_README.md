@@ -984,3 +984,29 @@ Esse sucesso comprova as suítes automatizadas do commit testado, não gameplay 
 **Pesquisa externa:** fontes primárias documentadas no relatório para concorrência de CI GitHub, atestação de artefatos e Tailscale como VPN privada para testes de computadores em casas diferentes; SDL2 integer scaling e arquivo save pret/pokeemerald. Evitar WAN pública sem segurança real.
 
 **Próximo passo:** verificar CI/artefato SHA final, abrir PR em rascunho e solicitar QA humano conforme roteiro no relatório. Se QA reprovar, corrigir na mesma branch; só depois planejar o próximo incremento de lobby e integração de battles/trades, sem novas histórias/expansões.
+
+
+## 56. MEGA beta online — integração incremental dos 6 gates (2026-10-19/20)
+
+**Pedido expresso:** usuário autorizou uma **GRANDE atualização integrada** dos seis problemas (2 PCs e gameplay; batalhas/trocas; saves; lobby START/READY/CANCELAR; conexão entre casas; Android/crossplay), sem limite artificial de tamanho. Essa autorização NÃO equivale a declarar seis recursos prontos nem dispensa testes físicos; prioridade continua **somente online do Pokémon Emerald existente, sem conteúdo novo**. QA Lab é exclusivo para testes, separado do launcher final.
+
+**Origem/branch:** repo `Fallzz16/pokeemerald-multiplatform`; ponto de partida PR #21, branch `feature/emerald-m30-beta-launch-safety-20261019`, commit `476f56cfd0d7e2782e6b87e63c4d7443a1207a87`. Branch NOVA `feature/emerald-m30-mega-beta-gates-20261019`, PR draft a criar sobre PR #21. Nenhum merge automático em PRs #19, #20, #21; rollback para preview do PR #21 SHA `476f56c` e, para gameplay humano antes aprovado, M2.2-B `5e53e40` em pasta separada.
+
+**Adicionado:** `docs/V100_M30_MEGA_ONLINE_BETA_GATES_20261019_PTBR.md` com gates G0–G6, instruções de LAN/VM/Tailscale, riscos e roteiro humano; `tests/test_ehl8_launcher_manual_host.py` integrado na suíte `protocol`, que inicia **um subprocesso REAL Python EHL8**, conecta dois clientes TCP e verifica START privado do host, sem saves/janela de jogo.
+
+**Modificado:**
+- `tools/emerald_launcher.py`: decisão de servidor M23 combinando manifestos `EHL8_M23_GAME_MATCHED.txt` e SHA256 real de jogo/servidor; recusa misturas. Com par correto, inicia servidor `--admin-stdin --host-start --resume-v1` com PIN enviado via stdin e mantém pipe privado aberto; exibe status EHL8 com 2/2 READY e botão **INICIAR SALA (2/2)** habilitado somente nesse estado. O fluxo antigo de um pacote sem marcador M23 mantém início automático (sem oferecer botão START). Adicionado botão **TESTAR CONEXÃO** via TCP reachability IPv4/porta, que NÃO declara compatibilidade EHL8 nem gameplay.
+- `tests/test_emerald_launcher.py`: testes de manifesto SHA256 errado/correto, fallback antigo, parsing de log, START administrativo exato, pipe de PIN mantido aberto, teste TCP real localhost e simulação de indisponibilidade/entrada inválida.
+- `src/profile/save_profiles.c`: antes do rename atômico de import/backup/restore, exige igualdade **byte a byte entre origem e cópia temporária**, preservando dados caso divergentes. **NÃO** valida checksum do payload de cada setor nem repara saves.
+- `tools/emerald_auto_qa.py`: inclui o novo teste de START real na suíte `protocol`.
+- `.github/workflows/emerald-auto-qa.yml`: vigia alterações do launcher e `src/profile/save_profiles.c`, compila e executa `tests/test_save_profiles.c` no Ubuntu com `gcc` e mantém regressões no Windows/Linux.
+
+**Removido:** nenhum componente, arquivo SAV, mapa, sprite, sistema Cable Club, versão Android ou laboratório de QA.
+
+**Evidências CI (código):** [Auto QA Windows+Linux run 39351124162](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/39351124162), SHA `27ae0a8aca2150a58cda33bb874486e04f0df6fb`, resultado **success nas duas plataformas** (inclui servidor subprocesso real e C save native Linux). Windows Complete Preview desse SHA [run 39351124167](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/39351124167) ainda precisa verificação de conclusão/artefato. O futuro HEAD final conterá apenas docs/handoff posteriores ao código validado; conferir o SHA completo no Actions. GBA Compare legado historicamente falha em `Compare`, não confundir com o Windows.
+
+**AINDA NÃO IMPLEMENTADO/VALIDADO:** dentro do jogo, botões PRONTO/CANCELAR individual (o cliente envia READY automaticamente), convites batalha 1v1/trocas pelo EHL8 e recuperação transacional, validação de **checksums internos** de setores SAV via tamanhos de structs específicos do fork, Android ARM64, APK/crossplay atual e QA humano com duas máquinas reais. Sem segurança criptográfica própria, EHL8 não deve ser exposto à WAN: usar LAN privada ou VPN privada/Tailscale, nada de port forwarding.
+
+**Por que não concluir tudo cegamente:** transpor batalhas/trocas entre Cable Club e EHL8 requer integrar engine de link e protocolo versionado; Android ABI arm64 precisa remover ou regenerar `arm-none-eabi-as -march=armv7-a` dos objetos de dados atuais. Hacks de bytes de save ou promessas de compatibilidade seriam regressão e não são autorizados. Esses itens ficam como gates G2/G3/G4/G6 no documento de mega atualização, para futuros incrementos da **mesma linha beta**, não como release falsa.
+
+**Próximos passos:** conferir CI Windows/ZIP SHA final e QA com dois clientes reais do jogo usando saves QA isolados em host/VM/segundo PC, obter logs e evidências sem PIN/saves. Só promover rótulo de beta quando todas as funcionalidades incluídas nesse rótulo passam em hardware real; QA Lab deve continuar separado do launcher final e disponíveis para bugs/diagnósticos, não para jogadores comuns.
