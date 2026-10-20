@@ -231,7 +231,8 @@ def make_command(game,root,pid,mode,ip="",port="45680",pin=""):
         if not re.fullmatch(r"[0-9]{6}",pin):
             raise ValueError("Informe o PIN de seis dígitos do servidor dedicado.")
         return args+["--lan-log","cliente-ehl8.log",
-                     "--session-client="+validate_ipv4(ip)+":"+str(p),"--session-pin-stdin"]
+                     "--session-client="+validate_ipv4(ip)+":"+str(p),
+                     "--session-pin-stdin","--session-wait-for-start"]
     raise ValueError("Modo de jogo desconhecido.")
 
 def find_profiles(root):

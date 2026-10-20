@@ -1010,3 +1010,24 @@ Esse sucesso comprova as suítes automatizadas do commit testado, não gameplay 
 **Por que não concluir tudo cegamente:** transpor batalhas/trocas entre Cable Club e EHL8 requer integrar engine de link e protocolo versionado; Android ABI arm64 precisa remover ou regenerar `arm-none-eabi-as -march=armv7-a` dos objetos de dados atuais. Hacks de bytes de save ou promessas de compatibilidade seriam regressão e não são autorizados. Esses itens ficam como gates G2/G3/G4/G6 no documento de mega atualização, para futuros incrementos da **mesma linha beta**, não como release falsa.
 
 **Próximos passos:** conferir CI Windows/ZIP SHA final e QA com dois clientes reais do jogo usando saves QA isolados em host/VM/segundo PC, obter logs e evidências sem PIN/saves. Só promover rótulo de beta quando todas as funcionalidades incluídas nesse rótulo passam em hardware real; QA Lab deve continuar separado do launcher final e disponíveis para bugs/diagnósticos, não para jogadores comuns.
+
+
+## 57. M3.0 QA bug real — QA_A andava antes de START (2026-10-20)
+
+**Relato confirmado por conversa com usuário:** no Laboratório real, após `INICIAR SERVIDOR (SEM JOGO)` e `ENTRAR QA_A`, o executável abria e o usuário conseguia **carregar save e se mover antes de QA_B ou do botão START**. A captura anterior mostrava temporariamente servidor ativo 0/2, QA_A FECHADO e QA_B NÃO INICIADO; essa captura não comprova sessão 1/2 em curso. Usuário confirmou o comportamento de jogar antes de START. **Causa encontrada no código:** `src/lnet/lnet_session_client.c` já aguardava EHL_START para sair de EHL_CLIENT_WAIT_START; a engine `src/main.c` continuava lendo normalmente `Platform_GetKeyInput`, e esse mecanismo não participava da liberação de input local.
+
+**Isolamento:** branch NOVA `feature/emerald-m30-qa-start-gate-20261020`, criada do PR #22 `feature/emerald-m30-mega-beta-gates-20261019` SHA `2d82b36cf5ce6ba752cb8a7e4a85fe4ce490ac92`; PR próprio em rascunho; não mesclar nem modificar PRs #19-#22, saves, Android ou Cable Club.
+
+**Implementação feita:**
+- `src/link.c`: `PortLanDedicatedSessionGate()` consulta estado EHL8 somente na **game thread**; retorna +1 para PLAYING, 0 para esperando, -1 para falha ou indisponibilidade. Não dorme, não altera lock ou protocolo.
+- `src/lnet/lnet_start_gate.h` (NOVO): máquina de estados isolada `LNetStartGate`: bloqueia entradas apenas quando `enabled` e START ainda não recebido, desbloqueia só após o primeiro PLAYING. Após destravar, queda/reconexão NÃO bloqueia o progresso local (decisão #83A), evitando uma regressão do modo solo.
+- `src/platform/sdl2.c`: flag exclusiva `--session-wait-for-start` requer `--session-client` EHL8 válido e é opt-in; `Platform_GetKeyInput()` entrega 0 ao Emerald enquanto espera EHL8 START, mas NÃO pausa frames, renderização ou poll TCP. Isso mantém READY/START e janela responsiva. UI da janela muda título para sala esperando / EHL8 falhou / sessão iniciada, com estado compartilhado em SDL_atomic_t entre game thread e renderer thread. Offline e Cable Club não usam flag.
+- `tools/emerald_qa_lab.py`: só os subprocessos QA EHL8 recebem `--session-wait-for-start`. Continua abrindo a janela do jogo imediatamente e usando saves isolados, lobby separado e START do host.
+- `tools/emerald_launcher.py`: dedicated EHL8 recebeu a mesma flag para que teste entre PCs siga mesma espera; offline/P2P intactos.
+- `tests/test_ehl8_start_gate.c` (NOVO): casos de ativação/desbloqueio, falha pré-START, queda pós-START, offline não afetado; `tests/test_emerald_qa_lab.py`, `tests/test_emerald_launcher.py`: asseveram flags só no modo EHL8.
+- `.github/workflows/emerald-auto-qa.yml`: compila/roda teste nativo Linux, observa mudanças em link.c, SDL2 e header do gate. `docs/V100_M23A_SERVER_FIRST_QA_PTBR.md`: roteiro QA manual atualizado, incluindo 30 segundos com jogos abertos e inputs bloqueados.
+
+**Limite importante:** não é pausa total do tempo e de todas as simulações do motor; é restrição de INPUT até START, pois EHL8 depende de frames da engine. A janela abre; comportamento esperado é não poder carregar save/andar antes do start. Sem START e em falha, somente fechar/diagnosticar, **nunca** cair silenciosamente em offline. Foco exclusivamente no online, sem história/mapas/Pokémon novos.
+
+**Validações:** conferir o Actions Auto QA Windows/Linux e o Windows Complete Preview NA REVISÃO FINAL, mais QA manual real com QA_A/QA_B antes/depois de START. Teste unitário C verifica a máquina de estados, testes de socket verificam protocolo; nenhum comprova sozinho input físico no jogo. Quando falhar CI, registrar e corrigir na mesma branch. Rollback para preview anterior do PR #22 SHA `2d82b36c` em pasta separada sem tocar saves existentes. Não declarar beta de gameplay pronta antes do teste humano.
+

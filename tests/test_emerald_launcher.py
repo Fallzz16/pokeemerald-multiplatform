@@ -163,6 +163,9 @@ class GraphicalLauncherTests(unittest.TestCase):
                                      "dedicated","127.0.0.1","45680","123456")
         self.assertIn("--session-client=127.0.0.1:45680",args)
         self.assertIn("--session-pin-stdin",args)
+        self.assertIn("--session-wait-for-start",args)
+        self.assertNotIn("--session-wait-for-start",
+                         launcher.make_command("pokeemerald.exe","profiles","trainer","offline"))
         self.assertFalse(any("123456" in value for value in args))
         self.assertNotIn("--lan-client=127.0.0.1:45680",args)
         for bad in ("","123","abcdef","1234567"):
