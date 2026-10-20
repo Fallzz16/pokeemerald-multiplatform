@@ -135,6 +135,21 @@ def read_lobby_gate(log_path):
             tail = stream.read(16384).decode("utf-8", "replace")
     except OSError:
         return None
+    # M3.0 BETA: prefer one complete record, rather than combining fields
+    # emitted at different instants (or across successive server sessions).
+    # The 4th field reserves seats for reconnecting clients.
+    records = re.findall(
+        r"EHL8_ROOM_STATE=([0-2])/2,([0-2])/2,([01]),([0-2])/2(?:\s|$)",
+        tail)
+    if records:
+        players, ready, started, reserved = map(int, records[-1])
+        if ready > players or players + reserved > 2:
+            return None
+        return {"players": players, "ready": ready,
+                "started": bool(started), "reserved": reserved}
+    if "EHL8_ROOM_STATE=" in tail:
+        return None  # malformed/incomplete newer format: never trust old fields
+    # Older server builds only: retain the legacy bounded-log fallback.
     def most_recent(pattern):
         items = re.findall(pattern, tail)
         return items[-1] if items else None
@@ -142,6 +157,8 @@ def read_lobby_gate(log_path):
     ready = most_recent(r"EHL8_READY_COUNT=([0-2])/2(?:\s|$)")
     started = most_recent(r"EHL8_ROOM_STARTED=([01])(?:\s|$)")
     if occupancy is None or ready is None or started is None:
+        return None
+    if int(ready) > int(occupancy):
         return None
     return {"players": int(occupancy), "ready": int(ready),
             "started": started == "1"}
@@ -495,7 +512,7 @@ class EmeraldLauncher(tk.Tk):
                 return
             logs=self.root_dir.parent/"logs"
             logs.mkdir(parents=True,exist_ok=True)
-            path=logs/("servidor-"+datetime.now().strftime("%Y%m%d-%H%M%S")+".log")
+            path=logs/("servidor-"+datetime.now().strftime("%Y%m%d-%H%M%S-%f")+".log")
             flags=(getattr(subprocess,"CREATE_NO_WINDOW",0) if sys.platform=="win32" else 0)
             command, manual = server_launch_plan(application_dir(), self.game, port)
             with path.open("ab") as log:
@@ -522,7 +539,7 @@ class EmeraldLauncher(tk.Tk):
             occupancy=read_room_occupancy(self.server_log_path)
             state=read_lobby_gate(self.server_log_path) if self.manual_start_available else None
             can_start=bool(state and state["players"]==2 and state["ready"]==2
-                           and not state["started"])
+                           and not state["started"] and state.get("reserved", 0)==0)
             self.start_room_button.configure(state="normal" if can_start else "disabled")
             if state:
                 self.server_status.set(
@@ -538,7 +555,7 @@ class EmeraldLauncher(tk.Tk):
 
     def start_room(self):
         state = read_lobby_gate(self.server_log_path) if self.manual_start_available else None
-        if not state or state["players"] != 2 or state["ready"] != 2 or state["started"]:
+        if not state or state["players"] != 2 or state["ready"] != 2 or state["started"] or state.get("reserved", 0) != 0:
             messagebox.showwarning("Sala indisponível",
                                    "São necessários 2/2 jogadores prontos; aguarde o lobby.")
             return
