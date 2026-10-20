@@ -78,6 +78,11 @@ jobs:
           ferry=Path("data/maps/SlateportCity_Harbor/scripts.inc").read_text()
           assert f"warp MAP_KANTO_VERMILIONCITY, {ax}, {ay}" in ferry
           assert len(json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"])==39
+          scripts=Path("data/maps/Kanto_VermilionCity/scripts.inc").read_text()
+          assert "special Kanto_ReturnToHoennHealWarp" in scripts
+          assert "special HealPlayerParty" in scripts
+          assert "setwildbattle SPECIES_PIDGEY, 5, ITEM_NONE" in scripts
+          assert "dowildbattle" in scripts
           PY
       - name: Get SDL2 Windows runtime and compile game with authentic maps
         run: |

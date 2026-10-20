@@ -407,7 +407,7 @@ Kanto_VermilionCity_EventScript_Stay::
     end
 
 Kanto_VermilionCity_Text_ReturnToHoenn:
-    .string "Sail back to SLATEPORT in HOENN?$"
+    .string "Return to your HOENN heal location?$"
 
 Kanto_VermilionCity_Text_Stay:
     .string "Enjoy KANTO!$"
