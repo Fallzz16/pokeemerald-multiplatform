@@ -47,6 +47,8 @@ class LabTests(unittest.TestCase):
     def test_command_contract_and_local_only_pin_not_argv(self):
         self.assertIn("--profile-id=QA_A", L.game_command(self.app, "p", "QA_A", "ehl8", 45680))
         self.assertIn("--session-pin-stdin", L.game_command(self.app, "p", "QA_B", "ehl8", 45680))
+        self.assertIn("--session-wait-for-start", L.game_command(self.app, "p", "QA_B", "ehl8", 45680))
+        self.assertNotIn("--session-wait-for-start", L.game_command(self.app, "p", "QA_A", "offline", 45680))
         self.assertEqual(L.server_command(self.app, 45680)[2], "127.0.0.1")
         self.assertIn("--pin-stdin", L.server_command(self.app, 45680))
         self.assertNotIn("--session-pin-stdin", L.game_command(self.app, "p", "QA_A", "offline", 45680))
