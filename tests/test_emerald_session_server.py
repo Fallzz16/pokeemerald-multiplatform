@@ -256,6 +256,49 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
         await b.recv(S.PLAYER_LIST)
         self.assertEqual(len(self.server.players), 1)
 
+    async def test_single_lobby_status_line_includes_reservations_without_secrets(self):
+        player = await self.connect()
+        await player.begin("HOST_A")
+        with self.assertLogs("emerald.session", level="INFO") as captured:
+            self.server.log_room_state()
+        self.assertIn("EHL8_ROOM_STATE=1/2,0/2,0,0/2",
+                      captured.output[-1])
+        self.assertNotIn("123456", captured.output[-1])
+        self.server.reservations[2] = S.Reservation(
+            b"GUEST_B", b"x" * S.RESUME_TOKEN_BYTES,
+            S.time.monotonic() + 60)
+        with self.assertLogs("emerald.session", level="INFO") as captured:
+            self.server.log_room_state()
+        self.assertIn("EHL8_ROOM_STATE=1/2,0/2,0,1/2",
+                      captured.output[-1])
+
+    def test_expiring_last_reservation_unsets_started_session(self):
+        self.server.in_game = True
+        self.server.reservations[1] = S.Reservation(
+            b"QA_A", b"x" * S.RESUME_TOKEN_BYTES,
+            S.time.monotonic() - 1)
+        with self.assertLogs("emerald.session", level="INFO") as captured:
+            self.server.expire_reservations()
+        self.assertFalse(self.server.in_game)
+        self.assertFalse(self.server.reservations)
+        self.assertTrue(any("EHL8_ROOM_STARTED=0" in line
+                            for line in captured.output))
+        self.assertTrue(any("EHL8_ROOM_STATE=0/2,0/2,0,0/2" in line
+                            for line in captured.output))
+
+    async def test_kicking_last_reservation_resets_started_lobby_snapshot(self):
+        self.server.in_game = True
+        self.server.reservations[1] = S.Reservation(
+            b"QA_A", b"x" * S.RESUME_TOKEN_BYTES,
+            S.time.monotonic() + 60)
+        with self.assertLogs("emerald.session", level="INFO") as captured:
+            ok = await self.server.admin_command("KICK QA_A")
+        self.assertTrue(ok)
+        self.assertFalse(self.server.in_game)
+        self.assertFalse(self.server.reservations)
+        self.assertTrue(any("EHL8_ROOM_STATE=0/2,0/2,0,0/2" in line
+                            for line in captured.output))
+
     def test_validation(self):
         x = bytearray(18)
         x[:5] = b"LANP\x01"

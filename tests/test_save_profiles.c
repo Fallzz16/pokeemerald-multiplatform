@@ -92,6 +92,18 @@ int main(void)
     assert(equal(out,b2));
     assert(sp_restore(&a,1)==SP_OK);
     assert(equal(out,valid));
+    /* An invalid backup must NEVER replace the active .sav. These fixtures
+     * exercise container/footer handling only; they are NOT playable saves. */
+    {
+        char invalid_backup[512];
+        snprintf(invalid_backup,sizeof(invalid_backup),
+                 "%s/profiles/Pokemon_A/backups/000004.sav",dir);
+        f=fopen(invalid_backup,"wb");
+        assert(f && fputs("BROKEN_BACKUP",f)>=0 && fclose(f)==0);
+        assert(sp_restore(&a,4)==SP_BAD_SAVE);
+        assert(equal(out,valid));
+        assert(remove(invalid_backup)==0);
+    }
     assert(sp_prune(&a,2)==SP_OK);
     assert(access(b1,F_OK)!=0);
     assert(equal(b2,changed));

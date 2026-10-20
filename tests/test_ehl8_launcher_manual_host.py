@@ -116,5 +116,38 @@ class LauncherHostProcessTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(started["players"], 2)
 
 
+    async def test_two_clients_can_wait_over_30_seconds_before_host_start(self):
+        """Real socket/heartbeat soak, not a graphical Emerald validation."""
+        send_a, recv_a, session = await self.connect(b"WAIT_A")
+        send_b, recv_b, session_b = await self.connect(b"WAIT_B")
+        self.assertEqual(session_b, session)
+        await recv_a(S.PLAYER_LIST)
+        await send_a(S.READY, b"\x01", session)
+        await recv_a(S.PLAYER_LIST)
+        await recv_b(S.PLAYER_LIST)
+        await send_b(S.READY, b"\x01", session)
+        await recv_a(S.PLAYER_LIST)
+        await recv_b(S.PLAYER_LIST)
+        state = await self.wait_gate(lambda x: x["ready"] == 2)
+        self.assertEqual(state["reserved"], 0)
+        self.assertFalse(state["started"])
+        # The native EHL8 client sends HEARTBEAT every ~10 seconds while
+        # WAIT_START. Exercise the actual server's idle/session behavior.
+        for _ in range(3):
+            await asyncio.sleep(10.1)
+            await send_a(S.HEARTBEAT, b"", session)
+            await send_b(S.HEARTBEAT, b"", session)
+            await recv_a(S.HEARTBEAT)
+            await recv_b(S.HEARTBEAT)
+            state = L.read_lobby_gate(self.log)
+            self.assertEqual(state["players"], 2)
+            self.assertEqual(state["ready"], 2)
+            self.assertFalse(state["started"])
+        L.send_lobby_admin(self.server, "START")
+        await recv_a(S.START)
+        await recv_b(S.START)
+        self.assertTrue((await self.wait_gate(lambda x: x["started"]))["started"])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
