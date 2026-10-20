@@ -49,6 +49,14 @@ class KantoGatewayTests(unittest.TestCase):
         self.assertIn("SlateportCity_Harbor_EventScript_FerryAttendant", scripts)
         self.assertIn('data/maps/Kanto_Harbor/scripts.inc', self.events)
         self.assertIn("MAP_KANTO_HARBOR", self.slate_scripts)
+        self.assertIn("goto_if_unset FLAG_BADGE04_GET", self.slate_scripts)
+        self.assertIn("checkmoney 500, 0", self.slate_scripts)
+        self.assertIn("removemoney 500, 0", self.slate_scripts)
+        self.assertIn("goto_if_eq VAR_RESULT, FALSE,", self.slate_scripts)
+        self.assertLess(self.slate_scripts.index("checkmoney 500, 0"),
+                        self.slate_scripts.index("removemoney 500, 0"))
+        self.assertLess(self.slate_scripts.index("removemoney 500, 0"),
+                        self.slate_scripts.index("warp MAP_KANTO_HARBOR"))
         self.assertIn("MAP_SLATEPORT_CITY_HARBOR", self.kanto_scripts)
 
 
