@@ -83,6 +83,16 @@ jobs:
           ferry=Path("data/maps/SlateportCity_Harbor/scripts.inc").read_text()
           assert f"warp MAP_KANTO_VERMILIONCITY, {ax}, {ay}" in ferry
           assert len(json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"])==56
+          # Preserve Kanto V0.2 IDs. New services are appended, not inserted.
+          import sys
+          sys.path.insert(0,str(Path("tools/kanto").resolve()))
+          from preflight import exterior_names
+          fr=json.loads(Path("firered-source/data/maps/map_groups.json").read_text())
+          expected_prefix=["Kanto_Harbor","Kanto_VermilionCity_PokemonCenter_1F",
+                           "Kanto_VermilionCity_Mart"]
+          expected_prefix += ["Kanto_"+n for n in exterior_names(fr["gMapGroup_TownsAndRoutes"])]
+          actual=json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"]
+          assert actual[:41] == expected_prefix, "Kanto V0.2 map indices shifted"
           # Exact FireRed interior dimensions, linked entrance and return doors.
           layouts=json.loads(Path("data/layouts/layouts.json").read_text())["layouts"]
           lookup={entry["id"]: entry for entry in layouts if "id" in entry}

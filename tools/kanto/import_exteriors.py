@@ -586,7 +586,7 @@ Kanto_GenericMart_Items:
     first_mart = next(n for n in created if n.endswith("_Mart"))
     with (emerald / "data/maps" / first_mart / "scripts.inc").open("a", encoding="utf-8") as file:
         file.write(shop_common)
-    target_groups["gMapGroup_Kanto"].extend(created)
+    # Delay registration to preserve V0.2 map indices during version upgrades.
     return created
 
 
@@ -753,12 +753,14 @@ Kanto_VermilionCity_Text_BattleQuestion:
     interiors = add_vermilion_interiors(
         source, emerald, layouts, target_layouts, target_groups,
         source_maps["VermilionCity"])
-    interiors.extend(add_regional_service_interiors(
-        source, emerald, source_maps, target_groups))
+    new_services = add_regional_service_interiors(
+        source, emerald, source_maps, target_groups)
+    interiors.extend(new_services)
     report["interior_maps"] = interiors
     report["original_interiors_ported"] = len(interiors)
     report["interior_warps_ported"] = len(interiors)
     target_groups["gMapGroup_Kanto"].extend("Kanto_" + n for n in names)
+    target_groups["gMapGroup_Kanto"].extend(new_services)
     target_groups["connections_include_order"].extend("Kanto_" + n for n in names)
     emit_json(emerald / "data/maps/map_groups.json", target_groups)
     emit_json(emerald / "data/layouts/layouts.json", target_layouts)
