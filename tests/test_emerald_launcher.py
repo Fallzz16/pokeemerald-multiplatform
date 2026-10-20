@@ -73,13 +73,15 @@ class GraphicalLauncherTests(unittest.TestCase):
             fake.active_process = None
             fake.server_process = None
             fake.pin.get.return_value = "123456"
-            fake.start_server.side_effect = lambda: setattr(fake, "server_process", Mock()) or True
-            fake.server_process = None
+            process = Mock()
+            process.poll.return_value = None
+            fake.start_server.side_effect = lambda: setattr(fake, "server_process", process) or True
             fake.play.return_value = False
             launcher.EmeraldLauncher.create_room(fake)
             fake.play.assert_called_once_with(
                 "dedicated", host_override="127.0.0.1", keep_launcher=True)
             self.assertIsNone(fake.server_process)
+            process.terminate.assert_called_once_with()
             fake.start_room_button.configure.assert_called_with(state="disabled")
 
     def test_pin_visibility_control_is_explicit(self):
