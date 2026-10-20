@@ -29,6 +29,10 @@
 #include "platform/framedraw.h"
 /* Optional v0.8 managed profiles; legacy save remains the default. */
 #include "../profile/save_profiles.h"
+#include "../lnet/lnet_start_gate.h"
+
+/* Controlled on the GBA game thread; no access to renderer from link.c. */
+extern int PortLanDedicatedSessionGate(void);
 
 extern void (*const gIntrTable[])(void);
 
@@ -51,6 +55,8 @@ static FILE *sSaveFile = NULL;
 static char sActiveSavePath[SP_PATH_CAP] = "pokeemerald.sav";
 static SpProfileLock sActiveProfileLock;
 static bool sProfileLocked = false;
+static LNetStartGate sEhl8StartGate;
+static SDL_atomic_t sEhl8WaitUiState; /* 0=normal, 1=waiting, 2=ready, 3=failed */
 #ifdef __ANDROID__
 static char sAndroidSavePath[1024] = "pokeemerald.sav";
 #endif
@@ -77,6 +83,7 @@ int main(int argc, char **argv)
     const char *sessionEndpoint = NULL;
     const char *sessionPin = NULL;
     bool sessionPinFromStdin = false;
+    bool sessionWaitForStart = false;
     char sessionPinBuffer[16] = {0};
     bool legacyLinkRequested = false;
     // Optional headless LAN configuration on desktop. The in-game Cable Club
@@ -101,6 +108,8 @@ int main(int argc, char **argv)
             sessionPin = argv[i] + 14;
         else if (strcmp(argv[i], "--session-pin-stdin") == 0)
             sessionPinFromStdin = true;
+        else if (strcmp(argv[i], "--session-wait-for-start") == 0)
+            sessionWaitForStart = true;
         else if (strncmp(argv[i], "--lan-host=", 11) == 0)
         {
             legacyLinkRequested = true;
@@ -160,6 +169,13 @@ int main(int argc, char **argv)
     /* An EHL8 session is NOT the legacy raw-SIO LAN connection.
      * Both a selected profile and a six-digit PIN are mandatory.
      * Reject mixed modes; never quietly fall back to another save/trainer. */
+    if (sessionWaitForStart && !sessionEndpoint)
+    {
+        fprintf(stderr, "START wait requires an EHL8 session endpoint.\n");
+        if (sProfileLocked)
+            sp_unlock(&sActiveProfileLock);
+        return 2;
+    }
     if (sessionEndpoint || sessionPin || sessionPinFromStdin)
     {
         if (sessionPinFromStdin && sessionPin == NULL &&
@@ -217,6 +233,12 @@ int main(int argc, char **argv)
         return 2;
     }
 #endif
+
+    /* No gameplay key reaches Emerald before EHL8 START on opted-in launches.
+     * The engine must keep running to poll TCP and draw frames while waiting. */
+    sEhl8StartGate.enabled = sessionWaitForStart;
+    sEhl8StartGate.released = 0;
+    SDL_AtomicSet(&sEhl8WaitUiState, sessionWaitForStart ? 1 : 0);
 
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
     {
@@ -331,9 +353,24 @@ int main(int argc, char **argv)
     internalClock.status = SIIRTCINFO_24HOUR;
     UpdateInternalClock();
 
+    int lastWaitUiState = -1;
     while (isRunning)
     {
         ProcessEvents();
+        if (sessionWaitForStart)
+        {
+            int waitUiState = SDL_AtomicGet(&sEhl8WaitUiState);
+            if (waitUiState != lastWaitUiState)
+            {
+                const char *caption = "Emerald Hybrid — EHL8 iniciado";
+                if (waitUiState == 1)
+                    caption = "Emerald Hybrid — aguardando segundo jogador e START";
+                else if (waitUiState == 3)
+                    caption = "Emerald Hybrid — EHL8 falhou; feche para tentar novamente";
+                SDL_SetWindowTitle(sdlWindow, caption);
+                lastWaitUiState = waitUiState;
+            }
+        }
 
         const int speedMultiplier = SDL_AtomicGet(&fastForwardActive)
                                   ? SDL_AtomicGet(&fastForwardMultiplier)
@@ -722,6 +759,19 @@ static void RenderFastForwardIndicator(void)
 
 u16 Platform_GetKeyInput(void)
 {
+    /* Game-thread input gate: do not pause VBlank, gameplay callbacks or
+     * PortLanDebugPump; START can only arrive while frames are progressing.
+     * Once released, a network drop does not re-lock the local trainer. */
+    if (sEhl8StartGate.enabled && !sEhl8StartGate.released)
+    {
+        int state = PortLanDedicatedSessionGate();
+        if (lnet_start_gate_blocked(&sEhl8StartGate, state))
+        {
+            SDL_AtomicSet(&sEhl8WaitUiState, state < 0 ? 3 : 1);
+            return 0;
+        }
+        SDL_AtomicSet(&sEhl8WaitUiState, 2);
+    }
 #ifdef _WIN32
     u16 gamepadKeys = GetXInputKeys();
     return (gamepadKeys != 0) ? gamepadKeys : keys;
