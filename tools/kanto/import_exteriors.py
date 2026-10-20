@@ -310,6 +310,36 @@ def add_firered_encounters(source: Path, emerald: Path,
 
 
 
+def render_firered_mart_stock(source: Path, emerald: Path,
+                             original_map: str, new_label: str) -> str:
+    """Port only the original FRLG ITEM_* constants, not its story scripts."""
+    content = (source / "data/maps" / original_map / "scripts.inc").read_text(encoding="utf-8")
+    needle = original_map + "_Items"
+    matches = list(re.finditer(r"(?m)^\s*" + re.escape(needle) + r"::\s*$", content))
+    if len(matches) != 1:
+        raise RuntimeError(f"Expected exactly one inventory for {original_map}")
+    defs = (emerald / "include/constants/items.h").read_text(encoding="utf-8")
+    known = set(re.findall(r"(?m)^\s*#define\s+(ITEM_[A-Z0-9_]+)\s+", defs))
+    items = []
+    for line in content[matches[0].end():].splitlines():
+        m = re.match(r"^\s*\.2byte\s+(ITEM_[A-Z0-9_]+)\s*(?:@.*)?$", line)
+        if m is None:
+            if line.strip().startswith(".2byte"):
+                raise RuntimeError(f"Invalid stock entry in {original_map}: {line}")
+            continue
+        item = m.group(1)
+        if item == "ITEM_NONE":
+            if not items or len(items) > 32 or len(set(items)) != len(items):
+                raise RuntimeError(f"Empty/duplicate/oversized stock: {original_map}")
+            return ("\n    .align 2\n" + new_label + ":\n"
+                    + "".join(f"    .short {name}\n" for name in items)
+                    + "    pokemartlistend\n")
+        if item not in known:
+            raise RuntimeError(f"Unavailable Emerald item {item} from {original_map}")
+        items.append(item)
+    raise RuntimeError(f"Unterminated FireRed inventory: {original_map}")
+
+
 def add_vermilion_interiors(source: Path, emerald: Path, layouts: dict,
                            target_layouts: dict, target_groups: dict,
                            vermilion: dict) -> list[str]:
@@ -418,18 +448,10 @@ Kanto_VermilionMart_EventScript_Clerk::
     release
     end
 
-    .align 2
-Kanto_VermilionMart_Items:
-    .short ITEM_POKE_BALL
-    .short ITEM_GREAT_BALL
-    .short ITEM_POTION
-    .short ITEM_SUPER_POTION
-    .short ITEM_ANTIDOTE
-    .short ITEM_PARALYZE_HEAL
-    .short ITEM_ESCAPE_ROPE
-    .short ITEM_REPEL
-    pokemartlistend
 """
+        if outside_index == 1:
+            scripts += render_firered_mart_stock(
+                source, emerald, source_name, "Kanto_VermilionMart_Items")
         (out / "scripts.inc").write_text(scripts, encoding="utf-8")
         # Use original exterior entrance coordinates, but new warp IDs (0/1)
         # reflect the subset of usable doors at this milestone.
@@ -544,13 +566,16 @@ def add_regional_service_interiors(source: Path, emerald: Path, source_maps: dic
     faceplayer
     message gText_HowMayIServeYou
     waitmessage
-    pokemart Kanto_GenericMart_Items
+    pokemart {target_name}_Items
     msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
     release
     end
 """
             out = emerald / "data/maps" / target_name
             emit_json(out / "map.json", map_obj)
+            if not is_center:
+                scripts += render_firered_mart_stock(
+                    source, emerald, source_name, target_name + "_Items")
             (out / "scripts.inc").write_text(scripts, encoding="utf-8")
             for w in entrances:
                 exterior["warp_events"].append({
@@ -567,25 +592,6 @@ def add_regional_service_interiors(source: Path, emerald: Path, source_maps: dic
     if len(created) != 15:
         raise RuntimeError(f"Wrong Kanto city service count: {len(created)}, expected 15")
 
-    # Shared shop inventory for the early functional milestone. Original
-    # city-specific FireRed item lists are a separately QA-tracked feature.
-    shop_common = """
-    .align 2
-Kanto_GenericMart_Items:
-    .short ITEM_POKE_BALL
-    .short ITEM_GREAT_BALL
-    .short ITEM_POTION
-    .short ITEM_SUPER_POTION
-    .short ITEM_ANTIDOTE
-    .short ITEM_PARALYZE_HEAL
-    .short ITEM_ESCAPE_ROPE
-    .short ITEM_REPEL
-    pokemartlistend
-"""
-    # Attach shared inventory to a Mart, not to a Pokemon Center.
-    first_mart = next(n for n in created if n.endswith("_Mart"))
-    with (emerald / "data/maps" / first_mart / "scripts.inc").open("a", encoding="utf-8") as file:
-        file.write(shop_common)
     # Delay registration to preserve V0.2 map indices during version upgrades.
     return created
 
