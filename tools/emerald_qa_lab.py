@@ -71,7 +71,7 @@ def game_command(app, profiles, profile_id, mode, port):
             "--profile-id=" + profile_id]
     if mode == "ehl8":
         argv += ["--session-client=127.0.0.1:" + str(validate_port(port)),
-                 "--session-pin-stdin"]
+                 "--session-pin-stdin", "--session-wait-for-start"]
     elif mode != "offline":
         raise ValueError("Modo de sessão inválido.")
     return argv
