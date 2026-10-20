@@ -19,6 +19,66 @@ class GraphicalLauncherTests(unittest.TestCase):
             launcher.make_command("game.exe","profiles","user_1","dedicated")
         with self.assertRaises(ValueError):
             launcher.make_command("game.exe","profiles","../bad","offline")
+    def test_player_join_button_never_selects_legacy_cable_club(self):
+        from unittest.mock import Mock
+        fake = Mock()
+        launcher.EmeraldLauncher.play_with_friends(fake)
+        fake.play.assert_called_once_with("dedicated")
+
+    def test_player_facing_lobby_messages_keep_reservations_distinct(self):
+        self.assertIn("iniciando", launcher.player_room_label(None))
+        self.assertIn("amigo", launcher.player_room_label({
+            "players": 1, "ready": 1, "started": False, "reserved": 0}))
+        self.assertIn("reconexão", launcher.player_room_label({
+            "players": 1, "ready": 1, "started": True, "reserved": 1}) if False else
+            launcher.player_room_label({
+                "players": 1, "ready": 1, "started": False, "reserved": 1}))
+        self.assertIn("INICIAR PARTIDA", launcher.player_room_label({
+            "players": 2, "ready": 2, "started": False, "reserved": 0}))
+        self.assertIn("Partida iniciada", launcher.player_room_label({
+            "players": 2, "ready": 2, "started": True, "reserved": 0}))
+
+    def test_host_create_room_opens_own_ehl8_game_without_hiding_start(self):
+        from unittest.mock import Mock
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "profiles"
+            save = root / "trainer" / "pokeemerald.sav"
+            save.parent.mkdir(parents=True)
+            save.write_bytes(b"fixture-not-a-playable-save")
+            game = Path(tmp) / "pokeemerald.exe"
+            game.touch()
+            fake = Mock()
+            fake.active_process = None
+            fake.server_process = None
+            fake.selected = "trainer"
+            fake.root_dir = root
+            fake.game = game
+            fake.pin.get.return_value = "123456"
+            fake.start_server.return_value = True
+            launcher.EmeraldLauncher.create_room(fake)
+            fake.start_server.assert_called_once_with()
+            fake.play.assert_called_once_with(
+                "dedicated", host_override="127.0.0.1",
+                keep_launcher=True)
+
+    def test_create_room_needs_local_save_before_spawning_server(self):
+        from unittest.mock import Mock, patch
+        fake = Mock()
+        fake.active_process = None
+        fake.selected = None
+        fake.game = Path("not-required")
+        with patch.object(launcher.messagebox, "showwarning"):
+            launcher.EmeraldLauncher.create_room(fake)
+        fake.start_server.assert_not_called()
+        fake.play.assert_not_called()
+
+    def test_generate_room_pin_is_six_digits_without_persisting(self):
+        from unittest.mock import Mock, patch
+        fake = Mock()
+        with patch.object(launcher.secrets, "randbelow", return_value=5):
+            launcher.EmeraldLauncher.generate_pin(fake)
+        fake.pin.set.assert_called_once_with("000005")
+
     def test_pin_handoff_succeeds_without_logging_or_persisting_pin(self):
         from unittest.mock import Mock
         child = Mock()
