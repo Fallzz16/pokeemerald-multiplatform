@@ -19,6 +19,42 @@ class GraphicalLauncherTests(unittest.TestCase):
             launcher.make_command("game.exe","profiles","user_1","dedicated")
         with self.assertRaises(ValueError):
             launcher.make_command("game.exe","profiles","../bad","offline")
+    def test_pin_handoff_succeeds_without_logging_or_persisting_pin(self):
+        from unittest.mock import Mock
+        child = Mock()
+        child.stdin = Mock()
+        launcher.deliver_pin_or_terminate(child, "123456")
+        child.stdin.write.assert_called_once_with(b"123456\n")
+        child.stdin.flush.assert_called_once_with()
+        child.stdin.close.assert_called_once_with()
+        child.terminate.assert_not_called()
+
+    def test_pin_handoff_broken_pipe_terminates_untracked_child(self):
+        from unittest.mock import Mock
+        child = Mock()
+        child.poll.return_value = None
+        child.stdin.write.side_effect = BrokenPipeError("closed stdin")
+        with self.assertRaises(OSError) as error:
+            launcher.deliver_pin_or_terminate(child, "123456")
+        self.assertNotIn("123456", str(error.exception))
+        child.terminate.assert_called_once_with()
+        child.wait.assert_called_once_with(timeout=3)
+        child.stdin.close.assert_called_once_with()
+
+    def test_pin_handoff_timeout_escalates_to_kill(self):
+        import subprocess
+        from unittest.mock import Mock
+        child = Mock()
+        child.poll.return_value = None
+        child.stdin.flush.side_effect = BrokenPipeError("flushing closed stdin")
+        child.wait.side_effect = [subprocess.TimeoutExpired("game", 3), 0]
+        with self.assertRaises(OSError):
+            launcher.deliver_pin_or_terminate(child, "123456")
+        child.terminate.assert_called_once()
+        child.kill.assert_called_once()
+        self.assertEqual(child.wait.call_count, 2)
+        child.stdin.close.assert_called_once()
+
     def test_dedicated_session_requires_six_digit_pin_and_valid_ipv4(self):
         args = launcher.make_command("pokeemerald.exe","profiles","trainer",
                                      "dedicated","127.0.0.1","45680","123456")
