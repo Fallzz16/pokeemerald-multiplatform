@@ -1,6 +1,6 @@
-"""Emerald Hybrid experimental graphic launcher v0.8 for Windows.
+"""Emerald Hybrid experimental graphical launcher for Windows.
 Local accounts are save PROFILES, not Internet authentication.
-Dedicated server is intentionally unavailable until the EHL8 server is real.
+EHL8 presence mode is distinct from the legacy P2P Cable Club link.
 """
 import ipaddress
 import json
@@ -77,6 +77,38 @@ def read_room_occupancy(log_path):
         return None
     current, capacity = map(int, matches[-1])
     return (current, capacity) if current <= capacity else None
+
+
+def deliver_pin_or_terminate(process, pin):
+    """Deliver the private EHL8 PIN or stop a child that was not adopted.
+
+    The launcher must only track the new process after PIN delivery succeeds.
+    """
+    try:
+        if process.stdin is None:
+            raise OSError("Canal privado do PIN indisponível.")
+        process.stdin.write((pin + "\n").encode("ascii"))
+        process.stdin.flush()
+    except (OSError, ValueError, UnicodeError) as cause:
+        try:
+            if process.poll() is None:
+                process.terminate()
+                try:
+                    process.wait(timeout=3)
+                except subprocess.TimeoutExpired:
+                    process.kill()
+                    process.wait(timeout=3)
+        except (OSError, subprocess.TimeoutExpired):
+            pass
+        raise OSError(
+            "O jogo/servidor não recebeu o PIN; o processo foi encerrado ou já havia terminado."
+        ) from cause
+    finally:
+        if process.stdin is not None:
+            try:
+                process.stdin.close()
+            except OSError:
+                pass
 
 
 def validate_port(value):
@@ -214,9 +246,9 @@ class EmeraldLauncher(tk.Tk):
         self.text(info,"Conta = perfil local. EHL8 dedicado: beta para 2, presença apenas; batalhas/trocas usam P2P.",9,MUTED).pack(anchor="w",pady=(3,0))
         cards=tk.Frame(f,bg=INK);cards.pack(fill="x",padx=32)
         self.card(cards,"Jogar offline","Seu save, sem precisar de Internet.",lambda:self.play("offline"),"JOGAR",accent=True)
-        self.card(cards,"Hospedar e jogar","Seu PC hospeda a sessão LAN/VPN para 2 jogadores.",lambda:self.play("host"),"HOSPEDAR")
-        self.card(cards,"Jogar com amigos","Entrar por IP: P2P Cable Club ou servidor EHL8 com PIN.",self.play_with_friends,"ENTRAR")
-        self.card(cards,"Hospedar servidor dedicado","Servidor independente EHL8 beta: 2 jogadores, sem jogo no host.",self.start_server,"INICIAR SERVIDOR")
+        self.card(cards,"Cable Club legado (P2P)","Hospedar link antigo; NÃO cria sala de presença EHL8.",lambda:self.play("host"),"HOST P2P")
+        self.card(cards,"Entrar com amigo","Para aparecer no mapa: marque EHL8 e informe IP, porta e PIN.",self.play_with_friends,"ENTRAR")
+        self.card(cards,"Hospedar EHL8 (2 jogadores)","1. Inicie servidor. 2. Marque EHL8 e entre no próprio IP.",self.start_server,"CRIAR SALA")
         rowserver=tk.Frame(f,bg=INK);rowserver.pack(fill="x",padx=32,pady=(1,0))
         tk.Label(rowserver,textvariable=self.server_status,fg=GREEN,bg=INK,
                  font=("Segoe UI",9),anchor="w").pack(side="left",fill="x",expand=True)
@@ -361,11 +393,7 @@ class EmeraldLauncher(tk.Tk):
                      "--port",str(port),"--slots","2","--idle-minutes","15",
                      "--pin-stdin"],cwd=str(application_dir()),creationflags=flags,
                      stdin=subprocess.PIPE,stdout=log,stderr=subprocess.STDOUT)
-                try:
-                    proc.stdin.write((pin+"\n").encode("ascii"))
-                    proc.stdin.flush()
-                finally:
-                    proc.stdin.close()
+                deliver_pin_or_terminate(proc, pin)
             self.server_process=proc
             self.server_log_path=path
             self.server_status.set("Servidor EHL8 iniciando · porta "+str(port)+" · até 2 jogadores")
@@ -505,11 +533,7 @@ class EmeraldLauncher(tk.Tk):
                                        stdout=subprocess.DEVNULL,stderr=errfile)
             if mode=="dedicated":
                 # Never place a LAN room PIN in argv, persisted settings or logs.
-                try:
-                    p.stdin.write((self.pin.get()+"\n").encode("ascii"))
-                    p.stdin.flush()
-                finally:
-                    p.stdin.close()
+                deliver_pin_or_terminate(p, self.pin.get())
             self.active_process=p
             self.active_mode=mode
             self.active_log=logs
