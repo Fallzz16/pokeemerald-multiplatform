@@ -17,9 +17,12 @@
 /* FRLG keeps 640 primary tiles/metatiles and 7 primary BG palettes.
  * All original Hoenn layouts must continue using the Emerald 512/6 split. */
 extern const struct Tileset gTileset_KantoGeneral;
+extern const struct Tileset gTileset_KantoBuilding;
 static inline bool32 IsKantoMapLayout(const struct MapLayout *layout)
 {
-    return layout != NULL && layout->primaryTileset == &gTileset_KantoGeneral;
+    return layout != NULL &&
+           (layout->primaryTileset == &gTileset_KantoGeneral ||
+            layout->primaryTileset == &gTileset_KantoBuilding);
 }
 static inline u16 PrimaryMetatileLimitForLayout(const struct MapLayout *layout)
 {

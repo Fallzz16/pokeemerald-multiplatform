@@ -309,6 +309,140 @@ def add_firered_encounters(source: Path, emerald: Path,
     return len(added)
 
 
+
+def add_vermilion_interiors(source: Path, emerald: Path, layouts: dict,
+                           target_layouts: dict, target_groups: dict,
+                           vermilion: dict) -> list[str]:
+    """Port the original FireRed Pokemon Center and Mart geometries.
+
+    Use exact original entry tiles and interior dimensions. Only the selected
+    building entrance/exit warps are enabled; the upstairs Cable Club is left
+    disabled until it has an individually QA-tested Kanto map.
+    """
+    specs = [
+        ("VermilionCity_PokemonCenter_1F", "LAYOUT_POKEMON_CENTER_1F",
+         "LAYOUT_KANTO_POKEMON_CENTER_1F", "gTileset_KantoPokemonCenter",
+         "MUS_POKE_CENTER", "Kanto_VermilionCity_PokemonCenter_1F", 0,
+         "OBJ_EVENT_GFX_NURSE", "Kanto_VermilionCenter_EventScript_Nurse", (7, 2, 3)),
+        ("VermilionCity_Mart", "LAYOUT_MART", "LAYOUT_KANTO_MART",
+         "gTileset_KantoMart", "MUS_POKE_MART",
+         "Kanto_VermilionCity_Mart", 1,
+         "OBJ_EVENT_GFX_MART_EMPLOYEE", "Kanto_VermilionMart_EventScript_Clerk", (2, 3, 0)),
+    ]
+    created = []
+    original_exits = vermilion.get("warp_events") or []
+    for (source_name, source_layout_id, target_layout_id, secondary, music,
+         target_name, outside_index, gfx, script_label, npc) in specs:
+        m = load_json(source, f"data/maps/{source_name}/map.json")
+        if m["layout"] != source_layout_id:
+            raise RuntimeError(f"Unexpected FireRed interior layout for {source_name}")
+        l = layouts[source_layout_id]
+        new_layout = dict(l)
+        new_layout.pop("border_width", None)
+        new_layout.pop("border_height", None)
+        new_layout.update({
+            "id": target_layout_id,
+            "name": target_name + "_Layout",
+            "primary_tileset": "gTileset_KantoBuilding",
+            "secondary_tileset": secondary,
+        })
+        for source_key, filename in (("border_filepath", "border.bin"),
+                                     ("blockdata_filepath", "map.bin")):
+            output_rel = f"data/layouts/{target_name}/{filename}"
+            output = emerald / output_rel
+            output.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source / l[source_key], output)
+            new_layout[source_key] = output_rel
+        raw = (emerald / new_layout["blockdata_filepath"]).read_bytes()
+        if len(raw) != new_layout["width"] * new_layout["height"] * 2:
+            raise RuntimeError(f"Wrong FireRed interior blockdata size: {target_name}")
+        target_layouts["layouts"].append(new_layout)
+
+        outside_warp_id = 4 if outside_index == 0 else 7
+        outside = original_exits[outside_warp_id]
+        if outside["dest_map"] != m["id"]:
+            raise RuntimeError(f"Source outdoor warp #{outside_warp_id} mismatch")
+
+        # The original source has three adjacent exit tiles for both buildings.
+        door_events = [e for e in m["warp_events"]
+                       if e["dest_map"] == "MAP_VERMILION_CITY"]
+        if len(door_events) != 3:
+            raise RuntimeError(f"Unexpected number of original exits: {source_name}")
+        target_warps = [{
+            "x": e["x"], "y": e["y"], "elevation": e["elevation"],
+            "dest_map": "MAP_KANTO_VERMILIONCITY",
+            "dest_warp_id": str(outside_index),
+        } for e in door_events]
+        x, y, elevation = npc
+        obj = make_qa_npc(gfx, script_label, npc)
+        if outside_index == 0:
+            obj["local_id"] = "LOCALID_KANTO_VERMILION_NURSE"
+        map_obj = {
+            "id": "MAP_KANTO_" + source_name.upper(),
+            "name": target_name, "layout": target_layout_id, "music": music,
+            "region_map_section": "MAPSEC_NONE",
+            "requires_flash": False, "weather": "WEATHER_NONE",
+            "map_type": "MAP_TYPE_INDOOR", "allow_cycling": False,
+            "allow_escaping": False, "allow_running": False,
+            "show_map_name": False, "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+            "connections": None, "object_events": [obj],
+            "warp_events": target_warps, "coord_events": [], "bg_events": [],
+        }
+        out = emerald / "data/maps" / target_name
+        emit_json(out / "map.json", map_obj)
+        if outside_index == 0:
+            scripts = """Kanto_VermilionCity_PokemonCenter_1F_MapScripts::
+    .byte 0
+
+@ Do not overwrite Hoenn's last healing position before a dedicated
+@ per-region save location exists. Returning from Kanto must remain safe.
+Kanto_VermilionCenter_EventScript_Nurse::
+    setvar VAR_0x800B, LOCALID_KANTO_VERMILION_NURSE
+    call Common_EventScript_PkmnCenterNurse
+    waitmessage
+    waitbuttonpress
+    release
+    end
+"""
+        else:
+            scripts = """Kanto_VermilionCity_Mart_MapScripts::
+    .byte 0
+
+Kanto_VermilionMart_EventScript_Clerk::
+    lock
+    faceplayer
+    message gText_HowMayIServeYou
+    waitmessage
+    pokemart Kanto_VermilionMart_Items
+    msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+    release
+    end
+
+    .align 2
+Kanto_VermilionMart_Items:
+    .short ITEM_POKE_BALL
+    .short ITEM_GREAT_BALL
+    .short ITEM_POTION
+    .short ITEM_SUPER_POTION
+    .short ITEM_ANTIDOTE
+    .short ITEM_PARALYZE_HEAL
+    .short ITEM_ESCAPE_ROPE
+    .short ITEM_REPEL
+    pokemartlistend
+"""
+        (out / "scripts.inc").write_text(scripts, encoding="utf-8")
+        # Use original exterior entrance coordinates, but new warp IDs (0/1)
+        # reflect the subset of usable doors at this milestone.
+        entry = {
+            "x": outside["x"], "y": outside["y"],
+            "elevation": outside["elevation"], "dest_map": map_obj["id"],
+            "dest_warp_id": "1",
+        }
+        created.append(target_name)
+    target_groups["gMapGroup_Kanto"].extend(created)
+    return created
+
+
 def copy_exteriors(source: Path, emerald: Path) -> dict:
     checkout_guard(source)
     group = load_json(source, "data/maps/map_groups.json")
@@ -332,10 +466,17 @@ def copy_exteriors(source: Path, emerald: Path) -> dict:
     for label in sorted(secondaries):
         create_tileset(source, emerald, label, "secondary",
                        dest_behavior, source_behavior, unknown)
+    # A faithful center and mart require FireRed's 640/7 indoor Building tileset.
+    create_tileset(source, emerald, "gTileset_Building", "primary",
+                   dest_behavior, source_behavior, unknown)
+    for label in ("gTileset_PokemonCenter", "gTileset_Mart"):
+        create_tileset(source, emerald, label, "secondary",
+                       dest_behavior, source_behavior, unknown)
     report = {"source_commit": PINNED_FIRE_RED_SHA,
               "state": MILESTONE,
               "geometry_maps_created": len(names),
-              "graphics_tilesets_created": 1 + len(secondaries),
+              "graphics_tilesets_created": 4 + len(secondaries),
+              "original_interiors_ported": 2,
               "original_npcs_ported": 0,
               "interior_warps_ported": 0,
               "trainer_battles_ported": 0,
@@ -385,6 +526,19 @@ def copy_exteriors(source: Path, emerald: Path) -> dict:
                             "Kanto_VermilionCity_EventScript_TestWildBattle", dock["encounter"]),
             ])
             report["landing"] = dock
+        if n == "VermilionCity":
+            # The source index is the stable warp position in FireRed.
+            # Only original Pokemon Center (#4) and Mart (#7) are unlocked.
+            for source_warp_index, target_id in (
+                (4, "MAP_KANTO_VERMILIONCITY_POKEMONCENTER_1F"),
+                (7, "MAP_KANTO_VERMILIONCITY_MART"),
+            ):
+                src_warp = m["warp_events"][source_warp_index]
+                target_map["warp_events"].append({
+                    "x": src_warp["x"], "y": src_warp["y"],
+                    "elevation": src_warp["elevation"],
+                    "dest_map": target_id, "dest_warp_id": "1",
+                })
         out_dir = emerald / "data/maps" / prefixed
         emit_json(out_dir / "map.json", target_map)
         scripts = f"{prefixed}_MapScripts::\n    .byte 0\n"
@@ -449,6 +603,10 @@ Kanto_VermilionCity_Text_BattleQuestion:
     report["wild_encounter_maps_ported"] = add_firered_encounters(
         source, emerald, source_to_name)
     report["wild_encounters_ported"] = report["wild_encounter_maps_ported"] > 0
+    interiors = add_vermilion_interiors(
+        source, emerald, layouts, target_layouts, target_groups,
+        source_maps["VermilionCity"])
+    report["interior_maps"] = interiors
     target_groups["gMapGroup_Kanto"].extend("Kanto_" + n for n in names)
     target_groups["connections_include_order"].extend("Kanto_" + n for n in names)
     emit_json(emerald / "data/maps/map_groups.json", target_groups)
@@ -459,6 +617,7 @@ Kanto_VermilionCity_Text_BattleQuestion:
     if anchor not in code:
         raise RuntimeError("Expected original Kanto Harbor script include not found")
     includes = "".join(f'\n\t.include "data/maps/Kanto_{n}/scripts.inc"' for n in names)
+    includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"' for n in interiors)
     inc.write_text(code.replace(anchor, anchor + includes, 1), encoding="utf-8")
     ferry = emerald / "data/maps/SlateportCity_Harbor/scripts.inc"
     s = ferry.read_text(encoding="utf-8")
@@ -481,7 +640,8 @@ def main() -> int:
     opts.report.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     print(f"Materialized {result['geometry_maps_created']} original exterior maps "
           f"and {result['graphics_tilesets_created']} graphics sets.")
-    print("WARNING: Interiors/NPCs/trainer battles/encounters/center heals remain pending.")
+    print("WARNING: Only Vermilion Pokemon Center 1F and Mart interiors are ready for QA.")
+    print("Other interiors, gym/trainer scripts and local healing respawn remain pending.")
     print("Verify collision, palettes, map edges, ferry and save by real gameplay.")
     return 0
 
