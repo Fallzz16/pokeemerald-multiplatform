@@ -166,10 +166,11 @@ class SessionServer:
         if expired:
             self.log.info("EHL8_ROOM_RESERVED=%d/%d",
                           len(self.reservations), self.slots)
-        if not self.players and not self.reservations and self.in_game:
+        room_ended = not self.players and not self.reservations and self.in_game
+        if room_ended:
             self.in_game = False
             self.log.info("EHL8_ROOM_STARTED=0")
-        if expired:
+        if expired or room_ended:
             self.log_room_state()
 
     async def issue_resume_token(self, peer):
