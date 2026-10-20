@@ -921,3 +921,16 @@ Validador YAML já passa em Windows e Linux; teste de ciclo de vida da porta rea
 Execução concluída: [Auto QA Windows + Linux, run 38994634156](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/38994634156), commit testado `28b304bf0313718b78fa569948cd4d7e7497abc3`, conclusão `success`. Relatórios de artefato confirmam **Linux: 15 PASS / 0 FAIL / 0 SKIP** e **Windows: 13 PASS / 0 FAIL / 2 SKIP** (os dois testes de fixtures nativos POSIX são intencionalmente Linux-only). O teste real de ciclo de vida da porta TCP está incluído e passou nas duas plataformas. Correções que eliminaram os defeitos detectados estão documentadas nas seções 46–51.
 
 Esse sucesso comprova as suítes automatizadas do commit testado, não gameplay gráfico real, integridade de save dentro do jogo, APK Android ou crossplay. O build completo Windows da revisão final `364f3c2f0d04d1f3bdd9db313f45a23e79edea7c` ainda estava aguardando execução/conclusão quando esta nota foi escrita; após esta nota o novo HEAD exigirá build de mesma revisão para obter ZIP final exato. Nenhum save pessoal foi usado.
+
+
+## 53. Kanto como segundo continente — primeiro incremento K0 (2026-10-20)
+
+**Decisão nova do usuário:** adicionar a geografia de Kanto (referência FireRed) como uma segunda região do Emerald, sem substituir Hoenn. A travessia será tratada como viagem entre continentes usando o mesmo treinador, inventário e save. Pokémon Ruby não será importado por ser Hoenn redundante. A nova expansão deve preservar o projeto multiplayer Emerald Hybrid e suas preferências anteriores.
+
+**Branch isolada:** `feature/emerald-kanto-gateway-m0` a partir da branch M2.3-A `feature/emerald-v100-m23a-server-first-lab` no commit base `59b94d1a6b2411f85b0eac8a12d31cb7b92fc73f`. Primeiro commit K0: `71e7e4ab2faeb6ef0227f0e84858472da030d0b2`. O PR novo deve mirar a base M2.3-A, sem alterar nem mesclar automaticamente PR #19. Rollback funcional histórico continua M2.2-B `5e53e40`.
+
+**Implementado no K0 (apenas porta de entrada):** grupo `gMapGroup_Kanto` adicionado ao final de `data/maps/map_groups.json` preservando posição/IDs antigos; mapa `data/maps/Kanto_Harbor/map.json` com layout **Emerald** `LAYOUT_ISLAND_HARBOR` reutilizado; scripts novos para viajar de Slateport e voltar, por marinheiro independente do S.S. Tidal; include em `data/event_scripts.s`. Criado teste estrutural `tests/test_kanto_gateway.py` e roteiro `docs/KANTO_SECOND_REGION_FOUNDATION_PTBR.md`. Nenhum save de usuário foi lido, sobrescrito ou criado. Nada de FireRed foi copiado para esse commit.
+
+**Ainda não implementado:** cidades e rotas reais de Kanto, tilesets e colisão FRLG, eventos/NPCs completos, mapa regional no PokéNav e Fly, história de ginásios de Kanto, encontros e teste multiplayer nesta área. O porto deve ser anunciado como **protótipo de transição**, nunca como continente completo.
+
+**Testes e riscos:** os arquivos JSON e as referências centrais foram checados estruturalmente durante a preparação, mas ainda NÃO existe compilação aprovada, QA de mapa/câmera, colisão do novo marinheiro no porto de Slateport nem download Windows de mesmo SHA verificado. Aguardar workflow Kanto Gateway QA no commit de CI e teste manual antes de permitir merge. Eventuais falhas em mapa, script ou texto exigem correção nesta branch; não modificar save offset para forçar entrada.
