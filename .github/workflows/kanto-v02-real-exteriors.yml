@@ -49,6 +49,27 @@ jobs:
           assert Path('data/maps/Kanto_Route11/map.json').is_file()
           assert report['original_npcs_ported'] == 0
           assert report['interior_warps_ported'] == 0
+          assert report['qa_npcs_added_in_vermilion'] == 3
+          assert report['qa_party_heal'] and report['qa_scripted_pidgey_battle']
+          from struct import unpack_from
+          original=Path("data/layouts/Kanto_VermilionCity/map.bin").read_bytes()
+          m=json.loads(Path("data/maps/Kanto_VermilionCity/map.json").read_text())
+          entry={obj["script"]:obj for obj in m["object_events"]}
+          for script,position in [
+            ("Kanto_VermilionCity_EventScript_ReturnFerry", report["landing"]["sailor"]),
+            ("Kanto_VermilionCity_EventScript_TestHeal", report["landing"]["healer"]),
+            ("Kanto_VermilionCity_EventScript_TestWildBattle", report["landing"]["encounter"]),
+          ]:
+            x,y,elevation=position
+            assert (entry[script]["x"],entry[script]["y"],entry[script]["elevation"]) == (x,y,elevation)
+            raw=unpack_from("<H",original,2*(y*48+x))[0]
+            assert (raw&0x0C00)==0, (script,x,y,"solid tile")
+            assert raw >> 12 == elevation, (script,x,y,"wrong elevation")
+          ax,ay,ae=report["landing"]["arrival"]
+          assert (unpack_from("<H",original,2*(ay*48+ax))[0]&0x0C00)==0
+          ferry=Path("data/maps/SlateportCity_Harbor/scripts.inc").read_text()
+          assert f"warp MAP_KANTO_VERMILIONCITY, {ax}, {ay}" in ferry
+          assert len(json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"])==39
           PY
       - name: Get SDL2 Windows runtime and compile game with authentic maps
         run: |
