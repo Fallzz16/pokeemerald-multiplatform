@@ -396,7 +396,7 @@ Kanto_VermilionCity_EventScript_ReturnFerry::
     msgbox Kanto_VermilionCity_Text_ReturnToHoenn, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, NO, Kanto_VermilionCity_EventScript_Stay
     closemessage
-    warp MAP_SLATEPORT_CITY_HARBOR, 13, 12
+    special Kanto_ReturnToHoennHealWarp
     waitstate
     release
     end
