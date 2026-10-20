@@ -112,6 +112,43 @@ class GraphicalLauncherTests(unittest.TestCase):
                 out.write("EHL8_ROOM_STARTED=1\n")
             self.assertTrue(launcher.read_lobby_gate(log)["started"])
 
+    def test_atomic_lobby_snapshot_overrides_stale_separate_log_lines(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            log = Path(tmp) / "server.log"
+            # Old non-atomic lines may reflect different instants: never use
+            # them after an authoritative complete room state is available.
+            log.write_text("INFO EHL8_ROOM_COUNT=2/2\n"
+                           "INFO EHL8_READY_COUNT=2/2\n"
+                           "INFO EHL8_ROOM_STARTED=0\n"
+                           "INFO EHL8_ROOM_STATE=1/2,1/2,0,1/2\n",
+                           encoding="utf-8")
+            self.assertEqual(launcher.read_lobby_gate(log), {
+                "players": 1, "ready": 1, "started": False,
+                "reserved": 1})
+            with log.open("a", encoding="utf-8") as stream:
+                stream.write("INFO EHL8_ROOM_STATE=2/2,2/2,0,0/2\n")
+            self.assertEqual(launcher.read_lobby_gate(log), {
+                "players": 2, "ready": 2, "started": False,
+                "reserved": 0})
+            with log.open("a", encoding="utf-8") as stream:
+                stream.write("INFO EHL8_ROOM_STATE=2/2,2/2,1,0/2\n")
+            self.assertTrue(launcher.read_lobby_gate(log)["started"])
+
+    def test_invalid_or_partially_written_snapshot_never_enables_start(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            log = Path(tmp) / "server.log"
+            log.write_text("INFO EHL8_ROOM_STATE=2/2,2/2,0,0/2\n"
+                           "INFO EHL8_ROOM_STATE=1/2,2/2,0,0/2\n",
+                           encoding="utf-8")
+            self.assertIsNone(launcher.read_lobby_gate(log))
+            with log.open("a", encoding="utf-8") as stream:
+                stream.write("INFO EHL8_ROOM_STATE=2/2,2/2,0,0/2\n"
+                             "INFO EHL8_ROOM_STATE=2/2,2/2,0")
+            self.assertIsNone(launcher.read_lobby_gate(log))
+            log.write_text("INFO EHL8_ROOM_STATE=2/2,2/2,0,1/2\n",
+                           encoding="utf-8")
+            self.assertIsNone(launcher.read_lobby_gate(log))
+
     def test_admin_start_writes_exact_local_command(self):
         from unittest.mock import Mock
         process = Mock()
