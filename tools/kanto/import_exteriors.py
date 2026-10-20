@@ -596,6 +596,117 @@ def add_regional_service_interiors(source: Path, emerald: Path, source_maps: dic
     return created
 
 
+def add_saffron_gatehouses(source: Path, emerald: Path, source_maps: dict,
+                          layouts: dict, target_layouts: dict,
+                          target_groups: dict) -> list[str]:
+    """Port real FRLG north/south/east/west Saffron gatehouse passages.
+
+    Preserve the FireRed index of the entrance inside each gate. Original
+    exterior warp indices must be explicitly remapped because V0.3 exteriors
+    already contain new generated services. All old map IDs are untouched.
+    """
+    gate_names = ("Route5_SouthEntrance", "Route6_NorthEntrance",
+                  "Route7_EastEntrance", "Route8_WestEntrance")
+    gates = {name: load_json(source, f"data/maps/{name}/map.json")
+             for name in gate_names}
+    if len({obj["id"] for obj in gates.values()}) != len(gates):
+        raise RuntimeError("Duplicate original Saffron gate IDs")
+    gate_by_id = {m["id"]: name for name, m in gates.items()}
+    outdoor_by_id = {m["id"]: name for name, m in source_maps.items()}
+    named_gate_layouts = {
+        "LAYOUT_SAFFRON_CITY_NORTH_SOUTH_ENTRANCE": "LAYOUT_KANTO_SAFFRON_GATE_NS",
+        "LAYOUT_SAFFRON_CITY_EAST_WEST_ENTRANCE": "LAYOUT_KANTO_SAFFRON_GATE_EW",
+    }
+    for original_id, dest_id in named_gate_layouts.items():
+        item = layouts[original_id]
+        if (item["primary_tileset"] != "gTileset_Building"
+                or item["secondary_tileset"] != "gTileset_GenericBuilding2"):
+            raise RuntimeError(f"Unexpected FireRed gatehouse tilesets: {original_id}")
+        new_layout = dict(item)
+        new_layout.pop("border_width", None)
+        new_layout.pop("border_height", None)
+        new_layout["id"] = dest_id
+        new_layout["name"] = dest_id + "_Layout"
+        new_layout["primary_tileset"] = "gTileset_KantoBuilding"
+        new_layout["secondary_tileset"] = "gTileset_KantoGenericBuilding2"
+        for source_key, filename in (("border_filepath", "border.bin"),
+                                     ("blockdata_filepath", "map.bin")):
+            dest_rel = f"data/layouts/{dest_id}/{filename}"
+            dest = emerald / dest_rel
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source / item[source_key], dest)
+            new_layout[source_key] = dest_rel
+        if (emerald / new_layout["blockdata_filepath"]).stat().st_size != (
+                new_layout["width"] * new_layout["height"] * 2):
+            raise RuntimeError(f"Malformed FireRed gatehouse layout {original_id}")
+        target_layouts["layouts"].append(new_layout)
+
+    # Copy ONLY the exterior doors whose original destination is one of
+    # these four gates; never bring across incomplete locations.
+    original_to_new_warp = {}
+    for outside_name, original in source_maps.items():
+        matching = [(idx, w) for idx, w in enumerate(original.get("warp_events") or [])
+                    if w["dest_map"] in gate_by_id]
+        if not matching:
+            continue
+        path = emerald / "data/maps" / ("Kanto_" + outside_name) / "map.json"
+        target = load_json(emerald, str(path.relative_to(emerald)))
+        for original_idx, w in matching:
+            gate_name = gate_by_id[w["dest_map"]]
+            local_idx = len(target["warp_events"])
+            target["warp_events"].append({
+                "x": w["x"], "y": w["y"], "elevation": w["elevation"],
+                "dest_map": "MAP_KANTO_" + gate_name.upper(),
+                "dest_warp_id": str(w["dest_warp_id"]),
+            })
+            original_to_new_warp[(original["id"], original_idx)] = local_idx
+        emit_json(path, target)
+
+    created = []
+    for name in gate_names:
+        original = gates[name]
+        src_layout_id = original["layout"]
+        if src_layout_id not in named_gate_layouts:
+            raise RuntimeError(f"Unsupported Saffron gate layout: {src_layout_id}")
+        target_name = "Kanto_" + name
+        warps = []
+        for src_warp in original["warp_events"]:
+            outside_original_id = src_warp["dest_map"]
+            if outside_original_id not in outdoor_by_id:
+                raise RuntimeError(f"{name}: gate warp targets an unported exterior")
+            outside_idx = int(src_warp["dest_warp_id"])
+            lookup = (outside_original_id, outside_idx)
+            if lookup not in original_to_new_warp:
+                raise RuntimeError(f"{name}: destination exterior warp not materialized: {lookup}")
+            warps.append({
+                "x": src_warp["x"], "y": src_warp["y"],
+                "elevation": src_warp["elevation"],
+                "dest_map": "MAP_KANTO_" + outdoor_by_id[outside_original_id].upper(),
+                "dest_warp_id": str(original_to_new_warp[lookup]),
+            })
+        if not warps:
+            raise RuntimeError(f"{name}: gatehouse has no active warp events")
+        map_obj = {
+            "id": "MAP_KANTO_" + name.upper(),
+            "name": target_name, "layout": named_gate_layouts[src_layout_id],
+            "music": "MUS_RG_SEVII_ROUTE", "region_map_section": "MAPSEC_NONE",
+            "requires_flash": False, "weather": "WEATHER_NONE",
+            "map_type": "MAP_TYPE_INDOOR", "allow_cycling": False,
+            "allow_escaping": False, "allow_running": False,
+            "show_map_name": False, "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+            "connections": None, "object_events": [],
+            "warp_events": warps, "coord_events": [], "bg_events": [],
+        }
+        dest = emerald / "data/maps" / target_name
+        emit_json(dest / "map.json", map_obj)
+        (dest / "scripts.inc").write_text(
+            target_name + "_MapScripts::\n    .byte 0\n", encoding="utf-8"
+        )
+        created.append(target_name)
+    target_groups["gMapGroup_Kanto"].extend(created)
+    return created
+
+
 def copy_exteriors(source: Path, emerald: Path) -> dict:
     checkout_guard(source)
     group = load_json(source, "data/maps/map_groups.json")
@@ -625,10 +736,13 @@ def copy_exteriors(source: Path, emerald: Path) -> dict:
     for label in ("gTileset_PokemonCenter", "gTileset_Mart"):
         create_tileset(source, emerald, label, "secondary",
                        dest_behavior, source_behavior, unknown)
+    create_tileset(source, emerald, "gTileset_GenericBuilding2", "secondary",
+                   dest_behavior, source_behavior, unknown)
     report = {"source_commit": PINNED_FIRE_RED_SHA,
               "state": MILESTONE,
               "geometry_maps_created": len(names),
-              "graphics_tilesets_created": 4 + len(secondaries),
+              "graphics_tilesets_created": 5 + len(secondaries),
+              "saffron_gatehouses_ported": 4,
               "original_interiors_ported": 2,
               "original_npcs_ported": 0,
               "interior_warps_ported": 2,
@@ -762,6 +876,9 @@ Kanto_VermilionCity_Text_BattleQuestion:
     new_services = add_regional_service_interiors(
         source, emerald, source_maps, target_groups)
     interiors.extend(new_services)
+    saffron_gates = add_saffron_gatehouses(
+        source, emerald, source_maps, layouts, target_layouts, target_groups)
+    report["saffron_gatehouses"] = saffron_gates
     report["interior_maps"] = interiors
     report["original_interiors_ported"] = len(interiors)
     report["interior_warps_ported"] = len(interiors)
@@ -777,6 +894,7 @@ Kanto_VermilionCity_Text_BattleQuestion:
         raise RuntimeError("Expected original Kanto Harbor script include not found")
     includes = "".join(f'\n\t.include "data/maps/Kanto_{n}/scripts.inc"' for n in names)
     includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"' for n in interiors)
+    includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"' for n in saffron_gates)
     inc.write_text(code.replace(anchor, anchor + includes, 1), encoding="utf-8")
     ferry = emerald / "data/maps/SlateportCity_Harbor/scripts.inc"
     s = ferry.read_text(encoding="utf-8")
