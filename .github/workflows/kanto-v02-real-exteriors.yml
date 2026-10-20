@@ -27,7 +27,7 @@ jobs:
           path: firered-source
           sparse-checkout: |
             data
-            src/data/tilesets
+            src/data
             include/constants
           sparse-checkout-cone-mode: true
       - name: Install compiler and binary tile encoder
@@ -47,6 +47,12 @@ jobs:
           assert Path('data/layouts/Kanto_VermilionCity/map.bin').stat().st_size == 3840
           assert Path('data/maps/Kanto_Route6/map.json').is_file()
           assert Path('data/maps/Kanto_Route11/map.json').is_file()
+          assert report['wild_encounter_maps_ported'] >= 20, report
+          assert report['wild_encounters_ported'] is True
+          em_encounters = json.loads(Path('src/data/wild_encounters.json').read_text())
+          all_maps = {q['map']: q for group in em_encounters['wild_encounter_groups'] for q in group['encounters']}
+          assert 'MAP_KANTO_ROUTE1' in all_maps
+          assert all_maps['MAP_KANTO_ROUTE1']['land_mons']['mons']
           assert report['original_npcs_ported'] == 0
           assert report['interior_warps_ported'] == 0
           assert report['qa_npcs_added_in_vermilion'] == 3
