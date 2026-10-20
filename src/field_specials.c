@@ -4268,3 +4268,22 @@ u8 Script_TryGainNewFanFromCounter(void)
 {
     return TryGainNewFanFromCounter(gSpecialVar_0x8004);
 }
+
+/*
+ * Keep the user's Hoenn heal warp without expanding the save structure.
+ * Only Kanto knows this special; original Emerald whiteout logic is intact.
+ * An absent/out-of-range region uses a safe, already registered Slateport
+ * healing destination. Do not run this if the user declined ferry travel.
+ */
+void Kanto_ReturnToHoennHealWarp(void)
+{
+    s8 lastGroup = gSaveBlock1Ptr->lastHealLocation.mapGroup;
+
+    if (lastGroup < 0 || lastGroup >= MAP_GROUP(MAP_KANTO_HARBOR))
+        SetWarpDestinationToHealLocation(HEAL_LOCATION_SLATEPORT_CITY);
+    else
+        SetWarpDestinationToLastHealLocation();
+
+    DoWarp();
+    ResetInitialPlayerAvatarState();
+}

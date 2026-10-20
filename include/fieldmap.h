@@ -4,12 +4,39 @@
 #define NUM_TILES_IN_PRIMARY 512
 #define NUM_TILES_TOTAL 1024
 #define NUM_METATILES_IN_PRIMARY 512
+#define NUM_KANTO_TILES_IN_PRIMARY 640
+#define NUM_KANTO_METATILES_IN_PRIMARY 640
+#define NUM_KANTO_PALS_IN_PRIMARY 7
 #define NUM_METATILES_TOTAL 1024
 #define NUM_PALS_IN_PRIMARY 6
 #define NUM_PALS_TOTAL 13
 #define MAX_MAP_DATA_SIZE 10240
 
 #define NUM_TILES_PER_METATILE 8
+
+/* FRLG keeps 640 primary tiles/metatiles and 7 primary BG palettes.
+ * All original Hoenn layouts must continue using the Emerald 512/6 split. */
+extern const struct Tileset gTileset_KantoGeneral;
+extern const struct Tileset gTileset_KantoBuilding;
+static inline bool32 IsKantoMapLayout(const struct MapLayout *layout)
+{
+    return layout != NULL &&
+           (layout->primaryTileset == &gTileset_KantoGeneral ||
+            layout->primaryTileset == &gTileset_KantoBuilding);
+}
+static inline u16 PrimaryMetatileLimitForLayout(const struct MapLayout *layout)
+{
+    return IsKantoMapLayout(layout) ? NUM_KANTO_METATILES_IN_PRIMARY : NUM_METATILES_IN_PRIMARY;
+}
+static inline u16 PrimaryTileLimitForLayout(const struct MapLayout *layout)
+{
+    return IsKantoMapLayout(layout) ? NUM_KANTO_TILES_IN_PRIMARY : NUM_TILES_IN_PRIMARY;
+}
+static inline u16 PrimaryPaletteLimitForLayout(const struct MapLayout *layout)
+{
+    return IsKantoMapLayout(layout) ? NUM_KANTO_PALS_IN_PRIMARY : NUM_PALS_IN_PRIMARY;
+}
+
 
 // Map coordinates are offset by 7 when using the map
 // buffer because it needs to load sufficient border
