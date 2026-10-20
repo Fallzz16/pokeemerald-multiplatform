@@ -5,6 +5,9 @@ on:
       - feature/emerald-v100-m23a-server-first-lab
       - 'feature/emerald-m30-*'
   workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
