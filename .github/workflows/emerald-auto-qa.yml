@@ -14,6 +14,7 @@ on:
       - 'src/platform/sdl2.c'
       - 'src/link.c'
       - 'src/lnet/lnet_start_gate.h'
+      - 'src/lnet/lnet_wait_overlay.h'
       - 'tests/**'
       - '.github/workflows/**'
   workflow_dispatch:
@@ -73,6 +74,12 @@ jobs:
         run: |
           gcc -std=c99 -Wall -Wextra -Werror -O2 tests/test_ehl8_start_gate.c -o /tmp/emerald-ehl8-gate-qa
           /tmp/emerald-ehl8-gate-qa
+      - name: Verify EHL8 in-game waiting overlay guards (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          gcc -std=c99 -Wall -Wextra -Werror -O2 tests/test_ehl8_wait_overlay.c -o /tmp/emerald-ehl8-overlay-qa
+          /tmp/emerald-ehl8-overlay-qa
       - name: Run simulated player regression QA
         shell: bash
         env:

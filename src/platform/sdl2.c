@@ -30,6 +30,7 @@
 /* Optional v0.8 managed profiles; legacy save remains the default. */
 #include "../profile/save_profiles.h"
 #include "../lnet/lnet_start_gate.h"
+#include "../lnet/lnet_wait_overlay.h"
 
 /* Controlled on the GBA game thread; no access to renderer from link.c. */
 extern int PortLanDedicatedSessionGate(void);
@@ -417,6 +418,11 @@ int main(int argc, char **argv)
 
         if (SDL_AtomicGet(&fastForwardActive))
             RenderFastForwardIndicator();
+
+        /* EHL8 room wait is a real player-facing screen, not just a frozen
+         * title menu. Keep rendering and network/game ticks alive. */
+        if (sessionWaitForStart)
+            lnet_wait_overlay_render(sdlRenderer, SDL_AtomicGet(&sEhl8WaitUiState));
 
         SDL_RenderPresent(sdlRenderer);
     }

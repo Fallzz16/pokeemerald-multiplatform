@@ -165,6 +165,22 @@ def read_lobby_gate(log_path):
             "started": started == "1"}
 
 
+def player_room_label(state):
+    """Portuguese player-facing status; not derived from stale occupancy."""
+    if state is None:
+        return "Sala iniciando · aguardando os jogadores se conectarem"
+    players, ready = state["players"], state["ready"]
+    if state["started"]:
+        return f"Partida iniciada · {players}/2 jogadores conectados"
+    if state.get("reserved", 0):
+        return f"Sala {players}/2 · aguardando reconexão"
+    if players < 2:
+        return f"Sala {players}/2 · esperando seu amigo entrar"
+    if ready < 2:
+        return f"Sala 2/2 · {ready}/2 prontos · preparando a partida"
+    return "Sala 2/2 · os dois prontos! Clique em INICIAR PARTIDA."
+
+
 def send_lobby_admin(process, command):
     """Only recognized local host commands are sent via an open private pipe."""
     if command != "START":
@@ -277,7 +293,7 @@ def write_nickname(folder,nick):
 class EmeraldLauncher(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Emerald Hybrid — Multiplayer Launcher")
+        self.title("Pokémon Emerald Hybrid — Jogar")
         self.geometry("1040x715"); self.minsize(880,640)
         self.configure(bg=INK)
         self.root_dir=profile_root()
@@ -294,8 +310,8 @@ class EmeraldLauncher(tk.Tk):
         self.port=tk.StringVar(value=str(settings.get("last_port","45680"))[:6])
         self.diagnostics=tk.BooleanVar(value=settings.get("diagnostics",False) is True)
         self.pin=tk.StringVar()
-        self.dedicated_mode=tk.BooleanVar(value=False)
-        self.server_status=tk.StringVar(value="Servidor dedicado: desligado")
+        self.pin_revealed=False
+        self.server_status=tk.StringVar(value="Sala offline · crie uma sala para convidar um amigo")
         self.active_process=None
         self.active_log=None
         self.active_mode=None
@@ -324,10 +340,10 @@ class EmeraldLauncher(tk.Tk):
         tk.Frame(f,bg=GREEN,height=5).pack(fill="x")
         self.text(f,"EMERALD",22,GREEN,True).pack(anchor="w",padx=22,pady=(33,0))
         self.text(f,"HYBRID MULTIPLAYER",11,WHITE,True).pack(anchor="w",padx=22)
-        self.text(f,"VERSÃO EXPERIMENTAL v0.8",9,MUTED).pack(anchor="w",padx=22,pady=(4,36))
+        self.text(f,"BETA ONLINE · 2 JOGADORES",9,MUTED).pack(anchor="w",padx=22,pady=(4,36))
         self.text(f,"CONTA / PERFIL LOCAL",10,MUTED,True).pack(anchor="w",padx=22)
         self.choices=tk.Frame(f,bg=LEFT);self.choices.pack(fill="x",padx=16,pady=(10,6))
-        self.btn(f,"+ Criar ou importar conta",self.new_profile,accent=True).pack(fill="x",padx=16,pady=6)
+        self.btn(f,"+ Criar / importar perfil",self.new_profile,accent=True).pack(fill="x",padx=16,pady=6)
         self.btn(f,"Atualizar lista",self.refresh).pack(fill="x",padx=16,pady=6)
         self.btn(f,"Abrir pasta de logs",self.open_logs).pack(fill="x",padx=16,pady=6)
         self.btn(f,"Criar backup do perfil",self.backup_selected).pack(fill="x",padx=16,pady=6)
@@ -346,43 +362,54 @@ class EmeraldLauncher(tk.Tk):
 
     def main_ui(self):
         f=self.main
-        heading=tk.Frame(f,bg=INK);heading.pack(fill="x",padx=32,pady=(31,14))
+        heading=tk.Frame(f,bg=INK);heading.pack(fill="x",padx=32,pady=(22,10))
         self.text(heading,"SUA AVENTURA EM HOENN",20,WHITE,True).pack(anchor="w")
-        self.text(heading,"Escolha um perfil e como deseja jogar.",10,MUTED).pack(anchor="w",pady=(6,0))
-        info=tk.Frame(f,bg="#194131",padx=17,pady=12);info.pack(fill="x",padx=32,pady=(0,12))
-        tk.Label(info,textvariable=self.status,fg=GREEN,bg=info["bg"],font=("Segoe UI",11,"bold"),anchor="w").pack(fill="x")
-        self.text(info,"Conta = perfil local. EHL8 dedicado: beta para 2, presença apenas; batalhas/trocas usam P2P.",9,MUTED).pack(anchor="w",pady=(3,0))
+        self.text(heading,"Escolha seu treinador e como deseja jogar.",10,MUTED).pack(anchor="w",pady=(4,0))
+        info=tk.Frame(f,bg="#194131",padx=15,pady=9);info.pack(fill="x",padx=32,pady=(0,7))
+        tk.Label(info,textvariable=self.status,fg=GREEN,bg=info["bg"],
+                 font=("Segoe UI",11,"bold"),anchor="w").pack(fill="x")
+        self.text(info,"Exploração online em teste. Batalhas e trocas pela sala EHL8 ainda não estão disponíveis.",9,MUTED).pack(anchor="w",pady=(3,0))
         cards=tk.Frame(f,bg=INK);cards.pack(fill="x",padx=32)
-        self.card(cards,"Jogar offline","Seu save, sem precisar de Internet.",lambda:self.play("offline"),"JOGAR",accent=True)
-        self.card(cards,"Cable Club legado (P2P)","Hospedar link antigo; NÃO cria sala de presença EHL8.",lambda:self.play("host"),"HOST P2P")
-        self.card(cards,"Entrar com amigo","Para aparecer no mapa: marque EHL8 e informe IP, porta e PIN.",self.play_with_friends,"ENTRAR")
-        self.card(cards,"Hospedar EHL8 (2 jogadores)","1. Inicie servidor. 2. Marque EHL8 e entre no próprio IP.",self.start_server,"CRIAR SALA")
-        rowserver=tk.Frame(f,bg=INK);rowserver.pack(fill="x",padx=32,pady=(1,0))
-        tk.Label(rowserver,textvariable=self.server_status,fg=GREEN,bg=INK,
-                 font=("Segoe UI",9),anchor="w").pack(side="left",fill="x",expand=True)
-        self.btn(rowserver,"Parar servidor",self.stop_server).pack(side="right")
-        self.start_room_button = self.btn(rowserver, "INICIAR SALA (2/2)", self.start_room,
-                                          accent=True, disabled=True)
-        self.start_room_button.pack(side="right", padx=(0, 9))
-        section=tk.Frame(f,bg=INK);section.pack(fill="x",padx=32,pady=(19,6))
-        self.text(section,"CONFIGURAÇÕES DA CONEXÃO",10,MUTED,True).pack(anchor="w")
+        self.card(cards,"Jogar sozinho","Seu save local, sem Internet.",lambda:self.play("offline"),"JOGAR",accent=True)
+        self.card(cards,"Criar sala com amigo","Abre a sala e o seu Emerald; depois aguarde 2/2.",self.create_room,"CRIAR SALA",accent=True)
+        self.card(cards,"Entrar na sala de um amigo","Preencha IP, porta e PIN abaixo. Aguarde o anfitrião.",self.play_with_friends,"ENTRAR")
+        room=tk.Frame(f,bg="#194131",padx=12,pady=7);room.pack(fill="x",padx=32,pady=(6,0))
+        self.text(room,"SALA MULTIPLAYER · 2 TREINADORES",9,MUTED,True).pack(anchor="w")
+        tk.Label(room,textvariable=self.server_status,fg=GREEN,bg=room["bg"],
+                 font=("Segoe UI",10,"bold"),anchor="w",wraplength=620).pack(fill="x",pady=(4,6))
+        rowserver=tk.Frame(room,bg=room["bg"]);rowserver.pack(fill="x")
+        self.start_room_button = self.btn(rowserver,"INICIAR PARTIDA (2/2)",self.start_room,
+                                          accent=True,disabled=True)
+        self.start_room_button.pack(side="left")
+        self.btn(rowserver,"PARAR SALA",self.stop_server).pack(side="right")
+        self.btn(rowserver,"COMO CONVIDAR",self.show_invitation_help).pack(side="right",padx=(0,8))
+        section=tk.Frame(f,bg=INK);section.pack(fill="x",padx=32,pady=(10,5))
+        self.text(section,"DADOS DA SALA",10,MUTED,True).pack(anchor="w")
         row=tk.Frame(f,bg=INK);row.pack(fill="x",padx=32)
-        self.text(row,"IP do host:",10,MUTED).pack(side="left")
-        tk.Entry(row,textvariable=self.ip,width=20,bg=PANEL,fg=WHITE,insertbackground=WHITE,relief="flat",font=("Consolas",11)).pack(side="left",padx=(10,22),ipady=7)
-        self.text(row,"Porta:",10,MUTED).pack(side="left")
-        tk.Entry(row,textvariable=self.port,width=7,bg=PANEL,fg=WHITE,insertbackground=WHITE,relief="flat",font=("Consolas",11)).pack(side="left",padx=9,ipady=7)
-        secretrow=tk.Frame(f,bg=INK);secretrow.pack(fill="x",padx=32,pady=(6,0))
-        tk.Checkbutton(secretrow,text="Entrar via servidor dedicado EHL8",variable=self.dedicated_mode,
-                       selectcolor=PANEL,activebackground=INK,activeforeground=WHITE,
-                       bg=INK,fg=MUTED,font=("Segoe UI",9)).pack(side="left")
-        self.btn(secretrow, "TESTAR CONEXÃO", self.check_network).pack(side="right",padx=(12,0))
-        self.text(secretrow,"PIN:",9,MUTED).pack(side="left",padx=(8,2))
-        tk.Entry(secretrow,textvariable=self.pin,show="*",width=8,bg=PANEL,fg=WHITE,
-                 insertbackground=WHITE,relief="flat",font=("Consolas",10)).pack(side="left",ipady=5)
-        tk.Checkbutton(f,text="Diagnóstico opcional: mostrar console CMD",variable=self.diagnostics,
-                       command=self.persist,selectcolor=PANEL,activebackground=INK,activeforeground=WHITE,
-                       bg=INK,fg=MUTED,font=("Segoe UI",10),anchor="w").pack(anchor="w",padx=32,pady=(13,0))
-        self.text(f,"Conexão remota: use VPN privada; não exponha as portas no roteador.",9,"#ffc783").pack(anchor="w",padx=32,pady=(8,0))
+        self.text(row,"IP do anfitrião:",9,MUTED).pack(side="left")
+        tk.Entry(row,textvariable=self.ip,width=18,bg=PANEL,fg=WHITE,
+                 insertbackground=WHITE,relief="flat",font=("Consolas",10)).pack(side="left",padx=(8,14),ipady=5)
+        self.text(row,"Porta:",9,MUTED).pack(side="left")
+        tk.Entry(row,textvariable=self.port,width=7,bg=PANEL,fg=WHITE,
+                 insertbackground=WHITE,relief="flat",font=("Consolas",10)).pack(side="left",padx=7,ipady=5)
+        secretrow=tk.Frame(f,bg=INK);secretrow.pack(fill="x",padx=32,pady=(4,0))
+        self.text(secretrow,"PIN (6 dígitos):",9,MUTED).pack(side="left")
+        self.pin_entry=tk.Entry(secretrow,textvariable=self.pin,show="*",width=8,bg=PANEL,fg=WHITE,
+                 insertbackground=WHITE,relief="flat",font=("Consolas",10))
+        self.pin_entry.pack(side="left",padx=8,ipady=5)
+        self.btn(secretrow,"GERAR PIN",self.generate_pin).pack(side="left")
+        self.btn(secretrow,"VER PIN",self.toggle_pin_visibility).pack(side="left",padx=(7,0))
+        self.btn(secretrow,"TESTAR IP",self.check_network).pack(side="right")
+        advanced=tk.Frame(f,bg=INK);advanced.pack(fill="x",padx=32,pady=(7,0))
+        self.text(advanced,"CLÁSSICO P2P · Cable Club (batalhas/trocas)",9,MUTED).pack(side="left")
+        self.btn(advanced,"HOSPEDAR",lambda:self.play("host")).pack(side="right")
+        self.btn(advanced,"ENTRAR",lambda:self.play("join")).pack(side="right",padx=(0,6))
+        tk.Checkbutton(f,text="Diagnóstico avançado: mostrar console",variable=self.diagnostics,
+                       command=self.persist,selectcolor=PANEL,activebackground=INK,
+                       activeforeground=WHITE,bg=INK,fg=MUTED,font=("Segoe UI",9),
+                       anchor="w").pack(anchor="w",padx=32,pady=(2,0))
+        self.text(f,"Entre casas: use VPN privada. Nunca exponha o servidor no roteador.",
+                  9,"#ffc783").pack(anchor="w",padx=32,pady=(3,0))
 
     def refresh(self):
         for child in self.choices.winfo_children():child.destroy()
@@ -491,26 +518,74 @@ class EmeraldLauncher(tk.Tk):
                 "IP correto, VPN privada e Firewall de rede privada. "
                 "Não abra portas públicas.\nDetalhes: " + str(exc))
 
+    def generate_pin(self):
+        """Only show/store the PIN in RAM; never put it in a process argument."""
+        self.pin.set(f"{secrets.randbelow(1000000):06d}")
+
+    def toggle_pin_visibility(self):
+        self.pin_revealed=not self.pin_revealed
+        self.pin_entry.configure(show="" if self.pin_revealed else "*")
+
+    def show_invitation_help(self):
+        messagebox.showinfo("Convidar um amigo",
+            "1. Crie a sala e abra seu Emerald.\n"
+            "2. Encontre seu IPv4 privado no Windows usando ipconfig "
+            "ou consulte o endereço da sua VPN privada.\n"
+            "3. Compartilhe IP, porta e PIN somente com seu amigo.\n"
+            "4. No PC dele, selecione ENTRAR NA SALA, preencha os dados "
+            "e aguarde 2/2 prontos.\n"
+            "5. Você clica INICIAR PARTIDA neste launcher.\n\n"
+            "127.0.0.1 só funciona no próprio PC. Não abra portas "
+            "públicas no roteador para o EHL8 experimental.")
+
     def play_with_friends(self):
-        self.play("dedicated" if self.dedicated_mode.get() else "join")
+        """Joining a multiplayer room always uses EHL8, not old P2P."""
+        self.play("dedicated")
+
+    def create_room(self):
+        """A host starts the room AND its own game, keeping START accessible."""
+        if self.active_process is not None and self.active_process.poll() is None:
+            messagebox.showwarning("Jogo já aberto","Feche o jogo atual antes de criar uma sala.")
+            return
+        if (self.selected is None or not self.game.is_file() or
+                not (self.root_dir/self.selected/"pokeemerald.sav").is_file()):
+            messagebox.showwarning("Escolha seu treinador",
+                "Selecione um perfil com save antes de criar uma sala.")
+            return
+        if self.server_process is not None and self.server_process.poll() is None:
+            messagebox.showwarning("Sala já criada","Uma sala já está ativa neste launcher.")
+            return
+        if not self.pin.get().strip():
+            self.generate_pin()
+        if not self.start_server():
+            return
+        if not self.play("dedicated", host_override="127.0.0.1", keep_launcher=True):
+            # A partially created room must not linger after a failed game launch.
+            if self.server_process is not None and self.server_process.poll() is None:
+                self.server_process.terminate()
+            self.server_process=None
+            self.manual_start_available=False
+            self.start_room_button.configure(state="disabled")
+            self.server_status.set("O Emerald não abriu; a sala foi encerrada.")
 
     def start_server(self):
         if self.server_process is not None and self.server_process.poll() is None:
             messagebox.showinfo("Servidor ativo","Já existe um servidor em execução neste launcher.")
-            return
+            return False
         if not self.server_exe.is_file():
             messagebox.showerror("Servidor ausente","EmeraldSessionServer.exe não foi encontrado. Use o pacote completo EHL8.")
-            return
+            return False
         try:
             port=validate_port(self.port.get())
             pin=self.pin.get()
             if not re.fullmatch(r"[0-9]{6}",pin):
                 raise ValueError("Informe um PIN de seis dígitos antes de hospedar.")
-            if not messagebox.askyesno("Servidor experimental LAN",
-                  "Iniciar servidor EHL8 na rede local privada?\n"
-                  "Somente personagens no mapa; batalhas e trocas ainda usam P2P.\n"
-                  "Não abra portas públicas no roteador."):
-                return
+            if not messagebox.askyesno("Criar sala privada",
+                  "Criar sala EHL8 para 2 pessoas nesta rede privada?\n"
+                  "Seu Emerald abrirá automaticamente e aguardará o amigo.\n"
+                  "Batalhas e trocas na sala online ainda não estão prontas.\n"
+                  "Nunca abra portas públicas no roteador."):
+                return False
             logs=self.root_dir.parent/"logs"
             logs.mkdir(parents=True,exist_ok=True)
             path=logs/("servidor-"+datetime.now().strftime("%Y%m%d-%H%M%S-%f")+".log")
@@ -523,10 +598,12 @@ class EmeraldLauncher(tk.Tk):
             self.manual_start_available=manual
             self.server_process=proc
             self.server_log_path=path
-            self.server_status.set("Servidor EHL8 iniciando · porta "+str(port)+" · até 2 jogadores")
+            self.server_status.set("Sala criada · conectando seu treinador (0/2)")
             self.after(1500,self.watch_server)
+            return True
         except (OSError,ValueError) as exc:
             messagebox.showerror("Não foi possível hospedar",str(exc))
+            return False
 
     def watch_server(self):
         if self.server_process is None:return
@@ -543,15 +620,13 @@ class EmeraldLauncher(tk.Tk):
                            and not state["started"] and state.get("reserved", 0)==0)
             self.start_room_button.configure(state="normal" if can_start else "disabled")
             if state:
-                self.server_status.set(
-                    f"Sala EHL8 {state['players']}/2 · prontos {state['ready']}/2 · "
-                    + ("EM JOGO" if state["started"] else "aguardando START do anfitrião"))
+                self.server_status.set(player_room_label(state))
             elif occupancy is None:
-                self.server_status.set("Servidor EHL8 ativo (beta) · aguardando participantes")
+                self.server_status.set("Sala ativa · aguardando jogadores (0/2)")
             else:
                 connected, limit=occupancy
                 self.server_status.set(
-                    f"Servidor EHL8 ativo (beta) · jogadores conectados: {connected}/{limit}")
+                    f"Sala ativa · {connected}/{limit} jogadores conectados")
             self.after(1300,self.watch_server)
 
     def start_room(self):
@@ -563,7 +638,7 @@ class EmeraldLauncher(tk.Tk):
         try:
             send_lobby_admin(self.server_process, "START")
             self.start_room_button.configure(state="disabled")
-            self.server_status.set("Solicitação START enviada; aguardando confirmação do servidor.")
+            self.server_status.set("Partida iniciando · aguardando confirmação do servidor")
         except (OSError, ValueError) as exc:
             messagebox.showerror("Não foi possível iniciar a sala", str(exc))
 
@@ -642,18 +717,18 @@ class EmeraldLauncher(tk.Tk):
         self.btn(modal,"Começar do zero",lambda:create(False),accent=True).pack(fill="x",padx=24,pady=5)
         self.btn(modal,"Importar meu save .sav",lambda:create(True)).pack(fill="x",padx=24,pady=5)
 
-    def play(self,mode):
+    def play(self,mode,host_override=None,keep_launcher=False):
         if self.active_process is not None and self.active_process.poll() is None:
             messagebox.showinfo("Jogo em execução","O Emerald já está aberto. Feche-o antes de iniciar outra partida.")
-            return
+            return False
         if self.selected is None:
-            messagebox.showwarning("Falta um perfil","Crie ou selecione uma conta local primeiro.");return
+            messagebox.showwarning("Falta um perfil","Crie ou selecione um perfil local primeiro.");return False
         if not self.game.is_file():
-            messagebox.showerror("Jogo não encontrado","Coloque pokeemerald.exe ao lado do launcher.");return
+            messagebox.showerror("Jogo não encontrado","Coloque pokeemerald.exe ao lado do launcher.");return False
         if not (self.root_dir/self.selected/"pokeemerald.sav").is_file():
-            messagebox.showerror("Save não encontrado","O arquivo de save deste perfil não existe.");return
+            messagebox.showerror("Save não encontrado","O arquivo de save deste perfil não existe.");return False
         try:
-            host=self.ip.get().strip()
+            host=host_override if host_override is not None else self.ip.get().strip()
             if mode=="dedicated" and not host and self.server_process is not None and self.server_process.poll() is None:
                 host="127.0.0.1"
             args=make_command(self.game,self.root_dir,self.selected,mode,host,self.port.get(),self.pin.get())
@@ -688,10 +763,16 @@ class EmeraldLauncher(tk.Tk):
             self.active_process=p
             self.active_mode=mode
             self.active_log=logs
-            self.status.set("Emerald em execução. O launcher acompanha o processo em segundo plano.")
-            self.iconify()
+            if keep_launcher:
+                self.status.set("Sala criada. Deixe este launcher aberto para usar INICIAR PARTIDA.")
+            else:
+                self.status.set("Emerald aberto. No online, aguarde o START do anfitrião.")
+                self.iconify()
             self.after(900,self.watch_game)
-        except (OSError,ValueError) as err:messagebox.showerror("Falha ao iniciar",str(err))
+            return True
+        except (OSError,ValueError) as err:
+            messagebox.showerror("Falha ao iniciar",str(err))
+            return False
 
 def main():
     if "--self-test" in sys.argv:
