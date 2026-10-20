@@ -50,7 +50,9 @@ jobs:
           assert report['wild_encounter_maps_ported'] >= 20, report
           assert report['wild_encounters_ported'] is True
           em_encounters = json.loads(Path('src/data/wild_encounters.json').read_text())
-          all_maps = {q['map']: q for group in em_encounters['wild_encounter_groups'] for q in group['encounters']}
+          all_maps = {q['map']: q
+                      for group in em_encounters['wild_encounter_groups']
+                      for q in group['encounters'] if 'map' in q}
           assert 'MAP_KANTO_ROUTE1' in all_maps
           assert all_maps['MAP_KANTO_ROUTE1']['land_mons']['mons']
           assert report['original_npcs_ported'] == 0
