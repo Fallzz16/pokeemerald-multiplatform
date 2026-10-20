@@ -478,7 +478,7 @@ def copy_exteriors(source: Path, emerald: Path) -> dict:
               "graphics_tilesets_created": 4 + len(secondaries),
               "original_interiors_ported": 2,
               "original_npcs_ported": 0,
-              "interior_warps_ported": 0,
+              "interior_warps_ported": 2,
               "trainer_battles_ported": 0,
               "wild_encounters_ported": False,
               "qa_npcs_added_in_vermilion": 3,

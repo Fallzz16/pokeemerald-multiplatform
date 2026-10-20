@@ -56,7 +56,11 @@ jobs:
           assert 'MAP_KANTO_ROUTE1' in all_maps
           assert all_maps['MAP_KANTO_ROUTE1']['land_mons']['mons']
           assert report['original_npcs_ported'] == 0
-          assert report['interior_warps_ported'] == 0
+          assert report['interior_warps_ported'] == 2
+          assert report['original_interiors_ported'] == 2
+          assert set(report['interior_maps']) == {
+            "Kanto_VermilionCity_PokemonCenter_1F", "Kanto_VermilionCity_Mart"
+          }
           assert report['qa_npcs_added_in_vermilion'] == 3
           assert report['qa_party_heal'] and report['qa_scripted_pidgey_battle']
           from struct import unpack_from
@@ -77,7 +81,31 @@ jobs:
           assert (unpack_from("<H",original,2*(ay*48+ax))[0]&0x0C00)==0
           ferry=Path("data/maps/SlateportCity_Harbor/scripts.inc").read_text()
           assert f"warp MAP_KANTO_VERMILIONCITY, {ax}, {ay}" in ferry
-          assert len(json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"])==39
+          assert len(json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"])==41
+          # Exact FireRed interior dimensions, linked entrance and return doors.
+          layouts=json.loads(Path("data/layouts/layouts.json").read_text())["layouts"]
+          lookup={entry["id"]: entry for entry in layouts if "id" in entry}
+          assert (lookup["LAYOUT_KANTO_POKEMON_CENTER_1F"]["width"],
+                  lookup["LAYOUT_KANTO_POKEMON_CENTER_1F"]["height"]) == (15,10)
+          assert (lookup["LAYOUT_KANTO_MART"]["width"],
+                  lookup["LAYOUT_KANTO_MART"]["height"]) == (11,9)
+          assert lookup["LAYOUT_KANTO_POKEMON_CENTER_1F"]["primary_tileset"] == "gTileset_KantoBuilding"
+          center=json.loads(Path("data/maps/Kanto_VermilionCity_PokemonCenter_1F/map.json").read_text())
+          mart=json.loads(Path("data/maps/Kanto_VermilionCity_Mart/map.json").read_text())
+          assert [(w["x"],w["y"]) for w in center["warp_events"]] == [(6,8),(7,8),(8,8)]
+          assert [(w["x"],w["y"]) for w in mart["warp_events"]] == [(3,7),(4,7),(5,7)]
+          assert len(m["warp_events"]) == 2
+          assert m["warp_events"][0]["dest_map"] == center["id"]
+          assert m["warp_events"][1]["dest_map"] == mart["id"]
+          assert all(w["dest_map"] == m["id"] and w["dest_warp_id"] == "0"
+                     for w in center["warp_events"])
+          assert all(w["dest_map"] == m["id"] and w["dest_warp_id"] == "1"
+                     for w in mart["warp_events"])
+          center_scripts=Path("data/maps/Kanto_VermilionCity_PokemonCenter_1F/scripts.inc").read_text()
+          mart_scripts=Path("data/maps/Kanto_VermilionCity_Mart/scripts.inc").read_text()
+          assert "Common_EventScript_PkmnCenterNurse" in center_scripts
+          assert "pokemart Kanto_VermilionMart_Items" in mart_scripts
+          assert "LOCALID_KANTO_VERMILION_NURSE" in center_scripts
           scripts=Path("data/maps/Kanto_VermilionCity/scripts.inc").read_text()
           assert "special Kanto_ReturnToHoennHealWarp" in scripts
           assert "special HealPlayerParty" in scripts
