@@ -951,3 +951,36 @@ Esse sucesso comprova as suítes automatizadas do commit testado, não gameplay 
 **Fronteiras:** o **QA Lab é ferramenta exclusiva de desenvolvimento/testes**; jamais torná-lo parte obrigatória da experiência final. Preservar o jogo Emerald, progresso original, Quest UI e PokéNav existentes, Cable Club legado, sprites, Pokémon, mapas, história e dados de save. A implementação de novas interfaces deve ser a mínima necessária para o multiplayer; não adicionar modos ou sistemas sem relação com online.
 
 **Documentação atualizada nesta mesma branch:** `docs/V100_M30_DECISOES_64D_20261019_PTBR.md` ganhou adendo de escopo para escolhas EX01–EX64, e `docs/V100_M30_PLAYABLE_EVOLUTION_ROADMAP_PTBR.md` agora assinala funções de expansão como congeladas. **Adicionado:** somente documentação de escopo; **modificado:** estes dois documentos e `AI_README.md`; **removido:** nada; **código, saves, protocolos e executáveis:** intactos nesta revisão documental. Teste desta mudança: conferência de texto por leitura GitHub; workflow/builds reiniciados devem ser confirmados pela revisão SHA atual. Baseline funcional/rollback inalterada: M2.2-B `5e53e40` e PR #19 `59b94d1a`. Não mesclar PR #20 sem a checagem de testes e QA humano.
+
+
+## 55. Auditoria de engenharia de beta jogável — segurança do launcher e CI (2026-10-19/20)
+
+**Novo pedido:** usuário quer que o Pokémon Emerald Hybrid existente chegue a uma **beta multiplayer jogável**, permitindo testes com amigo em outro PC/VM. Pediu auditoria exaustiva do projeto, pesquisa externa e melhorias honestas. Continua proibido acrescentar histórias/mapas/quests/Pokémon/recursos de campanha novos. QA Lab permanece **exclusivo para desenvolvimento/testes**, independente do launcher do jogo final.
+
+**Inventário auditado:** árvore GitHub completa (sem truncamento) de 13.590 entradas na revisão `d9a7d92263b64cb4a073d45ab3cb2e1386047ad1`. São milhares de arquivos gráficos/sons/dados, **não foram auditados linha por linha**; foi revisada semanticamente a estrutura e os caminhos críticos EHL8, nativo, launcher, Lab, saves, SDL2, testes, workflows e Android. Detalhes e riscos no novo `docs/V100_M30_BETA_AUDITORIA_GATES_20261019_PTBR.md`.
+
+**Branch nova e rollback:** `feature/emerald-m30-beta-launch-safety-20261019`, criada a partir do PR #20/revisão `d9a7d922`; PR #19 e #20 não alterados. Rollback seguro para Windows PREVIEW em branch/commit original mantido; rollback funcional confirmado pelo usuário permanece M2.2-B `5e53e40`. Nunca sobrescrever os saves de ninguém nem fazer merge sem revisão.
+
+**Arquivos de código MODIFICADOS:**
+- `tools/emerald_launcher.py`: nova função `deliver_pin_or_terminate`, compartilhada entre jogo e servidor EHL8, que envia PIN via stdin privado (jamais argv/log) e, quando falha a escrita/flush, encerra filho que ainda não foi adotado pela UI, espera até 3 s, escala a kill se necessário e fecha stdin. Corrigido risco de processo órfão em falhas de autenticação imediatamente após spawn. Rótulos do launcher esclarecem opção **HOST P2P (Cable Club antigo)** versus **CRIAR SALA EHL8**, evitando confundir sessões e protocolos.
+- `tests/test_emerald_launcher.py`: três regressões de sucesso, BrokenPipe e timeout/kill da transmissão de PIN.
+- `tools/emerald_auto_qa.py`: inclui os testes reais de lógica do launcher no grupo `safety`.
+- `.github/workflows/build-v100-m23a-server-first-windows.yml`: executa `test_emerald_launcher.py` no job `gui-tools` antes de gerar Windows completo.
+- `.github/workflows/build-v100-m23a-server-first-windows.yml` e `.github/workflows/emerald-auto-qa.yml`: grupos de `concurrency` exclusivos por nome de workflow/branch, cancelando apenas versões supersedidas da mesma pipeline. Baseado na documentação oficial do GitHub Actions.
+- `AI_README.md`: este registro obrigatório de continuidade.
+
+**ADICIONADO:** `docs/V100_M30_BETA_AUDITORIA_GATES_20261019_PTBR.md`, com bloqueios P0/P1/P2, matriz de evidências, fluxo QA de 2 PCs, estado não implementado e pesquisa externa.
+**REMOVIDO:** nada. **NÃO ALTERADO:** QA Lab/QA_A/QA_B, cliente C EHL8, servidor EHL8, arquivos SAV, batalhas/trocas Cable Club, Android, sprites, mapas, ROM e gameplay.
+
+**Teste automatizado:** [Auto QA Windows+Linux run 39348487210](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/39348487210) marcou `success` no commit `45eb15c4d4d56c5a398e144431aab2f533a6199d`, que já contém toda a modificação de código/testes/CI; commits posteriores são documentação. O build [Windows completo 39348487204](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/39348487204) estava em execução ao registrar este texto: consultar resultados e artefato da **revisão final do PR** antes de anunciar download. Este registro **não** certifica gameplay em duas máquinas, save real, PvP/trocas EHL8 ou Android. O CI legado GBA Compare tinha falha anterior, separado da compilação Windows.
+
+**Bloqueios NÃO RESOLVIDOS pela primeira correção:**
+1. QA real 2 PCs/VM/duas instâncias com saves QA distintos, transições, sprite remoto, queda/retomada/porta, preservação dos saves.
+2. O EHL8 ainda não possui mecanismo de batalha/troca com convites+aceites e recuperação; o modo Cable Club antigo é P2P separado, e **não equivale** a PvP/troca por uma sessão EHL8. O aceite M3.0 #24D depende disso.
+3. O validador `src/profile/save_profiles.c` checa estrutura mas não checksums do conteúdo por setor, e o algoritmo correto depende dos tamanhos definidos em `src/save.c` (`sSaveSlotLayout`); exige fixtures reais e suíte de regressão antes de tocar import/restore.
+4. O launcher final ainda auto-inicia EHL8 com READY dos clientes; START administrativo manual é recurso do QA Lab, sem UX final pronta.
+5. ARM64/crossplay Android, segurança de acesso WAN/criptografia, FPS e save reaberto em Windows real estão **não comprovados**.
+
+**Pesquisa externa:** fontes primárias documentadas no relatório para concorrência de CI GitHub, atestação de artefatos e Tailscale como VPN privada para testes de computadores em casas diferentes; SDL2 integer scaling e arquivo save pret/pokeemerald. Evitar WAN pública sem segurança real.
+
+**Próximo passo:** verificar CI/artefato SHA final, abrir PR em rascunho e solicitar QA humano conforme roteiro no relatório. Se QA reprovar, corrigir na mesma branch; só depois planejar o próximo incremento de lobby e integração de battles/trades, sem novas histórias/expansões.

@@ -5,6 +5,9 @@ on:
       - feature/emerald-v100-m23a-server-first-lab
       - 'feature/emerald-m30-*'
   workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -61,6 +64,7 @@ jobs:
           python-version: '3.12'
       - name: Existing protocol, lab and lobby regression
         run: |
+          python -m unittest discover -s tests -p test_emerald_launcher.py -v
           python -m unittest discover -s tests -p test_emerald_session_server.py -v
           python -m unittest discover -s tests -p test_ehl8_m30_port_lifecycle.py -v
           python -m unittest discover -s tests -p test_emerald_session_admin.py -v
