@@ -137,9 +137,9 @@ def read_lobby_gate(log_path):
     def most_recent(pattern):
         items = re.findall(pattern, tail)
         return items[-1] if items else None
-    occupancy = most_recent(r"EHL8_ROOM_COUNT=([0-2])/2(?:\\s|$)")
-    ready = most_recent(r"EHL8_READY_COUNT=([0-2])/2(?:\\s|$)")
-    started = most_recent(r"EHL8_ROOM_STARTED=([01])(?:\\s|$)")
+    occupancy = most_recent(r"EHL8_ROOM_COUNT=([0-2])/2(?:\s|$)")
+    ready = most_recent(r"EHL8_READY_COUNT=([0-2])/2(?:\s|$)")
+    started = most_recent(r"EHL8_ROOM_STARTED=([01])(?:\s|$)")
     if occupancy is None or ready is None or started is None:
         return None
     return {"players": int(occupancy), "ready": int(ready),
@@ -152,7 +152,7 @@ def send_lobby_admin(process, command):
         raise ValueError("Comando administrativo inválido.")
     if process is None or process.poll() is not None or process.stdin is None or process.stdin.closed:
         raise OSError("Servidor não está ativo ou canal administrativo indisponível.")
-    process.stdin.write(b"START\\n")
+    process.stdin.write(b"START\n")
     process.stdin.flush()
 
 
