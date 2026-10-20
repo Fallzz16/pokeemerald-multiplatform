@@ -11,6 +11,9 @@ on:
       - 'tools/emerald_session_server.py'
       - 'tools/emerald_launcher.py'
       - 'src/profile/save_profiles.c'
+      - 'src/platform/sdl2.c'
+      - 'src/link.c'
+      - 'src/lnet/lnet_start_gate.h'
       - 'tests/**'
       - '.github/workflows/**'
   workflow_dispatch:
@@ -64,6 +67,12 @@ jobs:
         run: |
           gcc -std=c99 -Wall -Wextra -O2 -Isrc/profile src/profile/save_profiles.c tests/test_save_profiles.c -o /tmp/emerald-save-qa
           /tmp/emerald-save-qa
+      - name: Verify opt-in EHL8 input gate in native C (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          gcc -std=c99 -Wall -Wextra -Werror -O2 tests/test_ehl8_start_gate.c -o /tmp/emerald-ehl8-gate-qa
+          /tmp/emerald-ehl8-gate-qa
       - name: Run simulated player regression QA
         shell: bash
         env:
