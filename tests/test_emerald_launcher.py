@@ -30,9 +30,7 @@ class GraphicalLauncherTests(unittest.TestCase):
         self.assertIn("amigo", launcher.player_room_label({
             "players": 1, "ready": 1, "started": False, "reserved": 0}))
         self.assertIn("reconexão", launcher.player_room_label({
-            "players": 1, "ready": 1, "started": True, "reserved": 1}) if False else
-            launcher.player_room_label({
-                "players": 1, "ready": 1, "started": False, "reserved": 1}))
+            "players": 1, "ready": 1, "started": False, "reserved": 1}))
         self.assertIn("INICIAR PARTIDA", launcher.player_room_label({
             "players": 2, "ready": 2, "started": False, "reserved": 0}))
         self.assertIn("Partida iniciada", launcher.player_room_label({
@@ -60,6 +58,40 @@ class GraphicalLauncherTests(unittest.TestCase):
             fake.play.assert_called_once_with(
                 "dedicated", host_override="127.0.0.1",
                 keep_launcher=True)
+
+    def test_create_room_cleans_up_server_if_local_game_fails(self):
+        from unittest.mock import Mock
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "profiles"
+            save = root / "trainer" / "pokeemerald.sav"
+            save.parent.mkdir(parents=True)
+            save.write_bytes(b"not-a-real-save")
+            game = Path(tmp) / "pokeemerald.exe"
+            game.touch()
+            fake = Mock()
+            fake.selected, fake.root_dir, fake.game = "trainer", root, game
+            fake.active_process = None
+            fake.server_process = None
+            fake.pin.get.return_value = "123456"
+            fake.start_server.side_effect = lambda: setattr(fake, "server_process", Mock()) or True
+            fake.server_process = None
+            fake.play.return_value = False
+            launcher.EmeraldLauncher.create_room(fake)
+            fake.play.assert_called_once_with(
+                "dedicated", host_override="127.0.0.1", keep_launcher=True)
+            self.assertIsNone(fake.server_process)
+            fake.start_room_button.configure.assert_called_with(state="disabled")
+
+    def test_pin_visibility_control_is_explicit(self):
+        from unittest.mock import Mock
+        fake = Mock()
+        fake.pin_revealed = False
+        launcher.EmeraldLauncher.toggle_pin_visibility(fake)
+        fake.pin_entry.configure.assert_called_with(show="")
+        self.assertTrue(fake.pin_revealed)
+        launcher.EmeraldLauncher.toggle_pin_visibility(fake)
+        fake.pin_entry.configure.assert_called_with(show="*")
+        self.assertFalse(fake.pin_revealed)
 
     def test_create_room_needs_local_save_before_spawning_server(self):
         from unittest.mock import Mock, patch
