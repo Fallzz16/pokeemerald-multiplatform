@@ -543,11 +543,26 @@ SlateportCity_Harbor_Text_ThisWillHelpResearch:
 SlateportCity_Harbor_EventScript_KantoFerry::
 	lock
 	faceplayer
+	@ 4th badge earned in regular Hoenn story unlocks travel.
+	goto_if_unset FLAG_BADGE04_GET, SlateportCity_Harbor_EventScript_KantoNeedsBadges
 	msgbox SlateportCity_Harbor_Text_KantoFerry, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_KantoFerryDecline
+	checkmoney 500, 0
+	goto_if_eq VAR_RESULT, FALSE, SlateportCity_Harbor_EventScript_KantoNotEnoughMoney
+	removemoney 500, 0
 	closemessage
 	warp MAP_KANTO_HARBOR, 8, 4
 	waitstate
+	release
+	end
+
+SlateportCity_Harbor_EventScript_KantoNeedsBadges::
+	msgbox SlateportCity_Harbor_Text_KantoNeedsBadges, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_Harbor_EventScript_KantoNotEnoughMoney::
+	msgbox SlateportCity_Harbor_Text_KantoNotEnoughMoney, MSGBOX_DEFAULT
 	release
 	end
 
@@ -557,7 +572,13 @@ SlateportCity_Harbor_EventScript_KantoFerryDecline::
 	end
 
 SlateportCity_Harbor_Text_KantoFerry:
-	.string "Sail to the KANTO landing pier?$"
+	.string "KANTO ticket: P500. Sail now?$"
+
+SlateportCity_Harbor_Text_KantoNeedsBadges:
+	.string "You need four HOENN BADGES first.$"
+
+SlateportCity_Harbor_Text_KantoNotEnoughMoney:
+	.string "You need P500 for this ticket.$"
 
 SlateportCity_Harbor_Text_KantoFerryDecline:
 	.string "Come back when you want to sail.$"

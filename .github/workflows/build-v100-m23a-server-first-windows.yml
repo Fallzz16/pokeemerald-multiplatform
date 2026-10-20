@@ -1,8 +1,9 @@
-name: Emerald M2.3-B2 Windows Complete Preview
+name: Emerald Kanto V0.1 Windows Complete Gateway Preview
 on:
   push:
     branches:
       - feature/emerald-v100-m23a-server-first-lab
+      - feature/kanto-v01-decisions-import-preflight
   workflow_dispatch:
 permissions:
   contents: read
@@ -24,11 +25,24 @@ jobs:
       - name: Verify native client reconnection and established mechanics
         run: |
           python -m pip install Pillow
+          python -m unittest discover -s tests -p test_kanto_gateway.py -v
+          python -m unittest discover -s tests -p test_kanto_preflight.py -v
           python -m unittest discover -s tests -p test_ehl8_native_reconnect.py -v
           python -m unittest discover -s tests -p test_ehl8_native_bridge.py -v
           python -m unittest discover -s tests -p test_lan_remote_palette_regression.py -v
           bash scripts/verify_lan_foundation.sh
-          EMERALD_LAN_QA=1 EMERALD_V080_QA=1 bash scripts/verify_v070.sh
+          # The original legacy verifier asserts that zero map files changed,
+          # which is incompatible with adding even one intentional Kanto map.
+          # Keep it STRICT for the original M2.3 branch; Kanto uses explicit
+          # gateway/preflight tests and a separate game compilation gate.
+          if [[ "$GITHUB_REF_NAME" == "feature/emerald-v100-m23a-server-first-lab" ]]; then
+            EMERALD_LAN_QA=1 EMERALD_V080_QA=1 bash scripts/verify_v070.sh
+          elif [[ "$GITHUB_REF_NAME" == "feature/kanto-v01-decisions-import-preflight" ]]; then
+            echo "Kanto branch: incompatible vanilla exact-source hash verifier skipped; all native LAN and Kanto tests ran."
+          else
+            echo "Unsupported branch for this packaging workflow: $GITHUB_REF_NAME" >&2
+            exit 1
+          fi
       - name: Download SDL2 MinGW
         run: |
           set -euxo pipefail
@@ -138,6 +152,8 @@ jobs:
           Copy-Item docs/V100_M23_HOST_START_QA_PTBR.md portable/LEIA_M23_PTBR.md
           Copy-Item docs/V100_M23A_SERVER_FIRST_QA_PTBR.md portable/LEIA_M23A_PTBR.md
           Copy-Item AI_README.md portable/AI_README.md
+          Copy-Item docs/KANTO_DECISIONS_001_040_PTBR.md portable/KANTO_DECISOES_1_A_40.md
+          Copy-Item docs/KANTO_SECOND_REGION_FOUNDATION_PTBR.md portable/KANTO_LEIA_ANTES.md
           Copy-Item docs/V100_M23A_SERVER_FIRST_QA_PTBR.md portable/TESTAR_ESTA_BUILD.md
           "SOURCE_COMMIT=$env:GITHUB_SHA" | Set-Content portable/REVISAO_EXATA.txt -Encoding ascii
           @'
@@ -151,12 +167,12 @@ jobs:
             $list+=("$hash  $($_.Name)")
           }
           $list | Set-Content portable/SHA256_COMPONENTES.txt -Encoding ascii
-          Compress-Archive portable/* Emerald_Hybrid_M23B2_PREVIEW_COMPLETO_Windows.zip -CompressionLevel Optimal
+          Compress-Archive portable/* Emerald_Hybrid_KANTO_V01_GATEWAY_COMPLETO_Windows.zip -CompressionLevel Optimal
       - name: Verify final downloadable ZIP by extraction and hashes
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
-          $zip = 'Emerald_Hybrid_M23B2_PREVIEW_COMPLETO_Windows.zip'
+          $zip = 'Emerald_Hybrid_KANTO_V01_GATEWAY_COMPLETO_Windows.zip'
           if (!(Test-Path $zip -PathType Leaf)) { throw "Missing ZIP" }
           Expand-Archive -LiteralPath $zip -DestinationPath verify-portable -Force
           $manifest = Join-Path 'verify-portable' 'SHA256_COMPONENTES.txt'
@@ -183,8 +199,8 @@ jobs:
         id: upload_portable
         uses: actions/upload-artifact@v4
         with:
-          name: BAIXAR_AQUI_Emerald_M23B2_PREVIEW_COMPLETO_Windows
-          path: Emerald_Hybrid_M23B2_PREVIEW_COMPLETO_Windows.zip
+          name: BAIXAR_AQUI_Emerald_KANTO_V01_GATEWAY_Windows
+          path: Emerald_Hybrid_KANTO_V01_GATEWAY_COMPLETO_Windows.zip
           if-no-files-found: error
           retention-days: 30
       - name: Print direct ZIP download link and exact commit
@@ -197,7 +213,7 @@ jobs:
           $ErrorActionPreference = 'Stop'
           if (!$env:ARTIFACT_URL -or !$env:ARTIFACT_ID) { throw 'Upload artifact did not return a direct URL' }
           @(
-            '## BAIXAR AQUI — Emerald Hybrid M2.3-B2 Windows'
+            '## BAIXAR AQUI — Emerald Hybrid Kanto V0.1 Gateway Windows'
             ''
             ("Build commit: " + $env:GITHUB_SHA)
             ''
@@ -205,5 +221,5 @@ jobs:
             ''
             ("Artifact ID: " + $env:ARTIFACT_ID)
             ''
-            'Este pacote passou pelo gate do job portable, incluindo hashes e ausencia de saves pessoais. Ainda requer QA humano de gameplay.'
+            'Este ZIP inclui o prototipo Kanto_Harbor (nao o continente FireRed), regras de 4 insignias/P500, verificacao de hashes e ausencia de saves pessoais. Requer QA humano de gameplay.'
           ) | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8 -Append

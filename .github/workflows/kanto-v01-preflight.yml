@@ -1,0 +1,69 @@
+name: Kanto V0.1 FireRed source preflight and native build
+on:
+  push:
+    branches:
+      - feature/kanto-v01-decisions-import-preflight
+  pull_request:
+    branches:
+      - feature/emerald-kanto-gateway-m0
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run gateway and preflight regression tests
+        run: |
+          python -m unittest discover -s tests -p test_kanto_gateway.py -v
+          python -m unittest discover -s tests -p test_kanto_preflight.py -v
+      - uses: actions/checkout@v4
+        with:
+          repository: pret/pokefirered
+          ref: ce6406d8c2eaf46d543c8a2606de0c3cb1951982
+          path: firered-source
+          sparse-checkout: |
+            data/maps
+            data/layouts
+          sparse-checkout-cone-mode: true
+      - name: Analyze original FireRed Kanto exteriors without modifying source
+        run: |
+          python tools/kanto/preflight.py --firered firered-source --emerald . --output kanto-preflight.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kanto-v01-original-exterior-report
+          path: kanto-preflight.json
+          retention-days: 30
+          if-no-files-found: error
+
+  windows-cross-build:
+    needs: source-preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc-mingw-w64-i686 binutils-mingw-w64-i686 libpng-dev zlib1g-dev curl ca-certificates file
+          python -m pip install Pillow
+      - name: SDL2 for MinGW
+        run: |
+          set -euxo pipefail
+          mkdir -p .deps
+          curl -fL --retry 3 https://www.libsdl.org/release/SDL2-devel-2.30.7-mingw.tar.gz -o .deps/SDL2-devel-2.30.7-mingw.tar.gz
+          tar -xzf .deps/SDL2-devel-2.30.7-mingw.tar.gz -C .deps
+      - name: Cross-build Kanto gateway from exact current commit
+        run: |
+          set -euxo pipefail
+          make -f Makefile_pc -j2 SDL_DIR="$PWD/.deps/SDL2-2.30.7/i686-w64-mingw32"
+          test -s pokeemerald.exe
+          file pokeemerald.exe
