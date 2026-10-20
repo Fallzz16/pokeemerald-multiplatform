@@ -409,7 +409,8 @@ void MapGridSetMetatileEntryAt(int x, int y, u16 metatile)
 u16 GetMetatileAttributesById(u16 metatile)
 {
     const u16 *attributes;
-    if (metatile < NUM_METATILES_IN_PRIMARY)
+    u16 primaryLimit = PrimaryMetatileLimitForLayout(gMapHeader.mapLayout);
+    if (metatile < primaryLimit)
     {
         attributes = gMapHeader.mapLayout->primaryTileset->metatileAttributes;
         return attributes[metatile];
@@ -417,7 +418,7 @@ u16 GetMetatileAttributesById(u16 metatile)
     else if (metatile < NUM_METATILES_TOTAL)
     {
         attributes = gMapHeader.mapLayout->secondaryTileset->metatileAttributes;
-        return attributes[metatile - NUM_METATILES_IN_PRIMARY];
+        return attributes[metatile - primaryLimit];
     }
     else
     {
@@ -872,7 +873,7 @@ static void UNUSED ApplyGlobalTintToPaletteSlot(u8 slot, u8 count)
 
 }
 
-static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u16 size)
+static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u16 size, u16 primaryPaletteCount)
 {
     u16 black = RGB_BLACK;
 
@@ -886,7 +887,7 @@ static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u1
         }
         else if (tileset->isSecondary == TRUE)
         {
-            LoadPalette(tileset->palettes[NUM_PALS_IN_PRIMARY], destOffset, size);
+            LoadPalette(tileset->palettes[primaryPaletteCount], destOffset, size);
             ApplyGlobalTintToPaletteEntries(destOffset, size >> 1);
         }
         else
@@ -899,35 +900,35 @@ static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u1
 
 void CopyPrimaryTilesetToVram(struct MapLayout const *mapLayout)
 {
-    CopyTilesetToVram(mapLayout->primaryTileset, NUM_TILES_IN_PRIMARY, 0);
+    CopyTilesetToVram(mapLayout->primaryTileset, PrimaryTileLimitForLayout(mapLayout), 0);
 }
 
 void CopySecondaryTilesetToVram(struct MapLayout const *mapLayout)
 {
-    CopyTilesetToVram(mapLayout->secondaryTileset, NUM_TILES_TOTAL - NUM_TILES_IN_PRIMARY, NUM_TILES_IN_PRIMARY);
+    CopyTilesetToVram(mapLayout->secondaryTileset, NUM_TILES_TOTAL - PrimaryTileLimitForLayout(mapLayout), PrimaryTileLimitForLayout(mapLayout));
 }
 
 void CopySecondaryTilesetToVramUsingHeap(struct MapLayout const *mapLayout)
 {
-    CopyTilesetToVramUsingHeap(mapLayout->secondaryTileset, NUM_TILES_TOTAL - NUM_TILES_IN_PRIMARY, NUM_TILES_IN_PRIMARY);
+    CopyTilesetToVramUsingHeap(mapLayout->secondaryTileset, NUM_TILES_TOTAL - PrimaryTileLimitForLayout(mapLayout), PrimaryTileLimitForLayout(mapLayout));
 }
 
 static void LoadPrimaryTilesetPalette(struct MapLayout const *mapLayout)
 {
-    LoadTilesetPalette(mapLayout->primaryTileset, BG_PLTT_ID(0), NUM_PALS_IN_PRIMARY * PLTT_SIZE_4BPP);
+    LoadTilesetPalette(mapLayout->primaryTileset, BG_PLTT_ID(0), PrimaryPaletteLimitForLayout(mapLayout) * PLTT_SIZE_4BPP, PrimaryPaletteLimitForLayout(mapLayout));
 }
 
 void LoadSecondaryTilesetPalette(struct MapLayout const *mapLayout)
 {
-    LoadTilesetPalette(mapLayout->secondaryTileset, BG_PLTT_ID(NUM_PALS_IN_PRIMARY), (NUM_PALS_TOTAL - NUM_PALS_IN_PRIMARY) * PLTT_SIZE_4BPP);
+    LoadTilesetPalette(mapLayout->secondaryTileset, BG_PLTT_ID(PrimaryPaletteLimitForLayout(mapLayout)), (NUM_PALS_TOTAL - PrimaryPaletteLimitForLayout(mapLayout)) * PLTT_SIZE_4BPP, PrimaryPaletteLimitForLayout(mapLayout));
 }
 
 void CopyMapTilesetsToVram(struct MapLayout const *mapLayout)
 {
     if (mapLayout)
     {
-        CopyTilesetToVramUsingHeap(mapLayout->primaryTileset, NUM_TILES_IN_PRIMARY, 0);
-        CopyTilesetToVramUsingHeap(mapLayout->secondaryTileset, NUM_TILES_TOTAL - NUM_TILES_IN_PRIMARY, NUM_TILES_IN_PRIMARY);
+        CopyTilesetToVramUsingHeap(mapLayout->primaryTileset, PrimaryTileLimitForLayout(mapLayout), 0);
+        CopyTilesetToVramUsingHeap(mapLayout->secondaryTileset, NUM_TILES_TOTAL - PrimaryTileLimitForLayout(mapLayout), PrimaryTileLimitForLayout(mapLayout));
     }
 }
 
