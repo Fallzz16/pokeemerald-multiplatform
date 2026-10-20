@@ -82,6 +82,7 @@ class LauncherHostProcessTests(unittest.IsolatedAsyncioTestCase):
         await send(S.JOIN, name, session)
         await recv(S.JOIN)
         await recv(S.PLAYER_LIST)
+        await recv(S.RESUME)  # resume-v1 token is sent before any READY
         return send, recv, session
 
     async def wait_gate(self, predicate):
