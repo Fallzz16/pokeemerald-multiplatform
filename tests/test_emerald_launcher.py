@@ -137,6 +137,27 @@ class GraphicalLauncherTests(unittest.TestCase):
         launcher.send_lobby_admin(child, "START")
         child.stdin.write.assert_any_call(b"START\n")
 
+    def test_tcp_preflight_with_a_real_local_socket(self):
+        import socket
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as listener:
+            listener.bind(("127.0.0.1", 0))
+            listener.listen(1)
+            port = listener.getsockname()[1]
+            self.assertTrue(launcher.test_tcp_reachability("127.0.0.1", port))
+            accepted, _ = listener.accept()
+            accepted.close()
+
+    def test_tcp_preflight_does_not_assume_online_gameplay(self):
+        from unittest.mock import patch
+        with patch.object(launcher.socket, "create_connection",
+                          side_effect=ConnectionRefusedError("closed")):
+            with self.assertRaises(ConnectionRefusedError):
+                launcher.test_tcp_reachability("100.101.102.103", "45680")
+        with self.assertRaises(ValueError):
+            launcher.test_tcp_reachability("0.0.0.0", "45680")
+        with self.assertRaises(ValueError):
+            launcher.test_tcp_reachability("127.0.0.1", "45680", timeout=0)
+
     def test_dedicated_session_requires_six_digit_pin_and_valid_ipv4(self):
         args = launcher.make_command("pokeemerald.exe","profiles","trainer",
                                      "dedicated","127.0.0.1","45680","123456")
