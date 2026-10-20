@@ -109,6 +109,10 @@ def convert_attributes(raw: bytes, names: dict[int, str],
 
 
 def source_tileset_paths(source: Path, label: str) -> Path:
+    # FRLG's primary General graphics are declared in src/graphics.c,
+    # while every secondary city tileset is declared in tilesets/graphics.h.
+    if label == "gTileset_General":
+        return source / "data/tilesets/primary/general"
     name = label.removeprefix("gTileset_")
     header = (source / "src/data/tilesets/graphics.h").read_text(encoding="utf-8")
     match = re.search(r'const u32 gTilesetTiles_' + re.escape(name) +
