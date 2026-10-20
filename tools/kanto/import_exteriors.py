@@ -269,6 +269,46 @@ def make_map(name: str, original: dict, valid: set[str]) -> dict:
     }
 
 
+def add_firered_encounters(source: Path, emerald: Path,
+                           original_id_to_name: dict[str, str]) -> int:
+    """Preserve FireRed, not LeafGreen, outdoor encounter tables verbatim."""
+    src = load_json(source, "src/data/wild_encounters.json")
+    dest = load_json(emerald, "src/data/wild_encounters.json")
+    if not src["wild_encounter_groups"] or not dest["wild_encounter_groups"]:
+        raise RuntimeError("Missing encounter table structure")
+    source_group = next((group for group in src["wild_encounter_groups"]
+                         if group["label"] == "gWildMonHeaders" and group.get("for_maps")), None)
+    target_group = next((group for group in dest["wild_encounter_groups"]
+                         if group["label"] == "gWildMonHeaders" and group.get("for_maps")), None)
+    if source_group is None or target_group is None:
+        raise RuntimeError("Cannot locate canonical encounter group")
+    species_text = (emerald / "include/constants/species.h").read_text(encoding="utf-8")
+    available_species = set(re.findall(r"\bSPECIES_[A-Z0-9_]+\b", species_text))
+    added = []
+    used = {enc["map"] for enc in target_group["encounters"]}
+    for enc in source_group["encounters"]:
+        source_map = enc.get("map")
+        if source_map not in original_id_to_name or not enc.get("base_label", "").endswith("_FireRed"):
+            continue
+        target_map = "MAP_KANTO_" + original_id_to_name[source_map].upper()
+        if target_map in used:
+            raise RuntimeError(f"Duplicate generated wild table: {target_map}")
+        imported = json.loads(json.dumps(enc))
+        imported["map"] = target_map
+        imported["base_label"] = "sKanto_" + enc["base_label"]
+        for key in ("land_mons", "water_mons", "rock_smash_mons", "fishing_mons"):
+            for mon in imported.get(key, {}).get("mons", []):
+                if mon["species"] not in available_species:
+                    raise RuntimeError(f"Unknown Emerald species: {mon['species']}")
+        target_group["encounters"].append(imported)
+        used.add(target_map)
+        added.append(target_map)
+    if not added or "MAP_KANTO_ROUTE1" not in added:
+        raise RuntimeError("Missing original FireRed Route 1 encounters")
+    emit_json(emerald / "src/data/wild_encounters.json", dest)
+    return len(added)
+
+
 def copy_exteriors(source: Path, emerald: Path) -> dict:
     checkout_guard(source)
     group = load_json(source, "data/maps/map_groups.json")
@@ -299,7 +339,7 @@ def copy_exteriors(source: Path, emerald: Path) -> dict:
               "original_npcs_ported": 0,
               "interior_warps_ported": 0,
               "trainer_battles_ported": 0,
-              "wild_encounters_ported": 0,
+              "wild_encounters_ported": False,
               "qa_npcs_added_in_vermilion": 3,
               "qa_scripted_pidgey_battle": True,
               "qa_party_heal": True,
@@ -406,6 +446,9 @@ Kanto_VermilionCity_Text_BattleQuestion:
             "original_npcs_disabled": len(m.get("object_events", [])),
             "connected_exterior_edges": len(target_map["connections"] or []),
         })
+    report["wild_encounter_maps_ported"] = add_firered_encounters(
+        source, emerald, source_to_name)
+    report["wild_encounters_ported"] = report["wild_encounter_maps_ported"] > 0
     target_groups["gMapGroup_Kanto"].extend("Kanto_" + n for n in names)
     target_groups["connections_include_order"].extend("Kanto_" + n for n in names)
     emit_json(emerald / "data/maps/map_groups.json", target_groups)
