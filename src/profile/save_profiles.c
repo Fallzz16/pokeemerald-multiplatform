@@ -134,7 +134,7 @@ static int same_file_bytes(const char *left,const char *right)
 }
 /* Copies without modifying source. Temp file uses .partial; caller ensures
  * the exclusive profile lock when targeting an existing profile. */
-static SpStatus copy_atomic(const char *src,const char *dst)
+static SpStatus copy_atomic(const char *src,const char *dst,int require_valid_save)
 {
     char temp[SP_PATH_CAP];
     unsigned char buf[8192];
@@ -152,10 +152,19 @@ static SpStatus copy_atomic(const char *src,const char *dst)
     if(ferror(in)) good=0;
     if(fclose(in)!=0) good=0;
     if(!close_sync(out)) good=0;
-    if(!good || !same_file_bytes(src,temp) || !replace_file(temp,dst)){
+    if(!good || !same_file_bytes(src,temp)){
         remove(temp);
         return SP_IO;
     }
+    /* Never replace a profile with an invalid temporary save. The source
+     * may change during a copy: first validate the copied bytes, THEN
+     * commit them. Corrupt originals copied to .raw are intentionally
+     * exempt: recovery files preserve evidence, not playable saves. */
+    if(require_valid_save){
+        SpStatus validation=sp_validate_file(temp);
+        if(validation!=SP_OK){remove(temp);return validation;}
+    }
+    if(!replace_file(temp,dst)){remove(temp);return SP_IO;}
     return SP_OK;
 }
 static SpStatus ensure_profile(const char *root,const char *id,char directory[SP_PATH_CAP])
@@ -174,7 +183,7 @@ SpStatus sp_import(const char *root,const char *id,const char *source)
     st=ensure_profile(root,id,dir);
     if(st!=SP_OK) return st;
     if(!path2(dst,dir,"pokeemerald.sav")){SP_RMDIR(dir);return SP_BAD_ARG;}
-    st=copy_atomic(source,dst);
+    st=copy_atomic(source,dst,1);
     /* Verify after copy too: source may have changed during transfer. */
     if(st==SP_OK) st=sp_validate_file(dst);
     if(st!=SP_OK) {
@@ -332,7 +341,7 @@ SpStatus sp_backup(const SpProfileLock *lock,unsigned *sequence)
     if(count) next=numbers[count-1]+1;
     free(numbers);
     if(!backup_name(name,sizeof(name),next) || !path2(out,backups,name)) return SP_IO;
-    st=copy_atomic(src,out);
+    st=copy_atomic(src,out,1);
     if(st==SP_OK) st=sp_validate_file(out);
     if(st==SP_OK) *sequence=next;
     else remove(out); /* Do not retain an incomplete ordinary backup. */
@@ -357,11 +366,11 @@ SpStatus sp_restore(const SpProfileLock *lock,unsigned sequence)
         for(i=1;i<=999999u;i++){
             int n=snprintf(name,sizeof(name),"bad%06u.raw",i);
             if(n<0 || n>=(int)sizeof(name) || !path2(recovery,backups,name)) return SP_BAD_ARG;
-            if(SP_ACCESS(recovery)!=0){st=copy_atomic(target,recovery);break;}
+            if(SP_ACCESS(recovery)!=0){st=copy_atomic(target,recovery,0);break;}
         }
     }
     if(st!=SP_OK) return st;
-    return copy_atomic(source,target);
+    return copy_atomic(source,target,1);
 }
 SpStatus sp_prune(const SpProfileLock *lock,unsigned keep)
 {
