@@ -9,6 +9,8 @@ on:
       - 'tools/emerald_qa_lab.py'
       - 'tools/emerald_qa_bots.py'
       - 'tools/emerald_session_server.py'
+      - 'tools/emerald_launcher.py'
+      - 'src/profile/save_profiles.c'
       - 'tests/**'
       - '.github/workflows/**'
   workflow_dispatch:
@@ -56,6 +58,12 @@ jobs:
           PY
       - name: Compile Python QA and protocol modules
         run: python -m compileall -q tools/emerald_auto_qa.py tools/emerald_qa_lab.py tools/emerald_qa_bots.py
+      - name: Verify native save copies and backups on Linux
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          gcc -std=c99 -Wall -Wextra -O2 -Isrc/profile src/profile/save_profiles.c tests/test_save_profiles.c -o /tmp/emerald-save-qa
+          /tmp/emerald-save-qa
       - name: Run simulated player regression QA
         shell: bash
         env:
