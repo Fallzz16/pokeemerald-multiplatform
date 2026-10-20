@@ -97,10 +97,10 @@ int main(void)
     {
         char invalid_backup[512];
         snprintf(invalid_backup,sizeof(invalid_backup),
-                 "%s/profiles/Pokemon_A/backups/000003.sav",dir);
+                 "%s/profiles/Pokemon_A/backups/000004.sav",dir);
         f=fopen(invalid_backup,"wb");
         assert(f && fputs("BROKEN_BACKUP",f)>=0 && fclose(f)==0);
-        assert(sp_restore(&a,3)==SP_BAD_SAVE);
+        assert(sp_restore(&a,4)==SP_BAD_SAVE);
         assert(equal(out,valid));
         assert(remove(invalid_backup)==0);
     }
