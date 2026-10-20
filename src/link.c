@@ -2112,6 +2112,23 @@ void PortLanRequestClient(const char *host, u16 port)
     LanLinkOpenAsClient(sLanAuto.host, sLanAuto.port);
 }
 
+/* Read only on the game thread, just like PortLanPresencePump().
+ *  1 = server START received; 0 = waiting; -1 = failed/unavailable.
+ * This is an opt-in gameplay input gate, not a request to stop the game loop:
+ * the EHL8 socket must continue to be polled each frame. */
+int PortLanDedicatedSessionGate(void)
+{
+    int state;
+    if (!sLanDedicatedSession)
+        return -1;
+    state = lnet_session_client_state(sLanDedicatedSession);
+    if (state == EHL_CLIENT_PLAYING)
+        return 1;
+    if (state == EHL_CLIENT_FAILED)
+        return -1;
+    return 0;
+}
+
 /* Dedicated EHL8 presence only: NEVER feed this protocol to the Cable Club
  * serial transport. Reuse existing sprite/camera, no save or quest changes. */
 bool32 PortLanRequestDedicatedClient(const char *host, u16 port,
