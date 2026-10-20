@@ -538,3 +538,26 @@ SlateportCity_Harbor_Text_HandedScannerToStern:
 SlateportCity_Harbor_Text_ThisWillHelpResearch:
 	.string "CAPT. STERN: Thanks, {PLAYER}{KUN}!\n"
 	.string "This will help our research a lot!$"
+
+@ Kanto region gateway: independent from the existing S.S. Tidal ferry events.
+SlateportCity_Harbor_EventScript_KantoFerry::
+	lock
+	faceplayer
+	msgbox SlateportCity_Harbor_Text_KantoFerry, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_KantoFerryDecline
+	closemessage
+	warp MAP_KANTO_HARBOR, 8, 4
+	waitstate
+	release
+	end
+
+SlateportCity_Harbor_EventScript_KantoFerryDecline::
+	msgbox SlateportCity_Harbor_Text_KantoFerryDecline, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_Harbor_Text_KantoFerry:
+	.string "Sail to the KANTO landing pier?$"
+
+SlateportCity_Harbor_Text_KantoFerryDecline:
+	.string "Come back when you want to sail.$"

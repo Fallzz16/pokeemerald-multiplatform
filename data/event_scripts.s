@@ -529,6 +529,7 @@ gStdScripts_End::
 	.include "data/maps/TrainerHill_Roof/scripts.inc"
 	.include "data/maps/NavelRock_Exterior/scripts.inc"
 	.include "data/maps/NavelRock_Harbor/scripts.inc"
+	.include "data/maps/Kanto_Harbor/scripts.inc"
 	.include "data/maps/NavelRock_Entrance/scripts.inc"
 	.include "data/maps/NavelRock_B1F/scripts.inc"
 	.include "data/maps/NavelRock_Fork/scripts.inc"

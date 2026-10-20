@@ -1,0 +1,63 @@
+name: Kanto Gateway QA (Static and Windows Cross Build)
+
+on:
+  push:
+    branches:
+      - feature/emerald-kanto-gateway-m0
+    paths:
+      - 'data/maps/**'
+      - 'data/event_scripts.s'
+      - 'tests/test_kanto_gateway.py'
+      - 'docs/KANTO_SECOND_REGION_FOUNDATION_PTBR.md'
+      - 'AI_README.md'
+      - '.github/workflows/kanto-gateway-qa.yml'
+  pull_request:
+    branches:
+      - feature/emerald-v100-m23a-server-first-lab
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  structural:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check Kanto gateway and existing Slateport invariants
+        run: python -m unittest discover -s tests -p test_kanto_gateway.py -v
+
+  game-cross-compile:
+    needs: structural
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install cross-compile dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc-mingw-w64-i686 binutils-mingw-w64-i686 libpng-dev zlib1g-dev curl ca-certificates file
+          python -m pip install Pillow
+      - name: Download SDL2 MinGW toolchain library
+        run: |
+          set -euxo pipefail
+          mkdir -p .deps
+          curl -fL --retry 3 "https://www.libsdl.org/release/SDL2-devel-2.30.7-mingw.tar.gz" -o .deps/SDL2-devel-2.30.7-mingw.tar.gz
+          tar -xzf .deps/SDL2-devel-2.30.7-mingw.tar.gz -C .deps
+      - name: Cross-compile Emerald with Kanto map and event scripts
+        run: |
+          set -euxo pipefail
+          make -f Makefile_pc -j2 SDL_DIR="$PWD/.deps/SDL2-2.30.7/i686-w64-mingw32"
+          test -s pokeemerald.exe
+          file pokeemerald.exe
