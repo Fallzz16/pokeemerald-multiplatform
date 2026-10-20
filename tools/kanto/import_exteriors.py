@@ -582,7 +582,10 @@ Kanto_GenericMart_Items:
     .short ITEM_REPEL
     pokemartlistend
 """
-    (emerald / "data/maps" / created[0] / "scripts.inc").open("a", encoding="utf-8").write(shop_common)
+    # Attach shared inventory to a Mart, not to a Pokemon Center.
+    first_mart = next(n for n in created if n.endswith("_Mart"))
+    with (emerald / "data/maps" / first_mart / "scripts.inc").open("a", encoding="utf-8") as file:
+        file.write(shop_common)
     target_groups["gMapGroup_Kanto"].extend(created)
     return created
 
