@@ -92,3 +92,23 @@ Teste adicional no Windows: inicie servidor 0/2, entre QA_A (abre uma instância
 9. Teste salvar/CONTINUAR SOZINHO para cada treinador e compare o save original com backup; nenhuma modificação direta em saves fonte.
 
 **Se falhar:** guarde `servidor.log`, `QA_A-rede.log`, `QA_B-rede.log` e `report.json` no diretório da sessão, além do print e commit em `REVISAO_EXATA.txt`. Não compartilhe PIN ou seus saves privados. O Auto QA não substitui esses testes gráficos de gameplay.
+
+
+## Correção M3.0 — Jogo abre, mas controles aguardam START (2026-10-20)
+
+**Bug real relatado pelo usuário:** ao pressionar **ENTRAR QA_A**, uma janela `pokeemerald.exe` era aberta e o usuário conseguia **carregar um save e andar pelo mapa** antes de conectar QA_B ou pressionar `INICIAR SALA`. O servidor já aguardava START, mas essa espera não controlava os botões locais do Emerald; portanto os testes do protocolo não a detectavam.
+
+**Comportamento esperado com a nova build desta branch:**
+
+1. O servidor iniciado pelo Lab permanece em 0/2, sem jogo aberto.
+2. Ao clicar ENTRAR QA_A, **uma janela do Emerald ainda deve abrir imediatamente**, pois o jogo precisa executar frames para o cliente EHL8 receber JOIN/READY/START. Agora, contudo, **o teclado e o gamepad não permitem começar/andar/selecionar saves enquanto a sala espera**. O título da janela indica que está aguardando segundo jogador e START.
+3. O Lab atualiza 1/2. ENTRAR QA_B abre uma segunda janela também aguardando; a sala chega a 2/2, PRONTOS 2/2, PARTIDA INICIADA NÃO.
+4. Aguarde ao menos 30 segundos: ambos devem permanecer incapazes de entrar na campanha pela interface do jogo. O servidor deve permanecer ativo, sem timeouts artificiais.
+5. Clique **INICIAR SALA (2/2 PRONTOS)** no Lobby. O servidor envia START aos dois. **Só então** o teclado e gamepad são liberados, sem reiniciar o jogo, recriar saves ou fechar/reabrir a conexão.
+6. Caso EHL8 falhe ANTES de START, controles continuam bloqueados para não apresentar jogo local como multiplayer sem aviso, e o título mostra falha; feche a janela e use o diagnóstico/backup do QA Lab.
+7. Caso a conexão caia DEPOIS do START, o port NÃO re-bloqueia os controles: o progresso solo continua localmente (sem presumir presença online). Feche normalmente e reabra solo para conferir save.
+8. O modo `offline`, Cable Club legado P2P e o resto do jogo **não passam pela espera**, pois o switch `--session-wait-for-start` só é usado nas execuções dedicadas EHL8 que optam pela espera.
+
+**Detalhe técnico:** isto é inicialmente um **bloqueio de entradas do jogo**, não um congelamento completo de todas as simulações internas (áudio, scripts ou relógio). O motor, o render e a conexão EHL8 precisam continuar avançando para receber START. Não prometer pausa integral de gameplay/timeplay até que seja implementada e medida sem bloquear o cliente TCP.
+
+**Testes:** casos de regressão na camada Python para os comandos QA e launcher, `tests/test_ehl8_start_gate.c` para transições de desbloqueio/falha e build real Windows/CI. **QA humano desta versão ainda é obrigatório** para comprovar tela e controles com duas instâncias.
