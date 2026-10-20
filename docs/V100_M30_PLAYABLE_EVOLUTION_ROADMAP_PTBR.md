@@ -4,6 +4,19 @@
 **Base preservada:** PR #19, branch `feature/emerald-v100-m23a-server-first-lab`; rollback de gameplay: M2.2-B `5e53e40` (QA humano 5/5).
 **Distribuição:** Windows EXE e Android APK. ROM GBA não é alvo de distribuição, e Compare GBA legado não bloqueia a aceitação dos apps.
 
+## PRIORIDADE ATUAL DEFINITIVA — IMPLEMENTAR APENAS O ONLINE
+
+**Atualização de escopo solicitada pelo usuário em 19/10/2026, APÓS a aprovação da especificação M3.0 e das rodadas 64D/EX01–EX64 (todas D).** O usuário esclareceu expressamente que NÃO deseja história, missões, mapas, Pokémon nem nenhum outro conteúdo novo agora. Objetivo único: adicionar multiplayer/online funcional ao Pokémon Emerald Hybrid **já existente**.
+
+- Prioridade 1: Windows, servidor EHL8, lobby real no launcher do jogo final, 2 jogadores, presença/movimento, reconexão, saves seguros, início/saída; validar com duas instâncias reais.
+- Prioridade 2: convite/aceite/recusa para **batalhas e trocas com mecânicas do Emerald existente**, sem alterar conteúdo da campanha; consistência transacional de trocas.
+- Prioridade 3: Android/Windows crossplay e expansão posterior de quantidade de jogadores; acesso fora da LAN apenas depois de modelo de autenticação, criptografia e segurança apropriado.
+- **Congelado:** objetivos cooperativos inéditos, recompensas, histórias e novas missões, progressão nova, regiões/mapas, espécies adicionais, torneios e modos novos que exijam conteúdo de jogo. Os parágrafos M3.0-C referentes a "objetivo compartilhado" e "recompensa individual" ficam SUSPENSOS para este escopo; não implementá-los sem nova autorização.
+- O Laboratório de QA é SOMENTE ferramenta de testes, separada do launcher/jogo final. Não converter o Lab em interface obrigatória de hospedagem para jogadores.
+- Preserve decisões anteriores como histórico, sem tomá-las como tarefas ativas de expansão de conteúdo. O adendo [64D + EX01–EX64](V100_M30_DECISOES_64D_20261019_PTBR.md) governa o escopo atual.
+
+**Não confundir "online" com conexão WAN pública já segura:** inicialmente LAN; não expor o EHL8 com PIN simples na Internet.
+
 ## Decisões confirmadas
 
 Rodada 1: **1D 2D 3D 4D 5C 6D 7D 8D**.

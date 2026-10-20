@@ -23,6 +23,10 @@ MAX_PAYLOAD = 4096
 HELLO, WELCOME, INCOMPATIBLE, AUTH_PIN, JOIN, PLAYER_LIST, READY, START, LEAVE, KICK, HEARTBEAT, POSE = range(1, 13)
 PROFILE_ID = re.compile(rb"[A-Za-z0-9_-]{1,48}\Z")
 READ_TIMEOUT = 35
+# PIN failures are LAN-scoped, time-limited and memory-bounded.
+PIN_FAILURE_WINDOW_SECONDS = 15 * 60
+PIN_MAX_TRACKED_ADDRESSES = 256
+PIN_MAX_FAILURES = 64
 RESUME = 18  # Optional EHL8 type 18, no frame version change
 RESUME_TOKEN_BYTES = 32
 RESUME_HOLD_SECONDS = 60
@@ -103,7 +107,8 @@ class SessionServer:
         self.session = secrets.randbits(64) or 1
         self.players = {}
         self.connected = set()
-        self.invalid_attempts = {}  # IP -> (failure count, blocked_until)
+        # IP -> (failures in window, blocked_until, last_failure_monotonic)
+        self.invalid_attempts = {}
         self.resume_enabled = bool(resume_enabled)
         if not 1 <= reservation_seconds <= 60:
             raise ValueError("resume reservation must be 1..60 seconds")
@@ -257,11 +262,46 @@ class SessionServer:
             except (OSError, ConnectionError, asyncio.TimeoutError, ProtocolError):
                 peer.close()
 
+    def _prune_pin_failures(self, now):
+        """Forget stale addresses, but never clear an active cooldown."""
+        for address, (_, blocked_until, last_failed) in tuple(self.invalid_attempts.items()):
+            if (blocked_until <= now and
+                    now - last_failed >= PIN_FAILURE_WINDOW_SECONDS):
+                del self.invalid_attempts[address]
+
+    def _allow_pin_address(self, address, now):
+        """Keep the LAN PIN limiter bounded without evicting active cooldowns."""
+        self._prune_pin_failures(now)
+        if address in self.invalid_attempts or len(self.invalid_attempts) < PIN_MAX_TRACKED_ADDRESSES:
+            return True
+        # Evict only the oldest address whose cooldown has ended. If all
+        # tracked addresses are still blocked, refuse untracked connections.
+        available = ((entry[2], ip) for ip, entry in self.invalid_attempts.items()
+                     if entry[1] <= now)
+        oldest = min(available, default=None)
+        if oldest is None:
+            return False
+        del self.invalid_attempts[oldest[1]]
+        return True
+
+    def _record_invalid_pin(self, address, now):
+        failures, _, last_failed = self.invalid_attempts.get(address, (0, 0.0, 0.0))
+        if now - last_failed >= PIN_FAILURE_WINDOW_SECONDS:
+            failures = 0
+        failures = min(failures + 1, PIN_MAX_FAILURES)
+        blocked_until = (now + min(300, 10 * 2 ** min(failures, 5))
+                         if failures >= 3 else 0.0)
+        self.invalid_attempts[address] = (failures, blocked_until, now)
+
     async def handle(self, reader, writer):
         peer = Peer(reader, writer)
         address = peer.address[0] if peer.address else "unknown"
-        failures, blocked_until = self.invalid_attempts.get(address, (0, 0.0))
-        if blocked_until > time.monotonic() or len(self.connected) >= self.slots + 8:
+        now = time.monotonic()
+        if not self._allow_pin_address(address, now):
+            writer.close()
+            return
+        _, blocked_until, _ = self.invalid_attempts.get(address, (0, 0.0, 0.0))
+        if blocked_until > now or len(self.connected) >= self.slots + 8:
             writer.close()
             return
         self.connected.add(peer)
@@ -315,18 +355,25 @@ class SessionServer:
         if peer.stage == "AUTH":
             if msg.kind != AUTH_PIN or len(msg.payload) != 6:
                 raise ProtocolError("six-digit PIN expected")
+            ip = peer.address[0] if peer.address else "unknown"
+            # Already-open connections must not bypass a cooldown triggered
+            # by another connection from the same address.
+            _, blocked_until, _ = self.invalid_attempts.get(ip, (0, 0.0, 0.0))
+            if blocked_until > time.monotonic():
+                await peer.send(KICK, b"PIN cooldown active", self.session)
+                raise ProtocolError("PIN cooldown active")
             if not secrets.compare_digest(msg.payload, self.pin):
-                ip = peer.address[0] if peer.address else "unknown"
-                failures, until = self.invalid_attempts.get(ip, (0, 0.0))
-                # Failure count is retained even before cooldown begins; never
-                # reset on the second wrong PIN by treating until=0 as expiry.
-                failures += 1
-                self.invalid_attempts[ip] = (
-                    failures,
-                    time.monotonic() + min(300, 10 * 2 ** min(failures, 5))
-                    if failures >= 3 else 0.0)
+                now = time.monotonic()
+                # Multiple connections can finish AUTH after passing handle's
+                # capacity gate. Enforce the bound again before recording.
+                if self._allow_pin_address(ip, now):
+                    self._record_invalid_pin(ip, now)
                 await peer.send(KICK, b"Invalid PIN", self.session)
                 raise ProtocolError("invalid PIN")
+            # A valid PIN resets prior typos without weakening active bans:
+            # handle() rejects an address until its cooldown has ended.
+            ip = peer.address[0] if peer.address else "unknown"
+            self.invalid_attempts.pop(ip, None)
             peer.stage = "JOIN"
             await peer.send(AUTH_PIN, b"\x01", self.session, msg.request)
             return

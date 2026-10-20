@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feature/emerald-v100-m23a-server-first-lab
+      - 'feature/emerald-m30-*'
     paths:
       - 'tools/emerald_auto_qa.py'
       - 'tools/emerald_qa_lab.py'
