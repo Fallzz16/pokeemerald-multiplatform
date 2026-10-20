@@ -79,8 +79,11 @@ def inspect(firered: Path, emerald: Path, minimum: int = 35,
     missing = required.difference(names)
     if missing:
         raise PreflightError("missing required landmarks: " + ", ".join(sorted(missing)))
-    source_by_id = {x["id"]: x for x in source_layouts["layouts"]}
-    if len(source_by_id) != len(source_layouts["layouts"]):
+    # FireRed preserves empty {} positions in layouts.json for unused layout IDs.
+    # They are deliberate holes in the original table, not malformed entries.
+    defined_layouts = [item for item in source_layouts["layouts"] if item.get("id")]
+    source_by_id = {x["id"]: x for x in defined_layouts}
+    if len(source_by_id) != len(defined_layouts):
         raise PreflightError("duplicate source layout ID")
     target_layout_ids = {x["id"] for x in target_layouts["layouts"]}
     target_maps = set()
