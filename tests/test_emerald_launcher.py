@@ -55,6 +55,87 @@ class GraphicalLauncherTests(unittest.TestCase):
         self.assertEqual(child.wait.call_count, 2)
         child.stdin.close.assert_called_once()
 
+    def test_ehl8_host_launch_plan_requires_matched_game_and_server(self):
+        import hashlib
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            game = home / "pokeemerald.exe"
+            server = home / "EmeraldSessionServerM23.exe"
+            game.write_bytes(b"game-test-only")
+            server.write_bytes(b"server-test-only")
+            manifest = home / "EHL8_M23_GAME_MATCHED.txt"
+            manifest.write_text(json.dumps({
+                "game_sha256": hashlib.sha256(game.read_bytes()).hexdigest(),
+                "server_sha256": hashlib.sha256(server.read_bytes()).hexdigest(),
+            }), encoding="utf-8")
+            command, manual = launcher.server_launch_plan(home, game, 45680)
+            self.assertTrue(manual)
+            self.assertEqual(Path(command[0]), server)
+            self.assertIn("--host-start", command)
+            self.assertIn("--admin-stdin", command)
+            self.assertIn("--resume-v1", command)
+            self.assertNotIn("123456", " ".join(command))
+            server.write_bytes(b"incompatible-server")
+            with self.assertRaisesRegex(ValueError, "não verificado"):
+                launcher.server_launch_plan(home, game, 45680)
+            # An invalid marker must never silently fall back to old server.
+            (home / "EmeraldSessionServer.exe").touch()
+            with self.assertRaises(ValueError):
+                launcher.server_launch_plan(home, game, 45680)
+
+    def test_legacy_ehl8_host_plan_preserves_autostart(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            (home / "EmeraldSessionServer.exe").touch()
+            command, manual = launcher.server_launch_plan(home, home / "pokeemerald.exe", 45680)
+            self.assertFalse(manual)
+            self.assertNotIn("--host-start", command)
+            self.assertNotIn("--admin-stdin", command)
+
+    def test_live_lobby_gate_requires_two_real_ready_players(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            log = Path(tmp) / "room.log"
+            self.assertIsNone(launcher.read_lobby_gate(log))
+            log.write_text("EHL8_ROOM_COUNT=0/2\n"
+                           "EHL8_READY_COUNT=0/2\n"
+                           "EHL8_ROOM_STARTED=0\n"
+                           "EHL8_ROOM_COUNT=1/2\n"
+                           "EHL8_READY_COUNT=1/2\n", encoding="utf-8")
+            self.assertEqual(launcher.read_lobby_gate(log), {
+                "players": 1, "ready": 1, "started": False})
+            with log.open("a", encoding="utf-8") as out:
+                out.write("EHL8_ROOM_COUNT=2/2\nEHL8_READY_COUNT=2/2\n")
+            self.assertEqual(launcher.read_lobby_gate(log), {
+                "players": 2, "ready": 2, "started": False})
+            with log.open("a", encoding="utf-8") as out:
+                out.write("EHL8_ROOM_STARTED=1\n")
+            self.assertTrue(launcher.read_lobby_gate(log)["started"])
+
+    def test_admin_start_writes_exact_local_command(self):
+        from unittest.mock import Mock
+        process = Mock()
+        process.poll.return_value = None
+        process.stdin.closed = False
+        launcher.send_lobby_admin(process, "START")
+        process.stdin.write.assert_called_once_with(b"START\n")
+        process.stdin.flush.assert_called_once_with()
+        with self.assertRaises(ValueError):
+            launcher.send_lobby_admin(process, "KICK QA_B")
+        with self.assertRaises(ValueError):
+            launcher.send_lobby_admin(process, "START\nKICK QA_B")
+        self.assertEqual(process.stdin.write.call_count, 1)
+
+    def test_pin_handoff_keeps_private_pipe_for_manual_start(self):
+        from unittest.mock import Mock
+        child = Mock()
+        child.stdin.closed = False
+        launcher.deliver_pin_or_terminate(child, "123456", keep_open=True)
+        child.stdin.write.assert_called_once_with(b"123456\n")
+        child.stdin.close.assert_not_called()
+        launcher.send_lobby_admin(child, "START")
+        child.stdin.write.assert_any_call(b"START\n")
+
     def test_dedicated_session_requires_six_digit_pin_and_valid_ipv4(self):
         args = launcher.make_command("pokeemerald.exe","profiles","trainer",
                                      "dedicated","127.0.0.1","45680","123456")
