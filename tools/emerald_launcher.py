@@ -310,6 +310,7 @@ class EmeraldLauncher(tk.Tk):
         self.port=tk.StringVar(value=str(settings.get("last_port","45680"))[:6])
         self.diagnostics=tk.BooleanVar(value=settings.get("diagnostics",False) is True)
         self.pin=tk.StringVar()
+        self.pin_revealed=False
         self.server_status=tk.StringVar(value="Sala offline · crie uma sala para convidar um amigo")
         self.active_process=None
         self.active_log=None
@@ -381,6 +382,7 @@ class EmeraldLauncher(tk.Tk):
                                           accent=True,disabled=True)
         self.start_room_button.pack(side="left")
         self.btn(rowserver,"PARAR SALA",self.stop_server).pack(side="right")
+        self.btn(rowserver,"COMO CONVIDAR",self.show_invitation_help).pack(side="right",padx=(0,8))
         section=tk.Frame(f,bg=INK);section.pack(fill="x",padx=32,pady=(10,5))
         self.text(section,"DADOS DA SALA",10,MUTED,True).pack(anchor="w")
         row=tk.Frame(f,bg=INK);row.pack(fill="x",padx=32)
@@ -392,9 +394,11 @@ class EmeraldLauncher(tk.Tk):
                  insertbackground=WHITE,relief="flat",font=("Consolas",10)).pack(side="left",padx=7,ipady=5)
         secretrow=tk.Frame(f,bg=INK);secretrow.pack(fill="x",padx=32,pady=(4,0))
         self.text(secretrow,"PIN (6 dígitos):",9,MUTED).pack(side="left")
-        tk.Entry(secretrow,textvariable=self.pin,show="*",width=8,bg=PANEL,fg=WHITE,
-                 insertbackground=WHITE,relief="flat",font=("Consolas",10)).pack(side="left",padx=8,ipady=5)
+        self.pin_entry=tk.Entry(secretrow,textvariable=self.pin,show="*",width=8,bg=PANEL,fg=WHITE,
+                 insertbackground=WHITE,relief="flat",font=("Consolas",10))
+        self.pin_entry.pack(side="left",padx=8,ipady=5)
         self.btn(secretrow,"GERAR PIN",self.generate_pin).pack(side="left")
+        self.btn(secretrow,"VER PIN",self.toggle_pin_visibility).pack(side="left",padx=(7,0))
         self.btn(secretrow,"TESTAR IP",self.check_network).pack(side="right")
         advanced=tk.Frame(f,bg=INK);advanced.pack(fill="x",padx=32,pady=(7,0))
         self.text(advanced,"CLÁSSICO P2P · Cable Club (batalhas/trocas)",9,MUTED).pack(side="left")
@@ -518,6 +522,22 @@ class EmeraldLauncher(tk.Tk):
         """Only show/store the PIN in RAM; never put it in a process argument."""
         self.pin.set(f"{secrets.randbelow(1000000):06d}")
 
+    def toggle_pin_visibility(self):
+        self.pin_revealed=not self.pin_revealed
+        self.pin_entry.configure(show="" if self.pin_revealed else "*")
+
+    def show_invitation_help(self):
+        messagebox.showinfo("Convidar um amigo",
+            "1. Crie a sala e abra seu Emerald.\n"
+            "2. Encontre seu IPv4 privado no Windows usando ipconfig "
+            "ou consulte o endereço da sua VPN privada.\n"
+            "3. Compartilhe IP, porta e PIN somente com seu amigo.\n"
+            "4. No PC dele, selecione ENTRAR NA SALA, preencha os dados "
+            "e aguarde 2/2 prontos.\n"
+            "5. Você clica INICIAR PARTIDA neste launcher.\n\n"
+            "127.0.0.1 só funciona no próprio PC. Não abra portas "
+            "públicas no roteador para o EHL8 experimental.")
+
     def play_with_friends(self):
         """Joining a multiplayer room always uses EHL8, not old P2P."""
         self.play("dedicated")
@@ -539,7 +559,14 @@ class EmeraldLauncher(tk.Tk):
             self.generate_pin()
         if not self.start_server():
             return
-        self.play("dedicated", host_override="127.0.0.1", keep_launcher=True)
+        if not self.play("dedicated", host_override="127.0.0.1", keep_launcher=True):
+            # A partially created room must not linger after a failed game launch.
+            if self.server_process is not None and self.server_process.poll() is None:
+                self.server_process.terminate()
+            self.server_process=None
+            self.manual_start_available=False
+            self.start_room_button.configure(state="disabled")
+            self.server_status.set("O Emerald não abriu; a sala foi encerrada.")
 
     def start_server(self):
         if self.server_process is not None and self.server_process.poll() is None:
@@ -693,13 +720,13 @@ class EmeraldLauncher(tk.Tk):
     def play(self,mode,host_override=None,keep_launcher=False):
         if self.active_process is not None and self.active_process.poll() is None:
             messagebox.showinfo("Jogo em execução","O Emerald já está aberto. Feche-o antes de iniciar outra partida.")
-            return
+            return False
         if self.selected is None:
-            messagebox.showwarning("Falta um perfil","Crie ou selecione uma conta local primeiro.");return
+            messagebox.showwarning("Falta um perfil","Crie ou selecione um perfil local primeiro.");return False
         if not self.game.is_file():
-            messagebox.showerror("Jogo não encontrado","Coloque pokeemerald.exe ao lado do launcher.");return
+            messagebox.showerror("Jogo não encontrado","Coloque pokeemerald.exe ao lado do launcher.");return False
         if not (self.root_dir/self.selected/"pokeemerald.sav").is_file():
-            messagebox.showerror("Save não encontrado","O arquivo de save deste perfil não existe.");return
+            messagebox.showerror("Save não encontrado","O arquivo de save deste perfil não existe.");return False
         try:
             host=host_override if host_override is not None else self.ip.get().strip()
             if mode=="dedicated" and not host and self.server_process is not None and self.server_process.poll() is None:
@@ -742,7 +769,10 @@ class EmeraldLauncher(tk.Tk):
                 self.status.set("Emerald aberto. No online, aguarde o START do anfitrião.")
                 self.iconify()
             self.after(900,self.watch_game)
-        except (OSError,ValueError) as err:messagebox.showerror("Falha ao iniciar",str(err))
+            return True
+        except (OSError,ValueError) as err:
+            messagebox.showerror("Falha ao iniciar",str(err))
+            return False
 
 def main():
     if "--self-test" in sys.argv:
