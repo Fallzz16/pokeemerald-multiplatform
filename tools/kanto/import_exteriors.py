@@ -443,6 +443,150 @@ Kanto_VermilionMart_Items:
     return created
 
 
+
+
+def add_regional_service_interiors(source: Path, emerald: Path, source_maps: dict,
+                                  target_groups: dict) -> list[str]:
+    """Enable the canonical 1F centers and Marts of Kanto's other cities.
+
+    Reuse the already-ported original FRLG interior layouts, graphics and
+    metatiles; require original source exits/entries for every generated
+    door. Only service NPCs are initially brought over. No upstairs link-room
+    warp is activated and no new save-block field is introduced.
+    """
+    cities = (
+        "ViridianCity", "PewterCity", "CeruleanCity", "LavenderTown",
+        "CeladonCity", "FuchsiaCity", "CinnabarIsland", "SaffronCity",
+    )
+    created: list[str] = []
+    for city in cities:
+        outside_source = source_maps.get(city)
+        if outside_source is None:
+            raise RuntimeError(f"Missing expected original Kanto city: {city}")
+        external_path = emerald / "data/maps" / f"Kanto_{city}" / "map.json"
+        exterior = load_json(emerald, str(external_path.relative_to(emerald)))
+        for kind in ("PokemonCenter_1F", "Mart"):
+            source_name = f"{city}_{kind}"
+            file = source / "data/maps" / source_name / "map.json"
+            if not file.is_file():
+                if city == "CeladonCity" and kind == "Mart":
+                    # The original Celadon city uses a department store.
+                    continue
+                raise RuntimeError(f"Missing expected FRLG service interior: {source_name}")
+            original = load_json(source, f"data/maps/{source_name}/map.json")
+            is_center = kind == "PokemonCenter_1F"
+            expected_layout = "LAYOUT_POKEMON_CENTER_1F" if is_center else "LAYOUT_MART"
+            if original["layout"] != expected_layout:
+                raise RuntimeError(f"Unsupported nonstandard layout for {source_name}")
+            entrances = [w for w in outside_source["warp_events"]
+                         if w["dest_map"] == original["id"]]
+            if not entrances:
+                raise RuntimeError(f"{city}: FireRed city has no entrance to {source_name}")
+            exits = [w for w in original["warp_events"]
+                     if w["dest_map"] == outside_source["id"]]
+            if not exits:
+                raise RuntimeError(f"{source_name}: missing original exterior exit")
+            exterior_warp_id = len(exterior["warp_events"])
+            target_name = "Kanto_" + source_name
+            target_id = "MAP_KANTO_" + source_name.upper()
+            local_id = f"LOCALID_KANTO_{city.upper()}_NURSE"
+            suffix = "Nurse" if is_center else "Clerk"
+            script_label = f"{target_name}_EventScript_{suffix}"
+            role = "OBJ_EVENT_GFX_NURSE" if is_center else "OBJ_EVENT_GFX_CLERK"
+            actors = [o for o in original["object_events"]
+                      if o.get("graphics_id") == role]
+            if len(actors) != 1:
+                raise RuntimeError(f"{source_name}: expected one canonical service NPC; found {len(actors)}")
+            npc = actors[0]
+            role_gfx = "OBJ_EVENT_GFX_NURSE" if is_center else "OBJ_EVENT_GFX_MART_EMPLOYEE"
+            obj = make_qa_npc(role_gfx, script_label,
+                              (npc["x"], npc["y"], npc["elevation"]))
+            if is_center:
+                obj["local_id"] = local_id
+
+            map_obj = {
+                "id": target_id, "name": target_name,
+                "layout": "LAYOUT_KANTO_POKEMON_CENTER_1F" if is_center else "LAYOUT_KANTO_MART",
+                "music": "MUS_POKE_CENTER" if is_center else "MUS_POKE_MART",
+                "region_map_section": "MAPSEC_NONE", "requires_flash": False,
+                "weather": "WEATHER_NONE", "map_type": "MAP_TYPE_INDOOR",
+                "allow_cycling": False, "allow_escaping": False,
+                "allow_running": False, "show_map_name": False,
+                "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+                "connections": None,
+                "object_events": [obj],
+                "warp_events": [{
+                    "x": w["x"], "y": w["y"], "elevation": w["elevation"],
+                    "dest_map": exterior["id"],
+                    "dest_warp_id": str(exterior_warp_id),
+                } for w in exits],
+                "coord_events": [], "bg_events": [],
+            }
+            if is_center:
+                scripts = f"""{target_name}_MapScripts::
+    .byte 0
+
+@ Hoenn heal warp is intentionally preserved until regional save migration.
+{script_label}::
+    setvar VAR_0x800B, {local_id}
+    call Common_EventScript_PkmnCenterNurse
+    waitmessage
+    waitbuttonpress
+    release
+    end
+"""
+            else:
+                scripts = f"""{target_name}_MapScripts::
+    .byte 0
+
+{script_label}::
+    lock
+    faceplayer
+    message gText_HowMayIServeYou
+    waitmessage
+    pokemart Kanto_GenericMart_Items
+    msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+    release
+    end
+"""
+            out = emerald / "data/maps" / target_name
+            emit_json(out / "map.json", map_obj)
+            (out / "scripts.inc").write_text(scripts, encoding="utf-8")
+            for w in entrances:
+                exterior["warp_events"].append({
+                    "x": w["x"], "y": w["y"],
+                    "elevation": w["elevation"],
+                    "dest_map": target_id,
+                    # Original 1F source warp 1 is a safe lobby entrance.
+                    # Use the first interior exit/entry warp when there is only one.
+                    "dest_warp_id": "1" if len(exits) > 1 else "0",
+                })
+            created.append(target_name)
+        emit_json(external_path, exterior)
+
+    if len(created) != 15:
+        raise RuntimeError(f"Wrong Kanto city service count: {len(created)}, expected 15")
+
+    # Shared shop inventory for the early functional milestone. Original
+    # city-specific FireRed item lists are a separately QA-tracked feature.
+    shop_common = """
+    .align 2
+Kanto_GenericMart_Items:
+    .short ITEM_POKE_BALL
+    .short ITEM_GREAT_BALL
+    .short ITEM_POTION
+    .short ITEM_SUPER_POTION
+    .short ITEM_ANTIDOTE
+    .short ITEM_PARALYZE_HEAL
+    .short ITEM_ESCAPE_ROPE
+    .short ITEM_REPEL
+    pokemartlistend
+"""
+    (emerald / "data/maps" / created[0] / "scripts.inc").open("a", encoding="utf-8").write(shop_common)
+    target_groups["gMapGroup_Kanto"].extend(created)
+    return created
+
+
 def copy_exteriors(source: Path, emerald: Path) -> dict:
     checkout_guard(source)
     group = load_json(source, "data/maps/map_groups.json")
@@ -606,7 +750,11 @@ Kanto_VermilionCity_Text_BattleQuestion:
     interiors = add_vermilion_interiors(
         source, emerald, layouts, target_layouts, target_groups,
         source_maps["VermilionCity"])
+    interiors.extend(add_regional_service_interiors(
+        source, emerald, source_maps, target_groups))
     report["interior_maps"] = interiors
+    report["original_interiors_ported"] = len(interiors)
+    report["interior_warps_ported"] = len(interiors)
     target_groups["gMapGroup_Kanto"].extend("Kanto_" + n for n in names)
     target_groups["connections_include_order"].extend("Kanto_" + n for n in names)
     emit_json(emerald / "data/maps/map_groups.json", target_groups)
@@ -640,7 +788,7 @@ def main() -> int:
     opts.report.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     print(f"Materialized {result['geometry_maps_created']} original exterior maps "
           f"and {result['graphics_tilesets_created']} graphics sets.")
-    print("WARNING: Only Vermilion Pokemon Center 1F and Mart interiors are ready for QA.")
+    print("CAUTION: 17 original Kanto Center/Mart interiors have service scripts; actual gameplay QA pending.")
     print("Other interiors, gym/trainer scripts and local healing respawn remain pending.")
     print("Verify collision, palettes, map edges, ferry and save by real gameplay.")
     return 0
