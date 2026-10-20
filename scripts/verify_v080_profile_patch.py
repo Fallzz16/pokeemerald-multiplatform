@@ -10,6 +10,15 @@ def strip_v080_profile_patch(native: str) -> str:
             raise AssertionError("v0.8 profile integration drift: " + old[:60])
         native = native.replace(old, new, 1)
 
+    # M3.0 player-facing room overlay: strictly invert the two reviewed
+    # SDL2 insertions before checking the protected legacy source hash.
+    once('#include "../lnet/lnet_wait_overlay.h"\n', '')
+    once('        /* EHL8 room wait is a real player-facing screen, not just a frozen\n'
+         '         * title menu. Keep rendering and network/game ticks alive. */\n'
+         '        if (sessionWaitForStart)\n'
+         '            lnet_wait_overlay_render(sdlRenderer, SDL_AtomicGet(&sEhl8WaitUiState));\n'
+         '\n', '')
+
     # M3.0 EHL8 gameplay START input gate: reverse only nine precisely
     # enumerated additions. Keep the historic SDL2 blob hash check strict.
     # Reviewed M3.0 START gate addition 1
