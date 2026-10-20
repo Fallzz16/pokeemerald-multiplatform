@@ -38,7 +38,8 @@ class PreflightTests(unittest.TestCase):
                 "border_filepath": "data/layouts/demo/border.bin",
             }
             put_json(fr, "data/maps/map_groups.json", {"gMapGroup_TownsAndRoutes": names})
-            put_json(fr, "data/layouts/layouts.json", {"layouts": [layout]})
+            # FRLG intentionally has vacant {} slots in its layout table.
+            put_json(fr, "data/layouts/layouts.json", {"layouts": [{}, layout, {}]})
             for n in names:
                 put_json(fr, f"data/maps/{n}/map.json", {
                     "name": n, "id": "MAP_" + n.upper(),
