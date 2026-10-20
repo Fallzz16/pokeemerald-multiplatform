@@ -130,6 +130,7 @@ class GraphicalLauncherTests(unittest.TestCase):
         from unittest.mock import Mock
         child = Mock()
         child.stdin.closed = False
+        child.poll.return_value = None
         launcher.deliver_pin_or_terminate(child, "123456", keep_open=True)
         child.stdin.write.assert_called_once_with(b"123456\n")
         child.stdin.close.assert_not_called()
