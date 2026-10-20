@@ -703,7 +703,8 @@ def add_saffron_gatehouses(source: Path, emerald: Path, source_maps: dict,
             target_name + "_MapScripts::\n    .byte 0\n", encoding="utf-8"
         )
         created.append(target_name)
-    target_groups["gMapGroup_Kanto"].extend(created)
+    # Keep previously released Kanto map IDs unchanged; registration happens
+    # only after exteriors and service interiors are fully registered.
     return created
 
 
@@ -884,6 +885,7 @@ Kanto_VermilionCity_Text_BattleQuestion:
     report["interior_warps_ported"] = len(interiors)
     target_groups["gMapGroup_Kanto"].extend("Kanto_" + n for n in names)
     target_groups["gMapGroup_Kanto"].extend(new_services)
+    target_groups["gMapGroup_Kanto"].extend(saffron_gates)
     target_groups["connections_include_order"].extend("Kanto_" + n for n in names)
     emit_json(emerald / "data/maps/map_groups.json", target_groups)
     emit_json(emerald / "data/layouts/layouts.json", target_layouts)
