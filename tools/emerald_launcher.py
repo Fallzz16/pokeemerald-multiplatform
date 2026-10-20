@@ -138,11 +138,12 @@ def read_lobby_gate(log_path):
     # M3.0 BETA: prefer one complete record, rather than combining fields
     # emitted at different instants (or across successive server sessions).
     # The 4th field reserves seats for reconnecting clients.
-    records = re.findall(
+    records = list(re.finditer(
         r"EHL8_ROOM_STATE=([0-2])/2,([0-2])/2,([01]),([0-2])/2(?:\s|$)",
-        tail)
-    if records:
-        players, ready, started, reserved = map(int, records[-1])
+        tail))
+    last_marker = tail.rfind("EHL8_ROOM_STATE=")
+    if records and records[-1].start() == last_marker:
+        players, ready, started, reserved = map(int, records[-1].groups())
         if ready > players or players + reserved > 2:
             return None
         return {"players": players, "ready": ready,
