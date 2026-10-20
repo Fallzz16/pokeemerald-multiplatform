@@ -111,6 +111,27 @@ static int replace_file(const char *src,const char *dst)
     return rename(src,dst)==0;
 #endif
 }
+/* Verify the temporary copy before committing it. This guards against
+ * divergent bytes from a failed/changed transfer, not sector payload bugs. */
+static int same_file_bytes(const char *left,const char *right)
+{
+    FILE *a=fopen(left,"rb"),*b=NULL;
+    unsigned char aa[8192],bb[8192];
+    size_t na,nb;
+    int same=1;
+    if(!a) return 0;
+    b=fopen(right,"rb");
+    if(!b){fclose(a);return 0;}
+    do {
+        na=fread(aa,1,sizeof(aa),a);
+        nb=fread(bb,1,sizeof(bb),b);
+        if(na!=nb || memcmp(aa,bb,na)!=0){same=0;break;}
+    } while(na==sizeof(aa));
+    if(ferror(a)||ferror(b)) same=0;
+    if(fclose(a)!=0) same=0;
+    if(fclose(b)!=0) same=0;
+    return same;
+}
 /* Copies without modifying source. Temp file uses .partial; caller ensures
  * the exclusive profile lock when targeting an existing profile. */
 static SpStatus copy_atomic(const char *src,const char *dst)
@@ -131,7 +152,7 @@ static SpStatus copy_atomic(const char *src,const char *dst)
     if(ferror(in)) good=0;
     if(fclose(in)!=0) good=0;
     if(!close_sync(out)) good=0;
-    if(!good || !replace_file(temp,dst)){
+    if(!good || !same_file_bytes(src,temp) || !replace_file(temp,dst)){
         remove(temp);
         return SP_IO;
     }
