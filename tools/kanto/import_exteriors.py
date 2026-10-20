@@ -178,6 +178,69 @@ def create_tileset(source: Path, emerald: Path, original_label: str,
     return dest_label, folder
 
 
+def safe_port_positions(blockdata: bytes, width: int, height: int) -> dict:
+    """Pick connected non-collision tiles near the original Vermilion port."""
+    if len(blockdata) != width * height * 2:
+        raise RuntimeError("Port geometry binary size mismatch")
+
+    def cell(x: int, y: int) -> tuple[int, int] | None:
+        if x < 2 or y < 2 or x >= width - 2 or y >= height - 2:
+            return None
+        offset = 2 * (y * width + x)
+        word = int.from_bytes(blockdata[offset:offset + 2], "little")
+        if word & 0x0C00:  # GBA collision bits
+            return None
+        return word & 1023, (word >> 12) & 15
+
+    # Prefer the S.S. Anne pier, but never hard-code an unverified tile.
+    primary = [(x, y) for y in range(26, min(height - 2, 37))
+               for x in range(17, min(width - 2, 29)) if cell(x, y)]
+    primary.sort(key=lambda xy: (abs(xy[0] - 23) + abs(xy[1] - 34), xy[1], xy[0]))
+    directions = [(0, -1), (-1, 0), (1, 0), (0, 1)]
+    for nx, ny in primary:
+        n = cell(nx, ny)
+        if not n:
+            continue
+        for dx, dy in directions:
+            px, py = nx + dx, ny + dy
+            p = cell(px, py)
+            if p is None or p[1] != n[1]:
+                continue
+            # Some maps store different elevations at a shoreline boundary.
+            # Select two other walkable, same-elevation tiles for test NPCs.
+            reachable = []
+            for sx, sy in primary:
+                if abs(sx - nx) + abs(sy - ny) < 3 or (sx, sy) == (px, py):
+                    continue
+                s = cell(sx, sy)
+                if s is None or s[1] != n[1]:
+                    continue
+                if any(cell(sx + ux, sy + uy) is not None and
+                       cell(sx + ux, sy + uy)[1] == s[1]
+                       for ux, uy in directions):
+                    reachable.append((sx, sy))
+            if len(reachable) >= 2:
+                # Fixed selection: deterministic across all platforms/builds.
+                return {"sailor": (nx, ny, n[1]),
+                        "arrival": (px, py, p[1]),
+                        "healer": (*reachable[0], n[1]),
+                        "encounter": (*reachable[1], n[1])}
+    raise RuntimeError("Unable to find collision-free ferry + QA NPC positions in source map")
+
+
+def make_qa_npc(graphics: str, script: str, spot: tuple[int, int, int]) -> dict:
+    x, y, elevation = spot
+    return {
+        "graphics_id": graphics,
+        "x": x, "y": y, "elevation": elevation,
+        "movement_type": "MOVEMENT_TYPE_FACE_UP",
+        "movement_range_x": 0, "movement_range_y": 0,
+        "trainer_type": "TRAINER_TYPE_NONE",
+        "trainer_sight_or_berry_tree_id": "0",
+        "script": script, "flag": "0",
+    }
+
+
 def make_map(name: str, original: dict, valid: set[str]) -> dict:
     return {
         "id": "MAP_KANTO_" + name.upper(),
@@ -237,6 +300,9 @@ def copy_exteriors(source: Path, emerald: Path) -> dict:
               "interior_warps_ported": 0,
               "trainer_battles_ported": 0,
               "wild_encounters_ported": 0,
+              "qa_npcs_added_in_vermilion": 3,
+              "qa_scripted_pidgey_battle": True,
+              "qa_party_heal": True,
               "pokemon_center_heal_locations_ported": 0,
               "unknown_metatile_behaviors": dict(unknown),
               "maps": []}
@@ -269,15 +335,16 @@ def copy_exteriors(source: Path, emerald: Path) -> dict:
             for c in (m.get("connections") or []) if c["map"] in source_to_name
         ] or None
         if n == "VermilionCity":
-            target_map["object_events"].append({
-                "graphics_id": "OBJ_EVENT_GFX_SAILOR",
-                "x": 23, "y": 34, "elevation": 3,
-                "movement_type": "MOVEMENT_TYPE_FACE_UP",
-                "movement_range_x": 0, "movement_range_y": 0,
-                "trainer_type": "TRAINER_TYPE_NONE",
-                "trainer_sight_or_berry_tree_id": "0",
-                "script": "Kanto_VermilionCity_EventScript_ReturnFerry", "flag": "0",
-            })
+            dock = safe_port_positions(block, new_layout["width"], new_layout["height"])
+            target_map["object_events"].extend([
+                make_qa_npc("OBJ_EVENT_GFX_SAILOR",
+                            "Kanto_VermilionCity_EventScript_ReturnFerry", dock["sailor"]),
+                make_qa_npc("OBJ_EVENT_GFX_NURSE",
+                            "Kanto_VermilionCity_EventScript_TestHeal", dock["healer"]),
+                make_qa_npc("OBJ_EVENT_GFX_BOY_1",
+                            "Kanto_VermilionCity_EventScript_TestWildBattle", dock["encounter"]),
+            ])
+            report["landing"] = dock
         out_dir = emerald / "data/maps" / prefixed
         emit_json(out_dir / "map.json", target_map)
         scripts = f"{prefixed}_MapScripts::\n    .byte 0\n"
@@ -304,6 +371,33 @@ Kanto_VermilionCity_Text_ReturnToHoenn:
 
 Kanto_VermilionCity_Text_Stay:
     .string "Enjoy KANTO!$"
+
+@ Temporary non-original QA interactions until the interior PokeCenter
+@ and the real encounters/trainer scripts are ported.
+Kanto_VermilionCity_EventScript_TestHeal::
+    lock
+    faceplayer
+    special HealPlayerParty
+    msgbox Kanto_VermilionCity_Text_Healed, MSGBOX_DEFAULT
+    release
+    end
+
+Kanto_VermilionCity_EventScript_TestWildBattle::
+    lock
+    faceplayer
+    msgbox Kanto_VermilionCity_Text_BattleQuestion, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, Kanto_VermilionCity_EventScript_Stay
+    closemessage
+    setwildbattle SPECIES_PIDGEY, 5, ITEM_NONE
+    dowildbattle
+    release
+    end
+
+Kanto_VermilionCity_Text_Healed:
+    .string "Your team was fully healed.$"
+
+Kanto_VermilionCity_Text_BattleQuestion:
+    .string "Test battle with wild PIDGEY?$"
 """
         (out_dir / "scripts.inc").write_text(scripts, encoding="utf-8")
         report["maps"].append({
@@ -328,7 +422,9 @@ Kanto_VermilionCity_Text_Stay:
     old = "warp MAP_KANTO_HARBOR, 8, 4"
     if s.count(old) != 1:
         raise RuntimeError("Original ferry warp modified unexpectedly")
-    ferry.write_text(s.replace(old, "warp MAP_KANTO_VERMILIONCITY, 23, 33"), encoding="utf-8")
+    ax, ay, _ = report["landing"]["arrival"]
+    ferry.write_text(s.replace(old, f"warp MAP_KANTO_VERMILIONCITY, {ax}, {ay}"),
+                     encoding="utf-8")
     return report
 
 
