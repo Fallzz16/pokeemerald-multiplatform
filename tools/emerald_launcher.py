@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 import re
 import secrets
+import socket
 from datetime import datetime
 import subprocess
 import sys
@@ -202,6 +203,16 @@ def validate_ipv4(value):
         raise ValueError("Esse endereço IP não pode ser utilizado.")
     return str(addr)
 
+def test_tcp_reachability(host, port, timeout=2.0):
+    """Connect-only preflight. A TCP handshake does NOT verify EHL8 gameplay."""
+    address = validate_ipv4(host)
+    number = validate_port(port)
+    if timeout <= 0 or timeout > 10:
+        raise ValueError("Tempo limite de teste inválido.")
+    with socket.create_connection((address, number), timeout=timeout):
+        return True
+
+
 def validate_nickname(value):
     value=value.strip()
     if not 1 <= len(value) <= 18 or any(ord(c)<32 for c in value):
@@ -345,6 +356,7 @@ class EmeraldLauncher(tk.Tk):
         tk.Checkbutton(secretrow,text="Entrar via servidor dedicado EHL8",variable=self.dedicated_mode,
                        selectcolor=PANEL,activebackground=INK,activeforeground=WHITE,
                        bg=INK,fg=MUTED,font=("Segoe UI",9)).pack(side="left")
+        self.btn(secretrow, "TESTAR CONEXÃO", self.check_network).pack(side="right",padx=(12,0))
         self.text(secretrow,"PIN:",9,MUTED).pack(side="left",padx=(8,2))
         tk.Entry(secretrow,textvariable=self.pin,show="*",width=8,bg=PANEL,fg=WHITE,
                  insertbackground=WHITE,relief="flat",font=("Consolas",10)).pack(side="left",ipady=5)
@@ -444,6 +456,21 @@ class EmeraldLauncher(tk.Tk):
             messagebox.showinfo("Recuperação concluída",result or "Backup restaurado. Abra o Emerald para conferir o progresso.")
         except (OSError,RuntimeError,subprocess.TimeoutExpired) as err:
             messagebox.showerror("Não foi possível recuperar",str(err))
+
+    def check_network(self):
+        address = self.ip.get().strip()
+        if not address and self.server_process is not None and self.server_process.poll() is None:
+            address = "127.0.0.1"
+        try:
+            test_tcp_reachability(address, self.port.get())
+            messagebox.showinfo("Rede acessível",
+                "A porta TCP respondeu neste IP. Isso confirma somente alcance de rede, "
+                "NÃO autenticação EHL8 ou gameplay. Abra o jogo para validar a sessão.")
+        except (OSError, ValueError) as exc:
+            messagebox.showwarning("Falha de conectividade",
+                "Não foi possível alcançar este IP/porta. Confira servidor ligado, "
+                "IP correto, VPN privada e Firewall de rede privada. "
+                "Não abra portas públicas.\nDetalhes: " + str(exc))
 
     def play_with_friends(self):
         self.play("dedicated" if self.dedicated_mode.get() else "join")
