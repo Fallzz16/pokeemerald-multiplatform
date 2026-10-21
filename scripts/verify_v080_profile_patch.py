@@ -10,6 +10,28 @@ def strip_v080_profile_patch(native: str) -> str:
             raise AssertionError("v0.8 profile integration drift: " + old[:60])
         native = native.replace(old, new, 1)
 
+    # M3.3 user-only manual READY: precisely restore the M3.2 SDL2 source.
+    # Reviewed M3.3 manual READY change 1
+    once("extern int PortLanDedicatedSetManualReady(void);\nextern int PortLanDedicatedToggleReady(void);\n", "")
+    # Reviewed M3.3 manual READY change 2
+    once("static bool sEhl8ManualReady; /* configured before starting game thread */\nstatic SDL_atomic_t sEhl8ReadyToggles; /* F9 events from SDL thread */\nstatic SDL_atomic_t sEhl8OwnReady; /* 0/1, shown only before START */\nstatic int sEhl8ProcessedReadyToggles; /* game thread only */\n", "")
+    # Reviewed M3.3 manual READY change 3
+    once("    bool sessionManualReady = false;\n", "")
+    # Reviewed M3.3 manual READY change 4
+    once("        else if (strcmp(argv[i], \"--session-manual-ready\") == 0)\n            sessionManualReady = true;\n", "")
+    # Reviewed M3.3 manual READY change 5
+    once("    if (sessionManualReady && !sessionWaitForStart)\n    {\n        fprintf(stderr, \"Manual READY requires EHL8 wait-for-start.\\n\");\n        if (sProfileLocked)\n            sp_unlock(&sActiveProfileLock);\n        return 2;\n    }\n", "")
+    # Reviewed M3.3 manual READY change 6
+    once("            if (valid && sessionManualReady)\n                valid = PortLanDedicatedSetManualReady() != 0;\n", "")
+    # Reviewed M3.3 manual READY change 7
+    once("    sEhl8ManualReady = sessionManualReady;\n    SDL_AtomicSet(&sEhl8ReadyToggles, 0);\n    SDL_AtomicSet(&sEhl8OwnReady, sessionManualReady ? 0 : 1);\n    sEhl8ProcessedReadyToggles = 0;\n", "")
+    # Reviewed M3.3 manual READY change 8
+    once("            if (uiState == 1)\n            {\n                lnet_wait_overlay_room(sdlRenderer, SDL_AtomicGet(&sEhl8RoomSnapshot));\n                if (sEhl8ManualReady)\n                    lnet_wait_overlay_ready_hint(sdlRenderer, SDL_AtomicGet(&sEhl8OwnReady));\n            }\n", "            if (uiState == 1)\n                lnet_wait_overlay_room(sdlRenderer, SDL_AtomicGet(&sEhl8RoomSnapshot));\n")
+    # Reviewed M3.3 manual READY change 9
+    once("            case SDLK_F9:\n                if (!event.key.repeat && sEhl8ManualReady &&\n                    SDL_AtomicGet(&sEhl8WaitUiState) == 1)\n                    SDL_AtomicAdd(&sEhl8ReadyToggles, 1);\n                break;\n", "")
+    # Reviewed M3.3 manual READY change 10
+    once("        if (sEhl8ManualReady && !sEhl8StartGate.released)\n        {\n            int count = SDL_AtomicGet(&sEhl8ReadyToggles);\n            while (sEhl8ProcessedReadyToggles != count)\n            {\n                int ready = PortLanDedicatedToggleReady();\n                if (ready >= 0)\n                    SDL_AtomicSet(&sEhl8OwnReady, ready);\n                sEhl8ProcessedReadyToggles++;\n            }\n        }\n", "")
+
     # M3.2 room roster HUD: exact audited inverse before the protected
     # SDL2 source comparison; unrelated changes still fail the historic hash.
     once('extern int PortLanDedicatedRoomSnapshot(void);\n', '')
