@@ -769,6 +769,18 @@ KANTO_V07_DUNGEONS = (
 )
 
 
+
+# Later original FRLG dungeons, appended after the 84 existing Kanto maps.
+# Do NOT insert or reorder earlier map names: save/map IDs must remain stable.
+KANTO_V12_DUNGEONS = (
+    "VictoryRoad_1F", "VictoryRoad_2F", "VictoryRoad_3F",
+    "PokemonMansion_1F", "PokemonMansion_2F",
+    "PokemonMansion_3F", "PokemonMansion_B1F",
+    "CeruleanCave_1F", "CeruleanCave_2F", "CeruleanCave_B1F",
+    "SeafoamIslands_1F", "SeafoamIslands_B1F",
+    "SeafoamIslands_B2F", "SeafoamIslands_B3F", "SeafoamIslands_B4F",
+)
+
 def add_kanto_v06_dungeons(source: Path, emerald: Path, source_maps: dict,
                           layouts: dict, target_layouts: dict,
                           selected: tuple[str, ...] = KANTO_V06_DUNGEONS) -> dict:
@@ -1263,7 +1275,7 @@ def copy_exteriors(source: Path, emerald: Path) -> dict:
     # secondary graphics sets. Reuse an existing converted set if shared.
     dungeon_secondaries = {
         layouts[load_json(source, f"data/maps/{n}/map.json")["layout"]]["secondary_tileset"]
-        for n in KANTO_V06_DUNGEONS + KANTO_V07_DUNGEONS
+        for n in KANTO_V06_DUNGEONS + KANTO_V07_DUNGEONS + KANTO_V12_DUNGEONS
     }
     already_converted = set(secondaries) | {
         "gTileset_PokemonCenter", "gTileset_Mart", "gTileset_GenericBuilding2"
@@ -1415,6 +1427,14 @@ Kanto_VermilionCity_Text_BattleQuestion:
     extra_batch = add_kanto_v06_dungeons(
         source, emerald, source_maps, layouts, target_layouts,
         selected=KANTO_V07_DUNGEONS)
+    # Port the complete source warp domains as a single batch; fail closed
+    # if any path points to a missing room or exterior.
+    v12_batch = add_kanto_v06_dungeons(
+        source, emerald, source_maps, layouts, target_layouts,
+        selected=KANTO_V12_DUNGEONS)
+    report["v12_original_dungeon_maps"] = v12_batch["names"]
+    report["v12_dungeon_warps"] = v12_batch["internal_warps"]
+    report["v12_outdoor_warps"] = v12_batch["exterior_warps"]
     report["dungeon_maps"] = dungeon_batch["names"]
     report["dungeon_warps"] = dungeon_batch["internal_warps"]
     report["dungeon_exterior_warps"] = dungeon_batch["exterior_warps"]
@@ -1423,7 +1443,8 @@ Kanto_VermilionCity_Text_BattleQuestion:
     report["v07_exterior_warps"] = extra_batch["exterior_warps"]
     report["wild_encounter_maps_ported"] = add_firered_encounters(
         source, emerald, {**source_to_name,
-                          **dungeon_batch["source_ids"], **extra_batch["source_ids"]})
+                          **dungeon_batch["source_ids"], **extra_batch["source_ids"],
+                          **v12_batch["source_ids"]})
     report["wild_encounters_ported"] = report["wild_encounter_maps_ported"] > 0
     report["interior_maps"] = interiors
     report["original_interiors_ported"] = len(interiors)
@@ -1434,6 +1455,7 @@ Kanto_VermilionCity_Text_BattleQuestion:
     # Append, never insert: saves from V0.2–V0.5 retain every old map ID.
     target_groups["gMapGroup_Kanto"].extend(dungeon_batch["names"])
     target_groups["gMapGroup_Kanto"].extend(extra_batch["names"])
+    target_groups["gMapGroup_Kanto"].extend(v12_batch["names"])
     # Use immutable source map order, before adding any new geography.
     item_maps = list(names) + list(KANTO_V06_DUNGEONS) + list(KANTO_V07_DUNGEONS)
     item_report = import_kanto_visible_items(source, emerald, item_maps)
@@ -1462,6 +1484,8 @@ Kanto_VermilionCity_Text_BattleQuestion:
                         for n in dungeon_batch["names"])
     includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"'
                         for n in extra_batch["names"])
+    includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"'
+                        for n in v12_batch["names"])
     inc.write_text(code.replace(anchor, anchor + includes, 1), encoding="utf-8")
     ferry = emerald / "data/maps/SlateportCity_Harbor/scripts.inc"
     s = ferry.read_text(encoding="utf-8")
@@ -1489,6 +1513,7 @@ def main() -> int:
     print("Kanto regional whiteout now has an isolated saved Center index; gameplay QA pending.")
     print("Original Viridian Forest, Mt. Moon and Diglett Cave layouts, wild encounters and doors added.")
     print("Added original Underground Path, Rock Tunnel and Pokemon Tower layouts with exits.")
+    print("Generated 15 original maps: Victory Road, Pokemon Mansion, Cerulean Cave and Seafoam Islands.")
     print(f"Ported {result['original_item_balls']} original visible item balls with save-backed flags.")
     print(f"Ported {result['original_hidden_items']} original hidden FireRed items with distinct save flags.")
     print(f"Ported {result['trainer_battles_ported']} original Viridian Forest trainers.")
