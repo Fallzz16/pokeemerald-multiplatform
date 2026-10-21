@@ -1017,3 +1017,8 @@ O **CI GBA genérico** continua falhando em `agbcc` com mensagens `_Static_asser
 5. rollback e precauções de save, rede e Android.
 
 Manter PRs incrementais draft, ordem append-only dos IDs de mapa, trainer IDs e flags. Não mesclar na branch principal sem teste funcional. Avisar claramente limitações de tempo de execução da conversa sem interromper por perguntas desnecessárias. Status executável e backlog atual em `docs/KANTO_BACKLOG_E_QA_PTBR.md`, actualizar quando cada marco avançar. Não afirmar '50% jogável' por 83/84 entradas no grafo; isso mede **somente conectividade**.
+
+## 64. Kanto V0.12 — 15 mapas das grandes masmorras (2026-10-21)
+
+Branch feature/kanto-v12-major-dungeons sobre V0.11 compilada 9d121938b0cab40c201e392e5f79d0b29ba04b15. Importados Victory Road 1F–3F, Pokemon Mansion 1F–3F+B1F, Cerulean Cave 1F/2F/B1F e Seafoam Islands 1F/B1F–B4F (15 novos mapas), passando a 99 mapas totais. IDs 0–83 mantidos; novos 84–98.
+Importador mantém a lista item_maps da V0.11 exatamente como antes: 42 item balls e 77 hidden items usam 119 flags persistentes que NÃO podem ser renumeradas ao adicionar novos mapas. Item balls desses 15 novos mapas ainda não estão incluídas. Documentação docs/KANTO_V12_MAJOR_DUNGEONS_PTBR.md e CI kanto-v12-major-dungeons.yml. Puzzles, eventos, lendas, treinadores, ginásios, QA in-game, Android/LAN permanecem pendentes.
