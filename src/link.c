@@ -1908,7 +1908,11 @@ static void PortLanPresencePump(void)
     if (!showRemote)
     {
         if (LanVirtualObjectExists(LAN_VIRTUAL_PLAYER_ID))
+        {
+            if (sLanDedicatedSession)
+                PortLanLog("[EHL8] remote sprite removed: peer absent or different map\n");
             LanVirtualObjectDestroy(LAN_VIRTUAL_PLAYER_ID);
+        }
         sLanRemoteInitialized = FALSE;
         return;
     }
@@ -1952,6 +1956,9 @@ static void PortLanPresencePump(void)
             LanVirtualObjectDestroy(LAN_VIRTUAL_PLAYER_ID);
             sLanRemoteInitialized = FALSE;
         }
+        if (sLanRemoteInitialized && sLanDedicatedSession)
+            PortLanLog("[EHL8] remote sprite shown on map %u/%u\n",
+                       (unsigned)remote.mapGroup, (unsigned)remote.mapNum);
     }
     if (sLanRemoteInitialized)
     {
@@ -1982,6 +1989,8 @@ static void PortLanPresencePump(void)
                                        sLanRemotePosY,
                                        LAN_REMOTE_RETAIN_PX))
         {
+            if (sLanDedicatedSession)
+                PortLanLog("[EHL8] remote sprite hidden outside camera\n");
             LanVirtualObjectDestroy(LAN_VIRTUAL_PLAYER_ID);
             sLanRemoteInitialized = FALSE;
             return;
