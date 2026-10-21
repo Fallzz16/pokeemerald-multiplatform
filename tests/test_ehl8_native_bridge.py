@@ -116,6 +116,52 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
                     await process.wait()
             await server.stop()
 
+    async def test_native_player_controls_ready_before_host_start(self):
+        """Two real C clients join UNREADY; only their manual input enables START."""
+        server = server_module.SessionServer("123456", 2, idle_seconds=300,
+                                             manual_start=True)
+        listener = await server.start("127.0.0.1", 0)
+        port = str(listener.sockets[0].getsockname()[1])
+        clients = [
+            await asyncio.create_subprocess_exec(
+                self.exe, "127.0.0.1", port, "123456",
+                "manual_A" if i == 0 else "manual_B",
+                "21" if i == 0 else "34",
+                "34" if i == 0 else "21", "manualready",
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE)
+            for i in range(2)
+        ]
+        try:
+            for _ in range(50):
+                if len(server.players) == 2:
+                    break
+                await asyncio.sleep(.02)
+            self.assertEqual(len(server.players), 2)
+            await asyncio.sleep(.3)
+            self.assertEqual(sum(p.ready for p in server.players.values()), 0,
+                             "manual client must not auto READY")
+            self.assertFalse(await server.admin_command("START"))
+            for _ in range(110):
+                if len(server.players) == 2 and all(p.ready for p in server.players.values()):
+                    break
+                await asyncio.sleep(.02)
+            self.assertEqual(sum(p.ready for p in server.players.values()), 2,
+                             "F9 native READY not delivered to real server")
+            self.assertFalse(server.in_game, "host still needs to authorize START")
+            self.assertTrue(await server.admin_command("START"))
+            outputs = await asyncio.wait_for(
+                asyncio.gather(*(p.communicate() for p in clients)), timeout=10)
+            for child, (stdout, stderr) in zip(clients, outputs):
+                self.assertEqual(child.returncode, 0, stderr)
+                self.assertIn(b"native manual READY and host START", stdout)
+        finally:
+            for child in clients:
+                if child.returncode is None:
+                    child.kill()
+                    await child.wait()
+            await server.stop()
+
     async def test_real_native_game_clients_decode_two_ready_players(self):
         """Validates C PLAYER_LIST decoding against the REAL Python EHL8 server."""
         server = server_module.SessionServer("123456", 2, idle_seconds=300)
