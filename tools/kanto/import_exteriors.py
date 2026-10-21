@@ -991,6 +991,130 @@ def import_kanto_visible_items(source: Path, emerald: Path,
     return {"total": count, "items": inventory}
 
 
+def import_viridian_forest_trainers(source: Path, emerald: Path) -> dict:
+    """Port the five original FRLG Viridian Forest Bug Catchers.
+
+    Reuses only five of the nine already-reserved unused trainer flag slots
+    (IDs 855..859). Does not grow save flags or override Hoenn trainers.
+    The original species/levels/party order are retained, with locally
+    authored short dialogue until a complete script/text port is QA-approved.
+    """
+    originals = ("Rick", "Doug", "Sammy", "Anthony", "Charlie")
+    source_map = load_json(source, "data/maps/ViridianForest/map.json")
+    original_parties = (
+        source / "src/data/trainer_parties.h"
+    ).read_text(encoding="utf-8")
+    original_definitions = (
+        source / "src/data/trainers.h"
+    ).read_text(encoding="utf-8")
+    opponents = emerald / "include/constants/opponents.h"
+    trainer_header = emerald / "src/data/trainers.h"
+    party_header = emerald / "src/data/trainer_parties.h"
+    limits = opponents.read_text(encoding="utf-8")
+    if "#define TRAINERS_COUNT                      855" not in limits:
+        raise RuntimeError("Unexpected trainer table size; spare IDs may be used")
+    if "#define MAX_TRAINERS_COUNT                  864" not in limits:
+        raise RuntimeError("Unexpected trainer flag reservation; unsafe to append")
+    selected = []
+    new_party_data = []
+    new_trainer_data = []
+    map_path = emerald / "data/maps/Kanto_ViridianForest/map.json"
+    forest = load_json(emerald, "data/maps/Kanto_ViridianForest/map.json")
+    forest_scripts = emerald / "data/maps/Kanto_ViridianForest/scripts.inc"
+    scripts = forest_scripts.read_text(encoding="utf-8")
+    trainer_texts = {}
+    for index, name in enumerate(originals):
+        source_trainer = "TRAINER_BUG_CATCHER_" + name.upper()
+        target_trainer = "TRAINER_KANTO_FOREST_" + name.upper()
+        object_label = "ViridianForest_EventScript_" + name
+        actors = [o for o in source_map["object_events"]
+                  if o.get("script") == object_label
+                  and o["trainer_type"] == "TRAINER_TYPE_NORMAL"]
+        if len(actors) != 1:
+            raise RuntimeError(f"Unexpected source Bug Catcher event: {name}")
+        assert target_trainer not in limits
+        if source_trainer not in original_definitions:
+            raise RuntimeError(f"Original trainer data missing: {source_trainer}")
+        original_party = "sParty_BugCatcher" + name
+        pattern = (r"static const struct TrainerMonNoItemDefaultMoves "
+                   + re.escape(original_party) + r"\[\]\s*=\s*\{"
+                   + r"([\s\S]*?)\n\};")
+        match = re.search(pattern, original_parties)
+        if match is None:
+            raise RuntimeError(f"Cannot find original party {original_party}")
+        body = match.group(1)
+        if not re.search(r"\.lvl\s*=\s*\d+", body) or not re.search(r"\.species\s*=\s*SPECIES_", body):
+            raise RuntimeError(f"Empty or invalid original party {original_party}")
+        new_party_name = "sParty_KantoForest" + name
+        new_party_data.append(
+            f"static const struct TrainerMonNoItemDefaultMoves {new_party_name}[] = {{"
+            + body + "\n};\n"
+        )
+        new_trainer_data.append(f"""    [{target_trainer}] =
+    {{
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_BUG_CATCHER,
+        .trainerName = _("{name.upper()}"),
+        .items = {{}},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .party = NO_ITEM_DEFAULT_MOVES({new_party_name}),
+    }},
+""")
+        obj = actors[0]
+        event_label = "Kanto_ViridianForest_EventScript_BugCatcher" + name
+        intro = "Kanto_Forest_Text_" + name + "_Intro"
+        defeat = "Kanto_Forest_Text_" + name + "_Defeat"
+        after = "Kanto_Forest_Text_" + name + "_After"
+        forest["object_events"].append({
+            "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+            "x": obj["x"], "y": obj["y"],
+            "elevation": obj["elevation"],
+            "movement_type": obj["movement_type"],
+            "movement_range_x": obj["movement_range_x"],
+            "movement_range_y": obj["movement_range_y"],
+            "trainer_type": "TRAINER_TYPE_NORMAL",
+            "trainer_sight_or_berry_tree_id": obj["trainer_sight_or_berry_tree_id"],
+            "script": event_label, "flag": "0",
+        })
+        scripts += (
+            f"\n{event_label}::\n"
+            f"    trainerbattle_single {target_trainer}, {intro}, {defeat}\n"
+            f"    msgbox {after}, MSGBOX_AUTOCLOSE\n"
+            "    end\n\n"
+            f'{intro}:\n    .string "My BUG POKeMON are ready!$"\n\n'
+            f'{defeat}:\n    .string "Good battle!$"\n\n'
+            f'{after}:\n    .string "I will keep training here.$"\n'
+        )
+        selected.append({"name":name, "id":855+index,
+                         "original":source_trainer,
+                         "party":new_party_name,
+                         "coords":[obj["x"],obj["y"]]})
+    assert len(selected)==5
+    limits=limits.replace("#define TRAINERS_COUNT                      855",
+                          "".join(
+                              f"#define TRAINER_KANTO_FOREST_{n.upper():<16} {855+i}\n"
+                              for i,n in enumerate(originals)
+                          ) + "#define TRAINERS_COUNT                      860")
+    opponents.write_text(limits,encoding="utf-8")
+    parties=party_header.read_text(encoding="utf-8")
+    if "sParty_KantoForestRick" in parties:
+        raise RuntimeError("Forest trainers already in target trainer parties")
+    party_header.write_text(parties.rstrip()+"\n\n"+"\n".join(new_party_data),encoding="utf-8")
+    trainers=trainer_header.read_text(encoding="utf-8")
+    if "TRAINER_KANTO_FOREST_RICK" in trainers or not trainers.rstrip().endswith("};"):
+        raise RuntimeError("Trainer array cannot be safely extended")
+    index=trainers.rfind("};")
+    trainer_header.write_text(
+        trainers[:index]+ "\n" + "\n".join(new_trainer_data) + trainers[index:],
+        encoding="utf-8"
+    )
+    emit_json(map_path,forest)
+    forest_scripts.write_text(scripts,encoding="utf-8")
+    return {"count":len(selected),"trainers":selected}
+
+
 def copy_exteriors(source: Path, emerald: Path) -> dict:
     checkout_guard(source)
     group = load_json(source, "data/maps/map_groups.json")
@@ -1202,6 +1326,10 @@ Kanto_VermilionCity_Text_BattleQuestion:
     item_report = import_kanto_visible_items(source, emerald, item_maps)
     report["original_item_balls"] = item_report["total"]
     report["visible_item_flags"] = item_report["items"]
+    trainer_report = import_viridian_forest_trainers(source, emerald)
+    report["viridian_forest_trainers"] = trainer_report["trainers"]
+    report["original_npcs_ported"] = trainer_report["count"]
+    report["trainer_battles_ported"] = trainer_report["count"]
     target_groups["connections_include_order"].extend("Kanto_" + n for n in names)
     emit_json(emerald / "data/maps/map_groups.json", target_groups)
     emit_json(emerald / "data/layouts/layouts.json", target_layouts)
@@ -1244,6 +1372,7 @@ def main() -> int:
     print("Original Viridian Forest, Mt. Moon and Diglett Cave layouts, wild encounters and doors added.")
     print("Added original Underground Path, Rock Tunnel and Pokemon Tower layouts with exits.")
     print(f"Ported {result['original_item_balls']} original visible item balls with save-backed flags.")
+    print(f"Ported {result['trainer_battles_ported']} original Viridian Forest trainers.")
     print("Dungeon NPCs/items/scripts, special collision behaviors and full gameplay QA still pending.")
     print("Verify collision, palettes, map edges, ferry and save by real gameplay.")
     return 0
