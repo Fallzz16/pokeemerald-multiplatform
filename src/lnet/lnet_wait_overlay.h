@@ -130,7 +130,13 @@ static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state,
         }
     }
     if (state == 1)
-        lnet_wait_overlay_text(renderer, "F5 ALTERAR PRONTO", 116);
+    {
+        const char *hint = "F5 ALTERAR PRONTO";
+        if (roomCounts >= 0 && (roomCounts & (1 << 9)))
+            hint = (roomCounts & (1 << 8))
+                ? "F5 CANCELAR PRONTO" : "F5 FICAR PRONTO";
+        lnet_wait_overlay_text(renderer, hint, 116);
+    }
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 }
