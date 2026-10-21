@@ -442,6 +442,8 @@ jobs:
           mart=json.loads(Path("data/maps/Kanto_VermilionCity_Mart/map.json").read_text())
           assert [(w["x"],w["y"]) for w in center["warp_events"]] == [(6,8),(7,8),(8,8)]
           assert [(w["x"],w["y"]) for w in mart["warp_events"]] == [(3,7),(4,7),(5,7)]
+          # The V0.12 dungeon loop changes m; restore the Vermilion fixture.
+          m=json.loads(Path("data/maps/Kanto_VermilionCity/map.json").read_text())
           assert len(m["warp_events"]) == 2
           assert m["warp_events"][0]["dest_map"] == center["id"]
           assert m["warp_events"][1]["dest_map"] == mart["id"]
