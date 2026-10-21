@@ -3,6 +3,7 @@
 /* Dedicated EHL8 overworld client. Never opens or modifies Cable Club SIO.
  * Nonblocking, game-thread driven. No direct save/map/sprite access. */
 #include "lnet_presence.h"
+#include "lnet_room_roster.h"
 typedef struct LNetSessionClient LNetSessionClient;
 enum {
     EHL_CLIENT_CONNECTING = 0,
@@ -19,5 +20,8 @@ LNetSessionClient *lnet_session_client_new(const char *ipv4, unsigned short port
 void lnet_session_client_close(LNetSessionClient *c);
 void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local);
 int lnet_session_client_get_remote(const LNetSessionClient *c, LNetPose *out);
+/* Last strictly checked server roster; 0 = not yet received/connection lost. */
+int lnet_session_client_get_roster(const LNetSessionClient *c,
+                                   LNetRoomRoster *out);
 int lnet_session_client_state(const LNetSessionClient *c);
 #endif
