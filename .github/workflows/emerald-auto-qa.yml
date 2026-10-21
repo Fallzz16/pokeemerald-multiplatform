@@ -5,6 +5,7 @@ on:
       - feature/emerald-v100-m23a-server-first-lab
       - 'feature/emerald-m30-*'
       - 'feature/emerald-m31-*'
+      - 'feature/emerald-m32-*'
     paths:
       - 'tools/emerald_auto_qa.py'
       - 'tools/emerald_qa_lab.py'
@@ -18,6 +19,7 @@ on:
       - 'src/lnet/lnet_wait_overlay.h'
       - 'src/lnet/lnet_session_client.c'
       - 'src/lnet/lnet_session_client.h'
+      - 'src/lnet/lnet_room_roster.h'
       - 'tests/**'
       - '.github/workflows/**'
   workflow_dispatch:
@@ -83,6 +85,12 @@ jobs:
         run: |
           gcc -std=c99 -Wall -Wextra -Werror -O2 tests/test_ehl8_wait_overlay.c -o /tmp/emerald-ehl8-overlay-qa
           /tmp/emerald-ehl8-overlay-qa
+      - name: Validate EHL8 PLAYER_LIST roster parser in native C (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          gcc -std=c99 -Wall -Wextra -Werror -O2 tests/test_ehl8_room_roster.c -o /tmp/emerald-ehl8-roster-qa
+          /tmp/emerald-ehl8-roster-qa
       - name: Run simulated player regression QA
         shell: bash
         env:
