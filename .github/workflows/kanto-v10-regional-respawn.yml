@@ -427,7 +427,7 @@ jobs:
           file pokeemerald.exe
       - name: Label provisional nature and source revision
         run: |
-          printf 'Kanto V0.10: all 9 Kanto Centers record separate persistent heal index; whiteout in Kanto returns there, without modifying Hoenn's saved heal warp. Runtime gameplay QA pending.\nQA inside actual gameplay, regional respawn, original stories/gyms, and LAN remain incomplete.\nSOURCE_COMMIT=%s\nFIRERED_SOURCE=ce6406d8c2eaf46d543c8a2606de0c3cb1951982\n' "$GITHUB_SHA" > KANTO_V10_STATUS.txt
+          printf 'Kanto V0.10: all 9 Kanto Centers record separate persistent heal index; whiteout in Kanto returns there, without modifying the saved Hoenn heal warp. Runtime gameplay QA pending.\nQA inside actual gameplay, regional respawn, original stories/gyms, and LAN remain incomplete.\nSOURCE_COMMIT=%s\nFIRERED_SOURCE=ce6406d8c2eaf46d543c8a2606de0c3cb1951982\n' "$GITHUB_SHA" > KANTO_V10_STATUS.txt
           sha256sum pokeemerald.exe > KANTO_V10_SHA256.txt
           cp .deps/SDL2-2.30.7/i686-w64-mingw32/bin/SDL2.dll .
       - uses: actions/upload-artifact@v4
