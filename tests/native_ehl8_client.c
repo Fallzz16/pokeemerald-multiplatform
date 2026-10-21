@@ -18,6 +18,7 @@ int main(int argc, char **argv)
     int awaitStart = (argc == 8 && strcmp(argv[7], "awaitstart") == 0);
     int reconnectObserved = 0;
     int sawWaitStart = 0;
+    int sawFullLobby = 0;
     struct timespec startTime, currentTime;
     unsigned long startElapsed = 0;
     /* The manual host test must not start before at least 2.5 seconds. */
@@ -51,14 +52,21 @@ int main(int argc, char **argv)
         lnet_session_client_poll(client, &local);
         state = lnet_session_client_state(client);
         if (state == EHL_CLIENT_WAIT_START)
+        {
+            int players = 0, ready = 0;
             sawWaitStart = 1;
+            if (lnet_session_client_lobby_counts(client, &players, &ready) &&
+                players == 2 && ready == 2)
+                sawFullLobby = 1;
+        }
         if (awaitStart && state == EHL_CLIENT_PLAYING)
         {
             clock_gettime(CLOCK_MONOTONIC, &currentTime);
             startElapsed = (unsigned long)(currentTime.tv_sec - startTime.tv_sec)
                 * 1000UL + (unsigned long)(currentTime.tv_nsec - startTime.tv_nsec
                 + 1000000000L) / 1000000UL - 1000UL;
-            if (!sawWaitStart || startElapsed < minimumWaitMs)
+            if (!sawWaitStart || !sawFullLobby ||
+                startElapsed < minimumWaitMs)
             {
                 fprintf(stderr, "EHL8 manual START arrived too early or WAIT_START skipped\n");
                 lnet_session_client_close(client);
