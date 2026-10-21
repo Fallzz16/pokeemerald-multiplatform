@@ -36,6 +36,7 @@
 extern int PortLanDedicatedSessionGate(void);
 extern int PortLanDedicatedLobbyCounts(int *players, int *ready);
 extern int PortLanDedicatedToggleReady(void);
+extern int PortLanDedicatedLocalReady(int *ready);
 
 extern void (*const gIntrTable[])(void);
 
@@ -799,7 +800,13 @@ u16 Platform_GetKeyInput(void)
         {
             int players, ready;
             if (PortLanDedicatedLobbyCounts(&players, &ready))
-                SDL_AtomicSet(&sEhl8LobbyCountsUiState, players | (ready << 4));
+            {
+                int localReady = 0;
+                int packed = players | (ready << 4);
+                if (PortLanDedicatedLocalReady(&localReady))
+                    packed |= (1 << 9) | ((localReady != 0) << 8);
+                SDL_AtomicSet(&sEhl8LobbyCountsUiState, packed);
+            }
             else
                 SDL_AtomicSet(&sEhl8LobbyCountsUiState, -1);
         }
