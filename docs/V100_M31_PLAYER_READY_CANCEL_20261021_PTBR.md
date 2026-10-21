@@ -20,9 +20,10 @@ O PR #38 passou a exibir JOGADORES e PRONTOS na janela do Emerald, mas o cliente
 
 ### Código e testes
 
-- **Modificados:** `src/lnet/lnet_session_client.c/.h`, `src/link.c`, `src/platform/sdl2.c`, `src/lnet/lnet_wait_overlay.h`, `tools/emerald_launcher.py`, `tests/native_ehl8_client.c`, `tests/test_ehl8_native_bridge.py`, `tests/test_ehl8_player_list_parser.c`, `tests/test_ehl8_wait_overlay.c`, `scripts/verify_v080_profile_patch.py`, `AI_README.md`.
+- **Modificados:** `src/lnet/lnet_session_client.c/.h`, `src/link.c`, `tools/emerald_session_server.py`, `src/platform/sdl2.c`, `src/lnet/lnet_wait_overlay.h`, `tools/emerald_launcher.py`, `tests/native_ehl8_client.c`, `tests/test_ehl8_native_bridge.py`, `tests/test_ehl8_player_list_parser.c`, `tests/test_ehl8_wait_overlay.c`, `scripts/verify_v080_profile_patch.py`, `AI_README.md`.
 - **Adicionado:** este documento. **Removido:** nada.
-- **Sem mudanças:** protocolo EHL8 no fio, servidor Python, QA Lab, saves, P2P/SIO, mapas, conteúdo, APK Android/ARM64.
+- **Servidor Python — correção de corrida:** `tools/emerald_session_server.py` ignora apenas um `READY=0` atrasado que chegue **depois** de o servidor já ter autorizado START e marcado o jogador GAME. Isso impede expulsão indevida de um treinador por uma tecla F5 pressionada na fronteira START. Um `READY=0` recebido **antes** do START ainda CANCELA e bloqueia a partida; payload inválido continua sendo rejeitado. Depois do START, não é permitido desfazer a partida pelo READY. Teste novo `tests/test_ehl8_m23_host_start.py::test_late_cancel_after_start_does_not_kick_player` comprova sala 2/2 e heartbeat após o frame atrasado.
+- **Sem mudanças:** protocolo EHL8 no fio, QA Lab, saves, P2P/SIO, mapas, conteúdo, APK Android/ARM64.
 - **Unidade C:** alternância permitida somente em `WAIT_START`, rejeitada em `PLAYING` e `RECONNECTING`; parser não aceita mensagens de lista malformadas e preserva READY local verificado.
 - **Integração REAL de sockets C+Python:** `test_ready_cycle_native_clients` compila dois clientes C nativos; um cancela READY, o host tenta START e **deve ser recusado**; depois o cliente restaura READY e START funciona. A ponte troca poses após partida. Teste de socket **não é gameplay gráfico**.
 - **Overlay:** teste C verifica bounds 240×160, painel somente em EHL8 e ambos os textos conforme READY local. O verificador do SDL2 reverte **somente** trechos exatos e preserva hash do código legado: sem desligar gates de segurança.
