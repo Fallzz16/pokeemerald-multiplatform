@@ -35,6 +35,7 @@
 /* Controlled on the GBA game thread; no access to renderer from link.c. */
 extern int PortLanDedicatedSessionGate(void);
 extern void PortLanDedicatedRequestReady(int ready);
+extern int PortLanDedicatedRoomStatus(int *players, int *ready, int *mine);
 extern int PortLanDedicatedFriendInView(void);
 
 extern void (*const gIntrTable[])(void);
@@ -62,6 +63,7 @@ static LNetStartGate sEhl8StartGate;
 static SDL_atomic_t sEhl8WaitUiState; /* 0=offline,1=waiting,2=online,3=initial fail,4=reconnecting,5=offline after START */
 static SDL_atomic_t sEhl8FriendInView; /* game-thread camera projection; UI-thread reads */
 static SDL_atomic_t sEhl8ReadyRequested; /* renderer F7 toggles; game thread sends READY */
+static SDL_atomic_t sEhl8RoomConfirmed; /* -1 unknown; players | ready<<4 | ownReady<<8 */
 #ifdef __ANDROID__
 static char sAndroidSavePath[1024] = "pokeemerald.sav";
 #endif
@@ -245,6 +247,7 @@ int main(int argc, char **argv)
     sEhl8StartGate.released = 0;
     SDL_AtomicSet(&sEhl8WaitUiState, sessionWaitForStart ? 1 : 0);
     SDL_AtomicSet(&sEhl8ReadyRequested, 1); /* original auto-READY remains default */
+    SDL_AtomicSet(&sEhl8RoomConfirmed, -1);
 
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
     {
@@ -433,10 +436,15 @@ int main(int argc, char **argv)
         if (sessionWaitForStart)
         {
             int waitUiState = SDL_AtomicGet(&sEhl8WaitUiState);
-            lnet_wait_overlay_render(sdlRenderer, waitUiState);
+            int roomStatus = SDL_AtomicGet(&sEhl8RoomConfirmed);
+            lnet_wait_overlay_render(sdlRenderer, waitUiState, roomStatus);
             if (waitUiState == 1)
-                lnet_wait_overlay_ready_status(sdlRenderer,
-                    SDL_AtomicGet(&sEhl8ReadyRequested));
+            {
+                int desired = SDL_AtomicGet(&sEhl8ReadyRequested);
+                int confirmed = roomStatus >= 0 ? (roomStatus >> 8) & 1 : desired;
+                lnet_wait_overlay_ready_status(sdlRenderer, confirmed,
+                    roomStatus < 0 || confirmed != desired);
+            }
             if (waitUiState == 2)
                 lnet_wait_overlay_friend_badge(sdlRenderer,
                     SDL_AtomicGet(&sEhl8FriendInView));
@@ -804,6 +812,13 @@ u16 Platform_GetKeyInput(void)
             state == 1 && PortLanDedicatedFriendInView());
         if (!sEhl8StartGate.released)
         {
+            int players, ready, mine;
+            /* Only the GAME thread can query the native EHL8 client. */
+            if (PortLanDedicatedRoomStatus(&players, &ready, &mine))
+                SDL_AtomicSet(&sEhl8RoomConfirmed,
+                    players | (ready << 4) | (mine << 8));
+            else
+                SDL_AtomicSet(&sEhl8RoomConfirmed, -1);
             PortLanDedicatedRequestReady(SDL_AtomicGet(&sEhl8ReadyRequested));
             if (lnet_start_gate_blocked(&sEhl8StartGate, state))
             {
