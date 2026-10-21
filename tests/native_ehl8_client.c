@@ -14,7 +14,9 @@ int main(int argc, char **argv)
     int linger = (argc == 8 &&
                  (strcmp(argv[7], "linger") == 0 ||
                   strcmp(argv[7], "lingerlong") == 0));
-    int reconnect = (argc == 8 && strcmp(argv[7], "reconnect") == 0);
+    int reconnect = (argc == 8 && (strcmp(argv[7], "reconnect") == 0 ||
+                                     strcmp(argv[7], "manualreconnect") == 0));
+    int manualReconnect = (argc == 8 && strcmp(argv[7], "manualreconnect") == 0);
     int rosterMode = (argc == 8 && strcmp(argv[7], "roster") == 0);
     int manualReady = (argc == 8 && strcmp(argv[7], "manualready") == 0);
     int manualCancel = (argc == 8 && strcmp(argv[7], "manualcancel") == 0);
@@ -41,7 +43,7 @@ int main(int argc, char **argv)
     client = lnet_session_client_new(argv[1], port, argv[3], argv[4]);
     if (!client)
         return 3;
-    if ((manualReady || manualCancel) && !lnet_session_client_set_manual_ready(client, 1))
+    if ((manualReady || manualCancel || manualReconnect) && !lnet_session_client_set_manual_ready(client, 1))
     {
         lnet_session_client_close(client);
         return 8;
@@ -61,7 +63,8 @@ int main(int argc, char **argv)
         int state;
         lnet_session_client_poll(client, &local);
         state = lnet_session_client_state(client);
-        if (manualReady && state == EHL_CLIENT_WAIT_START && i >= 80 && !toggledReady)
+        if ((manualReady || manualReconnect) && state == EHL_CLIENT_WAIT_START &&
+            i >= 80 && !toggledReady)
         {
             if (lnet_session_client_toggle_ready(client) != 1)
             {
