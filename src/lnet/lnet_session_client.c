@@ -19,7 +19,10 @@
 #include <arpa/inet.h>
 #endif
 
+#ifndef EHL_CONNECT_TIMEOUT_MS
 #define EHL_CONNECT_TIMEOUT_MS 12000UL
+#endif
+#define EHL_INITIAL_CONNECT_RETRY_MS 250UL
 #ifndef EHL_AUTH_TIMEOUT_MS
 #define EHL_AUTH_TIMEOUT_MS 20000UL
 #endif
@@ -50,7 +53,7 @@ struct LNetSessionClient
     uint8_t haveRemoteSeq, haveRemote;
     uint8_t haveResumeToken, resumeInFlight;
     unsigned char resumeToken[EHL_RESUME_TOKEN_SIZE];
-    unsigned long reconnectSince, retryAt;
+    unsigned long reconnectSince, retryAt, nextInitialConnectAt;
     unsigned int reconnectAttempts;
     LNetPose remote;
     EhlSessionDecoder decoder;
@@ -346,13 +349,29 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
             close_failed(c);
             return;
         }
+        /* The launcher starts the dedicated server and host game together.
+         * TCP may refuse the first connection until Python has bound the
+         * socket. Retry ONLY transport-level initial connect refusals within
+         * the existing 12-second deadline; never retry a rejected PIN, JOIN,
+         * protocol error or the separate token-resume path. Each attempt is
+         * fully nonblocking and throttled to 4 per second. */
+        if (!c->resumeInFlight && c->nextInitialConnectAt != 0 &&
+            (long)(now - c->nextInitialConnectAt) < 0)
+            return;
         c->socket = lnet_net_connect_nb(c->host, c->port, &c->pending, &err);
         if (!c->socket)
         {
+            if (err == LNET_ERR_CONNECT && !c->resumeInFlight &&
+                (unsigned long)(now - c->began) < EHL_CONNECT_TIMEOUT_MS)
+            {
+                c->nextInitialConnectAt = now + EHL_INITIAL_CONNECT_RETRY_MS;
+                return;
+            }
             if (err != LNET_ERR_AGAIN)
                 close_failed(c);
             return;
         }
+        c->nextInitialConnectAt = 0;
         c->pending = NULL;
         c->lastRx = c->lastTx = now;
         if (!queue(c, EHL_HELLO, NULL, 0))
