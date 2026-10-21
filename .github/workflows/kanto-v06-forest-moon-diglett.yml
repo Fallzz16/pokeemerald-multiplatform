@@ -164,13 +164,17 @@ jobs:
               back=target_map["warp_events"][index]
               assert back["dest_map"]==target["id"],(name,"one-way broken",warp,back)
           # External door positions and original outside IDs are immutable.
+          original_dungeon_ids = {
+            json.loads((Path("firered-source/data/maps")/n/"map.json").read_text())["id"]
+            for n in expected_new
+          }
           for exterior in ("Route2","Route4","Route11"):
             source_map=json.loads((Path("firered-source/data/maps")/exterior/"map.json").read_text())
             converted=all_generated["MAP_KANTO_"+exterior.upper()]
             matches=[w for w in converted["warp_events"]
                      if w["dest_map"] in {"MAP_KANTO_"+n.upper() for n in expected_new}]
             expected=[w for w in source_map["warp_events"]
-                      if w["dest_map"] in {"MAP_"+n.upper() for n in expected_new}]
+                      if w["dest_map"] in original_dungeon_ids]
             assert len(matches)==len(expected),(exterior,len(matches),len(expected))
             assert [(w["x"],w["y"],w["elevation"]) for w in matches] == [
                     (w["x"],w["y"],w["elevation"]) for w in expected]
