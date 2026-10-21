@@ -23,13 +23,24 @@ static void lnet_wait_overlay_glyph(SDL_Renderer *renderer, char c, int x, int y
         {5,5,7,7,5}, /* W */ {5,5,2,5,5}, /* X */
         {5,5,2,2,2}, /* Y */ {7,1,2,4,7}  /* Z */
     };
+    static const unsigned char numbers[10][5] = {
+        {7,5,5,5,7}, {2,6,2,2,7}, {6,1,7,4,7},
+        {6,1,6,1,6}, {5,5,7,1,1}, {7,4,7,5,7},
+        {3,4,7,5,7}, {7,1,1,1,1}, {7,5,7,5,7},
+        {7,5,7,1,6}
+    };
     int row, col;
+    const unsigned char *glyph;
     SDL_Rect pixel = {x, y, 2, 2};
-    if (c < 'A' || c > 'Z')
+    if (c >= 'A' && c <= 'Z')
+        glyph = alpha[(int)(c - 'A')];
+    else if (c >= '0' && c <= '9')
+        glyph = numbers[(int)(c - '0')];
+    else
         return;
     for (row = 0; row < 5; row++)
         for (col = 0; col < 3; col++)
-            if (alpha[(int)(c - 'A')][row] & (1 << (2 - col)))
+            if (glyph[row] & (1 << (2 - col)))
             {
                 pixel.x = x + 2 * col;
                 pixel.y = y + 2 * row;
@@ -99,4 +110,32 @@ static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state)
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 }
+/* Compact 0/2, 1/2 or 2/2 obtained from actual EHL8 PLAYER_LIST.
+ * Snapshot unknown: never display fictional connected players. */
+static void lnet_wait_overlay_room(SDL_Renderer *renderer, int snapshot)
+{
+    char labelPlayers[] = "JOGADORES 0 DE 2";
+    char labelReady[] = "PRONTOS 0 DE 2";
+    SDL_Rect strip = {17, 112, 206, 29};
+    int players, ready;
+    if (snapshot < 0)
+        return;
+    players = (snapshot >> 2) & 3;
+    ready = snapshot & 3;
+    if (players > 2 || ready > players)
+        return;
+    labelPlayers[10] = (char)('0' + players);
+    labelReady[8] = (char)('0' + ready);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+    SDL_SetRenderDrawColor(renderer, 5, 22, 16, 232);
+    SDL_RenderFillRect(renderer, &strip);
+    SDL_SetRenderDrawColor(renderer, 73, 213, 160, 255);
+    SDL_RenderDrawRect(renderer, &strip);
+    SDL_SetRenderDrawColor(renderer, 233, 255, 245, 255);
+    lnet_wait_overlay_text(renderer, labelPlayers, 116);
+    lnet_wait_overlay_text(renderer, labelReady, 128);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+}
+
 #endif
