@@ -355,13 +355,58 @@ static void (*const sMovementStatusHandler[])(struct LinkPlayerObjectEvent *, st
 };
 
 // code
+// Respawn on the first-floor Center lobby tile, adjacent to the entry doors.
+// Entry source geometry is FireRed's canonical 15x10 Pokemon Center 1F.
+// A corrupt/older Kanto heal variable falls back to Vermilion, never Hoenn.
+static void Kanto_SetWhiteoutDestination(void)
+{
+    s8 mapNum = MAP_NUM(MAP_KANTO_VERMILIONCITY_POKEMONCENTER_1F);
+    switch (VarGet(VAR_KANTO_LAST_HEAL_LOCATION))
+    {
+    case KANTO_HEAL_VIRIDIAN_CITY:
+        mapNum = MAP_NUM(MAP_KANTO_VIRIDIANCITY_POKEMONCENTER_1F);
+        break;
+    case KANTO_HEAL_PEWTER_CITY:
+        mapNum = MAP_NUM(MAP_KANTO_PEWTERCITY_POKEMONCENTER_1F);
+        break;
+    case KANTO_HEAL_CERULEAN_CITY:
+        mapNum = MAP_NUM(MAP_KANTO_CERULEANCITY_POKEMONCENTER_1F);
+        break;
+    case KANTO_HEAL_LAVENDER_TOWN:
+        mapNum = MAP_NUM(MAP_KANTO_LAVENDERTOWN_POKEMONCENTER_1F);
+        break;
+    case KANTO_HEAL_CELADON_CITY:
+        mapNum = MAP_NUM(MAP_KANTO_CELADONCITY_POKEMONCENTER_1F);
+        break;
+    case KANTO_HEAL_FUCHSIA_CITY:
+        mapNum = MAP_NUM(MAP_KANTO_FUCHSIACITY_POKEMONCENTER_1F);
+        break;
+    case KANTO_HEAL_CINNABAR_ISLAND:
+        mapNum = MAP_NUM(MAP_KANTO_CINNABARISLAND_POKEMONCENTER_1F);
+        break;
+    case KANTO_HEAL_SAFFRON_CITY:
+        mapNum = MAP_NUM(MAP_KANTO_SAFFRONCITY_POKEMONCENTER_1F);
+        break;
+    case KANTO_HEAL_VERMILION_CITY:
+    case KANTO_HEAL_NONE:
+    default:
+        break;
+    }
+    SetWarpDestination(MAP_GROUP(MAP_KANTO_HARBOR), mapNum, WARP_ID_NONE, 7, 6);
+}
+
 void DoWhiteOut(void)
 {
     RunScriptImmediately(EventScript_WhiteOut);
     SetMoney(&gSaveBlock1Ptr->money, GetMoney(&gSaveBlock1Ptr->money) / 2);
     HealPlayerParty();
     Overworld_ResetStateAfterWhiteOut();
-    SetWarpDestinationToLastHealLocation();
+    // Kanto keeps an independent, saved Center index in a previously unused
+    // persistent script variable; never rewrite Hoenn's lastHealLocation.
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_KANTO_HARBOR))
+        Kanto_SetWhiteoutDestination();
+    else
+        SetWarpDestinationToLastHealLocation();
     WarpIntoMap();
 }
 

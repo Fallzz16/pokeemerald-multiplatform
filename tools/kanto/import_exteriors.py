@@ -340,6 +340,21 @@ def render_firered_mart_stock(source: Path, emerald: Path,
     raise RuntimeError(f"Unterminated FireRed inventory: {original_map}")
 
 
+# Region-specific last-heal index is persistent in save var 0x40F7.
+# Append-only IDs; keep synchronized with include/constants/vars.h.
+KANTO_HEAL_LOCATIONS = {
+    "VermilionCity": 1,
+    "ViridianCity": 2,
+    "PewterCity": 3,
+    "CeruleanCity": 4,
+    "LavenderTown": 5,
+    "CeladonCity": 6,
+    "FuchsiaCity": 7,
+    "CinnabarIsland": 8,
+    "SaffronCity": 9,
+}
+
+
 def add_vermilion_interiors(source: Path, emerald: Path, layouts: dict,
                            target_layouts: dict, target_groups: dict,
                            vermilion: dict) -> list[str]:
@@ -422,10 +437,13 @@ def add_vermilion_interiors(source: Path, emerald: Path, layouts: dict,
         emit_json(out / "map.json", map_obj)
         if outside_index == 0:
             scripts = """Kanto_VermilionCity_PokemonCenter_1F_MapScripts::
+    map_script MAP_SCRIPT_ON_TRANSITION, Kanto_VermilionCenter_SetHealLocation
     .byte 0
 
-@ Do not overwrite Hoenn's last healing position before a dedicated
-@ per-region save location exists. Returning from Kanto must remain safe.
+@ Save an independent regional Center ID without overwriting Hoenn's heal warp.
+Kanto_VermilionCenter_SetHealLocation:
+    setvar VAR_KANTO_LAST_HEAL_LOCATION, KANTO_HEAL_VERMILION_CITY
+    end
 Kanto_VermilionCenter_EventScript_Nurse::
     setvar VAR_0x800B, LOCALID_KANTO_VERMILION_NURSE
     call Common_EventScript_PkmnCenterNurse
@@ -545,10 +563,18 @@ def add_regional_service_interiors(source: Path, emerald: Path, source_maps: dic
                 "coord_events": [], "bg_events": [],
             }
             if is_center:
+                heal_macro = "KANTO_HEAL_" + re.sub(r"(?<!^)(?=[A-Z])", "_", city).upper()
+                if KANTO_HEAL_LOCATIONS.get(city) is None:
+                    raise RuntimeError(f"Unknown Kanto Center for regional heal {city}")
+                transition_label = target_name + "_SetHealLocation"
                 scripts = f"""{target_name}_MapScripts::
+    map_script MAP_SCRIPT_ON_TRANSITION, {transition_label}
     .byte 0
 
-@ Hoenn heal warp is intentionally preserved until regional save migration.
+{transition_label}:
+    setvar VAR_KANTO_LAST_HEAL_LOCATION, {heal_macro}
+    end
+
 {script_label}::
     setvar VAR_0x800B, {local_id}
     call Common_EventScript_PkmnCenterNurse

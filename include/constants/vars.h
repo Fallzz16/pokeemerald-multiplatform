@@ -265,6 +265,20 @@
 #define VAR_SCOTT_BF_CALL_STEP_COUNTER                   0x40F5
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER             0x40F6
 #define VAR_UNUSED_0x40F7                                0x40F7 // Unused Var
+// A single persistent Kanto respawn index, not an additional save field.
+// Keep Hoenn's lastHealLocation untouched (ferry uses it for the return).
+#define VAR_KANTO_LAST_HEAL_LOCATION VAR_UNUSED_0x40F7
+#define KANTO_HEAL_NONE 0
+#define KANTO_HEAL_VERMILION_CITY 1
+#define KANTO_HEAL_VIRIDIAN_CITY 2
+#define KANTO_HEAL_PEWTER_CITY 3
+#define KANTO_HEAL_CERULEAN_CITY 4
+#define KANTO_HEAL_LAVENDER_TOWN 5
+#define KANTO_HEAL_CELADON_CITY 6
+#define KANTO_HEAL_FUCHSIA_CITY 7
+#define KANTO_HEAL_CINNABAR_ISLAND 8
+#define KANTO_HEAL_SAFFRON_CITY 9
+
 #define VAR_UNUSED_0x40F8                                0x40F8 // Unused Var
 #define VAR_UNUSED_0x40F9                                0x40F9 // Unused Var
 #define VAR_UNUSED_0x40FA                                0x40FA // Unused Var
