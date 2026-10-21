@@ -30,6 +30,15 @@ int main(void)
     renderer.calls = 0;
     lnet_wait_overlay_render(&renderer, 3);
     assert(renderer.calls > 100 && renderer.border == 2);
-    printf("EHL8 online waiting overlay: PASS\n");
+    renderer.calls = 0;
+    lnet_wait_overlay_render(&renderer, 4); /* network interrupted */
+    assert(renderer.calls > 40 && renderer.border == 3);
+    renderer.calls = 0;
+    lnet_wait_overlay_render(&renderer, 5); /* retry window exhausted */
+    assert(renderer.calls > 40 && renderer.border == 4);
+    renderer.calls = 0;
+    lnet_wait_overlay_render(&renderer, 2); /* connected again */
+    assert(renderer.calls == 0 && renderer.border == 4);
+    printf("EHL8 waiting and reconnect status overlays: PASS\n");
     return 0;
 }
