@@ -4,6 +4,7 @@ on:
     branches:
       - feature/emerald-v100-m23a-server-first-lab
       - 'feature/emerald-m30-*'
+      - 'feature/emerald-m31-*'
     paths:
       - 'tools/emerald_auto_qa.py'
       - 'tools/emerald_qa_lab.py'
@@ -15,6 +16,8 @@ on:
       - 'src/link.c'
       - 'src/lnet/lnet_start_gate.h'
       - 'src/lnet/lnet_wait_overlay.h'
+      - 'src/lnet/lnet_session_client.c'
+      - 'src/lnet/lnet_session_client.h'
       - 'tests/**'
       - '.github/workflows/**'
   workflow_dispatch:
