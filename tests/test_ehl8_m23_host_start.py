@@ -115,6 +115,29 @@ class HostStart(unittest.IsolatedAsyncioTestCase):
         await a.next(S.START)
         await b.next(S.START)
 
+    async def test_late_cancel_after_start_does_not_kick_player(self):
+        # Race: F5 sent CANCEL immediately before admin START, but the
+        # packet arrives after the server switched clients into GAME.
+        a, b = await self.connect(), await self.connect()
+        await a.join(b"QA_A")
+        await b.join(b"QA_B")
+        await a.next(S.PLAYER_LIST)
+        for current, other in ((a, b), (b, a)):
+            await current.send(S.READY, b"\x01")
+            await current.next(S.PLAYER_LIST)
+            await other.next(S.PLAYER_LIST)
+        self.assertTrue(await self.server.admin_command("START"))
+        await a.next(S.START)
+        await b.next(S.START)
+        await a.send(S.READY, b"\x00")
+        await a.send(S.HEARTBEAT)
+        await a.next(S.HEARTBEAT)
+        self.assertEqual(len(self.server.players), 2)
+        self.assertTrue(all(p.ready and p.stage == "GAME"
+                            for p in self.server.players.values()))
+        self.assertTrue(self.server.in_game)
+        self.assertFalse(await self.server.admin_command("START"))
+
     async def test_legacy_auto_start_unchanged(self):
         legacy = S.SessionServer("123456")
         self.assertFalse(legacy.manual_start)
