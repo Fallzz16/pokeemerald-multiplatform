@@ -2138,6 +2138,14 @@ int PortLanDedicatedSessionGate(void)
     return 0;
 }
 
+/* READY/CANCEL uses EHL8's existing READY=0/1 messages.
+ * Only invoked on the emulated game thread, never the renderer thread. */
+void PortLanDedicatedRequestReady(int ready)
+{
+    if (sLanDedicatedSession)
+        lnet_session_client_set_ready(sLanDedicatedSession, ready);
+}
+
 /* Read-only, game-thread-only flag for a subtle player-facing SDL2 badge.
  * Use the same camera projection as the virtual sprite, not remote coords
  * alone: receiving a valid pose in another area does NOT mean "in view". */
