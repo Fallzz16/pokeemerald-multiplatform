@@ -120,7 +120,7 @@ int main(int argc, char **argv)
                 lnet_session_client_close(client);
                 return 0;
             }
-            if (!linger && !reconnect)
+            if (!linger && !reconnect && !mapcycle)
             {
                 puts("EHL8 native client remote overworld pose verified");
                 lnet_session_client_close(client);
