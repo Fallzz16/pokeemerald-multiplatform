@@ -15,6 +15,8 @@ int main(int argc, char **argv)
                  (strcmp(argv[7], "linger") == 0 ||
                   strcmp(argv[7], "lingerlong") == 0));
     int reconnect = (argc == 8 && strcmp(argv[7], "reconnect") == 0);
+    int rosterMode = (argc == 8 && strcmp(argv[7], "roster") == 0);
+    int sawFullRoster = 0;
     int awaitStart = (argc == 8 && strcmp(argv[7], "awaitstart") == 0);
     int reconnectObserved = 0;
     int sawWaitStart = 0;
@@ -26,7 +28,7 @@ int main(int argc, char **argv)
         ? 650 : 180;
     int witnessed = 0;
     struct timespec pauseTime = { 0, 10000000L };
-    if (argc != 7 && !linger && !reconnect && !awaitStart)
+    if (argc != 7 && !linger && !reconnect && !awaitStart && !rosterMode)
     {
         fprintf(stderr, "usage: native_ehl8_client IPv4 port pin profile x expected_remote_x [linger|reconnect|awaitstart]\n");
         return 2;
@@ -50,6 +52,20 @@ int main(int argc, char **argv)
         int state;
         lnet_session_client_poll(client, &local);
         state = lnet_session_client_state(client);
+        if (rosterMode)
+        {
+            LNetRoomRoster roster;
+            if (lnet_session_client_get_roster(client, &roster))
+            {
+                if (roster.players > 2 || roster.ready > roster.players)
+                {
+                    lnet_session_client_close(client);
+                    return 7;
+                }
+                if (roster.players == 2 && roster.ready == 2)
+                    sawFullRoster = 1;
+            }
+        }
         if (state == EHL_CLIENT_WAIT_START)
             sawWaitStart = 1;
         if (awaitStart && state == EHL_CLIENT_PLAYING)
@@ -76,6 +92,12 @@ int main(int argc, char **argv)
             remote.x == (unsigned short)atoi(argv[6]) && remote.active)
         {
             witnessed = 1;
+            if (rosterMode && sawFullRoster)
+            {
+                puts("EHL8 native PLAYER_LIST 2/2 READY and remote pose verified");
+                lnet_session_client_close(client);
+                return 0;
+            }
             if (awaitStart)
             {
                 puts("EHL8 native WAIT_START heartbeats and delayed manual START verified");
@@ -88,7 +110,7 @@ int main(int argc, char **argv)
                 lnet_session_client_close(client);
                 return 0;
             }
-            if (!linger && !reconnect)
+            if (!linger && !reconnect && !rosterMode)
             {
                 puts("EHL8 native client remote overworld pose verified");
                 lnet_session_client_close(client);
