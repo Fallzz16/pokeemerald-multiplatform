@@ -30,6 +30,23 @@ int main(void)
     renderer.calls = 0;
     lnet_wait_overlay_render(&renderer, 3);
     assert(renderer.calls > 100 && renderer.border == 2);
-    printf("EHL8 online waiting overlay: PASS\n");
+    renderer.calls = 0;
+    lnet_wait_overlay_render(&renderer, 6); /* trying initial TCP/auth */
+    assert(renderer.calls > 100 && renderer.border == 3);
+    renderer.calls = 0;
+    lnet_wait_overlay_render(&renderer, 4); /* network interrupted */
+    assert(renderer.calls > 40 && renderer.border == 4);
+    renderer.calls = 0;
+    lnet_wait_overlay_render(&renderer, 5); /* retry window exhausted */
+    assert(renderer.calls > 40 && renderer.border == 5);
+    renderer.calls = 0;
+    lnet_wait_overlay_render(&renderer, 2); /* connected again */
+    assert(renderer.calls == 0 && renderer.border == 5);
+    renderer.calls = 0;
+    lnet_wait_overlay_friend_badge(&renderer, 0);
+    assert(renderer.calls == 0 && renderer.border == 5);
+    lnet_wait_overlay_friend_badge(&renderer, 1);
+    assert(renderer.calls > 40 && renderer.border == 6);
+    printf("EHL8 waiting, reconnection and camera-visible friend badge: PASS\n");
     return 0;
 }

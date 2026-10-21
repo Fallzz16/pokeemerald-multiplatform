@@ -19,8 +19,13 @@
 #include <arpa/inet.h>
 #endif
 
+#ifndef EHL_CONNECT_TIMEOUT_MS
 #define EHL_CONNECT_TIMEOUT_MS 12000UL
+#endif
+#define EHL_INITIAL_CONNECT_RETRY_MS 250UL
+#ifndef EHL_AUTH_TIMEOUT_MS
 #define EHL_AUTH_TIMEOUT_MS 20000UL
+#endif
 #define EHL_STALE_MS 3000UL
 #define EHL_POSE_INTERVAL_MS 100UL
 #ifndef EHL_HEARTBEAT_INTERVAL_MS
@@ -48,7 +53,7 @@ struct LNetSessionClient
     uint8_t haveRemoteSeq, haveRemote;
     uint8_t haveResumeToken, resumeInFlight;
     unsigned char resumeToken[EHL_RESUME_TOKEN_SIZE];
-    unsigned long reconnectSince, retryAt;
+    unsigned long reconnectSince, retryAt, nextInitialConnectAt;
     unsigned int reconnectAttempts;
     LNetPose remote;
     EhlSessionDecoder decoder;
@@ -344,13 +349,29 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
             close_failed(c);
             return;
         }
+        /* The launcher starts the dedicated server and host game together.
+         * TCP may refuse the first connection until Python has bound the
+         * socket. Retry ONLY transport-level initial connect refusals within
+         * the existing 12-second deadline; never retry a rejected PIN, JOIN,
+         * protocol error or the separate token-resume path. Each attempt is
+         * fully nonblocking and throttled to 4 per second. */
+        if (!c->resumeInFlight && c->nextInitialConnectAt != 0 &&
+            (long)(now - c->nextInitialConnectAt) < 0)
+            return;
         c->socket = lnet_net_connect_nb(c->host, c->port, &c->pending, &err);
         if (!c->socket)
         {
+            if (err == LNET_ERR_CONNECT && !c->resumeInFlight &&
+                (unsigned long)(now - c->began) < EHL_CONNECT_TIMEOUT_MS)
+            {
+                c->nextInitialConnectAt = now + EHL_INITIAL_CONNECT_RETRY_MS;
+                return;
+            }
             if (err != LNET_ERR_AGAIN)
                 close_failed(c);
             return;
         }
+        c->nextInitialConnectAt = 0;
         c->pending = NULL;
         c->lastRx = c->lastTx = now;
         if (!queue(c, EHL_HELLO, NULL, 0))
@@ -414,10 +435,13 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     /* Initial READY/HELLO/etc always takes precedence over pose updates. */
     if (c->txLength != c->txOffset)
         return;
-    /* Poses are due every 100 ms, so an "else if heartbeat" placed AFTER
-     * pose would never run while the player is moving/connected. Give the
-     * sparse liveness frame priority once every 10 seconds. */
-    if (c->state == EHL_CLIENT_PLAYING &&
+    /* In WAIT_START, clients can sit at 2/2 while the host prepares the game.
+     * Send the same heartbeat every 10s BEFORE START, not just after PLAYING.
+     * This keeps the server's 35s idle timeout and our 20s authentication/
+     * waiting timeout refreshed. While PLAYING, heartbeat still takes
+     * priority over 100ms poses. */
+    if ((c->state == EHL_CLIENT_WAIT_START ||
+         c->state == EHL_CLIENT_PLAYING) &&
         (c->lastHeartbeat == 0 ||
          (unsigned long)(now - c->lastHeartbeat) >= EHL_HEARTBEAT_INTERVAL_MS))
     {
@@ -446,7 +470,9 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
         }
         c->lastPose = now;
     }
-    else if ((unsigned long)(now - c->lastTx) >= EHL_HEARTBEAT_INTERVAL_MS)
+    else if (c->state != EHL_CLIENT_RECONNECTING &&
+             c->state != EHL_CLIENT_CONNECTING &&
+             (unsigned long)(now - c->lastTx) >= EHL_HEARTBEAT_INTERVAL_MS)
     {
         if (!queue(c, EHL_HEARTBEAT, NULL, 0))
         {

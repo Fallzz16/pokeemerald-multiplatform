@@ -16,15 +16,21 @@ def strip_v080_profile_patch(native: str) -> str:
     once('        /* EHL8 room wait is a real player-facing screen, not just a frozen\n'
          '         * title menu. Keep rendering and network/game ticks alive. */\n'
          '        if (sessionWaitForStart)\n'
-         '            lnet_wait_overlay_render(sdlRenderer, SDL_AtomicGet(&sEhl8WaitUiState));\n'
+         '        {\n'
+         '            int waitUiState = SDL_AtomicGet(&sEhl8WaitUiState);\n'
+         '            lnet_wait_overlay_render(sdlRenderer, waitUiState);\n'
+         '            if (waitUiState == 2)\n'
+         '                lnet_wait_overlay_friend_badge(sdlRenderer,\n'
+         '                    SDL_AtomicGet(&sEhl8FriendInView));\n'
+         '        }\n'
          '\n', '')
 
     # M3.0 EHL8 gameplay START input gate: reverse only nine precisely
     # enumerated additions. Keep the historic SDL2 blob hash check strict.
     # Reviewed M3.0 START gate addition 1
-    once("#include \"../lnet/lnet_start_gate.h\"\n\n/* Controlled on the GBA game thread; no access to renderer from link.c. */\nextern int PortLanDedicatedSessionGate(void);\n\n", "\n")
+    once("#include \"../lnet/lnet_start_gate.h\"\n\n/* Controlled on the GBA game thread; no access to renderer from link.c. */\nextern int PortLanDedicatedSessionGate(void);\nextern int PortLanDedicatedFriendInView(void);\n\n", "\n")
     # Reviewed M3.0 START gate addition 2
-    once("static LNetStartGate sEhl8StartGate;\nstatic SDL_atomic_t sEhl8WaitUiState; /* 0=normal, 1=waiting, 2=ready, 3=failed */\n", "")
+    once("static LNetStartGate sEhl8StartGate;\nstatic SDL_atomic_t sEhl8WaitUiState; /* 0=offline,1=wait START,2=online,3=initial fail,4=reconnecting,5=lost,6=connecting */\nstatic SDL_atomic_t sEhl8FriendInView; /* game-thread camera projection; UI-thread reads */\n", "")
     # Reviewed M3.0 START gate addition 3
     once("    bool sessionWaitForStart = false;\n", "")
     # Reviewed M3.0 START gate addition 4
@@ -36,9 +42,9 @@ def strip_v080_profile_patch(native: str) -> str:
     # Reviewed M3.0 START gate addition 7
     once("    int lastWaitUiState = -1;\n", "")
     # Reviewed M3.0 START gate addition 8
-    once("        if (sessionWaitForStart)\n        {\n            int waitUiState = SDL_AtomicGet(&sEhl8WaitUiState);\n            if (waitUiState != lastWaitUiState)\n            {\n                const char *caption = \"Emerald Hybrid — EHL8 iniciado\";\n                if (waitUiState == 1)\n                    caption = \"Emerald Hybrid — aguardando segundo jogador e START\";\n                else if (waitUiState == 3)\n                    caption = \"Emerald Hybrid — EHL8 falhou; feche para tentar novamente\";\n                SDL_SetWindowTitle(sdlWindow, caption);\n                lastWaitUiState = waitUiState;\n            }\n        }\n\n", "\n")
+    once("        if (sessionWaitForStart)\n        {\n            int waitUiState = SDL_AtomicGet(&sEhl8WaitUiState);\n            if (waitUiState != lastWaitUiState)\n            {\n                const char *caption = \"Emerald Hybrid — EHL8 iniciado\";\n                if (waitUiState == 1)\n                    caption = \"Emerald Hybrid — aguardando segundo jogador e START\";\n                else if (waitUiState == 3)\n                    caption = \"Emerald Hybrid — EHL8 falhou; feche para tentar novamente\";\n                else if (waitUiState == 4)\n                    caption = \"Emerald Hybrid — reconectando ao amigo (jogo local liberado)\";\n                else if (waitUiState == 5)\n                    caption = \"Emerald Hybrid — sem conexao EHL8; jogo local liberado\";\n                else if (waitUiState == 6)\n                    caption = \"Emerald Hybrid — conectando ao servidor EHL8\";\n                SDL_SetWindowTitle(sdlWindow, caption);\n                lastWaitUiState = waitUiState;\n            }\n        }\n\n", "\n")
     # Reviewed M3.0 START gate addition 9
-    once("    /* Game-thread input gate: do not pause VBlank, gameplay callbacks or\n     * PortLanDebugPump; START can only arrive while frames are progressing.\n     * Once released, a network drop does not re-lock the local trainer. */\n    if (sEhl8StartGate.enabled && !sEhl8StartGate.released)\n    {\n        int state = PortLanDedicatedSessionGate();\n        if (lnet_start_gate_blocked(&sEhl8StartGate, state))\n        {\n            SDL_AtomicSet(&sEhl8WaitUiState, state < 0 ? 3 : 1);\n            return 0;\n        }\n        SDL_AtomicSet(&sEhl8WaitUiState, 2);\n    }\n", "")
+    once("    /* Game-thread input gate: do not pause VBlank, gameplay callbacks or\n     * PortLanDebugPump; START can only arrive while frames are progressing.\n     * Once released, a network drop does not re-lock the local trainer. */\n    if (sEhl8StartGate.enabled)\n    {\n        int state = PortLanDedicatedSessionGate();\n        SDL_AtomicSet(&sEhl8FriendInView,\n            state == 1 && PortLanDedicatedFriendInView());\n        if (!sEhl8StartGate.released)\n        {\n            if (lnet_start_gate_blocked(&sEhl8StartGate, state))\n            {\n                SDL_AtomicSet(&sEhl8WaitUiState, state < 0 ? 3 : (state == 2 ? 6 : 1));\n                return 0;\n            }\n            SDL_AtomicSet(&sEhl8WaitUiState, 2);\n        }\n        else\n        {\n            /* A transient network loss must NOT freeze the solo adventure.\n             * Distinguish reconnecting and permanently failed sessions from\n             * ordinary gameplay using the state already polled by EHL8. */\n            SDL_AtomicSet(&sEhl8WaitUiState, state == 1 ? 2 : (state < 0 ? 5 : 4));\n        }\n    }\n", "")
 
     # Exact inverse of only the reviewed SDL pending-frame guard.
     once("            else\n            {\n                /* EHL8_FRAME_WAIT: AgbMain has not produced a new frame yet.\n                 * Leave the accumulator loop; otherwise the UI thread can\n                 * spin forever without processing SDL input or shutdown. */\n                break;\n            }\n", '')

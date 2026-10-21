@@ -34,6 +34,7 @@
 
 /* Controlled on the GBA game thread; no access to renderer from link.c. */
 extern int PortLanDedicatedSessionGate(void);
+extern int PortLanDedicatedFriendInView(void);
 
 extern void (*const gIntrTable[])(void);
 
@@ -57,7 +58,8 @@ static char sActiveSavePath[SP_PATH_CAP] = "pokeemerald.sav";
 static SpProfileLock sActiveProfileLock;
 static bool sProfileLocked = false;
 static LNetStartGate sEhl8StartGate;
-static SDL_atomic_t sEhl8WaitUiState; /* 0=normal, 1=waiting, 2=ready, 3=failed */
+static SDL_atomic_t sEhl8WaitUiState; /* 0=offline,1=wait START,2=online,3=initial fail,4=reconnecting,5=lost,6=connecting */
+static SDL_atomic_t sEhl8FriendInView; /* game-thread camera projection; UI-thread reads */
 #ifdef __ANDROID__
 static char sAndroidSavePath[1024] = "pokeemerald.sav";
 #endif
@@ -368,6 +370,12 @@ int main(int argc, char **argv)
                     caption = "Emerald Hybrid — aguardando segundo jogador e START";
                 else if (waitUiState == 3)
                     caption = "Emerald Hybrid — EHL8 falhou; feche para tentar novamente";
+                else if (waitUiState == 4)
+                    caption = "Emerald Hybrid — reconectando ao amigo (jogo local liberado)";
+                else if (waitUiState == 5)
+                    caption = "Emerald Hybrid — sem conexao EHL8; jogo local liberado";
+                else if (waitUiState == 6)
+                    caption = "Emerald Hybrid — conectando ao servidor EHL8";
                 SDL_SetWindowTitle(sdlWindow, caption);
                 lastWaitUiState = waitUiState;
             }
@@ -422,7 +430,13 @@ int main(int argc, char **argv)
         /* EHL8 room wait is a real player-facing screen, not just a frozen
          * title menu. Keep rendering and network/game ticks alive. */
         if (sessionWaitForStart)
-            lnet_wait_overlay_render(sdlRenderer, SDL_AtomicGet(&sEhl8WaitUiState));
+        {
+            int waitUiState = SDL_AtomicGet(&sEhl8WaitUiState);
+            lnet_wait_overlay_render(sdlRenderer, waitUiState);
+            if (waitUiState == 2)
+                lnet_wait_overlay_friend_badge(sdlRenderer,
+                    SDL_AtomicGet(&sEhl8FriendInView));
+        }
 
         SDL_RenderPresent(sdlRenderer);
     }
@@ -768,15 +782,27 @@ u16 Platform_GetKeyInput(void)
     /* Game-thread input gate: do not pause VBlank, gameplay callbacks or
      * PortLanDebugPump; START can only arrive while frames are progressing.
      * Once released, a network drop does not re-lock the local trainer. */
-    if (sEhl8StartGate.enabled && !sEhl8StartGate.released)
+    if (sEhl8StartGate.enabled)
     {
         int state = PortLanDedicatedSessionGate();
-        if (lnet_start_gate_blocked(&sEhl8StartGate, state))
+        SDL_AtomicSet(&sEhl8FriendInView,
+            state == 1 && PortLanDedicatedFriendInView());
+        if (!sEhl8StartGate.released)
         {
-            SDL_AtomicSet(&sEhl8WaitUiState, state < 0 ? 3 : 1);
-            return 0;
+            if (lnet_start_gate_blocked(&sEhl8StartGate, state))
+            {
+                SDL_AtomicSet(&sEhl8WaitUiState, state < 0 ? 3 : (state == 2 ? 6 : 1));
+                return 0;
+            }
+            SDL_AtomicSet(&sEhl8WaitUiState, 2);
         }
-        SDL_AtomicSet(&sEhl8WaitUiState, 2);
+        else
+        {
+            /* A transient network loss must NOT freeze the solo adventure.
+             * Distinguish reconnecting and permanently failed sessions from
+             * ordinary gameplay using the state already polled by EHL8. */
+            SDL_AtomicSet(&sEhl8WaitUiState, state == 1 ? 2 : (state < 0 ? 5 : 4));
+        }
     }
 #ifdef _WIN32
     u16 gamepadKeys = GetXInputKeys();

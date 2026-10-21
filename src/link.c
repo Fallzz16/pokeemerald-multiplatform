@@ -1908,7 +1908,11 @@ static void PortLanPresencePump(void)
     if (!showRemote)
     {
         if (LanVirtualObjectExists(LAN_VIRTUAL_PLAYER_ID))
+        {
+            if (sLanDedicatedSession)
+                PortLanLog("[EHL8] remote sprite removed: peer absent or different map\n");
             LanVirtualObjectDestroy(LAN_VIRTUAL_PLAYER_ID);
+        }
         sLanRemoteInitialized = FALSE;
         return;
     }
@@ -1952,6 +1956,9 @@ static void PortLanPresencePump(void)
             LanVirtualObjectDestroy(LAN_VIRTUAL_PLAYER_ID);
             sLanRemoteInitialized = FALSE;
         }
+        if (sLanRemoteInitialized && sLanDedicatedSession)
+            PortLanLog("[EHL8] remote sprite shown on map %u/%u\n",
+                       (unsigned)remote.mapGroup, (unsigned)remote.mapNum);
     }
     if (sLanRemoteInitialized)
     {
@@ -1982,6 +1989,8 @@ static void PortLanPresencePump(void)
                                        sLanRemotePosY,
                                        LAN_REMOTE_RETAIN_PX))
         {
+            if (sLanDedicatedSession)
+                PortLanLog("[EHL8] remote sprite hidden outside camera\n");
             LanVirtualObjectDestroy(LAN_VIRTUAL_PLAYER_ID);
             sLanRemoteInitialized = FALSE;
             return;
@@ -2113,9 +2122,9 @@ void PortLanRequestClient(const char *host, u16 port)
 }
 
 /* Read only on the game thread, just like PortLanPresencePump().
- *  1 = server START received; 0 = waiting; -1 = failed/unavailable.
- * This is an opt-in gameplay input gate, not a request to stop the game loop:
- * the EHL8 socket must continue to be polled each frame. */
+ *  1 = server START received, 0 = joined and waiting START,
+ *  2 = connecting/authenticating, -1 = failed or unavailable.
+ * Never stop the game loop: EHL8 must poll TCP and render each frame. */
 int PortLanDedicatedSessionGate(void)
 {
     int state;
@@ -2126,7 +2135,22 @@ int PortLanDedicatedSessionGate(void)
         return 1;
     if (state == EHL_CLIENT_FAILED)
         return -1;
-    return 0;
+    if (state == EHL_CLIENT_WAIT_START)
+        return 0;
+    return 2;
+}
+
+/* Read-only, game-thread-only flag for a subtle player-facing SDL2 badge.
+ * Use the same camera projection as the virtual sprite, not remote coords
+ * alone: receiving a valid pose in another area does NOT mean "in view". */
+int PortLanDedicatedFriendInView(void)
+{
+    return sLanDedicatedSession &&
+        lnet_session_client_state(sLanDedicatedSession) == EHL_CLIENT_PLAYING &&
+        sLanRemoteInitialized &&
+        LanVirtualObjectExists(LAN_VIRTUAL_PLAYER_ID) &&
+        LanRemoteIntersectsCamera(sLanRemoteGender, sLanRemotePosX,
+                                   sLanRemotePosY, 0);
 }
 
 /* Dedicated EHL8 presence only: NEVER feed this protocol to the Cable Club

@@ -48,12 +48,55 @@ static void lnet_wait_overlay_text(SDL_Renderer *renderer,
                                (240 - count * 8) / 2 + col * 8, y);
 }
 
+/* Presence is projected by the Emerald game thread and read here as a
+ * single boolean. Display only when the actual remote sprite is on camera,
+ * without labels for players who are elsewhere or disconnected. */
+static void lnet_wait_overlay_friend_badge(SDL_Renderer *renderer, int inView)
+{
+    SDL_Rect badge = {3, 3, 53, 16};
+    const char *word = "AMIGO";
+    int i;
+    if (!inView)
+        return;
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+    SDL_SetRenderDrawColor(renderer, 6, 33, 23, 211);
+    SDL_RenderFillRect(renderer, &badge);
+    SDL_SetRenderDrawColor(renderer, 74, 216, 156, 255);
+    SDL_RenderDrawRect(renderer, &badge);
+    for (i = 0; word[i]; i++)
+        lnet_wait_overlay_glyph(renderer, word[i], 10 + i * 8, 6);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+}
+
 static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state)
 {
     SDL_Rect area = {17, 49, 206, 63};
     SDL_Rect border = {17, 49, 206, 63};
-    /* state 1: wait; 3: terminal startup failure. Never overlay offline. */
-    if (state != 1 && state != 3)
+    /* 4/5: a small, non-blocking notice after START. The game remains
+     * playable locally, and state 2 removes the notice on reconnection. */
+    if (state == 4 || state == 5)
+    {
+        SDL_Rect strip = {16, 6, 208, 30};
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+        SDL_SetRenderDrawColor(renderer, 5, 22, 16, 218);
+        SDL_RenderFillRect(renderer, &strip);
+        if (state == 4)
+            SDL_SetRenderDrawColor(renderer, 255, 196, 96, 255);
+        else
+            SDL_SetRenderDrawColor(renderer, 255, 128, 116, 255);
+        SDL_RenderDrawRect(renderer, &strip);
+        SDL_SetRenderDrawColor(renderer, 233, 255, 245, 255);
+        lnet_wait_overlay_text(renderer,
+            state == 4 ? "RECONECTANDO" : "CONEXAO PERDIDA", 10);
+        lnet_wait_overlay_text(renderer, "JOGO LOCAL ATIVO", 22);
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        return;
+    }
+    /* 6: initial connect/auth; 1: joined and waiting for START;
+     * 3: initial terminal failure. Never overlay offline or gameplay. */
+    if (state != 1 && state != 3 && state != 6)
         return;
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     SDL_SetRenderDrawColor(renderer, 5, 22, 16, 232);
@@ -69,6 +112,11 @@ static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state)
     {
         lnet_wait_overlay_text(renderer, "CONEXAO FALHOU", 79);
         lnet_wait_overlay_text(renderer, "FECHE E REENTRE", 95);
+    }
+    else if (state == 6)
+    {
+        lnet_wait_overlay_text(renderer, "CONECTANDO AO HOST", 79);
+        lnet_wait_overlay_text(renderer, "AGUARDE A CONEXAO", 95);
     }
     else
     {
