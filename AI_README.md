@@ -1100,3 +1100,28 @@ Esse sucesso comprova as suítes automatizadas do commit testado, não gameplay 
 **Pesquisa:** https://developer.valvesoftware.com/wiki/Source_Multiplayer_Networking e https://new.gafferongames.com/post/snapshot_interpolation/ para futuro jitter buffer sem alterar agora o smoothing do Emerald antes de dados reais; https://docs.python.org/3/library/asyncio-stream.html para `drain()` já tratado no servidor; https://wiki.libsdl.org/SDL2/SDL_RenderSetIntegerScale para preservar pixel art 240×160.
 
 **Próximo passo:** revisão CI, PR draft e testes humanos: 2 PCs/VM, host e convidado em mesmo mapa, logs sprite spawn/hide, interrupção/reconexão 60s, overlay/teclado/saves, sem alterar o modo solo. Batalhas/trocas EHL8 permanecem não implementadas, Android/crossplay ainda não comprovados.
+
+
+## 61. M3.1 — UI real do lobby e leitura segura PLAYER_LIST (2026-10-21)
+
+**Pedido/limites:** o usuário concedeu autonomia de engenharia para avançar o máximo da beta, mantendo o Pokémon Emerald original (só online), saves pessoais intactos, modo offline intacto, e QA Lab/QA_A/QA_B EXCLUSIVAMENTE para testes. Este é um **segundo incremento ISOLADO**, não supersede nem mescla os PRs anteriores automaticamente.
+
+**Base e isolamento:** branch `feature/emerald-m31-lobby-in-game-20261021`, criada sobre PR #36 SHA `133322b84df0bfe24d728c9a23f0fac0f82ef07c`. O primeiro incremento M3.1 (PR #36) tem Auto QA Windows/Linux sucesso e Windows Complete Preview [39542780233](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/39542780233) success, artefato ZIP ID `12320561534`, no commit base. Esse binário anterior é o rollback do presente lote; extrair sempre em pasta separada de saves.
+
+**Implementado nesta segunda branch:**
+- `src/lnet/lnet_session_client.c/.h` modifica recepção de `PLAYER_LIST` do servidor EHL8 EXISTENTE: valida count/slot/READY/comprimento de identidade/tamanho exato do pacote e preserva somente contagem e número de prontos em RAM. Não fornece nomes, PINs, tokens ou saves à tela. Mensagens malformadas causam erro de protocolo antes de contaminar a UI; `close_failed` limpa a contagem durante reconexões.
+- `src/link.c`: adiciona `PortLanDedicatedLobbyCounts`, consulta validada apenas na thread da engine.
+- `src/platform/sdl2.c`: repassa `roomPlayers|roomReady<<4` de forma thread-safe via `SDL_atomic_t` para renderer, só quando EHL8 wait flag estiver ativa.
+- `src/lnet/lnet_wait_overlay.h`: adiciona os dígitos 0..9 e barra ao microalfabeto bitmap e mostra **JOGADORES 0/2, 1/2 ou 2/2**, **PRONTOS 0/2, 1/2 ou 2/2** no próprio Emerald antes de START. Mantém visual de falha/reconexão do PR #36 e some em PLAYING. Offline/Cable Club sem overlay.
+- `tests/native_ehl8_client.c`: modo `awaitstart` só aprova START manual quando C nativo tiver de fato visto 2/2 jogadores e 2/2 prontos na lista enviada pela produção; continua validando tempo/heartbeat e poses.
+- `tests/test_ehl8_player_list_parser.c` **NOVO**: testa 0/1/2 participantes, truncamento, slots repetidos, prontos inválidos e bytes restantes com parser de produção e sem saves.
+- `tests/test_ehl8_wait_overlay.c`: teste de painel 0/2, 1/2, 2/2 e ausência em offline/PLAYING; não é screenshot SDL real.
+- `.github/workflows/emerald-auto-qa.yml`: compila/roda teste nativo C do parser no Linux e mantém Auto QA multiplataforma.
+- `scripts/verify_v080_profile_patch.py`: **inversão exata dos cinco trechos SDL2 alterados**, preservando comparação hash legado e outras melhorias.
+- `docs/V100_M31_GAME_LOBBY_QA_20261021_PTBR.md` **NOVO**: especificação, QA, rollback e honestidade.
+
+**Removido:** nada. **Não alterado:** Wire protocol EHL8, serial Cable Club, mapas, NPCs, saves, QA Lab, Android, launcher final fora da exibição de status no jogo. Nenhum trabalho de conteúdo novo/história. A integração de PvP/trocas pelo EHL8 ainda NÃO foi implementada.
+
+**CI/QA:** verificar Auto QA Windows/Linux e Windows Complete Preview na REVISÃO FINAL após este handoff. Os testes C garantem memória/framing/valores; CI de jogo prova compile; **nada comprova sem QA humano o painel visual, duas sprites no mapa e reconnect em hardware real**. O usuário só aprovou anteriormente a liberação de controles pelo START no PR #23. Não declarar beta jogável completa nem fazer merge automático.
+
+**Próximo gate:** host e convidado Windows com saves QA isolados, ambos devem ver 0/2→1/2→2/2 no painel, 2/2 prontos, START do host libera jogo e remove painel, aparecem sprites próximos no mesmo mapa. Usar logs `[EHL8] remote sprite shown/removed` adicionados no PR #36 para distinguir rede/sprite, testar transições, retomada de 60s, reabrir save offline. Não expor o servidor com PIN simples diretamente à Internet; LAN/VPN privada somente.
