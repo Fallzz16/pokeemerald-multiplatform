@@ -6,6 +6,7 @@ on:
       - 'feature/emerald-m30-*'
       - 'feature/emerald-m31-*'
       - 'feature/emerald-m32-*'
+      - 'feature/emerald-m33-*'
     paths:
       - 'tools/emerald_auto_qa.py'
       - 'tools/emerald_qa_lab.py'
