@@ -22,5 +22,9 @@ void lnet_session_client_close(LNetSessionClient *c);
 void lnet_session_client_set_ready(LNetSessionClient *c, int ready);
 void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local);
 int lnet_session_client_get_remote(const LNetSessionClient *c, LNetPose *out);
+/* Only validated server snapshot counts and local READY acknowledgement.
+ * Read on the game thread, never from the SDL renderer thread. */
+int lnet_session_client_room_status(const LNetSessionClient *c,
+                                    int *players, int *ready, int *mine);
 int lnet_session_client_state(const LNetSessionClient *c);
 #endif

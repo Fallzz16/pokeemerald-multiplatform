@@ -115,6 +115,34 @@ class HostStart(unittest.IsolatedAsyncioTestCase):
         await a.next(S.START)
         await b.next(S.START)
 
+    async def test_in_flight_cancel_after_start_does_not_kick_player(self):
+        """READY=0 in GAME is a harmless old lobby packet, not a kick."""
+        a, b = await self.connect(), await self.connect()
+        await a.join(b"lateA")
+        await b.join(b"lateB")
+        await a.next(S.PLAYER_LIST)
+        for me, other in ((a, b), (b, a)):
+            await me.send(S.READY, b"\x01")
+            await me.next(S.PLAYER_LIST)
+            await other.next(S.PLAYER_LIST)
+        self.assertTrue(await self.server.admin_command("START"))
+        await a.next(S.START)
+        await b.next(S.START)
+        await a.send(S.READY, b"\x00")
+        await a.send(S.HEARTBEAT)
+        await a.next(S.HEARTBEAT)
+        self.assertTrue(self.server.in_game)
+        self.assertEqual(len(self.server.players), 2)
+        self.assertTrue(all(p.stage == "GAME" and p.ready
+                            for p in self.server.players.values()))
+        # Bogus payload remains a real protocol violation, not silently accepted.
+        await b.send(S.READY, b"\x03")
+        for _ in range(80):
+            if len(self.server.players) < 2:
+                break
+            await asyncio.sleep(.025)
+        self.assertLess(len(self.server.players), 2)
+
     async def test_legacy_auto_start_unchanged(self):
         legacy = S.SessionServer("123456")
         self.assertFalse(legacy.manual_start)

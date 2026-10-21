@@ -23,14 +23,22 @@ static void lnet_wait_overlay_glyph(SDL_Renderer *renderer, char c, int x, int y
         {5,5,7,7,5}, /* W */ {5,5,2,5,5}, /* X */
         {5,5,2,2,2}, /* Y */ {7,1,2,4,7}  /* Z */
     };
-    static const unsigned char digitSeven[5] = {7, 1, 2, 2, 2};
+    static const unsigned char digits[4][5] = {
+        {7,5,5,5,7}, /* 0 */ {2,6,2,2,7}, /* 1 */
+        {7,1,7,4,7}, /* 2 */ {7,1,2,2,2}  /* 7 */
+    };
+    static const unsigned char slash[5] = {1,1,2,4,4};
     const unsigned char *glyph;
     int row, col;
     SDL_Rect pixel = {x, y, 2, 2};
     if (c >= 'A' && c <= 'Z')
         glyph = alpha[(int)(c - 'A')];
+    else if (c >= '0' && c <= '2')
+        glyph = digits[c - '0'];
     else if (c == '7')
-        glyph = digitSeven;
+        glyph = digits[3];
+    else if (c == '/')
+        glyph = slash;
     else
         return;
     for (row = 0; row < 5; row++)
@@ -57,7 +65,8 @@ static void lnet_wait_overlay_text(SDL_Renderer *renderer,
 /* Simple opt-in READY/CANCEL interface while the EHL8 room is waiting.
  * F7 is intentionally different from existing F6 turbo. PLAYING does not
  * display this card; the status banner cannot mutate game or save state. */
-static void lnet_wait_overlay_ready_status(SDL_Renderer *renderer, int ready)
+static void lnet_wait_overlay_ready_status(SDL_Renderer *renderer, int ready,
+                                            int pending)
 {
     SDL_Rect box = {17, 115, 206, 34};
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
@@ -69,7 +78,8 @@ static void lnet_wait_overlay_ready_status(SDL_Renderer *renderer, int ready)
         SDL_SetRenderDrawColor(renderer, 255, 196, 96, 255);
     SDL_RenderDrawRect(renderer, &box);
     lnet_wait_overlay_text(renderer,
-        ready ? "PRONTO PARA JOGAR" : "PRONTO CANCELADO", 120);
+        pending ? "AGUARDANDO SERVIDOR" :
+            (ready ? "PRONTO PARA JOGAR" : "PRONTO CANCELADO"), 120);
     SDL_SetRenderDrawColor(renderer, 233, 255, 245, 255);
     lnet_wait_overlay_text(renderer, "F7 ALTERAR", 136);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
@@ -97,7 +107,8 @@ static void lnet_wait_overlay_friend_badge(SDL_Renderer *renderer, int inView)
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 }
 
-static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state)
+static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state,
+                                    int roomStatus)
 {
     SDL_Rect area = {17, 49, 206, 63};
     SDL_Rect border = {17, 49, 206, 63};
@@ -139,6 +150,20 @@ static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state)
     {
         lnet_wait_overlay_text(renderer, "CONEXAO FALHOU", 79);
         lnet_wait_overlay_text(renderer, "FECHE E REENTRE", 95);
+    }
+    else if (roomStatus >= 0)
+    {
+        const int players = roomStatus & 3;
+        const int ready = (roomStatus >> 4) & 3;
+        char memberText[] = "JOGADORES 0/2";
+        char readyText[] = "PRONTOS 0/2";
+        if (players <= 2 && ready <= players)
+        {
+            memberText[10] = (char)('0' + players);
+            readyText[8] = (char)('0' + ready);
+            lnet_wait_overlay_text(renderer, memberText, 79);
+            lnet_wait_overlay_text(renderer, readyText, 95);
+        }
     }
     else
     {

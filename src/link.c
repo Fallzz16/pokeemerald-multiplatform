@@ -2146,6 +2146,15 @@ void PortLanDedicatedRequestReady(int ready)
         lnet_session_client_set_ready(sLanDedicatedSession, ready);
 }
 
+/* Verified server PLAYER_LIST for the normal player's lobby overlay.
+ * Only counts and the local ACK are forwarded, never profile names. */
+int PortLanDedicatedRoomStatus(int *players, int *ready, int *mine)
+{
+    if (!sLanDedicatedSession)
+        return 0;
+    return lnet_session_client_room_status(sLanDedicatedSession, players, ready, mine);
+}
+
 /* Read-only, game-thread-only flag for a subtle player-facing SDL2 badge.
  * Use the same camera projection as the virtual sprite, not remote coords
  * alone: receiving a valid pose in another area does NOT mean "in view". */
