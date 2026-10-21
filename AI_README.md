@@ -1074,3 +1074,29 @@ Esse sucesso comprova as suítes automatizadas do commit testado, não gameplay 
 **Validação:** CI de testes do launcher aprovado em código intermediário [Auto QA Windows/Linux run 39410613791](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/39410613791), SHA `005d2f6bbb4b41f12900d80d271a3c99ecf1374a`. Os novos overlay/CI/header foram acrescentados APÓS: **verificar novamente o Auto QA e Windows Complete Preview do HEAD final**, logs e artefato exato. Não supor resultados nem anunciar ZIP antes do sucesso. Ainda exige um teste humano do VISUAL de espera, da capacidade do anfitrião usar START sem QA Lab e do fluxo de duas máquinas. PR fica DRAFT, não mesclar.
 
 **Critérios de aceitação visual/humano:** launcher 3 escolhas + Cable Club avançado; HOST criar sala e autoentrar com save de QA, launcher permanece aberto; jogador B usa entrar na sala pelo IP/PIN; nos dois jogos o painel aparece e input está bloqueado; 2/2 prontos, host START, painel desaparece e controle funciona; modos offline e P2P não mostram painel; falha antes do START é claramente comunicada e não abre offline silencioso. Para jogo multiplayer completo ainda faltam QA de sprite em mesmo mapa, movimento bidirecional, transição/reconnect, saves reabertos, PvP/troca EHL8 e Android/crossplay. EHL8 não é servidor WAN público seguro, usar VPN privada para entre casas.
+
+
+## 60. M3.1 — native WAIT_START, diagnóstico de reconexão e sprite remoto (2026-10-21)
+
+**Pedido expresso:** usuário delegou liberdade de engenharia na sessão atual para implementar o máximo possível, com pesquisa/testes/PR, SEM liberar uma beta falsa. Escopo permanece **SOMENTE multiplayer do Emerald existente**, sem história/mapa/Pokémon novos. QA Lab (QA_A/QA_B) é EXCLUSIVAMENTE de testes, separado do launcher final; preservar modo offline, Cable Club P2P, saves reais e todas as escolhas anteriores.
+
+**Base e isolamento:** repo `Fallzz16/pokeemerald-multiplatform`, PR #29 branch `feature/emerald-m30-player-journey-20261020`, SHA base `a4e019c5e5e84aa9bce9140db3c87b5b70477051`. Nova branch `feature/emerald-m31-native-reliability-20261021`; PR draft sobre PR #29, não mesclar automaticamente nem modificar main/PRs anteriores. Rollback: manter ZIP original SHA `a4e019c5` em pasta separada; não tocar em nenhum save real.
+
+**Código MODIFICADO:**
+- `src/lnet/lnet_session_client.c`: o heartbeat que JÁ EXISTIA em fallback na fase WAIT_START foi explicitado na mesma prioridade do PLAYING, sem alteração de wire protocol. O timeout de autenticação padrão continua 20 s, com compilação de testes isolada que consegue encurtá-lo para 2,3 s. Não afirmar que heartbeat estivesse completamente ausente anteriormente. Nenhum pacote de login/poses/SIO do jogador foi alterado.
+- `tests/native_ehl8_client.c`: `awaitstart` nativo comprova WAIT_START por intervalo mínimo e recebe pose após START; não abre jogo/saves.
+- `tests/test_ehl8_native_bridge.py`: compilação C POSIX extra com timeout abreviado, dois clientes C + servidor asyncio EHL8 real em modo host manual, esperam ≥3,25s e enviam heartbeat sem partida e depois trocam pose. Complementa teste anterior Python de 30s.
+- `src/platform/sdl2.c`: janela/gamepad ficam livres APÓS START mesmo quando rede cai; monitora via atomic do game thread: 4 reconectando, 5 sessão falhou, 2 online. Mensagem no título sem pausar frames, rede ou modo solo.
+- `src/lnet/lnet_wait_overlay.h`: faixa discreta RECONECTANDO ou CONEXAO PERDIDA / JOGO LOCAL ATIVO dentro do viewport do jogo (240x160); some quando online retorna; só aparece se sessão EHL8 foi iniciada pelo modo dedicado, nunca no Cable Club ou offline.
+- `tests/test_ehl8_wait_overlay.c`: nova cobertura C dos estados 4/5 e retorno ao normal.
+- `scripts/verify_v080_profile_patch.py`: atualização **exata** de 3 fragmentos de allowlist reversa correspondentes ao delta SDL2; a comparação do hash legado permanece em vigor.
+- `src/link.c`: log local de transições REAIS de sprite remoto (visível, sumiu, fora da câmera) sem divulgar PIN, perfil nem save. Útil em QA humano de sprite visual no mapa.
+- `.github/workflows/emerald-auto-qa.yml` e `.github/workflows/build-v100-m23a-server-first-windows.yml`: ambas aceitam branches `feature/emerald-m31-*`; Auto QA observa arquivo C nativo.
+
+**Adicionado:** `docs/V100_M31_NATIVE_RELIABILITY_QA_20261021_PTBR.md` com roteiro de QA, limitações, pesquisa sobre interpolação, UX e link do rollback. **Removido:** nenhum recurso. **Não modificado:** formatos dos saves, perfis, mapas/história, câmera física, luta/troca P2P, servidor Python EHL8, QA Lab, Android.
+
+**Testes obrigatórios antes da entrega:** verificar run Auto QA Windows/Linux com `test_ehl8_native_bridge.py` POSIX e novo overlay C, build Windows final do HEAD, `scripts/verify_v080_profile_patch.py` e extração ZIP. Não confundir CI com QA real de sprites, gameplay, reconnect em VM/2 PCs, saves reabertos, luta/troca EHL8 ou Android. Anotar SHA exata e qualquer run vermelho na descrição do PR. Se falhar, corrigir na mesma branch, sem dizer que está pronto.
+
+**Pesquisa:** https://developer.valvesoftware.com/wiki/Source_Multiplayer_Networking e https://new.gafferongames.com/post/snapshot_interpolation/ para futuro jitter buffer sem alterar agora o smoothing do Emerald antes de dados reais; https://docs.python.org/3/library/asyncio-stream.html para `drain()` já tratado no servidor; https://wiki.libsdl.org/SDL2/SDL_RenderSetIntegerScale para preservar pixel art 240×160.
+
+**Próximo passo:** revisão CI, PR draft e testes humanos: 2 PCs/VM, host e convidado em mesmo mapa, logs sprite spawn/hide, interrupção/reconexão 60s, overlay/teclado/saves, sem alterar o modo solo. Batalhas/trocas EHL8 permanecem não implementadas, Android/crossplay ainda não comprovados.
