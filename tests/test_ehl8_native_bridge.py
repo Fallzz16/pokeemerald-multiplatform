@@ -3,6 +3,7 @@ Compiles checked-in C sources into ephemeral binary. No .sav, no game boot.
 """
 import asyncio
 import importlib.util
+import socket
 from pathlib import Path
 import subprocess
 import sys
@@ -34,6 +35,13 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
             "-DEHL_AUTH_TIMEOUT_MS=2300UL",
             "tests/native_ehl8_client.c", "-o", cls.wait_exe]
         subprocess.run(cmd_wait, cwd=ROOT, check=True, timeout=45)
+        # Short deadline to prove a permanently unavailable listener fails
+        # within the configured bound rather than hanging the game forever.
+        cls.short_connect_exe = str(Path(cls.tmp.name) / "native_ehl8_short_connect")
+        cmd_short = cmd[:cmd.index("tests/native_ehl8_client.c")] + [
+            "-DEHL_CONNECT_TIMEOUT_MS=1100UL",
+            "tests/native_ehl8_client.c", "-o", cls.short_connect_exe]
+        subprocess.run(cmd_short, cwd=ROOT, check=True, timeout=45)
 
     @classmethod
     def tearDownClass(cls):
@@ -61,6 +69,61 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
                     p.kill()
                     await p.wait()
             await server.stop()
+
+    async def test_host_native_clients_wait_for_delayed_server_start(self):
+        """Actual TCP ECONNREFUSED must be recoverable during startup only."""
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as probe:
+            probe.bind(("127.0.0.1", 0))
+            port_number = probe.getsockname()[1]
+        port = str(port_number)
+        peers = []
+        server = None
+        try:
+            for name, local_x, remote_x in (
+                ("boot_A", "21", "34"), ("boot_B", "34", "21")
+            ):
+                peers.append(await asyncio.create_subprocess_exec(
+                    self.exe, "127.0.0.1", port, "123456",
+                    name, local_x, remote_x,
+                    stdout=asyncio.subprocess.PIPE,
+                    stderr=asyncio.subprocess.PIPE))
+            # Both C game clients start BEFORE server.listen(): the original
+            # client would fail on the first refused connection.
+            await asyncio.sleep(0.75)
+            self.assertTrue(all(p.returncode is None for p in peers),
+                            "native client exited before host server came online")
+            server = server_module.SessionServer("123456", 2, idle_seconds=300)
+            await server.start("127.0.0.1", port_number)
+            outputs = await asyncio.wait_for(asyncio.gather(
+                *(p.communicate() for p in peers)), timeout=12)
+            self.assertTrue(server.in_game, "both clients did not enter PLAYING")
+            for p, (stdout, stderr) in zip(peers, outputs):
+                self.assertEqual(p.returncode, 0, stderr)
+                self.assertIn(b"remote overworld pose verified", stdout)
+        finally:
+            for p in peers:
+                if p.returncode is None:
+                    p.kill()
+                    await p.wait()
+            if server is not None:
+                await server.stop()
+
+    async def test_permanently_unavailable_server_reaches_connect_deadline(self):
+        """Bounded retries may not silently loop forever without a server."""
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as probe:
+            probe.bind(("127.0.0.1", 0))
+            port = str(probe.getsockname()[1])
+        p = await asyncio.create_subprocess_exec(
+            self.short_connect_exe, "127.0.0.1", port, "123456",
+            "no_host", "21", "34",
+            stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+        try:
+            stdout, stderr = await asyncio.wait_for(p.communicate(), timeout=4)
+            self.assertEqual(p.returncode, 4, (stdout, stderr))
+        finally:
+            if p.returncode is None:
+                p.kill()
+                await p.wait()
 
     async def test_two_native_clients_remain_ready_without_start_then_play(self):
         # Unlike Python fake clients, these processes use the actual C
