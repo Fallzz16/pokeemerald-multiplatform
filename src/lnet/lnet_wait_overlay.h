@@ -66,8 +66,8 @@ static void lnet_wait_overlay_text(SDL_Renderer *renderer,
 static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state,
                                      int roomCounts)
 {
-    SDL_Rect area = {17, 49, 206, 63};
-    SDL_Rect border = {17, 49, 206, 63};
+    SDL_Rect area = {17, 49, 206, 84};
+    SDL_Rect border = {17, 49, 206, 84};
     /* 4/5: a small, non-blocking notice after START. The game remains
      * playable locally, and state 2 removes the notice on reconnection. */
     if (state == 4 || state == 5)
@@ -129,6 +129,8 @@ static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state,
             lnet_wait_overlay_text(renderer, "HOST INICIA SALA", 95);
         }
     }
+    if (state == 1)
+        lnet_wait_overlay_text(renderer, "F5 ALTERAR PRONTO", 116);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 }
