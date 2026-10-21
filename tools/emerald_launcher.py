@@ -534,7 +534,8 @@ class EmeraldLauncher(tk.Tk):
             "3. Compartilhe IP, porta e PIN somente com seu amigo.\n"
             "4. No PC dele, selecione ENTRAR NA SALA, preencha os dados "
             "e aguarde 2/2 prontos.\n"
-            "5. Você clica INICIAR PARTIDA neste launcher.\n\n"
+            "5. Antes do START, use F5 no Emerald para CANCELAR ou confirmar PRONTO.\n"
+            "6. Com os dois prontos, clique INICIAR PARTIDA neste launcher.\n\n"
             "127.0.0.1 só funciona no próprio PC. Não abra portas "
             "públicas no roteador para o EHL8 experimental.")
 
