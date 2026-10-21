@@ -48,6 +48,7 @@ struct LNetSessionClient
     unsigned long began, lastRx, lastTx, lastPose, lastRemote, lastHeartbeat;
     uint16_t localSeq, lastRemoteSeq;
     uint8_t haveRemoteSeq, haveRemote;
+    uint8_t requestedReady, sentReady;
     uint8_t haveResumeToken, resumeInFlight;
     unsigned char resumeToken[EHL_RESUME_TOKEN_SIZE];
     unsigned long reconnectSince, retryAt;
@@ -166,6 +167,9 @@ LNetSessionClient *lnet_session_client_new(const char *host, unsigned short port
     strcpy(c->profile, profile);
     c->port = port;
     c->state = EHL_CLIENT_CONNECTING;
+    /* Old clients auto-READY; F7 may revoke readiness only before START. */
+    c->requestedReady = 1;
+    c->sentReady = 1;
     /* Clock starts with first in-game network pump, NOT launcher startup.
      * Intro/story loading may delay the first frame by many seconds. */
     c->began = 0;
@@ -183,6 +187,14 @@ void lnet_session_client_close(LNetSessionClient *c)
     memset(c->pin, 0, sizeof(c->pin));
     memset(c->resumeToken, 0, sizeof(c->resumeToken));
     free(c);
+}
+
+void lnet_session_client_set_ready(LNetSessionClient *c, int ready)
+{
+    if (!c || c->state == EHL_CLIENT_PLAYING ||
+        c->state == EHL_CLIENT_FAILED || c->resumeInFlight)
+        return;
+    c->requestedReady = ready ? 1 : 0;
 }
 
 static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
@@ -250,8 +262,12 @@ static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
         if (frame->type != EHL_JOIN || frame->payload_size != 1 ||
             frame->payload[0] < 1 || frame->payload[0] > 2)
             return -1;
-        if (!queue(c, EHL_READY, (const unsigned char *)"\1", 1))
-            return -1;
+        {
+            unsigned char ready = c->requestedReady;
+            if (!queue(c, EHL_READY, &ready, 1))
+                return -1;
+            c->sentReady = ready;
+        }
         c->state = EHL_CLIENT_WAIT_START;
         return 0;
     }
@@ -416,6 +432,22 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     /* Initial READY/HELLO/etc always takes precedence over pose updates. */
     if (c->txLength != c->txOffset)
         return;
+    /* The user can revoke or restore readiness by pressing F7 in the
+     * waiting-room overlay. Only native game thread queues READY packets;
+     * the SDL event thread changes an atomic desired state, never sockets. */
+    if (c->state == EHL_CLIENT_WAIT_START &&
+        c->requestedReady != c->sentReady)
+    {
+        unsigned char ready = c->requestedReady;
+        if (!queue(c, EHL_READY, &ready, 1))
+        {
+            close_failed(c);
+            return;
+        }
+        c->sentReady = ready;
+        c->lastTx = now;
+        return;
+    }
     /* In WAIT_START, clients can sit at 2/2 while the host prepares the game.
      * Send the same heartbeat every 10s BEFORE START, not just after PLAYING.
      * This keeps the server's 35s idle timeout and our 20s authentication/

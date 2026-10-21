@@ -44,6 +44,12 @@ int main(void)
     assert(renderer.calls == 0 && renderer.border == 4);
     lnet_wait_overlay_friend_badge(&renderer, 1);
     assert(renderer.calls > 40 && renderer.border == 5);
-    printf("EHL8 waiting, reconnection and camera-visible friend badge: PASS\n");
+    renderer.calls = 0;
+    lnet_wait_overlay_ready_status(&renderer, 1);
+    assert(renderer.calls > 40 && renderer.border == 6);
+    renderer.calls = 0;
+    lnet_wait_overlay_ready_status(&renderer, 0);
+    assert(renderer.calls > 40 && renderer.border == 7);
+    printf("EHL8 READY/CANCEL, reconnection and visible friend overlays: PASS\n");
     return 0;
 }
