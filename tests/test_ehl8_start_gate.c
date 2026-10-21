@@ -15,6 +15,7 @@ int main(void)
     /* A real game is allowed to tick/network, but receives no input yet. */
     assert(lnet_start_gate_blocked(&ehl8, 0));
     assert(lnet_start_gate_blocked(&ehl8, 0));
+    assert(lnet_start_gate_blocked(&ehl8, 2)); /* connecting, still locked */
     assert(lnet_start_gate_blocked(&ehl8, -1)); /* fail closed */
     assert(ehl8.released == 0);
     /* Only the EHL8 PLAYING state releases gameplay keys. */
