@@ -257,7 +257,7 @@ jobs:
           assert "case KANTO_HEAL_INDIGO_PLATEAU:" in Path("src/overworld.c").read_text()
           # The chosen Indigo Center return position must not be a solid tile.
           from struct import unpack_from
-          indigo_layout=layout_target["LAYOUT_KANTO_INDIGOPLATEAU_POKEMONCENTER_1F"]
+          indigo_layout=ln["LAYOUT_KANTO_INDIGOPLATEAU_POKEMONCENTER_1F"]
           ix,iy=11,15
           assert ix<indigo_layout["width"] and iy<indigo_layout["height"]
           binary=Path(indigo_layout["blockdata_filepath"]).read_bytes()
