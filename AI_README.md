@@ -1026,3 +1026,7 @@ Importador mantém a lista item_maps da V0.11 exatamente como antes: 42 item bal
 ## 65. Kanto V0.13 — 41 itens originais das cavernas (2026-10-21)
 
 Branch feature/kanto-v13-major-dungeon-items sobre V0.12 compilada 6444892bfcaf667538abe8cb33fd1047dd3118b9. Adiciona 33 bolas visíveis e 8 itens ocultos (incluindo Secret Key) às 15 novas dungeons de FireRed. Flag pool: primeiros 119 flags da V0.11 preservados e 41 novos bits livres ao final, total 160 pickups persistentes. Mapa 99 IDs idênticos à V0.12. CI kanto-v13-major-dungeon-items.yml, documento docs/KANTO_V13_MAJOR_DUNGEON_ITEMS_PTBR.md. Eventos/quests/treinadores, puzzles, saves in-game e multiplayer ainda não testados; manter PR em draft.
+
+## 66. Kanto V0.14 — oito ginásios com layout FireRed (2026-10-21)
+
+Branch feature/kanto-v14-eight-gyms a partir da V0.13. Importados os oito mapas originais Viridian/Pewter/Cerulean/Vermilion/Celadon/Fuchsia/Cinnabar/Saffron Gym com tilesets e portas de FireRed; 107 mapas Kanto, IDs anteriores 0–98 preservados. Saffron teleporters mantêm seus IDs de warp internos. Não inclui NPCs ou líderes e insígnias (portar em fase futura após plano de flags de treinador). 160 flags de item V0.13 preservadas. Testes Windows/estrutura: kanto-v14-eight-gyms.yml. Documento docs/KANTO_V14_GYMS_PTBR.md. Sem afirmar ginásios jogáveis.
