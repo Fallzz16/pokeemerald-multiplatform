@@ -48,6 +48,27 @@ static void lnet_wait_overlay_text(SDL_Renderer *renderer,
                                (240 - count * 8) / 2 + col * 8, y);
 }
 
+/* Presence is projected by the Emerald game thread and read here as a
+ * single boolean. Display only when the actual remote sprite is on camera,
+ * without labels for players who are elsewhere or disconnected. */
+static void lnet_wait_overlay_friend_badge(SDL_Renderer *renderer, int inView)
+{
+    SDL_Rect badge = {3, 3, 53, 16};
+    const char *word = "AMIGO";
+    int i;
+    if (!inView)
+        return;
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+    SDL_SetRenderDrawColor(renderer, 6, 33, 23, 211);
+    SDL_RenderFillRect(renderer, &badge);
+    SDL_SetRenderDrawColor(renderer, 74, 216, 156, 255);
+    SDL_RenderDrawRect(renderer, &badge);
+    for (i = 0; word[i]; i++)
+        lnet_wait_overlay_glyph(renderer, word[i], 10 + i * 8, 6);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+}
+
 static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state)
 {
     SDL_Rect area = {17, 49, 206, 63};
