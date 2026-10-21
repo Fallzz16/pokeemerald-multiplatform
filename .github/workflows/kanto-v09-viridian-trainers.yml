@@ -58,7 +58,7 @@ jobs:
                       for q in group['encounters'] if 'map' in q}
           assert 'MAP_KANTO_ROUTE1' in all_maps
           assert all_maps['MAP_KANTO_ROUTE1']['land_mons']['mons']
-          assert report['original_npcs_ported'] == 0
+          assert report['original_npcs_ported'] == 5
           assert report['interior_warps_ported'] == 17
           assert report['original_interiors_ported'] == 17
           assert len(report['interior_maps']) == len(set(report['interior_maps'])) == 17
