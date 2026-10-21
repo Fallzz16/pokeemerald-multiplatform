@@ -75,3 +75,22 @@ Arquivos revisados: `src/lnet/lnet_session_client.c/.h`, `src/lnet/lnet_presence
 5. Valide retorno offline/saves em duas pastas. Se houver falha, anote passo/revisão e envie logs sem PIN/identificadores/saves pessoais.
 
 **Rollback:** `feature/emerald-m30-player-journey-20261020` SHA `a4e019c5e5e84aa9bce9140db3c87b5b70477051` (PR #29). Nenhum arquivo `.sav`, release pública, ramo `main` ou PR anterior deve ser alterado nesta atualização.
+
+
+## Continuação da M3.1 — Mapas nativos e indicador AMIGO (21/10/2026)
+
+**Origem:** usuário pediu `Continue` com liberdade técnica, sem ampliar escopo. Esta continuação permanece no **PR #36** da mesma branch `feature/emerald-m31-native-reliability-20261021`. Base e rollback seguem PR #29 SHA `a4e019c5`. Não houve edição de saves, mapas, histórias, Pokémon, Android, servidor wire, nem Cable Club.
+
+### Implementado agora
+
+1. `tests/native_ehl8_client.c` recebeu modo de teste `mapcycle`: duas instâncias C autênticas atravessam mapa 0 (ativo), mapa 1 (ativo), posição inativa (sair de campo), e mapa 2 (ativo). Cada cliente exige receber do outro a sequência visível/oculta/reaparecida, sem carregar arquivos de save ou janela gráfica.
+2. `tests/test_ehl8_native_bridge.py` inicia dois processos C e o servidor EHL8 de produção em TCP loopback; exige sucesso de ambos e **inspeciona no servidor** a chegada efetiva de `LANP active/mapNum` para ambos `(1,0)`, `(1,1)`, `(0,1)`, `(1,2)`. Esses códigos são *valores do teste*, não mapas criados no jogo. Não equivale a testar sprites na engine em Windows.
+3. `src/link.c` expõe `PortLanDedicatedFriendInView()` somente em runtime PORTABLE, lendo sprite virtual existente, estado EHL8 PLAYING e a projeção real de câmera já implementada. Não exige consulta a saves e não muda as coordenadas.
+4. `src/platform/sdl2.c` transmite esse booleano da game thread ao renderer via `SDL_atomic_t`; só no EHL8, depois de START e quando estado conectado PLAYING, desenha o novo badge pequeno **AMIGO** no topo da tela, jamais para outro mapa, offline ou conexão caída.
+5. `src/lnet/lnet_wait_overlay.h` implementa o badge usando o mesmo renderer bitmap 3×5 e faixa escura sem fontes externas; `tests/test_ehl8_wait_overlay.c` acrescenta caso 0 (nenhum desenho) e 1 (desenho dentro de 240×160). `scripts/verify_v080_profile_patch.py` remove por inversão **exata** apenas os quatro deltas SDL2 dessa atualização antes da verificação hash do source legado; não abre exceção genérica.
+
+### Evidência, correção e limites
+
+O **primeiro** native TCP CI de mapas [run 39550575971](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/39550575971) falhou: no modo mapcycle, a ferramenta de teste retornava êxito antigo assim que recebia a PRIMEIRA pose, sem executar o ciclo. Corrigido em `tests/native_ehl8_client.c`: não encerra cedo quando `mapcycle` está ativo. [Native job 39550715423](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/39550715423) passou depois dessa correção. A inspeção adicional no servidor e o badge AMIGO são commits posteriores, portanto **exigem conferência do Auto QA + Preview Windows mais recente** antes de oferecer novo ZIP.
+
+**O que falta comprovar com usuário:** dois trainers visíveis em Hoenn e indicador AMIGO no momento correto; hidden/reappeared após warp e menus; reconexão/latência; integridade de saves reabertos; PvP/troca por EHL8 e Android permanecem pendentes. Não mesclar PR draft nem divulgar beta final com base nesses testes de rede.
