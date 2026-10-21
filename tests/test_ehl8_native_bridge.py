@@ -142,7 +142,7 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
                     stdout=asyncio.subprocess.PIPE,
                     stderr=asyncio.subprocess.PIPE))
             for _ in range(160):
-                if b"\\x00" in server.ready_events:
+                if bytes([0]) in server.ready_events:
                     break
                 await asyncio.sleep(0.03)
             self.assertIn(bytes([0]), server.ready_events)
