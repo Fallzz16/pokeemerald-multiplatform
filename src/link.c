@@ -2149,6 +2149,13 @@ int PortLanDedicatedLobbyCounts(int *players, int *ready)
 
 /* Explicit player's READY/CANCEL during pre-START lobby only.
  * Called by the game thread, never from SDL render/event thread. */
+int PortLanDedicatedLocalReady(int *ready)
+{
+    if (!sLanDedicatedSession)
+        return 0;
+    return lnet_session_client_local_ready(sLanDedicatedSession, ready);
+}
+
 int PortLanDedicatedToggleReady(void)
 {
     if (!sLanDedicatedSession)
