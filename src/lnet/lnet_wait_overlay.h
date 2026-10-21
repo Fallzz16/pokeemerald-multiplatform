@@ -52,6 +52,27 @@ static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state)
 {
     SDL_Rect area = {17, 49, 206, 63};
     SDL_Rect border = {17, 49, 206, 63};
+    /* 4/5: a small, non-blocking notice after START. The game remains
+     * playable locally, and state 2 removes the notice on reconnection. */
+    if (state == 4 || state == 5)
+    {
+        SDL_Rect strip = {16, 6, 208, 30};
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+        SDL_SetRenderDrawColor(renderer, 5, 22, 16, 218);
+        SDL_RenderFillRect(renderer, &strip);
+        if (state == 4)
+            SDL_SetRenderDrawColor(renderer, 255, 196, 96, 255);
+        else
+            SDL_SetRenderDrawColor(renderer, 255, 128, 116, 255);
+        SDL_RenderDrawRect(renderer, &strip);
+        SDL_SetRenderDrawColor(renderer, 233, 255, 245, 255);
+        lnet_wait_overlay_text(renderer,
+            state == 4 ? "RECONECTANDO" : "CONEXAO PERDIDA", 10);
+        lnet_wait_overlay_text(renderer, "JOGO LOCAL ATIVO", 22);
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        return;
+    }
     /* state 1: wait; 3: terminal startup failure. Never overlay offline. */
     if (state != 1 && state != 3)
         return;
