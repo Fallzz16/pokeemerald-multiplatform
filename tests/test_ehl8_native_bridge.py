@@ -116,6 +116,103 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
                     await process.wait()
             await server.stop()
 
+    async def test_native_player_controls_ready_before_host_start(self):
+        """Two real C clients join UNREADY; only their manual input enables START."""
+        server = server_module.SessionServer("123456", 2, idle_seconds=300,
+                                             manual_start=True)
+        listener = await server.start("127.0.0.1", 0)
+        port = str(listener.sockets[0].getsockname()[1])
+        clients = [
+            await asyncio.create_subprocess_exec(
+                self.exe, "127.0.0.1", port, "123456",
+                "manual_A" if i == 0 else "manual_B",
+                "21" if i == 0 else "34",
+                "34" if i == 0 else "21", "manualready",
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE)
+            for i in range(2)
+        ]
+        try:
+            for _ in range(50):
+                if len(server.players) == 2:
+                    break
+                await asyncio.sleep(.02)
+            self.assertEqual(len(server.players), 2)
+            await asyncio.sleep(.3)
+            self.assertEqual(sum(p.ready for p in server.players.values()), 0,
+                             "manual client must not auto READY")
+            self.assertFalse(await server.admin_command("START"))
+            for _ in range(110):
+                if len(server.players) == 2 and all(p.ready for p in server.players.values()):
+                    break
+                await asyncio.sleep(.02)
+            self.assertEqual(sum(p.ready for p in server.players.values()), 2,
+                             "F9 native READY not delivered to real server")
+            self.assertFalse(server.in_game, "host still needs to authorize START")
+            self.assertTrue(await server.admin_command("START"))
+            outputs = await asyncio.wait_for(
+                asyncio.gather(*(p.communicate() for p in clients)), timeout=10)
+            for child, (stdout, stderr) in zip(clients, outputs):
+                self.assertEqual(child.returncode, 0, stderr)
+                self.assertIn(b"native manual READY and host START", stdout)
+        finally:
+            for child in clients:
+                if child.returncode is None:
+                    child.kill()
+                    await child.wait()
+            await server.stop()
+
+    async def test_native_player_can_cancel_ready_then_confirm_again(self):
+        """A real C client toggles 0 -> 1 -> 0 -> 1; host START must reject 0."""
+        server = server_module.SessionServer("123456", 2, idle_seconds=300,
+                                             manual_start=True)
+        listener = await server.start("127.0.0.1", 0)
+        port = str(listener.sockets[0].getsockname()[1])
+        clients = [
+            await asyncio.create_subprocess_exec(
+                self.exe, "127.0.0.1", port, "123456",
+                "cancel_A" if i == 0 else "manual_B",
+                "21" if i == 0 else "34",
+                "34" if i == 0 else "21",
+                "manualcancel" if i == 0 else "manualready",
+                stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+            for i in range(2)
+        ]
+        saw_ready, saw_cancel, saw_ready_again = False, False, False
+        try:
+            for _ in range(180):
+                await asyncio.sleep(.025)
+                by_name = {p.profile: p.ready for p in server.players.values()}
+                ready_a = by_name.get(b"cancel_A")
+                if ready_a is None:
+                    continue
+                if ready_a and not saw_ready:
+                    saw_ready = True
+                elif not ready_a and saw_ready and not saw_cancel:
+                    saw_cancel = True
+                    self.assertFalse(await server.admin_command("START"),
+                                     "a cancelled READY cannot start a match")
+                elif ready_a and saw_cancel and by_name.get(b"manual_B"):
+                    saw_ready_again = True
+                    break
+            self.assertTrue(saw_ready, "native ready=1 not observed")
+            self.assertTrue(saw_cancel, "native READY cancel=0 not observed")
+            self.assertTrue(saw_ready_again, "native ready=1 after cancel missing")
+            self.assertFalse(server.in_game)
+            self.assertTrue(await server.admin_command("START"))
+            results = await asyncio.wait_for(
+                asyncio.gather(*(p.communicate() for p in clients)), timeout=10)
+            self.assertEqual(clients[0].returncode, 0, results[0][1])
+            self.assertEqual(clients[1].returncode, 0, results[1][1])
+            self.assertIn(b"READY CANCEL READY", results[0][0])
+            self.assertIn(b"manual READY and host START", results[1][0])
+        finally:
+            for child in clients:
+                if child.returncode is None:
+                    child.kill()
+                    await child.wait()
+            await server.stop()
+
     async def test_real_native_game_clients_decode_two_ready_players(self):
         """Validates C PLAYER_LIST decoding against the REAL Python EHL8 server."""
         server = server_module.SessionServer("123456", 2, idle_seconds=300)

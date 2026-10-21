@@ -2150,6 +2150,22 @@ int PortLanDedicatedRoomSnapshot(void)
     return ((int)roster.players << 2) | roster.ready;
 }
 
+/* Only game thread may modify the manual READY flag. No GBA input saved,
+ * no legacy Cable Club SIO and no new protocol message type. */
+int PortLanDedicatedSetManualReady(void)
+{
+    if (!sLanDedicatedSession)
+        return 0;
+    return lnet_session_client_set_manual_ready(sLanDedicatedSession, 1);
+}
+
+int PortLanDedicatedToggleReady(void)
+{
+    if (!sLanDedicatedSession)
+        return -1;
+    return lnet_session_client_toggle_ready(sLanDedicatedSession);
+}
+
 /* Dedicated EHL8 presence only: NEVER feed this protocol to the Cable Club
  * serial transport. Reuse existing sprite/camera, no save or quest changes. */
 bool32 PortLanRequestDedicatedClient(const char *host, u16 port,

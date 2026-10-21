@@ -50,6 +50,12 @@ int main(void)
     renderer.calls = 0;
     lnet_wait_overlay_room(&renderer, 11); /* ready cannot exceed players */
     assert(renderer.calls == 0 && renderer.border == 6);
-    printf("EHL8 waiting/reconnect and authoritative roster overlays: PASS\n");
+    renderer.calls = 0;
+    lnet_wait_overlay_ready_hint(&renderer, 0);
+    assert(renderer.calls > 10 && renderer.border == 7);
+    renderer.calls = 0;
+    lnet_wait_overlay_ready_hint(&renderer, 1);
+    assert(renderer.calls > 10 && renderer.border == 8);
+    printf("EHL8 waiting, roster and manual READY/CANCEL HUD: PASS\n");
     return 0;
 }

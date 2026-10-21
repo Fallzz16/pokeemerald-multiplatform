@@ -51,6 +51,7 @@ struct LNetSessionClient
     uint8_t haveRemoteSeq, haveRemote;
     uint8_t haveRoster;
     LNetRoomRoster roster;
+    uint8_t manualReady, desiredReady, sentReady;
     uint8_t haveResumeToken, resumeInFlight;
     unsigned char resumeToken[EHL_RESUME_TOKEN_SIZE];
     unsigned long reconnectSince, retryAt;
@@ -171,11 +172,33 @@ LNetSessionClient *lnet_session_client_new(const char *host, unsigned short port
     strcpy(c->profile, profile);
     c->port = port;
     c->state = EHL_CLIENT_CONNECTING;
+    c->desiredReady = 1; /* legacy native and QA automation unchanged */
     /* Clock starts with first in-game network pump, NOT launcher startup.
      * Intro/story loading may delay the first frame by many seconds. */
     c->began = 0;
     ehl_session_decoder_init(&c->decoder);
     return c;
+}
+
+/* Called during setup, before the first network poll. Users who opt in
+ * start NOT READY; QA Lab and legacy peers still auto READY on JOIN. */
+int lnet_session_client_set_manual_ready(LNetSessionClient *c, int enabled)
+{
+    if (!c || c->state != EHL_CLIENT_CONNECTING || c->began != 0)
+        return 0;
+    c->manualReady = enabled ? 1 : 0;
+    c->desiredReady = enabled ? 0 : 1;
+    return 1;
+}
+
+/* Pressing F9 only toggles a connected waiting-room player.
+ * No network mutation outside the game thread and no effect after START. */
+int lnet_session_client_toggle_ready(LNetSessionClient *c)
+{
+    if (!c || !c->manualReady || c->state != EHL_CLIENT_WAIT_START)
+        return -1;
+    c->desiredReady = !c->desiredReady;
+    return c->desiredReady;
 }
 
 void lnet_session_client_close(LNetSessionClient *c)
@@ -255,8 +278,14 @@ static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
         if (frame->type != EHL_JOIN || frame->payload_size != 1 ||
             frame->payload[0] < 1 || frame->payload[0] > 2)
             return -1;
-        if (!queue(c, EHL_READY, (const unsigned char *)"\1", 1))
-            return -1;
+        {
+            /* RESUME into a running match MUST acknowledge ready=1 even if
+             * initial JOIN was manual; server rejects READY=0 in GAME. */
+            unsigned char initialReady = c->resumeInFlight ? 1 : c->desiredReady;
+            if (!queue(c, EHL_READY, &initialReady, 1))
+                return -1;
+            c->sentReady = initialReady;
+        }
         c->state = EHL_CLIENT_WAIT_START;
         return 0;
     }
@@ -434,6 +463,21 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     /* Initial READY/HELLO/etc always takes precedence over pose updates. */
     if (c->txLength != c->txOffset)
         return;
+    /* Explicit READY/CANCEL from the game-thread F9 toggle takes priority
+     * over heartbeat; the server publishes the resulting PLAYER_LIST. */
+    if (c->state == EHL_CLIENT_WAIT_START &&
+        c->sentReady != c->desiredReady)
+    {
+        unsigned char value = c->desiredReady;
+        if (!queue(c, EHL_READY, &value, 1))
+        {
+            close_failed(c);
+            return;
+        }
+        c->sentReady = value;
+        c->lastTx = now;
+        return;
+    }
     /* In WAIT_START, clients can sit at 2/2 while the host prepares the game.
      * Send the same heartbeat every 10s BEFORE START, not just after PLAYING.
      * This keeps the server's 35s idle timeout and our 20s authentication/
