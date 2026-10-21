@@ -96,7 +96,8 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
             await server.start("127.0.0.1", port_number)
             outputs = await asyncio.wait_for(asyncio.gather(
                 *(p.communicate() for p in peers)), timeout=12)
-            self.assertTrue(server.in_game, "both clients did not enter PLAYING")
+            # Each process only reports remote pose after PLAYING; the
+            # server may already have returned to an empty room as they exit.
             for p, (stdout, stderr) in zip(peers, outputs):
                 self.assertEqual(p.returncode, 0, stderr)
                 self.assertIn(b"remote overworld pose verified", stdout)
