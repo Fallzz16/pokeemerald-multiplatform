@@ -19,6 +19,16 @@ class GraphicalLauncherTests(unittest.TestCase):
             launcher.make_command("game.exe","profiles","user_1","dedicated")
         with self.assertRaises(ValueError):
             launcher.make_command("game.exe","profiles","../bad","offline")
+    def test_real_player_ehl8_uses_manual_ready_but_offline_is_unchanged(self):
+        cmd = launcher.make_command("game.exe", "profiles", "trainer",
+                                    "dedicated", "127.0.0.1", "45680", "123456")
+        self.assertIn("--session-manual-ready", cmd)
+        self.assertIn("--session-wait-for-start", cmd)
+        for mode in ("offline", "host", "join"):
+            other = launcher.make_command("game.exe", "profiles", "trainer",
+                    mode, "127.0.0.1", "45680", "123456")
+            self.assertNotIn("--session-manual-ready", other)
+
     def test_player_join_button_never_selects_legacy_cable_club(self):
         from unittest.mock import Mock
         fake = Mock()
