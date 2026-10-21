@@ -94,8 +94,9 @@ static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state)
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         return;
     }
-    /* state 1: wait; 3: terminal startup failure. Never overlay offline. */
-    if (state != 1 && state != 3)
+    /* 6: initial connect/auth; 1: joined and waiting for START;
+     * 3: initial terminal failure. Never overlay offline or gameplay. */
+    if (state != 1 && state != 3 && state != 6)
         return;
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     SDL_SetRenderDrawColor(renderer, 5, 22, 16, 232);
@@ -111,6 +112,11 @@ static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state)
     {
         lnet_wait_overlay_text(renderer, "CONEXAO FALHOU", 79);
         lnet_wait_overlay_text(renderer, "FECHE E REENTRE", 95);
+    }
+    else if (state == 6)
+    {
+        lnet_wait_overlay_text(renderer, "CONECTANDO AO HOST", 79);
+        lnet_wait_overlay_text(renderer, "AGUARDE A CONEXAO", 95);
     }
     else
     {
