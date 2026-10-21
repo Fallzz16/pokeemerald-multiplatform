@@ -1049,3 +1049,9 @@ Branch `feature/kanto-v17-last-four-leaders`, base V0.16 (`243fe418466c32a56bf0c
 Workflow `kanto-v17-eight-gym-leaders.yml` valida 13 NPCs de batalha (5 Bug Catchers + 8 líderes), 114 mapas, 180 flags Kanto únicas (160 pickups, 8 V0.16, 12 V0.17), traduções de ID e compilação Windows. Doc `docs/KANTO_V17_EIGHT_GYM_LEADERS_PTBR.md`.
 
 Bloqueadores: ainda faltam treinadores normais, puzzles/eventos Rocket/Silph/Liga e oito insígnias integradas à Trainer Card, sprites FireRed, narrativa, QA humano save/load, LAN/Android. Não declarar campanha completa; PRs continuam draft sem merge.
+
+## 68. Kanto V0.18 — cinco treinadores de Route3 / MtMoon com vitória persistente (2026-10-21)
+
+Branch `feature/kanto-v18-moon-route3-trainers` sobre V0.17 aprovada `7b23f5211f8adc315bc4b439ed6ee4e1a1b4eba7`. Importador ganha 5 Bug Catchers reais de FireRed: Robby/Kent (MtMoon 1F), James/Greg/Colton (Route3). Parties, níveis, espécies, localização e alcance originais, scripts Emerald com textos provisórios. IDs 868–872 são traduzidos em `src/battle_setup.c` para cinco novas flags persistentes de bits declarados UNUSED depois das 180 flags já usadas pelos pickups, badges/TMs e quatro líderes de V0.17. `TRAINERS_COUNT=873` com `MAX_TRAINERS_COUNT=864` constante e estruturas de save imutáveis. Totais: 114 mapas em dois grupos, 160 pickups, 8 líderes e 10 Bug Catchers = 18 NPCs de batalha. Workflow `kanto-v18-moon-route3-trainers.yml`, doc `docs/KANTO_V18_MOON_ROUTE3_TRAINERS_PTBR.md`; não anunciar gameplay como QA aprovado por compilar.
+
+Pendências e gates: treinador normal adicional requer flag única e explicitação na tabela de tradução. Faltam múltiplos NPCs, eventos, puzzles/ginásios, Elite Four, QA Save/Load/whiteout/flags/parties e multiplayer Windows/Android. Draft PR, sem merge. Rollback original M2.2-B `5e53e40`.
