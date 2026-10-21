@@ -20,7 +20,9 @@
 #endif
 
 #define EHL_CONNECT_TIMEOUT_MS 12000UL
+#ifndef EHL_AUTH_TIMEOUT_MS
 #define EHL_AUTH_TIMEOUT_MS 20000UL
+#endif
 #define EHL_STALE_MS 3000UL
 #define EHL_POSE_INTERVAL_MS 100UL
 #ifndef EHL_HEARTBEAT_INTERVAL_MS
@@ -414,10 +416,13 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     /* Initial READY/HELLO/etc always takes precedence over pose updates. */
     if (c->txLength != c->txOffset)
         return;
-    /* Poses are due every 100 ms, so an "else if heartbeat" placed AFTER
-     * pose would never run while the player is moving/connected. Give the
-     * sparse liveness frame priority once every 10 seconds. */
-    if (c->state == EHL_CLIENT_PLAYING &&
+    /* In WAIT_START, clients can sit at 2/2 while the host prepares the game.
+     * Send the same heartbeat every 10s BEFORE START, not just after PLAYING.
+     * This keeps the server's 35s idle timeout and our 20s authentication/
+     * waiting timeout refreshed. While PLAYING, heartbeat still takes
+     * priority over 100ms poses. */
+    if ((c->state == EHL_CLIENT_WAIT_START ||
+         c->state == EHL_CLIENT_PLAYING) &&
         (c->lastHeartbeat == 0 ||
          (unsigned long)(now - c->lastHeartbeat) >= EHL_HEARTBEAT_INTERVAL_MS))
     {
@@ -446,7 +451,9 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
         }
         c->lastPose = now;
     }
-    else if ((unsigned long)(now - c->lastTx) >= EHL_HEARTBEAT_INTERVAL_MS)
+    else if (c->state != EHL_CLIENT_RECONNECTING &&
+             c->state != EHL_CLIENT_CONNECTING &&
+             (unsigned long)(now - c->lastTx) >= EHL_HEARTBEAT_INTERVAL_MS)
     {
         if (!queue(c, EHL_HEARTBEAT, NULL, 0))
         {
