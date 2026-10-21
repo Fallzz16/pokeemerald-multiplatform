@@ -1589,6 +1589,16 @@ Kanto_VermilionCity_Text_BattleQuestion:
     target_groups["gMapGroup_Kanto"].extend(extra_batch["names"])
     target_groups["gMapGroup_Kanto"].extend(major_batch["names"])
     target_groups["gMapGroup_Kanto"].extend(gym_batch["names"])
+    # Map group numbers are carried as signed 8-bit warp mapNums in C.
+    # Beyond 128 entries we must add another map group, never renumber
+    # these 107 existing map numbers within the current saved Kanto group.
+    capacity = 128
+    count_kanto = len(target_groups["gMapGroup_Kanto"])
+    if count_kanto > capacity:
+        raise RuntimeError(
+            f"Kanto group has {count_kanto} maps (max {capacity}); "
+            "split new maps into an appended Kanto group before importing")
+    report["kanto_map_slots_remaining"] = capacity - count_kanto
     # All 160 persistent pickup flags from V0.13 remain unchanged.
     # Gym layouts are not yet populated with trainer NPCs/leader badges.
     # Preserve the already-shipped 42 visible + 77 hidden item flags.

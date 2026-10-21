@@ -220,6 +220,11 @@ jobs:
               assert len(objs)==1,row
               assert objs[0]["item"]==row["item"]
 
+          # For signed s8 mapNum, preserve the existing group ID.
+          assert report["kanto_map_slots_remaining"]==21
+          assert len(json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"])<=128
+          # The five existing Kanto trainers occupy 5 of the 9 reserved IDs.
+          assert report["trainer_battles_ported"]==5
           # Eight source-authentic gym floors, after the prior 99 map IDs.
           gym_names=(
             "ViridianCity_Gym","PewterCity_Gym","CeruleanCity_Gym",
