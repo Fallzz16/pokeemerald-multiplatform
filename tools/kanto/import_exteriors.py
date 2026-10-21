@@ -723,8 +723,28 @@ KANTO_V06_DUNGEONS = (
 )
 
 
+KANTO_V07_DUNGEONS = (
+    "UndergroundPath_NorthEntrance",
+    "UndergroundPath_NorthSouthTunnel",
+    "UndergroundPath_SouthEntrance",
+    "UndergroundPath_WestEntrance",
+    "UndergroundPath_EastWestTunnel",
+    "UndergroundPath_EastEntrance",
+    "RockTunnel_1F",
+    "RockTunnel_B1F",
+    "PokemonTower_1F",
+    "PokemonTower_2F",
+    "PokemonTower_3F",
+    "PokemonTower_4F",
+    "PokemonTower_5F",
+    "PokemonTower_6F",
+    "PokemonTower_7F",
+)
+
+
 def add_kanto_v06_dungeons(source: Path, emerald: Path, source_maps: dict,
-                          layouts: dict, target_layouts: dict) -> dict:
+                          layouts: dict, target_layouts: dict,
+                          selected: tuple[str, ...] = KANTO_V06_DUNGEONS) -> dict:
     """Port all 9 original layouts and their real intra-dungeon/exterior doors.
 
     Original interior warp indices are retained in complete dungeons. Exterior
@@ -733,7 +753,7 @@ def add_kanto_v06_dungeons(source: Path, emerald: Path, source_maps: dict,
     Existing exterior warp indices are NEVER reordered.
     """
     maps = {name: load_json(source, f"data/maps/{name}/map.json")
-            for name in KANTO_V06_DUNGEONS}
+            for name in selected}
     by_source_id = {entry["id"]: name for name, entry in maps.items()}
     if len(by_source_id) != len(maps):
         raise RuntimeError("Duplicate source Kanto dungeon map IDs")
@@ -767,7 +787,7 @@ def add_kanto_v06_dungeons(source: Path, emerald: Path, source_maps: dict,
     # All original warp targets in the selected nine maps must be either
     # another fully ported dungeon map or one of the 38 existing exteriors.
     warps_created = 0
-    for name in KANTO_V06_DUNGEONS:
+    for name in selected:
         original = maps[name]
         lay = layouts.get(original["layout"])
         if lay is None:
@@ -856,8 +876,8 @@ def add_kanto_v06_dungeons(source: Path, emerald: Path, source_maps: dict,
         )
         warps_created += len(warps)
     return {
-        "names": ["Kanto_" + n for n in KANTO_V06_DUNGEONS],
-        "source_ids": {maps[n]["id"]: n for n in KANTO_V06_DUNGEONS},
+        "names": ["Kanto_" + n for n in selected],
+        "source_ids": {maps[n]["id"]: n for n in selected},
         "internal_warps": warps_created,
         "exterior_warps": exterior_warps_added,
     }
@@ -898,7 +918,7 @@ def copy_exteriors(source: Path, emerald: Path) -> dict:
     # secondary graphics sets. Reuse an existing converted set if shared.
     dungeon_secondaries = {
         layouts[load_json(source, f"data/maps/{n}/map.json")["layout"]]["secondary_tileset"]
-        for n in KANTO_V06_DUNGEONS
+        for n in KANTO_V06_DUNGEONS + KANTO_V07_DUNGEONS
     }
     already_converted = set(secondaries) | {
         "gTileset_PokemonCenter", "gTileset_Mart", "gTileset_GenericBuilding2"
@@ -1047,11 +1067,18 @@ Kanto_VermilionCity_Text_BattleQuestion:
     report["saffron_gatehouses"] = saffron_gates
     dungeon_batch = add_kanto_v06_dungeons(
         source, emerald, source_maps, layouts, target_layouts)
+    extra_batch = add_kanto_v06_dungeons(
+        source, emerald, source_maps, layouts, target_layouts,
+        selected=KANTO_V07_DUNGEONS)
     report["dungeon_maps"] = dungeon_batch["names"]
     report["dungeon_warps"] = dungeon_batch["internal_warps"]
     report["dungeon_exterior_warps"] = dungeon_batch["exterior_warps"]
+    report["v07_underground_and_tower_maps"] = extra_batch["names"]
+    report["v07_warps"] = extra_batch["internal_warps"]
+    report["v07_exterior_warps"] = extra_batch["exterior_warps"]
     report["wild_encounter_maps_ported"] = add_firered_encounters(
-        source, emerald, {**source_to_name, **dungeon_batch["source_ids"]})
+        source, emerald, {**source_to_name,
+                          **dungeon_batch["source_ids"], **extra_batch["source_ids"]})
     report["wild_encounters_ported"] = report["wild_encounter_maps_ported"] > 0
     report["interior_maps"] = interiors
     report["original_interiors_ported"] = len(interiors)
@@ -1061,6 +1088,7 @@ Kanto_VermilionCity_Text_BattleQuestion:
     target_groups["gMapGroup_Kanto"].extend(saffron_gates)
     # Append, never insert: saves from V0.2–V0.5 retain every old map ID.
     target_groups["gMapGroup_Kanto"].extend(dungeon_batch["names"])
+    target_groups["gMapGroup_Kanto"].extend(extra_batch["names"])
     target_groups["connections_include_order"].extend("Kanto_" + n for n in names)
     emit_json(emerald / "data/maps/map_groups.json", target_groups)
     emit_json(emerald / "data/layouts/layouts.json", target_layouts)
@@ -1074,6 +1102,8 @@ Kanto_VermilionCity_Text_BattleQuestion:
     includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"' for n in saffron_gates)
     includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"'
                         for n in dungeon_batch["names"])
+    includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"'
+                        for n in extra_batch["names"])
     inc.write_text(code.replace(anchor, anchor + includes, 1), encoding="utf-8")
     ferry = emerald / "data/maps/SlateportCity_Harbor/scripts.inc"
     s = ferry.read_text(encoding="utf-8")
@@ -1099,6 +1129,7 @@ def main() -> int:
     print("CAUTION: 17 original Kanto Center/Mart interiors have service scripts; actual gameplay QA pending.")
     print("Other interiors, gym/trainer scripts and local healing respawn remain pending.")
     print("Original Viridian Forest, Mt. Moon and Diglett Cave layouts, wild encounters and doors added.")
+    print("Added original Underground Path, Rock Tunnel and Pokemon Tower layouts with exits.")
     print("Dungeon NPCs/items/scripts, special collision behaviors and full gameplay QA still pending.")
     print("Verify collision, palettes, map edges, ferry and save by real gameplay.")
     return 0
