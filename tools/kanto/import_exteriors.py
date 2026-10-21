@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Materialize original FRLG Kanto exterior geography into Emerald Hybrid.
 
-The source tree is read-only; never run on personal saves. The game output is
-a stage-1 outdoor geometry preview: exterior locations and collision exist,
-but story/NPCs, doors, wild encounters, heals and original music are pending.
-Windows build must invoke this before Makefile_pc.
+The pinned FireRed source tree is read-only and must never touch personal saves.
+The importer builds a V0.11 experimental Kanto preview with exterior regions,
+selected interiors, connected caves and towers, encounters, items, five trainers,
+and separate regional whiteout; a complete story, gyms, original music, PokeNav
+and real gameplay QA remain pending. Run it before Makefile_pc.
 """
 from __future__ import annotations
 
@@ -1017,6 +1018,92 @@ def import_kanto_visible_items(source: Path, emerald: Path,
     return {"total": count, "items": inventory}
 
 
+def import_kanto_hidden_items(source: Path, emerald: Path,
+                              original_map_names: list[str],
+                              visible_item_flags: list[dict],
+                              minimum: int = 5) -> dict:
+    """Port original FireRed hidden items without reusing visible-item save bits.
+
+    Hidden flags are append-only after the existing V0.8 visible-item flag
+    allocation. Caller must not reorder earlier source map lists.
+    """
+    header_path = emerald / "include/constants/flags.h"
+    header = header_path.read_text(encoding="utf-8")
+    if "FLAG_KANTO_HIDDEN_000" in header:
+        raise RuntimeError("Kanto hidden items already registered")
+    reserved = sorted({
+        int(v, 16) for v in re.findall(
+            r"(?m)^#define FLAG_UNUSED_0x([0-9A-Fa-f]{3})\s+", header
+        ) if 0x264 <= int(v, 16) < 0x500
+    })
+    used_visible = {x["flag_value"] for x in visible_item_flags}
+    if len(used_visible) != len(visible_item_flags):
+        raise RuntimeError("Duplicate previous visible item save flags")
+    if not used_visible.issubset(set(reserved)):
+        raise RuntimeError("Visible items use flags outside permanent spare pool")
+    spare = [flag for flag in reserved if flag not in used_visible]
+    defined_items = set(re.findall(
+        r"(?m)^\s*#define\s+(ITEM_[A-Z0-9_]+)\s+",
+        (emerald / "include/constants/items.h").read_text(encoding="utf-8")
+    ))
+    rows = []
+    for name in original_map_names:
+        frmap = load_json(source, f"data/maps/{name}/map.json")
+        found = [event for event in frmap.get("bg_events", [])
+                 if event.get("type") == "hidden_item"]
+        if not found:
+            continue
+        target_name = "Kanto_" + name
+        target_path = f"data/maps/{target_name}/map.json"
+        target = load_json(emerald, target_path)
+        for ev in found:
+            if len(rows) >= len(spare):
+                raise RuntimeError("Kanto hidden item flag capacity exhausted")
+            if ev["item"] not in defined_items:
+                raise RuntimeError(
+                    f"{name}: hidden item unavailable in Emerald: {ev['item']}")
+            if ev.get("quantity", 1) < 1:
+                raise RuntimeError(f"{name}: invalid hidden item quantity")
+            if any(bg["x"] == ev["x"] and bg["y"] == ev["y"]
+                   and bg.get("type") == "hidden_item"
+                   for bg in target["bg_events"]):
+                raise RuntimeError(f"{name}: duplicate hidden item position")
+            flag = f"FLAG_KANTO_HIDDEN_{len(rows):03d}"
+            target["bg_events"].append({
+                "type": "hidden_item",
+                "x": ev["x"], "y": ev["y"],
+                "elevation": ev["elevation"],
+                "item": ev["item"],
+                "flag": flag,
+                "quantity": ev.get("quantity", 1),
+                "underfoot": ev.get("underfoot", False),
+            })
+            rows.append({
+                "map": target_name,
+                "position": [ev["x"], ev["y"]],
+                "item": ev["item"],
+                "quantity": ev.get("quantity", 1),
+                "underfoot": ev.get("underfoot", False),
+                "flag": flag,
+                "flag_value": spare[len(rows)],
+            })
+        emit_json(emerald / target_path, target)
+    if len(rows) < minimum:
+        raise RuntimeError("Far too few FireRed hidden items found")
+    footer = "#endif // GUARD_CONSTANTS_FLAGS_H"
+    if footer not in header:
+        raise RuntimeError("Invalid permanent flag constants header")
+    definitions = "".join(
+        f"#define {x['flag']:<36} FLAG_UNUSED_0x{x['flag_value']:03X}\n"
+        for x in rows
+    )
+    header_path.write_text(
+        header.replace(footer, "// Kanto original hidden items; flags independent of visible pickups.\n"
+                       + definitions + "\n" + footer), encoding="utf-8"
+    )
+    return {"total":len(rows), "items":rows}
+
+
 def import_viridian_forest_trainers(source: Path, emerald: Path) -> dict:
     """Port the five original FRLG Viridian Forest Bug Catchers.
 
@@ -1352,6 +1439,10 @@ Kanto_VermilionCity_Text_BattleQuestion:
     item_report = import_kanto_visible_items(source, emerald, item_maps)
     report["original_item_balls"] = item_report["total"]
     report["visible_item_flags"] = item_report["items"]
+    hidden_report = import_kanto_hidden_items(
+        source, emerald, item_maps, item_report["items"])
+    report["original_hidden_items"] = hidden_report["total"]
+    report["hidden_item_flags"] = hidden_report["items"]
     trainer_report = import_viridian_forest_trainers(source, emerald)
     report["viridian_forest_trainers"] = trainer_report["trainers"]
     report["original_npcs_ported"] = trainer_report["count"]
@@ -1394,10 +1485,12 @@ def main() -> int:
     print(f"Materialized {result['geometry_maps_created']} original exterior maps "
           f"and {result['graphics_tilesets_created']} graphics sets.")
     print("CAUTION: 17 original Kanto Center/Mart interiors have service scripts; actual gameplay QA pending.")
-    print("Other interiors, gym/trainer scripts and local healing respawn remain pending.")
+    print("More original interiors, gyms, most trainer scripts, and story events remain pending.")
+    print("Kanto regional whiteout now has an isolated saved Center index; gameplay QA pending.")
     print("Original Viridian Forest, Mt. Moon and Diglett Cave layouts, wild encounters and doors added.")
     print("Added original Underground Path, Rock Tunnel and Pokemon Tower layouts with exits.")
     print(f"Ported {result['original_item_balls']} original visible item balls with save-backed flags.")
+    print(f"Ported {result['original_hidden_items']} original hidden FireRed items with distinct save flags.")
     print(f"Ported {result['trainer_battles_ported']} original Viridian Forest trainers.")
     print("Dungeon NPCs/items/scripts, special collision behaviors and full gameplay QA still pending.")
     print("Verify collision, palettes, map edges, ferry and save by real gameplay.")

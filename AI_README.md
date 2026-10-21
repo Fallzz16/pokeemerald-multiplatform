@@ -996,3 +996,24 @@ CI `kanto-v09-viridian-trainers.yml` + doc `docs/KANTO_V09_FOREST_TRAINERS_PTBR.
 Branch `feature/kanto-v10-regional-respawn` a partir da V0.9 aprovada (`140b8844ee9c486f727c10bfcf304fea25671b37`). Implementado fallback de whiteout em Kanto no Centro de Vermilion e armazenamento da última localização de cura de Kanto via alias `VAR_KANTO_LAST_HEAL_LOCATION` da variável persistente livre `0x40F7` (valores 1–9 para os nove Centros). Modifica `src/overworld.c` apenas no ramo Kanto de `DoWhiteOut`, preservando dinheiro, cura e reset do original e o `lastHealLocation` de Hoenn. Centros registram o índice ao transicionar para o mapa. Warp de volta do navio a Hoenn permanece intacto. Novos testes em `kanto-v10-regional-respawn.yml` inspecionam 9 scripts, todos os índices, o destino C, tile passável e compilação. Documento `docs/KANTO_V10_REGIONAL_RESPAWN_PTBR.md`.
 
 Atenção: save e whiteout ainda NÃO foram testados dentro do jogo; o CI não substitui QA humano. O comportamento de Fly/PokéNav, ginásios, treinadores, eventos Rocket, inventários/itens especiais restantes, colisões, Android/LAN e aventura completa permanece pendente. Mantenha PR em draft e rollback M2.2-B `5e53e40`.
+
+## 63. Kanto V0.11 — hidden items de FireRed (2026-10-21)
+
+Base V0.10 `feature/kanto-v10-regional-respawn`, branch `feature/kanto-v11-original-hidden-items`. Adicionados `bg_events.hidden_item` dos 38 exteriores + 9 dungeons V0.6 + 15 áreas V0.7, preservando x/y/elevation, item, quantity e underfoot originais de FireRed. Flags de save `FLAG_KANTO_HIDDEN_###` são alocadas somente entre `FLAG_UNUSED_0x...` restantes depois das 42 flags de itens visíveis V0.8: sem conflito e sem expandir SaveBlock. Os 84 IDs de mapa e índices dos nove Centros da V0.10 permanecem iguais. Testes `tests/test_kanto_hidden_items.py`, validação CI `kanto-v11-hidden-items.yml`, documentação `docs/KANTO_V11_HIDDEN_ITEMS_PTBR.md`. Verificar coleta/Itemfinder com jogo rodando; QA humano, multiplayer/Android, NPCs e história ainda não aprovados.
+
+## 64. Kanto V0.11 — roteiro de QA e distinção Windows/GBA (2026-10-21)
+
+O pacote V0.11 passa a anexar `KANTO_V11_PLAYTEST_CHECKLIST_PTBR.md`, guia passo-a-passo para ferry, nove Centros/whiteout, compras, 5 treinadores Viridian Forest, 42 itens visíveis, 77 ocultos, 84 mapas e save/reload, além de regressão de Hoenn. O importador teve textos desatualizados corrigidos para refletir o estado real (V0.11, não preview apenas exterior).
+
+O **CI GBA genérico** continua falhando em `agbcc` com mensagens `_Static_assert`, `sound_mixer.h` e `battle_main.o`; pipeline específico Windows de Kanto compila e publica o preview separadamente. Não assumir equivalência nem que o CI GBA tenha sido corrigido. O motivo exato/herança da falha precisa de auditoria, e QA humano continua obrigatório antes do merge.
+
+## 65. Regra permanente de trabalho por sessão, autorizada pelo usuário (2026-10-21)
+
+**Instrução explícita do usuário:** em toda sessão de Pokémon Emerald Hybrid/Kanto, avançar **o máximo tecnicamente possível naquele turno**, sem prazo artificial ou pausa para perguntar escolhas já delegadas (250/250 respondidas, D = decisão técnica do assistente). Priorizar implementação limpa, organizada e testável, não apenas quantidade de mapas ou LOC. Não fingir trabalho em segundo plano. Sempre encerrar cada resposta substantiva com:
+1. o que foi realmente implementado no GitHub (branch/PR/commit);
+2. quais workflows e testes passaram/falharam e o que segue não validado em gameplay;
+3. **o que AINDA FALTA FAZER**, com tarefas priorizadas que permitam continuar direto na próxima sessão;
+4. download do artefato Windows *somente* quando o workflow exato publicar artefato e sem apresentá-lo como estável;
+5. rollback e precauções de save, rede e Android.
+
+Manter PRs incrementais draft, ordem append-only dos IDs de mapa, trainer IDs e flags. Não mesclar na branch principal sem teste funcional. Avisar claramente limitações de tempo de execução da conversa sem interromper por perguntas desnecessárias. Status executável e backlog atual em `docs/KANTO_BACKLOG_E_QA_PTBR.md`, actualizar quando cada marco avançar. Não afirmar '50% jogável' por 83/84 entradas no grafo; isso mede **somente conectividade**.
