@@ -1019,7 +1019,8 @@ def import_kanto_visible_items(source: Path, emerald: Path,
 
 def import_kanto_hidden_items(source: Path, emerald: Path,
                               original_map_names: list[str],
-                              visible_item_flags: list[dict]) -> dict:
+                              visible_item_flags: list[dict],
+                              minimum: int = 5) -> dict:
     """Port original FireRed hidden items without reusing visible-item save bits.
 
     Hidden flags are append-only after the existing V0.8 visible-item flag
@@ -1086,7 +1087,7 @@ def import_kanto_hidden_items(source: Path, emerald: Path,
                 "flag_value": spare[len(rows)],
             })
         emit_json(emerald / target_path, target)
-    if len(rows) < 5:
+    if len(rows) < minimum:
         raise RuntimeError("Far too few FireRed hidden items found")
     footer = "#endif // GUARD_CONSTANTS_FLAGS_H"
     if footer not in header:

@@ -38,7 +38,7 @@ class HiddenItems(unittest.TestCase):
         ctx,f,e,map_path,flags=self.fixtures()
         with ctx:
             report=import_kanto_hidden_items(
-                f,e,["Route1"],[{"flag_value":0x264}])
+                f,e,["Route1"],[{"flag_value":0x264}],minimum=1)
             self.assertEqual(report["total"],1)
             self.assertEqual(report["items"][0]["flag_value"],0x265)
             obj=json.loads(map_path.read_text())["bg_events"][0]
@@ -50,7 +50,7 @@ class HiddenItems(unittest.TestCase):
     def test_unknown_item_rejected(self):
         ctx,f,e,map_path,flags=self.fixtures(item="ITEM_NOT_AVAILABLE")
         with ctx, self.assertRaisesRegex(RuntimeError,"unavailable"):
-            import_kanto_hidden_items(f,e,["Route1"],[{"flag_value":0x264}])
+            import_kanto_hidden_items(f,e,["Route1"],[{"flag_value":0x264}],minimum=1)
 
 
 if __name__=="__main__":
