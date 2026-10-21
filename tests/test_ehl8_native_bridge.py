@@ -122,7 +122,20 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
         Uses production Python EHL8 relay, without any mock gameplay/save.
         The C peers assert BOTH sides receive each transition in sequence.
         """
-        server = server_module.SessionServer("123456", 2, idle_seconds=300)
+        class PoseTrackingServer(server_module.SessionServer):
+            def __init__(self):
+                super().__init__("123456", 2, idle_seconds=300)
+                self.pose_phases = {}
+
+            async def process(self, peer, msg):
+                if msg.kind == server_module.POSE and peer.stage == "GAME":
+                    # Track the actual delivered wire values, not just
+                    # the native client's final "success" text.
+                    self.pose_phases.setdefault(peer.profile, set()).add(
+                        (msg.payload[5], msg.payload[9]))
+                await super().process(peer, msg)
+
+        server = PoseTrackingServer()
         listener = await server.start("127.0.0.1", 0)
         port = str(listener.sockets[0].getsockname()[1])
         peers = []
@@ -140,6 +153,11 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
             for peer, (stdout, stderr) in zip(peers, outputs):
                 self.assertEqual(peer.returncode, 0, stderr)
                 self.assertIn(b"native map transitions, inactive hide", stdout)
+            for profile in (b"map_A", b"map_B"):
+                phases = server.pose_phases.get(profile, set())
+                for phase in ((1, 0), (1, 1), (0, 1), (1, 2)):
+                    self.assertIn(phase, phases,
+                                  f"{profile!r} did not send real pose {phase}")
         finally:
             for peer in peers:
                 if peer.returncode is None:
