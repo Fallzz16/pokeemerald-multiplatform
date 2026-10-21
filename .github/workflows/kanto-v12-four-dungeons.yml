@@ -387,6 +387,14 @@ jobs:
           target_lays={x["id"]:x for x in json.loads(
             Path("data/layouts/layouts.json").read_text()
           )["layouts"] if x.get("id")}
+          original_by_id={
+            data["id"]:data
+            for data in (
+              json.loads((Path("firered-source/data/maps")/n/"map.json").read_text())
+              for n in new_v12+("Route20","Route23","CinnabarIsland","CeruleanCity")
+            )
+          }
+          one_way_count=0
           for name in new_v12:
             original=json.loads((Path("firered-source/data/maps")/name/"map.json").read_text())
             imported=json.loads((Path("data/maps")/("Kanto_"+name)/"map.json").read_text())
@@ -397,11 +405,27 @@ jobs:
             assert len(imported["warp_events"])==len(original["warp_events"]),(name,"warps")
             for key in ("blockdata_filepath","border_filepath"):
               assert (Path("firered-source")/source[key]).read_bytes()==Path(target[key]).read_bytes(),(name,key)
-            for warp in imported["warp_events"]:
+            for original_warp, warp in zip(original["warp_events"],imported["warp_events"]):
               assert warp["dest_map"].startswith("MAP_KANTO_"),(name,warp)
               linked=converted_map_by_id[warp["dest_map"]]
-              assert int(warp["dest_warp_id"]) < len(linked["warp_events"]),(name,warp)
-              assert linked["warp_events"][int(warp["dest_warp_id"])]["dest_map"]==imported["id"],(name,warp)
+              target_index=int(warp["dest_warp_id"])
+              assert target_index < len(linked["warp_events"]),(name,warp)
+              # Some legitimate FRLG ledges/fall-throughs are one-way; compare
+              # against the original source behavior, never invent returns.
+              source_destination=original_by_id[original_warp["dest_map"]]
+              original_index=int(original_warp["dest_warp_id"])
+              assert original_index < len(source_destination["warp_events"]),(name,original_warp)
+              original_back=source_destination["warp_events"][original_index]
+              source_is_reciprocal=(original_back["dest_map"]==original["id"])
+              converted_is_reciprocal=(
+                linked["warp_events"][target_index]["dest_map"]==imported["id"]
+              )
+              assert source_is_reciprocal==converted_is_reciprocal,(
+                name,"altered one-way or reciprocal source warp",warp
+              )
+              if not source_is_reciprocal:
+                one_way_count+=1
+          assert one_way_count>=1,"Expected preserved source one-way falls in Seafoam"
           original_source_ids={
             json.loads((Path("firered-source/data/maps")/name/"map.json").read_text())["id"]
             for name in new_v12
