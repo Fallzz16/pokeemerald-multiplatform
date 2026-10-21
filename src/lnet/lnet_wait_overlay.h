@@ -23,13 +23,19 @@ static void lnet_wait_overlay_glyph(SDL_Renderer *renderer, char c, int x, int y
         {5,5,7,7,5}, /* W */ {5,5,2,5,5}, /* X */
         {5,5,2,2,2}, /* Y */ {7,1,2,4,7}  /* Z */
     };
+    static const unsigned char digitSeven[5] = {7, 1, 2, 2, 2};
+    const unsigned char *glyph;
     int row, col;
     SDL_Rect pixel = {x, y, 2, 2};
-    if (c < 'A' || c > 'Z')
+    if (c >= 'A' && c <= 'Z')
+        glyph = alpha[(int)(c - 'A')];
+    else if (c == '7')
+        glyph = digitSeven;
+    else
         return;
     for (row = 0; row < 5; row++)
         for (col = 0; col < 3; col++)
-            if (alpha[(int)(c - 'A')][row] & (1 << (2 - col)))
+            if (glyph[row] & (1 << (2 - col)))
             {
                 pixel.x = x + 2 * col;
                 pixel.y = y + 2 * row;
@@ -46,6 +52,28 @@ static void lnet_wait_overlay_text(SDL_Renderer *renderer,
     for (col = 0; col < count; col++)
         lnet_wait_overlay_glyph(renderer, value[col],
                                (240 - count * 8) / 2 + col * 8, y);
+}
+
+/* Simple opt-in READY/CANCEL interface while the EHL8 room is waiting.
+ * F7 is intentionally different from existing F6 turbo. PLAYING does not
+ * display this card; the status banner cannot mutate game or save state. */
+static void lnet_wait_overlay_ready_status(SDL_Renderer *renderer, int ready)
+{
+    SDL_Rect box = {17, 115, 206, 34};
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+    SDL_SetRenderDrawColor(renderer, 5, 22, 16, 225);
+    SDL_RenderFillRect(renderer, &box);
+    if (ready)
+        SDL_SetRenderDrawColor(renderer, 74, 216, 156, 255);
+    else
+        SDL_SetRenderDrawColor(renderer, 255, 196, 96, 255);
+    SDL_RenderDrawRect(renderer, &box);
+    lnet_wait_overlay_text(renderer,
+        ready ? "PRONTO PARA JOGAR" : "PRONTO CANCELADO", 120);
+    SDL_SetRenderDrawColor(renderer, 233, 255, 245, 255);
+    lnet_wait_overlay_text(renderer, "F7 ALTERAR", 136);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 }
 
 /* Presence is projected by the Emerald game thread and read here as a
