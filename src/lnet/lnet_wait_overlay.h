@@ -138,4 +138,22 @@ static void lnet_wait_overlay_room(SDL_Renderer *renderer, int snapshot)
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 }
 
+
+/* F9 is a desktop keyboard control independent from the GBA key matrix.
+ * Only shown to actual launcher clients with opt-in manual readiness. */
+static void lnet_wait_overlay_ready_hint(SDL_Renderer *renderer, int ready)
+{
+    SDL_Rect banner = {32, 143, 176, 15};
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+    SDL_SetRenderDrawColor(renderer, 5, 22, 16, 232);
+    SDL_RenderFillRect(renderer, &banner);
+    SDL_SetRenderDrawColor(renderer, 73, 213, 160, 255);
+    SDL_RenderDrawRect(renderer, &banner);
+    SDL_SetRenderDrawColor(renderer, 233, 255, 245, 255);
+    lnet_wait_overlay_text(renderer,
+        ready ? "F9 CANCELAR" : "F9 FICAR PRONTO", 146);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+}
+
 #endif
