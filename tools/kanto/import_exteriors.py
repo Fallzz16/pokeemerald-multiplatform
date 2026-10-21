@@ -884,7 +884,8 @@ def add_kanto_v06_dungeons(source: Path, emerald: Path, source_maps: dict,
 
 
 def import_kanto_visible_items(source: Path, emerald: Path,
-                               original_map_names: list[str]) -> dict:
+                               original_map_names: list[str],
+                               minimum: int = 15) -> dict:
     """Enable FireRed item balls with permanent, isolated save flags.
 
     Deterministic allocation uses original V0.2–V0.7 map order and original
@@ -973,7 +974,7 @@ def import_kanto_visible_items(source: Path, emerald: Path,
         emit_json(emerald / target_path, m)
         scripts_path.write_text(scripts, encoding="utf-8")
 
-    if count < 15:
+    if count < minimum:
         raise RuntimeError(f"Suspiciously few FireRed item balls found: {count}")
     final_defines = "".join(
         f"#define {row['flag']:<36} FLAG_UNUSED_0x{row['flag_value']:03X}\n"
