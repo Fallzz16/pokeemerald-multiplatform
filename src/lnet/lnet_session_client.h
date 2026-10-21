@@ -17,6 +17,9 @@ enum {
 LNetSessionClient *lnet_session_client_new(const char *ipv4, unsigned short port,
                                            const char *pin, const char *profile);
 void lnet_session_client_close(LNetSessionClient *c);
+/* Game-thread-only request: EHL8 READY/UNREADY before START.
+ * Existing clients default to READY=1 for full backward compatibility. */
+void lnet_session_client_set_ready(LNetSessionClient *c, int ready);
 void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local);
 int lnet_session_client_get_remote(const LNetSessionClient *c, LNetPose *out);
 int lnet_session_client_state(const LNetSessionClient *c);
