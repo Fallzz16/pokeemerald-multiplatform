@@ -19,6 +19,9 @@ LNetSessionClient *lnet_session_client_new(const char *ipv4, unsigned short port
 void lnet_session_client_close(LNetSessionClient *c);
 void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local);
 int lnet_session_client_get_remote(const LNetSessionClient *c, LNetPose *out);
+/* F5 player action: request READY=1/0 on the existing EHL8 protocol.
+ * Called exclusively on the game thread. Returns 0 outside WAIT_START. */
+int lnet_session_client_toggle_ready(LNetSessionClient *c);
 /* Returns 1 for a validated latest PLAYER_LIST, 0 if not available. */
 int lnet_session_client_lobby_counts(const LNetSessionClient *c,
                                      int *players, int *ready);
