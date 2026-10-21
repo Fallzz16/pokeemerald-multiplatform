@@ -23,13 +23,28 @@ static void lnet_wait_overlay_glyph(SDL_Renderer *renderer, char c, int x, int y
         {5,5,7,7,5}, /* W */ {5,5,2,5,5}, /* X */
         {5,5,2,2,2}, /* Y */ {7,1,2,4,7}  /* Z */
     };
+    static const unsigned char digits[11][5] = {
+        {7,5,5,5,7}, /* 0 */ {2,6,2,2,7}, /* 1 */
+        {7,1,7,4,7}, /* 2 */ {7,1,7,1,7}, /* 3 */
+        {5,5,7,1,1}, /* 4 */ {7,4,7,1,7}, /* 5 */
+        {7,4,7,5,7}, /* 6 */ {7,1,2,2,2}, /* 7 */
+        {7,5,7,5,7}, /* 8 */ {7,5,7,1,7}, /* 9 */
+        {1,1,2,4,4}, /* slash */
+    };
+    const unsigned char *glyph;
     int row, col;
     SDL_Rect pixel = {x, y, 2, 2};
-    if (c < 'A' || c > 'Z')
+    if (c >= 'A' && c <= 'Z')
+        glyph = alpha[(int)(c - 'A')];
+    else if (c >= '0' && c <= '9')
+        glyph = digits[(int)(c - '0')];
+    else if (c == '/')
+        glyph = digits[10];
+    else
         return;
     for (row = 0; row < 5; row++)
         for (col = 0; col < 3; col++)
-            if (alpha[(int)(c - 'A')][row] & (1 << (2 - col)))
+            if (glyph[row] & (1 << (2 - col)))
             {
                 pixel.x = x + 2 * col;
                 pixel.y = y + 2 * row;
@@ -48,7 +63,8 @@ static void lnet_wait_overlay_text(SDL_Renderer *renderer,
                                (240 - count * 8) / 2 + col * 8, y);
 }
 
-static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state)
+static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state,
+                                     int roomCounts)
 {
     SDL_Rect area = {17, 49, 206, 63};
     SDL_Rect border = {17, 49, 206, 63};
@@ -93,8 +109,25 @@ static void lnet_wait_overlay_render(SDL_Renderer *renderer, int state)
     }
     else
     {
-        lnet_wait_overlay_text(renderer, "AGUARDANDO AMIGO", 79);
-        lnet_wait_overlay_text(renderer, "HOST INICIA SALA", 95);
+        if (roomCounts >= 0)
+        {
+            int players = roomCounts & 3;
+            int ready = (roomCounts >> 4) & 3;
+            char members[] = "JOGADORES 0/2";
+            char readyLabel[] = "PRONTOS 0/2";
+            if (players <= 2 && ready <= players)
+            {
+                members[10] = (char)('0' + players);
+                readyLabel[8] = (char)('0' + ready);
+                lnet_wait_overlay_text(renderer, members, 79);
+                lnet_wait_overlay_text(renderer, readyLabel, 95);
+            }
+        }
+        else
+        {
+            lnet_wait_overlay_text(renderer, "AGUARDANDO AMIGO", 79);
+            lnet_wait_overlay_text(renderer, "HOST INICIA SALA", 95);
+        }
     }
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
