@@ -16,6 +16,8 @@ int main(int argc, char **argv)
                   strcmp(argv[7], "lingerlong") == 0));
     int reconnect = (argc == 8 && strcmp(argv[7], "reconnect") == 0);
     int awaitStart = (argc == 8 && strcmp(argv[7], "awaitstart") == 0);
+    int mapcycle = (argc == 8 && strcmp(argv[7], "mapcycle") == 0);
+    int firstPlayingFrame = -1, sawMap0 = 0, sawMap1 = 0, sawHidden = 0;
     int reconnectObserved = 0;
     int sawWaitStart = 0;
     struct timespec startTime, currentTime;
@@ -26,9 +28,9 @@ int main(int argc, char **argv)
         ? 650 : 180;
     int witnessed = 0;
     struct timespec pauseTime = { 0, 10000000L };
-    if (argc != 7 && !linger && !reconnect && !awaitStart)
+    if (argc != 7 && !linger && !reconnect && !awaitStart && !mapcycle)
     {
-        fprintf(stderr, "usage: native_ehl8_client IPv4 port pin profile x expected_remote_x [linger|reconnect|awaitstart]\n");
+        fprintf(stderr, "usage: native_ehl8_client IPv4 port pin profile x expected_remote_x [linger|reconnect|awaitstart|mapcycle]\n");
         return 2;
     }
     port = (unsigned short)strtoul(argv[2], NULL, 10);
@@ -45,11 +47,20 @@ int main(int argc, char **argv)
     local.gender = 0;
     local.elevation = 0;
     clock_gettime(CLOCK_MONOTONIC, &startTime);
-    for (i = 0; i < (linger ? lingerCount : 800); ++i)
+    for (i = 0; i < (mapcycle ? 540 : (linger ? lingerCount : 800)); ++i)
     {
-        int state;
+        int state, remoteVisible;
+        if (mapcycle && firstPlayingFrame >= 0)
+        {
+            int elapsedFrames = i - firstPlayingFrame;
+            local.active = elapsedFrames < 185 || elapsedFrames >= 255;
+            local.mapNum = elapsedFrames < 85 ? 0 :
+                           elapsedFrames < 255 ? 1 : 2;
+        }
         lnet_session_client_poll(client, &local);
         state = lnet_session_client_state(client);
+        if (mapcycle && state == EHL_CLIENT_PLAYING && firstPlayingFrame < 0)
+            firstPlayingFrame = i;
         if (state == EHL_CLIENT_WAIT_START)
             sawWaitStart = 1;
         if (awaitStart && state == EHL_CLIENT_PLAYING)
@@ -72,8 +83,29 @@ int main(int argc, char **argv)
             lnet_session_client_close(client);
             return 4;
         }
-        if (lnet_session_client_get_remote(client, &remote) &&
-            remote.x == (unsigned short)atoi(argv[6]) && remote.active)
+        remoteVisible = lnet_session_client_get_remote(client, &remote);
+        if (mapcycle && firstPlayingFrame >= 0)
+        {
+            int elapsedFrames = i - firstPlayingFrame;
+            if (remoteVisible && remote.x == (unsigned short)atoi(argv[6]))
+            {
+                if (remote.mapGroup == 0 && remote.mapNum == 0 && remote.active)
+                    sawMap0 = 1;
+                if (remote.mapGroup == 0 && remote.mapNum == 1 && remote.active)
+                    sawMap1 = 1;
+                if (remote.mapGroup == 0 && remote.mapNum == 2 && remote.active
+                    && sawMap0 && sawMap1 && sawHidden)
+                {
+                    puts("EHL8 native map transitions, inactive hide and reappearance verified");
+                    lnet_session_client_close(client);
+                    return 0;
+                }
+            }
+            if (elapsedFrames > 220 && sawMap1 && !remoteVisible)
+                sawHidden = 1;
+        }
+        if (remoteVisible && remote.x == (unsigned short)atoi(argv[6]) &&
+            remote.active)
         {
             witnessed = 1;
             if (awaitStart)
