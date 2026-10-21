@@ -6,6 +6,7 @@ on:
       - 'feature/emerald-m30-*'
       - 'feature/emerald-m31-*'
       - 'feature/emerald-m32-*'
+      - 'feature/emerald-m33-*'
   workflow_dispatch:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
