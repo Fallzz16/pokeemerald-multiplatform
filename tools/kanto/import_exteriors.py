@@ -1896,8 +1896,8 @@ Kanto_Indigo_EventScript_Nurse::
     report["v16_gym_leaders"] = gym_leaders["leaders"]
     report["v16_gym_leader_battles"] = gym_leaders["count"]
     report["viridian_forest_trainers"] = trainer_report["trainers"]
-    report["original_npcs_ported"] = trainer_report["count"]
-    report["trainer_battles_ported"] = trainer_report["count"]
+    report["original_npcs_ported"] = trainer_report["count"] + gym_leaders["count"]
+    report["trainer_battles_ported"] = trainer_report["count"] + gym_leaders["count"]
     target_groups["connections_include_order"].extend("Kanto_" + n for n in names)
     emit_json(emerald / "data/maps/map_groups.json", target_groups)
     emit_json(emerald / "data/layouts/layouts.json", target_layouts)
