@@ -49,6 +49,7 @@ struct LNetSessionClient
     uint16_t localSeq, lastRemoteSeq;
     uint8_t haveRemoteSeq, haveRemote;
     uint8_t requestedReady, sentReady;
+    uint8_t localSlot, roomPlayers, roomReady, confirmedReady, haveRoomList;
     uint8_t haveResumeToken, resumeInFlight;
     unsigned char resumeToken[EHL_RESUME_TOKEN_SIZE];
     unsigned long reconnectSince, retryAt;
@@ -87,6 +88,8 @@ static void close_failed(LNetSessionClient *c)
     c->pending = NULL;
     c->haveRemote = 0;
     c->haveRemoteSeq = 0;
+    c->localSlot = c->haveRoomList = 0;
+    c->roomPlayers = c->roomReady = c->confirmedReady = 0;
     c->txLength = c->txOffset = 0;
     ehl_session_decoder_init(&c->decoder);
     if (mayRetry)
@@ -197,6 +200,44 @@ void lnet_session_client_set_ready(LNetSessionClient *c, int ready)
     c->requestedReady = ready ? 1 : 0;
 }
 
+/* PLAYER_LIST snapshot: count, then (slot, ready, name_len, name bytes).
+ * Validate the COMPLETE frame before committing new HUD state. The game
+ * displays counts and a local READY bit only, never identity or PIN. */
+static int decode_room_list(LNetSessionClient *c, const EhlSessionFrame *frame)
+{
+    const unsigned char *p = frame->payload;
+    size_t end = frame->payload_size, pos = 1;
+    unsigned int count, ready = 0, ownReady = 0, seen = 0, i;
+    if (end < 1 || p[0] > 2)
+        return -1;
+    count = p[0];
+    for (i = 0; i < count; ++i)
+    {
+        unsigned int slot, flag, nameLen;
+        if (pos + 3 > end)
+            return -1;
+        slot = p[pos++];
+        flag = p[pos++];
+        nameLen = p[pos++];
+        if (slot < 1 || slot > 2 || flag > 1 ||
+            nameLen < 1 || nameLen > 48 || (seen & (1u << slot)) ||
+            pos + nameLen > end)
+            return -1;
+        seen |= 1u << slot;
+        if (slot == c->localSlot)
+            ownReady = flag;
+        pos += nameLen;
+        ready += flag;
+    }
+    if (pos != end)
+        return -1;
+    c->roomPlayers = (uint8_t)count;
+    c->roomReady = (uint8_t)ready;
+    c->confirmedReady = (uint8_t)ownReady;
+    c->haveRoomList = 1;
+    return 0;
+}
+
 static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
 {
 #ifdef EHL_DEBUG_HANDSHAKE
@@ -262,6 +303,7 @@ static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
         if (frame->type != EHL_JOIN || frame->payload_size != 1 ||
             frame->payload[0] < 1 || frame->payload[0] > 2)
             return -1;
+        c->localSlot = frame->payload[0];
         {
             unsigned char ready = c->requestedReady;
             if (!queue(c, EHL_READY, &ready, 1))
@@ -280,7 +322,9 @@ static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
         c->haveResumeToken = 1;
         return 0;
     }
-    if (frame->type == EHL_PLAYER_LIST || frame->type == EHL_HEARTBEAT)
+    if (frame->type == EHL_PLAYER_LIST)
+        return decode_room_list(c, frame);
+    if (frame->type == EHL_HEARTBEAT)
         return 0;
     if (frame->type == EHL_START && c->state == EHL_CLIENT_WAIT_START &&
         frame->payload_size == 0)
@@ -505,6 +549,17 @@ int lnet_session_client_get_remote(const LNetSessionClient *c, LNetPose *out)
         return 0;
     if (out)
         *out = c->remote;
+    return 1;
+}
+
+int lnet_session_client_room_status(const LNetSessionClient *c,
+                                    int *players, int *ready, int *mine)
+{
+    if (!c || !c->haveRoomList || !players || !ready || !mine)
+        return 0;
+    *players = c->roomPlayers;
+    *ready = c->roomReady;
+    *mine = c->confirmedReady;
     return 1;
 }
 
