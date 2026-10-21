@@ -4,6 +4,7 @@
  */
 #include "lnet_session_client.h"
 #include "lnet_session_v1.h"
+#include "lnet_room_roster.h"
 #include "lnet_net.h"
 #include <stdlib.h>
 #include <string.h>
@@ -48,6 +49,8 @@ struct LNetSessionClient
     unsigned long began, lastRx, lastTx, lastPose, lastRemote, lastHeartbeat;
     uint16_t localSeq, lastRemoteSeq;
     uint8_t haveRemoteSeq, haveRemote;
+    uint8_t haveRoster;
+    LNetRoomRoster roster;
     uint8_t haveResumeToken, resumeInFlight;
     unsigned char resumeToken[EHL_RESUME_TOKEN_SIZE];
     unsigned long reconnectSince, retryAt;
@@ -86,6 +89,8 @@ static void close_failed(LNetSessionClient *c)
     c->pending = NULL;
     c->haveRemote = 0;
     c->haveRemoteSeq = 0;
+    c->haveRoster = 0;
+    memset(&c->roster, 0, sizeof(c->roster));
     c->txLength = c->txOffset = 0;
     ehl_session_decoder_init(&c->decoder);
     if (mayRetry)
@@ -264,7 +269,20 @@ static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
         c->haveResumeToken = 1;
         return 0;
     }
-    if (frame->type == EHL_PLAYER_LIST || frame->type == EHL_HEARTBEAT)
+    if (frame->type == EHL_PLAYER_LIST)
+    {
+        LNetRoomRoster roster;
+        if (c->state != EHL_CLIENT_WAIT_START &&
+            c->state != EHL_CLIENT_PLAYING)
+            return -1;
+        if (lnet_room_roster_parse(frame->payload, frame->payload_size,
+                                   &roster) != 0)
+            return -1;
+        c->roster = roster;
+        c->haveRoster = 1;
+        return 0;
+    }
+    if (frame->type == EHL_HEARTBEAT)
         return 0;
     if (frame->type == EHL_START && c->state == EHL_CLIENT_WAIT_START &&
         frame->payload_size == 0)
@@ -473,6 +491,17 @@ int lnet_session_client_get_remote(const LNetSessionClient *c, LNetPose *out)
         return 0;
     if (out)
         *out = c->remote;
+    return 1;
+}
+
+int lnet_session_client_get_roster(const LNetSessionClient *c,
+                                   LNetRoomRoster *out)
+{
+    if (!c || !out || !c->haveRoster ||
+        (c->state != EHL_CLIENT_WAIT_START &&
+         c->state != EHL_CLIENT_PLAYING))
+        return 0;
+    *out = c->roster;
     return 1;
 }
 
