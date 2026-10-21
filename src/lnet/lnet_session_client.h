@@ -19,5 +19,8 @@ LNetSessionClient *lnet_session_client_new(const char *ipv4, unsigned short port
 void lnet_session_client_close(LNetSessionClient *c);
 void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local);
 int lnet_session_client_get_remote(const LNetSessionClient *c, LNetPose *out);
+/* Returns 1 for a validated latest PLAYER_LIST, 0 if not available. */
+int lnet_session_client_lobby_counts(const LNetSessionClient *c,
+                                     int *players, int *ready);
 int lnet_session_client_state(const LNetSessionClient *c);
 #endif

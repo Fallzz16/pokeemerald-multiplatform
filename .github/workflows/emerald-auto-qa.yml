@@ -83,6 +83,12 @@ jobs:
         run: |
           gcc -std=c99 -Wall -Wextra -Werror -O2 tests/test_ehl8_wait_overlay.c -o /tmp/emerald-ehl8-overlay-qa
           /tmp/emerald-ehl8-overlay-qa
+      - name: Validate native EHL8 PLAYER_LIST parser (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          gcc -std=c99 -DPORTABLE -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Werror -O2 -Isrc/lnet tests/test_ehl8_player_list_parser.c src/lnet/lnet_net.c src/lnet/lnet_session_v1.c src/lnet/lnet_presence.c -o /tmp/emerald-lobby-parser
+          /tmp/emerald-lobby-parser
       - name: Run simulated player regression QA
         shell: bash
         env:
