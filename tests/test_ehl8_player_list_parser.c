@@ -20,10 +20,11 @@ int main(void)
 {
     LNetSessionClient client;
     EhlSessionFrame frame;
-    int players = -1, ready = -1;
+    int players = -1, ready = -1, ownReady = -1;
     const unsigned char empty[] = {0};
     const unsigned char solo[] = {1, 1, 1, 2, 'Q', 'A'};
     const unsigned char full[] = {2, 1, 1, 1, 'A', 2, 1, 1, 'B'};
+    const unsigned char cancelled[] = {2, 1, 0, 1, 'A', 2, 1, 1, 'B'};
     const unsigned char duplicate[] = {2, 1, 1, 1, 'A', 1, 1, 1, 'B'};
     const unsigned char badReady[] = {1, 1, 2, 1, 'A'};
     const unsigned char badSlot[] = {1, 3, 1, 1, 'A'};
@@ -41,6 +42,11 @@ int main(void)
     assert(decode_fixture(&client, &frame, full, sizeof(full)) == 0);
     assert(lnet_session_client_lobby_counts(&client, &players, &ready));
     assert(players == 2 && ready == 2);
+    assert(!lnet_session_client_local_ready(&client, &ownReady));
+    client.selfSlot = 1;
+    assert(decode_fixture(&client, &frame, full, sizeof(full)) == 0);
+    assert(lnet_session_client_local_ready(&client, &ownReady));
+    assert(ownReady == 1);
 
     /* Bad snapshots cannot replace the last verified state or add a phantom
      * player to the UI. A caller will treat the server frame as malformed. */
@@ -53,6 +59,11 @@ int main(void)
     assert(decode_fixture(&client, &frame, solo, sizeof(solo)-1) < 0);
     assert(lnet_session_client_lobby_counts(&client, &players, &ready));
     assert(players == 2 && ready == 2);
+    assert(lnet_session_client_local_ready(&client, &ownReady) && ownReady == 1);
+    assert(decode_fixture(&client, &frame, cancelled, sizeof(cancelled)) == 0);
+    assert(lnet_session_client_local_ready(&client, &ownReady) && ownReady == 0);
+    assert(lnet_session_client_lobby_counts(&client, &players, &ready));
+    assert(players == 2 && ready == 1);
     /* The per-player READY toggle is opt-in and only valid before START.
      * Rapid toggles update the pending request, never a socket from SDL. */
     client.state = EHL_CLIENT_WAIT_START;
