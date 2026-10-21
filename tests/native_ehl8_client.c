@@ -16,9 +16,13 @@ int main(int argc, char **argv)
                   strcmp(argv[7], "lingerlong") == 0));
     int reconnect = (argc == 8 && strcmp(argv[7], "reconnect") == 0);
     int awaitStart = (argc == 8 && strcmp(argv[7], "awaitstart") == 0);
+    int manualWait = (argc == 8 && strcmp(argv[7], "manualwait") == 0);
+    int readyCycle = (argc == 8 && strcmp(argv[7], "readycycle") == 0);
     int reconnectObserved = 0;
     int sawWaitStart = 0;
     int sawFullLobby = 0;
+    int cancelled = 0, restored = 0;
+    struct timespec cancelledAt;
     struct timespec startTime, currentTime;
     unsigned long startElapsed = 0;
     /* The manual host test must not start before at least 2.5 seconds. */
@@ -27,9 +31,10 @@ int main(int argc, char **argv)
         ? 650 : 180;
     int witnessed = 0;
     struct timespec pauseTime = { 0, 10000000L };
-    if (argc != 7 && !linger && !reconnect && !awaitStart)
+    if (argc != 7 && !linger && !reconnect && !awaitStart &&
+        !manualWait && !readyCycle)
     {
-        fprintf(stderr, "usage: native_ehl8_client IPv4 port pin profile x expected_remote_x [linger|reconnect|awaitstart]\n");
+        fprintf(stderr, "usage: native_ehl8_client IPv4 port pin profile x expected_remote_x [linger|reconnect|awaitstart|manualwait|readycycle]\n");
         return 2;
     }
     port = (unsigned short)strtoul(argv[2], NULL, 10);
@@ -55,18 +60,43 @@ int main(int argc, char **argv)
         {
             int players = 0, ready = 0;
             sawWaitStart = 1;
-            if (lnet_session_client_lobby_counts(client, &players, &ready) &&
-                players == 2 && ready == 2)
-                sawFullLobby = 1;
+            if (lnet_session_client_lobby_counts(client, &players, &ready))
+            {
+                if (players == 2 && ready == 2)
+                    sawFullLobby = 1;
+                if (readyCycle && sawFullLobby && !cancelled)
+                {
+                    if (!lnet_session_client_toggle_ready(client))
+                        return 7;
+                    cancelled = 1;
+                    clock_gettime(CLOCK_MONOTONIC, &cancelledAt);
+                }
+                else if (readyCycle && cancelled && !restored &&
+                         players == 2 && ready == 1)
+                {
+                    struct timespec current;
+                    long elapsed;
+                    clock_gettime(CLOCK_MONOTONIC, &current);
+                    elapsed = (current.tv_sec - cancelledAt.tv_sec) * 1000L +
+                              (current.tv_nsec - cancelledAt.tv_nsec) / 1000000L;
+                    if (elapsed >= 700)
+                    {
+                        if (!lnet_session_client_toggle_ready(client))
+                            return 8;
+                        restored = 1;
+                    }
+                }
+            }
         }
-        if (awaitStart && state == EHL_CLIENT_PLAYING)
+        if ((awaitStart || manualWait || readyCycle) && state == EHL_CLIENT_PLAYING)
         {
             clock_gettime(CLOCK_MONOTONIC, &currentTime);
             startElapsed = (unsigned long)(currentTime.tv_sec - startTime.tv_sec)
                 * 1000UL + (unsigned long)(currentTime.tv_nsec - startTime.tv_nsec
                 + 1000000000L) / 1000000UL - 1000UL;
-            if (!sawWaitStart || !sawFullLobby ||
-                startElapsed < minimumWaitMs)
+            if (!sawWaitStart || startElapsed < minimumWaitMs ||
+                (awaitStart && !sawFullLobby) ||
+                (readyCycle && (!cancelled || !restored)))
             {
                 fprintf(stderr, "EHL8 manual START arrived too early or WAIT_START skipped\n");
                 lnet_session_client_close(client);
@@ -84,9 +114,11 @@ int main(int argc, char **argv)
             remote.x == (unsigned short)atoi(argv[6]) && remote.active)
         {
             witnessed = 1;
-            if (awaitStart)
+            if (awaitStart || manualWait || readyCycle)
             {
-                puts("EHL8 native WAIT_START heartbeats and delayed manual START verified");
+                puts(readyCycle
+                    ? "EHL8 native READY CANCEL READY cycle and host START verified"
+                    : "EHL8 native WAIT_START heartbeats and delayed manual START verified");
                 lnet_session_client_close(client);
                 return 0;
             }

@@ -49,6 +49,8 @@ struct LNetSessionClient
     uint16_t localSeq, lastRemoteSeq;
     uint8_t haveRemoteSeq, haveRemote;
     uint8_t roomPlayers, roomReady, haveRoomList;
+    uint8_t selfSlot, desiredReady, pendingReady;
+    uint8_t localReady, haveLocalReady;
     uint8_t haveResumeToken, resumeInFlight;
     unsigned char resumeToken[EHL_RESUME_TOKEN_SIZE];
     unsigned long reconnectSince, retryAt;
@@ -89,6 +91,8 @@ static void close_failed(LNetSessionClient *c)
     c->haveRemoteSeq = 0;
     c->haveRoomList = 0;
     c->roomPlayers = c->roomReady = 0;
+    c->selfSlot = c->desiredReady = c->pendingReady = 0;
+    c->localReady = c->haveLocalReady = 0;
     c->txLength = c->txOffset = 0;
     ehl_session_decoder_init(&c->decoder);
     if (mayRetry)
@@ -198,6 +202,7 @@ static int decode_room_list(LNetSessionClient *c, const EhlSessionFrame *frame)
     const unsigned char *p = frame->payload;
     size_t end = frame->payload_size, pos = 1;
     unsigned int count, ready = 0, seen = 0, i;
+    unsigned int myReady = 0, foundSelf = 0;
     if (end < 1 || p[0] > 2)
         return -1;
     count = p[0];
@@ -214,6 +219,11 @@ static int decode_room_list(LNetSessionClient *c, const EhlSessionFrame *frame)
             pos + nameLen > end)
             return -1;
         seen |= 1u << slot;
+        if (slot == c->selfSlot)
+        {
+            myReady = flag;
+            foundSelf = 1;
+        }
         pos += nameLen;
         ready += flag;
     }
@@ -221,6 +231,8 @@ static int decode_room_list(LNetSessionClient *c, const EhlSessionFrame *frame)
         return -1;
     c->roomPlayers = (uint8_t)count;
     c->roomReady = (uint8_t)ready;
+    c->localReady = (uint8_t)myReady;
+    c->haveLocalReady = (uint8_t)foundSelf;
     c->haveRoomList = 1;
     return 0;
 }
@@ -290,6 +302,9 @@ static int handle_frame(LNetSessionClient *c, const EhlSessionFrame *frame)
         if (frame->type != EHL_JOIN || frame->payload_size != 1 ||
             frame->payload[0] < 1 || frame->payload[0] > 2)
             return -1;
+        c->selfSlot = frame->payload[0];
+        c->desiredReady = 1; /* legacy default: joining implies ready */
+        c->pendingReady = 0;
         if (!queue(c, EHL_READY, (const unsigned char *)"\1", 1))
             return -1;
         c->state = EHL_CLIENT_WAIT_START;
@@ -458,6 +473,23 @@ void lnet_session_client_poll(LNetSessionClient *c, const LNetPose *local)
     /* Initial READY/HELLO/etc always takes precedence over pose updates. */
     if (c->txLength != c->txOffset)
         return;
+    /* F5 on the SDL thread is forwarded through the game thread. Never
+     * queue from SDL: the socket/decoder belong exclusively to the engine.
+     * If JOIN's automatic READY is still in flight, send the user's latest
+     * choice only after that frame drains. Do not starve this behind
+     * heartbeat/pose updates. */
+    if (c->state == EHL_CLIENT_WAIT_START && c->pendingReady)
+    {
+        unsigned char value = c->desiredReady;
+        if (!queue(c, EHL_READY, &value, 1))
+        {
+            close_failed(c);
+            return;
+        }
+        c->pendingReady = 0;
+        c->lastTx = now;
+        return;
+    }
     /* In WAIT_START, clients can sit at 2/2 while the host prepares the game.
      * Send the same heartbeat every 10s BEFORE START, not just after PLAYING.
      * This keeps the server's 35s idle timeout and our 20s authentication/
@@ -515,6 +547,24 @@ int lnet_session_client_get_remote(const LNetSessionClient *c, LNetPose *out)
         return 0;
     if (out)
         *out = c->remote;
+    return 1;
+}
+
+int lnet_session_client_local_ready(const LNetSessionClient *c, int *ready)
+{
+    if (!c || !ready || !c->haveRoomList || !c->haveLocalReady)
+        return 0;
+    *ready = c->localReady;
+    return 1;
+}
+
+int lnet_session_client_toggle_ready(LNetSessionClient *c)
+{
+    /* No READY/CANCEL after START, during auth, or while reconnecting. */
+    if (!c || c->state != EHL_CLIENT_WAIT_START || !c->selfSlot)
+        return 0;
+    c->desiredReady = !c->desiredReady;
+    c->pendingReady = 1;
     return 1;
 }
 

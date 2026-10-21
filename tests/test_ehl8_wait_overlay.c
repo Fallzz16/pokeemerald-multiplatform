@@ -49,6 +49,17 @@ int main(void)
     renderer.calls = 0;
     lnet_wait_overlay_render(&renderer, 1, 0); /* connected room, zero ready */
     assert(renderer.calls > 100 && renderer.border == 7);
+    /* bit 9 = verified own READY; bit 8 = its actual value. Both hint
+     * variants must remain within 240x160 and never draw in offline mode. */
+    renderer.calls = 0;
+    lnet_wait_overlay_render(&renderer, 1, 2 | (2 << 4) | (1 << 9) | (1 << 8));
+    assert(renderer.calls > 100 && renderer.border == 8);
+    renderer.calls = 0;
+    lnet_wait_overlay_render(&renderer, 1, 2 | (1 << 4) | (1 << 9));
+    assert(renderer.calls > 100 && renderer.border == 9);
+    renderer.calls = 0;
+    lnet_wait_overlay_render(&renderer, 0, 2 | (2 << 4) | (1 << 9));
+    assert(renderer.calls == 0 && renderer.border == 9);
     printf("EHL8 room population + reconnect HUD: PASS\n");
     return 0;
 }

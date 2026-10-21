@@ -2147,6 +2147,22 @@ int PortLanDedicatedLobbyCounts(int *players, int *ready)
     return lnet_session_client_lobby_counts(sLanDedicatedSession, players, ready);
 }
 
+/* Explicit player's READY/CANCEL during pre-START lobby only.
+ * Called by the game thread, never from SDL render/event thread. */
+int PortLanDedicatedLocalReady(int *ready)
+{
+    if (!sLanDedicatedSession)
+        return 0;
+    return lnet_session_client_local_ready(sLanDedicatedSession, ready);
+}
+
+int PortLanDedicatedToggleReady(void)
+{
+    if (!sLanDedicatedSession)
+        return 0;
+    return lnet_session_client_toggle_ready(sLanDedicatedSession);
+}
+
 /* Dedicated EHL8 presence only: NEVER feed this protocol to the Cable Club
  * serial transport. Reuse existing sprite/camera, no save or quest changes. */
 bool32 PortLanRequestDedicatedClient(const char *host, u16 port,

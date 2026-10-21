@@ -10,6 +10,18 @@ def strip_v080_profile_patch(native: str) -> str:
             raise AssertionError("v0.8 profile integration drift: " + old[:60])
         native = native.replace(old, new, 1)
 
+    # M3.1 authoritative LOCAL READY status (from validated PLAYER_LIST).
+    # Reverse these exact additions BEFORE the previous F5 and protected SDL2 gates.
+    once("extern int PortLanDedicatedLocalReady(int *ready);\n", '')
+    once("            if (PortLanDedicatedLobbyCounts(&players, &ready))\n            {\n                int localReady = 0;\n                int packed = players | (ready << 4);\n                if (PortLanDedicatedLocalReady(&localReady))\n                    packed |= (1 << 9) | ((localReady != 0) << 8);\n                SDL_AtomicSet(&sEhl8LobbyCountsUiState, packed);\n            }\n            else\n                SDL_AtomicSet(&sEhl8LobbyCountsUiState, -1);", "            if (PortLanDedicatedLobbyCounts(&players, &ready))\n                SDL_AtomicSet(&sEhl8LobbyCountsUiState, players | (ready << 4));\n            else\n                SDL_AtomicSet(&sEhl8LobbyCountsUiState, -1);")
+
+    # M3.1 F5 READY/CANCEL: reverse only these five reviewed SDL2 inserts.
+    once("extern int PortLanDedicatedToggleReady(void);\n", '')
+    once("static SDL_atomic_t sEhl8ReadyToggleRequest; /* SDL keydown -> native game thread */\n", '')
+    once("            case SDLK_F5:\n                /* SDL event thread may ONLY request a toggle. The actual\n                 * EHL8 socket operation runs on the native game thread. */\n                if (!event.key.repeat && SDL_AtomicGet(&sEhl8WaitUiState) == 1)\n                    SDL_AtomicSet(&sEhl8ReadyToggleRequest, 1);\n                break;\n", '')
+    once("        if (SDL_AtomicGet(&sEhl8ReadyToggleRequest))\n        {\n            SDL_AtomicSet(&sEhl8ReadyToggleRequest, 0);\n            if (!sEhl8StartGate.released && state == 0)\n                PortLanDedicatedToggleReady();\n        }\n", '')
+    once("    SDL_AtomicSet(&sEhl8ReadyToggleRequest, 0);\n", '')
+
     # M3.0 player-facing room overlay: strictly invert the two reviewed
     # SDL2 insertions before checking the protected legacy source hash.
     once('#include "../lnet/lnet_wait_overlay.h"\n', '')

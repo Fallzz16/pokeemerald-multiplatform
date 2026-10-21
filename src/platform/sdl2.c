@@ -35,6 +35,8 @@
 /* Controlled on the GBA game thread; no access to renderer from link.c. */
 extern int PortLanDedicatedSessionGate(void);
 extern int PortLanDedicatedLobbyCounts(int *players, int *ready);
+extern int PortLanDedicatedToggleReady(void);
+extern int PortLanDedicatedLocalReady(int *ready);
 
 extern void (*const gIntrTable[])(void);
 
@@ -60,6 +62,7 @@ static bool sProfileLocked = false;
 static LNetStartGate sEhl8StartGate;
 static SDL_atomic_t sEhl8WaitUiState; /* 0=offline,1=waiting,2=online,3=initial fail,4=reconnecting,5=offline after START */
 static SDL_atomic_t sEhl8LobbyCountsUiState; /* -1 unknown, otherwise players|ready<<4 */
+static SDL_atomic_t sEhl8ReadyToggleRequest; /* SDL keydown -> native game thread */
 #ifdef __ANDROID__
 static char sAndroidSavePath[1024] = "pokeemerald.sav";
 #endif
@@ -243,6 +246,7 @@ int main(int argc, char **argv)
     sEhl8StartGate.released = 0;
     SDL_AtomicSet(&sEhl8WaitUiState, sessionWaitForStart ? 1 : 0);
     SDL_AtomicSet(&sEhl8LobbyCountsUiState, -1);
+    SDL_AtomicSet(&sEhl8ReadyToggleRequest, 0);
 
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
     {
@@ -651,6 +655,12 @@ void ProcessEvents(void)
                 if (!event.key.repeat)
                     CycleFastForwardMultiplier();
                 break;
+            case SDLK_F5:
+                /* SDL event thread may ONLY request a toggle. The actual
+                 * EHL8 socket operation runs on the native game thread. */
+                if (!event.key.repeat && SDL_AtomicGet(&sEhl8WaitUiState) == 1)
+                    SDL_AtomicSet(&sEhl8ReadyToggleRequest, 1);
+                break;
             }
             break;
         }
@@ -780,11 +790,23 @@ u16 Platform_GetKeyInput(void)
     if (sEhl8StartGate.enabled)
     {
         int state = PortLanDedicatedSessionGate();
+        if (SDL_AtomicGet(&sEhl8ReadyToggleRequest))
+        {
+            SDL_AtomicSet(&sEhl8ReadyToggleRequest, 0);
+            if (!sEhl8StartGate.released && state == 0)
+                PortLanDedicatedToggleReady();
+        }
         if (!sEhl8StartGate.released)
         {
             int players, ready;
             if (PortLanDedicatedLobbyCounts(&players, &ready))
-                SDL_AtomicSet(&sEhl8LobbyCountsUiState, players | (ready << 4));
+            {
+                int localReady = 0;
+                int packed = players | (ready << 4);
+                if (PortLanDedicatedLocalReady(&localReady))
+                    packed |= (1 << 9) | ((localReady != 0) << 8);
+                SDL_AtomicSet(&sEhl8LobbyCountsUiState, packed);
+            }
             else
                 SDL_AtomicSet(&sEhl8LobbyCountsUiState, -1);
         }
