@@ -2138,6 +2138,18 @@ int PortLanDedicatedSessionGate(void)
     return 0;
 }
 
+/* Read room roster only on the game thread, after PortLanPresencePump()
+ * has decoded PLAYER_LIST. Return -1 until a validated update is received.
+ * Packed low bits are count 0..2 and ready 0..2; no IDs or saves escape. */
+int PortLanDedicatedRoomSnapshot(void)
+{
+    LNetRoomRoster roster;
+    if (!sLanDedicatedSession ||
+        !lnet_session_client_get_roster(sLanDedicatedSession, &roster))
+        return -1;
+    return ((int)roster.players << 2) | roster.ready;
+}
+
 /* Dedicated EHL8 presence only: NEVER feed this protocol to the Cable Club
  * serial transport. Reuse existing sprite/camera, no save or quest changes. */
 bool32 PortLanRequestDedicatedClient(const char *host, u16 port,

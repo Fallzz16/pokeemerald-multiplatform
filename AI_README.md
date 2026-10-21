@@ -1100,3 +1100,20 @@ Esse sucesso comprova as suítes automatizadas do commit testado, não gameplay 
 **Pesquisa:** https://developer.valvesoftware.com/wiki/Source_Multiplayer_Networking e https://new.gafferongames.com/post/snapshot_interpolation/ para futuro jitter buffer sem alterar agora o smoothing do Emerald antes de dados reais; https://docs.python.org/3/library/asyncio-stream.html para `drain()` já tratado no servidor; https://wiki.libsdl.org/SDL2/SDL_RenderSetIntegerScale para preservar pixel art 240×160.
 
 **Próximo passo:** revisão CI, PR draft e testes humanos: 2 PCs/VM, host e convidado em mesmo mapa, logs sprite spawn/hide, interrupção/reconexão 60s, overlay/teclado/saves, sem alterar o modo solo. Batalhas/trocas EHL8 permanecem não implementadas, Android/crossplay ainda não comprovados.
+
+
+## 61. M3.2 — PLAYER_LIST nativa/contagem da sala dentro do jogo (2026-10-21)
+
+**Pedido:** continuar trabalho com máxima autonomia após o PR #36. Escopo **SOMENTE multiplayer do Emerald atual**; ZERO conteúdo novo, sem alterações a mapas/saves/Android/Cable Club. QA Lab continua separado do launcher de usuário final. Base do PR #36, SHA **`133322b84df0bfe24d728c9a23f0fac0f82ef07c`** com Windows completo validado; nova branch **`feature/emerald-m32-room-presence-20261021`**, PR novo DRAFT sobre PR #36; nenhum merge automático.
+
+**Causa encontrada na auditoria:** o servidor EHL8 transmite `PLAYER_LIST` com ocupação e READY, mas `src/lnet/lnet_session_client.c` anteriormente ignorava o frame. Portanto a tela do Emerald real não podia distinguir 1/2 e 2/2 confiavelmente, apesar de o launcher mostrar os contadores por log do servidor.
+
+**Modificado:** `src/lnet/lnet_session_client.c/.h` para validar e armazenar apenas contadores da lista (limpa cache ao desconectar); `src/link.c` expõe snapshot compacto da game thread sem tocar em saves/sprites; `src/platform/sdl2.c` usa atomic para thread de renderização, exibe contadores somente antes de START; `src/lnet/lnet_wait_overlay.h` agora desenha números e `JOGADORES N DE 2 / PRONTOS N DE 2`, desconhecido continua sem dados; `scripts/verify_v080_profile_patch.py` remove apenas deltas do painel antes da auditoria de hash protegida (NÃO DESATIVADA); `tests/test_ehl8_wait_overlay.c`, `tests/native_ehl8_client.c`, `tests/test_ehl8_native_bridge.py` testam render e 2 clientes C reais autenticados mais poses via servidor Python real. Workflows Auto QA e Complete Windows habilitados para branches `feature/emerald-m32-*`, Auto QA executa parser nativo de erro/consistência no Linux.
+
+**Adicionado:** `src/lnet/lnet_room_roster.h` (parser C sem SDL/dados de save, valida count 0-2, slot único, READY 0/1, nomes 1-48 com caracteres válidos, sem truncamento/sobra); `tests/test_ehl8_room_roster.c` (regressões boas/ruins, sem bytes fora dos limites); `docs/V100_M32_REAL_ROOM_PRESENCE_20261021_PTBR.md` (implementação, QA visual e rollback). **Removido:** nada.
+
+**Não alterado:** wire protocol EHL8, servidor Python, launcher de jogador, Laboratório/QA_A/QA_B, gameplay offline, saves originais/estrutura .sav, P2P Cable Club, PokéNav, Quest UI, Android ou conteúdo do Emerald. Privacidade: UI exibe SOMENTE contadores; não escreve perfil, nome, PIN nem save.
+
+**Testes necessários para ACEITE:** conferir `test_ehl8_room_roster.c` em Linux e `test_ehl8_native_bridge.py` com dois clientes C REAIS; Auto QA Windows+Linux e Windows Complete Preview (jobs game/gui-tools/portable) na revisão de código final, verificando SHA/artefato e guard antigo de SDL2. Os logs do CI antigo PR #36 NÃO contam como comprovação M3.2. **QA gráfico humano em 2 PCs ainda pendente:** host/guest abrem, mostrar 1/2→2/2 prontos dentro do Emerald, START liberta; sprites próximos, movimento, transição, reconnect e saves QA isolados. Não chamar beta multiplayer completa. Batalhas/trocas EHL8 e ARM64 não foram implementados.
+
+**Rollback seguro:** ZIP já aprovado do PR #36 SHA `133322b84df0bfe24d728c9a23f0fac0f82ef07c`, extrair em pasta nova sem substituir save. EHL8 continua restrito LAN/VPN privada; PIN curto não equivale a criptografia WAN. Manter PR DRAFT e não mesclar até QA real.

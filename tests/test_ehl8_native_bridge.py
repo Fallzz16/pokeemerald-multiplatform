@@ -116,6 +116,41 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
                     await process.wait()
             await server.stop()
 
+    async def test_real_native_game_clients_decode_two_ready_players(self):
+        """Validates C PLAYER_LIST decoding against the REAL Python EHL8 server."""
+        server = server_module.SessionServer("123456", 2, idle_seconds=300)
+        listener = await server.start("127.0.0.1", 0)
+        port = str(listener.sockets[0].getsockname()[1])
+        clients = [
+            await asyncio.create_subprocess_exec(
+                self.exe, "127.0.0.1", port, "123456",
+                "trainer_A" if i == 0 else "trainer_B",
+                "21" if i == 0 else "34",
+                "34" if i == 0 else "21", "roster",
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE)
+            for i in range(2)
+        ]
+        try:
+            results = await asyncio.wait_for(
+                asyncio.gather(*(p.communicate() for p in clients)), timeout=16)
+            for child, (out, err) in zip(clients, results):
+                self.assertEqual(child.returncode, 0, err)
+                self.assertIn(b"native PLAYER_LIST 2/2 READY", out)
+            # Each native client exits successfully after receiving a
+            # remote pose (requires server START) AND a 2/2 READY snapshot.
+            # When the final client closes, the real server intentionally
+            # resets in_game=False for a fresh room; asserting True here
+            # races against that correct teardown behavior.
+            self.assertIn(b"native PLAYER_LIST 2/2 READY", results[0][0])
+            self.assertIn(b"native PLAYER_LIST 2/2 READY", results[1][0])
+        finally:
+            for child in clients:
+                if child.returncode is None:
+                    child.kill()
+                    await child.wait()
+            await server.stop()
+
     async def test_playing_clients_send_heartbeats_even_while_streaming_poses(self):
         # The game sends poses every 100 ms. Heartbeats must still be sent;
         # the test overrides only the heartbeat interval to 250 ms so it runs

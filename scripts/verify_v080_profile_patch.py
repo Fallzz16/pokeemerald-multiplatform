@@ -10,6 +10,22 @@ def strip_v080_profile_patch(native: str) -> str:
             raise AssertionError("v0.8 profile integration drift: " + old[:60])
         native = native.replace(old, new, 1)
 
+    # M3.2 room roster HUD: exact audited inverse before the protected
+    # SDL2 source comparison; unrelated changes still fail the historic hash.
+    once('extern int PortLanDedicatedRoomSnapshot(void);\n', '')
+    once('static SDL_atomic_t sEhl8RoomSnapshot; /* -1 until validated PLAYER_LIST */\n', '')
+    once('    SDL_AtomicSet(&sEhl8RoomSnapshot, -1);\n', '')
+    once('        SDL_AtomicSet(&sEhl8RoomSnapshot, PortLanDedicatedRoomSnapshot());\n', '')
+    once('        if (sessionWaitForStart)\n'
+         '        {\n'
+         '            int uiState = SDL_AtomicGet(&sEhl8WaitUiState);\n'
+         '            lnet_wait_overlay_render(sdlRenderer, uiState);\n'
+         '            if (uiState == 1)\n'
+         '                lnet_wait_overlay_room(sdlRenderer, SDL_AtomicGet(&sEhl8RoomSnapshot));\n'
+         '        }',
+         '        if (sessionWaitForStart)\n'
+         '            lnet_wait_overlay_render(sdlRenderer, SDL_AtomicGet(&sEhl8WaitUiState));')
+
     # M3.0 player-facing room overlay: strictly invert the two reviewed
     # SDL2 insertions before checking the protected legacy source hash.
     once('#include "../lnet/lnet_wait_overlay.h"\n', '')
