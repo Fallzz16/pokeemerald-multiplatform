@@ -708,6 +708,161 @@ def add_saffron_gatehouses(source: Path, emerald: Path, source_maps: dict,
     return created
 
 
+# Core original dungeon transitions that make route-level Kanto navigation useful.
+# Order is append-only: existing V0.5 IDs must never be renumbered.
+KANTO_V06_DUNGEONS = (
+    "ViridianForest",
+    "Route2_ViridianForest_NorthEntrance",
+    "Route2_ViridianForest_SouthEntrance",
+    "DiglettsCave_NorthEntrance",
+    "DiglettsCave_B1F",
+    "DiglettsCave_SouthEntrance",
+    "MtMoon_1F",
+    "MtMoon_B1F",
+    "MtMoon_B2F",
+)
+
+
+def add_kanto_v06_dungeons(source: Path, emerald: Path, source_maps: dict,
+                          layouts: dict, target_layouts: dict) -> dict:
+    """Port all 9 original layouts and their real intra-dungeon/exterior doors.
+
+    Original interior warp indices are retained in complete dungeons. Exterior
+    warp indices differ in Emerald because services/gates were already ported;
+    remap them to generated new indices and reject dangling destinations.
+    Existing exterior warp indices are NEVER reordered.
+    """
+    maps = {name: load_json(source, f"data/maps/{name}/map.json")
+            for name in KANTO_V06_DUNGEONS}
+    by_source_id = {entry["id"]: name for name, entry in maps.items()}
+    if len(by_source_id) != len(maps):
+        raise RuntimeError("Duplicate source Kanto dungeon map IDs")
+    outside_by_source_id = {obj["id"]: name for name, obj in source_maps.items()}
+    old_warp_to_new = {}
+    exterior_warps_added = 0
+
+    # First create every new outward door on previously generated exterior
+    # maps, appending at the end; record a precise (map, old warp id) remap.
+    for outer_name, original in source_maps.items():
+        relevant = [
+            (idx, w) for idx, w in enumerate(original.get("warp_events") or [])
+            if w["dest_map"] in by_source_id
+        ]
+        if not relevant:
+            continue
+        relative = f"data/maps/Kanto_{outer_name}/map.json"
+        target = load_json(emerald, relative)
+        for src_idx, entry in relevant:
+            target_idx = len(target["warp_events"])
+            target["warp_events"].append({
+                "x": entry["x"], "y": entry["y"],
+                "elevation": entry["elevation"],
+                "dest_map": "MAP_KANTO_" + by_source_id[entry["dest_map"]].upper(),
+                "dest_warp_id": str(entry["dest_warp_id"]),
+            })
+            old_warp_to_new[(original["id"], src_idx)] = target_idx
+            exterior_warps_added += 1
+        emit_json(emerald / relative, target)
+
+    # All original warp targets in the selected nine maps must be either
+    # another fully ported dungeon map or one of the 38 existing exteriors.
+    warps_created = 0
+    for name in KANTO_V06_DUNGEONS:
+        original = maps[name]
+        lay = layouts.get(original["layout"])
+        if lay is None:
+            raise RuntimeError(f"{name}: missing FireRed dungeon layout")
+        if lay["primary_tileset"] not in ("gTileset_General", "gTileset_Building"):
+            raise RuntimeError(f"{name}: unsupported dungeon primary tileset")
+        if original.get("connections"):
+            raise RuntimeError(f"{name}: unported connected dungeon edges")
+        target_name = "Kanto_" + name
+        dest_id = "MAP_KANTO_" + name.upper()
+        new_layout = dict(lay)
+        new_layout.pop("border_width", None)
+        new_layout.pop("border_height", None)
+        new_layout["id"] = "LAYOUT_KANTO_" + name.upper()
+        new_layout["name"] = target_name + "_Layout"
+        new_layout["primary_tileset"] = (
+            "gTileset_KantoGeneral" if lay["primary_tileset"] == "gTileset_General"
+            else "gTileset_KantoBuilding"
+        )
+        new_layout["secondary_tileset"] = (
+            "gTileset_Kanto" + lay["secondary_tileset"].removeprefix("gTileset_")
+        )
+        for key, filename in (("border_filepath", "border.bin"),
+                              ("blockdata_filepath", "map.bin")):
+            path = f"data/layouts/{target_name}/{filename}"
+            output = emerald / path
+            output.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source / lay[key], output)
+            new_layout[key] = path
+        if (emerald / new_layout["blockdata_filepath"]).stat().st_size != (
+                new_layout["width"] * new_layout["height"] * 2):
+            raise RuntimeError(f"{name}: source map binary size mismatch")
+        expected_border = (lay.get("border_width", 2)
+                           * lay.get("border_height", 2) * 2)
+        if (emerald / new_layout["border_filepath"]).stat().st_size != expected_border:
+            raise RuntimeError(f"{name}: unexpected border size")
+        target_layouts["layouts"].append(new_layout)
+
+        warps = []
+        for i, entry in enumerate(original.get("warp_events") or []):
+            dest_src = entry["dest_map"]
+            if dest_src in by_source_id:
+                destination = "MAP_KANTO_" + by_source_id[dest_src].upper()
+                dest_warp_id = int(entry["dest_warp_id"])
+                if not 0 <= dest_warp_id < len(maps[by_source_id[dest_src]]["warp_events"]):
+                    raise RuntimeError(f"{name} warp {i}: invalid internal warp index")
+            elif dest_src in outside_by_source_id:
+                destination = "MAP_KANTO_" + outside_by_source_id[dest_src].upper()
+                key = (dest_src, int(entry["dest_warp_id"]))
+                if key not in old_warp_to_new:
+                    raise RuntimeError(f"{name} warp {i}: exterior destination not linked {key}")
+                dest_warp_id = old_warp_to_new[key]
+            else:
+                raise RuntimeError(f"{name} warp {i}: target not imported {dest_src}")
+            warps.append({
+                "x": entry["x"], "y": entry["y"],
+                "elevation": entry["elevation"],
+                "dest_map": destination,
+                "dest_warp_id": str(dest_warp_id),
+            })
+        map_obj = {
+            "id": dest_id,
+            "name": target_name,
+            "layout": new_layout["id"],
+            "music": "MUS_RG_SEVII_ROUTE",
+            "region_map_section": "MAPSEC_NONE",
+            "requires_flash": original.get("requires_flash", False),
+            "weather": "WEATHER_NONE",
+            "map_type": original["map_type"],
+            "allow_cycling": original.get("allow_cycling", False),
+            "allow_escaping": original.get("allow_escaping", True),
+            "allow_running": original.get("allow_running", True),
+            "show_map_name": False,
+            "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+            "connections": None,
+            "object_events": [],
+            "warp_events": warps,
+            "coord_events": [],
+            "bg_events": [],
+        }
+        out = emerald / "data/maps" / target_name
+        emit_json(out / "map.json", map_obj)
+        (out / "scripts.inc").write_text(
+            target_name + "_MapScripts::\n    .byte 0\n",
+            encoding="utf-8"
+        )
+        warps_created += len(warps)
+    return {
+        "names": ["Kanto_" + n for n in KANTO_V06_DUNGEONS],
+        "source_ids": {maps[n]["id"]: n for n in KANTO_V06_DUNGEONS},
+        "internal_warps": warps_created,
+        "exterior_warps": exterior_warps_added,
+    }
+
+
 def copy_exteriors(source: Path, emerald: Path) -> dict:
     checkout_guard(source)
     group = load_json(source, "data/maps/map_groups.json")
@@ -739,10 +894,23 @@ def copy_exteriors(source: Path, emerald: Path) -> dict:
                        dest_behavior, source_behavior, unknown)
     create_tileset(source, emerald, "gTileset_GenericBuilding2", "secondary",
                    dest_behavior, source_behavior, unknown)
+    # The first complete traversal-friendly dungeons use three source
+    # secondary graphics sets. Reuse an existing converted set if shared.
+    dungeon_secondaries = {
+        layouts[load_json(source, f"data/maps/{n}/map.json")["layout"]]["secondary_tileset"]
+        for n in KANTO_V06_DUNGEONS
+    }
+    already_converted = set(secondaries) | {
+        "gTileset_PokemonCenter", "gTileset_Mart", "gTileset_GenericBuilding2"
+    }
+    extra_dungeon_secondaries = dungeon_secondaries - already_converted
+    for label in sorted(extra_dungeon_secondaries):
+        create_tileset(source, emerald, label, "secondary",
+                       dest_behavior, source_behavior, unknown)
     report = {"source_commit": PINNED_FIRE_RED_SHA,
               "state": MILESTONE,
               "geometry_maps_created": len(names),
-              "graphics_tilesets_created": 5 + len(secondaries),
+              "graphics_tilesets_created": 5 + len(secondaries) + len(extra_dungeon_secondaries),
               "saffron_gatehouses_ported": 4,
               "original_interiors_ported": 2,
               "original_npcs_ported": 0,
@@ -868,9 +1036,6 @@ Kanto_VermilionCity_Text_BattleQuestion:
             "original_npcs_disabled": len(m.get("object_events", [])),
             "connected_exterior_edges": len(target_map["connections"] or []),
         })
-    report["wild_encounter_maps_ported"] = add_firered_encounters(
-        source, emerald, source_to_name)
-    report["wild_encounters_ported"] = report["wild_encounter_maps_ported"] > 0
     interiors = add_vermilion_interiors(
         source, emerald, layouts, target_layouts, target_groups,
         source_maps["VermilionCity"])
@@ -880,12 +1045,22 @@ Kanto_VermilionCity_Text_BattleQuestion:
     saffron_gates = add_saffron_gatehouses(
         source, emerald, source_maps, layouts, target_layouts, target_groups)
     report["saffron_gatehouses"] = saffron_gates
+    dungeon_batch = add_kanto_v06_dungeons(
+        source, emerald, source_maps, layouts, target_layouts)
+    report["dungeon_maps"] = dungeon_batch["names"]
+    report["dungeon_warps"] = dungeon_batch["internal_warps"]
+    report["dungeon_exterior_warps"] = dungeon_batch["exterior_warps"]
+    report["wild_encounter_maps_ported"] = add_firered_encounters(
+        source, emerald, {**source_to_name, **dungeon_batch["source_ids"]})
+    report["wild_encounters_ported"] = report["wild_encounter_maps_ported"] > 0
     report["interior_maps"] = interiors
     report["original_interiors_ported"] = len(interiors)
     report["interior_warps_ported"] = len(interiors)
     target_groups["gMapGroup_Kanto"].extend("Kanto_" + n for n in names)
     target_groups["gMapGroup_Kanto"].extend(new_services)
     target_groups["gMapGroup_Kanto"].extend(saffron_gates)
+    # Append, never insert: saves from V0.2–V0.5 retain every old map ID.
+    target_groups["gMapGroup_Kanto"].extend(dungeon_batch["names"])
     target_groups["connections_include_order"].extend("Kanto_" + n for n in names)
     emit_json(emerald / "data/maps/map_groups.json", target_groups)
     emit_json(emerald / "data/layouts/layouts.json", target_layouts)
@@ -897,6 +1072,8 @@ Kanto_VermilionCity_Text_BattleQuestion:
     includes = "".join(f'\n\t.include "data/maps/Kanto_{n}/scripts.inc"' for n in names)
     includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"' for n in interiors)
     includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"' for n in saffron_gates)
+    includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"'
+                        for n in dungeon_batch["names"])
     inc.write_text(code.replace(anchor, anchor + includes, 1), encoding="utf-8")
     ferry = emerald / "data/maps/SlateportCity_Harbor/scripts.inc"
     s = ferry.read_text(encoding="utf-8")
@@ -921,6 +1098,8 @@ def main() -> int:
           f"and {result['graphics_tilesets_created']} graphics sets.")
     print("CAUTION: 17 original Kanto Center/Mart interiors have service scripts; actual gameplay QA pending.")
     print("Other interiors, gym/trainer scripts and local healing respawn remain pending.")
+    print("Original Viridian Forest, Mt. Moon and Diglett Cave layouts, wild encounters and doors added.")
+    print("Dungeon NPCs/items/scripts, special collision behaviors and full gameplay QA still pending.")
     print("Verify collision, palettes, map edges, ferry and save by real gameplay.")
     return 0
 
