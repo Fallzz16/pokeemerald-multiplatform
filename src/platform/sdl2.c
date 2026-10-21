@@ -34,6 +34,7 @@
 
 /* Controlled on the GBA game thread; no access to renderer from link.c. */
 extern int PortLanDedicatedSessionGate(void);
+extern int PortLanDedicatedFriendInView(void);
 
 extern void (*const gIntrTable[])(void);
 
@@ -58,6 +59,7 @@ static SpProfileLock sActiveProfileLock;
 static bool sProfileLocked = false;
 static LNetStartGate sEhl8StartGate;
 static SDL_atomic_t sEhl8WaitUiState; /* 0=offline,1=waiting,2=online,3=initial fail,4=reconnecting,5=offline after START */
+static SDL_atomic_t sEhl8FriendInView; /* game-thread camera projection; UI-thread reads */
 #ifdef __ANDROID__
 static char sAndroidSavePath[1024] = "pokeemerald.sav";
 #endif
@@ -426,7 +428,13 @@ int main(int argc, char **argv)
         /* EHL8 room wait is a real player-facing screen, not just a frozen
          * title menu. Keep rendering and network/game ticks alive. */
         if (sessionWaitForStart)
-            lnet_wait_overlay_render(sdlRenderer, SDL_AtomicGet(&sEhl8WaitUiState));
+        {
+            int waitUiState = SDL_AtomicGet(&sEhl8WaitUiState);
+            lnet_wait_overlay_render(sdlRenderer, waitUiState);
+            if (waitUiState == 2)
+                lnet_wait_overlay_friend_badge(sdlRenderer,
+                    SDL_AtomicGet(&sEhl8FriendInView));
+        }
 
         SDL_RenderPresent(sdlRenderer);
     }
@@ -775,6 +783,8 @@ u16 Platform_GetKeyInput(void)
     if (sEhl8StartGate.enabled)
     {
         int state = PortLanDedicatedSessionGate();
+        SDL_AtomicSet(&sEhl8FriendInView,
+            state == 1 && PortLanDedicatedFriendInView());
         if (!sEhl8StartGate.released)
         {
             if (lnet_start_gate_blocked(&sEhl8StartGate, state))
