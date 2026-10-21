@@ -466,6 +466,9 @@ jobs:
           printf 'Kanto V0.11: 84 maps, 9 independent respawn Centers, 42 visible item balls and original hidden FireRed items with stable save flags; human QA pending.\nQA inside actual gameplay, regional respawn, original stories/gyms, and LAN remain incomplete.\nSOURCE_COMMIT=%s\nFIRERED_SOURCE=ce6406d8c2eaf46d543c8a2606de0c3cb1951982\n' "$GITHUB_SHA" > KANTO_V11_STATUS.txt
           sha256sum pokeemerald.exe > KANTO_V11_SHA256.txt
           cp .deps/SDL2-2.30.7/i686-w64-mingw32/bin/SDL2.dll .
+      - name: Attach playtest instructions
+        run: |
+          cp docs/KANTO_V11_PLAYTEST_CHECKLIST_PTBR.md KANTO_V11_PLAYTEST_CHECKLIST_PTBR.md
       - uses: actions/upload-artifact@v4
         with:
           name: KANTO_V11_HIDDEN_ITEMS_UNTESTED_WINDOWS
@@ -476,5 +479,6 @@ jobs:
             kanto-v07-reachability.json
             KANTO_V11_STATUS.txt
             KANTO_V11_SHA256.txt
+            KANTO_V11_PLAYTEST_CHECKLIST_PTBR.md
           if-no-files-found: error
           retention-days: 30

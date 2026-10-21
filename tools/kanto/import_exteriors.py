@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Materialize original FRLG Kanto exterior geography into Emerald Hybrid.
 
-The source tree is read-only; never run on personal saves. The game output is
-a stage-1 outdoor geometry preview: exterior locations and collision exist,
-but story/NPCs, doors, wild encounters, heals and original music are pending.
-Windows build must invoke this before Makefile_pc.
+The pinned FireRed source tree is read-only and must never touch personal saves.
+The importer builds a V0.11 experimental Kanto preview with exterior regions,
+selected interiors, connected caves and towers, encounters, items, five trainers,
+and separate regional whiteout; a complete story, gyms, original music, PokeNav
+and real gameplay QA remain pending. Run it before Makefile_pc.
 """
 from __future__ import annotations
 
@@ -1484,7 +1485,8 @@ def main() -> int:
     print(f"Materialized {result['geometry_maps_created']} original exterior maps "
           f"and {result['graphics_tilesets_created']} graphics sets.")
     print("CAUTION: 17 original Kanto Center/Mart interiors have service scripts; actual gameplay QA pending.")
-    print("Other interiors, gym/trainer scripts and local healing respawn remain pending.")
+    print("More original interiors, gyms, most trainer scripts, and story events remain pending.")
+    print("Kanto regional whiteout now has an isolated saved Center index; gameplay QA pending.")
     print("Original Viridian Forest, Mt. Moon and Diglett Cave layouts, wild encounters and doors added.")
     print("Added original Underground Path, Rock Tunnel and Pokemon Tower layouts with exits.")
     print(f"Ported {result['original_item_balls']} original visible item balls with save-backed flags.")

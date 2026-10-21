@@ -1000,3 +1000,9 @@ Atenção: save e whiteout ainda NÃO foram testados dentro do jogo; o CI não s
 ## 63. Kanto V0.11 — hidden items de FireRed (2026-10-21)
 
 Base V0.10 `feature/kanto-v10-regional-respawn`, branch `feature/kanto-v11-original-hidden-items`. Adicionados `bg_events.hidden_item` dos 38 exteriores + 9 dungeons V0.6 + 15 áreas V0.7, preservando x/y/elevation, item, quantity e underfoot originais de FireRed. Flags de save `FLAG_KANTO_HIDDEN_###` são alocadas somente entre `FLAG_UNUSED_0x...` restantes depois das 42 flags de itens visíveis V0.8: sem conflito e sem expandir SaveBlock. Os 84 IDs de mapa e índices dos nove Centros da V0.10 permanecem iguais. Testes `tests/test_kanto_hidden_items.py`, validação CI `kanto-v11-hidden-items.yml`, documentação `docs/KANTO_V11_HIDDEN_ITEMS_PTBR.md`. Verificar coleta/Itemfinder com jogo rodando; QA humano, multiplayer/Android, NPCs e história ainda não aprovados.
+
+## 64. Kanto V0.11 — roteiro de QA e distinção Windows/GBA (2026-10-21)
+
+O pacote V0.11 passa a anexar `KANTO_V11_PLAYTEST_CHECKLIST_PTBR.md`, guia passo-a-passo para ferry, nove Centros/whiteout, compras, 5 treinadores Viridian Forest, 42 itens visíveis, 77 ocultos, 84 mapas e save/reload, além de regressão de Hoenn. O importador teve textos desatualizados corrigidos para refletir o estado real (V0.11, não preview apenas exterior).
+
+O **CI GBA genérico** continua falhando em `agbcc` com mensagens `_Static_assert`, `sound_mixer.h` e `battle_main.o`; pipeline específico Windows de Kanto compila e publica o preview separadamente. Não assumir equivalência nem que o CI GBA tenha sido corrigido. O motivo exato/herança da falha precisa de auditoria, e QA humano continua obrigatório antes do merge.
