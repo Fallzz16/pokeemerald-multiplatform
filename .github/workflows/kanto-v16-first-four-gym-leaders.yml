@@ -386,10 +386,10 @@ jobs:
           leaders=report["v16_gym_leaders"]
           assert report["v16_gym_leader_battles"]==len(leaders)==4
           expected=[
-            ("Brock","PewterCity","BOULDER","ITEM_TM_ROCK_TOMB"),
-            ("Misty","CeruleanCity","CASCADE","ITEM_TM_WATER_PULSE"),
-            ("LtSurge","VermilionCity","THUNDER","ITEM_TM_SHOCK_WAVE"),
-            ("Erika","CeladonCity","RAINBOW","ITEM_TM_GIGA_DRAIN")
+            ("Brock","PewterCity","BOULDER","ITEM_TM39"),
+            ("Misty","CeruleanCity","CASCADE","ITEM_TM03"),
+            ("LtSurge","VermilionCity","THUNDER","ITEM_TM34"),
+            ("Erika","CeladonCity","RAINBOW","ITEM_TM19")
           ]
           oldflags=report["visible_item_flags"]+report["hidden_item_flags"]+report["v13_new_item_flags"]
           all_values=[x["flag_value"] for x in oldflags]

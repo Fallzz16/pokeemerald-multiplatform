@@ -1381,10 +1381,10 @@ def import_viridian_forest_trainers(source: Path, emerald: Path) -> dict:
 
 
 KANTO_V16_LEADERS = (
-    ("Brock", "PewterCity", "BOULDER", "ITEM_TM_ROCK_TOMB", "ROXANNE"),
-    ("Misty", "CeruleanCity", "CASCADE", "ITEM_TM_WATER_PULSE", "WINONA"),
-    ("LtSurge", "VermilionCity", "THUNDER", "ITEM_TM_SHOCK_WAVE", "WATTSON"),
-    ("Erika", "CeladonCity", "RAINBOW", "ITEM_TM_GIGA_DRAIN", "FLANNERY"),
+    ("Brock", "PewterCity", "BOULDER", "ITEM_TM39", "ROXANNE"),
+    ("Misty", "CeruleanCity", "CASCADE", "ITEM_TM03", "WINONA"),
+    ("LtSurge", "VermilionCity", "THUNDER", "ITEM_TM34", "WATTSON"),
+    ("Erika", "CeladonCity", "RAINBOW", "ITEM_TM19", "FLANNERY"),
 )
 
 

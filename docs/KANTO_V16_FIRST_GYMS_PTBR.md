@@ -15,3 +15,5 @@ O total de mapas permanece 114 em dois grupos, mantendo todos os IDs e flags ant
 - Vencer quatro líderes não deve ser tratado como campanha de FireRed concluída.
 - QA humano obrigatório: entrar em cada ginásio, acionar luta, perder/vencer, verificar insígnia e TM após salvar/reabrir, viagem de volta a Hoenn, e comportamento de derrota em Kanto. Os testes automatizados não substituem essas verificações.
 - PR draft, sem merge até QA.
+
+**Compatibilidade de constantes de TMs:** FireRed usa nomes semânticos (`ITEM_TM_ROCK_TOMB` etc.) e Emerald usa números. Correspondências originais verificadas: Brock `ITEM_TM39` (Rock Tomb), Misty `ITEM_TM03` (Water Pulse), Lt. Surge `ITEM_TM34` (Shock Wave), Erika `ITEM_TM19` (Giga Drain). São as mesmas TMs, não itens inventados.
