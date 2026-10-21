@@ -116,6 +116,37 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
                     await process.wait()
             await server.stop()
 
+    async def test_two_native_clients_transition_maps_and_hide_reappear(self):
+        """Actual C clients switch map ID, send inactive poses, then respawn.
+
+        Uses production Python EHL8 relay, without any mock gameplay/save.
+        The C peers assert BOTH sides receive each transition in sequence.
+        """
+        server = server_module.SessionServer("123456", 2, idle_seconds=300)
+        listener = await server.start("127.0.0.1", 0)
+        port = str(listener.sockets[0].getsockname()[1])
+        peers = []
+        try:
+            for identity, x, remote_x in (
+                ("map_A", "21", "34"), ("map_B", "34", "21")
+            ):
+                peers.append(await asyncio.create_subprocess_exec(
+                    self.exe, "127.0.0.1", port, "123456", identity,
+                    x, remote_x, "mapcycle",
+                    stdout=asyncio.subprocess.PIPE,
+                    stderr=asyncio.subprocess.PIPE))
+            outputs = await asyncio.wait_for(asyncio.gather(
+                *(peer.communicate() for peer in peers)), timeout=13)
+            for peer, (stdout, stderr) in zip(peers, outputs):
+                self.assertEqual(peer.returncode, 0, stderr)
+                self.assertIn(b"native map transitions, inactive hide", stdout)
+        finally:
+            for peer in peers:
+                if peer.returncode is None:
+                    peer.kill()
+                    await peer.wait()
+            await server.stop()
+
     async def test_playing_clients_send_heartbeats_even_while_streaming_poses(self):
         # The game sends poses every 100 ms. Heartbeats must still be sent;
         # the test overrides only the heartbeat interval to 250 ms so it runs
