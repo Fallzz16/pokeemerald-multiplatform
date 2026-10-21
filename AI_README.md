@@ -1117,3 +1117,29 @@ Esse sucesso comprova as suítes automatizadas do commit testado, não gameplay 
 **Testes necessários para ACEITE:** conferir `test_ehl8_room_roster.c` em Linux e `test_ehl8_native_bridge.py` com dois clientes C REAIS; Auto QA Windows+Linux e Windows Complete Preview (jobs game/gui-tools/portable) na revisão de código final, verificando SHA/artefato e guard antigo de SDL2. Os logs do CI antigo PR #36 NÃO contam como comprovação M3.2. **QA gráfico humano em 2 PCs ainda pendente:** host/guest abrem, mostrar 1/2→2/2 prontos dentro do Emerald, START liberta; sprites próximos, movimento, transição, reconnect e saves QA isolados. Não chamar beta multiplayer completa. Batalhas/trocas EHL8 e ARM64 não foram implementados.
 
 **Rollback seguro:** ZIP já aprovado do PR #36 SHA `133322b84df0bfe24d728c9a23f0fac0f82ef07c`, extrair em pasta nova sem substituir save. EHL8 continua restrito LAN/VPN privada; PIN curto não equivale a criptografia WAN. Manter PR DRAFT e não mesclar até QA real.
+
+
+## 62. M3.3 — F9 PRONTO/CANCELAR no jogo real, não no QA Lab (2026-10-21)
+
+**Pedido e prioridades:** usuário delegou 100% das decisões para avançar o multiplayer do Emerald atual. NÃO criar conteúdo novo de história, Pokémon, mapas, missões ou mecânicas não-online. Jogo e launcher real devem ser simples. QA Lab/QA_A/QA_B permanece SOMENTE testes. Preservar saves originais, offline, Cable Club P2P e decisões históricas.
+
+**Base verificada:** M3.2 branch `feature/emerald-m32-room-presence-20261021`, PR #45, SHA `b7c7c6d5556950b08ff1f6df1f5cdbce1bbfe3e7`, Auto QA Windows/Linux sucesso run 39548534386, Windows Complete Preview completo run 39548534337 sucesso com game/gui-tools/portable. Nova branch `feature/emerald-m33-player-ready-20261021`; PR próprio DRAFT como filho do PR #45. Não mexer nos PRs #19–#45 nem main; sem merge automático. Rollback ZIP da SHA M3.2 acima, SEM tocar em saves de usuário.
+
+**Causa e implementação:** O cliente nativo EHL8 enviava `READY=1` automaticamente na resposta a JOIN, inclusive no launcher real, portanto jogador não conseguia CANCELAR nem informar que estava preparado. O servidor JÁ suportava READY=0 e READY=1 e host START já respeitava os dois prontos. **Nenhum protocolo novo é necessário**.
+
+- `src/lnet/lnet_session_client.c/.h`: opt-in `lnet_session_client_set_manual_ready(c,1)` antes da primeira conexão; estado inicial **READY=0**, `lnet_session_client_toggle_ready(c)` somente em `EHL_CLIENT_WAIT_START`, fila não bloqueante da mudança antes de HEARTBEAT; padrão anterior segue READY=1 para compatibilidade com QA/legado. **RESUME** com sala em GAME envia READY=1 mesmo que a sessão tenha começado manual, pois servidor rejeita READY=0 em GAME; nunca corromper reconexão.
+- `src/link.c`: funções para configurar READY manual e alternar na game thread, sem leitura do save, sem P2P.
+- `src/platform/sdl2.c`: `--session-manual-ready` válido SOMENTE com `--session-wait-for-start`; F9 recebe keydown sem repetição na thread SDL, envia contagem de eventos por `SDL_AtomicAdd` à game thread, que chama toggle nativo, atualiza próprio status do painel. Entrada GBA original permanece bloqueada até START e não é tocada pelo F9 fora do modo dedicado.
+- `src/lnet/lnet_wait_overlay.h`: banner opcional `F9 FICAR PRONTO` / `F9 CANCELAR` na borda inferior dentro do viewport 240x160.
+- `tools/emerald_launcher.py`: modo dedicated do jogador passa flag manual, rótulos e janela COMO CONVIDAR esclarecem que CADA jogador aperta F9; `tools/emerald_qa_lab.py` intocado e continua auto READY (evita regressão do QA já aprovado pelo usuário).
+- `scripts/verify_v080_profile_patch.py`: reversão **exata e byte-idêntica** dos 10 deltas SDL2 até código M3.2, preservando SHA do SDL2 histórico (NÃO burlar verificador).
+- `tests/native_ehl8_client.c`: modos `manualready`, `manualcancel`, interagem com estado C real, não são fakes.
+- `tests/test_ehl8_native_bridge.py`: servidor Python real com host START manual, dois processos cliente C autênticos: ambos JOIN com READY0, F9-style READY1, START só após ambos; outro cenário faz READY1→READY0→READY1 e exige que START seja recusado durante CANCELAR.
+- `tests/test_emerald_launcher.py`, `tests/test_ehl8_wait_overlay.c`: opt-in só dedicated player, check que desenho fica dentro viewport.
+- Workflows Auto QA + Windows Complete Preview observam `feature/emerald-m33-*`; `docs/V100_M33_PLAYER_READY_CANCEL_20261021_PTBR.md` traz roteiro de teste humano e limitações.
+
+**NOVOS arquivos:** `docs/V100_M33_PLAYER_READY_CANCEL_20261021_PTBR.md`. **Removidos:** nenhum. **Não alterados:** `.sav`, `src/profile/save_profiles.c`, EHL8 servidor Python e tipos do protocolo binário, Lab/QA_A/QA_B, mapas, eventos, Cable Club, Android.
+
+**CI/checkpoints**: verificar SHA de código final da branch e execuções **posteriores** à última alteração: Auto QA Linux (testes C reais manual ready/cancel), Windows Auto QA, Windows Complete Preview (`game/gui-tools/portable` + ZIP e auditoria). Se algum CI falhar, corrigir sem esconder. Não afirmar teste físico em duas janelas nem beta completa. QA humano necessário: launcher host/guest, F9 0/2→1/2→2/2, F9 CANCELAR desabilita START e repetir F9 ativa, START liberta gameplay e painel some; offline/P2P/QA continuam iguais; sprites, transição, reconexão e saves QA separados ainda exigem evidência.
+
+**Segurança:** PIN curto EHL8 só rede LAN/VPN privada, nunca encaminhar porta pública. PvP/trocas EHL8, Android ARM64/crossplay e checksums setoriais ainda não implementados. Foco exclusivo integração online.
