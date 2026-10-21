@@ -35,6 +35,8 @@
 /* Controlled on the GBA game thread; no access to renderer from link.c. */
 extern int PortLanDedicatedSessionGate(void);
 extern int PortLanDedicatedRoomSnapshot(void);
+extern int PortLanDedicatedSetManualReady(void);
+extern int PortLanDedicatedToggleReady(void);
 
 extern void (*const gIntrTable[])(void);
 
@@ -60,6 +62,10 @@ static bool sProfileLocked = false;
 static LNetStartGate sEhl8StartGate;
 static SDL_atomic_t sEhl8WaitUiState; /* 0=offline,1=waiting,2=online,3=initial fail,4=reconnecting,5=offline after START */
 static SDL_atomic_t sEhl8RoomSnapshot; /* -1 until validated PLAYER_LIST */
+static bool sEhl8ManualReady; /* configured before starting game thread */
+static SDL_atomic_t sEhl8ReadyToggles; /* F9 events from SDL thread */
+static SDL_atomic_t sEhl8OwnReady; /* 0/1, shown only before START */
+static int sEhl8ProcessedReadyToggles; /* game thread only */
 #ifdef __ANDROID__
 static char sAndroidSavePath[1024] = "pokeemerald.sav";
 #endif
@@ -87,6 +93,7 @@ int main(int argc, char **argv)
     const char *sessionPin = NULL;
     bool sessionPinFromStdin = false;
     bool sessionWaitForStart = false;
+    bool sessionManualReady = false;
     char sessionPinBuffer[16] = {0};
     bool legacyLinkRequested = false;
     // Optional headless LAN configuration on desktop. The in-game Cable Club
@@ -113,6 +120,8 @@ int main(int argc, char **argv)
             sessionPinFromStdin = true;
         else if (strcmp(argv[i], "--session-wait-for-start") == 0)
             sessionWaitForStart = true;
+        else if (strcmp(argv[i], "--session-manual-ready") == 0)
+            sessionManualReady = true;
         else if (strncmp(argv[i], "--lan-host=", 11) == 0)
         {
             legacyLinkRequested = true;
@@ -172,6 +181,13 @@ int main(int argc, char **argv)
     /* An EHL8 session is NOT the legacy raw-SIO LAN connection.
      * Both a selected profile and a six-digit PIN are mandatory.
      * Reject mixed modes; never quietly fall back to another save/trainer. */
+    if (sessionManualReady && !sessionWaitForStart)
+    {
+        fprintf(stderr, "Manual READY requires EHL8 wait-for-start.\n");
+        if (sProfileLocked)
+            sp_unlock(&sActiveProfileLock);
+        return 2;
+    }
     if (sessionWaitForStart && !sessionEndpoint)
     {
         fprintf(stderr, "START wait requires an EHL8 session endpoint.\n");
@@ -214,6 +230,8 @@ int main(int argc, char **argv)
             memcpy(host, sessionEndpoint, colon - sessionEndpoint);
             host[colon - sessionEndpoint] = '\0';
             valid = PortLanRequestDedicatedClient(host, (u16)port, sessionPin, profileId);
+            if (valid && sessionManualReady)
+                valid = PortLanDedicatedSetManualReady() != 0;
         }
         memset(sessionPinBuffer, 0, sizeof(sessionPinBuffer));
         if (!valid)
@@ -243,6 +261,10 @@ int main(int argc, char **argv)
     sEhl8StartGate.released = 0;
     SDL_AtomicSet(&sEhl8WaitUiState, sessionWaitForStart ? 1 : 0);
     SDL_AtomicSet(&sEhl8RoomSnapshot, -1);
+    sEhl8ManualReady = sessionManualReady;
+    SDL_AtomicSet(&sEhl8ReadyToggles, 0);
+    SDL_AtomicSet(&sEhl8OwnReady, sessionManualReady ? 0 : 1);
+    sEhl8ProcessedReadyToggles = 0;
 
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
     {
@@ -433,7 +455,11 @@ int main(int argc, char **argv)
             int uiState = SDL_AtomicGet(&sEhl8WaitUiState);
             lnet_wait_overlay_render(sdlRenderer, uiState);
             if (uiState == 1)
+            {
                 lnet_wait_overlay_room(sdlRenderer, SDL_AtomicGet(&sEhl8RoomSnapshot));
+                if (sEhl8ManualReady)
+                    lnet_wait_overlay_ready_hint(sdlRenderer, SDL_AtomicGet(&sEhl8OwnReady));
+            }
         }
 
         SDL_RenderPresent(sdlRenderer);
@@ -654,6 +680,11 @@ void ProcessEvents(void)
                 if (!event.key.repeat)
                     CycleFastForwardMultiplier();
                 break;
+            case SDLK_F9:
+                if (!event.key.repeat && sEhl8ManualReady &&
+                    SDL_AtomicGet(&sEhl8WaitUiState) == 1)
+                    SDL_AtomicAdd(&sEhl8ReadyToggles, 1);
+                break;
             }
             break;
         }
@@ -784,6 +815,17 @@ u16 Platform_GetKeyInput(void)
     {
         int state = PortLanDedicatedSessionGate();
         SDL_AtomicSet(&sEhl8RoomSnapshot, PortLanDedicatedRoomSnapshot());
+        if (sEhl8ManualReady && !sEhl8StartGate.released)
+        {
+            int count = SDL_AtomicGet(&sEhl8ReadyToggles);
+            while (sEhl8ProcessedReadyToggles != count)
+            {
+                int ready = PortLanDedicatedToggleReady();
+                if (ready >= 0)
+                    SDL_AtomicSet(&sEhl8OwnReady, ready);
+                sEhl8ProcessedReadyToggles++;
+            }
+        }
         if (!sEhl8StartGate.released)
         {
             if (lnet_start_gate_blocked(&sEhl8StartGate, state))
