@@ -29,6 +29,7 @@ int main(int argc, char **argv)
     int lingerCount = (argc == 8 && strcmp(argv[7], "lingerlong") == 0)
         ? 650 : 180;
     int witnessed = 0;
+    int sawCancelledAck = 0, sawRestoredAck = 0;
     struct timespec pauseTime = { 0, 10000000L };
     if (argc != 7 && !linger && !reconnect && !awaitStart &&
         !mapcycle && !readySwitch)
@@ -76,6 +77,20 @@ int main(int argc, char **argv)
         }
         lnet_session_client_poll(client, &local);
         state = lnet_session_client_state(client);
+        if (readySwitch)
+        {
+            int players, roomReady, myReady;
+            if (lnet_session_client_room_status(client,
+                                                &players, &roomReady, &myReady)
+                && players == 2)
+            {
+                if (revoked && roomReady == 0 && !myReady)
+                    sawCancelledAck = 1;
+                if (rearmed && sawCancelledAck &&
+                    roomReady == 2 && myReady)
+                    sawRestoredAck = 1;
+            }
+        }
         if (mapcycle && state == EHL_CLIENT_PLAYING && firstPlayingFrame < 0)
             firstPlayingFrame = i;
         if (state == EHL_CLIENT_WAIT_START)
@@ -129,7 +144,8 @@ int main(int argc, char **argv)
             remote.active)
         {
             witnessed = 1;
-            if (readySwitch && revoked && rearmed && sawWaitStart)
+            if (readySwitch && revoked && rearmed &&
+                sawCancelledAck && sawRestoredAck && sawWaitStart)
             {
                 puts("EHL8 native READY cancelled and restored before host START");
                 lnet_session_client_close(client);
