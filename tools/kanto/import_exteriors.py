@@ -779,6 +779,20 @@ KANTO_V12_DUNGEONS = (
 )
 
 
+# Authentic gym shells and their source-native warps. Trainers, badges and
+# location-specific puzzle logic are intentionally NOT enabled yet.
+KANTO_V13_GYMS = (
+    "ViridianCity_Gym",
+    "PewterCity_Gym",
+    "CeruleanCity_Gym",
+    "VermilionCity_Gym",
+    "CeladonCity_Gym",
+    "FuchsiaCity_Gym",
+    "SaffronCity_Gym",
+    "CinnabarIsland_Gym",
+)
+
+
 def add_kanto_v06_dungeons(source: Path, emerald: Path, source_maps: dict,
                           layouts: dict, target_layouts: dict,
                           selected: tuple[str, ...] = KANTO_V06_DUNGEONS) -> dict:
@@ -1273,7 +1287,7 @@ def copy_exteriors(source: Path, emerald: Path) -> dict:
     # secondary graphics sets. Reuse an existing converted set if shared.
     dungeon_secondaries = {
         layouts[load_json(source, f"data/maps/{n}/map.json")["layout"]]["secondary_tileset"]
-        for n in KANTO_V06_DUNGEONS + KANTO_V07_DUNGEONS + KANTO_V12_DUNGEONS
+        for n in KANTO_V06_DUNGEONS + KANTO_V07_DUNGEONS + KANTO_V12_DUNGEONS + KANTO_V13_GYMS
     }
     already_converted = set(secondaries) | {
         "gTileset_PokemonCenter", "gTileset_Mart", "gTileset_GenericBuilding2"
@@ -1433,6 +1447,14 @@ Kanto_VermilionCity_Text_BattleQuestion:
     report["v12_major_dungeon_maps"] = major_batch["names"]
     report["v12_major_dungeon_warps"] = major_batch["internal_warps"]
     report["v12_major_dungeon_exterior_warps"] = major_batch["exterior_warps"]
+    gym_batch = add_kanto_v06_dungeons(
+        source, emerald, source_maps, layouts, target_layouts,
+        selected=KANTO_V13_GYMS)
+    report["v13_gym_maps"] = gym_batch["names"]
+    report["v13_gym_warps"] = gym_batch["internal_warps"]
+    report["v13_gym_exterior_warps"] = gym_batch["exterior_warps"]
+    report["gym_leaders_ported"] = 0
+    report["gym_badges_ported"] = 0
     report["dungeon_maps"] = dungeon_batch["names"]
     report["dungeon_warps"] = dungeon_batch["internal_warps"]
     report["dungeon_exterior_warps"] = dungeon_batch["exterior_warps"]
@@ -1454,6 +1476,8 @@ Kanto_VermilionCity_Text_BattleQuestion:
     target_groups["gMapGroup_Kanto"].extend(dungeon_batch["names"])
     target_groups["gMapGroup_Kanto"].extend(extra_batch["names"])
     target_groups["gMapGroup_Kanto"].extend(major_batch["names"])
+    # Append these AFTER all 99 V0.12 entries to keep save-map IDs stable.
+    target_groups["gMapGroup_Kanto"].extend(gym_batch["names"])
     # Preserve the already-shipped 42 visible + 77 hidden item flags.
     # V0.12 must NOT mix newly ported maps into prior pickup allocation.
     # Future item additions need a new stable allocation lane AFTER all 119.
@@ -1487,6 +1511,8 @@ Kanto_VermilionCity_Text_BattleQuestion:
                         for n in extra_batch["names"])
     includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"'
                         for n in major_batch["names"])
+    includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"'
+                        for n in gym_batch["names"])
     inc.write_text(code.replace(anchor, anchor + includes, 1), encoding="utf-8")
     ferry = emerald / "data/maps/SlateportCity_Harbor/scripts.inc"
     s = ferry.read_text(encoding="utf-8")
@@ -1519,6 +1545,7 @@ def main() -> int:
     print(f"Ported {result['original_hidden_items']} original hidden FireRed items with distinct save flags.")
     print(f"Ported {result['trainer_battles_ported']} original Viridian Forest trainers.")
     print("Dungeon NPCs/items/scripts, special collision behaviors and full gameplay QA still pending.")
+    print("Added eight original Kanto Gym shells/doors (no leader battles or badges yet).")
     print("Verify collision, palettes, map edges, ferry and save by real gameplay.")
     return 0
 
