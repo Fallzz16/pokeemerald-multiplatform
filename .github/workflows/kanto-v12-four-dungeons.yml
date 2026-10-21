@@ -374,6 +374,13 @@ jobs:
           assert report["v12_original_dungeon_maps"]==["Kanto_"+x for x in new_v12]
           assert report["v12_dungeon_warps"]>=70
           assert report["v12_outdoor_warps"]>=4
+          converted_map_by_id={
+            data["id"]:data for data in (
+              json.loads((Path("data/maps")/name/"map.json").read_text())
+              for name in registered
+            )
+          }
+          assert len(converted_map_by_id)==99
           source_lays={x["id"]:x for x in json.loads(
             Path("firered-source/data/layouts/layouts.json").read_text()
           )["layouts"] if x.get("id")}
@@ -392,10 +399,7 @@ jobs:
               assert (Path("firered-source")/source[key]).read_bytes()==Path(target[key]).read_bytes(),(name,key)
             for warp in imported["warp_events"]:
               assert warp["dest_map"].startswith("MAP_KANTO_"),(name,warp)
-              linked=json.loads((Path("data/maps")/(
-                  "Kanto_"+next(k for k in registered
-                     if json.loads((Path("data/maps")/k/"map.json").read_text())["id"]==warp["dest_map"])
-                        .removeprefix("Kanto_"))/"map.json").read_text())
+              linked=converted_map_by_id[warp["dest_map"]]
               assert int(warp["dest_warp_id"]) < len(linked["warp_events"]),(name,warp)
               assert linked["warp_events"][int(warp["dest_warp_id"])]["dest_map"]==imported["id"],(name,warp)
           original_source_ids={
