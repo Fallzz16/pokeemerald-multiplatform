@@ -50,6 +50,7 @@ struct LNetSessionClient
     uint8_t haveRemoteSeq, haveRemote;
     uint8_t roomPlayers, roomReady, haveRoomList;
     uint8_t selfSlot, desiredReady, pendingReady;
+    uint8_t localReady, haveLocalReady;
     uint8_t haveResumeToken, resumeInFlight;
     unsigned char resumeToken[EHL_RESUME_TOKEN_SIZE];
     unsigned long reconnectSince, retryAt;
@@ -91,6 +92,7 @@ static void close_failed(LNetSessionClient *c)
     c->haveRoomList = 0;
     c->roomPlayers = c->roomReady = 0;
     c->selfSlot = c->desiredReady = c->pendingReady = 0;
+    c->localReady = c->haveLocalReady = 0;
     c->txLength = c->txOffset = 0;
     ehl_session_decoder_init(&c->decoder);
     if (mayRetry)
@@ -200,6 +202,7 @@ static int decode_room_list(LNetSessionClient *c, const EhlSessionFrame *frame)
     const unsigned char *p = frame->payload;
     size_t end = frame->payload_size, pos = 1;
     unsigned int count, ready = 0, seen = 0, i;
+    unsigned int myReady = 0, foundSelf = 0;
     if (end < 1 || p[0] > 2)
         return -1;
     count = p[0];
@@ -216,6 +219,11 @@ static int decode_room_list(LNetSessionClient *c, const EhlSessionFrame *frame)
             pos + nameLen > end)
             return -1;
         seen |= 1u << slot;
+        if (slot == c->selfSlot)
+        {
+            myReady = flag;
+            foundSelf = 1;
+        }
         pos += nameLen;
         ready += flag;
     }
@@ -223,6 +231,8 @@ static int decode_room_list(LNetSessionClient *c, const EhlSessionFrame *frame)
         return -1;
     c->roomPlayers = (uint8_t)count;
     c->roomReady = (uint8_t)ready;
+    c->localReady = (uint8_t)myReady;
+    c->haveLocalReady = (uint8_t)foundSelf;
     c->haveRoomList = 1;
     return 0;
 }
@@ -537,6 +547,14 @@ int lnet_session_client_get_remote(const LNetSessionClient *c, LNetPose *out)
         return 0;
     if (out)
         *out = c->remote;
+    return 1;
+}
+
+int lnet_session_client_local_ready(const LNetSessionClient *c, int *ready)
+{
+    if (!c || !ready || !c->haveRoomList || !c->haveLocalReady)
+        return 0;
+    *ready = c->localReady;
     return 1;
 }
 
