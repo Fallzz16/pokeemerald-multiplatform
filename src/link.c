@@ -2138,6 +2138,15 @@ int PortLanDedicatedSessionGate(void)
     return 0;
 }
 
+/* Safe, read-only room count for the player-facing SDL wait overlay.
+ * Never expose profile names, tokens, PINs or save data to the renderer. */
+int PortLanDedicatedLobbyCounts(int *players, int *ready)
+{
+    if (!sLanDedicatedSession)
+        return 0;
+    return lnet_session_client_lobby_counts(sLanDedicatedSession, players, ready);
+}
+
 /* Dedicated EHL8 presence only: NEVER feed this protocol to the Cable Club
  * serial transport. Reuse existing sprite/camera, no save or quest changes. */
 bool32 PortLanRequestDedicatedClient(const char *host, u16 port,
