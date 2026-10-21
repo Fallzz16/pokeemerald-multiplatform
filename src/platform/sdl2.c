@@ -34,6 +34,7 @@
 
 /* Controlled on the GBA game thread; no access to renderer from link.c. */
 extern int PortLanDedicatedSessionGate(void);
+extern void PortLanDedicatedRequestReady(int ready);
 extern int PortLanDedicatedFriendInView(void);
 
 extern void (*const gIntrTable[])(void);
@@ -60,6 +61,7 @@ static bool sProfileLocked = false;
 static LNetStartGate sEhl8StartGate;
 static SDL_atomic_t sEhl8WaitUiState; /* 0=offline,1=waiting,2=online,3=initial fail,4=reconnecting,5=offline after START */
 static SDL_atomic_t sEhl8FriendInView; /* game-thread camera projection; UI-thread reads */
+static SDL_atomic_t sEhl8ReadyRequested; /* renderer F7 toggles; game thread sends READY */
 #ifdef __ANDROID__
 static char sAndroidSavePath[1024] = "pokeemerald.sav";
 #endif
@@ -242,6 +244,7 @@ int main(int argc, char **argv)
     sEhl8StartGate.enabled = sessionWaitForStart;
     sEhl8StartGate.released = 0;
     SDL_AtomicSet(&sEhl8WaitUiState, sessionWaitForStart ? 1 : 0);
+    SDL_AtomicSet(&sEhl8ReadyRequested, 1); /* original auto-READY remains default */
 
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
     {
@@ -431,6 +434,9 @@ int main(int argc, char **argv)
         {
             int waitUiState = SDL_AtomicGet(&sEhl8WaitUiState);
             lnet_wait_overlay_render(sdlRenderer, waitUiState);
+            if (waitUiState == 1)
+                lnet_wait_overlay_ready_status(sdlRenderer,
+                    SDL_AtomicGet(&sEhl8ReadyRequested));
             if (waitUiState == 2)
                 lnet_wait_overlay_friend_badge(sdlRenderer,
                     SDL_AtomicGet(&sEhl8FriendInView));
@@ -654,6 +660,17 @@ void ProcessEvents(void)
                 if (!event.key.repeat)
                     CycleFastForwardMultiplier();
                 break;
+            case SDLK_F7:
+                /* F6 remains the original turbo shortcut. READY control is
+                 * F7 only during the EHL8 wait; never send from SDL thread. */
+                if (!event.key.repeat && sEhl8StartGate.enabled &&
+                    !sEhl8StartGate.released &&
+                    SDL_AtomicGet(&sEhl8WaitUiState) == 1)
+                {
+                    SDL_AtomicSet(&sEhl8ReadyRequested,
+                        !SDL_AtomicGet(&sEhl8ReadyRequested));
+                }
+                break;
             }
             break;
         }
@@ -787,6 +804,7 @@ u16 Platform_GetKeyInput(void)
             state == 1 && PortLanDedicatedFriendInView());
         if (!sEhl8StartGate.released)
         {
+            PortLanDedicatedRequestReady(SDL_AtomicGet(&sEhl8ReadyRequested));
             if (lnet_start_gate_blocked(&sEhl8StartGate, state))
             {
                 SDL_AtomicSet(&sEhl8WaitUiState, state < 0 ? 3 : 1);
