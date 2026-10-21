@@ -1,0 +1,587 @@
+name: Kanto V0.14 Original Eight Kanto Gyms
+on:
+  push:
+    branches:
+      - feature/kanto-v14-eight-gyms
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  authentic-exterior:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check original ferry and importer syntax
+        run: |
+          python -m compileall -q tools/kanto
+          python -m unittest discover -s tests -p test_kanto_preflight.py -v
+          python -m unittest discover -s tests -p test_kanto_gateway.py -v
+          python -m unittest discover -s tests -p test_kanto_mart_inventory.py -v
+          python -m unittest discover -s tests -p test_kanto_reachability.py -v
+          python -m unittest discover -s tests -p test_kanto_original_items.py -v
+          python -m unittest discover -s tests -p test_kanto_hidden_items.py -v
+      - uses: actions/checkout@v4
+        with:
+          repository: pret/pokefirered
+          ref: ce6406d8c2eaf46d543c8a2606de0c3cb1951982
+          path: firered-source
+          sparse-checkout: |
+            data
+            src/data
+            include/constants
+          sparse-checkout-cone-mode: true
+      - name: Install compiler and binary tile encoder
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc-mingw-w64-i686 binutils-mingw-w64-i686 libpng-dev zlib1g-dev curl ca-certificates file
+          python -m pip install Pillow
+      - name: Materialize original 38 surface maps and source graphics
+        run: |
+          set -euxo pipefail
+          python tools/kanto/import_exteriors.py --firered firered-source --emerald . --report kanto-exteriors-import.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path('kanto-exteriors-import.json').read_text())
+          assert report['geometry_maps_created'] == 38, report
+          assert Path('data/layouts/Kanto_VermilionCity/map.bin').stat().st_size == 3840
+          assert Path('data/maps/Kanto_Route6/map.json').is_file()
+          assert Path('data/maps/Kanto_Route11/map.json').is_file()
+          assert report['wild_encounter_maps_ported'] >= 20, report
+          assert report['wild_encounters_ported'] is True
+          em_encounters = json.loads(Path('src/data/wild_encounters.json').read_text())
+          all_maps = {q['map']: q
+                      for group in em_encounters['wild_encounter_groups']
+                      for q in group['encounters'] if 'map' in q}
+          assert 'MAP_KANTO_ROUTE1' in all_maps
+          assert all_maps['MAP_KANTO_ROUTE1']['land_mons']['mons']
+          assert report['original_npcs_ported'] == 5
+          assert report['interior_warps_ported'] == 17
+          assert report['original_interiors_ported'] == 17
+          assert len(report['interior_maps']) == len(set(report['interior_maps'])) == 17
+          assert "Kanto_VermilionCity_PokemonCenter_1F" in report['interior_maps']
+          assert "Kanto_SaffronCity_Mart" in report['interior_maps']
+          assert "Kanto_CeladonCity_PokemonCenter_1F" in report['interior_maps']
+          assert report['qa_npcs_added_in_vermilion'] == 3
+          assert report['qa_party_heal'] and report['qa_scripted_pidgey_battle']
+          from struct import unpack_from
+          original=Path("data/layouts/Kanto_VermilionCity/map.bin").read_bytes()
+          m=json.loads(Path("data/maps/Kanto_VermilionCity/map.json").read_text())
+          entry={obj["script"]:obj for obj in m["object_events"]}
+          for script,position in [
+            ("Kanto_VermilionCity_EventScript_ReturnFerry", report["landing"]["sailor"]),
+            ("Kanto_VermilionCity_EventScript_TestHeal", report["landing"]["healer"]),
+            ("Kanto_VermilionCity_EventScript_TestWildBattle", report["landing"]["encounter"]),
+          ]:
+            x,y,elevation=position
+            assert (entry[script]["x"],entry[script]["y"],entry[script]["elevation"]) == (x,y,elevation)
+            raw=unpack_from("<H",original,2*(y*48+x))[0]
+            assert (raw&0x0C00)==0, (script,x,y,"solid tile")
+            assert raw >> 12 == elevation, (script,x,y,"wrong elevation")
+          ax,ay,ae=report["landing"]["arrival"]
+          assert (unpack_from("<H",original,2*(ay*48+ax))[0]&0x0C00)==0
+          ferry=Path("data/maps/SlateportCity_Harbor/scripts.inc").read_text()
+          assert f"warp MAP_KANTO_VERMILIONCITY, {ax}, {ay}" in ferry
+          assert len(json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"])==107
+          assert len(report["v07_underground_and_tower_maps"])==15
+          assert report["v07_warps"]>=30
+          assert report["v07_exterior_warps"]>=6
+          assert len(report["dungeon_maps"])==9
+          assert report["dungeon_warps"]>=30
+          assert report["dungeon_exterior_warps"]>=8
+          assert report["wild_encounter_maps_ported"]>=25
+          assert report["saffron_gatehouses_ported"]==4
+          gates=("Route5_SouthEntrance","Route6_NorthEntrance",
+                 "Route7_EastEntrance","Route8_WestEntrance")
+          assert report["saffron_gatehouses"]==["Kanto_"+g for g in gates]
+          layouts=json.loads(Path("data/layouts/layouts.json").read_text())["layouts"]
+          bylayout={x["id"]:x for x in layouts if "id" in x}
+          assert (bylayout["LAYOUT_KANTO_SAFFRON_GATE_NS"]["width"],
+                  bylayout["LAYOUT_KANTO_SAFFRON_GATE_NS"]["height"])==(9,11)
+          assert (bylayout["LAYOUT_KANTO_SAFFRON_GATE_EW"]["width"],
+                  bylayout["LAYOUT_KANTO_SAFFRON_GATE_EW"]["height"])==(13,9)
+          frmaps=json.loads(Path("firered-source/data/maps/map_groups.json").read_text())
+          # All 56 already-existing maps retain their IDs, including 15 V0.3 services.
+          existing=json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"]
+          assert existing[56:60]==["Kanto_"+g for g in gates]
+          for gate in gates:
+            name="Kanto_"+gate
+            m=json.loads((Path("data/maps")/name/"map.json").read_text())
+            original=json.loads((Path("firered-source/data/maps")/gate/"map.json").read_text())
+            assert len(m["warp_events"])==len(original["warp_events"])
+            for i,w in enumerate(m["warp_events"]):
+              assert (w["x"],w["y"],w["elevation"]) == (
+                original["warp_events"][i]["x"],
+                original["warp_events"][i]["y"],original["warp_events"][i]["elevation"])
+              dstoriginal=original["warp_events"][i]["dest_map"].removeprefix("MAP_")
+              candidates=list((Path("data/maps")).glob("Kanto_*/map.json"))
+              targets=[json.loads(p.read_text()) for p in candidates]
+              matches=[a for a in targets if a["id"]==w["dest_map"]]
+              assert len(matches)==1,("unresolved gate exit",gate,w)
+              targetwarp=matches[0]["warp_events"][int(w["dest_warp_id"])]
+              assert targetwarp["dest_map"]==m["id"],(gate,w,targetwarp)
+          # Restore the Vermilion map after iterating the gatehouse records.
+          m=json.loads(Path("data/maps/Kanto_VermilionCity/map.json").read_text())
+          # Check that none of the already-generated first 60 IDs can shift.
+          expected_new=(
+            "ViridianForest","Route2_ViridianForest_NorthEntrance",
+            "Route2_ViridianForest_SouthEntrance","DiglettsCave_NorthEntrance",
+            "DiglettsCave_B1F","DiglettsCave_SouthEntrance",
+            "MtMoon_1F","MtMoon_B1F","MtMoon_B2F"
+          )
+          groups=json.loads(Path("data/maps/map_groups.json").read_text())
+          assert groups["gMapGroup_Kanto"][60:69] == ["Kanto_"+x for x in expected_new]
+          all_generated={}
+          for name in groups["gMapGroup_Kanto"]:
+            f=Path("data/maps")/name/"map.json"
+            data=json.loads(f.read_text())
+            assert data["id"] not in all_generated,(name,"duplicate ID")
+            all_generated[data["id"]]=data
+          assert len(all_generated)==107
+          dungeon_secondary={"gTileset_KantoViridianForest","gTileset_KantoDiglettsCave",
+                             "gTileset_KantoCave","gTileset_KantoGenericBuilding2"}
+          for name in expected_new:
+            original=json.loads((Path("firered-source/data/maps")/name/"map.json").read_text())
+            target=all_generated["MAP_KANTO_"+name.upper()]
+            assert len(target["warp_events"])==len(original["warp_events"])
+            lay_source=next(x for x in json.loads(
+                Path("firered-source/data/layouts/layouts.json").read_text()
+            )["layouts"] if x.get("id")==original["layout"])
+            lay_target=next(x for x in json.loads(
+                Path("data/layouts/layouts.json").read_text()
+            )["layouts"] if x.get("id")==target["layout"])
+            assert (lay_source["width"],lay_source["height"]) == (
+                lay_target["width"],lay_target["height"]),(name,"dimension mismatch")
+            assert lay_target["secondary_tileset"] in dungeon_secondary
+            import hashlib
+            for key in ("blockdata_filepath","border_filepath"):
+              a=Path("firered-source")/lay_source[key]
+              b=Path(lay_target[key])
+              assert hashlib.sha256(a.read_bytes()).digest()==hashlib.sha256(b.read_bytes()).digest(),(name,key)
+            for warp in target["warp_events"]:
+              target_map=all_generated.get(warp["dest_map"])
+              assert target_map is not None,(name,warp["dest_map"])
+              index=int(warp["dest_warp_id"])
+              assert 0<=index<len(target_map["warp_events"]),(name,index)
+              back=target_map["warp_events"][index]
+              assert back["dest_map"]==target["id"],(name,"one-way broken",warp,back)
+          # External door positions and original outside IDs are immutable.
+          original_dungeon_ids = {
+            json.loads((Path("firered-source/data/maps")/n/"map.json").read_text())["id"]
+            for n in expected_new
+          }
+          for exterior in ("Route2","Route4","Route11"):
+            source_map=json.loads((Path("firered-source/data/maps")/exterior/"map.json").read_text())
+            converted=all_generated["MAP_KANTO_"+exterior.upper()]
+            matches=[w for w in converted["warp_events"]
+                     if w["dest_map"] in {"MAP_KANTO_"+n.upper() for n in expected_new}]
+            expected=[w for w in source_map["warp_events"]
+                      if w["dest_map"] in original_dungeon_ids]
+            assert len(matches)==len(expected),(exterior,len(matches),len(expected))
+            assert [(w["x"],w["y"],w["elevation"]) for w in matches] == [
+                    (w["x"],w["y"],w["elevation"]) for w in expected]
+          wild=json.loads(Path("src/data/wild_encounters.json").read_text())
+          for dungeon in ("VIRIDIANFOREST","DIGLETTSCAVE_B1F","MTMOON_1F"):
+            entries=[w for g in wild["wild_encounter_groups"]
+                     for w in g.get("encounters",[]) if w.get("map")=="MAP_KANTO_"+dungeon]
+            assert len(entries)==1,(dungeon,len(entries))
+            assert entries[0].get("land_mons"),dungeon
+          # V0.13 adds 33 original visible and 8 hidden dungeon pickups.
+          assert (report["v13_visible_items"],report["v13_hidden_items"])==(33,8)
+          added=report["v13_new_item_flags"]
+          assert len(added)==41
+          assert [x["flag"] for x in added[:33]] == [
+             "FLAG_KANTO_V13_BALL_"+f"{i:03d}" for i in range(33)]
+          assert [x["flag"] for x in added[33:]] == [
+             "FLAG_KANTO_V13_HIDDEN_"+f"{i:03d}" for i in range(8)]
+          legacy=report["visible_item_flags"]+report["hidden_item_flags"]
+          assert len(legacy)==119
+          combined=legacy+added
+          assert len(combined)==len({x["flag_value"] for x in combined})==160
+          available=sorted(int(x,16) for x in __import__("re").findall(
+             r"(?m)^#define FLAG_UNUSED_0x([0-9A-Fa-f]{3})\s+",
+             Path("include/constants/flags.h").read_text()
+          ) if 0x264<=int(x,16)<0x500)
+          assert [r["flag_value"] for r in combined]==available[:160]
+          for row in added:
+            m=json.loads((Path("data/maps")/row["map"]/"map.json").read_text())
+            if row["category"]=="visible":
+              objs=[x for x in m["object_events"] if x["flag"]==row["flag"]]
+              assert len(objs)==1,row
+              script=(Path("data/maps")/row["map"]/"scripts.inc").read_text()
+              assert row["generated_script"]+"::" in script
+              assert "finditem "+row["item"] in script
+            else:
+              objs=[x for x in m["bg_events"] if x.get("flag")==row["flag"]]
+              assert len(objs)==1,row
+              assert objs[0]["item"]==row["item"]
+
+          # For signed s8 mapNum, preserve the existing group ID.
+          assert report["kanto_map_slots_remaining"]==21
+          assert len(json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"])<=128
+          # The five existing Kanto trainers occupy 5 of the 9 reserved IDs.
+          assert report["trainer_battles_ported"]==5
+          # Eight source-authentic gym floors, after the prior 99 map IDs.
+          gym_names=(
+            "ViridianCity_Gym","PewterCity_Gym","CeruleanCity_Gym",
+            "VermilionCity_Gym","CeladonCity_Gym","FuchsiaCity_Gym",
+            "CinnabarIsland_Gym","SaffronCity_Gym"
+          )
+          gym_registry=json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"]
+          assert gym_registry[99:]==["Kanto_"+x for x in gym_names]
+          assert report["v14_gym_maps"]==["Kanto_"+x for x in gym_names]
+          assert report["v14_gym_warps"]>=50
+          assert report["v14_gym_exterior_warps"]>=8
+          source_layouts={x["id"]:x for x in json.loads(
+             Path("firered-source/data/layouts/layouts.json").read_text()
+          )["layouts"] if x.get("id")}
+          target_layouts={x["id"]:x for x in json.loads(
+             Path("data/layouts/layouts.json").read_text()
+          )["layouts"] if x.get("id")}
+          for name in gym_names:
+            src=json.loads((Path("firered-source/data/maps")/name/"map.json").read_text())
+            dst=json.loads((Path("data/maps")/("Kanto_"+name)/"map.json").read_text())
+            assert len(src["warp_events"])==len(dst["warp_events"]),(name,"warp count")
+            la=source_layouts[src["layout"]];lb=target_layouts[dst["layout"]]
+            assert (la["width"],la["height"])==(lb["width"],lb["height"]),(name,"layout dimensions")
+            for attr in ("blockdata_filepath","border_filepath"):
+              assert (Path("firered-source")/la[attr]).read_bytes()==Path(lb[attr]).read_bytes(),(name,attr)
+            assert lb["secondary_tileset"]=="gTileset_Kanto"+la["secondary_tileset"].removeprefix("gTileset_")
+            assert dst["object_events"]==[],(name,"no premature trainers")
+            outer=src["warp_events"][0]["dest_map"]
+            assert outer.startswith("MAP_")
+          assert report["v13_visible_items"]==33
+          assert report["v13_hidden_items"]==8
+
+          # V0.12 IDs append after the previous 84, no existing ID changed.
+          major_names=(
+            "VictoryRoad_1F","VictoryRoad_2F","VictoryRoad_3F",
+            "PokemonMansion_1F","PokemonMansion_2F","PokemonMansion_3F",
+            "PokemonMansion_B1F","CeruleanCave_1F","CeruleanCave_2F",
+            "CeruleanCave_B1F","SeafoamIslands_1F","SeafoamIslands_B1F",
+            "SeafoamIslands_B2F","SeafoamIslands_B3F","SeafoamIslands_B4F"
+          )
+          registry=json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"]
+          assert registry[84:99] == ["Kanto_"+n for n in major_names]
+          assert report["v12_major_dungeon_maps"]==["Kanto_"+n for n in major_names]
+          assert report["v12_major_dungeon_warps"] >= 50
+          assert report["v12_major_dungeon_exterior_warps"] >= 3
+          old={x["id"]:x for x in json.loads(
+            Path("firered-source/data/layouts/layouts.json").read_text()
+          )["layouts"] if x.get("id")}
+          new={x["id"]:x for x in json.loads(
+            Path("data/layouts/layouts.json").read_text()
+          )["layouts"] if x.get("id")}
+          for name in major_names:
+            src=json.loads((Path("firered-source/data/maps")/name/"map.json").read_text())
+            dst=json.loads((Path("data/maps")/("Kanto_"+name)/"map.json").read_text())
+            assert len(src["warp_events"])==len(dst["warp_events"]),(name,"warp count")
+            a=old[src["layout"]]; b=new[dst["layout"]]
+            assert (a["width"],a["height"]) == (b["width"],b["height"]),(name,"geometry")
+            assert b["secondary_tileset"]=="gTileset_Kanto"+a["secondary_tileset"].removeprefix("gTileset_")
+            for key in ("blockdata_filepath","border_filepath"):
+              assert (Path("firered-source")/a[key]).read_bytes() == Path(b[key]).read_bytes(),(name,key)
+          # Not all source warps are bidirectional (pit drops, trap doors).
+          assert report["original_item_balls"]==42
+          assert report["original_hidden_items"]==77
+          assert report["trainer_battles_ported"]==5
+          # V0.7 must append 15 areas AFTER the first 69 existing identifiers.
+          new_v07=(
+            "UndergroundPath_NorthEntrance","UndergroundPath_NorthSouthTunnel",
+            "UndergroundPath_SouthEntrance","UndergroundPath_WestEntrance",
+            "UndergroundPath_EastWestTunnel","UndergroundPath_EastEntrance",
+            "RockTunnel_1F","RockTunnel_B1F",
+            "PokemonTower_1F","PokemonTower_2F","PokemonTower_3F",
+            "PokemonTower_4F","PokemonTower_5F","PokemonTower_6F",
+            "PokemonTower_7F"
+          )
+          assert groups["gMapGroup_Kanto"][69:84] == ["Kanto_"+n for n in new_v07]
+          assert report["v07_underground_and_tower_maps"] == ["Kanto_"+n for n in new_v07]
+          # Regional faint / nurse heal uses one persistent previously unused
+          # var, not the Hoenn lastHealLocation or changed save fields.
+          vars=Path("include/constants/vars.h").read_text()
+          assert "#define VAR_KANTO_LAST_HEAL_LOCATION VAR_UNUSED_0x40F7" in vars
+          original_source=Path("src/overworld.c").read_text()
+          whiteout=original_source.split("void DoWhiteOut(void)",1)[1].split(
+              "void Overworld_ResetStateAfterFly",1)[0]
+          assert "if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_KANTO_HARBOR))" in whiteout
+          assert "Kanto_SetWhiteoutDestination();" in whiteout
+          assert "else\n        SetWarpDestinationToLastHealLocation();" in whiteout
+          assert original_source.count("VarGet(VAR_KANTO_LAST_HEAL_LOCATION)") == 1
+          assert "SetWarpDestination(MAP_GROUP(MAP_KANTO_HARBOR), mapNum, WARP_ID_NONE, 7, 6)" in original_source
+          centers=("VermilionCity","ViridianCity","PewterCity","CeruleanCity",
+                   "LavenderTown","CeladonCity","FuchsiaCity","CinnabarIsland","SaffronCity")
+          import re
+          for n,city in enumerate(centers,1):
+            stem=re.sub(r"(?<!^)(?=[A-Z])","_",city).upper()
+            symbol="KANTO_HEAL_"+stem
+            assert re.search(r"#define "+symbol+r"\s+"+str(n)+r"\b",vars)
+            path=Path("data/maps")/("Kanto_"+city+"_PokemonCenter_1F")/"scripts.inc"
+            script=path.read_text()
+            assert "map_script MAP_SCRIPT_ON_TRANSITION" in script,(city,"no transition")
+            assert "setvar VAR_KANTO_LAST_HEAL_LOCATION, "+symbol in script,city
+            assert "setrespawn " not in script,(city,"Hoenn heal changed")
+            assert "Common_EventScript_PkmnCenterNurse" in script,city
+            assert "MAP_KANTO_"+city.upper()+"_POKEMONCENTER_1F" in original_source,city
+          # Position must be a traversable tile in the original, unchanged
+          # 15x10 FRLG 1F layout. Every city shares the exact same 1F layout.
+          from struct import unpack_from
+          center=Path("data/layouts/Kanto_VermilionCity_PokemonCenter_1F/map.bin").read_bytes()
+          assert len(center)==15*10*2
+          tile=unpack_from("<H",center,2*(6*15+7))[0]
+          assert (tile & 0x0C00)==0,("Kanto center whiteout tile is blocked",tile)
+          # Five real FireRed Bug Catcher parties, isolated in the 9
+          # previously unused trainer slots. No save struct growth.
+          assert report["trainer_battles_ported"]==5
+          assert report["original_npcs_ported"]==5
+          forest=json.loads(Path("data/maps/Kanto_ViridianForest/map.json").read_text())
+          npc=[e for e in forest["object_events"]
+               if e.get("script","").startswith("Kanto_ViridianForest_EventScript_BugCatcher")]
+          assert len(npc)==5
+          source_forest=json.loads(Path("firered-source/data/maps/ViridianForest/map.json").read_text())
+          source_trainer_objs=[
+            e for e in source_forest["object_events"]
+            if e.get("script") in {"ViridianForest_EventScript_"+n
+                                 for n in ("Rick","Doug","Sammy","Anthony","Charlie")}
+          ]
+          assert sorted((e["x"],e["y"]) for e in npc)==sorted(
+                 (e["x"],e["y"]) for e in source_trainer_objs)
+          opponents=Path("include/constants/opponents.h").read_text()
+          trainer_data=Path("src/data/trainers.h").read_text()
+          parties=Path("src/data/trainer_parties.h").read_text()
+          script=Path("data/maps/Kanto_ViridianForest/scripts.inc").read_text()
+          assert "#define MAX_TRAINERS_COUNT                  864" in opponents
+          assert "#define TRAINERS_COUNT                      860" in opponents
+          for index, name in enumerate(("Rick","Doug","Sammy","Anthony","Charlie")):
+            macro="TRAINER_KANTO_FOREST_"+name.upper()
+            assert macro in opponents and macro in trainer_data,(name,"no trainer data")
+            assert "sParty_KantoForest"+name in parties
+            assert "trainerbattle_single "+macro in script
+            assert report["viridian_forest_trainers"][index]["id"] == 855+index
+          assert len({x["id"] for x in report["viridian_forest_trainers"]})==5
+          # Original FireRed hidden items use their own saved flags.
+          hidden=report.get("hidden_item_flags",[])
+          assert report["original_hidden_items"]==len(hidden)>=5
+          visible=report["visible_item_flags"]
+          assert len(visible)==42
+          all_flags=[x["flag_value"] for x in hidden+visible]
+          assert len(all_flags)==len(set(all_flags)),"Hidden and visible item flags collide"
+          assert all(row["flag"].startswith("FLAG_KANTO_HIDDEN_") for row in hidden)
+          for row in hidden:
+            target=json.loads((Path("data/maps")/row["map"]/"map.json").read_text())
+            at=[e for e in target["bg_events"]
+                if e.get("type")=="hidden_item" and e.get("flag")==row["flag"]]
+            assert len(at)==1,(row["map"],row["flag"])
+            ev=at[0]
+            assert (ev["item"],ev.get("quantity",1))==(row["item"],row["quantity"])
+            assert (ev["x"],ev["y"])==tuple(row["position"])
+            assert ev.get("underfoot",False)==row["underfoot"]
+          from tools.kanto.preflight import exterior_names as _not_used
+          names=[n.removeprefix("Kanto_") for n in
+                 json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"]
+                 if n.startswith("Kanto_") and not n.endswith("_Mart")]
+          # Count over the maps chosen by the current import recipe; this
+          # independently reads FireRed originals and preserves exact order.
+          from pathlib import Path
+          source_maps = [p for p in Path("firered-source/data/maps").iterdir()
+                         if p.is_dir() and (p/"map.json").exists()]
+          source_by_name={p.name:p for p in source_maps}
+          assert len(source_by_name)>=84
+          for row in hidden:
+            src_name=row["map"].removeprefix("Kanto_")
+            src=json.loads((source_by_name[src_name]/"map.json").read_text())
+            assert any(e.get("type")=="hidden_item"
+                       and (e["x"],e["y"])==tuple(row["position"])
+                       and e["item"]==row["item"]
+                       for e in src.get("bg_events",[])),row
+          # Persistent flags use unused save-backed bits; preserve original
+          # FireRed placement, item identities and map IDs.
+          items=report.get("visible_item_flags",[])
+          assert report["original_item_balls"]==len(items)>=15,report.get("original_item_balls")
+          assert len({r["flag"] for r in items})==len(items)
+          assert len({r["flag_value"] for r in items})==len(items)
+          assert len({(r["map"],tuple(r["position"])) for r in items})==len(items)
+          text=Path("include/constants/flags.h").read_text()
+          unused=[int(v,16) for v in __import__('re').findall(
+                r"(?m)^#define FLAG_UNUSED_0x([0-9A-Fa-f]{3})\s+",text)]
+          for row in items:
+            assert row["flag_value"] in unused,(row["flag"],"not reserved unused flag")
+            assert row["flag"] in text,row["flag"]
+            target=json.loads((Path("data/maps")/row["map"]/"map.json").read_text())
+            matches=[o for o in target["object_events"]
+                     if o["flag"]==row["flag"]]
+            assert len(matches)==1,row["flag"]
+            assert matches[0]["graphics_id"]=="OBJ_EVENT_GFX_ITEM_BALL"
+            assert [matches[0]["x"],matches[0]["y"]]==row["position"]
+            script=(Path("data/maps")/row["map"]/"scripts.inc").read_text()
+            assert row["generated_script"]+"::" in script
+            assert "finditem "+row["item"] in script
+
+          original_layouts={
+            x["id"]:x for x in json.loads(
+                Path("firered-source/data/layouts/layouts.json").read_text()
+            )["layouts"] if x.get("id")
+          }
+          converted_layouts={
+            x["id"]:x for x in json.loads(Path("data/layouts/layouts.json").read_text())["layouts"]
+            if x.get("id")
+          }
+          for name in new_v07:
+            src=json.loads((Path("firered-source/data/maps")/name/"map.json").read_text())
+            dst=all_generated["MAP_KANTO_"+name.upper()]
+            assert len(dst["warp_events"]) == len(src["warp_events"]),(name,"warps")
+            a=original_layouts[src["layout"]]
+            b=converted_layouts[dst["layout"]]
+            assert (a["width"],a["height"]) == (b["width"],b["height"]),name
+            for key in ("blockdata_filepath","border_filepath"):
+              assert (Path("firered-source")/a[key]).read_bytes() == Path(b[key]).read_bytes(),(name,key)
+            for warp in dst["warp_events"]:
+              target=all_generated.get(warp["dest_map"])
+              assert target is not None,(name,"missing target",warp["dest_map"])
+              wid=int(warp["dest_warp_id"])
+              assert 0<=wid<len(target["warp_events"]),(name,"warp index",wid)
+              assert target["warp_events"][wid]["dest_map"] == dst["id"],(name,"broken return")
+          original_ids={
+            json.loads((Path("firered-source/data/maps")/n/"map.json").read_text())["id"]
+            for n in new_v07
+          }
+          for outside in ("Route5","Route6","Route7","Route8","Route10","LavenderTown"):
+            src=json.loads((Path("firered-source/data/maps")/outside/"map.json").read_text())
+            target=all_generated["MAP_KANTO_"+outside.upper()]
+            old=[w for w in src["warp_events"] if w["dest_map"] in original_ids]
+            dst=[w for w in target["warp_events"]
+                 if w["dest_map"] in {"MAP_KANTO_"+n.upper() for n in new_v07}]
+            assert len(old)==len(dst),(outside,"entrances",len(old),len(dst))
+            assert [(w["x"],w["y"]) for w in old]==[(w["x"],w["y"]) for w in dst],outside
+          # Preserve Kanto V0.2 IDs. New services are appended, not inserted.
+          import sys
+          sys.path.insert(0,str(Path("tools/kanto").resolve()))
+          from preflight import exterior_names
+          fr=json.loads(Path("firered-source/data/maps/map_groups.json").read_text())
+          expected_prefix=["Kanto_Harbor","Kanto_VermilionCity_PokemonCenter_1F",
+                           "Kanto_VermilionCity_Mart"]
+          expected_prefix += ["Kanto_"+n for n in exterior_names(fr["gMapGroup_TownsAndRoutes"])]
+          actual=json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"]
+          assert actual[:41] == expected_prefix, "Kanto V0.2 map indices shifted"
+          # Exact FireRed interior dimensions, linked entrance and return doors.
+          layouts=json.loads(Path("data/layouts/layouts.json").read_text())["layouts"]
+          lookup={entry["id"]: entry for entry in layouts if "id" in entry}
+          assert (lookup["LAYOUT_KANTO_POKEMON_CENTER_1F"]["width"],
+                  lookup["LAYOUT_KANTO_POKEMON_CENTER_1F"]["height"]) == (15,10)
+          assert (lookup["LAYOUT_KANTO_MART"]["width"],
+                  lookup["LAYOUT_KANTO_MART"]["height"]) == (11,9)
+          assert lookup["LAYOUT_KANTO_POKEMON_CENTER_1F"]["primary_tileset"] == "gTileset_KantoBuilding"
+          center=json.loads(Path("data/maps/Kanto_VermilionCity_PokemonCenter_1F/map.json").read_text())
+          mart=json.loads(Path("data/maps/Kanto_VermilionCity_Mart/map.json").read_text())
+          assert [(w["x"],w["y"]) for w in center["warp_events"]] == [(6,8),(7,8),(8,8)]
+          assert [(w["x"],w["y"]) for w in mart["warp_events"]] == [(3,7),(4,7),(5,7)]
+          # The V0.12 dungeon loop changes m; restore the Vermilion fixture.
+          m=json.loads(Path("data/maps/Kanto_VermilionCity/map.json").read_text())
+          # One more outdoor entrance is the real Vermilion Gym.
+          assert len(m["warp_events"]) == 3
+          assert m["warp_events"][2]["dest_map"]=="MAP_KANTO_VERMILIONCITY_GYM"
+          assert m["warp_events"][0]["dest_map"] == center["id"]
+          assert m["warp_events"][1]["dest_map"] == mart["id"]
+          assert all(w["dest_map"] == m["id"] and w["dest_warp_id"] == "0"
+                     for w in center["warp_events"])
+          assert all(w["dest_map"] == m["id"] and w["dest_warp_id"] == "1"
+                     for w in mart["warp_events"])
+          center_scripts=Path("data/maps/Kanto_VermilionCity_PokemonCenter_1F/scripts.inc").read_text()
+          mart_scripts=Path("data/maps/Kanto_VermilionCity_Mart/scripts.inc").read_text()
+          assert "Common_EventScript_PkmnCenterNurse" in center_scripts
+          assert "pokemart Kanto_VermilionMart_Items" in mart_scripts
+          assert "LOCALID_KANTO_VERMILION_NURSE" in center_scripts
+          # Check every generated city service can return via the exact exterior warp.
+          city_map_dirs = ("ViridianCity", "PewterCity", "CeruleanCity",
+                           "LavenderTown", "CeladonCity", "VermilionCity",
+                           "FuchsiaCity", "CinnabarIsland", "SaffronCity")
+          for city in city_map_dirs:
+            exterior=json.loads((Path("data/maps") / ("Kanto_"+city) / "map.json").read_text())
+            targets={w["dest_map"] for w in exterior["warp_events"]}
+            expected_center="MAP_KANTO_"+city.upper()+"_POKEMONCENTER_1F"
+            assert expected_center in targets,(city,"no Pokemon Center entrance")
+            expected_mart="MAP_KANTO_"+city.upper()+"_MART"
+            if city!="CeladonCity":
+              assert expected_mart in targets,(city,"no Mart entrance")
+          for name in report['interior_maps']:
+            inner=json.loads((Path("data/maps")/name/"map.json").read_text())
+            city=name.removeprefix("Kanto_").split("_",1)[0]
+            outside=json.loads((Path("data/maps")/("Kanto_"+city)/"map.json").read_text())
+            indexes=[i for i,w in enumerate(outside["warp_events"]) if w["dest_map"]==inner["id"]]
+            assert indexes,(name,"unreachable")
+            assert len(inner["warp_events"])>=1,(name,"no exit")
+            assert all(w["dest_map"]==outside["id"] and int(w["dest_warp_id"])==indexes[0]
+                       for w in inner["warp_events"]),(name,"bad return warp")
+            scripts=(Path("data/maps")/name/"scripts.inc").read_text()
+            if name.endswith("_Mart"):
+              assert "pokemart " in scripts
+            else:
+              assert "Common_EventScript_PkmnCenterNurse" in scripts
+          # Shops must expose exact FireRed items in the same original order.
+          import re
+          cities=("ViridianCity","PewterCity","CeruleanCity","LavenderTown",
+                  "VermilionCity","FuchsiaCity","CinnabarIsland","SaffronCity")
+          for city in cities:
+            orig=Path("firered-source/data/maps")/(city+"_Mart")/"scripts.inc"
+            text=orig.read_text()
+            label=city+"_Mart_Items::"
+            assert text.count(label)==1,city
+            raw=text.split(label,1)[1].split("ITEM_NONE",1)[0]
+            original_items=re.findall(r"\.2byte\s+(ITEM_[A-Z0-9_]+)",raw)
+            target_map=Path("data/maps")/("Kanto_"+city+"_Mart")/"scripts.inc"
+            output=target_map.read_text()
+            imported=re.findall(r"\.short\s+(ITEM_[A-Z0-9_]+)",output)
+            assert original_items==imported,(city,original_items,imported)
+            assert "Kanto_GenericMart_Items" not in output
+          scripts=Path("data/maps/Kanto_VermilionCity/scripts.inc").read_text()
+          assert "special Kanto_ReturnToHoennHealWarp" in scripts
+          assert "special HealPlayerParty" in scripts
+          assert "setwildbattle SPECIES_PIDGEY, 5, ITEM_NONE" in scripts
+          assert "dowildbattle" in scripts
+          PY
+      - name: Audit in-region graph connectivity (not gameplay)
+        run: |
+          python tools/kanto/reachability.py --emerald . --output kanto-v07-reachability.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path("kanto-v07-reachability.json").read_text())
+          assert report["total_maps"]==107
+          assert report["all_kanto_destinations_and_indices_valid"]
+          assert report["gameplay_verified"] is False
+          assert report["reachable_count"]>=1
+          PY
+      - name: Get SDL2 Windows runtime and compile game with authentic maps
+        run: |
+          set -euxo pipefail
+          mkdir -p .deps
+          curl -fL --retry 3 https://www.libsdl.org/release/SDL2-devel-2.30.7-mingw.tar.gz -o .deps/SDL2-devel-2.30.7-mingw.tar.gz
+          tar -xzf .deps/SDL2-devel-2.30.7-mingw.tar.gz -C .deps
+          make -f Makefile_pc -j2 SDL_DIR="$PWD/.deps/SDL2-2.30.7/i686-w64-mingw32"
+          test -s pokeemerald.exe
+          file pokeemerald.exe
+      - name: Label provisional nature and source revision
+        run: |
+          printf 'Kanto V0.14: 107 Kanto maps including all 8 original gyms as geometry only; 160 pickup flags stable, leader/badge events not yet ported.\nQA inside actual gameplay, regional respawn, original stories/gyms, and LAN remain incomplete.\nSOURCE_COMMIT=%s\nFIRERED_SOURCE=ce6406d8c2eaf46d543c8a2606de0c3cb1951982\n' "$GITHUB_SHA" > KANTO_V14_STATUS.txt
+          sha256sum pokeemerald.exe > KANTO_V14_SHA256.txt
+          cp .deps/SDL2-2.30.7/i686-w64-mingw32/bin/SDL2.dll .
+      - name: Attach playtest instructions
+        run: |
+          cp docs/KANTO_V11_PLAYTEST_CHECKLIST_PTBR.md KANTO_V11_PLAYTEST_CHECKLIST_PTBR.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: KANTO_V14_GYMS_UNTESTED_WINDOWS
+          path: |
+            pokeemerald.exe
+            SDL2.dll
+            kanto-exteriors-import.json
+            kanto-v07-reachability.json
+            KANTO_V14_STATUS.txt
+            KANTO_V14_SHA256.txt
+            KANTO_V11_PLAYTEST_CHECKLIST_PTBR.md
+          if-no-files-found: error
+          retention-days: 30

@@ -779,6 +779,14 @@ KANTO_V12_DUNGEONS = (
 )
 
 
+KANTO_V14_GYMS = (
+    "ViridianCity_Gym", "PewterCity_Gym",
+    "CeruleanCity_Gym", "VermilionCity_Gym",
+    "CeladonCity_Gym", "FuchsiaCity_Gym",
+    "CinnabarIsland_Gym", "SaffronCity_Gym",
+)
+
+
 def add_kanto_v06_dungeons(source: Path, emerald: Path, source_maps: dict,
                           layouts: dict, target_layouts: dict,
                           selected: tuple[str, ...] = KANTO_V06_DUNGEONS) -> dict:
@@ -1393,7 +1401,7 @@ def copy_exteriors(source: Path, emerald: Path) -> dict:
     # secondary graphics sets. Reuse an existing converted set if shared.
     dungeon_secondaries = {
         layouts[load_json(source, f"data/maps/{n}/map.json")["layout"]]["secondary_tileset"]
-        for n in KANTO_V06_DUNGEONS + KANTO_V07_DUNGEONS + KANTO_V12_DUNGEONS
+        for n in KANTO_V06_DUNGEONS + KANTO_V07_DUNGEONS + KANTO_V12_DUNGEONS + KANTO_V14_GYMS
     }
     already_converted = set(secondaries) | {
         "gTileset_PokemonCenter", "gTileset_Mart", "gTileset_GenericBuilding2"
@@ -1550,6 +1558,12 @@ Kanto_VermilionCity_Text_BattleQuestion:
     major_batch = add_kanto_v06_dungeons(
         source, emerald, source_maps, layouts, target_layouts,
         selected=KANTO_V12_DUNGEONS)
+    gym_batch = add_kanto_v06_dungeons(
+        source, emerald, source_maps, layouts, target_layouts,
+        selected=KANTO_V14_GYMS)
+    report["v14_gym_maps"] = gym_batch["names"]
+    report["v14_gym_warps"] = gym_batch["internal_warps"]
+    report["v14_gym_exterior_warps"] = gym_batch["exterior_warps"]
     report["v12_major_dungeon_maps"] = major_batch["names"]
     report["v12_major_dungeon_warps"] = major_batch["internal_warps"]
     report["v12_major_dungeon_exterior_warps"] = major_batch["exterior_warps"]
@@ -1574,6 +1588,19 @@ Kanto_VermilionCity_Text_BattleQuestion:
     target_groups["gMapGroup_Kanto"].extend(dungeon_batch["names"])
     target_groups["gMapGroup_Kanto"].extend(extra_batch["names"])
     target_groups["gMapGroup_Kanto"].extend(major_batch["names"])
+    target_groups["gMapGroup_Kanto"].extend(gym_batch["names"])
+    # Map group numbers are carried as signed 8-bit warp mapNums in C.
+    # Beyond 128 entries we must add another map group, never renumber
+    # these 107 existing map numbers within the current saved Kanto group.
+    capacity = 128
+    count_kanto = len(target_groups["gMapGroup_Kanto"])
+    if count_kanto > capacity:
+        raise RuntimeError(
+            f"Kanto group has {count_kanto} maps (max {capacity}); "
+            "split new maps into an appended Kanto group before importing")
+    report["kanto_map_slots_remaining"] = capacity - count_kanto
+    # All 160 persistent pickup flags from V0.13 remain unchanged.
+    # Gym layouts are not yet populated with trainer NPCs/leader badges.
     # Preserve the already-shipped 42 visible + 77 hidden item flags.
     # V0.12 must NOT mix newly ported maps into prior pickup allocation.
     # Future item additions need a new stable allocation lane AFTER all 119.
@@ -1613,6 +1640,8 @@ Kanto_VermilionCity_Text_BattleQuestion:
                         for n in extra_batch["names"])
     includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"'
                         for n in major_batch["names"])
+    includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"'
+                        for n in gym_batch["names"])
     inc.write_text(code.replace(anchor, anchor + includes, 1), encoding="utf-8")
     ferry = emerald / "data/maps/SlateportCity_Harbor/scripts.inc"
     s = ferry.read_text(encoding="utf-8")
@@ -1641,6 +1670,7 @@ def main() -> int:
     print("Original Viridian Forest, Mt. Moon and Diglett Cave layouts, wild encounters and doors added.")
     print("Added original Underground Path, Rock Tunnel and Pokemon Tower layouts with exits.")
     print("Added Victory Road, Pokemon Mansion, Cerulean Cave and Seafoam Islands (15 original floors).")
+    print("Added eight authentic Kanto Gym interiors and exterior door connections; trainer/badge scripts pending.")
     print(f"Ported {result['original_item_balls']} original visible item balls with save-backed flags.")
     print(f"Ported {result['original_hidden_items']} original hidden FireRed items with distinct save flags.")
     print(f"Ported {result['v13_visible_items']} extra visible and {result['v13_hidden_items']} hidden major-dungeon items with new flags.")
