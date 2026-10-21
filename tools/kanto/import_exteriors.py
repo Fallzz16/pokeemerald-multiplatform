@@ -883,6 +883,114 @@ def add_kanto_v06_dungeons(source: Path, emerald: Path, source_maps: dict,
     }
 
 
+def import_kanto_visible_items(source: Path, emerald: Path,
+                               original_map_names: list[str],
+                               minimum: int = 15) -> dict:
+    """Enable FireRed item balls with permanent, isolated save flags.
+
+    Deterministic allocation uses original V0.2–V0.7 map order and original
+    NPC order. All future maps MUST be appended to original_map_names, never
+    inserted or reordered, to preserve item pickup flags in existing saves.
+    """
+    script_source = (source / "data/scripts/item_ball_scripts.inc").read_text(
+        encoding="utf-8"
+    )
+    source_items = {}
+    for label, item in re.findall(
+        r"(?m)^\s*([A-Za-z0-9_]+)::\s*\n\s*finditem\s+"
+        r"(ITEM_[A-Z0-9_]+)\s*\n\s*end\b", script_source
+    ):
+        if label in source_items:
+            raise RuntimeError(f"Duplicate FireRed item ball script {label}")
+        source_items[label] = item
+    flag_header = emerald / "include/constants/flags.h"
+    header = flag_header.read_text(encoding="utf-8")
+    reserved = sorted(
+        {int(x,16) for x in re.findall(
+            r"(?m)^#define FLAG_UNUSED_0x([0-9A-Fa-f]{3})\s+", header
+        ) if 0x264 <= int(x,16) < 0x500}
+    )
+    item_definitions = (emerald / "include/constants/items.h").read_text(
+        encoding="utf-8"
+    )
+    valid_items = set(re.findall(
+        r"(?m)^\s*#define\s+(ITEM_[A-Z0-9_]+)\s+", item_definitions
+    ))
+    if not reserved:
+        raise RuntimeError("Missing permanent flag allocation pool")
+    count = 0
+    inventory = []
+    for name in original_map_names:
+        original = load_json(source, f"data/maps/{name}/map.json")
+        balls = [o for o in original.get("object_events", [])
+                 if o.get("graphics_id") == "OBJ_EVENT_GFX_ITEM_BALL"]
+        if not balls:
+            continue
+        target_name = "Kanto_" + name
+        target_path = f"data/maps/{target_name}/map.json"
+        m = load_json(emerald, target_path)
+        scripts_path = emerald / "data/maps" / target_name / "scripts.inc"
+        scripts = scripts_path.read_text(encoding="utf-8")
+        for within, obj in enumerate(balls):
+            if count >= len(reserved):
+                raise RuntimeError(f"Permanent Kanto item flag pool exhausted: {count}")
+            original_label = obj["script"]
+            item = source_items.get(original_label)
+            if item is None:
+                raise RuntimeError(f"{name}: unsupported original item script {original_label}")
+            if item not in valid_items:
+                raise RuntimeError(f"{name}: Emerald does not provide original item {item}")
+            flag = f"FLAG_KANTO_ITEM_{count:03d}"
+            label = f"Kanto_{name}_EventScript_ItemBall_{within:03d}"
+            if label + "::" in scripts:
+                raise RuntimeError(f"{name}: item script already installed {label}")
+            new_obj = {
+                "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+                "x": obj["x"], "y": obj["y"],
+                "elevation": obj["elevation"],
+                "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+                "movement_range_x": 0, "movement_range_y": 0,
+                "trainer_type": "TRAINER_TYPE_NONE",
+                "trainer_sight_or_berry_tree_id": "0",
+                "script": label,
+                "flag": flag,
+            }
+            if any(event["x"] == obj["x"] and event["y"] == obj["y"]
+                   for event in m["object_events"]):
+                raise RuntimeError(f"{name}: item collides with another object at "
+                                   f"{obj['x']}, {obj['y']}")
+            m["object_events"].append(new_obj)
+            scripts += f"\n{label}::\n    finditem {item}\n    end\n"
+            inventory.append({
+                "map": target_name,
+                "position": [obj["x"], obj["y"]],
+                "item": item,
+                "source_script": original_label,
+                "generated_script": label,
+                "flag": flag,
+                "flag_value": reserved[count],
+            })
+            count += 1
+        emit_json(emerald / target_path, m)
+        scripts_path.write_text(scripts, encoding="utf-8")
+
+    if count < minimum:
+        raise RuntimeError(f"Suspiciously few FireRed item balls found: {count}")
+    final_defines = "".join(
+        f"#define {row['flag']:<36} FLAG_UNUSED_0x{row['flag_value']:03X}\n"
+        for row in inventory
+    )
+    footer = "#endif // GUARD_CONSTANTS_FLAGS_H"
+    if footer not in header or "FLAG_KANTO_ITEM_000" in header:
+        raise RuntimeError("Cannot allocate Kanto item flags: header changed")
+    flag_header.write_text(
+        header.replace(footer, f"// Kanto persistent item balls (reserved unused flags).\n"
+                       + final_defines + "\n" + footer),
+        encoding="utf-8"
+    )
+    return {"total": count, "items": inventory}
+
+
 def copy_exteriors(source: Path, emerald: Path) -> dict:
     checkout_guard(source)
     group = load_json(source, "data/maps/map_groups.json")
@@ -1089,6 +1197,11 @@ Kanto_VermilionCity_Text_BattleQuestion:
     # Append, never insert: saves from V0.2–V0.5 retain every old map ID.
     target_groups["gMapGroup_Kanto"].extend(dungeon_batch["names"])
     target_groups["gMapGroup_Kanto"].extend(extra_batch["names"])
+    # Use immutable source map order, before adding any new geography.
+    item_maps = list(names) + list(KANTO_V06_DUNGEONS) + list(KANTO_V07_DUNGEONS)
+    item_report = import_kanto_visible_items(source, emerald, item_maps)
+    report["original_item_balls"] = item_report["total"]
+    report["visible_item_flags"] = item_report["items"]
     target_groups["connections_include_order"].extend("Kanto_" + n for n in names)
     emit_json(emerald / "data/maps/map_groups.json", target_groups)
     emit_json(emerald / "data/layouts/layouts.json", target_layouts)
@@ -1130,6 +1243,7 @@ def main() -> int:
     print("Other interiors, gym/trainer scripts and local healing respawn remain pending.")
     print("Original Viridian Forest, Mt. Moon and Diglett Cave layouts, wild encounters and doors added.")
     print("Added original Underground Path, Rock Tunnel and Pokemon Tower layouts with exits.")
+    print(f"Ported {result['original_item_balls']} original visible item balls with save-backed flags.")
     print("Dungeon NPCs/items/scripts, special collision behaviors and full gameplay QA still pending.")
     print("Verify collision, palettes, map edges, ferry and save by real gameplay.")
     return 0
