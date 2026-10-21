@@ -1022,3 +1022,7 @@ Manter PRs incrementais draft, ordem append-only dos IDs de mapa, trainer IDs e 
 
 Branch feature/kanto-v12-major-dungeons sobre V0.11 compilada 9d121938b0cab40c201e392e5f79d0b29ba04b15. Importados Victory Road 1F–3F, Pokemon Mansion 1F–3F+B1F, Cerulean Cave 1F/2F/B1F e Seafoam Islands 1F/B1F–B4F (15 novos mapas), passando a 99 mapas totais. IDs 0–83 mantidos; novos 84–98.
 Importador mantém a lista item_maps da V0.11 exatamente como antes: 42 item balls e 77 hidden items usam 119 flags persistentes que NÃO podem ser renumeradas ao adicionar novos mapas. Item balls desses 15 novos mapas ainda não estão incluídas. Documentação docs/KANTO_V12_MAJOR_DUNGEONS_PTBR.md e CI kanto-v12-major-dungeons.yml. Puzzles, eventos, lendas, treinadores, ginásios, QA in-game, Android/LAN permanecem pendentes.
+
+## 65. Kanto V0.13 — 41 itens originais das cavernas (2026-10-21)
+
+Branch feature/kanto-v13-major-dungeon-items sobre V0.12 compilada 6444892bfcaf667538abe8cb33fd1047dd3118b9. Adiciona 33 bolas visíveis e 8 itens ocultos (incluindo Secret Key) às 15 novas dungeons de FireRed. Flag pool: primeiros 119 flags da V0.11 preservados e 41 novos bits livres ao final, total 160 pickups persistentes. Mapa 99 IDs idênticos à V0.12. CI kanto-v13-major-dungeon-items.yml, documento docs/KANTO_V13_MAJOR_DUNGEON_ITEMS_PTBR.md. Eventos/quests/treinadores, puzzles, saves in-game e multiplayer ainda não testados; manter PR em draft.
