@@ -10,6 +10,11 @@ def strip_v080_profile_patch(native: str) -> str:
             raise AssertionError("v0.8 profile integration drift: " + old[:60])
         native = native.replace(old, new, 1)
 
+    # M3.1 authoritative LOCAL READY status (from validated PLAYER_LIST).
+    # Reverse these exact additions BEFORE the previous F5 and protected SDL2 gates.
+    once("extern int PortLanDedicatedLocalReady(int *ready);\n", '')
+    once("            if (PortLanDedicatedLobbyCounts(&players, &ready))\n            {\n                int localReady = 0;\n                int packed = players | (ready << 4);\n                if (PortLanDedicatedLocalReady(&localReady))\n                    packed |= (1 << 9) | ((localReady != 0) << 8);\n                SDL_AtomicSet(&sEhl8LobbyCountsUiState, packed);\n            }\n            else\n                SDL_AtomicSet(&sEhl8LobbyCountsUiState, -1);", "            if (PortLanDedicatedLobbyCounts(&players, &ready))\n                SDL_AtomicSet(&sEhl8LobbyCountsUiState, players | (ready << 4));\n            else\n                SDL_AtomicSet(&sEhl8LobbyCountsUiState, -1);")
+
     # M3.1 F5 READY/CANCEL: reverse only these five reviewed SDL2 inserts.
     once("extern int PortLanDedicatedToggleReady(void);\n", '')
     once("static SDL_atomic_t sEhl8ReadyToggleRequest; /* SDL keydown -> native game thread */\n", '')
