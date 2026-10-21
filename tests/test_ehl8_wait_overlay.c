@@ -39,6 +39,17 @@ int main(void)
     renderer.calls = 0;
     lnet_wait_overlay_render(&renderer, 2); /* connected again */
     assert(renderer.calls == 0 && renderer.border == 4);
-    printf("EHL8 waiting and reconnect status overlays: PASS\n");
+    renderer.calls = 0;
+    lnet_wait_overlay_room(&renderer, -1); /* no authoritative roster yet */
+    assert(renderer.calls == 0 && renderer.border == 4);
+    lnet_wait_overlay_room(&renderer, 4); /* 1/2 connected, 0/2 ready */
+    assert(renderer.calls > 20 && renderer.border == 5);
+    renderer.calls = 0;
+    lnet_wait_overlay_room(&renderer, 10); /* 2/2 and 2/2 READY */
+    assert(renderer.calls > 20 && renderer.border == 6);
+    renderer.calls = 0;
+    lnet_wait_overlay_room(&renderer, 11); /* ready cannot exceed players */
+    assert(renderer.calls == 0 && renderer.border == 6);
+    printf("EHL8 waiting/reconnect and authoritative roster overlays: PASS\n");
     return 0;
 }
