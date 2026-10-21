@@ -266,7 +266,8 @@ def make_command(game,root,pid,mode,ip="",port="45680",pin=""):
             raise ValueError("Informe o PIN de seis dígitos do servidor dedicado.")
         return args+["--lan-log","cliente-ehl8.log",
                      "--session-client="+validate_ipv4(ip)+":"+str(p),
-                     "--session-pin-stdin","--session-wait-for-start"]
+                     "--session-pin-stdin","--session-wait-for-start",
+                     "--session-manual-ready"]
     raise ValueError("Modo de jogo desconhecido.")
 
 def find_profiles(root):
@@ -368,11 +369,11 @@ class EmeraldLauncher(tk.Tk):
         info=tk.Frame(f,bg="#194131",padx=15,pady=9);info.pack(fill="x",padx=32,pady=(0,7))
         tk.Label(info,textvariable=self.status,fg=GREEN,bg=info["bg"],
                  font=("Segoe UI",11,"bold"),anchor="w").pack(fill="x")
-        self.text(info,"Exploração online em teste. Batalhas e trocas pela sala EHL8 ainda não estão disponíveis.",9,MUTED).pack(anchor="w",pady=(3,0))
+        self.text(info,"Online: cada jogador aperta F9 para ficar PRONTO; o anfitrião inicia com 2/2.",9,MUTED).pack(anchor="w",pady=(3,0))
         cards=tk.Frame(f,bg=INK);cards.pack(fill="x",padx=32)
         self.card(cards,"Jogar sozinho","Seu save local, sem Internet.",lambda:self.play("offline"),"JOGAR",accent=True)
-        self.card(cards,"Criar sala com amigo","Abre a sala e o seu Emerald; depois aguarde 2/2.",self.create_room,"CRIAR SALA",accent=True)
-        self.card(cards,"Entrar na sala de um amigo","Preencha IP, porta e PIN abaixo. Aguarde o anfitrião.",self.play_with_friends,"ENTRAR")
+        self.card(cards,"Criar sala com amigo","Abra o Emerald, aperte F9 para ficar PRONTO e aguarde seu amigo.",self.create_room,"CRIAR SALA",accent=True)
+        self.card(cards,"Entrar na sala de um amigo","Informe IP/porta/PIN e aperte F9 no jogo para ficar PRONTO.",self.play_with_friends,"ENTRAR")
         room=tk.Frame(f,bg="#194131",padx=12,pady=7);room.pack(fill="x",padx=32,pady=(6,0))
         self.text(room,"SALA MULTIPLAYER · 2 TREINADORES",9,MUTED,True).pack(anchor="w")
         tk.Label(room,textvariable=self.server_status,fg=GREEN,bg=room["bg"],
@@ -532,9 +533,10 @@ class EmeraldLauncher(tk.Tk):
             "2. Encontre seu IPv4 privado no Windows usando ipconfig "
             "ou consulte o endereço da sua VPN privada.\n"
             "3. Compartilhe IP, porta e PIN somente com seu amigo.\n"
-            "4. No PC dele, selecione ENTRAR NA SALA, preencha os dados "
-            "e aguarde 2/2 prontos.\n"
-            "5. Você clica INICIAR PARTIDA neste launcher.\n\n"
+            "4. No PC dele, selecione ENTRAR NA SALA e preencha os dados.\n"
+            "5. CADA JOGADOR aperta F9 dentro do Emerald para ficar PRONTO "
+            "(ou novamente F9 para CANCELAR).\n"
+            "6. Quando aparecer 2/2 prontos, o host clica INICIAR PARTIDA.\n\n"
             "127.0.0.1 só funciona no próprio PC. Não abra portas "
             "públicas no roteador para o EHL8 experimental.")
 
@@ -764,9 +766,9 @@ class EmeraldLauncher(tk.Tk):
             self.active_mode=mode
             self.active_log=logs
             if keep_launcher:
-                self.status.set("Sala criada. Deixe este launcher aberto para usar INICIAR PARTIDA.")
+                self.status.set("Sala criada. Aperte F9 no Emerald; deixe o launcher aberto para START.")
             else:
-                self.status.set("Emerald aberto. No online, aguarde o START do anfitrião.")
+                self.status.set("No online, aperte F9 no Emerald e aguarde o START do anfitrião.")
                 self.iconify()
             self.after(900,self.watch_game)
             return True
