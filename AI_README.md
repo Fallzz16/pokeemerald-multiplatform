@@ -1125,3 +1125,25 @@ Esse sucesso comprova as suítes automatizadas do commit testado, não gameplay 
 **CI/QA:** verificar Auto QA Windows/Linux e Windows Complete Preview na REVISÃO FINAL após este handoff. Os testes C garantem memória/framing/valores; CI de jogo prova compile; **nada comprova sem QA humano o painel visual, duas sprites no mapa e reconnect em hardware real**. O usuário só aprovou anteriormente a liberação de controles pelo START no PR #23. Não declarar beta jogável completa nem fazer merge automático.
 
 **Próximo gate:** host e convidado Windows com saves QA isolados, ambos devem ver 0/2→1/2→2/2 no painel, 2/2 prontos, START do host libera jogo e remove painel, aparecem sprites próximos no mesmo mapa. Usar logs `[EHL8] remote sprite shown/removed` adicionados no PR #36 para distinguir rede/sprite, testar transições, retomada de 60s, reabrir save offline. Não expor o servidor com PIN simples diretamente à Internet; LAN/VPN privada somente.
+
+
+## 62. M3.1 — jogador pode CANCELAR/retomar PRONTO pelo F5 antes de START (2026-10-21)
+
+**Pedido recente:** usuário pediu para continuar a grande rodada de multiplayer com autonomia máxima, sem adicionar história, mapas, Pokémon ou missões. QA Lab permanece estritamente ferramenta de testes, launcher final independente. Só o online do Emerald atual é escopo ativo. **Nunca mesclar automaticamente, testar com saves pessoais ou anunciar beta completa** sem QA visual de dois jogadores.
+
+**Base, branch, PR e rollback:** `Fallzz16/pokeemerald-multiplatform`, base PR #38 `feature/emerald-m31-lobby-in-game-20261021`, SHA `90bf184b936ebbd82739d0b599d729eda10f4bdf` (CI + Windows compilados). Nova branch `feature/emerald-m31-player-ready-toggle-20261021`, PR **#40** rascunho, base PR #38. Rollback: baixar ZIP do PR #38 SHA `90bf184` em pasta separada e preservar saves.
+
+**Defeito/UX:** apesar de mostrar JOGADORES 0/2–2/2 e PRONTOS, o cliente EHL8 nativo só autoemitia READY=1; o usuário não podia cancelar sem sair. O servidor EHL8 JÁ aceitava READY=0/1 e já negava START quando não havia dois prontos. Implementado controle real SEM alterar wire protocol:
+- `src/lnet/lnet_session_client.c/.h`: selfSlot/desiredReady/pendingReady, `lnet_session_client_toggle_ready` apenas em WAIT_START (nunca após START/reconexão), envio READY=0/1 em FIFO depois do frame corrente, acima dos heartbeats, mantendo JOIN inicial auto-ready por compatibilidade. Decodificação validada de PLAYER_LIST marca o próprio READY **confirmado pelo servidor**, sem enviar dados de perfil para o renderer.
+- `src/link.c`: game-thread `PortLanDedicatedToggleReady` e `PortLanDedicatedLocalReady`, não lê/escreve socket na thread SDL.
+- `src/platform/sdl2.c`: F5 faz pedido via SDL_atomic_t só quando painel WAIT_START está ativo; a thread da engine consome e solicita o toggle. A própria confirmação de READY e contagens são empacotadas em outro SDL_atomic_t para o overlay. Input GBA antigo, saves, turbo, modo solo e Cable Club ficam inalterados.
+- `src/lnet/lnet_wait_overlay.h`: linha curta `F5 CANCELAR PRONTO`, `F5 FICAR PRONTO` ou `F5 ALTERAR PRONTO` na tela nativa SDL 240x160 de sala.
+- `tools/emerald_launcher.py`: COMO CONVIDAR explica F5 e START com 2/2.
+- `scripts/verify_v080_profile_patch.py`: continua aplicando `once` com as mudanças exatas SDL2 antes de validar hash original, **SEM** relaxar a proteção.
+- `tests/test_ehl8_player_list_parser.c`: READY local confirmado, snapshots malformados rejeitados, bloqueio da API pós-START; `tests/test_ehl8_wait_overlay.c`: bitmap dentro de 240x160, estados READY/sem rede; `tests/native_ehl8_client.c` e `tests/test_ehl8_native_bridge.py`: dois executáveis C realmente conectados ao servidor EHL8 Python fazem READY=1 → CANCEL=0, servidor nega host START, volta READY=1 e host START permite jogo e troca de poses (SEM ROM/SDL/save real).
+- Documento NOVO `docs/V100_M31_PLAYER_READY_CANCEL_20261021_PTBR.md`: arquitetura do fluxo, limites, prova necessária, rollback.
+- **Removido:** nada. **Não alterado:** servidor Python, protocolo EHL8 no fio, Battle/Trade Cable Club P2P, save-format, conteúdo original, QA Lab, APK Android.
+
+**Evidência de CI intermediário:** [Auto QA Windows+Linux 39545712111](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/39545712111) `success` no commit de código `d2a02ce6980eea9e4e27c5ab8e8c7127cea65db8`. Depois desse commit, os commits foram documentação/PR/handoff apenas, não modificaram fonte executável. **Ainda consultar build Windows COMPLETE Preview no SHA FINAL do PR #40** (3 jobs game/gui-tools/portable) antes de entregar ZIP. CI legado GBA Compare falha historicamente separado do port Windows; não ocultar.
+
+**QA humano PENDENTE:** 2 janelas/PCs reais com saves de teste independentes: host e convidado 2/2; F5 em convidado muda para 1/2 e botão START desabilita; F5 novamente volta 2/2 e botão libera; START remove painel, entrada game funciona; F5 dentro do mapa não altera prontidão; sprites se enxergam no mesmo mapa, movem, warp/recuperação/saves reabertos offline. Também faltam batalhas/trocas EHL8, true WAN encryption, Android/crossplay. Não presumir que compilação testa pixels ou save.
