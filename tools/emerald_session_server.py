@@ -451,13 +451,16 @@ class SessionServer:
             if self.in_game:
                 await peer.send(START, b"", self.session)
             return
-        # A late joiner receives START immediately in a running room.
-        # The native SessionClient sends READY after JOIN regardless of room
-        # state. Treat this final READY as an idempotent acknowledgement;
-        # otherwise a replacement player disconnects on entering mid-game.
+        # READY frames may already be in flight when the host presses START.
+        # An old CANCEL=0 arriving just after START is NOT a request to undo
+        # live gameplay; silently ignore it rather than disconnecting a
+        # legitimate player. READY=1 is also the late-join handshake ACK.
+        # Invalid payloads still fail closed.
         if msg.kind == READY and peer.stage == "GAME":
-            if msg.payload != b"\x01":
+            if msg.payload not in (b"\x00", b"\x01"):
                 raise ProtocolError("invalid ready acknowledgement in running room")
+            if msg.payload == b"\x00":
+                return
             if not peer.ready:
                 peer.ready = True
                 await self.broadcast(PLAYER_LIST, self.snapshot())
