@@ -27,6 +27,13 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
                "src/lnet/lnet_presence.c", "src/lnet/lnet_session_client.c",
                "tests/native_ehl8_client.c", "-o", cls.exe]
         subprocess.run(cmd, cwd=ROOT, check=True, timeout=45)
+        # Separate short-timeout binary for an accelerated but REAL C-client
+        # waiting-room test. Existing native test timeouts stay unchanged.
+        cls.wait_exe = str(Path(cls.tmp.name) / "native_ehl8_wait_start")
+        cmd_wait = cmd[:cmd.index("tests/native_ehl8_client.c")] + [
+            "-DEHL_AUTH_TIMEOUT_MS=2300UL",
+            "tests/native_ehl8_client.c", "-o", cls.wait_exe]
+        subprocess.run(cmd_wait, cwd=ROOT, check=True, timeout=45)
 
     @classmethod
     def tearDownClass(cls):
@@ -53,6 +60,60 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
                 if p.returncode is None:
                     p.kill()
                     await p.wait()
+            await server.stop()
+
+    async def test_two_native_clients_remain_ready_without_start_then_play(self):
+        # Unlike Python fake clients, these processes use the actual C
+        # socket / state machine / automatic heartbeat implementation.
+        # An accelerated 2.3 s WAIT_START timeout would kick a native client
+        # that failed to emit heartbeat before the host's delayed START.
+        class HostServer(server_module.SessionServer):
+            def __init__(self):
+                super().__init__("123456", 2, idle_seconds=300, manual_start=True)
+                self.wait_heartbeats = {}
+
+            async def process(self, peer, msg):
+                if msg.kind == server_module.HEARTBEAT and peer.stage == "LOBBY":
+                    name = peer.profile
+                    self.wait_heartbeats[name] = self.wait_heartbeats.get(name, 0) + 1
+                await super().process(peer, msg)
+
+        server = HostServer()
+        listener = await server.start("127.0.0.1", 0)
+        port = str(listener.sockets[0].getsockname()[1])
+        clients = [
+            await asyncio.create_subprocess_exec(
+                self.wait_exe, "127.0.0.1", port,
+                "123456", "wait_A" if index == 0 else "wait_B",
+                "21" if index == 0 else "34",
+                "34" if index == 0 else "21", "awaitstart",
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE)
+            for index in range(2)
+        ]
+        try:
+            for _ in range(100):
+                if len(server.players) == 2 and all(p.ready for p in server.players.values()):
+                    break
+                await asyncio.sleep(0.03)
+            self.assertEqual(len(server.players), 2, "native C clients never became READY")
+            self.assertFalse(server.in_game, "manual host started without permission")
+            await asyncio.sleep(3.25)
+            self.assertFalse(server.in_game)
+            self.assertEqual(len(server.players), 2, "native clients timed out while waiting")
+            for who in (b"wait_A", b"wait_B"):
+                self.assertGreaterEqual(server.wait_heartbeats.get(who, 0), 3, who)
+            self.assertTrue(await server.admin_command("START"))
+            output = await asyncio.wait_for(
+                asyncio.gather(*(c.communicate() for c in clients)), timeout=10)
+            for process, (stdout, stderr) in zip(clients, output):
+                self.assertEqual(process.returncode, 0, stderr)
+                self.assertIn(b"native WAIT_START heartbeats", stdout)
+        finally:
+            for process in clients:
+                if process.returncode is None:
+                    process.kill()
+                    await process.wait()
             await server.stop()
 
     async def test_playing_clients_send_heartbeats_even_while_streaming_poses(self):
