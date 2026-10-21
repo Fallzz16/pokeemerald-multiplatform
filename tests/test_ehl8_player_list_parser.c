@@ -53,6 +53,24 @@ int main(void)
     assert(decode_fixture(&client, &frame, solo, sizeof(solo)-1) < 0);
     assert(lnet_session_client_lobby_counts(&client, &players, &ready));
     assert(players == 2 && ready == 2);
+    /* The per-player READY toggle is opt-in and only valid before START.
+     * Rapid toggles update the pending request, never a socket from SDL. */
+    client.state = EHL_CLIENT_WAIT_START;
+    client.selfSlot = 1;
+    client.desiredReady = 1;
+    assert(lnet_session_client_toggle_ready(&client) == 1);
+    assert(client.desiredReady == 0 && client.pendingReady == 1);
+    assert(lnet_session_client_toggle_ready(&client) == 1);
+    assert(client.desiredReady == 1 && client.pendingReady == 1);
+    client.pendingReady = 0;
+    client.state = EHL_CLIENT_PLAYING;
+    assert(lnet_session_client_toggle_ready(&client) == 0);
+    assert(client.pendingReady == 0);
+    client.state = EHL_CLIENT_RECONNECTING;
+    assert(lnet_session_client_toggle_ready(&client) == 0);
+    client.state = EHL_CLIENT_WAIT_START;
+    client.selfSlot = 0;
+    assert(lnet_session_client_toggle_ready(&client) == 0);
     puts("EHL8 native PLAYER_LIST parser: PASS");
     return 0;
 }
