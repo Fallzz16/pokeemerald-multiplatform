@@ -297,7 +297,9 @@ jobs:
             for attr in ("blockdata_filepath","border_filepath"):
               assert (Path("firered-source")/la[attr]).read_bytes()==Path(lb[attr]).read_bytes(),(name,attr)
             assert lb["secondary_tileset"]=="gTileset_Kanto"+la["secondary_tileset"].removeprefix("gTileset_")
-            assert dst["object_events"]==[],(name,"no premature trainers")
+            leaders_enabled=("PewterCity_Gym","CeruleanCity_Gym","VermilionCity_Gym","CeladonCity_Gym")
+            expected_npcs=1 if name in leaders_enabled else 0
+            assert len(dst["object_events"])==expected_npcs,(name,"wrong leader count")
             outer=src["warp_events"][0]["dest_map"]
             assert outer.startswith("MAP_")
           assert report["v13_visible_items"]==33
