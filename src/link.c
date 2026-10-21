@@ -2138,6 +2138,19 @@ int PortLanDedicatedSessionGate(void)
     return 0;
 }
 
+/* Read-only, game-thread-only flag for a subtle player-facing SDL2 badge.
+ * Use the same camera projection as the virtual sprite, not remote coords
+ * alone: receiving a valid pose in another area does NOT mean "in view". */
+int PortLanDedicatedFriendInView(void)
+{
+    return sLanDedicatedSession &&
+        lnet_session_client_state(sLanDedicatedSession) == EHL_CLIENT_PLAYING &&
+        sLanRemoteInitialized &&
+        LanVirtualObjectExists(LAN_VIRTUAL_PLAYER_ID) &&
+        LanRemoteIntersectsCamera(sLanRemoteGender, sLanRemotePosX,
+                                   sLanRemotePosY, 0);
+}
+
 /* Dedicated EHL8 presence only: NEVER feed this protocol to the Cable Club
  * serial transport. Reuse existing sprite/camera, no save or quest changes. */
 bool32 PortLanRequestDedicatedClient(const char *host, u16 port,
