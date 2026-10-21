@@ -787,9 +787,18 @@ KANTO_V14_GYMS = (
 )
 
 
+KANTO_V15_LEAGUE = (
+    "IndigoPlateau_PokemonCenter_1F",
+    "PokemonLeague_LoreleisRoom", "PokemonLeague_BrunosRoom",
+    "PokemonLeague_AgathasRoom", "PokemonLeague_LancesRoom",
+    "PokemonLeague_ChampionsRoom", "PokemonLeague_HallOfFame",
+)
+
+
 def add_kanto_v06_dungeons(source: Path, emerald: Path, source_maps: dict,
                           layouts: dict, target_layouts: dict,
-                          selected: tuple[str, ...] = KANTO_V06_DUNGEONS) -> dict:
+                          selected: tuple[str, ...] = KANTO_V06_DUNGEONS,
+                          omitted_warp_destinations: tuple[str,...] = ()) -> dict:
     """Port all 9 original layouts and their real intra-dungeon/exterior doors.
 
     Original interior warp indices are retained in complete dungeons. Exterior
@@ -874,6 +883,10 @@ def add_kanto_v06_dungeons(source: Path, emerald: Path, source_maps: dict,
         warps = []
         for i, entry in enumerate(original.get("warp_events") or []):
             dest_src = entry["dest_map"]
+            # Leave the unsupported original upstairs link/Cable Club
+            # inaccessible. No dynamic warp or save/link emulation.
+            if dest_src in omitted_warp_destinations:
+                continue
             if dest_src in by_source_id:
                 destination = "MAP_KANTO_" + by_source_id[dest_src].upper()
                 dest_warp_id = int(entry["dest_warp_id"])
@@ -1401,7 +1414,7 @@ def copy_exteriors(source: Path, emerald: Path) -> dict:
     # secondary graphics sets. Reuse an existing converted set if shared.
     dungeon_secondaries = {
         layouts[load_json(source, f"data/maps/{n}/map.json")["layout"]]["secondary_tileset"]
-        for n in KANTO_V06_DUNGEONS + KANTO_V07_DUNGEONS + KANTO_V12_DUNGEONS + KANTO_V14_GYMS
+        for n in KANTO_V06_DUNGEONS + KANTO_V07_DUNGEONS + KANTO_V12_DUNGEONS + KANTO_V14_GYMS + KANTO_V15_LEAGUE
     }
     already_converted = set(secondaries) | {
         "gTileset_PokemonCenter", "gTileset_Mart", "gTileset_GenericBuilding2"
@@ -1561,6 +1574,42 @@ Kanto_VermilionCity_Text_BattleQuestion:
     gym_batch = add_kanto_v06_dungeons(
         source, emerald, source_maps, layouts, target_layouts,
         selected=KANTO_V14_GYMS)
+    league_batch = add_kanto_v06_dungeons(
+        source, emerald, source_maps, layouts, target_layouts,
+        selected=KANTO_V15_LEAGUE,
+        omitted_warp_destinations=("MAP_INDIGO_PLATEAU_POKEMON_CENTER_2F",))
+    report["v15_league_maps"] = league_batch["names"]
+    report["v15_league_warps"] = league_batch["internal_warps"]
+    report["v15_league_exterior_warps"] = league_batch["exterior_warps"]
+    # Use Emerald's nurse and keep the independent Kanto heal location, with
+    # original Indigo Plateau nurse position (13,10).
+    indigo="Kanto_IndigoPlateau_PokemonCenter_1F"
+    center_path=emerald/"data/maps"/indigo/"map.json"
+    center=load_json(emerald,f"data/maps/{indigo}/map.json")
+    nurse=make_qa_npc("OBJ_EVENT_GFX_NURSE",
+                       "Kanto_Indigo_EventScript_Nurse",(13,10,3))
+    nurse["local_id"]="LOCALID_KANTO_INDIGO_NURSE"
+    center["object_events"].append(nurse)
+    emit_json(center_path,center)
+    (emerald/"data/maps"/indigo/"scripts.inc").write_text(
+        """Kanto_IndigoPlateau_PokemonCenter_1F_MapScripts::
+    map_script MAP_SCRIPT_ON_TRANSITION, Kanto_Indigo_EventScript_RegisterHeal
+    .byte 0
+
+Kanto_Indigo_EventScript_RegisterHeal:
+    setvar VAR_KANTO_LAST_HEAL_LOCATION, KANTO_HEAL_INDIGO_PLATEAU
+    end
+
+Kanto_Indigo_EventScript_Nurse::
+    setvar VAR_0x800B, LOCALID_KANTO_INDIGO_NURSE
+    call Common_EventScript_PkmnCenterNurse
+    waitmessage
+    waitbuttonpress
+    release
+    end
+""",encoding="utf-8"
+    )
+    report["v15_indigo_center_nurse"]=True
     report["v14_gym_maps"] = gym_batch["names"]
     report["v14_gym_warps"] = gym_batch["internal_warps"]
     report["v14_gym_exterior_warps"] = gym_batch["exterior_warps"]
@@ -1599,6 +1648,16 @@ Kanto_VermilionCity_Text_BattleQuestion:
             f"Kanto group has {count_kanto} maps (max {capacity}); "
             "split new maps into an appended Kanto group before importing")
     report["kanto_map_slots_remaining"] = capacity - count_kanto
+    # Keep this original map group immutable for existing save files.
+    # Append a NEW Kanto map group rather than risk signed 8-bit mapNums.
+    league_group="gMapGroup_Kanto_League"
+    if league_group in target_groups["group_order"] or league_group in target_groups:
+        raise RuntimeError("League map group is already registered")
+    if target_groups["group_order"][-1] != "gMapGroup_Kanto":
+        raise RuntimeError("Kanto must remain last before the league group is added")
+    target_groups["group_order"].append(league_group)
+    target_groups[league_group]=league_batch["names"]
+    report["v15_second_group_entries"]=len(league_batch["names"])
     # All 160 persistent pickup flags from V0.13 remain unchanged.
     # Gym layouts are not yet populated with trainer NPCs/leader badges.
     # Preserve the already-shipped 42 visible + 77 hidden item flags.
@@ -1642,6 +1701,8 @@ Kanto_VermilionCity_Text_BattleQuestion:
                         for n in major_batch["names"])
     includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"'
                         for n in gym_batch["names"])
+    includes += "".join(f'\n\t.include "data/maps/{n}/scripts.inc"'
+                        for n in league_batch["names"])
     inc.write_text(code.replace(anchor, anchor + includes, 1), encoding="utf-8")
     ferry = emerald / "data/maps/SlateportCity_Harbor/scripts.inc"
     s = ferry.read_text(encoding="utf-8")
@@ -1671,6 +1732,7 @@ def main() -> int:
     print("Added original Underground Path, Rock Tunnel and Pokemon Tower layouts with exits.")
     print("Added Victory Road, Pokemon Mansion, Cerulean Cave and Seafoam Islands (15 original floors).")
     print("Added eight authentic Kanto Gym interiors and exterior door connections; trainer/badge scripts pending.")
+    print("Added Indigo Plateau Center 1F and six Pokemon League rooms in a SECOND save-stable map group.")
     print(f"Ported {result['original_item_balls']} original visible item balls with save-backed flags.")
     print(f"Ported {result['original_hidden_items']} original hidden FireRed items with distinct save flags.")
     print(f"Ported {result['v13_visible_items']} extra visible and {result['v13_hidden_items']} hidden major-dungeon items with new flags.")

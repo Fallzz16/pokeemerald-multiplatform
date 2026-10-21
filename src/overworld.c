@@ -360,7 +360,9 @@ static void (*const sMovementStatusHandler[])(struct LinkPlayerObjectEvent *, st
 // A corrupt/older Kanto heal variable falls back to Vermilion, never Hoenn.
 static void Kanto_SetWhiteoutDestination(void)
 {
+    s8 mapGroup = MAP_GROUP(MAP_KANTO_HARBOR);
     s8 mapNum = MAP_NUM(MAP_KANTO_VERMILIONCITY_POKEMONCENTER_1F);
+    s8 x = 7, y = 6;
     switch (VarGet(VAR_KANTO_LAST_HEAL_LOCATION))
     {
     case KANTO_HEAL_VIRIDIAN_CITY:
@@ -387,12 +389,18 @@ static void Kanto_SetWhiteoutDestination(void)
     case KANTO_HEAL_SAFFRON_CITY:
         mapNum = MAP_NUM(MAP_KANTO_SAFFRONCITY_POKEMONCENTER_1F);
         break;
+    case KANTO_HEAL_INDIGO_PLATEAU:
+        mapGroup = MAP_GROUP(MAP_KANTO_INDIGOPLATEAU_POKEMONCENTER_1F);
+        mapNum = MAP_NUM(MAP_KANTO_INDIGOPLATEAU_POKEMONCENTER_1F);
+        x = 11;
+        y = 15;
+        break;
     case KANTO_HEAL_VERMILION_CITY:
     case KANTO_HEAL_NONE:
     default:
         break;
     }
-    SetWarpDestination(MAP_GROUP(MAP_KANTO_HARBOR), mapNum, WARP_ID_NONE, 7, 6);
+    SetWarpDestination(mapGroup, mapNum, WARP_ID_NONE, x, y);
 }
 
 void DoWhiteOut(void)
@@ -403,7 +411,8 @@ void DoWhiteOut(void)
     Overworld_ResetStateAfterWhiteOut();
     // Kanto keeps an independent, saved Center index in a previously unused
     // persistent script variable; never rewrite Hoenn's lastHealLocation.
-    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_KANTO_HARBOR))
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_KANTO_HARBOR)
+     || gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_KANTO_INDIGOPLATEAU_POKEMONCENTER_1F))
         Kanto_SetWhiteoutDestination();
     else
         SetWarpDestinationToLastHealLocation();

@@ -278,6 +278,7 @@
 #define KANTO_HEAL_FUCHSIA_CITY 7
 #define KANTO_HEAL_CINNABAR_ISLAND 8
 #define KANTO_HEAL_SAFFRON_CITY 9
+#define KANTO_HEAL_INDIGO_PLATEAU 10
 
 #define VAR_UNUSED_0x40F8                                0x40F8 // Unused Var
 #define VAR_UNUSED_0x40F9                                0x40F9 // Unused Var
