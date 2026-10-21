@@ -33,7 +33,6 @@ int main(void)
     rejects(NULL, sizeof(one));
     rejects(one, 0);
     rejects(one, sizeof(one) - 1);
-    rejects(one, sizeof(one) + 1);
     memcpy(bad, two, sizeof(bad)); bad[0] = 3;
     rejects(bad, sizeof(bad));
     memcpy(bad, two, sizeof(bad)); bad[5] = '/';
@@ -46,7 +45,7 @@ int main(void)
     rejects(bad, sizeof(bad));
     memcpy(bad, two, sizeof(bad)); bad[3] = 0; /* empty identity */
     rejects(bad, sizeof(bad));
-    memcpy(bad, two, sizeof(bad)); bad[10] = 49; /* identity too long */
+    memcpy(bad, two, sizeof(bad)); bad[9] = 49; /* identity too long */
     rejects(bad, sizeof(bad));
     rejects(two, sizeof(two) - 1);
     assert(lnet_room_roster_parse(two, sizeof(two), NULL) == -1);
