@@ -2122,9 +2122,9 @@ void PortLanRequestClient(const char *host, u16 port)
 }
 
 /* Read only on the game thread, just like PortLanPresencePump().
- *  1 = server START received; 0 = waiting; -1 = failed/unavailable.
- * This is an opt-in gameplay input gate, not a request to stop the game loop:
- * the EHL8 socket must continue to be polled each frame. */
+ *  1 = server START received, 0 = joined and waiting START,
+ *  2 = connecting/authenticating, -1 = failed or unavailable.
+ * Never stop the game loop: EHL8 must poll TCP and render each frame. */
 int PortLanDedicatedSessionGate(void)
 {
     int state;
@@ -2135,7 +2135,9 @@ int PortLanDedicatedSessionGate(void)
         return 1;
     if (state == EHL_CLIENT_FAILED)
         return -1;
-    return 0;
+    if (state == EHL_CLIENT_WAIT_START)
+        return 0;
+    return 2;
 }
 
 /* Read-only, game-thread-only flag for a subtle player-facing SDL2 badge.
