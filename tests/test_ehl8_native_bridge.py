@@ -116,6 +116,58 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
                     await process.wait()
             await server.stop()
 
+    async def test_ready_cycle_native_clients(self):
+        class RecordingServer(server_module.SessionServer):
+            def __init__(self):
+                super().__init__("123456", 2, idle_seconds=300, manual_start=True)
+                self.ready_events = []
+
+            async def process(self, peer, msg):
+                await super().process(peer, msg)
+                if peer.profile == b"cycle_A" and msg.kind == server_module.READY:
+                    self.ready_events.append(msg.payload)
+
+        server = RecordingServer()
+        listener = await server.start("127.0.0.1", 0)
+        port = str(listener.sockets[0].getsockname()[1])
+        clients = []
+        try:
+            for name, x, other, mode in (
+                ("cycle_A", "21", "34", "readycycle"),
+                ("cycle_B", "34", "21", "manualwait")
+            ):
+                clients.append(await asyncio.create_subprocess_exec(
+                    self.wait_exe, "127.0.0.1", port, "123456",
+                    name, x, other, mode,
+                    stdout=asyncio.subprocess.PIPE,
+                    stderr=asyncio.subprocess.PIPE))
+            for _ in range(160):
+                if b"\\x00" in server.ready_events:
+                    break
+                await asyncio.sleep(0.03)
+            self.assertIn(bytes([0]), server.ready_events)
+            self.assertEqual(sum(p.ready for p in server.players.values()), 1)
+            self.assertFalse(await server.admin_command("START"))
+            for _ in range(160):
+                if len(server.ready_events) >= 3 and server.ready_events[-1] == bytes([1]):
+                    break
+                await asyncio.sleep(0.03)
+            self.assertEqual(server.ready_events, [bytes([1]), bytes([0]), bytes([1])])
+            self.assertEqual(sum(p.ready for p in server.players.values()), 2)
+            await asyncio.sleep(2.4)
+            self.assertTrue(await server.admin_command("START"))
+            output = await asyncio.wait_for(
+                asyncio.gather(*(c.communicate() for c in clients)), 10)
+            for proc, (stdout, stderr) in zip(clients, output):
+                self.assertEqual(proc.returncode, 0, stderr)
+                self.assertIn(b"native", stdout)
+        finally:
+            for proc in clients:
+                if proc.returncode is None:
+                    proc.kill()
+                    await proc.wait()
+            await server.stop()
+
     async def test_playing_clients_send_heartbeats_even_while_streaming_poses(self):
         # The game sends poses every 100 ms. Heartbeats must still be sent;
         # the test overrides only the heartbeat interval to 250 ms so it runs
