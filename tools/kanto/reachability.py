@@ -17,7 +17,9 @@ def load(root: Path, path: str):
 
 def inspect(root: Path, origin: str = "Kanto_VermilionCity") -> dict:
     groups = load(root, "data/maps/map_groups.json")
-    kanto_groups = [g for g in groups["group_order"]
+    # A synthetic single-group fixture may omit group_order.
+    order = groups.get("group_order", ["gMapGroup_Kanto"])
+    kanto_groups = [g for g in order
                     if g == "gMapGroup_Kanto" or g.startswith("gMapGroup_Kanto_")]
     map_names = [name for g in kanto_groups for name in groups[g]]
     if len(map_names) != len(set(map_names)):
