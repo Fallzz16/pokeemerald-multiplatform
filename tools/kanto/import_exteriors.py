@@ -1477,7 +1477,7 @@ def import_first_kanto_gym_leaders(source: Path, emerald: Path,
     {{
         .trainerClass = TRAINER_CLASS_LEADER,
         .encounterMusic_gender = {"F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE" if is_female else "TRAINER_ENCOUNTER_MUSIC_MALE"},
-        .trainerPic = TRAINER_PIC_{portrait},
+        .trainerPic = TRAINER_PIC_LEADER_{portrait},
         .trainerName = _("{'LT. SURGE' if leader == 'LtSurge' else leader.upper()}"),
         .items = {original_items.group(1)},
         .doubleBattle = FALSE,
