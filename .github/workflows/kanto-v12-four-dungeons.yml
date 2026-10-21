@@ -200,7 +200,7 @@ jobs:
             "PokemonTower_4F","PokemonTower_5F","PokemonTower_6F",
             "PokemonTower_7F"
           )
-          assert groups["gMapGroup_Kanto"][69:] == ["Kanto_"+n for n in new_v07]
+          assert groups["gMapGroup_Kanto"][69:84] == ["Kanto_"+n for n in new_v07]
           assert report["v07_underground_and_tower_maps"] == ["Kanto_"+n for n in new_v07]
           # Regional faint / nurse heal uses one persistent previously unused
           # var, not the Hoenn lastHealLocation or changed save fields.
