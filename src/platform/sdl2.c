@@ -58,7 +58,7 @@ static char sActiveSavePath[SP_PATH_CAP] = "pokeemerald.sav";
 static SpProfileLock sActiveProfileLock;
 static bool sProfileLocked = false;
 static LNetStartGate sEhl8StartGate;
-static SDL_atomic_t sEhl8WaitUiState; /* 0=offline,1=waiting,2=online,3=initial fail,4=reconnecting,5=offline after START */
+static SDL_atomic_t sEhl8WaitUiState; /* 0=offline,1=wait START,2=online,3=initial fail,4=reconnecting,5=lost,6=connecting */
 static SDL_atomic_t sEhl8FriendInView; /* game-thread camera projection; UI-thread reads */
 #ifdef __ANDROID__
 static char sAndroidSavePath[1024] = "pokeemerald.sav";
@@ -374,6 +374,8 @@ int main(int argc, char **argv)
                     caption = "Emerald Hybrid — reconectando ao amigo (jogo local liberado)";
                 else if (waitUiState == 5)
                     caption = "Emerald Hybrid — sem conexao EHL8; jogo local liberado";
+                else if (waitUiState == 6)
+                    caption = "Emerald Hybrid — conectando ao servidor EHL8";
                 SDL_SetWindowTitle(sdlWindow, caption);
                 lastWaitUiState = waitUiState;
             }
@@ -789,7 +791,7 @@ u16 Platform_GetKeyInput(void)
         {
             if (lnet_start_gate_blocked(&sEhl8StartGate, state))
             {
-                SDL_AtomicSet(&sEhl8WaitUiState, state < 0 ? 3 : 1);
+                SDL_AtomicSet(&sEhl8WaitUiState, state < 0 ? 3 : (state == 2 ? 6 : 1));
                 return 0;
             }
             SDL_AtomicSet(&sEhl8WaitUiState, 2);
