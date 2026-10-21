@@ -1590,6 +1590,192 @@ Kanto_{city}_Gym_EventScript_{leader}AfterTM::
     )
     return {"count":len(results), "leaders": results}
 
+
+KANTO_V17_LEADERS = (
+    ("Koga", "FuchsiaCity", "SOUL", "ITEM_TM06", "BRAWLY"),
+    ("Sabrina", "SaffronCity", "MARSH", "ITEM_TM04", "WINONA"),
+    ("Blaine", "CinnabarIsland", "VOLCANO", "ITEM_TM38", "WATTSON"),
+    ("Giovanni", "ViridianCity", "EARTH", "ITEM_TM26", "ROXANNE"),
+)
+
+
+def import_remaining_kanto_gym_leaders(source: Path, emerald: Path,
+                                      previously_used: list[dict]) -> dict:
+    """Use separate saved flags for trainers 864-867; do not grow SaveBlock."""
+    opponent_path = emerald / "include/constants/opponents.h"
+    party_path = emerald / "src/data/trainer_parties.h"
+    trainer_path = emerald / "src/data/trainers.h"
+    flag_path = emerald / "include/constants/flags.h"
+    old_opponents = opponent_path.read_text(encoding="utf-8")
+    if ("#define TRAINERS_COUNT                      864" not in old_opponents
+            or "#define MAX_TRAINERS_COUNT                  864" not in old_opponents):
+        raise RuntimeError("Expected four first leaders and 864 save-backed trainer bits")
+    flags = flag_path.read_text(encoding="utf-8")
+    reserved = sorted({int(x,16) for x in re.findall(
+        r"(?m)^#define FLAG_UNUSED_0x([0-9A-Fa-f]{3})\s+",flags)
+        if 0x264 <= int(x,16) < 0x500})
+    occupied = [row["flag_value"] for row in previously_used]
+    if len(occupied) != len(set(occupied)) or len(occupied) < 168:
+        raise RuntimeError("Original Kanto pickup and badge allocations invalid")
+    free = [n for n in reserved if n not in set(occupied)]
+    if len(free) < len(KANTO_V17_LEADERS)*3:
+        raise RuntimeError("No spare saved flag slots for extended trainers")
+    raw_parties = (source/"src/data/trainer_parties.h").read_text(encoding="utf-8")
+    raw_trainers = (source/"src/data/trainers.h").read_text(encoding="utf-8")
+    trainer_src = trainer_path.read_text(encoding="utf-8")
+    party_src = party_path.read_text(encoding="utf-8")
+    valid_items = set(re.findall(r"\bITEM_[A-Z0-9_]+\b",
+                                 (emerald/"include/constants/items.h").read_text(encoding="utf-8")))
+    species = set(re.findall(r"\bSPECIES_[A-Z0-9_]+\b",
+                              (emerald/"include/constants/species.h").read_text(encoding="utf-8")))
+    moves = set(re.findall(r"\bMOVE_[A-Z0-9_]+\b",
+                            (emerald/"include/constants/moves.h").read_text(encoding="utf-8")))
+    if not trainer_src.rstrip().endswith("};"):
+        raise RuntimeError("Unexpected target trainer table")
+    new_trainers = []
+    new_parties = []
+    new_constants = []
+    flag_declarations = []
+    rows = []
+    for i,(leader,city,badge,tm,pic) in enumerate(KANTO_V17_LEADERS):
+        source_id = "TRAINER_LEADER_"+leader.upper()
+        target_id = "TRAINER_KANTO_LEADER_"+leader.upper()
+        party_label = "sParty_Leader"+leader
+        source_party = re.search(
+            r"static const struct TrainerMonNoItemCustomMoves\s+"
+            +re.escape(party_label)+r"\[\]\s*=\s*\{([\s\S]*?)\n\};",
+            raw_parties)
+        source_record = re.search(
+            r"\["+re.escape(source_id)+r"\]\s*=\s*\{([\s\S]*?)\n\s*\},",
+            raw_trainers)
+        if not source_party or not source_record:
+            raise RuntimeError(f"Missing original gym team for {leader}")
+        body=source_party.group(1)
+        if (not re.findall(r"\.lvl\s*=\s*\d+",body)
+            or any(k not in species for k in re.findall(r"\bSPECIES_[A-Z0-9_]+\b",body))
+            or any(k not in moves for k in re.findall(r"\bMOVE_[A-Z0-9_]+\b",body))):
+            raise RuntimeError(f"Unsupported original gym leader Pokemon/move: {leader}")
+        item_match=re.search(r"\.items\s*=\s*(\{[^\}]*\})",source_record.group(1))
+        if not item_match or any(x not in valid_items for x in re.findall(
+                r"ITEM_[A-Z0-9_]+",item_match.group(1))):
+            raise RuntimeError(f"Unsupported FireRed trainer medicine: {leader}")
+        if tm not in valid_items:
+            raise RuntimeError(f"Gym TM {tm} missing in Emerald")
+        new_party_name="sParty_KantoV17Leader"+leader
+        new_parties.append(
+            "static const struct TrainerMonNoItemCustomMoves "+new_party_name+"[] = {"
+            +body+"\n};\n")
+        female=leader=="Sabrina"
+        new_trainers.append(f"""    [{target_id}] =
+    {{
+        .trainerClass = TRAINER_CLASS_LEADER,
+        .encounterMusic_gender = {"F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE" if female else "TRAINER_ENCOUNTER_MUSIC_MALE"},
+        .trainerPic = TRAINER_PIC_LEADER_{pic},
+        .trainerName = _("{leader.upper()}"),
+        .items = {item_match.group(1)},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .party = NO_ITEM_CUSTOM_MOVES({new_party_name}),
+    }},
+""")
+        new_constants.append(f"#define {target_id:<42} {864+i}\n")
+        gym=f"Kanto_{city}_Gym"
+        dest=emerald/"data/maps"/gym/"map.json"
+        target_map=load_json(emerald,f"data/maps/{gym}/map.json")
+        original=load_json(source,f"data/maps/{city}_Gym/map.json")
+        leader_objects=[obj for obj in original["object_events"]
+                        if obj.get("script","").endswith("_EventScript_"+leader)]
+        if len(leader_objects)!=1 or target_map["object_events"]:
+            raise RuntimeError(f"Invalid gym actor state: {leader}")
+        event=leader_objects[0]
+        label=gym+"_EventScript_Leader"+leader
+        target_map["object_events"].append({
+            "graphics_id":"OBJ_EVENT_GFX_"+pic,
+            "x":event["x"],"y":event["y"],"elevation":event["elevation"],
+            "movement_type":"MOVEMENT_TYPE_FACE_DOWN",
+            "movement_range_x":0,"movement_range_y":0,
+            "trainer_type":"TRAINER_TYPE_NONE",
+            "trainer_sight_or_berry_tree_id":"0",
+            "script":label,"flag":"0",
+        })
+        emit_json(dest,target_map)
+        scripts=emerald/"data/maps"/gym/"scripts.inc"
+        existing=scripts.read_text(encoding="utf-8")
+        badge_flag="FLAG_KANTO_BADGE_"+badge
+        tm_flag="FLAG_KANTO_TM_"+badge
+        trainer_flag="FLAG_KANTO_V17_TRAINER_"+leader.upper()
+        intro=gym+"_Text_"+leader+"_Intro"
+        defeat=gym+"_Text_"+leader+"_Defeat"
+        after=gym+"_Text_"+leader+"_After"
+        won=gym+"_EventScript_"+leader+"Won"
+        tm_event=gym+"_EventScript_"+leader+"TM"
+        existing+=f"""
+{label}::
+    lock
+    faceplayer
+    goto_if_set {badge_flag}, {tm_event}
+    trainerbattle_single {target_id}, {intro}, {defeat}, {won}, NO_MUSIC
+    msgbox {after}, MSGBOX_DEFAULT
+    release
+    end
+
+{won}::
+    setflag {badge_flag}
+    call Common_EventScript_PlayGymBadgeFanfare
+    goto {tm_event}
+    end
+
+{tm_event}::
+    goto_if_set {tm_flag}, {gym}_EventScript_{leader}AfterTM
+    giveitem {tm}
+    goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+    setflag {tm_flag}
+{gym}_EventScript_{leader}AfterTM::
+    msgbox {after}, MSGBOX_DEFAULT
+    release
+    end
+
+{intro}:
+    .string "Ready for a KANTO GYM battle?$"
+
+{defeat}:
+    .string "You have earned my respect.$"
+
+{after}:
+    .string "The {badge} BADGE is yours!$"
+"""
+        scripts.write_text(existing,encoding="utf-8")
+        for symbol,value in ((trainer_flag,free[3*i]),
+                             (badge_flag,free[3*i+1]),
+                             (tm_flag,free[3*i+2])):
+            flag_declarations.append(f"#define {symbol:<43} FLAG_UNUSED_0x{value:03X}\n")
+        rows.append({
+            "leader":leader,"city":city,"trainer_id":864+i,
+            "trainer_symbol":target_id,"party":new_party_name,
+            "trainer_flag":trainer_flag,"trainer_flag_value":free[3*i],
+            "badge_flag":badge_flag,"badge_flag_value":free[3*i+1],
+            "tm_flag":tm_flag,"tm_flag_value":free[3*i+2],
+            "tm":tm,"coords":[event["x"],event["y"]],
+            "temporary_portrait":True,
+        })
+    opponent_path.write_text(
+        old_opponents.replace("#define TRAINERS_COUNT                      864",
+                              "".join(new_constants)
+                              +"#define TRAINERS_COUNT                      868"),encoding="utf-8")
+    party_path.write_text(party_src.rstrip()+"\n\n"+"\n".join(new_parties),encoding="utf-8")
+    idx=trainer_src.rfind("};")
+    trainer_path.write_text(
+        trainer_src[:idx]+"\n"+"\n".join(new_trainers)+trainer_src[idx:],
+        encoding="utf-8")
+    footer="#endif // GUARD_CONSTANTS_FLAGS_H"
+    if footer not in flags:
+        raise RuntimeError("Flag definitions unexpectedly changed")
+    flag_path.write_text(
+        flags.replace(footer,
+            "// V0.17 extra trainer victories, badges and unique TM prizes.\n"
+            +"".join(flag_declarations)+"\n"+footer),encoding="utf-8")
+    return {"count":len(rows),"leaders":rows}
+
 def copy_exteriors(source: Path, emerald: Path) -> dict:
     checkout_guard(source)
     group = load_json(source, "data/maps/map_groups.json")
@@ -1895,9 +2081,19 @@ Kanto_Indigo_EventScript_Nurse::
         item_report["items"] + hidden_report["items"] + major_items["items"])
     report["v16_gym_leaders"] = gym_leaders["leaders"]
     report["v16_gym_leader_battles"] = gym_leaders["count"]
+    later_gym_leaders = import_remaining_kanto_gym_leaders(
+        source, emerald,
+        item_report["items"] + hidden_report["items"] + major_items["items"]
+        + [
+            {"flag_value":value}
+            for leader in gym_leaders["leaders"]
+            for value in (leader["badge_flag_value"], leader["tm_flag_value"])
+        ])
+    report["v17_remaining_gym_leaders"] = later_gym_leaders["leaders"]
+    report["v17_gym_leader_battles"] = later_gym_leaders["count"]
     report["viridian_forest_trainers"] = trainer_report["trainers"]
-    report["original_npcs_ported"] = trainer_report["count"] + gym_leaders["count"]
-    report["trainer_battles_ported"] = trainer_report["count"] + gym_leaders["count"]
+    report["original_npcs_ported"] = trainer_report["count"] + gym_leaders["count"] + later_gym_leaders["count"]
+    report["trainer_battles_ported"] = trainer_report["count"] + gym_leaders["count"] + later_gym_leaders["count"]
     target_groups["connections_include_order"].extend("Kanto_" + n for n in names)
     emit_json(emerald / "data/maps/map_groups.json", target_groups)
     emit_json(emerald / "data/layouts/layouts.json", target_layouts)
@@ -1953,6 +2149,7 @@ def main() -> int:
     print(f"Ported {result['original_hidden_items']} original hidden FireRed items with distinct save flags.")
     print(f"Ported {result['v13_visible_items']} extra visible and {result['v13_hidden_items']} hidden major-dungeon items with new flags.")
     print(f"Ported {result['trainer_battles_ported']} original Viridian Forest trainers.")
+    print(f"Ported {result['v17_gym_leader_battles']} additional gym leaders with mapped persistent trainer flags.")
     print(f"Ported {result['v16_gym_leader_battles']} original FireRed gym leader parties, badges and TMs.")
     print("Dungeon NPCs/items/scripts, special collision behaviors and full gameplay QA still pending.")
     print("Verify collision, palettes, map edges, ferry and save by real gameplay.")

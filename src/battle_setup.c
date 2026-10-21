@@ -981,14 +981,37 @@ static u8 TrainerBattleLoadArg8(const u8 *ptr)
     return T1_READ_8(ptr);
 }
 
+
+/* Kanto trainers beyond the original 864-bit defeated-trainer save field.
+ * Keep the legacy flag mapping unchanged for all existing Hoenn and
+ * V0.9–V0.16 trainer IDs. The extra four map onto unused saved flag bits;
+ * do not extend SaveBlock1, and never reuse their allocated flags.
+ */
+static u16 GetTrainerSaveFlag(u16 trainerId)
+{
+    switch (trainerId)
+    {
+    case TRAINER_KANTO_LEADER_KOGA:
+        return FLAG_KANTO_V17_TRAINER_KOGA;
+    case TRAINER_KANTO_LEADER_SABRINA:
+        return FLAG_KANTO_V17_TRAINER_SABRINA;
+    case TRAINER_KANTO_LEADER_BLAINE:
+        return FLAG_KANTO_V17_TRAINER_BLAINE;
+    case TRAINER_KANTO_LEADER_GIOVANNI:
+        return FLAG_KANTO_V17_TRAINER_GIOVANNI;
+    default:
+        return TRAINER_FLAGS_START + trainerId;
+    }
+}
+
 static u16 GetTrainerAFlag(void)
 {
-    return TRAINER_FLAGS_START + gTrainerBattleOpponent_A;
+    return GetTrainerSaveFlag(gTrainerBattleOpponent_A);
 }
 
 static u16 GetTrainerBFlag(void)
 {
-    return TRAINER_FLAGS_START + gTrainerBattleOpponent_B;
+    return GetTrainerSaveFlag(gTrainerBattleOpponent_B);
 }
 
 static bool32 IsPlayerDefeated(u32 battleOutcome)
@@ -1215,7 +1238,7 @@ void SetUpTwoTrainersBattle(void)
 bool32 GetTrainerFlagFromScriptPointer(const u8 *data)
 {
     u32 flag = TrainerBattleLoadArg16(data + 2);
-    return FlagGet(TRAINER_FLAGS_START + flag);
+    return FlagGet(GetTrainerSaveFlag(flag));
 }
 
 // Set trainer's movement type so they stop and remain facing that direction
@@ -1256,17 +1279,17 @@ static void UNUSED SetBattledTrainerFlag(void)
 
 bool8 HasTrainerBeenFought(u16 trainerId)
 {
-    return FlagGet(TRAINER_FLAGS_START + trainerId);
+    return FlagGet(GetTrainerSaveFlag(trainerId));
 }
 
 void SetTrainerFlag(u16 trainerId)
 {
-    FlagSet(TRAINER_FLAGS_START + trainerId);
+    FlagSet(GetTrainerSaveFlag(trainerId));
 }
 
 void ClearTrainerFlag(u16 trainerId)
 {
-    FlagClear(TRAINER_FLAGS_START + trainerId);
+    FlagClear(GetTrainerSaveFlag(trainerId));
 }
 
 void BattleSetup_StartTrainerBattle(void)
