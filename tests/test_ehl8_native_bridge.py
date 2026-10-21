@@ -267,7 +267,17 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
             await server.stop()
 
     async def test_wrong_pin_native_client_fails_without_changing_existing_lobby(self):
-        server = server_module.SessionServer("123456", 2, idle_seconds=300)
+        class CountingAuthServer(server_module.SessionServer):
+            def __init__(self):
+                super().__init__("123456", 2, idle_seconds=300)
+                self.auth_attempts = 0
+
+            async def process(self, peer, msg):
+                if msg.kind == server_module.AUTH_PIN:
+                    self.auth_attempts += 1
+                await super().process(peer, msg)
+
+        server = CountingAuthServer()
         listener = await server.start("127.0.0.1", 0)
         port = str(listener.sockets[0].getsockname()[1])
         bad = await asyncio.create_subprocess_exec(self.exe, "127.0.0.1", port,
@@ -278,6 +288,8 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
             self.assertNotEqual(bad.returncode, 0)
             self.assertFalse(server.players, "Failed PIN must never create a lobby member")
             self.assertFalse(server.in_game)
+            self.assertEqual(server.auth_attempts, 1,
+                             "Rejected credentials must never trigger retry loops")
         finally:
             if bad.returncode is None:
                 bad.kill()
