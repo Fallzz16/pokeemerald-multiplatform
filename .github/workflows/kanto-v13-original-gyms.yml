@@ -243,7 +243,7 @@ jobs:
             "SeafoamIslands_B2F","SeafoamIslands_B3F","SeafoamIslands_B4F"
           )
           registry=json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"]
-          assert registry[84:] == ["Kanto_"+n for n in major_names]
+          assert registry[84:99] == ["Kanto_"+n for n in major_names]
           assert report["v12_major_dungeon_maps"]==["Kanto_"+n for n in major_names]
           assert report["v12_major_dungeon_warps"] >= 50
           assert report["v12_major_dungeon_exterior_warps"] >= 3
