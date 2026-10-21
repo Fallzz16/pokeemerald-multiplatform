@@ -68,6 +68,47 @@ class NativeResume(unittest.IsolatedAsyncioTestCase):
                     await proc.wait()
             await server.stop()
 
+    async def test_native_manual_ready_resumes_without_ready_zero_in_game(self):
+        """Manual initial READY is distinct from mandatory RESUME in GAME."""
+        server = S.SessionServer("123456", 2, idle_seconds=120,
+                                 resume_enabled=True, manual_start=True)
+        listener = await server.start("127.0.0.1", 0)
+        port = str(listener.sockets[0].getsockname()[1])
+        a = await asyncio.create_subprocess_exec(
+            self.exe, "127.0.0.1", port, "123456", "manual_A", "21", "34",
+            "manualreconnect", stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE)
+        b = await asyncio.create_subprocess_exec(
+            self.exe, "127.0.0.1", port, "123456", "trainer_B", "34", "21",
+            "lingerlong", stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE)
+        try:
+            for _ in range(160):
+                if (len(server.players) == 2 and
+                    all(p.ready and p.stage == "LOBBY" and p.resume_token
+                        for p in server.players.values())):
+                    break
+                await asyncio.sleep(.025)
+            self.assertEqual(len(server.players), 2)
+            self.assertTrue(all(p.ready for p in server.players.values()))
+            self.assertFalse(server.in_game)
+            self.assertTrue(await server.admin_command("START"))
+            await asyncio.sleep(.5)
+            target = next(p for p in server.players.values()
+                          if p.profile == b"manual_A")
+            target.close()  # simulated transport loss while match is running
+            outputs = await asyncio.wait_for(
+                asyncio.gather(a.communicate(), b.communicate()), timeout=12)
+            self.assertEqual(a.returncode, 0, outputs[0][1])
+            self.assertEqual(b.returncode, 0, outputs[1][1])
+            self.assertIn(b"token resume and fresh remote pose verified", outputs[0][0])
+        finally:
+            for proc in (a, b):
+                if proc.returncode is None:
+                    proc.kill()
+                    await proc.wait()
+            await server.stop()
+
     async def test_native_legacy_client_server_compatibility(self):
         server = S.SessionServer("123456", 2, idle_seconds=120)
         listener = await server.start("127.0.0.1", 0)
