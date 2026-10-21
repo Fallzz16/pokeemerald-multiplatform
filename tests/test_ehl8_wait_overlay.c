@@ -22,23 +22,33 @@ static void SDL_RenderDrawRect(SDL_Renderer *r,const SDL_Rect *rect)
 int main(void)
 {
     SDL_Renderer renderer = {0,0};
-    lnet_wait_overlay_render(&renderer, 0);
-    lnet_wait_overlay_render(&renderer, 2);
+    lnet_wait_overlay_render(&renderer, 0, -1);
+    lnet_wait_overlay_render(&renderer, 2, -1);
     assert(renderer.calls == 0 && renderer.border == 0);
-    lnet_wait_overlay_render(&renderer, 1);
+    lnet_wait_overlay_render(&renderer, 1, -1);
     assert(renderer.calls > 100 && renderer.border == 1);
     renderer.calls = 0;
-    lnet_wait_overlay_render(&renderer, 3);
+    lnet_wait_overlay_render(&renderer, 3, -1);
     assert(renderer.calls > 100 && renderer.border == 2);
     renderer.calls = 0;
-    lnet_wait_overlay_render(&renderer, 4); /* network interrupted */
+    lnet_wait_overlay_render(&renderer, 4, -1); /* network interrupted */
     assert(renderer.calls > 40 && renderer.border == 3);
     renderer.calls = 0;
-    lnet_wait_overlay_render(&renderer, 5); /* retry window exhausted */
+    lnet_wait_overlay_render(&renderer, 5, -1); /* retry window exhausted */
     assert(renderer.calls > 40 && renderer.border == 4);
     renderer.calls = 0;
-    lnet_wait_overlay_render(&renderer, 2); /* connected again */
+    lnet_wait_overlay_render(&renderer, 2, -1); /* connected again */
     assert(renderer.calls == 0 && renderer.border == 4);
-    printf("EHL8 waiting and reconnect status overlays: PASS\n");
+    /* The same in-game panel now includes live counters from the server. */
+    renderer.calls = 0;
+    lnet_wait_overlay_render(&renderer, 1, 1 | (1 << 4)); /* 1/2, 1 ready */
+    assert(renderer.calls > 100 && renderer.border == 5);
+    renderer.calls = 0;
+    lnet_wait_overlay_render(&renderer, 1, 2 | (2 << 4)); /* 2/2, 2 ready */
+    assert(renderer.calls > 100 && renderer.border == 6);
+    renderer.calls = 0;
+    lnet_wait_overlay_render(&renderer, 1, 0); /* connected room, zero ready */
+    assert(renderer.calls > 100 && renderer.border == 7);
+    printf("EHL8 room population + reconnect HUD: PASS\n");
     return 0;
 }
