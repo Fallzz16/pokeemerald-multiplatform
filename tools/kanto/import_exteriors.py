@@ -1116,6 +1116,136 @@ def import_kanto_hidden_items(source: Path, emerald: Path,
     return {"total":len(rows), "items":rows}
 
 
+def import_kanto_v12_pickups(source: Path, emerald: Path,
+                            original_maps: tuple[str, ...],
+                            old_visible: list[dict],
+                            old_hidden: list[dict]) -> dict:
+    """Append real dungeon items without changing V0.8/V0.11 saved bits.
+
+    New flags are chosen from genuinely unused save bits *after* all previous
+    visible/hidden item allocations. Never extend an old source item-map
+    input list: doing so would move hidden-item bits and corrupt old saves.
+    """
+    flags_file = emerald / "include/constants/flags.h"
+    content = flags_file.read_text(encoding="utf-8")
+    unused = sorted({
+        int(v, 16) for v in re.findall(
+            r"(?m)^#define FLAG_UNUSED_0x([0-9A-Fa-f]{3})\s+", content
+        ) if 0x264 <= int(v, 16) < 0x500
+    })
+    prior_rows = old_visible + old_hidden
+    used = {x["flag_value"] for x in prior_rows}
+    if len(used) != len(prior_rows) or not used.issubset(set(unused)):
+        raise RuntimeError("Existing Kanto saved flags are invalid or overlapping")
+    free = [v for v in unused if v not in used]
+    items_header = (
+        emerald / "include/constants/items.h"
+    ).read_text(encoding="utf-8")
+    supported = set(re.findall(
+        r"(?m)^\s*#define\s+(ITEM_[A-Z0-9_]+)\s+", items_header
+    ))
+    source_scripts = (
+        source / "data/scripts/item_ball_scripts.inc"
+    ).read_text(encoding="utf-8")
+    source_items = dict(re.findall(
+        r"(?m)^\s*([A-Za-z0-9_]+)::\s*\n\s*finditem\s+"
+        r"(ITEM_[A-Z0-9_]+)\s*\n\s*end\b",
+        source_scripts
+    ))
+    if len(source_items) < 40:
+        raise RuntimeError("Original FireRed item-ball table was not loaded")
+    visible = []
+    hidden = []
+    for name in original_maps:
+        original = load_json(source, f"data/maps/{name}/map.json")
+        target_name = "Kanto_" + name
+        target_rel = f"data/maps/{target_name}/map.json"
+        target = load_json(emerald, target_rel)
+        script_path = emerald / "data/maps" / target_name / "scripts.inc"
+        scripts = script_path.read_text(encoding="utf-8")
+        for obj in original.get("object_events", []):
+            if obj.get("graphics_id") != "OBJ_EVENT_GFX_ITEM_BALL":
+                continue
+            label = obj["script"]
+            item = source_items.get(label)
+            if item not in supported:
+                raise RuntimeError(f"{name}: unsupported original pickup {label} / {item}")
+            next_index = len(visible)
+            flag = f"FLAG_KANTO_V12_ITEM_{next_index:03d}"
+            event_script = f"Kanto_{name}_EventScript_OriginalItem_{next_index:03d}"
+            if any(x.get("x")==obj["x"] and x.get("y")==obj["y"]
+                   for x in target["object_events"]):
+                raise RuntimeError(f"{name}: item ball overlaps another object")
+            target["object_events"].append({
+                "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+                "x": obj["x"], "y": obj["y"],
+                "elevation": obj["elevation"],
+                "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+                "movement_range_x": 0,
+                "movement_range_y": 0,
+                "trainer_type": "TRAINER_TYPE_NONE",
+                "trainer_sight_or_berry_tree_id": "0",
+                "script": event_script, "flag": flag,
+            })
+            scripts += f"\n{event_script}::\n    finditem {item}\n    end\n"
+            visible.append({
+                "map": target_name, "item": item,
+                "position": [obj["x"],obj["y"]],
+                "flag": flag, "source_script": label,
+            })
+        for obj in original.get("bg_events", []):
+            if obj.get("type") != "hidden_item":
+                continue
+            if obj["item"] not in supported:
+                raise RuntimeError(f"{name}: unsupported hidden item {obj['item']}")
+            i = len(hidden)
+            flag = f"FLAG_KANTO_V12_HIDDEN_{i:03d}"
+            target["bg_events"].append({
+                "type": "hidden_item",
+                "x": obj["x"], "y": obj["y"],
+                "elevation": obj["elevation"],
+                "item": obj["item"], "flag": flag,
+                "quantity": obj.get("quantity", 1),
+                "underfoot": obj.get("underfoot", False),
+            })
+            hidden.append({
+                "map": target_name, "item": obj["item"],
+                "position": [obj["x"],obj["y"]],
+                "quantity": obj.get("quantity", 1),
+                "underfoot": obj.get("underfoot", False),
+                "flag": flag,
+            })
+        emit_json(emerald / target_rel, target)
+        script_path.write_text(scripts, encoding="utf-8")
+
+    if len(visible) != 33 or len(hidden) != 8:
+        raise RuntimeError(f"Unexpected source dungeon item counts: "
+                           f"{len(visible)} visible / {len(hidden)} hidden")
+    all_rows = visible + hidden
+    if len(free) < len(all_rows):
+        raise RuntimeError(f"Insufficient free saved flags: {len(free)} / {len(all_rows)}")
+    for row, value in zip(all_rows, free):
+        row["flag_value"] = value
+    definitions = "".join(
+        f"#define {row['flag']:<36} FLAG_UNUSED_0x{row['flag_value']:03X}\n"
+        for row in all_rows
+    )
+    footer = "#endif // GUARD_CONSTANTS_FLAGS_H"
+    if footer not in content or "FLAG_KANTO_V12_ITEM_000" in content:
+        raise RuntimeError("Cannot safely append V0.12 item flags")
+    flags_file.write_text(
+        content.replace(footer, "// V0.12 dungeon item flags, append only.\n"
+                        + definitions + "\n" + footer),
+        encoding="utf-8",
+    )
+    return {
+        "visible_count": len(visible), "hidden_count": len(hidden),
+        "previous_flag_count": len(used),
+        "remaining_flag_count": len(free) - len(all_rows),
+        "visible": visible, "hidden": hidden,
+    }
+
+
 def import_viridian_forest_trainers(source: Path, emerald: Path) -> dict:
     """Port the five original FRLG Viridian Forest Bug Catchers.
 
@@ -1465,6 +1595,12 @@ Kanto_VermilionCity_Text_BattleQuestion:
         source, emerald, item_maps, item_report["items"])
     report["original_hidden_items"] = hidden_report["total"]
     report["hidden_item_flags"] = hidden_report["items"]
+    original_dungeon_items = import_kanto_v12_pickups(
+        source, emerald, KANTO_V12_DUNGEONS,
+        item_report["items"], hidden_report["items"])
+    report["v12_original_item_balls"] = original_dungeon_items["visible_count"]
+    report["v12_original_hidden_items"] = original_dungeon_items["hidden_count"]
+    report["v12_dungeon_item_flags"] = original_dungeon_items
     trainer_report = import_viridian_forest_trainers(source, emerald)
     report["viridian_forest_trainers"] = trainer_report["trainers"]
     report["original_npcs_ported"] = trainer_report["count"]
@@ -1516,6 +1652,7 @@ def main() -> int:
     print("Generated 15 original maps: Victory Road, Pokemon Mansion, Cerulean Cave and Seafoam Islands.")
     print(f"Ported {result['original_item_balls']} original visible item balls with save-backed flags.")
     print(f"Ported {result['original_hidden_items']} original hidden FireRed items with distinct save flags.")
+    print(f"Ported {result['v12_original_item_balls']} item balls and {result['v12_original_hidden_items']} hidden items from four new dungeons.")
     print(f"Ported {result['trainer_battles_ported']} original Viridian Forest trainers.")
     print("Dungeon NPCs/items/scripts, special collision behaviors and full gameplay QA still pending.")
     print("Verify collision, palettes, map edges, ferry and save by real gameplay.")
