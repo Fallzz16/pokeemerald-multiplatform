@@ -17,7 +17,9 @@ int main(int argc, char **argv)
     int reconnect = (argc == 8 && strcmp(argv[7], "reconnect") == 0);
     int rosterMode = (argc == 8 && strcmp(argv[7], "roster") == 0);
     int manualReady = (argc == 8 && strcmp(argv[7], "manualready") == 0);
+    int manualCancel = (argc == 8 && strcmp(argv[7], "manualcancel") == 0);
     int toggledReady = 0;
+    int lobbyTicks = 0;
     int sawFullRoster = 0;
     int awaitStart = (argc == 8 && strcmp(argv[7], "awaitstart") == 0);
     int reconnectObserved = 0;
@@ -30,7 +32,7 @@ int main(int argc, char **argv)
         ? 650 : 180;
     int witnessed = 0;
     struct timespec pauseTime = { 0, 10000000L };
-    if (argc != 7 && !linger && !reconnect && !awaitStart && !rosterMode && !manualReady)
+    if (argc != 7 && !linger && !reconnect && !awaitStart && !rosterMode && !manualReady && !manualCancel)
     {
         fprintf(stderr, "usage: native_ehl8_client IPv4 port pin profile x expected_remote_x [linger|reconnect|awaitstart]\n");
         return 2;
@@ -39,7 +41,7 @@ int main(int argc, char **argv)
     client = lnet_session_client_new(argv[1], port, argv[3], argv[4]);
     if (!client)
         return 3;
-    if (manualReady && !lnet_session_client_set_manual_ready(client, 1))
+    if ((manualReady || manualCancel) && !lnet_session_client_set_manual_ready(client, 1))
     {
         lnet_session_client_close(client);
         return 8;
@@ -67,6 +69,23 @@ int main(int argc, char **argv)
                 return 9;
             }
             toggledReady = 1;
+        }
+        if (manualCancel && state == EHL_CLIENT_WAIT_START)
+        {
+            int expected = -1;
+            lobbyTicks++;
+            if (lobbyTicks >= 35 && toggledReady == 0) expected = 1;
+            else if (lobbyTicks >= 100 && toggledReady == 1) expected = 0;
+            else if (lobbyTicks >= 165 && toggledReady == 2) expected = 1;
+            if (expected != -1)
+            {
+                if (lnet_session_client_toggle_ready(client) != expected)
+                {
+                    lnet_session_client_close(client);
+                    return 10;
+                }
+                toggledReady++;
+            }
         }
         if (rosterMode)
         {
@@ -108,6 +127,12 @@ int main(int argc, char **argv)
             remote.x == (unsigned short)atoi(argv[6]) && remote.active)
         {
             witnessed = 1;
+            if (manualCancel && toggledReady == 3)
+            {
+                puts("EHL8 native manual READY CANCEL READY and host START verified");
+                lnet_session_client_close(client);
+                return 0;
+            }
             if (manualReady && toggledReady)
             {
                 puts("EHL8 native manual READY and host START verified");
@@ -132,7 +157,7 @@ int main(int argc, char **argv)
                 lnet_session_client_close(client);
                 return 0;
             }
-            if (!linger && !reconnect && !rosterMode && !manualReady)
+            if (!linger && !reconnect && !rosterMode && !manualReady && !manualCancel)
             {
                 puts("EHL8 native client remote overworld pose verified");
                 lnet_session_client_close(client);
