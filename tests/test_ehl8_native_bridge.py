@@ -165,6 +165,57 @@ class NativeBridge(unittest.IsolatedAsyncioTestCase):
                     await peer.wait()
             await server.stop()
 
+    async def test_native_f7_ready_cancel_is_respected_by_manual_start(self):
+        """Two real C clients revoke/restore READY; host START must wait."""
+        server = server_module.SessionServer(
+            "123456", 2, idle_seconds=300, manual_start=True)
+        listener = await server.start("127.0.0.1", 0)
+        port = str(listener.sockets[0].getsockname()[1])
+        peers = []
+        try:
+            for profile, x, other in (("ready_A", "21", "34"),
+                                      ("ready_B", "34", "21")):
+                peers.append(await asyncio.create_subprocess_exec(
+                    self.exe, "127.0.0.1", port, "123456", profile,
+                    x, other, "readyswitch",
+                    stdout=asyncio.subprocess.PIPE,
+                    stderr=asyncio.subprocess.PIPE))
+            for _ in range(100):
+                if len(server.players) == 2 and all(
+                        peer.ready for peer in server.players.values()):
+                    break
+                await asyncio.sleep(0.03)
+            self.assertEqual(len(server.players), 2)
+            self.assertFalse(server.in_game)
+            for _ in range(120):
+                if len(server.players) == 2 and not any(
+                        peer.ready for peer in server.players.values()):
+                    break
+                await asyncio.sleep(0.025)
+            self.assertFalse(any(peer.ready for peer in server.players.values()),
+                             "C clients never cancelled READY")
+            self.assertFalse(await server.admin_command("START"))
+            self.assertFalse(server.in_game)
+            for _ in range(140):
+                if len(server.players) == 2 and all(
+                        peer.ready for peer in server.players.values()):
+                    break
+                await asyncio.sleep(0.025)
+            self.assertTrue(all(peer.ready for peer in server.players.values()),
+                            "C clients did not restore READY")
+            self.assertTrue(await server.admin_command("START"))
+            outputs = await asyncio.wait_for(asyncio.gather(
+                *(peer.communicate() for peer in peers)), timeout=10)
+            for peer, (stdout, stderr) in zip(peers, outputs):
+                self.assertEqual(peer.returncode, 0, stderr)
+                self.assertIn(b"READY cancelled and restored", stdout)
+        finally:
+            for peer in peers:
+                if peer.returncode is None:
+                    peer.kill()
+                    await peer.wait()
+            await server.stop()
+
     async def test_playing_clients_send_heartbeats_even_while_streaming_poses(self):
         # The game sends poses every 100 ms. Heartbeats must still be sent;
         # the test overrides only the heartbeat interval to 250 ms so it runs
