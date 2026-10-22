@@ -2263,9 +2263,29 @@ Kanto_Indigo_EventScript_Nurse::
         ])
     report["v18_route_and_moon_trainers"] = v18["trainers"]
     report["v18_trainer_battles"] = v18["count"]
+    # Keep the legacy V0.18 allocations stable; the V0.19 lane is appended.
+    if __package__:
+        from .v19_trainers import materialize_route3
+    else:
+        from v19_trainers import materialize_route3
+    v19 = materialize_route3(
+        source, emerald,
+        item_report["items"] + hidden_report["items"] + major_items["items"]
+        + [{"flag_value": value}
+           for row in gym_leaders["leaders"]
+           for value in (row["badge_flag_value"], row["tm_flag_value"])]
+        + [{"flag_value": value}
+           for row in later_gym_leaders["leaders"]
+           for value in (row["trainer_flag_value"], row["badge_flag_value"],
+                         row["tm_flag_value"])]
+        + v18["trainers"],
+        load_json, emit_json,
+    )
+    report["v19_route3_trainers"] = v19["trainers"]
+    report["v19_trainer_battles"] = v19["count"]
     report["viridian_forest_trainers"] = trainer_report["trainers"]
-    report["original_npcs_ported"] = trainer_report["count"] + gym_leaders["count"] + later_gym_leaders["count"] + v18["count"]
-    report["trainer_battles_ported"] = trainer_report["count"] + gym_leaders["count"] + later_gym_leaders["count"] + v18["count"]
+    report["original_npcs_ported"] = trainer_report["count"] + gym_leaders["count"] + later_gym_leaders["count"] + v18["count"] + v19["count"]
+    report["trainer_battles_ported"] = trainer_report["count"] + gym_leaders["count"] + later_gym_leaders["count"] + v18["count"] + v19["count"]
     target_groups["connections_include_order"].extend("Kanto_" + n for n in names)
     emit_json(emerald / "data/maps/map_groups.json", target_groups)
     emit_json(emerald / "data/layouts/layouts.json", target_layouts)
@@ -2320,9 +2340,10 @@ def main() -> int:
     print(f"Ported {result['original_item_balls']} original visible item balls with save-backed flags.")
     print(f"Ported {result['original_hidden_items']} original hidden FireRed items with distinct save flags.")
     print(f"Ported {result['v13_visible_items']} extra visible and {result['v13_hidden_items']} hidden major-dungeon items with new flags.")
-    print(f"Ported {result['trainer_battles_ported']} original Viridian Forest trainers.")
+    print(f"Ported {result['trainer_battles_ported']} Kanto trainer battles in total.")
     print(f"Ported {result['v17_gym_leader_battles']} additional gym leaders with mapped persistent trainer flags.")
     print(f"Ported {result['v18_trainer_battles']} original trainers on Route 3 and Mt. Moon.")
+    print(f"Ported {result['v19_trainer_battles']} additional Lass/Youngster trainers on Route 3.")
     print(f"Ported {result['v16_gym_leader_battles']} original FireRed gym leader parties, badges and TMs.")
     print("Dungeon NPCs/items/scripts, special collision behaviors and full gameplay QA still pending.")
     print("Verify collision, palettes, map edges, ferry and save by real gameplay.")
