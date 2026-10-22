@@ -1068,3 +1068,12 @@ Pendências e gates: treinador normal adicional requer flag única e explicitaç
 **CI já conhecido da V0.18:** workflow específico Kanto run 39552279850 passou. CI genérico no SHA da V0.18, run 39552315701, falhou no passo `Compare` do job `build`; investigar separadamente. Nada neste incremento altera `src/platform/sdl2.c`, .sav, protocolo EHL8, Hoenn ou grupo de mapas.
 
 **Próximos passos:** (P0) conferir workflow V0.19 e logs completos, corrigir falhas, gerar preview somente após sucesso no HEAD; QA gráfico Route 3 / save&reload / Hoenn-Kanto / whiteout e regressões. (P1) auditar novos bits persistentes realmente livres, com testes de colisão Hoenn e compatibilidade save; não aumentar `MAX_TRAINERS_COUNT`. (P1) novos NPCs, puzzles, Rocket, Silph, S.S. Anne, Liga, integração Fly/PokéNav. (P2) compatibilidade Android e multiplayer Kanto. Manter PR draft, sem merge nem sobrescrever saves.
+
+
+## 70. V0.19 — CI Windows e artifact confirmados (2026-10-22)
+
+No HEAD 7588ebb8c03b218e1bc50df64a6ea6704307f021 (PR #56 draft), o workflow Kanto V0.19 run 39870512042 concluiu SUCCESS em geração/QA estrutural + novos testes de Source FireRed + cross-build Windows: https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/39870512042 . O QA Lab Windows run 39870557162 também concluiu SUCCESS no mesmo SHA. O artefato ZIP real é KANTO_V19_MT_MOON_ROUTE3_TRAINERS_UNTESTED_WINDOWS, ID 12466335733 (12.668.229 bytes, não expirado na consulta), https://api.github.com/repos/Fallzz16/pokeemerald-multiplatform/actions/artifacts/12466335733/zip . Utilizar SOMENTE em pasta nova com cópias de saves; não é homologação gráfica, de persistência ou LAN.
+
+O CI genérico GBA permanece separado: V0.18 run 39552315701 falhou no passo Compare; logs mostram warnings/erros de agbcc e símbolos Kanto gerados não encontrados quando se compila a árvore bruta sem materialização. O CI genérico no HEAD da PR #56 foi iniciado, não declarado aprovado. Não misturar a linha de produção Windows com o GBA compare legado.
+
+O SHA deste parágrafo de documentação será posterior ao SHA do binário acima; nenhum código/flag/mapa/SaveBlock foi modificado por este registro. Ainda falta gameplay real Route3, save/load, batalha, retorno Hoenn, whiteout, puzzles, Rocket, Liga, flags persistentes adicionais, Android, multiplayer e regressões. Próximo foco: verificar CI da PR #56, ensaiar a V0.19 com saves de QA em Windows e só depois ampliar conteúdo. Manter PR draft sem merge.
