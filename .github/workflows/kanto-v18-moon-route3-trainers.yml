@@ -1,8 +1,8 @@
-name: Kanto V0.18 Route 3 and Mt Moon Bug Catchers
+name: Kanto V0.19 Route 3 trainers
 on:
   push:
     branches:
-      - feature/kanto-v18-moon-route3-trainers
+      - feature/kanto-v19-route3-trainers
   workflow_dispatch:
 permissions:
   contents: read
@@ -43,6 +43,7 @@ jobs:
         run: |
           set -euxo pipefail
           python tools/kanto/import_exteriors.py --firered firered-source --emerald . --report kanto-exteriors-import.json
+          python -m unittest discover -s tests -p test_kanto_v19_route3.py -v
           python - <<'PY'
           import json
           from pathlib import Path
@@ -59,7 +60,7 @@ jobs:
                       for q in group['encounters'] if 'map' in q}
           assert 'MAP_KANTO_ROUTE1' in all_maps
           assert all_maps['MAP_KANTO_ROUTE1']['land_mons']['mons']
-          assert report['original_npcs_ported'] == 18
+          assert report['original_npcs_ported'] == 22
           assert report['interior_warps_ported'] == 17
           assert report['original_interiors_ported'] == 17
           assert len(report['interior_maps']) == len(set(report['interior_maps'])) == 17
@@ -270,7 +271,7 @@ jobs:
           assert report["kanto_map_slots_remaining"]==21
           assert len(json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"])<=128
           # The five existing Kanto trainers occupy 5 of the 9 reserved IDs.
-          assert report["trainer_battles_ported"]==18
+          assert report["trainer_battles_ported"]==22
           # Eight source-authentic gym floors, after the prior 99 map IDs.
           gym_names=(
             "ViridianCity_Gym","PewterCity_Gym","CeruleanCity_Gym",
@@ -335,7 +336,7 @@ jobs:
           # Not all source warps are bidirectional (pit drops, trap doors).
           assert report["original_item_balls"]==42
           assert report["original_hidden_items"]==77
-          assert report["trainer_battles_ported"]==18
+          assert report["trainer_battles_ported"]==22
           # V0.7 must append 15 areas AFTER the first 69 existing identifiers.
           new_v07=(
             "UndergroundPath_NorthEntrance","UndergroundPath_NorthSouthTunnel",
@@ -398,7 +399,7 @@ jobs:
           opponents=Path("include/constants/opponents.h").read_text()
           trainer_records=Path("src/data/trainers.h").read_text()
           party_records=Path("src/data/trainer_parties.h").read_text()
-          assert "#define TRAINERS_COUNT                      873" in opponents
+          assert "#define TRAINERS_COUNT                      877" in opponents
           assert "#define MAX_TRAINERS_COUNT                  864" in opponents
           for index,(r,(name,city,badge,tm)) in enumerate(zip(leaders,expected)):
             assert (r["name"],r["city"],r["tm"])==(name,city,tm)
@@ -466,7 +467,7 @@ jobs:
             assert "setflag "+row["tm_flag"] in inc
             assert "giveitem "+tm in inc
           assert len(full_values)==len(set(full_values)), "Flag collision after V0.17"
-          assert "#define TRAINERS_COUNT                      873" in opponents
+          assert "#define TRAINERS_COUNT                      877" in opponents
           assert "#define MAX_TRAINERS_COUNT                  864" in opponents
           # V0.18 five authentic Bug Catchers, exact original coordinates
           # and permanent trainer flags, no SaveBlock growth.
@@ -500,12 +501,12 @@ jobs:
             assert "trainerbattle_single "+row["symbol"] in script
           assert len(old_values)==len(set(old_values))
           assert len(old_values)==185  # 160 items + 8 + 12 + 5 victories
-          assert "#define TRAINERS_COUNT                      873" in opponents
+          assert "#define TRAINERS_COUNT                      877" in opponents
           assert "#define MAX_TRAINERS_COUNT                  864" in opponents
           # Five real FireRed Bug Catcher parties, isolated in the 9
           # previously unused trainer slots. No save struct growth.
-          assert report["trainer_battles_ported"]==18
-          assert report["original_npcs_ported"]==18
+          assert report["trainer_battles_ported"]==22
+          assert report["original_npcs_ported"]==22
           forest=json.loads(Path("data/maps/Kanto_ViridianForest/map.json").read_text())
           npc=[e for e in forest["object_events"]
                if e.get("script","").startswith("Kanto_ViridianForest_EventScript_BugCatcher")]
@@ -523,7 +524,7 @@ jobs:
           parties=Path("src/data/trainer_parties.h").read_text()
           script=Path("data/maps/Kanto_ViridianForest/scripts.inc").read_text()
           assert "#define MAX_TRAINERS_COUNT                  864" in opponents
-          assert "#define TRAINERS_COUNT                      873" in opponents
+          assert "#define TRAINERS_COUNT                      877" in opponents
           for index, name in enumerate(("Rick","Doug","Sammy","Anthony","Charlie")):
             macro="TRAINER_KANTO_FOREST_"+name.upper()
             assert macro in opponents and macro in trainer_data,(name,"no trainer data")
@@ -734,22 +735,22 @@ jobs:
           file pokeemerald.exe
       - name: Label provisional nature and source revision
         run: |
-          printf 'Kanto V0.18: 114 maps, eight original gym leader teams plus ten Bug Catchers in Viridian Forest, Mt Moon and Route 3; independent save-backed flags; QA pending.\nQA inside actual gameplay, regional respawn, original stories/gyms, and LAN remain incomplete.\nSOURCE_COMMIT=%s\nFIRERED_SOURCE=ce6406d8c2eaf46d543c8a2606de0c3cb1951982\n' "$GITHUB_SHA" > KANTO_V18_STATUS.txt
-          sha256sum pokeemerald.exe > KANTO_V18_SHA256.txt
+          printf 'Kanto V0.19: 114 maps, eight leaders, fourteen common trainers and 22 trainer battles; independent save-backed flags; QA pending.\nQA inside actual gameplay, regional respawn, original stories/gyms, and LAN remain incomplete.\nSOURCE_COMMIT=%s\nFIRERED_SOURCE=ce6406d8c2eaf46d543c8a2606de0c3cb1951982\n' "$GITHUB_SHA" > KANTO_V19_STATUS.txt
+          sha256sum pokeemerald.exe > KANTO_V19_SHA256.txt
           cp .deps/SDL2-2.30.7/i686-w64-mingw32/bin/SDL2.dll .
       - name: Attach playtest instructions
         run: |
           cp docs/KANTO_V11_PLAYTEST_CHECKLIST_PTBR.md KANTO_V11_PLAYTEST_CHECKLIST_PTBR.md
       - uses: actions/upload-artifact@v4
         with:
-          name: KANTO_V18_MT_MOON_ROUTE3_TRAINERS_UNTESTED_WINDOWS
+          name: KANTO_V19_MT_MOON_ROUTE3_TRAINERS_UNTESTED_WINDOWS
           path: |
             pokeemerald.exe
             SDL2.dll
             kanto-exteriors-import.json
             kanto-v07-reachability.json
-            KANTO_V18_STATUS.txt
-            KANTO_V18_SHA256.txt
+            KANTO_V19_STATUS.txt
+            KANTO_V19_SHA256.txt
             KANTO_V11_PLAYTEST_CHECKLIST_PTBR.md
           if-no-files-found: error
           retention-days: 30
