@@ -195,10 +195,13 @@ ifeq ($(SETUP_PREREQS),1)
 endif
 
 # Collect sources
-# src/platform implements desktop BIOS/memory/audio, and src/profile performs
-# host-filesystem save backup and flock/dirent access. Neither belongs in GBA.
-# Makefile_pc intentionally retains both directories.
-C_SRCS_IN := $(filter-out $(C_SUBDIR)/platform/%.c $(C_SUBDIR)/profile/%.c,$(wildcard $(C_SUBDIR)/*.c $(C_SUBDIR)/*/*.c $(C_SUBDIR)/*/*/*.c))
+# The cartridge uses real BIOS/SIO/MP2K assembly. Desktop builds instead
+# supply a BIOS simulator, filesystem save manager, LAN sockets, stub BIOS
+# functions and a software float mixer. Exclude only these native counterparts
+# from GBA, while Makefile_pc continues compiling them unmodified.
+GBA_NATIVE_ONLY_C := $(C_SUBDIR)/platform/%.c $(C_SUBDIR)/profile/%.c $(C_SUBDIR)/lnet/%.c
+GBA_NATIVE_ONLY_C += $(C_SUBDIR)/music_player.c $(C_SUBDIR)/sound_mixer.c $(C_SUBDIR)/stub.c
+C_SRCS_IN := $(filter-out $(GBA_NATIVE_ONLY_C),$(wildcard $(C_SUBDIR)/*.c $(C_SUBDIR)/*/*.c $(C_SUBDIR)/*/*/*.c))
 C_SRCS := $(foreach src,$(C_SRCS_IN),$(if $(findstring .inc.c,$(src)),,$(src)))
 C_OBJS := $(patsubst $(C_SUBDIR)/%.c,$(C_BUILDDIR)/%.o,$(C_SRCS))
 
