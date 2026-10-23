@@ -61,7 +61,7 @@ class TestRoute3V19(unittest.TestCase):
             self.assertEqual(x.group(1), y.group(1))
 
     def test_reserved_victory_flags_are_unique(self):
-        self.assertIn("#define TRAINERS_COUNT                      877", self.opponents)
+        self.assertIn("#define TRAINERS_COUNT                      " + str(877 + self.report.get("v20_trainer_battles", 0)), self.opponents)
         self.assertIn("#define MAX_TRAINERS_COUNT                  864", self.opponents)
         self.assertEqual(self.battle.count("TRAINER_FLAGS_START + trainerId"), 1)
         report = self.report
