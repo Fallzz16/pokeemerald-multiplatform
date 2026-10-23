@@ -44,8 +44,9 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          kanto=json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"]
-          assert len(kanto)==114,len(kanto)
+          groups=json.loads(Path("data/maps/map_groups.json").read_text())
+          kanto=[name for key, maps in groups.items() if key.startswith("gMapGroup_Kanto") for name in maps]
+          assert len(kanto)==114, (len(kanto),[(k,len(v)) for k,v in groups.items() if k.startswith("gMapGroup_Kanto")])
           assert Path("data/maps/Kanto_MtMoon_B2F/map.json").exists()
           PY
       - name: Build modern ROM without original ROM checksum comparison
