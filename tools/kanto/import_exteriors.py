@@ -2304,9 +2304,28 @@ Kanto_Indigo_EventScript_Nurse::
     report["v20_trainers"] = v20["trainers"]
     report["v20_trainer_battles"] = v20["count"]
     report["v20_saved_flag_lane_remaining"] = v20["flags_remaining_in_lane"]
+    # V0.21 story event: Rocket battle and separately persisted Nugget claim.
+    if __package__:
+        from .v21_rocket import import_nugget_rocket
+    else:
+        from v21_rocket import import_nugget_rocket
+    rocket = import_nugget_rocket(
+        source, emerald,
+        item_report["items"] + hidden_report["items"] + major_items["items"]
+        + [{"flag_value": value}
+           for row in gym_leaders["leaders"]
+           for value in (row["badge_flag_value"], row["tm_flag_value"])]
+        + [{"flag_value": value}
+           for row in later_gym_leaders["leaders"]
+           for value in (row["trainer_flag_value"], row["badge_flag_value"],
+                         row["tm_flag_value"])]
+        + v18["trainers"] + v19["trainers"] + v20["trainers"],
+        load_json, emit_json,
+    )
+    report["v21_nugget_bridge_rocket"] = rocket
     report["viridian_forest_trainers"] = trainer_report["trainers"]
-    report["original_npcs_ported"] = trainer_report["count"] + gym_leaders["count"] + later_gym_leaders["count"] + v18["count"] + v19["count"] + v20["count"]
-    report["trainer_battles_ported"] = trainer_report["count"] + gym_leaders["count"] + later_gym_leaders["count"] + v18["count"] + v19["count"] + v20["count"]
+    report["original_npcs_ported"] = trainer_report["count"] + gym_leaders["count"] + later_gym_leaders["count"] + v18["count"] + v19["count"] + v20["count"] + rocket["count"]
+    report["trainer_battles_ported"] = trainer_report["count"] + gym_leaders["count"] + later_gym_leaders["count"] + v18["count"] + v19["count"] + v20["count"] + rocket["count"]
     target_groups["connections_include_order"].extend("Kanto_" + n for n in names)
     emit_json(emerald / "data/maps/map_groups.json", target_groups)
     emit_json(emerald / "data/layouts/layouts.json", target_layouts)
@@ -2366,6 +2385,7 @@ def main() -> int:
     print(f"Ported {result['v18_trainer_battles']} original trainers on Route 3 and Mt. Moon.")
     print(f"Ported {result['v19_trainer_battles']} additional Lass/Youngster trainers on Route 3.")
     print(f"Ported {result['v20_trainer_battles']} new common trainers; {result['v20_saved_flag_lane_remaining']} unused permanent flags remain in this lane.")
+    print(f"Ported {result['v21_nugget_bridge_rocket']['count']} first Rocket event with a one-time Nugget reward.")
     print(f"Ported {result['v16_gym_leader_battles']} original FireRed gym leader parties, badges and TMs.")
     print("Dungeon NPCs/items/scripts, special collision behaviors and full gameplay QA still pending.")
     print("Verify collision, palettes, map edges, ferry and save by real gameplay.")
