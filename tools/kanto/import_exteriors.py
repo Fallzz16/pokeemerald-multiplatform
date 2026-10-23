@@ -2344,9 +2344,31 @@ Kanto_Indigo_EventScript_Nurse::
         load_json, emit_json,
     )
     report["v22_moon_rocket"] = moon_rocket
+    # V0.23 includes a single saved fossil choice after Miguel's battle.
+    if __package__:
+        from .v23_moon_fossils import import_moon_fossils
+    else:
+        from v23_moon_fossils import import_moon_fossils
+    fossils = import_moon_fossils(
+        source, emerald,
+        item_report["items"] + hidden_report["items"] + major_items["items"]
+        + [{"flag_value": value}
+           for row in gym_leaders["leaders"]
+           for value in (row["badge_flag_value"], row["tm_flag_value"])]
+        + [{"flag_value": value}
+           for row in later_gym_leaders["leaders"]
+           for value in (row["trainer_flag_value"], row["badge_flag_value"],
+                         row["tm_flag_value"])]
+        + v18["trainers"] + v19["trainers"] + v20["trainers"]
+        + [{"flag_value": rocket["trainer_flag_value"]},
+           {"flag_value": rocket["reward_flag_value"]}]
+        + moon_rocket["trainers"],
+        load_json, emit_json,
+    )
+    report["v23_moon_fossils"] = fossils
     report["viridian_forest_trainers"] = trainer_report["trainers"]
-    report["original_npcs_ported"] = trainer_report["count"] + gym_leaders["count"] + later_gym_leaders["count"] + v18["count"] + v19["count"] + v20["count"] + rocket["count"] + moon_rocket["count"]
-    report["trainer_battles_ported"] = trainer_report["count"] + gym_leaders["count"] + later_gym_leaders["count"] + v18["count"] + v19["count"] + v20["count"] + rocket["count"] + moon_rocket["count"]
+    report["original_npcs_ported"] = trainer_report["count"] + gym_leaders["count"] + later_gym_leaders["count"] + v18["count"] + v19["count"] + v20["count"] + rocket["count"] + moon_rocket["count"] + fossils["count"]
+    report["trainer_battles_ported"] = trainer_report["count"] + gym_leaders["count"] + later_gym_leaders["count"] + v18["count"] + v19["count"] + v20["count"] + rocket["count"] + moon_rocket["count"] + fossils["count"]
     target_groups["connections_include_order"].extend("Kanto_" + n for n in names)
     emit_json(emerald / "data/maps/map_groups.json", target_groups)
     emit_json(emerald / "data/layouts/layouts.json", target_layouts)
@@ -2408,6 +2430,7 @@ def main() -> int:
     print(f"Ported {result['v20_trainer_battles']} new common trainers; {result['v20_saved_flag_lane_remaining']} unused permanent flags remain in this lane.")
     print(f"Ported {result['v21_nugget_bridge_rocket']['count']} first Rocket event with a one-time Nugget reward.")
     print(f"Ported {result['v22_moon_rocket']['count']} additional Rocket battles on Mt. Moon B2F.")
+    print(f"Ported {result['v23_moon_fossils']['count']} Miguel trainer and one-time Dome/Helix fossil choice.")
     print(f"Ported {result['v16_gym_leader_battles']} original FireRed gym leader parties, badges and TMs.")
     print("Dungeon NPCs/items/scripts, special collision behaviors and full gameplay QA still pending.")
     print("Verify collision, palettes, map edges, ferry and save by real gameplay.")
