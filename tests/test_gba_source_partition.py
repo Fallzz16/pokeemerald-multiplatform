@@ -9,10 +9,22 @@ class GbaSourcePartition(unittest.TestCase):
     def test_gba_makefile_filters_native_platform_bios(self):
         source = (ROOT / "Makefile").read_text(encoding="utf-8")
         self.assertIn(
-            "C_SRCS_IN := $(filter-out $(C_SUBDIR)/platform/%.c $(C_SUBDIR)/profile/%.c,",
+            "C_SRCS_IN := $(filter-out $(GBA_NATIVE_ONLY_C),",
             source,
             "Desktop BIOS and POSIX save profiles must not appear in GBA source objects")
+        for excluded in (
+            "$(C_SUBDIR)/platform/%.c",
+            "$(C_SUBDIR)/profile/%.c",
+            "$(C_SUBDIR)/lnet/%.c",
+            "$(C_SUBDIR)/music_player.c",
+            "$(C_SUBDIR)/sound_mixer.c",
+            "$(C_SUBDIR)/stub.c",
+        ):
+            with self.subTest(excluded=excluded):
+                self.assertIn(excluded, source)
         self.assertIn("$(C_SUBDIR)/*/*/*.c)", source)
+        self.assertIn("C_ASM_SRCS := $(wildcard", source)
+        self.assertIn("$(C_SUBDIR)/*.s", source)
 
     def test_desktop_makefile_still_compiles_portable_platform(self):
         source = (ROOT / "Makefile_pc").read_text(encoding="utf-8")
