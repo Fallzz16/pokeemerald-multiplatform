@@ -195,9 +195,10 @@ ifeq ($(SETUP_PREREQS),1)
 endif
 
 # Collect sources
-# src/platform implements desktop BIOS/memory/audio and must not be linked into
-# the real GBA ROM. Makefile_pc intentionally still includes this directory.
-C_SRCS_IN := $(filter-out $(C_SUBDIR)/platform/%.c,$(wildcard $(C_SUBDIR)/*.c $(C_SUBDIR)/*/*.c $(C_SUBDIR)/*/*/*.c))
+# src/platform implements desktop BIOS/memory/audio, and src/profile performs
+# host-filesystem save backup and flock/dirent access. Neither belongs in GBA.
+# Makefile_pc intentionally retains both directories.
+C_SRCS_IN := $(filter-out $(C_SUBDIR)/platform/%.c $(C_SUBDIR)/profile/%.c,$(wildcard $(C_SUBDIR)/*.c $(C_SUBDIR)/*/*.c $(C_SUBDIR)/*/*/*.c))
 C_SRCS := $(foreach src,$(C_SRCS_IN),$(if $(findstring .inc.c,$(src)),,$(src)))
 C_OBJS := $(patsubst $(C_SUBDIR)/%.c,$(C_BUILDDIR)/%.o,$(C_SRCS))
 
