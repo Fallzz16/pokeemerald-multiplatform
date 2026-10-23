@@ -11,6 +11,8 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 HEADER = ROOT / "include" / "gba" / "syscall.h"
+DMA_HEADER = ROOT / "include" / "gba" / "macro.h"
+MIXER_HEADER = ROOT / "include" / "sound_mixer.h"
 TEST_SOURCE = """\
 typedef unsigned int u32;
 typedef unsigned short u16;
@@ -36,6 +38,42 @@ class GbaSyscallGuards(unittest.TestCase):
         guard = "#if defined(MODERN) && MODERN && !defined(PORTABLE)"
         self.assertEqual(text.count(guard), 2)
         self.assertNotIn("#if defined MODERN && !defined PORTABLE", text)
+
+    def test_dma_guard_checks_modern_value(self):
+        text = DMA_HEADER.read_text(encoding="utf-8")
+        self.assertIn("#if defined(MODERN) && MODERN && !defined(PORTABLE)", text)
+        self.assertNotIn("#if defined MODERN && !defined PORTABLE", text)
+
+    def test_mixer_legacy_avoids_leading_alignment_attribute(self):
+        text = MIXER_HEADER.read_text(encoding="utf-8")
+        self.assertIn("#if MODERN\n    __attribute__((aligned(4))) float outBuffer", text)
+        self.assertIn("#else\n    // agbcc", text)
+        self.assertIn("float outBuffer[MIXED_AUDIO_BUFFER_SIZE * 2];", text)
+
+    def test_dma_macro_expansion_both_modes(self):
+        cc = os.environ.get("CC", "cc")
+        if not shutil.which(cc):
+            self.skipTest("No host C compiler")
+        source = """\
+#include <stdint.h>
+typedef volatile uint32_t vu32;
+#define REG_ADDR_DMA0 0x040000B0
+#define DMA_32BIT 1
+#include "gba/macro.h"
+void probe(void) {
+    uint32_t src = 0, dest = 0;
+    DmaSet(0, &src, &dest, 0);
+}
+"""
+        for mode in ("0", "1"):
+            with self.subTest(MODERN=mode):
+                completed = subprocess.run(
+                    [cc, "-std=gnu11", "-fsyntax-only", "-Wno-pointer-to-int-cast",
+                     "-I", str(ROOT / "include"), "-DMODERN=" + mode, "-x", "c", "-"],
+                    input=source, capture_output=True, text=True, timeout=15,
+                    cwd=ROOT, check=False)
+                self.assertEqual(completed.returncode, 0,
+                                 completed.stdout + completed.stderr)
 
     def test_legacy_and_modern_header_compilation(self):
         cc = os.environ.get("CC", "cc")
