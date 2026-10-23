@@ -235,7 +235,7 @@ Kanto_MtMoon_B2F_Text_V23BagFull:
         + "sParty_KantoV23Miguel[] = {" + body + "\n};\n",
         encoding="utf-8")
     idx = trainers.rfind("};")
-    trainer_path.write_text(
+    trainers_path.write_text(
         trainers[:idx] + """
     [TRAINER_KANTO_V23_MIGUEL] =
     {
