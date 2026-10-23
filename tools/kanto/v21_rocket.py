@@ -98,12 +98,17 @@ def import_nugget_rocket(source: Path, emerald: Path, used_rows: list[dict],
            for o in dst["object_events"]):
         raise RuntimeError("Nugget Bridge actor overlaps existing Route 24 event")
     event = "Kanto_Route24_EventScript_V21NuggetBridgeRocket"
+    # FireRed OBJ_EVENT_GFX_MAN is unavailable in Emerald. Keep the source
+    # actor position/behavior and map to a valid provisional Emerald sprite.
+    surrogate_graphics = "OBJ_EVENT_GFX_MAN_1"
+    if surrogate_graphics not in _read(emerald / "include/constants/event_objects.h"):
+        raise RuntimeError("Missing verified Emerald male overworld graphics")
     dst["object_events"].append({
         key: obj[key] for key in (
-            "graphics_id", "x", "y", "elevation", "movement_type",
+            "x", "y", "elevation", "movement_type",
             "movement_range_x", "movement_range_y", "trainer_type",
             "trainer_sight_or_berry_tree_id")
-    } | {"script": event, "flag": "0"})
+    } | {"script": event, "flag": "0", "graphics_id": surrogate_graphics})
     source_script = emerald / "data/maps/Kanto_Route24/scripts.inc"
     scripts = _read(source_script)
     scripts += f"""
@@ -198,4 +203,7 @@ Kanto_Route24_Text_V21RocketAfter:
         "reward_flag_value": ITEM_FLAG_VALUE,
         "reward_item": "ITEM_NUGGET",
         "battle_sprite_temporary": True,
+        "source_graphics_id": obj["graphics_id"],
+        "field_graphics_id": surrogate_graphics,
+        "field_sprite_temporary": True,
     }
