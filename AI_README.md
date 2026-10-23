@@ -1118,3 +1118,13 @@ IDs e saves: Miguel trainer ID 904 com vitória 0x90C, conclusão de fósseis 0x
 QA: tests/test_kanto_v23_moon_fossils.py audita eventos, fidelidade do FireRed, prêmio exclusivo, flag only-after-giveitem, source party e saves; workflow kanto-v23-moon-fossils.yml com testes anteriores e compilação Windows. Não afirmar resultado do CI até concluir no SHA exato. Nenhum .sav de usuário foi modificado. Manter PR draft, não fazer merge na main, rollback para PR #59 base f06a8441.
 
 Próximos P0: conferir workflow final, resolver regressões, testes reais Windows com saves descartáveis para batalha/fóssil/whiteout/Hoenn, CIs genéricos separados; P1: Rocket/Silph/SS Anne/puzzles/Elite Four, art/sprites originais; P2: PokéNav/Fly regional, Android e multiplayer Kanto entre dois PCs.
+
+## Kanto V0.25 — build GBA moderno isolado (2026-10-23)
+
+- Branch: `feature/kanto-v25-gba-recovery-modern-legacy`, partindo da V0.24 commit `f36abb8ba3fa7234b6a9a65fa7c9ce142ca6d5ea`. Não alterar branches antigas nem fundir automaticamente.
+- `include/gba/macro.h`: condição `MODERN` agora verifica valor (corrige ativação indevida dos asserts C11 no agbcc).
+- `include/sound_mixer.h`: alinha o buffer por atributo apenas na toolchain moderna; antiga preserva tipo e tamanho, requer auditoria do layout real.
+- `.github/workflows/build.yml`: build GBA moderno obrigatório independente de `Compare`, com conteúdo Kanto real importado, limite de 32 MiB, SHA256 e logs/artifacts; compatibilidade agbcc testada separadamente, com falha diagnosticada como não bloqueante. Comparação binária com ROM original não é teste válido para esta modificação.
+- `tests/test_gba_syscall_guards.py`: expansão DMA com `MODERN=0/1`, verificação de guards e mixer. CI Windows V0.24 habilitado também para esta branch.
+- `docs/KANTO_V25_GBA_RECOVERY_PTBR.md`: especificação, reprodução, riscos, rollback. **Apenas geração de ROM, não gameplay.** Sem modificar SaveBlock, flags, scripts, trainers ou IDs; emulador/mGBA, áudio, saves e Android ainda exigem QA.
+- Observar o HEAD exato e os jobs/artefatos antes de anunciar GBA recuperado. Se houver erro, registrar a primeira falha verificada e corrigir iterativamente.
