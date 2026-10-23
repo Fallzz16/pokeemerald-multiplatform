@@ -24,6 +24,12 @@ class GbaSourcePartition(unittest.TestCase):
             "C_SRCS_IN := $(filter-out $(C_SUBDIR)/platform/",
             source)
 
+    def test_audio_rules_have_fallback_assembler_filter(self):
+        source = (ROOT / "audio_rules.mk").read_text(encoding="utf-8")
+        self.assertIn("ASM_PSEUDO_OP_CONV ?= cat", source)
+        self.assertIn("FIX_UNDERSCORE ?= true", source)
+        self.assertIn("$(ASM_PSEUDO_OP_CONV) $< | $(AS)", source)
+
     def test_native_profile_uses_host_filesystem_api(self):
         source = (ROOT / "src/profile/save_profiles.c").read_text(encoding="utf-8")
         self.assertIn("#include <dirent.h>", source)
