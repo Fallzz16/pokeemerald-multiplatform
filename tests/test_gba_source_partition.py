@@ -16,7 +16,6 @@ class GbaSourcePartition(unittest.TestCase):
             "$(C_SUBDIR)/platform/%.c",
             "$(C_SUBDIR)/profile/%.c",
             "$(C_SUBDIR)/lnet/%.c",
-            "$(C_SUBDIR)/music_player.c",
             "$(C_SUBDIR)/sound_mixer.c",
             "$(C_SUBDIR)/stub.c",
         ):
@@ -35,6 +34,20 @@ class GbaSourcePartition(unittest.TestCase):
         self.assertNotIn(
             "C_SRCS_IN := $(filter-out $(C_SUBDIR)/platform/",
             source)
+
+    def test_mp2k_gba_uses_assembly_for_conflicting_symbols(self):
+        source = (ROOT / "src/music_player.c").read_text(encoding="utf-8")
+        for name in (
+            "umul3232H32", "SoundMainBTM", "MPlayJumpTableCopy",
+            "TrackStop", "m4aSoundVSync",
+        ):
+            with self.subTest(symbol=name):
+                self.assertIn(" " + name + "(", source)
+        self.assertEqual(source.count("#endif // PORTABLE: GBA has this symbol"), 5)
+        self.assertIn("void MP2KPlayerMain(void *voidPtrPlayer)", source)
+        self.assertIn("#ifdef PORTABLE\\nfloat audioBuffer", source)
+        makefile = (ROOT / "Makefile").read_text(encoding="utf-8")
+        self.assertNotIn("GBA_NATIVE_ONLY_C += $(C_SUBDIR)/music_player.c", makefile)
 
     def test_audio_rules_have_fallback_assembler_filter(self):
         source = (ROOT / "audio_rules.mk").read_text(encoding="utf-8")
