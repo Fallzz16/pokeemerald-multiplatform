@@ -1,11 +1,14 @@
 name: GBA ROM modern build and agbcc diagnostic
 on:
   push:
-    branches: [master, feature/kanto-v25-gba-recovery-modern-legacy]
+    branches: [master]
   pull_request:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: gba-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
 jobs:
   gba-modern:
     name: Build modern GBA ROM (required)
