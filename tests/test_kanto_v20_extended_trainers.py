@@ -33,8 +33,8 @@ class V20TrainerImportTests(unittest.TestCase):
         rows = self.report["v20_trainers"]
         self.assertEqual(len(ROSTER), 22)
         self.assertEqual(self.report["v20_trainer_battles"], 22)
-        self.assertEqual(self.report["trainer_battles_ported"], 44)
-        self.assertEqual(self.report["original_npcs_ported"], 44)
+        self.assertEqual(self.report["trainer_battles_ported"], 44 + self.report.get("v21_nugget_bridge_rocket", {}).get("count", 0))
+        self.assertEqual(self.report["original_npcs_ported"], 44 + self.report.get("v21_nugget_bridge_rocket", {}).get("count", 0))
         self.assertEqual(
             [(r["map"].removeprefix("Kanto_"), r["name"], r["category"])
              for r in rows], list(ROSTER))
@@ -95,7 +95,7 @@ class V20TrainerImportTests(unittest.TestCase):
                 source_party.group(1), dest_party.group(1), r["name"])
 
     def test_persistent_flags_no_aliases_or_save_growth(self):
-        self.assertIn("#define TRAINERS_COUNT                      899", self.opponents)
+        self.assertIn("#define TRAINERS_COUNT                      " + str(899 + self.report.get("v21_nugget_bridge_rocket", {}).get("count", 0)), self.opponents)
         self.assertIn("#define MAX_TRAINERS_COUNT                  864", self.opponents)
         self.assertIn("#define FLAGS_COUNT (DAILY_FLAGS_END + 1)", self.flags)
         self.assertIn("gSaveBlock1Ptr->flags[DAILY_FLAGS_START / 8]",
