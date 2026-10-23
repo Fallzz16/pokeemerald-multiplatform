@@ -197,10 +197,11 @@ endif
 # Collect sources
 # The cartridge uses real BIOS/SIO/MP2K assembly. Desktop builds instead
 # supply a BIOS simulator, filesystem save manager, LAN sockets, stub BIOS
-# functions and a software float mixer. Exclude only these native counterparts
-# from GBA, while Makefile_pc continues compiling them unmodified.
+# functions and a software float mixer. Keep music_player.c's shared MP2K
+# event interpreter, whose desktop-only duplicate symbols are guarded in C.
+# Makefile_pc still compiles all native implementations unmodified.
 GBA_NATIVE_ONLY_C := $(C_SUBDIR)/platform/%.c $(C_SUBDIR)/profile/%.c $(C_SUBDIR)/lnet/%.c
-GBA_NATIVE_ONLY_C += $(C_SUBDIR)/music_player.c $(C_SUBDIR)/sound_mixer.c $(C_SUBDIR)/stub.c
+GBA_NATIVE_ONLY_C += $(C_SUBDIR)/sound_mixer.c $(C_SUBDIR)/stub.c
 C_SRCS_IN := $(filter-out $(GBA_NATIVE_ONLY_C),$(wildcard $(C_SUBDIR)/*.c $(C_SUBDIR)/*/*.c $(C_SUBDIR)/*/*/*.c))
 C_SRCS := $(foreach src,$(C_SRCS_IN),$(if $(findstring .inc.c,$(src)),,$(src)))
 C_OBJS := $(patsubst $(C_SUBDIR)/%.c,$(C_BUILDDIR)/%.o,$(C_SRCS))
