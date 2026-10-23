@@ -36,7 +36,9 @@ jobs:
           python -m pip install Pillow
           arm-none-eabi-gcc --version
       - name: Validate legacy and modern macro guards
-        run: python -m unittest discover -s tests -p test_gba_syscall_guards.py -v
+        run: |
+          python -m unittest discover -s tests -p test_gba_syscall_guards.py -v
+          python -m unittest discover -s tests -p test_gba_source_partition.py -v
       - name: Materialize all Kanto maps and event content
         run: |
           set -euxo pipefail
@@ -111,7 +113,9 @@ jobs:
           ./build.sh
           ./install.sh ../
       - name: Validate macro guard regression
-        run: python -m unittest discover -s tests -p test_gba_syscall_guards.py -v
+        run: |
+          python -m unittest discover -s tests -p test_gba_syscall_guards.py -v
+          python -m unittest discover -s tests -p test_gba_source_partition.py -v
       - name: Materialize matching Kanto source content
         run: python tools/kanto/import_exteriors.py --firered firered-source --emerald . --report kanto-legacy-materialization.json
       - name: Build legacy ROM without equality-to-original comparison
