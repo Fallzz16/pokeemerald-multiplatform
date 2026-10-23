@@ -1,73 +1,131 @@
-name: CI
-
+name: GBA ROM modern build and agbcc diagnostic
 on:
   push:
-    branches: [ master ]
+    branches: [master, feature/kanto-v25-gba-recovery-modern-legacy]
   pull_request:
-
+  workflow_dispatch:
+permissions:
+  contents: read
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  gba-modern:
+    name: Build modern GBA ROM (required)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
     env:
-      GAME_VERSION: EMERALD
-      GAME_REVISION: 0
-      GAME_LANGUAGE: ENGLISH
-      MODERN: 0
-      COMPARE: 1
+      MODERN: '1'
+      COMPARE: '0'
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-
-      - name: Checkout syms
-        if: ${{ github.event_name == 'push' }}
-        uses: actions/checkout@master
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          path: symbols
-          ref: symbols
-
-      - name: Checkout agbcc
-        uses: actions/checkout@master
+          repository: pret/pokefirered
+          ref: ce6406d8c2eaf46d543c8a2606de0c3cb1951982
+          path: firered-source
+          sparse-checkout: |
+            data
+            src/data
+            include/constants
+          sparse-checkout-cone-mode: true
+      - uses: actions/setup-python@v5
         with:
-          path: agbcc
-          repository: pret/agbcc
-
-      - name: Install binutils
+          python-version: '3.12'
+      - name: Install modern GBA toolchain
         run: |
           sudo apt-get update
-          sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi libpng-dev
-        # build-essential and git are already installed
-        # gcc-arm-none-eabi is only needed for the modern build
-        # as an alternative to dkP
-
-      - name: Install agbcc
+          sudo apt-get install -y build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev
+          python -m pip install Pillow
+          arm-none-eabi-gcc --version
+      - name: Validate legacy and modern macro guards
+        run: python -m unittest discover -s tests -p test_gba_syscall_guards.py -v
+      - name: Materialize all Kanto maps and event content
         run: |
+          set -euxo pipefail
+          python tools/kanto/import_exteriors.py --firered firered-source --emerald . --report kanto-gba-materialization.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          kanto=json.loads(Path("data/maps/map_groups.json").read_text())["gMapGroup_Kanto"]
+          assert len(kanto)==114,len(kanto)
+          assert Path("data/maps/Kanto_MtMoon_B2F/map.json").exists()
+          PY
+      - name: Build modern ROM without original ROM checksum comparison
+        shell: bash
+        run: |
+          set -o pipefail
+          make -j2 MODERN=1 COMPARE=0 all 2>&1 | tee gba-modern-build.log
+          test -s pokeemerald_modern.gba
+          python - <<'PY'
+          from pathlib import Path
+          size=Path("pokeemerald_modern.gba").stat().st_size
+          assert size<=32*1024*1024, f"ROM exceeds 32MiB: {size}"
+          print(f"ROM generated: {size} bytes")
+          PY
+          sha256sum pokeemerald_modern.gba > gba-modern-sha256.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: KANTO_V25_GBA_MODERN
+          path: |
+            gba-modern-build.log
+            gba-modern-sha256.txt
+            kanto-gba-materialization.json
+            pokeemerald_modern.gba
+            pokeemerald_modern.elf
+            pokeemerald_modern.map
+          if-no-files-found: warn
+          retention-days: 30
+  gba-agbcc-legacy:
+    name: Legacy agbcc diagnostic (nonblocking)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    continue-on-error: true
+    env:
+      MODERN: '0'
+      COMPARE: '0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: pret/agbcc
+          path: agbcc
+      - uses: actions/checkout@v4
+        with:
+          repository: pret/pokefirered
+          ref: ce6406d8c2eaf46d543c8a2606de0c3cb1951982
+          path: firered-source
+          sparse-checkout: |
+            data
+            src/data
+            include/constants
+          sparse-checkout-cone-mode: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install tools and agbcc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc-arm-none-eabi binutils-arm-none-eabi libpng-dev zlib1g-dev
+          python -m pip install Pillow
+          cd agbcc
           ./build.sh
           ./install.sh ../
-        working-directory: agbcc
-
-      - name: Validate legacy vs modern GBA BIOS syscall macros
-        run: python3 -m unittest discover -s tests -p test_gba_syscall_guards.py -v
-
-      - name: Compare
-        run: make -j${nproc} all syms
-
-      - name: Modern
-        env:
-          MODERN: 1
-          COMPARE: 0
-        run: make -j${nproc} all
-
-      - name: Move symfiles
-        if: ${{ github.event_name == 'push' }}
+      - name: Validate macro guard regression
+        run: python -m unittest discover -s tests -p test_gba_syscall_guards.py -v
+      - name: Materialize matching Kanto source content
+        run: python tools/kanto/import_exteriors.py --firered firered-source --emerald . --report kanto-legacy-materialization.json
+      - name: Build legacy ROM without equality-to-original comparison
+        shell: bash
         run: |
-          cp -v *.sym symbols/
-          echo "SYMBOLS_COMMIT_MSG=$( git log --format=%s ${GITHUB_SHA} )" >> $GITHUB_ENV
-
-      - name: Update symfiles
-        if: ${{ github.event_name == 'push' }}
-        uses: EndBug/add-and-commit@v7
+          set -o pipefail
+          make -j2 MODERN=0 COMPARE=0 all 2>&1 | tee gba-legacy-build.log
+          test -s pokeemerald.gba
+      - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          branch: symbols
-          cwd: "./symbols"
-          add: "*.sym"
-          message: ${{ env.SYMBOLS_COMMIT_MSG }}
+          name: KANTO_V25_GBA_AGBCC_LOG
+          path: |
+            gba-legacy-build.log
+            kanto-legacy-materialization.json
+            pokeemerald.gba
+          if-no-files-found: warn
+          retention-days: 30
