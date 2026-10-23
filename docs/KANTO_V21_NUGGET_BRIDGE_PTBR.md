@@ -4,7 +4,7 @@ Base V0.20 PR #57, commit 3d3df41797dac5af218969161ac1c7462f587937.
 Fonte FireRed fixada em ce6406d8c2eaf46d543c8a2606de0c3cb1951982.
 
 ## Implementado
-- NPC Rocket original de Route24 (12,15) com gráfico de campo original OBJ_EVENT_GFX_MAN.
+- NPC Rocket nas coordenadas FireRed de Route24 (12,15). FireRed usa OBJ_EVENT_GFX_MAN, inexistente no Emerald: mapeado TEMPORARIAMENTE para o sprite Emerald OBJ_EVENT_GFX_MAN_1.
 - Equipe FireRed original sParty_TeamRocketGrunt6 (Ekans e Zubat, nível 15). O retrato de batalha usa Team Aqua de Emerald PROVISORIAMENTE: não é o retrato Rocket original.
 - Trainer ID append-only 899; FLAG_KANTO_V21_BRIDGE_ROCKET_DEFEATED = 0x906.
 - Nugget com flag independente de recebimento FLAG_KANTO_V21_BRIDGE_NUGGET_CLAIMED = 0x907. Código só confirma a flag depois da entrega; se a mochila está cheia, permite tentar novamente.
