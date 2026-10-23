@@ -32,8 +32,8 @@ class TestRoute3V19(unittest.TestCase):
     def test_original_actors_parties_and_scripts(self):
         rows = self.report["v19_route3_trainers"]
         self.assertEqual(self.report["v19_trainer_battles"], 4)
-        self.assertEqual(self.report["trainer_battles_ported"], 22)
-        self.assertEqual(self.report["original_npcs_ported"], 22)
+        self.assertEqual(self.report["trainer_battles_ported"], 22 + self.report.get("v20_trainer_battles", 0))
+        self.assertEqual(self.report["original_npcs_ported"], 22 + self.report.get("v20_trainer_battles", 0))
         self.assertEqual([(r["name"], r["category"]) for r in rows], list(NAMES))
         for index, (name, klass) in enumerate(NAMES):
             row = rows[index]
