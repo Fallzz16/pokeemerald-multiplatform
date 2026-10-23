@@ -67,6 +67,12 @@ jobs:
           print(f"ROM generated: {size} bytes")
           PY
           sha256sum pokeemerald_modern.gba > gba-modern-sha256.txt
+      - name: Report largest ARM .bss symbols after build (including failed link)
+        if: always()
+        run: |
+          if [ -d build/modern/src ]; then
+            python tools/kanto/gba_memory_audit.py --objdir build/modern/src --output gba-bss-report.json
+          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -74,6 +80,7 @@ jobs:
           path: |
             gba-modern-build.log
             gba-modern-sha256.txt
+            gba-bss-report.json
             kanto-gba-materialization.json
             pokeemerald_modern.gba
             pokeemerald_modern.elf
