@@ -299,8 +299,9 @@ jobs:
             for attr in ("blockdata_filepath","border_filepath"):
               assert (Path("firered-source")/la[attr]).read_bytes()==Path(lb[attr]).read_bytes(),(name,attr)
             assert lb["secondary_tileset"]=="gTileset_Kanto"+la["secondary_tileset"].removeprefix("gTileset_")
-            expected_npcs=1
-            assert len(dst["object_events"])==expected_npcs,(name,"wrong leader count")
+            # V0.20 adds Diana alongside Misty; other gym NPC counts stay unchanged.
+            expected_npcs=2 if name=="CeruleanCity_Gym" else 1
+            assert len(dst["object_events"])==expected_npcs,(name,"wrong gym trainer count")
             outer=src["warp_events"][0]["dest_map"]
             assert outer.startswith("MAP_")
           assert report["v13_visible_items"]==33
