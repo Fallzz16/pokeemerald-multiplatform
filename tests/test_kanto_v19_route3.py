@@ -32,8 +32,8 @@ class TestRoute3V19(unittest.TestCase):
     def test_original_actors_parties_and_scripts(self):
         rows = self.report["v19_route3_trainers"]
         self.assertEqual(self.report["v19_trainer_battles"], 4)
-        self.assertEqual(self.report["trainer_battles_ported"], 22 + self.report.get("v20_trainer_battles", 0) + self.report.get("v21_nugget_bridge_rocket", {}).get("count", 0) + self.report.get("v22_moon_rocket", {}).get("count", 0))
-        self.assertEqual(self.report["original_npcs_ported"], 22 + self.report.get("v20_trainer_battles", 0) + self.report.get("v21_nugget_bridge_rocket", {}).get("count", 0) + self.report.get("v22_moon_rocket", {}).get("count", 0))
+        self.assertEqual(self.report["trainer_battles_ported"], 22 + self.report.get("v20_trainer_battles", 0) + self.report.get("v21_nugget_bridge_rocket", {}).get("count", 0) + self.report.get("v22_moon_rocket", {}).get("count", 0) + self.report.get("v23_moon_fossils", {}).get("count", 0))
+        self.assertEqual(self.report["original_npcs_ported"], 22 + self.report.get("v20_trainer_battles", 0) + self.report.get("v21_nugget_bridge_rocket", {}).get("count", 0) + self.report.get("v22_moon_rocket", {}).get("count", 0) + self.report.get("v23_moon_fossils", {}).get("count", 0))
         self.assertEqual([(r["name"], r["category"]) for r in rows], list(NAMES))
         for index, (name, klass) in enumerate(NAMES):
             row = rows[index]
@@ -61,7 +61,7 @@ class TestRoute3V19(unittest.TestCase):
             self.assertEqual(x.group(1), y.group(1))
 
     def test_reserved_victory_flags_are_unique(self):
-        self.assertIn("#define TRAINERS_COUNT                      " + str(877 + self.report.get("v20_trainer_battles", 0) + self.report.get("v21_nugget_bridge_rocket", {}).get("count", 0) + self.report.get("v22_moon_rocket", {}).get("count", 0)), self.opponents)
+        self.assertIn("#define TRAINERS_COUNT                      " + str(877 + self.report.get("v20_trainer_battles", 0) + self.report.get("v21_nugget_bridge_rocket", {}).get("count", 0) + self.report.get("v22_moon_rocket", {}).get("count", 0) + self.report.get("v23_moon_fossils", {}).get("count", 0)), self.opponents)
         self.assertIn("#define MAX_TRAINERS_COUNT                  864", self.opponents)
         self.assertEqual(self.battle.count("TRAINER_FLAGS_START + trainerId"), 1)
         report = self.report
