@@ -1,4 +1,9 @@
 # This file contains rules for making assemblies for most music in the game.
+# The native Makefile_pc converts non-GAS directives and prefixes underscores.
+# Real GBA assembler expects the original .s syntax and needs neither action.
+# Without defaults the recipe tries to execute the source .s as a shell program.
+ASM_PSEUDO_OP_CONV ?= cat
+FIX_UNDERSCORE ?= true
 
 CRY_SUBDIR := sound/direct_sound_samples/cries
 
