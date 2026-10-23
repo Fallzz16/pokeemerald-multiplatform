@@ -984,13 +984,15 @@ static u8 TrainerBattleLoadArg8(const u8 *ptr)
 
 /* Kanto trainers beyond the original 864-bit defeated-trainer save field.
  * Keep the legacy flag mapping unchanged for all existing Hoenn and
- * V0.9–V0.16 trainer IDs. The extra four map onto unused saved flag bits;
- * do not extend SaveBlock1, and never reuse their allocated flags.
+ * V0.9–V0.16 trainer IDs. IDs above 863 map to independent saved flags.
+ * Legacy GBA builds without imported Kanto content must not reference
+ * generated trainer/flag symbols; do not extend SaveBlock1.
  */
 static u16 GetTrainerSaveFlag(u16 trainerId)
 {
     switch (trainerId)
     {
+#if defined(TRAINER_KANTO_LEADER_KOGA) && defined(FLAG_KANTO_V17_TRAINER_KOGA)
     case TRAINER_KANTO_LEADER_KOGA:
         return FLAG_KANTO_V17_TRAINER_KOGA;
     case TRAINER_KANTO_LEADER_SABRINA:
@@ -999,6 +1001,8 @@ static u16 GetTrainerSaveFlag(u16 trainerId)
         return FLAG_KANTO_V17_TRAINER_BLAINE;
     case TRAINER_KANTO_LEADER_GIOVANNI:
         return FLAG_KANTO_V17_TRAINER_GIOVANNI;
+#endif
+#if defined(TRAINER_KANTO_V18_BUG_CATCHER_ROBBY) && defined(FLAG_KANTO_V18_TRAINER_ROBBY)
     case TRAINER_KANTO_V18_BUG_CATCHER_ROBBY:
         return FLAG_KANTO_V18_TRAINER_ROBBY;
     case TRAINER_KANTO_V18_BUG_CATCHER_KENT:
@@ -1009,6 +1013,8 @@ static u16 GetTrainerSaveFlag(u16 trainerId)
         return FLAG_KANTO_V18_TRAINER_GREG;
     case TRAINER_KANTO_V18_BUG_CATCHER_COLTON:
         return FLAG_KANTO_V18_TRAINER_COLTON;
+#endif
+#if defined(TRAINER_KANTO_V19_LASS_ROBIN) && defined(FLAG_KANTO_V19_TRAINER_ROBIN)
     case TRAINER_KANTO_V19_LASS_ROBIN:
         return FLAG_KANTO_V19_TRAINER_ROBIN;
     case TRAINER_KANTO_V19_LASS_SALLY:
@@ -1017,6 +1023,7 @@ static u16 GetTrainerSaveFlag(u16 trainerId)
         return FLAG_KANTO_V19_TRAINER_JANICE;
     case TRAINER_KANTO_V19_YOUNGSTER_CALVIN:
         return FLAG_KANTO_V19_TRAINER_CALVIN;
+#endif
     default:
         return TRAINER_FLAGS_START + trainerId;
     }
