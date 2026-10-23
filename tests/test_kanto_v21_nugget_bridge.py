@@ -34,8 +34,13 @@ class NuggetBridgeTest(unittest.TestCase):
         self.assertEqual(len(dest), 1)
         for key in ("x", "y", "elevation", "movement_type",
                     "movement_range_x", "movement_range_y",
-                    "trainer_sight_or_berry_tree_id", "graphics_id"):
+                    "trainer_sight_or_berry_tree_id"):
             self.assertEqual(original[0][key], dest[0][key], key)
+        self.assertEqual(original[0]["graphics_id"], "OBJ_EVENT_GFX_MAN")
+        self.assertEqual(dest[0]["graphics_id"], "OBJ_EVENT_GFX_MAN_1")
+        self.assertTrue(self.event["field_sprite_temporary"])
+        self.assertEqual(self.event["source_graphics_id"], original[0]["graphics_id"])
+        self.assertEqual(self.event["field_graphics_id"], dest[0]["graphics_id"])
         self.assertEqual(dest[0]["flag"], "0")
         self.assertEqual(self.event["position"], [original[0]["x"], original[0]["y"]])
         self.assertEqual(self.event["source_trainer"], "TRAINER_TEAM_ROCKET_GRUNT_6")
