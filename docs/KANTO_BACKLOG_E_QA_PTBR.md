@@ -1,6 +1,6 @@
 # Pokémon Emerald Hybrid — situação, backlog e prioridades
 
-Atualizado em 23/10/2026. Linha mais recente isolada `feature/kanto-v20-route-moon-trainer-expansion` (partindo da V0.19 PR #56). Sem merge na main; contagens de geração, não testes em gameplay.
+Atualizado em 23/10/2026. Linha mais recente V0.22 em `feature/kanto-v22-mtmoon-rocket-grunts`, derivada da V0.21 PR #58. Ainda experimental, não mesclar na main.
 
 ## Estado implementado — sem extrapolar jogabilidade
 
@@ -12,7 +12,7 @@ Atualizado em 23/10/2026. Linha mais recente isolada `feature/kanto-v20-route-mo
 | Serviços | Cura em nove Centros e mercados com estoques originais FireRed | whiteout Kanto integrado no motor V0.10; validar realmente depois de derrota e save |
 | Pokémon selvagens | dados FireRed nas áreas portadas onde aplicáveis | QA de grama/caverna/água, níveis, batalhas, captura |
 | Itens | 42 Poké Bolas visíveis + 77 itens escondidos originais, flags salvas exclusivas | QA de coleta/Itemfinder/persistência |
-| Treinadores | 44 NPCs com batalha previstos após gerar V0.20 (8 líderes e 36 comuns) | QA real de visão/batalha/save; eventos Rocket, Liga e outros treinadores |
+| Treinadores | 49 NPCs de batalha previstos na V0.22 (8 líderes, 41 comuns), 4 grunts em MtMoon_B2F | QA em gameplay/save, scripts de fósseis e Rocket, líderes/gym puzzles e Liga |
 | Conectividade | 83/84 mapas alcançáveis pelo grafo desde Vermilion | colisão/transições reais, mapa Harbor legado fora do grafo |
 | Compilação | workflow específico Kanto Windows da V0.11 | CI GBA geral tem falha em toolchain legado; QA humano Windows/Android/rede faltante |
 
@@ -20,7 +20,7 @@ Atualizado em 23/10/2026. Linha mais recente isolada `feature/kanto-v20-route-mo
 
 1. **P0 — QA jogável**: testar executável Windows em cópias de saves. Reproduzir barco, cura/whiteout nos nove Centros, salvar/carregar em Kanto, compra, item visível/oculto, cinco treinadores, encontros e portas. Registrar correções de quaisquer travamentos/colisões encontrados.
 2. **P0 — integridade de engine**: medir comportamentos desconhecidos em atributos de metatiles FireRed convertidos; corrigir tiles críticos sem quebrar Hoenn. Corrigir CI GBA genérico ou documentar claramente sua incompatibilidade preexistente com toolchain (não ocultar falhas).
-3. **P1 — arquitetura de treinadores**: MAX_TRAINERS_COUNT=864 continua fixo no save. V0.20 usa novos bits SYSTEM_FLAGS persistentes 0x8F0–0x905 com IDs 877–898 explicitamente traduzidos (44 treinadores totais); 211 flags de Kanto auditadas, 26 bits conservadores restantes 0x906–0x91F. Repetir auditoria de colisões a cada novo lote.
+3. **P1 — arquitetura de treinadores**: MAX_TRAINERS_COUNT=864 e SaveBlock intactos; IDs 900–903 da V0.22 mapeados para SYSTEM_FLAGS persistentes 0x908–0x90B. Total de 217 flags Kanto auditadas; restam 20 bits 0x90C–0x91F na faixa conservadora. Validação nova antes de cada alocação.
 4. **P1 — jornada**: portar NPCs, falas adaptadas, equipes reais, ginásios, insígnias regionais, Rocket, puzzles Ghost/Silph Scope, MtMoon fossils, S.S. Anne e eventos específicos.
 5. **P1 — mapa**: terminar cavernas, portas, casas, portos e edifícios ausentes com fonte e gráficos originais. Foco nas conexões que liberam progressão, não apenas contagem de mapas.
 6. **P2 — sistemas regionais**: Fly/PokéNav mapa Kanto, cidades no mapa, música, animações de água/portas, itens-chave e salvamentos/respawn/mobilidade completos.
