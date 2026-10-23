@@ -70,10 +70,10 @@ class NuggetBridgeTest(unittest.TestCase):
         self.assertEqual(self.event["reward_item"], "ITEM_NUGGET")
 
     def test_save_layout_and_id_allocator(self):
-        self.assertEqual(self.report["trainer_battles_ported"], 45 + self.report.get("v22_moon_rocket", {}).get("count", 0))
-        self.assertEqual(self.report["original_npcs_ported"], 45 + self.report.get("v22_moon_rocket", {}).get("count", 0))
+        self.assertEqual(self.report["trainer_battles_ported"], 45 + self.report.get("v22_moon_rocket", {}).get("count", 0) + self.report.get("v23_moon_fossils", {}).get("count", 0))
+        self.assertEqual(self.report["original_npcs_ported"], 45 + self.report.get("v22_moon_rocket", {}).get("count", 0) + self.report.get("v23_moon_fossils", {}).get("count", 0))
         self.assertEqual(self.event["trainer_id"], 899)
-        self.assertIn("#define TRAINERS_COUNT                      " + str(900 + self.report.get("v22_moon_rocket", {}).get("count", 0)), self.opponents)
+        self.assertIn("#define TRAINERS_COUNT                      " + str(900 + self.report.get("v22_moon_rocket", {}).get("count", 0) + self.report.get("v23_moon_fossils", {}).get("count", 0)), self.opponents)
         self.assertIn("#define MAX_TRAINERS_COUNT                  864", self.opponents)
         self.assertIn("case TRAINER_KANTO_V21_BRIDGE_ROCKET:", self.battles)
         self.assertIn(f"return {self.event['trainer_flag']};", self.battles)

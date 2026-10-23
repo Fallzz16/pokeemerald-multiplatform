@@ -34,8 +34,8 @@ class V22MoonRocketTests(unittest.TestCase):
 
     def test_four_real_fire_red_rocket_battles(self):
         self.assertEqual(len(self.rows), len(ROSTER) == 4 and 4)
-        self.assertEqual(self.report["trainer_battles_ported"], 49)
-        self.assertEqual(self.report["original_npcs_ported"], 49)
+        self.assertEqual(self.report["trainer_battles_ported"], 49 + self.report.get("v23_moon_fossils", {}).get("count", 0))
+        self.assertEqual(self.report["original_npcs_ported"], 49 + self.report.get("v23_moon_fossils", {}).get("count", 0))
         self.assertEqual(self.report["v22_moon_rocket"]["count"], 4)
         for idx, (name, source_id, old_party) in enumerate(ROSTER):
             row = self.rows[idx]
@@ -75,7 +75,7 @@ class V22MoonRocketTests(unittest.TestCase):
             self.assertEqual(old.group(1), new.group(1), row["name"])
 
     def test_stable_save_flags_and_no_npc_collision(self):
-        self.assertIn("#define TRAINERS_COUNT                      904", self.opponents)
+        self.assertIn("#define TRAINERS_COUNT                      " + str(904 + self.report.get("v23_moon_fossils", {}).get("count", 0)), self.opponents)
         self.assertIn("#define MAX_TRAINERS_COUNT                  864", self.opponents)
         self.assertIn("#define FLAGS_COUNT (DAILY_FLAGS_END + 1)", self.flags)
         self.assertEqual(self.battle.count("TRAINER_FLAGS_START + trainerId"), 1)
