@@ -43,7 +43,8 @@ class OverworldBudgetTests(unittest.TestCase):
         self.assertIn(mod.SHADOW_NEW, self.config.read_text())
         self.assertNotIn(mod.SHADOW_OLD, self.config.read_text())
         self.assertEqual(self.encounter.read_text(),
-                         before.replace(mod.GUARD_OLD, mod.GUARD_NEW))
+                         before.replace(mod.GUARD_OLD, mod.GUARD_NEW)
+                               .replace(mod.EARLY_OLD, mod.EARLY_NEW))
         self.assertEqual(self.encounter.read_text().count("FlagGet(DN_FLAG_SEARCHING)"), 1)
         self.assertIn(mod.EARLY_NEW, self.encounter.read_text())
         self.assertNotIn(mod.EARLY_OLD, self.encounter.read_text())
