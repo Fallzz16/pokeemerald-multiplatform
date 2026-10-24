@@ -143,6 +143,22 @@ jobs:
           export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
           PW_TIMEOUT=180 test/overworld/mgba-run.sh test/overworld/lua/HubIntroTour.lua "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/m8-hub-tour.log" 2>&1
           PW_TIMEOUT=180 test/overworld/mgba-run.sh test/overworld/lua/HubPassReCross.lua "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/m8-hub-recross.log" 2>&1
+      - name: Catch tutorial regression diagnosis on actual ROM
+        shell: bash
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          for n in 1 2 3; do
+            mkdir -p "$GITHUB_WORKSPACE/m8-catch-$n"
+            PW_OUT="$GITHUB_WORKSPACE/m8-catch-$n/" PW_TIMEOUT=180 \
+              test/overworld/mgba-run.sh test/overworld/lua/CatchTutorial.lua "$PWD/pokemonworld.gba" \
+              > "$GITHUB_WORKSPACE/m8-catch-$n.log" 2>&1
+            rc=$?
+            echo "CatchTutorial attempt $n exit=$rc"
+            grep -E '(VERDICT|\\[FAIL\\]|FAIL|catch tutorial battle)' "$GITHUB_WORKSPACE/m8-catch-$n.log" | tail -18 || true
+          done
       - name: Bound entire optional overworld sweep to protect QA turnaround
         continue-on-error: true
         shell: bash
@@ -156,6 +172,7 @@ jobs:
         with:
           name: GRANDWORLD_M8_INTEGRATED_GEN4_LOGS
           path: |
+            m8-catch-*.log
             m8-world-suites.log
             m8-smoke-boot.log
             m8-smoke-title.log
