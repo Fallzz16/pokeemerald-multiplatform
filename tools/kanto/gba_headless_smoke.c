@@ -12,7 +12,7 @@
 #include <stdint.h>
 #include <inttypes.h>
 
-static uint64_t fingerprint(const mColor *data, unsigned width, unsigned height)
+static uint64_t fingerprint(const color_t *data, unsigned width, unsigned height)
 {
     uint64_t hash = UINT64_C(14695981039346656037);
     unsigned y, x;
@@ -26,7 +26,7 @@ static uint64_t fingerprint(const mColor *data, unsigned width, unsigned height)
     return hash;
 }
 
-static unsigned color_count_capped(const mColor *data, unsigned width, unsigned height)
+static unsigned color_count_capped(const color_t *data, unsigned width, unsigned height)
 {
     uint32_t seen[64];
     unsigned count = 0, x, y, i;
@@ -45,7 +45,7 @@ static unsigned color_count_capped(const mColor *data, unsigned width, unsigned 
     return count;
 }
 
-static int save_ppm(const char *filename, const mColor *pixels,
+static int save_ppm(const char *filename, const color_t *pixels,
                     unsigned width, unsigned height)
 {
     FILE *fp = fopen(filename, "wb");
@@ -69,7 +69,7 @@ static int save_ppm(const char *filename, const mColor *pixels,
 int main(int argc, char **argv)
 {
     struct mCore *core;
-    mColor *pixels;
+    color_t *pixels;
     unsigned width = 0, height = 0, i, colors;
     uint64_t early = 0, late = 0;
     const char *rom;
@@ -84,13 +84,13 @@ int main(int argc, char **argv)
         fprintf(stderr, "Could not init mGBA core\n");
         return 3;
     }
-    core->baseVideoSize(core, &width, &height);
+    core->desiredVideoDimensions(core, &width, &height);
     if (width != 240 || height != 160) {
         fprintf(stderr, "Unexpected GBA frame dimensions %u x %u\n", width, height);
         core->deinit(core);
         return 4;
     }
-    pixels = calloc((size_t)width * height, sizeof(mColor));
+    pixels = calloc((size_t)width * height, sizeof(color_t));
     if (!pixels) {
         core->deinit(core);
         return 5;
