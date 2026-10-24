@@ -134,5 +134,63 @@ class EvidenceContractTests(unittest.TestCase):
 
 
 
+    def test_save_migration_requires_all_three_actual_fixture_suites(self):
+        world = Path(self.temp.name)
+        output = world / "_pwtest"
+        output.mkdir()
+        md5 = "B" * 32
+        cases = [("VerifyV7Migrate", 14), ("MigrateFixtures", 7),
+                 ("VerifyMapRenumber", 4)]
+        def proof():
+            return qa.load_suite_group_proof(
+                world, md5, "save.migration", cases, "tracked historical saves")
+        self.assertIsNone(proof())
+        for name, count in cases:
+            (output / (name + ".PASS")).write_text(
+                f"PASS {count}/{count} rom={md5} at=2026-10-24T06:31:54Z suite={name}\\n")
+        got = proof()
+        self.assertEqual(len(got["suites"]), 3)
+        self.assertTrue(all(x["rom_md5"] == md5 for x in got["suites"]))
+        (output / "VerifyV7Migrate.PASS").unlink()
+        self.assertIsNone(proof())
+        (output / "VerifyV7Migrate.PASS").write_text(
+            f"PASS 13/13 rom={md5} at=now suite=VerifyV7Migrate")
+        with self.assertRaisesRegex(ValueError, "incomplete"):
+            proof()
+
+    def test_group_rejects_unexpected_cases_conflicts_and_duplicate_suites(self):
+        world = Path(self.temp.name)
+        output = world / "_pwtest"
+        output.mkdir()
+        md5 = "A" * 32
+        with self.assertRaisesRegex(ValueError, "unknown"):
+            qa.load_suite_group_proof(world, md5, "save.imaginary",
+                                      [("StoryProgress", 31)], "none")
+        with self.assertRaisesRegex(ValueError, "independent"):
+            qa.load_suite_group_proof(world, md5, "save.migration",
+                                      [("StoryProgress", 31), ("StoryProgress", 31)], "none")
+        stamp = output / "DayNightTint.PASS"
+        stamp.write_text(f"PASS 32/32 rom={md5} at=now suite=DayNightTint")
+        (output / "DayNightTint.FAIL").write_text("FAIL")
+        with self.assertRaisesRegex(ValueError, "conflicting"):
+            qa.load_suite_group_proof(world, md5, "graphics.palettes",
+                                      [("DayNightTint", 32)], "day/night palette")
+
+    def test_group_missing_one_partner_never_proves_audio(self):
+        world = Path(self.temp.name)
+        output = world / "_pwtest"
+        output.mkdir()
+        md5 = "A" * 32
+        (output / "JohtoMusicPass.PASS").write_text(
+            f"PASS 18/18 rom={md5} at=now suite=JohtoMusicPass")
+        group = [("JohtoMusicPass", 18), ("Route41SurfBgm", 11)]
+        self.assertIsNone(
+            qa.load_suite_group_proof(world, md5, "audio.bgm", group, "Johto music"))
+        (output / "Route41SurfBgm.PASS").write_text(
+            f"PASS 11/11 rom={md5} at=now suite=Route41SurfBgm")
+        proof = qa.load_suite_group_proof(world, md5, "audio.bgm", group, "Johto music")
+        self.assertEqual(len(proof["suites"]), 2)
+
+
 if __name__ == "__main__":
     unittest.main()
