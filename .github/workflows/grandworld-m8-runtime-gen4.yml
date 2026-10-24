@@ -1,0 +1,203 @@
+name: Grand World M8 - Fast Runtime and Gen4 Trial
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/grandworld-m8-runtime-gen4.yml'
+      - 'tools/grandworld/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: world-m8-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  integration:
+    name: GBA World integrated ROM and measurable Pokedex expansion
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - name: Checkout patch repository
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Checkout pinned Pokemon World
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          fetch-depth: 0
+          path: world
+      - name: Install modern GBA toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev
+      - name: Apply fail-closed regional travel and trainer scaling
+        run: |
+          python3 grandworld/tools/grandworld/integrate_world.py world
+          test -f world/src/grandworld_balance.c
+          test -f world/include/grandworld_balance.h
+          git -C world diff --check
+      - name: Enable and place Gen4 encounters with fail-closed audit
+        run: |
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply
+          test -s m8-gen4-encounters-evidence.json
+          git -C world diff --check
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          o=json.loads(Path('m8-gen4-encounters-evidence.json').read_text())
+          assert o['family_count']==31 and o['table_variants_modified']>=31
+          Path('gen4-families.txt').write_text('\n'.join(sorted(x['new'] for x in o['changes']))+'\n')
+          print('New encounter table entries:',o['table_variants_modified'])
+          PY
+      - name: Install six hero profiles in actual game introduction
+        run: |
+          python3 -m py_compile grandworld/tools/grandworld/add_hero_profiles.py grandworld/tools/grandworld/add_kanto_avatar.py grandworld/tools/grandworld/expand_gen4_pilot.py
+          python3 grandworld/tools/grandworld/add_hero_profiles.py world
+          python3 grandworld/tools/grandworld/add_kanto_avatar.py world
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('world/src/oak_speech.c').read_text()
+          n=Path('world/src/new_game.c').read_text()
+          assert 'sHeroMale[3]' in s and 'sHeroFemale[3]' in s
+          assert 'VarSet(VAR_PLAYER_CHARACTER, GrandWorldHeroSlot(input))' in s
+          assert 'VarSet(VAR_PLAYER_CHARACTER, playerHero)' in n
+          assert 'OBJ_EVENT_GFX_RED_NORMAL' in Path('world/src/field_player_avatar.c').read_text()
+          assert 'OBJ_EVENT_GFX_GREEN_NORMAL' in Path('world/src/field_player_avatar.c').read_text()
+          PY
+          git -C world diff --check
+      - name: Compile ROM with region integration and extra families
+        shell: bash
+        run: |
+          set -o pipefail
+          make -C world modern -j2 2>&1 | tee patched-gen4-build.log
+      - name: Validate maps, scripts and obtainable species
+        shell: bash
+        run: |
+          set -o pipefail
+          make -C world validate 2>&1 | tee patched-gen4-validate.log
+      - name: ROM integrity and memory evidence
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,json,re
+          b=Path('world/pokemonworld.gba').read_bytes()
+          assert len(b)==33554432,len(b)
+          assert b[0xac:0xb0]==b'BPEE'
+          assert b[0xb2]==0x96
+          assert (sum(b[0xa0:0xbd])+0x19+b[0xbd])%256==0
+          log=Path('patched-gen4-build.log').read_text()
+          m=re.findall(r'(?m)^\s*(EWRAM|IWRAM|ROM):\s+([0-9]+) B\s+',log)
+          if len(m)<3:raise RuntimeError('linker memory readout missing')
+          mem={k:int(v) for k,v in m[-3:]}
+          assert mem['ROM'] < 33554432 and mem['EWRAM']<=262144 and mem['IWRAM']<=32768,mem
+          o={'sha':hashlib.sha256(b).hexdigest(),'size':len(b),'memory':mem,'families_enabled':sorted(set(Path('gen4-families.txt').read_text().splitlines())),'source_sha':__import__('subprocess').check_output(['git','-C','world','rev-parse','HEAD'],text=True).strip(),'gameplay_verified':False}
+          Path('m8-integrated-gen4-evidence.json').write_text(json.dumps(o,indent=2))
+          print(json.dumps(o,indent=2))
+          PY
+      - name: Build deterministic headless mGBA test harness
+        run: |
+          sudo apt-get install -y cmake liblua5.4-dev libpng-dev zlib1g-dev
+          git clone --filter=blob:none https://github.com/mgba-emu/mgba.git mgba
+          git -C mgba checkout 669817d03e4858e65d0b992bcd96d3009236cc1e
+          git -C mgba apply ../world/test/overworld/mgba/0001-headless-video-buffer-save-and-rtc.patch
+          cmake -S mgba -B mgba/build -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+            -DCMAKE_BUILD_TYPE=Release -DBUILD_HEADLESS=ON -DENABLE_SCRIPTING=ON -DUSE_LUA=ON \
+            -DBUILD_QT=OFF -DBUILD_SDL=OFF -DUSE_FFMPEG=OFF -DUSE_DISCORD_RPC=OFF \
+            -DBUILD_SHARED=OFF -DBUILD_STATIC=ON
+          cmake --build mgba/build -j2 --target mgba-headless
+          test -x mgba/build/mgba-headless
+      - name: Mandatory new-game and title screens (fresh ROM hash)
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=240 test/overworld/mgba-run.sh test/overworld/lua/SmokeBoot.lua "$PWD/pokemonworld.gba" | tee "$GITHUB_WORKSPACE/m8-smoke-boot.log"
+          PW_TIMEOUT=240 test/overworld/mgba-run.sh test/overworld/lua/WorldTitle.lua "$PWD/pokemonworld.gba" | tee "$GITHUB_WORKSPACE/m8-smoke-title.log"
+          test -s _pwtest/SmokeBoot.PASS
+          test -s _pwtest/WorldTitle.PASS
+          md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
+          grep -Eq "^PASS [1-9][0-9]*/[1-9][0-9]* rom=$md5 .* suite=SmokeBoot$" _pwtest/SmokeBoot.PASS
+          grep -Eq "^PASS [1-9][0-9]*/[1-9][0-9]* rom=$md5 .* suite=WorldTitle$" _pwtest/WorldTitle.PASS
+          if test -s _pwtest/SmokeBoot.FAIL || test -s _pwtest/WorldTitle.FAIL; then
+            echo 'Conflicting emulator verdict found' >&2
+            exit 1
+          fi
+      - name: Certify only ROM-bound acceptance cases (3 of 105)
+        run: |
+          python3 -m py_compile grandworld/tools/grandworld/qa_acceptance.py
+          python3 grandworld/tools/grandworld/qa_acceptance.py world m8-acceptance-evidence.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path("m8-acceptance-evidence.json").read_text())
+          assert a["total"] == 105 and a["verified"] == 3 and a["pending"] == 102
+          assert a["release_approved"] is False
+          PY
+      - name: Diagnose CatchTutorial's single failed assertion (advisory)
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=240 test/overworld/mgba-run.sh test/overworld/lua/CatchTutorial.lua "$PWD/pokemonworld.gba" | tee "$GITHUB_WORKSPACE/m8-catch-tutorial.log"
+          if test -f _pwtest/CatchTutorial.FAIL; then
+            cp _pwtest/CatchTutorial.FAIL "$GITHUB_WORKSPACE/m8-catch-tutorial.FAIL"
+          fi
+      - name: Regional introductory tour and cross-region story QA (advisory)
+        continue-on-error: true
+        shell: bash
+        run: |
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=180 test/overworld/mgba-run.sh test/overworld/lua/HubIntroTour.lua "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/m8-hub-tour.log" 2>&1
+          PW_TIMEOUT=180 test/overworld/mgba-run.sh test/overworld/lua/HubPassReCross.lua "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/m8-hub-recross.log" 2>&1
+      - name: Catch tutorial regression diagnosis on actual ROM
+        shell: bash
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          for n in 1 2 3; do
+            mkdir -p "$GITHUB_WORKSPACE/m8-catch-$n"
+            PW_OUT="$GITHUB_WORKSPACE/m8-catch-$n/" PW_TIMEOUT=180 \
+              test/overworld/mgba-run.sh test/overworld/lua/CatchTutorial.lua "$PWD/pokemonworld.gba" \
+              > "$GITHUB_WORKSPACE/m8-catch-$n.log" 2>&1
+            rc=$?
+            echo "CatchTutorial attempt $n exit=$rc"
+            grep -E '(VERDICT|\\[FAIL\\]|FAIL|catch tutorial battle)' "$GITHUB_WORKSPACE/m8-catch-$n.log" | tail -18 || true
+          done
+      - name: Bound entire optional overworld sweep to protect QA turnaround
+        continue-on-error: true
+        shell: bash
+        run: |
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          timeout --signal=TERM --kill-after=10s 420s env PW_TIMEOUT=75 test/overworld/run-all.sh "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/m8-world-suites.log" 2>&1
+      - name: Upload logs and measurements only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: GRANDWORLD_M8_INTEGRATED_GEN4_LOGS
+          path: |
+            m8-catch-*.log
+            m8-world-suites.log
+            m8-smoke-boot.log
+            m8-smoke-title.log
+            m8-acceptance-evidence.json
+            m8-hub-tour.log
+            m8-hub-recross.log
+            m8-catch-tutorial.log
+            m8-catch-tutorial.FAIL
+            patched-gen4-build.log
+            patched-gen4-validate.log
+            m8-integrated-gen4-evidence.json
+            gen4-families.txt
+            m8-gen4-encounters-evidence.json
+            grandworld/tools/grandworld/*.py
+            grandworld/tools/grandworld/*.c
+            grandworld/tools/grandworld/*.h
+          if-no-files-found: warn

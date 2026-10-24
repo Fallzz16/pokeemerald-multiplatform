@@ -116,15 +116,42 @@ void RegionHub_ScrCanCarryToNewRegion(struct ScriptContext *ctx)
     for p in extras:
         if p.exists():
             raise RuntimeError(f'existing file collision: {p}')
-    # All preflight checks have succeeded before the first edit.
-    for p,text in ((c,source),(s,scripts),(b,battle)):
-        backup=p.with_name(p.name+'.gw-original')
-        if backup.exists():
-            raise RuntimeError(f'existing backup: {backup}')
-        shutil.copy2(p,backup)
-        p.write_text(text)
-    for p,content in extras.items():
-        p.write_bytes(content)
+    # Fail closed before any modification, then atomically install pre-rendered
+    # files with rollback on disk error or interruption. A previous .gw-original
+    # backup is never silently overwritten.
+    import os
+    import tempfile
+    updated = {c: source.encode(), s: scripts.encode(), b: battle.encode()}
+    updated.update(extras)
+    original_paths = (c, s, b)
+    backup_paths = {p: p.with_name(p.name + '.gw-original') for p in original_paths}
+    for p in original_paths:
+        if backup_paths[p].exists():
+            raise RuntimeError(f'existing backup: {backup_paths[p]}')
+    staged = {}
+    try:
+        for p, data in updated.items():
+            fd, tmp = tempfile.mkstemp(prefix=p.name + '.gw-stage-', dir=p.parent)
+            staged[p] = Path(tmp)
+            with os.fdopen(fd, 'wb') as out:
+                out.write(data)
+        for p in original_paths:
+            shutil.copy2(p, backup_paths[p])
+        try:
+            for p, stage in staged.items():
+                os.replace(stage, p)
+        except Exception:
+            for p in original_paths:
+                if backup_paths[p].exists():
+                    shutil.copy2(backup_paths[p], p)
+            for p in extras:
+                if p.exists():
+                    p.unlink()
+            raise
+    finally:
+        for stage in staged.values():
+            if stage.exists():
+                stage.unlink()
     print('Patched 5 World files; party stays intact, intro capacity guarded, NPC levels scale.')
     print('Save format and multiplayer unaffected. Full GBA build, field and starter tests mandatory.')
 
