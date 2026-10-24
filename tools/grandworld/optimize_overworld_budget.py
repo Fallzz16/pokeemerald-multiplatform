@@ -65,7 +65,7 @@ def prepare(root, shadows="auto"):
         raise ValueError("overworld encounters no longer enabled: refusing optimization")
     selected = select_shadow_policy(shadows, old_config, encounter_cfg)
     if old_config.count(SHADOW_OLD) != 1:
-        raise ValueError("shadow budget: expected one original FALSE anchor")
+        raise ValueError(f"shadow budget: expected one original FALSE anchor, found {old_config.count(SHADOW_OLD)}")
     new_config = (replace_once(old_config, SHADOW_OLD, SHADOW_NEW, "shadow budget")
                   if selected == "lean" else old_config)
     new_encounters = replace_once(old_encounters, GUARD_OLD, GUARD_NEW, "duplicate DexNav check")
