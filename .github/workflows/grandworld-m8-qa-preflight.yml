@@ -30,6 +30,10 @@ jobs:
           sparse-checkout: |
             test/overworld/lua/
             test/overworld/ValidateGen13.py
+            data/maps/
+            data/scripts/hall_of_fame.inc
+            data/scripts/hall_of_fame_frlg.inc
+            data/event_scripts.s
             src/data/wild_encounters.json
             include/config/species_enabled.h
       - name: Install Lua syntax compiler
@@ -53,6 +57,19 @@ jobs:
             luac -p "world/test/overworld/lua/GrandWorldSave${hero}.lua"
           done
           git -C world diff --check
+      - name: Enumerate all 24 gym badge and 3 League script completion sites
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/audit_campaign_scripts.py world m8-campaign-source-audit.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          audit=json.loads(Path("m8-campaign-source-audit.json").read_text())
+          assert audit["badge_awards_found"]==24
+          assert audit["league_paths_found"]==3
+          assert audit["release_approved"] is False
+          assert all(not x["gameplay_verified"] for x in audit["badges"]+audit["leagues"])
+          PY
       - name: Verify exact Gen4 pilot dry run and unchanged original files
         run: |
           set -euo pipefail
