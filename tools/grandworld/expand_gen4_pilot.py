@@ -97,7 +97,12 @@ def patch(root: Path, write: bool, gen5_trial: bool = False):
     signature="MIN_DISABLED_FAMILIES = 300"
     if validator.count(signature)!=1:raise ValueError("validator version changed")
     whitelist="GRANDWORLD_EXTRA_FAMILIES = {\n"+ "".join(f'    "P_FAMILY_{f}",\n' for f in selected)+"}\n"
-    validator=validator.replace(signature,whitelist+"\n"+signature,1)
+    # The 300-disabled-family sentinel predates the 12 opt-in Gen5 gates.
+    # Preserve the original floor in stable mode; subtract only the *named*
+    # extra families in the trial. Exact late-family allowlist below remains
+    # mandatory and rejects any unrelated Gen4+ family becoming enabled.
+    floor = 300 - (len(GEN5_PILOT) if gen5_trial else 0)
+    validator=validator.replace(signature,whitelist+"\n"+f"MIN_DISABLED_FAMILIES = {floor}",1)
     old="if fam not in disabled_families:\n            enabled_late.append((gen, fam))"
     new="if fam not in disabled_families and fam not in GRANDWORLD_EXTRA_FAMILIES:\n            enabled_late.append((gen, fam))"
     if validator.count(old)!=1:raise ValueError("validator late-family invariant changed")
@@ -109,7 +114,7 @@ def patch(root: Path, write: bool, gen5_trial: bool = False):
     for name in selected:
         if re.search(r"(?m)^#define P_FAMILY_"+name+r"\s+FALSE\b",flags):
             raise ValueError("pilot species remains disabled")
-    summary={"family_count":len(selected),"gen4_family_count":len(PILOT),"gen5_trial_family_count":len(selected)-len(PILOT),"experimental_gen5_enabled":gen5_trial,"table_variants_modified":len(touched),"region_counts":{reg:sum(e["region"]==reg for e in touched) for reg in REGIONS},"changes":touched,"source":"PKMN-World pinned checkout","continuous_gameplay_verified":False}
+    summary={"validator_disabled_floor":floor,"family_count":len(selected),"gen4_family_count":len(PILOT),"gen5_trial_family_count":len(selected)-len(PILOT),"experimental_gen5_enabled":gen5_trial,"table_variants_modified":len(touched),"region_counts":{reg:sum(e["region"]==reg for e in touched) for reg in REGIONS},"changes":touched,"source":"PKMN-World pinned checkout","continuous_gameplay_verified":False}
     if write:
         flags_path.write_text(flags)
         json_path.write_text(json.dumps(wild,ensure_ascii=False,indent=2)+"\n")
