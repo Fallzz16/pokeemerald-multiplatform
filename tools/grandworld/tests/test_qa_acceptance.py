@@ -192,5 +192,24 @@ class EvidenceContractTests(unittest.TestCase):
         self.assertEqual(len(proof["suites"]), 2)
 
 
+    def test_cross_region_battery_save_requires_complete_independent_verdict(self):
+        world = Path(self.temp.name)
+        out = world / "_pwtest"
+        out.mkdir()
+        md5 = "C" * 32
+        self.assertIsNone(
+            qa.load_suite_proof(world, "GrandWorldCrossRegionSave", md5, 176))
+        witness = out / "GrandWorldCrossRegionSave.PASS"
+        witness.write_text(
+            f"PASS 175/175 rom={md5} at=now suite=GrandWorldCrossRegionSave")
+        with self.assertRaisesRegex(ValueError, "incomplete"):
+            qa.load_suite_proof(world, "GrandWorldCrossRegionSave", md5, 176)
+        witness.write_text(
+            f"PASS 176/176 rom={md5} at=now suite=GrandWorldCrossRegionSave")
+        proof = qa.load_suite_proof(world, "GrandWorldCrossRegionSave", md5, 176)
+        self.assertEqual(proof["passed"], 176)
+        self.assertEqual(proof["rom_md5"], md5)
+
+
 if __name__ == "__main__":
     unittest.main()
