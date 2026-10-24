@@ -7,6 +7,8 @@ on:
       - 'tools/grandworld/tests/test_optimize_overworld_budget.py'
       - 'tools/grandworld/evaluate_performance_budget.py'
       - 'tools/grandworld/tests/test_evaluate_performance_budget.py'
+      - 'tools/grandworld/compare_shadow_profiles.py'
+      - 'tools/grandworld/tests/test_compare_shadow_profiles.py'
   workflow_dispatch:
 permissions:
   contents: read
@@ -81,3 +83,34 @@ jobs:
             shadow-lz77.json
             shadow-build.log
             shadow-validate.log
+  compare:
+    name: Compare O2 graphics trade-offs (not FPS)
+    needs: compile
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout comparison tool
+        uses: actions/checkout@v4
+      - name: Download lean measurements
+        uses: actions/download-artifact@v4
+        with:
+          name: GRANDWORLD_M8_SHADOW_lean_DIAGNOSTICS
+          path: lean
+      - name: Download full measurements
+        uses: actions/download-artifact@v4
+        with:
+          name: GRANDWORLD_M8_SHADOW_full_DIAGNOSTICS
+          path: full
+      - name: Validate identical-source profiles and real ROM evidence
+        run: |
+          set -euo pipefail
+          python3 tools/grandworld/compare_shadow_profiles.py \
+            lean/shadow-profile.json full/shadow-profile.json \
+            lean/shadow-budget.json full/shadow-budget.json \
+            lean/shadow-lz77.json full/shadow-lz77.json \
+            --output m8-shadow-comparison.json
+          test -s m8-shadow-comparison.json
+      - name: Publish only compare JSON
+        uses: actions/upload-artifact@v4
+        with:
+          name: GRANDWORLD_M8_SHADOW_AB_COMPARISON
+          path: m8-shadow-comparison.json
