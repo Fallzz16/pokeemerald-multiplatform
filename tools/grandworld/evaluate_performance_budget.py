@@ -12,7 +12,7 @@ import re
 
 LIMITS = {"ROM": 32 * 1024 * 1024, "EWRAM": 256 * 1024, "IWRAM": 32 * 1024}
 RESERVES = {"ROM": 1 * 1024 * 1024, "EWRAM": 8 * 1024, "IWRAM": 2 * 1024}
-MEMORY_ROW = re.compile(r"^\s*(ROM|EWRAM|IWRAM):\s+(\d+)\s+B\s*$", re.MULTILINE)
+MEMORY_ROW = re.compile(r"^\s*(ROM|EWRAM|IWRAM):\s+(\d+)\s+B(?:\s|$)", re.MULTILINE)
 
 
 def read_linker_usage(log):
