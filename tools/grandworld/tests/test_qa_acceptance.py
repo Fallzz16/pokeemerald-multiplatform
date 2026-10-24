@@ -59,5 +59,54 @@ class EvidenceContractTests(unittest.TestCase):
             qa.load_memory_proof(self.path, SHA, SIZE)
 
 
+    def test_gameplay_suite_evidence_requires_exact_rom_md5_and_count(self):
+        world = Path(self.temp.name)
+        witness = world / "_pwtest"
+        witness.mkdir()
+        good_md5 = "A" * 32
+        stamp = witness / "GrandWorldHeroSave.PASS"
+        stamp.write_text(
+            "PASS 37/37 rom=" + good_md5
+            + " at=2026-10-24T05:12:00Z suite=GrandWorldHeroSave\n"
+        )
+        result = qa.load_suite_proof(world, "GrandWorldHeroSave", good_md5, 37)
+        self.assertEqual(result["passed"], 37)
+        self.assertEqual(result["rom_md5"], good_md5)
+        for md5, checks in (("B" * 32, 37), (good_md5, 36)):
+            with self.subTest(md5=md5, checks=checks):
+                with self.assertRaisesRegex(ValueError, "incomplete"):
+                    qa.load_suite_proof(world, "GrandWorldHeroSave", md5, checks)
+
+    def test_advisory_absence_and_failure_stay_pending(self):
+        world = Path(self.temp.name)
+        stamps = world / "_pwtest"
+        stamps.mkdir()
+        self.assertIsNone(qa.load_suite_proof(world, "GrandWorldHubParty", "A" * 32, 94))
+        (stamps / "GrandWorldHubParty.FAIL").write_text("FAIL 1/94")
+        self.assertIsNone(qa.load_suite_proof(world, "GrandWorldHubParty", "A" * 32, 94))
+        with self.assertRaisesRegex(ValueError, "failed"):
+            qa.load_suite_proof(world, "GrandWorldHubParty", "A" * 32, 94, required=True)
+
+    def test_stale_malformed_and_conflicting_stamps_fail_closed(self):
+        world = Path(self.temp.name)
+        stamps = world / "_pwtest"
+        stamps.mkdir()
+        path = stamps / "SSAquaKantoCrossing.PASS"
+        for content in (
+            "PASS 20/20 rom=" + "A" * 32 + " at=now suite=SSAquaKantoCrossing",
+            "PASS 94/95 rom=" + "A" * 32 + " at=now suite=SSAquaKantoCrossing",
+            "PASS 94/94 rom=" + "A" * 32 + " at=now suite=WrongSuite",
+            "PASS 94/94 rom=" + "not-a-hash" + " at=now suite=SSAquaKantoCrossing",
+        ):
+            with self.subTest(content=content):
+                path.write_text(content)
+                with self.assertRaisesRegex(ValueError, "incomplete"):
+                    qa.load_suite_proof(world, "SSAquaKantoCrossing", "A" * 32, 94)
+        path.write_text("PASS 94/94 rom=" + "A" * 32 + " at=now suite=SSAquaKantoCrossing")
+        (stamps / "SSAquaKantoCrossing.FAIL").write_text("FAIL")
+        with self.assertRaisesRegex(ValueError, "conflicting"):
+            qa.load_suite_proof(world, "SSAquaKantoCrossing", "A" * 32, 94)
+
+
 if __name__ == "__main__":
     unittest.main()
