@@ -68,7 +68,7 @@ static u8 GrandWorldHeroSlot(u8 regionTheme)
                '    u16 playerOutfit = VarGet(VAR_PLAYER_PALETTE);\n    u16 playerHero = VarGet(VAR_PLAYER_CHARACTER);',new)
     intro=once(intro,'    VarSet(VAR_PLAYER_PALETTE, playerOutfit); // restore the intro outfit pick wiped by ClearSav1',
                '    VarSet(VAR_PLAYER_PALETTE, playerOutfit); // persistent hero costume\n    VarSet(VAR_PLAYER_CHARACTER, playerHero); // persistent six-protagonist identity',new)
-    return {oak:src,new:intro}
+    return {"oak":src,"new":intro}
 
 if __name__=="__main__":
     if len(sys.argv)!=2:sys.exit("usage: add_hero_profiles.py /isolated/pokemon-world")
