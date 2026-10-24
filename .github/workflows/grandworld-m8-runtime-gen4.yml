@@ -71,6 +71,13 @@ jobs:
           assert 'OBJ_EVENT_GFX_GREEN_NORMAL' in Path('world/src/field_player_avatar.c').read_text()
           PY
           git -C world diff --check
+      - name: Apply opt-in overworld sprite and encounter CPU budget
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --report m8-performance-optimizations.json
+          test -s m8-performance-optimizations.json
+          grep -Eq '^#define OW_OBJECT_VANILLA_SHADOWS[[:space:]]+TRUE([[:space:]]|$)' world/include/config/overworld.h
+          git -C world diff --check
       - name: Compile ROM with region integration and extra families
         shell: bash
         run: |
@@ -357,6 +364,7 @@ jobs:
             m8-expanded-families.txt
             m8-gen4-encounters-evidence.json
             m8-campaign-source-audit.json
+            m8-performance-optimizations.json
             grandworld/tools/grandworld/*.py
             grandworld/tools/grandworld/*.c
             grandworld/tools/grandworld/*.h

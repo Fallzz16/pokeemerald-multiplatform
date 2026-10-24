@@ -1,0 +1,92 @@
+name: Grand World M8 - Isolated LTO Experiment
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/grandworld-m8-isolated-lto.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: world-m8-lto-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  memory-comparison:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - name: Checkout Grand World patch
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Checkout immutable Pokemon World base
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+          fetch-depth: 0
+      - name: Install compiler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev
+      - name: Generate identical patched sources
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/integrate_world.py world
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply --with-gen5-trial
+          python3 grandworld/tools/grandworld/add_hero_profiles.py world
+          python3 grandworld/tools/grandworld/add_kanto_avatar.py world
+          python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --report lto-common-profile.json
+          git -C world diff --check
+      - name: Baseline -O2 without LTO (normal game, full source)
+        shell: bash
+        run: |
+          set -euo pipefail
+          make -C world modern -j2 LTO=0 2>&1 | tee lto-baseline.log
+          cp world/pokemonworld.gba lto-baseline.gba
+      - name: Optimized -O2 with LTO (same game flags and source)
+        shell: bash
+        run: |
+          set -euo pipefail
+          make -C world tidymodern
+          make -C world pokemonworld.gba -j2 LTO=1 2>&1 | tee lto-optimized.log
+      - name: Strict paired cartridge and memory comparison
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,re
+          from pathlib import Path
+          variants={}
+          limits={'ROM':33554432,'EWRAM':262144,'IWRAM':32768}
+          for name,rom,log in [('baseline',Path('lto-baseline.gba'),Path('lto-baseline.log')),
+                               ('lto',Path('world/pokemonworld.gba'),Path('lto-optimized.log'))]:
+              b=rom.read_bytes()
+              assert len(b)==33554432,(name,len(b))
+              assert b[0xac:0xb0]==b'BPEE' and b[0xb2]==0x96,name
+              assert (sum(b[0xa0:0xbd])+b[0xbd]+0x19)%256==0,name
+              items=re.findall(r'(?m)^\s*(ROM|EWRAM|IWRAM):\s+(\d+) B\s+',log.read_text())
+              mem={key:int(value) for key,value in items[-3:]}
+              assert set(mem)==set(limits),(name,mem)
+              assert all(0<mem[key]<=limits[key] for key in limits),(name,mem)
+              variants[name]={'sha256':hashlib.sha256(b).hexdigest(),'memory_bytes':mem}
+          output={'same_game_flags':True,'same_source_patch':True,
+                  'variants':variants,
+                  'lto_minus_baseline_bytes':{key:variants['lto']['memory_bytes'][key]-variants['baseline']['memory_bytes'][key] for key in limits},
+                  'fps_measured':False,
+                  'lto_gameplay_certified':False,
+                  'notes':['This comparison isolates -flto from RELEASE/NDEBUG flags.',
+                           'ROMs are temporary build intermediates, never uploaded.',
+                           'LTO build is a valid cartridge, NOT a gameplay-homologated release.']}
+          Path('lto-isolated-comparison.json').write_text(json.dumps(output,indent=2)+'\n')
+          print(json.dumps(output,indent=2))
+          PY
+      - name: Upload diagnostics without game ROMs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: GRANDWORLD_M8_ISOLATED_LTO_DIAGNOSTICS
+          path: |
+            lto-baseline.log
+            lto-optimized.log
+            lto-common-profile.json
+            lto-isolated-comparison.json
+          if-no-files-found: warn
