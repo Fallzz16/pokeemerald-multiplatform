@@ -335,6 +335,21 @@ jobs:
           Path("m8-release-checklist.md").write_text("\n".join(doc)+"\n")
           print("Final acceptance report:",len(verified),"verified",len(pending),"pending")
           PY
+      - name: Measure actual hardware OAM occupancy in mGBA (advisory)
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp grandworld/tools/grandworld/lua/GrandWorldOamBudget.lua world/test/overworld/lua/GrandWorldOamBudget.lua
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=240 test/overworld/mgba-run.sh test/overworld/lua/GrandWorldOamBudget.lua "$PWD/pokemonworld.gba" | tee "$GITHUB_WORKSPACE/m8-oam-hardware.log"
+          test -s _pwtest/GrandWorldOamBudget.PASS
+          test ! -e _pwtest/GrandWorldOamBudget.FAIL
+          md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
+          grep -Eq "^PASS [1-9][0-9]*/[1-9][0-9]* rom=$md5 .* suite=GrandWorldOamBudget$" _pwtest/GrandWorldOamBudget.PASS
+          cd ..
+          python3 grandworld/tools/grandworld/parse_oam_metrics.py m8-oam-hardware.log world/pokemonworld.gba --output m8-oam-hardware.json
       - name: Upload logs and measurements only
         if: always()
         uses: actions/upload-artifact@v4
@@ -365,6 +380,8 @@ jobs:
             m8-gen4-encounters-evidence.json
             m8-campaign-source-audit.json
             m8-performance-optimizations.json
+            m8-oam-hardware.log
+            m8-oam-hardware.json
             grandworld/tools/grandworld/*.py
             grandworld/tools/grandworld/*.c
             grandworld/tools/grandworld/*.h
