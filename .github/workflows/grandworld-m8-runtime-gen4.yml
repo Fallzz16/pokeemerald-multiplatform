@@ -238,15 +238,15 @@ jobs:
           pending=[case for case,data in a["cases"].items() if data["status"]!="verified"]
           doc=["# Grand World M8 — ROM-bound release acceptance",
                "",
-               f"ROM SHA256: \`{a['rom_sha256']}\`",
-               f"ROM MD5: \`{a['rom_md5']}\`",
+               f"ROM SHA256: `{a['rom_sha256']}`",
+               f"ROM MD5: `{a['rom_md5']}`",
                f"Verified: **{len(verified)}/105**",
                f"Pending: **{len(pending)}/105**",
                "Release approved: **NO**",
                "",
                "## Verified criteria",*("- "+n for n in verified),
                "","## Pending — not approved",*("- "+n for n in pending)]
-          Path("m8-release-checklist.md").write_text("\\n".join(doc)+"\\n")
+          Path("m8-release-checklist.md").write_text("\n".join(doc)+"\n")
           print("Final acceptance report:",len(verified),"verified",len(pending),"pending")
           PY
       - name: Upload logs and measurements only
