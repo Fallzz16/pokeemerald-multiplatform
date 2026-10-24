@@ -172,6 +172,21 @@ jobs:
             echo "CatchTutorial attempt $n exit=$rc"
             grep -E '(VERDICT|\\[FAIL\\]|FAIL|catch tutorial battle)' "$GITHUB_WORKSPACE/m8-catch-$n.log" | tail -18 || true
           done
+      - name: Real Hoenn hub party and hero continuity in mGBA (advisory)
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/extend_hub_party_qa.py \
+            world/test/overworld/lua/HubPassReCross.lua \
+            world/test/overworld/lua/GrandWorldHubParty.lua
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=360 test/overworld/mgba-run.sh \
+            test/overworld/lua/GrandWorldHubParty.lua "$PWD/pokemonworld.gba" \
+            | tee "$GITHUB_WORKSPACE/m8-party-hub-gates.log"
+          test -s _pwtest/GrandWorldHubParty.PASS
+          test ! -e _pwtest/GrandWorldHubParty.FAIL
       - name: Bound entire optional overworld sweep to protect QA turnaround
         continue-on-error: true
         shell: bash
@@ -192,6 +207,7 @@ jobs:
             m8-acceptance-evidence.json
             m8-hub-tour.log
             m8-hub-recross.log
+            m8-party-hub-gates.log
             m8-catch-tutorial.log
             m8-catch-tutorial.FAIL
             patched-gen4-build.log
