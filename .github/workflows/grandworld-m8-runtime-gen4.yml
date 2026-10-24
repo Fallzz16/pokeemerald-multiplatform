@@ -281,6 +281,24 @@ jobs:
             test ! -e "_pwtest/${suite}.FAIL"
             grep -Eq "^PASS ${count}/${count} rom=$md5 .* suite=${suite}$" "_pwtest/${suite}.PASS"
           done
+      - name: Probe actual cross-region party save and Continue after all six gates (advisory)
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/extend_cross_region_save_qa.py \
+            world/test/overworld/lua/GrandWorldSixRoutes.lua \
+            world/test/overworld/lua/GrandWorldCrossRegionSave.lua
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=480 test/overworld/mgba-run.sh \
+            test/overworld/lua/GrandWorldCrossRegionSave.lua "$PWD/pokemonworld.gba" \
+            | tee "$GITHUB_WORKSPACE/m8-real-cross-region-save.log"
+          test -s _pwtest/GrandWorldCrossRegionSave.PASS
+          test ! -e _pwtest/GrandWorldCrossRegionSave.FAIL
+          md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
+          grep -Eq "^PASS 176/176 rom=$md5 .* suite=GrandWorldCrossRegionSave$" \
+            _pwtest/GrandWorldCrossRegionSave.PASS
       - name: Finalize ROM-specific acceptance evidence after gameplay
         shell: bash
         run: |
@@ -291,8 +309,8 @@ jobs:
           from pathlib import Path
           a=json.loads(Path("m8-acceptance-evidence.json").read_text())
           assert a["total"]==105
-          assert a["verified"]==14, a["verified"]
-          assert a["pending"]==91, a["pending"]
+          assert 14<=a["verified"]<=15, a["verified"]
+          assert a["pending"]==105-a["verified"], a["pending"]
           assert a["verified"]+a["pending"]==105
           assert a["release_approved"] is False
           verified=[case for case,data in a["cases"].items() if data["status"]=="verified"]
@@ -326,6 +344,7 @@ jobs:
             m8-hub-recross.log
             m8-party-hub-gates.log
             m8-six-region-directions.log
+            m8-real-cross-region-save.log
             m8-hero-party-save-continue.log
             m8-johto-kanto-travel.log
             m8-save-*.log
