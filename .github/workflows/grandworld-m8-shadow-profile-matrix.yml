@@ -99,7 +99,7 @@ jobs:
           folder.mkdir(exist_ok=True)
           output = folder / f'PokemonGrandWorld_M8_{variant}_EXPERIMENTAL.gba'
           shutil.copyfile(rom, output)
-          (folder / 'SHA256SUMS.txt').write_text(f'{sha}  {output.name}\\n')
+          (folder / 'SHA256SUMS.txt').write_text(f'{sha}  {output.name}\n')
           manifest = {
               'rom_filename': output.name,
               'sha256': sha,
@@ -113,7 +113,7 @@ jobs:
               'fps_measured': False,
               'note': 'Experimental PR build: ROM compiled and header/size validated. Not a release or full hardware gameplay certificate.'
           }
-          (folder / 'build-info.json').write_text(json.dumps(manifest, indent=2) + '\\n')
+          (folder / 'build-info.json').write_text(json.dumps(manifest, indent=2) + '\n')
           print('VERIFIED_GBA_SHA256', sha, 'PROFILE', variant)
           PY
           test -s verified-gba/SHA256SUMS.txt
