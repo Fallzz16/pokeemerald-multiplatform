@@ -30,6 +30,8 @@ unsigned GetMonData(struct Pokemon *mon, int what);
 #endif
 """
 DRIVER = r"""
+#include <stdio.h>
+#include <string.h>
 #include "global.h"
 #include "grandworld_balance.h"
 struct Pokemon gParties[1][PARTY_SIZE];
@@ -48,8 +50,6 @@ static int check(const char *name, unsigned actual, unsigned expected)
     if (actual != expected) { printf("%s: actual=%u expected=%u\n", name, actual, expected); return 1; }
     return 0;
 }
-#include <stdio.h>
-#include <string.h>
 int main(void)
 {
     int failed = 0;
