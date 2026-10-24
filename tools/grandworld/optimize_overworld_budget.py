@@ -90,7 +90,7 @@ def apply(root, write=False, shadows="auto"):
             raise
     return {
         "mode": "applied" if write else "preflight",
-        "changes": [str(path.relative_to(root)) for path, _, _ in edits],
+        "changes": [str(path.relative_to(root)) for path, old, new in edits if old != new],
         "object_shadow_policy": ("vanilla (jump-only)" if selected == "lean" else "universal"),
         "requested_shadow_mode": shadows,
         "resolved_shadow_mode": selected,
