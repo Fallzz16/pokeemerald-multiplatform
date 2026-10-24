@@ -99,6 +99,27 @@ def register_six_route_proofs(seen, proof):
         }
 
 
+
+def load_suite_group_proof(world, rom_md5, case, suite_counts, scope):
+    """Promote only if ALL specified, exact-count, same-ROM gameplay suites passed.
+
+    Each suite must have a PASS stamp without a conflicting FAIL. Absent optional
+    suites keep the criterion pending; malformed/stale stamps fail closed.
+    """
+    if case not in manifest():
+        raise ValueError("unknown release acceptance criterion: " + case)
+    if not suite_counts or len(suite_counts) != len(set(suite_counts)):
+        raise ValueError("invalid independent acceptance suite group")
+    proofs = []
+    for suite, expected_checks in suite_counts:
+        proof = load_suite_proof(world, suite, rom_md5, expected_checks)
+        if proof is None:
+            return None
+        proofs.append(proof)
+    return {"source": "multiple headless mGBA Lua suites", "scope": scope,
+            "rom_md5": rom_md5, "suites": proofs}
+
+
 def report(world):
     rom=(world/"pokemonworld.gba").read_bytes()
     if hashlib.sha1(rom[0x04:0xA0]).hexdigest() != '17daa0fec02fc33c0f6abb549a8b80b6613b48ee':
@@ -143,6 +164,26 @@ def report(world):
             seen[case]["additional_ship_proof"] = ship
         else:
             seen[case] = ship
+    # All three tracked and intentionally different historical fixture cases
+    # must be accepted. v7dirty exercises trainer-flag zeroing, v3 exercises
+    # the incompatible-layout refusal, and v7renumber exercises safe old warps.
+    # This is migration compatibility, NOT every personal save or slot backup.
+    grouped = [
+        ("save.migration",
+         [("VerifyV7Migrate", 14), ("MigrateFixtures", 7),
+          ("VerifyMapRenumber", 4)],
+         "tracked v3 refusal, dirty v7 migration, two renumbered-map warps"),
+        ("audio.bgm",
+         [("JohtoMusicPass", 18), ("Route41SurfBgm", 11)],
+         "tested Johto overworld, takeover, cycling and surfing music states"),
+        ("graphics.palettes",
+         [("WorldTitle", 37), ("DayNightTint", 32)],
+         "title RGB555 resources and outdoor/day-night/cave palette transitions"),
+    ]
+    for case, checks, scope in grouped:
+        proof = load_suite_group_proof(world, md5, case, checks, scope)
+        if proof is not None:
+            seen[case] = proof
     ids=manifest()
     out={"rom_sha256":sha,"rom_md5":md5,"world_base":"15d3888b0d81322a04d3c71b0bce18948761ee44",
          "verified":len(seen),"pending":len(ids)-len(seen),"total":len(ids),
