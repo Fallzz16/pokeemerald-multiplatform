@@ -202,6 +202,18 @@ jobs:
             | tee "$GITHUB_WORKSPACE/m8-hero-party-save-continue.log"
           test -s _pwtest/GrandWorldHeroSave.PASS
           test ! -e _pwtest/GrandWorldHeroSave.FAIL
+      - name: Verify actual Johto-to-Kanto ship crossing on integrated ROM (advisory)
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=300 test/overworld/mgba-run.sh \
+            test/overworld/lua/SSAquaKantoCrossing.lua "$PWD/pokemonworld.gba" \
+            | tee "$GITHUB_WORKSPACE/m8-johto-kanto-travel.log"
+          test -s _pwtest/SSAquaKantoCrossing.PASS
+          test ! -e _pwtest/SSAquaKantoCrossing.FAIL
       - name: Bound entire optional overworld sweep to protect QA turnaround
         continue-on-error: true
         shell: bash
@@ -209,6 +221,34 @@ jobs:
           cd world
           export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
           timeout --signal=TERM --kill-after=10s 420s env PW_TIMEOUT=75 test/overworld/run-all.sh "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/m8-world-suites.log" 2>&1
+      - name: Finalize ROM-specific acceptance evidence after gameplay
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/qa_acceptance.py world m8-acceptance-evidence.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path("m8-acceptance-evidence.json").read_text())
+          assert a["total"]==105
+          assert 3<=a["verified"]<=6
+          assert a["verified"]+a["pending"]==105
+          assert a["release_approved"] is False
+          verified=[case for case,data in a["cases"].items() if data["status"]=="verified"]
+          pending=[case for case,data in a["cases"].items() if data["status"]!="verified"]
+          doc=["# Grand World M8 — ROM-bound release acceptance",
+               "",
+               f"ROM SHA256: \`{a['rom_sha256']}\`",
+               f"ROM MD5: \`{a['rom_md5']}\`",
+               f"Verified: **{len(verified)}/105**",
+               f"Pending: **{len(pending)}/105**",
+               "Release approved: **NO**",
+               "",
+               "## Verified criteria",*("- "+n for n in verified),
+               "","## Pending — not approved",*("- "+n for n in pending)]
+          Path("m8-release-checklist.md").write_text("\\n".join(doc)+"\\n")
+          print("Final acceptance report:",len(verified),"verified",len(pending),"pending")
+          PY
       - name: Upload logs and measurements only
         if: always()
         uses: actions/upload-artifact@v4
@@ -224,6 +264,8 @@ jobs:
             m8-hub-recross.log
             m8-party-hub-gates.log
             m8-hero-party-save-continue.log
+            m8-johto-kanto-travel.log
+            m8-release-checklist.md
             m8-catch-tutorial.log
             m8-catch-tutorial.FAIL
             patched-gen4-build.log
