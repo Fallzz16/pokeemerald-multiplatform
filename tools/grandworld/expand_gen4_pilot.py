@@ -56,10 +56,13 @@ def patch(root: Path, write: bool):
     touched=[]
     for region, routes in REGIONS.items():
         for map_name, family in routes:
-            matches=[e for e in entries if e.get("map")==map_name and len(e.get("land_mons",{}).get("mons",[]))==12]
-            if not matches:raise ValueError(f"no 12-slot land encounter entry: {map_name}")
+            # Aquatic species belong in water rather than walking on land.
+            habitat="water_mons" if family in ("BUIZEL","SHELLOS","FINNEON") else "land_mons"
+            expected=5 if habitat=="water_mons" else 12
+            matches=[e for e in entries if e.get("map")==map_name and len(e.get(habitat,{}).get("mons",[]))==expected]
+            if not matches:raise ValueError(f"no {expected}-slot {habitat} encounter entry: {map_name}")
             for entry in matches:
-                mons=entry["land_mons"]["mons"]
+                mons=entry[habitat]["mons"]
                 # Replace only a repeat: guarantee the displaced species survives on this route.
                 repeated=[i for i,mon in enumerate(mons) if sum(other["species"]==mon["species"] for other in mons)>1]
                 if not repeated:raise ValueError(f"no safe duplicate slot: {entry.get('base_label')}")
@@ -68,7 +71,7 @@ def patch(root: Path, write: bool):
                 mons[slot]["species"]="SPECIES_"+family
                 if not any(i!=slot and x["species"]==old for i,x in enumerate(mons)):
                     raise ValueError("last original species mistakenly removed")
-                touched.append({"region":region,"map":map_name,"table":entry.get("base_label"),"slot":slot,"previous":old,"new":mons[slot]["species"],"levels":[mons[slot]["min_level"],mons[slot]["max_level"]]})
+                touched.append({"region":region,"map":map_name,"table":entry.get("base_label"),"habitat":habitat,"slot":slot,"previous":old,"new":mons[slot]["species"],"levels":[mons[slot]["min_level"],mons[slot]["max_level"]]})
     # Existing validator enforces ALL gen4 families disabled. Extend only exact,
     # explicitly enumerable pilot families; all others are still rejected.
     signature="MIN_DISABLED_FAMILIES = 300"
