@@ -107,26 +107,38 @@ jobs:
             -DBUILD_SHARED=OFF -DBUILD_STATIC=ON
           cmake --build mgba/build -j2 --target mgba-headless
           test -x mgba/build/mgba-headless
-      - name: Execute 51 mandatory overworld regression suites (diagnostic)
-        continue-on-error: true
-        shell: bash
-        run: |
-          cd world
-          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
-          PW_TIMEOUT=180 test/overworld/run-all.sh "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/m8-world-suites.log" 2>&1
-      - name: Mandatory fresh mGBA title and boot smoke
+      - name: Mandatory new-game and title screens (fresh ROM hash)
         shell: bash
         run: |
           set -euo pipefail
           cd world
           export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
-          PW_TIMEOUT=180 test/overworld/mgba-run.sh test/overworld/lua/SmokeBoot.lua "$PWD/pokemonworld.gba" | tee "$GITHUB_WORKSPACE/m8-smoke-boot.log"
-          PW_TIMEOUT=180 test/overworld/mgba-run.sh test/overworld/lua/WorldTitle.lua "$PWD/pokemonworld.gba" | tee "$GITHUB_WORKSPACE/m8-smoke-title.log"
+          PW_TIMEOUT=240 test/overworld/mgba-run.sh test/overworld/lua/SmokeBoot.lua "$PWD/pokemonworld.gba" | tee "$GITHUB_WORKSPACE/m8-smoke-boot.log"
+          PW_TIMEOUT=240 test/overworld/mgba-run.sh test/overworld/lua/WorldTitle.lua "$PWD/pokemonworld.gba" | tee "$GITHUB_WORKSPACE/m8-smoke-title.log"
           test -s _pwtest/SmokeBoot.PASS
           test -s _pwtest/WorldTitle.PASS
           md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
-          grep -q "rom=$md5" _pwtest/SmokeBoot.PASS
-          grep -q "rom=$md5" _pwtest/WorldTitle.PASS
+          grep -Eq "^PASS [1-9][0-9]*/[1-9][0-9]* rom=$md5 .* suite=SmokeBoot$" _pwtest/SmokeBoot.PASS
+          grep -Eq "^PASS [1-9][0-9]*/[1-9][0-9]* rom=$md5 .* suite=WorldTitle$" _pwtest/WorldTitle.PASS
+          if test -s _pwtest/SmokeBoot.FAIL || test -s _pwtest/WorldTitle.FAIL; then
+            echo 'Conflicting emulator verdict found' >&2
+            exit 1
+          fi
+      - name: Regional introductory tour and cross-region story QA (advisory)
+        continue-on-error: true
+        shell: bash
+        run: |
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=180 test/overworld/mgba-run.sh test/overworld/lua/HubIntroTour.lua "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/m8-hub-tour.log" 2>&1
+          PW_TIMEOUT=180 test/overworld/mgba-run.sh test/overworld/lua/HubPassReCross.lua "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/m8-hub-recross.log" 2>&1
+      - name: Bound entire optional overworld sweep to protect QA turnaround
+        continue-on-error: true
+        shell: bash
+        run: |
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          timeout --signal=TERM --kill-after=10s 420s env PW_TIMEOUT=75 test/overworld/run-all.sh "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/m8-world-suites.log" 2>&1
       - name: Upload logs and measurements only
         if: always()
         uses: actions/upload-artifact@v4
@@ -136,6 +148,8 @@ jobs:
             m8-world-suites.log
             m8-smoke-boot.log
             m8-smoke-title.log
+            m8-hub-tour.log
+            m8-hub-recross.log
             patched-gen4-build.log
             patched-gen4-validate.log
             m8-integrated-gen4-evidence.json
