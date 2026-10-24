@@ -4,6 +4,8 @@ on:
     paths:
       - '.github/workflows/grandworld-m8-shadow-profile-matrix.yml'
       - 'tools/grandworld/optimize_overworld_budget.py'
+      - 'tools/grandworld/apply_grass_only.py'
+      - 'tools/grandworld/tests/test_apply_grass_only.py'
       - 'tools/grandworld/tests/test_optimize_overworld_budget.py'
       - 'tools/grandworld/evaluate_performance_budget.py'
       - 'tools/grandworld/tests/test_evaluate_performance_budget.py'
@@ -48,6 +50,8 @@ jobs:
           python3 grandworld/tools/grandworld/add_hero_profiles.py world
           python3 grandworld/tools/grandworld/add_kanto_avatar.py world
           python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --shadows ${{ matrix.shadows }} --report shadow-profile.json
+          python3 grandworld/tools/grandworld/apply_grass_only.py world --apply --report postm8-grass-only.json
+          grep -Eq '^#define WE_OW_ENCOUNTERS[[:space:]]+FALSE' world/include/config/wild_encounter.h
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_*.py'
           git -C world diff --check
           python3 - <<'PY'
@@ -97,7 +101,7 @@ jobs:
           assert profile['resolved_shadow_mode'] == variant
           folder = Path('verified-gba')
           folder.mkdir(exist_ok=True)
-          output = folder / f'PokemonGrandWorld_M8_{variant}_EXPERIMENTAL.gba'
+          output = folder / f'PokemonGrandWorld_PostM8_{variant}_EXPERIMENTAL.gba'
           shutil.copyfile(rom, output)
           (folder / 'SHA256SUMS.txt').write_text(f'{sha}  {output.name}\n')
           manifest = {
@@ -122,7 +126,7 @@ jobs:
       - name: Upload downloadable GBA (EXPERIMENTAL, no saves)
         uses: actions/upload-artifact@v4
         with:
-          name: GRANDWORLD_M8_GBA_${{ matrix.shadows }}_EXPERIMENTAL
+          name: GRANDWORLD_POSTM8_GBA_${{ matrix.shadows }}_EXPERIMENTAL
           path: verified-gba/
           if-no-files-found: error
           retention-days: 7
@@ -135,6 +139,7 @@ jobs:
           if-no-files-found: warn
           path: |
             shadow-profile.json
+            postm8-grass-only.json
             shadow-budget.json
             shadow-lz77.json
             shadow-build.log

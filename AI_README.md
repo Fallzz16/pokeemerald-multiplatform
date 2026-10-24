@@ -1174,3 +1174,14 @@ Próximos P0: conferir workflow final, resolver regressões, testes reais Window
 - Artefatos esperados: GRANDWORLD_M8_GBA_lean_EXPERIMENTAL e GRANDWORLD_M8_GBA_full_EXPERIMENTAL; cada ZIP terá um `.gba`, `SHA256SUMS.txt` e `build-info.json`.
 - Importante: a última execução integral da M8 no SHA anterior teve resultado CI success, mas uma ROM de nova execução precisa ser correlacionada ao novo SHA. O arquivo `.gba` não deve ser anunciado como release aprovada, nem LTO aprovada, nem FPS 60 medido. Recomendar lean; full requer avaliação visual/OAM em cenas densas.
 - O workflow do novo upload será atualizado após esta nota; resultados da execução posterior ainda não são conhecidos neste registro. Não copiar saves do usuário, não promover M9. Rollback: reverter somente este commit/alteração de workflow no PR experimental.
+
+
+## 2026-10-24 — Pós-M8: patch experimental grass-only (PR isolado)
+
+- **Base/rollback:** perf/grandworld-m8-configurable-profiles-20261024 no commit 869314ca6c2a1e1828d8d12231a426ac07c1e5eb; cadeia PRs #70/#71/#72 preservada e NÃO mesclada. World pinado em 15d3888b0d81322a04d3c71b0bce18948761ee44.
+- **Decisões:** 1E 2D 3D 4E 5E 6E 7E 8E 9A 10E 11A 12E 13E 14E 15E 20E; restantes a critério técnico. Manter três campanhas independentes, seis heróis, equipe entre regiões, save e gameplay singleplayer, sem M9.
+- **Implementação real:** tools/grandworld/apply_grass_only.py, testes test_apply_grass_only.py, workflows de runtime, perfis lean/full, O2/LTO e documentação docs/GRANDWORLD_POSTM8_GRASS_ONLY_PTBR.md.
+- **P0:** spawn gerado visível desligado; encontros aleatórios de passos e Sweet Scent só na grama; pesca e Rock Smash não iniciam batalhas selvagens. Saves, espécies, scripts, regiões e assets originais são preservados. Tudo via adaptação fail-closed no checkout World isolado.
+- **Limites relevantes:** Pokémon estáticos de scripts permanecem; disponibilidade de espécies antes encontradas na água, pesca e rochas precisa ser recuperada em grama. Testar Safari, Pike, Pyramid, DexNav, tutoriais, save/Continue e seis protagonistas. Não considerar regra literal totalmente homologada antes de auditoria dos scripts.
+- **Validação:** as verificações/ROMs novas devem ser associadas ao SHA exato no GitHub Actions, sem alegar CI ou gameplay aprovado antes de ler resultados. A matriz publica artifacts experimentais e SHA-256 caso compile. Nenhum FPS medido.
+- **Próximo passo:** acompanhar CI desta branch, corrigir falhas reais sem silenciar testes, efetuar QA visual/continuado, depois implementar P1 das três regiões. A PR permanece draft e não é mergeada automaticamente.

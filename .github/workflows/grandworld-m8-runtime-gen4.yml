@@ -75,6 +75,10 @@ jobs:
         run: |
           set -euo pipefail
           python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --report m8-performance-optimizations.json
+          python3 grandworld/tools/grandworld/apply_grass_only.py world --apply --report postm8-grass-only.json
+          test -s postm8-grass-only.json
+          grep -Eq '^#define GW_GRASS_ONLY_WILD[[:space:]]+TRUE' world/include/config/wild_encounter.h
+          grep -Eq '^#define WE_OW_ENCOUNTERS[[:space:]]+FALSE' world/include/config/wild_encounter.h
           test -s m8-performance-optimizations.json
           grep -Eq '^#define OW_OBJECT_VANILLA_SHADOWS[[:space:]]+TRUE([[:space:]]|$)' world/include/config/overworld.h
           git -C world diff --check
@@ -380,6 +384,7 @@ jobs:
             m8-gen4-encounters-evidence.json
             m8-campaign-source-audit.json
             m8-performance-optimizations.json
+            postm8-grass-only.json
             m8-oam-hardware.log
             m8-oam-hardware.json
             grandworld/tools/grandworld/*.py
