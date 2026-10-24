@@ -76,7 +76,7 @@ jobs:
           set -euo pipefail
           python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --report m8-performance-optimizations.json
           test -s m8-performance-optimizations.json
-          grep -q '^#define OW_OBJECT_VANILLA_SHADOWS      TRUE$' world/include/config/overworld.h
+          grep -Eq '^#define OW_OBJECT_VANILLA_SHADOWS[[:space:]]+TRUE([[:space:]]|$)' world/include/config/overworld.h
           git -C world diff --check
       - name: Compile ROM with region integration and extra families
         shell: bash
