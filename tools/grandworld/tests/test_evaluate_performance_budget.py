@@ -43,6 +43,13 @@ class BudgetTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "linker"):
                     mod.report(self.rom, value)
 
+    def test_real_arm_linker_rows_include_other_columns(self):
+        log = ("            EWRAM:      235264 B       256 KB     89.75%\n"
+               "            IWRAM:       28200 B        32 KB     86.06%\n"
+               "              ROM:    24595356 B        32 MB     73.30%\n")
+        result = mod.report(self.rom, log)
+        self.assertEqual(result["linker_memory_bytes"]["ROM"], 24595356)
+
     def test_memory_out_of_range(self):
         for values in ({'ewram': 262145}, {'iwram': 0}, {'rom': 33554433}):
             with self.subTest(values=values):
