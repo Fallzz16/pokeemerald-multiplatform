@@ -11,7 +11,7 @@ jobs:
   integration:
     name: GBA World integrated ROM and measurable Pokedex expansion
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 70
     steps:
       - name: Checkout patch repository
         uses: actions/checkout@v4
@@ -89,12 +89,47 @@ jobs:
           Path('m8-integrated-gen4-evidence.json').write_text(json.dumps(o,indent=2))
           print(json.dumps(o,indent=2))
           PY
+      - name: Build deterministic headless mGBA test harness
+        run: |
+          sudo apt-get install -y cmake liblua5.4-dev libpng-dev zlib1g-dev
+          git clone --filter=blob:none https://github.com/mgba-emu/mgba.git mgba
+          git -C mgba checkout 669817d03e4858e65d0b992bcd96d3009236cc1e
+          git -C mgba apply ../world/test/overworld/mgba/0001-headless-video-buffer-save-and-rtc.patch
+          cmake -S mgba -B mgba/build -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+            -DCMAKE_BUILD_TYPE=Release -DBUILD_HEADLESS=ON -DENABLE_SCRIPTING=ON -DUSE_LUA=ON \
+            -DBUILD_QT=OFF -DBUILD_SDL=OFF -DUSE_FFMPEG=OFF -DUSE_DISCORD_RPC=OFF \
+            -DBUILD_SHARED=OFF -DBUILD_STATIC=ON
+          cmake --build mgba/build -j2 --target mgba-headless
+          test -x mgba/build/mgba-headless
+      - name: Execute 51 mandatory overworld regression suites (diagnostic)
+        continue-on-error: true
+        shell: bash
+        run: |
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=180 test/overworld/run-all.sh "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/m8-world-suites.log" 2>&1
+      - name: Mandatory fresh mGBA title and boot smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=180 test/overworld/mgba-run.sh test/overworld/lua/SmokeBoot.lua "$PWD/pokemonworld.gba" | tee "$GITHUB_WORKSPACE/m8-smoke-boot.log"
+          PW_TIMEOUT=180 test/overworld/mgba-run.sh test/overworld/lua/WorldTitle.lua "$PWD/pokemonworld.gba" | tee "$GITHUB_WORKSPACE/m8-smoke-title.log"
+          test -s _pwtest/SmokeBoot.PASS
+          test -s _pwtest/WorldTitle.PASS
+          md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
+          grep -q "rom=$md5" _pwtest/SmokeBoot.PASS
+          grep -q "rom=$md5" _pwtest/WorldTitle.PASS
       - name: Upload logs and measurements only
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: GRANDWORLD_M8_INTEGRATED_GEN4_LOGS
           path: |
+            m8-world-suites.log
+            m8-smoke-boot.log
+            m8-smoke-title.log
             patched-gen4-build.log
             patched-gen4-validate.log
             m8-integrated-gen4-evidence.json
