@@ -34,21 +34,18 @@ jobs:
           test -f world/src/grandworld_balance.c
           test -f world/include/grandworld_balance.h
           git -C world diff --check
-      - name: Trial Gen4 expansion (individually controlled families)
+      - name: Enable and place Gen4 encounters with fail-closed audit
         run: |
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply
+          test -s m8-gen4-encounters-evidence.json
+          git -C world diff --check
           python3 - <<'PY'
+          import json
           from pathlib import Path
-          p=Path('world/include/config/species_enabled.h')
-          s=p.read_text()
-          families=('TURTWIG','CHIMCHAR','PIPLUP','STARLY','BIDOOF','KRICKETOT','SHINX','CRANIDOS','SHIELDON','BURMY','COMBEE','PACHIRISU','BUIZEL','CHERUBI','SHELLOS','DRIFLOON','BUNEARY','GLAMEOW','STUNKY','BRONZOR','CHATOT','SPIRITOMB','GIBLE','RIOLU','HIPPOPOTAS','SKORUPI','CROAGUNK','CARNIVINE','FINNEON','SNOVER','ROTOM')
-          import re
-          for name in families:
-              pattern=r'(?m)^(#define P_FAMILY_'+name+r'\s+)FALSE(\s*(?://.*)?)$'
-              s,n=re.subn(pattern,r'\g<1>TRUE\g<2>',s)
-              if n!=1: raise SystemExit('family unavailable or unexpected: '+name+' '+str(n))
-          p.write_text(s)
-          print('Requested enabled family switches:',len(families))
-          Path('gen4-families.txt').write_text('\n'.join(families)+'\n')
+          o=json.loads(Path('m8-gen4-encounters-evidence.json').read_text())
+          assert o['family_count']==31 and o['table_variants_modified']>=31
+          Path('gen4-families.txt').write_text('\n'.join(sorted(x['new'] for x in o['changes']))+'\n')
+          print('New encounter table entries:',o['table_variants_modified'])
           PY
       - name: Compile ROM with region integration and extra families
         shell: bash
@@ -89,4 +86,5 @@ jobs:
             patched-gen4-validate.log
             m8-integrated-gen4-evidence.json
             gen4-families.txt
+            m8-gen4-encounters-evidence.json
           if-no-files-found: warn
