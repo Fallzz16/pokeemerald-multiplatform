@@ -158,6 +158,30 @@ class EvidenceContractTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "incomplete"):
             proof()
 
+    def test_group_rejects_bad_later_stamps_even_if_first_suite_missing(self):
+        world = Path(self.temp.name)
+        stamps = world / "_pwtest"
+        stamps.mkdir()
+        md5 = "A" * 32
+        group = [("VerifyV7Migrate", 14), ("MigrateFixtures", 7),
+                 ("VerifyMapRenumber", 4)]
+        # First suite has not run, but the second has contradictory verdicts.
+        (stamps / "MigrateFixtures.PASS").write_text(
+            f"PASS 7/7 rom={md5} at=now suite=MigrateFixtures")
+        (stamps / "MigrateFixtures.FAIL").write_text("FAIL")
+        with self.assertRaisesRegex(ValueError, "conflicting"):
+            qa.load_suite_group_proof(world, md5, "save.migration",
+                                      group, "migration")
+        (stamps / "MigrateFixtures.FAIL").unlink()
+        (stamps / "MigrateFixtures.PASS").write_text(
+            f"PASS 7/7 rom={'B' * 32} at=now suite=MigrateFixtures")
+        with self.assertRaisesRegex(ValueError, "incomplete"):
+            qa.load_suite_group_proof(world, md5, "save.migration",
+                                      group, "migration")
+        (stamps / "MigrateFixtures.PASS").unlink()
+        self.assertIsNone(qa.load_suite_group_proof(
+            world, md5, "save.migration", group, "migration"))
+
     def test_group_rejects_unexpected_cases_conflicts_and_duplicate_suites(self):
         world = Path(self.temp.name)
         output = world / "_pwtest"
