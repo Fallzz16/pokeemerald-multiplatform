@@ -64,3 +64,13 @@ PR #61 **draft**. Branch segura V0.24 / PR #62; todos os saves pessoais ficam in
 O [CI #40059442087](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40059442087) gerou ROM ARM GCC válida. As capturas e leitura somente para QA da memória `gSaveBlock1Ptr` mostraram `InsideOfTruck` = mapa 25/40 e posição (2,2), **sem progressão observada até o quadro 45.000**. A caixa de texto das caixas de mudança permaneceu aberta. Isso **não demonstra defeito na movimentação do jogo**, pois a automação apertava botões fora da lógica do diálogo.
 
 A próxima revisão do smoke usa pixels da caixa de diálogo para alternar A e direção direita; armazena o primeiro quadro de movimento e a primeira entrada observada em `LittlerootTown` (grupo 0/mapa 9). Se nenhum desses sinais aparecer, registrar como não verificado, nunca como sucesso presumido. O teste não escreve memória do jogo nem lê saves pessoais.
+
+
+### Segunda transição do jogo: roteiro do teste (24/10/2026)
+O CI #40059886862 (https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40059886862), após corrigir a automatização que reabria o diálogo da caixa, comprovou:
+- Quadro **30.240**: primeiro movimento real medido; quadro **30.280**: InsideOfTruck (25/40) mudou para LittlerootTown (0/9).
+- O relatório do mGBA registrou littleroot_warp_verified=true e player_movement_verified=true; capturas de 30.400 e 30.900 quadros mostram o protagonista fora do caminhão e a mãe no início do evento.
+- Build moderno GBA, Windows Kanto e QA Laboratory SUCCESS na mesma revisão.
+- Trata-se de **movimentação, warp e cena inicial** reais; ainda não comprova batalhas, saves ou Kanto completo.
+
+Próxima sondagem (60.000 quadros) avança o diálogo da mãe somente quando a caixa de texto aparece. O script LittlerootTown_EventScript_GoInsideWithMom prepara a transferência automática para LittlerootTown_BrendansHouse_1F (1/0) ou LittlerootTown_MaysHouse_1F (1/2). O teste registrará house_transition_verified somente se realmente observar esses identificadores de mapa na memória do emulador; até o resultado da CI, isso permanece não verificado.

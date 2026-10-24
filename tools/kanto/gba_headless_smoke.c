@@ -128,10 +128,11 @@ int main(int argc, char **argv)
     const char *rom;
     int failed = 0;
     uint32_t saveblock_symbol;
-    struct MapSample map_samples[10] = {0};
+    struct MapSample map_samples[12] = {0};
     unsigned map_sample_count = 0;
     unsigned first_movement_frame = 0;
     unsigned first_littleroot_frame = 0;
+    unsigned first_home_frame = 0;
     unsigned text_advance_pulses = 0;
     unsigned last_map_group = 255, last_map_number = 255;
     if (argc != 3) {
@@ -173,7 +174,7 @@ int main(int argc, char **argv)
     // Only use a disposable, empty mGBA profile. The following deterministic
     // key presses are exploration probes, not a claim that gameplay was reached.
     // Keypresses after the title are deliberately spaced for scene transitions.
-    for (i = 1; i <= 45000; ++i) {
+    for (i = 1; i <= 60000; ++i) {
         // Detect white text-box interior on previous rendered frame, not
         // inferred from an arbitrary frame number. Truck background at this
         // pixel is black; sign dialogue is white.
@@ -213,8 +214,16 @@ int main(int argc, char **argv)
                     // Truck x=2 to x=3 trigger and x=4 dynamic warp.
                     core->setKeys(core, UINT32_C(1) << 4); // KEY_RIGHT
                 }
+            } else if (p.valid && p.group == 0 && p.number == 9) {
+                // Initial Mom greeting: advance dialogue; the actual
+                // LittlerootTown_EventScript_GoInsideWithMom automatically
+                // warps to Brendan/May 1F after its cutscene.
+                if (dialogue_visible && i % 115 < 5)
+                    core->setKeys(core, UINT32_C(1)); // KEY_A
+                else
+                    core->setKeys(core, 0);
             } else {
-                // If we reached Littleroot, do not press buttons at random.
+                // Once inside the house, do not interrupt the next scene.
                 core->setKeys(core, 0);
             }
         }
@@ -228,11 +237,15 @@ int main(int argc, char **argv)
                     first_movement_frame = i;
                 if (!first_littleroot_frame && current.group == 0 && current.number == 9)
                     first_littleroot_frame = i;
+                if (!first_home_frame && current.group == 1
+                    && (current.number == 0 || current.number == 2))
+                    first_home_frame = i;
             }
         }
         if ((i == 20000 || i == 25000 || i == 30000 || i == 30400
           || i == 30900 || i == 32500 || i == 35000 || i == 38000
-          || i == 42000 || i == 45000) && map_sample_count < 10)
+          || i == 42000 || i == 45000 || i == 50000
+          || i == 60000) && map_sample_count < 12)
             map_samples[map_sample_count++] = sample_location(core, i, saveblock_symbol);
         if (i == 120) {
             early = fingerprint(pixels, width, height);
@@ -279,6 +292,10 @@ int main(int argc, char **argv)
             save_ppm("gba-navigation-frame-38000.ppm", pixels, width, height);
         } else if (i == 45000) {
             save_ppm("gba-navigation-frame-45000.ppm", pixels, width, height);
+        } else if (i == 50000) {
+            save_ppm("gba-navigation-frame-50000.ppm", pixels, width, height);
+        } else if (i == 60000) {
+            save_ppm("gba-navigation-frame-60000.ppm", pixels, width, height);
         }
     }
     after_start = fingerprint(pixels, width, height);
@@ -287,7 +304,7 @@ int main(int argc, char **argv)
         FILE *report = fopen("gba-headless-smoke.txt", "w");
         if (report) {
             fprintf(report, "mode=MGBA_HEADLESS_FRAME_SMOKE_NOT_GAMEPLAY\n");
-            fprintf(report, "frames=45000\n");
+            fprintf(report, "frames=60000\n");
             fprintf(report, "screen=%ux%u\n", width, height);
             fprintf(report, "frame120_fnv1a=%016" PRIx64 "\n", early);
             fprintf(report, "frame420_fnv1a=%016" PRIx64 "\n", gamefreak);
@@ -312,6 +329,9 @@ int main(int argc, char **argv)
             fprintf(report, "textbox_advance_pulses=%u\n", text_advance_pulses);
             fprintf(report, "first_movement_frame=%u\n", first_movement_frame);
             fprintf(report, "first_littleroot_frame=%u\n", first_littleroot_frame);
+            fprintf(report, "first_home_frame=%u\n", first_home_frame);
+            fprintf(report, "house_transition_verified=%s\n",
+                    first_home_frame ? "true" : "false");
             fprintf(report, "last_observed_map=%u/%u\n", last_map_group, last_map_number);
             fprintf(report, "littleroot_warp_verified=%s\n",
                     first_littleroot_frame ? "true" : "false");
@@ -324,7 +344,7 @@ int main(int argc, char **argv)
             fclose(report);
         }
     }
-    printf("mGBA simulated 45000 frames; colors420=%u final=%u early=%016" PRIx64
+    printf("mGBA simulated 60000 frames; colors420=%u final=%u early=%016" PRIx64
            " final=%016" PRIx64 "\n", colors_420, colors_final, early, after_start);
     if (colors_420 <= 1 || early == gamefreak || early == after_start) {
         fprintf(stderr, "No frame progression or colored game intro\n");
