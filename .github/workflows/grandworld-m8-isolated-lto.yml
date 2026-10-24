@@ -37,6 +37,7 @@ jobs:
           python3 grandworld/tools/grandworld/add_hero_profiles.py world
           python3 grandworld/tools/grandworld/add_kanto_avatar.py world
           python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --report lto-common-profile.json
+          python3 grandworld/tools/grandworld/apply_grass_only.py world --apply --report postm8-grass-only.json
           git -C world diff --check
       - name: Baseline -O2 without LTO (normal game, full source)
         shell: bash
@@ -88,5 +89,6 @@ jobs:
             lto-baseline.log
             lto-optimized.log
             lto-common-profile.json
+            postm8-grass-only.json
             lto-isolated-comparison.json
           if-no-files-found: warn
