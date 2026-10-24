@@ -23,10 +23,17 @@ UPDATE_OLD = """void UpdateOverworldWildEncounter(void)
     bool32 shouldSpawnWaterMons = ShouldSpawnWaterOWE();"""
 UPDATE_NEW = """void UpdateOverworldWildEncounter(void)
 {
-    // Grand World grass-only: let the original code clear any generated objects
-    // once, then skip the rest of the unused overworld-spawn path every frame.
-    if (!WE_OW_ENCOUNTERS && sOWESpawnCountdown == OWE_NO_ENCOUNTER_SET)
+    // Grand World grass-only: cleanup generated objects exactly once, even on
+    // maps without an OWE table, then skip the inactive OWE code each frame.
+    if (!WE_OW_ENCOUNTERS)
+    {
+        if (sOWESpawnCountdown != OWE_NO_ENCOUNTER_SET)
+        {
+            DespawnAllOverworldWildEncounters(OWE_GENERATED, 0);
+            sOWESpawnCountdown = OWE_NO_ENCOUNTER_SET;
+        }
         return;
+    }
 
     //Check if possible to spawn.
 
