@@ -37,6 +37,11 @@ jobs:
           test -f world/src/grandworld_balance.c
           test -f world/include/grandworld_balance.h
           git -C world diff --check
+      - name: Audit all 24 gym badge and three championship source paths
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/audit_campaign_scripts.py world m8-campaign-source-audit.json
+          test -s m8-campaign-source-audit.json
       - name: Enable and place Gen4 encounters with fail-closed audit
         run: |
           python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply
@@ -294,6 +299,7 @@ jobs:
             m8-integrated-gen4-evidence.json
             gen4-families.txt
             m8-gen4-encounters-evidence.json
+            m8-campaign-source-audit.json
             grandworld/tools/grandworld/*.py
             grandworld/tools/grandworld/*.c
             grandworld/tools/grandworld/*.h
