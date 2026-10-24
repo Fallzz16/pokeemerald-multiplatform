@@ -36,26 +36,48 @@ REGIONS = {
     ],
 }
 PILOT = tuple(f for region in REGIONS.values() for _, f in region)
+# Opt-in experimental expansion: 12 extra Gen5 families, never release-approved.
+GEN5_TRIAL_ROUTES = {
+    "KANTO": [
+        ("MAP_ROUTE3", "PATRAT"), ("MAP_ROUTE4", "LILLIPUP"),
+        ("MAP_ROUTE5", "PIDOVE"), ("MAP_ROUTE6", "BLITZLE"),
+    ],
+    "JOHTO": [
+        ("MAP_ROUTE29", "PURRLOIN"), ("MAP_ROUTE31", "TIMBURR"),
+        ("MAP_ROUTE33", "VENIPEDE"), ("MAP_ROUTE34", "SEWADDLE"),
+    ],
+    "HOENN": [
+        ("MAP_ROUTE111", "MUNNA"), ("MAP_ROUTE112", "COTTONEE"),
+        ("MAP_ROUTE113", "ROGGENROLA"), ("MAP_ROUTE114", "AUDINO"),
+    ],
+}
+GEN5_PILOT = tuple(f for routes in GEN5_TRIAL_ROUTES.values() for _, f in routes)
 
-def patch(root: Path, write: bool):
+def patch(root: Path, write: bool, gen5_trial: bool = False):
     flags_path=root/"include/config/species_enabled.h"
     json_path=root/"src/data/wild_encounters.json"
     validator_path=root/"test/overworld/ValidateGen13.py"
-    for path in (flags_path,json_path,validator_path):
+    ow_validator_path=root/"test/overworld/ValidateOwMonPlacements.py"
+    for path in (flags_path,json_path,validator_path,ow_validator_path):
         if not path.is_file():
             raise ValueError(f"missing World source: {path}")
     flags=flags_path.read_text()
     wild=json.loads(json_path.read_text())
     validator=validator_path.read_text()
+    ow_validator=ow_validator_path.read_text()
     assert len(PILOT)==len(set(PILOT))==31
-    for name in PILOT:
+    assert len(GEN5_PILOT)==len(set(GEN5_PILOT))==12
+    selected = PILOT + (GEN5_PILOT if gen5_trial else ())
+    assert len(selected)==len(set(selected))
+    for name in selected:
         patt=r"(?m)^(#define P_FAMILY_"+name+r"\s+)FALSE(\s*(?://[^\n]*)?)$"
         flags,n=re.subn(patt,r"\g<1>TRUE\g<2>",flags)
         if n!=1:raise ValueError(f"family gate mismatch: {name} matches {n}")
     entries=wild.get("wild_encounter_groups",[{}])[0].get("encounters",[])
     touched=[]
     for region, routes in REGIONS.items():
-        for map_name, family in routes:
+        extra = GEN5_TRIAL_ROUTES[region] if gen5_trial else []
+        for map_name, family in routes + extra:
             # Aquatic species belong in water rather than walking on land.
             habitat="water_mons" if family in ("BUIZEL","SHELLOS","FINNEON") else "land_mons"
             expected=5 if habitat=="water_mons" else 12
@@ -76,8 +98,17 @@ def patch(root: Path, write: bool):
     # explicitly enumerable pilot families; all others are still rejected.
     signature="MIN_DISABLED_FAMILIES = 300"
     if validator.count(signature)!=1:raise ValueError("validator version changed")
-    whitelist="GRANDWORLD_EXTRA_FAMILIES = {\n"+ "".join(f'    "P_FAMILY_{f}",\n' for f in PILOT)+"}\n"
-    validator=validator.replace(signature,whitelist+"\n"+signature,1)
+    whitelist="GRANDWORLD_EXTRA_FAMILIES = {\n"+ "".join(f'    "P_FAMILY_{f}",\n' for f in selected)+"}\n"
+    # The 300-disabled-family sentinel predates the 12 opt-in Gen5 gates.
+    # Preserve the original floor in stable mode; subtract only the *named*
+    # extra families in the trial. Exact late-family allowlist below remains
+    # mandatory and rejects any unrelated Gen4+ family becoming enabled.
+    floor = 300 - (len(GEN5_PILOT) if gen5_trial else 0)
+    validator=validator.replace(signature,whitelist+"\n"+f"MIN_DISABLED_FAMILIES = {floor}",1)
+    ow_floor="MIN_DISABLED_FAMILIES = 300   # P_FAMILY_* FALSE in species_enabled.h"
+    if ow_validator.count(ow_floor)!=1:
+        raise ValueError("overworld mon validator family-floor invariant changed")
+    ow_validator=ow_validator.replace(ow_floor,f"MIN_DISABLED_FAMILIES = {floor}   # trial-aware, exact enabled-family allowlist audited by ValidateGen13",1)
     old="if fam not in disabled_families:\n            enabled_late.append((gen, fam))"
     new="if fam not in disabled_families and fam not in GRANDWORLD_EXTRA_FAMILIES:\n            enabled_late.append((gen, fam))"
     if validator.count(old)!=1:raise ValueError("validator late-family invariant changed")
@@ -86,14 +117,15 @@ def patch(root: Path, write: bool):
     if validator.count(needle)!=1:raise ValueError("validator final status changed")
     validator=validator.replace(needle,'print("OK — all obtainable species enabled; only explicitly audited Grand World pilot families may be late-generation.")')
     # The original validator treats FALSE as disabled. Check exactly PILOT is new.
-    for name in PILOT:
+    for name in selected:
         if re.search(r"(?m)^#define P_FAMILY_"+name+r"\s+FALSE\b",flags):
             raise ValueError("pilot species remains disabled")
-    summary={"family_count":len(PILOT),"table_variants_modified":len(touched),"region_counts":{reg:sum(e["region"]==reg for e in touched) for reg in REGIONS},"changes":touched,"source":"PKMN-World pinned checkout","continuous_gameplay_verified":False}
+    summary={"validator_disabled_floor":floor,"family_count":len(selected),"gen4_family_count":len(PILOT),"gen5_trial_family_count":len(selected)-len(PILOT),"experimental_gen5_enabled":gen5_trial,"table_variants_modified":len(touched),"region_counts":{reg:sum(e["region"]==reg for e in touched) for reg in REGIONS},"changes":touched,"source":"PKMN-World pinned checkout","continuous_gameplay_verified":False}
     if write:
         flags_path.write_text(flags)
         json_path.write_text(json.dumps(wild,ensure_ascii=False,indent=2)+"\n")
         validator_path.write_text(validator)
+        ow_validator_path.write_text(ow_validator)
         (root.parent/"m8-gen4-encounters-evidence.json").write_text(json.dumps(summary,indent=2))
     return summary
 
@@ -101,9 +133,10 @@ if __name__=="__main__":
     parser=argparse.ArgumentParser()
     parser.add_argument("world",type=Path)
     parser.add_argument("--apply",action="store_true",help="Write files in isolated checkout")
+    parser.add_argument("--with-gen5-trial",action="store_true",help="Opt into 12 Gen5 families; full ROM QA remains mandatory")
     args=parser.parse_args()
     try:
-        result=patch(args.world,args.apply)
+        result=patch(args.world,args.apply,args.with_gen5_trial)
     except (ValueError,AssertionError,KeyError,TypeError,OSError) as ex:
         sys.exit(f"FAIL-CLOSED: {ex}")
     print(json.dumps({k:v for k,v in result.items() if k!="changes"},indent=2))

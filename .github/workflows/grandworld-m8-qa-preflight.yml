@@ -1,0 +1,104 @@
+name: Grand World M8 - Source and Lua Preflight
+on:
+  pull_request:
+    paths:
+      - 'tools/grandworld/**'
+      - '.github/workflows/grandworld-m8-qa-preflight.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: grandworld-m8-preflight-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+jobs:
+  source:
+    name: Strict patch source preflight (no cartridge binary)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Checkout Grand World changes
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Checkout pinned World test sources
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            test/overworld/lua/
+            test/overworld/ValidateGen13.py
+            test/overworld/ValidateOwMonPlacements.py
+            data/maps/
+            data/scripts/hall_of_fame.inc
+            data/scripts/hall_of_fame_frlg.inc
+            data/event_scripts.s
+            src/data/wild_encounters.json
+            src/data/
+            data/
+            include/config/species_enabled.h
+      - name: Install Lua syntax compiler
+        run: sudo apt-get update && sudo apt-get install -y lua5.4
+      - name: Strict Python unit and syntax checks
+        run: |
+          set -euo pipefail
+          python3 -m compileall -q grandworld/tools/grandworld
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_*.py' -v
+      - name: Generate three independent Lua test variants, fail closed
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/fix_catch_tutorial_input.py world/test/overworld/lua/CatchTutorial.lua
+          python3 grandworld/tools/grandworld/extend_hub_party_qa.py world/test/overworld/lua/HubPassReCross.lua world/test/overworld/lua/GrandWorldHubParty.lua
+          python3 grandworld/tools/grandworld/extend_story_save_qa.py world/test/overworld/lua/StoryProgress.lua world/test/overworld/lua/GrandWorldHeroSave.lua
+          luac -p world/test/overworld/lua/CatchTutorial.lua
+          luac -p world/test/overworld/lua/GrandWorldHubParty.lua
+          python3 grandworld/tools/grandworld/extend_six_routes_qa.py world/test/overworld/lua/GrandWorldHubParty.lua world/test/overworld/lua/GrandWorldSixRoutes.lua
+          luac -p world/test/overworld/lua/GrandWorldSixRoutes.lua
+          python3 grandworld/tools/grandworld/extend_cross_region_save_qa.py world/test/overworld/lua/GrandWorldSixRoutes.lua world/test/overworld/lua/GrandWorldCrossRegionSave.lua
+          luac -p world/test/overworld/lua/GrandWorldCrossRegionSave.lua
+          luac -p world/test/overworld/lua/GrandWorldHeroSave.lua
+          python3 grandworld/tools/grandworld/generate_hero_save_matrix.py world/test/overworld/lua/GrandWorldHeroSave.lua world/test/overworld/lua
+          for hero in Brendan May Red Leaf Ethan Lyra; do
+            luac -p "world/test/overworld/lua/GrandWorldSave${hero}.lua"
+          done
+          git -C world diff --check
+      - name: Enumerate all 24 gym badge and 3 League script completion sites
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/audit_campaign_scripts.py world m8-campaign-source-audit.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          audit=json.loads(Path("m8-campaign-source-audit.json").read_text())
+          assert audit["badge_awards_found"]==24
+          assert audit["league_paths_found"]==3
+          assert audit["release_approved"] is False
+          assert all(not x["gameplay_verified"] for x in audit["badges"]+audit["leagues"])
+          PY
+      - name: Verify exact Gen4 pilot dry run and unchanged original files
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world > gen4-preflight.log
+          grep -q '"family_count": 31' gen4-preflight.log
+          grep -q '"validator_disabled_floor": 300' gen4-preflight.log
+          grep -q 'DRY RUN - no source changes' gen4-preflight.log
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --with-gen5-trial > gen5-preflight.log
+          grep -q '"family_count": 43' gen5-preflight.log
+          grep -q '"gen5_trial_family_count": 12' gen5-preflight.log
+          grep -q '"validator_disabled_floor": 288' gen5-preflight.log
+          grep -q 'DRY RUN - no source changes' gen5-preflight.log
+          # Run the real World source validator with the trial applied. This
+          # catches missing family-floor/allowlist changes before a 6-minute ROM
+          # build, then restores the pinned input without mutating Git history.
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply --with-gen5-trial > gen5-applied-preflight.log
+          (cd world && python3 test/overworld/ValidateGen13.py)
+          python3 - <<'PY'
+          from pathlib import Path
+          src=Path("world/test/overworld/ValidateOwMonPlacements.py").read_text()
+          assert "MIN_DISABLED_FAMILIES = 288" in src
+          assert "MIN_DISABLED_FAMILIES = 300" not in src
+          PY
+          git -C world restore -- src/data/wild_encounters.json include/config/species_enabled.h test/overworld/ValidateGen13.py test/overworld/ValidateOwMonPlacements.py
+          test -z "$(git -C world status --porcelain -- src/data/wild_encounters.json include/config/species_enabled.h test/overworld/ValidateGen13.py test/overworld/ValidateOwMonPlacements.py)"

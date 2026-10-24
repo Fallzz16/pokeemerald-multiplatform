@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Grand World M8: strict evidence for up to three of 105 release criteria.
+"""Grand World M8: ROM-bound evidence for individually proven release criteria.
 No auto-promotion of 24 gyms, three Leagues or save migrations from a ROM build.
 Do not distribute original game ROM. Intended for isolated CI checkouts.
 """
@@ -31,6 +31,101 @@ def manifest():
         raise ValueError(f"release manifest drift: {len(cases)}")
     return cases
 
+def load_memory_proof(path, rom_sha256, rom_size):
+    """Validate ROM-bound linker evidence, rejecting legacy or malformed records."""
+    try:
+        proof = json.loads(path.read_text())
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise ValueError("invalid memory evidence file") from exc
+    if not isinstance(proof, dict):
+        raise ValueError("invalid memory evidence format")
+    if proof.get("sha") != rom_sha256 or type(proof.get("rom_size")) is not int or proof["rom_size"] != rom_size:
+        raise ValueError("memory evidence references different ROM")
+    limits = {"ROM": 33554432, "EWRAM": 262144, "IWRAM": 32768}
+    mem = proof.get("memory")
+    if not isinstance(mem, dict) or set(mem) != set(limits) or any(
+        type(mem[k]) is not int or mem[k] < 1 or mem[k] > limit for k, limit in limits.items()
+    ):
+        raise ValueError("invalid hardware memory provenance")
+    return mem
+
+def load_suite_proof(world, suite, rom_md5, expected_checks, required=False):
+    """Only a complete, ROM-matched headless mGBA PASS certifies a criterion.
+
+    Failed or absent advisory suites stay pending; conflicting or malformed
+    results fail closed. An exact check count prevents early-exit false PASSes.
+    """
+    stamp = world / "_pwtest" / (suite + ".PASS")
+    fail = world / "_pwtest" / (suite + ".FAIL")
+    if fail.exists():
+        if stamp.exists():
+            raise ValueError("conflicting mGBA verdict: " + suite)
+        if required:
+            raise ValueError("required mGBA suite failed: " + suite)
+        return None
+    if not stamp.is_file():
+        if required:
+            raise ValueError("required mGBA suite absent: " + suite)
+        return None
+    try:
+        content = stamp.read_text(encoding="utf-8")
+    except (OSError, UnicodeError) as exc:
+        raise ValueError("unreadable mGBA verdict: " + suite) from exc
+    match = re.fullmatch(
+        r"PASS (\d+)/(\d+) rom=([A-F0-9]{32}) at=[^\r\n]+ suite="
+        + re.escape(suite) + r"\s*", content
+    )
+    if not match or match[1] != match[2] or int(match[1]) != expected_checks or match[3] != rom_md5:
+        raise ValueError("stale or incomplete mGBA verdict: " + suite)
+    return {"source": "headless mGBA Lua", "suite": suite,
+            "passed": expected_checks, "rom_md5": rom_md5}
+
+
+def register_six_route_proofs(seen, proof):
+    """Map a complete 167-check same-ROM itinerary to its six directed gates."""
+    if proof is None:
+        return
+    routes = (
+        ("hoenn", "kanto"), ("kanto", "johto"), ("johto", "hoenn"),
+        ("hoenn", "johto"), ("johto", "kanto"), ("kanto", "hoenn"),
+    )
+    for origin, dest in routes:
+        case = f"travel.{origin}_to_{dest}"
+        if case not in manifest():
+            raise ValueError("six-route evidence no longer maps to acceptance manifest")
+        seen[case] = {
+            **proof, "proven_real_gate": f"{origin}_to_{dest}",
+            "scope": "physical hub travel and unchanged party, not save/reload",
+        }
+
+
+
+def load_suite_group_proof(world, rom_md5, case, suite_counts, scope):
+    """Promote only if ALL specified, exact-count, same-ROM gameplay suites passed.
+
+    Each suite must have a PASS stamp without a conflicting FAIL. Absent optional
+    suites keep the criterion pending; malformed/stale stamps fail closed.
+    """
+    if case not in manifest():
+        raise ValueError("unknown release acceptance criterion: " + case)
+    if not suite_counts or len(suite_counts) != len(set(suite_counts)):
+        raise ValueError("invalid independent acceptance suite group")
+    proofs = []
+    incomplete = False
+    for suite, expected_checks in suite_counts:
+        # Examine every stamp even when an earlier optional suite is missing.
+        # A later contradictory or stale verdict must never be hidden by absence.
+        proof = load_suite_proof(world, suite, rom_md5, expected_checks)
+        if proof is None:
+            incomplete = True
+        else:
+            proofs.append(proof)
+    if incomplete:
+        return None
+    return {"source": "multiple headless mGBA Lua suites", "scope": scope,
+            "rom_md5": rom_md5, "suites": proofs}
+
+
 def report(world):
     rom=(world/"pokemonworld.gba").read_bytes()
     if hashlib.sha1(rom[0x04:0xA0]).hexdigest() != '17daa0fec02fc33c0f6abb549a8b80b6613b48ee':
@@ -41,24 +136,71 @@ def report(world):
         raise ValueError("World ROM header checksum mismatch")
     sha=hashlib.sha256(rom).hexdigest()
     md5=hashlib.md5(rom).hexdigest().upper()
-    proof=json.loads((world.parent/"m8-integrated-gen4-evidence.json").read_text())
-    if proof.get("sha")!=sha or proof.get("rom_size")!=len(rom):
-        raise ValueError("memory evidence references different ROM")
-    limits={"ROM":33554432,"EWRAM":262144,"IWRAM":32768}
-    mem=proof.get("memory",{})
-    if set(mem)!=set(limits) or any(type(mem[k]) is not int or mem[k]<1 or mem[k]>v for k,v in limits.items()):
-        raise ValueError("invalid hardware memory provenance")
+    mem = load_memory_proof(world.parent/"m8-integrated-gen4-evidence.json", sha, len(rom))
     seen={"performance.memory":{"source":"ARM linker / SHA256","memory_bytes":mem}}
-    for suite,case in [("SmokeBoot","boot.new_game"),("WorldTitle","boot.cold_start")]:
-        stamp=world/"_pwtest"/(suite+".PASS")
-        fail=world/"_pwtest"/(suite+".FAIL")
-        if not stamp.is_file() or fail.exists():
-            raise ValueError("required mGBA suite absent or failed: "+suite)
-        txt=stamp.read_text()
-        match=re.fullmatch(r"PASS (\d+)/(\d+) rom=([A-F0-9]{32}) at=[^\r\n]+ suite="+suite+r"\s*",txt)
-        if not match or match[1]!=match[2] or int(match[1])==0 or match[3]!=md5:
-            raise ValueError("stale or malformed mGBA test result: "+suite)
-        seen[case]={"source":"headless mGBA Lua","suite":suite,"passed":int(match[1]),"rom_md5":md5}
+    # Mandatory fresh-ROM proofs.
+    for suite, case, count in [
+        ("SmokeBoot", "boot.new_game", 10),
+        ("WorldTitle", "boot.cold_start", 37),
+    ]:
+        seen[case] = load_suite_proof(world, suite, md5, count, required=True)
+
+    # Only complete emulated gameplay qualifies; no static-test or compile promotions.
+    for suite, case, count in [
+        ("GrandWorldHeroSave", "boot.continue", 37),
+        ("GrandWorldHubParty", "hoenn.team_persistence", 94),
+    ]:
+        proof = load_suite_proof(world, suite, md5, count)
+        if proof is not None:
+            seen[case] = proof
+
+    # This single isolated Lua suite makes all SIX *real* directed crossings
+    # through the hub attendants. Each crossing checks in-game confirmation,
+    # physical destination, stored active region and byte-identical party.
+    # Only the full 167/167 verdict against this exact cartridge certifies them.
+    six = load_suite_proof(world, "GrandWorldSixRoutes", md5, 167)
+    register_six_route_proofs(seen, six)
+
+    # The S.S. Aqua transfer independently proves the Johto-to-Kanto case.
+    # If both travel proofs exist, keep BOTH instead of increasing the count.
+    ship = load_suite_proof(world, "SSAquaKantoCrossing", md5, 94)
+    if ship is not None:
+        case = "travel.johto_to_kanto"
+        if case in seen:
+            seen[case]["additional_ship_proof"] = ship
+        else:
+            seen[case] = ship
+    # All three tracked and intentionally different historical fixture cases
+    # must be accepted. v7dirty exercises trainer-flag zeroing, v3 exercises
+    # the incompatible-layout refusal, and v7renumber exercises safe old warps.
+    # This is migration compatibility, NOT every personal save or slot backup.
+    grouped = [
+        ("save.migration",
+         [("VerifyV7Migrate", 14), ("MigrateFixtures", 7),
+          ("VerifyMapRenumber", 4)],
+         "tracked v3 refusal, dirty v7 migration, two renumbered-map warps"),
+        ("audio.bgm",
+         [("JohtoMusicPass", 18), ("Route41SurfBgm", 11)],
+         "tested Johto overworld, takeover, cycling and surfing music states"),
+        ("graphics.palettes",
+         [("WorldTitle", 37), ("DayNightTint", 32)],
+         "title RGB555 resources and outdoor/day-night/cave palette transitions"),
+    ]
+    for case, checks, scope in grouped:
+        proof = load_suite_group_proof(world, md5, case, checks, scope)
+        if proof is not None:
+            seen[case] = proof
+    # A separate complete ROM-matched itinerary must cross all six REAL hub
+    # gates and THEN save through the Start menu, reboot and use Continue,
+    # with the same carried Pokemon bytes and protagonist still persisted.
+    # Without its own complete stamp, cross-region *save* remains pending even
+    # when physical travel and an unrelated single-region save both pass.
+    cross_saved = load_suite_proof(world, "GrandWorldCrossRegionSave", md5, 176)
+    if cross_saved is not None:
+        seen["save.cross_region"] = {
+            **cross_saved,
+            "scope": "six gate travels followed by actual Save/core reboot/Continue and byte-exact party",
+        }
     ids=manifest()
     out={"rom_sha256":sha,"rom_md5":md5,"world_base":"15d3888b0d81322a04d3c71b0bce18948761ee44",
          "verified":len(seen),"pending":len(ids)-len(seen),"total":len(ids),
