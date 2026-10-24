@@ -51,7 +51,7 @@ jobs:
           import json
           from pathlib import Path
           o=json.loads(Path('m8-gen4-encounters-evidence.json').read_text())
-          assert o['family_count']==43 and o['gen4_family_count']==31 and o['gen5_trial_family_count']==12 and o['experimental_gen5_enabled'] is True and o['table_variants_modified']>=43
+          assert o['validator_disabled_floor']==288 and o['family_count']==43 and o['gen4_family_count']==31 and o['gen5_trial_family_count']==12 and o['experimental_gen5_enabled'] is True and o['table_variants_modified']>=43
           Path('m8-expanded-families.txt').write_text('\n'.join(sorted(x['new'] for x in o['changes']))+'\n')
           print('New encounter table entries:',o['table_variants_modified'])
           PY
