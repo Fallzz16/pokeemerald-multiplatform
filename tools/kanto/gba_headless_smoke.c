@@ -108,7 +108,7 @@ int main(int argc, char **argv)
     // Only use a disposable, empty mGBA profile. The following deterministic
     // key presses are exploration probes, not a claim that gameplay was reached.
     // Keypresses after the title are deliberately spaced for scene transitions.
-    for (i = 1; i <= 30000; ++i) {
+    for (i = 1; i <= 45000; ++i) {
         if (i == 3601 || i == 4501)
             core->setKeys(core, UINT32_C(1) << 3); // GBA KEY_START
         else if (i == 4901 || i == 5501 || i == 6401 || i == 7601 || i == 8501)
@@ -122,6 +122,31 @@ int main(int argc, char **argv)
         else if (i > 9700 && i < 29800 && (i - 9701) % 130 == 0)
             core->setKeys(core, UINT32_C(1)); // KEY_A
         else if (i > 9700 && i < 29800 && (i - 9707) % 130 == 0)
+            core->setKeys(core, 0);
+        // Exercise the first-truck scene without edits to maps or save RAM.
+        // Dismiss box dialogue, move right around the crate, then head down.
+        // Second route (left/down) is a fallback if the first hits collision.
+        else if (i == 30051 || i == 30101)
+            core->setKeys(core, UINT32_C(1)); // KEY_A
+        else if (i == 30057 || i == 30107)
+            core->setKeys(core, 0);
+        else if (i == 30301)
+            core->setKeys(core, UINT32_C(1) << 4); // KEY_RIGHT
+        else if (i == 30351)
+            core->setKeys(core, 0);
+        else if (i == 30401 || i == 31901)
+            core->setKeys(core, UINT32_C(1) << 7); // KEY_DOWN
+        else if (i == 30801 || i == 32201)
+            core->setKeys(core, 0);
+        else if (i == 31801)
+            core->setKeys(core, UINT32_C(1) << 5); // KEY_LEFT
+        else if (i == 31851)
+            core->setKeys(core, 0);
+        // Advance post-truck NPC prompts (if reached). Not an automatic
+        // verification of reaching the world, or of persistent save data.
+        else if (i > 33000 && i < 44700 && (i - 33001) % 160 == 0)
+            core->setKeys(core, UINT32_C(1)); // KEY_A
+        else if (i > 33000 && i < 44700 && (i - 33007) % 160 == 0)
             core->setKeys(core, 0);
         core->runFrame(core);
         if (i == 120) {
@@ -159,6 +184,16 @@ int main(int argc, char **argv)
             save_ppm("gba-navigation-frame-25000.ppm", pixels, width, height);
         } else if (i == 30000) {
             save_ppm("gba-navigation-frame-30000.ppm", pixels, width, height);
+        } else if (i == 30400) {
+            save_ppm("gba-navigation-frame-30400.ppm", pixels, width, height);
+        } else if (i == 30900) {
+            save_ppm("gba-navigation-frame-30900.ppm", pixels, width, height);
+        } else if (i == 32500) {
+            save_ppm("gba-navigation-frame-32500.ppm", pixels, width, height);
+        } else if (i == 38000) {
+            save_ppm("gba-navigation-frame-38000.ppm", pixels, width, height);
+        } else if (i == 45000) {
+            save_ppm("gba-navigation-frame-45000.ppm", pixels, width, height);
         }
     }
     after_start = fingerprint(pixels, width, height);
@@ -167,7 +202,7 @@ int main(int argc, char **argv)
         FILE *report = fopen("gba-headless-smoke.txt", "w");
         if (report) {
             fprintf(report, "mode=MGBA_HEADLESS_FRAME_SMOKE_NOT_GAMEPLAY\n");
-            fprintf(report, "frames=30000\n");
+            fprintf(report, "frames=45000\n");
             fprintf(report, "screen=%ux%u\n", width, height);
             fprintf(report, "frame120_fnv1a=%016" PRIx64 "\n", early);
             fprintf(report, "frame420_fnv1a=%016" PRIx64 "\n", gamefreak);
@@ -181,13 +216,15 @@ int main(int argc, char **argv)
             fprintf(report, "navigation_is_advisory=true\n");
             fprintf(report, "additional_dialogue_a_pulses_130_frames=true\n");
             fprintf(report, "new_game_intro_probed=true\n");
+            fprintf(report, "truck_exit_direction_probe=true\n");
+            fprintf(report, "player_movement_not_yet_verified=true\n");
             fprintf(report, "overworld_verified=false\n");
             fprintf(report, "title_verified=false\n");
             fprintf(report, "gameplay_verified=false\nsave_reload_verified=false\n");
             fclose(report);
         }
     }
-    printf("mGBA simulated 30000 frames; colors420=%u final=%u early=%016" PRIx64
+    printf("mGBA simulated 45000 frames; colors420=%u final=%u early=%016" PRIx64
            " final=%016" PRIx64 "\n", colors_420, colors_final, early, after_start);
     if (colors_420 <= 1 || early == gamefreak || early == after_start) {
         fprintf(stderr, "No frame progression or colored game intro\n");

@@ -171,7 +171,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential libmgba-dev
-      - name: Build and run no-GUI GBA core for 30000 frames
+      - name: Build and run no-GUI GBA core for 45000 frames
         shell: bash
         run: |
           set -euxo pipefail
@@ -200,5 +200,10 @@ jobs:
             gba-navigation-frame-20000.ppm
             gba-navigation-frame-25000.ppm
             gba-navigation-frame-30000.ppm
+            gba-navigation-frame-30400.ppm
+            gba-navigation-frame-30900.ppm
+            gba-navigation-frame-32500.ppm
+            gba-navigation-frame-38000.ppm
+            gba-navigation-frame-45000.ppm
           if-no-files-found: warn
           retention-days: 14
