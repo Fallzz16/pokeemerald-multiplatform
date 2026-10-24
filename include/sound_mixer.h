@@ -20,14 +20,22 @@ struct MixerSource {
     u8 release;
     u8 key;
     u8 envelopeVol;
+#if MODERN
     union {
         u8 envelopeVolR;
         u8 envelopeGoal;
-    }__attribute__((packed));
+    } __attribute__((packed));
+#else
+    u8 envelopeVolR; // C89 agbcc-compatible one-byte union representation
+#endif
+#if MODERN
     union {
         u8 envelopeVolL;
         u8 envelopeCtr;
-    }__attribute__((packed));
+    } __attribute__((packed));
+#else
+    u8 envelopeVolL;
+#endif
     u8 echoVol;
     u8 echoLen;
     u8 padding1;
@@ -40,6 +48,7 @@ struct MixerSource {
     u8 padding3;
     u8 padding4;
     u8 padding5;
+#if MODERN
     union {
         u32 ct;
         struct {
@@ -49,6 +58,10 @@ struct MixerSource {
             u8 pan;
         };
     };
+#else
+    u32 ct; // identical 4-byte storage; legacy compiler has no anonymous unions
+#endif
+#if MODERN
     union {
         float fw;
         struct {
@@ -58,15 +71,26 @@ struct MixerSource {
             u8 sweep;
         };
     };
+#else
+    float fw;
+#endif
     u32 freq;
+#if MODERN
     union {
         u32 *newCgb3Sample;
         struct WaveData *wav;
     };
+#else
+    struct WaveData *wav;
+#endif
+#if MODERN
     union {
         u32 *oldCgb3Sample;
         s8 *current;
     };
+#else
+    s8 *current;
+#endif
     struct MP2KTrack *track;
     struct MixerSource *prev;
     struct MixerSource *next;
