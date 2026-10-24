@@ -9,7 +9,32 @@
 // #define POKEMON_EXTENSIONS
 #define MIXED_AUDIO_BUFFER_SIZE 4907
 
+/* The old agbcc C89 parser cannot expose anonymous union member aliases.
+ * These accesses preserve the exact 4-byte storage layouts of the modern
+ * MP2K structs. Verify the GBA audio ABI and actual playback before merge. */
+#if MODERN
 static u32 MidiKeyToFreq(struct WaveData2 *wav, u8 key, u8 pitch);
+#define MP2K_GROUP(ins) ((ins)->group)
+#define MP2K_KEY_SPLIT(ins) ((ins)->keySplitTable)
+#define MP2K_CHAN_STATUS(ch) ((ch)->cgbStatus)
+#define MP2K_CHAN_LENGTH(ch) ((ch)->length)
+#define MP2K_CHAN_SWEEP(ch) ((ch)->sweep)
+#else
+extern u32 MidiKeyToFreq(struct WaveData2 *wav, u8 key, u8 pitch);
+#define MP2K_GROUP(ins) ((struct MP2KInstrument *)((ins)->wav))
+#define MP2K_KEY_SPLIT(ins) (*(u8 **)(void *)&(ins)->attack)
+#define MP2K_CHAN_STATUS(ch) (((u8 *)&(ch)->fw)[1])
+#define MP2K_CHAN_LENGTH(ch) (((u8 *)&(ch)->fw)[2])
+#define MP2K_CHAN_SWEEP(ch) (((u8 *)&(ch)->fw)[3])
+static u32 MP2K_CompatCtz(u32 x)
+{
+    u32 bits = 0;
+    if (x == 0) return 32;
+    while ((x & 1) == 0) { ++bits; x >>= 1; }
+    return bits;
+}
+#define __builtin_ctz(x) MP2K_CompatCtz(x)
+#endif
 static void ChnVolSetAsm(struct MixerSource *chan, struct MP2KTrack *track);
 extern void * const gMPlayJumpTableTemplate[];
 extern const u8 gScaleTable[];
@@ -498,7 +523,7 @@ void MP2KPlayerMain(void *voidPtrPlayer) {
             if (track->status & MPT_FLG_VOLCHG) {
                 ChnVolSetAsm(chan, track);
                 if (cgbType != 0) {
-                    chan->cgbStatus |= 1;
+                    MP2K_CHAN_STATUS(chan) |= 1;
                 }
             }
             if (track->status & MPT_FLG_PITCHG) {
@@ -508,7 +533,7 @@ void MP2KPlayerMain(void *voidPtrPlayer) {
                 }
                 if (cgbType != 0) {
                     chan->freq = mixer->cgbCalcFreqFunc(cgbType, key, track->pitchCalculated);
-                    chan->cgbStatus |= 0x2;
+                    MP2K_CHAN_STATUS(chan) |= 0x2;
                 } else {
                     chan->freq = MidiKeyToFreq((struct WaveData2 *)chan->wav, key, track->pitchCalculated);
                 }
@@ -592,12 +617,12 @@ void MP2K_event_nxx(u8 clock, struct MP2KPlayerState *player, struct MP2KTrack *
     if (type & (TONEDATA_TYPE_RHY | TONEDATA_TYPE_SPL)) {
         u8 instrumentIndex;
         if (instrument->type & TONEDATA_TYPE_SPL) {
-            instrumentIndex = instrument->keySplitTable[track->key];
+            instrumentIndex = MP2K_KEY_SPLIT(instrument)[track->key];
         } else {
             instrumentIndex = track->key;
         }
         
-        instrument = instrument->group + instrumentIndex;
+        instrument = MP2K_GROUP(instrument) + instrumentIndex;
         if (instrument->type & (TONEDATA_TYPE_RHY | TONEDATA_TYPE_SPL)) {
             return;
         }
@@ -717,11 +742,11 @@ void MP2K_event_nxx(u8 clock, struct MP2KPlayerState *player, struct MP2KTrack *
     
     if (cgbType != 0) {
         //struct CgbChannel *cgbChan = (struct CgbChannel *)chan;
-        chan->length = instrument->cgbLength;
+        MP2K_CHAN_LENGTH(chan) = instrument->cgbLength;
         if (instrument->panSweep & 0x80 || (instrument->panSweep & 0x70) == 0) {
-            chan->sweep = 8;
+            MP2K_CHAN_SWEEP(chan) = 8;
         } else {
-            chan->sweep = instrument->panSweep;
+            MP2K_CHAN_SWEEP(chan) = instrument->panSweep;
         }
         
         chan->freq = mixer->cgbCalcFreqFunc(cgbType, transposedKey, track->pitchCalculated);
