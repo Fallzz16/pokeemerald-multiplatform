@@ -105,13 +105,16 @@ int main(int argc, char **argv)
     mCoreInitConfig(core, NULL);
     mCoreLoadConfig(core);
     core->reset(core);
-    // Begin with a clean disposable emulator (never load a user's save).
-    // Simulate Start once near the end, but never assert menu/gameplay.
-    // The real screen contents must be inspected separately.
-    for (i = 1; i <= 4200; ++i) {
-        if (i == 3601)
+    // Only use a disposable, empty mGBA profile. The following deterministic
+    // key presses are exploration probes, not a claim that gameplay was reached.
+    // Keypresses after the title are deliberately spaced for scene transitions.
+    for (i = 1; i <= 9600; ++i) {
+        if (i == 3601 || i == 4501)
             core->setKeys(core, UINT32_C(1) << 3); // GBA KEY_START
-        if (i == 3607)
+        else if (i == 4901 || i == 5501 || i == 6401 || i == 7601 || i == 8501)
+            core->setKeys(core, UINT32_C(1)); // GBA KEY_A
+        else if (i == 3607 || i == 4507 || i == 4907 || i == 5507
+              || i == 6407 || i == 7607 || i == 8507)
             core->setKeys(core, 0);
         core->runFrame(core);
         if (i == 120) {
@@ -127,16 +130,27 @@ int main(int argc, char **argv)
         } else if (i == 3600) {
             title = fingerprint(pixels, width, height);
             save_ppm("gba-boot-frame-3600.ppm", pixels, width, height);
+        } else if (i == 4200) {
+            save_ppm("gba-boot-frame-4200-after-start.ppm", pixels, width, height);
+        } else if (i == 4700) {
+            save_ppm("gba-navigation-frame-4700.ppm", pixels, width, height);
+        } else if (i == 5200) {
+            save_ppm("gba-navigation-frame-5200.ppm", pixels, width, height);
+        } else if (i == 6000) {
+            save_ppm("gba-navigation-frame-6000.ppm", pixels, width, height);
+        } else if (i == 7400) {
+            save_ppm("gba-navigation-frame-7400.ppm", pixels, width, height);
+        } else if (i == 9600) {
+            save_ppm("gba-navigation-frame-9600.ppm", pixels, width, height);
         }
     }
     after_start = fingerprint(pixels, width, height);
     colors_final = color_count_capped(pixels, width, height);
-    save_ppm("gba-boot-frame-4200-after-start.ppm", pixels, width, height);
     {
         FILE *report = fopen("gba-headless-smoke.txt", "w");
         if (report) {
             fprintf(report, "mode=MGBA_HEADLESS_FRAME_SMOKE_NOT_GAMEPLAY\n");
-            fprintf(report, "frames=4200\n");
+            fprintf(report, "frames=9600\n");
             fprintf(report, "screen=%ux%u\n", width, height);
             fprintf(report, "frame120_fnv1a=%016" PRIx64 "\n", early);
             fprintf(report, "frame420_fnv1a=%016" PRIx64 "\n", gamefreak);
@@ -146,12 +160,14 @@ int main(int argc, char **argv)
             fprintf(report, "frame420_unique_colors_capped_64=%u\n", colors_420);
             fprintf(report, "final_unique_colors_capped_64=%u\n", colors_final);
             fprintf(report, "start_pressed_for_six_frames=true\n");
+            fprintf(report, "additional_start_and_a_probes=true\n");
+            fprintf(report, "navigation_is_advisory=true\n");
             fprintf(report, "title_verified=false\n");
             fprintf(report, "gameplay_verified=false\nsave_reload_verified=false\n");
             fclose(report);
         }
     }
-    printf("mGBA simulated 4200 frames; colors420=%u final=%u early=%016" PRIx64
+    printf("mGBA simulated 9600 frames; colors420=%u final=%u early=%016" PRIx64
            " final=%016" PRIx64 "\n", colors_420, colors_final, early, after_start);
     if (colors_420 <= 1 || early == gamefreak || early == after_start) {
         fprintf(stderr, "No frame progression or colored game intro\n");
