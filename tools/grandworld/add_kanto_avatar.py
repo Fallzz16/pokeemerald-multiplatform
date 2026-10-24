@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """M1: use pre-existing FireRed Red/Leaf *normal walking* sprites when selected.
-Other movement poses safely retain existing Brendan/May fallbacks, avoiding
-unsupported Acro/underwater animations for the FRLG sprite formats.
+Supports the six original FRLG standard-state pose families. Complex Acro,
+underwater and watering animations safely retain Emerald stand-ins.
 No new save fields or art files. All replacements are fail-closed.
 """
 from pathlib import Path
@@ -20,17 +20,35 @@ def patch(world):
     old='''    // Region merge: the player is Brendan/May in every region now (Kanto no longer uses
     // the FRLG Red/Leaf overworld sprites; Red's sprites are reused for the Johto rival).
     return sPlayerAvatarGfxIds[state][gender];'''
-    new='''    /* Grand World M1: distinct Red/Leaf sprites on foot, independent of
-     * geographic region. Moving to another region retains chosen identity.
-     * FRLG bike, surf and underwater require animation-specific QA before
-     * enabling; fallback to the known-safe Emerald atlas in those states. */
-    if (state == PLAYER_AVATAR_STATE_NORMAL)
+    new='''    /* Grand World M8: use source-native FRLG artwork for validated poses,
+     * independent of current region. Red and Leaf retain their identity on
+     * standard bike, surf, field move, fishing, and Vs Seeker states.
+     * Acro tricks, underwater and watering have no validated FRLG equivalent:
+     * deliberately keep the safe Emerald stand-ins there. */
+    u16 hero = VarGet(VAR_PLAYER_CHARACTER);
+    if (hero == 2 && gender == MALE)
     {
-        u16 hero = VarGet(VAR_PLAYER_CHARACTER);
-        if (hero == 2 && gender == MALE)
-            return OBJ_EVENT_GFX_RED_NORMAL;
-        if (hero == 3 && gender == FEMALE)
-            return OBJ_EVENT_GFX_GREEN_NORMAL;
+        switch (state)
+        {
+        case PLAYER_AVATAR_STATE_NORMAL: return OBJ_EVENT_GFX_RED_NORMAL;
+        case PLAYER_AVATAR_STATE_MACH_BIKE: return OBJ_EVENT_GFX_RED_BIKE;
+        case PLAYER_AVATAR_STATE_SURFING: return OBJ_EVENT_GFX_RED_SURF;
+        case PLAYER_AVATAR_STATE_FIELD_MOVE: return OBJ_EVENT_GFX_RED_FIELD_MOVE;
+        case PLAYER_AVATAR_STATE_FISHING: return OBJ_EVENT_GFX_RED_FISH;
+        case PLAYER_AVATAR_STATE_VSSEEKER: return OBJ_EVENT_GFX_RED_VS_SEEKER;
+        }
+    }
+    else if (hero == 3 && gender == FEMALE)
+    {
+        switch (state)
+        {
+        case PLAYER_AVATAR_STATE_NORMAL: return OBJ_EVENT_GFX_GREEN_NORMAL;
+        case PLAYER_AVATAR_STATE_MACH_BIKE: return OBJ_EVENT_GFX_GREEN_BIKE;
+        case PLAYER_AVATAR_STATE_SURFING: return OBJ_EVENT_GFX_GREEN_SURF;
+        case PLAYER_AVATAR_STATE_FIELD_MOVE: return OBJ_EVENT_GFX_GREEN_FIELD_MOVE;
+        case PLAYER_AVATAR_STATE_FISHING: return OBJ_EVENT_GFX_GREEN_FISH;
+        case PLAYER_AVATAR_STATE_VSSEEKER: return OBJ_EVENT_GFX_GREEN_VS_SEEKER;
+        }
     }
     return sPlayerAvatarGfxIds[state][gender];'''
     avatar=swap(avatar,old,new,avatar_path)
