@@ -57,12 +57,14 @@ def patch(root: Path, write: bool, gen5_trial: bool = False):
     flags_path=root/"include/config/species_enabled.h"
     json_path=root/"src/data/wild_encounters.json"
     validator_path=root/"test/overworld/ValidateGen13.py"
-    for path in (flags_path,json_path,validator_path):
+    ow_validator_path=root/"test/overworld/ValidateOwMonPlacements.py"
+    for path in (flags_path,json_path,validator_path,ow_validator_path):
         if not path.is_file():
             raise ValueError(f"missing World source: {path}")
     flags=flags_path.read_text()
     wild=json.loads(json_path.read_text())
     validator=validator_path.read_text()
+    ow_validator=ow_validator_path.read_text()
     assert len(PILOT)==len(set(PILOT))==31
     assert len(GEN5_PILOT)==len(set(GEN5_PILOT))==12
     selected = PILOT + (GEN5_PILOT if gen5_trial else ())
@@ -103,6 +105,10 @@ def patch(root: Path, write: bool, gen5_trial: bool = False):
     # mandatory and rejects any unrelated Gen4+ family becoming enabled.
     floor = 300 - (len(GEN5_PILOT) if gen5_trial else 0)
     validator=validator.replace(signature,whitelist+"\n"+f"MIN_DISABLED_FAMILIES = {floor}",1)
+    ow_floor="MIN_DISABLED_FAMILIES = 300   # P_FAMILY_* FALSE in species_enabled.h"
+    if ow_validator.count(ow_floor)!=1:
+        raise ValueError("overworld mon validator family-floor invariant changed")
+    ow_validator=ow_validator.replace(ow_floor,f"MIN_DISABLED_FAMILIES = {floor}   # trial-aware, exact enabled-family allowlist audited by ValidateGen13",1)
     old="if fam not in disabled_families:\n            enabled_late.append((gen, fam))"
     new="if fam not in disabled_families and fam not in GRANDWORLD_EXTRA_FAMILIES:\n            enabled_late.append((gen, fam))"
     if validator.count(old)!=1:raise ValueError("validator late-family invariant changed")
@@ -119,6 +125,7 @@ def patch(root: Path, write: bool, gen5_trial: bool = False):
         flags_path.write_text(flags)
         json_path.write_text(json.dumps(wild,ensure_ascii=False,indent=2)+"\n")
         validator_path.write_text(validator)
+        ow_validator_path.write_text(ow_validator)
         (root.parent/"m8-gen4-encounters-evidence.json").write_text(json.dumps(summary,indent=2))
     return summary
 
