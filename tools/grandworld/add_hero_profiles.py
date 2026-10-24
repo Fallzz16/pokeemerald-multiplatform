@@ -50,8 +50,8 @@ static u8 GrandWorldHeroSlot(u8 regionTheme)
     return (u8)(regionTheme * 2 + (gSaveBlock2Ptr->playerGender == FEMALE));
 }'''
     src=once(src,old_labels,replacement,oak)
-    src=once(src,'_("And your outfit?\\nIt\\'s for keeps!")',
-                 '_("Choose a hero!\\nPick your style.")',oak)
+    src=once(src, r'''static const u8 sText_Oak_ChooseOutfit[] = _("And your outfit?\nIt's for keeps!");''',
+                 r'''static const u8 sText_Oak_ChooseOutfit[] = _("Choose a hero!\nPick your style.");''', oak)
     oldloop='''        for (i = 0; i < NUM_PLAYER_OUTFITS; i++)
             AddTextPrinterParameterized3(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 8, i * step + 1, sOakSpeechResources->textColor, 0, sOutfitOptions[i]);
         InitMenuNormal(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 0, 1, step, NUM_PLAYER_OUTFITS, 0);'''
