@@ -71,6 +71,62 @@ jobs:
           set -euo pipefail
           python3 grandworld/tools/grandworld/evaluate_performance_budget.py world/pokemonworld.gba shadow-build.log --output shadow-budget.json
           python3 grandworld/tools/grandworld/audit_lz77_resources.py world/pokemonworld.gba --output shadow-lz77.json
+      - name: Package verified experimental .gba for download
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          import shutil
+          import subprocess
+
+          variant = '${{ matrix.shadows }}'
+          assert variant in ('lean', 'full'), variant
+          rom = Path('world/pokemonworld.gba')
+          budget = json.loads(Path('shadow-budget.json').read_text())
+          profile = json.loads(Path('shadow-profile.json').read_text())
+          source = subprocess.check_output(['git', '-C', 'world', 'rev-parse', 'HEAD'], text=True).strip()
+          patch = subprocess.check_output(['git', '-C', 'grandworld', 'rev-parse', 'HEAD'], text=True).strip()
+          payload = rom.read_bytes()
+          sha = hashlib.sha256(payload).hexdigest()
+          assert source == '15d3888b0d81322a04d3c71b0bce18948761ee44'
+          assert budget['memory_budget_passed'] and budget['rom_sha256'] == sha
+          assert len(payload) == 33554432 and budget['rom_bytes'] == len(payload)
+          assert profile['resolved_shadow_mode'] == variant
+          folder = Path('verified-gba')
+          folder.mkdir(exist_ok=True)
+          output = folder / f'PokemonGrandWorld_M8_{variant}_EXPERIMENTAL.gba'
+          shutil.copyfile(rom, output)
+          (folder / 'SHA256SUMS.txt').write_text(f'{sha}  {output.name}\\n')
+          manifest = {
+              'rom_filename': output.name,
+              'sha256': sha,
+              'size_bytes': len(payload),
+              'shadow_profile': variant,
+              'grandworld_source_commit': patch,
+              'world_upstream_commit': source,
+              'rom_header_validated': True,
+              'memory_budget_passed': True,
+              'release_approved': False,
+              'fps_measured': False,
+              'note': 'Experimental PR build: ROM compiled and header/size validated. Not a release or full hardware gameplay certificate.'
+          }
+          (folder / 'build-info.json').write_text(json.dumps(manifest, indent=2) + '\\n')
+          print('VERIFIED_GBA_SHA256', sha, 'PROFILE', variant)
+          PY
+          test -s verified-gba/SHA256SUMS.txt
+          test -s verified-gba/build-info.json
+          test "$(find verified-gba -maxdepth 1 -name '*.gba' | wc -l)" -eq 1
+      - name: Upload downloadable GBA (EXPERIMENTAL, no saves)
+        uses: actions/upload-artifact@v4
+        with:
+          name: GRANDWORLD_M8_GBA_${{ matrix.shadows }}_EXPERIMENTAL
+          path: verified-gba/
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
       - name: Publish metrics only; no game ROMs or saves
         if: always()
         uses: actions/upload-artifact@v4
