@@ -66,6 +66,49 @@ jobs:
           Path('grandworld-world-gba-evidence.json').write_text(json.dumps(body,indent=2))
           print(json.dumps(body,indent=2))
           PY
+      - name: Checkout isolated Grand World M8 integration adapters
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Patch real World trainer factory and travel gates
+        run: |
+          python3 grandworld/tools/grandworld/integrate_world.py world
+          python3 -m py_compile grandworld/tools/grandworld/integrate_world.py
+      - name: Compile modified world ROM with M2 and M4 runtime integration
+        shell: bash
+        run: |
+          set -o pipefail
+          make -C world tidy
+          make -C world modern -j2 2>&1 | tee patched-build.log
+          test -s world/pokemonworld.gba
+      - name: Recheck real map scripts and battle engine after patch
+        shell: bash
+        run: |
+          set -o pipefail
+          make -C world validate 2>&1 | tee patched-validate.log
+          make -C world check -j2 2>&1 | tee patched-check.log
+      - name: Compare source-pinned real ROMs without shipping copyrighted binaries
+        run: |
+          python3 - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          baseline=json.loads(Path('grandworld-world-gba-evidence.json').read_text())
+          rom=Path('world/pokemonworld.gba').read_bytes()
+          assert len(rom)==33554432, len(rom)
+          assert rom[0xac:0xb0]==b'BPEE'
+          assert (sum(rom[0xa0:0xbd])+0x19+rom[0xbd])&255==0
+          patched=hashlib.sha256(rom).hexdigest()
+          assert patched!=baseline['rom_sha256'], 'M8 patch had no effect on output'
+          evidence={'source_sha':baseline['source_sha'],
+                    'baseline_sha256':baseline['rom_sha256'],
+                    'patched_sha256':patched,
+                    'rom_size':len(rom),
+                    'battle_and_region_source_integrated':True,
+                    'continuous_playthrough_verified':False,
+                    'full_save_reload_verified':False}
+          Path('grandworld-m8-patched-evidence.json').write_text(json.dumps(evidence,indent=2))
+          print(json.dumps(evidence,indent=2))
+          PY
       - name: Upload logs and hashes, never commercial assets or ROM
         if: always()
         uses: actions/upload-artifact@v4
@@ -75,6 +118,10 @@ jobs:
             build.log
             validate.log
             check.log
+            patched-build.log
+            patched-validate.log
+            patched-check.log
+            grandworld-m8-patched-evidence.json
             toolchain.txt
             world-source-sha.txt
             grandworld-world-gba-evidence.json
