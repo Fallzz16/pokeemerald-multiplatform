@@ -45,7 +45,7 @@ class GbaSourcePartition(unittest.TestCase):
                 self.assertIn(" " + name + "(", source)
         self.assertEqual(source.count("#endif // PORTABLE: GBA has this symbol"), 5)
         self.assertIn("void MP2KPlayerMain(void *voidPtrPlayer)", source)
-        self.assertIn("#ifdef PORTABLE\\nfloat audioBuffer", source)
+        self.assertIn(chr(10).join(("#ifdef PORTABLE", "float audioBuffer")), source)
         makefile = (ROOT / "Makefile").read_text(encoding="utf-8")
         self.assertNotIn("GBA_NATIVE_ONLY_C += $(C_SUBDIR)/music_player.c", makefile)
 
