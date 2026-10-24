@@ -43,12 +43,12 @@ jobs:
           families=('TURTWIG','CHIMCHAR','PIPLUP','STARLY','BIDOOF','KRICKETOT','SHINX','CRANIDOS','SHIELDON','BURMY','COMBEE','PACHIRISU','BUIZEL','CHERUBI','SHELLOS','DRIFLOON','BUNEARY','GLAMEOW','STUNKY','BRONZOR','CHATOT','SPIRITOMB','GIBLE','RIOLU','HIPPOPOTAS','SKORUPI','CROAGUNK','CARNIVINE','FINNEON','SNOVER','ROTOM')
           import re
           for name in families:
-              pattern=r'(?m)^(#define P_FAMILY_'+name+r'\\s+)FALSE(\\s*(?://.*)?)$'
-              s,n=re.subn(pattern,r'\\g<1>TRUE\\g<2>',s)
+              pattern=r'(?m)^(#define P_FAMILY_'+name+r'\s+)FALSE(\s*(?://.*)?)$'
+              s,n=re.subn(pattern,r'\g<1>TRUE\g<2>',s)
               if n!=1: raise SystemExit('family unavailable or unexpected: '+name+' '+str(n))
           p.write_text(s)
           print('Requested enabled family switches:',len(families))
-          Path('gen4-families.txt').write_text('\\n'.join(families)+'\\n')
+          Path('gen4-families.txt').write_text('\n'.join(families)+'\n')
           PY
       - name: Compile ROM with region integration and extra families
         shell: bash
@@ -71,7 +71,7 @@ jobs:
           assert b[0xb2]==0x96
           assert (sum(b[0xa0:0xbd])+0x19+b[0xbd])%256==0
           log=Path('patched-gen4-build.log').read_text()
-          m=re.findall(r'(?m)^\\s*(EWRAM|IWRAM|ROM):\\s+([0-9]+) B\\s+',log)
+          m=re.findall(r'(?m)^\s*(EWRAM|IWRAM|ROM):\s+([0-9]+) B\s+',log)
           if len(m)<3:raise RuntimeError('linker memory readout missing')
           mem={k:int(v) for k,v in m[-3:]}
           assert mem['ROM'] < 33554432 and mem['EWRAM']<=262144 and mem['IWRAM']<=32768,mem
