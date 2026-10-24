@@ -108,13 +108,20 @@ int main(int argc, char **argv)
     // Only use a disposable, empty mGBA profile. The following deterministic
     // key presses are exploration probes, not a claim that gameplay was reached.
     // Keypresses after the title are deliberately spaced for scene transitions.
-    for (i = 1; i <= 9600; ++i) {
+    for (i = 1; i <= 30000; ++i) {
         if (i == 3601 || i == 4501)
             core->setKeys(core, UINT32_C(1) << 3); // GBA KEY_START
         else if (i == 4901 || i == 5501 || i == 6401 || i == 7601 || i == 8501)
             core->setKeys(core, UINT32_C(1)); // GBA KEY_A
         else if (i == 3607 || i == 4507 || i == 4907 || i == 5507
               || i == 6407 || i == 7607 || i == 8507)
+            core->setKeys(core, 0);
+        // From frame 9700 onward probe the dialogue and character-selection
+        // flow. A single short A pulse every 130 frames is deterministic
+        // and never touches disk saves; it may stop at naming menus.
+        else if (i > 9700 && i < 29800 && (i - 9701) % 130 == 0)
+            core->setKeys(core, UINT32_C(1)); // KEY_A
+        else if (i > 9700 && i < 29800 && (i - 9707) % 130 == 0)
             core->setKeys(core, 0);
         core->runFrame(core);
         if (i == 120) {
@@ -142,6 +149,16 @@ int main(int argc, char **argv)
             save_ppm("gba-navigation-frame-7400.ppm", pixels, width, height);
         } else if (i == 9600) {
             save_ppm("gba-navigation-frame-9600.ppm", pixels, width, height);
+        } else if (i == 12000) {
+            save_ppm("gba-navigation-frame-12000.ppm", pixels, width, height);
+        } else if (i == 16000) {
+            save_ppm("gba-navigation-frame-16000.ppm", pixels, width, height);
+        } else if (i == 20000) {
+            save_ppm("gba-navigation-frame-20000.ppm", pixels, width, height);
+        } else if (i == 25000) {
+            save_ppm("gba-navigation-frame-25000.ppm", pixels, width, height);
+        } else if (i == 30000) {
+            save_ppm("gba-navigation-frame-30000.ppm", pixels, width, height);
         }
     }
     after_start = fingerprint(pixels, width, height);
@@ -150,24 +167,27 @@ int main(int argc, char **argv)
         FILE *report = fopen("gba-headless-smoke.txt", "w");
         if (report) {
             fprintf(report, "mode=MGBA_HEADLESS_FRAME_SMOKE_NOT_GAMEPLAY\n");
-            fprintf(report, "frames=9600\n");
+            fprintf(report, "frames=30000\n");
             fprintf(report, "screen=%ux%u\n", width, height);
             fprintf(report, "frame120_fnv1a=%016" PRIx64 "\n", early);
             fprintf(report, "frame420_fnv1a=%016" PRIx64 "\n", gamefreak);
             fprintf(report, "frame1800_fnv1a=%016" PRIx64 "\n", mid);
             fprintf(report, "frame3600_fnv1a=%016" PRIx64 "\n", title);
-            fprintf(report, "frame4200_after_start_fnv1a=%016" PRIx64 "\n", after_start);
+            fprintf(report, "frame_final_fnv1a=%016" PRIx64 "\n", after_start);
             fprintf(report, "frame420_unique_colors_capped_64=%u\n", colors_420);
             fprintf(report, "final_unique_colors_capped_64=%u\n", colors_final);
             fprintf(report, "start_pressed_for_six_frames=true\n");
             fprintf(report, "additional_start_and_a_probes=true\n");
             fprintf(report, "navigation_is_advisory=true\n");
+            fprintf(report, "additional_dialogue_a_pulses_130_frames=true\n");
+            fprintf(report, "new_game_intro_probed=true\n");
+            fprintf(report, "overworld_verified=false\n");
             fprintf(report, "title_verified=false\n");
             fprintf(report, "gameplay_verified=false\nsave_reload_verified=false\n");
             fclose(report);
         }
     }
-    printf("mGBA simulated 9600 frames; colors420=%u final=%u early=%016" PRIx64
+    printf("mGBA simulated 30000 frames; colors420=%u final=%u early=%016" PRIx64
            " final=%016" PRIx64 "\n", colors_420, colors_final, early, after_start);
     if (colors_420 <= 1 || early == gamefreak || early == after_start) {
         fprintf(stderr, "No frame progression or colored game intro\n");

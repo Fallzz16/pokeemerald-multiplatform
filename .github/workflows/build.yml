@@ -45,6 +45,7 @@ jobs:
           python -m unittest discover -s tests -p test_gba_memory_audit.py -v
           python -m unittest discover -s tests -p test_gba_quest_log_bss.py -v
           python -m unittest discover -s tests -p test_gba_rom_audit.py -v
+          python -m unittest discover -s tests -p test_gba_smoke_source.py -v
       - name: Materialize all Kanto maps and event content
         run: |
           set -euxo pipefail
@@ -134,6 +135,7 @@ jobs:
           python -m unittest discover -s tests -p test_gba_memory_audit.py -v
           python -m unittest discover -s tests -p test_gba_quest_log_bss.py -v
           python -m unittest discover -s tests -p test_gba_rom_audit.py -v
+          python -m unittest discover -s tests -p test_gba_smoke_source.py -v
       - name: Materialize matching Kanto source content
         run: python tools/kanto/import_exteriors.py --firered firered-source --emerald . --report kanto-legacy-materialization.json
       - name: Build legacy ROM without equality-to-original comparison
@@ -169,7 +171,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential libmgba-dev
-      - name: Build and run no-GUI GBA core for 9600 frames
+      - name: Build and run no-GUI GBA core for 30000 frames
         shell: bash
         run: |
           set -euxo pipefail
@@ -193,5 +195,10 @@ jobs:
             gba-navigation-frame-6000.ppm
             gba-navigation-frame-7400.ppm
             gba-navigation-frame-9600.ppm
+            gba-navigation-frame-12000.ppm
+            gba-navigation-frame-16000.ppm
+            gba-navigation-frame-20000.ppm
+            gba-navigation-frame-25000.ppm
+            gba-navigation-frame-30000.ppm
           if-no-files-found: warn
           retention-days: 14
