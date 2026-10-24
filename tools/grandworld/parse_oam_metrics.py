@@ -28,8 +28,8 @@ def report(log, rom):
         }
     if set(seen) != {"hub_idle", "hub_after_movement"}:
         raise ValueError(f"missing required mGBA OAM scenarios: {sorted(seen)}")
-    if not re.search(r"PASS \d+/\d+ rom=[0-9A-Fa-f]{32} .*suite=GrandWorldOamBudget", log):
-        raise ValueError("missing suite completion proof in log")
+    if not re.search(r"VERDICT GrandWorldOamBudget: [1-9]\d*/[1-9]\d* PASS", log):
+        raise ValueError("missing successful suite verdict in mGBA log")
     return {
         "rom_sha256": hashlib.sha256(rom).hexdigest(),
         "scenarios": seen,
