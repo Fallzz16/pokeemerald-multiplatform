@@ -7,6 +7,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: world-m8-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
 jobs:
   integration:
     name: GBA World integrated ROM and measurable Pokedex expansion
