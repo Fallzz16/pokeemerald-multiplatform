@@ -42,17 +42,17 @@ jobs:
           set -euo pipefail
           python3 grandworld/tools/grandworld/audit_campaign_scripts.py world m8-campaign-source-audit.json
           test -s m8-campaign-source-audit.json
-      - name: Enable and place Gen4 encounters with fail-closed audit
+      - name: Enable and place 31 Gen4 plus 12 experimental Gen5 families
         run: |
-          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply --with-gen5-trial
           test -s m8-gen4-encounters-evidence.json
           git -C world diff --check
           python3 - <<'PY'
           import json
           from pathlib import Path
           o=json.loads(Path('m8-gen4-encounters-evidence.json').read_text())
-          assert o['family_count']==31 and o['table_variants_modified']>=31
-          Path('gen4-families.txt').write_text('\n'.join(sorted(x['new'] for x in o['changes']))+'\n')
+          assert o['family_count']==43 and o['gen4_family_count']==31 and o['gen5_trial_family_count']==12 and o['experimental_gen5_enabled'] is True and o['table_variants_modified']>=43
+          Path('m8-expanded-families.txt').write_text('\n'.join(sorted(x['new'] for x in o['changes']))+'\n')
           print('New encounter table entries:',o['table_variants_modified'])
           PY
       - name: Install six hero profiles in actual game introduction
@@ -96,7 +96,7 @@ jobs:
           if len(m)<3:raise RuntimeError('linker memory readout missing')
           mem={k:int(v) for k,v in m[-3:]}
           assert mem['ROM'] < 33554432 and mem['EWRAM']<=262144 and mem['IWRAM']<=32768,mem
-          o={'sha':hashlib.sha256(b).hexdigest(),'rom_size':len(b),'memory':mem,'families_enabled':sorted(set(Path('gen4-families.txt').read_text().splitlines())),'source_sha':__import__('subprocess').check_output(['git','-C','world','rev-parse','HEAD'],text=True).strip(),'gameplay_verified':False}
+          o={'sha':hashlib.sha256(b).hexdigest(),'rom_size':len(b),'memory':mem,'families_enabled':sorted(set(Path('m8-expanded-families.txt').read_text().splitlines())),'source_sha':__import__('subprocess').check_output(['git','-C','world','rev-parse','HEAD'],text=True).strip(),'gameplay_verified':False}
           Path('m8-integrated-gen4-evidence.json').write_text(json.dumps(o,indent=2))
           print(json.dumps(o,indent=2))
           PY
@@ -297,7 +297,7 @@ jobs:
             patched-gen4-build.log
             patched-gen4-validate.log
             m8-integrated-gen4-evidence.json
-            gen4-families.txt
+            m8-expanded-families.txt
             m8-gen4-encounters-evidence.json
             m8-campaign-source-audit.json
             grandworld/tools/grandworld/*.py
