@@ -202,6 +202,26 @@ jobs:
             | tee "$GITHUB_WORKSPACE/m8-hero-party-save-continue.log"
           test -s _pwtest/GrandWorldHeroSave.PASS
           test ! -e _pwtest/GrandWorldHeroSave.FAIL
+      - name: Six protagonist identities survive real game saves and reboots (advisory)
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/generate_hero_save_matrix.py \
+            world/test/overworld/lua/GrandWorldHeroSave.lua \
+            world/test/overworld/lua/
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
+          for hero in Brendan May Red Leaf Ethan Lyra; do
+            PW_TIMEOUT=240 test/overworld/mgba-run.sh \
+              "test/overworld/lua/GrandWorldSave${hero}.lua" "$PWD/pokemonworld.gba" \
+              | tee "$GITHUB_WORKSPACE/m8-save-${hero}.log"
+            test -s "_pwtest/GrandWorldSave${hero}.PASS"
+            test ! -e "_pwtest/GrandWorldSave${hero}.FAIL"
+            grep -Eq "^PASS 38/38 rom=$md5 .* suite=GrandWorldSave${hero}$" \
+              "_pwtest/GrandWorldSave${hero}.PASS"
+          done
       - name: Verify actual Johto-to-Kanto ship crossing on integrated ROM (advisory)
         continue-on-error: true
         shell: bash
@@ -265,6 +285,7 @@ jobs:
             m8-party-hub-gates.log
             m8-hero-party-save-continue.log
             m8-johto-kanto-travel.log
+            m8-save-*.log
             m8-release-checklist.md
             m8-catch-tutorial.log
             m8-catch-tutorial.FAIL
