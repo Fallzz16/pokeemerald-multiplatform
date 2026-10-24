@@ -14,13 +14,16 @@ class HeadlessGbaProbeTests(unittest.TestCase):
         self.assertIn("i <= 45000", source)
         self.assertIn("i == 4501", source)
         self.assertIn("i == 4901", source)
-        self.assertIn("i == 30401 || i == 31901", source)
+        self.assertIn("i == 30001 || i == 30041 || i == 30081", source)
+        self.assertIn("sample_location(core, i, saveblock_symbol)", source)
+        self.assertIn("i == 30301 || i == 30501", source)
         self.assertIn("(i - 9701) % 130 == 0", source)
         self.assertIn("save_ppm(\"gba-navigation-frame-45000.ppm\"", source)
         self.assertIn('fprintf(report, "overworld_verified=false', source)
         self.assertIn('save_reload_verified=false', source)
         self.assertNotIn("savedataRestore(", source)
         self.assertNotIn("loadSave(", source)
+        self.assertNotIn("busWrite", source)
 
     def test_workflow_retains_advisory_separate_job(self):
         workflow = (ROOT / ".github/workflows/build.yml").read_text(encoding="utf-8")

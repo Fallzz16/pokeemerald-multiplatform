@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <inttypes.h>
+#include <string.h>
 
 static uint64_t fingerprint(const color_t *data, unsigned width, unsigned height)
 {
@@ -66,6 +67,58 @@ static int save_ppm(const char *filename, const color_t *pixels,
     return fclose(fp) == 0 ? 0 : -1;
 }
 
+
+// Read the ELF symbol address from the linker map and sample GBA memory.
+// This is an observation-only QA probe; no writes to player RAM or saves.
+static uint32_t saveblock_pointer_symbol(const char *map_file)
+{
+    char line[1024];
+    uint32_t address = 0;
+    FILE *fp = fopen(map_file, "r");
+    if (!fp)
+        return 0;
+    while (fgets(line, sizeof(line), fp)) {
+        unsigned long value;
+        char name[100];
+        if (sscanf(line, " 0x%lx %99s", &value, name) == 2
+            && strcmp(name, "gSaveBlock1Ptr") == 0) {
+            address = (uint32_t)value;
+            break;
+        }
+    }
+    fclose(fp);
+    return address;
+}
+
+struct MapSample {
+    unsigned frame;
+    unsigned group, number;
+    int x, y;
+    uint32_t saveblock;
+    int valid;
+};
+
+static struct MapSample sample_location(struct mCore *core, unsigned frame,
+                                         uint32_t symbol)
+{
+    struct MapSample s = {0};
+    uint32_t ptr;
+    s.frame = frame;
+    if (symbol < 0x02000000 || symbol >= 0x04000000)
+        return s;
+    ptr = core->busRead32(core, symbol);
+    if ((ptr < 0x02000000 || ptr >= 0x02040000)
+        && (ptr < 0x03000000 || ptr >= 0x03008000))
+        return s;
+    s.saveblock = ptr;
+    s.group = core->busRead8(core, ptr + 4);
+    s.number = core->busRead8(core, ptr + 5);
+    s.x = (int16_t)core->busRead16(core, ptr);
+    s.y = (int16_t)core->busRead16(core, ptr + 2);
+    s.valid = 1;
+    return s;
+}
+
 int main(int argc, char **argv)
 {
     struct mCore *core;
@@ -74,11 +127,19 @@ int main(int argc, char **argv)
     uint64_t early = 0, gamefreak = 0, mid = 0, title = 0, after_start = 0;
     const char *rom;
     int failed = 0;
-    if (argc != 2) {
-        fprintf(stderr, "usage: %s ROM.gba\n", argv[0]);
+    uint32_t saveblock_symbol;
+    struct MapSample map_samples[10] = {0};
+    unsigned map_sample_count = 0;
+    if (argc != 3) {
+        fprintf(stderr, "usage: %s ROM.gba ROM.map\n", argv[0]);
         return 2;
     }
     rom = argv[1];
+    saveblock_symbol = saveblock_pointer_symbol(argv[2]);
+    if (!saveblock_symbol) {
+        fprintf(stderr, "Cannot locate gSaveBlock1Ptr in supplied linker map\n");
+        return 8;
+    }
     core = mCoreFind(rom);
     if (!core || !core->init(core)) {
         fprintf(stderr, "Could not init mGBA core\n");
@@ -123,32 +184,39 @@ int main(int argc, char **argv)
             core->setKeys(core, UINT32_C(1)); // KEY_A
         else if (i > 9700 && i < 29800 && (i - 9707) % 130 == 0)
             core->setKeys(core, 0);
-        // Exercise the first-truck scene without edits to maps or save RAM.
-        // Dismiss box dialogue, move right around the crate, then head down.
-        // Second route (left/down) is a fallback if the first hits collision.
-        else if (i == 30051 || i == 30101)
-            core->setKeys(core, UINT32_C(1)); // KEY_A
-        else if (i == 30057 || i == 30107)
+        // Move away from the crate prompt: B advances/closes sign text
+        // without re-opening the crate (the previous A loop did that).
+        else if (i == 30001 || i == 30041 || i == 30081 || i == 30121)
+            core->setKeys(core, UINT32_C(1) << 1); // KEY_B
+        else if (i == 30007 || i == 30047 || i == 30087 || i == 30127)
             core->setKeys(core, 0);
-        else if (i == 30301)
+        // Walk toward x=3 trigger and x=4 exit; no repeated A after 29800.
+        else if (i == 30301 || i == 30501)
             core->setKeys(core, UINT32_C(1) << 4); // KEY_RIGHT
-        else if (i == 30351)
+        else if (i == 30391 || i == 30701)
             core->setKeys(core, 0);
-        else if (i == 30401 || i == 31901)
+        else if (i == 32001)
             core->setKeys(core, UINT32_C(1) << 7); // KEY_DOWN
-        else if (i == 30801 || i == 32201)
+        else if (i == 32201)
             core->setKeys(core, 0);
-        else if (i == 31801)
-            core->setKeys(core, UINT32_C(1) << 5); // KEY_LEFT
-        else if (i == 31851)
+        else if (i == 33701)
+            core->setKeys(core, UINT32_C(1) << 4); // KEY_RIGHT
+        else if (i == 34001)
             core->setKeys(core, 0);
-        // Advance post-truck NPC prompts (if reached). Not an automatic
-        // verification of reaching the world, or of persistent save data.
-        else if (i > 33000 && i < 44700 && (i - 33001) % 160 == 0)
-            core->setKeys(core, UINT32_C(1)); // KEY_A
-        else if (i > 33000 && i < 44700 && (i - 33007) % 160 == 0)
+        else if (i == 35001)
+            core->setKeys(core, UINT32_C(1) << 6); // KEY_UP
+        else if (i == 35201)
+            core->setKeys(core, 0);
+        // Spare movement probe late in the sequence. No sign interactions.
+        else if (i == 37001)
+            core->setKeys(core, UINT32_C(1) << 4); // KEY_RIGHT
+        else if (i == 37301)
             core->setKeys(core, 0);
         core->runFrame(core);
+        if ((i == 20000 || i == 25000 || i == 30000 || i == 30400
+          || i == 30900 || i == 32500 || i == 35000 || i == 38000
+          || i == 42000 || i == 45000) && map_sample_count < 10)
+            map_samples[map_sample_count++] = sample_location(core, i, saveblock_symbol);
         if (i == 120) {
             early = fingerprint(pixels, width, height);
             save_ppm("gba-boot-frame-120.ppm", pixels, width, height);
@@ -215,8 +283,15 @@ int main(int argc, char **argv)
             fprintf(report, "additional_start_and_a_probes=true\n");
             fprintf(report, "navigation_is_advisory=true\n");
             fprintf(report, "additional_dialogue_a_pulses_130_frames=true\n");
+            fprintf(report, "read_only_saveblock_symbol=0x%08x\\n", saveblock_symbol);
+            for (unsigned k = 0; k < map_sample_count; ++k) {
+                const struct MapSample *p = &map_samples[k];
+                fprintf(report, "sample_frame_%u=valid:%d,map:%u/%u,pos:%d/%d,saveblock:0x%08x\\n",
+                        p->frame, p->valid, p->group, p->number, p->x, p->y, p->saveblock);
+            }
             fprintf(report, "new_game_intro_probed=true\n");
             fprintf(report, "truck_exit_direction_probe=true\n");
+            fprintf(report, "truck_text_B_closure_probe=true\n");
             fprintf(report, "player_movement_not_yet_verified=true\n");
             fprintf(report, "overworld_verified=false\n");
             fprintf(report, "title_verified=false\n");

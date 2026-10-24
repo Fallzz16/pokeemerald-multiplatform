@@ -180,7 +180,7 @@ jobs:
         run: |
           set -euxo pipefail
           cc -std=gnu11 -O2 -Wall -Wextra tools/kanto/gba_headless_smoke.c -o /tmp/gba_headless_smoke -lmgba
-          /tmp/gba_headless_smoke gba-artifact/pokeemerald_modern.gba
+          /tmp/gba_headless_smoke gba-artifact/pokeemerald_modern.gba gba-artifact/pokeemerald_modern.map
           test -s gba-headless-smoke.txt
       - name: Attach disposable frame captures and results
         if: always()
