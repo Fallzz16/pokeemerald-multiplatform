@@ -107,6 +107,20 @@ jobs:
           Path('m8-integrated-gen4-evidence.json').write_text(json.dumps(o,indent=2))
           print(json.dumps(o,indent=2))
           PY
+      - name: Audit referenced GBA LZ77 streams (read-only, no assets uploaded)
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/audit_lz77_resources.py world/pokemonworld.gba --output m8-lz77-inventory.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path('m8-lz77-inventory.json').read_text(encoding='utf-8'))
+          assert report['rom_bytes']==33554432
+          assert report['game_code']=='BPEE'
+          assert report['fps_or_cycles_measured'] is False
+          assert report['exhaustive_resource_inventory'] is False
+          print('M8 LZ77 metadata only:',report['referenced_lz77_streams'],'candidate streams; no FPS claim')
+          PY
       - name: Build deterministic headless mGBA test harness
         run: |
           sudo apt-get install -y cmake liblua5.4-dev libpng-dev zlib1g-dev
@@ -365,6 +379,7 @@ jobs:
             m8-gen4-encounters-evidence.json
             m8-campaign-source-audit.json
             m8-performance-optimizations.json
+            m8-lz77-inventory.json
             grandworld/tools/grandworld/*.py
             grandworld/tools/grandworld/*.c
             grandworld/tools/grandworld/*.h
