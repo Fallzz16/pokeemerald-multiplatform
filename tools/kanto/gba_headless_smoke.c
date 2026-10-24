@@ -130,6 +130,10 @@ int main(int argc, char **argv)
     uint32_t saveblock_symbol;
     struct MapSample map_samples[10] = {0};
     unsigned map_sample_count = 0;
+    unsigned first_movement_frame = 0;
+    unsigned first_littleroot_frame = 0;
+    unsigned text_advance_pulses = 0;
+    unsigned last_map_group = 255, last_map_number = 255;
     if (argc != 3) {
         fprintf(stderr, "usage: %s ROM.gba ROM.map\n", argv[0]);
         return 2;
@@ -170,6 +174,13 @@ int main(int argc, char **argv)
     // key presses are exploration probes, not a claim that gameplay was reached.
     // Keypresses after the title are deliberately spaced for scene transitions.
     for (i = 1; i <= 45000; ++i) {
+        // Detect white text-box interior on previous rendered frame, not
+        // inferred from an arbitrary frame number. Truck background at this
+        // pixel is black; sign dialogue is white.
+        color_t color = pixels[140 * width + 10];
+        int dialogue_visible = ((color & 0xff) > 230)
+                            && (((color >> 8) & 0xff) > 230)
+                            && (((color >> 16) & 0xff) > 230);
         if (i == 3601 || i == 4501)
             core->setKeys(core, UINT32_C(1) << 3); // GBA KEY_START
         else if (i == 4901 || i == 5501 || i == 6401 || i == 7601 || i == 8501)
@@ -184,35 +195,41 @@ int main(int argc, char **argv)
             core->setKeys(core, UINT32_C(1)); // KEY_A
         else if (i > 9700 && i < 29800 && (i - 9707) % 130 == 0)
             core->setKeys(core, 0);
-        // Move away from the crate prompt: B advances/closes sign text
-        // without re-opening the crate (the previous A loop did that).
-        else if (i == 30001 || i == 30041 || i == 30081 || i == 30121)
-            core->setKeys(core, UINT32_C(1) << 1); // KEY_B
-        else if (i == 30007 || i == 30047 || i == 30087 || i == 30127)
-            core->setKeys(core, 0);
-        // Walk toward x=3 trigger and x=4 exit; no repeated A after 29800.
-        else if (i == 30301 || i == 30501)
-            core->setKeys(core, UINT32_C(1) << 4); // KEY_RIGHT
-        else if (i == 30391 || i == 30701)
-            core->setKeys(core, 0);
-        else if (i == 32001)
-            core->setKeys(core, UINT32_C(1) << 7); // KEY_DOWN
-        else if (i == 32201)
-            core->setKeys(core, 0);
-        else if (i == 33701)
-            core->setKeys(core, UINT32_C(1) << 4); // KEY_RIGHT
-        else if (i == 34001)
-            core->setKeys(core, 0);
-        else if (i == 35001)
-            core->setKeys(core, UINT32_C(1) << 6); // KEY_UP
-        else if (i == 35201)
-            core->setKeys(core, 0);
-        // Spare movement probe late in the sequence. No sign interactions.
-        else if (i == 37001)
-            core->setKeys(core, UINT32_C(1) << 4); // KEY_RIGHT
-        else if (i == 37301)
-            core->setKeys(core, 0);
+        // Only on InsideOfTruck (map 25/40). Advance the two-page sign
+        // dialogue with A but STOP pressing A immediately when no box exists.
+        // This prevents reopening the same crate sign indefinitely.
+        else if (i > 29900) {
+            struct MapSample p = sample_location(core, i, saveblock_symbol);
+            if (p.valid && p.group == 25 && p.number == 40) {
+                if (dialogue_visible) {
+                    if (i % 95 < 5) {
+                        core->setKeys(core, UINT32_C(1)); // KEY_A
+                        if (i % 95 == 0)
+                            text_advance_pulses++;
+                    } else {
+                        core->setKeys(core, 0);
+                    }
+                } else {
+                    // Truck x=2 to x=3 trigger and x=4 dynamic warp.
+                    core->setKeys(core, UINT32_C(1) << 4); // KEY_RIGHT
+                }
+            } else {
+                // If we reached Littleroot, do not press buttons at random.
+                core->setKeys(core, 0);
+            }
+        }
         core->runFrame(core);
+        if (i >= 29900 && i % 20 == 0) {
+            struct MapSample current = sample_location(core, i, saveblock_symbol);
+            if (current.valid) {
+                last_map_group = current.group;
+                last_map_number = current.number;
+                if (!first_movement_frame && (current.x != 2 || current.y != 2))
+                    first_movement_frame = i;
+                if (!first_littleroot_frame && current.group == 0 && current.number == 9)
+                    first_littleroot_frame = i;
+            }
+        }
         if ((i == 20000 || i == 25000 || i == 30000 || i == 30400
           || i == 30900 || i == 32500 || i == 35000 || i == 38000
           || i == 42000 || i == 45000) && map_sample_count < 10)
@@ -283,15 +300,21 @@ int main(int argc, char **argv)
             fprintf(report, "additional_start_and_a_probes=true\n");
             fprintf(report, "navigation_is_advisory=true\n");
             fprintf(report, "additional_dialogue_a_pulses_130_frames=true\n");
-            fprintf(report, "read_only_saveblock_symbol=0x%08x\\n", saveblock_symbol);
+            fprintf(report, "read_only_saveblock_symbol=0x%08x\n", saveblock_symbol);
             for (unsigned k = 0; k < map_sample_count; ++k) {
                 const struct MapSample *p = &map_samples[k];
-                fprintf(report, "sample_frame_%u=valid:%d,map:%u/%u,pos:%d/%d,saveblock:0x%08x\\n",
+                fprintf(report, "sample_frame_%u=valid:%d,map:%u/%u,pos:%d/%d,saveblock:0x%08x\n",
                         p->frame, p->valid, p->group, p->number, p->x, p->y, p->saveblock);
             }
             fprintf(report, "new_game_intro_probed=true\n");
             fprintf(report, "truck_exit_direction_probe=true\n");
-            fprintf(report, "truck_text_B_closure_probe=true\n");
+            fprintf(report, "textbox_pixel_gated_A_and_right=true\\n");
+            fprintf(report, "textbox_advance_pulses=%u\\n", text_advance_pulses);
+            fprintf(report, "first_movement_frame=%u\\n", first_movement_frame);
+            fprintf(report, "first_littleroot_frame=%u\\n", first_littleroot_frame);
+            fprintf(report, "last_observed_map=%u/%u\\n", last_map_group, last_map_number);
+            fprintf(report, "littleroot_warp_verified=%s\\n",
+                    first_littleroot_frame ? "true" : "false");
             fprintf(report, "player_movement_not_yet_verified=true\n");
             fprintf(report, "overworld_verified=false\n");
             fprintf(report, "title_verified=false\n");

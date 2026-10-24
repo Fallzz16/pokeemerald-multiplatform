@@ -57,3 +57,10 @@ Capturas `gba-boot-frame-*.ppm`, `gba-navigation-frame-*.ppm`, relatório `gba-h
 
 ## Rollback
 PR #61 **draft**. Branch segura V0.24 / PR #62; todos os saves pessoais ficam intocados. Sem merge automático na main. Fonte upstream: https://github.com/pret/pokeemerald/blob/master/INSTALL.md e https://github.com/rh-hideout/pokeemerald-expansion .
+
+
+### Continuação no commit de diagnóstico do caminhão (24/10/2026)
+
+O [CI #40059442087](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40059442087) gerou ROM ARM GCC válida. As capturas e leitura somente para QA da memória `gSaveBlock1Ptr` mostraram `InsideOfTruck` = mapa 25/40 e posição (2,2), **sem progressão observada até o quadro 45.000**. A caixa de texto das caixas de mudança permaneceu aberta. Isso **não demonstra defeito na movimentação do jogo**, pois a automação apertava botões fora da lógica do diálogo.
+
+A próxima revisão do smoke usa pixels da caixa de diálogo para alternar A e direção direita; armazena o primeiro quadro de movimento e a primeira entrada observada em `LittlerootTown` (grupo 0/mapa 9). Se nenhum desses sinais aparecer, registrar como não verificado, nunca como sucesso presumido. O teste não escreve memória do jogo nem lê saves pessoais.
