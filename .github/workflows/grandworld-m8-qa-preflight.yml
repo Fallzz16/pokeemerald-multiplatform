@@ -48,6 +48,10 @@ jobs:
           luac -p world/test/overworld/lua/CatchTutorial.lua
           luac -p world/test/overworld/lua/GrandWorldHubParty.lua
           luac -p world/test/overworld/lua/GrandWorldHeroSave.lua
+          python3 grandworld/tools/grandworld/generate_hero_save_matrix.py world/test/overworld/lua/GrandWorldHeroSave.lua world/test/overworld/lua
+          for hero in Brendan May Red Leaf Ethan Lyra; do
+            luac -p "world/test/overworld/lua/GrandWorldSave${hero}.lua"
+          done
           git -C world diff --check
       - name: Verify exact Gen4 pilot dry run and unchanged original files
         run: |
