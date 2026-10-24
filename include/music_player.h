@@ -17,7 +17,11 @@ struct WaveData2
     u32 freq;  // 22.10 fixed width decimal, freq of C4. Or just the frequency of C14.
     u32 loopStart;
     u32 size; // number of samples
-    s8 data[]; // samples
+#if MODERN
+    s8 data[]; // ISO C99 flexible array member
+#else
+    s8 data[1]; // agbcc C89 parser: same sample offset; no flexible arrays
+#endif
 };
 
 
@@ -26,12 +30,17 @@ struct MP2KInstrument {
     u8 drumKey;
     u8 cgbLength;
     u8 panSweep;
+#if MODERN
     union {
         struct WaveData *wav;
         struct MP2KInstrument *group;
         u32 *cgb3Sample;
         u32 squareNoiseConfig;
     };
+#else
+    struct WaveData *wav; // preserves pointer-width member storage
+#endif
+#if MODERN
     union {
         struct {
             u8 attack;
@@ -41,6 +50,12 @@ struct MP2KInstrument {
         };
         u8 *keySplitTable;
     };
+#else
+    u8 attack;
+    u8 decay;
+    u8 sustain;
+    u8 release;
+#endif
 };
 
 struct MP2KTrack {
