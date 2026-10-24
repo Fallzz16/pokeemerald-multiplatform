@@ -35,6 +35,8 @@ jobs:
             data/scripts/hall_of_fame_frlg.inc
             data/event_scripts.s
             src/data/wild_encounters.json
+            src/data/
+            data/
             include/config/species_enabled.h
       - name: Install Lua syntax compiler
         run: sudo apt-get update && sudo apt-get install -y lua5.4
@@ -84,4 +86,10 @@ jobs:
           grep -q '"gen5_trial_family_count": 12' gen5-preflight.log
           grep -q '"validator_disabled_floor": 288' gen5-preflight.log
           grep -q 'DRY RUN - no source changes' gen5-preflight.log
+          # Run the real World source validator with the trial applied. This
+          # catches missing family-floor/allowlist changes before a 6-minute ROM
+          # build, then restores the pinned input without mutating Git history.
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply --with-gen5-trial > gen5-applied-preflight.log
+          (cd world && python3 test/overworld/ValidateGen13.py)
+          git -C world restore -- src/data/wild_encounters.json include/config/species_enabled.h test/overworld/ValidateGen13.py
           test -z "$(git -C world status --porcelain -- src/data/wild_encounters.json include/config/species_enabled.h test/overworld/ValidateGen13.py)"
