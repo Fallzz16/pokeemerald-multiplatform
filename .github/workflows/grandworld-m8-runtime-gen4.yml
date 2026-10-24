@@ -192,6 +192,21 @@ jobs:
             | tee "$GITHUB_WORKSPACE/m8-party-hub-gates.log"
           test -s _pwtest/GrandWorldHubParty.PASS
           test ! -e _pwtest/GrandWorldHubParty.FAIL
+      - name: Six real directed Kanto-Johto-Hoenn gate transfers with shared team (advisory)
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/extend_six_routes_qa.py \
+            world/test/overworld/lua/GrandWorldHubParty.lua \
+            world/test/overworld/lua/GrandWorldSixRoutes.lua
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=450 test/overworld/mgba-run.sh \
+            test/overworld/lua/GrandWorldSixRoutes.lua "$PWD/pokemonworld.gba" \
+            | tee "$GITHUB_WORKSPACE/m8-six-region-directions.log"
+          test -s _pwtest/GrandWorldSixRoutes.PASS
+          test ! -e _pwtest/GrandWorldSixRoutes.FAIL
       - name: Actual cartridge save reboot and Continue preserves party and hero (advisory)
         continue-on-error: true
         shell: bash
@@ -288,6 +303,7 @@ jobs:
             m8-hub-tour.log
             m8-hub-recross.log
             m8-party-hub-gates.log
+            m8-six-region-directions.log
             m8-hero-party-save-continue.log
             m8-johto-kanto-travel.log
             m8-save-*.log
