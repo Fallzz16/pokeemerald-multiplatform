@@ -354,8 +354,15 @@ static void PlayCryScreenCry(u16 species)
 static void BufferCryWaveformSegment(void)
 {
     u8 i;
+    /* SDL uses float PCM samples; GBA MP2K mixes signed 8-bit samples.
+     * Match the buffer's element type to avoid 4x pointer-stride errors. */
+#ifdef PORTABLE
     float *baseBuffer;
     float *buffer;
+#else
+    s8 *baseBuffer;
+    s8 *buffer;
+#endif
 
     if (gPcmDmaCounter < 2)
         baseBuffer = gSoundInfo.pcmBuffer;
