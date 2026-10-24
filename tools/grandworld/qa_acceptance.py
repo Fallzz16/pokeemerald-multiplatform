@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Grand World M8: strict evidence for up to three of 105 release criteria.
+"""Grand World M8: ROM-bound evidence for individually proven release criteria.
 No auto-promotion of 24 gyms, three Leagues or save migrations from a ROM build.
 Do not distribute original game ROM. Intended for isolated CI checkouts.
 """
@@ -49,6 +49,38 @@ def load_memory_proof(path, rom_sha256, rom_size):
         raise ValueError("invalid hardware memory provenance")
     return mem
 
+def load_suite_proof(world, suite, rom_md5, expected_checks, required=False):
+    """Only a complete, ROM-matched headless mGBA PASS certifies a criterion.
+
+    Failed or absent advisory suites stay pending; conflicting or malformed
+    results fail closed. An exact check count prevents early-exit false PASSes.
+    """
+    stamp = world / "_pwtest" / (suite + ".PASS")
+    fail = world / "_pwtest" / (suite + ".FAIL")
+    if fail.exists():
+        if stamp.exists():
+            raise ValueError("conflicting mGBA verdict: " + suite)
+        if required:
+            raise ValueError("required mGBA suite failed: " + suite)
+        return None
+    if not stamp.is_file():
+        if required:
+            raise ValueError("required mGBA suite absent: " + suite)
+        return None
+    try:
+        content = stamp.read_text(encoding="utf-8")
+    except (OSError, UnicodeError) as exc:
+        raise ValueError("unreadable mGBA verdict: " + suite) from exc
+    match = re.fullmatch(
+        r"PASS (\d+)/(\d+) rom=([A-F0-9]{32}) at=[^\r\n]+ suite="
+        + re.escape(suite) + r"\s*", content
+    )
+    if not match or match[1] != match[2] or int(match[1]) != expected_checks or match[3] != rom_md5:
+        raise ValueError("stale or incomplete mGBA verdict: " + suite)
+    return {"source": "headless mGBA Lua", "suite": suite,
+            "passed": expected_checks, "rom_md5": rom_md5}
+
+
 def report(world):
     rom=(world/"pokemonworld.gba").read_bytes()
     if hashlib.sha1(rom[0x04:0xA0]).hexdigest() != '17daa0fec02fc33c0f6abb549a8b80b6613b48ee':
@@ -61,16 +93,22 @@ def report(world):
     md5=hashlib.md5(rom).hexdigest().upper()
     mem = load_memory_proof(world.parent/"m8-integrated-gen4-evidence.json", sha, len(rom))
     seen={"performance.memory":{"source":"ARM linker / SHA256","memory_bytes":mem}}
-    for suite,case in [("SmokeBoot","boot.new_game"),("WorldTitle","boot.cold_start")]:
-        stamp=world/"_pwtest"/(suite+".PASS")
-        fail=world/"_pwtest"/(suite+".FAIL")
-        if not stamp.is_file() or fail.exists():
-            raise ValueError("required mGBA suite absent or failed: "+suite)
-        txt=stamp.read_text()
-        match=re.fullmatch(r"PASS (\d+)/(\d+) rom=([A-F0-9]{32}) at=[^\r\n]+ suite="+suite+r"\s*",txt)
-        if not match or match[1]!=match[2] or int(match[1])==0 or match[3]!=md5:
-            raise ValueError("stale or malformed mGBA test result: "+suite)
-        seen[case]={"source":"headless mGBA Lua","suite":suite,"passed":int(match[1]),"rom_md5":md5}
+    # Mandatory fresh-ROM proofs.
+    for suite, case, count in [
+        ("SmokeBoot", "boot.new_game", 10),
+        ("WorldTitle", "boot.cold_start", 37),
+    ]:
+        seen[case] = load_suite_proof(world, suite, md5, count, required=True)
+
+    # Actual-gameplay cases only; no implicit acceptance from compile or Python unit tests.
+    for suite, case, count in [
+        ("GrandWorldHeroSave", "boot.continue", 37),
+        ("GrandWorldHubParty", "hoenn.team_persistence", 94),
+        ("SSAquaKantoCrossing", "travel.johto_to_kanto", 94),
+    ]:
+        proof = load_suite_proof(world, suite, md5, count)
+        if proof is not None:
+            seen[case] = proof
     ids=manifest()
     out={"rom_sha256":sha,"rom_md5":md5,"world_base":"15d3888b0d81322a04d3c71b0bce18948761ee44",
          "verified":len(seen),"pending":len(ids)-len(seen),"total":len(ids),
