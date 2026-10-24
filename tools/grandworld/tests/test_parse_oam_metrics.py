@@ -36,6 +36,13 @@ class OamMetricsTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "duplicated"):
             mod.report(LOG + LOG, b"test")
 
+    def test_parked_oam_dummy_false_positive_is_rejected(self):
+        poisoned = LOG.replace(
+            "active_min=7 active_max=15 active_avg=11.500",
+            "active_min=128 active_max=128 active_avg=128.000")
+        with self.assertRaisesRegex(ValueError, "invalid OAM"):
+            mod.report(poisoned, b"fake")
+
     def test_unphysical_samples_refused(self):
         for bad in (
             LOG.replace("active_max=15", "active_max=130"),
