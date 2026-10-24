@@ -124,6 +124,17 @@ jobs:
             echo 'Conflicting emulator verdict found' >&2
             exit 1
           fi
+      - name: Certify only ROM-bound acceptance cases (3 of 105)
+        run: |
+          python3 -m py_compile grandworld/tools/grandworld/qa_acceptance.py
+          python3 grandworld/tools/grandworld/qa_acceptance.py world m8-acceptance-evidence.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path("m8-acceptance-evidence.json").read_text())
+          assert a["total"] == 105 and a["verified"] == 3 and a["pending"] == 102
+          assert a["release_approved"] is False
+          PY
       - name: Regional introductory tour and cross-region story QA (advisory)
         continue-on-error: true
         shell: bash
@@ -148,6 +159,7 @@ jobs:
             m8-world-suites.log
             m8-smoke-boot.log
             m8-smoke-title.log
+            m8-acceptance-evidence.json
             m8-hub-tour.log
             m8-hub-recross.log
             patched-gen4-build.log
