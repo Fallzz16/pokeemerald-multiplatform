@@ -75,6 +75,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --report m8-performance-optimizations.json
+          python3 grandworld/tools/grandworld/enable_classic_grass_encounters.py world --apply --report m8-classic-encounters.json
           test -s m8-performance-optimizations.json
           grep -Eq '^#define OW_OBJECT_VANILLA_SHADOWS[[:space:]]+TRUE([[:space:]]|$)' world/include/config/overworld.h
           git -C world diff --check
@@ -380,6 +381,7 @@ jobs:
             m8-gen4-encounters-evidence.json
             m8-campaign-source-audit.json
             m8-performance-optimizations.json
+            m8-classic-encounters.json
             m8-oam-hardware.log
             m8-oam-hardware.json
             grandworld/tools/grandworld/*.py

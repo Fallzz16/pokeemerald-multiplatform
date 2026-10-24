@@ -9,6 +9,8 @@ on:
       - 'tools/grandworld/tests/test_evaluate_performance_budget.py'
       - 'tools/grandworld/compare_shadow_profiles.py'
       - 'tools/grandworld/tests/test_compare_shadow_profiles.py'
+      - 'tools/grandworld/enable_classic_grass_encounters.py'
+      - 'tools/grandworld/tests/test_enable_classic_grass_encounters.py'
   workflow_dispatch:
 permissions:
   contents: read
@@ -48,6 +50,7 @@ jobs:
           python3 grandworld/tools/grandworld/add_hero_profiles.py world
           python3 grandworld/tools/grandworld/add_kanto_avatar.py world
           python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --shadows ${{ matrix.shadows }} --report shadow-profile.json
+          python3 grandworld/tools/grandworld/enable_classic_grass_encounters.py world --apply --report grass-encounters.json
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_*.py'
           git -C world diff --check
           python3 - <<'PY'
@@ -135,6 +138,7 @@ jobs:
           if-no-files-found: warn
           path: |
             shadow-profile.json
+            grass-encounters.json
             shadow-budget.json
             shadow-lz77.json
             shadow-build.log
