@@ -112,6 +112,39 @@ jobs:
             echo "mGBA conflicting verdict" >&2
             exit 1
           fi
+      - name: Verify same-ROM protagonist party save and Continue
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/extend_story_save_qa.py \
+            world/test/overworld/lua/StoryProgress.lua \
+            world/test/overworld/lua/GrandWorldHeroSave.lua
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=360 test/overworld/mgba-run.sh \
+            test/overworld/lua/GrandWorldHeroSave.lua "$PWD/pokemonworld.gba" \
+            | tee "$GITHUB_WORKSPACE/m8-profile-hero-save.log"
+          test -s _pwtest/GrandWorldHeroSave.PASS
+          test ! -e _pwtest/GrandWorldHeroSave.FAIL
+          md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
+          grep -Eq "^PASS 37/37 rom=$md5 .* suite=GrandWorldHeroSave$" _pwtest/GrandWorldHeroSave.PASS
+      - name: Advisory cross-region save regression (not release homologation)
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/extend_cross_region_save_qa.py \
+            world/test/overworld/lua/GrandWorldSixRoutes.lua \
+            world/test/overworld/lua/GrandWorldCrossRegionSave.lua
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=480 test/overworld/mgba-run.sh \
+            test/overworld/lua/GrandWorldCrossRegionSave.lua "$PWD/pokemonworld.gba" \
+            | tee "$GITHUB_WORKSPACE/m8-profile-cross-region-save.log"
+          test -s _pwtest/GrandWorldCrossRegionSave.PASS
+          test ! -e _pwtest/GrandWorldCrossRegionSave.FAIL
+          md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
+          grep -Eq "^PASS 176/176 rom=$md5 .* suite=GrandWorldCrossRegionSave$" _pwtest/GrandWorldCrossRegionSave.PASS
       - name: Upload diagnostics, never game ROM or saves
         if: always()
         uses: actions/upload-artifact@v4
@@ -123,6 +156,8 @@ jobs:
             m8-profile-validate.log
             m8-profile-smoke.log
             m8-profile-title.log
+            m8-profile-hero-save.log
+            m8-profile-cross-region-save.log
             m8-grass-lz77.json
             m8-grass-adaptive-memory.json
             m8-grass-adaptive-profile.json
