@@ -52,8 +52,9 @@ jobs:
           PY
       - name: Install six hero profiles in actual game introduction
         run: |
-          python3 -m py_compile grandworld/tools/grandworld/add_hero_profiles.py grandworld/tools/grandworld/expand_gen4_pilot.py
+          python3 -m py_compile grandworld/tools/grandworld/add_hero_profiles.py grandworld/tools/grandworld/add_kanto_avatar.py grandworld/tools/grandworld/expand_gen4_pilot.py
           python3 grandworld/tools/grandworld/add_hero_profiles.py world
+          python3 grandworld/tools/grandworld/add_kanto_avatar.py world
           python3 - <<'PY'
           from pathlib import Path
           s=Path('world/src/oak_speech.c').read_text()
@@ -61,6 +62,8 @@ jobs:
           assert 'sHeroMale[3]' in s and 'sHeroFemale[3]' in s
           assert 'VarSet(VAR_PLAYER_CHARACTER, GrandWorldHeroSlot(input))' in s
           assert 'VarSet(VAR_PLAYER_CHARACTER, playerHero)' in n
+          assert 'OBJ_EVENT_GFX_RED_NORMAL' in Path('world/src/field_player_avatar.c').read_text()
+          assert 'OBJ_EVENT_GFX_GREEN_NORMAL' in Path('world/src/field_player_avatar.c').read_text()
           PY
           git -C world diff --check
       - name: Compile ROM with region integration and extra families
