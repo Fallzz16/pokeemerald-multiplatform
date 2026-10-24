@@ -1138,3 +1138,13 @@ Próximos P0: conferir workflow final, resolver regressões, testes reais Window
 - `tests/test_gba_syscall_guards.py`: expansão DMA com `MODERN=0/1`, verificação de guards e mixer. CI Windows V0.24 habilitado também para esta branch.
 - `docs/KANTO_V25_GBA_RECOVERY_PTBR.md`: especificação, reprodução, riscos, rollback. **Apenas geração de ROM, não gameplay.** Sem modificar SaveBlock, flags, scripts, trainers ou IDs; emulador/mGBA, áudio, saves e Android ainda exigem QA.
 - Observar o HEAD exato e os jobs/artefatos antes de anunciar GBA recuperado. Se houver erro, registrar a primeira falha verificada e corrigir iterativamente.
+
+## 2026-10-24 — M8: Quetzal-reference LZ77 resource audit (isolated experiment)
+
+- Branch: perf/grandworld-m8-quetzal-resource-audit-20261024, derived from PR #70 head f5001bc2aacb9c2c7ea582ab8669a245df48625b. Last code/docs commit before this note: e60d75584c7be1e6433d46d713e433a92602e6d3.
+- Added tools/grandworld/audit_lz77_resources.py (read-only pointer-referenced GBA LZ77-0x10 validator, mirrors, checksum, JSON and paired ROM metrics); tests/test_audit_lz77_resources.py (6 fabricated-ROM unit tests); docs/GRANDWORLD_M8_QUETZAL_RESOURCES.md.
+- Updated .github/workflows/grandworld-m8-performance-build.yml to compare built ROM resource profiles and upload JSON diagnostics only; does not upload game ROMs.
+- Local unit tests: 6/6 PASS; Quetzal user-supplied ROM inspected locally only, heuristic 6865 referred LZ77 streams (2045429 stored bytes / 5580622 expanded declared bytes, 2.728:1). This is not FPS evidence and not an exhaustive inventory.
+- Builds/CI on the new branch are pending verification; no new mGBA gameplay test completion is claimed.
+- This experiment does NOT change runtime C code, compression flags, DMA/OAM paths, encounter rules, SaveBlocks, regional campaigns, or M9. Existing PR #70 remains the baseline experimental optimization; current changes are resource instrumentation only.
+- Risks: heuristic pointer scan can miss unaligned/unreferenced resources and find syntactically valid but unused data; optimizing compression without profiling could hurt runtime. Rollback: discard this isolated branch/PR. Next: run paired CI, inspect JSON by identical build configuration, then profile real frame times and only change proven bottlenecks.
