@@ -187,6 +187,21 @@ jobs:
             | tee "$GITHUB_WORKSPACE/m8-party-hub-gates.log"
           test -s _pwtest/GrandWorldHubParty.PASS
           test ! -e _pwtest/GrandWorldHubParty.FAIL
+      - name: Actual cartridge save reboot and Continue preserves party and hero (advisory)
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/extend_story_save_qa.py \
+            world/test/overworld/lua/StoryProgress.lua \
+            world/test/overworld/lua/GrandWorldHeroSave.lua
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=300 test/overworld/mgba-run.sh \
+            test/overworld/lua/GrandWorldHeroSave.lua "$PWD/pokemonworld.gba" \
+            | tee "$GITHUB_WORKSPACE/m8-hero-party-save-continue.log"
+          test -s _pwtest/GrandWorldHeroSave.PASS
+          test ! -e _pwtest/GrandWorldHeroSave.FAIL
       - name: Bound entire optional overworld sweep to protect QA turnaround
         continue-on-error: true
         shell: bash
@@ -208,6 +223,7 @@ jobs:
             m8-hub-tour.log
             m8-hub-recross.log
             m8-party-hub-gates.log
+            m8-hero-party-save-continue.log
             m8-catch-tutorial.log
             m8-catch-tutorial.FAIL
             patched-gen4-build.log
