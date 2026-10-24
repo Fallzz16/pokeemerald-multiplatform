@@ -291,8 +291,8 @@ jobs:
           from pathlib import Path
           a=json.loads(Path("m8-acceptance-evidence.json").read_text())
           assert a["total"]==105
-          assert a["verified"]==11, a["verified"]
-          assert a["pending"]==94, a["pending"]
+          assert a["verified"]==14, a["verified"]
+          assert a["pending"]==91, a["pending"]
           assert a["verified"]+a["pending"]==105
           assert a["release_approved"] is False
           verified=[case for case,data in a["cases"].items() if data["status"]=="verified"]
