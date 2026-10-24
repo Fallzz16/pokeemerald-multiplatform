@@ -184,6 +184,17 @@ def report(world):
         proof = load_suite_group_proof(world, md5, case, checks, scope)
         if proof is not None:
             seen[case] = proof
+    # A separate complete ROM-matched itinerary must cross all six REAL hub
+    # gates and THEN save through the Start menu, reboot and use Continue,
+    # with the same carried Pokemon bytes and protagonist still persisted.
+    # Without its own complete stamp, cross-region *save* remains pending even
+    # when physical travel and an unrelated single-region save both pass.
+    cross_saved = load_suite_proof(world, "GrandWorldCrossRegionSave", md5, 176)
+    if cross_saved is not None:
+        seen["save.cross_region"] = {
+            **cross_saved,
+            "scope": "six gate travels followed by actual Save/core reboot/Continue and byte-exact party",
+        }
     ids=manifest()
     out={"rom_sha256":sha,"rom_md5":md5,"world_base":"15d3888b0d81322a04d3c71b0bce18948761ee44",
          "verified":len(seen),"pending":len(ids)-len(seen),"total":len(ids),
