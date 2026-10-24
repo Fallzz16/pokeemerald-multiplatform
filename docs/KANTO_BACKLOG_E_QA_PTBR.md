@@ -32,3 +32,9 @@ Compilar não comprova que o personagem pode andar corretamente; flag alocada n�
 
 ## Em todas as próximas respostas
 Apresentar **o que foi feito, o que foi testado, o que falta e o próximo foco**, com links aos commits/PRs/artefatos verificados. Executar tanto trabalho seguro quanto possível sem estabelecer horas arbitrárias e sem prometer execução assíncrona. Respostas 250/250 já decididas no documento de especificação.
+
+## V0.24 — auditoria estática validada e pendências priorizadas
+
+Ferramenta `tools/kanto/tile_audit.py` e workflow de 114 mapas: [CI 39918532192 (SUCCESS)](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/39918532192). Relatório anexo: 25 mapas com alertas, 4 eventos possivelmente inacessíveis, 21 mapas com caminhos de warps divididos, zero eventos fora das dimensões. Lista de mapas/limites em `docs/KANTO_V24_TILE_ACCESSIBILITY_PTBR.md`. **Não** confundir heurística estática com gameplay ou falhas confirmadas.
+
+P0: reproduzir no emulador o NPC Harbor, warps de Lorelei/Bruno/Agatha e Mt. Moon, Saffron Gym, Seafoam e Victory Road; validar caminhos reais e flags após reload com saves descartáveis. P0 paralelo: finalizar ROM GBA ARM moderno e corrigir toolchain agbcc separadamente na PR #61, sem regressão Windows. Não remover tiles, alterar scripts ou tocar em saves para silenciar avisos.

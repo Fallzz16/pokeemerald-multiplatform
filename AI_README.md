@@ -1119,6 +1119,16 @@ QA: tests/test_kanto_v23_moon_fossils.py audita eventos, fidelidade do FireRed, 
 
 Próximos P0: conferir workflow final, resolver regressões, testes reais Windows com saves descartáveis para batalha/fóssil/whiteout/Hoenn, CIs genéricos separados; P1: Rocket/Silph/SS Anne/puzzles/Elite Four, art/sprites originais; P2: PokéNav/Fly regional, Android e multiplayer Kanto entre dois PCs.
 
+## 75. Kanto V0.24 — auditoria de colisão estática (QA real em 23/10/2026)
+
+- Branch `feature/kanto-v24-tile-accessibility-qa` sobre V0.23 `62a9e03174245a2ef9ec36a73c481d09543ddf09`; código/CI verificado em `f36abb8ba3fa7234b6a9a65fa7c9ce142ca6d5ea`, [GitHub Actions 39918532192](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/39918532192) **SUCCESS**, artefato Windows `12485394284`.
+- `tools/kanto/tile_audit.py`, `tests/test_kanto_tile_audit.py`, workflow `.github/workflows/kanto-v24-tile-accessibility.yml`. Importação real de 114 mapas em dois grupos e build Windows validado; sem alegar gameplay.
+- Resultado reproduzido do arquivo `kanto-v24-tile-audit.json`: 53.756 metatiles nominalmente caminháveis, 58.546 bloqueados, 25 mapas com avisos, 0 eventos fora dos limites, 4 mapas com evento potencialmente inacessível e 21 mapas com warps não conectados pela análise simples. **Avisos consultivos**, podem ser falsos positivos (Surf, puzzle, scripts, elevação).
+- Eventos prioritários: NPC Harbor (8,7) e warps (6,12) nas salas Lorelei/Bruno/Agatha. O relatório está detalhado em `docs/KANTO_V24_TILE_ACCESSIBILITY_PTBR.md`.
+- Saves, SaveBlock, contagem de treinadores (50), contagem de flags (221), 114 mapas, 160 itens e ABI não foram alterados pela ferramenta. Rollback: V0.23; PR draft #62 baseada na V0.23.
+- P0: QA manual Windows de mapas, batalhas, fósseis, save/reload e regressão Hoenn; PR V0.25 #61 cuida do GBA de forma isolada; P1: história/arte/Elite Four; P2: LAN entre PCs e Android após QA.
+
+
 ## Kanto V0.25 — build GBA moderno isolado (2026-10-23)
 
 - Branch: `feature/kanto-v25-gba-recovery-modern-legacy`, partindo da V0.24 commit `f36abb8ba3fa7234b6a9a65fa7c9ce142ca6d5ea`. Não alterar branches antigas nem fundir automaticamente.
