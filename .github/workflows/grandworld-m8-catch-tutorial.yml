@@ -1,0 +1,74 @@
+name: M8 isolated Kanto and Hoenn CatchTutorial QA
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/grandworld-m8-catch-tutorial.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  kanto-hoenn-catching:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          fetch-depth: 0
+          path: world
+      - name: Install GBA compiler and mGBA dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev cmake liblua5.4-dev
+      - name: Apply World M1 M2 M4 M6 patch in isolated checkout
+        run: |
+          python3 grandworld/tools/grandworld/integrate_world.py world
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply
+          python3 grandworld/tools/grandworld/add_hero_profiles.py world
+          python3 grandworld/tools/grandworld/add_kanto_avatar.py world
+      - name: Compile actual modified GBA ROM
+        shell: bash
+        run: |
+          set -o pipefail
+          make -C world modern -j2 > build-gba.log 2>&1
+          test "$(stat -c%s world/pokemonworld.gba)" -eq 33554432
+          sha256sum world/pokemonworld.gba | tee actual-rom-sha256.txt
+      - name: Build pinned deterministic mGBA with Lua
+        run: |
+          git clone --filter=blob:none https://github.com/mgba-emu/mgba.git mgba
+          git -C mgba checkout 669817d03e4858e65d0b992bcd96d3009236cc1e
+          git -C mgba apply ../world/test/overworld/mgba/0001-headless-video-buffer-save-and-rtc.patch
+          cmake -S mgba -B mgba/build -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_BUILD_TYPE=Release -DBUILD_HEADLESS=ON -DENABLE_SCRIPTING=ON -DUSE_LUA=ON -DBUILD_QT=OFF -DBUILD_SDL=OFF -DUSE_FFMPEG=OFF -DUSE_DISCORD_RPC=OFF -DBUILD_SHARED=OFF -DBUILD_STATIC=ON
+          cmake --build mgba/build -j2 --target mgba-headless
+      - name: Reproduce CatchTutorial three times with fresh ROM evidence
+        shell: bash
+        run: |
+          set -uo pipefail
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          cd world
+          failures=0
+          for n in 1 2 3; do
+            mkdir -p "$GITHUB_WORKSPACE/proof-$n"
+            PW_OUT="$GITHUB_WORKSPACE/proof-$n/" PW_TIMEOUT=180 test/overworld/mgba-run.sh test/overworld/lua/CatchTutorial.lua "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/CatchTutorial-$n.log" 2>&1
+            rc=$?
+            echo "attempt=$n rc=$rc"
+            grep -E '(\[FAIL\]|VERDICT|Kanto catch|Wally catch)' "$GITHUB_WORKSPACE/CatchTutorial-$n.log" | tail -25 || true
+            test "$rc" -eq 0 || failures=$((failures + 1))
+          done
+          echo "catch_tutorial_failed_runs=$failures" | tee "$GITHUB_WORKSPACE/CatchTutorial-summary.txt"
+          test "$failures" -eq 0
+      - name: Archive detailed diagnostics and source SHA, not game ROM
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: GW_M8_CATCH_TUTORIAL_REAL_MGBA_EVIDENCE
+          path: |
+            CatchTutorial-*.log
+            CatchTutorial-summary.txt
+            actual-rom-sha256.txt
+            build-gba.log
+          if-no-files-found: warn
