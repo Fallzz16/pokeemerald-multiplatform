@@ -31,6 +31,24 @@ def manifest():
         raise ValueError(f"release manifest drift: {len(cases)}")
     return cases
 
+def load_memory_proof(path, rom_sha256, rom_size):
+    """Validate ROM-bound linker evidence, rejecting legacy or malformed records."""
+    try:
+        proof = json.loads(path.read_text())
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise ValueError("invalid memory evidence file") from exc
+    if not isinstance(proof, dict):
+        raise ValueError("invalid memory evidence format")
+    if proof.get("sha") != rom_sha256 or type(proof.get("rom_size")) is not int or proof["rom_size"] != rom_size:
+        raise ValueError("memory evidence references different ROM")
+    limits = {"ROM": 33554432, "EWRAM": 262144, "IWRAM": 32768}
+    mem = proof.get("memory")
+    if not isinstance(mem, dict) or set(mem) != set(limits) or any(
+        type(mem[k]) is not int or mem[k] < 1 or mem[k] > limit for k, limit in limits.items()
+    ):
+        raise ValueError("invalid hardware memory provenance")
+    return mem
+
 def report(world):
     rom=(world/"pokemonworld.gba").read_bytes()
     if hashlib.sha1(rom[0x04:0xA0]).hexdigest() != '17daa0fec02fc33c0f6abb549a8b80b6613b48ee':
@@ -41,13 +59,7 @@ def report(world):
         raise ValueError("World ROM header checksum mismatch")
     sha=hashlib.sha256(rom).hexdigest()
     md5=hashlib.md5(rom).hexdigest().upper()
-    proof=json.loads((world.parent/"m8-integrated-gen4-evidence.json").read_text())
-    if proof.get("sha")!=sha or proof.get("rom_size")!=len(rom):
-        raise ValueError("memory evidence references different ROM")
-    limits={"ROM":33554432,"EWRAM":262144,"IWRAM":32768}
-    mem=proof.get("memory",{})
-    if set(mem)!=set(limits) or any(type(mem[k]) is not int or mem[k]<1 or mem[k]>v for k,v in limits.items()):
-        raise ValueError("invalid hardware memory provenance")
+    mem = load_memory_proof(world.parent/"m8-integrated-gen4-evidence.json", sha, len(rom))
     seen={"performance.memory":{"source":"ARM linker / SHA256","memory_bytes":mem}}
     for suite,case in [("SmokeBoot","boot.new_game"),("WorldTitle","boot.cold_start")]:
         stamp=world/"_pwtest"/(suite+".PASS")
