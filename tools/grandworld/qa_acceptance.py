@@ -100,15 +100,39 @@ def report(world):
     ]:
         seen[case] = load_suite_proof(world, suite, md5, count, required=True)
 
-    # Actual-gameplay cases only; no implicit acceptance from compile or Python unit tests.
+    # Only complete emulated gameplay qualifies; no static-test or compile promotions.
     for suite, case, count in [
         ("GrandWorldHeroSave", "boot.continue", 37),
         ("GrandWorldHubParty", "hoenn.team_persistence", 94),
-        ("SSAquaKantoCrossing", "travel.johto_to_kanto", 94),
     ]:
         proof = load_suite_proof(world, suite, md5, count)
         if proof is not None:
             seen[case] = proof
+
+    # This single isolated Lua suite makes all SIX *real* directed crossings
+    # through the hub attendants. Each crossing checks in-game confirmation,
+    # physical destination, stored active region and byte-identical party.
+    # Only the full 167/167 verdict against this exact cartridge certifies them.
+    six = load_suite_proof(world, "GrandWorldSixRoutes", md5, 167)
+    if six is not None:
+        for origin, dest in (
+            ("hoenn", "kanto"), ("kanto", "johto"), ("johto", "hoenn"),
+            ("hoenn", "johto"), ("johto", "kanto"), ("kanto", "hoenn"),
+        ):
+            seen[f"travel.{origin}_to_{dest}"] = {
+                **six, "proven_real_gate": f"{origin}_to_{dest}",
+                "scope": "physical hub travel and unchanged party, not save/reload",
+            }
+
+    # The S.S. Aqua transfer independently proves the Johto-to-Kanto case.
+    # If both travel proofs exist, keep BOTH instead of increasing the count.
+    ship = load_suite_proof(world, "SSAquaKantoCrossing", md5, 94)
+    if ship is not None:
+        case = "travel.johto_to_kanto"
+        if case in seen:
+            seen[case]["additional_ship_proof"] = ship
+        else:
+            seen[case] = ship
     ids=manifest()
     out={"rom_sha256":sha,"rom_md5":md5,"world_base":"15d3888b0d81322a04d3c71b0bce18948761ee44",
          "verified":len(seen),"pending":len(ids)-len(seen),"total":len(ids),
