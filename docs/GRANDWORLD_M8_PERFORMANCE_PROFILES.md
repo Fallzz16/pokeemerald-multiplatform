@@ -55,3 +55,14 @@ Para compilar o perfil `full`, use um **novo checkout limpo e idêntico** de Wor
 5. Atualização dos critérios M8 apenas com evidência de gameplay e continuidade correta de save.
 
 **Rollback:** branch e PR de experimento independentes; a base PR #71 e sua ancestral PR #70 continuam intactas, assim como main.
+
+## Resultado CI real e correção posterior da métrica OAM (24/10/2026)
+
+- Preflight Python/Lua da revisão pré-correção OAM: 73/73 testes, PASS.
+- Matriz A/B: builds O2 de sombra lean/full, ambas PASS; respectivamente 24.593.400 e 24.593.440 bytes ROM (diferença 40), 235.264 EWRAM e 28.200 IWRAM em ambos. Comparação de SHA/recursos PASS. Workflow `40079386269`.
+- O2 vs Release/LTO: compilação e orçamento de memória PASS em `40079386261`; Release/LTO 24.559.008 ROM / 235.052 EWRAM / 28.100 IWRAM. Nenhum FPS medido, não se trata de homologação de Release.
+- Integração gameplay: workflow `40079386276` PASS, 51 suítes World PASS, 15/105 critérios verificados (90 pendentes), testes advisory de continuidade/save e prova mGBA executados.
+- **Foi encontrado bug na primeira instrumentação OAM:** o medidor inicial contava 128/128 sprites em todas as cenas ao contar OAMs habilitadas mas fora da viewport. O motor estaciona as entradas dummy em (304,160), sem o bit de desabilitar sprite, portanto os 128 foram um falso positivo. Esse valor NÃO deve ser usado em relatório de desempenho.
+- O medidor foi corrigido para calcular a interseção das caixas de sprites hardware (shape, size, affine/double-size e coordenadas com wrap GBA) com a tela 240x160 e para rejeitar o falso positivo de 128 objetos no hub; acrescentado teste unitário. **Nova execução no mGBA necessária para validar a correção**, e os números antigos não devem ser promovidos.
+
+As instruções seguintes seguem valendo: o campo `active_average` reflete objetos hardware que interceptam a viewport; não mede slots alocados no engine inteiro, ciclos consumidos ou FPS.
