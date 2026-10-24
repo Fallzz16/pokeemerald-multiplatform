@@ -30,6 +30,7 @@ jobs:
           sparse-checkout: |
             test/overworld/lua/
             test/overworld/ValidateGen13.py
+            test/overworld/ValidateOwMonPlacements.py
             data/maps/
             data/scripts/hall_of_fame.inc
             data/scripts/hall_of_fame_frlg.inc
@@ -91,5 +92,11 @@ jobs:
           # build, then restores the pinned input without mutating Git history.
           python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply --with-gen5-trial > gen5-applied-preflight.log
           (cd world && python3 test/overworld/ValidateGen13.py)
-          git -C world restore -- src/data/wild_encounters.json include/config/species_enabled.h test/overworld/ValidateGen13.py
-          test -z "$(git -C world status --porcelain -- src/data/wild_encounters.json include/config/species_enabled.h test/overworld/ValidateGen13.py)"
+          python3 - <<'PY'
+          from pathlib import Path
+          src=Path("world/test/overworld/ValidateOwMonPlacements.py").read_text()
+          assert "MIN_DISABLED_FAMILIES = 288" in src
+          assert "MIN_DISABLED_FAMILIES = 300" not in src
+          PY
+          git -C world restore -- src/data/wild_encounters.json include/config/species_enabled.h test/overworld/ValidateGen13.py test/overworld/ValidateOwMonPlacements.py
+          test -z "$(git -C world status --porcelain -- src/data/wild_encounters.json include/config/species_enabled.h test/overworld/ValidateGen13.py test/overworld/ValidateOwMonPlacements.py)"
