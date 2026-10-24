@@ -254,10 +254,14 @@ static const struct MainQuest sMainQuests[QUEST_COUNT] =
     [27] = {sQuestTitle27, sQuestObjective27, sQuestLocation27, MAPSEC_VICTORY_ROAD},
     [28] = {sQuestTitle28, sQuestObjective28, sQuestLocation28, MAPSEC_EVER_GRANDE_CITY},
 };
-static u8 sQuestBackdropWindowId = WINDOW_NONE;
-static u8 sQuestHeaderWindowId = WINDOW_NONE;
-static u8 sQuestBodyWindowId = WINDOW_NONE;
-static u8 sQuestFooterWindowId = WINDOW_NONE;
+// Nonzero initializers would produce an initialized .data section that the
+// cartridge linker does not copy to RAM. Keep handles in zeroed BSS and
+// initialize them explicitly when opening the UI.
+static u8 sQuestBackdropWindowId;
+static u8 sQuestHeaderWindowId;
+static u8 sQuestBodyWindowId;
+static u8 sQuestFooterWindowId;
+static bool8 sQuestWindowsCreated;
 static u8 sQuestTab = QUEST_TAB_CURRENT;
 static u8 sCompletedScroll = 0;
 
@@ -559,6 +563,13 @@ void QuestLog_Open(void)
 {
     u8 completedCount = CountCompletedQuests();
 
+    sQuestBackdropWindowId = WINDOW_NONE;
+    sQuestHeaderWindowId = WINDOW_NONE;
+    sQuestBodyWindowId = WINDOW_NONE;
+    sQuestFooterWindowId = WINDOW_NONE;
+    // Must be TRUE before AddWindow: partial failure calls QuestLog_Close.
+    sQuestWindowsCreated = TRUE;
+
     sQuestTab = QUEST_TAB_CURRENT;
     sCompletedScroll = (completedCount > QUESTS_VISIBLE_COMPLETED)
                      ? completedCount - QUESTS_VISIBLE_COMPLETED
@@ -590,6 +601,10 @@ void QuestLog_Close(void)
         CopyBgTilemapBufferToVram(0);
     }
 
+    // QuestLog_Close can be reached during Start Menu cleanup before Open.
+    if (!sQuestWindowsCreated)
+        return;
+
     if (sQuestHeaderWindowId != WINDOW_NONE)
     {
         RemoveWindow(sQuestHeaderWindowId);
@@ -613,13 +628,16 @@ void QuestLog_Close(void)
         RemoveWindow(sQuestBackdropWindowId);
         sQuestBackdropWindowId = WINDOW_NONE;
     }
+    sQuestWindowsCreated = FALSE;
 }
 
 bool8 QuestLog_Update(void)
 {
     u8 completedCount = CountCompletedQuests();
 
-    if (sQuestHeaderWindowId == WINDOW_NONE || sQuestBodyWindowId == WINDOW_NONE)
+    if (!sQuestWindowsCreated
+     || sQuestHeaderWindowId == WINDOW_NONE
+     || sQuestBodyWindowId == WINDOW_NONE)
         return TRUE;
 
     if (JOY_NEW(B_BUTTON))
