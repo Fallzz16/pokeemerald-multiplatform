@@ -1127,3 +1127,23 @@ Próximos P0: conferir workflow final, resolver regressões, testes reais Window
 - Eventos prioritários: NPC Harbor (8,7) e warps (6,12) nas salas Lorelei/Bruno/Agatha. O relatório está detalhado em `docs/KANTO_V24_TILE_ACCESSIBILITY_PTBR.md`.
 - Saves, SaveBlock, contagem de treinadores (50), contagem de flags (221), 114 mapas, 160 itens e ABI não foram alterados pela ferramenta. Rollback: V0.23; PR draft #62 baseada na V0.23.
 - P0: QA manual Windows de mapas, batalhas, fósseis, save/reload e regressão Hoenn; PR V0.25 #61 cuida do GBA de forma isolada; P1: história/arte/Elite Four; P2: LAN entre PCs e Android após QA.
+
+
+## Kanto V0.25 — build GBA moderno isolado (2026-10-23)
+
+- Branch: `feature/kanto-v25-gba-recovery-modern-legacy`, partindo da V0.24 commit `f36abb8ba3fa7234b6a9a65fa7c9ce142ca6d5ea`. Não alterar branches antigas nem fundir automaticamente.
+- `include/gba/macro.h`: condição `MODERN` agora verifica valor (corrige ativação indevida dos asserts C11 no agbcc).
+- `include/sound_mixer.h`: alinha o buffer por atributo apenas na toolchain moderna; antiga preserva tipo e tamanho, requer auditoria do layout real.
+- `.github/workflows/build.yml`: build GBA moderno obrigatório independente de `Compare`, com conteúdo Kanto real importado, limite de 32 MiB, SHA256 e logs/artifacts; compatibilidade agbcc testada separadamente, com falha diagnosticada como não bloqueante. Comparação binária com ROM original não é teste válido para esta modificação.
+- `tests/test_gba_syscall_guards.py`: expansão DMA com `MODERN=0/1`, verificação de guards e mixer. CI Windows V0.24 habilitado também para esta branch.
+- `docs/KANTO_V25_GBA_RECOVERY_PTBR.md`: especificação, reprodução, riscos, rollback. **Apenas geração de ROM, não gameplay.** Sem modificar SaveBlock, flags, scripts, trainers ou IDs; emulador/mGBA, áudio, saves e Android ainda exigem QA.
+- Observar o HEAD exato e os jobs/artefatos antes de anunciar GBA recuperado. Se houver erro, registrar a primeira falha verificada e corrigir iterativamente.
+
+## 76. Kanto V0.25 — ROM GBA ARM moderna recuperada; QA visual de novo jogo
+
+- Branch `feature/kanto-v25-gba-recovery-modern-legacy` sobre V0.24 / PR #62, PR GBA #61 draft. Base FireRed fixa. Correções de `MODERN=0`, seleção de fontes específicas de PC/GBA, MP2K ASM versus mixer float, buffer 8-bit, scripts GAS e QuestLog BSS eliminam os bloqueios do compilador ARM moderno.
+- `MODERN=1 COMPARE=0` comprovadamente gerou `pokeemerald_modern.gba` (32 MiB preenchidos; conteúdo efetivo ~18,65 MB). Linker mostrou EWRAM 249.712/262.144 e IWRAM 30.420/32.768; folga pequena. Header e SHA256 verificados via `tools/kanto/gba_rom_audit.py`, BSS por `tools/kanto/gba_memory_audit.py`.
+- [GBA + mGBA CI 40054551944](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40054551944), SHA `6f257ce5`, SUCCESS. Capturas reais de 30.000 frames mostram boot copyright, animação, tela de título, NEW GAME, Birch e caminhão inicial de Littleroot; **não** comprovam movimento livre, combate, Kanto nem save/reload. [Windows QA 40052551885](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40052551885) e Kanto Windows 40052546851 foram SUCCESS na base de teste anterior, sem alterar saves.
+- HEAD `818587c8` inclui tentativa de saída do caminhão por teclas no mGBA até 45.000 frames; warps do mapa `InsideOfTruck` em (4,1..3) após triggers (3,1..3). Build GBA moderno sucesso em [Actions 40054910573](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40054910573); confirmar resultado visual do QA antes de afirmar a travessia.
+- Job `agbcc` legado ainda falha em unions anônimas de `sound_mixer.h` e tipos de `music_player.h`, mas não bloqueia a ROM moderna. Documentado em `docs/KANTO_V25_GBA_RECOVERY_PTBR.md` com comandos, artefatos, rollback e limites. CI mGBA consultivo com timeout/retries de apt para não travar em mirrors.
+- P0: sair caminhão, menus/overworld, save e reload isolado, Hoenn/Kanto/Iténs/Ginásios/Fósseis e memória real. P1: rede entre dois PCs, Android e hardware. Não modificar saves pessoais nem declarar release pronta.

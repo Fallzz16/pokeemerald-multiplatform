@@ -108,7 +108,12 @@ struct SoundMixerState {
     void *reversed4;
     void *reserved5;
     struct MixerSource chans[MAX_SAMPLE_CHANNELS];
+#if MODERN
     __attribute__((aligned(4))) float outBuffer[MIXED_AUDIO_BUFFER_SIZE * 2];
+#else
+    // agbcc cannot parse the preceding member attribute. GBA float has 4-byte alignment.
+    float outBuffer[MIXED_AUDIO_BUFFER_SIZE * 2];
+#endif
     //s8 outBuffer[MIXED_AUDIO_BUFFER_SIZE * 2];
 };
 

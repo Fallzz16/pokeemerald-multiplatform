@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feature/kanto-v24-tile-accessibility-qa
+      - feature/kanto-v25-gba-recovery-modern-legacy
   workflow_dispatch:
 permissions:
   contents: read

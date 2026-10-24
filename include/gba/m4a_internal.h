@@ -166,7 +166,13 @@ struct SoundChannel
 };
 
 #define MAX_DIRECTSOUND_CHANNELS 12
-#define PCM_DMA_BUF_SIZE 4907 // size of Direct Sound buffer
+// Native desktop mixing uses 32-bit float stereo buffers; GBA MP2K uses the
+// original 8-bit two-block DMA buffer. These cannot share the same ABI.
+#ifdef PORTABLE
+#define PCM_DMA_BUF_SIZE 4907
+#else
+#define PCM_DMA_BUF_SIZE 1584
+#endif
 
 struct MusicPlayerInfo;
 
@@ -217,7 +223,11 @@ struct SoundInfo
     ExtVolPitFunc ExtVolPit;
     u8 gap2[16];
     struct SoundChannel chans[MAX_DIRECTSOUND_CHANNELS];
+#ifdef PORTABLE
     float pcmBuffer[PCM_DMA_BUF_SIZE * 2];
+#else
+    s8 ALIGNED(4) pcmBuffer[PCM_DMA_BUF_SIZE * 2];
+#endif
 };
 
 struct SongHeader

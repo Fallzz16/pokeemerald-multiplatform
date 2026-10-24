@@ -15,18 +15,24 @@ extern void * const gMPlayJumpTableTemplate[];
 extern const u8 gScaleTable[];
 extern const u32 gFreqTable[];
 extern const u8 gClockTable[];
+#ifdef PORTABLE
 float audioBuffer [MIXED_AUDIO_BUFFER_SIZE];
+#endif
 
+#ifdef PORTABLE
 u32 umul3232H32(u32 a, u32 b) {
     u64 result = a;
     result *= b;
     return result >> 32;
 }
+#endif // PORTABLE: GBA has this symbol in MP2K/SIO assembly
 
+#ifdef PORTABLE
 void SoundMainBTM(void *ptr)
 {
     CpuFill32(0, ptr, 0x40);
 }
+#endif // PORTABLE: GBA has this symbol in MP2K/SIO assembly
 
 // Removes chan from the doubly-linked list of channels associated with chan->track.
 // Gonna rename this to like "FreeChannel" or something, similar to VGMS
@@ -191,11 +197,13 @@ u8 ConsumeTrackByte(struct MP2KTrack *track) {
     return SafeDereferenceU8(ptr);
 }
 
+#ifdef PORTABLE
 void MPlayJumpTableCopy(MPlayFunc *mplayJumpTable) {
     for (uf8 i = 0; i < 36; i++) {
         mplayJumpTable[i] = SafeDereferenceVoidPtr(&gMPlayJumpTableTemplate[i]);
     }
 }
+#endif // PORTABLE: GBA has this symbol in MP2K/SIO assembly
 
 // Ends the current track. (Fine as in the Italian musical word, not English)
 void MP2K_event_fine(struct MP2KPlayerState *unused, struct MP2KTrack *track) {
@@ -508,6 +516,7 @@ returnEarly: ;
     player->lockStatus = PLAYER_UNLOCKED;
 }
 
+#ifdef PORTABLE
 void TrackStop(struct MusicPlayerInfo *player, struct MusicPlayerTrack *track) {
     struct MP2KTrack *mp2kTrack = (struct MP2KTrack *)track;
     if (mp2kTrack->status & 0x80) {
@@ -525,6 +534,7 @@ void TrackStop(struct MusicPlayerInfo *player, struct MusicPlayerTrack *track) {
         mp2kTrack->chan = NULL;
     }
 }
+#endif // PORTABLE: GBA has this symbol in MP2K/SIO assembly
 
 void ChnVolSetAsm(struct MixerSource *chan, struct MP2KTrack *track) {
     s8 forcedPan = chan->rhythmPan;
@@ -747,6 +757,7 @@ void MP2K_event_mod(struct MP2KPlayerState *unused, struct MP2KTrack *track) {
     }
 }
 
+#ifdef PORTABLE
 void m4aSoundVSync(void)
 {
     struct SoundMixerState *mixer = (struct SoundMixerState *)SOUND_INFO_PTR;
@@ -800,6 +811,7 @@ void m4aSoundVSync(void)
     }
 #endif
 }
+#endif // PORTABLE: GBA has this symbol in MP2K/SIO assembly
 
 #if 0
 // In:
