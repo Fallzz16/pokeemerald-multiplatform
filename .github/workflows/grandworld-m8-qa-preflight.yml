@@ -46,6 +46,7 @@ jobs:
           set -euo pipefail
           python3 -m compileall -q grandworld/tools/grandworld
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_*.py' -v
+          luac -p grandworld/tools/grandworld/lua/GrandWorldOamBudget.lua
       - name: Generate three independent Lua test variants, fail closed
         run: |
           set -euo pipefail
