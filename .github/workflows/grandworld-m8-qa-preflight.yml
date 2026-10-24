@@ -51,6 +51,8 @@ jobs:
           python3 grandworld/tools/grandworld/extend_story_save_qa.py world/test/overworld/lua/StoryProgress.lua world/test/overworld/lua/GrandWorldHeroSave.lua
           luac -p world/test/overworld/lua/CatchTutorial.lua
           luac -p world/test/overworld/lua/GrandWorldHubParty.lua
+          python3 grandworld/tools/grandworld/extend_six_routes_qa.py world/test/overworld/lua/GrandWorldHubParty.lua world/test/overworld/lua/GrandWorldSixRoutes.lua
+          luac -p world/test/overworld/lua/GrandWorldSixRoutes.lua
           luac -p world/test/overworld/lua/GrandWorldHeroSave.lua
           python3 grandworld/tools/grandworld/generate_hero_save_matrix.py world/test/overworld/lua/GrandWorldHeroSave.lua world/test/overworld/lua
           for hero in Brendan May Red Leaf Ethan Lyra; do
