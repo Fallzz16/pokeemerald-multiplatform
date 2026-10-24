@@ -4,6 +4,7 @@ on:
     paths:
       - '.github/workflows/grandworld-m8-performance-build.yml'
       - 'tools/grandworld/optimize_overworld_budget.py'
+      - 'tools/grandworld/apply_grass_only.py'
       - 'tools/grandworld/tests/test_optimize_overworld_budget.py'
       - 'tools/grandworld/audit_lz77_resources.py'
       - 'tools/grandworld/tests/test_audit_lz77_resources.py'
@@ -41,6 +42,7 @@ jobs:
           python3 grandworld/tools/grandworld/add_hero_profiles.py world
           python3 grandworld/tools/grandworld/add_kanto_avatar.py world
           python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --report m8-perf-profile.json
+          python3 grandworld/tools/grandworld/apply_grass_only.py world --apply --report postm8-grass-only.json
           git -C world diff --check
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_*.py'
       - name: Compile baseline -O2 without LTO
