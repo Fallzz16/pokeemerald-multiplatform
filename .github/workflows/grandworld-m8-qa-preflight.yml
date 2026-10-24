@@ -76,4 +76,8 @@ jobs:
           python3 grandworld/tools/grandworld/expand_gen4_pilot.py world > gen4-preflight.log
           grep -q '"family_count": 31' gen4-preflight.log
           grep -q 'DRY RUN - no source changes' gen4-preflight.log
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --with-gen5-trial > gen5-preflight.log
+          grep -q '"family_count": 43' gen5-preflight.log
+          grep -q '"gen5_trial_family_count": 12' gen5-preflight.log
+          grep -q 'DRY RUN - no source changes' gen5-preflight.log
           test -z "$(git -C world status --porcelain -- src/data/wild_encounters.json include/config/species_enabled.h test/overworld/ValidateGen13.py)"
