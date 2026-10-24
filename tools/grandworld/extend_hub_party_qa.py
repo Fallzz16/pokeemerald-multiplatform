@@ -61,12 +61,14 @@ REPLACEMENTS = [
         'local hubPass\nlocal booted = false\n' + HELPERS,
     ),
     (
-        '  local said = yesNo(0, "hubPassConfirm")',
+        '  F.w16(F.sb1() + S.SaveBlock1.registeredItem, hubPass)\n  F.press("Select", 2); F.idle(90)\n  -- Cursor rests on NO by design',
         '''  local gwPartyMale = gwPrepareSinglePokemon()
   if not gwPartyMale then return end
   varSet(GW_HERO, 2) -- Red identity, male; do not fake name-menu coverage
   gwTravelProbe("before male hub return", gwPartyMale, 2)
-  local said = yesNo(0, "hubPassConfirm")''',
+  F.w16(F.sb1() + S.SaveBlock1.registeredItem, hubPass)
+  F.press("Select", 2); F.idle(90)
+  -- Cursor rests on NO by design''',
     ),
     (
         '  F.shot("s1_back_in_hub")',
@@ -109,7 +111,7 @@ def build(source: str) -> str:
         if result.count(anchor) != 1:
             raise ValueError(f"upstream hub suite drift at {anchor[:65]!r}: {result.count(anchor)}")
         result = result.replace(anchor, replacement, 1)
-    if result.count('gwTravelProbe(') != 9:  # declaration + eight actual checkpoints
+    if result.count('gwTravelProbe(') != 8:  # declaration + seven actual checkpoints
         raise ValueError("travel assertion checkpoints unexpectedly changed")
     return result
 
