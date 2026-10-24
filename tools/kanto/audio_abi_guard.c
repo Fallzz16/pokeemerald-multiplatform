@@ -10,8 +10,9 @@
 
 #define ABI_ASSERT(name, check) typedef char abi_##name[(check) ? 1 : -1]
 ABI_ASSERT(arm_pointer_32_bit, sizeof(void *) == 4);
-ABI_ASSERT(mixer_source_padding_d4, offsetof(struct MixerSource, padding7) == 0xD4);
-ABI_ASSERT(mixer_source_blockcount_d8, offsetof(struct MixerSource, blockCount) == 0xD8);
+ABI_ASSERT(mixer_source_padding_38, offsetof(struct MixerSource, padding7) == 0x38);
+ABI_ASSERT(mixer_source_blockcount_3c, offsetof(struct MixerSource, blockCount) == 0x3C);
+ABI_ASSERT(mixer_source_size_64, sizeof(struct MixerSource) == 0x40);
 ABI_ASSERT(instrument_size_twelve_bytes, sizeof(struct MP2KInstrument) == 12);
 ABI_ASSERT(instrument_wave_at_four, offsetof(struct MP2KInstrument, wav) == 4);
 ABI_ASSERT(wave_data_sample_offset_sixteen, offsetof(struct WaveData2, data) == 16);
