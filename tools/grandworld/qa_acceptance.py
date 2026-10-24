@@ -81,6 +81,24 @@ def load_suite_proof(world, suite, rom_md5, expected_checks, required=False):
             "passed": expected_checks, "rom_md5": rom_md5}
 
 
+def register_six_route_proofs(seen, proof):
+    """Map a complete 167-check same-ROM itinerary to its six directed gates."""
+    if proof is None:
+        return
+    routes = (
+        ("hoenn", "kanto"), ("kanto", "johto"), ("johto", "hoenn"),
+        ("hoenn", "johto"), ("johto", "kanto"), ("kanto", "hoenn"),
+    )
+    for origin, dest in routes:
+        case = f"travel.{origin}_to_{dest}"
+        if case not in manifest():
+            raise ValueError("six-route evidence no longer maps to acceptance manifest")
+        seen[case] = {
+            **proof, "proven_real_gate": f"{origin}_to_{dest}",
+            "scope": "physical hub travel and unchanged party, not save/reload",
+        }
+
+
 def report(world):
     rom=(world/"pokemonworld.gba").read_bytes()
     if hashlib.sha1(rom[0x04:0xA0]).hexdigest() != '17daa0fec02fc33c0f6abb549a8b80b6613b48ee':
@@ -114,15 +132,7 @@ def report(world):
     # physical destination, stored active region and byte-identical party.
     # Only the full 167/167 verdict against this exact cartridge certifies them.
     six = load_suite_proof(world, "GrandWorldSixRoutes", md5, 167)
-    if six is not None:
-        for origin, dest in (
-            ("hoenn", "kanto"), ("kanto", "johto"), ("johto", "hoenn"),
-            ("hoenn", "johto"), ("johto", "kanto"), ("kanto", "hoenn"),
-        ):
-            seen[f"travel.{origin}_to_{dest}"] = {
-                **six, "proven_real_gate": f"{origin}_to_{dest}",
-                "scope": "physical hub travel and unchanged party, not save/reload",
-            }
+    register_six_route_proofs(seen, six)
 
     # The S.S. Aqua transfer independently proves the Johto-to-Kanto case.
     # If both travel proofs exist, keep BOTH instead of increasing the count.
