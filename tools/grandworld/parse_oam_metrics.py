@@ -17,7 +17,7 @@ def report(log, rom):
         frames, low, high, avg = int(frames_s), int(min_s), int(max_s), float(avg_s)
         if scenario in seen:
             raise ValueError("duplicated OAM scenario in mGBA log")
-        if frames < 60 or not 0 <= low <= avg + 0.001 <= high + 0.001 <= 128:
+        if frames < 60 or not 1 <= low <= avg + 0.001 <= high + 0.001 < 128:
             raise ValueError("invalid OAM hardware sample values")
         seen[scenario] = {
             "frames": frames,
@@ -36,7 +36,7 @@ def report(log, rom):
         "hardware_oam_slots": 128,
         "fps_measured": False,
         "cpu_cycles_measured": False,
-        "notes": "Enabled OAM object count measured over actual emulated frames. A one-frame occupancy peak is not FPS proof.",
+        "notes": "Screen-intersecting OAM objects measured over actual emulated frames; excludes parked dummy entries. Not an FPS measurement.",
     }
 
 
