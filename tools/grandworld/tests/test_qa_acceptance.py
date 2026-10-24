@@ -147,7 +147,7 @@ class EvidenceContractTests(unittest.TestCase):
         self.assertIsNone(proof())
         for name, count in cases:
             (output / (name + ".PASS")).write_text(
-                f"PASS {count}/{count} rom={md5} at=2026-10-24T06:31:54Z suite={name}\\n")
+                f"PASS {count}/{count} rom={md5} at=2026-10-24T06:31:54Z suite={name}")
         got = proof()
         self.assertEqual(len(got["suites"]), 3)
         self.assertTrue(all(x["rom_md5"] == md5 for x in got["suites"]))
