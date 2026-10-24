@@ -171,6 +171,19 @@ jobs:
             echo "CatchTutorial attempt $n exit=$rc"
             grep -E '(VERDICT|\\[FAIL\\]|FAIL|catch tutorial battle)' "$GITHUB_WORKSPACE/m8-catch-$n.log" | tail -18 || true
           done
+      - name: Diagnose Wally B-input hypothesis without changing acceptance test (advisory)
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          python3 grandworld/tools/grandworld/diagnose_catch_tutorial.py \
+            world/test/overworld/lua/CatchTutorial.lua \
+            world/test/overworld/lua/CatchTutorialNoWallyB.lua
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=240 test/overworld/mgba-run.sh \
+            test/overworld/lua/CatchTutorialNoWallyB.lua "$PWD/pokemonworld.gba" \
+            | tee "$GITHUB_WORKSPACE/m8-catch-no-wally-b.log"
       - name: Bound entire optional overworld sweep to protect QA turnaround
         continue-on-error: true
         shell: bash
@@ -192,6 +205,7 @@ jobs:
             m8-hub-tour.log
             m8-hub-recross.log
             m8-catch-tutorial.log
+            m8-catch-no-wally-b.log
             m8-catch-tutorial.FAIL
             patched-gen4-build.log
             patched-gen4-validate.log
