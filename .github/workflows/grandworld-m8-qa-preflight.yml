@@ -1,0 +1,58 @@
+name: Grand World M8 - Source and Lua Preflight
+on:
+  pull_request:
+    paths:
+      - 'tools/grandworld/**'
+      - '.github/workflows/grandworld-m8-qa-preflight.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: grandworld-m8-preflight-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+jobs:
+  source:
+    name: Strict patch source preflight (no cartridge binary)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Checkout Grand World changes
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Checkout pinned World test sources
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            test/overworld/lua/
+            test/overworld/ValidateGen13.py
+            src/data/wild_encounters.json
+            include/config/species_enabled.h
+      - name: Install Lua syntax compiler
+        run: sudo apt-get update && sudo apt-get install -y lua5.4
+      - name: Strict Python unit and syntax checks
+        run: |
+          set -euo pipefail
+          python3 -m compileall -q grandworld/tools/grandworld
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_*.py' -v
+      - name: Generate three independent Lua test variants, fail closed
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/fix_catch_tutorial_input.py world/test/overworld/lua/CatchTutorial.lua
+          python3 grandworld/tools/grandworld/extend_hub_party_qa.py world/test/overworld/lua/HubPassReCross.lua world/test/overworld/lua/GrandWorldHubParty.lua
+          python3 grandworld/tools/grandworld/extend_story_save_qa.py world/test/overworld/lua/StoryProgress.lua world/test/overworld/lua/GrandWorldHeroSave.lua
+          luac -p world/test/overworld/lua/CatchTutorial.lua
+          luac -p world/test/overworld/lua/GrandWorldHubParty.lua
+          luac -p world/test/overworld/lua/GrandWorldHeroSave.lua
+          git -C world diff --check
+      - name: Verify exact Gen4 pilot dry run and unchanged original files
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world > gen4-preflight.log
+          grep -q '"family_count": 31' gen4-preflight.log
+          grep -q 'DRY RUN - no source changes' gen4-preflight.log
+          test -z "$(git -C world status --porcelain -- src/data/wild_encounters.json include/config/species_enabled.h test/overworld/ValidateGen13.py)"
