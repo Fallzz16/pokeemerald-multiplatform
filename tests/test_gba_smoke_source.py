@@ -27,6 +27,7 @@ class HeadlessGbaProbeTests(unittest.TestCase):
         self.assertIn("  gba-headless-smoke:", workflow)
         self.assertIn("    continue-on-error: true", workflow)
         self.assertIn("gba-navigation-frame-45000.ppm", workflow)
+        self.assertIn("timeout -k 10 180 apt-get update", workflow)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

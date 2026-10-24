@@ -38,3 +38,11 @@ Apresentar **o que foi feito, o que foi testado, o que falta e o próximo foco**
 Ferramenta `tools/kanto/tile_audit.py` e workflow de 114 mapas: [CI 39918532192 (SUCCESS)](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/39918532192). Relatório anexo: 25 mapas com alertas, 4 eventos possivelmente inacessíveis, 21 mapas com caminhos de warps divididos, zero eventos fora das dimensões. Lista de mapas/limites em `docs/KANTO_V24_TILE_ACCESSIBILITY_PTBR.md`. **Não** confundir heurística estática com gameplay ou falhas confirmadas.
 
 P0: reproduzir no emulador o NPC Harbor, warps de Lorelei/Bruno/Agatha e Mt. Moon, Saffron Gym, Seafoam e Victory Road; validar caminhos reais e flags após reload com saves descartáveis. P0 paralelo: finalizar ROM GBA ARM moderno e corrigir toolchain agbcc separadamente na PR #61, sem regressão Windows. Não remover tiles, alterar scripts ou tocar em saves para silenciar avisos.
+
+## V0.25 — build GBA moderno verde, QA mGBA em expansão
+
+- `MODERN=1 COMPARE=0` produziu ROM GBA válida de 32 MiB. [CI 40054551944](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40054551944) validou cabeçalho, linker, áudio MP2K e mGBA até o caminhão de Littleroot após NEW GAME. Isto **não** equivale a QA completa da ROM nem à prova de saves.
+- P0: sair do caminhão via triggers (3,1..3) → warp (4,1..3), passear, pegar item, testar batalha e save/reload com save descartável. Revisão 45 mil quadros 818587c8 implementada; não alegar warp antes de inspecionar screenshots.
+- P0: revisar limites EWRAM ~95,26%, IWRAM ~92,83%; segurança do cartucho e SRAM ao executar mais regiões.
+- P1: `agbcc` antigo ainda falha nas declarações anônimas de áudio; manter não-bloqueante, com log e sem simular sucesso. Priorizar ROM moderna estável antes de recuperar a comparação legado.
+- P1/P2: Windows entre 2 PCs, Android, história Kanto, sprites e QA longa. Sem merge da PR #61 antes da validação visual.
