@@ -111,11 +111,17 @@ def load_suite_group_proof(world, rom_md5, case, suite_counts, scope):
     if not suite_counts or len(suite_counts) != len(set(suite_counts)):
         raise ValueError("invalid independent acceptance suite group")
     proofs = []
+    incomplete = False
     for suite, expected_checks in suite_counts:
+        # Examine every stamp even when an earlier optional suite is missing.
+        # A later contradictory or stale verdict must never be hidden by absence.
         proof = load_suite_proof(world, suite, rom_md5, expected_checks)
         if proof is None:
-            return None
-        proofs.append(proof)
+            incomplete = True
+        else:
+            proofs.append(proof)
+    if incomplete:
+        return None
     return {"source": "multiple headless mGBA Lua suites", "scope": scope,
             "rom_md5": rom_md5, "suites": proofs}
 
