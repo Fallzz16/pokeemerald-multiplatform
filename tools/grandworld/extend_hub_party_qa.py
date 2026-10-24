@@ -13,6 +13,11 @@ import tempfile
 HELPERS = r'''
 -- Grand World M8: one real Pokemon, full byte-for-byte integrity over hub travel.
 local GW_HERO = 0x40FB
+local function gwHeroVar()
+  -- Read directly. Upstream's local varGet is declared *after* these helpers,
+  -- so a call to varGet here resolves to a nil Lua global.
+  return F.r16(F.sb1() + S.SaveBlock1.vars + (GW_HERO - 0x4000) * 2)
+end
 local function gwPartyFingerprint()
   local bytes = {}
   for i = 0, S.Pokemon.size - 1 do
@@ -27,8 +32,8 @@ local function gwTravelProbe(label, fingerprint, hero)
   F.check("GW " .. label .. ": Pokemon bytes unchanged",
     gwPartyFingerprint() == fingerprint)
   F.check("GW " .. label .. ": protagonist identity retained",
-    varGet(GW_HERO) == hero,
-    "hero=" .. tostring(varGet(GW_HERO)) .. " expected=" .. tostring(hero))
+    gwHeroVar() == hero,
+    "hero=" .. tostring(gwHeroVar()) .. " expected=" .. tostring(hero))
 end
 
 local function gwPrepareSinglePokemon()
