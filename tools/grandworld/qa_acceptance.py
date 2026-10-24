@@ -33,6 +33,8 @@ def manifest():
 
 def report(world):
     rom=(world/"pokemonworld.gba").read_bytes()
+    if hashlib.sha1(rom[0x04:0xA0]).hexdigest() != '17daa0fec02fc33c0f6abb549a8b80b6613b48ee':
+        raise ValueError('complete GBA boot logo hash does not match actual cartridge header')
     if len(rom)!=33554432 or rom[0xB2]!=0x96 or rom[0xAC:0xB0]!=b'BPEE':
         raise ValueError("invalid World ROM header or size")
     if (sum(rom[0xA0:0xBD])+rom[0xBD]+0x19)&255:
