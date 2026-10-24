@@ -107,6 +107,32 @@ class EvidenceContractTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "conflicting"):
             qa.load_suite_proof(world, "SSAquaKantoCrossing", "A" * 32, 94)
 
+    def test_exact_six_travel_cases_require_single_complete_suite(self):
+        from copy import deepcopy
+        data = {
+            "source": "headless mGBA Lua",
+            "suite": "GrandWorldSixRoutes",
+            "passed": 167,
+            "rom_md5": "A" * 32,
+        }
+        seen = {"performance.memory": {"source": "linker"}}
+        qa.register_six_route_proofs(seen, None)
+        self.assertEqual(set(seen), {"performance.memory"})
+        qa.register_six_route_proofs(seen, data)
+        keys = {case for case in seen if case.startswith("travel.")}
+        self.assertEqual(len(keys), 6)
+        self.assertEqual(keys, {case for case in qa.manifest()
+                                if case.startswith("travel.")})
+        self.assertEqual(len(seen), 7)
+        for case in keys:
+            self.assertIn(seen[case]["proven_real_gate"], case)
+            self.assertEqual(seen[case]["rom_md5"], "A" * 32)
+            self.assertEqual(seen[case]["passed"], 167)
+        self.assertNotIn("proven_real_gate", data)
+        seen["travel.hoenn_to_kanto"]["passed"] = 0
+        self.assertEqual(seen["travel.kanto_to_johto"]["passed"], 167)
+
+
 
 if __name__ == "__main__":
     unittest.main()
