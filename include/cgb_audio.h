@@ -20,7 +20,13 @@ struct AudioCGB{
     bool8 DAC[4];
     float WAVRAM[32];
     u16 ch4LFSR [2];
+#if MODERN
     __attribute__((aligned(4))) float outBuffer[MIXED_AUDIO_BUFFER_SIZE * 2];
+#else
+    /* agbcc's old parser rejects field-level GNU alignment attributes.
+     * float is already 4-byte aligned in the GBA ABI. */
+    float outBuffer[MIXED_AUDIO_BUFFER_SIZE * 2];
+#endif
 };
 
 void cgb_audio_init(u32 rate);

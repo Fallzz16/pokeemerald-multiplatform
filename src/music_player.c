@@ -9,7 +9,32 @@
 // #define POKEMON_EXTENSIONS
 #define MIXED_AUDIO_BUFFER_SIZE 4907
 
+/* The old agbcc C89 parser cannot expose anonymous union member aliases.
+ * These accesses preserve the exact 4-byte storage layouts of the modern
+ * MP2K structs. Verify the GBA audio ABI and actual playback before merge. */
+#if MODERN
 static u32 MidiKeyToFreq(struct WaveData2 *wav, u8 key, u8 pitch);
+#define MP2K_GROUP(ins) ((ins)->group)
+#define MP2K_KEY_SPLIT(ins) ((ins)->keySplitTable)
+#define MP2K_CHAN_STATUS(ch) ((ch)->cgbStatus)
+#define MP2K_CHAN_LENGTH(ch) ((ch)->length)
+#define MP2K_CHAN_SWEEP(ch) ((ch)->sweep)
+#else
+extern u32 MidiKeyToFreq(struct WaveData2 *wav, u8 key, u8 pitch);
+#define MP2K_GROUP(ins) ((struct MP2KInstrument *)((ins)->wav))
+#define MP2K_KEY_SPLIT(ins) (*(u8 **)(void *)&(ins)->attack)
+#define MP2K_CHAN_STATUS(ch) (((u8 *)&(ch)->fw)[1])
+#define MP2K_CHAN_LENGTH(ch) (((u8 *)&(ch)->fw)[2])
+#define MP2K_CHAN_SWEEP(ch) (((u8 *)&(ch)->fw)[3])
+static u32 MP2K_CompatCtz(u32 x)
+{
+    u32 bits = 0;
+    if (x == 0) return 32;
+    while ((x & 1) == 0) { ++bits; x >>= 1; }
+    return bits;
+}
+#define __builtin_ctz(x) MP2K_CompatCtz(x)
+#endif
 static void ChnVolSetAsm(struct MixerSource *chan, struct MP2KTrack *track);
 extern void * const gMPlayJumpTableTemplate[];
 extern const u8 gScaleTable[];
@@ -38,11 +63,12 @@ void SoundMainBTM(void *ptr)
 // Gonna rename this to like "FreeChannel" or something, similar to VGMS
 void MP2KClearChain(struct MixerSource *chan) {
     struct MP2KTrack *track = chan->track;
+    struct MixerSource *next, *prev;
     if (chan->track == NULL) {
         return;
     }
-    struct MixerSource *next = chan->next;
-    struct MixerSource *prev = chan->prev;
+    next = chan->next;
+    prev = chan->prev;
     
     if (prev != NULL) {
         prev->next = next;
@@ -208,7 +234,8 @@ void MPlayJumpTableCopy(MPlayFunc *mplayJumpTable) {
 // Ends the current track. (Fine as in the Italian musical word, not English)
 void MP2K_event_fine(struct MP2KPlayerState *unused, struct MP2KTrack *track) {
     struct MP2KTrack *r5 = track;
-    for (struct MixerSource *chan = track->chan; chan != NULL; chan = chan->next) {
+    struct MixerSource *chan;
+    for (chan = track->chan; chan != NULL; chan = chan->next) {
         if (chan->status & 0xC7) {
             chan->status |= 0x40;
         }
@@ -355,6 +382,7 @@ void MP2K_event_port(struct MP2KPlayerState *unused, struct MP2KTrack *track) {
 void MP2KPlayerMain(void *voidPtrPlayer) {
     struct MP2KPlayerState *player = (struct MP2KPlayerState *)voidPtrPlayer;
     struct SoundMixerState *mixer = (struct SoundMixerState *)SOUND_INFO_PTR;
+    u32 i;
 
     if (player->lockStatus != PLAYER_UNLOCKED) {
         return;
@@ -376,8 +404,8 @@ void MP2KPlayerMain(void *voidPtrPlayer) {
     player->tempoCounter += player->tempoInterval;
     while (player->tempoCounter >= 150) {
         u16 trackBits = 0;
-        
-        for (u32 i = 0; i < player->trackCount; i++) {
+
+        for (i = 0; i < player->trackCount; i++) {
             struct MP2KTrack *currentTrack = player->tracks + i;
             struct MixerSource *chan;
             if ((currentTrack->status & MPT_FLG_EXIST) == 0) {
@@ -434,6 +462,7 @@ void MP2KPlayerMain(void *voidPtrPlayer) {
             currentTrack->wait--;
             
             if (currentTrack->lfoSpeed != 0 && currentTrack->modDepth != 0) {
+                s8 r;
                 if (currentTrack->lfoDelayCounter != 0U) {
                     currentTrack->lfoDelayCounter--;
                     goto nextTrack;
@@ -441,7 +470,6 @@ void MP2KPlayerMain(void *voidPtrPlayer) {
                 
                 currentTrack->lfoSpeedCounter += currentTrack->lfoSpeed;
                 
-                s8 r;
                 if (currentTrack->lfoSpeedCounter >= 0x40U && currentTrack->lfoSpeedCounter < 0xC0U) {
                     r = 128 - currentTrack->lfoSpeedCounter;
                 } else if (currentTrack->lfoSpeedCounter >= 0xC0U) {
@@ -475,25 +503,27 @@ void MP2KPlayerMain(void *voidPtrPlayer) {
         player->tempoCounter -= 150;
     }
     
-    u32 i = 0;
+    i = 0;
 
     do {
         struct MP2KTrack *track = player->tracks + i;
+        struct MixerSource *chan;
 
         if ((track->status & MPT_FLG_EXIST) == 0 || (track->status & 0xF) == 0) {
             continue;
         }
         TrkVolPitSet((struct MusicPlayerInfo *)player, (struct MusicPlayerTrack *)track);
-        for (struct MixerSource *chan = track->chan; chan != NULL; chan = chan->next) {
+        for (chan = track->chan; chan != NULL; chan = chan->next) {
+            u8 cgbType;
             if ((chan->status & 0xC7) == 0) {
                 ClearChain(chan);
                 continue;
             }
-            u8 cgbType = chan->type & 0x7;
+            cgbType = chan->type & 0x7;
             if (track->status & MPT_FLG_VOLCHG) {
                 ChnVolSetAsm(chan, track);
                 if (cgbType != 0) {
-                    chan->cgbStatus |= 1;
+                    MP2K_CHAN_STATUS(chan) |= 1;
                 }
             }
             if (track->status & MPT_FLG_PITCHG) {
@@ -503,7 +533,7 @@ void MP2KPlayerMain(void *voidPtrPlayer) {
                 }
                 if (cgbType != 0) {
                     chan->freq = mixer->cgbCalcFreqFunc(cgbType, key, track->pitchCalculated);
-                    chan->cgbStatus |= 0x2;
+                    MP2K_CHAN_STATUS(chan) |= 0x2;
                 } else {
                     chan->freq = MidiKeyToFreq((struct WaveData2 *)chan->wav, key, track->pitchCalculated);
                 }
@@ -538,13 +568,14 @@ void TrackStop(struct MusicPlayerInfo *player, struct MusicPlayerTrack *track) {
 
 void ChnVolSetAsm(struct MixerSource *chan, struct MP2KTrack *track) {
     s8 forcedPan = chan->rhythmPan;
+    u32 leftVolume;
     u32 rightVolume = (u8)(forcedPan + 128) * chan->velocity * track->volRightCalculated / 128 / 128;
     if (rightVolume > 0xFF) {
         rightVolume = 0xFF;
     }
     chan->rightVol = rightVolume;
     
-    u32 leftVolume = (u8)(127 - forcedPan) * chan->velocity * track->volLeftCalculated / 128 / 128;
+    leftVolume = (u8)(127 - forcedPan) * chan->velocity * track->volLeftCalculated / 128 / 128;
     if (leftVolume > 0xFF) {
         leftVolume = 0xFF;
     }
@@ -553,6 +584,12 @@ void ChnVolSetAsm(struct MixerSource *chan, struct MP2KTrack *track) {
 
 void MP2K_event_nxx(u8 clock, struct MP2KPlayerState *player, struct MP2KTrack *track) { // ply_note
     struct SoundMixerState *mixer = (struct SoundMixerState *)SOUND_INFO_PTR;
+    struct MP2KInstrument *instrument;
+    struct MixerSource *chan;
+    s8 forcedPan;
+    u8 key, type, cgbType;
+    uf16 priority;
+    sf16 transposedKey;
     
     // A note can be anywhere from 1 to 4 bytes long. First is always the note length...
     track->gateTime = gClockTable[clock];
@@ -570,22 +607,22 @@ void MP2K_event_nxx(u8 clock, struct MP2KPlayerState *player, struct MP2KTrack *
     }
     
     // sp14
-    s8 forcedPan = 0;
+    forcedPan = 0;
     // First r4, then r9
-    struct MP2KInstrument *instrument = &track->instrument;
+    instrument = &track->instrument;
     // sp8
-    u8 key = track->key;
-    u8 type = instrument->type;
+    key = track->key;
+    type = instrument->type;
     
     if (type & (TONEDATA_TYPE_RHY | TONEDATA_TYPE_SPL)) {
         u8 instrumentIndex;
         if (instrument->type & TONEDATA_TYPE_SPL) {
-            instrumentIndex = instrument->keySplitTable[track->key];
+            instrumentIndex = MP2K_KEY_SPLIT(instrument)[track->key];
         } else {
             instrumentIndex = track->key;
         }
         
-        instrument = instrument->group + instrumentIndex;
+        instrument = MP2K_GROUP(instrument) + instrumentIndex;
         if (instrument->type & (TONEDATA_TYPE_RHY | TONEDATA_TYPE_SPL)) {
             return;
         }
@@ -598,13 +635,12 @@ void MP2K_event_nxx(u8 clock, struct MP2KPlayerState *player, struct MP2KTrack *
     }
     
     // sp10
-    uf16 priority = player->priority + track->priority;
+    priority = player->priority + track->priority;
     if (priority > 0xFF) {
         priority = 0xFF;
     }
     
-    u8 cgbType = instrument->type & TONEDATA_TYPE_CGB;
-    struct MixerSource *chan;
+    cgbType = instrument->type & TONEDATA_TYPE_CGB;
     
     if (cgbType != 0) {
         if (mixer->cgbChans == NULL) {
@@ -625,11 +661,12 @@ void MP2K_event_nxx(u8 clock, struct MP2KPlayerState *player, struct MP2KTrack *
         uf16 p = priority;
         struct MP2KTrack *t = track;
         bool32 foundStoppingChannel = FALSE;
-        chan = NULL;
         u8 maxChans = mixer->numChans;
         struct MixerSource *currChan = mixer->chans;
-        
-        for (uf8 i = 0; i < maxChans; i++, currChan++) {
+        uf8 i;
+        chan = NULL;
+
+        for (i = 0; i < maxChans; i++, currChan++) {
             if ((currChan->status & SOUND_CHANNEL_SF_ON) == 0) {
                 // Hey, we found a completely inactive channel! Let's use that.
                 chan = currChan;
@@ -697,7 +734,7 @@ void MP2K_event_nxx(u8 clock, struct MP2KPlayerState *player, struct MP2KTrack *
     ChnVolSetAsm(chan, track);
     
     // Avoid promoting keyShiftCalculated to u8 by splitting the addition into a separate statement
-    sf16 transposedKey = chan->key;
+    transposedKey = chan->key;
     transposedKey += track->keyShiftCalculated;
     if (transposedKey < 0) {
         transposedKey = 0;
@@ -705,11 +742,11 @@ void MP2K_event_nxx(u8 clock, struct MP2KPlayerState *player, struct MP2KTrack *
     
     if (cgbType != 0) {
         //struct CgbChannel *cgbChan = (struct CgbChannel *)chan;
-        chan->length = instrument->cgbLength;
+        MP2K_CHAN_LENGTH(chan) = instrument->cgbLength;
         if (instrument->panSweep & 0x80 || (instrument->panSweep & 0x70) == 0) {
-            chan->sweep = 8;
+            MP2K_CHAN_SWEEP(chan) = 8;
         } else {
-            chan->sweep = instrument->panSweep;
+            MP2K_CHAN_SWEEP(chan) = instrument->panSweep;
         }
         
         chan->freq = mixer->cgbCalcFreqFunc(cgbType, transposedKey, track->pitchCalculated);
@@ -725,6 +762,7 @@ void MP2K_event_nxx(u8 clock, struct MP2KPlayerState *player, struct MP2KTrack *
 }
 
 void MP2K_event_endtie(struct MP2KPlayerState *unused, struct MP2KTrack *track) {
+    struct MixerSource *chan;
     u8 key = *track->cmdPtr;
     if (key < 0x80) {
         track->key = key;
@@ -733,7 +771,7 @@ void MP2K_event_endtie(struct MP2KPlayerState *unused, struct MP2KTrack *track) 
         key = track->key;
     }
     
-    struct MixerSource *chan = track->chan;
+    chan = track->chan;
     while (chan != NULL) {
         if (chan->status & 0x83 && (chan->status & 0x40) == 0 && chan->untransposedKey == key) {
             chan->status |= 0x40;

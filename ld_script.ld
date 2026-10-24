@@ -10,11 +10,9 @@ MEMORY
     ROM    (rx) : ORIGIN = 0x8000000, LENGTH = 32M
 }
 
-/* Modify the following load addresses as needed to make more room. Alternately, delete both the
-   declarations below and their references further down to get rid of the gaps.                  */
-
-__anim_mon_load_address = 0x8b00000;
-__gfx_load_address = 0x8c00000;
+/* Nonmatching agbcc trial: pack sections sequentially within 32MB instead of
+ * original Emerald's hard-coded 0x08B00000 and 0x08C00000 slots, which
+ * overlap the extended project's .rodata/song data. */
 
 SECTIONS {
 
@@ -1300,13 +1298,13 @@ SECTIONS {
         data/multiboot_pokemon_colosseum.o(.rodata);
     } > ROM =0
 
-    anim_mon_front_pic_data __anim_mon_load_address :
+    anim_mon_front_pic_data :
     ALIGN(4)
     {
         src/anim_mon_front_pics.o(.rodata);
     } > ROM =0
 
-    gfx_data __gfx_load_address :
+    gfx_data :
     ALIGN(4)
     {
         src/graphics.o(.rodata);
@@ -1318,7 +1316,13 @@ SECTIONS {
         src/*.o(.text);
         src/*.o(.rodata);
         data/*.o(.rodata);
+        /* These const-initialized Quest Log tables land in .data under agbcc,
+         * but are immutable and belong in cartridge ROM, not discarded. */
+        src/quest_log.o(.data);
     } > ROM = 0
+
+    __anim_mon_load_address = ADDR(anim_mon_front_pic_data);
+    __gfx_load_address = ADDR(gfx_data);
 
     /* DWARF debug sections.
        Symbols in the DWARF debugging sections are relative to the beginning

@@ -127,6 +127,13 @@ jobs:
           cd agbcc
           ./build.sh
           ./install.sh ../
+      - name: Verify identical 32-bit ARM audio struct field offsets in both modes
+        run: |
+          set -euo pipefail
+          arm-none-eabi-gcc -std=gnu11 -DMODERN=0 -Iinclude -c \
+            tools/kanto/audio_abi_guard.c -o /tmp/gw_audio_legacy.o
+          arm-none-eabi-gcc -std=gnu11 -DMODERN=1 -Iinclude -c \
+            tools/kanto/audio_abi_guard.c -o /tmp/gw_audio_modern.o
       - name: Validate macro guard regression
         run: |
           python -m unittest discover -s tests -p test_gba_syscall_guards.py -v
