@@ -81,6 +81,11 @@ jobs:
           Path('m8-perf-memory-comparison.json').write_text(json.dumps(out,indent=2)+'\n')
           print(json.dumps(out,indent=2))
           PY
+      - name: Enforce native cartridge and linker headroom for both builds
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/evaluate_performance_budget.py world/pokemonworld.gba m8-perf-o2.log --output m8-o2-hardware-budget.json
+          python3 grandworld/tools/grandworld/evaluate_performance_budget.py world/pokemonworld-release.gba m8-perf-lto.log --output m8-release-hardware-budget.json
       - name: Audit pointer-referenced LZ77 assets (read only; no FPS claims)
         run: |
           set -euo pipefail
@@ -97,4 +102,6 @@ jobs:
             m8-perf-lto.log
             m8-perf-memory-comparison.json
             m8-perf-lz77-comparison.json
+            m8-o2-hardware-budget.json
+            m8-release-hardware-budget.json
           if-no-files-found: warn
