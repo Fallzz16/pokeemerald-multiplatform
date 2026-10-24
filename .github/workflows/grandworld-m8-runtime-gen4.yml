@@ -85,7 +85,7 @@ jobs:
           if len(m)<3:raise RuntimeError('linker memory readout missing')
           mem={k:int(v) for k,v in m[-3:]}
           assert mem['ROM'] < 33554432 and mem['EWRAM']<=262144 and mem['IWRAM']<=32768,mem
-          o={'sha':hashlib.sha256(b).hexdigest(),'size':len(b),'memory':mem,'families_enabled':Path('gen4-families.txt').read_text().splitlines(),'source_sha':Path('world/.git/HEAD').read_text().strip(),'gameplay_verified':False}
+          o={'sha':hashlib.sha256(b).hexdigest(),'size':len(b),'memory':mem,'families_enabled':sorted(set(Path('gen4-families.txt').read_text().splitlines())),'source_sha':__import__('subprocess').check_output(['git','-C','world','rev-parse','HEAD'],text=True).strip(),'gameplay_verified':False}
           Path('m8-integrated-gen4-evidence.json').write_text(json.dumps(o,indent=2))
           print(json.dumps(o,indent=2))
           PY
@@ -100,4 +100,7 @@ jobs:
             m8-integrated-gen4-evidence.json
             gen4-families.txt
             m8-gen4-encounters-evidence.json
+            grandworld/tools/grandworld/*.py
+            grandworld/tools/grandworld/*.c
+            grandworld/tools/grandworld/*.h
           if-no-files-found: warn
