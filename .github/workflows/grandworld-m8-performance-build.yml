@@ -5,6 +5,8 @@ on:
       - '.github/workflows/grandworld-m8-performance-build.yml'
       - 'tools/grandworld/optimize_overworld_budget.py'
       - 'tools/grandworld/tests/test_optimize_overworld_budget.py'
+      - 'tools/grandworld/audit_lz77_resources.py'
+      - 'tools/grandworld/tests/test_audit_lz77_resources.py'
   workflow_dispatch:
 permissions:
   contents: read
@@ -79,6 +81,11 @@ jobs:
           Path('m8-perf-memory-comparison.json').write_text(json.dumps(out,indent=2)+'\n')
           print(json.dumps(out,indent=2))
           PY
+      - name: Audit pointer-referenced LZ77 assets (read only; no FPS claims)
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/audit_lz77_resources.py world/pokemonworld.gba --compare world/pokemonworld-release.gba --output m8-perf-lz77-comparison.json
+          test -s m8-perf-lz77-comparison.json
       - name: Upload measurement logs only
         if: always()
         uses: actions/upload-artifact@v4
@@ -89,4 +96,5 @@ jobs:
             m8-perf-o2.log
             m8-perf-lto.log
             m8-perf-memory-comparison.json
+            m8-perf-lz77-comparison.json
           if-no-files-found: warn
