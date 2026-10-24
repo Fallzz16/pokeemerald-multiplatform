@@ -26,9 +26,8 @@ class OverworldBudgetTests(unittest.TestCase):
             "#define WE_OW_ENCOUNTERS                        TRUE\n", encoding="utf-8")
         self.encounter = self.root / "src/wild_encounter_ow.c"
         self.encounter.write_text(
-            "void UpdateOverworldWildEncounter(void) {\n  "
-            + mod.PRIOR_GUARD + "\n"
-            + mod.GUARD_OLD + "\n}\n", encoding="utf-8")
+            "void UpdateOverworldWildEncounter(void) {\n"
+            + mod.EARLY_OLD + mod.GUARD_OLD + "\n}\n", encoding="utf-8")
 
     def test_preflight_does_not_write(self):
         a = self.config.read_bytes()
@@ -46,10 +45,45 @@ class OverworldBudgetTests(unittest.TestCase):
         self.assertEqual(self.encounter.read_text(),
                          before.replace(mod.GUARD_OLD, mod.GUARD_NEW))
         self.assertEqual(self.encounter.read_text().count("FlagGet(DN_FLAG_SEARCHING)"), 1)
+        self.assertIn(mod.EARLY_NEW, self.encounter.read_text())
+        self.assertNotIn(mod.EARLY_OLD, self.encounter.read_text())
         self.assertIn("OW_FOLLOWERS_ENABLED           TRUE", self.config.read_text())
         self.assertIn("WE_OW_ENCOUNTERS", self.encounter_cfg.read_text())
         with self.assertRaises(ValueError):
             mod.apply(self.root, True)
+
+    def test_explicit_full_shadows_retains_aesthetic_flag(self):
+        original = self.config.read_bytes()
+        result = mod.apply(self.root, True, shadows="full")
+        self.assertEqual(result["resolved_shadow_mode"], "full")
+        self.assertEqual(self.config.read_bytes(), original)
+        self.assertIn(mod.EARLY_NEW, self.encounter.read_text())
+        self.assertNotIn(mod.GUARD_OLD, self.encounter.read_text())
+
+    def test_auto_prioritizes_sprite_budget_with_followers(self):
+        self.assertEqual(mod.apply(self.root, False)["resolved_shadow_mode"], "lean")
+        self.assertEqual(mod.apply(self.root, False, shadows="full")["resolved_shadow_mode"], "full")
+
+    def test_auto_keeps_full_shadows_without_followers(self):
+        self.config.write_text(self.config.read_text().replace(
+            "#define OW_FOLLOWERS_ENABLED           TRUE",
+            "#define OW_FOLLOWERS_ENABLED           FALSE"))
+        result = mod.apply(self.root, True)
+        self.assertEqual(result["resolved_shadow_mode"], "full")
+        self.assertIn(mod.SHADOW_OLD, self.config.read_text())
+
+    def test_refuses_changed_early_guard_atomically(self):
+        original = self.config.read_bytes()
+        self.encounter.write_text(self.encounter.read_text().replace(
+            "bool32 shouldSpawnWaterMons = ShouldSpawnWaterOWE();",
+            "bool32 shouldSpawnWaterMons = 0;"))
+        with self.assertRaisesRegex(ValueError, "guard"):
+            mod.apply(self.root, True)
+        self.assertEqual(self.config.read_bytes(), original)
+
+    def test_invalid_requested_shadow_mode(self):
+        with self.assertRaisesRegex(ValueError, "unsupported"):
+            mod.apply(self.root, True, shadows="unsupported")
 
     def test_changed_anchor_fails_without_partial_edits(self):
         old = self.config.read_bytes()
