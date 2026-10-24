@@ -70,8 +70,8 @@ int main(int argc, char **argv)
 {
     struct mCore *core;
     color_t *pixels;
-    unsigned width = 0, height = 0, i, colors;
-    uint64_t early = 0, late = 0;
+    unsigned width = 0, height = 0, i, colors_420 = 0, colors_final = 0;
+    uint64_t early = 0, gamefreak = 0, mid = 0, title = 0, after_start = 0;
     const char *rom;
     int failed = 0;
     if (argc != 2) {
@@ -105,33 +105,56 @@ int main(int argc, char **argv)
     mCoreInitConfig(core, NULL);
     mCoreLoadConfig(core);
     core->reset(core);
-    for (i = 1; i <= 420; ++i) {
+    // Begin with a clean disposable emulator (never load a user's save).
+    // Simulate Start once near the end, but never assert menu/gameplay.
+    // The real screen contents must be inspected separately.
+    for (i = 1; i <= 4200; ++i) {
+        if (i == 3601)
+            core->setKeys(core, UINT32_C(1) << 3); // GBA KEY_START
+        if (i == 3607)
+            core->setKeys(core, 0);
         core->runFrame(core);
         if (i == 120) {
             early = fingerprint(pixels, width, height);
             save_ppm("gba-boot-frame-120.ppm", pixels, width, height);
+        } else if (i == 420) {
+            gamefreak = fingerprint(pixels, width, height);
+            colors_420 = color_count_capped(pixels, width, height);
+            save_ppm("gba-boot-frame-420.ppm", pixels, width, height);
+        } else if (i == 1800) {
+            mid = fingerprint(pixels, width, height);
+            save_ppm("gba-boot-frame-1800.ppm", pixels, width, height);
+        } else if (i == 3600) {
+            title = fingerprint(pixels, width, height);
+            save_ppm("gba-boot-frame-3600.ppm", pixels, width, height);
         }
     }
-    late = fingerprint(pixels, width, height);
-    colors = color_count_capped(pixels, width, height);
-    save_ppm("gba-boot-frame-420.ppm", pixels, width, height);
+    after_start = fingerprint(pixels, width, height);
+    colors_final = color_count_capped(pixels, width, height);
+    save_ppm("gba-boot-frame-4200-after-start.ppm", pixels, width, height);
     {
         FILE *report = fopen("gba-headless-smoke.txt", "w");
         if (report) {
             fprintf(report, "mode=MGBA_HEADLESS_FRAME_SMOKE_NOT_GAMEPLAY\n");
-            fprintf(report, "frames=420\n");
+            fprintf(report, "frames=4200\n");
             fprintf(report, "screen=%ux%u\n", width, height);
-            fprintf(report, "early_fnv1a=%016" PRIx64 "\n", early);
-            fprintf(report, "final_fnv1a=%016" PRIx64 "\n", late);
-            fprintf(report, "unique_colors_capped_64=%u\n", colors);
+            fprintf(report, "frame120_fnv1a=%016" PRIx64 "\n", early);
+            fprintf(report, "frame420_fnv1a=%016" PRIx64 "\n", gamefreak);
+            fprintf(report, "frame1800_fnv1a=%016" PRIx64 "\n", mid);
+            fprintf(report, "frame3600_fnv1a=%016" PRIx64 "\n", title);
+            fprintf(report, "frame4200_after_start_fnv1a=%016" PRIx64 "\n", after_start);
+            fprintf(report, "frame420_unique_colors_capped_64=%u\n", colors_420);
+            fprintf(report, "final_unique_colors_capped_64=%u\n", colors_final);
+            fprintf(report, "start_pressed_for_six_frames=true\n");
+            fprintf(report, "title_verified=false\n");
             fprintf(report, "gameplay_verified=false\nsave_reload_verified=false\n");
             fclose(report);
         }
     }
-    printf("mGBA simulated 420 frames; colors=%u early=%016" PRIx64
-           " final=%016" PRIx64 "\n", colors, early, late);
-    if (colors <= 1) {
-        fprintf(stderr, "No rendered color variation after 420 frames\n");
+    printf("mGBA simulated 4200 frames; colors420=%u final=%u early=%016" PRIx64
+           " final=%016" PRIx64 "\n", colors_420, colors_final, early, after_start);
+    if (colors_420 <= 1 || early == gamefreak || early == after_start) {
+        fprintf(stderr, "No frame progression or colored game intro\n");
         failed = 1;
     }
     mCoreConfigDeinit(&core->config);

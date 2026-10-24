@@ -169,7 +169,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential libmgba-dev
-      - name: Build and run no-GUI GBA core for 420 frames
+      - name: Build and run no-GUI GBA core for 4200 frames
         shell: bash
         run: |
           set -euxo pipefail
@@ -185,5 +185,8 @@ jobs:
             gba-headless-smoke.txt
             gba-boot-frame-120.ppm
             gba-boot-frame-420.ppm
+            gba-boot-frame-1800.ppm
+            gba-boot-frame-3600.ppm
+            gba-boot-frame-4200-after-start.ppm
           if-no-files-found: warn
           retention-days: 14
