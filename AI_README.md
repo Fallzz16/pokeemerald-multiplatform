@@ -1138,3 +1138,14 @@ Próximos P0: conferir workflow final, resolver regressões, testes reais Window
 - `tests/test_gba_syscall_guards.py`: expansão DMA com `MODERN=0/1`, verificação de guards e mixer. CI Windows V0.24 habilitado também para esta branch.
 - `docs/KANTO_V25_GBA_RECOVERY_PTBR.md`: especificação, reprodução, riscos, rollback. **Apenas geração de ROM, não gameplay.** Sem modificar SaveBlock, flags, scripts, trainers ou IDs; emulador/mGBA, áudio, saves e Android ainda exigem QA.
 - Observar o HEAD exato e os jobs/artefatos antes de anunciar GBA recuperado. Se houver erro, registrar a primeira falha verificada e corrigir iterativamente.
+
+
+## 76. Grand World M8 — auditoria LZ77 inspirada no Quetzal (24/10/2026)
+
+- **Branch de diagnóstico:** `perf/grandworld-m8-quetzal-lz77-audit-20261024`, derivada do PR #70 em `f5001bc2aacb9c2c7ea582ab8669a245df48625b`. Último commit do passo workflow antes deste registro: `7d0a76b5ce056b56b236803a32faf6438da10c3d`. PR empilhado sobre a branch experimental M8, sem merge para `main`.
+- **Adicionado:** `tools/grandworld/audit_lz77_resources.py`; `tools/grandworld/tests/test_audit_lz77_resources.py`; `docs/GRANDWORLD_M8_QUETZAL_LZ77_QA_PTBR.md`. O workflow `.github/workflows/grandworld-m8-runtime-gen4.yml` executa uma auditoria de fluxos LZ77 referenciados após compilação GBA e publica **somente** o resumo JSON `m8-lz77-inventory.json`, não a ROM.
+- **Evidência real local:** ROM Quetzal de 32 MiB, código BPEE, 6.865 candidatos válidos pela heurística e razão de expansão 2,728; cinco testes unitários sobre bytes sintéticos **PASS** na execução local. O número de candidatos não é inventário definitivo e não representa FPS.
+- **Não modificado/removido:** runtime World, lógica de encontro, scripts das três regiões, SaveBlocks/.sav, flags, batalhas, dados de Pokémon, protagonistas, M9; nenhum arquivo removido. O PR #70 mantém experimento de sombras OAM/guarda redundante e não é modificado por esta auditoria.
+- **Limites:** a base World tem `OW_GFX_COMPRESS=FALSE` para evitar esgotamento de VRAM com encontros visíveis; não mudar compressão global sem medições. Ela também tem `WE_OW_ENCOUNTERS=TRUE` embora a decisão do usuário determine **selvagens exclusivamente na grama**: divergência herdada, ainda sem reparo.
+- **QA não realizado neste chat:** novo build Grand World, medição de ciclos/FPS, validação gameplay mGBA do commit desta branch e testes de saves reais; CI da branch deve ser conferido por run/SHA antes de qualquer promoção de status.
+- **Rollback:** reverter somente os arquivos da auditoria/workflow/documentação deste PR; preservar PRs #68–70 e todas as branches estáveis. Próximo passo: coletar baseline de CPU/OAM/DMA e, em incremento isolado, alinhar os encontros na grama com testes.
