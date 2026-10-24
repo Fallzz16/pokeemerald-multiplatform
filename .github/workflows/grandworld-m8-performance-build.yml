@@ -5,6 +5,8 @@ on:
       - '.github/workflows/grandworld-m8-performance-build.yml'
       - 'tools/grandworld/optimize_overworld_budget.py'
       - 'tools/grandworld/tests/test_optimize_overworld_budget.py'
+      - 'tools/grandworld/enable_classic_grass_encounters.py'
+      - 'tools/grandworld/tests/test_enable_classic_grass_encounters.py'
       - 'tools/grandworld/audit_lz77_resources.py'
       - 'tools/grandworld/tests/test_audit_lz77_resources.py'
   workflow_dispatch:
@@ -41,6 +43,7 @@ jobs:
           python3 grandworld/tools/grandworld/add_hero_profiles.py world
           python3 grandworld/tools/grandworld/add_kanto_avatar.py world
           python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --report m8-perf-profile.json
+          python3 grandworld/tools/grandworld/enable_classic_grass_encounters.py world --apply --report m8-classic-encounters.json
           git -C world diff --check
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_*.py'
       - name: Compile baseline -O2 without LTO
@@ -98,6 +101,7 @@ jobs:
           name: GRANDWORLD_M8_PERFORMANCE_MEASUREMENTS
           path: |
             m8-perf-profile.json
+            m8-classic-encounters.json
             m8-perf-o2.log
             m8-perf-lto.log
             m8-perf-memory-comparison.json
