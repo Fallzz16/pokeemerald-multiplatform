@@ -21,7 +21,7 @@ class HeadlessGbaProbeTests(unittest.TestCase):
         self.assertIn("first_littleroot_frame", source)
         self.assertIn("(i - 9701) % 130 == 0", source)
         self.assertIn("save_ppm(\"gba-navigation-frame-45000.ppm\"", source)
-        self.assertIn('fprintf(report, "overworld_verified=false', source)
+        self.assertIn('fprintf(report, "overworld_verified=%s', source)
         self.assertIn('save_reload_verified=false', source)
         self.assertNotIn("savedataRestore(", source)
         self.assertNotIn("loadSave(", source)

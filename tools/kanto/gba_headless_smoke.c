@@ -308,15 +308,17 @@ int main(int argc, char **argv)
             }
             fprintf(report, "new_game_intro_probed=true\n");
             fprintf(report, "truck_exit_direction_probe=true\n");
-            fprintf(report, "textbox_pixel_gated_A_and_right=true\\n");
-            fprintf(report, "textbox_advance_pulses=%u\\n", text_advance_pulses);
-            fprintf(report, "first_movement_frame=%u\\n", first_movement_frame);
-            fprintf(report, "first_littleroot_frame=%u\\n", first_littleroot_frame);
-            fprintf(report, "last_observed_map=%u/%u\\n", last_map_group, last_map_number);
-            fprintf(report, "littleroot_warp_verified=%s\\n",
+            fprintf(report, "textbox_pixel_gated_A_and_right=true\n");
+            fprintf(report, "textbox_advance_pulses=%u\n", text_advance_pulses);
+            fprintf(report, "first_movement_frame=%u\n", first_movement_frame);
+            fprintf(report, "first_littleroot_frame=%u\n", first_littleroot_frame);
+            fprintf(report, "last_observed_map=%u/%u\n", last_map_group, last_map_number);
+            fprintf(report, "littleroot_warp_verified=%s\n",
                     first_littleroot_frame ? "true" : "false");
-            fprintf(report, "player_movement_not_yet_verified=true\n");
-            fprintf(report, "overworld_verified=false\n");
+            fprintf(report, "player_movement_verified=%s\n",
+                    first_movement_frame ? "true" : "false");
+            fprintf(report, "overworld_verified=%s\n",
+                    first_littleroot_frame ? "true" : "false");
             fprintf(report, "title_verified=false\n");
             fprintf(report, "gameplay_verified=false\nsave_reload_verified=false\n");
             fclose(report);
