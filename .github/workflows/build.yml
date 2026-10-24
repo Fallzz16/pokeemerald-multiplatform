@@ -44,6 +44,7 @@ jobs:
           python -m unittest discover -s tests -p test_gba_source_partition.py -v
           python -m unittest discover -s tests -p test_gba_memory_audit.py -v
           python -m unittest discover -s tests -p test_gba_quest_log_bss.py -v
+          python -m unittest discover -s tests -p test_gba_rom_audit.py -v
       - name: Materialize all Kanto maps and event content
         run: |
           set -euxo pipefail
@@ -68,6 +69,7 @@ jobs:
           assert size<=32*1024*1024, f"ROM exceeds 32MiB: {size}"
           print(f"ROM generated: {size} bytes")
           PY
+          python tools/kanto/gba_rom_audit.py --rom pokeemerald_modern.gba --output gba-rom-audit.json
           sha256sum pokeemerald_modern.gba > gba-modern-sha256.txt
       - name: Report largest ARM .bss symbols after build (including failed link)
         if: always()
@@ -82,6 +84,7 @@ jobs:
           path: |
             gba-modern-build.log
             gba-modern-sha256.txt
+            gba-rom-audit.json
             gba-bss-report.json
             kanto-gba-materialization.json
             pokeemerald_modern.gba
@@ -130,6 +133,7 @@ jobs:
           python -m unittest discover -s tests -p test_gba_source_partition.py -v
           python -m unittest discover -s tests -p test_gba_memory_audit.py -v
           python -m unittest discover -s tests -p test_gba_quest_log_bss.py -v
+          python -m unittest discover -s tests -p test_gba_rom_audit.py -v
       - name: Materialize matching Kanto source content
         run: python tools/kanto/import_exteriors.py --firered firered-source --emerald . --report kanto-legacy-materialization.json
       - name: Build legacy ROM without equality-to-original comparison
@@ -148,3 +152,38 @@ jobs:
             pokeemerald.gba
           if-no-files-found: warn
           retention-days: 30
+
+  gba-headless-smoke:
+    name: mGBA headless startup smoke (advisory; not gameplay QA)
+    needs: gba-modern
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: KANTO_V25_GBA_MODERN
+          path: gba-artifact
+      - name: Install official Ubuntu libmgba development package
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libmgba-dev
+      - name: Build and run no-GUI GBA core for 420 frames
+        shell: bash
+        run: |
+          set -euxo pipefail
+          cc -std=gnu11 -O2 -Wall -Wextra tools/kanto/gba_headless_smoke.c -o /tmp/gba_headless_smoke -lmgba
+          /tmp/gba_headless_smoke gba-artifact/pokeemerald_modern.gba
+          test -s gba-headless-smoke.txt
+      - name: Attach disposable frame captures and results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: KANTO_V25_MGBA_HEADLESS_ADVISORY
+          path: |
+            gba-headless-smoke.txt
+            gba-boot-frame-120.ppm
+            gba-boot-frame-420.ppm
+          if-no-files-found: warn
+          retention-days: 14
