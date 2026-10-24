@@ -354,8 +354,15 @@ static void PlayCryScreenCry(u16 species)
 static void BufferCryWaveformSegment(void)
 {
     u8 i;
+#if MODERN
     float *baseBuffer;
     float *buffer;
+#else
+    /* The agbcc mixer exposes signed 8-bit PCM; legacy cry-wave reads must
+     * not reinterpret the sample bytes as 32-bit floating-point values. */
+    s8 *baseBuffer;
+    s8 *buffer;
+#endif
 
     if (gPcmDmaCounter < 2)
         baseBuffer = gSoundInfo.pcmBuffer;
