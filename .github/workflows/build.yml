@@ -43,6 +43,7 @@ jobs:
           python -m unittest discover -s tests -p test_gba_syscall_guards.py -v
           python -m unittest discover -s tests -p test_gba_source_partition.py -v
           python -m unittest discover -s tests -p test_gba_memory_audit.py -v
+          python -m unittest discover -s tests -p test_gba_quest_log_bss.py -v
       - name: Materialize all Kanto maps and event content
         run: |
           set -euxo pipefail
@@ -128,6 +129,7 @@ jobs:
           python -m unittest discover -s tests -p test_gba_syscall_guards.py -v
           python -m unittest discover -s tests -p test_gba_source_partition.py -v
           python -m unittest discover -s tests -p test_gba_memory_audit.py -v
+          python -m unittest discover -s tests -p test_gba_quest_log_bss.py -v
       - name: Materialize matching Kanto source content
         run: python tools/kanto/import_exteriors.py --firered firered-source --emerald . --report kanto-legacy-materialization.json
       - name: Build legacy ROM without equality-to-original comparison
