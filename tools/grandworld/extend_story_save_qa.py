@@ -36,7 +36,7 @@ REPLACEMENTS = [
     ),
     (
         "  enter()\n  F.check('fresh hub has deliberate Kanto default'",
-        '''  -- Use the game's own debug-party creation; it creates a valid Pokemon,
+        """  -- Use the game's own debug-party creation; it creates a valid Pokemon,
   -- not a hand-written or checksum-invalid party buffer.
   F.dbg(); F.sel(2); F.sel(9); F.idle(120); F.bOut(6); F.idle(60)
   F.check('GW legal party seeded for save/Continue', F.r8(S.gPartiesCount) == 1,
@@ -45,7 +45,7 @@ REPLACEMENTS = [
   setVar(0x40FC, 2) -- original outfit slot
   F.check('GW hero identity staged in persistent region-global var', gwHero() == 2)
   enter()
-  F.check('fresh hub has deliberate Kanto default\'''',
+  F.check('fresh hub has deliberate Kanto default'""",
     ),
     (
         "  -- Save through the real menu, reboot, Continue, then resolve existing progress.",
