@@ -93,6 +93,43 @@ def attempt(code, data, platform, frontend, report, compiler="gcc",
     return result
 
 
+def verify_compiled_objects(source_audit, data_audit, code_dir, data_dir):
+    """Require real compiled source entries to match the linked .o files.
+
+    An old or partial .o that survived a failed build must never be silently
+    treated as successful World code. The real linker may still fail, but its
+    source inventory must be trustworthy.
+    """
+    source = json.loads(Path(source_audit).read_text(encoding="utf-8"))
+    data = json.loads(Path(data_audit).read_text(encoding="utf-8"))
+    crows = source.get("objects", [])
+    drows = data.get("results", [])
+    if not isinstance(crows, list) or not isinstance(drows, list):
+        raise ValueError("malformed real source audit")
+    expected_code = {
+        Path(row["object"]).name for row in crows
+        if row.get("status") == "object_compiled"
+    }
+    expected_data = {
+        Path(row["source"]).with_suffix(".o").name for row in drows
+        if row.get("native_object") is True
+    }
+    actual_code = {p.name for p in Path(code_dir).glob("*.o")}
+    actual_data = {p.name for p in Path(data_dir).glob("*.o")}
+    if len(expected_code) != len([r for r in crows if r.get("status") == "object_compiled"]):
+        raise ValueError("duplicate engine object filenames in compilation audit")
+    if len(expected_data) != len([r for r in drows if r.get("native_object") is True]):
+        raise ValueError("duplicate original asset object filenames in ASM audit")
+    return {
+        "source_object_set_verified": bool(expected_code) and expected_code == actual_code,
+        "data_object_set_verified": bool(expected_data) and expected_data == actual_data,
+        "source_missing_object_files": sorted(expected_code - actual_code)[:50],
+        "source_stale_object_files": sorted(actual_code - expected_code)[:50],
+        "data_missing_object_files": sorted(expected_data - actual_data)[:50],
+        "data_stale_object_files": sorted(actual_data - expected_data)[:50],
+    }
+
+
 def attach_coverage(result, source_audit, data_audit):
     """Attach real compiler coverage; never infer source completeness from link."""
     if source_audit:
@@ -127,6 +164,16 @@ def main():
     result = attempt(args.code, args.data, args.platform,
                      args.frontend, args.report)
     attach_coverage(result, args.source_audit, args.data_audit)
+    if args.source_audit and args.data_audit:
+        result.update(verify_compiled_objects(args.source_audit, args.data_audit,
+                                              args.code, args.data))
+        if not (result["source_object_set_verified"] and
+                result["data_object_set_verified"]):
+            result["link_succeeded"] = False
+            result["error"] = "source audit and linked object set do not match"
+            # Do not leave an executable behind if source provenance is broken.
+            Path(args.report).with_name(
+                "grandworld-WORLD-NOT-BOOT-VERIFIED").unlink(missing_ok=True)
     Path(args.report).write_text(
         json.dumps(result, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({key: value for key, value in result.items()
