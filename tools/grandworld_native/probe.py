@@ -21,7 +21,7 @@ def probe(world, grandworld, compiler):
     results = []
     for name in SOURCES:
         path = grandworld / "src" / "platform" / name
-        cmd = [cc or compiler, *FLAGS, "-I" + str(world / "include"),
+        cmd = [cc or compiler, *FLAGS, 
                "-iquote" + str(world / "include"),
                "-iquote" + str(world / "src"), str(path)]
         if cc is None:
