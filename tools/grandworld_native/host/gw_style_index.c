@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -67,9 +68,10 @@ bool gw_styles_load(GWStyleIndex *index, const char *root)
         return false;
     if (snprintf(path, sizeof(path), "%s/runtime-assets.tsv", root) >= (int)sizeof(path))
         return false;
+    errno = 0;
     file = fopen(path, "rb");
     if (!file)
-        return true; /* No packs installed is a valid classic-only setup. */
+        return errno == ENOENT; /* Missing index is fine; unreadable is not. */
     if (!fgets(line, sizeof(line), file)) {
         fclose(file);
         return false;
@@ -200,9 +202,10 @@ bool gw_styles_read_prefs(const GWStyleIndex *index, GWStylePrefs *prefs)
     strcpy(prefs->sprites, "classic");
     if (snprintf(path, sizeof(path), "%s/style-settings.ini", index->root) >= (int)sizeof(path))
         return false;
+    errno = 0;
     file = fopen(path, "rb");
     if (!file)
-        return true;
+        return errno == ENOENT;
     if (!fgets(buffer, sizeof(buffer), file)) {
         fclose(file);
         return false;
