@@ -27,9 +27,9 @@ def transform(source):
         raise ValueError("Unexpected World direct DMA macro")
     portable = (
         "#if defined(GW_WORLD_NATIVE)\n"
-        "void GwNativeDmaSet(int channel, const void *source, void *dest, u32 control);\n"
+        "void GwNativeDmaSet(int channel, const volatile void *source, volatile void *dest, u32 control);\n"
         "#define DmaSetUnchecked(dmaNum, src, dest, control) \\\n"
-        "    GwNativeDmaSet((dmaNum), (src), (dest), (control))\n"
+        "    GwNativeDmaSet((dmaNum), (const volatile void *)(uintptr_t)(src), (volatile void *)(uintptr_t)(dest), (control))\n"
         "#else\n" + original + "\n#endif"
     )
     updated = source[:start] + portable + source[end:]
