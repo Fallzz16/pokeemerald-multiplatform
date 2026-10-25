@@ -3,7 +3,7 @@ import unittest
 from tools.grandworld_native.dma_api_overlay import transform
 
 SAMPLE = (
-    '#ifndef GUARD_GBA_MACRO_H\\n#define GUARD_GBA_MACRO_H\\n'
+    '#ifndef GUARD_GBA_MACRO_H\n#define GUARD_GBA_MACRO_H\n'
     '#define DmaSetUnchecked(dmaNum, src, dest, control) \\\n'
     '{ \\\n'
     '    vu32 *dmaRegs = (vu32 *)REG_ADDR_DMA##dmaNum; \\\n'
