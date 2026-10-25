@@ -29,6 +29,20 @@ def inspect(world, objects, limit=24, compiler="gcc"):
     inputs = sorted(midi_dir.glob("*.mid"))
     selected = inputs[:limit]
     objects.mkdir(parents=True, exist_ok=True)
+    # World-generated MIDI includes its original sound/MPlayDef.s. Reading
+    # that ARM-dialect include directly on i386 fails on every '@' comment.
+    # Stage a syntax-only copy in the output tree and search it FIRST;
+    # never edit the genuine World source, MIDI, or generated song files.
+    support = world / "sound/MPlayDef.s"
+    host_include_dir = objects / "_original_host_includes"
+    host_include = host_include_dir / "MPlayDef.s"
+    host_include.unlink(missing_ok=True)
+    support_changes = None
+    if support.is_file():
+        source_bytes = support.read_text(encoding="utf-8", errors="surrogateescape")
+        converted, support_changes = transform_text(source_bytes)
+        host_include_dir.mkdir(exist_ok=True)
+        host_include.write_text(converted, encoding="utf-8", errors="surrogateescape")
     results = []
     for mid in selected:
         source = mid.with_suffix(".s")
@@ -48,7 +62,7 @@ def inspect(world, objects, limit=24, compiler="gcc"):
             # Host GAS reads transformed text from stdin. MPlayDef, sample and
             # voicegroup includes still refer to real World files only.
             cmd = [cc, "-m32", "-x", "assembler", "-c", "-",
-                   "-I", "sound", "-I", ".", "-o", str(dest)]
+                   "-I", str(host_include_dir), "-I", "sound", "-I", ".", "-o", str(dest)]
             done = subprocess.run(cmd, input=normalized.encode("utf-8", errors="surrogateescape"),
                                   cwd=world, capture_output=True, timeout=75)
             if done.returncode == 0 and dest.is_file():
@@ -69,6 +83,10 @@ def inspect(world, objects, limit=24, compiler="gcc"):
             "compiled": sum(e["native_object"] for e in results),
             "content_replaced_or_fabricated": False,
             "linked_into_game": False,
+            "original_MPlayDef_available": support.is_file(),
+            "original_MPlayDef_transformed_for_host": host_include.is_file(),
+            "original_MPlayDef_syntax_changes": support_changes,
+            "original_game_sources_modified": False,
             "results": results}
 
 
