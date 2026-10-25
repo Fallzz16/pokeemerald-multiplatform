@@ -65,9 +65,11 @@ Manifests de localização revisáveis e ancorados no inglês original:
 - tools/grandworld/ptbr_extra_hoenn_routes6.json: 50 entradas (ROUTES 102, 103, 104).
 - tools/grandworld/ptbr_extra_johto_routes6.json: 82 entradas (ROUTES 30, 31, 32, JOHTO).
 - tools/grandworld/ptbr_extra_hoenn_routes7.json: 15 entradas (ROUTES 113, 114, 115).
+- tools/grandworld/ptbr_extra_petalburg_story7.json: 25 entradas manuais da campanha de Norman e Wally.
+- tools/grandworld/ptbr_extra_petalburg_rooms7.json: 27 entradas manuais de salas, treinadores e revanche.
 - Dados anteriores incorporados em translate_ptbr_stage1.py: 98 entradas.
 
-Total configurado manualmente: 1.535 entradas em 59 arquivos do checkout World.
+Total configurado manualmente: 1.587 entradas em 60 arquivos do checkout World.
 
 Novas entradas manuais nesta grande continuidade: 228. Todas usam manifestos
 JSON revisaveis; nenhum nome de item, golpe ou habilidade foi renomeado.
@@ -155,3 +157,28 @@ produzido, e marcadamente **rascunho para revisao humana**, nao traducao
 final certificada. Seus valores nao devem ser confundidos com texto revisado,
 nem com gameplay homologado. Corrigir terminologia, fidelidade, largura das
 caixas e progressao de todas as regioes continua obrigatorio para release.
+
+## Progresso registrado — lote 5200 + revisao Petalburg (25/10/2026)
+
+- PR #77 continua **draft**, sem merge e sem alteracoes no ramo ingles.
+- Manual: **1587 entradas** = 1535 anteriores + 52 novas da historia/ginásio de
+  Petalburg. Outras **24 entradas** do lote automatico em Petalburg foram
+  reescritas manualmente em PT-BR natural; nao aumentam a contagem.
+- Automatico: **5200 entradas** em 21 manifestos
+  `tools/grandworld/ptbr_auto_review_001.json` a `021.json`.
+  Foram integradas na propria PR no commit e3407cbe. Essas entradas
+  continuam marcadas para revisao humana; nao sao texto final homologado.
+- **Total configurado: 6787 de 14801 entradas estaticas inventariadas**,
+  faltando 8014 entradas nesse escopo. Isso e ~45.85% apenas do inventario
+  estatico conhecido, nao da localizacao integral do jogo.
+- A compilacao de 6735 entradas mais antiga passou `make validate` no
+  workflow #40178202749. A ROM com as 52 entradas adicionais e 24 revisoes
+  ainda precisa de um NOVO GitHub Actions verde e de inspecao visual.
+- Artefato de geracao inicial #12592517986 registra a proveniencia e os
+  5200 textos. O gerador usou Argos en-pt 1.9; sua saida inclui portugues
+  europeu e problemas editoriais. Nao usar como substituto de revisao PT-BR.
+- O adaptador `adapt_ptbr_greedy_gifts_qa.py` preserva as verificacoes
+  de exclusividade de iniciais Elm/Birch, agora com variantes traduzidas.
+- Pendentes: revisao linguistica dos 5200 rascunhos, caixas de texto e
+  todos os textos fora da auditoria (C dinamico, graficos etc.), testes de
+  save/continue e homologacao manual em Hoenn, Kanto e Johto.
