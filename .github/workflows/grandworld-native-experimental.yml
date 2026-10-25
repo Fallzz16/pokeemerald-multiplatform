@@ -116,3 +116,36 @@ jobs:
         with:
           name: grandworld-native-header-probe
           path: native-header-probe.json
+
+  windows-host-diagnostic:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-ninja
+            mingw-w64-x86_64-SDL2
+      - name: Build Windows native SDL2 host diagnostic (not Grand World gameplay)
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          cmake -S tools/grandworld_native/host -B build/native-win -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build build/native-win -j2
+          test -f build/native-win/gw_host_preview.exe
+          cp /mingw64/bin/SDL2.dll build/native-win/SDL2.dll
+          export SDL_VIDEODRIVER=dummy
+          ./build/native-win/gw_host_smoke.exe
+      - name: Upload Windows SDL2 host diagnostic only
+        uses: actions/upload-artifact@v4
+        with:
+          name: grandworld-native-sdl2-host-windows-diagnostic-NOT-GAME
+          path: |
+            build/native-win/gw_host_preview.exe
+            build/native-win/SDL2.dll
+          if-no-files-found: error
