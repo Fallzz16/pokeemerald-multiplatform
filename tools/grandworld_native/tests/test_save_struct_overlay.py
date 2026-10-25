@@ -11,6 +11,9 @@ class NestedABITests(unittest.TestCase):
         self.assertEqual(modified.count("#if defined(PORTABLE)"), len(DECLARATIONS))
         self.assertEqual(modified.count("__attribute__((aligned(4)))"), len(DECLARATIONS))
         self.assertEqual(modified.count("#endif"), len(DECLARATIONS))
+        self.assertIn("OldMan;", modified)
+        self.assertIn("typedef union OldMan", modified)
+        self.assertEqual(modified.count("__attribute__((aligned(4)))"), len(DECLARATIONS))
     def test_refuse_drift_or_repeated_application(self):
         source = "\n".join(DECLARATIONS)
         with self.assertRaises(ValueError):
