@@ -206,6 +206,7 @@ static bool style_advance(int category, int direction)
 {
     const char *kind = category == 0 ? "menus" : "sprites";
     const char *logical = category == 0 ? "menus/background" : "sprites/follower";
+    GWStylePrefs before = preferences;
     char *selected = category == 0 ? preferences.menus : preferences.sprites;
     size_t total = gw_styles_options(&library, kind, logical);
     size_t position = 0;
@@ -215,13 +216,18 @@ static bool style_advance(int category, int direction)
             break;
         }
     }
-    position = (position + total + (direction > 0 ? 1 : total - 1)) % total;
+    if (!total)
+        return false;
+    position = (position + (direction > 0 ? 1 : total - 1)) % total;
     const char *choice = gw_styles_option(&library, kind, logical, position);
     strncpy(selected, choice, GW_STYLE_MAX_PACK_ID - 1);
     selected[GW_STYLE_MAX_PACK_ID - 1] = 0;
-    if (!update_images())
-        return false;
-    return gw_styles_write_prefs(&library, &preferences);
+    if (update_images() && gw_styles_write_prefs(&library, &preferences))
+        return true;
+    /* A corrupt mod must not replace working settings or leave a blank sprite. */
+    preferences = before;
+    update_images();
+    return false;
 }
 
 int main(int argc, char **argv)
