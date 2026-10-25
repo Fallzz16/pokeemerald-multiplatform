@@ -46,11 +46,29 @@ replace incompatible host interfaces one by one behind a portable API,
 then build all World sources into a native 32-bit executable. Treat any pointer
 width assumptions explicitly; do not promise 64-bit compatibility.
 
+## Recursos nativos experimentais integrados
+
+Os tres fluxos do laboratorio **ja existem**, mas **nao dentro do gameplay
+World**: (1) instalar/habilitar pacotes, (2) resolver e exibir imagens PNG/BMP
+de menus e seguidores na aplicacao SDL2, e (3) escolher e persistir cada
+estilo na interface (F1, setas, F5).
+
+O demo inclui oito poses (n/ne/e/se/s/sw/w/nw) para mostrar corpo olhando
+na diagonal enquanto a posicao percorre apenas X/Y. Nao modifica a logica
+da M8, seus saves nem o codigo do sistema de seguidores real.
+
+**Guia detalhado em portugues:** [STYLE_LAB_PTBR.md](STYLE_LAB_PTBR.md).
+
+**Windows:** baixe somente o artefato do job `windows-host-diagnostic`
+aprovado no CI, extraia-o e abra `ABRIR_STYLE_LAB.bat`. O pacote demonstrativo
+usa imagens originais. Nao e uma versao jogavel do Grand World.
+
 ## Plugin/Mod Pack API v1 (data only)
 
-User-selectable extensions should eventually cover Pokémon sprite styles, menu
-themes, map tiles and audio. **Only a pack verifier is implemented here.**
-It does NOT yet install, activate or load packs in the running game.
+The native Style Lab already has ZIP validation, an install/enable/disable
+CLI, a catalog of enabled assets, and menu/follower PNG/BMP lookup in the host.
+These are **not** integrated into the World gameplay engine or its save format.
+Tiles/audio are catalogable but not yet applied to World game scenes.
 
 ```sh
 python3 tools/grandworld_native/modpacks.py my-pack.zip
@@ -121,9 +139,9 @@ python3 tools/grandworld_native/pack_manager.py --root ./test-modpacks disable m
 ```
 
 The manager refuses to replace an installed pack, leaves installed files intact
-when disabled, and writes `enabled.json` atomically. **Activation only records
-the preference**: no gameplay resource substitution is hooked into the native
-engine yet. This feature runs on the developer host, not the game menu, and
+when disabled, and writes `enabled.json` atomically. Activation also regenerates
+`runtime-assets.tsv`; the SDL2 **Style Lab** loads enabled menu/sprite resources.
+The actual World gameplay resource loader is not ported or connected yet. This feature runs on the developer host, not the game menu, and
 needs Python. All pack images/audio must have appropriate usage rights.
 
 ## Verified milestones and important run evidence
