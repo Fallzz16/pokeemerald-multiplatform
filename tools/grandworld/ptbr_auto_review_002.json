@@ -129,76 +129,76 @@
     },
     "data/maps/PetalburgCity_Gym/scripts.inc": {
       "PetalburgCity_Gym_Text_RematchDefeat": [
-        "Estou derrotado. E nao podia\\nestar mais orgulhoso de perder.$"
+        "Fui derrotado...\\nMas nunca senti tanto orgulho!$"
       ],
       "PetalburgCity_Gym_Text_WallyIdLikeAPokemon": [
-        "Quero um Pokemon, por favor...$"
+        "E... Eu queria um POKEMON,\\npor favor...$"
       ],
       "PetalburgCity_Gym_Text_WouldYouReallyComeWithMe": [
-        "{PLAYER}Vens mesmo comigo?$"
+        "{PLAYER}, voce vem comigo mesmo?$"
       ],
       "PetalburgCity_Gym_Text_NormanDefeat": [
-        "...\\pNao consigo...\\pNao acredito.{PLAYER}...\\pEu perdi para{PLAYER}?\\pMas as regras sao regras! Toma,\\ntoma isto.$"
+        "...\\pNao pode ser, {PLAYER}...\\pEu perdi para {PLAYER}?\\pMas as regras sao regras!\\nTome isto.$"
       ],
       "PetalburgCity_Gym_Text_PleaseComeWithMe": [
-        "Ah, ai estas tu.{PLAYER}{KUN}!\\pPor favor, venha comigo. Tenho\\numa coisa que quero que tenhas.$"
+        "Ah, {PLAYER}{KUN}! Voce esta aqui!\\pVenha comigo!\\nTenho algo para te dar.$"
       ],
       "PetalburgCity_Gym_Text_LetMeBorrowPlayer": [
-        "NORMAN, nao se importa, pois\\nnao?\\pEmpresta-me o\\nteu{PLAYER}{KUN}por um minuto\\lou dois.$"
+        "NORMAN, voce se importa?\\pVou levar {PLAYER}{KUN}\\npor um instante.$"
       ],
       "PetalburgCity_Gym_Text_GymGuidePostVictory": [
-        "{PLAYER}Whoa! Venceste ate o\\nteu proprio pai!\\pTipo, whoa! Que reviravolta\\nimpressionante!$"
+        "{PLAYER}! Voce venceu\\nate seu proprio pai!\\pQue batalha impressionante!$"
       ],
       "PetalburgCity_Gym_Text_RandallIntro": [
-        "A capacidade de atacar perante\\no adversario...\\pSo isso me coloca em grande\\nvantagem, nao concorda?$"
+        "Atacar antes do rival...\\pIsso ja me da uma vantagem.\\nNao concorda?$"
       ],
       "PetalburgCity_Gym_Text_RandallDefeat": [
-        "Foi uma batalha magnifica!$"
+        "Foi uma batalha incrivel!$"
       ],
       "PetalburgCity_Gym_Text_ParkerDefeat": [
-        "Nao consegui confundir a tua\\nequipa o suficiente... Voces\\lpartilham um forte laco.$"
+        "Nao consegui confundir\\nsua equipe...\\pVoces tem um elo forte!$"
       ],
       "PetalburgCity_Gym_Text_ParkerPostBadge": [
-        "Depois de vencer o nosso\\nLEADER, o treino tornou-se\\lmuito mais dificil.$"
+        "Depois que venceu nosso LIDER,\\nos treinos ficaram mais duros.$"
       ],
       "PetalburgCity_Gym_Text_GeorgeIntro": [
-        "Quando pensas que vais ganhar,\\no teu adversario restaura a\\lHP...\\pConsegues imaginar como deve\\nser horrivel?\\pVou mostrar-te como e horrivel!$"
+        "Quando voce pensa que vai vencer,\\no rival recupera HP...\\pImagina como e frustrante?\\pVou mostrar para voce!$"
       ],
       "PetalburgCity_Gym_Text_GeorgePostBadge": [
-        "Vou continuar a treinar no\\nGINASIOS. Um dia, tornar-me-ei\\lum LEADER.$"
+        "Vou continuar treinando\\nnos GINASIOS.\\pUm dia serei LIDER!$"
       ],
       "PetalburgCity_Gym_Text_BerkeDefeat": [
-        "O teu poder... Tu es o\\nverdadeiro.$"
+        "Sua forca...\\nVoce e de verdade!$"
       ],
       "PetalburgCity_Gym_Text_BerkePostBattle": [
-        "O teu pai e mesmo forte. Ele e\\num treinador que vale o meu\\lrespeito.\\pE sinto o mesmo brilho vindo de\\nti como o teu pai.\\pEspero que encenem uma batalha\\nfantastica com o vosso pai!$"
+        "Seu pai e muito forte.\\nEu o respeito bastante.\\pVejo a mesma determinacao\\nem voce.\\pEspero que voces tenham\\numa grande batalha!$"
       ],
       "PetalburgCity_Gym_Text_MaryDefeat": [
-        "Foste um corte acima de mim...$"
+        "Voce foi melhor do que eu...$"
       ],
       "PetalburgCity_Gym_Text_MaryPostBadge": [
-        "Sabes o que estamos a tentar\\nalcancar como Treinadores?\\pEstamos a tentar tornar-nos\\nalmas gemeas com o nosso\\lPokemon.$"
+        "Sabe qual e nosso objetivo\\ncomo TREINADORES?\\pCriar um vinculo verdadeiro\\ncom nossos POKEMON.$"
       ],
       "PetalburgCity_Gym_Text_AlexiaDefeat": [
-        "As nossas defesas nao eram\\nsuficientes...$"
+        "Nossa defesa nao foi suficiente...$"
       ],
       "PetalburgCity_Gym_Text_AlexiaPostBadge": [
-        "Ola! Ja tentaste usar o SURF?$"
+        "Oi! Ja experimentou usar SURF?$"
       ],
       "PetalburgCity_Gym_Text_JodyDefeat": [
-        "Mas... Fiz tudo!$"
+        "Mas... Eu dei tudo de mim!$"
       ],
       "PetalburgCity_Gym_Text_JodyPostBadge": [
-        "Claro, e bom tornar o teu\\nPokemon mais forte.\\pMas o que decide o vencedor?\\pSao os sentimentos que os\\ntreinadores tem pelo seu\\lPokemon.$"
+        "E bom fortalecer seus POKEMON.\\pMas o que decide uma batalha?\\pO carinho dos TREINADORES\\npor seus POKEMON.$"
       ],
       "PetalburgCity_Gym_Text_DoorAppearsLocked": [
-        "Esta porta parece estar\\ntrancada agora...$"
+        "Esta porta parece trancada...$"
       ],
       "PetalburgCity_Gym_Text_DoorAppearsLocked2": [
-        "Esta porta parece estar\\ntrancada agora...$"
+        "Esta porta parece trancada...$"
       ],
       "PetalburgCity_Gym_Text_NormanRematchDefeat": [
-        "Haha... Talvez estivesse a ir\\nmuito mal...$"
+        "Ha ha... Acho que exagerei...$"
       ]
     },
     "data/maps/SaffronCity_Gym_Frlg/scripts.inc": {
