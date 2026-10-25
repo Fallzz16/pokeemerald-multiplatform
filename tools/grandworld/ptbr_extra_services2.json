@@ -1,0 +1,357 @@
+{
+  "asm": {
+    "data/text/shoal_cave.inc": {
+      "ShoalCave_LowTideEntranceRoom_Text_AreYouPlanningOnGoingInThere": [
+        "Vai explorar a caverna?\\pTraga SHOAL SALT e\\nSHOAL SHELLS para mim.\\pPosso fabricar um item util.$"
+      ],
+      "ShoalCave_LowTideEntranceRoom_Text_BringMe4ShoalSaltAndShells": [
+        "Traga 4 SHOAL SALT\\ne 4 SHOAL SHELLS.\\pPosso fazer uma SHELL BELL.\\pVoce pode conseguir mais\\ningredientes todos os dias.$"
+      ],
+      "ShoalCave_LowTideEntranceRoom_Text_WouldYouLikeShellBell": [
+        "Ora! SHOAL SALT e SHOAL SHELLS!\\nTemos o bastante.\\pQuer que eu faca\\numa SHELL BELL?$"
+      ],
+      "ShoalCave_LowTideEntranceRoom_Text_MakeShellBellRightAway": [
+        "Tudo bem! Vou preparar\\na SHELL BELL agora.\\pProntinho!$"
+      ],
+      "ShoalCave_LowTideEntranceRoom_Text_ExplainShellBell": [
+        "Deixe um POKEMON\\nsegurar a SHELL BELL.\\pTenho certeza de que\\nvai adorar o som dela!$"
+      ],
+      "ShoalCave_LowTideEntranceRoom_Text_WantedToMakeShellBell": [
+        "Ah, que pena...\\nQueria fazer uma SHELL BELL.$"
+      ],
+      "ShoalCave_LowTideEntranceRoom_Text_NoSpaceInYourBag": [
+        "Sua BOLSA esta cheia.\\pLibere espaco e volte\\npara pegar a SHELL BELL.$"
+      ],
+      "ShoalCave_Text_WasShoalSaltNowNothing": [
+        "Havia SHOAL SALT aqui.\\nAgora nao ha mais nada.$"
+      ],
+      "ShoalCave_Text_WasShoallShellNowNothing": [
+        "Havia SHOAL SHELL aqui.\\nAgora nao ha mais nada.$"
+      ]
+    },
+    "data/text/questionnaire.inc": {
+      "Questionnaire_Text_FillOut": [
+        "Ha um questionario aqui.\\nDeseja responder?$"
+      ],
+      "Questionnaire_Text_ThankYou": [
+        "Obrigado por responder!\\pSuas respostas serao usadas\\npara melhorar os servicos.$"
+      ],
+      "Questionnaire_Text_YouKnowThoseWordsGift": [
+        "Ola! Voce conhece\\nas palavras secretas?\\pEntao conhece o MYSTERY GIFT.\\pAgora pode receber presentes!$"
+      ],
+      "Questionnaire_Text_YouCanAccessMysteryGift": [
+        "Salve o jogo para acessar\\no MYSTERY GIFT.$"
+      ],
+      "Questionnaire_Text_YouKnowThoseWordsEvent": [
+        "Ola! Conhece\\nas palavras secretas?\\pEntao conhece o MYSTERY EVENT.$"
+      ],
+      "Questionnaire_Text_YouCanAccessMysteryEvent": [
+        "Salve o jogo para acessar\\no MYSTERY EVENT.$"
+      ],
+      "MysteryGift_Text_TheresATicketForYou": [
+        "Obrigado por usar\\no MYSTERY EVENT.\\pVoce e {PLAYER}, certo?\\nTemos um bilhete para voce.$"
+      ],
+      "MysteryGift_Text_TryUsingItAtLilycovePort": [
+        "Este bilhete parece servir\\nno porto de LILYCOVE.\\pQue tal tentar usa-lo?$"
+      ]
+    },
+    "data/text/ingame_trade_frlg.inc": {
+      "Trade_Text_LookingForMonWannaTradeForMon": [
+        "Estou procurando {STR_VAR_1}!\\pQuer trocar por\\nmeu {STR_VAR_2}?$"
+      ],
+      "Trade_Text_AwwOhWell": [
+        "Ah, que pena...$"
+      ],
+      "Trade_Text_WhatThatsNoMon": [
+        "O que?\\nIsso nao e {STR_VAR_1}!$"
+      ],
+      "Trade_Text_HeyThanks": [
+        "Opa, obrigado!$"
+      ],
+      "Trade_Text_IsntMyOldMonGreat": [
+        "Meu antigo {STR_VAR_2}\\nnao e incrivel?$"
+      ],
+      "Trade_Text_DoYouHaveMonWouldYouTradeForMon": [
+        "Ola! Voce tem {STR_VAR_1}?\\pAceita trocar por\\nmeu {STR_VAR_2}?$"
+      ],
+      "Trade_Text_WellIfYouDontWantTo": [
+        "Tudo bem, se nao quiser...$"
+      ],
+      "Trade_Text_ThisIsntMon": [
+        "Humm...\\nIsso nao e {STR_VAR_1}.\\pVolte quando tiver um.$"
+      ],
+      "Trade_Text_Thanks": [
+        "Obrigado!$"
+      ],
+      "Trade_Text_HasTradedMonGrownStronger": [
+        "O {STR_VAR_2} que te dei\\nficou mais forte?$"
+      ],
+      "Trade_Text_DoYouHaveMonWantToTradeForMon": [
+        "Oi! Voce tem {STR_VAR_1}?\\pQuer trocar por\\nmeu {STR_VAR_2}?$"
+      ],
+      "Trade_Text_ThatsTooBad": [
+        "Que pena.$"
+      ],
+      "Trade_Text_ThisIsNoMon": [
+        "Isso nao e {STR_VAR_1}.\\pQuando tiver um, volte aqui.$"
+      ],
+      "Trade_Text_ThanksYoureAPal": [
+        "Valeu! Voce e demais!$"
+      ],
+      "Trade_Text_HowIsMyOldMon": [
+        "Como esta meu {STR_VAR_2}?\\nMeu {STR_VAR_1} esta otimo!$"
+      ]
+    },
+    "data/text/lottery_corner.inc": {
+      "LilycoveCity_DepartmentStore_1F_Text_ComeBackTomorrow": [
+        "Volte amanha!$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_PleaseVisitAgain": [
+        "Volte sempre!$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_NoNumbersMatched": [
+        "Desculpe.\\nNenhum numero combinou.$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_TwoDigitsMatched": [
+        "Dois numeros iguais!\\pTerceiro premio:\\n{STR_VAR_1}!$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_ThreeDigitsMatched": [
+        "Tres numeros iguais!\\pSegundo premio:\\n{STR_VAR_1}!$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_FourDigitsMatched": [
+        "Quatro numeros iguais!\\pPrimeiro premio:\\n{STR_VAR_1}!$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_AllFiveDigitsMatched": [
+        "Todos os cinco numeros!\\pPREMIO MAXIMO:\\n{STR_VAR_1}!$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_NoRoomForThis": [
+        "Sua BOLSA esta cheia.\\pLibere espaco e volte\\npara pegar o premio.$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_PrizeWeveBeenHolding": [
+        "{PLAYER}! Estavamos esperando.\\pAqui esta o seu premio.$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_PleaseVisitAgain2": [
+        "Volte sempre!$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_TicketMatchesPartyMon": [
+        "Parabens!\\pO ID de {STR_VAR_1},\\nda sua equipe, combina\\ncom o bilhete!$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_TicketMatchesPCMon": [
+        "Parabens!\\pO ID de {STR_VAR_1},\\ndo PC, combina\\ncom o bilhete!$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_TicketNumberIsXPleaseWait": [
+        "O numero sorteado e {STR_VAR_1}.\\pVou conferir os IDs\\nde seus POKEMON. Aguarde.$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_LotteryCornerDrawTicket": [
+        "Bem-vindo a LOTERIA POKEMON!\\pTodo visitante pode tirar\\num LOTO TICKET.\\pSe o numero combinar com o ID\\nde um POKEMON, voce ganha!\\pQuer participar?$"
+      ]
+    },
+    "data/maps/RegionHub/scripts.inc": {
+      "RegionHub_Text_SkyCharmGive": [
+        "Vejo que voce ganhou\\numa INSIGNIA de GYM!\\pAceite este presente.$"
+      ],
+      "RegionHub_Text_SkyCharmExplain": [
+        "Este e o SKY CHARM.\\pUse ao ar livre para voar\\ncom ajuda de um POKEMON.\\pPrecisa da INSIGNIA local\\npara comandar o voo.\\pUse em terra firme\\npara pousar.$"
+      ],
+      "RegionHub_Text_SkyCharmComeBack": [
+        "Os voadores ainda nao\\nobedecem voce.\\pAprenda FLY e ganhe\\na INSIGNIA necessaria.$"
+      ],
+      "RegionHub_Text_SkyCharmEnjoy": [
+        "Gostou da vista?\\pVoce precisa da INSIGNIA\\nlocal para voar.$"
+      ],
+      "RegionHub_Text_HarborNeedOneChamp": [
+        "Bem-vindo ao porto!\\pGuardo passes para ilhas\\nmuito distantes.\\pSo posso entrega-los\\na CAMPEOES regionais.$"
+      ],
+      "RegionHub_Text_HarborGiveEon": [
+        "Venceu uma LIGA!\\nEste passe e seu.$"
+      ],
+      "RegionHub_Text_HarborEonExplain": [
+        "Este e o EON TICKET.\\pMostre no porto de LILYCOVE\\nou OLIVINE para viajar\\la SOUTHERN ISLAND.$"
+      ],
+      "RegionHub_Text_HarborNeedTwoChamps": [
+        "O EON TICKET combina com voce!\\pTenho outro passe, reservado\\na quem vencer DUAS regioes.$"
+      ],
+      "RegionHub_Text_HarborGiveOldSeaMap": [
+        "Duas LIGAS vencidas!\\nPegue este presente.$"
+      ],
+      "RegionHub_Text_HarborOldSeaMapExplain": [
+        "Este e o OLD SEA MAP.\\pMostre nos portos de LILYCOVE\\nou OLIVINE para viajar\\la FARAWAY ISLAND.$"
+      ],
+      "RegionHub_Text_HarborNeedThreeChamps": [
+        "Meu ultimo passe e reservado\\nao campeao das tres regioes:\\nKANTO, JOHTO e HOENN.$"
+      ],
+      "RegionHub_Text_HarborGiveMystic": [
+        "Campeao de KANTO, JOHTO\\ne HOENN! Impressionante!\\pMeu melhor passe e seu.$"
+      ],
+      "RegionHub_Text_HarborMysticExplain": [
+        "Este e o MYSTIC TICKET.\\pMostre nos portos de LILYCOVE\\nou VERMILION para visitar\\la NAVEL ROCK.$"
+      ],
+      "RegionHub_Text_HarborAllGiven": [
+        "Agora voce tem todos\\nos meus passes!\\pBoa viagem, campeao!$"
+      ],
+      "RegionHub_Text_CuratorGiveHubPass": [
+        "Primeira vez aqui?\\pTodo viajante recebe\\num HUB PASS.\\pUse pela BOLSA para\\nvoltar ao terminal.$"
+      ],
+      "RegionHub_Text_CuratorGivePokevial": [
+        "Leve mais este item.\\pTodo viajante recebe um.$"
+      ],
+      "RegionHub_Text_CuratorPokevialExplain": [
+        "Este e o POKEVIAL.\\pUse pela BOLSA para curar\\ntoda sua equipe, onde estiver.$"
+      ],
+      "RegionHub_Text_CuratorNeed4": [
+        "Coleciono amuletos raros.\\pGanhe 4 INSIGNIAS pelo mundo\\ne receba um presente.$"
+      ],
+      "RegionHub_Text_CuratorGiveCatching": [
+        "Quatro INSIGNIAS!\\nEste amuleto e seu.$"
+      ],
+      "RegionHub_Text_CuratorCatchingExplain": [
+        "Este e o CATCHING CHARM.\\pCom ele na BOLSA, suas BALLS\\nconseguem capturas criticas\\lcom mais frequencia.$"
+      ],
+      "RegionHub_Text_CuratorNeed8": [
+        "O proximo presente exige\\n8 INSIGNIAS. Boa sorte!$"
+      ],
+      "RegionHub_Text_CuratorGiveExp": [
+        "Oito INSIGNIAS!\\nPegue este presente.$"
+      ],
+      "RegionHub_Text_CuratorExpExplain": [
+        "Este e o EXP. CHARM.\\pSua equipe ganha mais EXP\\nenquanto ele estiver na BOLSA.$"
+      ],
+      "RegionHub_Text_CuratorNeed12": [
+        "O proximo amuleto exige\\n12 INSIGNIAS pelo mundo.$"
+      ],
+      "RegionHub_Text_CuratorGiveOval": [
+        "Doze INSIGNIAS!\\nVoce merece este premio.$"
+      ],
+      "RegionHub_Text_CuratorOvalExplain": [
+        "Este e o OVAL CHARM.\\pPOKEMON na DAY CARE\\nencontram EGGS mais facilmente.$"
+      ],
+      "RegionHub_Text_CuratorNeed16": [
+        "Falta um amuleto especial.\\pTraga 16 INSIGNIAS,\\nde duas regioes completas.$"
+      ],
+      "RegionHub_Text_CuratorGiveShiny": [
+        "Dezesseis INSIGNIAS!\\nDuas regioes vencidas!\\pMeu tesouro e seu.$"
+      ],
+      "RegionHub_Text_CuratorShinyExplain": [
+        "Este e o SHINY CHARM.\\pAumenta a chance de achar\\nPOKEMON com cores raras.$"
+      ],
+      "RegionHub_Text_CuratorNeed24": [
+        "Ainda resta um ultimo premio.\\pTraga todas as\\n24 INSIGNIAS das tres regioes.$"
+      ],
+      "RegionHub_Text_CuratorGiveEvIvChanger": [
+        "As 24 INSIGNIAS!\\nTodas as regioes vencidas!\\pEste presente e seu.$"
+      ],
+      "RegionHub_Text_CuratorEvIvChangerExplain": [
+        "Este e o EV/IV CHANGER.\\pAjuste EVs e IVs\\nde qualquer POKEMON.\\pAperte R para alternar\\nentre EVs e IVs.\\pCIMA/BAIXO: escolha atributos.\\nESQ/DIR: ajuste valores.\\pSegure ESQ/DIR para mudar\\nde dez em dez.$"
+      ],
+      "RegionHub_Text_CuratorAllGiven": [
+        "Toda minha colecao e sua.\\pUse os amuletos com orgulho!$"
+      ],
+      "RegionHub_Text_DexRewardProgress": [
+        "Registrando POKEMON?\\pVoce ja capturou {STR_VAR_1}.\\pHa premios por 150, 300\\ne por completar a POKEDEX!$"
+      ],
+      "RegionHub_Text_DexRewardGiveTier1": [
+        "Cento e cinquenta especies!\\pOtimo trabalho de pesquisa.\\nEste premio e seu.$"
+      ],
+      "RegionHub_Text_DexRewardTier1Explain": [
+        "Este e um PP MAX.\\pEle leva o PP de um golpe\\nao valor maximo.\\pO proximo objetivo e\\ncapturar 300 especies.$"
+      ],
+      "RegionHub_Text_DexRewardGiveTier2": [
+        "Trezentas especies!\\pVoce explorou muito o mundo.\\nEste premio e seu.$"
+      ],
+      "RegionHub_Text_DexRewardTier2Explain": [
+        "Esta e a MASTER BALL.\\pEla captura qualquer POKEMON\\nsem falhar.\\pAgora complete a POKEDEX.$"
+      ],
+      "RegionHub_Text_DexRewardGiveTier3": [
+        "A POKEDEX esta completa!\\pVoce registrou todos\\nos POKEMON deste mundo.\\pAceite este premio.$"
+      ],
+      "RegionHub_Text_DexRewardDiploma": [
+        "As RARE CANDIES sao suas.\\pE tambem este DIPLOMA.\\pVoce e um grande\\npesquisador POKEMON!\\pSeu nome sera lembrado\\npor todos os pesquisadores.$"
+      ],
+      "RegionHub_Text_DexRewardAllDone": [
+        "Voce ja recebeu\\ntodos os meus premios!\\pObrigado por completar\\numa POKEDEX incrivel.$"
+      ],
+      "RegionHub_Text_TourTerminal": [
+        "Esta e a BATTLE NET.\\pHa batalhas simuladas,\\nEXP completa, sem perder dinheiro\\le cura da equipe apos lutar.\\pHa uma em cada CENTRO POKEMON,\\nao lado do PC.$"
+      ],
+      "RegionHub_Text_TourStairs": [
+        "Estas escadas levam\\na arena da BATTLE NET.\\pMas so CAMPEOES regionais\\npodem subir.$"
+      ],
+      "RegionHub_Text_StairsLocked": [
+        "BATTLE NET - ARENA CENTRAL\\pACESSO NEGADO.\\nVenca uma LIGA regional\\npara entrar.$"
+      ]
+    },
+    "data/text/mauville_man.inc": {
+      "GiddyText_SoPretty": [
+        " tao bonito!$"
+      ],
+      "GiddyText_SoDarling": [
+        " tao querido!$"
+      ],
+      "GiddyText_SoRelaxed": [
+        " tao calmo!$"
+      ],
+      "GiddyText_SoSunny": [
+        " tao ensolarado!$"
+      ],
+      "GiddyText_SoDesirable": [
+        " tao desejado!$"
+      ],
+      "GiddyText_SoExciting": [
+        " tao empolgante!$"
+      ],
+      "GiddyText_SoAmusing": [
+        " tao divertido!$"
+      ],
+      "GiddyText_SoMagical": [
+        " tao magico!$"
+      ],
+      "GiddyText_Is": [
+        " e$"
+      ],
+      "GiddyText_DontYouAgree": [
+        "\\nVoce nao acha?$"
+      ],
+      "GiddyText_ISoWantToGoOnAVacation": [
+        "Quero muito tirar ferias!\\nConhece algum lugar bom?$"
+      ],
+      "GiddyText_IBoughtCrayonsWith120Colors": [
+        "Comprei lapis com 120 cores!\\nNao e demais?$"
+      ],
+      "GiddyText_WouldntItBeNiceIfWeCouldFloat": [
+        "Seria incrivel flutuar\\nnuma nuvem de bolhas!$"
+      ],
+      "GiddyText_WhenYouWriteOnASandyBeach": [
+        "Quando escrevo na areia,\\nas ondas apagam tudo.$"
+      ],
+      "GiddyText_WhatsTheBottomOfTheSeaLike": [
+        "Como sera o fundo do mar?\\nQueria muito conhecer!$"
+      ],
+      "GiddyText_WhenYouSeeTheSettingSunDoesIt": [
+        "O por do sol faz voce\\nquerer voltar para casa?$"
+      ],
+      "GiddyText_LyingBackInTheGreenGrass": [
+        "Descansar na grama verde...\\nQue maravilha!$"
+      ],
+      "GiddyText_SecretBasesAreSoWonderful": [
+        "As SECRET BASES sao demais!\\nNao da vontade de explorar?$"
+      ]
+    },
+    "data/text/abnormal_weather.inc": {
+      "gText_AbnormalWeatherEnded_Rain": [
+        "A chuva forte finalmente\\nparece ter parado...$"
+      ],
+      "gText_AbnormalWeatherEnded_Sun": [
+        "O calor intenso\\nparece ter diminuido...$"
+      ]
+    },
+    "data/text/record_mix.inc": {
+      "Text_WouldYouLikeToMixRecords": [
+        "Quer compartilhar registros\\ncom outros TREINADORES?$"
+      ],
+      "Text_WeHopeToSeeYouAgain": [
+        "Volte sempre!$"
+      ]
+    }
+  },
+  "c": {}
+}
