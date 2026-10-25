@@ -1,11 +1,12 @@
 """P2 final link gate tests: never mistake partial or failed links for gameplay."""
 from pathlib import Path
+import json
 import tempfile
 import unittest
 from unittest.mock import patch
 import subprocess
 
-from tools.grandworld_native.final_link_probe import attempt
+from tools.grandworld_native.final_link_probe import attempt, attach_coverage
 
 
 class RealGameLinkGateTests(unittest.TestCase):
@@ -57,6 +58,21 @@ class RealGameLinkGateTests(unittest.TestCase):
         self.assertIn("-Wl,--no-undefined", args)
         self.assertNotIn("--unresolved-symbols=ignore-all", " ".join(args))
         self.assertFalse((self.root / "grandworld-WORLD-NOT-BOOT-VERIFIED").exists())
+
+    def test_link_report_never_implies_complete_game_when_sources_fail(self):
+        source = self.root / "source.json"
+        data = self.root / "data.json"
+        source.write_text(json.dumps({"compiled": 402, "requested": 405}), encoding="utf-8")
+        data.write_text(json.dumps({"native_objects": 13, "original_source_files": 14}),
+                        encoding="utf-8")
+        result = attach_coverage({
+            "link_succeeded": False, "gameplay_verified": False,
+        }, source, data)
+        self.assertFalse(result["game_sources_all_compiled"])
+        self.assertFalse(result["game_data_all_compiled"])
+        self.assertFalse(result["ready_for_distribution"])
+        self.assertEqual(result["source_compiled"], 402)
+        self.assertEqual(result["data_compiled"], 13)
 
     def test_even_a_successful_link_is_not_a_boot_test(self):
         for folder in (self.code, self.data, self.platform):
