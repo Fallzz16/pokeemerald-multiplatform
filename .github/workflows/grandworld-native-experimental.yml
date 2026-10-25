@@ -383,6 +383,16 @@ jobs:
           python3 grandworld/tools/grandworld_native/engine_survey.py \
             --world world --objects native-m8-survey-objects \
             --limit 405 --report native-engine-m8-survey.json
+          python3 - <<'PY'
+          import json
+          data = json.load(open('native-engine-m8-survey.json', encoding='utf-8'))
+          missing = [(v['source'], v.get('errors', [])[:4])
+                     for v in data['objects'] if v['status'] != 'object_compiled']
+          print('Genuine M8 C modules:', data['compiled'], '/', data['requested'])
+          assert data['requested'] == data['total_available_c_sources'], (
+              'Actual World files omitted by C survey')
+          assert not missing, ('Native C compilation incomplete', missing)
+          PY
           python3 grandworld/tools/grandworld_native/engine_link_probe.py \
             --objects native-m8-survey-objects --report native-engine-m8-survey-link.json
       - name: P2 - map unresolved real C references to original World labels
@@ -403,6 +413,15 @@ jobs:
           python3 grandworld/tools/grandworld_native/data_asm_probe.py \
             --world world --limit 25 --objects native-m8-data-objects \
             --report native-m8-data-asm.json
+          python3 - <<'PY'
+          import json
+          data = json.load(open('native-m8-data-asm.json', encoding='utf-8'))
+          failures = [(v['source'], v.get('errors', [])[:4])
+                      for v in data['results'] if not v['native_object']]
+          print('Real World assembly:', data['native_objects'], '/',
+                data['original_source_files'])
+          assert not failures, ('Original World assembly not fully compiled', failures)
+          PY
       - name: P2 - measure real M8 C + original script/data objects in native linker
         run: |
           set -euo pipefail
