@@ -19,6 +19,8 @@ LOOP_END = "        WaitForVBlank();\n    }\n}\n"
 NEXT_SECTION = "\nstatic void UpdateLinkAndCallCallbacks(void)\n{"
 
 def transform(source):
+    if "void GwWorldFrame(void)" in source or "void GwWorldVBlank(void)" in source:
+        raise ValueError("World frame adapter already installed")
     if source.count(BOOT) != 1 or source.count(LOOP_START) != 1:
         raise ValueError("World main bootstrap or frame loop changed")
     if source.count(NEXT_SECTION) != 1:
