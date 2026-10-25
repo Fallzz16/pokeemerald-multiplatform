@@ -265,7 +265,7 @@ def translate_c(world, source, replacements, path):
 def translate_asm(world, source, entries, path):
     count = 0
     for label, parts in entries.items():
-        pattern = r"(?ms)^(" + re.escape(label) + r"::\n)(.*?)(?=^[A-Za-z_][\w]*::|\Z)"
+        pattern = r"(?ms)^(" + re.escape(label) + r"::?\n)(.*?)(?=^[A-Za-z_][\w]*::?|\Z)"
         found = list(re.finditer(pattern, source))
         if len(found) != 1:
             raise ValueError(f"{path}::{label}: expected 1 label, found {len(found)}")
