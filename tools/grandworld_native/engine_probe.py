@@ -134,7 +134,7 @@ def compile_engine(world, out, compiler="gcc", use_preproc=False, all_sources=Fa
             "all_sources_requested": all_sources,
             "objects": results,
             "compiled": sum(x["status"] == "object_compiled" for x in results),
-            "requested": len(SOURCES),
+            "requested": len(sources),
             "main_object_ok": any(x["source"] == "src/main.c" and
                                   x["status"] == "object_compiled" for x in results),
             "world_engine_linked": False, "world_gameplay_booted": False}
