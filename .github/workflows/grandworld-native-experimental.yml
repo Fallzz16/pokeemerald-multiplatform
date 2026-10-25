@@ -437,6 +437,49 @@ jobs:
           print('Real data resolved symbols:', result.get('resolved_by_original_data_count', 0))
           print('Blocked cause:', result.get('error', 'no linker failure'))
           PY
+      - name: P2 - prepare real 32-bit SDL2 linker dependencies
+        run: |
+          set -euo pipefail
+          sudo dpkg --add-architecture i386
+          sudo apt-get update -qq
+          sudo apt-get install -y libsdl2-dev:i386 libsdl2-image-dev:i386
+          export PKG_CONFIG_LIBDIR=/usr/lib/i386-linux-gnu/pkgconfig:/usr/share/pkgconfig
+          pkg-config --modversion sdl2 SDL2_image
+      - name: P2 - compile genuine M8 platform, renderer and SDL2 desktop entry
+        run: |
+          set -euo pipefail
+          mkdir -p native-m8-platform
+          export PKG_CONFIG_LIBDIR=/usr/lib/i386-linux-gnu/pkgconfig:/usr/share/pkgconfig
+          FLAGS="-m32 -std=gnu17 -O0 -fno-common -fno-strict-aliasing -DPORTABLE=1 -DGW_WORLD_NATIVE=1 -DNONMATCHING=1 -DMODERN=1 -DPLATFORM_SDL2=1 -DRENDERER_EASY_DRAW=1 -DEMERALD=1 -DALL_REGIONS=1"
+          FLAGS="$FLAGS -iquote world/include -iquote world/src -iquote grandworld/include -iquote grandworld/src -iquote grandworld/tools/grandworld_native/host"
+          for module in bios dma cgb_audio gba_easy_draw; do
+            gcc $FLAGS -c "grandworld/src/platform/$module.c" -o "native-m8-platform/$module.o"
+          done
+          gcc $FLAGS $(pkg-config --cflags sdl2 SDL2_image) \
+            -c grandworld/tools/grandworld_native/host/gw_sdl_host.c \
+            -o native-m8-platform/gw_sdl_host.o
+          gcc $FLAGS $(pkg-config --cflags sdl2 SDL2_image) \
+            -c grandworld/tools/grandworld_native/host/gw_world_desktop.c \
+            -o native-m8-desktop.o
+          test -s native-m8-desktop.o
+      - name: P2 - attempt full real M8 SDL2 executable link (no stubs)
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/final_link_probe.py \
+            --code native-m8-survey-objects \
+            --data native-m8-data-objects \
+            --platform native-m8-platform \
+            --frontend native-m8-desktop.o \
+            --report native-m8-final-link-attempt.json
+          python3 - <<'PY'
+          import json
+          data = json.load(open('native-m8-final-link-attempt.json'))
+          print('Genuine World/M8 source objects:', data['component_counts'])
+          print('Full executable linked:', data['link_succeeded'])
+          print('Remaining unique linker symbols:', data.get('undefined_unique_count'))
+          print('Duplicate definitions:', data.get('duplicate_definition_count'))
+          assert not data['gameplay_verified'], 'Gameplay must be tested after boot.'
+          PY
       - name: P1 - record real C portability compiler diagnostics
         if: always()
         run: |
@@ -472,6 +515,7 @@ jobs:
             native-m8-data-asm.json
             native-gba-asm-dialect.json
             native-m8-real-data-link.json
+            native-m8-final-link-attempt.json
             native-m8-unresolved-owner-audit.json
           if-no-files-found: warn
 
