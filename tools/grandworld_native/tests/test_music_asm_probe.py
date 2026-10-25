@@ -52,6 +52,34 @@ class NativeWorldMusicTests(unittest.TestCase):
         self.assertEqual((self.folder / "mus_a.mid").read_bytes(), untouched)
         self.assertEqual((self.folder / "mus_a.s").read_text(), sample)
 
+    @unittest.skipUnless(__import__("shutil").which("gcc"),
+                         "GNU assembler required for genuine ELF32 MIDI object")
+    def test_genuine_MPlayDef_arm_comments_compile_without_changing_original(self):
+        support = self.world / "sound/MPlayDef.s"
+        original_support = (
+            "\t.equ W00, 0x80 @ original GBA WAIT code\n"
+            "\t.equ FINE, 0xb1 @ original song end code\n"
+        )
+        support.write_text(original_support, encoding="utf-8")
+        song = self.folder / "mus_a.s"
+        original_song = (
+            '\t.include "MPlayDef.s"\n'
+            '.section .rodata\n'
+            '.globl mus_a\n'
+            'mus_a:\n'
+            '\t.byte W00, FINE\n'
+        )
+        song.write_text(original_song, encoding="utf-8")
+        report = music_asm_probe.inspect(self.world, self.outputs, limit=1)
+        self.assertEqual(report["compiled"], 1, report["results"])
+        self.assertTrue(report["original_MPlayDef_transformed_for_host"])
+        self.assertEqual(report["original_MPlayDef_syntax_changes"]["arm_comment"], 2)
+        self.assertEqual(support.read_text(encoding="utf-8"), original_support)
+        self.assertEqual(song.read_text(encoding="utf-8"), original_song)
+        self.assertTrue((self.outputs / "mus_a.o").read_bytes().startswith(b"\\x7fELF\\x01"))
+        staged = self.outputs / "_original_host_includes/MPlayDef.s"
+        self.assertIn("# original GBA WAIT code", staged.read_text(encoding="utf-8"))
+
     def test_invalid_request_size_fails_closed(self):
         for limit in (0, -1, 1001):
             with self.subTest(limit=limit), self.assertRaises(ValueError):
