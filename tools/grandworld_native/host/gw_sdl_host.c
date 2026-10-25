@@ -104,6 +104,47 @@ bool gw_host_present_rgb555(GWNativeHost *host, const uint16_t *pixels, int pitc
     return true;
 }
 
+
+/* Data-only theme prototype. Call after SDL_Init; output preserves GBA RGB555.
+   This handles BMP only, not PNG/GIF and not complete in-game plugin loading. */
+bool gw_host_read_bmp_rgb555(const char *bmp_path, uint16_t *pixels, int width, int height)
+{
+    SDL_Surface *image = NULL;
+    SDL_Surface *rgba = NULL;
+    bool ok = false;
+    if (!bmp_path || !pixels || width <= 0 || height <= 0 ||
+        width > 4096 || height > 4096)
+        return false;
+    image = SDL_LoadBMP(bmp_path);
+    if (!image)
+        return false;
+    rgba = SDL_ConvertSurfaceFormat(image, SDL_PIXELFORMAT_ARGB8888, 0);
+    SDL_FreeSurface(image);
+    if (!rgba)
+        return false;
+    if (SDL_MUSTLOCK(rgba) && SDL_LockSurface(rgba) != 0)
+        goto cleanup;
+    for (int y = 0; y < height; ++y) {
+        int source_y = (int)(((int64_t)y * rgba->h) / height);
+        const uint32_t *row = (const uint32_t *)
+             ((const uint8_t *)rgba->pixels + source_y * rgba->pitch);
+        for (int x = 0; x < width; ++x) {
+            int source_x = (int)(((int64_t)x * rgba->w) / width);
+            uint8_t r, g, b, a;
+            SDL_GetRGBA(row[source_x], rgba->format, &r, &g, &b, &a);
+            pixels[y * width + x] = (uint16_t)((r >> 3)
+                                    | ((g >> 3) << 5)
+                                    | ((b >> 3) << 10));
+        }
+    }
+    if (SDL_MUSTLOCK(rgba))
+        SDL_UnlockSurface(rgba);
+    ok = true;
+cleanup:
+    SDL_FreeSurface(rgba);
+    return ok;
+}
+
 void gw_host_close(GWNativeHost *host)
 {
     if (!host) {
