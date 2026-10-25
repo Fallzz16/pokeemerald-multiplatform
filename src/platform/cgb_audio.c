@@ -33,7 +33,8 @@ void cgb_audio_init(u32 rate){
     soundChannelPos[1] = 1;
     PU1Table = PU0;
     PU2Table = PU0;
-    sampleRate = rate;
+    /* Prevent division by zero or zero-speed audio loops from bad config. */
+    sampleRate = rate >= 32 ? rate : 32768;
     gb.ch4LFSR[0] = 0x8000;
     gb.ch4LFSR[1] = 0x80;
     lfsrMax[0] = 0x8000;
@@ -51,8 +52,8 @@ void cgb_set_sweep(u8 sweep){
 
 void cgb_set_wavram(){
     for(u8 wavi = 0; wavi < 0x10; wavi++){
-        gb.WAVRAM[(wavi << 1)] = (((*(REG_ADDR_WAVE_RAM0 + wavi)) & 0xF0) >> 4) / 7.5f - 1.0f;
-        gb.WAVRAM[(wavi << 1) + 1] = (((*(REG_ADDR_WAVE_RAM0 + wavi)) & 0x0F)) / 7.5f - 1.0f;
+        gb.WAVRAM[(wavi << 1)] = (((*(volatile u8 *)(uintptr_t)(REG_ADDR_WAVE_RAM0 + wavi)) & 0xF0) >> 4) / 7.5f - 1.0f;
+        gb.WAVRAM[(wavi << 1) + 1] = (((*(volatile u8 *)(uintptr_t)(REG_ADDR_WAVE_RAM0 + wavi)) & 0x0F)) / 7.5f - 1.0f;
     }
 }
 
@@ -107,6 +108,10 @@ void cgb_trigger_note(u8 channel){
 
 
 void cgb_audio_generate(u16 samplesPerFrame){
+    /* The caller is responsible for respecting the allocated mixed buffer.
+     * A malformed callback length must never corrupt adjacent host memory. */
+    if (samplesPerFrame > MIXED_AUDIO_BUFFER_SIZE || sampleRate == 0)
+        return;
     float *outBuffer = gb.outBuffer;
     switch(REG_NR11 & 0xC0){
         case 0x00:

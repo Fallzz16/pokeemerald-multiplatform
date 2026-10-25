@@ -1,0 +1,40 @@
+GRAND WORLD NATIVE - STYLE LAB / PLUGINS EXPERIMENTAIS
+
+ATENCAO: Isto NAO e o jogo Grand World.
+A engine World/M8 ainda nao esta portada para Windows.
+Este e um laboratorio real de recursos SDL2.
+
+COMO INICIAR
+1. Extraia TODO o ZIP para uma pasta.
+2. Execute ABRIR_STYLE_LAB.bat ou gw_theme_lab.exe.
+3. Aperte F1 para abrir o menu.
+4. Escolha MENU ou FOLLOWER com cima/baixo.
+5. Troque estilos com esquerda/direita.
+6. F1 fecha o menu. F5 recarrega a lista de pacotes.
+
+COMO GERENCIAR PLUGINS
+1. Execute GERENCIAR_PLUGINS.bat (requer Python 3 + Tkinter).
+2. Clique em "Instalar ZIP" para instalar um pacote de recursos.
+3. Ative/desative pacotes na lista.
+4. Escolha os estilos de menu e seguidor no programa.
+5. Clique em "Salvar estilos" e pressione F5 no Style Lab.
+
+Alternativa sem janela de plugins: arraste o .zip sobre INSTALAR_PACK.bat.
+O pacote incluido gw-demo-style.zip e original e pode ser usado em testes.
+Este gerenciador NAO aceita DLL, scripts, Python ou codigo de terceiros:
+apenas pacotes de arquivos de dados com hashes SHA-256.
+
+CONFIGURACOES / SEGURANCA
+mods/enabled.json -> pacotes habilitados
+mods/runtime-assets.tsv -> catalogo de recursos para o SDL2
+mods/style-settings.ini -> tema selecionado
+
+Nenhum arquivo .sav ou progresso do Pokemon e modificado.
+Os sprites e menus sao carregados como PNG/BMP. Audio ainda nao
+substitui o sistema sonoro do jogo.
+O programa e destinado a Windows 10/11 x64. As DLLs estao inclusas.
+
+Codigo e progresso:
+https://github.com/Fallzz16/pokeemerald-multiplatform/pull/78
+
+Guia completo: tools/grandworld_native/STYLE_LAB_PTBR.md no GitHub.

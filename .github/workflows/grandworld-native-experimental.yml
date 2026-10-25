@@ -1,0 +1,679 @@
+name: Grand World Native - Experimental P0/P1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'tools/grandworld_native/**'
+      - '.github/workflows/grandworld-native-experimental.yml'
+      - 'tools/grandworld/**'
+
+permissions:
+  contents: read
+
+jobs:
+  platform-compat-fast:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Checkout port sources
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Checkout pinned World headers
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+      - name: Install World compiler and official i386 SDL2 headers (no i386 runtime)
+        run: |
+          set -euo pipefail
+          sudo dpkg --add-architecture i386
+          sudo apt-get update -qq
+          sudo apt-get install -y gcc-multilib gcc-arm-none-eabi binutils-arm-none-eabi build-essential libpng-dev zlib1g-dev libsdl2-dev libsdl2-image-dev
+          mkdir -p "$RUNNER_TEMP/gw-sdl2-i386"
+          (
+            cd "$RUNNER_TEMP/gw-sdl2-i386"
+            apt-get download libsdl2-dev:i386
+            dpkg-deb -x libsdl2-dev_*_i386.deb extracted
+          )
+          test -s "$RUNNER_TEMP/gw-sdl2-i386/extracted/usr/include/i386-linux-gnu/SDL2/_real_SDL_config.h"
+          echo "GW_SDL_I386_INC=$RUNNER_TEMP/gw-sdl2-i386/extracted/usr/include/i386-linux-gnu" >> "$GITHUB_ENV"
+      - name: Generate pinned World headers without building ROM
+        run: |
+          set -euo pipefail
+          make -C world -f make_tools.mk -j2
+          make -C world generated SETUP_PREREQS=0 NODEP=1 -j2
+      - name: Apply host-only shims to disposable World headers
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/overlay.py --world world --apply --report memory.json
+          python3 grandworld/tools/grandworld_native/save_abi_overlay.py --world world --apply --report saveabi.json
+          python3 grandworld/tools/grandworld_native/save_struct_overlay.py --world world --apply --output nested-save.json
+          python3 grandworld/tools/grandworld_native/save_gabby_overlay.py --world world --apply --output gabby-save.json
+          python3 grandworld/tools/grandworld_native/dma_api_overlay.py --world world --apply --report dma.json
+      - name: Verify strict syntax compilation for all four platform modules
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/probe.py --world world --grandworld grandworld --output native-probe.json
+          python3 - <<'PY'
+          import json
+          data = json.load(open('native-probe.json'))
+          for result in data['results']:
+              print(result['source'], result['status'])
+              if result['errors']:
+                  print('\\n'.join(result['errors'][:12]))
+          assert data['all_syntax_passed'], 'BIOS/DMA/video/audio compatibility still broken'
+          PY
+      - name: Compile and run World-header BIOS/DMA/audio memory tests
+        run: |
+          set -euo pipefail
+          gcc -m32 -std=gnu11 -DPORTABLE -DNONMATCHING -DMODERN=1 -DPLATFORM_SDL2 -DGW_WORLD_NATIVE=1 -DRENDERER_EASY_DRAW \
+            -Werror=implicit-function-declaration -ffunction-sections -fdata-sections \
+            -iquote world/include -iquote world/src -iquote grandworld/include -iquote grandworld/src \
+            grandworld/src/platform/bios.c grandworld/src/platform/dma.c grandworld/src/platform/cgb_audio.c \
+            grandworld/tools/grandworld_native/tests/world_platform_smoke.c \
+            -Wl,--gc-sections -lm -o world-platform-smoke
+          ./world-platform-smoke
+      - name: Build actual native render object (beyond syntax-only)
+        run: |
+          set -euo pipefail
+          gcc -m32 -std=gnu11 -DPORTABLE -DNONMATCHING -DMODERN=1 -DPLATFORM_SDL2 -DGW_WORLD_NATIVE=1 -DRENDERER_EASY_DRAW \
+            -Werror=implicit-function-declaration \
+            -iquote world/include -iquote world/src -iquote grandworld/include -iquote grandworld/src \
+            -c grandworld/src/platform/gba_easy_draw.c -o gw-native-render.o
+          test -s gw-native-render.o
+      - name: P2 - compile real World SDL2 desktop entrypoint (no fake game)
+        run: |
+          set -euo pipefail
+          export PKG_CONFIG_LIBDIR=/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/share/pkgconfig
+          pkg-config --modversion sdl2
+          gcc -m32 -std=gnu17 -DPORTABLE -DGW_WORLD_NATIVE=1 -DMODERN=1 \
+            -DNONMATCHING=1 -DEMERALD=1 -DALL_REGIONS=1 \
+            -I"$GW_SDL_I386_INC" $(pkg-config --cflags sdl2) \
+            -iquote world/include -iquote world/src -iquote grandworld/tools/grandworld_native/host \
+            -c grandworld/tools/grandworld_native/host/gw_world_desktop.c -o gw-world-desktop.o
+          test -s gw-world-desktop.o
+          test "$(readelf -h gw-world-desktop.o | grep -c 'Class:.*ELF32')" -eq 1
+          echo "World SDL2 entrypoint is a genuine ELF32 object; full i386 SDL2 library link remains in native-source-lab."
+      - name: Verify native platform runtime with address/undefined sanitizers
+        run: |
+          set -euo pipefail
+          gcc -m32 -std=gnu11 -g -O1 -fno-omit-frame-pointer -fno-strict-aliasing \
+            -fsanitize=address,undefined -fno-sanitize-recover=all \
+            -DPORTABLE -DNONMATCHING -DMODERN=1 -DPLATFORM_SDL2 -DGW_WORLD_NATIVE=1 -DRENDERER_EASY_DRAW \
+            -Werror=implicit-function-declaration \
+            -iquote world/include -iquote world/src -iquote grandworld/include -iquote grandworld/src \
+            grandworld/src/platform/bios.c grandworld/src/platform/dma.c grandworld/src/platform/cgb_audio.c \
+            grandworld/tools/grandworld_native/tests/world_platform_smoke.c \
+            -lm -o world-platform-sanitized
+          ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 \
+            UBSAN_OPTIONS=halt_on_error=1 ./world-platform-sanitized
+      - name: P2 - measure native SaveBlock1/3 offsets before save compilation
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/save_layout_probe.py \
+            --world world --output native-save13-layout.json
+      - name: P2 - compare real GBA ARM APCS versus native save layouts
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/compare_world_save_types.py \
+            --world world --output native-save-abi-dual.json
+      - name: P2 - expose actual World frame API on temporary native World
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/world_frame_overlay.py \
+            --world world --apply --report native-world-frame.json
+      - name: P2 - probe real World engine objects (main, menu, regions, overworld, battles)
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/engine_probe.py \
+            --world world --output native-engine-objects.json --objects native-world-objects --jobs 2
+          python3 - <<'PY'
+          import json
+          r = json.load(open('native-engine-objects.json'))
+          print("Real World objects compiled:", r['compiled'], "/", r['requested'])
+          for obj in r['objects']:
+              print(obj['source'], obj['status'])
+              if obj.get('errors'):
+                  print("\\n".join(obj['errors'][:12]))
+          PY
+      - name: P2 - inspect unresolved native dependencies in pinned World objects
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/engine_link_probe.py \
+            --objects native-world-objects --report native-engine-link.json
+      - name: P2 - partial link real World engine, native GBA renderer and SDL2 host
+        run: |
+          set -euo pipefail
+          export PKG_CONFIG_LIBDIR=/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/share/pkgconfig
+          mkdir -p world-bridge-objects
+          cp native-world-objects/*.o world-bridge-objects/
+          cp gw-native-render.o world-bridge-objects/gw-native-render.o
+          cp gw-world-desktop.o world-bridge-objects/gw-world-desktop.o
+          gcc -m32 -std=gnu17 -I"$GW_SDL_I386_INC" -c $(pkg-config --cflags sdl2 SDL2_image) \
+            grandworld/tools/grandworld_native/host/gw_sdl_host.c \
+            -o world-bridge-objects/gw-sdl-host.o
+          for unit in bios dma cgb_audio; do
+            gcc -m32 -std=gnu11 -DPORTABLE -DNONMATCHING -DMODERN=1 \
+              -DPLATFORM_SDL2 -DGW_WORLD_NATIVE=1 -DRENDERER_EASY_DRAW \
+              -iquote world/include -iquote world/src \
+              -iquote grandworld/include -iquote grandworld/src \
+              -c grandworld/src/platform/${unit}.c \
+              -o world-bridge-objects/gw-platform-${unit}.o
+          done
+          python3 grandworld/tools/grandworld_native/engine_link_probe.py \
+            --objects world-bridge-objects --report native-world-sdl2-partial-link.json
+          python3 - <<'PY'
+          import json
+          r = json.load(open('native-world-sdl2-partial-link.json'))
+          assert r['partial_linked'], r.get('linker_diagnostics')
+          required = {'main', 'AgbMain', 'GwWorldFrame', 'GwWorldVBlank',
+                      'DrawFrame', 'gw_host_present_rgb555'}
+          assert required.issubset(set(r['World_entry_symbols'])), r['World_entry_symbols']
+          assert r['full_engine_linked'] is False
+          print('Real SDL2 + World partial link OK; missing dependencies:', r['unresolved_count'])
+          PY
+      - name: Publish native compatibility diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grandworld-native-p1-platform-compat
+          path: |
+            native-probe.json
+            memory.json
+            saveabi.json
+            nested-save.json
+            gabby-save.json
+            dma.json
+            native-engine-objects.json
+            native-engine-link.json
+            native-world-sdl2-partial-link.json
+            native-world-frame.json
+            native-save13-layout.json
+            native-save-abi-dual.json
+          if-no-files-found: warn
+  fast-save-abi-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout diagnostics
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Checkout pinned World source (read-only reference)
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+      - name: Install 32-bit ABI compiler and World generator prerequisites
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y gcc-multilib build-essential libpng-dev zlib1g-dev gcc-arm-none-eabi binutils-arm-none-eabi
+      - name: Generate World map-related C headers (no ROM build)
+        run: |
+          set -euo pipefail
+          make -C world -f make_tools.mk -j2
+          make -C world generated SETUP_PREREQS=0 NODEP=1 -j2
+          test -s world/include/constants/map_groups.h
+      - name: Measure save structure without changing production code
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/abi_probe.py --world world --compiler gcc --output fast-save-abi.json
+          python3 - <<'PY'
+          import json
+          data = json.load(open('fast-save-abi.json', encoding='utf-8'))
+          assert data['production_save_assertion_changed'] is False
+          profiles = {p['profile']: p for p in data['profiles']}
+          for name in ('gcc32', 'gcc32-dome-aligned-4', 'gcc32-time-dome-aligned-4'):
+              p = profiles[name]
+              assert p.get('ran') and 'saveblock2' in p.get('values', {}), (name, p.get('compiler_errors'))
+              print(name, 'save_bytes=', p['values']['saveblock2'],
+                    'time_bytes=', p['values']['time.bytes'],
+                    'dome_trainer_bytes=', p['values']['domeTrainer.bytes'],
+                    'delta=', p['layout_deltas']['saveblock2'])
+          combined = profiles['gcc32-time-dome-aligned-4']
+          assert combined['values']['saveblock2'] == 0xF2C, combined['layout_deltas']
+          assert all(value == 0 for value in combined['layout_deltas'].values()), combined['layout_deltas']
+          PY
+      - name: Compare ARM APCS vs native byte-level Time and Dome bitfields
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/compare_abi_bytes.py \
+            --source grandworld/tools/grandworld_native/tests/abi_bytes.c \
+            --report native-abi-bitfield-report.json
+      - name: Save ABI metrics for native architecture decisions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grandworld-native-save-abi-fast
+          path: |
+            fast-save-abi.json
+            native-abi-bitfield-report.json
+          if-no-files-found: error
+  plugin-backend-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test mod installation, GUI backend, pack integrity and safe fallback
+        run: |
+          python3 -m unittest discover -s tools/grandworld_native/tests -v
+          python3 -m compileall -q tools/grandworld_native
+  native-source-lab:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    steps:
+      - name: Checkout experimental Grand World adapters
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Checkout pinned World source (disposable)
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test P0 composer and safe data-pack validator
+        run: |
+          set -euo pipefail
+          python3 -m compileall -q grandworld/tools/grandworld_native
+          cd grandworld
+          python3 -m unittest discover -s tools/grandworld_native/tests -p 'test_*.py' -v
+          cd ..
+      - name: Install build and native probe prerequisites
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev libsdl2-dev libsdl2-image-dev gcc-multilib
+      - name: P0 - materialize full M8 + PT-BR in isolated World tree
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/compose.py \
+            --world world --grandworld grandworld --apply --report native-compose-report.json \
+            2>&1 | tee native-compose.log
+          git -C world diff --check
+      - name: P0 - verify GBA reference still builds and validates
+        run: |
+          set -euo pipefail
+          make -C world modern -j2 2>&1 | tee native-baseline-gba.log
+          test -s world/pokemonworld.gba
+          make -C world validate 2>&1 | tee native-baseline-validate.log
+      - name: P1 - stage guarded host-memory headers (after GBA reference)
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/overlay.py \
+            --world world --apply --report native-overlay-report.json
+      - name: P1 - inspect native save ABI (never touch production save asserts)
+        run: |
+          python3 grandworld/tools/grandworld_native/abi_probe.py \
+            --world world --compiler gcc --output native-abi-report.json
+      - name: P1 - apply measured portable-only save alignment to disposable World
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/save_abi_overlay.py \
+            --world world --apply --report native-save-abi-overlay.json
+      - name: P2 - align actual nested GBA save types for native x86 only
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/save_struct_overlay.py \
+            --world world --apply --output native-save-nested.json
+          python3 grandworld/tools/grandworld_native/save_gabby_overlay.py \
+            --world world --apply --output native-save-gabby.json
+      - name: P1 - route World DMA to host backend (disposable headers)
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/dma_api_overlay.py \
+            --world world --apply --report native-dma-api-overlay.json
+      - name: P2 - native-only World gameplay frame extraction
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/world_frame_overlay.py \
+            --world world --apply --report native-world-frame-composed.json
+      - name: P2 - replace ARM RFU callback tail jumps only for native host
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/wireless_callback_overlay.py \
+            --world world --apply --output native-rfu-callbacks.json
+      - name: P2 - native-only ARM function adapters for RNG, multiboot wait and unused m4a SWI
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/arm_runtime_overlay.py \
+            --world world --apply --output native-arm-runtime-overlay.json
+      - name: P2 - inspect composed World SaveBlock1/3 layout
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/save_layout_probe.py \
+            --world world --output native-save13-m8-layout.json
+      - name: P2 - independently compare compiled ARM APCS and i386 save layouts
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/save_layout_diff.py \
+            --world world --output native-m8-gba-versus-host-save-layout.json
+          python3 - <<'PY'
+          import json
+          p = json.load(open('native-m8-gba-versus-host-save-layout.json', encoding='utf-8'))
+          assert p['assertions_disabled'] is False
+          assert p['all_equal'], p['differences']
+          assert p['measurements']['host_i386']['SaveBlock1.size'] == 14752
+          assert p['measurements']['host_i386']['SaveBlock2.size'] == 3884
+          assert p['measurements']['host_i386']['SaveBlock3.size'] == 1264
+          print('PASS: real GBA/native M8 save layouts identical across all measured fields.')
+          PY
+      - name: P2 - compile actual composited M8/World entry and gameplay objects
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/engine_probe.py \
+            --world world --output native-engine-m8-probe.json --objects native-m8-objects --use-world-preproc --jobs 2
+          python3 - <<'PY'
+          import json
+          r = json.load(open('native-engine-m8-probe.json'))
+          print("Composed M8/World engine objects:", r['compiled'], "/", r['requested'])
+          for unit in r['objects']:
+              print(unit['source'], unit['status'])
+              print("\\n".join(unit.get('errors', [])[:7]))
+          PY
+      - name: P2 - attempt partial native link of compiled M8 engine modules
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/engine_link_probe.py \
+            --objects native-m8-objects --report native-engine-m8-link.json
+      - name: P2 - full real M8 native C source survey (up to 405 files)
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/engine_survey.py \
+            --world world --objects native-m8-survey-objects \
+            --limit 405 --jobs 4 --report native-engine-m8-survey.json
+          python3 - <<'PY'
+          import json
+          data = json.load(open('native-engine-m8-survey.json', encoding='utf-8'))
+          missing = [(v['source'], v.get('errors', [])[:4])
+                     for v in data['objects'] if v['status'] != 'object_compiled']
+          print('Genuine M8 C modules:', data['compiled'], '/', data['requested'])
+          assert data['requested'] == data['total_available_c_sources'], (
+              'Actual World files omitted by C survey')
+          assert not missing, ('Native C compilation incomplete', missing)
+          PY
+          python3 grandworld/tools/grandworld_native/engine_link_probe.py \
+            --objects native-m8-survey-objects --report native-engine-m8-survey-link.json
+      - name: P2 - map unresolved real C references to original World labels
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/symbol_source_audit.py \
+            --world world \
+            --object world-engine-PARTIAL-NOT-EXECUTABLE.o \
+            --report native-m8-unresolved-owner-audit.json
+      - name: P2 - stage original World charmap/scripts BEFORE x86 assembly edits
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/data_asm_staging.py \
+            --mode prepare --world world --objects native-m8-data-objects \
+            --report native-m8-data-prepare.json
+      - name: P2 - adapt original GBA assembly alignment and macros to host GAS
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/gba_data_asm_overlay.py \
+            --world world --apply --report native-gba-asm-dialect.json
+      - name: P2 - assemble PREPROCESSED original World data with host GAS
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/data_asm_staging.py \
+            --mode assemble --world world --objects native-m8-data-objects \
+            --report native-m8-data-asm.json
+          python3 - <<'PY'
+          import json
+          data = json.load(open('native-m8-data-asm.json', encoding='utf-8'))
+          failures = [(v['source'], v.get('errors', [])[:4])
+                      for v in data['results'] if not v['native_object']]
+          print('Real World assembly:', data['native_objects'], '/',
+                data['original_source_files'])
+          assert not failures, ('Original World assembly not fully compiled', failures)
+          PY
+      - name: P2 - compile ALL original GBA-generated MIDI songs as native ELF32
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/music_asm_probe.py \
+            --world world --objects native-m8-midi-objects \
+            --limit 1000 --report native-m8-original-midi.json
+          python3 - <<'PY'
+          import json
+          x = json.load(open('native-m8-original-midi.json', encoding='utf-8'))
+          print('Authentic MIDI assembly native:', x['compiled'], '/', x['requested'])
+          print('Total original songs:', x['available_original_midi'])
+          assert x['requested'] > 0, 'No original MIDI assets discovered'
+          assert x['requested'] == x['available_original_midi'], (
+              'MIDI survey skipped original song sources')
+          missing = [(v['source'], v.get('errors', [])[:5]) for v in x['results']
+                     if not v['native_object']]
+          assert not missing, ('Original MIDI compilation incomplete', missing[:25])
+          assert x['content_replaced_or_fabricated'] is False
+          PY
+      - name: P2 - partial native link of original C, game scripts and ALL generated MIDI
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/real_data_link_probe.py \
+            --code native-m8-survey-objects --data native-m8-data-objects \
+            --music native-m8-midi-objects --report native-m8-real-data-link.json
+          python3 - <<'PY'
+          import json
+          result = json.load(open('native-m8-real-data-link.json', encoding='utf-8'))
+          audit = json.load(open('native-m8-original-midi.json', encoding='utf-8'))
+          assert not result['game_executable_linked']
+          assert result['partial_linked'], result.get('diagnostics', result.get('error'))
+          assert result['code_object_count'] > 0 and result['data_object_count'] > 0
+          assert result['music_object_count'] == audit['compiled'] == audit['requested']
+          assert result['original_music_objects_supplied'] is True
+          print('Compiled original game-data objects:', result['data_object_count'])
+          print('Compiled original MIDI objects:', result['music_object_count'])
+          print('Native relocatable link success:', result['partial_linked'])
+          print('Original assets resolved symbols:', result.get('resolved_by_original_data_count', 0))
+          print('Blocked cause:', result.get('error', 'no linker failure'))
+          PY
+      - name: P2 - prepare real 32-bit SDL2 linker dependencies
+        run: |
+          set -euo pipefail
+          sudo dpkg --add-architecture i386
+          sudo apt-get update -qq
+          sudo apt-get install -y libsdl2-dev:i386 libsdl2-image-dev:i386
+          export PKG_CONFIG_LIBDIR=/usr/lib/i386-linux-gnu/pkgconfig:/usr/share/pkgconfig
+          pkg-config --modversion sdl2 SDL2_image
+      - name: P2 - compile genuine M8 platform, renderer and SDL2 desktop entry
+        run: |
+          set -euo pipefail
+          mkdir -p native-m8-platform
+          export PKG_CONFIG_LIBDIR=/usr/lib/i386-linux-gnu/pkgconfig:/usr/share/pkgconfig
+          FLAGS="-m32 -std=gnu17 -O0 -fno-common -fno-strict-aliasing -DPORTABLE=1 -DGW_WORLD_NATIVE=1 -DNONMATCHING=1 -DMODERN=1 -DPLATFORM_SDL2=1 -DRENDERER_EASY_DRAW=1 -DEMERALD=1 -DALL_REGIONS=1"
+          FLAGS="$FLAGS -iquote world/include -iquote world/src -iquote grandworld/include -iquote grandworld/src -iquote grandworld/tools/grandworld_native/host"
+          for module in bios dma cgb_audio gba_easy_draw; do
+            gcc $FLAGS -c "grandworld/src/platform/$module.c" -o "native-m8-platform/$module.o"
+          done
+          gcc $FLAGS $(pkg-config --cflags sdl2 SDL2_image) \
+            -c grandworld/tools/grandworld_native/host/gw_sdl_host.c \
+            -o native-m8-platform/gw_sdl_host.o
+          gcc $FLAGS $(pkg-config --cflags sdl2 SDL2_image) \
+            -c grandworld/tools/grandworld_native/host/gw_world_desktop.c \
+            -o native-m8-desktop.o
+          test -s native-m8-desktop.o
+      - name: P2 - attempt full real M8 SDL2 executable link (no stubs)
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/final_link_probe.py \
+            --code native-m8-survey-objects \
+            --data native-m8-data-objects \
+            --music native-m8-midi-objects \
+            --platform native-m8-platform \
+            --frontend native-m8-desktop.o \
+            --source-audit native-engine-m8-survey.json \
+            --data-audit native-m8-data-asm.json \
+            --music-audit native-m8-original-midi.json \
+            --report native-m8-final-link-attempt.json
+          python3 - <<'PY'
+          import json
+          data = json.load(open('native-m8-final-link-attempt.json'))
+          print('Genuine World/M8 source objects:', data['component_counts'])
+          print('Full executable linked:', data['link_succeeded'])
+          print('Remaining unique linker symbols:', data.get('undefined_unique_count'))
+          print('Duplicate definitions:', data.get('duplicate_definition_count'))
+          assert data['source_object_set_verified'], data.get('source_stale_object_files')
+          assert data['data_object_set_verified'], data.get('data_missing_object_files')
+          assert data['music_object_set_verified'], data.get('music_missing_object_files')
+          assert data['music_sources_all_compiled'], 'Original MIDI source inventory incomplete'
+          assert data['full_input_inventory_verified'], data.get('input_coverage_failed_gates')
+          assert not data['gameplay_verified'], 'Gameplay must be tested after boot.'
+          PY
+      - name: P2 - real World one-frame boot smoke only after full native link
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/boot_smoke.py \
+            --link-report native-m8-final-link-attempt.json \
+            --executable grandworld-WORLD-NOT-BOOT-VERIFIED \
+            --report native-m8-first-frame-smoke.json
+      - name: P1 - record real C portability compiler diagnostics
+        if: always()
+        run: |
+          python3 grandworld/tools/grandworld_native/probe.py \
+            --world world --grandworld grandworld --compiler gcc \
+            --output native-portability-probe.json
+      - name: Upload diagnostics (no ROM or commercial resources)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grandworld-native-p0-p1-diagnostics
+          path: |
+            native-compose-report.json
+            native-compose.log
+            native-baseline-gba.log
+            native-baseline-validate.log
+            native-portability-probe.json
+            native-overlay-report.json
+            native-abi-report.json
+            native-save-abi-overlay.json
+            native-save-nested.json
+            native-save-gabby.json
+            native-dma-api-overlay.json
+            native-world-frame-composed.json
+            native-rfu-callbacks.json
+            native-arm-runtime-overlay.json
+            native-save13-m8-layout.json
+            native-engine-m8-probe.json
+            native-m8-gba-versus-host-save-layout.json
+            native-engine-m8-link.json
+            native-engine-m8-survey.json
+            native-engine-m8-survey-link.json
+            native-m8-data-asm.json
+            native-m8-original-midi.json
+            native-m8-data-prepare.json
+            native-gba-asm-dialect.json
+            native-m8-real-data-link.json
+            native-m8-final-link-attempt.json
+            native-m8-first-frame-smoke.json
+            native-m8-unresolved-owner-audit.json
+          if-no-files-found: warn
+
+  host-sdl2-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+      - name: Install C compiler and SDL2 dev headers
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake libsdl2-dev libsdl2-image-dev
+      - name: Compile real C/SDL2 host and test synthetic frame
+        run: |
+          set -euo pipefail
+          cmake -S tools/grandworld_native/host -B build/native-host -DCMAKE_BUILD_TYPE=Debug
+          cmake --build build/native-host -j2
+          ctest --test-dir build/native-host --output-on-failure
+      - name: Validate full PNG mod pipeline with original demo assets
+        run: |
+          set -euo pipefail
+          python3 tools/grandworld_native/demo_pack.py --out build/demo-mods --install
+          SDL_VIDEODRIVER=dummy build/native-host/gw_theme_lab --mods build/demo-mods/mods --selftest
+          build/native-host/gw_style_smoke build/demo-mods/mods
+          python3 tools/grandworld_native/pack_manager.py --root build/demo-mods/mods list
+
+
+
+  windows-host-diagnostic:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-ninja
+            mingw-w64-x86_64-SDL2
+            mingw-w64-x86_64-SDL2_image
+            mingw-w64-x86_64-python
+      - name: Build Windows native SDL2 host diagnostic (not Grand World gameplay)
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          cmake -S tools/grandworld_native/host -B build/native-win -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build build/native-win -j2
+          test -f build/native-win/gw_host_preview.exe
+          cp /mingw64/bin/SDL2.dll build/native-win/SDL2.dll
+          cp /mingw64/bin/SDL2_image.dll build/native-win/SDL2_image.dll
+          export SDL_VIDEODRIVER=dummy
+          ./build/native-win/gw_host_smoke.exe
+          python -V
+          python tools/grandworld_native/demo_pack.py --out build/native-win/demo --install
+          ./build/native-win/gw_theme_lab.exe --mods build/native-win/demo/mods --selftest
+          ./build/native-win/gw_style_smoke.exe build/native-win/demo/mods
+          python -m unittest discover -s tools/grandworld_native/tests -p 'test_plugin_ui.py' -v
+          mkdir -p build/native-win/package
+          cp build/native-win/gw_theme_lab.exe build/native-win/package/
+          cp build/native-win/gw_host_preview.exe build/native-win/package/
+          cp build/native-win/demo/gw-demo-style.zip build/native-win/package/
+          cp -r build/native-win/demo/mods build/native-win/package/mods
+          cp tools/grandworld_native/host/*.bat build/native-win/package/
+          cp tools/grandworld_native/host/LEIA_PRIMEIRO.txt build/native-win/package/
+          mkdir -p build/native-win/package/tools
+          cp tools/grandworld_native/{pack_manager.py,modpacks.py,asset_catalog.py,plugin_ui.py} build/native-win/package/tools/
+          bash tools/grandworld_native/host/bundle_mingw_dlls.sh build/native-win/package
+
+      - name: Upload Windows SDL2 host diagnostic only
+        uses: actions/upload-artifact@v4
+        with:
+          name: grandworld-native-sdl2-host-windows-diagnostic-NOT-GAME
+          path: |
+            build/native-win/package/**
+          if-no-files-found: error
+
+  windows-standalone-mod-manager:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test graphical manager backend without a display
+        run: python -m unittest discover -s tools/grandworld_native/tests -p "test_plugin_ui.py" -v
+      - name: Build standalone tkinter plugin manager for Windows
+        run: |
+          python -m pip install --disable-pip-version-check pyinstaller
+          python -m PyInstaller --noconfirm --clean --onefile --windowed --name GW_Plugin_Manager --paths tools/grandworld_native tools/grandworld_native/plugin_ui.py
+          if (!(Test-Path dist/GW_Plugin_Manager.exe)) { throw "Standalone plugin manager was not produced" }
+      - name: Upload standalone GUI pack manager (not the game)
+        uses: actions/upload-artifact@v4
+        with:
+          name: grandworld-native-plugin-manager-windows-NOT-GAME
+          path: dist/GW_Plugin_Manager.exe
+          if-no-files-found: error

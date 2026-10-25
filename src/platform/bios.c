@@ -1,15 +1,46 @@
 #include "global.h"
+#include <stdio.h>
+#include <string.h>
+
+/* World headers define checked call-site macros under MODERN. The native
+ * implementation must still be able to declare the backing functions.
+ * Never change World/GBA call-site validation macros globally. */
+#if defined(GW_WORLD_NATIVE)
+#ifdef CpuSet
+#undef CpuSet
+#endif
+#ifdef CpuFastSet
+#undef CpuFastSet
+#endif
+#ifndef DBGPRINTF
+#define DBGPRINTF(...) fprintf(stderr, __VA_ARGS__)
+#endif
+#endif
+
 // BIOS function implementations are based on the VBA-M source code.
 
 //memory defines here because there's no better spot for them
+/* Memory objects agree with the World portable header overlay. Otherwise
+ * retain the existing multiplatform Emerald symbols unchanged. */
+#if defined(GW_WORLD_NATIVE)
+u16 GW_INTR_CHECK;
+void *GW_INTR_VECTOR;
+unsigned char GW_REG_BASE[0x400] __attribute__((aligned(4)));
+unsigned char GW_PLTT[PLTT_SIZE] __attribute__((aligned(4)));
+unsigned char VRAM_[VRAM_SIZE] __attribute__((aligned(4)));
+unsigned char GW_OAM[OAM_SIZE] __attribute__((aligned(4)));
+unsigned char FLASH_BASE[131072] __attribute__((aligned(4)));
+struct SoundInfo *GW_SOUND_INFO_PTR;
+#else
 u16 INTR_CHECK;
 void *INTR_VECTOR;
-unsigned char REG_BASE[0x400] __attribute__ ((aligned (4)));
-unsigned char PLTT[PLTT_SIZE] __attribute__ ((aligned (4)));
-unsigned char VRAM_[VRAM_SIZE] __attribute__ ((aligned (4)));
-unsigned char OAM[OAM_SIZE] __attribute__ ((aligned (4)));
-unsigned char FLASH_BASE[131072] __attribute__ ((aligned (4)));
+unsigned char REG_BASE[0x400] __attribute__((aligned(4)));
+unsigned char PLTT[PLTT_SIZE] __attribute__((aligned(4)));
+unsigned char VRAM_[VRAM_SIZE] __attribute__((aligned(4)));
+unsigned char OAM[OAM_SIZE] __attribute__((aligned(4)));
+unsigned char FLASH_BASE[131072] __attribute__((aligned(4)));
 struct SoundInfo *SOUND_INFO_PTR;
+#endif
 
 static uint32_t CPUReadMemory(const void *src)
 {
@@ -43,9 +74,9 @@ static void CPUWriteByte(void *dest, uint8_t val)
 
 void CpuSet(const void *src, void *dst, u32 cnt)
 {
-    if(dst == NULL)
+    if(src == NULL || dst == NULL)
     {
-        puts("Attempted to CpuSet to NULL\n");
+        puts("Attempted to CpuSet using a NULL pointer\\n");
         return;
     }
     
@@ -108,9 +139,9 @@ void CpuSet(const void *src, void *dst, u32 cnt)
 
 void CpuFastSet(const void *src, void *dst, u32 cnt)
 {
-    if(dst == NULL)
+    if(src == NULL || dst == NULL)
     {
-        puts("Attempted to CpuFastSet to NULL\n");
+        puts("Attempted to CpuFastSet using a NULL pointer\\n");
         return;
     }
     
@@ -246,21 +277,22 @@ void LZ77UnCompWram(const u32 *src, void *dst)
 
 void RLUnCompWram(const u32 *src, void *dest)
 {
+    const u8 *bytes = (const u8 *)src;
     int remaining = CPUReadMemory(src) >> 8;
     int padding = (4 - remaining) & 0x3;
     int blockHeader;
     int block;
-    src += 4;
+    bytes += 4;
     while (remaining > 0)
     {
-        blockHeader = CPUReadByte(src);
-        src++;
+        blockHeader = CPUReadByte(bytes);
+        bytes++;
         if (blockHeader & 0x80) // Compressed?
         {
             blockHeader &= 0x7F;
             blockHeader += 3;
-            block = CPUReadByte(src);
-            src++;
+            block = CPUReadByte(bytes);
+            bytes++;
             while (blockHeader-- && remaining)
             {
                 remaining--;
@@ -274,8 +306,8 @@ void RLUnCompWram(const u32 *src, void *dest)
             while (blockHeader-- && remaining)
             {
                 remaining--;
-                u8 byte = CPUReadByte(src);
-                src++;
+                u8 byte = CPUReadByte(bytes);
+                bytes++;
                 CPUWriteByte(dest, byte);
                 dest++;
             }
@@ -290,22 +322,23 @@ void RLUnCompWram(const u32 *src, void *dest)
 
 void RLUnCompVram(const u32 *src, void *dest)
 {
+    const u8 *bytes = (const u8 *)src;
     int remaining = CPUReadMemory(src) >> 8;
     int padding = (4 - remaining) & 0x3;
     int blockHeader;
     int block;
     int halfWord = 0;
-    src += 4;
+    bytes += 4;
     while (remaining > 0)
     {
-        blockHeader = CPUReadByte(src);
-        src++;
+        blockHeader = CPUReadByte(bytes);
+        bytes++;
         if (blockHeader & 0x80) // Compressed?
         {
             blockHeader &= 0x7F;
             blockHeader += 3;
-            block = CPUReadByte(src);
-            src++;
+            block = CPUReadByte(bytes);
+            bytes++;
             while (blockHeader-- && remaining)
             {
                 remaining--;
@@ -325,8 +358,8 @@ void RLUnCompVram(const u32 *src, void *dest)
             while (blockHeader-- && remaining)
             {
                 remaining--;
-                u8 byte = CPUReadByte(src);
-                src++;
+                u8 byte = CPUReadByte(bytes);
+                bytes++;
                 if ((u32)dest & 1)
                 {
                     halfWord |= byte << 8;

@@ -1,11 +1,30 @@
 #include "global.h"
 #include "platform/dma.h"
+#include <stdio.h>
+#include <string.h>
+
+#if defined(GW_WORLD_NATIVE)
+/* The modern World header's DmaSet macro directly writes GBA registers.
+ * This backend provides the function which also records host pointers. */
+#ifdef DmaSet
+#undef DmaSet
+#endif
+#ifndef DMA_DEST_MASK
+#define DMA_DEST_MASK (DMA_DEST_DEC | DMA_DEST_FIXED)
+#endif
+#ifndef DMA_SRC_MASK
+#define DMA_SRC_MASK (DMA_SRC_DEC | DMA_SRC_FIXED)
+#endif
+#ifndef DBGPRINTF
+#define DBGPRINTF(...) fprintf(stderr, __VA_ARGS__)
+#endif
+#endif
 
 struct DMATransfer {
     union {
-        const void *src;
-        const u16 *src16;
-        const u32 *src32;
+        const volatile void *src;
+        const volatile u16 *src16;
+        const volatile u32 *src32;
     };
     union {
         void *dst;
@@ -90,7 +109,7 @@ void RunDMAs(u32 type)
 
 void DmaSet(int dmaNum, const void *src, void *dest, u32 control)
 {
-    if (dmaNum >= DMA_COUNT)
+    if (dmaNum < 0 || dmaNum >= DMA_COUNT)
     {
         DBGPRINTF("DmaSet with invalid DMA number: dmaNum=%d, src=%p, dest=%p, control=%d\n", dmaNum, src, dest, control);
         return;
@@ -108,3 +127,15 @@ void DmaSet(int dmaNum, const void *src, void *dest, u32 control)
 
     RunDMAs(DMA_NOW);
 }
+#if defined(GW_WORLD_NATIVE)
+/* World MODERN's checked DmaSet macro routes through this symbol when the
+ * disposable native-only header overlay is enabled. The original GBA macro
+ * and its alignment assertions remain unchanged for GBA builds. */
+void GwNativeDmaSet(int dmaNum, const volatile void *src,
+                    volatile void *dest, u32 control)
+{
+    /* Backing DMA engine reads through volatile src16/src32 and writes through
+     * volatile dst16/dst32. Cast only for the legacy DmaSet signature. */
+    DmaSet(dmaNum, (const void *)src, (void *)dest, control);
+}
+#endif

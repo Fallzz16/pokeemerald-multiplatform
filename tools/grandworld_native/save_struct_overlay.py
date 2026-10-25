@@ -1,0 +1,114 @@
+#!/usr/bin/env python3
+"""Align five verified ARM APCS save types ONLY in disposable native World.
+
+GCC i386 differs from the GBA ARM APCS ABI for ItemSlot, Pokeblock, Pokevial,
+Mail and OldMan; the changes reproduce their expected alignment in PORTABLE
+builds. All field definitions and original GBA declarations remain intact.
+This does NOT establish save/reload compatibility until runtime tests pass;
+save-format assertions are never disabled or bypassed.
+"""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import tempfile
+
+DECLARATIONS = (
+    """struct ItemSlot
+{
+    enum Item itemId;
+    u16 quantity;
+};""",
+    """struct Pokeblock
+{
+    u8 color;
+    u8 spicy;
+    u8 dry;
+    u8 sweet;
+    u8 bitter;
+    u8 sour;
+    u8 feel;
+};""",
+    """struct Pokevial
+{
+    u8 size : 4;
+    u8 dose : 4;
+};""",
+    """struct Mail
+{
+    /*0x00*/ u16 words[MAIL_WORDS_COUNT];
+    /*0x12*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
+    /*0x1A*/ u8 trainerId[TRAINER_ID_LENGTH];
+    /*0x1E*/ enum Species species;
+    /*0x20*/ enum Item itemId;
+};""",
+    """typedef union OldMan
+{
+    struct MauvilleManCommon common;
+    struct MauvilleManBard bard;
+    struct MauvilleManGiddy giddy;
+    struct MauvilleManHipster hipster;
+    struct MauvilleOldManTrader trader;
+    struct MauvilleManStoryteller storyteller;
+    u8 filler[0x40];
+} OldMan;""",
+)
+
+def transform(source):
+    for decl in DECLARATIONS:
+        if source.count(decl) != 1:
+            raise ValueError("World data type drift or adapter applied twice")
+        if decl.endswith("};"):
+            align = (decl[:-2] + "}\n#if defined(PORTABLE)\n"
+                     "__attribute__((aligned(4)))\n#endif\n;")
+        elif decl.endswith("} OldMan;"):
+            align = (decl[:-len("} OldMan;")] + "}\n#if defined(PORTABLE)\n"
+                     "__attribute__((aligned(4)))\n#endif\nOldMan;")
+        else:
+            raise ValueError("unexpected save type declaration terminator")
+        source = source.replace(decl, align, 1)
+    return source
+
+def stage(root, report, apply):
+    root = Path(root).resolve()
+    header = root / "include/global.h"
+    if not header.exists() or not (root / "src/region_switch.c").exists():
+        raise ValueError("not a disposable World source checkout")
+    old = header.read_text(encoding="utf-8")
+    changed = transform(old)
+    info = {
+        "schema":1, "stage":"P2_native_save_abi_nested_types",
+        "types":["ItemSlot aligned 4", "Pokeblock aligned 4",
+                 "Pokevial bitfield-aligned 4", "Mail aligned 4",
+                 "OldMan union aligned 4"],
+        "gba_unchanged":True, "save_assertions_removed":False,
+        "applied":apply,
+        "before_sha256":hashlib.sha256(old.encode()).hexdigest(),
+        "after_sha256":hashlib.sha256(changed.encode()).hexdigest(),
+    }
+    if apply:
+        fd, tmp = tempfile.mkstemp(prefix=".gw-save-nested-", suffix=".tmp", dir=header.parent)
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as stream:
+                stream.write(changed)
+            os.replace(tmp, header)
+        finally:
+            if os.path.exists(tmp):
+                os.unlink(tmp)
+    Path(report).write_text(json.dumps(info, indent=2)+"\n", encoding="utf-8")
+    return info
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--world", required=True)
+    p.add_argument("--output", default="native-save-nested-overlay.json")
+    p.add_argument("--apply", action="store_true")
+    args = p.parse_args()
+    try:
+        print(json.dumps(stage(args.world, args.output, args.apply), indent=2))
+    except (OSError, ValueError) as e:
+        p.exit(1, "NESTED SAVE ABI OVERLAY REFUSED: %s\n" % e)
+
+if __name__ == "__main__":
+    main()
