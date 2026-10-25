@@ -25,6 +25,11 @@ M4A_ORIGINAL = """static void UNUSED MusicPlayerJumpTableCopy(void)
 
 
 def wrap(source, begin, end, needle, native):
+    # An already-wrapped function still contains the original ARM anchor in
+    # its #else branch. Detect the generated native arm first, before searching
+    # those original anchors, so a second pass cannot nest contradictory guards.
+    if "#if defined(GW_WORLD_NATIVE)\n" + native.splitlines()[0] in source:
+        raise ValueError("native ARM fallback already installed")
     if source.count(begin) != 1 or source.count(end) != 1:
         raise ValueError("pinned ARM function anchors moved")
     first = source.index(begin)
