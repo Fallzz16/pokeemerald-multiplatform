@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#endif
 
 #define GW_PREFIX "GW_ASSETS_V1"
 
@@ -265,11 +269,12 @@ bool gw_styles_write_prefs(const GWStyleIndex *index, const GWStylePrefs *prefs)
         remove(staging);
         return false;
     }
-    if (rename(staging, target) == 0)
-        return true;
 #ifdef _WIN32
-    /* Win32 CRT rename does not replace existing files. Cosmetic settings only. */
-    if (remove(target) == 0 && rename(staging, target) == 0)
+    /* Replace existing preferences atomically on Windows, without a delete gap. */
+    if (MoveFileExA(staging, target, MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH))
+        return true;
+#else
+    if (rename(staging, target) == 0)
         return true;
 #endif
     remove(staging);
