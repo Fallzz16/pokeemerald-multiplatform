@@ -2,6 +2,8 @@
 import tempfile
 import unittest
 from pathlib import Path
+import shutil
+import subprocess
 
 from tools.grandworld_native.gba_data_asm_overlay import scan, transform_text
 
@@ -56,6 +58,33 @@ class GbaAssemblySyntaxTests(unittest.TestCase):
             self.assertIn('(MAX_COINS+1)-10', path.read_text())
             with self.assertRaises(ValueError):
                 scan(root, False)
+
+    @unittest.skipUnless(shutil.which("gcc") and shutil.which("objcopy"),
+                         "native GNU assembler and binutils required")
+    def test_gba_word_width_and_alignment_in_real_i386_object(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            asm = root / "data.s"
+            obj = root / "data.o"
+            raw = root / "data.bin"
+            source = (".section .rodata\\n"
+                      ".byte 0xA5\\n"
+                      ".align 3\\n"
+                      "gOriginalPointer:\\n"
+                      ".word 0x12345678\\n")
+            normalized, counts = transform_text(source)
+            self.assertEqual(counts["align"], 1)
+            self.assertEqual(counts["word"], 1)
+            asm.write_text(normalized, encoding="utf-8")
+            subprocess.run(["gcc", "-m32", "-c", str(asm), "-o", str(obj)],
+                           check=True, capture_output=True)
+            subprocess.run(["objcopy", "--dump-section", ".rodata=" + str(raw),
+                            str(obj)], check=True, capture_output=True)
+            payload = raw.read_bytes()
+            self.assertEqual(len(payload), 12)
+            self.assertEqual(payload[0], 0xA5)
+            self.assertEqual(payload[1:8], bytes(7))
+            self.assertEqual(payload[8:], bytes.fromhex("78563412"))
 
     def test_unexpected_celadon_script_change_fails_closed(self):
         with tempfile.TemporaryDirectory() as temp:
