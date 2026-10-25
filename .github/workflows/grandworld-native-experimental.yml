@@ -64,6 +64,27 @@ jobs:
             grandworld/tools/grandworld_native/tests/world_platform_smoke.c \
             -Wl,--gc-sections -lm -o world-platform-smoke
           ./world-platform-smoke
+      - name: Build actual native render object (beyond syntax-only)
+        run: |
+          set -euo pipefail
+          gcc -m32 -std=gnu11 -DPORTABLE -DNONMATCHING -DMODERN=1 -DPLATFORM_SDL2 -DGW_WORLD_NATIVE=1 -DRENDERER_EASY_DRAW \
+            -Werror=implicit-function-declaration \
+            -iquote world/include -iquote world/src -iquote grandworld/include -iquote grandworld/src \
+            -c grandworld/src/platform/gba_easy_draw.c -o gw-native-render.o
+          test -s gw-native-render.o
+      - name: Verify native platform runtime with address/undefined sanitizers
+        run: |
+          set -euo pipefail
+          gcc -m32 -std=gnu11 -g -O1 -fno-omit-frame-pointer -fno-strict-aliasing \
+            -fsanitize=address,undefined -fno-sanitize-recover=all \
+            -DPORTABLE -DNONMATCHING -DMODERN=1 -DPLATFORM_SDL2 -DGW_WORLD_NATIVE=1 -DRENDERER_EASY_DRAW \
+            -Werror=implicit-function-declaration \
+            -iquote world/include -iquote world/src -iquote grandworld/include -iquote grandworld/src \
+            grandworld/src/platform/bios.c grandworld/src/platform/dma.c grandworld/src/platform/cgb_audio.c \
+            grandworld/tools/grandworld_native/tests/world_platform_smoke.c \
+            -lm -o world-platform-sanitized
+          ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 \
+            UBSAN_OPTIONS=halt_on_error=1 ./world-platform-sanitized
       - name: Publish native compatibility diagnostics
         if: always()
         uses: actions/upload-artifact@v4
