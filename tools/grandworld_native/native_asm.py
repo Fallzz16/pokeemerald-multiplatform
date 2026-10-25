@@ -10,6 +10,7 @@ asset placeholder or a content converter.
 import re
 
 COMMENT = re.compile(r"(?P<head>\s*\.[A-Za-z][^\n]*?)\s+@(?=\s|$)(?P<tail>[^\n]*)$")
+STANDALONE_ARM_COMMENT = re.compile(r"(?P<indent>\s*)@(?=\s|$)(?P<tail>[^\n]*)$")
 
 def normalize_host_assembly(source):
     lines = []
@@ -17,6 +18,12 @@ def normalize_host_assembly(source):
     for line in source.splitlines(keepends=True):
         payload = line.rstrip("\r\n")
         eol = line[len(payload):]
+        standalone = STANDALONE_ARM_COMMENT.fullmatch(payload)
+        if standalone:
+            line = standalone.group("indent") + "#" + standalone.group("tail") + eol
+            adapted += 1
+            lines.append(line)
+            continue
         match = COMMENT.fullmatch(payload)
         if match:
             # Never risk altering an @ inside a string literal, .incbin path
