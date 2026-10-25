@@ -161,7 +161,7 @@ SAVE = {
         r"CUIDADO!\p",
         r"Já existe outro jogo salvo.\p",
         r"Se continuar, o progresso\ne os POKéMON desse jogo",
-        r"\lserão perdidos.\p",
+        r"\lsomem para sempre.\p",
         r"Quer mesmo sobrescrever\no jogo salvo?$",
     ],
     "gText_SaveError": [
