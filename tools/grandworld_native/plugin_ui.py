@@ -205,8 +205,9 @@ class PluginManagerWindow:
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--mods", default="mods")
-    p.add_argument("--lab", default="gw_theme_lab.exe" if sys.platform == "win32" else "gw_theme_lab")
+    installed_exe = Path(sys.executable).parent if getattr(sys, "frozen", False) else Path(".")
+    p.add_argument("--mods", default=str(installed_exe / "mods"))
+    p.add_argument("--lab", default=str(installed_exe / ("gw_theme_lab.exe" if sys.platform == "win32" else "gw_theme_lab")))
     args = p.parse_args()
     if tk is None:
         p.exit(1, "Tkinter indisponivel; instale o suporte Tk ou use pack_manager.py.\n")
