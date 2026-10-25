@@ -143,6 +143,7 @@ def main():
     subs.add_parser("list")
     a = subs.add_parser("install")
     a.add_argument("zip_file")
+    a.add_argument("--enable", action="store_true", help="activate pack after validated install")
     for command in ("enable", "disable"):
         p = subs.add_parser(command)
         p.add_argument("pack_id")
@@ -150,6 +151,9 @@ def main():
     try:
         if args.action == "install":
             result = install(args.zip_file, args.root)
+            if args.enable:
+                toggle(args.root, result["id"], True)
+                result["enabled"] = True
         elif args.action in ("enable", "disable"):
             result = toggle(args.root, args.pack_id, args.action == "enable")
         else:
