@@ -2,6 +2,9 @@
 #include "global.h"
 #include <stdbool.h>
 #include <stdio.h>
+#if defined(GW_WORLD_NATIVE) && !defined(DBGPRINTF)
+#define DBGPRINTF(...) fprintf(stderr, __VA_ARGS__)
+#endif
 #include "platform/dma.h"
 
 #define mosaicBGEffectX (REG_MOSAIC & 0xF)
