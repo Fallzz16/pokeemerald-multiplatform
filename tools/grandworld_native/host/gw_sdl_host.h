@@ -23,6 +23,7 @@ GWNativeHost *gw_host_open(const char *title, int scale, bool hidden);
 bool gw_host_poll(GWNativeHost *host);
 uint16_t gw_host_keys(const GWNativeHost *host);
 bool gw_host_present_rgb555(GWNativeHost *host, const uint16_t *pixels, int pitch_pixels);
+bool gw_host_read_bmp_rgb555(const char *bmp_path, uint16_t *pixels, int width, int height);
 void gw_host_close(GWNativeHost *host);
 
 #endif
