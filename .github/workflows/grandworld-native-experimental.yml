@@ -259,7 +259,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/engine_probe.py \
-            --world world --output native-engine-m8-probe.json --objects native-m8-objects
+            --world world --output native-engine-m8-probe.json --objects native-m8-objects --use-world-preproc
           python3 - <<'PY'
           import json
           r = json.load(open('native-engine-m8-probe.json'))
