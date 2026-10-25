@@ -49,6 +49,28 @@ int main(void)
     if (memcmp(src, fast_dst, sizeof(src)) != 0)
         return failed(5, "CpuFastSet 32-byte copy incorrect");
 
+    /* GBA BIOS RLE: first 4 bytes are header, then byte-wise packets.
+     * These samples detect accidentally advancing the compressed cursor in
+     * 32-bit words (which can corrupt tiles and other game resources). */
+    {
+        const u8 literal[] __attribute__((aligned(4))) =
+            {0x30, 0x04, 0x00, 0x00, 0x03, 'A', 'B', 'C', 'D'};
+        const u8 repeated[] __attribute__((aligned(4))) =
+            {0x30, 0x04, 0x00, 0x00, 0x81, 'Z'};
+        u8 wram_out[8] __attribute__((aligned(4))) = {0};
+        u8 vram_out[8] __attribute__((aligned(4))) = {0};
+        RLUnCompWram((const u32 *)literal, wram_out);
+        if (memcmp(wram_out, "ABCD", 4) != 0)
+            return failed(17, "RLE WRAM literal decoding skipped input bytes");
+        RLUnCompVram((const u32 *)literal, vram_out);
+        if (memcmp(vram_out, "ABCD", 4) != 0)
+            return failed(18, "RLE VRAM literal decoding skipped input bytes");
+        memset(wram_out, 0, sizeof(wram_out));
+        RLUnCompWram((const u32 *)repeated, wram_out);
+        if (memcmp(wram_out, "ZZZZ", 4) != 0)
+            return failed(19, "RLE WRAM repeated-byte decoding incorrect");
+    }
+
     /* Calls the unchanged World-checked DmaSet macro; the portable adapter
      * routes it to the native implementation instead of unhandled registers. */
     DmaSet(3, src, dma_dst,
@@ -114,6 +136,6 @@ int main(void)
         return failed(16, "oversized audio callback wrote outside validated range");
 
 
-    puts("PASS: World BIOS, immediate/VBlank/repeating/fixed DMA, hardware buffers, audio guards");
+    puts("PASS: World BIOS RLE/memcopy, event/fill/repeat DMA, emulated I/O, wave/audio bounds");
     return 0;
 }
