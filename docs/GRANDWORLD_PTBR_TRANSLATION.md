@@ -57,9 +57,15 @@ Manifests de localização revisáveis e ancorados no inglês original:
 - tools/grandworld/ptbr_extra_gyms3.json: 68 entradas (Brock, Falkner e Roxanne; lideres, NPCs e dicas).
 - tools/grandworld/ptbr_extra_routes4.json: 79 entradas (Petalburg, Goldenrod, Route 101, Route 29).
 - tools/grandworld/ptbr_extra_gyms4.json: 56 entradas (Misty e Brawly; lideres e NPCs).
+- tools/grandworld/ptbr_extra_dewford5.json: 23 entradas (Dewford, travessias com Briney, pesca e sinalizacao).
 - Dados anteriores incorporados em translate_ptbr_stage1.py: 98 entradas.
 
-Total configurado: 1.267 entradas em 44 arquivos do checkout World.
+Total configurado: 1.290 entradas em 45 arquivos do checkout World.
+
+Lote de continuidade de 25/10/2026: adicionadas 23 traducoes de Dewford e
+integradas ao tradutor e a verificacao minima de CI. Compilacao e testes
+deste novo commit devem ser confirmados pelo Actions, independentemente
+dos resultados do commit anterior.
 A contagem não equivale a 1.267 diálogos exclusivos nem a porcentagem
 de localização de todo o jogo; a meta continua ser 100%.
 
