@@ -76,6 +76,8 @@ jobs:
       - name: P2 - compile real World SDL2 desktop entrypoint (no fake game)
         run: |
           set -euo pipefail
+          export PKG_CONFIG_LIBDIR=/usr/lib/i386-linux-gnu/pkgconfig:/usr/share/pkgconfig
+          pkg-config --modversion sdl2
           gcc -m32 -std=gnu17 -DPORTABLE -DGW_WORLD_NATIVE=1 -DMODERN=1 \
             -DNONMATCHING=1 -DEMERALD=1 -DALL_REGIONS=1 \
             $(pkg-config --cflags sdl2) \
