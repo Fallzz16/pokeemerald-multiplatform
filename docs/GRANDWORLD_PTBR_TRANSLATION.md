@@ -37,16 +37,26 @@ Arquivos gerados/modificados apenas no checkout World efêmero:
   Insígnias locais, placas, guias e acesso aos destinos regionais.
 - data/text/move_relearner.inc, check_furniture.inc, day_care_frlg.inc:
   reaprendizado de golpes, interações e DAY CARE.
+- data/text/ingame_trade_frlg.inc, shoal_cave.inc, lottery_corner.inc,
+  questionnaire.inc, mauville_man.inc, abnormal_weather.inc, record_mix.inc:
+  trocas, recompensas especiais, loteria, clima e NPCs de servicos.
+- data/maps/LittlerootTown, OldaleTown, PalletTown_Frlg, NewBarkTown,
+  CherrygroveCity, AzaleaTown, VioletCity, PewterCity_Frlg, RustboroCity,
+  LittlerootTown_ProfessorBirchsLab e EverGrandeCity_ChampionsRoom:
+  falas iniciais, placas, NPCs, missao DEVON/TEAM AQUA e Campeao.
 
 Manifests de localização revisáveis e ancorados no inglês original:
 - tools/grandworld/ptbr_extra_core.json: 205 entradas.
 - tools/grandworld/ptbr_extra_events.json: 69 entradas.
 - tools/grandworld/ptbr_extra_world.json: 78 entradas.
 - tools/grandworld/ptbr_extra_battle.json: 142 entradas (mensagens de batalha).
+- tools/grandworld/ptbr_extra_services2.json: 112 entradas (trocas, loteria, recompensas globais, hub e outros).
+- tools/grandworld/ptbr_extra_regions2.json: 112 entradas (cidades iniciais, Johto/Kanto/Hoenn e Liga).
+- tools/grandworld/ptbr_extra_story2.json: 134 entradas (Violet, Pewter, Rustboro e laboratorio de Birch).
 - Dados anteriores incorporados em translate_ptbr_stage1.py: 98 entradas.
 
 Total configurado: 950 entradas em 33 arquivos do checkout World.
-A contagem não equivale a 450 diálogos exclusivos nem a porcentagem
+A contagem não equivale a 950 diálogos exclusivos nem a porcentagem
 de localização de todo o jogo; a meta continua ser 100%.
 
 O adaptador exige correspondência exata com todos os símbolos do upstream, valida
@@ -87,12 +97,14 @@ modificar o cabeçalho de identidade/saves antes de testes explícitos.
    Hoenn, Kanto e Johto, protegendo comandos/scripts/flags.
 4. Sistema de batalha inteiro e descrições de golpes/habilidades/itens
    em PT-BR, mas nomes dos golpes/habilidades/itens INTACTOS em inglês.
-5. 51 suites mGBA, capturas reais de caixa de texto, regressões de saves,
-   seis protagonistas e homologação antes da release.
+5. As 51 suites do jogo World passaram a ser obrigatorias no workflow PT-BR
+   apos compilar e executar boot/title no mGBA. Ainda faltam regressões visuais
+   manuais de texto, seis protagonistas, saves e homologação para release.
 
 ## Entrega e segurança
 
 O workflow grandworld-ptbr-stage1.yml compila a ROM GBA real, valida
-mapas/sprites/tabelas, checa orçamento EWRAM/IWRAM/ROM e guarda relatório,
-log de compilação e SHA256 do binário, mas não publica arquivos de jogo de
-terceiros em artifacts. A PR permanece draft; nenhum merge automático.
+mapas/sprites/tabelas, checa orçamento EWRAM/IWRAM/ROM, roda boot/title e
+51 suites World no mGBA vinculados ao hash da propria ROM PT-BR e guarda
+relatorios, logs, inventario de pendencias e SHA256 do binario,
+mas nao publica arquivos de jogo de terceiros em artifacts. A PR permanece draft; nenhum merge automático.
