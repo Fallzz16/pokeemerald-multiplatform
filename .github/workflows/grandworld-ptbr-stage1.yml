@@ -12,6 +12,7 @@ on:
       - 'tools/grandworld/ptbr_extra_services2.json'
       - 'tools/grandworld/ptbr_extra_regions2.json'
       - 'tools/grandworld/ptbr_extra_story2.json'
+      - 'tools/grandworld/audit_ptbr_coverage.py'
       - 'tools/grandworld/tests/test_translate_ptbr_stage1.py'
       - 'docs/GRANDWORLD_PTBR_TRANSLATION.md'
   workflow_dispatch:
@@ -73,6 +74,16 @@ jobs:
           assert not a['item_names_translated'] and not a['move_names_translated']
           assert 'Novo Jogo' in Path('world/src/main_menu.c').read_text()
           assert 'Quer salvar o jogo?' in Path('world/data/text/save.inc').read_text()
+          PY
+          python3 grandworld/tools/grandworld/audit_ptbr_coverage.py world --output ptbr-coverage.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          coverage=json.loads(Path('ptbr-coverage.json').read_text())
+          translation=json.loads(Path('ptbr-report.json').read_text())
+          assert coverage['translation_entries']==translation['translation_entries']>=950
+          assert coverage['totals']['defined']>coverage['totals']['translated']
+          assert coverage['totals']['pending']>0
           PY
           git -C world diff --check
       - name: Compile actual GBA cartridge candidate
@@ -156,6 +167,7 @@ jobs:
           path: |
             ptbr-preflight.json
             ptbr-report.json
+            ptbr-coverage.json
             ptbr-budget.json
             ptbr-evidence.json
             ptbr-m8-shadow.json
