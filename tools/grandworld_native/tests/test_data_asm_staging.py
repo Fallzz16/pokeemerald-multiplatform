@@ -42,6 +42,38 @@ class OriginalGameDataStagingTests(unittest.TestCase):
         self.assertEqual(self.original.read_text(), self.assembly)
         self.assertFalse(compiled["game_data_fabricated"])
 
+    def test_preprocessed_celadon_operands_build_as_real_i386_object(self):
+        # The first stage snapshots the unmodified game-data stream.
+        # x86 GAS rejects these spaced original macro arguments unless the
+        # three known expressions are normalized AFTER preprocessing.
+        script = self.world / "data/event_scripts.s"
+        original = (
+            ".macro goto_if_ge lhs, threshold, target\n"
+            "\t.4byte \\lhs\n"
+            "\t.4byte \\threshold\n"
+            "\t.4byte \\target\n"
+            ".endm\n"
+            ".set VAR_TEMP_1, 0x4000\n"
+            ".set MAX_COINS, 9999\n"
+            "\tgoto_if_ge VAR_TEMP_1, (MAX_COINS + 1) - 10, "
+            "CeladonCity_GameCorner_EventScript_FisherNoRoomForCoins\n"
+            "\tgoto_if_ge VAR_TEMP_1, (MAX_COINS + 1) - 20, "
+            "CeladonCity_GameCorner_EventScript_ScientistNoRoomForCoins\n"
+            "\tgoto_if_ge VAR_TEMP_1, (MAX_COINS + 1) - 20, "
+            "CeladonCity_GameCorner_EventScript_GentlemanNoRoomForCoins\n"
+        )
+        script.write_text(original, encoding="utf-8")
+        staged = prepare(self.world, self.output)
+        self.assertEqual(staged["prepared"], 2)
+        self.assertEqual(script.read_text(encoding="utf-8"), original)
+        report = assemble(self.world, self.output)
+        self.assertEqual(report["native_objects"], 2, report["results"])
+        event = next(row for row in report["results"]
+                     if row["source"] == "data/event_scripts.s")
+        self.assertEqual(event["generated_asm_conversions"]["celadon_expression"], 3)
+        self.assertTrue((self.output / "event_scripts.o").is_file())
+        self.assertEqual(script.read_text(encoding="utf-8"), original)
+
     def test_tampering_with_staged_original_is_rejected(self):
         prepare(self.world, self.output)
         original = self.output / "_original_preproc/original.s"
