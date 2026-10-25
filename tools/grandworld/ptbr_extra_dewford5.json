@@ -1,0 +1,76 @@
+{
+  "asm": {
+    "data/maps/DewfordTown/scripts.inc": {
+      "DewfordTown_Text_TinyIslandCommunity": [
+        "DEWFORD e uma ilha pequena.\\nTodos aqui se conhecem!\\pQuando uma moda aparece,\\ntodos ficam sabendo!$"
+      ],
+      "DewfordTown_Text_TownSign": [
+        "DEWFORD TOWN\\nUma ilha no meio do mar.$"
+      ],
+      "DewfordTown_Text_GymSign": [
+        "DEWFORD TOWN POKEMON GYM\\nLIDER: BRAWLY\\lA grande onda da luta!$"
+      ],
+      "DewfordTown_Text_HallSign": [
+        "DEWFORD HALL\\nPonto de encontro da cidade!$"
+      ],
+      "Route104_Text_LandedInDewfordDeliverLetter": [
+        "MR. BRINEY: Terra a vista!\\nChegamos a DEWFORD!\\pVoce vai entregar a\\nLETTER para STEVEN, certo?$"
+      ],
+      "DewfordTown_Text_SetSailBackToPetalburg": [
+        "MR. BRINEY: Entregou\\na LETTER?\\pOu quer voltar\\npara PETALBURG?$"
+      ],
+      "DewfordTown_Text_PetalburgWereSettingSail2": [
+        "MR. BRINEY: Para PETALBURG!\\pLevantar ancora!\\nPEEKO, vamos navegar!$"
+      ],
+      "DewfordTown_Text_GoDeliverIllBeWaiting": [
+        "MR. BRINEY: Va entregar\\na LETTER. Eu espero aqui!$"
+      ],
+      "DewfordTown_Text_BrineyLandedInDewford": [
+        "MR. BRINEY: Terra a vista!\\nChegamos a DEWFORD!\\pAvise quando quiser\\nnavegar de novo!$"
+      ],
+      "DewfordTown_Text_WhereAreWeBound": [
+        "MR. BRINEY: Ola, marujo!\\nNavego com voce quando quiser!\\pPara onde vamos agora?$"
+      ],
+      "DewfordTown_Text_PetalburgWereSettingSail": [
+        "MR. BRINEY: PETALBURG?\\pLevantar ancora!\\nPEEKO, vamos navegar!$"
+      ],
+      "DewfordTown_Text_SlateportWereSettingSail": [
+        "MR. BRINEY: SLATEPORT?\\pLevantar ancora!\\nPEEKO, vamos navegar!$"
+      ],
+      "DewfordTown_Text_JustTellMeWhenYouNeedToSetSail": [
+        "MR. BRINEY: Avise quando\\nquiser navegar de novo!$"
+      ],
+      "DewfordTown_Text_GettingItchToFish": [
+        "Este lugar e famoso\\npela pesca!\\pQuer tentar pescar?$"
+      ],
+      "DewfordTown_Text_GiveYouOneOfMyRods": [
+        "Gostei de sua vontade!\\pVou te dar uma\\nde minhas RODS!$"
+      ],
+      "DewfordTown_Text_ThrowInFishingAdvice": [
+        "E vou dar umas dicas!\\pFique de frente para a agua\\ne use a ROD.\\pQuando algo fisgar, puxe!\\pPeixes maiores exigem\\no momento certo para puxar.$"
+      ],
+      "DewfordTown_Text_ThatsTooBadThen": [
+        "Ah, entendi.\\nQue pena, entao!$"
+      ],
+      "DewfordTown_Text_HowsYourFishing": [
+        "E ai!\\nComo vai a pescaria?$"
+      ],
+      "DewfordTown_Text_GreatHaulInSomeBigOnes": [
+        "Que otimo!\\nEspero que pesque um grandao!$"
+      ],
+      "DewfordTown_Text_FishingAdvice": [
+        "Nao desanime!\\pFique de frente para a agua\\ne use a ROD.\\pSe algo fisgar, puxe!\\pCom peixes grandes,\\nacerte o momento de puxar.$"
+      ],
+      "DewfordTown_Text_TellMeWhatsNewAndIn": [
+        "O que? Isso saiu de moda?\\pEntao me diga!\\nQual e a nova tendencia?$"
+      ],
+      "DewfordTown_Text_HearOfAnyTrendsComeShareWithMe": [
+        "Se ouvir alguma novidade,\\nvenha me contar, combinado?$"
+      ],
+      "DewfordTown_Text_YeahDefinitionOfInRightNow": [
+        "Isso mesmo!\\p{STR_VAR_1} e o maior\\nsucesso do momento!$"
+      ]
+    }
+  },
+  "c": {}
+}
