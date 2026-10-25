@@ -34,6 +34,14 @@ DECLARATIONS = (
     u8 size : 4;
     u8 dose : 4;
 };""",
+    """struct Mail
+{
+    /*0x00*/ u16 words[MAIL_WORDS_COUNT];
+    /*0x12*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
+    /*0x1A*/ u8 trainerId[TRAINER_ID_LENGTH];
+    /*0x1E*/ enum Species species;
+    /*0x20*/ enum Item itemId;
+};""",
 )
 
 def transform(source):
@@ -57,7 +65,7 @@ def stage(root, report, apply):
     info = {
         "schema":1, "stage":"P2_native_save_abi_nested_types",
         "types":["ItemSlot aligned 4", "Pokeblock aligned 4",
-                 "Pokevial bitfield-aligned 4"],
+                 "Pokevial bitfield-aligned 4", "Mail aligned 4"],
         "gba_unchanged":True, "save_assertions_removed":False,
         "applied":apply,
         "before_sha256":hashlib.sha256(old.encode()).hexdigest(),
