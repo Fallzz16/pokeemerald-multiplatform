@@ -26,22 +26,31 @@ jobs:
           repository: evilchinesefood/PKMN-World
           ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
           path: world
-      - name: Install 32-bit ABI compiler support
+      - name: Install 32-bit ABI compiler and World generator prerequisites
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y gcc-multilib
+          sudo apt-get install -y gcc-multilib build-essential libpng-dev zlib1g-dev
+      - name: Generate World map-related C headers (no ROM build)
+        run: |
+          set -euo pipefail
+          make -C world -f make_tools.mk -j2
+          make -C world generated SETUP_PREREQS=0 NODEP=1 -j2
+          test -s world/include/constants/map_groups.h
       - name: Measure save structure without changing production code
         run: |
+          set -euo pipefail
           python3 grandworld/tools/grandworld_native/abi_probe.py --world world --compiler gcc --output fast-save-abi.json
           python3 - <<'PY'
           import json
           data = json.load(open('fast-save-abi.json', encoding='utf-8'))
           assert data['production_save_assertion_changed'] is False
-          assert data['profiles']
-          for profile in data['profiles']:
-              print(profile['profile'], profile.get('values', {}).get('saveblock2'),
-                    profile.get('values', {}).get('domeTrainer.bytes'),
-                    profile.get('layout_deltas', {}).get('saveblock2'))
+          profiles = {p['profile']: p for p in data['profiles']}
+          for name in ('gcc32', 'gcc32-dome-aligned-4'):
+              p = profiles[name]
+              assert p.get('ran') and 'saveblock2' in p.get('values', {}), (name, p.get('compiler_errors'))
+              print(name, 'save_bytes=', p['values']['saveblock2'],
+                    'dome_trainer_bytes=', p['values']['domeTrainer.bytes'],
+                    'delta=', p['layout_deltas']['saveblock2'])
           PY
       - name: Save ABI metrics for native architecture decisions
         if: always()
