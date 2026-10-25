@@ -13,7 +13,8 @@ import subprocess
 
 SOURCES = ("bios.c", "dma.c", "gba_easy_draw.c", "cgb_audio.c")
 FLAGS = ("-std=gnu99", "-fsyntax-only", "-Wno-attributes", "-DPORTABLE",
-         "-DNONMATCHING", "-DMODERN=1", "-DPLATFORM_SDL2", "-DRENDERER_EASY_DRAW")
+         "-DNONMATCHING", "-DMODERN=1", "-DPLATFORM_SDL2", "-DRENDERER_EASY_DRAW",
+         "-DGW_WORLD_NATIVE=1", "-Werror=implicit-function-declaration")
 
 def probe(world, grandworld, compiler):
     world = Path(world).resolve()
