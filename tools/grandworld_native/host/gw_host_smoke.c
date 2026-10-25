@@ -1,6 +1,8 @@
 #include "gw_sdl_host.h"
 #include <stdint.h>
 #include <stdio.h>
+#define SDL_MAIN_HANDLED
+#include <SDL.h>
 
 static uint16_t pixels[240 * 160];
 
@@ -24,7 +26,32 @@ int main(void)
         gw_host_close(host);
         return 3;
     }
+
+    /* Real host-side BMP theme import (never executes plugin code). */
+    SDL_Surface *test_image = SDL_CreateRGBSurfaceWithFormat(0, 2, 2, 32, SDL_PIXELFORMAT_ARGB8888);
+    if (!test_image) {
+        gw_host_close(host);
+        return 4;
+    }
+    SDL_FillRect(test_image, NULL, SDL_MapRGB(test_image->format, 255, 0, 0));
+    if (SDL_SaveBMP(test_image, "gw_test_theme.bmp") != 0) {
+        SDL_FreeSurface(test_image);
+        gw_host_close(host);
+        return 5;
+    }
+    SDL_FreeSurface(test_image);
+    if (!gw_host_read_bmp_rgb555("gw_test_theme.bmp", pixels, 240, 160)) {
+        remove("gw_test_theme.bmp");
+        gw_host_close(host);
+        return 6;
+    }
+    remove("gw_test_theme.bmp");
+    if (pixels[0] != 0x001F || pixels[239] != 0x001F) {
+        fprintf(stderr, "FAIL: Native BMP reader color/sample check\\n");
+        gw_host_close(host);
+        return 7;
+    }
     gw_host_close(host);
-    puts("PASS: SDL2 240x160 host smoke test (synthetic frame only)");
+    puts("PASS: SDL2 240x160 host smoke test (synthetic frame + data-only BMP theme)");
     return 0;
 }
