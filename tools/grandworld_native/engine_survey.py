@@ -18,8 +18,8 @@ except ImportError:
 
 def survey(world, objects, limit=120):
     world = Path(world).resolve()
-    if limit < len(engine_probe.SOURCES) or limit > 404:
-        raise ValueError("limit must cover initial slice and be <= 404")
+    if limit < len(engine_probe.SOURCES) or limit > 500:
+        raise ValueError("limit must cover initial slice and be <= 500")
     present = {p.name for p in (world / "src").glob("*.c")}
     preferred = [p for p in engine_probe.SOURCES if p in present]
     remaining = sorted(p for p in present if p not in preferred)
