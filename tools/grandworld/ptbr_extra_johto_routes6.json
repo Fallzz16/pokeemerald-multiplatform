@@ -1,0 +1,257 @@
+{
+  "asm": {
+    "data/maps/Route30/scripts.inc": {
+      "Route30_Text_Mailbox": [
+        "CASA DE MR. POKEMON$"
+      ],
+      "Route30_Text_UseTackle": [
+        "Vai, RATTATA!\\pUse TACKLE!$"
+      ],
+      "Route30_Text_ThisIsABigBattle": [
+        "O que? Estamos numa\\nbatalha importante! Sai daqui!$"
+      ],
+      "Route30_Text_YoungsterJoey1Seen": [
+        "Acabei de perder e agora\\nprocuro mais POKEMON.\\pEi, voce parece fraco!\\nVamos batalhar!$"
+      ],
+      "Route30_Text_YoungsterJoey1Beaten": [
+        "Argh! Perdi de novo!\\nQue droga!$"
+      ],
+      "Route30_Text_YoungsterJoey1After": [
+        "Sera que preciso de mais\\nPOKEMON para vencer?\\pNao! Vou continuar com este,\\naconteca o que acontecer!$"
+      ],
+      "Route30_Text_YoungsterMikeySeen": [
+        "Voce e TREINADOR, nao e?\\pEntao vamos batalhar!$"
+      ],
+      "Route30_Text_YoungsterMikeyBeaten": [
+        "Que estranho...\\nAntes eu vencia.$"
+      ],
+      "Route30_Text_YoungsterMikeyAfter": [
+        "Ser um bom TREINADOR\\ne muito dificil.\\pVou lutar com mais pessoas\\npara melhorar!$"
+      ],
+      "Route30_Text_BugCatcherDonSeen": [
+        "Em vez de achar um POKEMON\\ninseto, achei um TREINADOR!$"
+      ],
+      "Route30_Text_BugCatcherDonBeaten": [
+        "Argh! Voce e forte demais!$"
+      ],
+      "Route30_Text_BugCatcherDonAfter": [
+        "Minhas POKE BALLS acabaram\\nenquanto capturava POKEMON.\\pDevia ter comprado mais...$"
+      ],
+      "Route30_Text_YoungsterDirectionsToMrPokemon": [
+        "A casa de MR. POKEMON?\\nFica um pouco mais adiante.$"
+      ],
+      "Route30_Text_YoungsterEveryoneIsBattling": [
+        "Todo mundo esta se divertindo\\ncom batalhas!\\pVoce devia tentar tambem!$"
+      ],
+      "Route30_Text_CooltrainerF": [
+        "Nao sou TREINADORA.\\pMas se encarar um TREINADOR,\\nprepare-se para lutar!$"
+      ],
+      "Route30_Text_Sign": [
+        "ROUTE 30\\pVIOLET CITY - CHERRYGROVE CITY$"
+      ],
+      "Route30_Text_MrPokemonsHouseDirectionsSign": [
+        "CASA DE MR. POKEMON\\nSIGA EM FRENTE!$"
+      ],
+      "Route30_Text_MrPokemonsHouseSign": [
+        "CASA DE MR. POKEMON$"
+      ],
+      "Route30_Text_TrainerTips": [
+        "DICAS PARA TREINADORES\\pNao roube POKEMON de ninguem!\\pLance POKE BALLS apenas\\nem POKEMON selvagens!$"
+      ],
+      "Route30_Text_YoungsterJoeyGiveHPUp": [
+        "Perdi de novo...\\nVoce e forte!\\pAh, quase esqueci!\\nPreciso te dar isto.\\pUse para ficar ainda mais forte!\\pEu tambem vou treinar!$"
+      ],
+      "Route30_Text_Elm_Disaster": [
+        "PROF. ELM: A-alo, {PLAYER}?\\nAconteceu algo terrivel!\\pNao sei o que fazer!\\nE um desastre!\\pVolte para ca agora!$"
+      ],
+      "Route30_Text_Poliwag": [
+        "POLIWAG: Wag waag!$"
+      ]
+    },
+    "data/maps/Route31/scripts.inc": {
+      "Route31_Text_CooltrainerM": [
+        "DARK CAVE...\\pSe meus POKEMON iluminassem\\na caverna, eu exploraria.$"
+      ],
+      "Route31_Text_BugCatcherWade1_Seen": [
+        "Capturei varios POKEMON!\\nVamos batalhar!$"
+      ],
+      "Route31_Text_BugCatcherWade1_Beaten": [
+        "Aaaah...$"
+      ],
+      "Route31_Text_BugCatcherWade1_After": [
+        "Voce pode capturar POKEMON\\nmesmo com seis na equipe.\\pOs novos vao direto\\npara o seu BOX!$"
+      ],
+      "Route31_Text_SleepyMan": [
+        "Ahh... O que?\\pAndei demais procurando\\nPOKEMON hoje.\\pMeus pes doem e estou com sono.\\pSe eu fosse um POKEMON selvagem,\\nseria facil me capturar...\\pZzz...$"
+      ],
+      "Route31_Text_SleepyManGotMail": [
+        "Zzz... O que?\\pVoce trouxe uma MAIL\\npara mim?$"
+      ],
+      "Route31_Text_SleepyManFail": [
+        "Zzz...$"
+      ],
+      "Route31_Text_HandOverMailMon": [
+        "{PLAYER} entregou o POKEMON\\nque estava com a MAIL.$"
+      ],
+      "Route31_Text_ReadingMail": [
+        "Deixe-me ler...\\pObrigado por trazer isto!\\pMeu amigo e legal,\\ne voce tambem!\\pQuero te recompensar.\\nPegue isto!$"
+      ],
+      "Route31_Text_DescribeNightmare": [
+        "Esta TM contem TORMENT.\\pEsse golpe deixa o rival\\nmuito nervoso e impede\\nque repita o mesmo golpe\\lem turnos seguidos.$"
+      ],
+      "Route31_Text_WrongMail": [
+        "Essa MAIL nao e para mim.$"
+      ],
+      "Route31_Text_MissingMail": [
+        "Por que este POKEMON\\ne tao especial?\\pEle nem esta com uma MAIL!$"
+      ],
+      "Route31_Text_DeclinedToHandOverMail": [
+        "O que? Voce nao quer nada?$"
+      ],
+      "Route31_Text_CantTakeLastMon": [
+        "Se eu ficar com esse POKEMON,\\nquem vai lutar por voce?$"
+      ],
+      "Route31_Text_Youngster": [
+        "Encontrei um bom POKEMON\\nna DARK CAVE.\\pVou treinar para enfrentar\\nFALKNER, o LIDER de GYM\\nde VIOLET CITY.$"
+      ],
+      "Route31_Text_Sign": [
+        "ROUTE 31\\pVIOLET CITY - CHERRYGROVE CITY$"
+      ],
+      "Route31_Text_DarkCaveSign": [
+        "DARK CAVE$"
+      ]
+    },
+    "data/maps/Route32/scripts.inc": {
+      "Route32_Text_CooltrainerM_WhatsTheHurry": [
+        "Ei, espere!\\nPor que tanta pressa?$"
+      ],
+      "Route32_Text_CooltrainerM_AideIsWaiting": [
+        "{PLAYER}, certo?\\nUm homem de oculos\\lestava procurando voce.\\pEle espera por voce\\nno POKEMON CENTER.$"
+      ],
+      "Route32_Text_CooltrainerM_SproutTower": [
+        "Ja visitou SPROUT TOWER?\\pEm VIOLET CITY, todo TREINADOR\\ndeve treinar por la.\\pVa conhecer SPROUT TOWER!$"
+      ],
+      "Route32_Text_CooltrainerM_VioletGym": [
+        "Ja visitou o POKEMON GYM?\\pLa voce pode testar\\na si e aos seus POKEMON.\\pE uma etapa importante\\npara todo TREINADOR!$"
+      ],
+      "Route32_Text_CooltrainerM_HaveThisSeed": [
+        "Seus POKEMON sao bons!\\nTreinou em VIOLET CITY?\\pO GYM deve ter ajudado.\\pPegue isto como lembranca!\\nFortalece golpes GRASS.$"
+      ],
+      "Route32_Text_CooltrainerM_Experiences": [
+        "Tudo que viveu em VIOLET CITY\\nsera util em sua jornada.$"
+      ],
+      "Route32_Text_SlowpokeTailOffer": [
+        "Quer uma SLOWPOKETAIL\\ndeliciosa e nutritiva?\\pSo hoje por um milhao!\\pVoce vai querer!$"
+      ],
+      "Route32_Text_ThoughtKidsLoaded": [
+        "Tsc! Pensei que as criancas\\nde hoje fossem ricas...$"
+      ],
+      "Route32_Text_RefusedSlowpokeTail": [
+        "Nao quer?\\nEntao va embora!$"
+      ],
+      "Route32_Text_FisherJustin_Seen": [
+        "Ei!\\pVoce fez meu peixe escapar!$"
+      ],
+      "Route32_Text_FisherJustin_Beaten": [
+        "Splash!$"
+      ],
+      "Route32_Text_FisherJustin_After": [
+        "Calma e paciencia...\\nEssas sao as chaves\\lda pesca e das batalhas!$"
+      ],
+      "Route32_Text_FisherRalph1_Seen": [
+        "Sou otimo na pesca\\ne nas batalhas POKEMON.\\pNao vou perder\\npara uma crianca!$"
+      ],
+      "Route32_Text_FisherRalph1_Beaten": [
+        "Tsc! Tive pressa demais...$"
+      ],
+      "Route32_Text_FisherRalph1_After": [
+        "Pescar e uma paixao\\npara a vida toda.\\pPOKEMON sao amigos eternos!$"
+      ],
+      "Route32_Text_FisherHenry_Seen": [
+        "Meus POKEMON?\\nAcabei de pesca-los!$"
+      ],
+      "Route32_Text_FisherHenry_Beaten": [
+        "SPLASH?$"
+      ],
+      "Route32_Text_FisherHenry_After": [
+        "POKEMON recem-capturados\\nnao vencem os bem treinados.$"
+      ],
+      "Route32_Text_YoungsterAlbert_Seen": [
+        "Nunca te vi por aqui.\\nSe acha muito forte?$"
+      ],
+      "Route32_Text_YoungsterAlbert_Beaten": [
+        "Voce e forte!$"
+      ],
+      "Route32_Text_YoungsterAlbert_After": [
+        "Quero ser o melhor\\ncom meus favoritos!\\pNao preciso usar os mesmos\\nPOKEMON fortes dos outros.$"
+      ],
+      "Route32_Text_YoungsterGordon_Seen": [
+        "Achei bons POKEMON\\nno mato alto!\\pAcho que eles vao vencer!$"
+      ],
+      "Route32_Text_YoungsterGordon_Beaten": [
+        "Droga! Achei que venceria.$"
+      ],
+      "Route32_Text_YoungsterGordon_After": [
+        "O mato alto esta cheio\\nde coisas que grudam.$"
+      ],
+      "Route32_Text_CamperRoland_Seen": [
+        "Esse seu olhar...\\nQue interessante!$"
+      ],
+      "Route32_Text_CamperRoland_Beaten": [
+        "Hmm... Que decepcao.$"
+      ],
+      "Route32_Text_CamperRoland_After": [
+        "Se nao quiser batalhar,\\nevite contato visual.$"
+      ],
+      "Route32_Text_PicnickerLiz1_Seen": [
+        "Aham... E sabe...\\pO que? Uma batalha?\\nEstou no telefone!\\pAh, tudo bem. Mas seja rapido!$"
+      ],
+      "Route32_Text_PicnickerLiz1_Beaten": [
+        "Ah! Que raiva!$"
+      ],
+      "Route32_Text_PicnickerLiz1_After": [
+        "A conversa estava tao boa...$"
+      ],
+      "Route32_Text_BirdKeeperPeter_Seen": [
+        "Essa BADGE e de VIOLET CITY!\\nVoce venceu FALKNER?$"
+      ],
+      "Route32_Text_BirdKeeperPeter_Beaten": [
+        "Agora conheco minhas fraquezas.$"
+      ],
+      "Route32_Text_BirdKeeperPeter_After": [
+        "Preciso treinar mais\\nno GYM de VIOLET CITY.$"
+      ],
+      "Route32_Text_RoarIntro": [
+        "ROAAAR! TODOS FOGEM\\nQUANDO EU RUGO!\\pMAS VOCE VEIO ATE AQUI!\\pGOSTEI! PEGUE ISTO!$"
+      ],
+      "Route32_Text_RoarOutro": [
+        "ROAAAR! ISSO E ROAR!\\pATE OS POKEMON FOGEM\\nDE UM BOM ROAR!$"
+      ],
+      "Route32_Text_MeetFrieda": [
+        "FRIEDA: Oi!\\pSOU FRIEDA DA FAMILIA\\nDOS DIAS DA SEMANA!\\pAdivinhe meu dia favorito\\ne te darei um presente!$"
+      ],
+      "Route32_Text_FriedaGivesGift": [
+        "Pegue esta POISON BARB!$"
+      ],
+      "Route32_Text_FriedaGaveGift": [
+        "FRIEDA: De a um POKEMON\\ncom golpes POISON.\\pE incrivel!\\nFortalece os golpes de veneno!$"
+      ],
+      "Route32_Text_FriedaFriday": [
+        "FRIEDA: Oi!\\nQual dia voce prefere?\\pEu adoro sexta-feira!\\nNao e o melhor dia?$"
+      ],
+      "Route32_Text_FriedaNope": [
+        "FRIEDA: Nao e esse!$"
+      ],
+      "Route32_Text_Sign1": [
+        "ROUTE 32\\pVIOLET CITY - AZALEA TOWN$"
+      ],
+      "Route32_Text_Sign2": [
+        "RUINS OF ALPH\\nENTRADA LESTE$"
+      ],
+      "Route32_Text_Sign3": [
+        "UNION CAVE\\nMAIS ADIANTE$"
+      ]
+    }
+  },
+  "c": {}
+}
