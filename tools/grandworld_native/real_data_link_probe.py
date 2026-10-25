@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""P2: link genuine World/M8 compiled C with real preprocessed ASM data.
+"""P2: link genuine World/M8 C with real preprocessed ASM and generated MIDI.
 
 Never substitutes fake symbols, graphics, text, or executable stubs. A
 relocatable .o still has unresolved game dependencies and IS NOT PLAYABLE.
@@ -25,15 +25,19 @@ def _undefined(nm, target):
             values.add(bits[-1])
     return values
 
-def analyze(code_objects, data_objects, output, compiler="gcc", nm="nm"):
+def analyze(code_objects, data_objects, output, compiler="gcc", nm="nm", music_objects=None):
     code_dir = Path(code_objects).resolve()
     data_dir = Path(data_objects).resolve()
     report = Path(output).resolve()
     code = sorted(code_dir.glob("*.o"))
     data = sorted(data_dir.glob("*.o"))
+    music = (sorted(Path(music_objects).resolve().glob("*.o"))
+             if music_objects is not None else [])
     info = {
         "schema": 1, "stage": "P2_real_C_plus_original_data_relocatable_link",
         "code_object_count": len(code), "data_object_count": len(data),
+        "music_object_count": len(music),
+        "original_music_objects_supplied": music_objects is not None,
         "all_objects_from_real_source": True, "dummy_symbols_inserted": False,
         "partial_linked": False, "game_executable_linked": False,
         "gameplay_verified": False,
@@ -50,6 +54,9 @@ def analyze(code_objects, data_objects, output, compiler="gcc", nm="nm"):
     if not data:
         info["error"] = "No original data objects successfully assembled"
         return info
+    if music_objects is not None and not music:
+        info["error"] = "No original MIDI objects successfully assembled"
+        return info
     report.parent.mkdir(parents=True, exist_ok=True)
     baseline = report.parent / "gw-engine-code-only-NOT-EXECUTABLE.o"
     combined = report.parent / "gw-engine-with-real-data-NOT-EXECUTABLE.o"
@@ -60,7 +67,7 @@ def analyze(code_objects, data_objects, output, compiler="gcc", nm="nm"):
         return info
     before = _undefined(symbol_tool, baseline)
     linked = _invoke([cc, "-m32", "-r", *map(str, code),
-                      *map(str, data), "-o", str(combined)])
+                      *map(str, data), *map(str, music), "-o", str(combined)])
     if linked.returncode:
         info["error"] = "Code+real data relocatable link failed"
         info["diagnostics"] = linked.stderr.splitlines()[:55]
@@ -81,9 +88,10 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--code", required=True, help="native World/M8 C .o folder")
     p.add_argument("--data", required=True, help="original World/M8 data ASM .o folder")
+    p.add_argument("--music", help="genuine GBA-generated MIDI song .o folder")
     p.add_argument("--report", default="native-real-data-link.json")
     args = p.parse_args()
-    result = analyze(args.code, args.data, args.report)
+    result = analyze(args.code, args.data, args.report, music_objects=args.music)
     Path(args.report).write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({key: value for key, value in result.items()
                       if not isinstance(value, list)}, indent=2))
