@@ -25,10 +25,28 @@ grass-only, nessa ordem. Só depois roda:
     python3 grandworld/tools/grandworld/translate_ptbr_stage1.py world --apply --report ptbr-report.json
 
 Arquivos gerados/modificados apenas no checkout World efêmero:
-- src/main_menu.c — novo jogo/continuar/ajustes e rótulos do menu de carregamento.
-- src/strings.c — interface, comandos de bolsa, textos de Pokédex, loja e avisos.
-- data/text/save.inc — telas e alertas de salvamento, sem alterar slots de save.
-- data/text/birch_speech.inc — introdução local com placeholders preservados.
+- src/main_menu.c: menu, avisos de saves antigos/novos e carregamento.
+- src/strings.c: Pokédex, bolsa, equipe, lojas, aprendizado de golpes,
+  medicamentos, descrições de ações, caixas e outros textos da interface.
+- data/text/save.inc e data/text/birch_speech.inc: salvamento e Hoenn.
+- data/text/new_game_intro_frlg.inc: introdução de Kanto, Professor Oak,
+  orientações de botões e apresentação das três regiões.
+- data/text/obtain_item.inc, pc.inc, pc_transfer.inc, pkmn_center_nurse.inc
+  e surf.inc: recompensas, PC, captura, atendimento e SURF.
+- data/maps/RegionHub/scripts.inc: centro de viagens, regras de equipe/PC,
+  Insígnias locais, placas, guias e acesso aos destinos regionais.
+- data/text/move_relearner.inc, check_furniture.inc, day_care_frlg.inc:
+  reaprendizado de golpes, interações e DAY CARE.
+
+Manifests de localização revisáveis e ancorados no inglês original:
+- tools/grandworld/ptbr_extra_core.json: 205 entradas.
+- tools/grandworld/ptbr_extra_events.json: 69 entradas.
+- tools/grandworld/ptbr_extra_world.json: 78 entradas.
+- Dados anteriores incorporados em translate_ptbr_stage1.py: 98 entradas.
+
+Total configurado: 450 entradas em 13 arquivos do checkout World.
+A contagem não equivale a 450 diálogos exclusivos nem a porcentagem
+de localização de todo o jogo; a meta continua ser 100%.
 
 O adaptador exige correspondência exata com todos os símbolos do upstream, valida
 caracteres presentes em charmap.txt e rejeita alterações em macros {PLAYER},
@@ -40,11 +58,14 @@ caracteres presentes em charmap.txt e rejeita alterações em macros {PLAYER},
 Esta etapa é um **primeiro lote testável** e intencionalmente preserva
 muitas telas inglesas ainda não auditadas. O objetivo 100% continua aberto.
 
-A fonte latina atual não possui os glyphs ã/õ/Ã/Õ no charmap. Para evitar
-texto ilegível ou bytes mapeados para símbolos japoneses, o primeiro lote
-utiliza formulações PT-BR que não precisam deles. O próximo trabalho P0
-é acrescentar os glyphs visuais nos PNGs/fontes latinas, validar seus tamanhos
-e registrar o mapeamento de charmap sem colidir com símbolos existentes.
+A pedido do usuário, TODOS os novos textos PT-BR são convertidos para
+ASCII comum sem acentos nem cedilha (ex.: "Voce", "Nao", "Pocao").
+A regra é aplicada em plain_ptbr antes de inserir qualquer texto no
+checkout World, preservando nomes originais de espécies, golpes, habilidades,
+personagens e itens fora do escopo. Se algum símbolo incompatível passar
+pela normalização, a tradução falha e nenhum arquivo é alterado.
+Não vamos gastar esforço criando novos glyphs de ã/õ/ç: **essa tarefa foi
+explicitamente cancelada pelo usuário**.
 
 Rótulos de menu extremamente estreitos e quebra de linha de diálogos ainda
 exigem inspeção visual em emulador mGBA. Compilar só prova que a codificação
@@ -56,15 +77,17 @@ modificar o cabeçalho de identidade/saves antes de testes explícitos.
 
 ## Próximos lotes
 
-1. Glyphs acentuados incluindo ã/õ, testes de largura, captura de tela em
-   mGBA e QA de carga/save/Continue nas três regiões.
-2. Inventário total dos textos C, ASM, tabelas JSON e textos em imagens.
-   Manter um manifesto de strings com estado translated/reviewed/pending.
-3. Centro de viagens, caixas de diálogos, tutoriais, nomes de funções de
-   interface, sistema de batalha e descrições (nomes próprios em inglês).
-4. Tramas e NPCs de Hoenn, Kanto e Johto, auditando eventos e placeholders.
-5. Verificação de ortografia, comprimento em pixels, 51 testes mGBA,
-   gameplay save/Continue com seis heróis e homologação de ROM PT-BR.
+1. Testes visuais e mGBA com a ROM PT-BR para caixa de diálogo,
+   caracteres e save/Continue; text boxes mais estreitas devem ter
+   quebra apropriada sem romper eventos.
+2. Inventário total dos textos C, ASM, tabelas JSON e textos em imagens;
+   medir cobertura real por região e estado (translated/reviewed/pending).
+3. Diálogos completos dos NPCs, rotas, ginásios, Ligas e campanhas de
+   Hoenn, Kanto e Johto, protegendo comandos/scripts/flags.
+4. Sistema de batalha inteiro e descrições de golpes/habilidades/itens
+   em PT-BR, mas nomes dos golpes/habilidades/itens INTACTOS em inglês.
+5. 51 suites mGBA, capturas reais de caixa de texto, regressões de saves,
+   seis protagonistas e homologação antes da release.
 
 ## Entrega e segurança
 
