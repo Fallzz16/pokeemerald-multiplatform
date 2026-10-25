@@ -39,6 +39,21 @@ class GbaAssemblySyntaxTests(unittest.TestCase):
         self.assertIn('@progbits', normalized)
         self.assertEqual(counts["arm_comment"], 2)
 
+    def test_unspaced_arm_comments_and_elf_type_metadata(self):
+        original = (
+            "\t@Custom battle tower command\\n"
+            "\tspecial ChooseHalfPartyForBattle @choose three\\n"
+            "\t.type some_function, @function\\n"
+            "\t.section .rodata, @progbits\\n"
+            "\t.4byte PointerRef\\n"
+        )
+        transformed, changes = transform_text(original)
+        self.assertIn("#Custom battle tower command", transformed)
+        self.assertIn("#choose three", transformed)
+        self.assertIn("@function", transformed)
+        self.assertIn("@progbits", transformed)
+        self.assertEqual(changes["arm_comment"], 2)
+
     def test_apply_is_dry_run_by_default_and_fails_on_drift(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
