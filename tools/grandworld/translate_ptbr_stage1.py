@@ -185,7 +185,7 @@ ASM_SECTIONS = {
 
 # Expanded text batches are owned by this same fail-closed translator.
 # Explicit originals in JSON prevent accidental replacements after upstream drift.
-for file_name in ("ptbr_extra_core.json", "ptbr_extra_events.json", "ptbr_extra_world.json", "ptbr_extra_battle.json"):
+for file_name in ("ptbr_extra_core.json", "ptbr_extra_events.json", "ptbr_extra_world.json", "ptbr_extra_battle.json", "ptbr_extra_services2.json", "ptbr_extra_regions2.json"):
     batch_path = Path(__file__).with_name(file_name)
     if batch_path.is_file():
         batch = json.loads(batch_path.read_text(encoding="utf-8"))
