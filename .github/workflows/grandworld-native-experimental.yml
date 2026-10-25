@@ -457,21 +457,25 @@ jobs:
           assert not missing, ('Original MIDI compilation incomplete', missing[:25])
           assert x['content_replaced_or_fabricated'] is False
           PY
-      - name: P2 - measure real M8 C + original script/data objects in native linker
+      - name: P2 - partial native link of original C, game scripts and ALL generated MIDI
         run: |
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/real_data_link_probe.py \
             --code native-m8-survey-objects --data native-m8-data-objects \
-            --report native-m8-real-data-link.json
+            --music native-m8-midi-objects --report native-m8-real-data-link.json
           python3 - <<'PY'
           import json
           result = json.load(open('native-m8-real-data-link.json', encoding='utf-8'))
+          audit = json.load(open('native-m8-original-midi.json', encoding='utf-8'))
           assert not result['game_executable_linked']
           assert result['partial_linked'], result.get('diagnostics', result.get('error'))
           assert result['code_object_count'] > 0 and result['data_object_count'] > 0
-          print('Compiled actual data objects:', result['data_object_count'])
+          assert result['music_object_count'] == audit['compiled'] == audit['requested']
+          assert result['original_music_objects_supplied'] is True
+          print('Compiled original game-data objects:', result['data_object_count'])
+          print('Compiled original MIDI objects:', result['music_object_count'])
           print('Native relocatable link success:', result['partial_linked'])
-          print('Real data resolved symbols:', result.get('resolved_by_original_data_count', 0))
+          print('Original assets resolved symbols:', result.get('resolved_by_original_data_count', 0))
           print('Blocked cause:', result.get('error', 'no linker failure'))
           PY
       - name: P2 - prepare real 32-bit SDL2 linker dependencies
