@@ -1,70 +1,49 @@
-"""Translate ARM-style end-of-line assembly COMMENTS from the World preprocessor.
+"""Normalize ARM-only assembly *comments* emitted by the real World preprocessor.
 
-The real World's text/graphics preprocessor can emit data directives with
-' @ comment', accepted by GNU ARM assembler but not x86 GNU assembler.
-Only full-line assembler DIRECTIVES with a whitespace-delimited @ comment
-are changed; bytes, incbin paths, quoted strings and actual instructions
-must remain untouched. This is a host assembler syntax adapter, NOT an
-asset placeholder or a content converter.
+This does not synthesize assets or rewrite bytes. It adapts carefully selected
+ARM assembler commentary and a redundant ARM-specific COMPOUND_STRING section
+suffix to GNU x86 assembler syntax. No game data or GBA build is changed.
 """
 import re
 
-COMMENT = re.compile(r"(?P<head>\s*\.[A-Za-z][^\n]*?)\s+@(?=\s|$)(?P<tail>[^\n]*)$")
-STANDALONE_ARM_COMMENT = re.compile(r"(?P<indent>\s*)@(?=\s|$)(?P<tail>[^\n]*)$")
-# The World charmap COMPOUND_STRING resource macro emits an ARM-only suffix.
-# Keep the original mergeable section and byte stride untouched.
+# Standalone @ comment (not an ARM instruction, symbol, or data literal).
+STANDALONE_ARM_COMMENT = re.compile(r"(?P<indent>[ \t]*)@(?=[ \t]|$)(?P<tail>[^\r\n]*)$")
+# At end of a data directive, only whitespace followed by an @ comment.
+DIRECTIVE_ARM_COMMENT = re.compile(
+    r"(?P<head>[ \t]*\.[A-Za-z][^\r\n]*?)[ \t]+@(?=[ \t]|$)(?P<tail>[^\r\n]*)$"
+)
+# Real World compound string generated assembly has an ARM-only section suffix.
+# Preserve the mergeable section, including the stride and embedded byte data.
 ARM_COMPOUND_SECTION = re.compile(
-    r'(?P<section>\s*\.section\s+\.rodata\.compound_string\.[A-Za-z0-9_]+,"aM",%progbits,[1-9][0-9]*)\s+@,"a"
+    r'(?P<section>[ \t]*\.section[ \t]+\.rodata\.compound_string\.[A-Za-z0-9_]+,'
+    r'"aM",%progbits,[1-9][0-9]*)[ \t]+@,"a"$'
+)
+
 
 def normalize_host_assembly(source):
+    """Return (normalized_source, line_count) with byte directives untouched."""
     lines = []
-    adapted = 0
+    changed = 0
     for line in source.splitlines(keepends=True):
         payload = line.rstrip("\r\n")
         eol = line[len(payload):]
         compound = ARM_COMPOUND_SECTION.fullmatch(payload)
         if compound:
             lines.append(compound.group("section") + eol)
-            adapted += 1
+            changed += 1
             continue
         standalone = STANDALONE_ARM_COMMENT.fullmatch(payload)
         if standalone:
-            line = standalone.group("indent") + "#" + standalone.group("tail") + eol
-            adapted += 1
-            lines.append(line)
+            lines.append(standalone.group("indent") + "#" + standalone.group("tail") + eol)
+            changed += 1
             continue
-        match = COMMENT.fullmatch(payload)
+        match = DIRECTIVE_ARM_COMMENT.fullmatch(payload)
         if match:
-            # Never risk altering an @ inside a string literal, .incbin path
-            # or symbol name. Only directives and comments may be adapted.
             prefix = match.group("head")
+            # Avoid a quoted @ in .ascii/.incbin (or an odd quote sequence).
             if prefix.count('"') % 2 == 0 and prefix.count("'") % 2 == 0:
-                line = prefix + " #" + match.group("tail") + eol
-                adapted += 1
+                lines.append(prefix + " #" + match.group("tail") + eol)
+                changed += 1
+                continue
         lines.append(line)
-    return "".join(lines), adapted
-
-)
-
-def normalize_host_assembly(source):
-    lines = []
-    adapted = 0
-    for line in source.splitlines(keepends=True):
-        payload = line.rstrip("\r\n")
-        eol = line[len(payload):]
-        standalone = STANDALONE_ARM_COMMENT.fullmatch(payload)
-        if standalone:
-            line = standalone.group("indent") + "#" + standalone.group("tail") + eol
-            adapted += 1
-            lines.append(line)
-            continue
-        match = COMMENT.fullmatch(payload)
-        if match:
-            # Never risk altering an @ inside a string literal, .incbin path
-            # or symbol name. Only directives and comments may be adapted.
-            prefix = match.group("head")
-            if prefix.count('"') % 2 == 0 and prefix.count("'") % 2 == 0:
-                line = prefix + " #" + match.group("tail") + eol
-                adapted += 1
-        lines.append(line)
-    return "".join(lines), adapted
+    return "".join(lines), changed
