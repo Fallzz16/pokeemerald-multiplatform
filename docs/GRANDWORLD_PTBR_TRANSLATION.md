@@ -26,7 +26,7 @@ grass-only, nessa ordem. Só depois roda:
 
 Arquivos gerados/modificados apenas no checkout World efêmero:
 - src/main_menu.c: menu, avisos de saves antigos/novos e carregamento.
-- src/strings.c: Pokédex, bolsa, equipe, lojas, aprendizado de golpes,
+- src/strings.c e src/battle_message.c: Pokédex, batalhas, bolsa, equipe, lojas, aprendizado de golpes,
   medicamentos, descrições de ações, caixas e outros textos da interface.
 - data/text/save.inc e data/text/birch_speech.inc: salvamento e Hoenn.
 - data/text/new_game_intro_frlg.inc: introdução de Kanto, Professor Oak,
@@ -42,9 +42,10 @@ Manifests de localização revisáveis e ancorados no inglês original:
 - tools/grandworld/ptbr_extra_core.json: 205 entradas.
 - tools/grandworld/ptbr_extra_events.json: 69 entradas.
 - tools/grandworld/ptbr_extra_world.json: 78 entradas.
+- tools/grandworld/ptbr_extra_battle.json: 142 entradas (mensagens de batalha).
 - Dados anteriores incorporados em translate_ptbr_stage1.py: 98 entradas.
 
-Total configurado: 450 entradas em 13 arquivos do checkout World.
+Total configurado: 592 entradas em 15 arquivos do checkout World.
 A contagem não equivale a 450 diálogos exclusivos nem a porcentagem
 de localização de todo o jogo; a meta continua ser 100%.
 
