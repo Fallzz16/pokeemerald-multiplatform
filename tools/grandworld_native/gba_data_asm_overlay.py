@@ -40,9 +40,14 @@ def _arm_comment(line):
             elif quote is None:
                 quote = char
         elif char == '@' and quote is None:
-            # GBA @ comments only if whitespace-delimited (not e.g. @progbits).
-            if (at == 0 or line[at-1].isspace()) and (
-                    at + 1 == len(line) or line[at+1].isspace()):
+            # ARM comments need not have a space after '@' (e.g. @Custom).
+            # GAS ELF section/type annotations must keep @progbits/@function.
+            if at == 0 or line[at-1].isspace():
+                directive = line.lstrip().split(None, 1)[0] if line.strip() else ""
+                operand = line[at + 1:].split(None, 1)[0].rstrip(",") if line[at + 1:].strip() else ""
+                if directive in (".section", ".pushsection", ".type") and (
+                        operand in ("progbits", "nobits", "function", "object")):
+                    continue
                 return line[:at] + "#" + line[at+1:], True
     return line, False
 
