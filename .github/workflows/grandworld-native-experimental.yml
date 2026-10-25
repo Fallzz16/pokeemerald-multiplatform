@@ -380,6 +380,13 @@ jobs:
             --limit 405 --report native-engine-m8-survey.json
           python3 grandworld/tools/grandworld_native/engine_link_probe.py \
             --objects native-m8-survey-objects --report native-engine-m8-survey-link.json
+      - name: P2 - map unresolved real C references to original World labels
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/symbol_source_audit.py \
+            --world world \
+            --object world-engine-PARTIAL-NOT-EXECUTABLE.o \
+            --report native-m8-unresolved-owner-audit.json
       - name: P2 - probe original World script/data assembly for native linker
         run: |
           set -euo pipefail
@@ -434,6 +441,7 @@ jobs:
             native-engine-m8-survey-link.json
             native-m8-data-asm.json
             native-m8-real-data-link.json
+            native-m8-unresolved-owner-audit.json
           if-no-files-found: warn
 
   host-sdl2-smoke:
