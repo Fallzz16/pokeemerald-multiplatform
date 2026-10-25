@@ -20,11 +20,11 @@ DEFINES = {
     '#define INTR_VECTOR    (*(void **)0x3007FFC)':
       '#ifdef PORTABLE\nextern void *GW_INTR_VECTOR;\n#define INTR_VECTOR GW_INTR_VECTOR\n#else\n#define INTR_VECTOR    (*(void **)0x3007FFC)\n#endif',
     '#define PLTT          0x5000000':
-      '#ifdef PORTABLE\nextern unsigned char GW_PLTT[0x400];\n#define PLTT GW_PLTT\n#else\n#define PLTT          0x5000000\n#endif',
+      '#ifdef PORTABLE\nextern unsigned char GW_PLTT[0x400];\n#define PLTT ((uintptr_t)GW_PLTT)\n#else\n#define PLTT          0x5000000\n#endif',
     '#define VRAM      0x6000000':
       '#ifdef PORTABLE\nextern unsigned char VRAM_[0x18000];\n#define VRAM ((uintptr_t)VRAM_)\n#else\n#define VRAM      0x6000000\n#endif',
     '#define OAM      0x7000000':
-      '#ifdef PORTABLE\nextern unsigned char GW_OAM[0x400];\n#define OAM GW_OAM\n#else\n#define OAM      0x7000000\n#endif',
+      '#ifdef PORTABLE\nextern unsigned char GW_OAM[0x400];\n#define OAM ((uintptr_t)GW_OAM)\n#else\n#define OAM      0x7000000\n#endif',
 }
 IO = {
     '#define REG_BASE 0x4000000 // I/O register base address':
