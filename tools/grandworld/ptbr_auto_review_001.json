@@ -448,61 +448,61 @@
     },
     "data/maps/FuchsiaCity_Gym_Frlg/scripts.inc": {
       "FuchsiaCity_Gym_Text_KogaExplainTM06": [
-        "Selado dentro do TM06 esta\\nTOXIC!\\pE uma tecnica secreta que\\nremonta a uns 400 anos.$"
+        "Esta TM06 guarda o golpe TOXIC!\\pUma tecnica secreta criada\\nha cerca de 400 anos.$"
       ],
       "FuchsiaCity_Gym_Text_MakeSpaceForThis": [
-        "Abram espaco para isto,\\ncrianca!$"
+        "Abra espaco para receber\\nisto, jovem TREINADOR!$"
       ],
       "FuchsiaCity_Gym_Text_KaydenIntro": [
-        "A forca nao e a chave para o\\nPOKEMON. Percebes isto?\\pPOKEMON e sobre estrategia!\\pVou mostrar-te como a\\nestrategia pode vencer a forca\\lbruta.$"
+        "Forca nao e tudo\\nnas batalhas POKEMON.\\pO segredo e ter estrategia!\\pVou mostrar como superar\\nate os rivais mais fortes.$"
       ],
       "FuchsiaCity_Gym_Text_KaydenDefeat": [
-        "O que? Extraordinario!$"
+        "O que?\\nInacreditavel!$"
       ],
       "FuchsiaCity_Gym_Text_KaydenPostBattle": [
-        "Misturas musculos com cerebros?\\nBoa estrategia!\\pIsso e notavel para uma\\ncrianca.$"
+        "Voce une forca e inteligencia?\\nOtima estrategia!\\pQue habilidade para\\num TREINADOR tao jovem!$"
       ],
       "FuchsiaCity_Gym_Text_KirkIntro": [
-        "Eu era um magico uma vez.\\pMas sonhei em tornar-me ninja,\\npor isso juntei-me a este Gym.$"
+        "Eu era magico antigamente.\\pMas sonhava em ser ninja.\\nPor isso vim para este GYM!$"
       ],
       "FuchsiaCity_Gym_Text_KirkDefeat": [
         "Estou acabado!$"
       ],
       "FuchsiaCity_Gym_Text_NateIntro": [
-        "Vamos ver-te vencer as minhas\\ntecnicas especiais!$"
+        "Quero ver voce vencer\\nminhas tecnicas especiais!$"
       ],
       "FuchsiaCity_Gym_Text_NateDefeat": [
-        "Enganaste-me!$"
+        "Voce me enganou!$"
       ],
       "FuchsiaCity_Gym_Text_NatePostBattle": [
-        "Eu gosto de veneno e tecnicas\\nde sono, enquanto eles\\lpermanecem apos a batalha!$"
+        "Gosto de golpes que causam\\nveneno e sono.\\pSeus efeitos podem durar\\ndepois do ataque!$"
       ],
       "FuchsiaCity_Gym_Text_PhilIntro": [
-        "Pare ai mesmo!\\pAs famosas paredes invisiveis\\nda FUCHSIA GINASIO\\lfrustraram-te?$"
+        "Pare ai mesmo!\\pAs famosas paredes invisiveis\\ndo GYM de FUCHSIA\\lestao atrapalhando voce?$"
       ],
       "FuchsiaCity_Gym_Text_PhilDefeat": [
-        "Whoa! Conseguiste!$"
+        "Uau!\\nVoce conseguiu!$"
       ],
       "FuchsiaCity_Gym_Text_PhilPostBattle": [
-        "Impressionaste-me! Aqui vai uma\\ndica!\\pProcure muito de perto por\\nlacunas nas paredes invisiveis!$"
+        "Voce me impressionou!\\nAqui vai uma dica.\\pOlhe com muita atencao\\npara as brechas nas paredes!$"
       ],
       "FuchsiaCity_Gym_Text_EdgarPostBattle": [
-        "Ainda tenho muito que aprender.$"
+        "Ainda tenho muito\\na aprender.$"
       ],
       "FuchsiaCity_Gym_Text_ShawnDefeat": [
-        "Es mais habilidoso do que eu\\npensava!$"
+        "Voce e mais habilidoso\\ndo que imaginei!$"
       ],
       "FuchsiaCity_Gym_Text_ShawnPostBattle": [
-        "Onde ha luz, ha sombra!\\pLuz e sombra! Qual escolhe?$"
+        "Onde existe luz, existe sombra!\\pLuz ou sombra...\\nQual voce escolhe?$"
       ],
       "FuchsiaCity_Gym_Text_GymGuyPostVictory": [
-        "E incrivel como ninja pode\\naterrorizar, mesmo agora!$"
+        "E incrivel como os ninjas\\nainda conseguem assustar!$"
       ],
       "FuchsiaCity_Gym_Text_RematchDefeat": [
-        "O veneno do ninja reina\\nsupremo!$"
+        "O veneno dos ninjas\\ne poderoso!$"
       ],
       "FuchsiaCity_Gym_Text_RematchDecline": [
-        "Desapareca, e volte quando a\\nsua determinacao agucar.$"
+        "Suma nas sombras e volte\\nquando estiver mais preparado.$"
       ]
     },
     "data/maps/GoldenrodCity_Gym/scripts.inc": {
