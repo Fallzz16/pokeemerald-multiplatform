@@ -67,11 +67,11 @@ class GbaAssemblySyntaxTests(unittest.TestCase):
             asm = root / "data.s"
             obj = root / "data.o"
             raw = root / "data.bin"
-            source = (".section .rodata\\n"
-                      ".byte 0xA5\\n"
-                      ".align 3\\n"
-                      "gOriginalPointer:\\n"
-                      ".word 0x12345678\\n")
+            source = (".section .rodata\n"
+                      ".byte 0xA5\n"
+                      ".align 3\n"
+                      "gOriginalPointer:\n"
+                      ".word 0x12345678\n")
             normalized, counts = transform_text(source)
             self.assertEqual(counts["align"], 1)
             self.assertEqual(counts["word"], 1)
