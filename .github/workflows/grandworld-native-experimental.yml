@@ -339,6 +339,16 @@ jobs:
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/save_layout_diff.py \
             --world world --output native-m8-gba-versus-host-save-layout.json
+          python3 - <<'PY'
+          import json
+          p = json.load(open('native-m8-gba-versus-host-save-layout.json', encoding='utf-8'))
+          assert p['assertions_disabled'] is False
+          assert p['all_equal'], p['differences']
+          assert p['measurements']['host_i386']['SaveBlock1.size'] == 14752
+          assert p['measurements']['host_i386']['SaveBlock2.size'] == 3884
+          assert p['measurements']['host_i386']['SaveBlock3.size'] == 1264
+          print('PASS: real GBA/native M8 save layouts identical across all measured fields.')
+          PY
       - name: P2 - compile actual composited M8/World entry and gameplay objects
         run: |
           set -euo pipefail
