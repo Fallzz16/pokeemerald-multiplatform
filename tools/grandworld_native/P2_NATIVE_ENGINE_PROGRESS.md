@@ -38,6 +38,24 @@ Não realizar merge na M8 estável nem na tradução PT-BR sem testes.
 - Layouts medidos de `SaveBlock1/2/3` igualados entre GBA ARM APCS e GCC32,
   sem desativar `STATIC_ASSERT`. Salvamento end-to-end segue pendente.
 
+### Atualização medida na CI 40203936946
+
+Na [execução 40203936946](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40203936946):
+- **405/405** módulos C da M8/World compilaram para x86-32 com os adaptadores
+  ARM nativos; os objetos tiveram link relocável real.
+- **3.815** símbolos permaneceram sem definição no objeto C relocável.
+- A conversão prematura do assembly causou regressão: apenas **4/14**
+  arquivos principais de dados compilaram; só 2 dependências foram
+  resolvidas ao juntar os dados naquela execução.
+- A cadeia foi reestruturada em `data_asm_staging.py`: a World original
+  agora preprocessa textos e roteiros intactos primeiro, e a adaptação GAS
+  acontece depois, apenas para o assembler hospedeiro.
+- O status de assembly **após** essa correção exige CI nova; não apresentar
+  14/14 como confirmado.
+- `final_link_probe.py` irá registrar a falha de linkagem final real,
+  separando símbolos indefinidos, duplicados e cobertura C/ASM, sem
+  inventar recursos ou declarar gameplay testado.
+
 ## O que esta continuação acrescentou
 
 1. Corrigiu as strings de quebra de linha de um teste de assembly real que
