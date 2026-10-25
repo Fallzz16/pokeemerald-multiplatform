@@ -10,6 +10,7 @@
 
 /* The legacy CGB audio implementation owns this state; the test observes it. */
 extern struct AudioCGB gb;
+extern u32 sampleRate;
 
 static int failed(int code, const char *message)
 {
@@ -63,6 +64,38 @@ int main(void)
     if (memcmp(src, dma_dst, sizeof(src)) != 0)
         return failed(8, "VBlank DMA failed");
 
+    /* 16-bit DMA from fixed source must fill every destination halfword. */
+    {
+        u16 value = 0xA53Fu;
+        u16 result[8] = {0};
+        DmaSet(3, &value, result,
+               ((DMA_ENABLE | DMA_START_NOW | DMA_SRC_FIXED | DMA_DEST_INC) << 16) | 8);
+        for (i = 0; i < 8; ++i)
+            if (result[i] != value)
+                return failed(11, "fixed-source 16-bit DMA fill incorrect");
+    }
+
+    /* Repeated VBlank DMA increments source and reloads the destination. */
+    {
+        u32 repeat_src[8] = {101,102,103,104,201,202,203,204};
+        u32 repeat_dst[4] = {0};
+        DmaSet(3, repeat_src, repeat_dst,
+               ((DMA_ENABLE | DMA_REPEAT | DMA_START_VBLANK |
+                 DMA_32BIT | DMA_SRC_INC | DMA_DEST_RELOAD) << 16) | 4);
+        RunDMAs(DMA_VBLANK);
+        if (repeat_dst[0] != 101 || repeat_dst[3] != 104)
+            return failed(12, "first repeating DMA event incorrect");
+        RunDMAs(DMA_VBLANK);
+        if (repeat_dst[0] != 201 || repeat_dst[3] != 204)
+            return failed(13, "DMA repeat did not reload destination");
+    }
+
+    /* Invalid DMA index must fail closed without copying or touching I/O. */
+    memset(dma_dst, 0, sizeof(dma_dst));
+    GwNativeDmaSet(-1, src, dma_dst, (DMA_ENABLE << 16) | 4);
+    if (dma_dst[0] != 0)
+        return failed(14, "negative DMA index affected memory");
+
     /* Each wave byte stores two amplitude nibbles; test the first and last. */
     cgb_audio_init(44100);
     for (i = 0; i < 16; ++i)
@@ -72,7 +105,15 @@ int main(void)
         return failed(9, "wave RAM nibble decoding incorrect");
     if (gb.WAVRAM[31] < 0.99f)
         return failed(10, "wave RAM final nibble decoding incorrect");
+    cgb_audio_init(0);
+    if (sampleRate == 0)
+        return failed(15, "zero audio sample rate not normalized");
+    gb.outBuffer[0] = 123.5f;
+    cgb_audio_generate(MIXED_AUDIO_BUFFER_SIZE + 1);
+    if (gb.outBuffer[0] != 123.5f)
+        return failed(16, "oversized audio callback wrote outside validated range");
 
-    puts("PASS: World portable BIOS, DMA NOW/VBlank, 4 hardware buffers, wave RAM");
+
+    puts("PASS: World BIOS, immediate/VBlank/repeating/fixed DMA, hardware buffers, audio guards");
     return 0;
 }
