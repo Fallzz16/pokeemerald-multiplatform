@@ -59,9 +59,20 @@ Manifests de localização revisáveis e ancorados no inglês original:
 - tools/grandworld/ptbr_extra_gyms4.json: 56 entradas (Misty e Brawly; lideres e NPCs).
 - tools/grandworld/ptbr_extra_dewford5.json: 23 entradas (Dewford, travessias com Briney, pesca e sinalizacao).
 - tools/grandworld/ptbr_extra_routes5.json: 17 entradas (Route 109, SLATEPORT, Briney e Route 106).
+- tools/grandworld/ptbr_extra_route110_6.json: 43 entradas (MAY/BRENDAN, ciclismo, TEAM AQUA).
+- tools/grandworld/ptbr_extra_route111_6.json: 30 entradas (familia WINSTRATE, MIRAGE TOWER).
+- tools/grandworld/ptbr_extra_route112_6.json: 8 entradas (METEORITE, MT. CHIMNEY).
+- tools/grandworld/ptbr_extra_hoenn_routes6.json: 50 entradas (ROUTES 102, 103, 104).
+- tools/grandworld/ptbr_extra_johto_routes6.json: 82 entradas (ROUTES 30, 31, 32, JOHTO).
+- tools/grandworld/ptbr_extra_hoenn_routes7.json: 15 entradas (ROUTES 113, 114, 115).
 - Dados anteriores incorporados em translate_ptbr_stage1.py: 98 entradas.
 
-Total configurado: 1.307 entradas em 47 arquivos do checkout World.
+Total configurado manualmente: 1.535 entradas em 59 arquivos do checkout World.
+
+Novas entradas manuais nesta grande continuidade: 228. Todas usam manifestos
+JSON revisaveis; nenhum nome de item, golpe ou habilidade foi renomeado.
+A execucao posterior do GitHub Actions e obrigatoria antes de chamar a ROM
+compilada/homologada.
 
 Lote de continuidade de 25/10/2026: adicionadas 23 traducoes de Dewford e
 integradas ao tradutor e a verificacao minima de CI. Compilacao e testes
@@ -127,3 +138,20 @@ entradas nesta continuidade desde as 1.267 anteriores. A falha Python
 SyntaxError do workflow #40172851882 foi identificada e corrigida no teste
 Dewford. Os commits mais recentes precisam da propria execucao Actions
 para confirmar compilacao, emulacao, cobertura e orcamento. PR draft mantida.
+
+## Gerador opcional de rascunhos de grande escala
+
+A pipeline `grandworld-ptbr-bulk.yml` foi criada para tentar produzir pelo menos
+5.000 **rascunhos assistidos por modelo de traducao local** sem reescrever a
+versao inglesa. O gerador `generate_ptbr_bulk_candidates.py` rejeita texto
+sem traducao real, scripts sem formato seguro, placeholders perdidos,
+caracteres nao ASCII, expansao excessiva e ausencia de glyphs. O workflow
+nao envia nenhum lote a branch se o preflight, os testes Python, a compilacao
+real GBA e `make validate` nao passarem. O alvo e exclusivamente a branch
+PT-BR desta PR draft. O gerador nao publica ROMs.
+
+IMPORTANTE: qualquer arquivo `ptbr_auto_review_*.json`, caso venha a ser
+produzido, e marcadamente **rascunho para revisao humana**, nao traducao
+final certificada. Seus valores nao devem ser confundidos com texto revisado,
+nem com gameplay homologado. Corrigir terminologia, fidelidade, largura das
+caixas e progressao de todas as regioes continua obrigatorio para release.
