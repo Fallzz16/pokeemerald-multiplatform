@@ -14,10 +14,10 @@ import tempfile
 import zipfile
 
 try:
-    from .modpacks import validate_zip, PackError
+    from .modpacks import validate_zip, PackError, valid_id
     from .asset_catalog import generate_catalog
 except ImportError:
-    from modpacks import validate_zip, PackError
+    from modpacks import validate_zip, PackError, valid_id
     from asset_catalog import generate_catalog
 
 INDEX = "enabled.json"
@@ -37,9 +37,7 @@ def safe_index(root):
     data = json.loads(index.read_text(encoding="utf-8"))
     if (not isinstance(data, dict) or data.get("schema") != 1
             or not isinstance(data.get("enabled"), list)
-            or any(not isinstance(x, str) or not x.isascii()
-                   or not x.replace("-", "").replace("_", "").replace(".", "").isalnum()
-                   for x in data["enabled"])
+            or any(not valid_id(x) for x in data["enabled"])
             or len(data["enabled"]) != len(set(data["enabled"]))):
         raise PackError("invalid enabled.json")
     return data
@@ -152,7 +150,7 @@ def list_packs(root):
             continue
         try:
             m = json.loads((path / "manifest.json").read_text(encoding="utf-8"))
-            if m.get("id") != path.name:
+            if not isinstance(m, dict) or m.get("id") != path.name:
                 continue
             result.append({"id": path.name, "version": m.get("version"),
                            "enabled": path.name in state["enabled"]})
