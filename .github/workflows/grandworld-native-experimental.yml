@@ -298,6 +298,11 @@ jobs:
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/save_layout_probe.py \
             --world world --output native-save13-m8-layout.json
+      - name: P2 - independently compare compiled ARM APCS and i386 save layouts
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/save_layout_diff.py \
+            --world world --output native-m8-gba-versus-host-save-layout.json
       - name: P2 - compile actual composited M8/World entry and gameplay objects
         run: |
           set -euo pipefail
@@ -349,6 +354,7 @@ jobs:
             native-world-frame-composed.json
             native-save13-m8-layout.json
             native-engine-m8-probe.json
+            native-m8-gba-versus-host-save-layout.json
             native-engine-m8-link.json
             native-engine-m8-survey.json
             native-engine-m8-survey-link.json
