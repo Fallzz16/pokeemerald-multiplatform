@@ -82,11 +82,11 @@ class OriginalGameDataStagingTests(unittest.TestCase):
             "\t.4byte 0x12345678\n"
             ".endm\n"
             ".section .rodata\n"
-            "\tgoto_if_ge VAR_TEMP_1, (9999 + 1) - 10, "
+            "\tgoto_if_ge (0x4000 + 0x1), (9999 + 1) - 10, "
             "CeladonCity_GameCorner_EventScript_FisherNoRoomForCoins\n"
-            "\tgoto_if_ge VAR_TEMP_1, (9999 + 1) - 20, "
+            "\tgoto_if_ge (0x4000 + 0x1), (9999 + 1) - 20, "
             "CeladonCity_GameCorner_EventScript_ScientistNoRoomForCoins\n"
-            "\tgoto_if_ge VAR_TEMP_1, (9999 + 1) - 20, "
+            "\tgoto_if_ge (0x4000 + 0x1), (9999 + 1) - 20, "
             "CeladonCity_GameCorner_EventScript_GentlemanNoRoomForCoins\n"
         )
         scripts.write_text(original, encoding="utf-8")
