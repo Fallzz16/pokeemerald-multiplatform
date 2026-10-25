@@ -85,6 +85,20 @@ jobs:
             -lm -o world-platform-sanitized
           ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 \
             UBSAN_OPTIONS=halt_on_error=1 ./world-platform-sanitized
+      - name: P2 - probe real World engine objects (main, menu, regions, overworld, battles)
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/engine_probe.py \
+            --world world --output native-engine-objects.json --objects native-world-objects
+          python3 - <<'PY'
+          import json
+          r = json.load(open('native-engine-objects.json'))
+          print("Real World objects compiled:", r['compiled'], "/", r['requested'])
+          for obj in r['objects']:
+              print(obj['source'], obj['status'])
+              if obj.get('errors'):
+                  print("\\n".join(obj['errors'][:12]))
+          PY
       - name: Publish native compatibility diagnostics
         if: always()
         uses: actions/upload-artifact@v4
@@ -95,6 +109,7 @@ jobs:
             memory.json
             saveabi.json
             dma.json
+            native-engine-objects.json
           if-no-files-found: warn
   fast-save-abi-audit:
     runs-on: ubuntu-24.04
