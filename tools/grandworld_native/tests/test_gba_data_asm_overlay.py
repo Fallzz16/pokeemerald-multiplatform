@@ -29,11 +29,11 @@ class GbaAssemblySyntaxTests(unittest.TestCase):
 
     def test_cpp_expanded_celadon_operands_keep_the_original_values(self):
         source = (
-            "\tgoto_if_ge VAR_TEMP_1, (9999 + 1) - 10, "
+            "\tgoto_if_ge (0x4000 + 0x1), (9999 + 1) - 10, "
             "CeladonCity_GameCorner_EventScript_FisherNoRoomForCoins\n"
-            "\tgoto_if_ge VAR_TEMP_1, (9999 + 1) - 20, "
+            "\tgoto_if_ge (0x4000 + 0x1), (9999 + 1) - 20, "
             "CeladonCity_GameCorner_EventScript_ScientistNoRoomForCoins\n"
-            "\tgoto_if_ge VAR_TEMP_1, (9999 + 1) - 20, "
+            "\tgoto_if_ge (0x4000 + 0x1), (9999 + 1) - 20, "
             "CeladonCity_GameCorner_EventScript_GentlemanNoRoomForCoins\n"
         )
         normalized, changes = transform_text(source, True)
@@ -42,6 +42,7 @@ class GbaAssemblySyntaxTests(unittest.TestCase):
         self.assertEqual(normalized.count("(9999+1)-20"), 2)
         self.assertEqual(normalized.count("goto_if_ge"), 3)
         self.assertNotIn("MAX_COINS", normalized)
+        self.assertEqual(normalized.count("(0x4000 + 0x1)"), 3)
 
     def test_comments_and_quotes_do_not_corrupt_data(self):
         source = ('\t.string "abc @ keep"\n'
