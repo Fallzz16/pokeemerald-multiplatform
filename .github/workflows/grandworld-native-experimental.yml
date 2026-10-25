@@ -482,6 +482,8 @@ jobs:
           print('Full executable linked:', data['link_succeeded'])
           print('Remaining unique linker symbols:', data.get('undefined_unique_count'))
           print('Duplicate definitions:', data.get('duplicate_definition_count'))
+          assert data['source_object_set_verified'], data.get('source_stale_object_files')
+          assert data['data_object_set_verified'], data.get('data_missing_object_files')
           assert not data['gameplay_verified'], 'Gameplay must be tested after boot.'
           PY
       - name: P1 - record real C portability compiler diagnostics
