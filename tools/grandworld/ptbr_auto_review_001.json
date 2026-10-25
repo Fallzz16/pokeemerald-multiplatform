@@ -2,58 +2,58 @@
   "asm": {
     "data/maps/AzaleaTown_Gym/scripts.inc": {
       "AzaleaTown_Gym_Text_GymStatue": [
-        "GINASIO POKEMON AZALEA$"
+        "GINASIO POKEMON DE AZALEA$"
       ],
       "AzaleaTown_Gym_Text_BugsyBeaten": [
-        "Fantastico! Es um especialista\\nem POKEMON!\\pA minha pesquisa ainda nao esta\\ncompleta.\\pOK, ganhaste. Tome este mal.$"
+        "Uau! Voce entende\\nmuito de POKEMON!\\pMinha pesquisa ainda\\nnao terminou.\\pVoce venceu!\\nPegue esta INSIGNIA.$"
       ],
       "AzaleaTown_Gym_Text_ReceivedHiveBadge": [
-        "{PLAYER}recebeu HIVEBADGE.$"
+        "{PLAYER} recebeu a HIVEBADGE.$"
       ],
       "AzaleaTown_Gym_Text_HiveBadgeSpeech": [
-        "Sabe quais sao os beneficios do\\nHIVEBADGE?\\pSe voce tem, POKEMON ate L30\\nvai obedece-lo, ate mesmo\\ltrocados.\\pPOKEMON que sabe CUT sera capaz\\nde usa-lo fora da batalha\\ltambem.\\pToma, tambem quero que fiques\\ncom isto.$"
+        "Sabe para que serve\\na HIVEBADGE?\\pCom ela, POKEMON ate o nivel 30\\nobedecem, mesmo os trocados.\\pVoce tambem pode usar CUT\\nfora das batalhas.\\pTenho mais um presente\\npara voce!$"
       ],
       "AzaleaTown_Gym_Text_FuryCutterSpeech": [
-        "TM09 contem SEED BULLET.\\pLanca uma torrente de sementes\\nentre 2 e 5 vezes por turno.\\pAssim, embora o poder seja 25,\\ne realmente entre 50 e 125\\lpotencia!\\pNao e fantastico? Eu\\ndescobri-o!$"
+        "TM09 contem BULLET SEED.\\pO golpe lanca sementes\\nde duas a cinco vezes.\\pCada acerto tem 25 de poder,\\ntotalizando de 50 a 125!\\pIncrivel, nao acha?\\nFoi minha descoberta!$"
       ],
       "AzaleaTown_Gym_Text_BugsyAdvice": [
-        "Bug POKEMON sao profundos. Ha\\nmuitos misterios a serem\\lexplorados.\\pEstude bem os seus favoritos.$"
+        "POKEMON do tipo BUG\\nguardam muitos misterios.\\pEstude seus favoritos\\ncom bastante atencao!$"
       ],
       "AzaleaTown_Gym_Text_BugsyRematchDefeat": [
-        "Deves ser um treinador\\nexperiente. A minha pesquisa\\lnao deve estar completa...$"
+        "Uau! Voce e um\\nTREINADOR experiente!\\pAinda tenho muito\\na pesquisar...$"
       ],
       "AzaleaTown_Gym_Text_BugsyRematchPost": [
-        "Novos dados recolhidos! Meu\\ninseto POKEMON fica mais forte\\la cada dia.\\pVem lutar comigo a qualquer\\nhora!$"
+        "Consegui dados novos!\\nMeus POKEMON do tipo BUG\\lficam mais fortes todo dia.\\pVolte para batalhar\\nquando quiser!$"
       ],
       "AzaleaTown_Gym_Text_BugsyRematchDecline": [
-        "Volte quando quiser enfrentar a\\nminha ultima pesquisa POKEMON!$"
+        "Volte quando quiser\\nenfrentar minhas novas\\ldescobertas sobre POKEMON BUG!$"
       ],
       "AzaleaTown_Gym_Text_BugCatcherBennySeen": [
-        "Bug POKEMON evolui jovem. Ficam\\nmais fortes muito mais\\ldepressa.$"
+        "POKEMON do tipo BUG\\nevoluem bem cedo.\\pPor isso ficam fortes\\nmais depressa!$"
       ],
       "AzaleaTown_Gym_Text_BugCatcherBennyBeaten": [
-        "So evoluir nao e suficiente!$"
+        "So evoluir nao basta!$"
       ],
       "AzaleaTown_Gym_Text_BugCatcherBennyAfter": [
-        "POKEMON torna-se mais forte se\\nevoluirem. A serio!$"
+        "POKEMON ficam mais fortes\\nquando evoluem. E serio!$"
       ],
       "AzaleaTown_Gym_Text_BugCatcherAlSeen": [
-        "Bug POKEMON sao legais e duros!\\nVou provar-te!$"
+        "POKEMON do tipo BUG\\nsao legais e resistentes!\\pVou provar para voce!$"
       ],
       "AzaleaTown_Gym_Text_BugCatcherAlBeaten": [
-        "Provaste o quao duro es...$"
+        "Voce mostrou como e forte...$"
       ],
       "AzaleaTown_Gym_Text_BugCatcherAlAfter": [
-        "Sao tao fixes, mas a maioria\\ndas raparigas nao gosta de\\linsectos.\\pNao sei porque...$"
+        "POKEMON do tipo BUG\\nsao muito legais!\\pMas a maioria das garotas\\nnao gosta deles.\\pNao sei por que...$"
       ],
       "AzaleaTown_Gym_Text_BugCatcherJoshSeen": [
-        "Salvaste todo o SLOWPOKE? Es\\npoderoso!\\pMas o meu Pokemon adulto tambem\\ne muito duro!$"
+        "Voce salvou os SLOWPOKE?\\nQue coragem!\\pMas meus POKEMON crescidos\\ntambem sao fortes!$"
       ],
       "AzaleaTown_Gym_Text_BugCatcherJoshAfter": [
-        "Acho que devia ensinar-lhes\\nmelhores movimentos...$"
+        "Preciso ensinar golpes\\nmelhores para eles...$"
       ],
       "AzaleaTown_Gym_Text_GymGuideWin": [
-        "Muito bem! Foi um grande choque\\nde jovens treinadores\\ltalentosos.\\pCom pessoas como voce, o futuro\\nde POKEMON e brilhante!$"
+        "Muito bem! Foi um duelo\\nentre jovens talentosos!\\pCom TREINADORES como voce,\\no futuro dos POKEMON\\lsera brilhante!$"
       ]
     },
     "data/maps/BlackthornCity_Gym/scripts.inc": {
@@ -507,58 +507,58 @@
     },
     "data/maps/GoldenrodCity_Gym/scripts.inc": {
       "GoldenrodCity_Gym_Text_GymStatue": [
-        "GINASIO POKEMON GOLDENROD$"
+        "GINASIO POKEMON DE GOLDENROD$"
       ],
       "GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious": [
-        "Sob...\\pWaaaaaaah! Es mau!\\pNao devias estar a falar a\\nserio! Sua crianca!$"
+        "Buah...\\pBUAAAAH! Que maldade!\\pNao precisava levar\\na batalha tao a serio!$"
       ],
       "GoldenrodCity_Gym_Text_WhitneyYouMeanie": [
-        "Waaaaah!\\pWaaaaah!\\pSnivel, hic... A serio!$"
+        "BUAAAAH!\\pBUAAAAH!\\pSnif... Soluco...\\nQue maldade!$"
       ],
       "GoldenrodCity_Gym_Text_PlayerReceivedPlainBadge": [
-        "{PLAYER}recebeu PLAINBADGE.$"
+        "{PLAYER} recebeu a PLAINBADGE.$"
       ],
       "GoldenrodCity_Gym_Text_WhitneyGoodCry": [
-        "Foi um bom choro!$"
+        "Ah! Chorar me fez bem!$"
       ],
       "GoldenrodCity_Gym_Text_WhitneyRematchDefeat": [
-        "Waaaaah!\\pWaaaaah!\\pSnivel, hic... A serio!$"
+        "BUAAAAH!\\pBUAAAAH!\\pSnif... Soluco...\\nQue maldade!$"
       ],
       "GoldenrodCity_Gym_Text_WhitneyRematchPost": [
-        "Hmph! O meu Pokemon ainda e o\\nmais bonito e o mais duro!\\pVem brincar comigo outra vez,\\nesta bem?$"
+        "Hmph! Meus POKEMON\\ncontinuam sendo os mais fofos\\le os mais fortes!\\pVolte para brincar comigo!$"
       ],
       "GoldenrodCity_Gym_Text_WhitneyRematchDecline": [
-        "Nao queres lutar? Volta quando\\nquiseres!$"
+        "Ah, nao quer batalhar?\\nVolte quando quiser!$"
       ],
       "GoldenrodCity_Gym_Text_LassCarrieBeaten": [
-        "Pensei que fosses fraco.$"
+        "Droga... Achei que\\nvoce fosse fraco...$"
       ],
       "GoldenrodCity_Gym_Text_LassCarrieAfter": [
-        "O meu Pokemon acha-me giro?$"
+        "Meus POKEMON me acham fofa?$"
       ],
       "GoldenrodCity_Gym_Text_LassBridgetSeen": [
-        "Gosto mais de Pokemon giro do\\nque de Pokemon forte.\\pMas eu tenho POKEMON forte e\\nbonito!$"
+        "Prefiro POKEMON fofos\\naos mais fortes.\\pMas os meus sao fofos\\ne fortes ao mesmo tempo!$"
       ],
       "GoldenrodCity_Gym_Text_LassBridgetBeaten": [
-        "Nao, nao, nao!$"
+        "Ah, nao! Nao, nao!$"
       ],
       "GoldenrodCity_Gym_Text_BeautyVictoriaSeen": [
-        "Es uma treinadora gira!\\pGosto de ti, mas nao me vou\\nconter!$"
+        "Que TREINADOR fofinho!\\pGostei de voce, mas\\nnao vou pegar leve!$"
       ],
       "GoldenrodCity_Gym_Text_BeautyVictoriaBeaten": [
-        "Vejamos... Acabou?$"
+        "Deixe-me ver...\\nUe, ja acabou?$"
       ],
       "GoldenrodCity_Gym_Text_BeautyVictoriaAfter": [
-        "Deves ser bom a vencer-me!\\nContinua!$"
+        "Uau! Vencer de mim\\nnao e facil! Continue assim!$"
       ],
       "GoldenrodCity_Gym_Text_BeautySamanthaSeen": [
-        "Da o teu melhor, ou acabo\\ncontigo!$"
+        "De o seu melhor ou\\nvou acabar vencendo voce!$"
       ],
       "GoldenrodCity_Gym_Text_BeautySamanthaAfter": [
-        "Eu ensinei MEOWTH movimentos\\npara assumir qualquer tipo ...$"
+        "Ensinei golpes ao MEOWTH\\npara enfrentar qualquer tipo...$"
       ],
       "GoldenrodCity_Gym_Text_GymGuideWin": [
-        "Ganhaste? Optimo! Estava\\nocupado a admirar as senhoras\\laqui.$"
+        "Voce venceu? Que otimo!\\pEu estava ocupado\\nadmirando as garotas daqui.$"
       ]
     },
     "data/maps/LavaridgeTown_Gym_1F/scripts.inc": {
