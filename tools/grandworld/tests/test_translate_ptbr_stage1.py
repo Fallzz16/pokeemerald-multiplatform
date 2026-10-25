@@ -125,7 +125,7 @@ class PortugueseStage1Tests(unittest.TestCase):
                     self.assertTrue(pt.plain_ptbr(part).isascii(), (file, label))
         total = sum(len(x) for x in pt.C_SECTIONS.values()) + sum(
             len(x) for x in pt.ASM_SECTIONS.values())
-        self.assertGreaterEqual(total, 1307)
+        self.assertGreaterEqual(total, 1535)
 
     def test_dewford_dialogue_batch_present(self):
         town = pt.ASM_SECTIONS['data/maps/DewfordTown/scripts.inc']
@@ -140,6 +140,28 @@ class PortugueseStage1Tests(unittest.TestCase):
         self.assertEqual(len(route), 16)
         self.assertIn('STERN', ''.join(route['DewfordTown_Text_BrineyLandedInSlateportDeliverGoods']))
         self.assertIn('ROD', ''.join(pt.ASM_SECTIONS['data/maps/Route106/scripts.inc']['Route106_Text_TrainerTips']))
+
+    def test_route_story_batches_present(self):
+        expected = {
+            "data/maps/Route110/scripts.inc": 43,
+            "data/maps/Route111/scripts.inc": 30,
+            "data/maps/Route112/scripts.inc": 8,
+            "data/maps/Route102/scripts.inc": 7,
+            "data/maps/Route103/scripts.inc": 11,
+            "data/maps/Route104/scripts.inc": 32,
+            "data/maps/Route30/scripts.inc": 22,
+            "data/maps/Route31/scripts.inc": 17,
+            "data/maps/Route32/scripts.inc": 43,
+            "data/maps/Route113/scripts.inc": 6,
+            "data/maps/Route114/scripts.inc": 6,
+            "data/maps/Route115/scripts.inc": 3,
+        }
+        for relative, count in expected.items():
+            with self.subTest(relative=relative):
+                self.assertEqual(len(pt.ASM_SECTIONS[relative]), count)
+        self.assertIn("{PLAYER}", "".join(
+            pt.ASM_SECTIONS["data/maps/Route30/scripts.inc"][
+                "Route30_Text_Elm_Disaster"]))
 
     def test_escape_typo_fails(self):
         with self.assertRaisesRegex(ValueError, "unknown text escape"):
