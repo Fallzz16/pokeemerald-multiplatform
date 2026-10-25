@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+from concurrent.futures import ThreadPoolExecutor
 
 try:
     from .native_asm import normalize_host_assembly
@@ -100,20 +101,29 @@ def _native_compile(command, world, src, obj, flags, use_preproc):
         assembled.args, assembled.returncode, assembled.stdout,
         generated.stderr + assembled.stderr)
 
-def compile_engine(world, out, compiler="gcc", use_preproc=False, all_sources=False):
+def compile_engine(world, out, compiler="gcc", use_preproc=False,
+                   all_sources=False, jobs=1):
+    """Build only genuine World sources, optionally in bounded parallel.
+
+    One source owns one .o/.s path. Thread order cannot affect JSON report
+    ordering, and failures remove partial .o files so the linker cannot
+    mistake stale outputs for successfully compiled game code.
+    """
+    if not isinstance(jobs, int) or not 1 <= jobs <= 8:
+        raise ValueError("native compiler jobs must be between 1 and 8")
     world = Path(world).resolve()
     out = Path(out).resolve()
     command = shutil.which(compiler)
-    results = []
     out.mkdir(parents=True, exist_ok=True)
     sources = (sorted(path.name for path in (world / "src").glob("*.c"))
-               if all_sources else SOURCES)
-    for name in sources:
+               if all_sources else tuple(SOURCES))
+    if len(sources) != len(set(sources)):
+        raise ValueError("duplicate native World source names")
+
+    def build_one(name):
         src = world / "src" / name
         obj = out / name.replace(".c", ".o")
-        entry = {"source": "src/" + name, "object": str(obj.name)}
-        # Never let a failed incremental compile leave behind an older .o:
-        # that would fool a subsequent real-engine partial/final linker.
+        entry = {"source": "src/" + name, "object": obj.name}
         obj.unlink(missing_ok=True)
         obj.with_suffix(".s").unlink(missing_ok=True)
         if not command:
@@ -126,19 +136,29 @@ def compile_engine(world, out, compiler="gcc", use_preproc=False, all_sources=Fa
                 errors = run.stderr
                 if isinstance(errors, bytes):
                     errors = errors.decode(errors="replace")
-                entry.update(status="object_compiled" if run.returncode == 0 else "failed",
-                             return_code=run.returncode,
+                status = "object_compiled" if run.returncode == 0 and obj.is_file() else "failed"
+                entry.update(status=status, return_code=run.returncode,
                              errors=errors.splitlines()[:90],
-                             bytes=obj.stat().st_size if obj.exists() else 0)
-                if run.returncode and obj.with_suffix(".s").is_file():
-                    entry["assembly_head"] = obj.with_suffix(".s").read_text(
-                        encoding="utf-8", errors="replace").splitlines()[:45]
+                             bytes=obj.stat().st_size if status == "object_compiled" else 0)
+                if status != "object_compiled":
+                    if obj.with_suffix(".s").is_file():
+                        entry["assembly_head"] = obj.with_suffix(".s").read_text(
+                            encoding="utf-8", errors="replace").splitlines()[:45]
+                    obj.unlink(missing_ok=True)
             except (OSError, subprocess.TimeoutExpired, ValueError) as exc:
+                obj.unlink(missing_ok=True)
                 entry.update(status="toolchain_error", errors=[str(exc)])
-        results.append(entry)
+        return entry
+
+    if jobs == 1:
+        results = [build_one(name) for name in sources]
+    else:
+        with ThreadPoolExecutor(max_workers=jobs, thread_name_prefix="world-c") as pool:
+            # map maintains deterministic results in selected source order.
+            results = list(pool.map(build_one, sources))
     return {"schema": 1, "stage": "P2_real_World_M8_source_object_probe",
             "compiler": command, "real_world_preprocessor": use_preproc,
-            "all_sources_requested": all_sources,
+            "all_sources_requested": all_sources, "compiler_jobs": jobs,
             "objects": results,
             "compiled": sum(x["status"] == "object_compiled" for x in results),
             "requested": len(sources),
@@ -156,8 +176,10 @@ def main():
                    help="Use World charmap and asset pipeline for real resources")
     p.add_argument("--all-sources", action="store_true",
                    help="Inventory every real World src/*.c instead of just 24 core modules")
+    p.add_argument("--jobs", type=int, default=1,
+                   help="Compile independent World C units concurrently (1..8)")
     args = p.parse_args()
-    result = compile_engine(args.world, args.objects, args.compiler, args.use_world_preproc, args.all_sources)
+    result = compile_engine(args.world, args.objects, args.compiler, args.use_world_preproc, args.all_sources, args.jobs)
     Path(args.output).write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     for entry in result["objects"]:
         print(entry["source"], entry["status"], entry.get("bytes", 0), "bytes")
