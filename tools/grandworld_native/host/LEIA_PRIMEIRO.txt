@@ -1,0 +1,26 @@
+GRAND WORLD NATIVE - STYLE LAB EXPERIMENTAL
+
+ATENCAO: Este aplicativo NAO e o jogo Grand World.
+E um teste das configuracoes visuais e do carregamento de plugins.
+
+1. Abra ABRIR_STYLE_LAB.bat.
+2. Pressione F1 para abrir o menu de estilos.
+3. Selecione MENU ou FOLLOWER com as setas para cima/baixo.
+4. Use esquerda/direita para trocar entre estilo CLASSIC e pacotes ativos.
+5. Pressione F1 para fechar. Pressione F5 para recarregar a lista de pacotes.
+
+Para instalar um pacote novo, arraste o arquivo .zip sobre
+INSTALAR_PACK.bat. E preciso ter Python instalado.
+O pacote e validado antes de ser extraido; DLL, Python e codigo executavel
+nao sao aceitos como plugins.
+
+Os estilos escolhidos ficam em mods/style-settings.ini.
+O catalogo fica em mods/runtime-assets.tsv.
+Nenhum save de Pokemon e alterado.
+
+Requisitos: Windows 10/11 64 bits; arquivos .DLL incluidos nesta pasta.
+Imagens PNG e BMP sao suportadas. Extensoes WAV e OGG estao catalogadas,
+mas sua aplicacao in-game ainda depende de portabilidade da World.
+
+O Grand World jogavel (P1-P5) AINDA NAO foi portado para SDL2.
+Documentacao tecnica: https://github.com/Fallzz16/pokeemerald-multiplatform/pull/78
