@@ -13,6 +13,8 @@ on:
       - 'tools/grandworld/ptbr_extra_regions2.json'
       - 'tools/grandworld/ptbr_extra_story2.json'
       - 'tools/grandworld/audit_ptbr_coverage.py'
+      - 'tools/grandworld/adapt_ptbr_greedy_gifts_qa.py'
+      - 'tools/grandworld/tests/test_adapt_ptbr_greedy_gifts_qa.py'
       - 'tools/grandworld/tests/test_translate_ptbr_stage1.py'
       - 'docs/GRANDWORLD_PTBR_TRANSLATION.md'
   workflow_dispatch:
@@ -85,6 +87,8 @@ jobs:
           assert coverage['totals']['defined']>coverage['totals']['translated']
           assert coverage['totals']['pending']>0
           PY
+          python3 grandworld/tools/grandworld/adapt_ptbr_greedy_gifts_qa.py world
+          python3 grandworld/tools/grandworld/adapt_ptbr_greedy_gifts_qa.py world --apply
           git -C world diff --check
       - name: Compile actual GBA cartridge candidate
         shell: bash
