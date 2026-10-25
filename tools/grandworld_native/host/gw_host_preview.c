@@ -1,5 +1,6 @@
 #include "gw_sdl_host.h"
 #include <stdint.h>
+#define SDL_MAIN_HANDLED
 #include <SDL.h>
 
 #define WIDTH 240
@@ -13,6 +14,7 @@ static int clamp(int n, int minimum, int maximum)
 
 int main(void)
 {
+    SDL_SetMainReady();
     GWNativeHost *host = gw_host_open("Grand World Native: SDL2 host preview (NOT THE GAME)", 3, false);
     int player_x = 120, player_y = 80;
     if (!host)
