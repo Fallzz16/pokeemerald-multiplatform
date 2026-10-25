@@ -32,3 +32,6 @@ set_tests_properties(host_frame_smoke PROPERTIES ENVIRONMENT "SDL_VIDEODRIVER=du
 
 add_executable(gw_host_preview gw_host_preview.c)
 target_link_libraries(gw_host_preview PRIVATE gw_native_host)
+ 
+add_executable(gw_theme_lab gw_theme_lab.c)
+target_link_libraries(gw_theme_lab PRIVATE gw_native_host)
