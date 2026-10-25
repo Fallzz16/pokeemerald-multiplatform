@@ -375,6 +375,12 @@ jobs:
             --limit 405 --report native-engine-m8-survey.json
           python3 grandworld/tools/grandworld_native/engine_link_probe.py \
             --objects native-m8-survey-objects --report native-engine-m8-survey-link.json
+      - name: P2 - probe original World script/data assembly for native linker
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/data_asm_probe.py \
+            --world world --limit 25 --objects native-m8-data-objects \
+            --report native-m8-data-asm.json
       - name: P1 - record real C portability compiler diagnostics
         if: always()
         run: |
@@ -405,6 +411,7 @@ jobs:
             native-engine-m8-link.json
             native-engine-m8-survey.json
             native-engine-m8-survey-link.json
+            native-m8-data-asm.json
           if-no-files-found: warn
 
   host-sdl2-smoke:
