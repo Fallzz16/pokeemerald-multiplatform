@@ -12,6 +12,69 @@ permissions:
   contents: read
 
 jobs:
+  platform-compat-fast:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Checkout port sources
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Checkout pinned World headers
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+      - name: Install C 32-bit and header-generator requirements
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y gcc-multilib gcc-arm-none-eabi binutils-arm-none-eabi build-essential libpng-dev zlib1g-dev
+      - name: Generate pinned World headers without building ROM
+        run: |
+          set -euo pipefail
+          make -C world -f make_tools.mk -j2
+          make -C world generated SETUP_PREREQS=0 NODEP=1 -j2
+      - name: Apply host-only shims to disposable World headers
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/overlay.py --world world --apply --report memory.json
+          python3 grandworld/tools/grandworld_native/save_abi_overlay.py --world world --apply --report saveabi.json
+          python3 grandworld/tools/grandworld_native/dma_api_overlay.py --world world --apply --report dma.json
+      - name: Verify strict syntax compilation for all four platform modules
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/probe.py --world world --grandworld grandworld --output native-probe.json
+          python3 - <<'PY'
+          import json
+          data = json.load(open('native-probe.json'))
+          for result in data['results']:
+              print(result['source'], result['status'])
+              if result['errors']:
+                  print('\\n'.join(result['errors'][:12]))
+          assert data['all_syntax_passed'], 'BIOS/DMA/video/audio compatibility still broken'
+          PY
+      - name: Compile and run World-header BIOS/DMA/audio memory tests
+        run: |
+          set -euo pipefail
+          gcc -m32 -std=gnu11 -DPORTABLE -DNONMATCHING -DMODERN=1 -DPLATFORM_SDL2 -DGW_WORLD_NATIVE=1 -DRENDERER_EASY_DRAW \
+            -Werror=implicit-function-declaration -ffunction-sections -fdata-sections \
+            -iquote world/include -iquote world/src -iquote grandworld/include -iquote grandworld/src \
+            grandworld/src/platform/bios.c grandworld/src/platform/dma.c grandworld/src/platform/cgb_audio.c \
+            grandworld/tools/grandworld_native/tests/world_platform_smoke.c \
+            -Wl,--gc-sections -lm -o world-platform-smoke
+          ./world-platform-smoke
+      - name: Publish native compatibility diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grandworld-native-p1-platform-compat
+          path: |
+            native-probe.json
+            memory.json
+            saveabi.json
+            dma.json
+          if-no-files-found: warn
   fast-save-abi-audit:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -140,6 +203,11 @@ jobs:
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/save_abi_overlay.py \
             --world world --apply --report native-save-abi-overlay.json
+      - name: P1 - route World DMA to host backend (disposable headers)
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/dma_api_overlay.py \
+            --world world --apply --report native-dma-api-overlay.json
       - name: P1 - record real C portability compiler diagnostics
         if: always()
         run: |
@@ -160,6 +228,7 @@ jobs:
             native-overlay-report.json
             native-abi-report.json
             native-save-abi-overlay.json
+            native-dma-api-overlay.json
           if-no-files-found: warn
 
   host-sdl2-smoke:
