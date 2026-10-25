@@ -40,6 +40,9 @@ def inspect(world, objects, limit=25, compiler="gcc"):
     for source in sources:
         relative = source.relative_to(world).as_posix()
         result = {"source": relative, "status": "not_started", "native_object": False}
+        # Failed preproc/CPP/assembler must not silently reuse an old object.
+        object_file = objects / (source.stem + ".o")
+        object_file.unlink(missing_ok=True)
         try:
             a = _run([str(preproc), "-s", relative, "charmap.txt"], world)
             if a.returncode:
