@@ -67,7 +67,7 @@ def inventory(world):
         details[group]["translated"] += len(covered)
         details[group]["pending"] += len(pending)
         for key in totals:
-            totals[key] += details[group][key] - (totals.get("_unused_" + key, 0) if False else 0) if False else {"defined":len(available),"translated":len(covered),"pending":len(pending)}[key]
+            totals[key] += {"defined": len(available), "translated": len(covered), "pending": len(pending)}[key]
         if len(pending) >= 10:
             biggest_pending.append({"file": rel, "pending": len(pending),
                                     "examples": sorted(pending)[:6]})
