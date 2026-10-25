@@ -16,11 +16,15 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: grandworld-ptbr-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
 jobs:
   ptbr:
     name: PT-BR source tests and isolated real GBA build
     runs-on: ubuntu-24.04
-    timeout-minutes: 85
+    timeout-minutes: 110
     steps:
       - name: Checkout Grand World localization
         uses: actions/checkout@v4
@@ -79,6 +83,34 @@ jobs:
         run: |
           set -euo pipefail
           make -C world validate 2>&1 | tee ptbr-validate.log
+      - name: Build pinned mGBA headless for localized ROM gameplay smoke
+        run: |
+          set -euo pipefail
+          sudo apt-get install -y cmake liblua5.4-dev libpng-dev zlib1g-dev
+          git clone --filter=blob:none https://github.com/mgba-emu/mgba.git mgba
+          git -C mgba checkout 669817d03e4858e65d0b992bcd96d3009236cc1e
+          git -C mgba apply ../world/test/overworld/mgba/0001-headless-video-buffer-save-and-rtc.patch
+          cmake -S mgba -B mgba/build -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+            -DCMAKE_BUILD_TYPE=Release -DBUILD_HEADLESS=ON -DENABLE_SCRIPTING=ON -DUSE_LUA=ON \
+            -DBUILD_QT=OFF -DBUILD_SDL=OFF -DUSE_FFMPEG=OFF -DUSE_DISCORD_RPC=OFF \
+            -DBUILD_SHARED=OFF -DBUILD_STATIC=ON
+          cmake --build mgba/build -j2 --target mgba-headless
+          test -x mgba/build/mgba-headless
+      - name: Mandatory translated ROM boot and title in actual mGBA
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          PW_TIMEOUT=240 test/overworld/mgba-run.sh test/overworld/lua/SmokeBoot.lua "$PWD/pokemonworld.gba" | tee "$GITHUB_WORKSPACE/ptbr-smoke-boot.log"
+          PW_TIMEOUT=240 test/overworld/mgba-run.sh test/overworld/lua/WorldTitle.lua "$PWD/pokemonworld.gba" | tee "$GITHUB_WORKSPACE/ptbr-smoke-title.log"
+          test -s _pwtest/SmokeBoot.PASS
+          test -s _pwtest/WorldTitle.PASS
+          test ! -e _pwtest/SmokeBoot.FAIL
+          test ! -e _pwtest/WorldTitle.FAIL
+          md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
+          grep -Eq "^PASS [1-9][0-9]*/[1-9][0-9]* rom=$md5 .* suite=SmokeBoot$" _pwtest/SmokeBoot.PASS
+          grep -Eq "^PASS [1-9][0-9]*/[1-9][0-9]* rom=$md5 .* suite=WorldTitle$" _pwtest/WorldTitle.PASS
       - name: Verify GBA memory and checksum; produce pinned manifest
         run: |
           set -euo pipefail
@@ -118,3 +150,5 @@ jobs:
             ptbr-grass-only.json
             ptbr-build.log
             ptbr-validate.log
+            ptbr-smoke-boot.log
+            ptbr-smoke-title.log
