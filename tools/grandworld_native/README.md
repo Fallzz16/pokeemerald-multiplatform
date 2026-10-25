@@ -14,11 +14,16 @@ GCC/i386, incluindo as três adaptações ARM `m4a.c`, `multiboot.c` e
 símbolos externos sem definição antes de juntar dados originais e backend.
 A compilação ARM da referência GBA + validação passou antes dos overlays.
 
-No mesmo CI, **13/14 fontes `data/*.s`** montaram. O único bloqueio foi
-`data/event_scripts.s` e três argumentos do macro `goto_if_ge` nos scripts
-de Celadon. Há correções experimentais posteriores na branch para a saída
-pré-processada real, com testes de regressão; a conclusão **14/14 precisa ser
-confirmada em novo CI** antes de anunciar essa etapa como concluída.
+A execução posterior [CI 40212201152](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40212201152)
+confirmou **14/14 fontes `data/*.s`**, inclusive `event_scripts.s`
+de Celadon, e uma **linkagem relocável verdadeira C + dados originais**.
+Os símbolos não resolvidos caíram de **3.815 (C isolado)** para **677**
+após os dados. A primeira tentativa de ELF executável, já com plataforma
+e frontend SDL2, identificou **650 símbolos distintos ainda indefinidos**
+e não gerou executável funcional. A auditoria de MIDI verificou **0/24**
+músicas compiladas na amostra, em parte devido a comentários ARM no
+`sound/MPlayDef.s`; o adaptador desse include foi criado posteriormente,
+mas ainda requer validação no CI com as músicas originais.
 
 O fluxo `native-source-lab` agora tenta, na ordem, a montagem total dos
 dados, ligação relocável C+dados, link ELF com SDL2/i386 e teste do primeiro
