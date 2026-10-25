@@ -5,6 +5,8 @@ on:
     paths:
       - '.github/workflows/grandworld-ptbr-stage1.yml'
       - 'tools/grandworld/translate_ptbr_stage1.py'
+      - 'tools/grandworld/ptbr_extra_core.json'
+      - 'tools/grandworld/ptbr_extra_events.json'
       - 'tools/grandworld/tests/test_translate_ptbr_stage1.py'
       - 'docs/GRANDWORLD_PTBR_TRANSLATION.md'
   workflow_dispatch:
@@ -57,8 +59,8 @@ jobs:
           import json
           from pathlib import Path
           a=json.loads(Path('ptbr-report.json').read_text())
-          assert a['locale']=='pt-BR' and a['translation_entries']>=75
-          assert not a['save_format_modified']
+          assert a['locale']=='pt-BR' and a['translation_entries']>=350
+          assert not a['save_format_modified'] and a['translated_text_ascii_only']
           assert not a['item_names_translated'] and not a['move_names_translated']
           assert 'Novo Jogo' in Path('world/src/main_menu.c').read_text()
           assert 'Quer salvar o jogo?' in Path('world/data/text/save.inc').read_text()
@@ -103,7 +105,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: GRANDWORLD_PTBR_STAGE1_QA_EVIDENCE
+          name: GRANDWORLD_PTBR_ASCII_EXPANSION_QA_EVIDENCE
           if-no-files-found: warn
           path: |
             ptbr-preflight.json
