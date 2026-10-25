@@ -336,64 +336,64 @@
     },
     "data/maps/EcruteakCity_Gym/scripts.inc": {
       "MortyIntroText": [
-        "Ainda bem que vieste.\\pAqui em ECRUTEAK, Pokemon\\nsempre foram reverenciados.\\pDiz-se que um POKEMON de cor\\narco-iris ira aparecer perante\\lum verdadeiro Treinador.\\pAcreditei nessa historia, por\\nisso treinei aqui em segredo.\\pComo resultado, posso agora ver\\no que os outros nao podem.\\pSo mais um pouco...\\pCom um pouco mais, pude ver um\\nfuturo onde encontro o POKEMON\\lde cor arco-iris.\\pVais ajudar-me a chegar a esse\\nnivel!$"
+        "Que bom que voce veio.\\pEm ECRUTEAK, os POKEMON\\nsempre foram reverenciados.\\pDizem que um POKEMON\\ncom as cores do arco-iris\\laparece diante de um\\lTREINADOR de verdade.\\pAcreditei nessa lenda\\ne treinei em segredo.\\pAgora consigo enxergar\\no que os outros nao veem.\\pSo falta um pouco...\\pLogo poderei encontrar\\nesse POKEMON lendario.\\pVoce vai me ajudar\\na chegar la!$"
       ],
       "MortyWinLossText": [
-        "Ainda nao sou suficientemente\\nbom...\\pEsta bem. Este mal e teu.$"
+        "Ainda preciso melhorar...\\pTudo bem. Esta INSIGNIA\\ne sua.$"
       ],
       "Text_ReceivedFogBadge": [
-        "{PLAYER}recebeu o FOGBADGE.$"
+        "{PLAYER} recebeu a FOGBADGE.$"
       ],
       "MortyFightDoneText": [
-        "Entendo...\\pA tua viagem levou-te a lugares\\ndistantes.\\pJa testemunhou mais do que eu.\\pInvejo-te por isso...$"
+        "Entendo...\\pSua jornada levou voce\\na lugares distantes.\\pVoce viu coisas que eu\\nnunca tive a chance de ver.\\pTenho ate inveja disso...$"
       ],
       "Morty_RematchDefeatText": [
-        "Ainda nao sou suficientemente\\nbom...\\pJa testemunhou mais do que eu.\\pInvejo-te por isso...$"
+        "Ainda preciso melhorar...\\pVoce viu mais coisas\\ndo que eu na sua jornada.\\pTenho ate inveja disso...$"
       ],
       "MortyRematchPostText": [
-        "As sombras ainda tem muito para\\nnos ensinar.\\pProcura-me quando quiseres\\ntesta-los novamente.$"
+        "As sombras ainda tem\\nmuito a nos ensinar.\\pVolte quando quiser\\num novo desafio!$"
       ],
       "MortyRematchDeclineText": [
-        "Volte quando estiver pronto\\npara enfrentar as sombras mais\\luma vez.$"
+        "Volte quando estiver pronto\\npara enfrentar as sombras!$"
       ],
       "SageJeffreySeenText": [
-        "Passei a primavera com o meu\\nPokemon.\\pDepois verao, outono e\\ninverno...\\pEntao a primavera voltou.\\nEstamos juntos ha muito tempo.$"
+        "Passei a primavera\\ncom meus POKEMON.\\pDepois vieram o verao,\\no outono e o inverno.\\pE a primavera voltou.\\nEstamos juntos ha anos!$"
       ],
       "SageJeffreyBeatenText": [
-        "Vitorias e perdas... Eu conheco\\nos dois.$"
+        "Vitorias e derrotas...\\nConheco bem as duas.$"
       ],
       "SageJeffreyAfterBattleText": [
-        "De onde veio o Pokemon?$"
+        "De onde vieram os POKEMON?$"
       ],
       "SagePingSeenText": [
-        "Pode causar algum dano no nosso\\nPokemon?$"
+        "Sera que voce consegue\\nferir nossos POKEMON?$"
       ],
       "SagePingBeatenText": [
         "Ah! Muito bem!$"
       ],
       "SagePingAfterBattleText": [
-        "Usamos POKEMON tipo GHOST.\\pNenhum ataque do tipo NORMAL\\npode prejudica-los!$"
+        "Usamos POKEMON do tipo GHOST.\\pGolpes NORMAL nao\\nconseguem atingi-los!$"
       ],
       "MediumMarthaSeenText": [
-        "Vou ganhar!$"
+        "Eu vou vencer!$"
       ],
       "MediumMarthaBeatenText": [
-        "Perdi!$"
+        "Eu... Eu... Eu perdi!$"
       ],
       "MediumMarthaAfterBattleText": [
-        "O que mais quer ganhar e aquele\\nque vai ganhar!$"
+        "Vence quem tem mais\\nvontade de ganhar!$"
       ],
       "MediumGraceSeenText": [
-        "Presos pelos nossos corredores\\nescuros? Derrota-me se quiseres\\luma dica!$"
+        "Se perdeu nestes\\ncorredores escuros?\\pVenca-me e eu darei\\numa dica!$"
       ],
       "MediumGraceBeatenText": [
-        "O que?$"
+        "O-o que?!$"
       ],
       "MediumGraceAfterBattleText": [
-        "Esta bem. Vou contar-te o\\nsegredo das sombras.\\pO caminho esta mesmo a frente\\ndos teus olhos!$"
+        "Tudo bem. Vou revelar\\no segredo das sombras.\\pO caminho esta bem\\na frente dos seus olhos!$"
       ],
       "EcruteakCity_GymGuideWinText": [
-        "Ufa,{PLAYER}Estiveste muito\\nbem!\\pEu estava encolhido no canto\\npor puro terror!$"
+        "Ufa, {PLAYER}!\\nVoce foi incrivel!\\pEu estava escondido\\nnum canto, de tanto medo!$"
       ]
     },
     "data/maps/FortreeCity_Gym/scripts.inc": {
