@@ -74,9 +74,9 @@ static void CPUWriteByte(void *dest, uint8_t val)
 
 void CpuSet(const void *src, void *dst, u32 cnt)
 {
-    if(dst == NULL)
+    if(src == NULL || dst == NULL)
     {
-        puts("Attempted to CpuSet to NULL\n");
+        puts("Attempted to CpuSet using a NULL pointer\\n");
         return;
     }
     
@@ -139,9 +139,9 @@ void CpuSet(const void *src, void *dst, u32 cnt)
 
 void CpuFastSet(const void *src, void *dst, u32 cnt)
 {
-    if(dst == NULL)
+    if(src == NULL || dst == NULL)
     {
-        puts("Attempted to CpuFastSet to NULL\n");
+        puts("Attempted to CpuFastSet using a NULL pointer\\n");
         return;
     }
     
