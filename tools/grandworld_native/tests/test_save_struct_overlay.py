@@ -7,7 +7,10 @@ class NestedABITests(unittest.TestCase):
         source = "\n".join(DECLARATIONS)
         modified = transform(source)
         for decl in DECLARATIONS:
-            self.assertIn(decl[:-2], modified)
+            # C declarations with a typedef name need the native attribute
+            # inserted between the closing brace and the unchanged alias.
+            prefix = decl.rsplit("}", 1)[0] + "}"
+            self.assertIn(prefix, modified)
         self.assertEqual(modified.count("#if defined(PORTABLE)"), len(DECLARATIONS))
         self.assertEqual(modified.count("__attribute__((aligned(4)))"), len(DECLARATIONS))
         self.assertEqual(modified.count("#endif"), len(DECLARATIONS))
