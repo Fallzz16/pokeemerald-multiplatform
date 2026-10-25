@@ -56,12 +56,20 @@ jobs:
           assert combined['values']['saveblock2'] == 0xF2C, combined['layout_deltas']
           assert all(value == 0 for value in combined['layout_deltas'].values()), combined['layout_deltas']
           PY
+      - name: Compare ARM APCS vs native byte-level Time and Dome bitfields
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/compare_abi_bytes.py \
+            --source grandworld/tools/grandworld_native/tests/abi_bytes.c \
+            --report native-abi-bitfield-report.json
       - name: Save ABI metrics for native architecture decisions
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: grandworld-native-save-abi-fast
-          path: fast-save-abi.json
+          path: |
+            fast-save-abi.json
+            native-abi-bitfield-report.json
           if-no-files-found: error
   plugin-backend-tests:
     runs-on: ubuntu-24.04
