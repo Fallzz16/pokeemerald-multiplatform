@@ -1,0 +1,875 @@
+{
+  "asm": {
+    "data/maps/CeruleanCity_Frlg/scripts.inc": {
+      "CeruleanCity_Text_BikeShopSign": [
+        "Grama e cavernas manuseadas\\nfacilmente! BIKE SHOP$"
+      ]
+    },
+    "data/maps/CeruleanCity_House1_Frlg/scripts.inc": {
+      "CeruleanCity_House1_Text_BadgesHaveAmazingSecrets": [
+        "Somente os formadores\\nqualificados podem coletar BADS\\lPOKEMON.\\pVejo que tens pelo menos uma.\\pAqueles INSIGNIAS tem segredos\\nincriveis, sabias?$"
+      ],
+      "CeruleanCity_House1_Text_DescribeWhichBadge": [
+        "Agora...\\pQual dos oito INSIGNIAS devo\\ndescrever?$"
+      ],
+      "CeruleanCity_House1_Text_ComeVisitAnytime": [
+        "Venha visitar-me quando quiser.$"
+      ],
+      "CeruleanCity_House1_Text_AttackStatFlash": [
+        "A estatistica ATTACK de todos\\nos seus POKEMON aumenta um\\lpouco.\\pEle tambem permite que voce use\\no movimento FLASH fora da\\lbatalha.$"
+      ],
+      "CeruleanCity_House1_Text_ObeyLv30Cut": [
+        "O POKEMON ate 30 vai\\nobedecer-te.\\pIsso inclui ate mesmo\\nforasteiros que voce obter em\\lcomercios.\\pPOKEMON de niveis mais altos\\nsera indisciplinado na batalha,\\lno entanto.\\pEle tambem permite que voce use\\no movimento CUT fora da\\lbatalha.$"
+      ],
+      "CeruleanCity_House1_Text_ObeyLv70RockSmash": [
+        "POKEMON ate ao Lv. 70\\nobedecera.\\pIsso inclui ate mesmo\\nforasteiros que voce obter em\\lcomercios.\\pPOKEMON de niveis mais altos\\nsera indisciplinado na batalha,\\lno entanto.\\pTambem permite que voce use o\\nmovimento ROCK SMASH fora da\\lbatalha.$"
+      ],
+      "CeruleanCity_House1_Text_SpStatsWaterfall": [
+        "O SP. ATK e SP. DEF\\nestatisticas de todos os seus\\lPOKEMON subir um pouco.\\pTambem permite que voce use o\\nmovimento WATERFALL fora da\\lbatalha.$"
+      ],
+      "CeruleanCity_House1_Text_AllMonsWillObeyYou": [
+        "Todos os Pokemon te obedecerao!$"
+      ]
+    },
+    "data/maps/CeruleanCity_House2_Frlg/scripts.inc": {
+      "CeruleanCity_House2_Text_TeachDiglettDigWithoutTM": [
+        "Acho que o que esta perdido\\nesta perdido.\\pEu decidi ensinar DIGLETT como\\nDIG sem um TM.$"
+      ]
+    },
+    "data/maps/CeruleanCity_House3_Frlg/scripts.inc": {
+      "CeruleanCity_House3_Text_PleaseTradeWithMyHusband": [
+        "O meu marido gosta de negociar\\nPOKEMON.\\pEstas a coleccionar Pokemon\\npara o teu Pokedex, nao estas?\\pImportas-te de trocar com ele?$"
+      ]
+    },
+    "data/maps/CeruleanCity_House4_Frlg/scripts.inc": {
+      "CeruleanCity_House4_Text_NothingEntertaining": [
+        "Suspiro... Demasiado tempo,\\nmuito pouco para fazer...\\pNao esta a acontecer nada de\\ndivertido?$"
+      ],
+      "CeruleanCity_House4_Text_NewNewsInformativeHaveThis": [
+        "Ah! Uma nova noticia!\\pHmm...\\pEstou a ver! Isso foi bastante\\ninformativo!\\pAplaudo-o por se interessar\\npelas noticias na sua\\ljuventude.\\pComo agradecimento por\\npartilhar as noticias comigo,\\lquero que fiques com isto.$"
+      ],
+      "CeruleanCity_House4_Text_IncredibleNewsHaveBerries": [
+        "Oh, oh! Esta noticia!\\pHmm...\\pIncrivel! Que noticia incrivel!\\pNao vejo uma noticia tao\\nincrivel ha muito tempo!\\pObrigado por partilhar esta\\nnoticia fantastica. Come um\\lmonte de BERRIES!$"
+      ],
+      "CeruleanCity_House4_Text_WishCouldShareNewsWithOthers": [
+        "E uma pena nao partilhar esta\\nnoticia com outras pessoas...\\pGostava de poder dizer a\\nalguem... Avisar os outros...$"
+      ],
+      "CeruleanCity_House4_Text_ThanksForSpreadingNewsTakeThis": [
+        "Espalhou-me a noticia?\\pAs boas noticias valem a pena\\nquando todo tipo de pessoas as\\lcompartilham.\\pComo agradecimento por\\ndivulgares as noticias, toma\\listo!$"
+      ],
+      "CeruleanCity_House4_Text_MagnificentNewsSpreadHaveBerries": [
+        "Espalhou mais noticias?\\nMagnifico!\\pEssa noticia deve estar\\nencantada por ser transmitida.\\pSim, de fato!\\pConsidere isso uma demonstracao\\nde apreco de mim e das\\lnoticias.\\pDou-te mais BERRIES do que\\ncostumo fazer.$"
+      ],
+      "CeruleanCity_House4_Text_EnjoyingMyselfWithAllSortsOfNews": [
+        "Estou a divertir-me com todo o\\ntipo de noticias.\\pSim, estou satisfeito! Nao vou\\nficar aborrecido por algum\\ltempo.$"
+      ]
+    },
+    "data/maps/CeruleanCity_House5_Frlg/scripts.inc": {
+      "CeruleanCity_House1_Text_HaveJustTheThing": [
+        "Optimo! Para ti, entao, tenho a\\ncoisa certa.$"
+      ],
+      "CeruleanCity_House1_Text_WhyMustYouLieNoBerries": [
+        "Porque me tens de mentir?\\pQuantos BERRIES tens? Nenhum!$"
+      ],
+      "CeruleanCity_House1_Text_TakeInterestInAllSortsOfThings": [
+        "Nao tem interesse em BERRIES?\\pJovem, e importante\\ninteressar-se por todo o tipo\\lde coisas.$"
+      ],
+      "CeruleanCity_House5_Text_ExchangeWithWhat": [
+        "Com o que queres troca-lo?$"
+      ],
+      "CeruleanCity_House1_Text_HopeToSeeYouAgain": [
+        "Tudo bem, entao. Espero voltar\\na ver-te.$"
+      ]
+    },
+    "data/maps/CeruleanCity_PokemonCenter_1F_Frlg/scripts.inc": {
+      "CeruleanCity_PokemonCenter_1F_Text_TryTradingUpstairs": [
+        "Colectores em todo o comercio\\nmundial POKEMON entre si.\\pVoce poderia obter muito mais\\nvariedade por comercio.\\pO POKEMON voce comeca em\\ncomercios crescer rapidamente,\\ltambem.$"
+      ]
+    },
+    "data/maps/CherrygroveCity_House1/scripts.inc": {
+      "CherrygroveCity_GymSpeechHouse_Text_PokefanM": [
+        "Estas a tentar ver como es bom\\ncomo treinador de Pokemon?\\pE melhor visitar os GyMS\\nPokemon por todo o JOHTO e\\lrecolher INSIGNIAS.$"
+      ]
+    },
+    "data/maps/CherrygroveCity_House2/scripts.inc": {
+      "CherrygroveCity_GuideHouse_Text_GuideGent": [
+        "Quando eu era um rapazinho, era\\num grande treinador!\\pAqui esta um conselho: Pegue\\nmuito POKEMON!\\pTratai-os todos com bondade!$"
+      ]
+    },
+    "data/maps/CherrygroveCity_House3/scripts.inc": {
+      "CherrygroveCity_EvolutionHouse_Text_Youngster": [
+        "POKEMON ganhar experiencia em\\nbatalha e mudar sua forma.$"
+      ],
+      "CherrygroveCity_EvolutionHouse_Text_Lass": [
+        "Mudanca Pokemon?\\pFicaria chocado se alguem\\nfizesse isso!$"
+      ]
+    },
+    "data/maps/CherrygroveCity_PokemonCenter/scripts.inc": {
+      "CherryGrove_Pokecenter_Text_Fisher": [
+        "E optimo. Posso guardar\\nqualquer quantidade de POKEMON,\\le e tudo gratis.$"
+      ],
+      "CherryGrove_Pokecenter_Text_Gentleman": [
+        "Esse PC e gratuito para\\nqualquer treinador usar.$"
+      ],
+      "CherryGrove_Pokecenter_Text_Lass": [
+        "Dizem que uma panela vigiada\\nnunca ferve. Mas ver o relogio\\lno POKeCENTER faz o tempo voar!$"
+      ]
+    },
+    "data/maps/CianwoodCity/scripts.inc": {
+      "CianwoodCity_Text_ChucksWifeChubby": [
+        "O meu marido perdeu para si,\\npor isso precisa de treinar\\lmais.\\pIsso e bom, ja que ele estava a\\nficar um pouco gordo.$"
+      ],
+      "CianwoodCity_Text_Youngster": [
+        "Se voce usar FLY, voce pode\\nvoltar para OLIVINE\\linstantaneamente.$"
+      ],
+      "CianwoodCity_Text_EusineBeaten": [
+        "Detesto admitir, mas ganhaste.$"
+      ],
+      "CianwoodCity_Text_EusineAfter": [
+        "Es incrivel.{PLAYER}!\\pNao admira que Pokemon gravite\\npara ti.\\pJa percebi.\\pVou continuar a procura da\\nSUICUNE.\\pTenho a certeza que voltaremos\\na ver-nos.\\pVemo-nos por ai!$"
+      ]
+    },
+    "data/maps/CianwoodHouse1/scripts.inc": {
+      "CianwoodCity_Text_OldManIntro": [
+        "Nao me lembro da ultima vez que\\nalguem me visitou.\\pQuando era jovem, tambem era\\ninstrutor de Pokemon. Tentei\\lchegar a torre e mergulhar no\\loceano.\\pEsforcei-me muito em muitas\\ncoisas.\\pBem, agora vou com calma, a\\nouvir as ondas e os ventos\\lnesta praia.$"
+      ],
+      "CianwoodCity_Text_BellTowerStory": [
+        "Ja ouviu falar do TIN TOWER em\\nECRUTEAK?\\pHa o que chamam de Sino Limpo\\nno topo da torre.\\pNao fazem nenhum barulho com\\nventos fortes.\\pSo ha uma maneira de faze-los\\ntocar.\\pE para obter outro BELL CLEAR\\ncomo aqueles no topo da torre.\\pFui atras dele quando era\\njovem. Mas nunca recebi um...$"
+      ]
+    },
+    "data/maps/CianwoodHouse2/scripts.inc": {
+      "CianwoodCity_Text_LugiaHouseLass": [
+        "Ouvi dizer que so se pode ver\\nse se tiver um SILVER WING.\\pDeve ter o mesmo cheiro da\\ncriatura.$"
+      ],
+      "CianwoodCity_Text_LugiaHouseTwin": [
+        "Ouvi dizer que os redemoinhos\\nao redor das ilhas sao causados\\lpela criatura marinha.\\pTalvez precises de uma jogada\\nespecial para passar por eles.$"
+      ]
+    },
+    "data/maps/CianwoodHouse3/scripts.inc": {
+      "CianwoodCity_Text_ManiacAskShuckle": [
+        "Estou em choque!\\pUm tipo da tua idade com olhos\\npenetrantes e cabelo comprido\\lentrou.\\pEle assustou-me para lhe dar o\\nmeu precioso Pokemon!\\pAinda tenho um, mas e se ele\\nvoltar?\\pPareces forte. Podes tomar\\nconta do meu Pokemon por uns\\ltempos?$"
+      ],
+      "CianwoodCity_Text_ManiacTakeCareShuckle": [
+        "Obrigado!\\pCuide bem dele, por favor!$"
+      ],
+      "CianwoodCity_Text_ManiacGotShuckle": [
+        "{PLAYER}Recebeu um POKEMON.$"
+      ],
+      "CianwoodCity_Text_ManiacPartyFull": [
+        "A tua festa esta cheia.$"
+      ],
+      "CianwoodCity_Text_ManiacIfHeComesBack": [
+        "Oh, nao... O que faco se ele\\nvoltar?$"
+      ],
+      "CianwoodCity_Text_ManiacHowsdoing": [
+        "Ola! Como esta o meu Pokemon?$"
+      ],
+      "CianwoodCity_Text_ManiacAskReturn": [
+        "Ola! Como esta o meu Pokemon?\\pAcho que estou segura agora,\\npor isso posso te-la de volta?$"
+      ],
+      "CianwoodCity_Text_ManiacThankYou": [
+        "Obrigado!$"
+      ],
+      "CianwoodCity_Text_ManiacShuckleNotThere": [
+        "Nao tens o meu Pokemon contigo.$"
+      ],
+      "CianwoodCity_Text_ManiacShuckleLikesYou": [
+        "O meu Pokemon gostou de ti.\\pEsta bem, devias ficar com ele.\\pMas promete ser bom para ele!$"
+      ],
+      "CianwoodCity_Text_ManiacRobbed": [
+        "Alguma coisa nao esta bem.$"
+      ],
+      "CianwoodCity_Text_ManiacRobbed2": [
+        "Nao, nao... E o mesmo que ser\\nroubado.$"
+      ],
+      "CianwoodCity_Text_ManiacHappinessSpeech": [
+        "Para POKEMON, felicidade e\\nestar com uma pessoa que os\\ltrata bem.$"
+      ],
+      "CianwoodCity_Text_ManiacLastMon": [
+        "Se eu levar o meu POKEMON de\\nvolta, o que vais usar na\\lbatalha?$"
+      ],
+      "CianwoodCity_Text_ManiacReturnedMon": [
+        "{PLAYER}voltou SHUCKIE.$"
+      ]
+    },
+    "data/maps/CianwoodPokecenter/scripts.inc": {
+      "CianwoodPokemoncenter_Text_Fisher2": [
+        "Parece que precisas de um\\nPOKEMON de agua.\\pToma, toma esta, tenho\\nbastante.$"
+      ],
+      "CianwoodPokemoncenter_Text_ReceivedTentacool": [
+        "{PLAYER}recebeu TENTACOOL.$"
+      ],
+      "CianwoodCity_Text_PokecenterLass": [
+        "Conheceu o POKeMANIAC?\\pEsta sempre a gabar-se do seu\\nraro Pokemon.$"
+      ],
+      "CianwoodCity_Text_GymGuideWin": [
+        "{PLAYER}Ganhaste! Da para ver\\nolhando para ti!$"
+      ],
+      "CianwoodCity_Text_PokecenterSuperNerd": [
+        "Adoro exibir o POKEMON que\\ncriei.\\pNao achas?\\pVou entrar num monte de\\nbatalhas e mostrar o meu\\lPokemon!$"
+      ]
+    },
+    "data/maps/CinnabarIsland_Frlg/scripts.inc": {
+      "CinnabarIsland_Text_DoorIsLocked": [
+        "A porta esta trancada...$"
+      ],
+      "CinnabarIsland_Text_PokemonLab": [
+        "LAB POKEMON$"
+      ],
+      "CinnabarIsland_Text_GymSign": [
+        "CINNABAR ISLAND POKEMON GINASIO\\nLEADER: BLAINE O Mestre do\\lQuestionario Quente!$"
+      ],
+      "CinnabarIsland_Text_HeyIfItIsntPlayer": [
+        "Huh? Ei, se nao e{PLAYER}!$"
+      ],
+      "CinnabarIsland_Text_AllRightLetsGo": [
+        "Esta bem, entao. Vamos!$"
+      ]
+    },
+    "data/maps/CinnabarIsland_Mart_Frlg/scripts.inc": {
+      "CinnabarIsland_Mart_Text_DontTheyHaveXAttack": [
+        "Eles nao tem X ATTACK?\\pEu gosto porque ele eleva o\\nATTACK stat em batalha.$"
+      ],
+      "CinnabarIsland_Mart_Text_ExtraItemsNeverHurt": [
+        "Nunca doi ter itens extras.\\nNunca se sabe o que pode\\lacontecer.$"
+      ]
+    },
+    "data/maps/CinnabarIsland_PokemonCenter_1F_Frlg/scripts.inc": {
+      "CinnabarIsland_PokemonCenter_1F_Text_VisitUnionRoom": [
+        "Tens muitos amigos?\\pLutar com os amigos habituais e\\ndivertido, claro.\\pMas que tal o TERMINAL BATTLE\\nNET de vez em quando?\\pQuem sabe, voce pode acabar com\\numa nova estrategia.\\pAcho que valeria a pena\\nverificar a BATTLE NET.$"
+      ],
+      "CinnabarIsland_PokemonCenter_1F_Text_EvolutionCanWaitForNewMoves": [
+        "POKEMON ainda pode aprender\\ntecnicas apos cancelar a\\levolucao.\\pA evolucao pode esperar ate que\\nnovos movimentos sejam\\laprendidos.$"
+      ],
+      "CinnabarIsland_PokemonCenter_1F_Text_OhNotDoneYet": [
+        "Ainda nao acabaste?$"
+      ],
+      "CinnabarIsland_PokemonCenter_1F_Text_LetsGo": [
+        "Bem, e isso. Vamos!$"
+      ]
+    },
+    "data/maps/CliffEdgeCave/scripts.inc": {
+      "CliffEdgeCave_Text_Baldman": [
+        "Se voce ver um garfo na estrada\\ndentro de uma caverna,\\lprovavelmente um caminho e\\lcerto e o outro leva a um beco\\lsem saida.\\pMas as pessoas nao podem deixar\\nde tentar as duas coisas.$"
+      ]
+    },
+    "data/maps/CliffEdgeGate/scripts.inc": {
+      "CliffEdgeGate_Text_Expectations": [
+        "Agradeco que todos estejam\\nansiosos por isso.\\pMas a senhora da recepcao\\nparece um pouco dramatica...\\pNao tenhas expectativas muito\\naltas!$"
+      ]
+    },
+    "data/maps/DesertUnderpass/scripts.inc": {
+      "DesertUnderpass_Text_FoundRootFossil": [
+        "{PLAYER}Encontrei o FOSSIL\\nROOT.$"
+      ],
+      "DesertUnderpass_Text_FoundClawFossil": [
+        "{PLAYER}Encontrei o FOSSIL\\nCLAW.$"
+      ]
+    },
+    "data/maps/DewfordTown_Hall/scripts.inc": {
+      "DewfordTown_Hall_Text_TeachingMonAboutTrend": [
+        "Estou a ensinar o meu\\nPOKEMON{STR_VAR_1}Mas nao esta\\la correr bem.\\pAcho que e demais.$"
+      ],
+      "DewfordTown_Hall_Text_MyHunchWasRight": [
+        "Oh! Entao, o meu palpite estava\\ncerto!\\pEstou um passo mais perto de\\nser hip e acontecer, yowza!$"
+      ],
+      "DewfordTown_Hall_Text_NotEasyToKeepUp": [
+        "O que? E mesmo?!\\pNao e facil para um velho como\\neu acompanhar as tendencias!$"
+      ],
+      "DewfordTown_Hall_Text_TVShowAboutTrend": [
+        "Tudo isto\\nsobre...{STR_VAR_1}Nao tem um\\lprograma de TV?$"
+      ],
+      "DewfordTown_Hall_Text_SawTrendCoolestThing": [
+        "Eu vi.{STR_VAR_1}Fixe, nao e?\\pE, tipo, a coisa mais fixe!\\pFoi fantastico! Foi a serio,\\nsim!$"
+      ],
+      "DewfordTown_Hall_Text_GiveYouSludgeBomb": [
+        "Para mim, SLUDGE BOMB esta no\\nauge da popularidade. E o tal.\\pHunh? Estas a dizer-me que nao\\nsabes sobre o SLUDGE BOMB?\\pIsso e absolutamente\\nlamentavel. Eu dou-te uma.$"
+      ]
+    },
+    "data/maps/DewfordTown_House1/scripts.inc": {
+      "DewfordTown_House1_Text_LotToBeSaidForLivingOnIsland": [
+        "Ha muito a ser dito para viver\\nem uma pequena ilha como esta\\lem harmonia com POKEMON e a\\lfamilia.$"
+      ],
+      "DewfordTown_House1_Text_LifeGoesSlowlyOnIsland": [
+        "Sai do porto de SLATEPORT CITY\\nquando casei com o meu marido\\laqui.\\pA vida passa lentamente nesta\\npequena ilha. Mas estar rodeado\\lpelo lindo mar tambem e\\lfelicidade.$"
+      ]
+    },
+    "data/maps/DewfordTown_House2/scripts.inc": {
+      "DewfordTown_House2_Text_NoRoom": [
+        "Nao tens espaco?\\pOuve bem, este SCARF e um...\\nPorque, eu venderia todos os\\lmeus itens para obte-lo!$"
+      ],
+      "DewfordTown_House2_Text_ExplainSilkScarf": [
+        "O SILK SCARF eleva o poder dos\\nmovimentos do tipo NORMAL.\\pE um SCARF maravilhoso que vai\\ncom quase todos POKEMON!$"
+      ]
+    },
+    "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc": {
+      "DewfordTown_PokemonCenter_1F_Text_StoneCavern": [
+        "Ha uma caverna de pedra na\\nextremidade da cidade.\\pOuvi dizer que encontra pedras\\nraras la.$"
+      ]
+    },
+    "data/maps/DiglettsCave_NorthEntrance_Frlg/scripts.inc": {
+      "DiglettsCave_NorthEntrance_RockTunnelPitchBlack": [
+        "Entrei em ROCK TUNNEL, mas esta\\nescuro e assustador.\\pSe conseguisse arranjar um\\nPokemon para usar o FLASH e\\lacender...$"
+      ]
+    },
+    "data/maps/DragonsDen_Cavern/scripts.inc": {
+      "DragonsDen_Cavern_Text_SilverTraining1": [
+        "O que?{PLAYER}?\\pNao, nao vou lutar contigo\\nagora...\\pO meu Pokemon nao esta pronto\\npara te vencer.\\pNao posso forca-los muito.\\pEu tenho que ser disciplinado\\npara me tornar o maior\\ltreinador POKEMON...$"
+      ],
+      "DragonsDen_Cavern_Text_SilverTraining2": [
+        "...\\pUfa...\\pAprende a ficar fora do meu\\ncaminho...$"
+      ],
+      "DragonsDen_Cavern_Text_CooltrainermDarinSeen": [
+        "Voce! Como ousa entrar sem ser\\nconvidado?$"
+      ],
+      "DragonsDen_Cavern_Text_CooltrainermDarinBeaten": [
+        "Forte!$"
+      ],
+      "DragonsDen_Cavern_Text_CooltrainermDarinAfter": [
+        "O SHRINE a frente e o lar do\\nMASTER do nosso cla de\\lutilizadores de dragoes.\\pNao podes simplesmente entrar!$"
+      ],
+      "DragonsDen_Cavern_Text_CooltrainerfCaraSeen": [
+        "Nao devias estar aqui!$"
+      ],
+      "DragonsDen_Cavern_Text_CooltrainerfCaraBeaten": [
+        "Meu Deus, perdi!$"
+      ],
+      "DragonsDen_Cavern_Text_TwinsLeaandPia1Seen": [
+        "E um estranho que nao\\nconhecemos.$"
+      ],
+      "DragonsDen_Cavern_Text_TwinsLeaandPia2Seen": [
+        "Quem es tu?$"
+      ],
+      "DragonsDen_Cavern_Text_TwinsLeaandPia2Beaten": [
+        "Malvada.$"
+      ],
+      "DragonsDen_Cavern_Text_TwinsLeaandPia2After": [
+        "Vamos denuncia-lo.\\pO MASTER vai ficar zangado\\ncontigo.$"
+      ]
+    },
+    "data/maps/DragonsDen_Shrine/scripts.inc": {
+      "DragonsDen_Shrine_Text_Question1": [
+        "O que e POKEMON para si?$"
+      ],
+      "DragonsDen_Shrine_Text_Question2": [
+        "O que o ajuda a vencer\\nbatalhas?$"
+      ],
+      "DragonsDen_Shrine_Text_Question3": [
+        "Que tipo de treinador deseja\\nlutar?$"
+      ],
+      "DragonsDen_Shrine_Text_Question4": [
+        "O que e mais importante para a\\ncriacao de POKEMON?$"
+      ],
+      "DragonsDen_Shrine_Text_Question5": [
+        "Pokemon forte. Pokemon fraco. O\\nque e mais importante?$"
+      ],
+      "DragonsDen_Shrine_Text_WrongAnswer1": [
+        "Hah? Nao percebi bem...$"
+      ],
+      "DragonsDen_Shrine_Text_WrongAnswer2": [
+        "O que foi que disseste?$"
+      ],
+      "DragonsDen_Shrine_Text_RightAnswer": [
+        "Entendo...$"
+      ],
+      "DragonsDen_Shrine_Text_PassedTest": [
+        "Estou a ver...\\pGosta muito de POKEMON.\\pMuito louvavel.\\pEssa conviccao e o que importa!\\p{PLAYER}Nao percas essa crenca.\\pEle vai leva-lo ate a LEAGUE\\nPOKEMON.$"
+      ],
+      "DragonsDen_Shrine_Text_ClairYouPassed": [
+        "Entao, como correu?\\pAcho que nao vale a pena\\nperguntar. Falhaste?\\p..................................\\pO que? Passaste?$"
+      ],
+      "DragonsDen_Shrine_Text_ClairThatCantBe": [
+        "Nao pode ser!$"
+      ],
+      "DragonsDen_Shrine_Text_ClairYoureLying": [
+        "Estas a mentir!\\pNem eu fui aprovado!$"
+      ],
+      "DragonsDen_Shrine_Text_IUnderstand": [
+        "Eu entendo...$"
+      ],
+      "DragonsDen_Shrine_Text_HereRisingBadge": [
+        "Aqui, este e o RISINGBADGE...\\pDepressa! Toma!$"
+      ],
+      "DragonsDen_Shrine_Text_PlayerReceivedRisingBadge": [
+        "{PLAYER}Recebeu RISINGBADGE.$"
+      ],
+      "DragonsDen_Shrine_Text_RisingBadgeExplanation": [
+        "RISINGBADGE permitira que seu\\nPOKEMON use o movimento para\\lescalar cachoeiras.\\pAlem disso, todos POKEMON ira\\nreconhece-lo como um treinador\\le obedecer a todos os seus\\lcomandos, sem duvida.$"
+      ],
+      "DragonsDen_Shrine_Text_ComeAgain": [
+        "Volta outra vez, se quiseres.$"
+      ],
+      "DragonsDen_Shrine_Text_SilverIsInTraining": [
+        "Um rapaz da tua idade esta a\\ntreinar aqui.\\pEle e muito parecido com a\\nCLAIR quando ela era mais nova.\\lE um pouco preocupante...$"
+      ],
+      "DragonsDen_Shrine_Text_TakeThisDratini": [
+        "Hm... E bom ver-te aqui.\\pA sua chegada foi muito\\nafortunada.\\pTenho uma coisa para ti.\\pTome este DRATINI como prova de\\nque reconheci o seu valor.$"
+      ],
+      "DragonsDen_Shrine_Text_SymbolicDragon": [
+        "Dragao POKEMON sao simbolicos\\ndo nosso cla.\\pVoce mostrou que pode ser\\nconfiado a um.$"
+      ],
+      "DragonsDen_Shrine_Text_ClairsGrandfather": [
+        "CLAIR parece ter aprendido uma\\nlicao inestimavel de voce.\\pAgradeco-te como avo dela.$"
+      ]
+    },
+    "data/maps/EcruteakCity/scripts.inc": {
+      "EcruteakCity_Text_Silver1": [
+        "THUD!$"
+      ],
+      "EcruteakCity_Text_Gramps1": [
+        "ECRUTEAK tinha duas torres: uma\\nno leste e outra no oeste.$"
+      ],
+      "EcruteakCity_Text_Lass2": [
+        "A torre que costumava ser\\naqui...\\pA minha avo disse-me que era\\nmuito mais alto.\\pOuvi dizer que ha fantasmas\\nnele agora.$"
+      ],
+      "EcruteakCity_Text_Lass2_ReleasedBeasts": [
+        "Tres grandes Pokemon fugiram em\\ndirecoes diferentes. Quais\\leram?$"
+      ],
+      "EcruteakCity_Text_Gramps3": [
+        "No passado distante...\\pEsta torre ardeu num incendio.\\nTres Pokemon sem nome pereceram\\lnele.\\pUm POKEMON de cor arco-iris\\ndesceu do ceu e\\lressuscitou-os...\\pE uma lenda que foi transmitida\\npor ECRUTEAK GINASIO LEADERS.\\pEu?\\pEu era treinador ha muito\\ntempo. Hohoho!$"
+      ],
+      "EcruteakCity_Text_TinTowerSign": [
+        "TIN TOWER\\pDiz-se que um legendario\\nPokemon pousa aqui.$"
+      ],
+      "EcruteakCity_Text_OfficeSign": [
+        "Estacao de Barreira para TIN\\nTOWER\\pNada de abusar dos indignos.$"
+      ],
+      "EcruteakCity_Text_GymSign": [
+        "ECRUTEAK CITY POKEMON GINASIO\\nLEADER: MORTY\\pO vidente mistico do futuro$"
+      ]
+    },
+    "data/maps/EcruteakCity_House1/scripts.inc": {
+      "EcruteakLugiaSpeechHouse_Text_Gramps": [
+        "Isto aconteceu quando eu era\\njovem.\\pO ceu de repente ficou preto.\\nUm Pokemon voador gigante\\lestava bloqueando o sol.\\pO que sera que era aquele\\nPokemon?\\pEra como um passaro e um\\ndragao.$"
+      ],
+      "EcruteakLugiaSpeechHouse_Text_Youngster": [
+        "Ha mesmo um Pokemon assim tao\\ngrande?\\pSe existe, deve ser poderoso.$"
+      ]
+    },
+    "data/maps/EcruteakCity_House2/scripts.inc": {
+      "Ecruteak_Text_ItemfinderAdventure": [
+        "Ah. Estas numa aventura com o\\nteu POKEMON?\\pO que e uma aventura sem cacar\\ntesouros?\\pEstou certo, ou estou certo?$"
+      ],
+      "Ecruteak_Text_ItemfinderTrueSpirit": [
+        "Optimo! Compreendes o\\nverdadeiro espirito de\\laventura.\\pGosto disso! Leva isto contigo.$"
+      ],
+      "Ecruteak_Text_ItemfinderToEachHisOwn": [
+        "Oh... Cada um dos seus,\\nsuponho...$"
+      ],
+      "Ecruteak_Text_ItemFinderMan": [
+        "ECRUTEAK e uma cidade muito\\nantiga. Muitas geracoes\\lpassaram sua historia em livros\\lcomo estes.$"
+      ],
+      "Ecruteak_Text_TwoTowers": [
+        "Em ECRUTEAK, havia duas torres.\\pCada torre era o potro do\\npoderoso POKEMON voador.\\pMas uma das torres queimou-se.\\pOs dois Pokemon nao sao vistos\\ndesde...\\pContinuar a ler?$"
+      ],
+      "Ecruteak_Text_ThreeMon": [
+        "ECRUTEAK tambem era o lar de\\ntres Pokemon que correram pela\\lcidade.\\pDizem que nasceram de agua,\\nrelampago e fogo.\\pMas nao podiam conter seu poder\\nexcessivo.\\pEntao dizem que os tres\\ncorreram como o vento para a\\lpradaria.$"
+      ]
+    },
+    "data/maps/EcruteakCity_Mart/scripts.inc": {
+      "EcruteakMart_Text_Granny": [
+        "Se usar o REVIVE, um Pokemon\\ndesmaiado vai acordar.$"
+      ]
+    },
+    "data/maps/EcruteakCity_SageOffice1/scripts.inc": {
+      "EcruteakCity_SageOffice1_Text_Sign": [
+        "O sino de estanho toca\\nclaramente para aqueles sob a\\lasa da torre.$"
+      ],
+      "EcruteakTinTowerEntrance_Text_SageNoBadge": [
+        "TIN TOWER esta fora dos limites\\npara os indignos. Desculpe, mas\\ltem de sair.$"
+      ],
+      "EcruteakTinTowerEntrance_Text_SageHearsClearBell1": [
+        "Um evento momentaneo ocorreu.\\pPeco desculpa, mas devo\\npedir-lhe que saia.\\p..............................$"
+      ],
+      "EcruteakTinTowerEntrance_Text_SagePleaseDoGoOn": [
+        "Por favor, continua.$"
+      ],
+      "EcruteakTinTowerEntrance_Text_SageDone": [
+        "O sino e indicativo da alma do\\nportador.\\pTu... Realmente sao dignos.$"
+      ],
+      "EcruteakTinTowerEntrance_Text_WanderingSage": [
+        "O TIN TOWER a frente e uma\\ntorre de nove niveis de beleza\\ldivina.\\pAcalma a alma de todos os que a\\nveem.$"
+      ],
+      "EcruteakTinTowerEntrance_Text_WanderingSageClearBell": [
+        "A TIN TOWER tremeu! Um Pokemon\\ndeve ter voltado ao topo!$"
+      ],
+      "EcruteakTinTowerEntrance_Text_Gramps": [
+        "Duas torres... Dois Pokemon...\\pMas quando um ardeu, ambos\\nPOKEMON voou para longe, para\\lnunca mais voltar.$"
+      ]
+    },
+    "data/maps/EcruteakCity_Theater/scripts.inc": {
+      "EcruteakCity_Theater_Text_Rocket3": [
+        "Entao vou mostrar-te como se\\ndanca. Vou mostrar-te uma\\lgrande.\\pWahahaha!$"
+      ],
+      "EcruteakCity_Theater_Text_RocketSeen": [
+        "Huh? Quem es tu? Atreves-te a\\nmeter-te no meu caminho?$"
+      ],
+      "EcruteakCity_Theater_Text_RocketBeaten": [
+        "Nao! Fazes-me parecer um vilao!$"
+      ],
+      "EcruteakCity_Theater_Text_KimonoRocket3": [
+        "Deves ser.{PLAYER}Correcto?\\nIsso foi realmente excelente.\\pGentil e forte... Bom em criar\\nPOKEMON tambem...\\pEssa pessoa sabe o que procurar\\nnas pessoas...\\pOhoho! Era so eu a falar\\nsozinho. Esquece.$"
+      ],
+      "EcruteakCity_Theater_Text_SurfGuyGiveSurf": [
+        "Maravilhoso! Foste tao corajoso\\npara a tua idade!\\pFoi uma visao rara! Quero que\\nfiques com isto.\\pNao sejas timido, toma!$"
+      ],
+      "EcruteakCity_Theater_Text_SurfGuyGaveSurf": [
+        "Isso e SURF. E um movimento que\\npermite POKEMON nadar atraves\\lda agua com facilidade.$"
+      ],
+      "EcruteakCity_Theater_Text_GrannyBefore": [
+        "Ouch...! Esta dor de estomago!\\pNao deixaria este tipo agir\\nassim se nao fosse por esta\\ldor...!$"
+      ],
+      "EcruteakCity_Theater_Text_GrampsBefore": [
+        "Ouch...! Esta dor nas costas!\\pNao deixaria este tipo agir\\nassim se nao fosse por esta\\ldor...!$"
+      ],
+      "EcruteakCity_Theater_Text_GirlBefore": [
+        "Gosto dessa danca engracada!$"
+      ],
+      "EcruteakCity_Theater_Text_FancyPanel": [
+        "E um painel chique decorado com\\nflores.$"
+      ],
+      "EcruteakCity_Theater_Text_ZukiSeenAgain": [
+        "Vou testa-lo para ver se e um\\nbom instrutor.\\pEstas pronto?{PLAYER}?$"
+      ],
+      "EcruteakCity_Theater_Text_ZukiNo": [
+        "Esta bem... Vou esperar que te\\nprepares.$"
+      ],
+      "EcruteakCity_Theater_Text_ZukiDone": [
+        "Nao estavamos errados sobre ti.\\nEs realmente digno disto...\\pPor favor, aceite.$"
+      ],
+      "EcruteakCity_Theater_Text_GirlHooh": [
+        "Irmas grandes! Acabei de ver a\\ngrande sombra de um Pokemon\\lsobre o TIN TOWER!\\pPode ser...$"
+      ],
+      "EcruteakCity_Theater_Text_ZukiHooh": [
+        "ZUKI:{PLAYER}Estaremos no TIN\\nTOWER. Vemo-nos la!$"
+      ],
+      "EcruteakCity_Theater_Text_KimonoDone": [
+        "Estamos a ensaiar uma danca.$"
+      ],
+      "EcruteakCity_Theater_Text_ZukiAfterAll": [
+        "Obrigado pela ajuda no outro\\ndia.\\pMostraste que a ligacao entre\\nas pessoas pode crescer com o\\lPOKEMON...\\pAgradecemos como viveu ate as\\nnossas esperancas,{PLAYER}!\\pSe aprendeu alguma coisa com\\nisto, agradeca ao Sr. POKEMON E\\lPROF.ELM...$"
+      ],
+      "EcruteakCity_Theater_Text_KimonoGirlsBeforeBattle": [
+        "Fale com ZUKI no meio quando\\nestiver pronto.$"
+      ]
+    },
+    "data/maps/EverGrandeCity_DrakesRoom/scripts.inc": {
+      "EverGrandeCity_DrakesRoom_Text_Defeat": [
+        "Soberbo, deve ser dito.$"
+      ]
+    },
+    "data/maps/EverGrandeCity_GlaciasRoom/scripts.inc": {
+      "EverGrandeCity_GlaciasRoom_Text_Defeat": [
+        "Tu e o teu Pokemon... Que calor\\nardem os vossos espiritos!\\pO calor todo consome.\\pNao e surpresa que as minhas\\nhabilidades geladas nao te\\ltenham feito mal.$"
+      ],
+      "EverGrandeCity_GlaciasRoom_Text_PostBattleSpeech": [
+        "Avancem para o quarto ao lado.\\pE la, confirme o lado\\nverdadeiramente temivel da\\lLEAGUE POKEMON.$"
+      ]
+    },
+    "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc": {
+      "EverGrandeCity_PhoebesRoom_Text_Defeat": [
+        "Bolas. Perdi-me.$"
+      ],
+      "EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech": [
+        "Ha uma ligacao definitiva entre\\nti e o teu Pokemon, tambem.\\pNao o reconheci, por isso e\\nnatural que tenha perdido.\\pSim, gostaria de ver ate onde o\\nteu laco te levara.\\pVai para o quarto ao lado.$"
+      ]
+    },
+    "data/maps/EverGrandeCity_PokemonLeague_1F/scripts.inc": {
+      "EverGrandeCity_PokemonLeague_1F_Text_MustHaveAllGymBadges": [
+        "Alem deste ponto, apenas\\naqueles que recolheram todos os\\lBADS Gym estao autorizados a\\lentrar.\\pTREINADOR, confirmemos que tem\\ntodos os GINASIO INSIGNIAS.$"
+      ],
+      "EverGrandeCity_PokemonLeague_1F_Text_HaventObtainedAllBadges": [
+        "Voce nao obteve todos os\\nINSIGNIAS.\\pSe voce esta destinado para a\\nLEAGUE POKEMON, voce deve\\lvoltar com eles.$"
+      ],
+      "EverGrandeCity_PokemonLeague_1F_Text_GoForth": [
+        "Treinador! Acredita em ti e no\\nteu POKEMON, e vai em frente!$"
+      ]
+    },
+    "data/maps/EverGrandeCity_SidneysRoom/scripts.inc": {
+      "EverGrandeCity_SidneysRoom_Text_Defeat": [
+        "O que achas? Perdi! Foi\\ndivertido, por isso nao\\limporta.$"
+      ],
+      "EverGrandeCity_SidneysRoom_Text_PostBattleSpeech": [
+        "Ouve o que este falhado tem a\\ndizer.\\pTens o que e preciso para ir\\nlonge. Agora, vao para o quarto\\lao lado e aproveitem a vossa\\lproxima batalha!$"
+      ]
+    },
+    "data/maps/FallarborTown/scripts.inc": {
+      "FallarborTown_Text_MyPreciousAzurill": [
+        "Ves! Da uma vista de olhos!\\nEste e o meu precioso AZURILL!\\pE liso, suave e macio, tambem!$"
+      ]
+    },
+    "data/maps/FallarborTown_BattleTentCorridor/scripts.inc": {
+      "FallarborTown_ContestHall_Text_DoAllRightInPreliminary": [
+        "Estamos bem na fase preliminar,\\nmas nunca podemos ganhar os\\lrecursos...\\pTalvez signifique que tenho de\\nver o que os outros\\lconcorrentes estao a fazer...$"
+      ]
+    },
+    "data/maps/FallarborTown_BattleTentLobby/scripts.inc": {
+      "FallarborTown_BattleTentLobby_Text_MakeThinkImJustKid": [
+        "Fufufufu.\\pVou fazer todos pensarem que\\nsou apenas uma crianca e\\ldeixa-los brincar.\\pEntao, vou choca-los e apanhar\\no titulo!$"
+      ],
+      "FallarborTown_BattleTentLobby_Text_CameToCampOut": [
+        "Ouvi algo sobre uma tenda e vim\\nacampar.\\pNao sabia que as tendas hoje em\\ndia sao tao luxuosas!\\pJa que estou aqui, mais vale\\ntentar lutar!$"
+      ]
+    },
+    "data/maps/FallarborTown_CozmosHouse/scripts.inc": {
+      "FallarborTown_CozmosHouse_Text_PleaseUseThisTM": [
+        "PROF. COZMO: Este TM representa\\nmeu sentimento de gratidao. Por\\lfavor, usa-o!$"
+      ],
+      "FallarborTown_CozmosHouse_Text_CozmoIsSoHappy": [
+        "Olha para o PROF. COZMO... Ele\\nesta tao feliz! Acho que e\\lgiro.$"
+      ]
+    },
+    "data/maps/FallarborTown_Mart/scripts.inc": {
+      "FallarborTown_Mart_Text_SellNuggetIFound": [
+        "Este NUGGET que encontrei\\naqui... Suponho que terei de\\lvende-la, ja que nao tem outro\\luso.$"
+      ]
+    },
+    "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc": {
+      "FallarborTown_MoveRelearnersHouse_Text_TutorWhichMon": [
+        "Que POKEMON precisa de\\nexplicacoes?$"
+      ],
+      "FallarborTown_MoveRelearnersHouse_Text_TeachWhichMove": [
+        "Que movimento devo dar?$"
+      ],
+      "FallarborTown_MoveRelearnersHouse_Text_DontHaveMoveToTeachPokemon": [
+        "Desculpa...\\pNao parece que eu tenha alguma\\njogada que possa ensinar ao\\lPokemon.$"
+      ],
+      "FallarborTown_MoveRelearnersHouse_Text_CantTeachEgg": [
+        "Hunh? Nao ha um unico movimento\\nque eu possa ensinar um EGG.$"
+      ]
+    },
+    "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc": {
+      "FallarborTown_PokemonCenter_1F_Text_FossilManiacEdgeOfTown": [
+        "Imagino como Pokemon era ha\\nmuito tempo.\\pTalvez o FOSSIL MANIAC a beira\\nda cidade saiba.$"
+      ],
+      "FallarborTown_PokemonCenter_1F_Text_PlantHardyTrees": [
+        "Nos campos de FALLARBOR,\\nplantamos mudas de arvores\\lresistentes que prosperam ate\\lmesmo em cinzas vulcanicas.$"
+      ]
+    },
+    "data/maps/FarawayIsland_Interior/scripts.inc": {
+      "FarawayIsland_Interior_Text_TheFeelingOfBeingWatchedFaded": [
+        "O sentimento de ser observado\\ndesapareceu...$"
+      ]
+    },
+    "data/maps/FiveIsland_Frlg/scripts.inc": {
+      "FiveIsland_Text_WeirdBuildingInMeadow": [
+        "Isto cheira mal. Eu queria\\njogar no MEADOW.\\pMas colocaram um edificio\\nestranho nele, por isso nao\\lposso brincar la.$"
+      ],
+      "FiveIsland_Text_BeenGettingBusierAroundHere": [
+        "Tem estado cada vez mais\\nocupado por aqui ultimamente.\\pTambem nao tenho pescado muito\\nbem ultimamente.$"
+      ]
+    },
+    "data/maps/FiveIsland_House1_Frlg/scripts.inc": {
+      "FiveIsland_House1_Text_HusbandWentOffFishing": [
+        "Nao te preocupes em comprar\\nnada para jantar esta noite!\\pFoi o que o meu marido disse\\nquando foi pescar hoje.\\pNao sei se posso contar com ele\\npara cumprir essa promessa.$"
+      ]
+    },
+    "data/maps/FiveIsland_House2_Frlg/scripts.inc": {
+      "FiveIsland_House2_Text_MeadowBelongedToFamily": [
+        "Que MEADOW pertence a nossa\\nfamilia ha geracoes.\\pDevia ter construido uma mansao\\ngigante.\\pSeria preferivel que aqueles\\nbandidos passassem por cima\\ldele!$"
+      ]
+    },
+    "data/maps/FiveIsland_LostCave_Room10_Frlg/scripts.inc": {
+      "FiveIsland_LostCave_Room10_Text_SelphyIntro": [
+        "O que pretendes fazer comigo?$"
+      ],
+      "FiveIsland_LostCave_Room10_Text_SelphyDefeat": [
+        "Oh... Tinha medo que quisesses\\nmagoar-me.$"
+      ],
+      "FiveIsland_LostCave_Room10_Text_MayIAskYouToTakeMeHome": [
+        "Ainda bem que aconteceu aqui.\\pFiquei um pouco entediado de\\nandar, e estou me sentindo\\lcansado.\\pPosso pedir-lhe que me leve\\npara casa?$"
+      ]
+    },
+    "data/maps/FiveIsland_LostCave_Room1_Frlg/scripts.inc": {
+      "FiveIsland_LostCave_Room1_Text_LawsonIntro": [
+        "Aiyeeeeh!\\pPensei que isto fosse uma ruina\\nantiga. Mas esta cheio de\\lfantasmas!$"
+      ],
+      "FiveIsland_LostCave_Room1_Text_LawsonDefeat": [
+        "Aiyeeeeh! Misericordia!$"
+      ],
+      "FiveIsland_LostCave_Room1_Text_LawsonPostBattle": [
+        "Estou a tentar sair daqui, mas\\nacabo sempre no mesmo sitio.\\pTalvez o numero de pedras seja\\numa pista...$"
+      ]
+    },
+    "data/maps/FiveIsland_LostCave_Room4_Frlg/scripts.inc": {
+      "FiveIsland_LostCave_Room4_Text_LauraIntro": [
+        "Acho que ha um poder misterioso\\na funcionar nesta caverna.$"
+      ],
+      "FiveIsland_LostCave_Room4_Text_LauraDefeat": [
+        "Se nao entrares no tunel certo,\\nnao avancas.$"
+      ],
+      "FiveIsland_LostCave_Room4_Text_LauraPostBattle": [
+        "Mais cedo, uma senhora entrou\\nnas cavernas a frente.$"
+      ]
+    },
+    "data/maps/FiveIsland_Meadow_Frlg/scripts.inc": {
+      "FiveIsland_Meadow_Text_Rocket1Intro": [
+        "Esta area e estritamente\\nproibida! Fora, fora!$"
+      ],
+      "FiveIsland_Meadow_Text_Rocket1Defeat": [
+        "Isto e a serio?$"
+      ],
+      "FiveIsland_Meadow_Text_Rocket1PostBattle": [
+        "Nao tens nada que fazer aqui!\\nVai para casa!$"
+      ],
+      "FiveIsland_Meadow_Text_Rocket2Intro": [
+        "Nao ha nada alem do nosso\\nWAREHOUSE.\\pEntao, o que te traz aqui?$"
+      ],
+      "FiveIsland_Meadow_Text_Rocket2Defeat": [
+        "Nao era suposto isso\\nacontecer...$"
+      ],
+      "FiveIsland_Meadow_Text_Rocket2PostBattle": [
+        "Queres saber o que esta dentro\\ndeste WAREHOUSE?\\pE melhor nao saberes. Para o\\nteu proprio bem, quero dizer.$"
+      ],
+      "FiveIsland_Meadow_Text_Rocket3Intro": [
+        "Estarias a perder tempo mesmo\\nque passasses por mim.$"
+      ],
+      "FiveIsland_Meadow_Text_Rocket3Defeat": [
+        "Isso deixa-me furioso!$"
+      ],
+      "FiveIsland_Meadow_Text_Rocket3PostBattle": [
+        "Nao conseguiras entrar sem as\\nsenhas.$"
+      ]
+    },
+    "data/maps/FiveIsland_MemorialPillar_Frlg/scripts.inc": {
+      "FiveIsland_MemorialPillar_Text_MiloDefeat": [
+        "Tao afiado!$"
+      ],
+      "FiveIsland_MemorialPillar_Text_ChazPostBattle": [
+        "Havia um tipo muito sombrio por\\nali.$"
+      ],
+      "FiveIsland_MemorialPillar_Text_HaroldDefeat": [
+        "Descer e tao confortavel...\\nDeixa-me sonolento...$"
+      ],
+      "FiveIsland_MemorialPillar_Text_HaroldPostBattle": [
+        "Enche-me de felicidade quando o\\npassaro POKEMON implora\\lbrincalhao...$"
+      ],
+      "FiveIsland_MemorialPillar_Text_ScrubScrub": [
+        "Esfrega, esfrega...$"
+      ],
+      "FiveIsland_MemorialPillar_Text_YourMonsLookHealthy": [
+        "Ola... O teu Pokemon parece\\nsaudavel...$"
+      ],
+      "FiveIsland_MemorialPillar_Text_ThisIsWhereIBuriedMyOnix": [
+        "Foi aqui que enterrei o meu\\nONIX... Chamava-se TECTONIX...$"
+      ],
+      "FiveIsland_MemorialPillar_Text_LeaveAnotherLemonadeOffering": [
+        "Gostaria de deixar outro\\nLEMONADE como oferenda?$"
+      ],
+      "FiveIsland_MemorialPillar_Text_PlacedCanOfLemonade": [
+        "{PLAYER}colocou uma lata de\\nLEMONADE em frente ao tumulo.$"
+      ],
+      "FiveIsland_MemorialPillar_Text_BeGoodToYourMonsToo": [
+        "Por favor, se bom para o teu\\nPokemon, tambem.$"
+      ],
+      "FiveIsland_MemorialPillar_Text_DontHaveRoomForIt": [
+        "Se nao tens espaco para isso,\\nfico com ele ate a proxima vez.$"
+      ],
+      "FiveIsland_MemorialPillar_Text_StillHaveThingAsMyThanks": [
+        "Oh, es tu daquela altura...\\pAinda tenho aquilo que queria\\nque tivesses como\\lagradecimento.$"
+      ],
+      "FiveIsland_MemorialPillar_Text_ScrubScrubTectonix": [
+        "Esfrega, esfrega...\\p... TECTONIX...$"
+      ]
+    },
+    "data/maps/FiveIsland_PokemonCenter_1F_Frlg/scripts.inc": {
+      "FiveIsland_PokemonCenter_1F_Text_OnMyWayToPrepareMeal": [
+        "Vou preparar uma refeicao para\\numa pessoa de alta sociedade.$"
+      ],
+      "FiveIsland_PokemonCenter_1F_Text_YoureOnQuestToCatchEveryMon": [
+        "Estas numa missao para apanhar\\ntodos os tipos de Pokemon?\\pQue incrivel. Por favor, diz-me\\nse apanhares um forte!$"
+      ]
+    },
+    "data/maps/FiveIsland_ResortGorgeous_Frlg/scripts.inc": {
+      "FiveIsland_ResortGorgeous_Text_DaisyIntro": [
+        "Com estas maos, criarei a minha\\nvitoria!$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_DaisyDefeat": [
+        "A vergonha disto... Estou com a\\ncara vermelha...$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_DaisyPostBattle": [
+        "Os meus tubos de tinta\\nespalharam-se por todo o lado!$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_CelinaIntro": [
+        "Com licenca! Estou a tentar\\npintar. Por favor, fica fora da\\lminha vista!$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_CelinaDefeat": [
+        "Esta perda... Sinto-me como se\\nestivesse...$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_RaynaIntro": [
+        "Hmm... O angulo, nao esta la...$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_RaynaDefeat": [
+        "Oh... Os meus sentimentos sao\\nazuis...$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_RaynaPostBattle": [
+        "O ceu e o mar... Sao tao\\ninconstantes.\\pSuas expressoes em mudanca os\\ntornam dificeis de capturar.$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_JackiIntro": [
+        "Estou a visitar o retiro do meu\\namigo, se queres saber.$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_JackiDefeat": [
+        "Meu Deus, tao forte.$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_JackiPostBattle": [
+        "Acho agradavel lutar com a\\nsuave brisa do mar.$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_GillianIntro": [
+        "Estou a pensar fazer uma\\npiscina especialmente para o\\lPOKEMON.$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_GillianDefeat": [
+        "Meu Deus!$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_GillianPostBattle": [
+        "Uma piscina seria bom, mas devo\\ndizer, um salao de sol pode ser\\lsublime.$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_DestinIntro": [
+        "Sou um bom corredor. Sou muito\\nrapido!$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_DestinDefeat": [
+        "Oops! Apressei as coisas!$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_DestinPostBattle": [
+        "Quando corro com o vento, sinto\\nque podia voar!$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_TobyIntro": [
+        "Eu digo, esta vida marinha aqui\\nneste resort concorda comigo.$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_TobyDefeat": [
+        "Que surpresa! Deve estar a\\nbrincar.$"
+      ],
+      "FiveIsland_ResortGorgeous_Text_TobyPostBattle": [
+        "A ficar tao serio com isto...\\nQue absurdo.$"
+      ]
+    },
+    "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc": {
+      "FiveIsland_ResortGorgeous_House_Text_WishToSeeMonPlease": [
+        "Quero ver um Pokemon. Um\\nquerido.{STR_VAR_1}.\\pQuero ver um imediatamente. Por\\nfavor, realize o meu desejo.$"
+      ],
+      "FiveIsland_ResortGorgeous_House_Text_ButlerYesMyLady": [
+        "Sim, minha senhora.$"
+      ],
+      "FiveIsland_ResortGorgeous_House_Text_SelphyGiveTokenOfAppreciation": [
+        "SELPHY: Certifique-se de que\\nesta pessoa recebe um sinal de\\lapreco.$"
+      ],
+      "FiveIsland_ResortGorgeous_House_Text_ButlerIShallDoAsYouBid": [
+        "Farei o que me pedir, minha\\nsenhora.$"
+      ],
+      "FiveIsland_ResortGorgeous_House_Text_ButlerPleaseAcceptThisAsHerThanks": [
+        "Eu sinceramente agradeco por\\nagradar Lady SELPHY.\\pPor favor aceite isto como\\nagradecimento...$"
+      ],
+      "FiveIsland_ResortGorgeous_House_Text_ButlerBagAppearsToBeFull": [
+        "O seu BAG parece estar,\\ninfelizmente, cheio.$"
+      ],
+      "FiveIsland_ResortGorgeous_House_Text_OhHowDisappointing": [
+        "Oh... Que desilusao.$"
+      ]
+    },
+    "data/maps/FortreeCity/scripts.inc": {
+      "FortreeCity_Text_PokemonThatEvolveWhenTraded": [
+        "Ha POKEMON que evoluem quando\\nvoce os troca! Foi o que ouvi.$"
+      ]
+    }
+  },
+  "c": {}
+}

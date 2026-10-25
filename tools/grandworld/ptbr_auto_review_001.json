@@ -1,0 +1,781 @@
+{
+  "asm": {
+    "data/maps/AzaleaTown_Gym/scripts.inc": {
+      "AzaleaTown_Gym_Text_GymStatue": [
+        "GINASIO POKEMON AZALEA$"
+      ],
+      "AzaleaTown_Gym_Text_BugsyBeaten": [
+        "Fantastico! Es um especialista\\nem POKEMON!\\pA minha pesquisa ainda nao esta\\ncompleta.\\pOK, ganhaste. Tome este mal.$"
+      ],
+      "AzaleaTown_Gym_Text_ReceivedHiveBadge": [
+        "{PLAYER}recebeu HIVEBADGE.$"
+      ],
+      "AzaleaTown_Gym_Text_HiveBadgeSpeech": [
+        "Sabe quais sao os beneficios do\\nHIVEBADGE?\\pSe voce tem, POKEMON ate L30\\nvai obedece-lo, ate mesmo\\ltrocados.\\pPOKEMON que sabe CUT sera capaz\\nde usa-lo fora da batalha\\ltambem.\\pToma, tambem quero que fiques\\ncom isto.$"
+      ],
+      "AzaleaTown_Gym_Text_FuryCutterSpeech": [
+        "TM09 contem SEED BULLET.\\pLanca uma torrente de sementes\\nentre 2 e 5 vezes por turno.\\pAssim, embora o poder seja 25,\\ne realmente entre 50 e 125\\lpotencia!\\pNao e fantastico? Eu\\ndescobri-o!$"
+      ],
+      "AzaleaTown_Gym_Text_BugsyAdvice": [
+        "Bug POKEMON sao profundos. Ha\\nmuitos misterios a serem\\lexplorados.\\pEstude bem os seus favoritos.$"
+      ],
+      "AzaleaTown_Gym_Text_BugsyRematchDefeat": [
+        "Deves ser um treinador\\nexperiente. A minha pesquisa\\lnao deve estar completa...$"
+      ],
+      "AzaleaTown_Gym_Text_BugsyRematchPost": [
+        "Novos dados recolhidos! Meu\\ninseto POKEMON fica mais forte\\la cada dia.\\pVem lutar comigo a qualquer\\nhora!$"
+      ],
+      "AzaleaTown_Gym_Text_BugsyRematchDecline": [
+        "Volte quando quiser enfrentar a\\nminha ultima pesquisa POKEMON!$"
+      ],
+      "AzaleaTown_Gym_Text_BugCatcherBennySeen": [
+        "Bug POKEMON evolui jovem. Ficam\\nmais fortes muito mais\\ldepressa.$"
+      ],
+      "AzaleaTown_Gym_Text_BugCatcherBennyBeaten": [
+        "So evoluir nao e suficiente!$"
+      ],
+      "AzaleaTown_Gym_Text_BugCatcherBennyAfter": [
+        "POKEMON torna-se mais forte se\\nevoluirem. A serio!$"
+      ],
+      "AzaleaTown_Gym_Text_BugCatcherAlSeen": [
+        "Bug POKEMON sao legais e duros!\\nVou provar-te!$"
+      ],
+      "AzaleaTown_Gym_Text_BugCatcherAlBeaten": [
+        "Provaste o quao duro es...$"
+      ],
+      "AzaleaTown_Gym_Text_BugCatcherAlAfter": [
+        "Sao tao fixes, mas a maioria\\ndas raparigas nao gosta de\\linsectos.\\pNao sei porque...$"
+      ],
+      "AzaleaTown_Gym_Text_BugCatcherJoshSeen": [
+        "Salvaste todo o SLOWPOKE? Es\\npoderoso!\\pMas o meu Pokemon adulto tambem\\ne muito duro!$"
+      ],
+      "AzaleaTown_Gym_Text_BugCatcherJoshAfter": [
+        "Acho que devia ensinar-lhes\\nmelhores movimentos...$"
+      ],
+      "AzaleaTown_Gym_Text_GymGuideWin": [
+        "Muito bem! Foi um grande choque\\nde jovens treinadores\\ltalentosos.\\pCom pessoas como voce, o futuro\\nde POKEMON e brilhante!$"
+      ]
+    },
+    "data/maps/BlackthornCity_Gym/scripts.inc": {
+      "BlackthornGym_Text_ClairWinText": [
+        "Perdi?\\pNao acredito. Deve haver algum\\nengano...$"
+      ],
+      "BlackthornGym_Text_ClairText_TooMuchToExpect": [
+        "O que se passa?\\pE esperar muito de ti?$"
+      ],
+      "BlackthornGym_Text_ClairText_YouKeptMeWaiting": [
+        "Deixaste-me a espera!\\pAqui! Toma isto!$"
+      ],
+      "BlackthornGym_Text_ClairRematchDefeatText": [
+        "Perdi?\\pOutra vez?\\pNao acredito. Deve haver algum\\nengano...$"
+      ],
+      "BlackthornGym_Text_ClairRematchPostText": [
+        "Hmph. Um verdadeiro mestre\\ndragao nunca para de treinar.\\pEnfrenta os meus dragoes quando\\nte atreveres.$"
+      ],
+      "BlackthornGym_Text_ClairRematchDeclineText": [
+        "Esta bem. Volte quando estiver\\npronto para enfrentar um mestre\\ldragao.$"
+      ],
+      "BlackthornGym_Text_CooltrainermCodySeenText": [
+        "Acabei de ter acesso ao tipo\\nDRAGON POKEMON!$"
+      ],
+      "BlackthornGym_Text_CooltrainermCodyBeatenText": [
+        "Ratos! Se eu tivesse um\\nDRAGONITE!$"
+      ],
+      "BlackthornGym_Text_CooltrainermCodyAfterBattleText": [
+        "Membros do nosso cla de\\nutilizadores de dragoes so\\lpodem usar o dragao POKEMON\\ldepois do nosso MASTER\\lpermitir.$"
+      ],
+      "BlackthornGym_Text_CooltrainerfFranBeatenText": [
+        "Awww... Perdi...$"
+      ],
+      "BlackthornGym_Text_CooltrainermPaulSeenText": [
+        "A tua primeira batalha contra\\ndragoes?\\pVou mostrar-te como eles sao\\nduroes!$"
+      ],
+      "BlackthornGym_Text_CooltrainermPaulBeatenText": [
+        "O meu dragao Pokemon perdeu?$"
+      ],
+      "BlackthornGym_Text_CooltrainermPaulAfterBattleText": [
+        "O LANCE disse-te que gostava de\\nte ver outra vez?\\pNem pensar!$"
+      ],
+      "BlackthornGym_Text_CooltrainermMikeSeenText": [
+        "A minha hipotese de perder? Nem\\num por cento!$"
+      ],
+      "BlackthornGym_Text_CooltrainermMikeBeatenText": [
+        "Que estranho.$"
+      ],
+      "BlackthornGym_Text_CooltrainermMikeAfterBattleText": [
+        "Agora conheco as minhas\\nlacunas.\\pObrigado por me mostrares!$"
+      ],
+      "BlackthornGym_Text_CooltrainerfLolaSeenText": [
+        "Os dragoes sao sagrados.\\pEstao cheios de energia vital.\\pSe nao estas a falar a serio,\\nnao vais conseguir vence-los.$"
+      ],
+      "BlackthornGym_Text_CooltrainerfLolaBeatenText": [
+        "Muito bem!$"
+      ],
+      "BlackthornGym_Text_CooltrainerfLolaAfterBattleText": [
+        "Os dragoes sao fracos contra\\nmovimentos do tipo DRAGON.$"
+      ]
+    },
+    "data/maps/CeladonCity_Gym_Frlg/scripts.inc": {
+      "CeladonCity_Gym_Text_ErikaPostBattle": [
+        "Voce esta catalogando POKEMON?\\nDevo dizer que estou\\limpressionado.\\pNunca recolheria POKEMON se nao\\nfossem atraentes.$"
+      ],
+      "CeladonCity_Gym_Text_ReceivedTM19FromErika": [
+        "{PLAYER}recebeu TM19 da ERIKA.$"
+      ],
+      "CeladonCity_Gym_Text_ExplainTM19": [
+        "TM19 contem GIGA DRAIN.\\pMetade dos danos que inflige e\\ndrenada para curar o seu\\lPOKEMON.\\pNao concordas que e uma jogada\\nmaravilhosa?$"
+      ],
+      "CeladonCity_Gym_Text_ShouldMakeRoomForThis": [
+        "Devias arranjar espaco para\\nisto.$"
+      ],
+      "CeladonCity_Gym_Text_KayIntro": [
+        "Devia contar-te sobre este Gym.\\pSo as senhoras reais podem\\nentrar aqui!$"
+      ],
+      "CeladonCity_Gym_Text_KayDefeat": [
+        "Es muito duro!$"
+      ],
+      "CeladonCity_Gym_Text_KayPostBattle": [
+        "Bleaah! Espero que o ERIKA\\nacabe contigo!$"
+      ],
+      "CeladonCity_Gym_Text_BridgetIntro": [
+        "Bem-vinda. Estava a ficar\\naborrecido.$"
+      ],
+      "CeladonCity_Gym_Text_BridgetDefeat": [
+        "A minha maquilhagem!$"
+      ],
+      "CeladonCity_Gym_Text_TinaIntro": [
+        "Nao estavas a espreitar aqui\\nmais cedo?$"
+      ],
+      "CeladonCity_Gym_Text_TinaDefeat": [
+        "Es um abridor de olhos!$"
+      ],
+      "CeladonCity_Gym_Text_TinaPostBattle": [
+        "Estavas a olhar para a ERIKA...\\nNao estavas a olhar para mim...$"
+      ],
+      "CeladonCity_Gym_Text_TamiaIntro": [
+        "Olha, olha! Vejam o meu\\nPokemon!\\pGosto do tipo GRASS. Gosto de\\ncomo sao faceis de criar.$"
+      ],
+      "CeladonCity_Gym_Text_TamiaDefeat": [
+        "Nao!$"
+      ],
+      "CeladonCity_Gym_Text_TamiaPostBattle": [
+        "So usamos Pokemon tipo GRASS no\\nnosso ginasio.\\pPorque? Tambem os usamos para\\nfazer arranjos florais!$"
+      ],
+      "CeladonCity_Gym_Text_LisaDefeat": [
+        "Oh! Voce!$"
+      ],
+      "CeladonCity_Gym_Text_LoriIntro": [
+        "Prazer em conhece-lo. Meu hobby\\ne treinamento POKEMON.$"
+      ],
+      "CeladonCity_Gym_Text_LoriDefeat": [
+        "Oh! Esplendido!$"
+      ],
+      "CeladonCity_Gym_Text_LoriPostBattle": [
+        "Tenho um encontro as cegas.\\nTenho de aprender a ser\\leducado, especialmente se tiver\\lde lutar.$"
+      ],
+      "CeladonCity_Gym_Text_MaryIntro": [
+        "Bem-vindos ao CELADON Gym!\\pE melhor nao subestimares as\\nsenhoras simpaticas.$"
+      ],
+      "CeladonCity_Gym_Text_MaryDefeat": [
+        "Oh! Espancado!$"
+      ],
+      "CeladonCity_Gym_Text_MaryPostBattle": [
+        "Nao trouxe o meu melhor\\nPOKEMON. Espera ate a proxima!$"
+      ],
+      "CeladonCity_Gym_Text_RematchDefeat": [
+        "A fragrancia do meu jardim\\nfez-te dormir.$"
+      ],
+      "CeladonCity_Gym_Text_RematchPost": [
+        "Como te tornaste esplendido.\\pAs minhas flores rendem-se a\\nti. Visite o meu jardim\\lnovamente.$"
+      ],
+      "CeladonCity_Gym_Text_RematchDecline": [
+        "As flores e eu aguardaremos o\\nvosso regresso.$"
+      ]
+    },
+    "data/maps/CianwoodGym/scripts.inc": {
+      "CianwoodGym_Text_ChuckIntro3": [
+        "Ali! Estas com medo agora?\\pO que? Nao tem nada a ver com\\nPOKEMON?\\pE verdade!\\pVamos. Vamos lutar!$"
+      ],
+      "CianwoodGym_Text_ChuckLoss": [
+        "O que? Huh? Perdi?\\pQue tal isso! Es digno de\\nSTORMBADGE!$"
+      ],
+      "CianwoodGym_Text_GetStormBadge": [
+        "{PLAYER}recebeu STORMBADGE.$"
+      ],
+      "CianwoodGym_Text_ChuckBadgeSpeech": [
+        "STORMBADGE faz com que todos os\\nPokemon ate L70 obedecam, ate\\lmesmo os negociados.\\pToma, toma isto tambem!$"
+      ],
+      "CianwoodGym_Text_ChuckRematchDefeat": [
+        "O que? Huh? Perdi? Outra vez?$"
+      ],
+      "CianwoodGym_Text_BlackbeltYoshiSeen": [
+        "O meu Pokemon e eu somos\\nobrigados a unir-nos.\\pO nosso laco nunca sera\\nquebrado!$"
+      ],
+      "CianwoodGym_Text_BlackbeltYoshiBeaten": [
+        "Isto nao e real!$"
+      ],
+      "CianwoodGym_Text_BlackbeltYoshiAfter": [
+        "Voce parece ter uma forte\\nligacao com o seu POKEMON\\ltambem!$"
+      ],
+      "CianwoodGym_Text_BlackbeltLaoSeen": [
+        "Nos, artistas marciais, nao\\ntemos medo de nada!$"
+      ],
+      "CianwoodGym_Text_BlackbeltLaoBeaten": [
+        "Isso e chocante!$"
+      ],
+      "CianwoodGym_Text_BlackbeltLaoAfter": [
+        "Lutar contra Pokemon tem medo\\nde videntes...$"
+      ],
+      "CianwoodGym_Text_BlackbeltNobSeen": [
+        "Palavras sao inuteis. Deixem os\\npunhos falarem!$"
+      ],
+      "CianwoodGym_Text_BlackbeltNobAfter": [
+        "Perdi! Estou sem palavras!$"
+      ],
+      "CianwoodGym_Text_BlackbeltLungSeen": [
+        "Os meus punhos vao quebrar o\\nteu Pokemon!$"
+      ],
+      "CianwoodGym_Text_BlackbeltLungBeaten": [
+        "Fiquei destrocado!$"
+      ],
+      "CianwoodGym_Text_BlackbeltLungAfter": [
+        "O meu Pokemon perdeu... O meu\\norgulho esta despedacado...$"
+      ]
+    },
+    "data/maps/CinnabarIsland_Gym_Frlg/scripts.inc": {
+      "CinnabarIsland_Gym_Text_BlaineDefeat": [
+        "Queimei-me a nada! Nem sequer\\nrestam cinzas!\\pVoce ganhou o VOLCANOBADGE.$"
+      ],
+      "CinnabarIsland_Gym_Text_ReceivedTM38FromBlaine": [
+        "{PLAYER}recebeu TM38 de BLAINE.$"
+      ],
+      "CinnabarIsland_Gym_Text_MakeSpaceForThis": [
+        "Abram espaco para isto,\\ncrianca!$"
+      ],
+      "CinnabarIsland_Gym_Text_ErikIntro": [
+        "Sabes como o halito de fogo\\nPOKEMON pode ficar quente?$"
+      ],
+      "CinnabarIsland_Gym_Text_ErikDefeat": [
+        "Yow! Quente, quente, quente!$"
+      ],
+      "CinnabarIsland_Gym_Text_ErikPostBattle": [
+        "Fogo, ou para ser mais preciso,\\ncombustao...\\p...Oxigenio no ar... Bla, bla,\\nbla, bla...$"
+      ],
+      "CinnabarIsland_Gym_Text_QuinnIntro": [
+        "Eu era um ladrao, mas fui\\ndirecto como treinador.$"
+      ],
+      "CinnabarIsland_Gym_Text_QuinnDefeat": [
+        "Eu rendo-me!$"
+      ],
+      "CinnabarIsland_Gym_Text_QuinnPostBattle": [
+        "Tenho um desejo incontrolavel\\nde roubar o Pokemon de outras\\lpessoas.$"
+      ],
+      "CinnabarIsland_Gym_Text_AveryIntro": [
+        "Estudei muito Pokemon. Nao\\npodes ganhar!$"
+      ],
+      "CinnabarIsland_Gym_Text_AveryDefeat": [
+        "Waah! Os meus estudos eram\\ninsuficientes!$"
+      ],
+      "CinnabarIsland_Gym_Text_AveryPostBattle": [
+        "As minhas teorias sao demasiado\\ncomplicadas para que\\lcompreendas.$"
+      ],
+      "CinnabarIsland_Gym_Text_RamonDefeat": [
+        "Demasiado quente para lidar!$"
+      ],
+      "CinnabarIsland_Gym_Text_RamonPostBattle": [
+        "Quem me dera que houvesse um\\nladrao Pokemon. Eu usaria isso!$"
+      ],
+      "CinnabarIsland_Gym_Text_DustyIntro": [
+        "Ja estive em muitos GINASIOS,\\nmas este e o melhor para mim.$"
+      ],
+      "CinnabarIsland_Gym_Text_DustyDefeat": [
+        "Yowza! Demasiado quente!$"
+      ],
+      "CinnabarIsland_Gym_Text_ZacIntro": [
+        "O fogo e fraco contra o H2O.$"
+      ],
+      "CinnabarIsland_Gym_Text_ZacDefeat": [
+        "Oh! Foi-se!$"
+      ],
+      "CinnabarIsland_Gym_Text_GymGuyPostVictory": [
+        "{PLAYER}Venceste a marca de\\nfogo!$"
+      ],
+      "CinnabarIsland_Gym_Text_QuizQuestion1": [
+        "CATERPIE evolui para METAPOD?$"
+      ],
+      "CinnabarIsland_Gym_Text_QuizQuestion2": [
+        "Existem nove BADS POKEMON\\nLEAGUE certificados?$"
+      ],
+      "CinnabarIsland_Gym_Text_QuizQuestion3": [
+        "O POLIWAG evolui tres vezes?$"
+      ],
+      "CinnabarIsland_Gym_Text_QuizQuestion4": [
+        "Os movimentos electricos sao\\neficazes contra POKEMON do tipo\\lGROUND?$"
+      ],
+      "CinnabarIsland_Gym_Text_QuizQuestion5": [
+        "POKEMON do mesmo tipo e nivel\\nnao sao identicos?$"
+      ],
+      "CinnabarIsland_Gym_Text_QuizQuestion6": [
+        "TM28 contem TOMBSTONY?$"
+      ],
+      "CinnabarIsland_Gym_Text_CorrectGoOnThrough": [
+        "Tens toda a razao!\\pVa em frente!$"
+      ],
+      "CinnabarIsland_Gym_Text_SorryBadCall": [
+        "Desculpa! Pessima ideia!$"
+      ],
+      "CinnabarIsland_Gym_Text_RematchDefeat": [
+        "Booyah! Queimado em pedacos!$"
+      ],
+      "CinnabarIsland_Gym_Text_RematchPost": [
+        "Yeeouch! Encharcaste as minhas\\nchamas!\\pVenha reacender esta batalha a\\nqualquer hora!$"
+      ],
+      "CinnabarIsland_Gym_Text_RematchDecline": [
+        "Arrefeceu os pes? O meu fogo\\nvai esperar!$"
+      ]
+    },
+    "data/maps/EcruteakCity_Gym/scripts.inc": {
+      "MortyIntroText": [
+        "Ainda bem que vieste.\\pAqui em ECRUTEAK, Pokemon\\nsempre foram reverenciados.\\pDiz-se que um POKEMON de cor\\narco-iris ira aparecer perante\\lum verdadeiro Treinador.\\pAcreditei nessa historia, por\\nisso treinei aqui em segredo.\\pComo resultado, posso agora ver\\no que os outros nao podem.\\pSo mais um pouco...\\pCom um pouco mais, pude ver um\\nfuturo onde encontro o POKEMON\\lde cor arco-iris.\\pVais ajudar-me a chegar a esse\\nnivel!$"
+      ],
+      "MortyWinLossText": [
+        "Ainda nao sou suficientemente\\nbom...\\pEsta bem. Este mal e teu.$"
+      ],
+      "Text_ReceivedFogBadge": [
+        "{PLAYER}recebeu o FOGBADGE.$"
+      ],
+      "MortyFightDoneText": [
+        "Entendo...\\pA tua viagem levou-te a lugares\\ndistantes.\\pJa testemunhou mais do que eu.\\pInvejo-te por isso...$"
+      ],
+      "Morty_RematchDefeatText": [
+        "Ainda nao sou suficientemente\\nbom...\\pJa testemunhou mais do que eu.\\pInvejo-te por isso...$"
+      ],
+      "MortyRematchPostText": [
+        "As sombras ainda tem muito para\\nnos ensinar.\\pProcura-me quando quiseres\\ntesta-los novamente.$"
+      ],
+      "MortyRematchDeclineText": [
+        "Volte quando estiver pronto\\npara enfrentar as sombras mais\\luma vez.$"
+      ],
+      "SageJeffreySeenText": [
+        "Passei a primavera com o meu\\nPokemon.\\pDepois verao, outono e\\ninverno...\\pEntao a primavera voltou.\\nEstamos juntos ha muito tempo.$"
+      ],
+      "SageJeffreyBeatenText": [
+        "Vitorias e perdas... Eu conheco\\nos dois.$"
+      ],
+      "SageJeffreyAfterBattleText": [
+        "De onde veio o Pokemon?$"
+      ],
+      "SagePingSeenText": [
+        "Pode causar algum dano no nosso\\nPokemon?$"
+      ],
+      "SagePingBeatenText": [
+        "Ah! Muito bem!$"
+      ],
+      "SagePingAfterBattleText": [
+        "Usamos POKEMON tipo GHOST.\\pNenhum ataque do tipo NORMAL\\npode prejudica-los!$"
+      ],
+      "MediumMarthaSeenText": [
+        "Vou ganhar!$"
+      ],
+      "MediumMarthaBeatenText": [
+        "Perdi!$"
+      ],
+      "MediumMarthaAfterBattleText": [
+        "O que mais quer ganhar e aquele\\nque vai ganhar!$"
+      ],
+      "MediumGraceSeenText": [
+        "Presos pelos nossos corredores\\nescuros? Derrota-me se quiseres\\luma dica!$"
+      ],
+      "MediumGraceBeatenText": [
+        "O que?$"
+      ],
+      "MediumGraceAfterBattleText": [
+        "Esta bem. Vou contar-te o\\nsegredo das sombras.\\pO caminho esta mesmo a frente\\ndos teus olhos!$"
+      ],
+      "EcruteakCity_GymGuideWinText": [
+        "Ufa,{PLAYER}Estiveste muito\\nbem!\\pEu estava encolhido no canto\\npor puro terror!$"
+      ]
+    },
+    "data/maps/FortreeCity_Gym/scripts.inc": {
+      "FortreeCity_Gym_Text_RematchDefeat": [
+        "O meu Pokemon e eu estamos de\\ncastigo... Muito bem feito.$"
+      ],
+      "FortreeCity_Gym_Text_GymGuidePostVictory": [
+        "Conseguiste! Conseguiste\\ndescolagem!$"
+      ],
+      "FortreeCity_Gym_Text_JaredIntro": [
+        "Contemplem o elegante estilo de\\nbatalha de BIRD POKEMON!$"
+      ],
+      "FortreeCity_Gym_Text_JaredDefeat": [
+        "Tu... Es forte...$"
+      ],
+      "FortreeCity_Gym_Text_JaredPostBattle": [
+        "Um TREINADOR tem de ser esperto\\npara acompanhar as mudancas\\linesperadas dos acontecimentos.\\pTens a inteligencia para chegar\\nao nosso LEADER?$"
+      ],
+      "FortreeCity_Gym_Text_EdwardoIntro": [
+        "Os amantes do BIRD POKEMON\\naspiram juntar-se a este\\lGINASIO.\\pComo membro do GINASIO FORTREE,\\nnao posso perder!$"
+      ],
+      "FortreeCity_Gym_Text_EdwardoDefeat": [
+        "Era muita carga para\\ncarregar...$"
+      ],
+      "FortreeCity_Gym_Text_EdwardoPostBattle": [
+        "O mundo e enorme, e ha\\nincontaveis TREINADORES\\ldificeis.\\pVou continuar a treinar e\\ntornar-me ainda mais forte.$"
+      ],
+      "FortreeCity_Gym_Text_AshleyDefeat": [
+        "Fui derrotado...$"
+      ],
+      "FortreeCity_Gym_Text_HumbertoDefeat": [
+        "Urk! Nao te consegui impedir.$"
+      ],
+      "FortreeCity_Gym_Text_DariusDefeat": [
+        "Pareces saber as tuas coisas!$"
+      ],
+      "FortreeCity_Gym_Text_WinonaDefeat": [
+        "Nunca antes vi um TREiner\\ncomandar POKEMON com mais graca\\ldo que eu...\\pEm reconhecimento as suas\\nproezas, apresento-lhe este\\lGINASIO INSIGNIA.$"
+      ],
+      "FortreeCity_Gym_Text_ExplainAerialAce": [
+        "TM40 contem ACE AERIAL.\\pA sua velocidade... Nenhum\\nPOKEMON devera ser capaz de o\\levitar.\\p... ... ... ... ... ...$"
+      ],
+      "FortreeCity_Gym_Text_RegisteredWinona": [
+        "GINASIO LEADER WINONA registado\\nno POKeNAV.$"
+      ],
+      "FortreeCity_Gym_Text_WinonaPostBattle": [
+        "Embora me tenha apaixonado por\\nti, vou continuar devotado ao\\lBIRD POKEMON.$"
+      ],
+      "FortreeCity_Gym_Text_WinonaRematchDefeat": [
+        "Nao cheguei a tua altura outra\\nvez...$"
+      ]
+    },
+    "data/maps/FuchsiaCity_Gym_Frlg/scripts.inc": {
+      "FuchsiaCity_Gym_Text_KogaExplainTM06": [
+        "Selado dentro do TM06 esta\\nTOXIC!\\pE uma tecnica secreta que\\nremonta a uns 400 anos.$"
+      ],
+      "FuchsiaCity_Gym_Text_MakeSpaceForThis": [
+        "Abram espaco para isto,\\ncrianca!$"
+      ],
+      "FuchsiaCity_Gym_Text_KaydenIntro": [
+        "A forca nao e a chave para o\\nPOKEMON. Percebes isto?\\pPOKEMON e sobre estrategia!\\pVou mostrar-te como a\\nestrategia pode vencer a forca\\lbruta.$"
+      ],
+      "FuchsiaCity_Gym_Text_KaydenDefeat": [
+        "O que? Extraordinario!$"
+      ],
+      "FuchsiaCity_Gym_Text_KaydenPostBattle": [
+        "Misturas musculos com cerebros?\\nBoa estrategia!\\pIsso e notavel para uma\\ncrianca.$"
+      ],
+      "FuchsiaCity_Gym_Text_KirkIntro": [
+        "Eu era um magico uma vez.\\pMas sonhei em tornar-me ninja,\\npor isso juntei-me a este Gym.$"
+      ],
+      "FuchsiaCity_Gym_Text_KirkDefeat": [
+        "Estou acabado!$"
+      ],
+      "FuchsiaCity_Gym_Text_NateIntro": [
+        "Vamos ver-te vencer as minhas\\ntecnicas especiais!$"
+      ],
+      "FuchsiaCity_Gym_Text_NateDefeat": [
+        "Enganaste-me!$"
+      ],
+      "FuchsiaCity_Gym_Text_NatePostBattle": [
+        "Eu gosto de veneno e tecnicas\\nde sono, enquanto eles\\lpermanecem apos a batalha!$"
+      ],
+      "FuchsiaCity_Gym_Text_PhilIntro": [
+        "Pare ai mesmo!\\pAs famosas paredes invisiveis\\nda FUCHSIA GINASIO\\lfrustraram-te?$"
+      ],
+      "FuchsiaCity_Gym_Text_PhilDefeat": [
+        "Whoa! Conseguiste!$"
+      ],
+      "FuchsiaCity_Gym_Text_PhilPostBattle": [
+        "Impressionaste-me! Aqui vai uma\\ndica!\\pProcure muito de perto por\\nlacunas nas paredes invisiveis!$"
+      ],
+      "FuchsiaCity_Gym_Text_EdgarPostBattle": [
+        "Ainda tenho muito que aprender.$"
+      ],
+      "FuchsiaCity_Gym_Text_ShawnDefeat": [
+        "Es mais habilidoso do que eu\\npensava!$"
+      ],
+      "FuchsiaCity_Gym_Text_ShawnPostBattle": [
+        "Onde ha luz, ha sombra!\\pLuz e sombra! Qual escolhe?$"
+      ],
+      "FuchsiaCity_Gym_Text_GymGuyPostVictory": [
+        "E incrivel como ninja pode\\naterrorizar, mesmo agora!$"
+      ],
+      "FuchsiaCity_Gym_Text_RematchDefeat": [
+        "O veneno do ninja reina\\nsupremo!$"
+      ],
+      "FuchsiaCity_Gym_Text_RematchDecline": [
+        "Desapareca, e volte quando a\\nsua determinacao agucar.$"
+      ]
+    },
+    "data/maps/GoldenrodCity_Gym/scripts.inc": {
+      "GoldenrodCity_Gym_Text_GymStatue": [
+        "GINASIO POKEMON GOLDENROD$"
+      ],
+      "GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious": [
+        "Sob...\\pWaaaaaaah! Es mau!\\pNao devias estar a falar a\\nserio! Sua crianca!$"
+      ],
+      "GoldenrodCity_Gym_Text_WhitneyYouMeanie": [
+        "Waaaaah!\\pWaaaaah!\\pSnivel, hic... A serio!$"
+      ],
+      "GoldenrodCity_Gym_Text_PlayerReceivedPlainBadge": [
+        "{PLAYER}recebeu PLAINBADGE.$"
+      ],
+      "GoldenrodCity_Gym_Text_WhitneyGoodCry": [
+        "Foi um bom choro!$"
+      ],
+      "GoldenrodCity_Gym_Text_WhitneyRematchDefeat": [
+        "Waaaaah!\\pWaaaaah!\\pSnivel, hic... A serio!$"
+      ],
+      "GoldenrodCity_Gym_Text_WhitneyRematchPost": [
+        "Hmph! O meu Pokemon ainda e o\\nmais bonito e o mais duro!\\pVem brincar comigo outra vez,\\nesta bem?$"
+      ],
+      "GoldenrodCity_Gym_Text_WhitneyRematchDecline": [
+        "Nao queres lutar? Volta quando\\nquiseres!$"
+      ],
+      "GoldenrodCity_Gym_Text_LassCarrieBeaten": [
+        "Pensei que fosses fraco.$"
+      ],
+      "GoldenrodCity_Gym_Text_LassCarrieAfter": [
+        "O meu Pokemon acha-me giro?$"
+      ],
+      "GoldenrodCity_Gym_Text_LassBridgetSeen": [
+        "Gosto mais de Pokemon giro do\\nque de Pokemon forte.\\pMas eu tenho POKEMON forte e\\nbonito!$"
+      ],
+      "GoldenrodCity_Gym_Text_LassBridgetBeaten": [
+        "Nao, nao, nao!$"
+      ],
+      "GoldenrodCity_Gym_Text_BeautyVictoriaSeen": [
+        "Es uma treinadora gira!\\pGosto de ti, mas nao me vou\\nconter!$"
+      ],
+      "GoldenrodCity_Gym_Text_BeautyVictoriaBeaten": [
+        "Vejamos... Acabou?$"
+      ],
+      "GoldenrodCity_Gym_Text_BeautyVictoriaAfter": [
+        "Deves ser bom a vencer-me!\\nContinua!$"
+      ],
+      "GoldenrodCity_Gym_Text_BeautySamanthaSeen": [
+        "Da o teu melhor, ou acabo\\ncontigo!$"
+      ],
+      "GoldenrodCity_Gym_Text_BeautySamanthaAfter": [
+        "Eu ensinei MEOWTH movimentos\\npara assumir qualquer tipo ...$"
+      ],
+      "GoldenrodCity_Gym_Text_GymGuideWin": [
+        "Ganhaste? Optimo! Estava\\nocupado a admirar as senhoras\\laqui.$"
+      ]
+    },
+    "data/maps/LavaridgeTown_Gym_1F/scripts.inc": {
+      "LavaridgeTown_Gym_1F_Text_RematchDefeat": [
+        "As minhas chamas foram\\napagadas... Queimas mais\\lbrilhante do que eu.$"
+      ],
+      "LavaridgeTown_Gym_1F_Text_GymGuidePostVictory": [
+        "Yow! Foi uma batalha\\nescaldante!$"
+      ],
+      "LavaridgeTown_Gym_1F_Text_ColeIntro": [
+        "Owowowowow! Caramba, esta\\nquente!$"
+      ],
+      "LavaridgeTown_Gym_1F_Text_ColeDefeat": [
+        "Estou cego pelo suor nos\\nolhos...$"
+      ],
+      "LavaridgeTown_Gym_1F_Text_ColePostBattle": [
+        "Ser enterrado em areia quente\\npromove a circulacao.\\pE eficaz para curar as dores\\nnas articulacoes.$"
+      ],
+      "LavaridgeTown_Gym_1F_Text_AxleIntro": [
+        "Estou a tentar aliviar o meu\\nstress. Nao venhas aqui e\\lestressa-me!$"
+      ],
+      "LavaridgeTown_Gym_1F_Text_AxleDefeat": [
+        "Espero que FLANNERY te ateie\\nfogo!$"
+      ],
+      "LavaridgeTown_Gym_1F_Text_AxlePostBattle": [
+        "Haaah... Ufa...\\pSe passares muito tempo\\nenterrado em areia quente, isso\\ldeixa-te inconsciente...$"
+      ],
+      "LavaridgeTown_Gym_B1F_Text_KeeganIntro": [
+        "Ja deves estar a ficar cansado.\\nGostaria de descansar na areia\\lquente, nao gostaria?\\pMas voce deve saber que manter\\nsua forca de vontade e uma\\lhabilidade importante para\\ltodos os TREINADORES.$"
+      ],
+      "LavaridgeTown_Gym_B1F_Text_KeeganDefeat": [
+        "Brincar com fogo, e ser\\nqueimado...$"
+      ],
+      "LavaridgeTown_Gym_B1F_Text_KeeganPostBattle": [
+        "A tua habilidade e real... Mas\\no nosso LEADER FLANNERY e\\lforte.\\pSe nao te cuidares, seras\\nseriamente queimado.$"
+      ],
+      "LavaridgeTown_Gym_1F_Text_GeraldIntro": [
+        "O seu POKEMON aguenta calor de\\n392 graus?$"
+      ],
+      "LavaridgeTown_Gym_1F_Text_GeraldDefeat": [
+        "Nao queimou suficientemente\\nquente...$"
+      ],
+      "LavaridgeTown_Gym_1F_Text_GeraldPostBattle": [
+        "A temperatura do magma e de 392\\ngraus.\\pO teu POKEMON venceu-me, por\\nisso devem sobreviver\\lfacilmente em magma.$"
+      ],
+      "LavaridgeTown_Gym_1F_Text_DanielleIntro": [
+        "Hum... Esta bem, vou lutar\\ncontigo.$"
+      ],
+      "LavaridgeTown_Gym_1F_Text_DanielleDefeat": [
+        "Mas es demasiado forte.$"
+      ],
+      "LavaridgeTown_Gym_B1F_Text_JaceIntro": [
+        "Va la, despacha-te! Vamos antes\\nque os meus sentimentos\\lesfriem!$"
+      ],
+      "LavaridgeTown_Gym_B1F_Text_JaceDefeat": [
+        "Esta tao quente, mas o meu\\ncoracao esta agarrado ao\\lgelo...$"
+      ],
+      "LavaridgeTown_Gym_B1F_Text_JeffIntro": [
+        "Ves como as chamas ardem? Eles\\ninflamam antecipando a minha\\lvitoria!$"
+      ],
+      "LavaridgeTown_Gym_B1F_Text_JeffDefeat": [
+        "Algo nao correu bem.$"
+      ],
+      "LavaridgeTown_Gym_B1F_Text_JeffPostBattle": [
+        "E depois? E depois? Consigo\\nandar com brasas descalcas!\\pNem penses em tentar!$"
+      ],
+      "LavaridgeTown_Gym_B1F_Text_EliIntro": [
+        "Por muito que eu ame montanhas,\\nadoro especialmente vulcoes.$"
+      ],
+      "LavaridgeTown_Gym_B1F_Text_EliDefeat": [
+        "Parece-me que perdi sem estar\\nno controlo.$"
+      ],
+      "LavaridgeTown_Gym_1F_Text_ExplainOverheat": [
+        "Essa TM50 contem OVERHEAT.\\pEsse movimento causa serios\\ndanos ao oponente.\\pMas tambem corta fortemente o\\nSP. ATK do Pokemon a utilizar.\\lPode nao ser adequado para\\lbatalhas mais longas.$"
+      ],
+      "LavaridgeTown_Gym_1F_Text_RegisteredFlannery": [
+        "GINASIO LEADER FLANNERY\\nregistado no POKeNAV.$"
+      ],
+      "LavaridgeTown_Gym_1F_Text_FlanneryRematchDefeat": [
+        "Ufa! A beira da erupcao!$"
+      ]
+    },
+    "data/maps/MahoganyTown_Gym/scripts.inc": {
+      "MahoganyTown_Gym_Text_PryceIntro": [
+        "POKEMON tem muitas experiencias\\nem suas vidas, assim como nos.\\pEu tambem vi e sofri muito na\\nminha vida.\\pJa que sou mais velho, deixa-me\\nmostrar-te o que quero dizer.\\pEstou com o POKEMON desde antes\\nde tu nasceres.\\pNao perco facilmente.\\pEu, o PRYCE, o treinador de\\nInverno, vou demonstrar o meu\\lpoder!$"
+      ],
+      "MahoganyTown_Gym_Text_PryceImpressed": [
+        "Estou impressionado com as tuas\\nproezas.\\pCom a tua forte vontade, sei\\nque superaras todos os\\lobstaculos da vida.\\pVoce e digno deste mal!$"
+      ],
+      "MahoganyTown_Gym_Text_ReceivedBadge": [
+        "{PLAYER}recebeu GLACIERBADGE.$"
+      ],
+      "MahoganyTown_Gym_Text_HailSpeech": [
+        "Esse TM contem HAIL.\\pInflige danos a cada volta por\\n5 voltas.\\pDemonstra a dureza do inverno.$"
+      ],
+      "MahoganyTown_Gym_Text_CherishPokemon": [
+        "Quando o gelo e a neve\\nderretem, chega a primavera.\\pTu e o teu POKEMON ficarao\\njuntos durante muitos anos.\\pPrezem o vosso tempo juntos!$"
+      ],
+      "MahoganyTown_Gym_Text_PryceRematchDefeat": [
+        "Mais uma vez estou\\nimpressionado com as tuas\\lproezas.\\pCom a tua forte vontade, sei\\nque superaras todos os\\lobstaculos da vida.$"
+      ],
+      "MahoganyTown_Gym_Text_PryceRematchPost": [
+        "O inverno da minha carreira\\nainda nao acabou.\\pVenha testar este treinador\\nvelho novamente quando quiser.$"
+      ],
+      "MahoganyTown_Gym_Text_PryceRematchDecline": [
+        "Fica para outra altura, entao.\\nO Winter e paciente, e eu\\ltambem.$"
+      ],
+      "MahoganyTown_Gym_Text_Guide": [
+        "PRYCE e um veterano que treinou\\nPOKEMON durante cerca de 50\\lanos.\\pEle tem uma linha solida de\\nPOKEMON para cobrir o que quer\\lque tragas.\\pFogo e um bom lugar para\\ncomecar, mas cuidado com a\\lchuva!$"
+      ],
+      "MahoganyTown_Gym_Text_GuideWin": [
+        "O PRYCE e qualquer coisa, mas\\ntu es outra coisa!\\pEssa foi uma batalha quente que\\nsuperou a lacuna da geracao!$"
+      ],
+      "MahoganyTown_Gym_Text_BoarderRonaldSeen": [
+        "Vou congelar o teu POKEMON, por\\nisso nao podes fazer nada!$"
+      ],
+      "MahoganyTown_Gym_Text_BoarderRonaldBeaten": [
+        "Raios. Nao pude fazer nada.$"
+      ],
+      "MahoganyTown_Gym_Text_BoarderRonaldAfter": [
+        "Acho que ha uma jogada que um\\nPokemon pode usar enquanto esta\\lcongelado.$"
+      ],
+      "MahoganyTown_Gym_Text_BoarderBradSeen": [
+        "Este GINASIO tem um piso\\nescorregadio.\\pE divertido, nao e?\\pMas nao estamos a brincar!$"
+      ],
+      "MahoganyTown_Gym_Text_BoarderBradBeaten": [
+        "Ves como estamos a falar a\\nserio?$"
+      ],
+      "MahoganyTown_Gym_Text_BoarderBradAfter": [
+        "Este GINASIO e optimo. Adoro\\nembarcar com o meu POKEMON!$"
+      ],
+      "MahoganyTown_Gym_Text_SkierRoxanneBeaten": [
+        "Nao perderia para ti no esqui!$"
+      ],
+      "MahoganyTown_Gym_Text_SkierRoxanneAfter": [
+        "Se voce nao patinar com\\nprecisao, voce nao vai longe\\lneste Gym.$"
+      ],
+      "MahoganyTown_Gym_Text_SkierClarissaSeen": [
+        "Vejam a minha volta paralela!$"
+      ],
+      "MahoganyTown_Gym_Text_SkierClarissaBeaten": [
+        "Nao! Fizeste-me desaparecer!$"
+      ],
+      "MahoganyTown_Gym_Text_SkierClarissaAfter": [
+        "Nao devia estar a gabar-me do\\nmeu esqui...$"
+      ]
+    },
+    "data/maps/MauvilleCity_Gym/scripts.inc": {
+      "MauvilleCity_Gym_Text_RematchDefeat": [
+        "Wah! Tornaste-te eletrizante! O\\nmeu velho coracao mal aguenta!$"
+      ],
+      "MauvilleCity_Gym_Text_GymGuidePostVictory": [
+        "Es eletrizante! Abriste a\\nporta!$"
+      ],
+      "MauvilleCity_Gym_Text_KirkIntro": [
+        "A minha alma electrica vai\\ndestruir os teus sonhos.$"
+      ],
+      "MauvilleCity_Gym_Text_KirkDefeat": [
+        "Isso foi ligado, empolgado, com\\nexcesso de energia electrica,\\lmeu!$"
+      ],
+      "MauvilleCity_Gym_Text_KirkPostBattle": [
+        "Pokemon e rock, e tudo sobre\\ncoracao, whoa-yeah!$"
+      ],
+      "MauvilleCity_Gym_Text_ShawnIntro": [
+        "Treinei com o WATTSON! Nao vou\\nperder facilmente!$"
+      ],
+      "MauvilleCity_Gym_Text_ShawnDefeat": [
+        "Desligado e desligado...$"
+      ],
+      "MauvilleCity_Gym_Text_BenDefeat": [
+        "Nao e divertido perder...$"
+      ],
+      "MauvilleCity_Gym_Text_BenPostBattle": [
+        "O WATTSON diz que gosta de\\nmontar armadilhas com\\linterruptores.$"
+      ],
+      "MauvilleCity_Gym_Text_VivianDefeat": [
+        "Estou chocado com o teu poder!$"
+      ],
+      "MauvilleCity_Gym_Text_VivianPostBattle": [
+        "Ouvi dizer que a MAUVILLE foi\\nfundada pela WATTSON.\\pEle era treinador muito antes\\nde nos tornarmos treinadores.\\lEle deve saber todo o tipo de\\lcoisas!$"
+      ],
+      "MauvilleCity_Gym_Text_AngeloIntro": [
+        "Adoro coisas brilhantes!$"
+      ],
+      "MauvilleCity_Gym_Text_AngeloDefeat": [
+        "Oh... Os meus olhos estao\\npartidos...$"
+      ],
+      "MauvilleCity_Gym_Text_WattsonDefeat": [
+        "Wahahahah! Esta bem, eu perdi!\\pAcabaste por me dar uma emocao!\\nToma isto!$"
+      ],
+      "MauvilleCity_Gym_Text_ReceivedDynamoBadge": [
+        "{PLAYER}recebeu o DYNAMO\\nINSIGNIA de WATTSON.$"
+      ],
+      "MauvilleCity_Gym_Text_ExplainShockWave": [
+        "Aquele TM34 ali contem SHOCK\\nWAVE.\\pE uma jogada de confianca que\\nnunca falha! Podes contar com\\lisso!\\p... ... ... ... ... ...$"
+      ],
+      "MauvilleCity_Gym_Text_RegisteredWattson": [
+        "GINASIO LEADER WATTSON\\nregistado no POKeNAV.$"
+      ],
+      "MauvilleCity_Gym_Text_WattsonPostBattle": [
+        "Eu incho com otimismo, vendo um\\njovem PROMOTOR como voce!$"
+      ],
+      "MauvilleCity_Gym_Text_WattsonGoForthAndEndeavor": [
+        "Wahahahah! Vai em frente e\\nesforca-te, jovem!$"
+      ],
+      "MauvilleCity_Gym_Text_WattsonRematchDefeat": [
+        "Oof... As nossas baterias\\nsecaram...$"
+      ]
+    },
+    "data/maps/MossdeepCity_Gym/scripts.inc": {
+      "MossdeepCity_Gym_Text_GymGuidePostVictory": [
+        "Uau, voce e surpreendente! Es\\num grande treinador!$"
+      ],
+      "MossdeepCity_Gym_Text_PrestonIntro": [
+        "As batalhas dependem da forca\\ndo seu espirito! Os fracos\\lnunca vencerao!$"
+      ]
+    }
+  },
+  "c": {}
+}

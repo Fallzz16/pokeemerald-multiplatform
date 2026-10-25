@@ -1,0 +1,39 @@
+{
+  "source": "evilchinesefood/PKMN-World at pinned commit",
+  "language": "pt-BR without accents, machine-assisted draft",
+  "translation_model": "Argos en-pt 1.9",
+  "review_required": true,
+  "gameplay_approved": false,
+  "added_entries": 5200,
+  "shards": [
+    "ptbr_auto_review_001.json",
+    "ptbr_auto_review_002.json",
+    "ptbr_auto_review_003.json",
+    "ptbr_auto_review_004.json",
+    "ptbr_auto_review_005.json",
+    "ptbr_auto_review_006.json",
+    "ptbr_auto_review_007.json",
+    "ptbr_auto_review_008.json",
+    "ptbr_auto_review_009.json",
+    "ptbr_auto_review_010.json",
+    "ptbr_auto_review_011.json",
+    "ptbr_auto_review_012.json",
+    "ptbr_auto_review_013.json",
+    "ptbr_auto_review_014.json",
+    "ptbr_auto_review_015.json",
+    "ptbr_auto_review_016.json",
+    "ptbr_auto_review_017.json",
+    "ptbr_auto_review_018.json",
+    "ptbr_auto_review_019.json",
+    "ptbr_auto_review_020.json",
+    "ptbr_auto_review_021.json"
+  ],
+  "rejected_reason_counts": {
+    "named game term was modified": 3223,
+    "no translation": 98,
+    "PewterCity_Gym_Text_BrockDefeat": 1,
+    "unsupported PT-BR glyph(s)": 52,
+    "non-ASCII normalized translation": 8,
+    "excessive expansion": 2
+  }
+}

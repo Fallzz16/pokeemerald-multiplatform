@@ -1,0 +1,823 @@
+{
+  "asm": {
+    "data/maps/MauvilleCity_BikeShop/scripts.inc": {
+      "MauvilleCity_BikeShop_Text_SandySlopes": [
+        "Existem pequenas encostas\\narenosas em toda a regiao\\lHOENN.\\pA areia solta torna impossivel\\nsubir normalmente.\\pMas se voce tem um MACH BIKE,\\nvoce pode fechar uma inclinacao\\larenosa.\\pQuer ler uma pagina diferente?$"
+      ],
+      "MauvilleCity_BikeShop_Text_Wheelies": [
+        "Pressione o botao B enquanto\\nmonta, e a roda dianteira\\llevanta.\\pVoce pode fechar com a roda\\ndianteira para cima usando o +\\lControl Pad.\\pEsta tecnica e chamada de roda.\\pQuer ler uma pagina diferente?$"
+      ],
+      "MauvilleCity_BikeShop_Text_BunnyHops": [
+        "Mantendo o botao B pressionado,\\nseu BIKE pode saltar no local.\\pEsta tecnica e chamada de salto\\nde coelho.\\pTambem podes montar enquanto\\nsaltas.\\pQuer ler uma pagina diferente?$"
+      ],
+      "MauvilleCity_BikeShop_Text_Jumps": [
+        "Pressione o botao B e o painel\\nde controle + ao mesmo tempo\\lpara saltar.\\pPressione o + Control Pad para\\no lado para saltar de lado.\\pPressione para tras para fazer\\no BIKE mudar de direcao\\lenquanto salta.\\pQuer ler uma pagina diferente?$"
+      ]
+    },
+    "data/maps/MauvilleCity_GameCorner/scripts.inc": {
+      "MauvilleCity_GameCorner_Text_DontHaveEnoughMoney": [
+        "Hum... Nao pareces ter dinheiro\\nsuficiente...$"
+      ],
+      "MauvilleCity_GameCorner_Text_WhichPrize": [
+        "Que premio gostarias?$"
+      ],
+      "MauvilleCity_GameCorner_Text_SoYourChoiceIsTheTMX": [
+        "Entao a sua escolha e\\na{STR_VAR_1} {STR_VAR_2}?$"
+      ],
+      "MauvilleCity_GameCorner_Text_SendToYourHomePC": [
+        "Obrigado! Vamos envia-lo para o\\nseu PC em casa.$"
+      ],
+      "MauvilleCity_GameCorner_Text_NoRoomForPlacingDecor": [
+        "Nao ha espaco disponivel para\\ncolocacao.{STR_VAR_1}.$"
+      ],
+      "MauvilleCity_GameCorner_Text_SoYourChoiceIsX": [
+        "Entao a tua escolha\\ne{STR_VAR_1}?$"
+      ],
+      "MauvilleCity_GameCorner_Text_HereYouGo": [
+        "Aqui esta!$"
+      ],
+      "MauvilleCity_GameCorner_Text_CantCarryAnyMore": [
+        "Nao podes carregar mais do que\\nisso.$"
+      ],
+      "MauvilleCity_GameCorner_Text_HereYouGo2": [
+        "Aqui esta!$"
+      ],
+      "MauvilleCity_GameCorner_Text_YouWantItButNotNow": [
+        "Huh? Queres, mas nao agora?$"
+      ],
+      "MauvilleCity_GameCorner_Text_DontBeNegative": [
+        "Nao sejas tao negativo! Podes\\nficar com isto!$"
+      ],
+      "MauvilleCity_GameCorner_Text_CantWinJackpot": [
+        "Quero um premio, mas nao posso\\nganhar o jackpot.$"
+      ],
+      "MauvilleCity_GameCorner_Text_EasyToLoseTrackOfTime": [
+        "E facil perder a nocao do tempo\\naqui. Tenho de voltar ao\\ltrabalho.$"
+      ]
+    },
+    "data/maps/MauvilleCity_House1/scripts.inc": {
+      "MauvilleCity_House1_Text_MonCanFlyOutOfSmashedRock": [
+        "Sim, se esmagares uma pedra, um\\nPokemon pode sair voando do\\lesconderijo.\\pWoohoo!$"
+      ]
+    },
+    "data/maps/MauvilleCity_Mart/scripts.inc": {
+      "MauvilleCity_Mart_Text_ItemsToTemporarilyElevateStats": [
+        "Existem itens que elevam\\ntemporariamente as estatisticas\\lde POKEMON.\\pOs que eu sei que voce usa em\\nbatalha sao X ATTACK e X\\lDEFEND...\\pEu acredito que existem outros\\ncomo eles.$"
+      ]
+    },
+    "data/maps/MauvilleCity_PokemonCenter_1F/scripts.inc": {
+      "MauvilleCity_PokemonCenter_1F_Text_ManOverThereSaysWeirdThings": [
+        "Aquele homem ali, diz coisas\\nestranhas!\\pEle e engracado de uma forma\\nestranha. Duvido que o esqueca!$"
+      ],
+      "MauvilleCity_PokemonCenter_1F_Text_MyDataUpdatedFromRecordCorner": [
+        "O velho RECORD CORNER la em\\ncima desapareceu, se voce pode\\lacreditar.\\pHoje em dia, as tendencias em\\nDEWFORD derivam por conta\\lpropria.$"
+      ]
+    },
+    "data/maps/MauvilleCity_PokemonCenter_2F/scripts.inc": {
+      "MauvilleCity_PokemonCenter_2F_Text_Youngster": [
+        "Sabias que podes ligar a\\nbatalha aqui no COLOSSEUM?\\pPuseram o teu disco na parede\\npara todos verem.\\pE embaracoso se perderes mais\\nvezes do que ganhas...$"
+      ]
+    },
+    "data/maps/MeteorFalls_1F_2R/scripts.inc": {
+      "MeteorFalls_1F_2R_Text_NicolasDefeat": [
+        "Urgh! Nao esperava que fosses\\ntao forte!$"
+      ],
+      "MeteorFalls_1F_2R_Text_NicolasPostBattle": [
+        "O caminho a frente permanece\\nlongo e duro.\\pQuando e que o meu Pokemon e eu\\nnos tornaremos os melhores?$"
+      ],
+      "MeteorFalls_1F_2R_Text_NicolasRegister": [
+        "Quero saber mais sobre o teu\\npoder. Deixa-me registar-te no\\lmeu POKeNAV.$"
+      ],
+      "MeteorFalls_1F_2R_Text_NicolasRematchIntro": [
+        "Desde que nos conhecemos,\\ntreinamos duro com a nossa mira\\lno numero um.\\pAjude-nos a ver o quanto mais\\nforte nos tornamos!$"
+      ],
+      "MeteorFalls_1F_2R_Text_NicolasRematchDefeat": [
+        "Urgh! Nao esperava que fosses\\ntao forte!$"
+      ],
+      "MeteorFalls_1F_2R_Text_NicolasPostRematch": [
+        "Obviamente continuaste o teu\\ntreino POKEMON.\\pEnquanto permaneceres forte, eu\\ntambem posso ficar mais forte!$"
+      ]
+    },
+    "data/maps/MeteorFalls_StevensCave/scripts.inc": {
+      "MeteorFalls_StevensCave_Text_StevenDefeat": [
+        "Tu... Nao fazia ideia que te\\ntornavas tao forte...$"
+      ]
+    },
+    "data/maps/MirageTower_4F/scripts.inc": {
+      "MirageTower_4F_Text_LeaveClawFossilAlone": [
+        "{PLAYER}Deixou o CLAW FOSSIL\\nsozinho.$"
+      ]
+    },
+    "data/maps/MossdeepCity/scripts.inc": {
+      "MossdeepCity_Text_WhatToDoWithWeirdRock": [
+        "Sim, tu tambem achas! O que\\nvais fazer com uma pedra\\lestranha?$"
+      ],
+      "MossdeepCity_Text_FeelReliefOnLand": [
+        "Sou um SAILOR, por isso o mar e\\nobviamente mais importante para\\lmim.\\pMas sabes? Quando volto a terra\\ndepois de uma longa viagem,\\lsinto-me aliviado!$"
+      ],
+      "MossdeepCity_Text_NiceIfWorldCoveredByFlowers": [
+        "Nao seria bom?\\pSe o mundo inteiro estivesse\\ncoberto de plantas e flores\\lcomo esta ilha?$"
+      ],
+      "MossdeepCity_Text_LifeNeedsSeaToLive": [
+        "Toda a vida precisa do mar para\\nviver, apesar de ter sua casa\\lna terra.\\pA vida, tendo corrido seu\\ncurso, torna-se terra e retorna\\la terra.\\pE o mar esta sempre ligado a\\nterra.\\pSim, como na costa.$"
+      ],
+      "MossdeepCity_Text_SurfExhilarating": [
+        "Uma viagem num navio e boa.\\pMas atravessar o mar com\\nPOKEMON usando SURF...\\pQue viagem emocionante! Nao\\nconcorda, jovem?$"
+      ],
+      "MossdeepCity_Text_ItsAWhiteRock": [
+        "E uma pedra branca.$"
+      ]
+    },
+    "data/maps/MossdeepCity_GameCorner_1F/scripts.inc": {
+      "RS_MysteryEventsHouse_Text_OldManGreeting": [
+        "Quando era jovem, viajei pelo\\nmundo como instrutor de\\lPokemon.\\pAgora que me tornei um velho\\nabutre, a minha unica diversao\\le ver jovens treinadores a\\llutar.$"
+      ],
+      "RS_MysteryEventsHouse_Text_DoorIsLocked": [
+        "A porta parece estar trancada.$"
+      ],
+      "RS_MysteryEventsHouse_Text_ChallengeVisitingTrainer": [
+        "UMA FORMACAO\\nCHAMADA{STR_VAR_1}esta\\lvisitando minha casa.\\pGostaria de\\ndesafiar{STR_VAR_1}?$"
+      ],
+      "RS_MysteryEventsHouse_Text_YouWontBattle": [
+        "Nao vais lutar? Estou\\ndesiludido por nao te poder ver\\la lutar...$"
+      ],
+      "RS_MysteryEventsHouse_Text_KeepItToA3On3": [
+        "Optimo, optimo!\\pMas a minha casa nao e assim\\ntao resistente.\\pPosso pedir-lhe para baixar\\npara um jogo de 3 contra 3?$"
+      ],
+      "RS_MysteryEventsHouse_Text_SaveYourProgress": [
+        "Antes de lutarem, devem salvar\\no vosso progresso.$"
+      ],
+      "RS_MysteryEventsHouse_Text_HopeToSeeAGoodMatch": [
+        "Espero ver um bom jogo!$"
+      ],
+      "RS_MysteryEventsHouse_Text_BattleTie": [
+        "Entao, tornou-se um impasse.\\pFoi uma partida brilhante em\\nque nenhum dos lados concedeu\\lum passo!$"
+      ],
+      "RS_MysteryEventsHouse_Text_BattleWon": [
+        "Isso foi superlativo!\\pOra, foi como ver-me novamente\\nna minha juventude!$"
+      ],
+      "RS_MysteryEventsHouse_Text_BattleLost": [
+        "Que pena para ti!\\pMas foi uma boa combinacao.\\nEspero que ganhes da proxima\\lvez.$"
+      ]
+    },
+    "data/maps/MossdeepCity_House1/scripts.inc": {
+      "MossdeepCity_House1_Text_HmmYourPokemon": [
+        "Hmm! Sua{STR_VAR_1}...$"
+      ],
+      "MossdeepCity_House1_Text_ItLikesXPokeblocks": [
+        "Gosta.{STR_VAR_1}S, nao e?\\pNao, tenho a certeza disso! Ele\\ndefinitivamente\\lgosta{STR_VAR_1}S!$"
+      ],
+      "MossdeepCity_House1_Text_DoesntLikeOrDislikePokeblocks": [
+        "Nao parece gostar ou nao gostar\\nde nenhum{POKEBLOCK}S.$"
+      ],
+      "MossdeepCity_House1_Text_HusbandCanTellPokeblockMonLikes": [
+        "Meu marido pode dizer que tipo\\nde{POKEBLOCK}E um Pokemon gosta\\lde uma olhada.$"
+      ]
+    },
+    "data/maps/MossdeepCity_House3/scripts.inc": {
+      "MossdeepCity_House3_Text_YouWantSuperRod": [
+        "Ola, treinador! UM SUPER ROD\\nrealmente e super!\\pDiz o que quiseres, mas este\\nbebe pode apanhar o Pokemon no\\lfundo do mar!\\pO que achas? Queres, nao\\nqueres?$"
+      ],
+      "MossdeepCity_House3_Text_SuperRodIsSuper": [
+        "Podes crer! Afinal, um SUPER\\nROD e realmente super!$"
+      ],
+      "MossdeepCity_House3_Text_TryDroppingRodInWater": [
+        "Se houver agua, tente cair no\\nseu ROD e veja o que morde!$"
+      ],
+      "MossdeepCity_House3_Text_DontYouLikeToFish": [
+        "Hunh? Nao gostas de pescar?$"
+      ],
+      "MossdeepCity_House3_Text_GoAfterSeafloorPokemon": [
+        "Vai atras do fundo do mar com o\\nteu SUPER ROD.$"
+      ]
+    },
+    "data/maps/MossdeepCity_Mart/scripts.inc": {
+      "MossdeepCity_Mart_Text_ReviveIsFantastic": [
+        "REVIVE e fantastico!\\pDe-o a um Pokemon desmaiado, e\\no Pokemon surgira.\\pMas tenha cuidado, REVIVE nao\\nrestaura o PP usado de\\lmovimentos.$"
+      ]
+    },
+    "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc": {
+      "MossdeepCity_PokemonCenter_1F_Text_AbilitiesMightChangeMoves": [
+        "Dependendo das habilidades\\nespeciais de POKEMON, alguns\\lmovimentos podem mudar ou nao\\lfuncionar.$"
+      ]
+    },
+    "data/maps/MossdeepCity_PokemonCenter_2F/scripts.inc": {
+      "MossdeepCity_PokemonCenter_2F_Text_Woman5": [
+        "Se eu ganhar um monte de\\nbatalhas link e mostrar a todos\\lcomo eu sou bom, eu poderia\\lobter um fa seguindo!$"
+      ]
+    },
+    "data/maps/MossdeepCity_SpaceCenter_1F/scripts.inc": {
+      "MossdeepCity_SpaceCenter_1F_Text_RocketLaunchImminent": [
+        "O lancamento do foguete esta\\niminente!$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_SuccessfulLaunchNumber": [
+        "O foguete foi lancado em\\nseguranca! Foi um lancamento\\lbem sucedido, nao.{STR_VAR_1}!$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_HaywireButRocketLaunchImminent": [
+        "Sei que as coisas estao um\\npouco confusas, mas...\\pO lancamento do foguete esta\\niminente!$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_HaywireButSuccessfulLaunchNumber": [
+        "Sei que as coisas estao um\\npouco confusas, mas...\\pO foguete foi lancado em\\nseguranca! Foi um lancamento\\lbem sucedido, nao.{STR_VAR_1}!$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_RocketLaunchDemandsPerfection": [
+        "Um lancamento de foguetes exige\\nperfeicao. Nem mesmo uma margem\\lde erro de 1% e permitida.\\pMesmo que esteja 99% bem, tudo\\ne inutil se 1% nao for bom.\\pApesar disso, nunca paramos de\\ntentar. Porque? E um sonho que\\lnunca acaba.$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_FoundThisYouCanHaveIt": [
+        "Estava a dar um passeio pela\\npraia quando encontrei isto.\\pNao e nada que eu precise, por\\nisso podes ficar com ele.$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_HoennFamousForMeteorShowers": [
+        "A regiao de HOENN tem sido\\nfamosa por suas chuvas de\\lmeteoros ha muito tempo.$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_DidPokemonComeFromSpace": [
+        "Algumas pessoas afirmam que\\nPokemon veio do espaco. Pode\\lser verdade?$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_RocketsBoggleMyMind": [
+        "Um pedaco gigante de metal\\natravessa os ceus e voa para o\\lespaco...\\pIsso deixa-me confuso!$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_Grunt3Intro": [
+        "Como prometido, viemos buscar o\\ncombustivel!$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_Grunt3Defeat": [
+        "Acabou o combustivel...$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_Grunt3PostBattle": [
+        "Nao penses que estas numa boa\\nso porque me venceste!$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_Grunt1Intro": [
+        "Nos demos-te um aviso justo!\\nNao ha nada furtivo em nos!$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_Grunt1Defeat": [
+        "Grrr... Deviamos ter usado\\ntraicao furtiva...$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_Grunt1PostBattle": [
+        "Ja percebi! Da proxima vez,\\nviremos sem avisar.$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_Grunt4Defeat": [
+        "Por favor, podes dar-me\\ncombustivel? Ate um copo\\lchintzy serve!$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_Grunt4PostBattle": [
+        "O que vamos fazer com o\\ncombustivel?\\pComo vou saber? Pergunte ao\\nnosso lider la em cima!$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_Grunt2Intro": [
+        "O nosso lider disse que\\nninguem, mas ninguem, passa por\\lmim!$"
+      ],
+      "MossdeepCity_SpaceCenter_1F_Text_Grunt2PostBattle": [
+        "Por favor, diga ao nosso lider\\nque nunca abandonei o meu\\lposto. Que fiquei ate ao fim...$"
+      ]
+    },
+    "data/maps/MossdeepCity_SpaceCenter_2F/scripts.inc": {
+      "MossdeepCity_SpaceCenter_2F_Text_MossdeepIdealForRockets": [
+        "MOSSDEEP tem principalmente\\ntempo ensolarado, e seus ventos\\lsao estaveis.\\pE um local ideal para lancar\\nfoguetes.$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_WouldveLikedToBeAstronaut": [
+        "Se eu fosse um pouco mais novo,\\nteria gostado de ser\\lastronauta...\\pNao... Nao e tarde demais!\\nPosso e vou tentar!$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_WishOrdinaryPeopleCouldGoIntoSpace": [
+        "Quem me dera que um dia as\\npessoas comuns pudessem ir para\\lo espaco...$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_YoureOutnumberedTakeUsOn": [
+        "O que se passa contigo?\\pEstas em desvantagem de tres\\npara um, mas ainda queres\\lenfrentar-nos?$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_GoodAnswer": [
+        "Boa resposta! E o que uma\\npessoa inteligente faz!$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_Grunt5Intro": [
+        "Es um tipo imprudente, nao es?\\nEsta bem, eu vou primeiro!$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_Grunt5Defeat": [
+        "Perdi! Mas!$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_Grunt6Intro": [
+        "E muito cedo para ser aliviado!\\nSou o proximo!$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_Grunt6Defeat": [
+        "Eu tambem perdi! Mas!$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_Grunt7Intro": [
+        "Aposto que queres fazer uma\\npausa. Mas nao te vou deixar\\lfazer isso!$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_Grunt7Defeat": [
+        "Deviamos ter feito uma pausa...\\nEra o que deviamos ter feito...$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_Grunt6PostBattle": [
+        "Tres de nos aqui, e olha para a\\nconfusao em que nos metemos.$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_Grunt7PostBattle": [
+        "Nos os tres perdemos assim...\\nParecemos piores do que o\\lhabitual por tres!$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_Grunt5PostBattle": [
+        "Estamos a ser uteis para o\\nnosso lider?$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_WellTakeCareOfYou": [
+        "Hehehe!\\pViemos ate aqui para arranjar\\ncombustivel, e estamos a\\linterferir outra vez!\\pSe tambem te vais meter\\nconnosco, tratamos de ti ao\\lmesmo tempo!$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_StevenAreYouReadyToBattle": [
+        "STEVEN:{PLAYER}{KUN}Vais\\najudar-me?\\pVamos para a batalha juntos!\\nEstas pronto?$"
+      ],
+      "MossdeepCity_SpaceCenter_2F_Text_JustWantToExpandLand": [
+        "Tudo o que eu quero... So quero\\nexpandir a massa terrestre...$"
+      ],
+      "MossdeepCity_SpaceCenter_Text_TabithaDefeat": [
+        "Estou com o nosso lider...$"
+      ]
+    },
+    "data/maps/MossdeepCity_StevensHouse/scripts.inc": {
+      "MossdeepCity_StevensHouse_Text_ObtainedBeldum": [
+        "{PLAYER}obteve um BELDUM.$"
+      ],
+      "MossdeepCity_StevensHouse_Text_NoSpaceForAnotherMon": [
+        "Nao ha espaco para outro\\nPOKEMON.$"
+      ],
+      "MossdeepCity_StevensHouse_Text_CollectionOfRareRocks": [
+        "E uma colecao de rochas raras e\\npedras montadas pela STEVEN.$"
+      ]
+    },
+    "data/maps/MtChimney/scripts.inc": {
+      "MtChimney_Text_TabithaDefeat": [
+        "Hehehe...\\pMesmo que tenha perdido, se o\\nnosso lider acordar aquela\\lcoisa...$"
+      ],
+      "MtChimney_Text_Grunt2Defeat": [
+        "Hunh? Como assim, perdi?$"
+      ],
+      "MtChimney_Text_Grunt1Intro": [
+        "Se houvesse mais terra, eu\\nteria uma casa grande!\\pVou construi-lo em lava\\nendurecida!$"
+      ],
+      "MtChimney_Text_Grunt1Defeat": [
+        "O meu sonho de uma casa\\ngrande...$"
+      ],
+      "MtChimney_Text_Grunt1PostBattle": [
+        "Um miudo como tu devia estar a\\nespirrar nas ondas!$"
+      ],
+      "MtChimney_Text_YouBetterNotMessWithUs": [
+        "E melhor nao te meteres\\nconnosco!\\pEstamos a tentar acordar essa\\ncoisa para o beneficio de\\ltodos!$"
+      ],
+      "MtChimney_Text_DouseThemInFire": [
+        "Sim! Apaguem-nos no fogo!$"
+      ],
+      "MtChimney_Text_KeepMakingMoreLand": [
+        "Vamos continuar a fazer mais\\nterra!$"
+      ],
+      "MtChimney_Text_ThankYouDear": [
+        "Obrigado, querida!$"
+      ],
+      "MtChimney_Text_YouveNotGotTheMoney": [
+        "Meu Deus. Nao podes comprar\\nnada se nao tiveres o dinheiro.$"
+      ],
+      "MtChimney_Text_OhFineThen": [
+        "Esta bem.$"
+      ],
+      "MtChimney_Text_MeteoriteFittedOnMachine": [
+        "Um METEORITE e montado em uma\\nmaquina misteriosa...\\pA maquina parece estar\\narmazenando energia no\\lMETEORITE.$"
+      ],
+      "MtChimney_Text_RemoveTheMeteorite": [
+        "Um METEORITE e montado em uma\\nmaquina misteriosa...\\pDeseja remover o METEORITE?$"
+      ],
+      "MtChimney_Text_PlayerRemovedMeteorite": [
+        "{PLAYER}removeu o METEORITE da\\nmaquina misteriosa.$"
+      ],
+      "MtChimney_Text_PlayerLeftMeteorite": [
+        "{PLAYER}Deixou o METEORITE onde\\nestava.$"
+      ],
+      "MtChimney_Text_MachineMakesNoResponse": [
+        "Esta maquina misteriosa... Nao\\nda qualquer resposta.$"
+      ],
+      "MtChimney_Text_ShelbyIntro": [
+        "Estive nas fontes termais e\\nrefresquei os meus ossos\\lcansados. Neste momento\\lsinto-me forte!$"
+      ],
+      "MtChimney_Text_ShelbyDefeat": [
+        "Meu Deus. Agora, voce e demais!$"
+      ],
+      "MtChimney_Text_ShelbyRegister": [
+        "Obrigado, crianca. Foi\\ndivertido, como se estivesse a\\llutar com o meu proprio neto.\\pPor favor, venha me ver\\nnovamente para uma revanche.$"
+      ],
+      "MtChimney_Text_ShelbyRematchIntro": [
+        "Se voce pode misturar seu\\ncoracao com os de seu POKEMON,\\lpor que, voce deve ser capaz de\\lalcancar grandes coisas.$"
+      ],
+      "MtChimney_Text_ShelbyRematchDefeat": [
+        "Meu Deus. Agora, voce e demais!$"
+      ],
+      "MtChimney_Text_ShelbyPostRematch": [
+        "Talvez o seu coracao se tenha\\ntornado um so com o coracao do\\lseu POKEMON.$"
+      ],
+      "MtChimney_Text_MelissaIntro": [
+        "Tenho o fogo em mim, querida.\\nNao aguento! Tenho de lutar!$"
+      ],
+      "MtChimney_Text_MelissaDefeat": [
+        "Foi uma partida escaldante!$"
+      ],
+      "MtChimney_Text_ShirleyIntro": [
+        "Desde que tomei banho nas\\ntermas, tenho-me sentido muito\\lbem! Tenho a certeza que vou\\lganhar!$"
+      ],
+      "MtChimney_Text_ShirleyDefeat": [
+        "Yowch! Estou a arrefecer da\\nagua.$"
+      ],
+      "MtChimney_Text_ShirleyPostBattle": [
+        "Terei de dar outro mergulho nas\\nfontes termais. Queres\\ljuntar-te a mim?\\pEstava a brincar!$"
+      ],
+      "MtChimney_Text_SawyerIntro": [
+        "Esta e uma bela montanha! Ha\\nmuita gente boa por perto para\\lcompanhia!$"
+      ],
+      "MtChimney_Text_SawyerDefeat": [
+        "Tambem es uma verdadeira marca\\nde fogo!$"
+      ],
+      "MtChimney_Text_SawyerRegister": [
+        "Gosto de bolas de fogo como tu.\\nDeixa-me registar-te no meu\\lPOKeNAV.$"
+      ],
+      "MtChimney_Text_SawyerRematchIntro": [
+        "Estou feliz rodeado por pessoas\\nquentes por aqui. Nao vou\\lperder!$"
+      ],
+      "MtChimney_Text_SawyerRematchDefeat": [
+        "Ainda es a mesma marca de fogo\\nde antes!$"
+      ],
+      "MtChimney_Text_SawyerPostRematch": [
+        "Na verdade, esta mesmo quente\\naqui. Estou demasiado vestido\\lpara estas partes.$"
+      ]
+    },
+    "data/maps/MtChimney_CableCarStation/scripts.inc": {
+      "MtChimney_CableCarStation_Text_StepThisWay": [
+        "Por aqui, por favor.$"
+      ],
+      "MtChimney_CableCarStation_Text_RideAnotherTime": [
+        "Por favor, venha connosco\\nnoutra altura.$"
+      ]
+    },
+    "data/maps/MtEmber_Exterior_Frlg/scripts.inc": {
+      "Text_ExplosionDeclined": [
+        "Sim, tens razao. E demasiado\\nassustador.$"
+      ],
+      "MtEmber_Exterior_Text_YoureInTheWayGetLost": [
+        "Mas que...? Estas no caminho.\\nDesaparece.$"
+      ],
+      "MtEmber_Exterior_Text_PunchedThroughAtLast": [
+        "Finalmente deu um murro. Vamos\\ncacar tesouros!$"
+      ],
+      "MtEmber_Exterior_Text_SnoopsBeenListeningIn": [
+        "Hey! Este snoop tem estado a\\nouvir!$"
+      ],
+      "MtEmber_Exterior_Text_Grunt1Intro": [
+        "Tens andado a ouvir-nos, nao\\ntens?$"
+      ],
+      "MtEmber_Exterior_Text_Grunt1Defeat": [
+        "O que?$"
+      ],
+      "MtEmber_Exterior_Text_Grunt1PostBattle": [
+        "Porque tinhas de ganhar?$"
+      ],
+      "MtEmber_Exterior_Text_Grunt2Intro": [
+        "Estas a tentar meter-te no\\nnosso tesouro? Nao apostes\\lnisso!$"
+      ],
+      "MtEmber_Exterior_Text_Grunt2Defeat": [
+        "Espera! Mas como?$"
+      ],
+      "MtEmber_Exterior_Text_Grunt2PostBattle": [
+        "Desenvolva amnesia\\nconvenientemente e esqueca tudo\\lo que ouviu!$"
+      ],
+      "MtEmber_Exterior_Text_WellRegroupDontStepInsideThere": [
+        "Que reves... Teremos de nos\\nreagrupar.\\pVoce! Nem penses em entrar\\naqui!\\pSe sabes o que e bom para ti,\\nnem penses nisto!$"
+      ],
+      "MtEmber_Exterior_Text_LoganIntro": [
+        "Um vulcao activo esta a entrar\\nem erupcao ou prestes a entrar\\lem erupcao.$"
+      ],
+      "MtEmber_Exterior_Text_LoganDefeat": [
+        "Ufa... Isso foi excitante! O\\nsuor esta a entrar em erupcao!$"
+      ],
+      "MtEmber_Exterior_Text_LoganPostBattle": [
+        "Dizem que ha mais de 1.500\\nvulcoes ativos no mundo.\\pSo de pensar neles, sinto-me\\ntodo quente por dentro!$"
+      ],
+      "MtEmber_Exterior_Text_BethIntro": [
+        "Sabes como as cavernas se\\nformam dentro dos vulcoes?$"
+      ],
+      "MtEmber_Exterior_Text_BethDefeat": [
+        "Atchah! Es incrivelmente bom!$"
+      ],
+      "MtEmber_Exterior_Text_BethPostBattle": [
+        "Quando a lava na superficie do\\nmagma endurece, e o magma\\ldentro flui para fora, cavernas\\lsao deixadas para tras.$"
+      ],
+      "MtEmber_Exterior_Text_JocelynIntro": [
+        "Estive a treinar para poder\\nreparar o meu coracao\\lpartido...\\pIsso me endureceu fisicamente,\\npelo menos! Ola!$"
+      ],
+      "MtEmber_Exterior_Text_JocelynDefeat": [
+        "Acho que tentei exagerar...$"
+      ],
+      "MtEmber_Exterior_Text_JocelynPostBattle": [
+        "A forma como lutas, lembra-me o\\ntipo que me deixou...$"
+      ]
+    },
+    "data/maps/MtMoon_1F_Frlg/scripts.inc": {
+      "MtMoon_1F_Text_MarcosDefeat": [
+        "Uau! Chocado outra vez!$"
+      ],
+      "MtMoon_1F_Text_MarcosPostBattle": [
+        "Miudos como tu nao deviam andar\\npor aqui no escuro.$"
+      ],
+      "MtMoon_1F_Text_JoshIntro": [
+        "Tambem vieste explorar a\\ncaverna?$"
+      ],
+      "MtMoon_1F_Text_JoshDefeat": [
+        "Perder fede! Nao e nada fixe.$"
+      ],
+      "MtMoon_1F_Text_JoshPostBattle": [
+        "Vim ate aqui para me exibir as\\nraparigas.$"
+      ],
+      "MtMoon_1F_Text_MiriamIntro": [
+        "Uau! E muito maior do que eu\\npensava!$"
+      ],
+      "MtMoon_1F_Text_MiriamDefeat": [
+        "Oh! Perdi-a!$"
+      ],
+      "MtMoon_1F_Text_MiriamPostBattle": [
+        "Como e que se sai daqui? E tao\\ngrande que posso perder-me.$"
+      ],
+      "MtMoon_1F_Text_JovanIntro": [
+        "O que? Nao me assustes!$"
+      ],
+      "MtMoon_1F_Text_JovanDefeat": [
+        "O meu Pokemon nao serve!$"
+      ],
+      "MtMoon_1F_Text_JovanPostBattle": [
+        "Tenho de encontrar Pokemon mais\\nforte. Onde podem estar?$"
+      ],
+      "MtMoon_1F_Text_IrisIntro": [
+        "O que? Estou a espera que os\\nmeus amigos me encontrem aqui.$"
+      ],
+      "MtMoon_1F_Text_IrisDefeat": [
+        "Perdi?$"
+      ],
+      "MtMoon_1F_Text_IrisPostBattle": [
+        "Vim porque ouvi dizer que ha\\nfosseis muito raros aqui.$"
+      ],
+      "MtMoon_1F_Text_KentIntro": [
+        "Homens suspeitos estao na\\ncaverna. E tu?$"
+      ],
+      "MtMoon_1F_Text_KentDefeat": [
+        "Apanhaste-me!$"
+      ],
+      "MtMoon_1F_Text_RobbyDefeat": [
+        "Perdi.$"
+      ],
+      "MtMoon_1F_Text_RobbyPostBattle": [
+        "O ZUBAT e duro! Mas se\\nconseguires apanhar uma, podes\\lcontar com ela.$"
+      ],
+      "MtMoon_1F_Text_ZubatIsABloodsucker": [
+        "Cuidado! O ZUBAT e um\\nsanguessuga!$"
+      ]
+    },
+    "data/maps/MtMoon_B2F_Frlg/scripts.inc": {
+      "MtMoon_B2F_Text_MiguelIntro": [
+        "Para!\\pEncontrei estes fosseis! Sao os\\ndois meus!$"
+      ],
+      "MtMoon_B2F_Text_MiguelDefeat": [
+        "Esta bem! Eu partilho!$"
+      ],
+      "MtMoon_B2F_Text_WellEachTakeAFossil": [
+        "Vao em frente e levem os\\nfosseis! Ja nem os quero.$"
+      ],
+      "MtMoon_B2F_Text_Grunt1Defeat": [
+        "Urgh! Agora estou louco!$"
+      ],
+      "MtMoon_B2F_Text_Grunt2Defeat": [
+        "Estraguei tudo!$"
+      ],
+      "MtMoon_B2F_Text_Grunt2PostBattle": [
+        "Raios partam! Os meus\\nassociados nao vao tolerar\\listo!$"
+      ],
+      "MtMoon_B2F_Text_Grunt3Intro": [
+        "Estamos a fazer um grande\\ntrabalho! Desaparece, miudo!$"
+      ],
+      "MtMoon_B2F_Text_Grunt3Defeat": [
+        "Entao, es bom...$"
+      ],
+      "MtMoon_B2F_Text_Grunt3PostBattle": [
+        "Se encontrares um fossil, da-mo\\ne desaparece!$"
+      ],
+      "MtMoon_B2F_Text_Grunt4Intro": [
+        "As criancas nao deviam estar a\\nbrincar com adultos!\\pPodem ser mas noticias!$"
+      ],
+      "MtMoon_B2F_Text_Grunt4Defeat": [
+        "Estou fumegando!$"
+      ],
+      "MtMoon_B2F_Text_Grunt4PostBattle": [
+        "POKEMON viveu aqui muito antes\\ndas pessoas chegarem.$"
+      ],
+      "MtMoon_B2F_Text_YouWantDomeFossil": [
+        "Queres o DOME FOSSIL?$"
+      ],
+      "MtMoon_B2F_Text_YouWantHelixFossil": [
+        "Queres o HELIX FOSSIL?$"
+      ],
+      "MtMoon_B2F_Text_ObtainedHelixFossil": [
+        "Obtive o HELIX FOSSIL!$"
+      ],
+      "MtMoon_B2F_Text_ObtainedDomeFossil": [
+        "Obtive o FOSSIL DOME!$"
+      ]
+    },
+    "data/maps/MtMortar_1F_North/scripts.inc": {
+      "MountMortar2_Text_PokemaniacMillerSeen": [
+        "Nao vou perder desta vez!$"
+      ],
+      "MountMortar2_Text_PokemaniacMillerBeaten": [
+        "Perdi para um miudo...?$"
+      ],
+      "MountMortar2_Text_PokemaniacMillerAfter": [
+        "Ha algum tempo, este tipo do\\nkarate queria lutar.\\pEle era ridiculamente bom. Ele\\nacabou de nos bater.\\pEle foi mais fundo dizendo que\\nera para seu treinamento.\\pComo sera que ele esta?$"
+      ],
+      "MountMortar2_Text_SupernerdMarkusBeaten": [
+        "Confundi-te com outra pessoa...$"
+      ]
+    },
+    "data/maps/MtMortar_2F/scripts.inc": {
+      "MtMortar_2F_Text_SupernerdHughBeaten": [
+        "Desculpa, enganei-me.\\nJulguei-te mal.$"
+      ]
+    },
+    "data/maps/MtMortar_B1F/scripts.inc": {
+      "MountMortar4_Text_KiyoWin": [
+        "Waaaarggh! Estou derrotado!$"
+      ],
+      "MountMortar4_Text_KiyoTyrogueReward": [
+        "Estou arrasado...\\pO meu treino ainda nao e\\nsuficiente...\\pMas uma perda e uma perda.\\nAdmito.\\pComo prova de que me\\nderrotaste, vou dar-te uma rara\\lluta contra o Pokemon.$"
+      ],
+      "MountMortar4_Text_KiyoFullParty": [
+        "Nao tens espaco na tua festa!$"
+      ]
+    },
+    "data/maps/MtPyre_1F/scripts.inc": {
+      "MtPyre_1F_Text_ComeToPayRespects": [
+        "Veio prestar respeito aos\\nespiritos de Pokemon?\\pDeve gostar muito do seu\\nPOKEMON.$"
+      ],
+      "MtPyre_1F_Text_RestingPlaceOfZigzagoon": [
+        "Este e o lugar de descanso\\nfinal do meu ZIGZAGOON. Eu\\lgostava...$"
+      ]
+    },
+    "data/maps/MtPyre_2F/scripts.inc": {
+      "MtPyre_2F_Text_MemoriesOfSkitty": [
+        "Memorias da minha querida\\nSKITTY... Os meus olhos\\ltransbordam a pensar nisso.$"
+      ],
+      "MtPyre_2F_Text_TumbledFromFloorAbove": [
+        "Ooch, ouch... Ha buracos no\\nchao aqui e ali.\\pNao reparei e cai do chao.$"
+      ],
+      "MtPyre_2F_Text_MarkIntro": [
+        "Hey! Esta a procura de POKEMON?\\nVieste atras de mim! Voce e\\lrude!$"
+      ],
+      "MtPyre_2F_Text_MarkDefeat": [
+        "Ayieeeeh! Desculpa, perdoa-me,\\npor favor!$"
+      ],
+      "MtPyre_2F_Text_MarkPostBattle": [
+        "As pessoas nao vem aqui muitas\\nvezes, por isso pensei que\\lhaveria Pokemon raro.$"
+      ],
+      "MtPyre_2F_Text_DezNotEnoughMons": [
+        "DEZ: Se voce quer nos desafiar,\\nvoce deve trazer pelo menos\\ldois POKEMON.\\pO meu namorado e forte. So um\\nPokemon nao serve.$"
+      ],
+      "MtPyre_2F_Text_LeahIntro": [
+        "Es uma visao desconhecida...\\nSaiam antes que algo vos\\laconteca!$"
+      ],
+      "MtPyre_2F_Text_LeahDefeat": [
+        "Hmm... Es duravel.$"
+      ],
+      "MtPyre_2F_Text_LeahPostBattle": [
+        "A nossa familia e treinadora\\naqui desde o tempo da minha\\lbisavo...\\pE meu dever proteger esta\\nmontanha...$"
+      ],
+      "MtPyre_2F_Text_ZanderIntro": [
+        "Kiyaaaah! Estou aterrorizada!$"
+      ],
+      "MtPyre_2F_Text_ZanderDefeat": [
+        "Nao! Perdi o juizo!$"
+      ],
+      "MtPyre_2F_Text_ZanderPostBattle": [
+        "Fico assustada sempre que vejo\\nalgo a mexer-se...\\pNao devia ter vindo treinar...$"
+      ]
+    },
+    "data/maps/MtPyre_3F/scripts.inc": {
+      "MtPyre_3F_Text_WilliamIntro": [
+        "A rica atmosfera da montanha\\nelevou o meu poder psiquico!\\pUma crianca como tu... Sonhas\\nem ganhar?$"
+      ],
+      "MtPyre_3F_Text_WilliamDefeat": [
+        "Afogo-me em autopiedade...$"
+      ],
+      "MtPyre_3F_Text_WilliamPostBattle": [
+        "Os meus poderes psiquicos\\ncresceram varias vezes, mas...$"
+      ],
+      "MtPyre_3F_Text_KaylaIntro": [
+        "Ahahahaha!\\pIsto nao e lugar para criancas,\\nmuito menos para ti!$"
+      ],
+      "MtPyre_3F_Text_KaylaDefeat": [
+        "Eu perdi isso...$"
+      ],
+      "MtPyre_3F_Text_KaylaPostBattle": [
+        "Isto significa que o meu treino\\nainda nao e suficiente...\\pTenho de continuar a trabalhar\\npara a cimeira...\\pVai, eu!$"
+      ],
+      "MtPyre_3F_Text_GabrielleIntro": [
+        "Porque vieste aqui?$"
+      ],
+      "MtPyre_3F_Text_GabrielleDefeat": [
+        "Foi incrivel! Es um treinador\\nmuito especial.$"
+      ],
+      "MtPyre_3F_Text_GabriellePostBattle": [
+        "POKEMON nao e mais deste mundo.\\nPOKEMON que estao com voce\\lagora.\\pE o POKEMON que voce vai\\nencontrar no futuro...\\pTodos devem ser igualmente\\napreciados. Por favor,\\llembra-te disso.$"
+      ],
+      "MtPyre_3F_Text_GabrielleRegister": [
+        "Gostaria de ver o teu POKEMON\\nquando crescerem mais...\\pPor favor, preciso de ver o seu\\nPOKeNAV.$"
+      ],
+      "MtPyre_3F_Text_GabrielleRematchIntro": [
+        "Es tu...\\pVeio mostrar-me o seu Pokemon?$"
+      ],
+      "MtPyre_3F_Text_GabrielleRematchDefeat": [
+        "Que incrivel! Es uma pessoa\\nespecial.$"
+      ],
+      "MtPyre_3F_Text_GabriellePostRematch": [
+        "POKEMON nao e mais deste mundo.\\nPOKEMON que estao com voce\\lagora.\\pE o POKEMON que voce vai\\nencontrar no futuro...\\pTodos devem ser igualmente\\napreciados. Vejo que te\\llembraste disso.$"
+      ]
+    },
+    "data/maps/MtPyre_4F/scripts.inc": {
+      "MtPyre_5F_Text_AtsushiIntro": [
+        "Professor... Por favor, cuide\\ndo meu progresso!$"
+      ],
+      "MtPyre_5F_Text_AtsushiDefeat": [
+        "Professor... Por favor,\\nperdoa-me!$"
+      ],
+      "MtPyre_5F_Text_AtsushiPostBattle": [
+        "Ate eu melhorar, o meu\\nprofessor, que descansa aqui,\\lnunca encontrara a verdadeira\\lpaz...$"
+      ]
+    },
+    "data/maps/MtPyre_5F/scripts.inc": {
+      "MtPyre_4F_Text_TashaIntro": [
+        "Adoro todas as coisas\\nhorriveis... E como uma\\ldoenca...\\pQuando estou aqui... Tremo de\\nmedo...$"
+      ],
+      "MtPyre_4F_Text_TashaDefeat": [
+        "Perder, nao gosto...$"
+      ],
+      "MtPyre_4F_Text_TashaPostBattle": [
+        "Quero ver coisas terriveis...\\nNao posso ir...\\pFica... Nao ficas comigo?$"
+      ]
+    },
+    "data/maps/MtPyre_6F/scripts.inc": {
+      "MtPyre_6F_Text_ValerieIntro": [
+        "Quando estou aqui... Um poder\\ncurioso flui para mim...$"
+      ],
+      "MtPyre_6F_Text_ValerieDefeat": [
+        "O poder esta a desaparecer...$"
+      ],
+      "MtPyre_6F_Text_ValeriePostBattle": [
+        "Talvez o poder seja dos\\nespiritos de Pokemon em sono\\lsaudavel aqui...$"
+      ],
+      "MtPyre_6F_Text_ValerieRegister": [
+        "Fufufu... perdi o jogo, mas...\\nTenho uma pequena habilidade...\\pSem nunca por as maos no teu\\nPOKeNAV... Ola!$"
+      ],
+      "MtPyre_6F_Text_ValerieRematchIntro": [
+        "Atras de ti... O que e...$"
+      ],
+      "MtPyre_6F_Text_ValerieRematchDefeat": [
+        "Algo desapareceu...$"
+      ],
+      "MtPyre_6F_Text_ValeriePostRematch": [
+        "O Pokemon em repouso aqui... As\\nvezes, tocam...$"
+      ],
+      "MtPyre_6F_Text_CedricIntro": [
+        "Perdeste o rumo? Nao tenha medo\\nporque estou aqui!$"
+      ],
+      "MtPyre_6F_Text_CedricDefeat": [
+        "Nao estavas perdido?$"
+      ],
+      "MtPyre_6F_Text_CedricPostBattle": [
+        "Eu tinha a sensacao de que um\\nTRAiner perdido seria em panico\\le facil de vencer.\\pEsta sujo e nao volto a\\ntentar...$"
+      ]
+    },
+    "data/maps/MtPyre_Summit/scripts.inc": {
+      "MtPyre_Summit_Text_Grunt1Defeat": [
+        "Pensei que eras um dos MAGMAS\\nque por acaso voltou...$"
+      ],
+      "MtPyre_Summit_Text_Grunt1PostBattle": [
+        "Sim, entao es forte... Mas\\nsomos muitos!$"
+      ],
+      "MtPyre_Summit_Text_Grunt2PostBattle": [
+        "Tu nao sabes nada! Entao porque\\nestas a brincar connosco?$"
+      ],
+      "MtPyre_Summit_Text_Grunt3PostBattle": [
+        "Nao importa! Ganhamos algum\\ntempo!\\pO BOSS devia ter roubado o que\\nprocurava!$"
+      ],
+      "MtPyre_Summit_Text_Grunt4PostBattle": [
+        "Temos uma grande combinacao\\nentre os nossos membros e o\\lnosso lider.$"
+      ],
+      "MtPyre_Summit_Text_ThoseTwoMenReturnedOrbs": [
+        "Os dois homens que levaram a\\nORBS voltaram para devolve-los\\lsozinhos.\\pAqueles homens... Talvez nao\\nsejam assim tao maus...$"
+      ],
+      "MtPyre_Summit_Text_SuperAncientPokemonTaughtUs": [
+        "As personificacoes da terra, do\\nmar e do ceu...\\pDiz-se que sao as identidades\\ndo super-antigo POKEMON...\\pDa mesma forma que nos humanos\\ne POKEMON temos vida, nosso\\lmundo, tambem, esta vivo...\\pOs super antigos Pokemon\\nensinaram-nos que...$"
+      ],
+      "MtPyre_Summit_Text_WillYouHearOutMyTale": [
+        "MT. PYRE e onde acalmamos os\\nespiritos de POKEMON que\\lpassaram...\\pEste e um lugar alto onde se\\npode ver todo o HOENN...\\pOs espiritos desencarnados de\\nPOKEMON devem encontrar consolo\\laqui...\\pE coincidencia que estejas\\naqui...\\pVais ouvir a minha historia?\\nUma historia ha muito contada\\lna regiao de HOENN?$"
+      ],
+      "MtPyre_Summit_Text_WellThatTooIsFine": [
+        "Entendo... Bem, isso tambem,\\nesta bem...$"
+      ],
+      "MtPyre_Summit_Text_HearTheNewLegendOfHoenn": [
+        "E meu papel transmitir as\\nlendas da HOENN as geracoes\\lfuturas.\\pE a crise que acabou em\\nSOOTOPOLIS reescreveu uma\\llenda...\\pTens tempo para ouvir a nova\\nlenda do HOENN?$"
+      ],
+      "MtPyre_Summit_Text_HoennTrioTale": [
+        "Aconteceu ha muito, muito\\ntempo...\\pO mundo foi esmagado por um\\nferoz confronto entre o POKEMON\\lda terra e o POKEMON do mar...\\pO POKEMON da terra ergueu\\nmontanhas e criou\\lcontinentes...\\pO POKEMON do mar levantou\\nenormes ondas e esculpiu\\loceanos...\\pO seu feroz duelo irritou-se\\nsem fim.\\pO mundo foi engolido por\\nenormes incendios e tempestades\\lcrueis.\\pFoi entao que o POKEMON do ceu\\ndesceu de uma tempestade.\\pO Pokemon, brilhando um verde\\nvivido, enfurecidou os dois\\lPokemon.\\pEntao, seu dever cumprido, o\\nverde POKEMON voou para o azul\\lselvagem la...$"
+      ]
+    }
+  },
+  "c": {}
+}

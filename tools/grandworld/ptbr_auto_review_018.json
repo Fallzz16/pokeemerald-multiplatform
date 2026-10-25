@@ -1,0 +1,843 @@
+{
+  "asm": {
+    "data/maps/PokemonLeague_ChampionsRoom_Frlg/scripts.inc": {
+      "PokemonLeague_ChampionsRoom_Text_Defeat": [
+        "Nao! Nao pode ser! Venceste-me\\nno meu melhor!\\pDepois de todo esse trabalho\\npara se tornar o CHAMP LEAGUE?\\pO meu reinado ja acabou? Nao e\\njusto!$"
+      ],
+      "PokemonLeague_ChampionsRoom_Text_OakPlayer": [
+        "OAK:{PLAYER}!$"
+      ],
+      "PokemonLeague_ChampionsRoom_Text_OakPlayerComeWithMe": [
+        "OAK:{PLAYER}.\\pCompreendes que a tua vitoria\\nnao foi apenas obra tua.\\pO vinculo que partilhas com o\\nteu POKEMON e maravilhoso.\\p{PLAYER}Vem comigo!$"
+      ]
+    },
+    "data/maps/PokemonLeague_LancesRoom_Frlg/scripts.inc": {
+      "PokemonLeague_LancesRoom_Text_Defeat": [
+        "E isso!\\pDetesto admitir, mas es um\\nmestre Pokemon!$"
+      ]
+    },
+    "data/maps/PokemonLeague_LoreleisRoom_Frlg/scripts.inc": {
+      "PokemonLeague_LoreleisRoom_Text_Defeat": [
+        "As coisas nao deviam ser assim!$"
+      ]
+    },
+    "data/maps/PokemonMansion_1F_Frlg/scripts.inc": {
+      "PokemonMansion_1F_Text_TedIntro": [
+        "Quem es tu? Nao devia estar\\naqui ninguem.$"
+      ],
+      "PokemonMansion_1F_Text_TedPostBattle": [
+        "Uma chave? Nao sei do que estas\\na falar.$"
+      ],
+      "PokemonMansion_1F_Text_JohnsonIntro": [
+        "W-w-waah! Assustaste-me! Pensei\\nque eras um fantasma.$"
+      ],
+      "PokemonMansion_1F_Text_JohnsonDefeat": [
+        "Tch! Nao consigo ganhar.$"
+      ],
+      "PokemonMansion_1F_Text_JohnsonPostBattle": [
+        "Estava a explorar aqui sozinha,\\nmas sinto-me assustada.\\pTenho de ir em breve.$"
+      ]
+    },
+    "data/maps/PokemonMansion_2F_Frlg/scripts.inc": {
+      "PokemonMansion_Text_PressSecretSwitch": [
+        "Um interruptor secreto!\\pPressionar?$"
+      ],
+      "PokemonMansion_Text_WhoWouldnt": [
+        "Quem nao gostaria?$"
+      ],
+      "PokemonMansion_Text_NotQuiteYet": [
+        "Ainda nao!$"
+      ],
+      "PokemonMansion_1F_Text_ArnieIntro": [
+        "Nao consigo sair! Este lugar\\nvelho e um grande puzzle.$"
+      ],
+      "PokemonMansion_1F_Text_ArnieDefeat": [
+        "Nao! O meu saco de saques!$"
+      ],
+      "PokemonMansion_1F_Text_ArniePostBattle": [
+        "Os interruptores aqui abrem e\\nfecham conjuntos alternados de\\lportas.$"
+      ],
+      "PokemonMansion_1F_Text_NewMonDiscoveredInGuyanaJungle": [
+        "Diario: 5 de julho Guiana,\\nAmerica do Sul\\pUm novo POKEMON foi descoberto\\nnas profundezas da selva.$"
+      ],
+      "PokemonMansion_1F_Text_ChristenedDiscoveredMonMew": [
+        "Diario: 10 de julho Baptizamos\\no recem-descoberto Pokemon,\\lMEW.$"
+      ]
+    },
+    "data/maps/PokemonMansion_3F_Frlg/scripts.inc": {
+      "PokemonMansion_1F_Text_SimonIntro": [
+        "Este lugar e enorme!$"
+      ],
+      "PokemonMansion_1F_Text_SimonPostBattle": [
+        "Onde sera que o meu parceiro\\nfoi?$"
+      ],
+      "PokemonMansion_1F_Text_BraydonIntro": [
+        "O meu mentor ja viveu aqui.$"
+      ],
+      "PokemonMansion_1F_Text_BraydonDefeat": [
+        "Ufa! Extremamente!$"
+      ],
+      "PokemonMansion_1F_Text_BraydonPostBattle": [
+        "Entao, estas preso? Tenta\\nsaltar para ali!$"
+      ],
+      "PokemonMansion_1F_Text_MewGaveBirthToMewtwo": [
+        "Diario: 6 de fevereiro MEW deu\\na luz.\\pNomeamos o recem-nascido\\nMEWTWO.$"
+      ]
+    },
+    "data/maps/PokemonMansion_B1F_Frlg/scripts.inc": {
+      "PokemonMansion_B1F_Text_LewisIntro": [
+        "Uh-oh... Onde estou agora?$"
+      ],
+      "PokemonMansion_B1F_Text_LewisPostBattle": [
+        "Podes encontrar coisas por ai.\\nOs residentes devem te-los\\ldeixado.$"
+      ],
+      "PokemonMansion_B1F_Text_IvanIntro": [
+        "Este lugar e ideal para um\\nlaboratorio. Olha para este\\lespaco todo.$"
+      ],
+      "PokemonMansion_B1F_Text_IvanDefeat": [
+        "Para que foi isso?$"
+      ],
+      "PokemonMansion_B1F_Text_IvanPostBattle": [
+        "Gosto daqui. E propicio aos\\nmeus estudos.$"
+      ],
+      "PokemonMansion_B1F_Text_MewtwoIsFarTooPowerful": [
+        "Diario: 1 de Setembro MEWTWO e\\nmuito poderoso.\\pNao conseguimos conter as suas\\ntendencias viciosas...$"
+      ]
+    },
+    "data/maps/PokemonTower_1F_Frlg/scripts.inc": {
+      "PokemonTower_1F_Text_ErectedInMemoryOfDeadMons": [
+        "POKEMON TOWER foi erguido na\\nmemoria de POKEMON que morreu.$"
+      ],
+      "PokemonTower_1F_Text_ComeToPayRespectsSon": [
+        "Veio prestar homenagem?\\pAbencoa o teu coracao amante de\\nPokemon, filho.$"
+      ],
+      "PokemonTower_1F_Text_ComeToPayRespectsGirl": [
+        "Veio prestar homenagem?\\pAbencoa o teu coracao amante de\\nPokemon, miuda.$"
+      ]
+    },
+    "data/maps/PokemonTower_2F_Frlg/scripts.inc": {
+      "PokemonTower_2F_Text_RivalIntro": [
+        "{RIVAL}Ola.{PLAYER}O que te\\ntraz aqui? O teu Pokemon esta\\lmorto?\\pHey! Esta vivo!\\pPelo menos posso faze-los\\ndesmaiar! Vamos!$"
+      ],
+      "PokemonTower_2F_Text_RivalDefeat": [
+        "O que? Seu fedelho!\\pTambem fui brando contigo!$"
+      ]
+    },
+    "data/maps/PokemonTower_3F_Frlg/scripts.inc": {
+      "PokemonTower_3F_Text_HopeIntro": [
+        "Urrg...$"
+      ],
+      "PokemonTower_3F_Text_HopeDefeat": [
+        "Hwa! Estou salvo!$"
+      ],
+      "PokemonTower_3F_Text_CarlyIntro": [
+        "Kekeke...$"
+      ],
+      "PokemonTower_3F_Text_CarlyDefeat": [
+        "Hmm? O que estou a fazer?$"
+      ],
+      "PokemonTower_3F_Text_CarlyPostBattle": [
+        "Desculpa! Eu estava possuido!$"
+      ],
+      "PokemonTower_3F_Text_PatriciaIntro": [
+        "Desaparece! Espirito Malevolo!$"
+      ],
+      "PokemonTower_3F_Text_PatriciaDefeat": [
+        "Ufa! O espirito saiu!$"
+      ],
+      "PokemonTower_3F_Text_PatriciaPostBattle": [
+        "Os outros la em cima... Devem\\nter sido possuidos.$"
+      ]
+    },
+    "data/maps/PokemonTower_4F_Frlg/scripts.inc": {
+      "PokemonTower_4F_Text_PaulaIntro": [
+        "Ghost! Nao! Kwaaah!$"
+      ],
+      "PokemonTower_4F_Text_PaulaDefeat": [
+        "Onde esta o fantasma?$"
+      ],
+      "PokemonTower_4F_Text_PaulaPostBattle": [
+        "Eu devia estar a sonhar...$"
+      ],
+      "PokemonTower_4F_Text_LaurelIntro": [
+        "Sejam amaldicoados comigo!\\nKwaaah!$"
+      ],
+      "PokemonTower_4F_Text_LaurelDefeat": [
+        "O que?$"
+      ],
+      "PokemonTower_4F_Text_LaurelPostBattle": [
+        "Nao podemos determinar a\\nidentidade dos fantasmas...$"
+      ],
+      "PokemonTower_4F_Text_JodyIntro": [
+        "Huhuhu... Nao me batas!$"
+      ],
+      "PokemonTower_4F_Text_JodyDefeat": [
+        "Huh? Quem? O que?$"
+      ],
+      "PokemonTower_4F_Text_JodyPostBattle": [
+        "Que o falecido Pokemon descanse\\nem paz...$"
+      ]
+    },
+    "data/maps/PokemonTower_5F_Frlg/scripts.inc": {
+      "PokemonTower_5F_Text_RestHereInPurifiedSpace": [
+        "Vem, crianca! Purifiquei este\\nespaco. Podes descansar aqui.$"
+      ],
+      "PokemonTower_5F_Text_TammyIntro": [
+        "Da-me o teu... tudo...$"
+      ],
+      "PokemonTower_5F_Text_TammyPostBattle": [
+        "Eu estava sob posse.$"
+      ],
+      "PokemonTower_5F_Text_RuthIntro": [
+        "Tu... vais... juntar-te... a\\nnos...$"
+      ],
+      "PokemonTower_5F_Text_RuthDefeat": [
+        "Que pesadelo!$"
+      ],
+      "PokemonTower_5F_Text_RuthPostBattle": [
+        "Eu estava possuido.$"
+      ],
+      "PokemonTower_5F_Text_KarinaPostBattle": [
+        "Recuperei os sentidos.$"
+      ],
+      "PokemonTower_5F_Text_JanaePostBattle": [
+        "Cai para espiritos malignos\\napesar do meu treino nas\\lmontanhas...$"
+      ],
+      "PokemonTower_5F_Text_PurifiedZoneMonsFullyHealed": [
+        "Entrou na zona purificada e\\nprotegida.\\p{PLAYER}O Pokemon estava\\ncompletamente curado.$"
+      ]
+    },
+    "data/maps/PokemonTower_6F_Frlg/scripts.inc": {
+      "PokemonTower_6F_Text_AngelicaIntro": [
+        "Da-me... sangue...$"
+      ],
+      "PokemonTower_6F_Text_AngelicaPostBattle": [
+        "Sinto-me anemica e fraca...$"
+      ],
+      "PokemonTower_6F_Text_EmiliaIntro": [
+        "Kwaah!$"
+      ],
+      "PokemonTower_6F_Text_EmiliaDefeat": [
+        "Alguma coisa caiu!$"
+      ],
+      "PokemonTower_6F_Text_EmiliaPostBattle": [
+        "O meu cabelo nao caiu! Era um\\nespirito malevolo!$"
+      ],
+      "PokemonTower_6F_Text_JenniferIntro": [
+        "Ke...ke...ke...ke...ke...ke!$"
+      ],
+      "PokemonTower_6F_Text_JenniferPostBattle": [
+        "O que se passa aqui?$"
+      ],
+      "PokemonTower_6F_Text_BeGoneIntruders": [
+        "Desaparece... Intrusos...$"
+      ],
+      "PokemonTower_6F_Text_MothersSpiritWasCalmed": [
+        "O espirito da mae estava calmo.\\pPartiu para o alem...$"
+      ]
+    },
+    "data/maps/PokemonTower_7F_Frlg/scripts.inc": {
+      "PokemonTower_7F_Text_Grunt1Intro": [
+        "O que queres? Porque estas\\naqui?$"
+      ],
+      "PokemonTower_7F_Text_Grunt1Defeat": [
+        "Desisto!$"
+      ],
+      "PokemonTower_7F_Text_Grunt1PostBattle": [
+        "Nao me vou esquecer disto!$"
+      ],
+      "PokemonTower_7F_Text_Grunt2Defeat": [
+        "Por favor! Chega!$"
+      ],
+      "PokemonTower_7F_Text_Grunt2PostBattle": [
+        "POKEMON so e bom para ganhar\\ndinheiro. Por que nao usa-los?\\pNao te metas nos nossos\\nassuntos!$"
+      ],
+      "PokemonTower_7F_Text_Grunt3Intro": [
+        "Nao estas a salvar ninguem,\\nmiudo!$"
+      ],
+      "PokemonTower_7F_Text_Grunt3PostBattle": [
+        "Nao te vais safar disto!$"
+      ]
+    },
+    "data/maps/ReceptionGate/scripts.inc": {
+      "VictoryRoadGate_Text_Officer": [
+        "So os treinadores que se\\nprovaram podem passar.$"
+      ],
+      "VictoryRoadGate_Text_NotEnoughBadges": [
+        "Voce nao tem todos os GINASIO\\nINSIGNIAS de JOHTO.\\pDesculpa, mas nao te posso\\ndeixar passar.$"
+      ],
+      "VictoryRoadGate_Text_EightBadges": [
+        "Oh! Os oito BADS de JOHTO!\\pPor favor, va em frente!$"
+      ],
+      "VictoryRoadGate_Text_LeftBlackBelt": [
+        "Este caminho leva a MT.SILVER.\\pVoce vera Pokemon\\nassustador-forte la fora.$"
+      ]
+    },
+    "data/maps/RegionHub_2F/scripts.inc": {
+      "BattleNet_Text_DirectorIntro": [
+        "Bem-vindos a BATTLE NET!\\pO hardware de link antigo deste\\nandar agora executa uma rede de\\lsimulacao de batalha.\\pUm campeao como tu merece o\\nconjunto completo. Toma esta\\lMEGA RING!$"
+      ],
+      "BattleNet_Text_DirectorStoneLater": [
+        "Mudou de ideias? Volta quando\\nquiseres para a tua pedra de\\larranque gratis.$"
+      ],
+      "BattleNet_Text_VendorIntro": [
+        "MEGA STONES para SHARDS -\\nqualquer cor gasta o mesmo\\laqui.$"
+      ],
+      "BattleNet_Text_VendorAnother": [
+        "Mais alguma coisa?$"
+      ],
+      "BattleNet_Text_VendorBye": [
+        "Vai em mega-tamanho!$"
+      ],
+      "BattleNet_Text_BpClerkPoor": [
+        "Precisas de pelo menos 4 BP.$"
+      ],
+      "BattleNet_Text_BpClerkAnother": [
+        "Outro SHARD?$"
+      ],
+      "BattleNet_Text_BpClerkBye": [
+        "Gaste-os bem!$"
+      ],
+      "BattleNet_Text_StreakByeMsg": [
+        "Venha testar sua raia\\nnovamente!$"
+      ],
+      "BattleNet_Text_StreakConfirm": [
+        "TOWER STREAK: ate 7 sims em uma\\nlinha vs tipos aleatorios.\\p1 BP por vitoria, +5 BP para\\numa corrida perfeita. Uma perda\\ltermina a corrida. Comecar?$"
+      ],
+      "BattleNet_Text_StreakWinN": [
+        "Ganhar{STR_VAR_1}de 7!$"
+      ],
+      "BattleNet_Text_StreakEnded": [
+        "Atropelar...{STR_VAR_1}O\\nstraight vence. 1 BP pago por\\lvitoria.$"
+      ],
+      "BattleNet_Text_StreakNoWins": [
+        "Atropelar - sem vitorias desta\\nvez, por isso sem BP. Tenta\\loutra vez!$"
+      ],
+      "BattleNet_Text_RoomLost": [
+        "O sim campeao da sala segura.\\nSem pressao desta vez.$"
+      ]
+    },
+    "data/maps/RockTunnel_1F_Frlg/scripts.inc": {
+      "RockTunnel_1F_Text_LennyIntro": [
+        "Este tunel vai longe, miudo!$"
+      ],
+      "RockTunnel_1F_Text_LennyDefeat": [
+        "Doh! Ganhaste!$"
+      ],
+      "RockTunnel_1F_Text_LennyPostBattle": [
+        "Cuidado com o ONIX. Aparecem\\napenas ocasionalmente.\\pOs de alto nivel podem\\npressionar-te!$"
+      ],
+      "RockTunnel_1F_Text_OliverIntro": [
+        "Hmm. Talvez esteja perdido\\naqui...$"
+      ],
+      "RockTunnel_1F_Text_OliverDefeat": [
+        "Calma! O que estou a fazer?\\nQual e a saida?$"
+      ],
+      "RockTunnel_1F_Text_LucasIntro": [
+        "Forasteiros como tu precisam de\\nme mostrar algum respeito!$"
+      ],
+      "RockTunnel_1F_Text_LucasDefeat": [
+        "Eu desisto!$"
+      ],
+      "RockTunnel_1F_Text_LucasPostBattle": [
+        "Tens talento para caminhar!$"
+      ],
+      "RockTunnel_1F_Text_AshtonIntro": [
+        "Luta POKEMON! Pronto, vai!$"
+      ],
+      "RockTunnel_1F_Text_AshtonDefeat": [
+        "Fim de jogo!$"
+      ],
+      "RockTunnel_1F_Text_AshtonPostBattle": [
+        "Vou buscar um ZUBAT!$"
+      ],
+      "RockTunnel_1F_Text_LeahIntro": [
+        "Eek!\\pNao tentes nada engracado no\\nescuro!$"
+      ],
+      "RockTunnel_1F_Text_LeahDefeat": [
+        "Estava muito escuro...$"
+      ],
+      "RockTunnel_1F_Text_LeahPostBattle": [
+        "Vi um MACHOP neste tunel.$"
+      ],
+      "RockTunnel_1F_Text_DanaIntro": [
+        "Vim ate aqui a procura de\\nPokemon selvagem.$"
+      ],
+      "RockTunnel_1F_Text_DanaDefeat": [
+        "Estou sem Pokemon!$"
+      ],
+      "RockTunnel_1F_Text_DanaPostBattle": [
+        "Parecias giro e inofensivo.\\nAlguma vez me enganei!$"
+      ],
+      "RockTunnel_1F_Text_ArianaIntro": [
+        "Voce tem Pokemon! Vamos\\ncomecar!$"
+      ],
+      "RockTunnel_1F_Text_ArianaDefeat": [
+        "Tu jogas duro!$"
+      ],
+      "RockTunnel_1F_Text_ArianaPostBattle": [
+        "Ufa! Estou toda suada.$"
+      ]
+    },
+    "data/maps/RockTunnel_B1F_Frlg/scripts.inc": {
+      "RockTunnel_B1F_Text_SofiaIntro": [
+        "Sabes como podes evitar\\nperder-te nas montanhas?\\pVoce pode dobrar galhos como\\nmarcadores de trilha.$"
+      ],
+      "RockTunnel_B1F_Text_SofiaDefeat": [
+        "Ohhh! Fiz o meu melhor!$"
+      ],
+      "RockTunnel_B1F_Text_SofiaPostBattle": [
+        "Quero ir para casa!$"
+      ],
+      "RockTunnel_B1F_Text_DudleyIntro": [
+        "Hahaha! Consegues vencer o meu\\npoder?$"
+      ],
+      "RockTunnel_B1F_Text_DudleyDefeat": [
+        "Oops! Excedente!$"
+      ],
+      "RockTunnel_B1F_Text_DudleyPostBattle": [
+        "Eu procuro o poder porque odeio\\npensar.$"
+      ],
+      "RockTunnel_B1F_Text_CooperIntro": [
+        "Tens um POKEDEX? Tambem quero\\num.$"
+      ],
+      "RockTunnel_B1F_Text_CooperDefeat": [
+        "Atire! Estou com tanta inveja!$"
+      ],
+      "RockTunnel_B1F_Text_CooperPostBattle": [
+        "Quando acabares o teu POKEDEX,\\nposso ficar com ele?$"
+      ],
+      "RockTunnel_B1F_Text_SteveIntro": [
+        "Hum... Conhece o Cosplay\\nPokemon?$"
+      ],
+      "RockTunnel_B1F_Text_SteveDefeat": [
+        "Bem, e isso.$"
+      ],
+      "RockTunnel_B1F_Text_AllenIntro": [
+        "As minhas tecnicas POKEMON vao\\ndeixar-te a chorar!$"
+      ],
+      "RockTunnel_B1F_Text_AllenDefeat": [
+        "Eu desisto! Es um tecnico\\nmelhor!$"
+      ],
+      "RockTunnel_B1F_Text_AllenPostBattle": [
+        "Nas montanhas, muitas vezes\\nvoce encontrara POKEMON tipo\\lROCK.$"
+      ],
+      "RockTunnel_B1F_Text_MarthaIntro": [
+        "Nao venho aqui muitas vezes,\\nmas vou lutar contigo.$"
+      ],
+      "RockTunnel_B1F_Text_MarthaDefeat": [
+        "Oh! Perdi!$"
+      ],
+      "RockTunnel_B1F_Text_MarthaPostBattle": [
+        "Gosto de pequenos Pokemon. Os\\ngrandes sao muito assustadores!$"
+      ],
+      "RockTunnel_B1F_Text_EricIntro": [
+        "Da-me o teu melhor!$"
+      ],
+      "RockTunnel_B1F_Text_EricDefeat": [
+        "Despedido!$"
+      ],
+      "RockTunnel_B1F_Text_EricPostBattle": [
+        "Vou aumentar o meu Pokemon para\\nvencer o teu, miudo.$"
+      ],
+      "RockTunnel_B1F_Text_WinstonIntro": [
+        "Faco ilustracoes de POKEMON\\nquando estou em casa.$"
+      ],
+      "RockTunnel_B1F_Text_WinstonDefeat": [
+        "Ufa... Estou exausto...$"
+      ],
+      "RockTunnel_B1F_Text_WinstonPostBattle": [
+        "Sou um artista, nao um lutador.\\nVou para casa desenhar.$"
+      ]
+    },
+    "data/maps/RuinsOfAlph_B1F/scripts.inc": {
+      "RuinsOfAlph_B1F_Text_Presence": [
+        "Ha uma estranha presenca aqui.$"
+      ],
+      "RuinsOfAlph_B1F_Text_Hiker": [
+        "Este quarto e grande, mas nao\\nha nada aqui.$"
+      ],
+      "RuinsOfAlph_B1F_Text_Teacher": [
+        "Este lugar tem uma qualidade\\nmistica.\\pAte parece eterea.$"
+      ],
+      "RuinsOfAlph_B1F_Text_Gramps": [
+        "Os edificios antigos sao muitas\\nvezes tumulos de reis.\\pComo as piramides, por exemplo.$"
+      ]
+    },
+    "data/maps/RuinsOfAlph_Outside/scripts.inc": {
+      "RuinsOfAlph_Outside_Text_SuperNerdStan_Seen": [
+        "O que queres? Estou a\\nestudar... Nao me perturbe!$"
+      ],
+      "RuinsOfAlph_Outside_Text_SuperNerdStan_Beaten": [
+        "Desculpa... Estou frustrado com\\na nossa falta de\\pA verdadeira compreensao...$"
+      ],
+      "RuinsOfAlph_Outside_Text_PsychicNathan_Seen": [
+        "Hmmm... Este e um lugar\\nestranho.$"
+      ],
+      "RuinsOfAlph_Outside_Text_PsychicNathan_After": [
+        "Gosto de pensar aqui.$"
+      ],
+      "RuinsOfAlph_Outside_Text_Youngster1": [
+        "Ha muitos tipos de UNOWN, entao\\nnos os usamos para nossos\\lcodigos secretos.$"
+      ],
+      "RuinsOfAlph_Outside_Text_Youngster2": [
+        "A... H... E... A... D...\\pO que?\\pEstou a descodificar esta\\nmensagem!$"
+      ]
+    },
+    "data/maps/RuinsOfAlph_PuzzleAndRewardChambers/scripts.inc": {
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Reward": [
+        "A camara reage! O caminho esta\\naberto.$"
+      ],
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Mon": [
+        "Algum tipo de sensor antigo. O\\nque procura?$"
+      ],
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Solved": [
+        "O caminho esta aberto.$"
+      ],
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Receptionist1": [
+        "Bem-vindo a esta camara.\\pHa paineis deslizantes que\\nretratam um POKEMON desenhado\\lpelos antigos.\\pDeslize os paineis para formar\\na imagem.\\pA esquerda esta uma descricao\\ndo POKEMON.\\pOs cientistas do laboratorio\\nestao a examinar alguns padroes\\lrecentemente encontrados.$"
+      ],
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Receptionist2": [
+        "Abriu-se um buraco no chao! E\\nmelhor contar aos outros.$"
+      ],
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Receptionist3": [
+        "Agora um buraco na parede\\ntambem?! Isto esta a ficar\\lassustador.$"
+      ],
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Kabuto": [
+        "Um Pokemon que se escondeu no\\nfundo do mar. Os olhos nas\\lcostas escanearam a area.$"
+      ],
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_UnownText": [
+        "E mensagem UNOWN!$"
+      ],
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Statue": [
+        "E uma replica de um antigo\\nPokemon.$"
+      ],
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Aerodactyl": [
+        "Este POKEMON voador atacou sua\\npresa com presas de serra.$"
+      ],
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Omanyte": [
+        "Este POKEMON vagueava no mar,\\ntorcendo seus dez tentaculos.$"
+      ],
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Hooh": [
+        "Um Pokemon que voou\\ngraciosamente em asas de cor\\larco-iris.$"
+      ]
+    },
+    "data/maps/RustboroCity/scripts.inc": {
+      "RustboroCity_Text_YouCanHave2On2Battle": [
+        "Sabias disto?\\pVoce pode ter uma batalha 2\\ncontra 2, mesmo se voce nao\\lestiver com outro treinador.\\pSe voce pegar os olhos de dois\\nTRAiners quando voce tem dois\\lou mais POKEMON, ambos vao\\ldesafiar voce.\\pNao achas que seria fixe se\\nconseguisses vencer dois\\ltreinadores sozinho?$"
+      ]
+    },
+    "data/maps/RustboroCity_CuttersHouse/scripts.inc": {
+      "RustboroCity_CuttersHouse_Text_DadHelpedClearLandOfTrees": [
+        "Quando eles estavam expandindo\\na cidade de RUSTBORO, meu pai\\lajudou.\\pEle fez seu Pokemon usar CUT\\npara limpar a terra das\\larvores.$"
+      ]
+    },
+    "data/maps/RustboroCity_DevonCorp_1F/scripts.inc": {
+      "RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp": [
+        "Ola e bem-vindos ao DEVON\\nCORPORATION.\\pSomos produtores orgulhosos de\\nitens e medicamentos que\\lmelhoram sua vida.$"
+      ],
+      "RustboroCity_DevonCorp_1F_Text_StaffGotRobbed": [
+        "Um dos nossos investigadores\\nfoi roubado de uma encomenda\\limportante.$"
+      ],
+      "RustboroCity_DevonCorp_1F_Text_RobberWasntVeryBright": [
+        "Aquele pacote roubado...\\pClaro que e importante, mas nao\\ne nada que alguem possa usar.\\pNa minha opiniao, aquele ladrao\\nnao deve ter sido muito\\linteligente.$"
+      ],
+      "RustboroCity_DevonCorp_1F_Text_OnlyAuthorizedPeopleEnter": [
+        "Desculpe, so as pessoas\\nautorizadas podem entrar aqui.$"
+      ],
+      "RustboroCity_DevonCorp_1F_Text_HowCouldWeGetRobbed": [
+        "E mais do que estupido. Como\\npoderiamos ser roubados?$"
+      ],
+      "RustboroCity_DevonCorp_1F_Text_YoureAlwaysWelcomeHere": [
+        "Ola! Es sempre bem-vindo aqui!$"
+      ]
+    },
+    "data/maps/RustboroCity_DevonCorp_2F/scripts.inc": {
+      "RustboroCity_DevonCorp_2F_Text_DeviceForTalkingToPokemon": [
+        "Estamos a desenvolver um\\ndispositivo para falar com o\\lPOKEMON.\\pMas nao tivemos muito\\nsucesso...$"
+      ],
+      "RustboroCity_DevonCorp_2F_Text_IMadePokenav": [
+        "Eu fiz o POKeNAV!\\pComo engenheiro, sinto-me\\nabencoado por ter feito algo\\ltao grande!$"
+      ],
+      "RustboroCity_DevonCorp_2F_Text_DeviceToVisualizePokemonDreams": [
+        "Estou a tentar desenvolver um\\ndispositivo que reproduz\\lvisualmente os sonhos de\\lPOKEMON...\\pMas nao esta a correr bem.$"
+      ],
+      "RustboroCity_DevonCorp_2F_Text_DevelopDeviceToResurrectFossils": [
+        "Tenho tentado desenvolver um\\ndispositivo que ressuscite\\lPokemon de fosseis...\\pE esta a funcionar!$"
+      ],
+      "RustboroCity_DevonCorp_2F_Text_TwoFossilsPickOne": [
+        "Que surpresa! Nao tens um, mas\\ndois, fosseis?\\pInfelizmente, a minha maquina\\nso pode regenerar um POKEMON de\\lcada vez.\\pGostaria de escolher um dos\\nseus fosseis para regeneracao?$"
+      ],
+      "RustboroCity_DevonCorp_2F_Text_FossilizedMonBroughtBackToLife": [
+        "Obrigado por esperares!\\pO seu POKEMON fossilizado foi\\ntrazido de volta a vida!\\pO fossil era um antigo\\nPokemon.{STR_VAR_2}Foi!$"
+      ],
+      "RustboroCity_DevonCorp_2F_Text_TooManyPokemon": [
+        "Tens muitos Pokemon. Nao tens\\nespaco para este.$"
+      ],
+      "RustboroCity_DevonCorp_2F_Text_DevelopNewPokenavFeature": [
+        "Estou a tentar desenvolver uma\\nnova funcionalidade para o\\lPOKeNAV...\\pMas nao esta a correr bem.$"
+      ],
+      "RustboroCity_DevonCorp_2F_Text_WhatToWorkOnNext": [
+        "Bem, agora o que devo trabalhar\\nem desenvolver a seguir?\\pNossa empresa nos permite fazer\\nnossas inspiracoes em\\lrealidade.\\pNao se pode pedir um ambiente\\nmelhor como engenheiro.$"
+      ]
+    },
+    "data/maps/RustboroCity_DevonCorp_3F/scripts.inc": {
+      "RustboroCity_DevonCorp_3F_Text_ReceivedPokenav": [
+        "{PLAYER}recebeu um POKeNAV.$"
+      ],
+      "RustboroCity_DevonCorp_3F_Text_PleaseGoAhead": [
+        "Por favor, va em frente.$"
+      ]
+    },
+    "data/maps/RustboroCity_Flat1_1F/scripts.inc": {
+      "RustboroCity_Flat1_1F_Text_EveryPokemonHasAbility": [
+        "Cada POKEMON tem uma habilidade\\nespecial que pode usar.$"
+      ],
+      "RustboroCity_Flat1_1F_Text_PokemonStrange": [
+        "POKEMON sao criaturas tao\\nestranhas.$"
+      ]
+    },
+    "data/maps/RustboroCity_Flat1_2F/scripts.inc": {
+      "RustboroCity_Flat1_2F_Text_ComingUpWithMealsIsHard": [
+        "E tao dificil todos os dias...\\pO que e dificil? Precisas de\\nperguntar?\\pEsta a tentar descobrir o que\\nfazer para as refeicoes todos\\los dias.\\pNao e facil arranjar refeicoes\\ntodos os dias.$"
+      ],
+      "RustboroCity_Flat1_2F_Text_HelloDoYouKnowFunnyPhrase": [
+        "Ola! Bem-vindo a casa PEPPER.\\pTenho uma pergunta para ti. Ja\\nalguma vez tomaste conta de\\lbebes?\\pSou um novo pai, por isso criar\\num filho e novo para mim.\\pE tenho um problema. A minha\\nfilha WALDA nao se ri o\\lsuficiente.\\pAcho que ela riria por mim se\\nlhe dissesse algo engracado.\\pConheces alguma palavra ou\\nfrase engracada que me possas\\ldizer?$"
+      ],
+      "RustboroCity_Flat1_2F_Text_BeenSayingXDoYouKnowBetterPhrase": [
+        "Tenho estado a\\ndizer...{STR_VAR_1}Para a\\ldivertir ultimamente.\\pConhece uma palavra melhor ou\\numa frase que possa funcionar?$"
+      ],
+      "RustboroCity_Flat1_2F_Text_WonderfulLetsHearSuggestion": [
+        "Isso e maravilhoso. Entao,\\nvamos ouvir, a sua sugestao.$"
+      ],
+      "RustboroCity_Flat1_2F_Text_OhIsThatRight": [
+        "Ai sim?\\pSe tiveres uma boa sugestao,\\nsou todo ouvidos.$"
+      ],
+      "RustboroCity_Flat1_2F_Text_LetsGiveItATry2": [
+        "Estou a ver. Vamos tentar, sim?$"
+      ],
+      "RustboroCity_Flat1_2F_Text_OhShesLaughing": [
+        "{STR_VAR_1}. {STR_VAR_1}.\\pSim! Ela esta a rir! Estou tao\\nencantado como ela!$"
+      ],
+      "RustboroCity_Flat1_2F_Text_LetsGiveItATry": [
+        "Estou a ver. Vamos tentar, sim?$"
+      ],
+      "RustboroCity_Flat1_2F_Text_ShesNotSmilingAtAll": [
+        "{STR_VAR_1}. {STR_VAR_1}.\\pHmmm... Ela nao esta a sorrir.\\nTalvez o WALDA seja uma crianca\\lseria...$"
+      ],
+      "RustboroCity_Flat1_2F_Text_ShesNotSmilingAtAll2": [
+        "{STR_VAR_1}. {STR_VAR_1}.\\pHmmm... Ela nao esta a sorrir.\\nTalvez o WALDA seja uma crianca\\lseria...$"
+      ],
+      "RustboroCity_Flat1_2F_Text_OhYouDontKnowAny": [
+        "Entao nao sabes nada de bom.\\nAcho que vou tentar diverti-la\\lcom o ditado que usei antes.\\pSeja como for, se tiveres uma\\nboa sugestao, nao hesites em\\ldizer-me, esta bem?$"
+      ]
+    },
+    "data/maps/RustboroCity_Flat2_2F/scripts.inc": {
+      "RustboroCity_Flat2_2F_Text_DevonWasTinyInOldDays": [
+        "Antigamente, o DEVON era apenas\\numa pequena companhia.$"
+      ]
+    },
+    "data/maps/RustboroCity_House1/scripts.inc": {
+      "RustboroCity_House1_Text_IllTradeIfYouWant": [
+        "Huh? O meu Pokemon e giro?\\nClaro, eu sabia disso.\\pMas se realmente quiseres,\\nestou disposto a troca-lo por\\lti.\\pVou trocar-te o\\nmeu{STR_VAR_2}para\\luma{STR_VAR_1}Se quiseres.$"
+      ],
+      "RustboroCity_House1_Text_PleaseBeGoodToMyPokemon": [
+        "Eheheh... Por favor, se bom\\npara o meu Pokemon.$"
+      ],
+      "RustboroCity_House1_Text_DoesntLookLikeMonToMe": [
+        "Huh? Isso nao se parece nada\\ncom um{STR_VAR_1}para mim.$"
+      ],
+      "RustboroCity_House1_Text_YouDontWantToThatsOkay": [
+        "Se nao quiseres, tudo bem. Mas\\no meu Pokemon e giro, sabes...$"
+      ],
+      "RustboroCity_House1_Text_AnyPokemonCanBeCute": [
+        "Qualquer POKEMON pode ser\\nbonito se voce cria-lo com\\lcuidado e bondade.$"
+      ],
+      "RustboroCity_House1_Text_AllSortsOfPlaces": [
+        "Em todos os tipos de lugares,\\nha todos os tipos de POKEMON e\\lpessoas.\\pAcho isso fascinante, por isso\\nvou a todos os tipos de sitios.$"
+      ]
+    },
+    "data/maps/RustboroCity_House3/scripts.inc": {
+      "RustboroCity_House3_Text_IGivePerfectlySuitedNicknames": [
+        "Para o meu proprio POKEMON,\\ndou-lhes apelidos perfeitamente\\ladequados!\\pE a minha expressao de\\noriginalidade, sim, e isso!$"
+      ],
+      "RustboroCity_House3_Text_NamingPikachuPekachu": [
+        "Mas dar o nome PEKACHU a um\\nPIKACHU? Parece inutil.\\pSuponho que seja bom usar um\\nnome que seja facil de\\lentender, mas...$"
+      ]
+    },
+    "data/maps/RustboroCity_PokemonCenter_1F/scripts.inc": {
+      "RustboroCity_PokemonCenter_1F_Text_MaleAndFemalePokemon": [
+        "Assim como as pessoas, ha\\nhomens e mulheres POKEMON.\\pMas ninguem faz ideia de como\\nsao diferentes.$"
+      ]
+    },
+    "data/maps/RustboroCity_PokemonSchool/scripts.inc": {
+      "RustboroCity_PokemonSchool_Text_BlackboardListsStatusChanges": [
+        "O quadro-negro lista alteracoes\\nde status que podem afetar\\lPOKEMON em batalha.$"
+      ],
+      "RustboroCity_PokemonSchool_Text_ReadWhichTopic": [
+        "Que topico voce quer ler?$"
+      ],
+      "RustboroCity_PokemonSchool_Text_TradingRightNow": [
+        "Estou a trocar o POKEMON com o\\nmeu amigo.$"
+      ],
+      "RustboroCity_PokemonSchool_Text_AlwaysWantedSeedot": [
+        "Eu sempre quis um SEEDOT, e\\nestou finalmente recebendo um!$"
+      ],
+      "RustboroCity_PokemonSchool_Text_PokemontCantUseManMadeItems": [
+        "POKEMON pode segurar itens, mas\\neles nao sabem o que fazer com\\litens feitos pelo homem como\\lPOTION e ANTIDOTE.$"
+      ],
+      "RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself": [
+        "Sabes como alguns movimentos\\nPOKEMON podem confundir um\\lPOKEMON?\\pPor vezes, um POKEMON confuso\\nataca-se sem querer.\\pMas assim que sair da batalha,\\nvoltara ao normal.$"
+      ],
+      "RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry": [
+        "Um Pokemon segurando um BERRY\\nvai se curar...\\pHa muitos tipos de itens que\\nPOKEMON pode segurar...\\pE dificil anotar...$"
+      ]
+    },
+    "data/maps/RusturfTunnel/scripts.inc": {
+      "RusturfTunnel_Text_ComeAndGetSome": [
+        "Vens? Entao, vem buscar!$"
+      ],
+      "RusturfTunnel_Text_GruntIntro": [
+        "Eh, keelhaul tudo!\\pO refem Pokemon acabou por ser\\ninutil!\\pE pensar que fugi... Neste\\ntunel para lado nenhum!\\pHey! Voce! Queres lutar comigo?$"
+      ],
+      "RusturfTunnel_Text_GruntDefeat": [
+        "Urrrggh! A minha carreira no\\ncrime chega a um beco sem\\lsaida!$"
+      ],
+      "RusturfTunnel_Text_YouShatteredBoulderTakeHM": [
+        "Uau! Partiste aquela pedra a\\nbloquear o caminho.\\pPara te mostrar o quanto\\nagradeco, gostava que tivesses\\lesta HM.$"
+      ],
+      "RusturfTunnel_Text_BoyfriendOnOtherSideOfRock": [
+        "Do outro lado desta rocha... O\\nmeu namorado esta la.\\pEle... Ele nao esta so a cavar\\no tunel para me vir ver.\\pEle trabalha com as maos cruas\\ne asperas para o beneficio de\\ltodos.$"
+      ],
+      "RusturfTunnel_Text_MikeIntro": [
+        "Como se chama um selvagem nas\\nmontanhas? Um homem da\\lmontanha, certo?\\pPorque nao chamam Pokemon as\\nmontanhas de Pokemon?$"
+      ],
+      "RusturfTunnel_Text_MikeDefeat": [
+        "O meu Pokemon... ficou sem\\nenergia...$"
+      ],
+      "RusturfTunnel_Text_MikePostBattle": [
+        "Eles pararam o desenvolvimento\\naqui para proteger POKEMON,\\lcerto? Ha uma boa historia!$"
+      ]
+    },
+    "data/maps/SSAnne_1F_Corridor_Frlg/scripts.inc": {
+      "SSAnne_1F_Corridor_Text_LeStrongSilentType": [
+        "Bonjour! Sou o empregado neste\\nnavio!\\pFicarei feliz em servir-te o\\nque quiseres!\\pAh! O tipo silencioso e forte!$"
+      ],
+      "SSAnne_1F_Corridor_Text_PassengersAreRestless": [
+        "Os passageiros estao inquietos\\ndesta longa viagem.\\pVoce pode ser desafiado pelos\\nmais entediados!$"
+      ]
+    },
+    "data/maps/SSAnne_1F_Room2_Frlg/scripts.inc": {
+      "SSAnne_1F_Room2_Text_TylerIntro": [
+        "Adoro Pokemon! E tu?$"
+      ],
+      "SSAnne_1F_Room2_Text_TylerDefeat": [
+        "Uau! Es fantastico!$"
+      ],
+      "SSAnne_1F_Room2_Text_TylerPostBattle": [
+        "Ouve, ouve! Deixa-me ser tua\\namiga, esta bem?\\pDepois podemos trocar POKEMON e\\nfazer coisas.$"
+      ],
+      "SSAnne_1F_Room2_Text_AnnIntro": [
+        "Eu recolhi estes POKEMON de\\ntodo o mundo!$"
+      ],
+      "SSAnne_1F_Room2_Text_AnnDefeat": [
+        "Nao! Eu dei a volta ao mundo\\npor isto!$"
+      ],
+      "SSAnne_1F_Room2_Text_CruisingAroundWorld": [
+        "Estamos viajando pelo mundo,\\nmeus filhos e eu.$"
+      ]
+    },
+    "data/maps/SSAnne_1F_Room3_Frlg/scripts.inc": {
+      "SSAnne_1F_Room3_Text_CruiseIsElegantAndCozy": [
+        "Um cruzeiro mundial e tao\\nelegante, mas aconchegante!$"
+      ],
+      "SSAnne_1F_Room3_Text_AlwaysTravelWithWigglytuff": [
+        "Viajo sempre com WIGGLYTUFF.\\nNunca saio de casa sem ela.$"
+      ]
+    },
+    "data/maps/SSAnne_1F_Room4_Frlg/scripts.inc": {
+      "SSAnne_1F_Room4_Text_WaiterCherryPiePlease": [
+        "Garcom, quero uma tarte de\\ncereja, por favor!$"
+      ],
+      "SSAnne_1F_Room4_Text_WaitressCherryPiePlease": [
+        "Garconete, quero uma tarte de\\ncereja, por favor!$"
+      ]
+    },
+    "data/maps/SSAnne_1F_Room5_Frlg/scripts.inc": {
+      "SSAnne_1F_Room5_Text_ArthurIntro": [
+        "Seu filhote insolente! Como te\\natreves a entrar?$"
+      ],
+      "SSAnne_1F_Room5_Text_ArthurDefeat": [
+        "Humph! Sua crianca rude! Nao\\ntens sentido de cortesia!$"
+      ],
+      "SSAnne_1F_Room5_Text_ArthurPostBattle": [
+        "Quero que me deixem em paz!\\nSai!$"
+      ]
+    },
+    "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc": {
+      "SSAnne_1F_Room6_Text_TakeAShortRest": [
+        "Pareces cansado. Queres\\ndescansar um pouco?$"
+      ],
+      "SSAnne_1F_Room6_Text_GladEveryoneIsRefreshed": [
+        "Fico feliz por ver que todos\\nparecem revigorados e felizes.$"
+      ],
+      "SSAnne_1F_Room6_Text_SorryYouLookLikeMyBrother": [
+        "Desculpa ter-te incomodado.\\nPareces o meu irmaozinho...$"
+      ],
+      "SSAnne_1F_Room6_Text_SorryYouLookLikeMySister": [
+        "Desculpa ter-te incomodado.\\nPareces a minha irma mais\\lnova...$"
+      ]
+    },
+    "data/maps/SSAnne_1F_Room7_Frlg/scripts.inc": {
+      "SSAnne_1F_Room7_Text_ThomasIntro": [
+        "Sou apenas um viajante\\nsolitario...\\pMeus unicos companheiros e\\namigos sao POKEMON Eu peguei em\\lminhas viagens...$"
+      ],
+      "SSAnne_1F_Room7_Text_ThomasDefeat": [
+        "Meus, meus amigos...$"
+      ],
+      "SSAnne_1F_Room7_Text_ThomasPostBattle": [
+        "Devias ser simpatico com os\\namigos!$"
+      ]
+    },
+    "data/maps/SSAnne_2F_Corridor_Frlg/scripts.inc": {
+      "SSAnne_2F_Corridor_Text_ThisShipIsLuxuryLiner": [
+        "Este navio e um navio de luxo\\npara os TRAiners do mundo!\\pEm todos os portos, fazemos\\nfestas com os TRAiners\\lconvidados.$"
+      ],
+      "SSAnne_2F_Corridor_Text_RivalIntro": [
+        "{RIVAL}Bonjour!{PLAYER}!\\pImagina ver-te\\naqui!{PLAYER}Foste mesmo\\lconvidado?\\pEntao, como vai o teu POKEDEX?\\pJa apanhei 40 tipos, amigo. Ha\\ntipos diferentes em todo o\\llado.\\pRasteje em areas gramadas, e\\nprocure por elas.$"
+      ],
+      "SSAnne_2F_Corridor_Text_RivalDefeat": [
+        "Humph!\\pPelo menos estas a criar o teu\\nPokemon!$"
+      ],
+      "SSAnne_2F_Corridor_Text_RivalPostBattle": [
+        "{RIVAL}Ouvi dizer que havia um\\nmestre CUT a bordo.\\pMas ele era apenas um velho\\nenjoado!\\pCUT em si e realmente util.\\nSim, vai ser util.\\pDevias ir ve-lo tambem.\\nCheira-te!$"
+      ]
+    },
+    "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc": {
+      "SSAnne_2F_Room1_Text_SleepingMonLookedLikeThis": [
+        "Viajei muito, mas em todas as\\nminhas viagens nunca vi nenhum\\lPokemon dormir como este!\\pFoi algo assim!$"
+      ]
+    },
+    "data/maps/SSAnne_2F_Room2_Frlg/scripts.inc": {
+      "SSAnne_2F_Room2_Text_BrooksIntro": [
+        "Competir contra os jovens\\nmantem-me jovem.$"
+      ],
+      "SSAnne_2F_Room2_Text_BrooksDefeat": [
+        "Boa partida! Sinto-me jovem\\noutra vez!$"
+      ],
+      "SSAnne_2F_Room2_Text_BrooksPostBattle": [
+        "Ha 15 anos, eu teria ganho!$"
+      ],
+      "SSAnne_2F_Room2_Text_DaleIntro": [
+        "Vejam o que pesquei!$"
+      ],
+      "SSAnne_2F_Room2_Text_DaleDefeat": [
+        "Acabou-se!$"
+      ],
+      "SSAnne_2F_Room2_Text_DalePostBattle": [
+        "Festa?\\pA festa do cruzeiro ja devia\\nter acabado.$"
+      ]
+    }
+  },
+  "c": {}
+}

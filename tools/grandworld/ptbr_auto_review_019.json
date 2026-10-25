@@ -1,0 +1,845 @@
+{
+  "asm": {
+    "data/maps/SSAnne_2F_Room3_Frlg/scripts.inc": {
+      "SSAnne_2F_Room3_Text_SeenMonsFerryPeople": [
+        "Ah, sim, eu vi algumas pessoas\\nPokemon balsa atraves da agua!$"
+      ],
+      "SSAnne_2F_Room3_Text_SomeTreesCanBeCutDown": [
+        "Pequenas arvores podem ser\\ncortadas usando o movimento\\lCUT.\\pMas lembra-te disto! CUT e uma\\ntecnica HM.\\pUma vez aprendido, nao e tao\\nfacilmente descartado.$"
+      ]
+    },
+    "data/maps/SSAnne_2F_Room4_Frlg/scripts.inc": {
+      "SSAnne_2F_Room4_Text_LamarIntro": [
+        "Qual voce acha mais digno, um\\nPOKEMON forte ou raro?$"
+      ],
+      "SSAnne_2F_Room4_Text_LamarDefeat": [
+        "Tenho de vos saudar!$"
+      ],
+      "SSAnne_2F_Room4_Text_LamarPostBattle": [
+        "Pessoalmente, prefiro POKEMON\\nforte e raro.$"
+      ],
+      "SSAnne_2F_Room4_Text_DawnIntro": [
+        "Acho que nao te vi na festa.$"
+      ],
+      "SSAnne_2F_Room4_Text_DawnDefeat": [
+        "Calma!$"
+      ],
+      "SSAnne_2F_Room4_Text_DawnPostBattle": [
+        "Adoro o teu forte Pokemon! Como\\nte invejo por eles!$"
+      ]
+    },
+    "data/maps/SSAnne_2F_Room6_Frlg/scripts.inc": {
+      "SSAnne_2F_Room6_Text_ManyPeopleGetSeasick": [
+        "Ouvi dizer que muitas pessoas\\nficam enjoadas.$"
+      ]
+    },
+    "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc": {
+      "SSAnne_B1F_Room1_Text_PhillipIntro": [
+        "Matey, vais andar na prancha se\\nperderes!$"
+      ],
+      "SSAnne_B1F_Room1_Text_PhillipDefeat": [
+        "Argh! Espancado por um miudo!$"
+      ],
+      "SSAnne_B1F_Room1_Text_PhillipPostBattle": [
+        "Quando estamos no mar, Pokemon\\nas vezes passa por la.$"
+      ],
+      "SSAnne_B1F_Room1_Text_BarnyIntro": [
+        "Ola, estranho!\\pNao sei se es dos mares ou\\nmontanhas, mas para e conversa.\\pTodos os meus Pokemon sao do\\nmar.$"
+      ],
+      "SSAnne_B1F_Room1_Text_BarnyDefeat": [
+        "Raios! Deixei-o escapar!$"
+      ],
+      "SSAnne_B1F_Room1_Text_BarnyPostBattle": [
+        "Eu tambem ia fazer de ti minha\\nassistente!$"
+      ]
+    },
+    "data/maps/SSAnne_B1F_Room2_Frlg/scripts.inc": {
+      "SSAnne_B1F_Room2_Text_HueyIntro": [
+        "Ate nos marinheiros temos\\nPokemon, tambem!$"
+      ],
+      "SSAnne_B1F_Room2_Text_HueyDefeat": [
+        "Nao es mau.$"
+      ],
+      "SSAnne_B1F_Room2_Text_HueyPostBattle": [
+        "Apanhamos todos os nossos\\nPokemon enquanto estavamos no\\lmar.$"
+      ]
+    },
+    "data/maps/SSAnne_B1F_Room3_Frlg/scripts.inc": {
+      "SSAnne_B1F_Room3_Text_DylanIntro": [
+        "Gosto de criancas mal-humoradas\\ncomo tu!$"
+      ],
+      "SSAnne_B1F_Room3_Text_DylanDefeat": [
+        "Argh! Perdi-a!$"
+      ],
+      "SSAnne_B1F_Room3_Text_DylanPostBattle": [
+        "Sea POKEMON vive em aguas\\nprofundas. Vai precisar de um\\lROD para pesca-los!$"
+      ]
+    },
+    "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc": {
+      "SSAnne_B1F_Room4_Text_LeonardIntro": [
+        "Sabes o que dizem sobre\\nmarinheiros e combates!$"
+      ],
+      "SSAnne_B1F_Room4_Text_LeonardDefeat": [
+        "Certo! Boa batalha, amigo!$"
+      ],
+      "SSAnne_B1F_Room4_Text_LeonardPostBattle": [
+        "Hahaha! Queres ser marinheiro,\\namigo?$"
+      ],
+      "SSAnne_B1F_Room4_Text_DuncanIntro": [
+        "Vamos la, entao! O orgulho do\\nmeu marinheiro esta em jogo!$"
+      ],
+      "SSAnne_B1F_Room4_Text_DuncanDefeat": [
+        "O teu espirito afundou-me!$"
+      ]
+    },
+    "data/maps/SSAnne_CaptainsOffice_Frlg/scripts.inc": {
+      "SSAnne_CaptainsOffice_Text_YouHaveNoRoomForThis": [
+        "Nao! Nao tens espaco para isto!$"
+      ],
+      "SSAnne_CaptainsOffice_Text_YuckShouldntHaveLooked": [
+        "Eca! Nao devia ter olhado!$"
+      ]
+    },
+    "data/maps/SSAnne_Deck_Frlg/scripts.inc": {
+      "SSAnne_Deck_Text_ShipDepartingSoon": [
+        "A festa acabou. A nave partira\\nem breve.$"
+      ],
+      "SSAnne_Deck_Text_ScrubbingDecksHardWork": [
+        "Ufa! Esfregar decks e trabalho\\nduro!$"
+      ],
+      "SSAnne_Deck_Text_FeelSeasick": [
+        "Urf... sinto-me mal...\\pEnjoei, por isso sai para\\napanhar ar...$"
+      ],
+      "SSAnne_Deck_Text_EdmondIntro": [
+        "Amigo!\\pVamos fazer um joguinho!$"
+      ],
+      "SSAnne_Deck_Text_EdmondDefeat": [
+        "Es impressionante!$"
+      ],
+      "SSAnne_Deck_Text_EdmondPostBattle": [
+        "Quantos tipos de POKEMON voce\\nacha que existem neste mundo\\lgrande?$"
+      ],
+      "SSAnne_Deck_Text_TrevorIntro": [
+        "Ola! Estas enjoado?$"
+      ],
+      "SSAnne_Deck_Text_TrevorDefeat": [
+        "Fui descuidado!$"
+      ],
+      "SSAnne_Deck_Text_TrevorPostBattle": [
+        "O meu pai disse que ha 100\\ntipos de Pokemon. Acho que ha\\lmais.$"
+      ]
+    },
+    "data/maps/SSAnne_Kitchen_Frlg/scripts.inc": {
+      "SSAnne_Kitchen_Text_BusyOutOfTheWay": [
+        "Tu, meu pequeno! Estamos\\nocupados! Saiam da frente!$"
+      ],
+      "SSAnne_Kitchen_Text_SawOddBerryInTrash": [
+        "Vi um estranho BERRY no lixo. O\\nque sera que foi isso?$"
+      ],
+      "SSAnne_Kitchen_Text_SoBusyImDizzy": [
+        "Estou tao ocupado que estou a\\nficar tonto! Tens de me dar\\lespaco!$"
+      ],
+      "SSAnne_Kitchen_Text_PeelSpudsEveryDay": [
+        "Hum-de-hum-de-ho...\\pDescasco batatas todos os dias!\\nHum-hum...$"
+      ],
+      "SSAnne_Kitchen_Text_HearAboutSnorlaxItsAGlutton": [
+        "Ouviste falar do SNORLAX? E um\\nglutao.\\pNenhum outro POKEMON come e\\ndorme como SNORLAX pode e faz!$"
+      ],
+      "SSAnne_Kitchen_Text_OnlyGetToPeelOnions": [
+        "Sniff... sniff...\\pSo consigo descascar cebolas...\\nSnivel...$"
+      ],
+      "SSAnne_Kitchen_Text_SalmonDuSalad": [
+        "Salmon du Salad!\\pOs convidados podem reclamar\\nque e peixe novamente, no\\lentanto!$"
+      ],
+      "SSAnne_Kitchen_Text_EelsAuBarbecue": [
+        "Enguias au Churrasco!\\pOs convidados vao amotinar-se,\\nreceio.$"
+      ],
+      "SSAnne_Kitchen_Text_PrimeBeefsteak": [
+        "Primeiro Beefsteak!\\pMas ja chega de files de carne?$"
+      ]
+    },
+    "data/maps/SSAqua_1F/scripts.inc": {
+      "SSAqua_1F_Text_Sailor2_FirstTime": [
+        "Aqui esta a sua cabana.\\pSe o seu POKEMON estiver\\nferido, durma na cama.\\pIsso vai cura-los.$"
+      ],
+      "SSAqua_1F_Text_Sailor3": [
+        "Os passageiros sao todos\\ntreinadores.\\pEstao todos ansiosos para lutar\\nnas suas cabanas.$"
+      ],
+      "SSAqua_1F_Text_Grandpa": [
+        "Whoa! Com licenca. Estava com\\npressa!\\pA minha neta desapareceu!\\pE so uma menina. Se a vires,\\navisa-me!$"
+      ],
+      "SSAqua_1F_Text_GoAshorePrompt": [
+        "Queres ir para a praia?$"
+      ]
+    },
+    "data/maps/SSAqua_B1F/scripts.inc": {
+      "SSAqua_B1F_Text_BarfCan": [
+        "Eca! Nao devia ter olhado!$"
+      ],
+      "SSAqua_B1F_Text_FastShipOnDutySailor": [
+        "Ola, miudo. Podes procurar o\\nmeu amigo?\\pEle esta a brincar algures,\\naquele vagabundo preguicoso!\\pQuero encontra-lo, mas estou de\\nservico.$"
+      ],
+      "SSAqua_B1F_Text_FastShipOnDutySailorThanks": [
+        "Obrigado, miudo! Eu mastiguei-o\\nbem para que ele parasse de\\lrelaxar!$"
+      ],
+      "SSAqua_B1F_Text_FastShipOnDutySailorSawGirl": [
+        "Uma menina?\\pPosso te-la visto passar por\\naqui.$"
+      ],
+      "SSAqua_B1F_Text_SailorJeffSeen": [
+        "Nada vence uma batalha quando\\nestou no meu intervalo.$"
+      ],
+      "SSAqua_B1F_Text_SailorJeffBeaten": [
+        "Ganhar ou perder, a minha pausa\\nacabou!$"
+      ],
+      "SSAqua_B1F_Text_SailorJeffAfter": [
+        "Acho que nao posso ganhar se\\nnao falar a serio.$"
+      ],
+      "SSAqua_B1F_Text_PicnickerDebraSeen": [
+        "Estou tao aborrecida. Queres\\nlutar?$"
+      ],
+      "SSAqua_B1F_Text_PicnickerDebraBeaten": [
+        "Yow! Es demasiado forte!$"
+      ],
+      "SSAqua_B1F_Text_JugglerFritzSeen": [
+        "Urrf... estou enjoado!$"
+      ],
+      "SSAqua_B1F_Text_JugglerFritzBeaten": [
+        "Ja nao me consigo mexer...$"
+      ],
+      "SSAqua_B1F_Text_SailorGarrettSeen": [
+        "E aqui que nos marinheiros\\ntrabalhamos!$"
+      ],
+      "SSAqua_B1F_Text_SailorGarrettBeaten": [
+        "Perdi no meu campo...$"
+      ],
+      "SSAqua_B1F_Text_FisherJonahSeen": [
+        "Mesmo que estejamos no mar, nao\\nconsigo pescar!\\pIsto e aborrecido! Vamos lutar!$"
+      ],
+      "SSAqua_B1F_Text_FisherJonahBeaten": [
+        "Ja nao estou aborrecido...$"
+      ],
+      "SSAqua_B1F_Text_BlackbeltWaiSeen": [
+        "Estou a erguer as pernas com\\nforca\\pcontra o balanco da nave!$"
+      ],
+      "SSAqua_B1F_Text_BlackbeltWaiBeaten": [
+        "Balancei e rolei!$"
+      ],
+      "SSAqua_B1F_Text_SailorKennethBeaten": [
+        "A minha falta de treino e\\nobvia...$"
+      ],
+      "SSAqua_B1F_Text_SailorKennethAfter": [
+        "Oito badges! Devem provar que\\nbateste\\pGINASIO LEADERS.\\pNao admira que sejas tao bom!$"
+      ],
+      "SSAqua_B1F_Text_TeacherShirleySeen": [
+        "Nao ponhas um dedo nos meus\\nalunos!$"
+      ],
+      "SSAqua_B1F_Text_SchoolboyRickyBeaten": [
+        "Eu estava farto!$"
+      ],
+      "SSAqua_B1F_Text_SchoolboyRickyAfter": [
+        "Li que ha quatro desses paineis\\nde pedra.$"
+      ]
+    },
+    "data/maps/SSAqua_CaptainsRoom/scripts.inc": {
+      "SSAqua_CaptainsRoom_Text_GranddaughterHasToFindGrandpa": [
+        "Ola! Queres brincar comigo?\\p...Oh!\\pO avo esta preocupado comigo?\\pTenho de ir!\\pTenho de ir procurar o avo!$"
+      ],
+      "SSAqua_CaptainsRoom_Text_CaptainExhausting": [
+        "Ufa! Obrigado por teres vindo.\\pManter aquela menina divertida\\nfoi cansativo.$"
+      ]
+    },
+    "data/maps/SSAqua_PlayersRoom/scripts.inc": {
+      "SSAquaRooms_Text_TakeRestOnBed_PokecenterChallenge": [
+        "Desculpe, voce esta jogando com\\no desafio POKeCENTER!$"
+      ],
+      "SSAquaRooms_Text_TakeRestOnBed": [
+        "Ha uma cama... Vamos descansar.$"
+      ]
+    },
+    "data/maps/SSAqua_RoomNE/scripts.inc": {
+      "SSAqua_RoomNE_Text_HikerNolandSeen": [
+        "Estas sozinho? Entao vamos\\nlutar!$"
+      ],
+      "SSAqua_RoomNE_Text_HikerNolandBeaten": [
+        "Isso e demais para lidar!$"
+      ],
+      "SSAqua_RoomNE_Text_HikerNolandAfterBattle": [
+        "Sera que ha alguma montanha que\\nvalha a pena escalar em KANTO?$"
+      ]
+    },
+    "data/maps/SSAqua_RoomNNE/scripts.inc": {
+      "SSAqua_RoomNNE_Text_CooltrainermSeanSeen": [
+        "Vou ao KANTO testar as minhas\\nhabilidades.$"
+      ],
+      "SSAqua_RoomNNE_Text_CooltrainermSeanBeaten": [
+        "Eu queria ganhar!$"
+      ],
+      "SSAqua_RoomNNE_Text_CooltrainerfCarolSeen": [
+        "Estou a treinar para me tornar\\no CHAMP!$"
+      ],
+      "SSAqua_RoomNNE_Text_CooltrainerfCarolBeaten": [
+        "O que ha de tao diferente entre\\nnos?$"
+      ],
+      "SSAqua_RoomNNE_Text_CooltrainerfCarolAfterBattle": [
+        "Um dia vou vencer-te!$"
+      ]
+    },
+    "data/maps/SSAqua_RoomNW/scripts.inc": {
+      "SSAqua_RoomNW_Text_SailorStanlySeen": [
+        "Sim, sou marinheiro.\\pNao estava a brincar!\\pEsta cabana estava vazia, por\\nisso tirei uma sesta!\\pEsquece! Vamos lutar!$"
+      ],
+      "SSAqua_RoomNW_Text_SailorStanlyBeaten": [
+        "Desculpa! A culpa e toda minha!$"
+      ],
+      "SSAqua_RoomNW_Text_SailorStanlyAfterBattle": [
+        "Sendo marinheiro, tenho de\\nfazer trabalho fisico. E\\lcansativo!$"
+      ],
+      "SSAqua_RoomNW_Text_GentlemanEdwardSeen": [
+        "Oh, nao. Perdi uma coisa muito\\nimportante.$"
+      ],
+      "SSAqua_RoomNW_Text_GentlemanEdwardBeaten": [
+        "Nao consigo encontra-lo.$"
+      ],
+      "SSAqua_RoomNW_Text_GentlemanEdwardAfterBattle": [
+        "Desisto. Nao precisas de olhar.\\pEsquece isso!$"
+      ],
+      "SSAqua_RoomNW_Text_BurglarCoreyBeaten": [
+        "Que azar! Perdi!$"
+      ],
+      "SSAqua_RoomNW_Text_BurglarCoreyAfterBattle": [
+        "Encontrei uma bela moeda aqui.\\pAlguem deve te-lo perdido...$"
+      ]
+    },
+    "data/maps/SSAqua_RoomSE/scripts.inc": {
+      "SSAqua_RoomSE_Text_PokefanmColinSeen": [
+        "Miudo! Queres lutar comigo?$"
+      ],
+      "SSAqua_RoomSE_Text_PokefanmColinBeaten": [
+        "Es forte!$"
+      ],
+      "SSAqua_RoomSE_Text_PokefanmColinAfter": [
+        "Viajas sozinho? A tua mae nao\\nesta preocupada?$"
+      ],
+      "SSAqua_RoomSE_Text_TwinsMegandpeg1Seen": [
+        "Achas que sou um bebe? Isso nao\\ne justo!$"
+      ],
+      "SSAqua_RoomSE_Text_TwinsMegandpeg1Beaten": [
+        "Oh! Perdemos!$"
+      ],
+      "SSAqua_RoomSE_Text_TwinsMegandpeg1After": [
+        "O bebe e um nome rude para nos\\nchamar meninas!$"
+      ],
+      "SSAqua_RoomSE_Text_TwinsMegandpeg2Seen": [
+        "Nao sou um bebe! Nao e bom\\ndizer isso a uma senhora!$"
+      ],
+      "SSAqua_RoomSE_Text_TwinsMegandpeg2Beaten": [
+        "Oh! Perdemos!$"
+      ],
+      "SSAqua_RoomSE_Text_TwinsMegandpeg2After": [
+        "As vezes, os miudos sao mais\\nespertos que os adultos!$"
+      ]
+    },
+    "data/maps/SSAqua_RoomSSE/scripts.inc": {
+      "SSAqua_RoomSSE_Text_CantFindGranddaughter": [
+        "Ola...\\pAinda nao consigo encontrar a\\nminha neta.\\pSe ela estiver na nave, tudo\\nbem.\\pEla e uma crianca energica, por\\nisso pode estar a incomodar\\lalguem que me preocupa...$"
+      ],
+      "SSAqua_RoomSSE_Text_EntertainedGranddaughter": [
+        "{PLAYER}Foi? Ouvi dizer que\\nentreteve a minha neta.\\pQuero agradecer-lhe por isso.$"
+      ],
+      "SSAqua_RoomSSE_Text_GrandpaHaveThis": [
+        "Eu sei! Gostava que ficasses\\ncom isto!$"
+      ],
+      "SSAqua_RoomSSE_Text_GrandpaTravelling": [
+        "Estamos a viajar pelo mundo.$"
+      ],
+      "SSAqua_RoomSSE_Text_GranddaughterHadFun": [
+        "Diverti-me muito a jogar!$"
+      ]
+    },
+    "data/maps/SSAqua_RoomSSW/scripts.inc": {
+      "SSAqua_RoomSSW_Text_FirebreatherLyleSeen": [
+        "Vou a KANTO por espectaculos de\\ncuspir fogo!$"
+      ],
+      "SSAqua_RoomSSW_Text_FirebreatherLyleBeaten": [
+        "Falha... A chama e pequena...$"
+      ],
+      "SSAqua_RoomSSW_Text_FirebreatherLyleAfterBattle": [
+        "Acho que o fogo esta fraco no\\nmar. Nao importa? A serio?$"
+      ],
+      "SSAqua_RoomSSW_Text_BugCatcherKenSeen": [
+        "Vou visitar a minha avo para\\napanhar uns insectos!$"
+      ],
+      "SSAqua_RoomSSW_Text_BugCatcherKenBeaten": [
+        "Ooh, wow. Es forte!$"
+      ],
+      "SSAqua_RoomSSW_Text_BugCatcherKenAfterBattle": [
+        "Voce pode encontrar muitos\\nPOKEMON nas arvores de JOHTO!$"
+      ]
+    },
+    "data/maps/SSAqua_RoomSW/scripts.inc": {
+      "SSAqua_RoomSW_Text_BeautyCassieSeen": [
+        "Estou a tentar esquecer os meus\\nproblemas. Vamos lutar!$"
+      ],
+      "SSAqua_RoomSW_Text_BeautyCassieBeaten": [
+        "O meu coracao chora...$"
+      ],
+      "SSAqua_RoomSW_Text_GuitaristClydeBeaten": [
+        "Yowza! Distorcao total!$"
+      ],
+      "SSAqua_RoomSW_Text_GuitaristClydeAfterBattleMobile": [
+        "Eu ia fazer a minha estreia no\\nBATTLE TOWER...\\pDevia voltar a VERMILION e\\nrefazer o meu treino...$"
+      ]
+    },
+    "data/maps/SSTidalCorridor/scripts.inc": {
+      "SSTidal_Text_FastCurrentsHopeYouEnjoyVoyage": [
+        "Este ferry foi construido para\\natravessar correntes rapidas.\\pEsperamos que aproveite a sua\\nviagem connosco. Sinta-se a\\lvontade para explorar a nave.$"
+      ],
+      "SSTidal_Text_HopeYouEnjoyVoyage": [
+        "Esperamos que aproveite a sua\\nviagem no nosso ferry.$"
+      ],
+      "SSTidalCorridor_Text_CanRestInCabin2": [
+        "Vai levar algum tempo ate\\nchegarmos a terra, acho eu.\\pPodes descansar na tua cabana,\\nse quiseres. A tua cabana e no\\l2.\\pA cama e macia e macia. Posso\\natestar quao confortavel e!$"
+      ],
+      "SSTidalCorridor_Text_WeveArrived": [
+        "Chegamos!$"
+      ],
+      "SSTidalCorridor_Text_VisitOtherCabins": [
+        "Vai visitar outras cabanas.\\nTREINADORES entediado da viagem\\lde barco vai estar ansioso para\\la batalha.$"
+      ],
+      "SSTidalCorridor_Text_EnjoyYourCruise": [
+        "Aproveitem o cruzeiro!$"
+      ],
+      "SSTidalCorridor_Text_HorizonSpreadsBeyondPorthole": [
+        "O horizonte espalha-se para\\nalem da porta.$"
+      ],
+      "SSTidalCorridor_Text_Cabin1": [
+        "Cabine 1$"
+      ],
+      "SSTidalCorridor_Text_Cabin2": [
+        "Cabine 2$"
+      ],
+      "SSTidalCorridor_Text_Cabin3": [
+        "Cabine 3$"
+      ],
+      "SSTidalCorridor_Text_Cabin4": [
+        "Cabine 4$"
+      ]
+    },
+    "data/maps/SSTidalLowerDeck/scripts.inc": {
+      "SSTidalLowerDeck_Text_PhillipIntro": [
+        "Arrrgh! Estou farto de limpar\\neste lugar enorme!\\pVamos ter uma batalha rapida!$"
+      ],
+      "SSTidalLowerDeck_Text_PhillipDefeat": [
+        "Irmaozinho, eu perdi!$"
+      ],
+      "SSTidalLowerDeck_Text_LeonardIntro": [
+        "Este e o fundo do casco da\\nnave. Ha muito espaco. Vai\\lficar tudo bem para uma batalha\\lPOKEMON.$"
+      ],
+      "SSTidalLowerDeck_Text_LeonardDefeat": [
+        "Grande mano, eu perdi!$"
+      ]
+    },
+    "data/maps/SSTidalRooms/scripts.inc": {
+      "SSTidalRooms_Text_TakeRestOnBed": [
+        "Ha uma cama... Vamos descansar.$"
+      ],
+      "SSTidalRooms_Text_ColtonDefeat": [
+        "Foi uma partida agradavel!$"
+      ],
+      "SSTidalRooms_Text_ColtonPostBattle": [
+        "Fico tao entusiasmada\\nimaginando que tipo de POKEMON\\lvou ver no proximo CONTEST. A\\lantecipacao dele emociona!$"
+      ],
+      "SSTidalRooms_Text_MicahIntro": [
+        "Os teus amigos sao fortes?$"
+      ],
+      "SSTidalRooms_Text_MicahDefeat": [
+        "Os teus amigos sao, de facto,\\nfortes.$"
+      ],
+      "SSTidalRooms_Text_MicahPostBattle": [
+        "Os amigos nao precisam ser\\nhumanos. Para mim, POKEMON sao\\lamigos preciosos!$"
+      ],
+      "SSTidalRooms_Text_ThomasIntro": [
+        "Crianca... Bateste a porta?$"
+      ],
+      "SSTidalRooms_Text_ThomasDefeat": [
+        "Uma perda deve ser aceita sem\\npressa ou panico.$"
+      ],
+      "SSTidalRooms_Text_GarretIntro": [
+        "Chegaste mesmo a tempo.\\pEstou entediada. Podes\\nentreter-me.$"
+      ],
+      "SSTidalRooms_Text_GarretDefeat": [
+        "Isso serve.$"
+      ],
+      "SSTidalRooms_Text_GarretPostBattle": [
+        "Talvez consiga um iate para o\\nmeu pai. Um iate para mim e\\lpara Pokemon!$"
+      ],
+      "SSTidalRooms_Text_NaomiIntro": [
+        "Es tao adoravel. Gostaria de\\ntomar um cha? Ou preferes\\llutar?$"
+      ],
+      "SSTidalRooms_Text_NaomiDefeat": [
+        "Estou a ver. Tu es do tipo\\nactivo.$"
+      ],
+      "SSTidalRooms_Text_NaomiPostBattle": [
+        "Um cruzeiro mundial num navio\\nde luxo tem os seus encantos,\\ldevo dizer...\\pMas, admito que ha um lado\\natraente para visitar o HOENN\\lpelo ferry.$"
+      ]
+    },
+    "data/maps/SafariZoneGate/scripts.inc": {
+      "SafariZone_Text_SilentNPC": [
+        "..................\\pEu nao sou um falador.$"
+      ],
+      "SafariZone_Text_Kangaskhan": [
+        "KANGASKHAN:..................$"
+      ],
+      "SafariZone_Text_SlowpokeFan": [
+        "Ha muitos POKEMON para\\nescolher, mas nada supera a\\lbeleza de SLOWPOKE.\\pAs pessoas costumam dizer que\\neu pareco um!$"
+      ]
+    },
+    "data/maps/SafariZoneGate_SafariZoneEntrance/scripts.inc": {
+      "SafariZoneGate_SafariZoneEntrance_Text_BaobaCaveDone": [
+        "Obrigado.{PLAYER}E tudo o que\\npreciso de ver.\\pAgora que sei o que o DEVON\\nesta a tramar, serei capaz de\\lmanter o meu SAFARI\\lcompetitivo. Toma, toma isto\\lcomo recompensa pelos teus\\lproblemas.$"
+      ],
+      "SafariZoneGate_SafariZoneEntrance_Text_BaobaWrong": [
+        "Isso nao pode estar certo!$"
+      ],
+      "SafariZoneGate_SafariZoneEntrance_Text_BaobaDeclined": [
+        "O que vou fazer agora? Nunca\\nvamos acompanhar o DEVON!$"
+      ],
+      "SafariZoneGate_SafariZoneEntrance_Text_BaobaLastMon": [
+        "Nao aguento o teu ultimo\\nPOKEMON!$"
+      ],
+      "SafariZoneGate_SafariZoneEntrance_Text_Boy": [
+        "Ouvi dizer que a nova zona em\\nque estao a trabalhar tem\\ldragoes!$"
+      ],
+      "SafariZoneGate_SafariZoneEntrance_Text_Engineer": [
+        "Desculpe Trainer, esta area\\nainda esta em construcao. Volta\\lmais tarde!$"
+      ]
+    },
+    "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc": {
+      "SafariZone_Center_Text_CatchingMonsAsGifts": [
+        "Vou apanhar o Pokemon para\\nlevar para casa como prendas.$"
+      ]
+    },
+    "data/maps/SafariZone_East_RestHouse_Frlg/scripts.inc": {
+      "SafariZone_East_Text_HowManyDidYouCatch": [
+        "Quantos apanhaste? Estou farto\\ndo esforco!$"
+      ],
+      "SafariZone_East_Text_CaughtChanseyAllWorthwhile": [
+        "Apanhei um CHANSEY!\\pIsso faz com que tudo valha a\\npena.$"
+      ],
+      "SafariZone_East_Text_TiredFromAllTheFun": [
+        "Ufa! Estou cansado de toda a\\ndiversao!$"
+      ]
+    },
+    "data/maps/SafariZone_SecretHouse_Frlg/scripts.inc": {
+      "SafariZone_SecretHouse_Text_ReceivedHM03FromAttendant": [
+        "{PLAYER}recebeu HM03 do\\natendente!$"
+      ],
+      "SafariZone_SecretHouse_Text_ExplainSurf": [
+        "HM03 e SURF.\\pPOKEMON sera capaz de\\ntransportar voce atraves da\\lagua usando-o.\\pE, este HM nao e descartavel,\\nentao voce pode usa-lo\\lrepetidamente.\\pTens muita sorte em ganhar este\\npremio fabuloso!$"
+      ],
+      "SafariZone_SecretHouse_Text_DontHaveRoomForPrize": [
+        "Nao tens espaco para este\\npremio fabuloso!$"
+      ]
+    },
+    "data/maps/SafariZone_West_RestHouse_Frlg/scripts.inc": {
+      "SafariZone_West_Text_RocksMakeMonRunButEasierCatch": [
+        "Jogar ROCKS em Pokemon pode\\nfaze-los correr, mas sera mais\\lfacil de apanhar.$"
+      ],
+      "SafariZone_West_Text_BaitMakesMonStickAround": [
+        "Usar BAIT tornara POKEMON mais\\nprovavel ficar por perto se\\leles comecarem a comer.$"
+      ],
+      "SafariZone_West_Text_HikedLotsDidntSeeMonIWanted": [
+        "Caminhei muito, mas nao vi\\nnenhum Pokemon que quisesse.$"
+      ]
+    },
+    "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc": {
+      "SaffronCity_CopycatsHouse_1F_Text_DaughterIsSelfCentered": [
+        "A minha filha e tao\\negocentrica. Ela tem apenas\\lalguns amigos.$"
+      ],
+      "SaffronCity_CopycatsHouse_1F_Text_DaughterLikesToMimicPeople": [
+        "A minha filha gosta de imitar\\nas pessoas. E muito irritante.\\pA imitacao dela deu-lhe o\\napelido de COPYCAT por aqui.$"
+      ]
+    },
+    "data/maps/SaffronCity_CopycatsHouse_2F_Frlg/scripts.inc": {
+      "Text_MimicDeclined": [
+        "Nao gostas de MIMIC?$"
+      ],
+      "Text_MimicWhichMon": [
+        "Eu realmente amo MIMIC! Quem\\nvai aprender?$"
+      ],
+      "SaffronCity_CopycatsHouse_2F_Text_RareMonOnlyDoll": [
+        "Este e um POKEMON raro! Huh? E\\nso uma boneca!$"
+      ],
+      "SaffronCity_CopycatsHouse_2F_Text_MarioWearingABucket": [
+        "Um jogo com o MARIO a usar um\\nbalde na cabeca!$"
+      ]
+    },
+    "data/maps/SaffronCity_Dojo_Frlg/scripts.inc": {
+      "SaffronCity_Dojo_Text_MasterKoichiDefeat": [
+        "Hwa! Arrgh! Espancado!$"
+      ],
+      "SaffronCity_Dojo_Text_StayAndTrainWithUs": [
+        "Grunt! Fica e treina karate\\nconnosco!$"
+      ],
+      "SaffronCity_Dojo_Text_MikeIntro": [
+        "Hoargh! Tira os sapatos!$"
+      ],
+      "SaffronCity_Dojo_Text_MikeDefeat": [
+        "Desisto!$"
+      ],
+      "SaffronCity_Dojo_Text_HidekiIntro": [
+        "Ouvi dizer que es bom!\\nMostra-me!$"
+      ],
+      "SaffronCity_Dojo_Text_HidekiDefeat": [
+        "Juiz! Um ponto!$"
+      ],
+      "SaffronCity_Dojo_Text_AaronIntro": [
+        "Ola! Nao tenho medo de nada\\nduro!\\pParto pedras para treinar todos\\nos dias!$"
+      ],
+      "SaffronCity_Dojo_Text_AaronDefeat": [
+        "Yow! Dedos espetados!$"
+      ],
+      "SaffronCity_Dojo_Text_AaronPostBattle": [
+        "A unica coisa que nos assusta e\\no poder psiquico!$"
+      ],
+      "SaffronCity_Dojo_Text_HitoshiDefeat": [
+        "Oof! Desisto!$"
+      ],
+      "SaffronCity_Dojo_Text_HitoshiPostBattle": [
+        "Os principais cacas do outro\\nlado do comboio terrestre.$"
+      ],
+      "SaffronCity_Dojo_Text_YouWantHitmonchan": [
+        "Queres o HITMONCHAN que bate\\nnos pistoes?$"
+      ],
+      "SaffronCity_Dojo_Text_BetterNotGetGreedy": [
+        "Ja levaste esta.$"
+      ],
+      "SaffronCity_Dojo_Text_EnemiesOnEverySide": [
+        "Inimigos de todos os lados!$"
+      ],
+      "SaffronCity_Dojo_Text_GoesAroundComesAround": [
+        "O que vai, volta.$"
+      ]
+    },
+    "data/maps/SaffronCity_Frlg/scripts.inc": {
+      "SaffronCity_Text_WhatDoYouWantGetLost": [
+        "O que queres? Desaparece!$"
+      ],
+      "SaffronCity_Text_DontGetDefiantOrIllHurtYou": [
+        "Nao sejas desafiante! Ou terei\\nde te magoar!$"
+      ],
+      "SaffronCity_Text_CriminalLifeMakesMeFeelAlive": [
+        "A minha vida como criminoso\\nfaz-me sentir tao vivo!$"
+      ],
+      "SaffronCity_Text_WatchWhereYoureWalking": [
+        "Ow! Olha por onde andas!$"
+      ],
+      "SaffronCity_Text_WeCanExploitMonsAroundWorld": [
+        "Com o SILPH sob controle,\\npodemos explorar POKEMON em\\ltodo o mundo!\\pVamos ficar ricos, sim!$"
+      ],
+      "SaffronCity_Text_ImASecurityGuard": [
+        "Sou seguranca.\\pCriancas suspeitas que nao\\npermito!$"
+      ],
+      "SaffronCity_Text_HesTakingASnooze": [
+        "Ronca...\\pHah! Ele esta a dormir!$"
+      ]
+    },
+    "data/maps/SaffronCity_House_Frlg/scripts.inc": {
+      "SaffronCity_House_Text_DontLookAtMyLetter": [
+        "...Obrigado por escrever.\\nEspero ver-te em breve!\\pOla! Nao olhes para a minha\\ncarta!$"
+      ]
+    },
+    "data/maps/SaffronCity_Mart_Frlg/scripts.inc": {
+      "SaffronCity_Mart_Text_MaxRepelMoreEffectiveThanSuper": [
+        "MAX REPEL impede que o Pokemon\\nmais fraco apareca.\\pMAX REPEL mantem-se eficaz mais\\ndo que SUPER REPEL.$"
+      ],
+      "SaffronCity_Mart_Text_ReviveIsCostly": [
+        "REVIVE e caro, mas revive\\nPOKEMON desmaiado!$"
+      ]
+    },
+    "data/maps/SaffronCity_MrPsychicsHouse_Frlg/scripts.inc": {
+      "SaffronCity_MrPsychicsHouse_Text_YouWantedThis": [
+        "Espera! Nao digas nada!\\pTu querias isto!$"
+      ],
+      "SaffronCity_MrPsychicsHouse_Text_ReceivedTM29FromMrPsychic": [
+        "{PLAYER}recebeu TM29 de MR.\\nPSYCHIC.$"
+      ],
+      "SaffronCity_MrPsychicsHouse_Text_YouveNoRoom": [
+        "Onde pensas por isto? Nao tens\\nespaco.$"
+      ]
+    },
+    "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc": {
+      "SaffronCity_PokemonCenter_1F_Text_GrowthRatesDifferBySpecies": [
+        "As taxas de crescimento de\\nPOKEMON diferem de especies\\lpara especies.$"
+      ],
+      "SaffronCity_PokemonCenter_1F_Text_SilphCoVictimOfFame": [
+        "SILPH CO. e amplamente\\nconhecido por todos.\\pE uma vitima da sua propria\\nfama - atraiu o TEAM ROCKET.$"
+      ]
+    },
+    "data/maps/SaffronCity_PokemonTrainerFanClub_Frlg/scripts.inc": {
+      "SaffronCity_PokemonTrainerFanClub_Text_HuhYou": [
+        "Huh? Tu...$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_YourePlayerWereYourFansNow": [
+        "Talvez...\\pTu es! Voce e{PLAYER}!\\pEstavamos a falar de ti!\\pEstavamos a falar de como um\\ntreinador incrivelmente bom\\lapareceu.\\pE esse alguem es tu! Es tao\\nfixe!\\pEntao, decidimos que nos\\ntornariamos o seu FAN CLUB!\\pTodos esperamos que continues a\\nlutar e nos mostres como es\\lfixe.\\pAssim, talvez outras pessoas se\\ntornem fas como eu.$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_AlwaysCheerForYou": [
+        "Estarei sempre a torcer por ti!\\pVai.{PLAYER}Vai!$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_IllAlwaysBelieveInYou": [
+        "Acreditarei sempre em\\nti.{PLAYER}.\\pPor favor, mostre aos outros\\ncomo e quando luta a serio.$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_WasYourFanNotAnymore": [
+        "Desculpa. Eu era teu fa antes.\\pMas agora, parece ter perdido a\\nunidade que tinha antes.\\pUltimamente, eu\\nacho{STR_VAR_1}Tem sido muito\\lmais fixe.$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_EveryonesYourFanButICantBe": [
+        "Oh!{PLAYER}!\\pTem estado todos entusiasmados\\ncontigo recentemente.\\pCompreendo porque. Sei que es\\nforte.\\pMas, sabes que mais?\\pUma vez eu me\\ntornei{STR_VAR_1}Nao posso\\ldeixar de ser fa.$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_TrainersCoolWhenBattling": [
+        "Acho que os treinadores sao tao\\nfixes quando lutam.\\pTambem nao achas?$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_CanYouAutographShorts": [
+        "Oh! E...{PLAYER}Muito fixe!\\pOh! Sim!\\pPodes autografar alguma coisa?\\nE os meus calcoes?$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_CountingOnYou": [
+        "Por mais quente que tenha\\nsido...\\pE por mais frio que fique...\\pSempre acreditei em calcoes\\nusados!\\pConto contigo para continuares\\na ganhar!\\pAcredito em ti tanto quanto\\nacredito em calcoes!$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_HadPleasureOfWatchingYouBattle": [
+        "{PLAYER}Tive o prazer de te ver\\nlutar.\\pTraz de volta doces memorias da\\nminha propria juventude ha\\lmuito perdida.\\pQue voce continue a encontrar\\nsucesso. Tens um fa em mim!$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_NeverSeenTrainerOfYourMagnificence": [
+        "Viajei por todo o pais.\\pMas nunca vi um instrutor da\\nsua magnificencia.\\pTenha coragem em suas\\nhabilidades e continue lutando!\\pFaz-me essa promessa, meu jovem\\nidolo!$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_YouveStillAWaysToGo": [
+        "Ah, entao voce e o\\nmuito-falado{PLAYER}.\\pVoce certamente tem o olhar de\\num vencedor.\\pMas aceitar-te como um\\nverdadeiro grande Pokemon...\\p... ...\\pAinda tens muito que fazer!$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_YoullBeTalkedAboutIfYouKeepWinning": [
+        "Todos nos aqui reunidos somos\\nfas de Treinadores Pokemon.\\pA forma como ficam em\\nbatalha... Sao a imagem da\\lfrieza.\\pTalvez tambem lhe falem aqui,\\nse continuar a ganhar.$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_WantToBeLikeYouOneDay": [
+        "E...{PLAYER}E que...{PLAYER}!\\pQuero ser como{PLAYER}Um dia!$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_EveryoneButMeStoppedBeingYourFan": [
+        "Todos deixaram de ser{PLAYER}E\\nfa...\\pMas isso significa que posso\\nter{PLAYER}So para mim!\\pBoa! Vai em frente! O meu\\nunico{PLAYER}!$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_WantToBeLikeSabrina": [
+        "Sabes que mais? Quero ser como\\na SABRINA!\\pQuero ser uma rapariga psiquica\\ncomo ela!$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_CanIBecomeCoolTrainerOneDay": [
+        "Pergunto-me se posso tornar-me\\num treinador fixe um dia?$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_TheWayYouBattleIsCool": [
+        "Meu, oh, meu! Fixe! Muito fixe!\\p...Huh? Nao, tu nao.\\pTal como tu combates. Fixe.$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_ImOnlyOneLeftOfYourFans": [
+        "Yo,{PLAYER}!\\pParece que sou o unico que\\nsobrou dos teus fas.\\pMas, sabes, gosto de ser um\\nunico fa... E menos stressante.\\pContinuem!$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_LoveWayTrainerTalks": [
+        "{STR_VAR_1}E fixe, nao e? Adoro\\na maneira como ele fala.\\pGostaria de ter a oportunidade\\nde o conhecer pessoalmente uma\\lvez.$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_ImLoneTrainerFan": [
+        "Da para acreditar? Todos se\\ntornaram seus fas.\\pDepois de tudo o que passamos,\\nsou o unico{STR_VAR_1}Fa?\\pSer o unico{STR_VAR_1}E o meu\\nestilo.$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_AdoreWayYouBattle": [
+        "Meu Deus! Es mesmo tu?{PLAYER}?\\pTenho de te dizer, adoro a\\nforma como lutas.\\pEspero que continues. Serei o\\nteu fa numero um!$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_ImYourNumberOneFan": [
+        "Meu Deus! Se nao for{PLAYER}!\\pE tao decepcionante... Percebi\\nque sou o teu fa numero um!\\pBem, nao pode ser evitado!\\nDeixa-me animar-te, pelo menos!\\pViva, viva, viva.{PLAYER}!$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_TrainerHasBeenOnFire": [
+        "Recentemente,{STR_VAR_1}esteve\\nem chamas.\\pA forma como ele luta... E\\nassim que eu gosto!$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_EveryoneTalksAboutYou": [
+        "Ola! Se nao for{PLAYER}!\\pUltimamente, toda a gente fala\\nde ti.\\pSinto-me so porque\\nprefiro{STR_VAR_1}.$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_YouReallyAreAmazing": [
+        "Incrivel!{PLAYER}Es mesmo\\nincrivel!\\pEm vez de ficar a ver, talvez\\ndevesse tornar-me treinador\\ltambem.$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_ImYourOnlyFan": [
+        "Sou o teu unico fa...\\nSuspiro... Isto e solitario...\\pNao podes esforcar-te mais e\\nfazer os outros repararem em\\lti?$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_WhyCantOthersSeeMastersDignity": [
+        "Mestre.{STR_VAR_1}e tao\\ndigno... Ele e o meu tipo.\\pPorque e que os outros nao veem\\na dignidade que ele\\lsimplesmente exala?$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_BelieveInMasterWithAllMyHeart": [
+        "Eu acredito no\\nMestre{STR_VAR_1}com todo o meu\\lcoracao.\\pMesmo que eu seja o unico a\\nacreditar nele.\\pMas nunca me sentirei so.\\pNao se continuar a pensar no\\nMestre.{STR_VAR_1}.$"
+      ],
+      "SaffronCity_PokemonTrainerFanClub_Text_YourBattleStyleIsEducational": [
+        "Ola!\\pO teu estilo de luta e muito\\neducativo.\\pEspero que continues a ligar-te\\nao sucesso, hiyah!$"
+      ]
+    },
+    "data/maps/SeafloorCavern_Room1/scripts.inc": {
+      "SeafloorCavern_Room1_Text_Grunt1Intro": [
+        "Nao precisamos de uma crianca\\npor perto! Vai para casa!$"
+      ],
+      "SeafloorCavern_Room1_Text_Grunt1Defeat": [
+        "Quero ir para casa...$"
+      ],
+      "SeafloorCavern_Room1_Text_Grunt1PostBattle": [
+        "Quero ser promovido para poder\\nmandar nos GRUNTS...$"
+      ],
+      "SeafloorCavern_Room1_Text_Grunt2Intro": [
+        "Aquele submarino... E minusculo\\npor dentro. Estou todo dorido!$"
+      ],
+      "SeafloorCavern_Room1_Text_Grunt2Defeat": [
+        "Perder deixa-me dorido!$"
+      ],
+      "SeafloorCavern_Room1_Text_Grunt2PostBattle": [
+        "Aquele submarino que roubamos,\\nmeu, e brutal como um passeio.\\lEsta muito apertado la dentro!$"
+      ]
+    },
+    "data/maps/SeafloorCavern_Room3/scripts.inc": {
+      "SeafloorCavern_Room3_Text_Grunt5Intro": [
+        "Para que o nosso sonho se torne\\nreal, precisamos do poder de\\lPOKEMON.\\pMas intrometidos como tu usam o\\npoder de POKEMON para se\\lmeterem connosco, mesmo num\\llugar como este!\\pA vida nao funciona como\\nprecisamos!$"
+      ]
+    },
+    "data/maps/SeafloorCavern_Room4/scripts.inc": {
+      "SeafloorCavern_Room4_Text_Grunt3Intro": [
+        "Quem es tu? De onde vieste?$"
+      ],
+      "SeafloorCavern_Room4_Text_Grunt3Defeat": [
+        "Perdi-o...$"
+      ],
+      "SeafloorCavern_Room4_Text_Grunt3PostBattle": [
+        "Nao consigo encontrar a saida!\\pNao tenho medo. Nao me\\ninterpretes mal!$"
+      ],
+      "SeafloorCavern_Room4_Text_Grunt4Intro": [
+        "Quem es tu? Onde pensas que\\nvais?$"
+      ],
+      "SeafloorCavern_Room4_Text_Grunt4Defeat": [
+        "Falhei em ganhar!$"
+      ],
+      "SeafloorCavern_Room4_Text_Grunt4PostBattle": [
+        "O meu parceiro esqueceu-se do\\nmapa naquele submarino!\\pQue tal isso por ser inutil?$"
+      ]
+    },
+    "data/maps/SeafloorCavern_Room9/scripts.inc": {
+      "SeafloorCavern_Room9_Text_ArchieDefeat": [
+        "O que? Eu perdi para uma\\ncrianca como voce?!$"
+      ],
+      "SeafloorCavern_Room9_Text_RedOrbShinesByItself": [
+        "A ORB RED de repente comecou a\\nbrilhar sozinha!$"
+      ]
+    },
+    "data/maps/SeafoamIslands_B4F_Frlg/scripts.inc": {
+      "Text_RockSlideTeach": [
+        "Quando estamos numa montanha\\nrochosa como esta, os\\ldeslizamentos de rochas sao uma\\lameaca.\\pConsegues imaginar? Os Boulders\\ncairam em cima de ti?\\pIsso seria, tipo, waaaaaaaaaah!\\nTerror total!\\pNao pareces ter medo. Quer\\ntentar usar ROCK SLIDE?$"
+      ],
+      "Text_RockSlideDeclined": [
+        "Afinal, estas com medo.$"
+      ],
+      "Text_RockSlideTaught": [
+        "Pode ser assustador usa-lo\\nneste tunel...$"
+      ],
+      "SeafoamIslands_B4F_Text_BouldersMightChangeWaterFlow": [
+        "Dica: Os bulders podem mudar o\\nfluxo de agua.$"
+      ]
+    },
+    "data/maps/SevenIsland_Frlg/scripts.inc": {
+      "Text_SwordsDanceDeclined": [
+        "Bem, isso tambem e bom.$"
+      ]
+    }
+  },
+  "c": {}
+}
