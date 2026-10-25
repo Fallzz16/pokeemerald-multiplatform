@@ -244,94 +244,94 @@
     },
     "data/maps/CinnabarIsland_Gym_Frlg/scripts.inc": {
       "CinnabarIsland_Gym_Text_BlaineDefeat": [
-        "Queimei-me a nada! Nem sequer\\nrestam cinzas!\\pVoce ganhou o VOLCANOBADGE.$"
+        "Meu fogo se apagou!\\nNao sobrou nem cinza!\\pVoce conquistou a VOLCANOBADGE.$"
       ],
       "CinnabarIsland_Gym_Text_ReceivedTM38FromBlaine": [
-        "{PLAYER}recebeu TM38 de BLAINE.$"
+        "{PLAYER} recebeu TM38\\nde BLAINE.$"
       ],
       "CinnabarIsland_Gym_Text_MakeSpaceForThis": [
-        "Abram espaco para isto,\\ncrianca!$"
+        "Abra espaco para receber\\nisto, jovem TREINADOR!$"
       ],
       "CinnabarIsland_Gym_Text_ErikIntro": [
-        "Sabes como o halito de fogo\\nPOKEMON pode ficar quente?$"
+        "Sabe como a chama\\nde um POKEMON pode ser quente?$"
       ],
       "CinnabarIsland_Gym_Text_ErikDefeat": [
-        "Yow! Quente, quente, quente!$"
+        "Ai!\\nQuente, quente, quente!$"
       ],
       "CinnabarIsland_Gym_Text_ErikPostBattle": [
-        "Fogo, ou para ser mais preciso,\\ncombustao...\\p...Oxigenio no ar... Bla, bla,\\nbla, bla...$"
+        "O fogo, ou melhor,\\na combustao...\\pO oxigenio do ar...\\nE por ai vai...$"
       ],
       "CinnabarIsland_Gym_Text_QuinnIntro": [
-        "Eu era um ladrao, mas fui\\ndirecto como treinador.$"
+        "Eu era ladrao, mas resolvi\\nmudar e virar TREINADOR.$"
       ],
       "CinnabarIsland_Gym_Text_QuinnDefeat": [
-        "Eu rendo-me!$"
+        "Eu me rendo!$"
       ],
       "CinnabarIsland_Gym_Text_QuinnPostBattle": [
-        "Tenho um desejo incontrolavel\\nde roubar o Pokemon de outras\\lpessoas.$"
+        "As vezes tenho uma vontade\\nirresistivel de roubar\\lPOKEMON de outras pessoas...$"
       ],
       "CinnabarIsland_Gym_Text_AveryIntro": [
-        "Estudei muito Pokemon. Nao\\npodes ganhar!$"
+        "Estudei muito sobre POKEMON.\\nVoce nao vai vencer!$"
       ],
       "CinnabarIsland_Gym_Text_AveryDefeat": [
-        "Waah! Os meus estudos eram\\ninsuficientes!$"
+        "Ah! Preciso estudar mais!$"
       ],
       "CinnabarIsland_Gym_Text_AveryPostBattle": [
-        "As minhas teorias sao demasiado\\ncomplicadas para que\\lcompreendas.$"
+        "Minhas teorias sao complicadas\\ndemais para voce entender.$"
       ],
       "CinnabarIsland_Gym_Text_RamonDefeat": [
-        "Demasiado quente para lidar!$"
+        "Nao aguentei tanto calor!$"
       ],
       "CinnabarIsland_Gym_Text_RamonPostBattle": [
-        "Quem me dera que houvesse um\\nladrao Pokemon. Eu usaria isso!$"
+        "Queria que existisse\\num POKEMON ladrao.\\pEu usaria um desses!$"
       ],
       "CinnabarIsland_Gym_Text_DustyIntro": [
-        "Ja estive em muitos GINASIOS,\\nmas este e o melhor para mim.$"
+        "Ja visitei muitos GYMS,\\nmas este combina comigo!$"
       ],
       "CinnabarIsland_Gym_Text_DustyDefeat": [
-        "Yowza! Demasiado quente!$"
+        "Nossa!\\nQuente demais!$"
       ],
       "CinnabarIsland_Gym_Text_ZacIntro": [
-        "O fogo e fraco contra o H2O.$"
+        "FIRE e fraco contra WATER!$"
       ],
       "CinnabarIsland_Gym_Text_ZacDefeat": [
-        "Oh! Foi-se!$"
+        "Ah! Minha chama apagou!$"
       ],
       "CinnabarIsland_Gym_Text_GymGuyPostVictory": [
-        "{PLAYER}Venceste a marca de\\nfogo!$"
+        "{PLAYER}!\\nVoce venceu aquele\\lTREINADOR de fogo!$"
       ],
       "CinnabarIsland_Gym_Text_QuizQuestion1": [
         "CATERPIE evolui para METAPOD?$"
       ],
       "CinnabarIsland_Gym_Text_QuizQuestion2": [
-        "Existem nove BADS POKEMON\\nLEAGUE certificados?$"
+        "Existem nove INSIGNIAS\\noficiais da POKEMON LEAGUE?$"
       ],
       "CinnabarIsland_Gym_Text_QuizQuestion3": [
-        "O POLIWAG evolui tres vezes?$"
+        "POLIWAG evolui tres vezes?$"
       ],
       "CinnabarIsland_Gym_Text_QuizQuestion4": [
-        "Os movimentos electricos sao\\neficazes contra POKEMON do tipo\\lGROUND?$"
+        "Golpes ELECTRIC sao eficazes\\ncontra POKEMON do tipo GROUND?$"
       ],
       "CinnabarIsland_Gym_Text_QuizQuestion5": [
-        "POKEMON do mesmo tipo e nivel\\nnao sao identicos?$"
+        "Dois POKEMON da mesma especie\\ne nivel podem ser diferentes?$"
       ],
       "CinnabarIsland_Gym_Text_QuizQuestion6": [
         "TM28 contem TOMBSTONY?$"
       ],
       "CinnabarIsland_Gym_Text_CorrectGoOnThrough": [
-        "Tens toda a razao!\\pVa em frente!$"
+        "Resposta certa!\\nPode seguir em frente!$"
       ],
       "CinnabarIsland_Gym_Text_SorryBadCall": [
-        "Desculpa! Pessima ideia!$"
+        "Desculpe!\\nResposta errada!$"
       ],
       "CinnabarIsland_Gym_Text_RematchDefeat": [
-        "Booyah! Queimado em pedacos!$"
+        "Ha ha!\\nFiquei torrado!$"
       ],
       "CinnabarIsland_Gym_Text_RematchPost": [
-        "Yeeouch! Encharcaste as minhas\\nchamas!\\pVenha reacender esta batalha a\\nqualquer hora!$"
+        "Ai! Voce apagou minhas chamas!\\pVolte quando quiser\\nacender outra batalha!$"
       ],
       "CinnabarIsland_Gym_Text_RematchDecline": [
-        "Arrefeceu os pes? O meu fogo\\nvai esperar!$"
+        "Vai deixar para depois?\\nMeu fogo vai esperar!$"
       ]
     },
     "data/maps/EcruteakCity_Gym/scripts.inc": {
