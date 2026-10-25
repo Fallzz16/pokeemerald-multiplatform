@@ -25,6 +25,20 @@ int main(void) {
     printf("saveblock2.pokedex=%zu\n", offsetof(struct SaveBlock2, pokedex));
     printf("saveblock2.apprentices=%zu\n", offsetof(struct SaveBlock2, apprentices));
     printf("saveblock2.hallRecords1P=%zu\n", offsetof(struct SaveBlock2, hallRecords1P));
+    printf("saveblock2.playerApprentice=%zu\n", offsetof(struct SaveBlock2, playerApprentice));
+    printf("saveblock2.berryCrush=%zu\n", offsetof(struct SaveBlock2, berryCrush));
+    printf("saveblock2.hallRecords2P=%zu\n", offsetof(struct SaveBlock2, hallRecords2P));
+    printf("saveblock2.contestLinkResults=%zu\n", offsetof(struct SaveBlock2, contestLinkResults));
+    printf("frontier.bytes=%zu\n", sizeof(struct BattleFrontier));
+    printf("frontier.towerRecords=%zu\n", offsetof(struct BattleFrontier, towerRecords));
+    printf("frontier.towerInterview=%zu\n", offsetof(struct BattleFrontier, towerInterview));
+    printf("frontier.challengeStatus=%zu\n", offsetof(struct BattleFrontier, challengeStatus));
+    printf("frontier.domeTrainers=%zu\n", offsetof(struct BattleFrontier, domeTrainers));
+    printf("frontier.rentalMons=%zu\n", offsetof(struct BattleFrontier, rentalMons));
+    printf("frontier.battlePoints=%zu\n", offsetof(struct BattleFrontier, battlePoints));
+    printf("towerRecord.bytes=%zu\n", sizeof(struct EmeraldBattleTowerRecord));
+    printf("towerPokemon.bytes=%zu\n", sizeof(struct BattleTowerPokemon));
+    printf("towerInterview.bytes=%zu\n", sizeof(struct BattleTowerInterview));
     return 0;
 }
 """
@@ -38,6 +52,7 @@ def diagnose(world, compiler):
     text = text.replace(ASSERTION, "#ifndef GW_ABI_DIAGNOSTIC\n" + ASSERTION + "\n#endif")
     configurations = [
         ("gcc32", []),
+        ("gcc32-short-enums", ["-fshort-enums"]),
         ("gcc32-packed-2", ["-fpack-struct=2"]),
         ("gcc32-packed-1", ["-fpack-struct=1"]),
         ("gcc32-ms-bitfields", ["-mms-bitfields"]),
@@ -64,6 +79,38 @@ def diagnose(world, compiler):
                 run = subprocess.run([str(exe)], capture_output=True, text=True, timeout=20)
                 item["ran"] = run.returncode == 0
                 item["observed"] = run.stdout.splitlines()
+                if item["ran"]:
+                    measurements = {}
+                    for entry in item["observed"]:
+                        key, sep, value = entry.partition("=")
+                        if sep and value.isdigit():
+                            measurements[key] = int(value)
+                    item["values"] = measurements
+                    expected = {
+                        "saveblock2": 0xF2C,
+                        "saveblock2.playerName": 0,
+                        "saveblock2.pokedex": 0x18,
+                        "saveblock2.playerApprentice": 0xB0,
+                        "saveblock2.apprentices": 0xDC,
+                        "saveblock2.berryCrush": 0x1EC,
+                        "saveblock2.hallRecords1P": 0x21C,
+                        "saveblock2.hallRecords2P": 0x57C,
+                        "saveblock2.contestLinkResults": 0x624,
+                        "saveblock2.frontier": 0x64C,
+                        "frontier.bytes": 0x8E0,
+                        "frontier.towerRecords": 0x738 - 0x64C,
+                        "frontier.towerInterview": 0xBEB - 0x64C,
+                        "frontier.challengeStatus": 0xCA8 - 0x64C,
+                        "frontier.domeTrainers": 0xD24 - 0x64C,
+                        "frontier.rentalMons": 0xE70 - 0x64C,
+                        "frontier.battlePoints": 0xEB8 - 0x64C,
+                        "towerRecord.bytes": 0xEC,
+                    }
+                    item["layout_deltas"] = {
+                        key: observed - expected[key]
+                        for key, observed in measurements.items() if key in expected
+                    }
+
             result["profiles"].append(item)
     return result
 
