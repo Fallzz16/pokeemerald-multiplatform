@@ -6,7 +6,9 @@ import unittest
 from unittest.mock import patch
 import subprocess
 
-from tools.grandworld_native.final_link_probe import attempt, attach_coverage, verify_compiled_objects
+from tools.grandworld_native.final_link_probe import (
+    attempt, attach_coverage, verify_compiled_objects, require_complete_input_coverage,
+)
 
 
 class RealGameLinkGateTests(unittest.TestCase):
@@ -114,6 +116,50 @@ class RealGameLinkGateTests(unittest.TestCase):
         }), encoding="utf-8")
         with self.assertRaises(ValueError):
             verify_compiled_objects(source, data, self.code, self.data)
+
+    def test_link_success_requires_every_original_C_and_ASM_file(self):
+        # The on-disk files can match a partial compiler report exactly.
+        # That does NOT mean the complete original game was compiled.
+        candidate = self.root / "grandworld-WORLD-NOT-BOOT-VERIFIED"
+        candidate.write_bytes(b"an incomplete build must be deleted")
+        status = {
+            "link_succeeded": True,
+            "source_object_set_verified": True,
+            "data_object_set_verified": True,
+            "game_sources_all_compiled": False,
+            "game_data_all_compiled": True,
+        }
+        verified = require_complete_input_coverage(status, self.report)
+        self.assertFalse(verified["link_succeeded"])
+        self.assertFalse(verified["full_input_inventory_verified"])
+        self.assertEqual(verified["input_coverage_failed_gates"],
+                         ["game_sources_all_compiled"])
+        self.assertFalse(candidate.exists())
+
+        candidate.write_bytes(b"data missing")
+        status.update(link_succeeded=True, game_sources_all_compiled=True,
+                      game_data_all_compiled=False)
+        verified = require_complete_input_coverage(status, self.report)
+        self.assertFalse(verified["link_succeeded"])
+        self.assertEqual(verified["input_coverage_failed_gates"],
+                         ["game_data_all_compiled"])
+        self.assertFalse(candidate.exists())
+
+    def test_full_input_inventory_does_not_claim_gameplay(self):
+        status = {
+            "link_succeeded": True,
+            "game_boot_verified": False,
+            "gameplay_verified": False,
+            "source_object_set_verified": True,
+            "data_object_set_verified": True,
+            "game_sources_all_compiled": True,
+            "game_data_all_compiled": True,
+        }
+        verified = require_complete_input_coverage(status, self.report)
+        self.assertTrue(verified["link_succeeded"])
+        self.assertTrue(verified["full_input_inventory_verified"])
+        self.assertFalse(verified["game_boot_verified"])
+        self.assertFalse(verified["gameplay_verified"])
 
     def test_even_a_successful_link_is_not_a_boot_test(self):
         for folder in (self.code, self.data, self.platform):
