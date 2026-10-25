@@ -16,7 +16,7 @@ except ImportError:
     import engine_probe
 
 
-def survey(world, objects, limit=120):
+def survey(world, objects, limit=120, jobs=1):
     world = Path(world).resolve()
     if limit < len(engine_probe.SOURCES) or limit > 500:
         raise ValueError("limit must cover initial slice and be <= 500")
@@ -27,7 +27,7 @@ def survey(world, objects, limit=120):
     original = engine_probe.SOURCES
     try:
         engine_probe.SOURCES = tuple(selected)
-        data = engine_probe.compile_engine(world, objects, use_preproc=True)
+        data = engine_probe.compile_engine(world, objects, use_preproc=True, jobs=jobs)
     finally:
         engine_probe.SOURCES = original
     categories = Counter()
@@ -48,8 +48,10 @@ def main():
     p.add_argument("--objects", default="native-world-survey-objects")
     p.add_argument("--report", default="native-world-survey.json")
     p.add_argument("--limit", type=int, default=120)
+    p.add_argument("--jobs", type=int, default=1,
+                   help="Use 1..8 independent compiler workers")
     args = p.parse_args()
-    data = survey(args.world, args.objects, args.limit)
+    data = survey(args.world, args.objects, args.limit, args.jobs)
     Path(args.report).write_text(json.dumps(data, indent=2)+"\n", encoding="utf-8")
     print("REAL M8 NATIVE COMPILER SURVEY:", data["compiled"], "/", data["requested"],
           "objects compiled,", data["total_available_c_sources"], "C sources available")
