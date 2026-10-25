@@ -173,3 +173,25 @@ jobs:
           path: |
             build/native-win/package/**
           if-no-files-found: error
+
+  windows-standalone-mod-manager:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test graphical manager backend without a display
+        run: python -m unittest discover -s tools/grandworld_native/tests -p "test_plugin_ui.py" -v
+      - name: Build standalone tkinter plugin manager for Windows
+        run: |
+          python -m pip install --disable-pip-version-check pyinstaller
+          python -m PyInstaller --noconfirm --clean --onefile --windowed --name GW_Plugin_Manager --paths tools/grandworld_native tools/grandworld_native/plugin_ui.py
+          if (!(Test-Path dist/GW_Plugin_Manager.exe)) { throw "Standalone plugin manager was not produced" }
+      - name: Upload standalone GUI pack manager (not the game)
+        uses: actions/upload-artifact@v4
+        with:
+          name: grandworld-native-plugin-manager-windows-NOT-GAME
+          path: dist/GW_Plugin_Manager.exe
+          if-no-files-found: error
