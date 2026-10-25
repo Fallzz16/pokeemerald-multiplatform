@@ -125,7 +125,7 @@ class PortugueseStage1Tests(unittest.TestCase):
                     self.assertTrue(pt.plain_ptbr(part).isascii(), (file, label))
         total = sum(len(x) for x in pt.C_SECTIONS.values()) + sum(
             len(x) for x in pt.ASM_SECTIONS.values())
-        self.assertGreaterEqual(total, 1535)
+        self.assertGreaterEqual(total, 6787)
 
     def test_dewford_dialogue_batch_present(self):
         town = pt.ASM_SECTIONS['data/maps/DewfordTown/scripts.inc']
@@ -162,6 +162,18 @@ class PortugueseStage1Tests(unittest.TestCase):
         self.assertIn("{PLAYER}", "".join(
             pt.ASM_SECTIONS["data/maps/Route30/scripts.inc"][
                 "Route30_Text_Elm_Disaster"]))
+
+    def test_petalburg_norman_gym_fully_localized(self):
+        key = "data/maps/PetalburgCity_Gym/scripts.inc"
+        dialogue = pt.ASM_SECTIONS[key]
+        self.assertEqual(len(dialogue), 76)
+        for name in ("PetalburgCity_Gym_Text_NormanIntro",
+                     "PetalburgCity_Gym_Text_ReceivedBalanceBadge",
+                     "PetalburgCity_Gym_Text_NormanRematchNeedTwoMons"):
+            self.assertIn(name, dialogue)
+            self.assertTrue("".join(dialogue[name]).endswith("$"))
+        self.assertEqual("".join(dialogue[
+            "PetalburgCity_Gym_Text_ReceivedBalanceBadge"]).count("{PLAYER}"), 1)
 
     def test_escape_typo_fails(self):
         with self.assertRaisesRegex(ValueError, "unknown text escape"):
