@@ -4,6 +4,32 @@
 The goal is to preserve Grand World M8, the grass-only rule and PT-BR while
 auditing which native C/SDL2 platform services can be migrated.
 
+## P2 — estado técnico verificado (25/10/2026)
+
+Esta branch já superou a fase de diagnóstico de quatro módulos. A execução
+[CI 40210875980](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40210875980)
+confirmou **405/405 fontes C originais** da World/M8 compiladas para objetos
+GCC/i386, incluindo as três adaptações ARM `m4a.c`, `multiboot.c` e
+`random.c`. A **ligação relocável apenas do C** passou com **3.815**
+símbolos externos sem definição antes de juntar dados originais e backend.
+A compilação ARM da referência GBA + validação passou antes dos overlays.
+
+No mesmo CI, **13/14 fontes `data/*.s`** montaram. O único bloqueio foi
+`data/event_scripts.s` e três argumentos do macro `goto_if_ge` nos scripts
+de Celadon. Há correções experimentais posteriores na branch para a saída
+pré-processada real, com testes de regressão; a conclusão **14/14 precisa ser
+confirmada em novo CI** antes de anunciar essa etapa como concluída.
+
+O fluxo `native-source-lab` agora tenta, na ordem, a montagem total dos
+dados, ligação relocável C+dados, link ELF com SDL2/i386 e teste do primeiro
+frame real, sempre com gates e artefatos JSON. Não existe jogo nativo
+jogável comprovado, não houve testes de gameplay ou saves end-to-end,
+e nenhum `.exe` experimental deve ser chamado de port completo.
+
+Para os detalhes do checkpoint, limitações e links de commits, leia
+[AUDITORIA_E_PREPARO_PORT_REAL.md](AUDITORIA_E_PREPARO_PORT_REAL.md).
+A branch experimental e PR #78 permanecem isoladas; não faça merge automático.
+
 ## Source of truth
 
 1. Pinned World checkout: `evilchinesefood/PKMN-World`,
@@ -153,9 +179,10 @@ needs Python. All pack images/audio must have appropriate usage rights.
   Linux; Windows `gw_host_preview.exe` + `SDL2.dll` compiled in
   [run 40182024859](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40182024859).
   Neither contains a running Grand World engine.
-- P1 remains blocked by save-block layout invariants and differing GBA hardware
-  API definitions. The guarded disposable World header overlay and 32-bit probes
-  are experiments; examine their latest CI before reporting progress.
+- O layout medido de SaveBlock2 foi reproduzido em GCC/i386 sem desabilitar
+  os STATIC_ASSERTs, mas a leitura/escrita real de saves ainda requer testes.
+  A compilação completa das fontes C foi confirmada em CI; a linkagem da engine
+  completa e o gameplay seguem pendentes. Consulte as execuções por SHA.
 
 
 ## Graphical plug-in management and native Style Lab (Windows)
