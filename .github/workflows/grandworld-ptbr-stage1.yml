@@ -15,6 +15,8 @@ on:
       - 'tools/grandworld/audit_ptbr_coverage.py'
       - 'tools/grandworld/adapt_ptbr_greedy_gifts_qa.py'
       - 'tools/grandworld/tests/test_adapt_ptbr_greedy_gifts_qa.py'
+      - 'tools/grandworld/adapt_ptbr_healthboxes_qa.py'
+      - 'tools/grandworld/tests/test_adapt_ptbr_healthboxes_qa.py'
       - 'tools/grandworld/tests/test_translate_ptbr_stage1.py'
       - 'docs/GRANDWORLD_PTBR_TRANSLATION.md'
   workflow_dispatch:
@@ -89,6 +91,8 @@ jobs:
           PY
           python3 grandworld/tools/grandworld/adapt_ptbr_greedy_gifts_qa.py world
           python3 grandworld/tools/grandworld/adapt_ptbr_greedy_gifts_qa.py world --apply
+          python3 grandworld/tools/grandworld/adapt_ptbr_healthboxes_qa.py world
+          python3 grandworld/tools/grandworld/adapt_ptbr_healthboxes_qa.py world --apply
           git -C world diff --check
       - name: Compile actual GBA cartridge candidate
         shell: bash
@@ -181,3 +185,5 @@ jobs:
             ptbr-smoke-boot.log
             ptbr-smoke-title.log
             ptbr-world-51-suites.log
+            world/_pwtest/*.sweep.out
+            world/_pwtest/*.FAIL
