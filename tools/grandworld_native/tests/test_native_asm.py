@@ -1,4 +1,8 @@
 import unittest
+from pathlib import Path
+import shutil
+import subprocess
+import tempfile
 
 from tools.grandworld_native.native_asm import normalize_host_assembly
 
@@ -59,6 +63,36 @@ class NativeAsmTests(unittest.TestCase):
         self.assertEqual(changed, 2)
         self.assertEqual(again, 0)
         self.assertEqual(first, second)
+
+
+    @unittest.skipUnless(shutil.which("gcc") and shutil.which("objcopy"),
+                         "host GNU assembler and objcopy required")
+    def test_real_compound_string_assembles_to_identical_game_bytes(self):
+        """An original GBA charmap resource remains | followed by 0xFF."""
+        original = (
+            '.section\t.rodata.compound_string.08e3c907b5827d0c,"aM",%progbits,2 @,"a"\n'
+            '.type sCompoundString_08e3c907b5827d0c, @object\n'
+            '.size sCompoundString_08e3c907b5827d0c, 2\n'
+            'sCompoundString_08e3c907b5827d0c:\n'
+            '.ascii "|\\377"\n'
+        )
+        fixed, changed = normalize_host_assembly(original)
+        self.assertEqual(changed, 1)
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            source, obj, data = root / "resource.s", root / "resource.o", root / "resource.bin"
+            source.write_text(fixed, encoding="utf-8")
+            cc = subprocess.run(["gcc", "-x", "assembler", "-c",
+                                 str(source), "-o", str(obj)],
+                                capture_output=True, text=True)
+            self.assertEqual(cc.returncode, 0, cc.stderr)
+            exported = subprocess.run([
+                "objcopy", "--dump-section",
+                ".rodata.compound_string.08e3c907b5827d0c=" + str(data),
+                str(obj)
+            ], capture_output=True, text=True)
+            self.assertEqual(exported.returncode, 0, exported.stderr)
+            self.assertEqual(data.read_bytes(), b"|\xff")
 
 
 if __name__ == '__main__':
