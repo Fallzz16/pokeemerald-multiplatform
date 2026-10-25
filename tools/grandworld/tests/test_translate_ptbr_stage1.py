@@ -108,6 +108,25 @@ class PortugueseStage1Tests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "unsupported PT-BR glyph"):
             pt.validate_glyphs(self.root, "não")
 
+    def test_every_portuguese_entry_uses_plain_ascii(self):
+        # The user explicitly requested no accents, cedilla or new font glyphs.
+        self.assertEqual(pt.plain_ptbr("Você não quer poções, ação e evolução?"),
+                         "Voce nao quer pocoes, acao e evolucao?")
+        self.assertEqual(pt.plain_ptbr("POKéMON e POKéDEX"), "POKEMON e POKEDEX")
+        for file, entries in pt.C_SECTIONS.items():
+            for label, (old, translated) in entries.items():
+                normalized = pt.plain_ptbr(translated)
+                self.assertTrue(normalized.isascii(), (file, label))
+                self.assertNotIn("ç", normalized)
+                pt.validate_translation(self.root, old, normalized, label)
+        for file, entries in pt.ASM_SECTIONS.items():
+            for label, parts in entries.items():
+                for part in parts:
+                    self.assertTrue(pt.plain_ptbr(part).isascii(), (file, label))
+        total = sum(len(x) for x in pt.C_SECTIONS.values()) + sum(
+            len(x) for x in pt.ASM_SECTIONS.values())
+        self.assertGreaterEqual(total, 450)
+
     def test_escape_typo_fails(self):
         with self.assertRaisesRegex(ValueError, "unknown text escape"):
             pt.validate_translation(self.root, r"Hello\n", r"Oi\z", "bad")
