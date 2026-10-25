@@ -41,14 +41,25 @@ def valid_id(value):
 
 def validate_zip(filename):
     with zipfile.ZipFile(filename) as z:
-        files = [i for i in z.infolist() if not i.is_dir()]
+        entries = z.infolist()
+        if len(entries) > MAX_FILES * 2:
+            raise PackError("too many archive entries")
+        files = [i for i in entries if not i.is_dir()]
         if len(files) > MAX_FILES:
             raise PackError("too many files")
+        # Directory entries are not extracted, but must still be safe.
+        for info in entries:
+            path = info.filename[:-1] if info.is_dir() else info.filename
+            if not valid_path(path):
+                raise PackError("unsafe archive path")
+            if stat.S_ISLNK((info.external_attr >> 16) & 0xFFFF):
+                raise PackError("symlink entries are forbidden")
+            if info.is_dir() and info.file_size:
+                raise PackError("directory entry with data")
+        all_names = [i.filename.rstrip("/") for i in entries]
+        if len({name.casefold() for name in all_names}) != len(all_names):
+            raise PackError("duplicated/case-colliding archive paths")
         names = [i.filename for i in files]
-        if any(not valid_path(name) for name in names):
-            raise PackError("unsafe archive path")
-        if len({name.casefold() for name in names}) != len(names):
-            raise PackError("duplicated/case-colliding file paths")
         total = 0
         for info in files:
             if stat.S_ISLNK((info.external_attr >> 16) & 0xFFFF):
@@ -73,7 +84,7 @@ def validate_zip(filename):
         if not valid_id(manifest.get("id")):
             raise PackError("invalid pack id")
         version = manifest.get("version")
-        if not isinstance(version, str) or len(version) > 32 or not version or not all(c.isdigit() or c == "." for c in version) or len(version.split(".")) != 3:
+        if not isinstance(version, str) or len(version) > 32 or not version or not all(c.isdigit() or c == "." for c in version) or len(version.split(".")) != 3 or any(not part.isdigit() for part in version.split(".")):
             raise PackError("version must be major.minor.patch")
         assets = manifest.get("assets")
         if not isinstance(assets, list) or not assets or len(assets) > 2000:
@@ -95,7 +106,7 @@ def validate_zip(filename):
                 raise PackError("unsupported asset type")
             if not isinstance(asset_id, str) or not 1 <= len(asset_id) <= 128 or any(c not in PACK_ID and c != "/" for c in asset_id):
                 raise PackError("invalid logical asset id")
-            if asset_id.startswith("/") or ".." in asset_id.split("/"):
+            if not valid_path(asset_id):
                 raise PackError("unsafe logical asset id")
             if path.casefold() in listed or asset_id.casefold() in logical:
                 raise PackError("duplicate asset entry/id")
