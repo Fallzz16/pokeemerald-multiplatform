@@ -9,8 +9,12 @@ import os
 from pathlib import Path
 import subprocess
 import sys
-import tkinter as tk
-from tkinter import filedialog, messagebox, ttk
+try:
+    import tkinter as tk
+    from tkinter import filedialog, messagebox, ttk
+except ImportError:  # Backend and CI remain usable without a desktop toolkit.
+    tk = None
+    filedialog = messagebox = ttk = None
 
 try:
     from .pack_manager import install, toggle, list_packs, safe_index
@@ -204,6 +208,8 @@ def main():
     p.add_argument("--mods", default="mods")
     p.add_argument("--lab", default="gw_theme_lab.exe" if sys.platform == "win32" else "gw_theme_lab")
     args = p.parse_args()
+    if tk is None:
+        p.exit(1, "Tkinter indisponivel; instale o suporte Tk ou use pack_manager.py.\n")
     window = tk.Tk()
     executable = Path(args.lab)
     PluginManagerWindow(window, args.mods, executable if executable.is_file() else None)
