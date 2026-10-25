@@ -60,6 +60,7 @@ def diagnose(world, compiler):
     configurations = [
         ("gcc32", [], False),
         ("gcc32-dome-aligned-4", [], True),
+        ("gcc32-time-dome-aligned-4", [], "both"),
         ("gcc32-short-enums", ["-fshort-enums"], False),
         ("gcc32-packed-2", ["-fpack-struct=2"], False),
         ("gcc32-packed-1", ["-fpack-struct=1"], False),
@@ -86,6 +87,17 @@ def diagnose(world, compiler):
                     raise ValueError("BattleDomeTrainer anchor mismatch")
                 profile_header = profile_header.replace(
                     anchor, anchor[:-2] + "} __attribute__((aligned(4)));")
+            if aligned == "both":
+                time_anchor = ("struct Time\\n{\\n"
+                               "    /*0x00*/ s16 days;\\n"
+                               "    /*0x02*/ s8 hours;\\n"
+                               "    /*0x03*/ s8 minutes;\\n"
+                               "    /*0x04*/ s8 seconds;\\n"
+                               "};")
+                if profile_header.count(time_anchor) != 1:
+                    raise ValueError("Time struct alignment anchor mismatch")
+                profile_header = profile_header.replace(
+                    time_anchor, time_anchor[:-2] + "} __attribute__((aligned(4)));")
             (profile_dir / "global.h").write_text(profile_header, encoding="utf-8")
             exe = d / (name + ".bin")
             command = [compiler, "-m32", "-std=gnu99", "-DPORTABLE", "-DMODERN=1",
