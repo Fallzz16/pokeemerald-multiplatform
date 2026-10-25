@@ -41,6 +41,7 @@ def valid_path(path):
 
 def valid_id(value):
     return (isinstance(value, str) and 3 <= len(value) <= 64
+            and value != "classic"  # Reserved built-in style, never a pack name.
             and set(value) <= PACK_ID and value[0].isalnum())
 
 def validate_zip(filename):
