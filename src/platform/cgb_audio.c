@@ -33,7 +33,8 @@ void cgb_audio_init(u32 rate){
     soundChannelPos[1] = 1;
     PU1Table = PU0;
     PU2Table = PU0;
-    sampleRate = rate;
+    /* Prevent division by zero or zero-speed audio loops from bad config. */
+    sampleRate = rate >= 32 ? rate : 32768;
     gb.ch4LFSR[0] = 0x8000;
     gb.ch4LFSR[1] = 0x80;
     lfsrMax[0] = 0x8000;
@@ -107,6 +108,10 @@ void cgb_trigger_note(u8 channel){
 
 
 void cgb_audio_generate(u16 samplesPerFrame){
+    /* The caller is responsible for respecting the allocated mixed buffer.
+     * A malformed callback length must never corrupt adjacent host memory. */
+    if (samplesPerFrame > MIXED_AUDIO_BUFFER_SIZE || sampleRate == 0)
+        return;
     float *outBuffer = gb.outBuffer;
     switch(REG_NR11 & 0xC0){
         case 0x00:
