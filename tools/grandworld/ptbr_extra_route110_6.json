@@ -1,0 +1,136 @@
+{
+  "asm": {
+    "data/maps/Route110/scripts.inc": {
+      "Route110_Text_WeCantTalkAboutAquaActivities": [
+        "As atividades da TEAM AQUA...\\nAinda nao podemos contar nada.$"
+      ],
+      "Route110_Text_KickUpARuckus": [
+        "Quero ir logo a SLATEPORT\\ne causar uma confusao!$"
+      ],
+      "Route110_Text_MyFirstJobInAqua": [
+        "E meu primeiro trabalho\\nna TEAM AQUA. Estou nervoso.$"
+      ],
+      "Route110_Text_AquaActionsBringSmiles": [
+        "As acoes da TEAM AQUA vao\\ntrazer alegria a todos!$"
+      ],
+      "Route110_Text_MayLetsBattle": [
+        "MAY: Oi, {PLAYER}{KUN}!\\nQuanto tempo!\\pEnquanto procurava POKEMON,\\nmeu time ficou mais forte.\\pQue tal uma batalha?$"
+      ],
+      "Route110_Text_MayDefeated": [
+        "Nossa!\\nVoce e melhor do que pensei!$"
+      ],
+      "Route110_Text_MayTakeThis": [
+        "MAY: {PLAYER}{KUN}, voce tambem\\ntreinou bastante, nao e?\\pMerece uma recompensa!\\nTome, e para voce!$"
+      ],
+      "Route110_Text_MayExplainItemfinder": [
+        "MAY: Este e o ITEMFINDER.\\pEle faz um som quando detecta\\num item escondido por perto.\\pAte logo, {PLAYER}{KUN}!\\pTreine bastante ate\\nnosso proximo encontro!$"
+      ],
+      "Route110_Text_BrendanLetsBattle": [
+        "BRENDAN: Ei, {PLAYER}!\\nEntao voce estava aqui!\\pTem treinado seus POKEMON?\\nVou conferir!$"
+      ],
+      "Route110_Text_BrendanDefeated": [
+        "Hmm...\\nVoce luta muito bem.$"
+      ],
+      "Route110_Text_BrendanTakeThis": [
+        "BRENDAN: {PLAYER}, voce ficou\\nforte sem eu perceber!\\pMuito bem!\\nPegue isto!$"
+      ],
+      "Route110_Text_BrendanExplainItemfinder": [
+        "BRENDAN: Este e o ITEMFINDER.\\pEle avisa com um som quando\\nha um item escondido perto.\\pAgora vou procurar\\nnovos POKEMON. Ate mais!$"
+      ],
+      "Route110_Text_RideBikeAtFullSpeed": [
+        "Deve ser demais correr\\ncom a BIKE na CYCLING ROAD!$"
+      ],
+      "Route110_Text_HairStreamsBehindMe": [
+        "Gostou do meu cabelo preto\\nvoando com o vento?\\pDeixei crescer so\\npara pedalar assim!$"
+      ],
+      "Route110_Text_YouGotBikeFromRydel": [
+        "Ei! Essa BIKE e da RYDEL!\\pO nome esta escrito nela\\nde ponta a ponta!\\pRYDEL, RYDEL, RYDEL...\\nEsta em todo lugar!\\pUse bastante sua BIKE!\\nE uma otima propaganda!$"
+      ],
+      "Route110_Text_TwoRoads": [
+        "Uma estrada em cima,\\noutra embaixo...\\pUma para pessoas e outra\\npara POKEMON. Parece justo.$"
+      ],
+      "Route110_Text_WalkOnTheLowRoad": [
+        "Nao tenho uma BIKE, entao\\nvou pelo caminho de baixo.$"
+      ],
+      "Route110_Text_BikeTechniques": [
+        "Aprender manobras torna\\npedalar ainda mais divertido!\\pAlguns lugares so podem\\nser alcancados com uma BIKE.$"
+      ],
+      "Route110_Text_WhichShouldIChoose": [
+        "Qual caminho devo seguir?\\pIr direto a MAUVILLE pela\\nCYCLING ROAD ou procurar\\lPOKEMON na estrada de baixo?$"
+      ],
+      "Route110_Text_CyclingChallengeResultSummary": [
+        "Numero de batidas:\\n{STR_VAR_1}\\pTempo total:\\n{STR_VAR_2}$"
+      ],
+      "Route110_Text_ChallengeReactionBest": [
+        "Bravo! Espetacular!\\pSeu amor pelo ciclismo\\nvem do fundo do coracao!\\pVoce me impressionou!$"
+      ],
+      "Route110_Text_ChallengeReactionGood": [
+        "Sua tecnica e excelente!\\pTente ir um pouco mais rapido\\nsem bater em nada.$"
+      ],
+      "Route110_Text_ChallengeReactionOk": [
+        "Voce ainda pode melhorar.\\pMas nunca perca a alegria\\nde andar de bicicleta!$"
+      ],
+      "Route110_Text_ChallengeReactionBad": [
+        "Nossa... Que pedalada\\nassustadora!\\pVoce precisa praticar\\nmuito mais!$"
+      ],
+      "Route110_Text_ChallengeReactionWorst": [
+        "Estou sem palavras...\\pTalvez andar de BIKE\\nnao seja sua especialidade.\\pPense em devolver\\na BIKE para RYDEL.$"
+      ],
+      "Route110_Text_RatedForNumberOfCollisions": [
+        "Esta e a CYCLING ROAD.\\pPedale de MAUVILLE ate\\nSLATEPORT com uma MACH BIKE.\\pSua nota depende das batidas\\ne do tempo de percurso.$"
+      ],
+      "Route110_Text_AlwaysAimHigher": [
+        "Seja qual for o resultado,\\nvolte para tentar novamente!\\pProcure sempre melhorar!$"
+      ],
+      "Route110_Text_AcroBikesDoNotQualify": [
+        "Na CYCLING ROAD, avaliamos\\no tempo e as batidas\\nde quem usa MACH BIKE.\\pACRO BIKE nao vale: ela\\ne mais facil de manobrar!$"
+      ],
+      "Route110_Text_SlateportCitySign": [
+        "ROUTE 110\\n{DOWN_ARROW} SLATEPORT CITY$"
+      ],
+      "Route110_Text_CyclingRoadSign": [
+        "SEASIDE CYCLING ROAD$"
+      ],
+      "Route110_Text_AquaWasHere": [
+        "TEAM AQUA passou por aqui!\\pAlguem escreveu isso na placa,\\nmas outra pessoa cobriu.\\pAgora esta escrito:\\nTEAM MAGMA manda aqui!$"
+      ],
+      "Route110_Text_Route103Sign": [
+        "ROUTE 110\\n{LEFT_ARROW} ROUTE 103$"
+      ],
+      "Route110_Text_SeasideParkingSign": [
+        "ESTACIONAMENTO DA PRAIA$"
+      ],
+      "Route110_Text_MauvilleCitySign": [
+        "ROUTE 110\\n{UP_ARROW} MAUVILLE CITY$"
+      ],
+      "Route110_Text_TrainerTipsPrlzSleep": [
+        "DICAS PARA TREINADORES\\pParalisar ou adormecer o rival\\npode ajudar na batalha.\\pEssas condicoes tambem\\nfacilitam a captura!$"
+      ],
+      "Route110_Text_TrainerTipsRegisterItems": [
+        "DICAS PARA TREINADORES\\pAperte SELECT na BAG para\\norganizar seus itens.$"
+      ],
+      "Route110_Text_TrickHouseSign": [
+        "Tres passos {RIGHT_ARROW} e dois {UP_ARROW}\\nate a TRICK HOUSE!$"
+      ],
+      "Route110_Text_BestRecord": [
+        "MELHOR RECORDE ATE AGORA\\pBatidas: {STR_VAR_1}\\pTempo: {STR_VAR_2}$"
+      ],
+      "Route110_Text_ThereIsNoRecord": [
+        "MELHOR RECORDE ATE AGORA\\pNinguem tentou o desafio.\\nAinda nao ha recorde!$"
+      ],
+      "Route110_Text_ImagineSeeingYouHere": [
+        "PROF. BIRCH: Oi, {PLAYER}{KUN}!\\nQue surpresa encontrar voce!\\pOnde esta {RIVAL}?$"
+      ],
+      "Route110_Text_HeardYouInstallMatchCall": [
+        "Ah, entendi!\\nVoces estao viajando separados.\\pSoube que seu POKENAV\\ntem o sistema MATCH CALL.\\pVou registrar seu numero!\\pAssim posso acompanhar\\nsua POKEDEX a distancia.\\p... ... ...$"
+      ],
+      "Route110_Text_RegisteredBirchInPokenav": [
+        "PROF. BIRCH foi registrado\\nno POKENAV.$"
+      ],
+      "Route110_Text_KeepAnEyeOutForRival": [
+        "PROF. BIRCH: {PLAYER}{KUN}...\\pCuide de {RIVAL} se o encontrar.\\pAgora preciso ir.\\nAte mais, {PLAYER}{KUN}!$"
+      ]
+    }
+  },
+  "c": {}
+}
