@@ -1,0 +1,82 @@
+{
+  "asm": {
+    "data/maps/PetalburgCity_Gym/scripts.inc": {
+      "PetalburgCity_Gym_Text_RematchAsk": [
+        "NORMAN: Meu proprio filho\\nse tornou CAMPEAO.\\pVamos lutar de verdade?$"
+      ],
+      "PetalburgCity_Gym_Text_RematchPost": [
+        "NORMAN: Voce me superou.\\pVolte quando quiser\\ndesafiar seu velho pai!$"
+      ],
+      "PetalburgCity_Gym_Text_RematchDecline": [
+        "NORMAN: Fica para outra hora.\\pEstarei aqui quando\\nquiser batalhar.$"
+      ],
+      "PetalburgCity_Gym_Text_DadYoureHereWithYourPokemon": [
+        "PAI: Hm? {PLAYER}!\\pJa terminou sua mudanca?\\nVeio ate aqui sozinho?\\pAh, entendi. Voce esta\\ncom seus POKEMON.\\pEntao quer virar TREINADOR\\ncomo eu, {PLAYER}?\\pIsso e otimo!\\nVou torcer por voce!$"
+      ],
+      "PetalburgCity_Gym_Text_DadOhYoureWallyRight": [
+        "PAI: Hm? Voce e...\\nAh, WALLY, certo?$"
+      ],
+      "PetalburgCity_Gym_Text_WallyIveNeverCaughtAPokemon": [
+        "WALLY: Vou ficar com parentes\\nem VERDANTURF TOWN.\\pNao quero me sentir sozinho,\\nentao queria levar um POKEMON.\\pMas nunca capturei um.\\nNao sei como fazer isso...$"
+      ],
+      "PetalburgCity_Gym_Text_DadHmISee": [
+        "PAI: Hm. Entendi.$"
+      ],
+      "PetalburgCity_Gym_Text_DadPlayerGoWithWally": [
+        "PAI: {PLAYER}, voce ouviu?\\pAcompanhe WALLY e ajude\\na capturar um POKEMON.$"
+      ],
+      "PetalburgCity_Gym_Text_IllLoanYouMyZigzagoon": [
+        "WALLY, vou emprestar\\nmeu POKEMON a voce.\\pWALLY recebeu um ZIGZAGOON!$"
+      ],
+      "PetalburgCity_Gym_Text_WallyThankYouAndDadGivesPokeBall": [
+        "WALLY: Uau! Um POKEMON!\\pPAI: Tambem vou dar\\numa POKE BALL a voce.\\nBoa sorte!\\pWALLY recebeu uma POKE BALL!$"
+      ],
+      "PetalburgCity_Gym_Text_WallyOhWowThankYou": [
+        "WALLY: Uau!\\nMuito obrigado!$"
+      ],
+      "PetalburgCity_Gym_Text_DadSoDidItWorkOut": [
+        "PAI: Entao, deu tudo certo?$"
+      ],
+      "PetalburgCity_Gym_Text_WallyThankYouBye": [
+        "WALLY: Sim! Muito obrigado!\\nAqui esta seu POKEMON.\\p{PLAYER}, obrigado por\\nme acompanhar.\\pCom a ajuda de voces,\\nconsegui meu POKEMON!\\pPrometo cuidar muito bem dele.\\pMinha mae esta me esperando.\\nPreciso ir!\\pAte logo, {PLAYER}!$"
+      ],
+      "PetalburgCity_Gym_Text_DadGoCollectBadges": [
+        "PAI: {PLAYER}, se quiser\\nser um TREINADOR forte,\\ltenho um conselho.\\pVa para RUSTBORO CITY\\ne enfrente ROXANNE,\\la LIDER do GYM.\\pDepois, desafie outros\\nLIDERES e ganhe INSIGNIAS.\\pEu tambem sou LIDER.\\nUm dia vamos batalhar,\\l{PLAYER}.\\pMas primeiro fique mais forte!$"
+      ],
+      "PetalburgCity_Gym_Text_NormanGoToRustboro": [
+        "PAI: {PLAYER}, ainda nao foi\\nao GYM de RUSTBORO?\\pQuero um desafio de verdade.\\pVolte quando tiver quatro\\nINSIGNIAS, {PLAYER}, combinado?$"
+      ],
+      "PetalburgCity_Gym_Text_NormanGoToDewford": [
+        "PAI: Ja venceu o LIDER\\ndo GYM de RUSTBORO?\\pAinda ha muitos TREINADORES\\nmais fortes que voce, {PLAYER}.\\pEm DEWFORD, do outro lado\\ndo mar, esta BRAWLY.\\pVa desafia-lo!$"
+      ],
+      "PetalburgCity_Gym_Text_YouHaveGottenStronger": [
+        "PAI: Hm... {PLAYER},\\nvoce esta mais forte.\\pSuas INSIGNIAS provam isso.$"
+      ],
+      "PetalburgCity_Gym_Text_NormanIntro": [
+        "PAI: Hm... Voce conseguiu\\nquatro INSIGNIAS.\\pComo prometi, vamos batalhar.\\p{PLAYER}, estou feliz em lutar\\ncom meu proprio filho.\\pMas batalha e batalha!\\nVou fazer o possivel para vencer.\\pDe o seu melhor, {PLAYER}!$"
+      ],
+      "PetalburgCity_Gym_Text_ReceivedBalanceBadge": [
+        "{PLAYER} recebeu a\\nBALANCE BADGE do PAI!$"
+      ],
+      "PetalburgCity_Gym_Text_ExplainBalanceBadgeTakeThis": [
+        "PAI: A BALANCE BADGE aumenta\\na DEFENSE dos seus POKEMON.\\pCom SURF, eles tambem\\npodem atravessar a agua.\\pEste e meu presente\\npara voce, {PLAYER}.$"
+      ],
+      "PetalburgCity_Gym_Text_ExplainFacade": [
+        "PAI: TM42 contem FACADE.\\pEsse golpe fica mais forte\\nse o POKEMON estiver queimado,\\lparalisado ou envenenado.\\pUse isso a seu favor!$"
+      ],
+      "PetalburgCity_Gym_Text_DadHappyAndSad": [
+        "PAI: Como LIDER, estou\\nmuito frustrado...\\pMas como pai, estou feliz\\ne um pouco triste. Que estranho...$"
+      ],
+      "PetalburgCity_Gym_Text_DadGoingToKeepTraining": [
+        "PAI: {PLAYER}, visite sua mae\\nde vez em quando.\\pVou continuar treinando.\\pComo TREINADOR, {PLAYER},\\nnao vou esquecer essa derrota!$"
+      ],
+      "PetalburgCity_Gym_Text_DadNoAmountOfTrainingIsEnough": [
+        "PAI: {PLAYER}, como vai?\\pO mundo POKEMON e profundo.\\pAcho que nunca teremos\\ntreinado o suficiente.$"
+      ],
+      "PetalburgCity_Gym_Text_GymGuideAdvice": [
+        "Ola, futuro CAMPEAO {PLAYER}!\\pVenca os TREINADORES para\\nabrir as portas do GYM.\\pOs TREINADORES daqui usam\\nitens de varios tipos.\\pA esquerda fica a sala SPEED.\\nA direita, a sala ACCURACY.\\pLeia a placa de cada porta\\ne escolha com cuidado!$"
+      ]
+    }
+  },
+  "c": {}
+}
