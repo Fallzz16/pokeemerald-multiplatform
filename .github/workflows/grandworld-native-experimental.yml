@@ -104,6 +104,11 @@ jobs:
               if obj.get('errors'):
                   print("\\n".join(obj['errors'][:12]))
           PY
+      - name: P2 - inspect unresolved native dependencies in pinned World objects
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/engine_link_probe.py \
+            --objects native-world-objects --report native-engine-link.json
       - name: Publish native compatibility diagnostics
         if: always()
         uses: actions/upload-artifact@v4
@@ -115,6 +120,7 @@ jobs:
             saveabi.json
             dma.json
             native-engine-objects.json
+            native-engine-link.json
             native-world-frame.json
           if-no-files-found: warn
   fast-save-abi-audit:
@@ -268,6 +274,11 @@ jobs:
               print(unit['source'], unit['status'])
               print("\\n".join(unit.get('errors', [])[:7]))
           PY
+      - name: P2 - attempt partial native link of compiled M8 engine modules
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/engine_link_probe.py \
+            --objects native-m8-objects --report native-engine-m8-link.json
       - name: P1 - record real C portability compiler diagnostics
         if: always()
         run: |
@@ -291,6 +302,7 @@ jobs:
             native-dma-api-overlay.json
             native-world-frame-composed.json
             native-engine-m8-probe.json
+            native-engine-m8-link.json
           if-no-files-found: warn
 
   host-sdl2-smoke:
