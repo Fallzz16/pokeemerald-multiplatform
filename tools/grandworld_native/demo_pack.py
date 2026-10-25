@@ -63,6 +63,23 @@ def follower(x, y):
         return (31,91,88,255)
     return (0,0,0,0)
 
+def directional_follower(direction):
+    """Original creature with visibly changing gaze in eight directions."""
+    offsets = {
+        "n": (0, -2), "ne": (2, -2), "e": (2, 0), "se": (2, 2),
+        "s": (0, 2), "sw": (-2, 2), "w": (-2, 0), "nw": (-2, -2)
+    }
+    dx, dy = offsets[direction]
+    def pixel(x, y):
+        value = follower(x, y)
+        # Erase default eyes so only the gaze selected for this direction appears.
+        if 11 <= y <= 15 and x in (9, 15):
+            value = (48, 182, 167, 255)
+        if y == 12 + dy and x in (9 + dx, 15 + dx):
+            return (20, 34, 46, 255)
+        return value
+    return pixel
+
 def create(out):
     out = Path(out)
     assets = out / "assets"
@@ -72,6 +89,10 @@ def create(out):
     (assets / "sprites").mkdir(parents=True)
     (assets / "menus/background.png").write_bytes(png_bytes(240,160,landscape))
     (assets / "sprites/follower.png").write_bytes(png_bytes(24,24,follower))
+    (assets / "sprites/follower").mkdir()
+    for direction in ("n", "ne", "e", "se", "s", "sw", "w", "nw"):
+        (assets / "sprites/follower" / (direction + ".png")).write_bytes(
+            png_bytes(24, 24, directional_follower(direction)))
     zipfile = out / "gw-demo-style.zip"
     if zipfile.exists():
         zipfile.unlink()
