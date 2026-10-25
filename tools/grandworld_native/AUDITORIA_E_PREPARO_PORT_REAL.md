@@ -127,6 +127,39 @@ isolados. Ainda **não** existe um executável com toda a World/M8 ligada ao
 SDL2, nem teste end-to-end de saves. O próximo passo é integrar o ciclo
 principal real e testar os recursos dentro da engine, não apenas em harnesses.
 
+## P2 — progresso real da compilação World/M8 (25/10/2026)
+
+**Última evidência concluída e inspecionada:** [CI 40202030541](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40202030541).
+A composição M8 + PT-BR e a referência GBA são verificadas antes das
+adaptações `GW_WORLD_NATIVE`. Não houve merge na base estável.
+
+- **402/405** arquivos `src/*.c` compilaram para objetos GCC/i386 com
+  textos e gráficos reais, sem substitutos. Os três pendentes eram
+  `m4a.c`, `random.c` e `multiboot.c`, todos contendo instruções ARM
+  não aceitas pelo x86 GAS. `arm_runtime_overlay.py` agora isola versões
+  nativas dessas rotinas na árvore temporária, mantendo o caminho ARM intacto.
+  Resultado pós-correção: **ainda requer confirmação em novo CI**.
+- **13/14** arquivos `data/*.s` foram montados em objetos ELF32 reais.
+  `data/event_scripts.s` falhava com 3 operandos de scripts Celadon e 2
+  diretivas de alinhamento GBA. `gba_data_asm_overlay.py` converte somente
+  sintaxe específica do assembler, depois da compilação GBA.
+  Resultado pós-correção: **ainda requer confirmação em novo CI**.
+- A ligação parcial dos 402 objetos C existentes passou, com **3.876
+  símbolos externos não resolvidos**. Isso é esperado enquanto faltarem
+  scripts/recursos ASM e os serviços da plataforma; **não é um .exe**.
+- `real_data_link_probe.py` mede quais símbolos são efetivamente
+  resolvidos pela adição de dados originais. `symbol_source_audit.py` aponta
+  prováveis arquivos donos de labels não resolvidos; os dois preservam evidências
+  em JSON e não fabricam definições.
+- O CI agora **falha explicitamente** se faltar qualquer `src/*.c`, se um
+  arquivo `data/*.s` não montar, ou se a ligação relocável C+dados falhar.
+  Uma indicação verde anterior a esses gates não comprova completude.
+
+**Próxima barreira real:** após uma auditoria 405/405 e 14/14,
+verificar símbolos do executável completo, rotinas ASM do GBA que ainda
+precisam de backends nativos, endereços de memória, áudio/inputs e primeiros
+frames reais. Nenhuma tela/título/screenshot ou save real foi validado aqui.
+
 ## Arquitetura concreta recomendada
 
 Manter a World/M8 integrada como **fonte do jogo**, e reaproveitar a camada
