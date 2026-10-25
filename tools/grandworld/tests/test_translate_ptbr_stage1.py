@@ -125,7 +125,7 @@ class PortugueseStage1Tests(unittest.TestCase):
                     self.assertTrue(pt.plain_ptbr(part).isascii(), (file, label))
         total = sum(len(x) for x in pt.C_SECTIONS.values()) + sum(
             len(x) for x in pt.ASM_SECTIONS.values())
-        self.assertGreaterEqual(total, 950)
+        self.assertGreaterEqual(total, 1132)
 
     def test_escape_typo_fails(self):
         with self.assertRaisesRegex(ValueError, "unknown text escape"):
