@@ -55,6 +55,11 @@ jobs:
           make -C world modern -j2 2>&1 | tee native-baseline-gba.log
           test -s world/pokemonworld.gba
           make -C world validate 2>&1 | tee native-baseline-validate.log
+      - name: P1 - stage guarded host-memory headers (after GBA reference)
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/overlay.py \
+            --world world --apply --report native-overlay-report.json
       - name: P1 - record real C portability compiler diagnostics
         if: always()
         run: |
@@ -72,6 +77,7 @@ jobs:
             native-baseline-gba.log
             native-baseline-validate.log
             native-portability-probe.json
+            native-overlay-report.json
           if-no-files-found: warn
 
   host-sdl2-smoke:
