@@ -1,0 +1,161 @@
+{
+  "asm": {
+    "data/maps/Route102/scripts.inc": {
+      "Route102_Text_WatchMeCatchPokemon": [
+        "WALLY: {PLAYER}...\\nPOKEMON se escondem\\lno mato alto, certo?\\pVeja se consigo capturar\\num deles direitinho.\\p...Uau!$"
+      ],
+      "Route102_Text_WallyIDidIt": [
+        "WALLY: Consegui...\\nE meu POKEMON!$"
+      ],
+      "Route102_Text_LetsGoBack": [
+        "{PLAYER}, obrigado!\\nVamos voltar ao GYM!$"
+      ],
+      "Route102_Text_ImNotVeryTall": [
+        "Sou baixinho, entao o mato\\nalto me cobre todo.\\pEle entra no meu nariz e...\\nAtchim!$"
+      ],
+      "Route102_Text_CatchWholeBunchOfPokemon": [
+        "Vou capturar um montao\\nde POKEMON!$"
+      ],
+      "Route102_Text_RouteSignOldale": [
+        "ROUTE 102\\n{RIGHT_ARROW} OLDALE TOWN$"
+      ],
+      "Route102_Text_RouteSignPetalburg": [
+        "ROUTE 102\\n{LEFT_ARROW} PETALBURG CITY$"
+      ]
+    },
+    "data/maps/Route103/scripts.inc": {
+      "Route103_Text_MayRoute103Pokemon": [
+        "MAY: Vejamos... Os POKEMON\\nda ROUTE 103 incluem...$"
+      ],
+      "Route103_Text_MayLetsBattle": [
+        "Oi, {PLAYER}{KUN}!\\pAh, meu pai te deu\\num POKEMON de presente!\\pJa que estamos aqui,\\nque tal batalhar?\\pVou mostrar como\\num TREINADOR luta!$"
+      ],
+      "Route103_Text_MayDefeated": [
+        "Uau, muito bem!\\n{PLAYER}{KUN}, voce e forte!$"
+      ],
+      "Route103_Text_MayTimeToHeadBack": [
+        "MAY: Agora entendo por que\\nmeu pai confia em voce.\\pSeu POKEMON ja gosta\\nde voce, mesmo sendo novo!\\pAcho que voce pode ser\\namigo de qualquer POKEMON.\\pHora de voltar ao LAB!$"
+      ],
+      "Route103_Text_BrendanRoute103Pokemon": [
+        "BRENDAN: Entao estes\\nPOKEMON vivem na ROUTE 103...$"
+      ],
+      "Route103_Text_BrendanLetsBattle": [
+        "Ei, {PLAYER}!\\pAh, meu pai te deu\\num POKEMON, nao foi?\\pQue tal uma batalha?\\pVou te ensinar como\\num TREINADOR luta!$"
+      ],
+      "Route103_Text_BrendanDefeated": [
+        "Hmm, {PLAYER}, voce e bom!$"
+      ],
+      "Route103_Text_BrendanTimeToHeadBack": [
+        "BRENDAN: Agora entendo\\npor que meu pai te observa.\\pSeu POKEMON ja gosta\\nde voce, mesmo sendo novo!\\p{PLAYER}, acho que voce\\nfara amizade com qualquer um.\\pVamos voltar ao LAB!$"
+      ],
+      "Route103_Text_ShouldHaveBroughtPotion": [
+        "Meu POKEMON esta exausto...\\nDevia ter trazido uma POTION...$"
+      ],
+      "Route103_Text_ShortcutToOldale": [
+        "Atravessando o mar daqui,\\nvoce chega mais rapido\\la OLDALE TOWN.\\pHehe, util, nao e?$"
+      ],
+      "Route103_Text_RouteSign": [
+        "ROUTE 103\\n{DOWN_ARROW} OLDALE TOWN$"
+      ]
+    },
+    "data/maps/Route104/scripts.inc": {
+      "Route104_Text_BrineyLivesInSeasideCottage": [
+        "Aquela casa na praia\\ne de MR. BRINEY.\\pEle foi um grande marinheiro,\\nsem medo de nenhuma tormenta.$"
+      ],
+      "Route104_Text_WhatsItLikeAtBottomOfSea": [
+        "O mar, hein?\\pComo sera la\\nno fundo do oceano?$"
+      ],
+      "Route104_Text_ThrowBallAtWeakenedPokemon": [
+        "Antes de lancar uma POKE BALL,\\nenfraqueca o POKEMON selvagem.\\pDormir, ficar queimado\\nou envenenado ajuda na captura.$"
+      ],
+      "Route104_Text_OnlyThrowBallAtWildPokemon": [
+        "Tentar roubar o POKEMON\\nde outra pessoa e errado!\\pUse POKE BALLS apenas\\nem POKEMON selvagens.$"
+      ],
+      "Route104_Text_ImNotATrainer": [
+        "Nao, eu nao sou TREINADOR.\\pQuando dois TREINADORES\\nse encaram, pode haver batalha.\\pSe nao quiser lutar,\\nevite ser visto!$"
+      ],
+      "Route104_Text_LikeFillingMouthWithSeedsTakeThis": [
+        "Gosto de colocar sementes\\nna boca e cuspi-las rapido!\\pTome isto para experimentar!\\pSeu POKEMON podera aprender\\num golpe que lanca sementes.$"
+      ],
+      "Route104_Text_TMsAreOneTimeUse": [
+        "Uma dica!\\pUma TM e uma maquina tecnica\\nque pode ser usada uma vez.\\pDepois ela desaparece.\\nEscolha com cuidado!$"
+      ],
+      "Route104_Text_DontNeedThisTakeIt": [
+        "A FLOWER SHOP agora\\nvende mudas de plantas.\\pFiquei tao feliz que\\ncomprei ate demais!\\pNao preciso mais desta\\nWHITE HERB. Voce aceita?$"
+      ],
+      "Route104_Text_FlowerShopSellingSaplings": [
+        "A FLOWER SHOP agora\\nvende mudas de plantas.\\pComprei tantas que nem sei\\nonde vou colocar tudo!$"
+      ],
+      "Route104_Text_MrBrineysCottage": [
+        "CASA DE MR. BRINEY$"
+      ],
+      "Route104_Text_RouteSignPetalburg": [
+        "ROUTE 104\\n{RIGHT_ARROW} PETALBURG CITY$"
+      ],
+      "Route104_Text_RouteSignRustboro": [
+        "ROUTE 104\\n{UP_ARROW} RUSTBORO CITY$"
+      ],
+      "Route104_Text_PrettyPetalFlowShop": [
+        "PRETTY PETAL FLOWER SHOP$"
+      ],
+      "Route104_Text_TrainerTipsDoubleBattles": [
+        "DICAS PARA TREINADORES\\pEm HOENN, alguns pares\\nde TREINADORES desafiam\\lvoce para DOUBLE BATTLES.\\pNelas, dois POKEMON lutam\\nao mesmo tempo.\\pOrganize bem a ordem\\ndos POKEMON na equipe!$"
+      ],
+      "Route104_Text_MayWeShouldRegister": [
+        "MAY: Oi, {PLAYER}{KUN}!\\pA DEVON instalou MATCH CALL\\nno seu POKENAV, nao e?\\pVamos trocar contatos\\npara conversar quando quiser!$"
+      ],
+      "Route104_Text_RegisteredMay": [
+        "{PLAYER} registrou MAY\\nno POKENAV.$"
+      ],
+      "Route104_Text_MayHowsYourPokedex": [
+        "MAY: E ai, {PLAYER}{KUN},\\ncomo esta sua POKEDEX?$"
+      ],
+      "Route104_Text_MayMinesDecentLetsBattle": [
+        "A minha esta bem adiantada!\\pQue tal uma batalha?$"
+      ],
+      "Route104_Text_MayHaventRaisedPokemon": [
+        "MAY: O que houve?\\pVoce nao tem treinado\\nseus POKEMON?\\pIsso nao e bom\\npara um TREINADOR!$"
+      ],
+      "Route104_Text_MayLetsBattle": [
+        "MAY: Entao, o que acha?\\nVamos batalhar aqui?$"
+      ],
+      "Route104_Text_MayIntro": [
+        "MAY: Voce acabou de virar\\nTREINADOR, {PLAYER}{KUN}.\\pMas nao vou perder!$"
+      ],
+      "Route104_Text_MayDefeat": [
+        "Nossa!\\nVoce e melhor do que pensei!$"
+      ],
+      "Route104_Text_MayPostBattle": [
+        "MAY: Voce esta cuidando\\nmuito bem dos seus POKEMON!\\pMas nao pense so em batalhas.\\pSeja como MR. BRINEY:\\nfaca amizade com eles!$"
+      ],
+      "Route104_Text_BrendanWeShouldRegister": [
+        "BRENDAN: Oi, {PLAYER}!\\pA DEVON instalou MATCH CALL\\nno seu POKENAV, que legal!\\pVamos trocar contatos\\ne manter contato!$"
+      ],
+      "Route104_Text_RegisteredBrendan": [
+        "{PLAYER} registrou BRENDAN\\nno POKENAV.$"
+      ],
+      "Route104_Text_BrendanHowsYourPokedex": [
+        "BRENDAN: {PLAYER},\\ncomo vai sua POKEDEX?\\pJa registrou varios POKEMON?$"
+      ],
+      "Route104_Text_BrendanDoingGreatLetsBattle": [
+        "Estou indo muito bem!\\pQuer conferir minha forca\\nem uma batalha?$"
+      ],
+      "Route104_Text_BrendanNoConfidence": [
+        "BRENDAN: O que foi?\\nNao confia nos seus POKEMON?$"
+      ],
+      "Route104_Text_BrendanLetsBattle": [
+        "BRENDAN: E ai?\\nVamos batalhar?$"
+      ],
+      "Route104_Text_BrendanIntro": [
+        "BRENDAN: Sei que voce acabou\\nde virar TREINADOR,\\nmas nao vou pegar leve!$"
+      ],
+      "Route104_Text_BrendanDefeat": [
+        "Hmm...\\nVoce luta muito bem.$"
+      ],
+      "Route104_Text_BrendanPostBattle": [
+        "BRENDAN: Voce esta\\ncuidando bem dos POKEMON.\\pMas nao basta batalhar.\\pComo MR. BRINEY,\\nfaca amizade com eles!$"
+      ]
+    }
+  },
+  "c": {}
+}
