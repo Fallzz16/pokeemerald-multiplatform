@@ -428,6 +428,20 @@ jobs:
                 data['original_source_files'])
           assert not failures, ('Original World assembly not fully compiled', failures)
           PY
+      - name: P2 - audit genuine GBA-generated MIDI song objects for native audio
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/music_asm_probe.py \
+            --world world --objects native-m8-midi-objects \
+            --limit 24 --report native-m8-original-midi.json
+          python3 - <<'PY'
+          import json
+          x = json.load(open('native-m8-original-midi.json', encoding='utf-8'))
+          print('Authentic MIDI assembly native:', x['compiled'], '/', x['requested'])
+          print('Total original songs:', x['available_original_midi'])
+          assert x['requested'] > 0, 'No original MIDI assets discovered'
+          assert x['content_replaced_or_fabricated'] is False
+          PY
       - name: P2 - measure real M8 C + original script/data objects in native linker
         run: |
           set -euo pipefail
@@ -532,6 +546,7 @@ jobs:
             native-engine-m8-survey.json
             native-engine-m8-survey-link.json
             native-m8-data-asm.json
+            native-m8-original-midi.json
             native-m8-data-prepare.json
             native-gba-asm-dialect.json
             native-m8-real-data-link.json
