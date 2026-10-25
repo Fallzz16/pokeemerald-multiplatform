@@ -248,7 +248,7 @@ def translate_asm(world, source, entries, path):
             if '"' in part:
                 raise ValueError(f"{path}::{label}: literal quote not escaped")
         new_lines = "".join('\t.string "' + part + '"\n' for part in parts)
-        source = source[:match.start(2)] + new_lines + "\n" + source[match.end(2):]
+        source = source[:match.start(2)] + new_lines + ("\n" if match.end(2) < len(source) else "") + source[match.end(2):]
         count += 1
     return source, count
 
