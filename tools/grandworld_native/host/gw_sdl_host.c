@@ -1,5 +1,6 @@
 #include "gw_sdl_host.h"
 #include <SDL.h>
+#include <SDL_image.h>
 #include <stdlib.h>
 
 #define GW_WIDTH 240
@@ -22,6 +23,10 @@ GWNativeHost *gw_host_open(const char *title, int scale, bool hidden)
         return NULL;
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_GAMECONTROLLER) != 0)
         return NULL;
+    if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) == 0) {
+        SDL_Quit();
+        return NULL;
+    }
     host = (GWNativeHost *)calloc(1, sizeof(*host));
     if (!host)
         goto fail;
@@ -115,7 +120,7 @@ bool gw_host_read_bmp_rgb555(const char *bmp_path, uint16_t *pixels, int width, 
     if (!bmp_path || !pixels || width <= 0 || height <= 0 ||
         width > 4096 || height > 4096)
         return false;
-    image = SDL_LoadBMP(bmp_path);
+    image = IMG_Load(bmp_path);
     if (!image)
         return false;
     rgba = SDL_ConvertSurfaceFormat(image, SDL_PIXELFORMAT_ARGB8888, 0);
@@ -145,9 +150,48 @@ cleanup:
     return ok;
 }
 
+bool gw_host_read_image_argb(const char *image_path, uint32_t *pixels, int width, int height)
+{
+    SDL_Surface *original = NULL;
+    SDL_Surface *rgba = NULL;
+    bool ok = false;
+    if (!image_path || !pixels || width <= 0 || height <= 0 || width > 4096 || height > 4096)
+        return false;
+    original = IMG_Load(image_path);
+    if (!original)
+        return false;
+    if (original->w <= 0 || original->h <= 0 || original->w > 4096 || original->h > 4096) {
+        SDL_FreeSurface(original);
+        return false;
+    }
+    rgba = SDL_ConvertSurfaceFormat(original, SDL_PIXELFORMAT_ARGB8888, 0);
+    SDL_FreeSurface(original);
+    if (!rgba)
+        return false;
+    if (SDL_MUSTLOCK(rgba) && SDL_LockSurface(rgba) != 0)
+        goto cleanup;
+    for (int y = 0; y < height; ++y) {
+        int sy = (int)((int64_t)y * rgba->h / height);
+        const uint32_t *row = (const uint32_t *)((const uint8_t *)rgba->pixels + sy * rgba->pitch);
+        for (int x = 0; x < width; ++x) {
+            int sx = (int)((int64_t)x * rgba->w / width);
+            uint8_t red, green, blue, alpha;
+            SDL_GetRGBA(row[sx], rgba->format, &red, &green, &blue, &alpha);
+            pixels[y * width + x] = ((uint32_t)alpha << 24) | ((uint32_t)red << 16)
+                       | ((uint32_t)green << 8) | blue;
+        }
+    }
+    if (SDL_MUSTLOCK(rgba)) SDL_UnlockSurface(rgba);
+    ok = true;
+cleanup:
+    SDL_FreeSurface(rgba);
+    return ok;
+}
+
 void gw_host_close(GWNativeHost *host)
 {
     if (!host) {
+        IMG_Quit();
         SDL_Quit();
         return;
     }
@@ -156,5 +200,6 @@ void gw_host_close(GWNativeHost *host)
     if (host->renderer) SDL_DestroyRenderer(host->renderer);
     if (host->window) SDL_DestroyWindow(host->window);
     free(host);
+    IMG_Quit();
     SDL_Quit();
 }
