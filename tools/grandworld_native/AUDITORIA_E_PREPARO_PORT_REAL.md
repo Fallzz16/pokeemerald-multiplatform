@@ -204,6 +204,40 @@ novamente `nm -u`, e só então tentar a linkagem ELF com a camada SDL2
 sem símbolos simulados. **Nenhum executável World/M8 que inicialize,
 renderize ou salve gameplay foi demonstrado neste checkpoint.**
 
+## P2 — 14/14 dados e ligação C+ASM reais (verificado em 25/10/2026)
+
+**Evidência CI:** [40212201152](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40212201152),
+job `native-source-lab`, execução após correção da normalização dos
+argumentos Celadon na stream pré-processada da World:
+
+- **405/405 C** GCC/i386 da M8 compilados (gate do inventário original passou).
+- **14/14 `data/*.s`** pre-processados originalmente e montados pelo GAS/i386:
+  gate `P2 - assemble PREPROCESSED original World data with host GAS` passou.
+- Auditoria dos objetos de músicas MIDI originais passou.
+- **Ligação relocável real C + objetos originais de dados** passou:
+  gate `P2 - measure real M8 C + original script/data objects in native linker`.
+  Esse resultado confirma um `.o` relocável com símbolos externos restantes,
+  **NÃO** um ELF executável jogável.
+- A etapa seguinte começou a preparar dependências SDL2/i386 para o
+  **link ELF real**. O primeiro executável, bootstrap, renderização e gameplay
+  ainda não estão comprovados neste checkpoint.
+
+Este resultado **substitui a medição anterior 13/14** e a pendência de Celadon.
+O total exato de símbolos não resolvidos *após incorporar os dados* deverá ser
+lido de `native-m8-real-data-link.json` quando os artifacts estiverem
+disponíveis; **3.815** é somente o valor anterior da ligação **C isolado**.
+Não usar esse número como saldo definitivo da engine.
+
+A proteção de cobertura total também exige os 405/405 objetos C e 14/14 objetos
+ASM presentes, não apenas subconjuntos compilados, antes de reconhecer uma
+linkagem final como bem-sucedida (commits
+[041787f6](https://github.com/Fallzz16/pokeemerald-multiplatform/commit/041787f6f974100379fa52f015769ca7d3256a91) e
+[16ccddb9](https://github.com/Fallzz16/pokeemerald-multiplatform/commit/16ccddb98410ecb44f5670353a34b13b65bebe2b)).
+
+**Próximo bloqueio real:** completar instalação/linkagem SDL2/i386 com
+objetos de plataforma, medir dependências de símbolos e diferenças ARM/host,
+e só então testar inicialização e frames reais. Nenhum save do usuário tocado.
+
 ## Arquitetura concreta recomendada
 
 Manter a World/M8 integrada como **fonte do jogo**, e reaproveitar a camada
