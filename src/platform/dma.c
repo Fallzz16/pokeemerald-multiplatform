@@ -22,9 +22,9 @@
 
 struct DMATransfer {
     union {
-        const void *src;
-        const u16 *src16;
-        const u32 *src32;
+        const volatile void *src;
+        const volatile u16 *src16;
+        const volatile u32 *src32;
     };
     union {
         void *dst;
@@ -131,8 +131,11 @@ void DmaSet(int dmaNum, const void *src, void *dest, u32 control)
 /* World MODERN's checked DmaSet macro routes through this symbol when the
  * disposable native-only header overlay is enabled. The original GBA macro
  * and its alignment assertions remain unchanged for GBA builds. */
-void GwNativeDmaSet(int dmaNum, const void *src, void *dest, u32 control)
+void GwNativeDmaSet(int dmaNum, const volatile void *src,
+                    volatile void *dest, u32 control)
 {
-    DmaSet(dmaNum, src, dest, control);
+    /* Backing DMA engine reads through volatile src16/src32 and writes through
+     * volatile dst16/dst32. Cast only for the legacy DmaSet signature. */
+    DmaSet(dmaNum, (const void *)src, (void *)dest, control);
 }
 #endif
