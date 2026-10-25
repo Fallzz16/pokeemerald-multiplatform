@@ -8,6 +8,9 @@
 #include <stdio.h>
 #include <string.h>
 
+/* The legacy CGB audio implementation owns this state; the test observes it. */
+extern struct AudioCGB gb;
+
 static int failed(int code, const char *message)
 {
     fprintf(stderr, "FAIL %d: %s\n", code, message);
