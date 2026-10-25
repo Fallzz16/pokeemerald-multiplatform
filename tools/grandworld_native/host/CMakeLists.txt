@@ -20,3 +20,6 @@ target_link_libraries(gw_host_smoke PRIVATE gw_native_host)
 enable_testing()
 add_test(NAME host_frame_smoke COMMAND gw_host_smoke)
 set_tests_properties(host_frame_smoke PROPERTIES ENVIRONMENT "SDL_VIDEODRIVER=dummy")
+
+add_executable(gw_host_preview gw_host_preview.c)
+target_link_libraries(gw_host_preview PRIVATE gw_native_host)
