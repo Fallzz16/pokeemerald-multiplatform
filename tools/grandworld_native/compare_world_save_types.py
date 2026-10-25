@@ -51,6 +51,8 @@ FIELDS = [
     ("alignof ObjectEventTemplate", "__alignof__(struct ObjectEventTemplate)"),
     ("sizeof TVShow", "sizeof(TVShow)"),
     ("sizeof Mail", "sizeof(struct Mail)"),
+    ("sizeof GabbyAndTyData", "sizeof(struct GabbyAndTyData)"),
+    ("alignof GabbyAndTyData", "__alignof__(struct GabbyAndTyData)"),
     ("alignof Mail", "__alignof__(struct Mail)"),
     ("alignof TVShow", "__alignof__(TVShow)"),
     ("sizeof DaycareMon", "sizeof(struct DaycareMon)"),
