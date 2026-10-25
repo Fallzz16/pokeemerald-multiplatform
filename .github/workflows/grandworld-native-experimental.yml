@@ -26,10 +26,11 @@ jobs:
           repository: evilchinesefood/PKMN-World
           ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
           path: world
-      - name: Install C 32-bit and header-generator requirements
+      - name: Install complete 32-bit World and SDL2 toolchain
         run: |
+          sudo dpkg --add-architecture i386
           sudo apt-get update -qq
-          sudo apt-get install -y gcc-multilib gcc-arm-none-eabi binutils-arm-none-eabi build-essential libpng-dev zlib1g-dev libsdl2-dev libsdl2-image-dev
+          sudo apt-get install -y gcc-multilib gcc-arm-none-eabi binutils-arm-none-eabi build-essential libpng-dev zlib1g-dev libsdl2-dev:i386 libsdl2-image-dev:i386
       - name: Generate pinned World headers without building ROM
         run: |
           set -euo pipefail
