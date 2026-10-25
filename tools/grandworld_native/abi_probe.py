@@ -22,6 +22,11 @@ int main(void) {
     printf("saveblock2=%zu\n", sizeof(struct SaveBlock2));
     printf("saveblock2.frontier=%zu\n", offsetof(struct SaveBlock2, frontier));
     printf("saveblock2.playerName=%zu\n", offsetof(struct SaveBlock2, playerName));
+    printf("saveblock2.localTimeOffset=%zu\\n", offsetof(struct SaveBlock2, localTimeOffset));
+    printf("saveblock2.lastBerryTreeUpdate=%zu\\n", offsetof(struct SaveBlock2, lastBerryTreeUpdate));
+    printf("saveblock2.gcnLinkFlags=%zu\\n", offsetof(struct SaveBlock2, gcnLinkFlags));
+    printf("saveblock2.encryptionKey=%zu\\n", offsetof(struct SaveBlock2, encryptionKey));
+    printf("time.bytes=%zu\\n", sizeof(struct Time));
     printf("saveblock2.pokedex=%zu\n", offsetof(struct SaveBlock2, pokedex));
     printf("saveblock2.apprentices=%zu\n", offsetof(struct SaveBlock2, apprentices));
     printf("saveblock2.hallRecords1P=%zu\n", offsetof(struct SaveBlock2, hallRecords1P));
@@ -34,6 +39,8 @@ int main(void) {
     printf("frontier.towerInterview=%zu\n", offsetof(struct BattleFrontier, towerInterview));
     printf("frontier.challengeStatus=%zu\n", offsetof(struct BattleFrontier, challengeStatus));
     printf("frontier.domeTrainers=%zu\n", offsetof(struct BattleFrontier, domeTrainers));
+    printf("frontier.domeMonIds=%zu\\n", offsetof(struct BattleFrontier, domeMonIds));
+    printf("domeTrainer.bytes=%zu\\n", sizeof(struct BattleDomeTrainer));
     printf("frontier.rentalMons=%zu\n", offsetof(struct BattleFrontier, rentalMons));
     printf("frontier.battlePoints=%zu\n", offsetof(struct BattleFrontier, battlePoints));
     printf("towerRecord.bytes=%zu\n", sizeof(struct EmeraldBattleTowerRecord));
@@ -51,23 +58,39 @@ def diagnose(world, compiler):
         raise ValueError("expected GBA save layout assertion not found")
     text = text.replace(ASSERTION, "#ifndef GW_ABI_DIAGNOSTIC\n" + ASSERTION + "\n#endif")
     configurations = [
-        ("gcc32", []),
-        ("gcc32-short-enums", ["-fshort-enums"]),
-        ("gcc32-packed-2", ["-fpack-struct=2"]),
-        ("gcc32-packed-1", ["-fpack-struct=1"]),
-        ("gcc32-ms-bitfields", ["-mms-bitfields"]),
+        ("gcc32", [], False),
+        ("gcc32-dome-aligned-4", [], True),
+        ("gcc32-short-enums", ["-fshort-enums"], False),
+        ("gcc32-packed-2", ["-fpack-struct=2"], False),
+        ("gcc32-packed-1", ["-fpack-struct=1"], False),
+        ("gcc32-ms-bitfields", ["-mms-bitfields"], False),
     ]
     result = {"stage": "P1_save_abi_diagnostic", "expected_bytes": 0xF2C,
               "production_save_assertion_changed": False, "profiles": []}
     with tempfile.TemporaryDirectory(prefix="gw-abi-") as tmp:
         d = Path(tmp)
-        (d / "global.h").write_text(text, encoding="utf-8")
         (d / "abi_size.c").write_text(PROGRAM, encoding="utf-8")
-        for name, flags in configurations:
+        # Only a disposable diagnostic header gets adjusted for the experiment.
+        anchor = ("struct BattleDomeTrainer\n{\n"
+                  "    u16 trainerId:10;\n"
+                  "    u16 isEliminated:1;\n"
+                  "    u16 eliminatedAt:2;\n"
+                  "    u16 forfeited:3;\n"
+                  "};")
+        for name, flags, aligned in configurations:
+            profile_dir = d / name
+            profile_dir.mkdir()
+            profile_header = text
+            if aligned:
+                if profile_header.count(anchor) != 1:
+                    raise ValueError("BattleDomeTrainer anchor mismatch")
+                profile_header = profile_header.replace(
+                    anchor, anchor[:-2] + "} __attribute__((aligned(4)));")
+            (profile_dir / "global.h").write_text(profile_header, encoding="utf-8")
             exe = d / (name + ".bin")
             command = [compiler, "-m32", "-std=gnu99", "-DPORTABLE", "-DMODERN=1",
                        "-DALL_REGIONS=1", "-DGW_ABI_DIAGNOSTIC=1",
-                       *flags, "-iquote", str(d),
+                       *flags, "-iquote", str(profile_dir),
                        "-iquote", str(world / "include"),
                        "-iquote", str(world / "src"),
                        str(d / "abi_size.c"), "-o", str(exe)]
@@ -89,6 +112,10 @@ def diagnose(world, compiler):
                     expected = {
                         "saveblock2": 0xF2C,
                         "saveblock2.playerName": 0,
+                        "saveblock2.localTimeOffset": 0x98,
+                        "saveblock2.lastBerryTreeUpdate": 0xA0,
+                        "saveblock2.gcnLinkFlags": 0xA8,
+                        "saveblock2.encryptionKey": 0xAC,
                         "saveblock2.pokedex": 0x18,
                         "saveblock2.playerApprentice": 0xB0,
                         "saveblock2.apprentices": 0xDC,
@@ -99,9 +126,11 @@ def diagnose(world, compiler):
                         "saveblock2.frontier": 0x64C,
                         "frontier.bytes": 0x8E0,
                         "frontier.towerRecords": 0x738 - 0x64C,
-                        "frontier.towerInterview": 0xBEB - 0x64C,
+                        "frontier.towerInterview": 0xBD4 - 0x64C, # 0x738 + 5 * 0xEC
                         "frontier.challengeStatus": 0xCA8 - 0x64C,
                         "frontier.domeTrainers": 0xD24 - 0x64C,
+                        "frontier.domeMonIds": 0xD64 - 0x64C,
+                        "domeTrainer.bytes": 4,
                         "frontier.rentalMons": 0xE70 - 0x64C,
                         "frontier.battlePoints": 0xEB8 - 0x64C,
                         "towerRecord.bytes": 0xEC,
