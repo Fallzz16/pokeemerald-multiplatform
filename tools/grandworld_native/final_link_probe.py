@@ -38,6 +38,9 @@ def attempt(code, data, platform, frontend, report, compiler="gcc",
         "frontend_compiled": frontend.is_file(),
         "link_succeeded": False, "game_boot_verified": False,
         "gameplay_verified": False, "windows_executable_created": False,
+        "game_sources_all_compiled": None,
+        "game_data_all_compiled": None,
+        "ready_for_distribution": False,
     }
     # An incomplete input set is not a link success and cannot create a
     # misleading desktop executable. The caller gets a machine-readable cause.
@@ -90,6 +93,27 @@ def attempt(code, data, platform, frontend, report, compiler="gcc",
     return result
 
 
+def attach_coverage(result, source_audit, data_audit):
+    """Attach real compiler coverage; never infer source completeness from link."""
+    if source_audit:
+        content = json.loads(Path(source_audit).read_text(encoding="utf-8"))
+        result["game_sources_all_compiled"] = (
+            content["compiled"] == content["requested"] and
+            content["requested"] > 0)
+        result["source_compiled"] = content["compiled"]
+        result["source_requested"] = content["requested"]
+    if data_audit:
+        content = json.loads(Path(data_audit).read_text(encoding="utf-8"))
+        result["game_data_all_compiled"] = (
+            content["native_objects"] == content["original_source_files"]
+            and content["original_source_files"] > 0)
+        result["data_compiled"] = content["native_objects"]
+        result["data_requested"] = content["original_source_files"]
+    # Booting the real World plus map/save tests are separate mandatory gates.
+    result["ready_for_distribution"] = False
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--code", required=True)
@@ -97,9 +121,12 @@ def main():
     parser.add_argument("--platform", required=True)
     parser.add_argument("--frontend", required=True)
     parser.add_argument("--report", default="native-M8-full-link-attempt.json")
+    parser.add_argument("--source-audit", help="real compiler survey JSON")
+    parser.add_argument("--data-audit", help="original ASM source survey JSON")
     args = parser.parse_args()
     result = attempt(args.code, args.data, args.platform,
                      args.frontend, args.report)
+    attach_coverage(result, args.source_audit, args.data_audit)
     Path(args.report).write_text(
         json.dumps(result, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({key: value for key, value in result.items()
