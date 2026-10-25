@@ -8,6 +8,7 @@ import subprocess
 
 from tools.grandworld_native.final_link_probe import (
     attempt, attach_coverage, verify_compiled_objects, require_complete_input_coverage,
+    verify_music_objects,
 )
 
 
@@ -160,6 +161,91 @@ class RealGameLinkGateTests(unittest.TestCase):
         self.assertTrue(verified["full_input_inventory_verified"])
         self.assertFalse(verified["game_boot_verified"])
         self.assertFalse(verified["gameplay_verified"])
+
+    def test_original_midi_inventory_and_objects_are_required(self):
+        songs = self.root / "songs"
+        songs.mkdir()
+        (songs / "mus_original.o").write_bytes(b"unit-test-source-object")
+        audit = self.root / "original-midi.json"
+        audit.write_text(json.dumps({
+            "requested": 2, "available_original_midi": 2, "compiled": 1,
+            "results": [
+                {"source": "sound/songs/midi/mus_original.s",
+                 "object": "mus_original.o", "native_object": True},
+                {"source": "sound/songs/midi/mus_uncompiled.s",
+                 "object": "mus_uncompiled.o", "native_object": False},
+            ],
+        }), encoding="utf-8")
+        result = attach_coverage({"link_succeeded": False}, None, None, audit)
+        self.assertFalse(result["music_sources_all_compiled"])
+        result.update(verify_music_objects(audit, songs))
+        self.assertTrue(result["music_object_set_verified"])
+        result.update(
+            original_music_required=True,
+            link_succeeded=True,
+            source_object_set_verified=True,
+            data_object_set_verified=True,
+            game_sources_all_compiled=True,
+            game_data_all_compiled=True,
+        )
+        candidate = self.root / "grandworld-WORLD-NOT-BOOT-VERIFIED"
+        candidate.write_bytes(b"not real ELF")
+        outcome = require_complete_input_coverage(result, self.report)
+        self.assertFalse(outcome["link_succeeded"])
+        self.assertFalse(candidate.exists())
+        self.assertIn("music_sources_all_compiled", outcome["input_coverage_failed_gates"])
+
+    def test_fake_or_stale_midi_objects_never_complete_link(self):
+        songs = self.root / "songs"
+        songs.mkdir()
+        audit = self.root / "original-midi.json"
+        audit.write_text(json.dumps({
+            "requested": 1, "available_original_midi": 1, "compiled": 1,
+            "results": [{"source": "sound/songs/midi/mus_real.s",
+                         "object": "mus_real.o", "native_object": True}],
+        }), encoding="utf-8")
+        (songs / "mus_untracked.o").write_bytes(b"stale source")
+        verified = verify_music_objects(audit, songs)
+        self.assertFalse(verified["music_object_set_verified"])
+        self.assertEqual(verified["music_missing_object_files"], ["mus_real.o"])
+        self.assertEqual(verified["music_stale_object_files"], ["mus_untracked.o"])
+        result = attach_coverage({
+            "link_succeeded": True, "original_music_required": True,
+            "source_object_set_verified": True,
+            "data_object_set_verified": True,
+            "game_sources_all_compiled": True, "game_data_all_compiled": True,
+        }, None, None, audit)
+        result.update(verified)
+        self.assertTrue(result["music_sources_all_compiled"])
+        candidate = self.root / "grandworld-WORLD-NOT-BOOT-VERIFIED"
+        candidate.write_bytes(b"not a genuine game")
+        outcome = require_complete_input_coverage(result, self.report)
+        self.assertFalse(outcome["link_succeeded"])
+        self.assertFalse(candidate.exists())
+        self.assertEqual(outcome["input_coverage_failed_gates"],
+                         ["music_object_set_verified"])
+
+    def test_full_link_command_includes_original_music_objects(self):
+        for folder in (self.code, self.data, self.platform):
+            (folder / "real.o").write_bytes(b"fixture")
+        songs = self.root / "songs"
+        songs.mkdir()
+        (songs / "original_song.o").write_bytes(b"fixture")
+        self.frontend.write_bytes(b"fixture")
+        diagnostics = "ld: undefined reference to 'gUnportedBiosFunction'\n"
+        with patch("tools.grandworld_native.final_link_probe.shutil.which",
+                   return_value="/usr/bin/gcc"), patch(
+                       "tools.grandworld_native.final_link_probe.subprocess.run",
+                       return_value=subprocess.CompletedProcess(
+                           ["gcc"], 1, "", diagnostics)) as runner:
+            info = attempt(self.code, self.data, self.platform,
+                           self.frontend, self.report, music_objects=songs)
+        self.assertFalse(info["link_succeeded"])
+        self.assertTrue(info["original_music_required"])
+        self.assertEqual(info["component_counts"]["original_MIDI"], 1)
+        args = runner.call_args.args[0]
+        self.assertIn(str(songs / "original_song.o"), args)
+        self.assertIn("-Wl,--no-undefined", args)
 
     def test_even_a_successful_link_is_not_a_boot_test(self):
         for folder in (self.code, self.data, self.platform):
