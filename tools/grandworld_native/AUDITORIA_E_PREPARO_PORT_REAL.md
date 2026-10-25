@@ -160,6 +160,50 @@ verificar símbolos do executável completo, rotinas ASM do GBA que ainda
 precisam de backends nativos, endereços de memória, áudio/inputs e primeiros
 frames reais. Nenhuma tela/título/screenshot ou save real foi validado aqui.
 
+## P2 — checkpoint de compilação completa C, 25/10/2026
+
+**Evidência:** [Actions 40210875980](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40210875980),
+job `native-source-lab`, com JSONs anexados (`native-engine-m8-survey.json`,
+`native-engine-m8-survey-link.json`, `native-m8-data-asm.json`).
+
+- A composição World + M8 + PT-BR e **compilação/validação GBA de
+  referência passaram**, ANTES de overlays nativos, em checkout descartável.
+- **405/405 fontes C originais foram compiladas** como objetos GCC/i386,
+  agora incluindo `m4a.c`, `multiboot.c` e `random.c`. Isto supera
+  a antiga referência 402/405, sem reescrever a engine.
+- A **ligação relocável apenas dos objetos C** passou com **3.815
+  símbolos externos ainda não resolvidos**. Não é um programa executável.
+  A maioria desses símbolos refere-se a dados/scripts originais ainda
+  não incluídos nessa ligação, portanto esse número NÃO representa uma
+  contagem definitiva de rotinas nativas faltantes.
+- **13/14 fontes `data/*.s`** montaram com GAS/i386. A única falha
+  continua em `data/event_scripts.s`: as três invocações de
+  `goto_if_ge` em Celadon City (linhas 137, 197 e 224 do
+  `scripts.inc`) geram `too many positional arguments`.
+  Avisos de `copyvar` aparecem no log, mas não são os erros fatais.
+- O scan do overlay contabilizou **3 transformações Celadon**, porém o
+  preprocessor original já havia preparado um snapshot do assembler
+  antes das alterações nas fontes `.inc`. A correção subsequente
+  [46e81c01](https://github.com/Fallzz16/pokeemerald-multiplatform/commit/46e81c01af8541a071888b8987102d9231fce4bd)
+  aplica a transformação restrita também ao stream genuíno preparado;
+  [e149630b](https://github.com/Fallzz16/pokeemerald-multiplatform/commit/e149630b28642da05bf1a883ef3a89a1920505c5)
+  adiciona teste de regressão que exige gerar objeto ELF32 real com as
+  três chamadas. **Essas alterações ainda dependem de novo CI completo.**
+- A falha anterior de fixture ARM com `\\n` literais foi corrigida em
+  [46c68ad3](https://github.com/Fallzz16/pokeemerald-multiplatform/commit/46c68ad3efa713bbb0b5360afe4a6728e7baa310);
+  os testes de backend passaram em 40210875980.
+- A verificação rápida de objetos ELF32 foi separada da instalação
+  dispendiosa de SDL2-dev:i386 em
+  [20ab85d4](https://github.com/Fallzz16/pokeemerald-multiplatform/commit/20ab85d4b761417946c3ccbf1bab28033d951145).
+  A linkagem executável ainda requer as bibliotecas SDL2 de 32 bits
+  e continua na etapa `native-source-lab`.
+
+**Próximo bloqueio técnico verificável:** confirmar 14/14 dados reais,
+ligar os 405 objetos C mais os 14 objetos ASM em modo relocável, medir
+novamente `nm -u`, e só então tentar a linkagem ELF com a camada SDL2
+sem símbolos simulados. **Nenhum executável World/M8 que inicialize,
+renderize ou salve gameplay foi demonstrado neste checkpoint.**
+
 ## Arquitetura concreta recomendada
 
 Manter a World/M8 integrada como **fonte do jogo**, e reaproveitar a camada
