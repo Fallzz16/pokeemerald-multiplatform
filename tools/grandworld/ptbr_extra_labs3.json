@@ -247,7 +247,7 @@
         "OAK: {PLAYER}!\\nComo esta seu POKEMON?\\pEle parece gostar de voce.\\nVoce tem talento de TREINADOR!$"
       ],
       "PalletTown_ProfessorOaksLab_Text_DeliveredOaksParcel": [
-        "{PLAYER} entregou\\nOAK'S PARCEL.$"
+        "{PLAYER} fez a entrega\\npara o PROF. OAK.$"
       ],
       "PalletTown_ProfessorOaksLab_Text_OakCustomBallIOrdered": [
         "Ah! Minha POKE BALL\\nencomendada chegou!\\pMuito obrigado!$"
