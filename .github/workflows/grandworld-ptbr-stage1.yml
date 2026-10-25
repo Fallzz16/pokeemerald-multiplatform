@@ -9,6 +9,8 @@ on:
       - 'tools/grandworld/ptbr_extra_events.json'
       - 'tools/grandworld/ptbr_extra_world.json'
       - 'tools/grandworld/ptbr_extra_battle.json'
+      - 'tools/grandworld/ptbr_extra_services2.json'
+      - 'tools/grandworld/ptbr_extra_regions2.json'
       - 'tools/grandworld/tests/test_translate_ptbr_stage1.py'
       - 'docs/GRANDWORLD_PTBR_TRANSLATION.md'
   workflow_dispatch:
