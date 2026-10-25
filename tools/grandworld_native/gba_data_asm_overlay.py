@@ -20,7 +20,7 @@ import tempfile
 ALIGN = re.compile(r'^(?P<indent>[ \t]*)\.align[ \t]+(?P<n>[0-9]+)(?P<rest>(?:[ \t]*,[^\r\n]*)?)[ \t]*$')
 WORD = re.compile(r'^(?P<indent>[ \t]*)\.word(?=[ \t]+)(?P<rest>[^\r\n]+)$')
 CELE = re.compile(r'^(?P<prefix>[ \t]*goto_if_ge[ \t]+VAR_TEMP_1,[ \t]*)'
-                  r'\(MAX_COINS[ \t]*\+[ \t]*1\)[ \t]*-[ \t]*(?P<coins>10|20)'
+                  r'\(MAX_COINS[ \t]+\+[ \t]+1\)[ \t]+-[ \t]+(?P<coins>10|20)'
                   r'(?P<tail>,[ \t]*CeladonCity_GameCorner_EventScript_[A-Za-z0-9_]+[ \t]*)$')
 SOURCE = "data/maps/CeladonCity_GameCorner_Frlg/scripts.inc"
 EXPECTED_CELADON = 3
