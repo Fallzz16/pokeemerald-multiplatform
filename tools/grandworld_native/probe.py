@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Non-destructive P1 experiment: compile portable platform sources against World.
 
+32-bit host compilation matches the World save pointer layout.
 Failures are recorded, not hidden. A successful syntax probe is NOT a native
 game build: only complete linking and runtime tests can establish P1-P5.
 """
@@ -21,9 +22,11 @@ def probe(world, grandworld, compiler):
     results = []
     for name in SOURCES:
         path = grandworld / "src" / "platform" / name
-        cmd = [cc or compiler, *FLAGS, 
+        cmd = [cc or compiler, "-m32", *FLAGS,
                "-iquote" + str(world / "include"),
-               "-iquote" + str(world / "src"), str(path)]
+               "-iquote" + str(world / "src"),
+               "-iquote" + str(grandworld / "include"),
+               "-iquote" + str(grandworld / "src"), str(path)]
         if cc is None:
             result = {"source": name, "status": "compiler_unavailable", "errors": ["Compiler not found"]}
         elif not path.is_file():
