@@ -6,7 +6,8 @@ class GabbySaveABITests(unittest.TestCase):
         source = "#if 1\n" + ANCHOR + "\n#endif\n"
         patched = transform(source)
         self.assertIn("#if defined(PORTABLE)\n__attribute__((aligned(4)))", patched)
-        self.assertIn("#else", "#else")  # no edit of ARM path
+        self.assertIn("#if defined(PORTABLE)", patched)
+        self.assertIn("#endif\n;", patched)
         self.assertIn(ANCHOR[:-2], patched)
         self.assertEqual(patched.count("struct GabbyAndTyData"), 1)
 
