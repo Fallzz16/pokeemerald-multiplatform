@@ -20,7 +20,7 @@ MULTIPLE = re.compile(r"multiple definition of [\x60\x27\u2018](.+?)[\x27\u2019]
 
 
 def attempt(code, data, platform, frontend, report, compiler="gcc",
-            extra_libs=None):
+            extra_libs=None, music_objects=None):
     code, data, platform, frontend, report = (
         Path(p).resolve() for p in (code, data, platform, frontend, report)
     )
@@ -29,6 +29,8 @@ def attempt(code, data, platform, frontend, report, compiler="gcc",
         "original_game_data": sorted(data.glob("*.o")),
         "portable_platform": sorted(platform.glob("*.o")),
     }
+    if music_objects is not None:
+        collected["original_MIDI"] = sorted(Path(music_objects).resolve().glob("*.o"))
     result = {
         "schema": 1, "stage": "P2_full_native_World_M8_executable_link_attempt",
         "real_game_sources_only": True,
@@ -36,6 +38,7 @@ def attempt(code, data, platform, frontend, report, compiler="gcc",
         "suppressed_linker_errors": False,
         "component_counts": {key: len(items) for key, items in collected.items()},
         "frontend_compiled": frontend.is_file(),
+        "original_music_required": music_objects is not None,
         "link_succeeded": False, "game_boot_verified": False,
         "gameplay_verified": False, "windows_executable_created": False,
         "game_sources_all_compiled": None,
@@ -54,7 +57,9 @@ def attempt(code, data, platform, frontend, report, compiler="gcc",
     target = report.with_name("grandworld-WORLD-NOT-BOOT-VERIFIED")
     report.parent.mkdir(parents=True, exist_ok=True)
     objects = [frontend]
-    for name in ("World_M8_C", "original_game_data", "portable_platform"):
+    for name in ("World_M8_C", "original_game_data", "original_MIDI", "portable_platform"):
+        if name not in collected:
+            continue
         objects.extend(collected[name])
     # Never use -Wl,--unresolved-symbols=ignore-all or linker-generated stubs.
     args = [command, "-m32", "-no-pie", "-Wl,--no-undefined",
@@ -130,7 +135,7 @@ def verify_compiled_objects(source_audit, data_audit, code_dir, data_dir):
     }
 
 
-def attach_coverage(result, source_audit, data_audit):
+def attach_coverage(result, source_audit, data_audit, music_audit=None):
     """Attach real compiler coverage; never infer source completeness from link."""
     if source_audit:
         content = json.loads(Path(source_audit).read_text(encoding="utf-8"))
@@ -146,10 +151,36 @@ def attach_coverage(result, source_audit, data_audit):
             and content["original_source_files"] > 0)
         result["data_compiled"] = content["native_objects"]
         result["data_requested"] = content["original_source_files"]
+    if music_audit:
+        content = json.loads(Path(music_audit).read_text(encoding="utf-8"))
+        result["music_sources_all_compiled"] = (
+            content["requested"] == content["available_original_midi"]
+            and content["requested"] > 0
+            and content["compiled"] == content["requested"])
+        result["music_compiled"] = content["compiled"]
+        result["music_requested"] = content["requested"]
     # Booting the real World plus map/save tests are separate mandatory gates.
     result["ready_for_distribution"] = False
     return result
 
+
+
+def verify_music_objects(music_audit, music_dir):
+    """Reject missing or stale MIDI objects; song files are real World outputs."""
+    audit = json.loads(Path(music_audit).read_text(encoding="utf-8"))
+    rows = audit.get("results", [])
+    if not isinstance(rows, list):
+        raise ValueError("malformed original MIDI audit")
+    compiled = [r for r in rows if r.get("native_object") is True]
+    expected = {Path(r["object"]).name for r in compiled}
+    if len(expected) != len(compiled):
+        raise ValueError("duplicate original song object filenames")
+    actual = {p.name for p in Path(music_dir).glob("*.o")}
+    return {
+        "music_object_set_verified": bool(expected) and expected == actual,
+        "music_missing_object_files": sorted(expected - actual)[:50],
+        "music_stale_object_files": sorted(actual - expected)[:50],
+    }
 
 
 def require_complete_input_coverage(result, report):
@@ -161,6 +192,8 @@ def require_complete_input_coverage(result, report):
     """
     gates = ("source_object_set_verified", "data_object_set_verified",
              "game_sources_all_compiled", "game_data_all_compiled")
+    if result.get("original_music_required"):
+        gates += ("music_object_set_verified", "music_sources_all_compiled")
     missing = [key for key in gates if result.get(key) is not True]
     result["full_input_inventory_verified"] = not missing
     if missing:
@@ -178,17 +211,23 @@ def main():
     parser.add_argument("--code", required=True)
     parser.add_argument("--data", required=True)
     parser.add_argument("--platform", required=True)
+    parser.add_argument("--music", help="genuine generated MIDI .o directory")
     parser.add_argument("--frontend", required=True)
     parser.add_argument("--report", default="native-M8-full-link-attempt.json")
     parser.add_argument("--source-audit", help="real compiler survey JSON")
     parser.add_argument("--data-audit", help="original ASM source survey JSON")
+    parser.add_argument("--music-audit", help="genuine MIDI source compilation JSON")
     args = parser.parse_args()
+    if bool(args.music) != bool(args.music_audit):
+        parser.error("--music and --music-audit must both be provided")
     result = attempt(args.code, args.data, args.platform,
-                     args.frontend, args.report)
-    attach_coverage(result, args.source_audit, args.data_audit)
+                     args.frontend, args.report, music_objects=args.music)
+    attach_coverage(result, args.source_audit, args.data_audit, args.music_audit)
     if args.source_audit and args.data_audit:
         result.update(verify_compiled_objects(args.source_audit, args.data_audit,
                                               args.code, args.data))
+        if args.music_audit:
+            result.update(verify_music_objects(args.music_audit, args.music))
         require_complete_input_coverage(result, args.report)
     Path(args.report).write_text(
         json.dumps(result, indent=2) + "\n", encoding="utf-8")
