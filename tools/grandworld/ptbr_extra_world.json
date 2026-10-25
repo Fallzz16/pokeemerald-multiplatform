@@ -222,7 +222,7 @@
         "Sua equipe esta cheia.\\nAbra espaco e volte.$"
       ],
       "DayCare_Text_ItWillCostX": [
-        "Para levar {STR_VAR_1},\\nvoce paga ¥{STR_VAR_2}.$"
+        "Para levar {STR_VAR_1},\\npague {STR_VAR_2} moedas.$"
       ],
       "DayCare_Text_HeresYourMon": [
         "Perfeito!\\nAqui esta seu POKEMON.$"
