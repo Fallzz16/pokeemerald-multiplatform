@@ -90,6 +90,24 @@ Future native runtime integration must be opt-in, require a versioned lookup
 API, atomic resource switches, fallback assets and separate user settings.
 It must never modify SaveBlocks for purely cosmetic changes.
 
+## Build packs from asset folders
+
+Resource contributors can create reproducible ZIP packs without editing a
+manifest or calculating hashes manually:
+
+```sh
+# Example layout: my-theme/assets/sprites/example.png
+python3 tools/grandworld_native/build_pack.py \
+  --assets ./my-theme/assets \
+  --id my-theme --version 1.0.0 \
+  --output ./my-theme.zip
+```
+
+The builder refuses executable files, symlinked assets, collisions and
+overwriting an existing ZIP, then verifies its own output using the same
+validator used by the pack manager. This does not prove that asset authors
+have distribution rights.
+
 ## Experimental pack management commands
 
 After validating a `.zip`, developers can install and enable it in a
