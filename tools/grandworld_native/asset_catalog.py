@@ -18,6 +18,7 @@ except ImportError:
 
 CATALOG = "runtime-assets.tsv"
 HEADER = "GW_ASSETS_V1"
+MAX_CATALOG_ASSETS = 2048  # Sync with GW_STYLE_MAX_ASSETS in gw_style_index.h
 
 def _atomic_write(dest, content):
     dest.parent.mkdir(parents=True, exist_ok=True)
@@ -101,6 +102,8 @@ def generate_catalog(root):
                 raise PackError("missing or oversized installed resource")
             if hashlib.sha256(p.read_bytes()).hexdigest() != digest:
                 raise PackError("installed resource checksum changed: " + relpath)
+            if len(lines) > MAX_CATALOG_ASSETS:
+                raise PackError("too many enabled resources for native C runtime")
             lines.append("\t".join([parts[1], pack_id, logical, pack_id + "/" + relpath]))
     _atomic_write(root / CATALOG, "\n".join(lines) + "\n")
     return {"catalog": str(root / CATALOG), "enabled_packs": len(active), "assets": len(lines) - 1}
