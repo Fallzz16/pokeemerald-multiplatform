@@ -101,6 +101,13 @@ jobs:
           cmake -S tools/grandworld_native/host -B build/native-host -DCMAKE_BUILD_TYPE=Debug
           cmake --build build/native-host -j2
           ctest --test-dir build/native-host --output-on-failure
+      - name: Validate full PNG mod pipeline with original demo assets
+        run: |
+          set -euo pipefail
+          python3 tools/grandworld_native/demo_pack.py --out build/demo-mods --install
+          SDL_VIDEODRIVER=dummy build/native-host/gw_theme_lab --mods build/demo-mods/mods --selftest
+          python3 tools/grandworld_native/pack_manager.py --root build/demo-mods/mods list
+
 
 
   windows-host-diagnostic:
@@ -129,12 +136,20 @@ jobs:
           cp /mingw64/bin/SDL2_image.dll build/native-win/SDL2_image.dll
           export SDL_VIDEODRIVER=dummy
           ./build/native-win/gw_host_smoke.exe
+          python -V
+          python tools/grandworld_native/demo_pack.py --out build/native-win/demo --install
+          ./build/native-win/gw_theme_lab.exe --mods build/native-win/demo/mods --selftest
+          mkdir -p build/native-win/package
+          cp build/native-win/gw_theme_lab.exe build/native-win/package/
+          cp build/native-win/gw_host_preview.exe build/native-win/package/
+          cp build/native-win/demo/gw-demo-style.zip build/native-win/package/
+          cp -r build/native-win/demo/mods build/native-win/package/mods
+          bash tools/grandworld_native/host/bundle_mingw_dlls.sh build/native-win/package
+
       - name: Upload Windows SDL2 host diagnostic only
         uses: actions/upload-artifact@v4
         with:
           name: grandworld-native-sdl2-host-windows-diagnostic-NOT-GAME
           path: |
-            build/native-win/gw_host_preview.exe
-            build/native-win/SDL2.dll
-            build/native-win/SDL2_image.dll
+            build/native-win/package/**
           if-no-files-found: error
