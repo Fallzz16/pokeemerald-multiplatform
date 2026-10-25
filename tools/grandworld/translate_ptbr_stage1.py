@@ -74,7 +74,7 @@ CORE_TEXT = {
     "gText_WelcomeToHOF": ("Welcome to the HALL OF FAME!", "Bem-vindo ao HALL DA FAMA!"),
     "gText_LeagueChamp": (
         r"LEAGUE CHAMPION!\nCONGRATULATIONS!",
-        r"CAMPEÃO DA LIGA!\nPARABÉNS!"),
+        r"VENCEU A LIGA!\nPARABÉNS!"),
     "gText_Name": ("NAME", "NOME"),
     "gText_ConfirmStarterChoice": (
         "Do you choose this POKéMON?", "Quer escolher este POKéMON?"),
