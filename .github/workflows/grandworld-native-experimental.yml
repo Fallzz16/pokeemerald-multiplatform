@@ -127,6 +127,11 @@ jobs:
         run: |
           python3 grandworld/tools/grandworld_native/abi_probe.py \
             --world world --compiler gcc --output native-abi-report.json
+      - name: P1 - apply measured portable-only save alignment to disposable World
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/save_abi_overlay.py \
+            --world world --apply --report native-save-abi-overlay.json
       - name: P1 - record real C portability compiler diagnostics
         if: always()
         run: |
@@ -146,6 +151,7 @@ jobs:
             native-portability-probe.json
             native-overlay-report.json
             native-abi-report.json
+            native-save-abi-overlay.json
           if-no-files-found: warn
 
   host-sdl2-smoke:
