@@ -22,11 +22,11 @@ int main(void) {
     printf("saveblock2=%zu\n", sizeof(struct SaveBlock2));
     printf("saveblock2.frontier=%zu\n", offsetof(struct SaveBlock2, frontier));
     printf("saveblock2.playerName=%zu\n", offsetof(struct SaveBlock2, playerName));
-    printf("saveblock2.localTimeOffset=%zu\\n", offsetof(struct SaveBlock2, localTimeOffset));
-    printf("saveblock2.lastBerryTreeUpdate=%zu\\n", offsetof(struct SaveBlock2, lastBerryTreeUpdate));
-    printf("saveblock2.gcnLinkFlags=%zu\\n", offsetof(struct SaveBlock2, gcnLinkFlags));
-    printf("saveblock2.encryptionKey=%zu\\n", offsetof(struct SaveBlock2, encryptionKey));
-    printf("time.bytes=%zu\\n", sizeof(struct Time));
+    printf("saveblock2.localTimeOffset=%zu\n", offsetof(struct SaveBlock2, localTimeOffset));
+    printf("saveblock2.lastBerryTreeUpdate=%zu\n", offsetof(struct SaveBlock2, lastBerryTreeUpdate));
+    printf("saveblock2.gcnLinkFlags=%zu\n", offsetof(struct SaveBlock2, gcnLinkFlags));
+    printf("saveblock2.encryptionKey=%zu\n", offsetof(struct SaveBlock2, encryptionKey));
+    printf("time.bytes=%zu\n", sizeof(struct Time));
     printf("saveblock2.pokedex=%zu\n", offsetof(struct SaveBlock2, pokedex));
     printf("saveblock2.apprentices=%zu\n", offsetof(struct SaveBlock2, apprentices));
     printf("saveblock2.hallRecords1P=%zu\n", offsetof(struct SaveBlock2, hallRecords1P));
@@ -39,8 +39,8 @@ int main(void) {
     printf("frontier.towerInterview=%zu\n", offsetof(struct BattleFrontier, towerInterview));
     printf("frontier.challengeStatus=%zu\n", offsetof(struct BattleFrontier, challengeStatus));
     printf("frontier.domeTrainers=%zu\n", offsetof(struct BattleFrontier, domeTrainers));
-    printf("frontier.domeMonIds=%zu\\n", offsetof(struct BattleFrontier, domeMonIds));
-    printf("domeTrainer.bytes=%zu\\n", sizeof(struct BattleDomeTrainer));
+    printf("frontier.domeMonIds=%zu\n", offsetof(struct BattleFrontier, domeMonIds));
+    printf("domeTrainer.bytes=%zu\n", sizeof(struct BattleDomeTrainer));
     printf("frontier.rentalMons=%zu\n", offsetof(struct BattleFrontier, rentalMons));
     printf("frontier.battlePoints=%zu\n", offsetof(struct BattleFrontier, battlePoints));
     printf("towerRecord.bytes=%zu\n", sizeof(struct EmeraldBattleTowerRecord));
