@@ -1,0 +1,415 @@
+{
+  "c": {},
+  "asm": {
+    "data/maps/PewterCity_Frlg/scripts.inc": {
+      "Text_DreamEaterTeach": [
+        "Uaaaah! Dormi ao sol.\\pSonhei com um DROWZEE\\ncomendo meus sonhos.\\pQuer aprender DREAM EATER?$"
+      ],
+      "Text_DreamEaterDeclined": [
+        "...Ronco...$"
+      ],
+      "Text_DreamEaterWhichMon": [
+        "Qual POKEMON vai aprender\\nDREAM EATER?$"
+      ],
+      "Text_DreamEaterTaught": [
+        "...Zzz...\\nNao aguento mais comer...$"
+      ],
+      "PewterCity_Text_ClefairyCameFromMoon": [
+        "Dizem que CLEFAIRY veio da lua.\\pEle surgiu depois da queda\\nde MOON STONES.$"
+      ],
+      "PewterCity_Text_BrockOnlySeriousTrainerHere": [
+        "Ha poucos TREINADORES\\nexperientes por aqui.\\pBROCK e um dos melhores!$"
+      ],
+      "PewterCity_Text_DidYouCheckOutMuseum": [
+        "Ja visitou o MUSEU?$"
+      ],
+      "PewterCity_Text_WerentThoseFossilsAmazing": [
+        "Os fosseis de MT. MOON\\nnao sao incriveis?$"
+      ],
+      "PewterCity_Text_ReallyYouHaveToGo": [
+        "Serio?\\nVoce precisa visitar!$"
+      ],
+      "PewterCity_Text_ThisIsTheMuseum": [
+        "Este e o MUSEU.\\pPague a entrada e aproveite!$"
+      ],
+      "PewterCity_Text_DoYouKnowWhatImDoing": [
+        "Psiu...\\nSabe o que estou fazendo?$"
+      ],
+      "PewterCity_Text_ThatsRightItsHardWork": [
+        "Isso mesmo!\\nDa muito trabalho!$"
+      ],
+      "PewterCity_Text_SprayingRepelToKeepWildMonsOut": [
+        "Uso REPEL para afastar\\nPOKEMON do meu jardim!$"
+      ],
+      "PewterCity_Text_BrocksLookingForChallengersFollowMe": [
+        "Voce e TREINADOR, certo?\\pBROCK procura desafiantes.\\nMe acompanhe!$"
+      ],
+      "PewterCity_Text_GoTakeOnBrock": [
+        "Se estiver pronto,\\ndesafie BROCK!$"
+      ],
+      "PewterCity_Text_TrainerTipsEarningEXP": [
+        "DICAS DE TREINADOR\\pTodo POKEMON que lutar\\npode ganhar pontos EXP.$"
+      ],
+      "PewterCity_Text_CallPoliceIfInfoOnThieves": [
+        "AVISO!\\pLadroes roubaram fosseis\\nde MT. MOON.\\pAvise a policia se\\nsouber de algo.$"
+      ],
+      "PewterCity_Text_MuseumOfScience": [
+        "MUSEU DE CIENCIAS DE PEWTER$"
+      ],
+      "PewterCity_Text_GymSign": [
+        "PEWTER CITY - GYM POKEMON\\pLIDER: BROCK\\nMestre dos POKEMON ROCK.$"
+      ],
+      "PewterCity_Text_CitySign": [
+        "PEWTER CITY\\nA cidade das pedras cinzentas.$"
+      ],
+      "PewterCity_Text_OhPlayer": [
+        "Ah, {PLAYER}{KUN}!$"
+      ],
+      "PewterCity_Text_AskedToDeliverThis": [
+        "Ainda bem que encontrei voce!\\pSou ajudante do PROF. OAK.\\nVim entregar isto.$"
+      ],
+      "PewterCity_Text_ReceivedRunningShoesFromAide": [
+        "{PLAYER} recebeu\\nos RUNNING SHOES!$"
+      ],
+      "PewterCity_Text_SwitchedShoesWithRunningShoes": [
+        "{PLAYER} colocou os\\nRUNNING SHOES.$"
+      ],
+      "PewterCity_Text_ExplainRunningShoes": [
+        "Aperte B para correr.\\pMas so onde houver espaco!$"
+      ],
+      "PewterCity_Text_MustBeGoingBackToLab": [
+        "Preciso voltar ao LAB.\\pAte mais!$"
+      ],
+      "PewterCity_Text_RunningShoesLetterFromMom": [
+        "Ha uma carta junto...\\pQuerido {PLAYER},\\pEstes RUNNING SHOES\\nsao um presente meu.\\pCuide-se durante a viagem!$"
+      ]
+    },
+    "data/maps/VioletCity/scripts.inc": {
+      "VioletCity_Text_LiquidJustice": [
+        "Observe os arredores!\\pCada lugar tem POKEMON\\nque podem ser encontrados aqui.$"
+      ],
+      "VioletCity_Text_EarlAsksIfYouBeatFalkner": [
+        "Ola! Voce e TREINADOR?\\pJa enfrentou o LIDER do GYM?$"
+      ],
+      "VioletCity_Text_VeryNiceIndeed": [
+        "Muito bom!\\nParabens!$"
+      ],
+      "VioletCity_Text_FollowEarl": [
+        "Quer aprender?\\nMe acompanhe!$"
+      ],
+      "VioletCity_Text_HereTeacherIAm": [
+        "Sou professor aqui.\\nEstude bastante!$"
+      ],
+      "VioletCity_Text_Lass": [
+        "Dizem que ha fantasmas\\nna SPROUT TOWER.\\pGolpes GHOST podem ser uteis.$"
+      ],
+      "VioletCity_Text_Boy": [
+        "Ola, TREINADOR!\\pNa ACADEMY voce pode\\naprender muita coisa.$"
+      ],
+      "VioletCity_Text_Gramps": [
+        "FALKNER herdou o GYM do pai.\\pEle e um grande especialista\\nem POKEMON voadores.$"
+      ],
+      "VioletCity_Text_Youngster": [
+        "Vi uma arvore se mexendo!\\pEla parece dancar\\nquando alguem encosta!$"
+      ],
+      "VioletCity_Text_Sign": [
+        "VIOLET CITY\\pA cidade dos aromas antigos.$"
+      ],
+      "VioletCity_Text_GymSign": [
+        "VIOLET CITY - GYM POKEMON\\pLIDER: FALKNER\\nMestre dos POKEMON voadores.$"
+      ],
+      "VioletCity_Text_SproutTowerSign": [
+        "SPROUT TOWER\\pAprenda com os POKEMON.$"
+      ],
+      "VioletCity_Text_EarlsAcademySign": [
+        "ACADEMY POKEMON DE EARL$"
+      ],
+      "VioletCity_Text_Pichu": [
+        "PICHU: Chuuuu!$"
+      ],
+      "VioletCity_Text_Bellsprout": [
+        "BELLSPROUT: Sprouuuut.$"
+      ],
+      "VioletCity_Text_Rattata": [
+        "RATTATA: RATTATARATTA!$"
+      ],
+      "VioletCity_Text_Elm_Call": [
+        "PROF. ELM: Ola, {PLAYER}!\\pDescobrimos algo sobre o EGG!\\pMeu assistente esta\\nno CENTRO POKEMON.$"
+      ],
+      "VioletCity_Text_Kimono_Girl1": [
+        "Meu Deus...\\nEsse EGG deve ser...!$"
+      ],
+      "VioletCity_Text_Kimono_Girl2": [
+        "Entendi...\\pO EGG foi de MR. POKEMON\\npara o PROF. ELM,\\le depois para voce.$"
+      ],
+      "VioletCity_Text_Kimono_Girl3": [
+        "Esse EGG e muito importante.\\pCuide muito bem dele!$"
+      ],
+      "VioletCity_Text_Kimono_Girl4": [
+        "Estou contando com voce.$"
+      ]
+    },
+    "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.inc": {
+      "LittlerootTown_ProfessorBirchsLab_Text_BirchAwayOnFieldwork": [
+        "O PROF. BIRCH saiu\\npara pesquisa de campo.\\pEle estuda os POKEMON\\nno ambiente natural.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_BirchIsntOneForDeskWork": [
+        "O PROF. prefere pesquisar\\nPOKEMON ao ar livre.\\pEle quase nunca fica sentado!$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo": [
+        "PROF. BIRCH estuda\\nonde vivem os POKEMON.\\p{RIVAL} tambem ajuda nas pesquisas.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon": [
+        "PROF. BIRCH: Que tal dar\\num apelido a {STR_VAR_1}?$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_GetRivalToTeachYou": [
+        "PROF. BIRCH: Otimo!\\p{RIVAL} vai ficar feliz!\\nPeca a {RIVAL} dicas de TREINADOR.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_DontBeThatWay": [
+        "PROF. BIRCH: Vamos la!\\nVa conhecer meu filho.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_BirchRivalGoneHome": [
+        "PROF. BIRCH: {RIVAL}?\\pAcho que foi para casa.\\nOu esta explorando a grama.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokedex": [
+        "{PLAYER} recebeu a POKEDEX!$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait": [
+        "PROF. BIRCH: Muitos POKEMON\\nainda esperam por voce!\\pO DEXNAV vai ajudar\\na encontra-los.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_MayGotPokedexTooTakeThese": [
+        "MAY: Uau, {PLAYER}{KUN}!\\nVoce tambem ganhou POKEDEX!\\pTenho um presente para voce.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_CatchCutePokemonWithPokeBalls": [
+        "MAY: Capturar POKEMON e demais!\\pVou explorar tudo e conhecer\\nmuitas especies diferentes.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_OhYourBagsFull": [
+        "Sua BOLSA esta cheia!$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_MayWhereShouldIGoNext": [
+        "MAY: Onde sera que vou\\nprocurar POKEMON agora?$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_BrendanGotPokedexTooTakeThese": [
+        "BRENDAN: Entao voce\\nganhou uma POKEDEX.\\pAqui, pegue isto tambem.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_CatchCoolPokemonWithPokeBalls": [
+        "BRENDAN: E divertido\\ncapturar muitos POKEMON.\\pVou explorar toda a regiao!$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_HeyYourBagsFull": [
+        "Ei, sua BOLSA esta cheia!$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_BrendanWhereShouldIGoNext": [
+        "BRENDAN: Onde vou\\nprocurar POKEMON agora?$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_SeriousLookingMachine": [
+        "Uma maquina de pesquisa.\\nParece importante!$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_PCUsedForResearch": [
+        "Um PC de pesquisa.\\nMelhor nao mexer.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_CrammedWithBooksOnPokemon": [
+        "Ha muitos livros\\nsobre POKEMON aqui.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_BookTooHardToRead": [
+        "Este livro e dificil demais.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_OtherRegionsUpgradeToNational": [
+        "PROF. BIRCH: {PLAYER}{KUN}\\ne {RIVAL}, obrigado\\lpor ajudar na pesquisa!\\pA POKEDEX vai ganhar\\numa atualizacao!$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_MayUpgradeSoCool": [
+        "MAY: Que legal, {PLAYER}{KUN}!\\pSua POKEDEX esta melhorando!\\nParabens!$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_BrendanYouCanThankMe": [
+        "BRENDAN: Explorei HOENN\\ne encontrei muitos POKEMON.\\pPode me agradecer por isso,\\n{PLAYER}!$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_OkayAllDone": [
+        "PROF. BIRCH: Pronto!$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_PokedexUpgradedToNational": [
+        "A POKEDEX de {PLAYER}\\nagora tem o modo NATIONAL!$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting2": [
+        "PROF. BIRCH: Voce e CAMPEAO,\\nmas a jornada nao acabou.\\pHa muito mais POKEMON\\npara pesquisar!$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_MayTakeBreakFromFieldwork": [
+        "MAY: Vou descansar\\num pouco das pesquisas.\\pVou ajudar o PROF. aqui.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_BrendanTakeBreakFromFieldwork": [
+        "BRENDAN: Vou descansar\\num pouco das pesquisas.\\pVou ajudar o PROF. aqui.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_CompletedDexChoosePokemon": [
+        "PROF. BIRCH: {PLAYER}{KUN}!\\nVamos ver sua POKEDEX.\\pParabens pelo progresso!\\pPode escolher um POKEMON raro.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_CanHaveAnyOneOfRarePokemon": [
+        "PROF. BIRCH: Estes POKEMON\\nvem de outra regiao.\\pPode escolher um dos tres!$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_YoullTakeCyndaquil": [
+        "PROF. BIRCH: CYNDAQUIL!\\nUma otima escolha!\\pQuer ficar com CYNDAQUIL?$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_YoullTakeTotodile": [
+        "PROF. BIRCH: TOTODILE!\\nUma otima escolha!\\pQuer ficar com TOTODILE?$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_YoullTakeChikorita": [
+        "PROF. BIRCH: CHIKORITA!\\nUma otima escolha!\\pQuer ficar com CHIKORITA?$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_TakeYourTimeAllInvaluable": [
+        "PROF. BIRCH: Pense bem!\\pTodos sao POKEMON valiosos.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_PickedFinePokemon": [
+        "PROF. BIRCH: Muito bem!\\nVoce escolheu um belo POKEMON!$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_ReceivedJohtoStarter": [
+        "{PLAYER} recebeu {STR_VAR_1}\\ndo PROF. BIRCH!$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_NicknameJohtoStarter": [
+        "Quer dar um apelido\\npara {STR_VAR_1}?$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting": [
+        "PROF. BIRCH: {PLAYER}{KUN},\\nvoce completou a POKEDEX\\lde HOENN!\\pMas a jornada continua.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_BetterLeaveOthersAlone": [
+        "Voce ja pegou seu POKEMON.\\nDeixe os outros descansarem.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_DontHaveAnyRoomForPokemon": [
+        "Nao ha espaco na equipe\\npara este POKEMON.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_MayWhatNextImStayingHere": [
+        "MAY: {PLAYER}{KUN}, e agora?\\pVai continuar treinando\\ne participando de batalhas?$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_BrendanPreferCollectingSlowly": [
+        "BRENDAN: Prefiro treinar\\nmeus POKEMON com calma\\na capturar varios de uma vez.$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_MayHaveYouGoneToBattleFrontier": [
+        "MAY: Oi, {PLAYER}{KUN}!\\nJa visitou a BATTLE FRONTIER?$"
+      ],
+      "LittlerootTown_ProfessorBirchsLab_Text_BrendanHaveYouGoneToBattleFrontier": [
+        "BRENDAN: Oi, {PLAYER}!\\nJa visitou a BATTLE FRONTIER?$"
+      ]
+    },
+    "data/maps/RustboroCity/scripts.inc": {
+      "RustboroCity_Text_WeShortenItToDevon": [
+        "A DEVON CORPORATION\\ne conhecida como DEVON.\\pEla produz varios itens uteis.$"
+      ],
+      "RustboroCity_Text_SneakyLookingManWentAroundCorner": [
+        "Homem suspeito?\\pVi alguem assim\\nvirando aquela esquina.$"
+      ],
+      "RustboroCity_Text_HaveYouChallengedGym": [
+        "Ja tentou desafiar o GYM?\\pGanhe uma INSIGNIA para\\nprovar suas habilidades!$"
+      ],
+      "RustboroCity_Text_HeyThatsRustborosGymBadge": [
+        "Uau! A INSIGNIA de RUSTBORO!\\pNa minha opiniao,\\ne a mais bonita de todas.$"
+      ],
+      "RustboroCity_Text_YoureNewAroundHere": [
+        "Ola! Voce e novo por aqui?\\pVai estudar na escola\\nde TREINADORES?$"
+      ],
+      "RustboroCity_Text_GymLeaderIsntEasyWithFire": [
+        "Desafiei o GYM, mas\\nmeus POKEMON FIRE sofreram.\\pROCK resiste a FIRE!$"
+      ],
+      "RustboroCity_Text_MrBrineyWalksInTheTunnel": [
+        "MR. BRINEY mora perto do mar.\\pAs vezes caminha pelo tunel.$"
+      ],
+      "RustboroCity_Text_MrBrineyLovesPeeko": [
+        "MR. BRINEY mora perto do mar.\\pEle adora seu POKEMON PEEKO.$"
+      ],
+      "RustboroCity_Text_WowYouHavePokemon": [
+        "Uau! Voce tem POKEMON!\\pQuando crescer,\\nquero viajar com os meus.$"
+      ],
+      "RustboroCity_Text_CatchRarePokemonIfIGoToSchool": [
+        "ESCOLA DE TREINADORES!\\pSera que estudar aqui ajuda\\na capturar POKEMON raros?$"
+      ],
+      "RustboroCity_Text_PokemonCanChangeLookFromExp": [
+        "POKEMON ganham EXP na luta.\\pAlguns mudam de forma\\nquando evoluem.$"
+      ],
+      "RustboroCity_Text_PokemonChangeShape": [
+        "Um POKEMON pode mudar de forma?\\nQue incrivel!$"
+      ],
+      "RustboroCity_Text_TradePokemonGrowFast": [
+        "POKEMON recebidos em trocas\\npodem crescer mais rapido.\\pMas exigem certas INSIGNIAS\\npara obedecer.$"
+      ],
+      "RustboroCity_Text_OutOfTheWay": [
+        "Sai da frente!\\nAgora!$"
+      ],
+      "RustboroCity_Text_WaitDontTakeMyGoods": [
+        "Espere! Por favor!\\pNao leve meus DEVON GOODS!$"
+      ],
+      "RustboroCity_Text_HelpMeIWasRobbed": [
+        "Voce me ajudou\\nem PETALBURG WOODS!\\pA TEAM AQUA roubou\\nmeus DEVON GOODS! Me ajude!$"
+      ],
+      "RustboroCity_Text_ShadyCharacterTookOffTowardsTunnel": [
+        "O suspeito fugiu\\nna direcao do tunel.$"
+      ],
+      "RustboroCity_Text_YouGotItThankYou": [
+        "Voce recuperou\\nmeus DEVON GOODS!\\pMuito obrigado!\\nReceba esta recompensa.$"
+      ],
+      "RustboroCity_Text_YoureLoadedWithItems": [
+        "Sua BOLSA esta cheia.\\nNao posso dar a GREAT BALL.$"
+      ],
+      "RustboroCity_Text_PleaseComeWithMe": [
+        "Com licenca!\\nVenha comigo, por favor!$"
+      ],
+      "RustboroCity_Text_MayHiLetsRegister": [
+        "MAY: Oi, {PLAYER}{KUN}!\\pVoce tem MATCH CALL\\nno seu POKENAV!\\pVamos trocar contatos?$"
+      ],
+      "RustboroCity_Text_RegisteredMay": [
+        "MAY foi registrada\\nno POKENAV.$"
+      ],
+      "RustboroCity_Text_MayOhHaventRaisedPokemonEnough": [
+        "MAY: O que houve?\\pSeus POKEMON ainda\\nprecisam de treino!$"
+      ],
+      "RustboroCity_Text_MayWantToBattle": [
+        "MAY: Que tal\\numa batalha aqui?$"
+      ],
+      "RustboroCity_Text_MayImNotGoingToLose": [
+        "MAY: {PLAYER}{KUN},\\nnao vou facilitar so\\nporque voce e iniciante!$"
+      ],
+      "RustboroCity_Text_MayDefeat": [
+        "Nossa!\\nVoce e melhor do que pensei!$"
+      ],
+      "RustboroCity_Text_BrendanHiLetsRegister": [
+        "BRENDAN: Oi, {PLAYER}!\\pVoce tem MATCH CALL!\\pVamos trocar contatos?$"
+      ],
+      "RustboroCity_Text_RegisteredBrendan": [
+        "BRENDAN foi registrado\\nno POKENAV.$"
+      ],
+      "RustboroCity_Text_BrendanNoConfidenceInPokemon": [
+        "BRENDAN: O que houve?\\nNao confia nos seus POKEMON?$"
+      ],
+      "RustboroCity_Text_BrendanWantToBattle": [
+        "BRENDAN: E ai?\\nQuer batalhar comigo?$"
+      ],
+      "RustboroCity_Text_BrendanIWontGoEasy": [
+        "BRENDAN: Voce e iniciante,\\nmas nao vou facilitar!$"
+      ],
+      "RustboroCity_Text_BrendanDefeat": [
+        "Hmm...\\nVoce batalha bem.$"
+      ],
+      "RustboroCity_Text_TunnelNearingCompletion": [
+        "TUNEL PRESTES A SER CONCLUIDO\\pMas ha um X enorme no aviso.$"
+      ],
+      "RustboroCity_Text_DevonCorpSign": [
+        "DEVON CORPORATION\\pCriando produtos para todos.$"
+      ],
+      "RustboroCity_Text_GymSign": [
+        "RUSTBORO CITY - GYM POKEMON\\nLIDER: ROXANNE\\pEspecialista em POKEMON ROCK.$"
+      ],
+      "RustboroCity_Text_DevonCorpBranchOfficeSign": [
+        "FILIAL DA DEVON CORPORATION\\pApenas funcionarios\\ne pessoas autorizadas.$"
+      ],
+      "RustboroCity_Text_CitySign": [
+        "RUSTBORO CITY\\pOnde natureza e ciencia\\nandam juntas.$"
+      ],
+      "RustboroCity_Text_TrainersSchoolSign": [
+        "ESCOLA DE TREINADORES POKEMON\\pAprenda tudo sobre POKEMON!$"
+      ],
+      "RustboroCity_Text_CuttersHouse": [
+        "CASA DO ESPECIALISTA EM CUT$"
+      ],
+      "RustboroCity_Text_PleaseSelectPokenav": [
+        "Selecione o POKENAV, por favor.$"
+      ],
+      "RustboroCity_Text_IdBetterGetBackToWork": [
+        "Tenho que voltar ao trabalho.\\nCuide-se, {PLAYER}!$"
+      ]
+    }
+  }
+}
