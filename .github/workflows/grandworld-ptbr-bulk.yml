@@ -5,9 +5,12 @@ on:
     paths:
       - '.github/workflows/grandworld-ptbr-bulk.yml'
       - 'tools/grandworld/generate_ptbr_bulk_candidates.py'
+      - 'tools/grandworld/adapt_ptbr_greedy_gifts_qa.py'
+      - 'tools/grandworld/tests/test_adapt_ptbr_greedy_gifts_qa.py'
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: grandworld-ptbr-bulk-stage1
@@ -33,13 +36,18 @@ jobs:
           ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
           path: world
           fetch-depth: 0
-      - name: Prepare compiler and offline translation model
+      - name: Prepare compiler
         run: |
           set -euo pipefail
           sudo apt-get update
-          sudo apt-get install -y build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev python3-venv
-          python3 -m venv /tmp/ptbr-argos
-          /tmp/ptbr-argos/bin/pip install --disable-pip-version-check 'argostranslate>=1.9,<2'
+          sudo apt-get install -y build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev
+      - name: Restore 5200 drafts from previous run after source preflight
+        uses: actions/download-artifact@v4
+        with:
+          name: GRANDWORLD_PTBR_BULK_DRAFT_QA
+          run-id: 40176309495
+          github-token: ${{ github.token }}
+          path: .
       - name: Recreate the pinned post-M8 game source
         run: |
           set -euo pipefail
@@ -49,16 +57,16 @@ jobs:
           python3 grandworld/tools/grandworld/add_kanto_avatar.py world
           python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --shadows lean --report ptbr-bulk-shadow.json
           python3 grandworld/tools/grandworld/apply_grass_only.py world --apply --report ptbr-bulk-grass.json
-      - name: Produce more than five thousand review-required text drafts
+      - name: Verify the existing 5200 non-merged review-only drafts
         run: |
           set -euo pipefail
-          /tmp/ptbr-argos/bin/python grandworld/tools/grandworld/generate_ptbr_bulk_candidates.py world --minimum 5000 --maximum 5200 --output-dir grandworld/tools/grandworld 2>&1 | tee ptbr-bulk-generator.log
           python3 - <<'PY'
           import json
           from pathlib import Path
           index=json.loads(Path('grandworld/tools/grandworld/ptbr_auto_review_index.json').read_text())
-          assert index['added_entries'] >= 5000
+          assert index['added_entries']==5200
           assert index['review_required'] and not index['gameplay_approved']
+          assert len(index['shards'])==21
           assert all(Path('grandworld/tools/grandworld', n).is_file() for n in index['shards'])
           PY
       - name: No-write source validation and full Python test suite
