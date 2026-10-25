@@ -74,12 +74,12 @@ int main(void)
     /* Calls the unchanged World-checked DmaSet macro; the portable adapter
      * routes it to the native implementation instead of unhandled registers. */
     DmaSet(3, src, dma_dst,
-           ((DMA_ENABLE | DMA_START_NOW | DMA_32BIT | DMA_SRC_INC | DMA_DEST_INC) << 16) | 8);
+           (((u32)DMA_ENABLE | DMA_START_NOW | DMA_32BIT | DMA_SRC_INC | DMA_DEST_INC) << 16) | 8);
     if (memcmp(src, dma_dst, sizeof(src)) != 0)
         return failed(6, "DMA immediate 32-bit transfer not performed");
     memset(dma_dst, 0, sizeof(dma_dst));
     DmaSet(3, src, dma_dst,
-           ((DMA_ENABLE | DMA_START_VBLANK | DMA_32BIT | DMA_SRC_INC | DMA_DEST_INC) << 16) | 8);
+           (((u32)DMA_ENABLE | DMA_START_VBLANK | DMA_32BIT | DMA_SRC_INC | DMA_DEST_INC) << 16) | 8);
     if (dma_dst[0] != 0)
         return failed(7, "VBlank DMA executed before event");
     RunDMAs(DMA_VBLANK);
@@ -91,7 +91,7 @@ int main(void)
         u16 value = 0xA53Fu;
         u16 result[8] = {0};
         DmaSet(3, &value, result,
-               ((DMA_ENABLE | DMA_START_NOW | DMA_SRC_FIXED | DMA_DEST_INC) << 16) | 8);
+               (((u32)DMA_ENABLE | DMA_START_NOW | DMA_SRC_FIXED | DMA_DEST_INC) << 16) | 8);
         for (i = 0; i < 8; ++i)
             if (result[i] != value)
                 return failed(11, "fixed-source 16-bit DMA fill incorrect");
@@ -102,7 +102,7 @@ int main(void)
         u32 repeat_src[8] = {101,102,103,104,201,202,203,204};
         u32 repeat_dst[4] = {0};
         DmaSet(3, repeat_src, repeat_dst,
-               ((DMA_ENABLE | DMA_REPEAT | DMA_START_VBLANK |
+               (((u32)DMA_ENABLE | DMA_REPEAT | DMA_START_VBLANK |
                  DMA_32BIT | DMA_SRC_INC | DMA_DEST_RELOAD) << 16) | 4);
         RunDMAs(DMA_VBLANK);
         if (repeat_dst[0] != 101 || repeat_dst[3] != 104)
@@ -114,7 +114,7 @@ int main(void)
 
     /* Invalid DMA index must fail closed without copying or touching I/O. */
     memset(dma_dst, 0, sizeof(dma_dst));
-    GwNativeDmaSet(-1, src, dma_dst, (DMA_ENABLE << 16) | 4);
+    GwNativeDmaSet(-1, src, dma_dst, ((u32)DMA_ENABLE << 16) | 4);
     if (dma_dst[0] != 0)
         return failed(14, "negative DMA index affected memory");
 
