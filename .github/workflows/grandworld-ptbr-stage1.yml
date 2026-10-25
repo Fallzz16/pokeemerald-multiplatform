@@ -60,7 +60,7 @@ jobs:
           import json
           from pathlib import Path
           a=json.loads(Path('ptbr-report.json').read_text())
-          assert a['locale']=='pt-BR' and a['translation_entries']>=350
+          assert a['locale']=='pt-BR' and a['translation_entries']>=440
           assert not a['save_format_modified'] and a['translated_text_ascii_only']
           assert not a['item_names_translated'] and not a['move_names_translated']
           assert 'Novo Jogo' in Path('world/src/main_menu.c').read_text()
