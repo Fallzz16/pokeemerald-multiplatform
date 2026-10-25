@@ -98,6 +98,11 @@ jobs:
             -lm -o world-platform-sanitized
           ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 \
             UBSAN_OPTIONS=halt_on_error=1 ./world-platform-sanitized
+      - name: P2 - measure native SaveBlock1/3 offsets before save compilation
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/save_layout_probe.py \
+            --world world --output native-save13-layout.json
       - name: P2 - expose actual World frame API on temporary native World
         run: |
           set -euo pipefail
@@ -135,6 +140,7 @@ jobs:
             native-engine-objects.json
             native-engine-link.json
             native-world-frame.json
+            native-save13-layout.json
           if-no-files-found: warn
   fast-save-abi-audit:
     runs-on: ubuntu-24.04
@@ -274,6 +280,11 @@ jobs:
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/world_frame_overlay.py \
             --world world --apply --report native-world-frame-composed.json
+      - name: P2 - inspect composed World SaveBlock1/3 layout
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/save_layout_probe.py \
+            --world world --output native-save13-m8-layout.json
       - name: P2 - compile actual composited M8/World entry and gameplay objects
         run: |
           set -euo pipefail
@@ -314,6 +325,7 @@ jobs:
             native-save-abi-overlay.json
             native-dma-api-overlay.json
             native-world-frame-composed.json
+            native-save13-m8-layout.json
             native-engine-m8-probe.json
             native-engine-m8-link.json
           if-no-files-found: warn
