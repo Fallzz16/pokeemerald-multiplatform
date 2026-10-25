@@ -6,7 +6,7 @@ import unittest
 from unittest.mock import patch
 import subprocess
 
-from tools.grandworld_native.final_link_probe import attempt, attach_coverage
+from tools.grandworld_native.final_link_probe import attempt, attach_coverage, verify_compiled_objects
 
 
 class RealGameLinkGateTests(unittest.TestCase):
@@ -73,6 +73,47 @@ class RealGameLinkGateTests(unittest.TestCase):
         self.assertFalse(result["ready_for_distribution"])
         self.assertEqual(result["source_compiled"], 402)
         self.assertEqual(result["data_compiled"], 13)
+
+    def test_compiled_objects_must_match_real_source_and_asset_audits(self):
+        (self.code / "main.o").write_bytes(b"genuine-test-compiled-source")
+        (self.data / "event_scripts.o").write_bytes(b"genuine-test-assembled-data")
+        source = self.root / "full-source-audit.json"
+        asset = self.root / "full-data-audit.json"
+        source.write_text(json.dumps({
+            "compiled": 1, "requested": 1,
+            "objects": [{"source": "src/main.c", "object": "main.o",
+                         "status": "object_compiled"}],
+        }), encoding="utf-8")
+        asset.write_text(json.dumps({
+            "native_objects": 1, "original_source_files": 1,
+            "results": [{"source": "data/event_scripts.s",
+                         "native_object": True}],
+        }), encoding="utf-8")
+        good = verify_compiled_objects(source, asset, self.code, self.data)
+        self.assertTrue(good["source_object_set_verified"])
+        self.assertTrue(good["data_object_set_verified"])
+        (self.code / "ghost.o").write_bytes(b"leftover-from-failed-compile")
+        (self.data / "event_scripts.o").unlink()
+        bad = verify_compiled_objects(source, asset, self.code, self.data)
+        self.assertFalse(bad["source_object_set_verified"])
+        self.assertFalse(bad["data_object_set_verified"])
+        self.assertEqual(bad["source_stale_object_files"], ["ghost.o"])
+        self.assertEqual(bad["data_missing_object_files"], ["event_scripts.o"])
+
+    def test_duplicated_asm_object_names_are_rejected(self):
+        source = self.root / "source.json"
+        data = self.root / "data.json"
+        source.write_text(json.dumps({
+            "objects": [{"object": "main.o", "status": "object_compiled"}],
+        }), encoding="utf-8")
+        data.write_text(json.dumps({
+            "results": [
+                {"source": "data/a.s", "native_object": True},
+                {"source": "sound/a.s", "native_object": True},
+            ],
+        }), encoding="utf-8")
+        with self.assertRaises(ValueError):
+            verify_compiled_objects(source, data, self.code, self.data)
 
     def test_even_a_successful_link_is_not_a_boot_test(self):
         for folder in (self.code, self.data, self.platform):
