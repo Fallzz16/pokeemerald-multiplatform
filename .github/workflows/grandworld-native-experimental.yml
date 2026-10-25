@@ -12,6 +12,18 @@ permissions:
   contents: read
 
 jobs:
+  plugin-backend-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test mod installation, GUI backend, pack integrity and safe fallback
+        run: |
+          python3 -m unittest discover -s tools/grandworld_native/tests -v
+          python3 -m compileall -q tools/grandworld_native
   native-source-lab:
     runs-on: ubuntu-24.04
     timeout-minutes: 110
@@ -142,6 +154,7 @@ jobs:
           python tools/grandworld_native/demo_pack.py --out build/native-win/demo --install
           ./build/native-win/gw_theme_lab.exe --mods build/native-win/demo/mods --selftest
           ./build/native-win/gw_style_smoke.exe build/native-win/demo/mods
+          python -m unittest discover -s tools/grandworld_native/tests -p 'test_plugin_ui.py' -v
           mkdir -p build/native-win/package
           cp build/native-win/gw_theme_lab.exe build/native-win/package/
           cp build/native-win/gw_host_preview.exe build/native-win/package/
@@ -150,7 +163,7 @@ jobs:
           cp tools/grandworld_native/host/*.bat build/native-win/package/
           cp tools/grandworld_native/host/LEIA_PRIMEIRO.txt build/native-win/package/
           mkdir -p build/native-win/package/tools
-          cp tools/grandworld_native/{pack_manager.py,modpacks.py,asset_catalog.py} build/native-win/package/tools/
+          cp tools/grandworld_native/{pack_manager.py,modpacks.py,asset_catalog.py,plugin_ui.py} build/native-win/package/tools/
           bash tools/grandworld_native/host/bundle_mingw_dlls.sh build/native-win/package
 
       - name: Upload Windows SDL2 host diagnostic only
