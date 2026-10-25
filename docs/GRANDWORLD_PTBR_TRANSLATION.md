@@ -187,12 +187,13 @@ caixas e progressao de todas as regioes continua obrigatorio para release.
 ## Revisao humana de rascunhos — ginásios (25/10/2026)
 
 - Alem das 1.587 entradas originalmente manuais, foram revistos individualmente
-  **175 textos** que ja faziam parte das 5.200 traducoes automaticas.
+  **210 textos** que ja faziam parte das 5.200 traducoes automaticas.
   Isso nao aumenta a quantidade total de entradas, que continua **6.787**.
 - 24 falas no GYM de Petalburg (Norman e treinadores); 18 em Azalea
   (Bugsy); 18 em Goldenrod (Whitney); 20 em Ecruteak (Morty); 21 em
   Mahogany (Pryce); 19 em Blackthorn (Clair); 25 em Celadon (Erika);
-  30 em Cinnabar (Blaine, incluindo perguntas do quiz).
+  30 em Cinnabar (Blaine, incluindo perguntas do quiz); 19 em Fuchsia (Koga);
+  16 em Cianwood (Chuck).
 - Foram corrigidos portugues europeu, falas pouco naturais e termos tecnicos.
   Em Azalea, TM09 mantem explicitamente o nome do golpe **BULLET SEED**.
 - O registro `tools/grandworld/ptbr_reviewed_auto7.json` diferencia textos
