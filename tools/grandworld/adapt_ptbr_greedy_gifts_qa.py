@@ -14,6 +14,9 @@ NEW = ('if "Better leave the others alone" not in birch '
 ELM_OLD = 'if "Probably shouldn\'t touch" not in elm:'
 ELM_NEW = ('if "Probably shouldn\'t touch" not in elm '
            'and "Provavelmente nao devia tocar!" not in elm:')
+ELM_OLD = 'if "Probably shouldn\'t touch" not in elm:'
+ELM_NEW = ('if "Probably shouldn\'t touch" not in elm '
+           'and "Provavelmente nao devia tocar!" not in elm:')
 QA_PATH = "test/overworld/ValidateGreedyGifts.py"
 MAP_PATH = "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.inc"
 MARKER = "LittlerootTown_ProfessorBirchsLab_Text_BetterLeaveOthersAlone:"
@@ -35,7 +38,7 @@ def apply(world, write=False):
         raise ValueError("Elm starter protection missing from baseline QA")
     if 'FLAG_JOHTO_STARTER_CHOSEN' not in qa:
         raise ValueError("the Johto flag assertion must remain present")
-    updated = qa.replace(OLD, NEW).replace(ELM_OLD, ELM_NEW)
+    updated = qa.replace(OLD, NEW).replace(ELM_OLD, ELM_NEW).replace(ELM_OLD, ELM_NEW)
     # These assertions must continue checking the same warnings, now in
     # either original English or the PT-BR ROM. Never remove any conditions.
     if write:
