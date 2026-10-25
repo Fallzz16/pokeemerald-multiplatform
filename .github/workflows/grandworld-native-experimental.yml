@@ -41,7 +41,7 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get update
-          sudo apt-get install -y build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev libsdl2-dev
+          sudo apt-get install -y build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev libsdl2-dev gcc-multilib
       - name: P0 - materialize full M8 + PT-BR in isolated World tree
         run: |
           set -euo pipefail
@@ -91,31 +91,6 @@ jobs:
           cmake --build build/native-host -j2
           ctest --test-dir build/native-host --output-on-failure
 
-  native-header-probe:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
-    steps:
-      - name: Checkout adapters
-        uses: actions/checkout@v4
-        with:
-          path: grandworld
-      - name: Checkout pinned World source
-        uses: actions/checkout@v4
-        with:
-          repository: evilchinesefood/PKMN-World
-          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
-          path: world
-      - name: Compile portable sources against World headers (diagnostic only)
-        run: |
-          python3 grandworld/tools/grandworld_native/probe.py \
-            --world world --grandworld grandworld \
-            --output native-header-probe.json
-      - name: Save diagnostic report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: grandworld-native-header-probe
-          path: native-header-probe.json
 
   windows-host-diagnostic:
     runs-on: windows-latest
