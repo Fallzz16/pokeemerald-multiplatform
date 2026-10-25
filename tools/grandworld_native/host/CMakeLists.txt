@@ -35,3 +35,6 @@ target_link_libraries(gw_host_preview PRIVATE gw_native_host)
  
 add_executable(gw_theme_lab gw_theme_lab.c)
 target_link_libraries(gw_theme_lab PRIVATE gw_native_host)
+
+add_executable(gw_style_smoke gw_style_smoke.c)
+target_link_libraries(gw_style_smoke PRIVATE gw_native_host)
