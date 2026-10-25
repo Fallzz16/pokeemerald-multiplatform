@@ -88,6 +88,31 @@ Medições GCC 32 bits de referência (antes do experimento de alinhamento):
 Nunca retirar o `STATIC_ASSERT` para "resolver" P1. Conferir offsets e
 semântica dos bitfields entre compiladores antes de qualquer serialização.
 
+## Resultados adicionais verificados — P1 (25/10/2026)
+
+- [CI 40189037378](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40189037378):
+  GCC 32 bits com `Time` e `BattleDomeTrainer` alinhados a 4 bytes
+  reproduziu **3884 bytes e zero diferenças nos offsets auditados**.
+- [CI 40189712888](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40189712888):
+  comparação de seções binárias ARM APCS e GCC32 confirmou bytes idênticos
+  para **24 bytes de amostras de Time** e **20 bytes de amostras de bitfields
+  BattleDomeTrainer**. Isso não é um teste de save completo.
+- [CI 40189300572](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40189300572):
+  `save_abi_overlay.py` foi aplicado com sucesso **depois** da compilação e
+  validação GBA, somente na árvore descartável da World.
+  Após o adaptador, `gba_easy_draw.c` passou no teste de sintaxe do GCC32
+  (com avisos de logging ainda pendentes). Os outros módulos ainda falham:
+
+| Módulo | Situação real de sintaxe | Próxima tarefa |
+|---|---|---|
+| `gba_easy_draw.c` | PASSOU (com warnings) | Padronizar include stdio/logger |
+| `bios.c` | BLOQUEADO | Resolver conflito de `REG_BASE` e macros `CpuSet/CpuFastSet` |
+| `dma.c` | BLOQUEADO | Compatibilizar `DMA_DEST_MASK`, `DMA_SRC_MASK`, macro `DmaSet` |
+| `cgb_audio.c` | BLOQUEADO | Mapear registradores `REG_ADDR_WAVE_RAM0` para RAM simulada |
+
+**Esses são testes `-fsyntax-only` em quatro módulos do port antigo;
+não são uma linkagem da World/M8, e P1 ainda não está concluído.**
+
 ## Arquitetura concreta recomendada
 
 Manter a World/M8 integrada como **fonte do jogo**, e reaproveitar a camada
