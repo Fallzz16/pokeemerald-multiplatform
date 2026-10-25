@@ -42,16 +42,30 @@ DECLARATIONS = (
     /*0x1E*/ enum Species species;
     /*0x20*/ enum Item itemId;
 };""",
+    """typedef union OldMan
+{
+    struct MauvilleManCommon common;
+    struct MauvilleManBard bard;
+    struct MauvilleManGiddy giddy;
+    struct MauvilleManHipster hipster;
+    struct MauvilleOldManTrader trader;
+    struct MauvilleManStoryteller storyteller;
+    u8 filler[0x40];
+} OldMan;""",
 )
 
 def transform(source):
     for decl in DECLARATIONS:
         if source.count(decl) != 1:
             raise ValueError("World data type drift or adapter applied twice")
-        align = (
-            decl[:-2] + "}\n#if defined(PORTABLE)\n"
-            "__attribute__((aligned(4)))\n#endif\n;"
-        )
+        if decl.endswith("};"):
+            align = (decl[:-2] + "}\n#if defined(PORTABLE)\n"
+                     "__attribute__((aligned(4)))\n#endif\n;")
+        elif decl.endswith("} OldMan;"):
+            align = (decl[:-len("} OldMan;")] + "}\n#if defined(PORTABLE)\n"
+                     "__attribute__((aligned(4)))\n#endif\nOldMan;")
+        else:
+            raise ValueError("unexpected save type declaration terminator")
         source = source.replace(decl, align, 1)
     return source
 
@@ -65,7 +79,8 @@ def stage(root, report, apply):
     info = {
         "schema":1, "stage":"P2_native_save_abi_nested_types",
         "types":["ItemSlot aligned 4", "Pokeblock aligned 4",
-                 "Pokevial bitfield-aligned 4", "Mail aligned 4"],
+                 "Pokevial bitfield-aligned 4", "Mail aligned 4",
+                 "OldMan union aligned 4"],
         "gba_unchanged":True, "save_assertions_removed":False,
         "applied":apply,
         "before_sha256":hashlib.sha256(old.encode()).hexdigest(),
