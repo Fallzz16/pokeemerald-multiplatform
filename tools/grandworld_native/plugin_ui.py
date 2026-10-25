@@ -48,9 +48,13 @@ def available_styles(root, kind):
             data = json.loads((root / pack_id / "manifest.json").read_text(encoding="utf-8"))
         except (OSError, ValueError):
             continue
+        if not isinstance(data, dict) or not isinstance(data.get("assets"), list):
+            continue
         category, logical = STYLE_KEYS[kind]
-        if any(a.get("id") == logical and a.get("path", "").startswith("assets/" + category + "/")
-               for a in data.get("assets", []) if isinstance(a, dict)):
+        if any(isinstance(a, dict) and a.get("id") == logical
+               and isinstance(a.get("path"), str)
+               and a["path"].startswith("assets/" + category + "/")
+               for a in data["assets"]):
             result.append(pack_id)
     return result
 
