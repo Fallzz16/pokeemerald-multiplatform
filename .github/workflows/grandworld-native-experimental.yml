@@ -145,6 +145,10 @@ jobs:
           cp build/native-win/gw_host_preview.exe build/native-win/package/
           cp build/native-win/demo/gw-demo-style.zip build/native-win/package/
           cp -r build/native-win/demo/mods build/native-win/package/mods
+          cp tools/grandworld_native/host/*.bat build/native-win/package/
+          cp tools/grandworld_native/host/LEIA_PRIMEIRO.txt build/native-win/package/
+          mkdir -p build/native-win/package/tools
+          cp tools/grandworld_native/{pack_manager.py,modpacks.py,asset_catalog.py} build/native-win/package/tools/
           bash tools/grandworld_native/host/bundle_mingw_dlls.sh build/native-win/package
 
       - name: Upload Windows SDL2 host diagnostic only
