@@ -1,0 +1,88 @@
+{
+  "asm": {
+    "data/maps/PetalburgCity_Gym/scripts.inc": {
+      "PetalburgCity_Gym_Text_RandallPostBattle": [
+        "Siga para a proxima sala!\\pA esquerda fica CONFUSION.\\nA direita fica DEFENSE.$"
+      ],
+      "PetalburgCity_Gym_Text_RandallPostBadge": [
+        "Vencendo ou perdendo,\\nnunca deixe de treinar\\lvoce e seus POKEMON.\\pIsso e ser um bom LIDER!$"
+      ],
+      "PetalburgCity_Gym_Text_ParkerIntro": [
+        "Esta e a sala CONFUSION.\\pVamos ver o vinculo\\nentre voce e seus POKEMON!$"
+      ],
+      "PetalburgCity_Gym_Text_ParkerPostBattle": [
+        "A proxima sala e STRENGTH.\\nConsegue resistir a forca?$"
+      ],
+      "PetalburgCity_Gym_Text_GeorgeDefeat": [
+        "Nem recuperar HP\\nfoi suficiente...\\pQue ATTACK impressionante!$"
+      ],
+      "PetalburgCity_Gym_Text_GeorgePostBattle": [
+        "Eu esperava muito do filho\\nde nosso LIDER.\\pMas a forca vem do treino.\\nPreciso me esforcar mais!\\pSiga! A sala ONE-HIT KO\\ne a proxima.$"
+      ],
+      "PetalburgCity_Gym_Text_BerkeIntro": [
+        "Nao vou pegar leve so\\nporque e filho do LIDER.\\pVou mostrar como um golpe\\ncritico pode ser perigoso!$"
+      ],
+      "PetalburgCity_Gym_Text_BerkePostBadge": [
+        "Desde que seu pai virou\\nLIDER, os TREINADORES\\lde PETALBURG ficaram mais fortes.$"
+      ],
+      "PetalburgCity_Gym_Text_MaryIntro": [
+        "Hehe... Esta e a sala\\nACCURACY.\\pImagine se todo ataque\\nacertasse o alvo!$"
+      ],
+      "PetalburgCity_Gym_Text_MaryPostBattle": [
+        "Ainda ha TREINADORES\\nmais fortes esperando.\\pA esquerda fica DEFENSE.\\nA direita, RECOVERY.\\pSua forca sera testada!$"
+      ],
+      "PetalburgCity_Gym_Text_AlexiaIntro": [
+        "Quanto maior minha DEFENSE,\\nmais posso arriscar no ataque.$"
+      ],
+      "PetalburgCity_Gym_Text_AlexiaPostBattle": [
+        "Voce me ensinou uma licao.\\pA esquerda fica STRENGTH.\\nA direita, ONE-HIT KO.\\pAmbas exigem muita forca!$"
+      ],
+      "PetalburgCity_Gym_Text_JodyIntro": [
+        "Nosso LIDER mandou\\nlutar com tudo contra voce.\\pMesmo sendo filho dele!$"
+      ],
+      "PetalburgCity_Gym_Text_JodyPostBattle": [
+        "Seu jeito de batalhar\\nlembra o do seu pai.\\pPode seguir! O LIDER\\nesta esperando por voce!$"
+      ],
+      "PetalburgCity_Gym_Text_EnterSpeedRoom": [
+        "SALA SPEED\\pQuer entrar?$"
+      ],
+      "PetalburgCity_Gym_Text_EnterAccuracyRoom": [
+        "SALA ACCURACY\\pQuer entrar?$"
+      ],
+      "PetalburgCity_Gym_Text_EnterConfusionRoom": [
+        "SALA CONFUSION\\pQuer entrar?$"
+      ],
+      "PetalburgCity_Gym_Text_EnterDefenseRoom": [
+        "SALA DEFENSE\\pQuer entrar?$"
+      ],
+      "PetalburgCity_Gym_Text_EnterRecoveryRoom": [
+        "SALA RECOVERY\\pQuer entrar?$"
+      ],
+      "PetalburgCity_Gym_Text_EnterStrengthRoom": [
+        "SALA STRENGTH\\pQuer entrar?$"
+      ],
+      "PetalburgCity_Gym_Text_EnterOHKORoom": [
+        "SALA ONE-HIT KO\\pQuer entrar?$"
+      ],
+      "PetalburgCity_Gym_Text_EnterGymLeadersRoom": [
+        "SALA DO LIDER\\pDescubra quais POKEMON\\nte esperam!\\pQuer entrar?$"
+      ],
+      "PetalburgCity_Gym_Text_GymStatue": [
+        "GINASIO POKEMON DE PETALBURG$"
+      ],
+      "PetalburgCity_Gym_Text_GymStatueCertified": [
+        "GINASIO POKEMON DE PETALBURG\\pLIDER: NORMAN\\nTREINADORES VENCEDORES:\\n{PLAYER}$"
+      ],
+      "PetalburgCity_Gym_Text_NormanPreRematch": [
+        "PAI: {PLAYER},\\neu sabia que viria.\\pNunca recusaria\\num desafio seu.\\pNo GYM, somos dois\\nTREINADORES, nao pai e filho.\\pJustamente por sermos familia,\\ndevemos dar nosso melhor,\\lnao e, {PLAYER}?$"
+      ],
+      "PetalburgCity_Gym_Text_NormanPostRematch": [
+        "PAI: {PLAYER},\\nqual e seu sonho?\\pO meu sonho?\\nHa ha...\\lJa se realizou!$"
+      ],
+      "PetalburgCity_Gym_Text_NormanRematchNeedTwoMons": [
+        "PAI: {PLAYER},\\neu sabia que viria.\\pNunca recusaria um desafio.\\pMas no GYM, somos\\nTREINADORES de verdade.\\pEspere, {PLAYER}...\\pVoce so tem um POKEMON\\npronto para a batalha?\\pVolte com pelo menos dois!$"
+      ]
+    }
+  },
+  "c": {}
+}

@@ -1,0 +1,97 @@
+{
+  "asm": {
+    "data/maps/Route111/scripts.inc": {
+      "Route111_Text_BattleOurFamily": [
+        "Ola! Voce parece estar viajando.\\pQue tal enfrentar nossa familia\\nem quatro batalhas seguidas?$"
+      ],
+      "Route111_Text_IsThatSo": [
+        "Entendo!\\nVolte se mudar de ideia!$"
+      ],
+      "Route111_Text_VictorIntro": [
+        "Esse e o espirito!\\nGostei de voce!$"
+      ],
+      "Route111_Text_VictorDefeat": [
+        "Ai! Voce e muito\\nmais forte do que pensei!$"
+      ],
+      "Route111_Text_VictorPostBattle": [
+        "Pessoal! Encontrei\\num TREINADOR muito forte!$"
+      ],
+      "Route111_Text_VictoriaIntro": [
+        "Nossa, voce e tao jovem!\\pMas venceu meu marido!\\pAgora e minha vez de lutar!$"
+      ],
+      "Route111_Text_VictoriaDefeat": [
+        "Meu Deus!\\nComo voce e forte!$"
+      ],
+      "Route111_Text_VictoriaPostBattle": [
+        "Tem um TREINADOR forte aqui!\\nMuito forte mesmo!$"
+      ],
+      "Route111_Text_ViviIntro": [
+        "Voce venceu a mamae? Uau!\\pMas eu tambem sou forte!\\nE serio!$"
+      ],
+      "Route111_Text_ViviDefeat": [
+        "O que? Eu perdi?$"
+      ],
+      "Route111_Text_ViviPostBattle": [
+        "Que chato...\\pBuah... Vovo!$"
+      ],
+      "Route111_Text_VickyIntro": [
+        "Como ousa fazer\\nminha netinha chorar?\\pAgora vai enfrentar a vovo!\\nPrepare-se!$"
+      ],
+      "Route111_Text_VickyDefeat": [
+        "Nossa! Voce e forte...\\nMinha netinha tinha razao...$"
+      ],
+      "Route111_Text_VickyPostBattle": [
+        "Se nao tiver pressa,\\nvenha nos visitar!$"
+      ],
+      "Route111_Text_ToughToKeepWinningUpTheRanks": [
+        "Se nao treinar seus POKEMON,\\nsera dificil seguir vencendo.\\pDizem que a ELITE FOUR\\ne bem mais forte que\\lqualquer LIDER de GYM!$"
+      ],
+      "Route111_Text_WinstrateFamilyDestroyedMe": [
+        "Desafiei a familia WINSTRATE,\\nmas quatro lutas seguidas\\lsao demais! Fui derrotado!$"
+      ],
+      "Route111_Text_RouteSignMauville": [
+        "ROUTE 111\\n{DOWN_ARROW} MAUVILLE CITY$"
+      ],
+      "Route111_Text_WinstrateHouseSign": [
+        "Nossos coracoes batem juntos!\\nCASA DA FAMILIA WINSTRATE$"
+      ],
+      "Route111_Text_RouteSign112": [
+        "ROUTE 111\\n{LEFT_ARROW} ROUTE 112$"
+      ],
+      "Route111_Text_RouteSign113": [
+        "ROUTE 111\\n{LEFT_ARROW} ROUTE 113$"
+      ],
+      "Route111_Text_OldLadysRestStopSign": [
+        "DESCANSO DA SENHORA IDOSA\\nEntre e descanse um pouco!$"
+      ],
+      "Route111_Text_TrainerTipsSpAtkSpDef": [
+        "DICAS PARA TREINADORES\\pSP. ATK significa\\nSPECIAL ATTACK.\\pSP. DEF significa\\nSPECIAL DEFENSE.$"
+      ],
+      "Route111_Text_ShouldBeMirageTowerAroundHere": [
+        "Deveria existir uma torre\\nde areia por aqui.\\pMas ela aparece e some!\\pPor isso a chamo\\nde MIRAGE TOWER.$"
+      ],
+      "Route111_Text_MirageTowerClearlyVisible": [
+        "Estou vendo!\\nA torre de areia!\\pEla esta bem na minha frente!\\pParece tao fragil...\\nPode desabar a qualquer hora.\\pQueria entrar, mas\\nnao tenho coragem...$"
+      ],
+      "Route111_Text_ThatWasShockingSandRainedDown": [
+        "Uau... Que susto!\\pUma chuva de areia\\ncaiu de repente!\\pComo era la dentro?\\nTinha fantasmas de areia?$"
+      ],
+      "Route111_Text_MirageTowerHasntBeenSeenSince": [
+        "Desde nossa conversa,\\na torre nao apareceu mais.\\pTalvez fosse mesmo\\na MIRAGE TOWER...$"
+      ],
+      "Route111_Text_ClawFossilDisappeared": [
+        "O CLAW FOSSIL sumiu\\nna areia...$"
+      ],
+      "Route111_Text_RootFossilDisappeared": [
+        "O ROOT FOSSIL sumiu\\nna areia...$"
+      ],
+      "Route111_Text_MauvilleUncleToldMeToTakeRockSmash": [
+        "Ah, nao!\\pMeu tio de MAUVILLE disse\\npara trazer ROCK SMASH\\la ROUTE 111!\\pEle mora em frente\\na loja de bicicletas.$"
+      ],
+      "Route111_Text_TrainerHillSign": [
+        "{RIGHT_ARROW} ENTRADA DA TRAINER HILL\\pSubam ate o topo,\\nTREINADORES animados!$"
+      ]
+    }
+  },
+  "c": {}
+}

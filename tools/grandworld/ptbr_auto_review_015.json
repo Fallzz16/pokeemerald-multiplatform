@@ -1,0 +1,831 @@
+{
+  "asm": {
+    "data/maps/LilycoveCity_ContestLobby/scripts.inc": {
+      "LilycoveCity_ContestLobby_Text_TakeMementoOfPainting": [
+        "Isso mesmo!\\pComo lembranca de eu pintar o\\nteu Pokemon, por favor toma\\listo.$"
+      ],
+      "LilycoveCity_ContestLobby_Text_ReceivedARibbon": [
+        "{PLAYER}recebeu um RIBBON.$"
+      ],
+      "LilycoveCity_ContestLobby_Text_PutTheRibbonOnMon": [
+        "{PLAYER}Poe o RIBBON\\nno{STR_VAR_1}.$"
+      ],
+      "LilycoveCity_ContestLobby_Text_OkaySeeYou": [
+        "Esta bem, ate logo!$"
+      ],
+      "LilycoveCity_ContestLobby_Text_TakeHomeButIdLikeToTakeToMuseum": [
+        "Oh... Entao, acho que vou levar\\nisto para casa comigo...\\pMas gostava de levar isto ao\\nmuseu de arte... Esta bem?$"
+      ],
+      "LilycoveCity_ContestLobby_Text_FineThatsTheWayItIs": [
+        "Esta bem, e assim que e. Vou\\npendurar isto na minha propria\\lcasa.\\pVou ter de me esforcar mais da\\nproxima vez. Vemo-nos por ai.$"
+      ],
+      "LilycoveCity_ContestLobby_Text_MasterRankHereICome": [
+        "Hoo, rapaz... Master Rank\\nCONTESTS, aqui vou eu.\\pO mundo sabera que o meu\\nquerido Pokemon e o ser mais\\lbonito de toda a existencia.\\lChegou a hora! Uheheheh.$"
+      ],
+      "LilycoveCity_ContestLobby_Text_WholeVarietyOfPokemonHere": [
+        "Voce pode ver toda uma\\nvariedade de POKEMON aqui.\\pE por isso que faco deste lugar\\numa parte regular do meu\\lpasseio diario.$"
+      ],
+      "LilycoveCity_ContestLobby_Text_ContestFeastForEyes": [
+        "Wow, sair para um CONTEST e um\\nbanquete para estes olhos!\\pOlha para todos os Pokemon que\\ngritam para serem pintados?$"
+      ],
+      "LilycoveCity_ContestLobby_Text_LavishedCareOnMon": [
+        "Dia apos dia, dei os meus\\ncuidados a este Pokemon.\\pA sua condicao esta a aumentar.\\nHoje, a vitoria e minha!$"
+      ],
+      "LilycoveCity_ContestLobby_Text_MadePokeblocksWithFamily": [
+        "Eu fiz.{POKEBLOCK}S com a mae,\\no pai e a irma mais velha. Eles\\lficaram optimos!\\pAposto que podes tornar mais\\nsuave, melhor.{POKEBLOCK}Se\\ltiveres mais pessoas.$"
+      ]
+    },
+    "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc": {
+      "LilycoveCity_CoveLilyMotel_1F_Text_GuestsDoubledByMascot": [
+        "Entao eles duplicaram os\\nconvidados usando POKEMON como\\latracoes?\\pBem, talvez eu devesse fazer\\numa bela mascote da nossa\\lpousada.\\pSera que isso atraira mais\\nconvidados para ficarem\\lconnosco?$"
+      ],
+      "LilycoveCity_CoveLilyMotel_1F_Text_CantSeeTheTV": [
+        "Para a frente! Nao consigo ver\\na televisao!$"
+      ],
+      "LilycoveCity_CoveLilyMotel_1F_Text_MonFoundLostItem": [
+        "Incrivel! Esta a dizer-me que\\num Pokemon encontrou o item\\lperdido de alguem?\\pJa e alguma coisa. Se\\ntivessemos um POKEMON assim...\\pPodemos recuperar qualquer\\ncoisa que os nossos convidados\\ltenham perdido...$"
+      ],
+      "LilycoveCity_CoveLilyMotel_1F_Text_HouseSittingMonCaughtBurglar": [
+        "Incrivel! Um Pokemon que cuida\\nda casa apanhou um ladrao?\\pJa e alguma coisa. Se\\ntivessemos um POKEMON duro como\\lseguranca...\\pSeriamos capazes de\\nproporcionar aos nossos\\lconvidados maior seguranca.$"
+      ]
+    },
+    "data/maps/LilycoveCity_CoveLilyMotel_2F/scripts.inc": {
+      "LilycoveCity_CoveLilyMotel_2F_Text_FilledPokedexGiveYouThis": [
+        "Uau! Isso e fantastico! Sim, e\\nfantastico!\\pEste POKEDEX esta completamente\\ncheio! Voce realmente deve amar\\lPOKEMON!\\pEstou tao impressionada!\\pDeixe-me dar-lhe algo em\\nreconhecimento do seu feito!$"
+      ],
+      "LilycoveCity_CoveLilyMotel_2F_Text_GirlsAreCute": [
+        "A miuda TUBERS e gira, nao e?\\nPara lutar contra um bonito\\lTUBER...\\pE incrivel!\\pE os TWINS! Nao sao giros? Uma\\nbatalha 2 contra 2 contra o\\lTWINS...\\pE insuportavelmente divertido!$"
+      ],
+      "LilycoveCity_CoveLilyMotel_2F_Text_SeaBreezeTicklesHeart": [
+        "A brisa do mar faz-me cocegas\\nno coracao. E maravilhoso aqui!$"
+      ]
+    },
+    "data/maps/LilycoveCity_DepartmentStoreRooftop/scripts.inc": {
+      "LilycoveCity_DepartmentStoreRooftop_Text_SetDatesForClearOutSales": [
+        "Eles nao marcaram datas para as\\nvendas?\\pVejo televisao, mas nunca\\nmostram anuncios.$"
+      ],
+      "LilycoveCity_DepartmentStoreRooftop_Text_BeenWaitingForClearOutSale": [
+        "Sim! Estou a espera ha muito\\ntempo desta venda.\\pEles tem itens que voce so pode\\nobter aqui. Vou carregar, e o\\lque vou fazer!$"
+      ],
+      "LilycoveCity_DepartmentStoreRooftop_Text_BoneDryThirsty": [
+        "Estou com sede!$"
+      ],
+      "LilycoveCity_DepartmentStoreRooftop_Text_CanOfDrinkDroppedDown": [
+        "Clang!\\pUma lata de{STR_VAR_1}Caiu.$"
+      ],
+      "LilycoveCity_DepartmentStoreRooftop_Text_ExtraCanOfDrinkDroppedDown": [
+        "Clang!\\pPonto! Uma lata extra\\nde{STR_VAR_1}Largado!$"
+      ],
+      "LilycoveCity_DepartmentStoreRooftop_Text_NotEnoughMoney": [
+        "Nao ha dinheiro suficiente...$"
+      ],
+      "LilycoveCity_DepartmentStoreRooftop_Text_DecidedAgainstBuyingDrink": [
+        "Decidiu nao pagar uma bebida.$"
+      ]
+    },
+    "data/maps/LilycoveCity_DepartmentStore_1F/scripts.inc": {
+      "LilycoveCity_DepartmentStore_1F_Text_MomBuyingMeFurniture": [
+        "Hoje, a minha mae vai\\ncomprar-me uns moveis bonitos.$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_BuyingSomethingForAzumarill": [
+        "Estou a comprar algo para o meu\\nAZUMARILL como recompensa por\\lganhar um CONTEST.$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_WirelessCommIsFun": [
+        "Comunicacao sem fios e muito\\ndivertido, nao e?\\pAcho que te deixa fazer coisas\\nque antes nao eram possiveis.\\pPor exemplo, agora pode\\nnegociar com pessoas que nao\\lpodia antes.\\pAcho que vai ser emocionante!$"
+      ],
+      "LilycoveCity_DepartmentStore_1F_Text_SpreadWordAboutWirelessComm": [
+        "Quero espalhar a noticia sobre\\ncomo a comunicacao sem fios\\lpode ser divertida.$"
+      ]
+    },
+    "data/maps/LilycoveCity_DepartmentStore_2F/scripts.inc": {
+      "LilycoveCity_DepartmentStore_2F_Text_LearnToUseItemsProperly": [
+        "Aprenda a usar os itens\\ncorretamente. Isso e basico, na\\lverdade.$"
+      ],
+      "LilycoveCity_DepartmentStore_2F_Text_GoodGiftForHusband": [
+        "O meu marido esta a espera em\\ncasa. O que lhe daria um bom\\lpresente?$"
+      ],
+      "LilycoveCity_DepartmentStore_2F_Text_StockUpOnItems": [
+        "Vou partir numa longa viagem em\\nbreve. Preciso de encher os\\litens.$"
+      ]
+    },
+    "data/maps/LilycoveCity_DepartmentStore_4F/scripts.inc": {
+      "LilycoveCity_DepartmentStore_4F_Text_AttackOrDefenseTM": [
+        "Hmm...\\pUm ataque... Ou uma jogada\\ndefensiva...\\pNao e facil decidir quais\\nmovimentos TM devem ser\\lensinados a POKEMON...$"
+      ],
+      "LilycoveCity_DepartmentStore_4F_Text_FiftyDifferentTMs": [
+        "Ha tantos tipos diferentes de\\nmovimentos TM.\\pUm catalogo que li dizia que ha\\ncinquenta tipos diferentes.$"
+      ],
+      "LilycoveCity_DepartmentStore_4F_Text_PokemonOnlyHaveFourMoves": [
+        "Eu gostaria de obter todos os\\ndiferentes TMs, mas um POKEMON\\laprende apenas quatro\\lmovimentos.$"
+      ]
+    },
+    "data/maps/LilycoveCity_DepartmentStore_5F/scripts.inc": {
+      "LilycoveCity_DepartmentStore_5F_Text_SellManyCuteMatsHere": [
+        "Eles vendem muitos MATS bonitos\\naqui.\\pPergunto-me qual devo comprar?\\nTalvez os compre a todos...$"
+      ],
+      "LilycoveCity_DepartmentStore_5F_Text_ClosedRooftopForWeather": [
+        "Acho que fecharam o telhado\\nporque o tempo esta selvagem\\lhoje.$"
+      ]
+    },
+    "data/maps/LilycoveCity_Harbor/scripts.inc": {
+      "LilycoveCity_Harbor_Text_FerryUnavailable": [
+        "Desculpe? Estas a procura de\\numa nave?\\pLamento, o servico de ferry nao\\nesta disponivel no momento...$"
+      ],
+      "LilycoveCity_Harbor_Text_SailAnotherTime": [
+        "Por favor, naveguem connosco\\nnoutra altura!$"
+      ],
+      "LilycoveCity_Harbor_Text_PleaseBoard": [
+        "Por favor embarque no ferry e\\naguarde a partida.$"
+      ],
+      "LilycoveCity_Harbor_Text_WhereWouldYouLikeToGo": [
+        "Entao, para onde queres ir?$"
+      ]
+    },
+    "data/maps/LilycoveCity_House1/scripts.inc": {
+      "LilycoveCity_House1_Text_PokemonPartnersNotTools": [
+        "POKEMON sao parceiros de\\npessoas. Nao sao as nossas\\lferramentas.\\pInfelizmente, ha algumas\\npessoas que nao compreendem\\lque...$"
+      ]
+    },
+    "data/maps/LilycoveCity_House2/scripts.inc": {
+      "LilycoveCity_House2_Text_NotAwakeYetHaveThis": [
+        "Huh? O que? O que e isso?\\pAinda nao estou quase\\nacordado... Podes ficar com\\listo...$"
+      ],
+      "LilycoveCity_House2_Text_SleepIsEssential": [
+        "Yawn...\\pO sono e essencial para a boa\\nsaude... Dorme e recupera a\\lsaude...$"
+      ]
+    },
+    "data/maps/LilycoveCity_House3/scripts.inc": {
+      "LilycoveCity_House3_Text_LearnFromMasterOfPokeblocks": [
+        "Meu Deus! Vai viajar sozinho?\\nMas es tao jovem! Que bom para\\lti!\\pTenho a certeza que os meus\\nfilhos podem aprender umas\\lcoisas contigo!\\pSou um mestre de{POKEBLOCK}S.\\pSe eu ficar serio so um pouco,\\npor que, eu posso inventar\\lgrande{POKEBLOCK}S.\\pGostaria de aprender comigo, um\\nmestre de{POKEBLOCK}S?$"
+      ],
+      "LilycoveCity_House3_Text_OhAreYouSure": [
+        "A serio? Tens a certeza?\\pNem sempre devias tentar fazer\\ntudo sozinho, querida!$"
+      ],
+      "LilycoveCity_House3_Text_ExplainPokeblocks": [
+        "Optimo! Es uma alma\\ninteligente! Isto e um pouco\\llongo, por isso ouve!\\pEstas pronto?\\pSe olhares{POKEBLOCK}S, voce\\ndeve ver que eles sao avaliados\\lem como se sentem.\\pQuanto menor a classificacao,\\nmelhor. Nao te esquecas disto!\\pUm bom.{POKEBLOCK}tem uma baixa\\nclassificacao e um alto nivel.\\pUm Pokemon pode comer mais\\nbem{POKEBLOCK}S do que os\\lcomuns, tambem.\\pE isto e importante.\\pSe voce quiser fazer\\nsuave{POKEBLOCK}S, use\\ldiferentes tipos de BERRIES.\\pNao seja mesquinho - os tipos\\nde BERRIES afetam a suavidade\\lde{POKEBLOCK}S.\\pE outra coisa.\\pQuanto mais pessoas misturando\\nBERRIES, mais suave\\lo{POKEBLOCK}S.\\pE por isso que devias falar com\\noutras pessoas e\\lfazer{POKEBLOCK}S juntos.\\pE tudo o que precisas de saber\\npara fazeres o\\lbem.{POKEBLOCK}S.\\pSe todos tivessem POKEMON que\\neles amam, suave{POKEBLOCK}S, e\\luma familia amorosa, o mundo\\lseria um lugar mais feliz.\\pNao desistas, querida!$"
+      ],
+      "LilycoveCity_House3_Text_HappyToHaveQuadruplets": [
+        "Quando a minha mulher deu a luz\\nquadruplos, aposto que fiquei\\lchocado.\\pMas, agora, ve-los jogar\\njuntos, faz-me feliz.$"
+      ],
+      "LilycoveCity_House3_Text_GoingToWinMultiBattles": [
+        "Vamos ter MULTI BATTLES, mas\\nsei que vou ganhar.$"
+      ],
+      "LilycoveCity_House3_Text_LikeMixingAtRecordCorner": [
+        "Gostamos de misturar coisas no\\nRECORD CORNER.\\pMas o que se confunde?$"
+      ],
+      "LilycoveCity_House3_Text_GoingToEnterContest": [
+        "Quero gabar-me de como o meu\\nPOKEMON e duro, por isso vamos\\lentrar num CONTEST juntos.$"
+      ]
+    },
+    "data/maps/LilycoveCity_House4/scripts.inc": {
+      "LilycoveCity_House4_Text_MysteriesAtBottomOfSea": [
+        "Os maiores misterios deste\\nplaneta estao no fundo do mar.\\pAlguem disse isso, mas nao\\nsei...$"
+      ],
+      "LilycoveCity_House4_Text_UnderwaterTrenchMossdeepSootopolis": [
+        "Ha uma profunda trincheira\\nsubaquatica entre MOSSDEEP e\\lSOOTOPOLIS.\\pFoi o que me disseram.$"
+      ]
+    },
+    "data/maps/LilycoveCity_LilycoveMuseum_1F/scripts.inc": {
+      "LilycoveCity_LilycoveMuseum_1F_Text_NotDisturbYouTakeYourTime": [
+        "Entao, nao te perturbe. Por\\nfavor, nao tenha pressa.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_HaveYouAnInterestInPaintings": [
+        "A serio? Eu acredito que voce\\nparece ser um treinador\\lPokemon.\\pTambem tem interesse em\\npinturas?$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_HonoredYoudVisitInSpiteOfThat": [
+        "Entendo...\\pE uma honra que nos visite\\napesar disso.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_ExcellentCanYouComeWithMe": [
+        "Excelente! Gostas mesmo de\\nquadros!\\pEntao, posso pedir-lhe para vir\\ncomigo?$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_VeryOldPainting": [
+        "E uma pintura muito antiga. A\\ntinta esta a descascar aqui e\\lali.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_OddLandscapeFantasticScenery": [
+        "E uma paisagem estranha com\\ncenario bizarro e fantastico.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_PaintingOfBeautifulWoman": [
+        "E uma pintura de uma mulher\\nlinda e sorridente com um\\lPokemon no colo.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_PaintingOfLegendaryPokemon": [
+        "E uma pintura de um lendario\\nPokemon de ha muito tempo.\\pO artista pintou isto da\\nimaginacao.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_PaintingOfGrassPokemon": [
+        "E uma pintura de GRASS POKEMON\\nbalancando em uma brisa.\\pParecem estar a gostar do\\ncarinho suave do vento.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_PaintingOfBerries": [
+        "E uma pintura deliciosa de\\nBERRIES.\\pEste quadro pode dar-te fome!$"
+      ],
+      "LilycoveCity_LilycoveMuseum_Text_BirdPokemonSculptureReplica": [
+        "E uma replica de uma escultura\\nfamosa.\\pRepresenta um antigo POKEMON\\nBIRD.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_StoneTabletWithAncientText": [
+        "E uma tabua de pedra enorme\\ninscrita com POKEMON e texto\\ldenso nas pequenas personagens\\lde uma lingua antiga, ilegivel.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_WorksOfMagnificence": [
+        "Hmmm... Que obras de grande\\nmagnificencia...$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_MustntForgetLoveForFineArts": [
+        "Lutar com o Pokemon e\\ndivertido, admito.\\pMas nao podemos esquecer o\\nnosso amor pelas belas artes.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_ThisLadyIsPretty": [
+        "Esta senhora e bonita! Ela e\\ncomo a mama!$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_ThisPokemonIsAdorable": [
+        "Este Pokemon e adoravel! Tal\\ncomo o nosso menino!$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_CuratorHasBeenCheerful": [
+        "Ultimamente, o CURATOR tem sido\\nextraordinariamente alegre.\\pAposto que lhe aconteceu alguma\\ncoisa boa. Sem duvida.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_1F_Text_AimToSeeGreatPaintings": [
+        "Eu pretendo ver muitos grandes\\nquadros aqui e aprender com\\leles.\\pTenho este sonho de um dia ter\\nas minhas obras aqui expostas.$"
+      ]
+    },
+    "data/maps/LilycoveCity_LilycoveMuseum_2F/scripts.inc": {
+      "LilycoveCity_LilycoveMuseum_2F_Text_ThisIsExhibitHall": [
+        "Esta e a nossa sala especial de\\nexposicoes.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_ExplainExhibitHall": [
+        "Como voce pode ver claramente,\\nnao ha uma unica pintura em\\lexposicao.\\pAqui, nao quero exibir obras da\\nchamada arte classica.\\pTais obras classicas que voce\\npode ver no nosso terreo.\\pDesejo expor trabalhos muito\\ndiferentes dos classicos.\\pAfinal, a arte nao se restringe\\na obras antigas e famosas!\\pEsta sala de exposicoes, quero\\nenche-la com...\\pArte moderna e vibrante de\\nPOKEMON aparentemente pronto\\lpara brotar em vida gloriosa!$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_PleaseObtainPaintingsForExhibit": [
+        "Peco desculpa. Nao pretendia\\nmonopolizar a conversa.\\pAgora, como voce e jovem, e\\nainda obviamente bem viajado...\\pVoce deve encontrar POKEMON\\nvivo e obras de arte que os\\lretratam.\\pSe voce se deparar com tal\\npintura, podemos pedir-lhe para\\lobter a permissao do artista\\lpara exibi-lo aqui?$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_WishToFillExhibit": [
+        "Desejo encher este salao de\\nexposicao com pinturas modernas\\le vibrantes de POKEMON.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_ThanksAddedNewPainting": [
+        "Gracas a voce, adicionamos uma\\nnova pintura a nossa colecao!\\pOuvi dizer que retrata o seu\\nPokemon. Realmente magnifico!\\pMuito, muito obrigado!$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_ItsYouPlayer": [
+        "Ah! Es tu!{PLAYER}!$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_TokenOfGratitude": [
+        "Isto e apenas um sinal da minha\\ngratidao.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_KeepThisForYou": [
+        "Vou guardar isto para ti ate\\nnos voltarmos a encontrar.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_HonorToHaveYouVisit": [
+        "Que bom ver-te.{PLAYER}!\\pE uma honra que nos visite nas\\nsuas viagens movimentadas.\\pPor favor, relaxe e aproveite\\nsua visita conosco.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_ItsPinkPictureFrame": [
+        "E uma moldura com adornos\\ncor-de-rosa.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_ItsYellowPictureFrame": [
+        "E uma moldura com adornos de\\ncor amarela.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_ItsBluePictureFrame": [
+        "E uma moldura com adornos de\\ncor azul.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_ItsRedPictureFrame": [
+        "E uma moldura com adornos de\\ncor vermelha.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_ItsGreenPictureFrame": [
+        "E uma moldura com adornos de\\ncor verde.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_ItsPaintingOfPokemon": [
+        "E uma pintura de Pokemon.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_NewPaintingsSurprisedMe": [
+        "Estive fora algum tempo, por\\nisso os novos quadros\\lsurpreenderam-me.\\pGostava que alguem pintasse o\\nmeu Pokemon tao bonito.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_NewPaintingsRatherAmusing": [
+        "Bem... Entao e aqui que eles\\nmostram as pinturas atuais\\lPOKEMON.\\pEstou a ver, estas novas\\npinturas sao mesmo divertidas.$"
+      ],
+      "LilycoveCity_LilycoveMuseum_2F_Text_ThesePaintingsOfYourPokemon": [
+        "E mesmo? Estas pinturas sao do\\nteu Pokemon.\\pNao e a alegria maxima para um\\nTRAiner?$"
+      ]
+    },
+    "data/maps/LilycoveCity_MoveDeletersHouse/scripts.inc": {
+      "LilycoveCity_MoveDeletersHouse_Text_WhichMonShouldForget": [
+        "Que POKEMON deve esquecer uma\\njogada?$"
+      ],
+      "LilycoveCity_MoveDeletersHouse_Text_WhichMoveShouldBeForgotten": [
+        "Que movimento deve ser\\nesquecido?$"
+      ],
+      "LilycoveCity_MoveDeletersHouse_Text_MonOnlyKnowsOneMove": [
+        "{STR_VAR_1}Sabe apenas um\\nmovimento para que nao possa\\lser esquecido...$"
+      ],
+      "LilycoveCity_MoveDeletersHouse_Text_MonHasForgottenMove": [
+        "Funcionou perfeitamente!\\p{STR_VAR_1}esqueceu-se{STR_VAR_2}Completamente.$"
+      ],
+      "LilycoveCity_MoveDeletersHouse_Text_ComeAgain": [
+        "Volte novamente se houver\\nmovimentos que precisam ser\\lesquecidos.$"
+      ],
+      "LilycoveCity_MoveDeletersHouse_Text_EggCantForgetMoves": [
+        "O que? Nenhum EGG deve saber de\\nmovimentos.$"
+      ],
+      "LilycoveCity_MoveDeletersHouse_Text_CantForgetSurf": [
+        "Hm!\\pSua{STR_VAR_1}Nao parece\\ndisposto a esquecer o SURF.$"
+      ]
+    },
+    "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc": {
+      "LilycoveCity_PokemonCenter_1F_Text_HowManyKindsOfPokemon": [
+        "Pergunto-me quantos tipos de\\nPOKEMON existem no mundo.\\pSeria optimo atravessar mares e\\ntrocar POKEMON com pessoas de\\llonge.$"
+      ],
+      "LilycoveCity_PokemonCenter_1F_Text_HeardAboutRottenScoundrels": [
+        "Ouvi falar de uns canalhas\\npodres que roubam Pokemon e\\lroubam METEORITES.$"
+      ]
+    },
+    "data/maps/LilycoveCity_PokemonTrainerFanClub/scripts.inc": {
+      "LilycoveCity_PokemonTrainerFanClub_Text_OhWowItsPlayer": [
+        "Oh, uau! E...{PLAYER}!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_HeardAboutYouImYourFan": [
+        "Ouvi as noticias! Es mesmo\\nforte, nao es?\\pNos sempre discutimos sobre\\nquem e o mais forte de todos os\\lTRAiners aqui.\\pQuando soube de ti, decidi ser\\nteu fa!\\pEspero que continues a lutar\\ncontra outros treinadores\\lduros.\\pAssim, poderemos ver mais das\\nvossas batalhas quentes.\\pIsso fara com que os outros\\naqui vejam como es fantastico.\\pLembra-te, estou a torcer por\\nti.{PLAYER}!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_YoureOneWeWantToWin": [
+        "Yo,{PLAYER}E a ti que queremos\\nganhar!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_OthersDontKnowYoureTheBest": [
+        "Os outros nao sabem que es o\\nmelhor dos melhores!\\pNao e\\nverdade?{PLAYER}Mostra-lhes que\\ltens coragem!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_TrainerIsBestNoOneWantsToListen": [
+        "Raios... Tenho dito as pessoas\\nque{STR_VAR_1}e o melhor\\lagora...\\pMas ninguem quer ouvir...$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_ImPullingForYou": [
+        "Oh!{PLAYER}!\\pVai em frente! Estou a torcer\\npor ti!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_YouveSurpassedYourFather": [
+        "Superaste o teu proprio pai em\\ntodos os aspectos!\\pEstou a dizer-te, por isso nao\\nha duvida nenhuma!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_YourFatherNeverGaveUpSoKeepOnBattling": [
+        "Mesmo quando as coisas ficaram\\nsombrias, o teu pai nunca\\ldesistiu.\\pIsto eu sei que e verdade.\\pNunca desistes mesmo que\\npercas! Continua a lutar!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_LongWayToGoComparedToNorman": [
+        "NORMAN lutou com mais poder,\\ncarisma e exibicionismo do que\\lvoce.\\pMesmo que as pessoas possam\\ndizer que es forte...\\pAinda tens um longo caminho a\\npercorrer comparado com o teu\\lpai.$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_YouAndNormanAreDifferent": [
+        "Estas a comecar a ter o mesmo\\nar de espanto que o NORMAN\\lexala.\\pMas ha algo conclusivamente\\ndiferente entre ti e o NORMAN.\\pNao posso dizer o que e isso.\\nTeras de encontra-lo tu mesmo.$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_WeDiscussStrongestTrainers": [
+        "Somos todos fas de batalhas\\nPOKEMON.\\pDiscutimos quem consideramos\\nser o mais forte de todos os\\lTRAiners.\\pSe voce fosse se tornar famoso,\\npoderiamos ate se tornar seus\\lfas!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_OhWoweeItsPlayer": [
+        "Uau! E...{PLAYER}A serio,\\ntambem!\\pPor favor, aperte a minha mao,\\naperte a minha mao!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_AlwaysCheerForYou": [
+        "Vou sempre torcer por\\nti.{PLAYER}Sempre, sempre!\\pNao quero ver-te perder\\nnunca,{PLAYER}.\\pPorque sei que es muito\\nforte.{PLAYER}!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_EveryoneThinksTrainerIsCool": [
+        "{STR_VAR_1}e muito fixe...\\pTodos pensam assim, certo?$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_TrainerIsReallyCoolItsJustMe": [
+        "{STR_VAR_1}E mesmo fixe, nao\\nachas?\\pMesmo que seja so eu, vou\\ncontinuar a aplaudir o meu\\ltreinador favorito.$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_WishThereWasTrainerLikeThat": [
+        "O meu instrutor favorito e...\\pFixe...\\pForte...\\pE muito bom...\\pQuem me dera que houvesse um\\ntreinador assim...$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_WantToBeStrongLikeYou": [
+        "Whoa! E...{PLAYER}Malvada!\\pQuando crescer, quero ser forte\\ncomo tu.{PLAYER}!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_OnlyOneWhoCheersForYou": [
+        "Mesmo que eu seja o unico...\\pTu seras sempre o unico por\\nquem eu torco.{PLAYER}!\\pPorque acredito em ti.{PLAYER}!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_TrainerIsWickedlyCool": [
+        "{STR_VAR_1}e muito fixe...\\nQuero apertar a mao do meu\\lheroi.$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_NeverGoingToStopBeingTrainersFan": [
+        "Mesmo que eu seja o unico...\\pNunca vou deixar de\\nser{STR_VAR_1}E fa!\\pPorque ouvi\\ndizer,{STR_VAR_1}Nunca perde!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_YoureAmazingAfterAll": [
+        "{PLAYER}Afinal, es incrivel!\\pDesde que te vi, sabia que eras\\nfantastica.\\pParece que os meus olhos nao me\\nenganaram.$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_ImInYourCorner": [
+        "Quem se importa com os outros?\\nEstou do teu lado!\\pNao precisas de te preocupar.\\nVai la e luta como sempre.$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_ThinkTrainerIsNumberOne": [
+        "Acho que es um treinador\\ndecente.\\pMas eu tambem acho\\nque{STR_VAR_1}e o numero um\\lagora.\\pE so a minha opiniao. Nao te\\npreocupes muito com isso.$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_YoureMaybeStrongerThanTrainer": [
+        "Es mesmo forte. Talvez ate mais\\nforte que{STR_VAR_1}.\\pMas...{STR_VAR_1}Precisa de\\nmim.\\pSe eu nao\\ntorcer{STR_VAR_1}Quem?$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_YouChangedMyMind": [
+        "Mudaste-me de ideias! Es forte,\\nnao es?\\pQuero que me diga como\\nconseguiu ficar tao forte!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_YouBattleAttractivelyInToughSituation": [
+        "Quanto mais dificil a situacao,\\nmais atraente voce batalha.\\pMal posso esperar pela tua\\nproxima batalha!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_TrainerIsStandout": [
+        "Entre os recem-chegados\\ntreinadores\\lquentes,{STR_VAR_1}e o\\ldestaque.\\pEssa dureza, simplesmente nao e\\nnormal.\\pEstas a ir bem, mas nao estas\\nna mesma classe\\lque...{STR_VAR_1}.$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_NoOneCanKnockYouButTrainerStronger": [
+        "Es muito popular...\\pEs forte e estas a cuidar do\\nPokemon. Ninguem te pode bater.\\pMas, sabes, eu acredito\\nem{STR_VAR_1}.\\p{STR_VAR_1}e definitivamente\\nmais forte! Tenho a certeza!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_YouImpressive": [
+        "Tu...\\pImpressionante!$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_OnlyIRecognizeYourTrueWorth": [
+        "O teu verdadeiro valor, esta\\ntudo bem se eu o reconhecer.\\pOs outros, duvido, entenderao o\\npoder oculto que bate dentro.$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_HaventRealizedPotential": [
+        "Sim, vejo forca nos teus olhos.\\pMas!\\pAinda nao percebeste o teu\\npotencial.$"
+      ],
+      "LilycoveCity_PokemonTrainerFanClub_Text_YourePowerfulButNotTrueStrength": [
+        "E verdade que e tremendamente\\npoderoso.\\pMas! Posso dizer...\\pEssa forca ainda nao pode ser\\nconsiderada verdadeira forca!\\pA verdadeira forca e...\\pNa verdade, tambem nao faco\\nideia.$"
+      ]
+    },
+    "data/maps/LittlerootTown/scripts.inc": {
+      "LittlerootTown_Text_ComeHomeIfAnythingHappens": [
+        "... ... ... ... ... ... ... ...\\n... ... ... ... ... ... ... ...\\pPensar que agora tens o teu\\nproprio POKEMON... O teu pai\\lvai ficar muito contente.\\pMas por favor, tenha cuidado.\\nSe acontecer alguma coisa,\\lpodes voltar para casa.\\pVai busca-los, querida!$"
+      ]
+    },
+    "data/maps/LittlerootTown_BrendansHouse_1F/scripts.inc": {
+      "PlayersHouse_1F_Text_DontPushYourselfTooHard": [
+        "Nao te esforces muito, querida.\\nPodes sempre voltar para casa.\\pVai em frente, querida!$"
+      ],
+      "PlayersHouse_1F_Text_Vigoroth1": [
+        "Fugiiiih!$"
+      ],
+      "PlayersHouse_1F_Text_TheresAMovieOnTV": [
+        "Ha um filme na TV.\\pDois homens estao a dancar num\\ngrande teclado de piano.\\pE melhor ir andando!$"
+      ]
+    },
+    "data/maps/LittlerootTown_BrendansHouse_2F/scripts.inc": {
+      "PlayersHouse_2F_Text_ClockIsStopped": [
+        "O relogio esta parado...\\pE melhor preparar e comecar!$"
+      ],
+      "Common_Text_LookCloserAtMap": [
+        "{PLAYER}deu uma olhada mais de\\nperto no{REGION}mapa da regiao.$"
+      ],
+      "PlayersHouse_2F_Text_ItsAGameCube": [
+        "E um Nintendo GameCube.\\pUm Game Boy Advance esta\\nconectado para servir como\\lControlador.$"
+      ]
+    },
+    "data/maps/LittlerootTown_MaysHouse_1F/scripts.inc": {
+      "RivalsHouse_1F_Text_OhYoureTheNewNeighbor": [
+        "Ola. E voce e?\\p... ... ... ... ... ... ... ...\\n... ... ... ... ... ... ... ...\\l... ...\\pOh, voce e...{PLAYER}{KUN}O\\nnosso novo vizinho! Ola!\\pNos temos um{STR_VAR_1}da mesma\\nidade que tu.\\pNossa{STR_VAR_1}Estava animado\\nem fazer um novo amigo.\\pNossa{STR_VAR_1}Acho que esta\\nla em cima.$"
+      ],
+      "RivalsHouse_1F_Text_TooBusyToNoticeVisit": [
+        "Isso.{RIVAL}!\\pAcho que o nosso filho esta\\ndemasiado ocupado com o POKEMON\\lpara reparar que vieste\\lvisitar-me.{PLAYER}{KUN}.$"
+      ],
+      "RivalsHouse_1F_Text_ShouldGoHomeEverySoOften": [
+        "Acho maravilhoso as pessoas\\nviajarem com o POKEMON.\\pMas devias ir para casa de vez\\nem quando para avisares a tua\\lmae que estas bem.\\pEla pode nao dizer, mas tenho a\\ncerteza que se preocupa\\lcontigo.{PLAYER}{KUN}.$"
+      ],
+      "RivalsHouse_1F_Text_DoYouHavePokemon": [
+        "Ola, vizinho!\\pJa tens o teu proprio POKEMON?$"
+      ]
+    },
+    "data/maps/LittlerootTown_MaysHouse_2F/scripts.inc": {
+      "RivalsHouse_2F_Text_MayGettingReady": [
+        "POKEMON totalmente restaurado!\\nItens prontos, e...$"
+      ],
+      "RivalsHouse_2F_Text_BrendanGettingReady": [
+        "POKEMON totalmente\\nrestaurado... Itens todos\\lembalados, e...$"
+      ],
+      "RivalsHouse_2F_Text_MayJustCheckingMyPokedex": [
+        "MAY:{PLAYER}{KUN}!\\pEstava so a verificar o meu\\nPOKEDEX.\\pAinda ha muito POKEMON que vi,\\nmas nao apanhei.\\pE ha muitos outros que acho que\\nirao evoluir.\\pOnde e que devo ir apanhar\\nalgum Pokemon a seguir?$"
+      ]
+    },
+    "data/maps/MagmaHideout_1F/scripts.inc": {
+      "MagmaHideout_1F_Text_Grunt1Intro": [
+        "Quando a TEAM MAGMA tem chamada\\nnominal, recebemos importantes\\ltarefas de guarda na ordem em\\lque nos alinhamos.\\pE por isso que estou preso\\nneste canto. Estou sempre\\latrasado para a chamada!$"
+      ],
+      "MagmaHideout_1F_Text_Grunt1Defeat": [
+        "Tambem estou sempre atrasado\\npara as sessoes de treino!\\pDetesto dize-lo, mas sou\\nfraco...$"
+      ],
+      "MagmaHideout_1F_Text_Grunt1PostBattle": [
+        "Vou tentar esforcar-me um pouco\\nmais...$"
+      ],
+      "MagmaHideout_1F_Text_Grunt2Defeat": [
+        "Arrgh! Derrubado!$"
+      ],
+      "MagmaHideout_1F_Text_Grunt2PostBattle": [
+        "Afinal, nao te vou dizer. Vais\\ndescobrir quando la chegares!\\pSeria melhor guardares\\nsurpresas ate ao fim, nao\\lachas?$"
+      ]
+    },
+    "data/maps/MagmaHideout_2F_1R/scripts.inc": {
+      "MagmaHideout_2F_1R_Text_Grunt14PostBattle": [
+        "Se sofre de arrepios, deve\\njuntar-se a TEAM MAGMA.$"
+      ],
+      "MagmaHideout_2F_1R_Text_Grunt3Intro": [
+        "Alto ai!\\pNao esperas que mantenha a boca\\nfechada e te deixe passar por\\lmim?$"
+      ],
+      "MagmaHideout_2F_1R_Text_Grunt3Defeat": [
+        "Ooh uau! Eu admito!$"
+      ],
+      "MagmaHideout_2F_1R_Text_Grunt3PostBattle": [
+        "Talvez tivesse sido melhor se\\nte deixasse ir sem desafios...$"
+      ],
+      "MagmaHideout_2F_1R_Text_Grunt4Intro": [
+        "Ahah! Um intruso!$"
+      ],
+      "MagmaHideout_2F_1R_Text_Grunt4PostBattle": [
+        "Ja perdi.\\pPreciso mesmo de continuar a\\nandar em circulos?$"
+      ],
+      "MagmaHideout_2F_1R_Text_Grunt5Intro": [
+        "Oh, oh! Um intruso!$"
+      ],
+      "MagmaHideout_2F_1R_Text_Grunt5PostBattle": [
+        "Na verdade, nao sou\\nespecialista em lutar...$"
+      ]
+    },
+    "data/maps/MagmaHideout_2F_2R/scripts.inc": {
+      "MagmaHideout_2F_2R_Text_Grunt15Intro": [
+        "Nao tenho nada a ver contigo.\\nSo estou a seguir ordens!$"
+      ],
+      "MagmaHideout_2F_2R_Text_Grunt15Defeat": [
+        "Posso ter perdido, mas...$"
+      ],
+      "MagmaHideout_2F_2R_Text_Grunt6PostBattle": [
+        "Nao te sentes so por o mar\\nestar num lugar como este?$"
+      ],
+      "MagmaHideout_2F_2R_Text_Grunt7Intro": [
+        "As vezes ouve-se tremores aqui.\\pPode ser o vulcao a bater? Ou e\\nGROU...\\pOpa! Nao, nao, esquece!$"
+      ],
+      "MagmaHideout_2F_2R_Text_Grunt7Defeat": [
+        "Es um lutador de fogo. Como um\\nvulcao!$"
+      ],
+      "MagmaHideout_2F_2R_Text_Grunt8Intro": [
+        "Um dos nossos estava a\\npassar-se porque perdeu o seu\\lEMBLEM MAGMA...\\pEspera um minuto! Foi voce que\\no encontrou?$"
+      ],
+      "MagmaHideout_2F_2R_Text_Grunt8Defeat": [
+        "Estou com dificuldade em\\nacreditar nisto...$"
+      ],
+      "MagmaHideout_2F_2R_Text_Grunt8PostBattle": [
+        "Sinto que o nosso plano vai\\nacabar em fracasso...$"
+      ]
+    },
+    "data/maps/MagmaHideout_3F_1R/scripts.inc": {
+      "MagmaHideout_3F_1R_Text_Grunt9Intro": [
+        "O que fiz para merecer este\\nposto de guarda?\\pA minha orelha esquerda esta a\\narder!$"
+      ],
+      "MagmaHideout_3F_1R_Text_Grunt9Defeat": [
+        "Estou a ficar exausto...$"
+      ],
+      "MagmaHideout_3F_1R_Text_Grunt9PostBattle": [
+        "Achas estranho estarmos a usar\\ncapuzes neste vulcao cheio de\\lmagma?$"
+      ],
+      "MagmaHideout_3F_1R_Text_Grunt16Defeat": [
+        "Nao! Nao se pode confiar em ti!$"
+      ]
+    },
+    "data/maps/MagmaHideout_3F_2R/scripts.inc": {
+      "MagmaHideout_3F_2R_Text_Grunt10Intro": [
+        "Compreendo tudo o que o nosso\\nlider diz. Mas sabes que mais?\\pFazer coisas como desenterrar\\num super-antigo Pokemon e\\lroubar o METEORITE de alguem...\\pAcho que estamos a ir longe\\ndemais. O que achas?$"
+      ],
+      "MagmaHideout_3F_2R_Text_Grunt10Defeat": [
+        "Acho que estamos a fazer algo\\nde errado.$"
+      ],
+      "MagmaHideout_3F_2R_Text_Grunt10PostBattle": [
+        "Sabes, perder para ti\\nesclareceu-me.\\pDa proxima vez que vir o nosso\\nlider, vou perguntar-lhe o que\\lfazemos.$"
+      ]
+    },
+    "data/maps/MagmaHideout_4F/scripts.inc": {
+      "MagmaHideout_4F_Text_Grunt11Intro": [
+        "Tambem quero ver o GROUDON, mas\\nnao me deixam ver a cauda...\\pSinto-me muito frustrado.\\pNao! Eu falei sobre GROUDON!$"
+      ],
+      "MagmaHideout_4F_Text_Grunt11Defeat": [
+        "Acho que e impossivel ganhar se\\nnao tivermos uma mente calma...$"
+      ],
+      "MagmaHideout_4F_Text_Grunt11PostBattle": [
+        "Sera que o GROUDON tem uma\\ncauda?$"
+      ],
+      "MagmaHideout_4F_Text_Grunt12Intro": [
+        "Fuhahaha! Em breve! Muito em\\nbreve! Nosso grande objetivo\\lsera alcancado!$"
+      ],
+      "MagmaHideout_4F_Text_Grunt12Defeat": [
+        "Cheguei tao longe, mas agora\\nisto?$"
+      ],
+      "MagmaHideout_4F_Text_Grunt13Intro": [
+        "Ainda nao acabaste! Nao vais\\npassar por mim facilmente!$"
+      ],
+      "MagmaHideout_4F_Text_Grunt13Defeat": [
+        "Fui assim tao facil de\\nderrubar?$"
+      ],
+      "MagmaHideout_4F_Text_Grunt13PostBattle": [
+        "Va la, mais uma partida...$"
+      ],
+      "MagmaHideout_4F_Text_TabithaDefeat": [
+        "Derrubado outra vez... Hehe...$"
+      ],
+      "MagmaHideout_4F_Text_MaxieDefeat": [
+        "O que o torna tao habil em\\nlidar com POKEMON?$"
+      ]
+    },
+    "data/maps/MahoganyHideout_B1F/scripts.inc": {
+      "MahoganyHideout_B1F_Text_CameraGrunt1Seen": [
+        "Hey! Alerta de intruso!$"
+      ],
+      "MahoganyHideout_B1F_Text_CameraGrunt1Beaten": [
+        "Bolas... eu falhei...$"
+      ],
+      "MahoganyHideout_B1F_Text_CameraGrunt2Seen": [
+        "E a minha vez! Nao ha\\nescapatoria!$"
+      ],
+      "MahoganyHideout_B1F_Text_CameraGrunt2Beaten": [
+        "As camaras de vigilancia estao\\nnas estatuas POKEMON.\\pContinuaremos a aparecer ate\\nteres um interruptor secreto.$"
+      ],
+      "MahoganyHideout_B1F_Text_ScientistJedSeen": [
+        "Isto ja foi um esconderijo\\nninja.\\pHa armadilhas para confundir\\nintrusos como tu.$"
+      ],
+      "MahoganyHideout_B1F_Text_ScientistJedBeaten": [
+        "Ja percebi...$"
+      ],
+      "MahoganyHideout_B1F_Text_ScientistJedAfter": [
+        "Esta bem. Vou divulgar um\\nsegredo sobre o nosso\\lesconderijo.\\pAquela coisa no chao a frente e\\num painel warp.\\pSe pisares, vais voltar para a\\nentrada.$"
+      ],
+      "MahoganyHideout_B1F_Text_GruntM16Seen": [
+        "Heheh. Estas com sorte, punk?$"
+      ],
+      "MahoganyHideout_B1F_Text_GruntM16After": [
+        "Nem sei onde estao as\\narmadilhas.\\pTeras de recolher a tua coragem\\ne andar.$"
+      ],
+      "MahoganyHideout_B1F_Text_SecurityCameraStatue": [
+        "E uma estatua PERSIAN...$"
+      ],
+      "MahoganyHideout_B1F_Text_NothingThere": [
+        "Um painel estranho... Nada\\naqui.$"
+      ],
+      "MahoganyHideout_B1F_Text_SecretSwitch": [
+        "Um interruptor secreto! E\\nmelhor premir.$"
+      ],
+      "MahoganyHideout_B1F_Text_SwitchOff": [
+        "O interruptor esta desligado.$"
+      ]
+    },
+    "data/maps/MahoganyHideout_B2F/scripts.inc": {
+      "MahoganyHideout_B2F_Text_ArianaLoss": [
+        "Tu es mesmo forte. E uma pena.\\pSe te juntasses a Equipa\\nRocket, podias tornar-te um\\lExecutivo.$"
+      ],
+      "MahoganyHideout_B2F_Text_LanceStepBack": [
+        "Desculpa.{PLAYER}Vi como\\nestavas bem, por isso fiquei\\lpara tras.\\pAgora tudo o que resta fazer e\\ndesligar esse estranho sinal de\\lradio.$"
+      ],
+      "MahoganyHideout_B2F_Text_LanceWhirlpool": [
+        "E o HM DIVE. Ensine-o a um\\nPOKEMON para explorar aguas\\lprofundas.\\pMas tenha isto em mente.\\pVoce pode usar isso fora de\\nbatalha apenas uma vez que voce\\lganhou o GINASIO INSIGNIA\\lcerto.$"
+      ],
+      "MahoganyHideout_B2F_Text_LanceMonMaster": [
+        "{PLAYER}...\\pA jornada para se tornar o\\nMASTER POKEMON e longa e\\ldificil.\\pSabendo disso, vai continuar?\\p...\\pEstou a ver. Nao, tens razao.\\pSe desistisses assim tao\\nfacilmente, nunca terias\\lperseguido aquele sonho.\\pEstou ansioso para ve-lo\\nnovamente!$"
+      ],
+      "MahoganyHideout_B2F_Text_B2FTransmitter": [
+        "E o transmissor de radio que\\nesta a enviar o sinal sinistro.\\pEsta a funcionar em plena\\ncapacidade.$"
+      ],
+      "MahoganyHideout_B2F_Text_B2FDeactivateTransmitter": [
+        "O transmissor de radio\\nfinalmente parou a transmissao\\ldo mal.$"
+      ],
+      "MahoganyHideout_B2F_Text_LanceHeals2": [
+        "LANCE:{PLAYER}Vamos dar o nosso\\nmelhor pelo Pokemon.$"
+      ],
+      "MahoganyHideout_B2F_Text_GruntM17Seen": [
+        "A porta nao abre?\\pBem... Tem de ter uma senha que\\nso o TEAM ROCKET sabe.$"
+      ],
+      "MahoganyHideout_B2F_Text_GruntM17Beaten": [
+        "O que? Perdi?$"
+      ],
+      "MahoganyHideout_B2F_Text_GruntM18Seen": [
+        "Um miudo? Nao gosto disto, mas\\ntenho de te eliminar.$"
+      ],
+      "MahoganyHideout_B2F_Text_GruntM18Beaten": [
+        "Eu sabia que ia perder...$"
+      ],
+      "MahoganyHideout_B2F_Text_GruntM18After": [
+        "Tambem fui exterminado na\\nultima missao por um miudo.\\pQuando estavamos a raptar o\\nPokemon, um miudo com cabelos\\lruivos e olhos feios deu-me uma\\lcoca...$"
+      ],
+      "MahoganyHideout_B2F_Text_GruntM19Seen": [
+        "Sua peste podre!$"
+      ],
+      "MahoganyHideout_B2F_Text_GruntM19After": [
+        "So o chefe sabe a senha daquela\\nporta.\\pOnde esta o chefe? Quem sabe?\\nVai procurar por ti mesmo.$"
+      ]
+    },
+    "data/maps/MahoganyHideout_B3F/scripts.inc": {
+      "MahoganyHideout_B3F_Text_B3FRocket": [
+        "Urrggh... O tipo da capa e\\nincrivelmente duro...$"
+      ],
+      "MahoganyHideout_B3F_Text_B3FLockedDoorNeedsPassword": [
+        "A porta esta fechada...\\pPrecisa de duas senhas para\\nabrir.$"
+      ],
+      "MahoganyHideout_B3F_Text_B3FLockedDoorOpenSesame": [
+        "A porta esta fechada...\\p{PLAYER}inseriu as duas senhas.\\pA porta abriu-se!$"
+      ],
+      "MahoganyHideout_B3F_Text_PetrelDisbelief": [
+        "...Huh? Nao pareco nada com o\\nGIOVANNI?\\pNem me pareco com o GIOVANNI?\\nPorque? Trabalhei tanto para o\\limitar!$"
+      ],
+      "MahoganyHideout_B3F_Text_MurkrowMimic": [
+        "MURKROW esta imitando a voz de\\nPETREL!\\pVoce pode ser capaz de...?$"
+      ],
+      "MahoganyHideout_B3F_Text_GruntF5Seen": [
+        "Eu sei a senha?\\pTalvez.\\pMas nenhum fracote vai\\nconseguir!$"
+      ],
+      "MahoganyHideout_B3F_Text_GruntF5Beaten": [
+        "Esta bem. Para. Eu digo-te.$"
+      ],
+      "MahoganyHideout_B3F_Text_GruntF5After": [
+        "A senha do quarto do chefe e\\nSLOWPOKETAIL.\\pMas e inutil a menos que tenhas\\nduas senhas.$"
+      ],
+      "MahoganyHideout_B3F_Text_GruntM28Seen": [
+        "Hyuck-hyuck-hyuck!\\pLembro-me de ti do poco!\\pEstas a desafiar-me outra vez?\\pHah! Es doido, mas tens\\ncoragem!\\pVou avisar-te, melhorei!\\pSe me venceres, digo-te uma\\nsenha para o quarto do chefe!$"
+      ],
+      "MahoganyHideout_B3F_Text_GruntM28Beaten": [
+        "Hyuck-hyuck-hyuck! Es bom!$"
+      ],
+      "MahoganyHideout_B3F_Text_ScientistRossSeen": [
+        "Eu trabalhava para o SILPH, mas\\nagora faco pesquisa para o TEAM\\lROCKET.\\pUma crianca intrometida como tu\\nprecisa de ser punida.$"
+      ],
+      "MahoganyHideout_B3F_Text_ScientistRossBeaten": [
+        "Um mero erro tatico\\ncustou-me...$"
+      ],
+      "MahoganyHideout_B3F_Text_ScientistRossAfter": [
+        "Um sinal de radio que deixa\\nPokemon louco...\\pA minha experiencia e um\\nsucesso completo.\\pA minha promocao esta\\ngarantida. Esta perda nao\\lsignifica absolutamente nada.$"
+      ],
+      "MahoganyHideout_B3F_Text_ScientistMitchSeen": [
+        "Nao me interessa que o POKEMON\\nseja magoado pela nossa\\lexperiencia.$"
+      ],
+      "MahoganyHideout_B3F_Text_ScientistMitchBeaten": [
+        "Pensar e o meu forte, nao\\nlutar.$"
+      ],
+      "MahoganyHideout_B3F_Text_ScientistMitchAfter": [
+        "Se aumentarmos a potencia do\\nnosso sinal de radio para\\ltransmissao nacional...\\pO pensamento me excita!$"
+      ]
+    },
+    "data/maps/MahoganyTown_House1/scripts.inc": {
+      "MahoganyRedGyaradosHouse_Text_Teacher_Rockets": [
+        "Tenho ouvido risos no radio...\\pE assustador.$"
+      ]
+    },
+    "data/maps/MahoganyTown_PokemonCenter/scripts.inc": {
+      "MahoganyTown_PokemonCenter_Text_Youngster": [
+        "Impeco o meu POKEMON de evoluir\\ndemasiado cedo.\\pFaco-os aprender certos\\nmovimentos antes de os deixar\\levoluir.$"
+      ],
+      "MahoganyTown_PokemonCenter_Text_CooltrainerF": [
+        "POKEMON torna-se mais forte\\nquando evoluem,\\pmas tambem aprendem movimentos\\nmais lentos.$"
+      ]
+    },
+    "data/maps/MahoganyTown_Shop/scripts.inc": {
+      "MahoganyTown_Shop_Text_Granny": [
+        "Por favor, volte noutra altura.\\nA loja esta... fechada neste\\lmomento.$"
+      ],
+      "MahoganyMart1F_Text_BlackBelt": [
+        "Heheh! A experiencia funcionou\\nmuito bem.\\pMAGIKARP sao apenas inuteis,\\nmas GYARADOS sao grandes\\lfabricantes de dinheiro.$"
+      ],
+      "MahoganyMart1F_Text_BlackBelt_Lance": [
+        "Urrgh...\\pO Pokemon daquele tipo e\\nduro...$"
+      ],
+      "MahoganyMart1F_Text_Lance_Radio": [
+        "O que te levou,{PLAYER}?\\pTal como pensavamos, o estranho\\nsinal de radio vem daqui.$"
+      ],
+      "MahoganyMart1F_Text_Lance_Stairs": [
+        "Excelente trabalho para\\nencontrar as escadas,\\lDRAGONITE!$"
+      ],
+      "MahoganyMart1F_Text_Lance_SplitUp": [
+        "LANCE:{PLAYER}Deviamos\\nseparar-nos para verificar este\\llugar.\\pEu vou primeiro.$"
+      ]
+    },
+    "data/maps/Mahoganytown/scripts.inc": {
+      "MahoganyTown_Text_RageCandyBarMerchantSavorIt": [
+        "Optimo! Saboreiem!$"
+      ],
+      "MahoganyTown_Text_RageCandyBarMerchantNotEnoughMoney": [
+        "Nao tens dinheiro suficiente.$"
+      ],
+      "MahoganyTown_Text_RageCandyBarMerchantRefused": [
+        "Esta bem, entao...$"
+      ],
+      "MahoganyTown_Text_GrampsClearedRocketHideout": [
+        "MAGIKARP voltou para LAKE OF\\nRAGE.\\pDeve ser uma boa noticia para\\nos pescadores.$"
+      ],
+      "MahoganyTown_Text_Fisher": [
+        "Desde que chegaste ate aqui,\\ntira tempo para passear.\\pDevias ir para norte e\\nverificar o LAKE OF RAGE agora.$"
+      ],
+      "MahoganyTown_Text_Lass": [
+        "Visite a loja da avo. Ela vende\\ncoisas que mais ninguem tem.$"
+      ]
+    },
+    "data/maps/MauvilleCity/scripts.inc": {
+      "MauvilleCity_Text_ThankYouNotEnoughToBattle": [
+        "{PLAYER}Obrigado. Ser um\\ntreinador e dificil, nao e?\\pNao basta ter Pokemon e\\nfaze-los lutar. Nao e disso que\\lse trata ser um verdadeiro\\ltreinador.$"
+      ],
+      "MauvilleCity_Text_RegisteredWally": [
+        "WALLY registado no POKeNAV.$"
+      ],
+      "MauvilleCity_Text_NurseHurtMonBackToHealth": [
+        "Sabes, e fixe ter batalhas\\nPOKEMON e assim...\\pMas se o teu POKEMON se magoar,\\ntens de o curar.$"
+      ],
+      "MauvilleCity_Text_AllSortsOfPeopleComeThrough": [
+        "As estradas desta cidade\\nestendem-se a norte e a sul, e\\la leste e a oeste.\\pPor causa disso, temos todo o\\ntipo de pessoas a passar.$"
+      ],
+      "MauvilleCity_Text_ExplainTV": [
+        "Ola, ves televisao?\\pEles adicionaram um monte de\\nnovos shows recentemente.\\pA televisao e tao fixe. Vi os\\nmeus amigos na televisao do\\lnada.\\pE, as vezes, ate te colocam na\\ntelevisao sem te dizerem.\\pQuem me dera aparecer na\\ntelevisao.\\pE por isso que acho que devias\\nir ver TVs sempre que puderes.$"
+      ],
+      "MauvilleCity_Text_BeenCheckingOutTV": [
+        "Ola, estiveste a ver televisao?$"
+      ]
+    },
+    "data/maps/MauvilleCity_BikeShop/scripts.inc": {
+      "MauvilleCity_BikeShop_Text_ChoseMachBike": [
+        "{PLAYER}Escolheu o MACH BIKE.$"
+      ],
+      "MauvilleCity_BikeShop_Text_ChoseAcroBike": [
+        "{PLAYER}Escolheu o ACRO BIKE.$"
+      ],
+      "MauvilleCity_BikeShop_Text_HandbooksAreInBack": [
+        "Estou a aprender sobre BIKES\\nenquanto trabalho aqui.\\pSe precisares de conselhos\\nsobre como andar no teu BIKE,\\lha alguns manuais atras.$"
+      ],
+      "MauvilleCity_BikeShop_Text_HowToRideMachBike": [
+        "Um BIKE se move na direcao que\\no + Control Pad e pressionado.\\pVai acelerar assim que comecar\\na rodar.\\pPara parar, solte o + Control\\nPad. O BIKE vai parar\\llentamente.\\pQuer ler uma pagina diferente?$"
+      ]
+    }
+  },
+  "c": {}
+}

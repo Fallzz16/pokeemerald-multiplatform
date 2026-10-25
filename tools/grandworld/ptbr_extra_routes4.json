@@ -1,0 +1,250 @@
+{
+  "asm": {
+    "data/maps/Route29/scripts.inc": {
+      "Route29_Text_PressAorB": [
+        "Aperte A ou B para voltar.$"
+      ],
+      "Route29_Text_OldMan1": [
+        "POKEMON se escondem na grama.\\pNunca sabemos\\nquando vao aparecer!$"
+      ],
+      "Route29_Text_OldMan2": [
+        "Ja vi voce por aqui.\\pQuantos POKEMON capturou?\\pQuer aprender a\\ncapturar mais POKEMON?$"
+      ],
+      "Route29_Text_OldManExplanation": [
+        "Enfraqueca o POKEMON\\npara captura-lo facilmente.\\pDepois use uma POKE BALL\\nda BOLSA!$"
+      ],
+      "Route29_Text_OldManDeclined": [
+        "Tudo bem.\\pExplore cada rota para achar\\nPOKEMON diferentes.\\pA POKEDEX pode ajudar.$"
+      ],
+      "Route29_Text_Youngster": [
+        "Como esta sua equipe?\\pSe os POKEMON estiverem fracos,\\nevite a grama alta.$"
+      ],
+      "Route29_Text_Lass": [
+        "Viu esses barrancos?\\pVoce pode descer por eles\\npara voltar a NEW BARK\\lsem passar pela grama.$"
+      ],
+      "Route29_Text_Girl": [
+        "Quis fazer uma pausa,\\nentao salvei meu progresso.$"
+      ],
+      "Route29_Text_Boy_WaitingForDay": [
+        "Espero por POKEMON\\nque aparecem mais tarde.$"
+      ],
+      "Route29_Text_Boy_WaitingForNight": [
+        "Espero por POKEMON\\nque aparecem a noite.$"
+      ],
+      "Route29_Text_MeetTuscany": [
+        "Sou TUSCANY, da\\nWEEKDAY FAMILY!\\pEsta e nossa primeira reuniao?\\pPode adivinhar\\nqual e o dia de hoje?$"
+      ],
+      "Route29_Text_TuscanyNope": [
+        "Quase, mas nao!$"
+      ],
+      "Route29_Text_TuscanyGivesGift": [
+        "Acertou!\\pAceite este SILK SCARF\\ncomo meu presente!$"
+      ],
+      "Route29_Text_TuscanyGaveGift": [
+        "TUSCANY: Lindo, nao acha?\\pEsse item fortalece\\ngolpes do tipo NORMAL.$"
+      ],
+      "Route29_Text_TuscanyTuesday": [
+        "TUSCANY: Ja conheceu MONICA,\\nminha irma mais velha?\\pE WESLEY, meu irmao menor?\\pSomos sete irmaos!$"
+      ],
+      "Route29_Text_Sign1": [
+        "ROUTE 29\\pCHERRYGROVE - NEW BARK TOWN$"
+      ]
+    },
+    "data/maps/Route101/scripts.inc": {
+      "Route101_Text_HelpMe": [
+        "A-ajuda!$"
+      ],
+      "Route101_Text_PleaseHelp": [
+        "Ei! Voce ai!\\nMe ajude, por favor!\\pNa minha BOLSA tem\\numa POKE BALL!$"
+      ],
+      "Route101_Text_DontLeaveMe": [
+        "O-onde vai?!\\nNao me deixe aqui!$"
+      ],
+      "Route101_Text_YouSavedMe": [
+        "PROF. BIRCH: Ufa!\\pEu estava estudando POKEMON\\nna grama alta e fui atacado.\\p{PLAYER}{KUN}, obrigado\\npor me salvar!$"
+      ],
+      "Route101_Text_TakeTiredPokemonToPokeCenter": [
+        "Quando seus POKEMON\\nficarem cansados, leve-os\\la um CENTRO POKEMON.\\pHa um em OLDALE TOWN.$"
+      ],
+      "Route101_Text_WildPokemonInTallGrass": [
+        "POKEMON selvagens\\naparecem na grama alta.\\pPara capturar um,\\nentre na grama com cuidado.$"
+      ],
+      "Route101_Text_RouteSign": [
+        "ROUTE 101\\n{UP_ARROW} OLDALE TOWN$"
+      ]
+    },
+    "data/maps/GoldenrodCity/scripts.inc": {
+      "GoldenrodCity_Text_Beauty": [
+        "Este e o GYM de GOLDENROD!\\pWHITNEY nao esta aqui agora.\\pTalvez esteja na RADIO TOWER.$"
+      ],
+      "GoldenrodCity_Text_Woman": [
+        "Eu treinava no GYM de WHITNEY,\\nmas ela chorava tanto\\nque me dava dor de cabeca!$"
+      ],
+      "GoldenrodCity_Text_HikerDay": [
+        "Entrei no GAME CORNER a noite...\\pQuanto tempo fiquei la dentro?!$"
+      ],
+      "GoldenrodCity_Text_HikerNight": [
+        "Entrei no GAME CORNER de dia...\\pQuanto tempo fiquei la dentro?!$"
+      ],
+      "GoldenrodCity_Text_Snubbull": [
+        "SNUBBULL: SNUUUBUUUULL!$"
+      ],
+      "GoldenrodCity_Text_MrMime": [
+        "............................$"
+      ],
+      "GoldenrodCity_Text_ElmCall": [
+        "PROF. ELM: Ola, {PLAYER}!\\pAquele EGG ja chocou?\\pQuando chocar, leve-o ao LAB\\npara eu examinar!$"
+      ],
+      "GoldenrodCity_Text_PokefanM": [
+        "Construiram a RADIO TOWER nova\\npara substituir a antiga.$"
+      ],
+      "GoldenrodCity_Text_Youngster1": [
+        "Sei que ha uma BIKE SHOP aqui,\\nmas nao consigo encontra-la!$"
+      ],
+      "GoldenrodCity_Text_CooltrainerF1": [
+        "Aquele homem de preto\\nparece da TEAM ROCKET!\\pQue fantasia estranha!$"
+      ],
+      "GoldenrodCity_Text_CooltrainerF1_Cleared": [
+        "O homem de preto era mesmo\\nda TEAM ROCKET?!\\pNao consigo acreditar!$"
+      ],
+      "GoldenrodCity_Text_CooltrainerF2": [
+        "A RADIO TOWER e famosa!\\pEstao oferecendo uma\\nrecompensa a visitantes.$"
+      ],
+      "GoldenrodCity_Text_CooltrainerF2_GotCard": [
+        "Ah! Seu POKENAV\\nja funciona como radio!$"
+      ],
+      "GoldenrodCity_Text_Youngster2": [
+        "Hehehe...\\pMe meti em confusao\\nno porao da DEPT. STORE.$"
+      ],
+      "GoldenrodCity_Text_Lass": [
+        "Aquele homem avalia\\napelidos de POKEMON.\\pEle tambem pode muda-los!$"
+      ],
+      "GoldenrodCity_Text_Gramps": [
+        "Esta cidade e enorme!\\nNao consigo achar nada!$"
+      ],
+      "GoldenrodCity_Text_RocketScout1": [
+        "Entao esta e a RADIO TOWER...$"
+      ],
+      "GoldenrodCity_Text_RocketScout2": [
+        "O que voce quer?\\nSai daqui!$"
+      ],
+      "GoldenrodCity_Text_Rocket1": [
+        "Nao atrapalhe!\\nSaia, moleque!$"
+      ],
+      "GoldenrodCity_Text_Rocket2": [
+        "Dominar a RADIO TOWER...\\pEi, isso nao e assunto seu!$"
+      ],
+      "GoldenrodCity_Text_Rocket3": [
+        "POKEMON sao ferramentas\\npara ganhar dinheiro!$"
+      ],
+      "GoldenrodCity_Text_Rocket4": [
+        "Nosso sonho vai se realizar...\\pFoi uma longa luta!$"
+      ],
+      "GoldenrodCity_Text_Rocket5": [
+        "Ei, pirralho!\\nNao deveria estar aqui!$"
+      ],
+      "GoldenrodCity_Text_Rocket6": [
+        "Conheca o poder\\nda TEAM ROCKET!$"
+      ],
+      "GoldenrodCity_Text_StationSign": [
+        "ESTACAO DE GOLDENROD CITY$"
+      ],
+      "GoldenrodCity_Text_RadioTowerSign": [
+        "RADIO TOWER DE GOLDENROD CITY$"
+      ],
+      "GoldenrodCity_Text_DeptStoreSign": [
+        "Muitos itens para POKEMON!\\pDEPT. STORE DE GOLDENROD$"
+      ],
+      "GoldenrodCity_Text_GymSign": [
+        "GOLDENROD CITY GYM POKEMON\\pLIDER: WHITNEY\\nA garota encantadora!$"
+      ],
+      "GoldenrodCity_Text_CitySign": [
+        "GOLDENROD CITY\\pCidade de muita alegria.$"
+      ],
+      "GoldenrodCity_Text_BikeShopSign": [
+        "O mundo sobre duas rodas!\\pBIKE SHOP$"
+      ],
+      "GoldenrodCity_Text_GameCornerSign": [
+        "AREA DE JOGOS\\pGAME CORNER DE GOLDENROD$"
+      ],
+      "GoldenrodCity_Text_NameRaterSign": [
+        "NAME RATER\\pAvalie os apelidos de POKEMON$"
+      ],
+      "GoldenrodCity_Text_UndergroundNorthSign": [
+        "ENTRADA DO UNDERGROUND$"
+      ],
+      "GoldenrodCity_Text_UndergroundSouthSign": [
+        "ENTRADA DO UNDERGROUND$"
+      ],
+      "GoldenrodCity_Text_FlowerShopSign": [
+        "FLOWER SHOP\\nFlores para todos!$"
+      ],
+      "GoldenrodCity_Text_MoveTutorAsk": [
+        "Posso ensinar golpes\\nespeciais aos seus POKEMON.\\pQuer aprender um?$"
+      ],
+      "GoldenrodCity_Text_MoveTutorCost": [
+        "Custa 1000 COINS.\\nVoce aceita?$"
+      ],
+      "GoldenrodCity_Text_MoveTutorDecline": [
+        "Ah... Sao golpes muito bons!$"
+      ],
+      "GoldenrodCity_Text_MoveTutorWhich": [
+        "Hahaha! Nao vai se arrepender!\\pQual golpe quer aprender?$"
+      ],
+      "GoldenrodCity_Text_MoveTutorNoCash": [
+        "Que pena!\\nVou precisar de mais COINS...$"
+      ],
+      "GoldenrodCity_Text_MoveTutorUnderstand": [
+        "Quando entender este golpe,\\nsera um TREINADOR melhor!$"
+      ],
+      "GoldenrodCity_Text_MoveTutorFarewell": [
+        "Hahaha! Ate logo!$"
+      ],
+      "GoldenrodCity_Text_MoveTutorBut": [
+        "M-mas...$"
+      ],
+      "GoldenrodCity_Text_MoveTutorNotEnoughCoins": [
+        "Voce nao tem COINS suficientes.$"
+      ]
+    },
+    "data/maps/PetalburgCity/scripts.inc": {
+      "PetalburgCity_Text_WhereIsWally": [
+        "Onde sera que WALLY esta?\\pVamos para VERDANTURF TOWN\\ndaqui a pouco.$"
+      ],
+      "PetalburgCity_Text_AreYouRookieTrainer": [
+        "Ola! Voce e um TREINADOR\\niniciante?\\pQuando chegar a uma cidade,\\nprocure o GYM POKEMON!$"
+      ],
+      "PetalburgCity_Text_ThisIsPetalburgGym": [
+        "Este e o GYM de PETALBURG!$"
+      ],
+      "PetalburgCity_Text_ThisIsGymSign": [
+        "Esta placa mostra\\nonde fica o GYM.$"
+      ],
+      "PetalburgCity_Text_WaterReflection": [
+        "Posso ver meu rosto\\nrefletido na agua...\\pParece ate que estou sorrindo!$"
+      ],
+      "PetalburgCity_Text_FullPartyExplanation": [
+        "Uma equipe pode ter\\nate seis POKEMON.\\pSe voce capturar outro,\\nele vai para o PC.$"
+      ],
+      "PetalburgCity_Text_GymSign": [
+        "PETALBURG CITY GYM POKEMON\\pLIDER: NORMAN\\nEm busca de mais forca.$"
+      ],
+      "PetalburgCity_Text_CitySign": [
+        "PETALBURG CITY\\pOnde pessoas e natureza\\nvivem em harmonia.$"
+      ],
+      "PetalburgCity_Text_WallyHouseSign": [
+        "CASA DE WALLY$"
+      ],
+      "PetalburgCity_Text_AreYouATrainer": [
+        "Com licenca!\\pPela sua roupa, voce parece\\num TREINADOR POKEMON. Acertei?$"
+      ],
+      "PetalburgCity_Text_WellMaybeNot": [
+        "Hum... Talvez nao.\\pSuas roupas estao limpas.\\pDeve ser iniciante\\nou talvez nao lute muito.$"
+      ],
+      "PetalburgCity_Text_ImLookingForTalentedTrainers": [
+        "Estou viajando pelo mundo\\nem busca de TREINADORES bons.\\pObrigado por sua atencao.$"
+      ]
+    }
+  },
+  "c": {}
+}

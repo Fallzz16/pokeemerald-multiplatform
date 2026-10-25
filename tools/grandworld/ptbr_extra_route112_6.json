@@ -1,0 +1,31 @@
+{
+  "asm": {
+    "data/maps/Route112/scripts.inc": {
+      "Route112_Text_LeaderGoingToAwakenThing": [
+        "Ei, sera que nosso lider\\nvai mesmo despertar aquilo?$"
+      ],
+      "Route112_Text_YeahWeNeedMeteorite": [
+        "Parece que sim. Mas dizem\\nque precisamos de um METEORITE.$"
+      ],
+      "Route112_Text_OhThatsWhyCrewWentToFallarbor": [
+        "Ah, entao foi por isso que\\no grupo foi a FALLARBOR!$"
+      ],
+      "Route112_Text_CantLetAnyonePassUntilTheyreBack": [
+        "Isso mesmo. Ate eles voltarem,\\nninguem pode passar!$"
+      ],
+      "Route112_Text_NotEasyToGetBackToLavaridge": [
+        "Queria ir a MAUVILLE, mas\\nse descer esses barrancos\\lsera dificil voltar\\npara LAVARIDGE.$"
+      ],
+      "Route112_Text_MtChimneyCableCarSign": [
+        "TELEFERICO DO MT. CHIMNEY\\nSuba um pouco {UP_ARROW}!$"
+      ],
+      "Route112_Text_MtChimneySign": [
+        "MT. CHIMNEY\\pPara LAVARIDGE ou o topo,\\nuse o CABLE CAR.$"
+      ],
+      "Route112_Text_RouteSignLavaridge": [
+        "ROUTE 112\\n{LEFT_ARROW} LAVARIDGE TOWN$"
+      ]
+    }
+  },
+  "c": {}
+}

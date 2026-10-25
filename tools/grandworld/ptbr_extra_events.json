@@ -1,0 +1,224 @@
+{
+  "c": {},
+  "asm": {
+    "data/text/obtain_item.inc": {
+      "gText_ObtainedTheItem": [
+        "Recebeu {STR_VAR_2}!$"
+      ],
+      "gText_TheBagIsFull": [
+        "A BOLSA esta cheia...$"
+      ],
+      "gText_AlreadyHaveKeyItem": [
+        "Mas {PLAYER} ja tem\\n{STR_VAR_2}...$"
+      ],
+      "gText_PutItemInPocket": [
+        "{PLAYER} guardou {STR_VAR_2}\\nno bolso {STR_VAR_3}.$"
+      ],
+      "gText_PlayerFoundOneItem": [
+        "{PLAYER} encontrou {STR_VAR_2}!$"
+      ],
+      "gText_TooBadBagIsFull": [
+        "Que pena!\\nA BOLSA esta cheia...$"
+      ],
+      "gText_PlayerPutItemInBag": [
+        "{PLAYER} guardou {STR_VAR_2}\\nna BOLSA.$"
+      ],
+      "gText_ObtainedTheDecor": [
+        "Recebeu {STR_VAR_2}!$"
+      ],
+      "gText_NoRoomLeftForAnother": [
+        "Sem espaco para\\noutro {STR_VAR_2}...$"
+      ],
+      "gText_TheDecorWasTransferredToThePC": [
+        "{STR_VAR_2} foi enviado\\npara o PC.$"
+      ],
+      "gText_ObtainedTheItems": [
+        "Recebeu {STR_VAR_1} {STR_VAR_2}!$"
+      ],
+      "gText_PlayerFoundItems": [
+        "{PLAYER} achou {STR_VAR_1} {STR_VAR_2}!$"
+      ],
+      "gText_PutCoinsAwayInCoinCase": [
+        "{PLAYER} guardou as moedas\\nna COIN CASE.$"
+      ],
+      "gText_FoundXCoins": [
+        "{PLAYER} encontrou\\n{STR_VAR_1} {STR_VAR_2}!$"
+      ],
+      "gText_FoundXItems": [
+        "{PLAYER} encontrou\\n{STR_VAR_1} {STR_VAR_2}!$"
+      ],
+      "gText_CoinCaseIsFull": [
+        "Que pena!\\nA COIN CASE esta cheia...$"
+      ],
+      "gText_NothingToPutThemIn": [
+        "Que pena!\\nNao tem onde guardar...$"
+      ]
+    },
+    "data/text/pc.inc": {
+      "gText_WhichPCShouldBeAccessed": [
+        "Qual PC deseja acessar?$"
+      ],
+      "gText_AccessedSomeonesPC": [
+        "Acessou o PC de ALGUEM.$"
+      ],
+      "gText_StorageSystemOpened": [
+        "Sistema de armazenamento\\nPOKEMON aberto.$"
+      ],
+      "gText_AccessedPlayersPC": [
+        "Acessou o PC de {PLAYER}.$"
+      ],
+      "gText_AccessedLanettesPC": [
+        "Acessou o PC de LANETTE.$"
+      ],
+      "gText_AccessedBillsPC": [
+        "Acessou o PC de BILL.$"
+      ]
+    },
+    "data/text/pc_transfer.inc": {
+      "gText_PkmnTransferredSomeonesPC": [
+        "{STR_VAR_2} foi enviado\\nao PC de ALGUEM.\\pGuardado na CAIXA\\n{STR_VAR_1}.$"
+      ],
+      "gText_PkmnTransferredLanettesPC": [
+        "{STR_VAR_2} foi enviado\\nao PC de LANETTE.\\pGuardado na CAIXA\\n{STR_VAR_1}.$"
+      ],
+      "gText_PkmnTransferredBillsPC": [
+        "{STR_VAR_2} foi enviado\\nao PC de BILL.\\pGuardado na CAIXA\\n{STR_VAR_1}.$"
+      ],
+      "gText_PkmnTransferredSomeonesPCBoxFull": [
+        "A CAIXA {STR_VAR_3} do PC\\nde ALGUEM esta cheia.\\p{STR_VAR_2} foi enviado\\npara a CAIXA {STR_VAR_1}.$"
+      ],
+      "gText_PkmnTransferredLanettesPCBoxFull": [
+        "A CAIXA {STR_VAR_3} do PC\\nde LANETTE esta cheia.\\p{STR_VAR_2} foi enviado\\npara a CAIXA {STR_VAR_1}.$"
+      ],
+      "gText_PkmnTransferredBillsPCBoxFull": [
+        "A CAIXA {STR_VAR_3} do PC\\nde BILL esta cheia.\\p{STR_VAR_2} foi enviado\\npara a CAIXA {STR_VAR_1}.$"
+      ],
+      "gText_PkmnSentToPCAfterCatch": [
+        "{STR_VAR_2} foi enviado\\nao PC de {B_PC_CREATOR_NAME}.\\pGuardado na CAIXA\\n{STR_VAR_1}.$"
+      ],
+      "gText_PlayerObtainedTheMon": [
+        "{PLAYER} recebeu\\n{STR_VAR_1}!$"
+      ],
+      "gText_NoMoreRoomForPokemon": [
+        "Nao ha espaco para POKEMON!\\pTodas as CAIXAS do PC\\nestao cheias!$"
+      ],
+      "gText_NicknameThisPokemon": [
+        "Quer dar um apelido\\npara {STR_VAR_1}?$"
+      ]
+    },
+    "data/text/pkmn_center_nurse.inc": {
+      "gText_WouldYouLikeToRestYourPkmn": [
+        "Ola! Bem-vindo ao\\nCENTRO POKEMON!\\pAqui cuidamos de seus\\nPOKEMON cansados.\\pQuer recuperar a equipe?$"
+      ],
+      "gText_IllTakeYourPkmn": [
+        "Certo! Vou cuidar dos\\nseus POKEMON.$"
+      ],
+      "gText_RestoredPkmnToFullHealth": [
+        "Obrigado por aguardar.\\pSeus POKEMON estao\\ncom a saude recuperada!$"
+      ],
+      "gText_WeHopeToSeeYouAgain": [
+        "Volte sempre!$"
+      ],
+      "gText_WelcomeCutShort": [
+        "Ola! Bem-vindo ao\\nCENTRO POKEMON!\\pAqui cuidamos de seus\\nPOKEMON cansados.\\pQuer recuperar...$"
+      ],
+      "gText_NoticesGoldCard": [
+        "E-essa carta...\\nE a GOLD CARD?!\\pQue brilho maravilhoso!\\nAs quatro estrelas reluzem!\\pJa vi TREINADORES com a\\nSILVER CARD, mas {PLAYER},\\lvoce e a primeira pessoa\\lcom uma GOLD CARD!\\p{PLAYER}, seria uma honra\\ncuidar de seus POKEMON!$"
+      ],
+      "gText_YouWantTheUsual": [
+        "Que bom ver voce, {PLAYER}!\\nO atendimento de sempre?$"
+      ],
+      "gText_IllTakeYourPkmn2": [
+        "Certo! Vou cuidar dos\\nseus POKEMON.$"
+      ],
+      "gText_ThankYouForWaiting": [
+        "Obrigado por esperar.$"
+      ],
+      "gText_WeHopeToSeeYouAgain2": [
+        "Volte sempre!$"
+      ]
+    },
+    "data/text/surf.inc": {
+      "gText_WantToUseSurf": [
+        "A agua tem um azul intenso...\\nQuer usar SURF?$"
+      ],
+      "gText_PlayerUsedSurf": [
+        "{STR_VAR_1} usou SURF!$"
+      ]
+    },
+    "data/text/new_game_intro_frlg.inc": {
+      "gOtherText_NewName": [
+        "NOVO NOME$"
+      ],
+      "gControlsGuide_Text_Intro": [
+        "Conheca os botoes do\\ncontrole do jogo.$"
+      ],
+      "gControlsGuide_Text_DPad": [
+        "Move seu personagem.\\nTambem seleciona opcoes\\ne dados nas telas.$"
+      ],
+      "gControlsGuide_Text_AButton": [
+        "Confirma escolhas, conversa\\ne avanca os textos.$"
+      ],
+      "gControlsGuide_Text_BButton": [
+        "Volta, cancela opcoes\\ne fecha menus.$"
+      ],
+      "gControlsGuide_Text_StartButton": [
+        "Abre o MENU principal\\ndo jogo.$"
+      ],
+      "gControlsGuide_Text_SelectButton": [
+        "Organiza itens e ativa\\no item registrado.$"
+      ],
+      "gControlsGuide_Text_LRButtons": [
+        "Precisa de ajuda?\\nUse os botoes L ou R.$"
+      ],
+      "gOakSpeech_Text_AskPlayerGender": [
+        "Agora me diga: voce e\\num menino ou uma menina?$"
+      ],
+      "gPikachuIntro_Text_Page1": [
+        "Bem-vindo a POKEMON WORLD!\\nCriado com carinho por David Ayers.\\n\\nTres regioes: KANTO, JOHTO\\ne HOENN. Cada uma tem\\nGYMS, LIGA e CAMPEAO.$"
+      ],
+      "gPikachuIntro_Text_Page2": [
+        "As regioes se ligam pelo\\nCENTRO DE TRANSPORTE.\\n\\nEscolha onde comecar\\ne viaje entre as regioes\\nquando quiser.$"
+      ],
+      "gPikachuIntro_Text_Page3": [
+        "Seja CAMPEAO de todas\\nas regioes e descubra\\nnovos caminhos pelo mundo!$"
+      ],
+      "gOakSpeech_Text_WelcomeToTheWorld": [
+        "Ola! E um prazer conhece-lo!\\pBem-vindo ao mundo POKEMON!\\pSou o PROF. OAK.\\pTodos me chamam de\\nPROFESSOR POKEMON.\\p$"
+      ],
+      "gOakSpeech_Text_ThisWorld": [
+        "Este mundo...$"
+      ],
+      "gOakSpeech_Text_IsInhabitedFarAndWide": [
+        "...tem criaturas por toda\\nparte chamadas POKEMON.\\p$"
+      ],
+      "gOakSpeech_Text_IStudyPokemon": [
+        "Algumas pessoas criam POKEMON\\ncomo amigos. Outras lutam.\\pEu estudo essas criaturas\\ne seus misterios.\\p$"
+      ],
+      "gOakSpeech_Text_TellMeALittleAboutYourself": [
+        "Agora, me fale um pouco\\nsobre voce.$"
+      ],
+      "gOakSpeech_Text_YourNameWhatIsIt": [
+        "Entao, qual e\\no seu nome?$"
+      ],
+      "gOakSpeech_Text_SoYourNameIsPlayer": [
+        "Seu nome e {PLAYER}, certo?$"
+      ],
+      "gOakSpeech_Text_WhatWasHisName": [
+        "Ah, sim! Esse garoto e\\nseu rival desde a infancia.\\pQual era mesmo\\no nome dele?$"
+      ],
+      "gOakSpeech_Text_YourRivalsNameWhatWasIt": [
+        "Qual e o nome do seu rival?$"
+      ],
+      "gOakSpeech_Text_ConfirmRivalName": [
+        "Entao o nome dele\\ne {RIVAL}, certo?$"
+      ],
+      "gOakSpeech_Text_RememberRivalsName": [
+        "Ah, claro! Agora lembro.\\nO nome dele e {RIVAL}!$"
+      ],
+      "gOakSpeech_Text_LetsGo": [
+        "{PLAYER}! Sua propria aventura\\nPOKEMON vai comecar!\\pUm mundo de sonhos e amigos\\nespera por voce!\\pVamos la!$"
+      ]
+    }
+  }
+}

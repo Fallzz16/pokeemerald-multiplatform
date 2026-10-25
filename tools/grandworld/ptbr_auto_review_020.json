@@ -1,0 +1,823 @@
+{
+  "asm": {
+    "data/maps/SevenIsland_Frlg/scripts.inc": {
+      "Text_SwordsDanceWhichMon": [
+        "Muito bem, escolha qual Pokemon\\neu devia ensinar.$"
+      ],
+      "Text_SwordsDanceTaught": [
+        "Se ao menos conseguissemos\\nficar cada vez mais fortes...$"
+      ],
+      "SevenIsland_Text_IslandVirtuallyUntouched": [
+        "Esta ilha foi deixada\\npraticamente intocada em seu\\lestado natural.\\pPode ser um pouco dificil andar\\npor ai por causa disso.$"
+      ]
+    },
+    "data/maps/SevenIsland_House_Room1_Frlg/scripts.inc": {
+      "SevenIsland_House_Room1_Text_OnlyEnjoymentWatchingBattles": [
+        "Posso nao parecer muito agora,\\nmas quando era mais novo...\\pVoei por todo o lado,\\ndesafiando os Treinadores onde\\lquer que os encontrasse.\\pA minha unica fonte de prazer e\\nlembrar-me do passado enquanto\\lvia batalhas.$"
+      ],
+      "SevenIsland_House_Room1_Text_SlightBreezeAroundBox": [
+        "Ha uma brisa leve soprando em\\ntorno da caixa.$"
+      ],
+      "SevenIsland_House_Room1_Text_ChallengeVisitingTrainer": [
+        "Ah! Bem-vindo, meu amigo!\\pDeixa-me dizer-te uma coisa. Ha\\num quarto escondido na cave.\\pUMA FORMACAO\\nCHAMADA{STR_VAR_1}esta a espera\\lla agora.\\pDiz-me, vieste\\ndesafiar{STR_VAR_1}Estou certo?$"
+      ],
+      "SevenIsland_House_Room1_Text_OhYouWontBattle": [
+        "Oh... Nao vais lutar...\\pEstou a ver. ... ...\\pTalvez se mudar de ideias,\\nvolte.$"
+      ],
+      "SevenIsland_House_Room1_Text_LimitThreeMonsPerSide": [
+        "Ah! Vais lutar por mim?\\pEntao, valeu a pena mudar a\\ncaixa de lado.\\p... Mas ha um pequeno problema.\\pEste quarto escondido nao e\\nmuito resistente.\\pPosso fazer com que o limite a\\nbatalhas de tres POKEMON por\\llado?$"
+      ],
+      "SevenIsland_House_Room1_Text_SaveProgressBeforeBattle": [
+        "Esta bem! Antes da sua batalha,\\ngostaria de salvar o seu jogo?$"
+      ],
+      "SevenIsland_House_Room1_Text_DontHoldAnythingBack": [
+        "Esta bem. Nao escondas nada!$"
+      ],
+      "SevenIsland_House_Room2_Text_MatchEndedUpDraw": [
+        "A partida acabou em empate.$"
+      ],
+      "SevenIsland_House_Room1_Text_DrawWasIt": [
+        "Um empate, nao foi?\\pNo entanto, permitam-me que\\ndiga que foi um espectaculo\\ldigno.\\pEu diria que foi uma batalha\\nmaravilhosa com um verdadeiro\\lsentido de profundidade!$"
+      ],
+      "SevenIsland_House_Room1_Text_AstoundingBattle": [
+        "Bravo!\\pBravo, de facto! Que batalha\\nespantosa!\\pFoi tao surpreendente, porque,\\ncontinua enchendo meus olhos de\\llagrimas!\\pO impulso e parry de tecnicas\\nhabilmente usadas!\\pO choque do poder sobre o\\npoder!\\pSim! Foi pura magnificencia!$"
+      ],
+      "SevenIsland_House_Room1_Text_FeelYourDisappointment": [
+        "Que pena! Sinto a tua\\ndesilusao.\\pNo entanto, esse desapontamento\\ne o que o tornara melhor.\\pUse-o, aprenda com ele, e\\nfaca-o motivar voce a buscar\\lgrandeza.\\pNao esqueca esta decepcao e\\nredobre seu treinamento!$"
+      ]
+    },
+    "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc": {
+      "SevenIsland_PokemonCenter_1F_Text_EventsDependingOnConnections": [
+        "Nesta ilha, diferentes eventos\\nocorrem dependendo de conexoes.\\pO que sao essas ligacoes?\\pEles sao para voce descobrir\\npor conta propria.$"
+      ],
+      "SevenIsland_PokemonCenter_1F_Text_CheckOutTrainerTower": [
+        "Se estas confiante, devias ir\\nver o TRAiner TOWER.$"
+      ]
+    },
+    "data/maps/SevenIsland_SevaultCanyon_Entrance_Frlg/scripts.inc": {
+      "SevenIsland_SevaultCanyon_Entrance_Text_MiahIntro": [
+        "Kyahaha! Vou afastar-te sem\\nesforco!$"
+      ],
+      "SevenIsland_SevaultCanyon_Entrance_Text_MiahDefeat": [
+        "Tch! Demasiado forte para mim!$"
+      ],
+      "SevenIsland_SevaultCanyon_Entrance_Text_MiahPostBattle": [
+        "O que e isso? Nao ajo como\\npareco?\\pIsso faz parte da minha\\nestrategia!$"
+      ],
+      "SevenIsland_SevaultCanyon_Entrance_Text_MasonIntro": [
+        "Ola! Es membro do meu clube de\\nfas?$"
+      ],
+      "SevenIsland_SevaultCanyon_Entrance_Text_MasonDefeat": [
+        "Entao nao es fa...\\pPosso mudar isso. Deixa-me\\ncantar para ti!$"
+      ],
+      "SevenIsland_SevaultCanyon_Entrance_Text_MasonPostBattle": [
+        "Lalalah... Meu Pokemon,\\nmando-os sair, todas as\\lraparigas gritam e gritam!$"
+      ],
+      "SevenIsland_SevaultCanyon_Entrance_Text_NicolasIntro": [
+        "Esta ilha esta muito\\nespalhada... Nao e facil\\lpatrulhar o local.$"
+      ],
+      "SevenIsland_SevaultCanyon_Entrance_Text_NicolasDefeat": [
+        "Sim...$"
+      ],
+      "SevenIsland_SevaultCanyon_Entrance_Text_NicolasPostBattle": [
+        "Treinadores como voce de\\ncidades, eles certamente sao\\lduros.\\pVai para o TOWER, nao vai?$"
+      ],
+      "SevenIsland_SevaultCanyon_Entrance_Text_MadelineIntro": [
+        "Eu castigo as pessoas que\\nabusam de POKEMON!$"
+      ],
+      "SevenIsland_SevaultCanyon_Entrance_Text_MadelineDefeat": [
+        "Nao parece ser um instrutor\\nproblematico.$"
+      ],
+      "SevenIsland_SevaultCanyon_Entrance_Text_MadelinePostBattle": [
+        "Se tratares o teu Pokemon com\\nbondade, eles vao entender.$"
+      ]
+    },
+    "data/maps/SevenIsland_SevaultCanyon_Frlg/scripts.inc": {
+      "SevenIsland_SevaultCanyon_Text_CyndyIntro": [
+        "O meu condicionamento esta em\\nalta forma!$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_CyndyDefeat": [
+        "Huh? Algo nao esta bem...$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_EvanIntro": [
+        "Nao importa se tens o POKEMON\\nmais forte...\\pNao significa nada se voce nao\\nsabe como usa-los corretamente!$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_EvanDefeat": [
+        "Es um mestre nisto.$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_EvanPostBattle": [
+        "Voce ve-los de vez em quando,\\nTRAiners com POKEMON\\limpressionante que nao tem\\lideia do que fazer.\\pAntes de treinar POKEMON, os\\nproprios TRAiners precisam\\lcrescer.$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_JacksonIntro": [
+        "Trabalho para proteger o\\nambiente. Por sua vez, a\\lnatureza protege-me!$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_JacksonDefeat": [
+        "Whoa! Es forte! Que tal\\nproteger-me?$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_JacksonPostBattle": [
+        "De longe entre as estrelas, o\\nnosso planeta e apenas uma gota\\lde agua.\\pMas queremos proteger essa gota\\nde agua para todos.$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_KatelynIntro": [
+        "Esses sapatos que tens sao\\nmuito elegantes.$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_KatelynDefeat": [
+        "Es boa, apesar da tua beleza.$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_LeroyIntro": [
+        "Pareces forte. Deixa-me lutar\\ncontigo, por favor!$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_LeroyDefeat": [
+        "Eu sabia! Es tao duro como eu\\npensava!$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_LeroyPostBattle": [
+        "A forma como lutaste deu-me\\nmuitos dados uteis.\\pMuito obrigado!$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_MichelleIntro": [
+        "Foi-me dada a melhor educacao\\npossivel para me tornar tao\\lforte.\\pNao quero perder para ninguem!$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_MichelleDefeat": [
+        "Obrigado. Sinto que fui\\nlibertado por perder para ti.$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_MichellePostBattle": [
+        "Por alguma razao, fico furiosa\\ncom a minima coisa.\\pVou acalmar-me respirando\\nprofundamente.$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_NyaPostBattle": [
+        "NYA: Acho que vou precisar de\\nmuito mais tempero e tutoria no\\lLEX...\\pLEX, por favor, posso ficar\\ncontigo assim?$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_NyaNotEnoughMons": [
+        "NYA: Desculpe, mas podemos\\nlutar em dois contra dois?$"
+      ],
+      "SevenIsland_SevaultCanyon_Text_BrunoTrainedWithBrawly": [
+        "Treinar sozinho certamente nao\\ne uma coisa ruim.\\pMas tambem nao e mau apontar\\npara o topo com um parceiro.\\pAte o BRUNO... Ele treinou com\\num sujeito chamado BRAWLY\\lantes.$"
+      ]
+    },
+    "data/maps/SevenIsland_SevaultCanyon_House_Frlg/scripts.inc": {
+      "SevenIsland_SevaultCanyon_House_Text_WouldYouLikeToDance": [
+        "Queres dancar?$"
+      ],
+      "SevenIsland_SevaultCanyon_House_Text_ComeOnDance": [
+        "Vamos, danca!$"
+      ],
+      "SevenIsland_SevaultCanyon_House_Text_DancedChanseyDance": [
+        "{PLAYER}dancou a danca CHANSEY!$"
+      ],
+      "SevenIsland_SevaultCanyon_House_Text_YoureAllChipperNow": [
+        "Ahahahaha!\\pPronto, estao todos felizes\\nagora! Lucky!$"
+      ]
+    },
+    "data/maps/SevenIsland_SevaultCanyon_TanobyKey_Frlg/scripts.inc": {
+      "SevenIsland_SevaultCanyon_TanobyKey_Text_MysteriousRumbleFarAway": [
+        "Um barulho misterioso ecoou\\nalgures longe.$"
+      ]
+    },
+    "data/maps/SevenIsland_TanobyRuins_Frlg/scripts.inc": {
+      "SevenIsland_TanobyRuins_Text_BrandonIntro": [
+        "Sabes alguma coisa sobre esta\\ncamara de pedra?$"
+      ],
+      "SevenIsland_TanobyRuins_Text_BrandonDefeat": [
+        "Isso foi desnecessario. Nao\\nprecisavas de ser tao duro.$"
+      ],
+      "SevenIsland_TanobyRuins_Text_BenjaminIntro": [
+        "Diz-se que um Pokemon mistico\\ndorme aqui dentro.$"
+      ],
+      "SevenIsland_TanobyRuins_Text_BenjaminDefeat": [
+        "Nao sou muito bom em batalhas.$"
+      ],
+      "SevenIsland_TanobyRuins_Text_BenjaminPostBattle": [
+        "Ouvi dizer que ha outras ruinas\\ncomo esta aqui.\\pPoderiam ser os locais de\\ndescanso de outros misticos\\lPOKEMON?$"
+      ],
+      "SevenIsland_TanobyRuins_Text_EdnaIntro": [
+        "CLIFFORD esta me ensinando a\\npintar.$"
+      ],
+      "SevenIsland_TanobyRuins_Text_EdnaDefeat": [
+        "Podemos ter problemas por fazer\\nbarulho aqui.$"
+      ],
+      "SevenIsland_TanobyRuins_Text_CliffordIntro": [
+        "Hoje, alem da nossa licao,\\nviemos ver a camara.$"
+      ],
+      "SevenIsland_TanobyRuins_Text_CliffordDefeat": [
+        "Que extraordinario.$"
+      ],
+      "SevenIsland_TanobyRuins_Text_CliffordPostBattle": [
+        "Ah, entao voce esta estudando\\nPOKEMON sozinho...\\pSim, voce certamente e uma\\npessoa extraordinaria, de fato.$"
+      ]
+    },
+    "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc": {
+      "SevenIsland_TrainerTower_Text_DarioIntro": [
+        "Senti a tua abordagem.$"
+      ],
+      "SevenIsland_TrainerTower_Text_DarioDefeat": [
+        "Desiste...$"
+      ],
+      "SevenIsland_TrainerTower_Text_DarioPostBattle": [
+        "No teu futuro, sinto que\\nconheceras muitos outros.\\pAcho que estarao ligados uns\\naos outros por um estranho\\lpoder.$"
+      ],
+      "SevenIsland_TrainerTower_Text_RodetteIntro": [
+        "Algures nesta ilha, Pokemon\\npeculiares estao dormindo.$"
+      ],
+      "SevenIsland_TrainerTower_Text_RodetteDefeat": [
+        "Que treinador incrivel!$"
+      ],
+      "SevenIsland_TrainerTower_Text_RodettePostBattle": [
+        "Algures nesta ilha, Pokemon\\npeculiares estao dormindo.\\pSera que estao a tua espera?$"
+      ]
+    },
+    "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc": {
+      "ShoalCave_LowTideLowerRoom_Text_CanOvercomeColdWithFocus": [
+        "O frio penetrante ao redor\\ndestas partes e um impedimento\\lao treinamento.\\pMas com foco, pode-se vencer!\\pCom este FOCUS BAND, fivela\\npara baixo e resistir ao frio!$"
+      ],
+      "ShoalCave_LowTideLowerRoom_Text_EverythingStartsWithFocus": [
+        "Tudo comeca com foco!$"
+      ]
+    },
+    "data/maps/SilphCo_10F_Frlg/scripts.inc": {
+      "SilphCo_10F_Text_GruntIntro": [
+        "Bem-vindos ao 10F! Que bom que\\nvieste comigo!$"
+      ],
+      "SilphCo_10F_Text_GruntDefeat": [
+        "Estou atordoado!$"
+      ],
+      "SilphCo_10F_Text_GruntPostBattle": [
+        "Boa tentativa, mas a sala de\\nreunioes e mais um andar.$"
+      ],
+      "SilphCo_10F_Text_TravisIntro": [
+        "Chega de brincadeiras!$"
+      ],
+      "SilphCo_10F_Text_TravisDefeat": [
+        "Nao continua a esquerda!$"
+      ],
+      "SilphCo_10F_Text_TravisPostBattle": [
+        "Estas satisfeito em me bater?\\nEntao vai para casa!$"
+      ],
+      "SilphCo_10F_Text_WaaaImScared": [
+        "Waaaaa! Estou com medo!$"
+      ],
+      "SilphCo_10F_Text_KeepMeCryingASecret": [
+        "Sobre eu chorar... Por favor,\\nmantem isso em segredo.$"
+      ]
+    },
+    "data/maps/SilphCo_11F_Frlg/scripts.inc": {
+      "SilphCo_11F_Text_YouHaveNoRoomForThis": [
+        "Nao tens espaco para isto.$"
+      ],
+      "SilphCo_11F_Text_GiovanniDefeat": [
+        "Arrgh! Perdi outra vez?$"
+      ],
+      "SilphCo_11F_Text_Grunt2Intro": [
+        "Pare ai mesmo! Nao te mexas!$"
+      ],
+      "SilphCo_11F_Text_Grunt2Defeat": [
+        "Por favor!$"
+      ],
+      "SilphCo_11F_Text_Grunt1Defeat": [
+        "Gaah! Demolido!$"
+      ],
+      "SilphCo_11F_Text_MonitorHasMonsOnIt": [
+        "O monitor tem POKEMON nele!$"
+      ]
+    },
+    "data/maps/SilphCo_2F_Frlg/scripts.inc": {
+      "SilphCo_2F_Text_ConnorIntro": [
+        "Socorro! Sou um empregado do\\nSILPH.$"
+      ],
+      "SilphCo_2F_Text_JerryIntro": [
+        "Esta fora dos limites! Vai para\\ncasa!$"
+      ],
+      "SilphCo_2F_Text_JerryDefeat": [
+        "Es boa.$"
+      ],
+      "SilphCo_2F_Text_JerryPostBattle": [
+        "Consegues resolver o labirinto\\naqui? Nao e facil, digo-te!$"
+      ],
+      "SilphCo_2F_Text_Grunt1Intro": [
+        "Nao sao permitidas criancas\\naqui!$"
+      ],
+      "SilphCo_2F_Text_Grunt1Defeat": [
+        "Duro!$"
+      ],
+      "SilphCo_2F_Text_Grunt1PostBattle": [
+        "As telhas em forma de diamante\\nsao blocos de teletransporte.\\pSao transportadores para este\\nedificio de alta tecnologia.$"
+      ],
+      "SilphCo_2F_Text_Grunt2Intro": [
+        "Miudo! Porque estas aqui a\\nvaguear?$"
+      ],
+      "SilphCo_2F_Text_Grunt2Defeat": [
+        "Fiz asneira!$"
+      ],
+      "SilphCo_2F_Text_Grunt2PostBattle": [
+        "O SILPH CO. sera associado ao\\nTEAM ROCKET!$"
+      ]
+    },
+    "data/maps/SilphCo_3F_Frlg/scripts.inc": {
+      "SilphCo_3F_Text_WhatAmIToDo": [
+        "Trabalho para o SILPH CO. O que\\ndevo fazer?$"
+      ],
+      "SilphCo_3F_Text_YouAndYourMonsSavedUs": [
+        "{PLAYER}Tu e o teu Pokemon\\nsalvaram-nos!$"
+      ],
+      "SilphCo_3F_Text_GruntIntro": [
+        "Para de brincar connosco,\\nmiudo!$"
+      ],
+      "SilphCo_3F_Text_GruntDefeat": [
+        "Desisto!$"
+      ],
+      "SilphCo_3F_Text_JoseDefeat": [
+        "Apanhaste-me mesmo!$"
+      ]
+    },
+    "data/maps/SilphCo_4F_Frlg/scripts.inc": {
+      "SilphCo_4F_Text_CantYouSeeImHiding": [
+        "Sssh! Nao ves que me estou a\\nesconder?$"
+      ],
+      "SilphCo_4F_Text_RodneyIntro": [
+        "O meu Pokemon e o meu servo\\nleal.$"
+      ],
+      "SilphCo_4F_Text_RodneyDefeat": [
+        "Raios! Seu fraco Pokemon!$"
+      ],
+      "SilphCo_4F_Text_Grunt2Intro": [
+        "Intruso visto!$"
+      ],
+      "SilphCo_4F_Text_Grunt2Defeat": [
+        "Quem es tu?$"
+      ],
+      "SilphCo_4F_Text_Grunt2PostBattle": [
+        "E melhor avisar o BOSS no 11F!$"
+      ]
+    },
+    "data/maps/SilphCo_5F_Frlg/scripts.inc": {
+      "SilphCo_5F_Text_Grunt1Intro": [
+        "Ouvi dizer que um miudo andava\\npor ai.$"
+      ],
+      "SilphCo_5F_Text_BeauDefeat": [
+        "Bolas! Raios!$"
+      ],
+      "SilphCo_5F_Text_DaltonIntro": [
+        "O que?\\pNao devia haver criancas aqui!$"
+      ],
+      "SilphCo_5F_Text_DaltonDefeat": [
+        "Meu Deus!$"
+      ],
+      "SilphCo_5F_Text_Grunt2Defeat": [
+        "Tosse... Tosse...$"
+      ]
+    },
+    "data/maps/SilphCo_6F_Frlg/scripts.inc": {
+      "SilphCo_6F_Text_BetterGetBackToWork": [
+        "E melhor voltar ao trabalho.$"
+      ],
+      "SilphCo_6F_Text_HelpMePlease": [
+        "Meu Deus. Ajudem-me, por favor!$"
+      ],
+      "SilphCo_6F_Text_WeGotEngaged": [
+        "Ficamos noivos. Heheh!$"
+      ],
+      "SilphCo_6F_Text_ThatManIsSuchACoward": [
+        "Aquele homem ao meu lado... Ele\\ne um cobarde!$"
+      ],
+      "SilphCo_6F_Text_NeedsMeToLookAfterHim": [
+        "Ele e tao indefeso, que\\nprecisava de alguem como eu\\lpara cuidar dele.$"
+      ],
+      "SilphCo_6F_Text_TargetedSilphForOurMonProducts": [
+        "Devem ter visado o SILPH para\\nos nossos produtos POKEMON.$"
+      ],
+      "SilphCo_6F_Text_ComeWorkForSilphWhenYoureOlder": [
+        "Vem trabalhar para o SILPH\\nquando envelheceres.$"
+      ],
+      "SilphCo_6F_Text_Grunt1Defeat": [
+        "Fogo!$"
+      ],
+      "SilphCo_6F_Text_Grunt1PostBattle": [
+        "Nao importa! Os meus irmaos\\nvingar-me-ao!$"
+      ],
+      "SilphCo_6F_Text_TaylorDefeat": [
+        "Atire!$"
+      ],
+      "SilphCo_6F_Text_Grunt2Defeat": [
+        "Seu traidor!$"
+      ],
+      "SilphCo_6F_Text_Grunt2PostBattle": [
+        "Se defendes a justica,\\ntrais-nos aos maus!$"
+      ]
+    },
+    "data/maps/SilphCo_7F_Frlg/scripts.inc": {
+      "SilphCo_7F_Text_ObtainedLaprasFromEmployee": [
+        "{PLAYER}obteve um LAPRAS do\\nfuncionario do SILPH!$"
+      ],
+      "SilphCo_7F_Text_ReallyDangerousHere": [
+        "Voce! E muito perigoso aqui!\\pVieste salvar-me? Nao podes!$"
+      ],
+      "SilphCo_7F_Text_ThankYouSoMuch": [
+        "Muito obrigado!$"
+      ],
+      "SilphCo_7F_Text_Grunt3Intro": [
+        "Uh-oh! Cheira-me a rato!$"
+      ],
+      "SilphCo_7F_Text_Grunt3Defeat": [
+        "Luzes apagadas!$"
+      ],
+      "SilphCo_7F_Text_JoshuaDefeat": [
+        "Acabei!$"
+      ],
+      "SilphCo_7F_Text_JoshuaPostBattle": [
+        "Apesar da sua idade, voce e um\\ntreinador habil!$"
+      ],
+      "SilphCo_7F_Text_Grunt1Defeat": [
+        "Aack! Irmaos, eu perdi!$"
+      ],
+      "SilphCo_7F_Text_Grunt1PostBattle": [
+        "Nao importa. Os meus irmaos\\npagarao o favor!$"
+      ],
+      "SilphCo_7F_Text_Grunt2Intro": [
+        "Um intruso infantil? Deve ser\\nvoce!$"
+      ],
+      "SilphCo_7F_Text_Grunt2Defeat": [
+        "Esta bem! Perdi!$"
+      ],
+      "SilphCo_7F_Text_RivalWhatKeptYou": [
+        "{RIVAL}O que te\\natrasou,{PLAYER}?$"
+      ],
+      "SilphCo_7F_Text_RivalDefeat": [
+        "Oh, meu! Entao, estas pronto\\npara o BOSS ROCKET!$"
+      ]
+    },
+    "data/maps/SilphCo_8F_Frlg/scripts.inc": {
+      "SilphCo_8F_Text_WonderIfSilphIsFinished": [
+        "Pergunto-me se o SILPH esta\\nacabado...$"
+      ],
+      "SilphCo_8F_Text_ThanksForSavingUs": [
+        "Obrigado por nos salvares!$"
+      ],
+      "SilphCo_8F_Text_Grunt1Intro": [
+        "Isso e o mais longe que voce\\nvai!$"
+      ],
+      "SilphCo_8F_Text_Grunt1Defeat": [
+        "Nao chega!$"
+      ],
+      "SilphCo_8F_Text_Grunt1PostBattle": [
+        "Se nao voltares... Vou chamar\\nreforcos!$"
+      ],
+      "SilphCo_8F_Text_ParkerIntro": [
+        "Estas a causar-nos problemas!$"
+      ],
+      "SilphCo_8F_Text_ParkerDefeat": [
+        "Huh? Perdi?$"
+      ],
+      "SilphCo_8F_Text_Grunt2Defeat": [
+        "Whoo! Irmaos!$"
+      ],
+      "SilphCo_8F_Text_Grunt2PostBattle": [
+        "Deixo-te com os meus irmaos.$"
+      ]
+    },
+    "data/maps/SilphCo_9F_Frlg/scripts.inc": {
+      "SilphCo_9F_Text_YouShouldTakeQuickNap": [
+        "Pareces cansado. Devias dormir\\numa sesta.$"
+      ],
+      "SilphCo_9F_Text_DontGiveUp": [
+        "Nao desistas!$"
+      ],
+      "SilphCo_9F_Text_ThankYouSoMuch": [
+        "Muito obrigado.$"
+      ],
+      "SilphCo_9F_Text_Grunt1Intro": [
+        "O teu Pokemon parece adorar-te,\\nmiudo!$"
+      ],
+      "SilphCo_9F_Text_Grunt1PostBattle": [
+        "Se eu tivesse comecado na tua\\nidade...$"
+      ],
+      "SilphCo_9F_Text_EdIntro": [
+        "O seu Pokemon tem pontos\\nfracos! Consigo apanha-los!$"
+      ],
+      "SilphCo_9F_Text_EdDefeat": [
+        "Bateste-me!$"
+      ],
+      "SilphCo_9F_Text_EdPostBattle": [
+        "Explorar pontos fracos\\nfunciona. Pense nas vantagens\\ldo tipo.$"
+      ],
+      "SilphCo_9F_Text_Grunt2Defeat": [
+        "Warg! Irmaos, eu perdi!$"
+      ],
+      "SilphCo_9F_Text_Grunt2PostBattle": [
+        "Os meus irmaos vingar-me-ao!$"
+      ]
+    },
+    "data/maps/SixIsland_DottedHole_SapphireRoom_Frlg/scripts.inc": {
+      "SixIsland_DottedHole_SapphireRoom_Text_FoundSapphire": [
+        "{PLAYER}Encontrei um SAPPHIRE!$"
+      ],
+      "SixIsland_DottedHole_SapphireRoom_Text_IWasRightInTailingYou": [
+        "Fufufufu... acho que sim.\\pEu estava certo em segui-lo!$"
+      ]
+    },
+    "data/maps/SixIsland_Frlg/scripts.inc": {
+      "SixIsland_Text_SkyAtNightIsFantastic": [
+        "Quando estamos tao longe da\\ncidade, o ceu a noite e\\lfantastico.$"
+      ]
+    },
+    "data/maps/SixIsland_GreenPath_Frlg/scripts.inc": {
+      "SixIsland_GreenPath_Text_JaclynDefeat": [
+        "Grande boo-boo!$"
+      ]
+    },
+    "data/maps/SixIsland_House_Frlg/scripts.inc": {
+      "SixIsland_House_Text_GoodPlaceForNatureAndHistory": [
+        "Nao ha nada que os jovens\\npossam achar excitante nesta\\lilha.\\pMas, este e um bom lugar em\\ntermos de natureza e historia.\\pRelaxe e aproveite a sua\\nestadia.$"
+      ]
+    },
+    "data/maps/SixIsland_OutcastIsland_Frlg/scripts.inc": {
+      "SixIsland_OutcastIsland_Text_RocketIntro": [
+        "Nao ha nenhum POKEMON raro por\\naqui! Nenhum!\\pIsso queima-me, meu. Vou\\ndescontar em ti!$"
+      ],
+      "SixIsland_OutcastIsland_Text_RocketPostBattle": [
+        "Ouve, nao viste nenhum POKEMON\\nraro, pois nao?$"
+      ],
+      "SixIsland_OutcastIsland_Text_TylorIntro": [
+        "Nao tenho sorte nenhuma. Uma\\nbatalha seria uma mudanca de\\lritmo!$"
+      ],
+      "SixIsland_OutcastIsland_Text_TylorDefeat": [
+        "Nao, nada de sorte...$"
+      ],
+      "SixIsland_OutcastIsland_Text_TylorPostBattle": [
+        "Mas nao posso ir para casa sem\\napanhar alguma coisa.$"
+      ],
+      "SixIsland_OutcastIsland_Text_MymoPostBattle": [
+        "So estou a meio caminho...\\nEstou exausto...$"
+      ],
+      "SixIsland_OutcastIsland_Text_NicoleIntro": [
+        "Nao e tao facil enviar o\\nPokemon enquanto nada.$"
+      ],
+      "SixIsland_OutcastIsland_Text_NicoleDefeat": [
+        "Nao perdi para ti na natacao.\\nIsto nao me incomoda.$"
+      ],
+      "SixIsland_OutcastIsland_Text_NicolePostBattle": [
+        "Vais para a ilha depois daqui?\\pNao vi nada interessante la.$"
+      ],
+      "SixIsland_OutcastIsland_Text_GebNotEnoughMons": [
+        "GEB: Por favor, lute contra mim\\ne minha irma!\\pNao tens dois Pokemon?$"
+      ]
+    },
+    "data/maps/SixIsland_PatternBush_Frlg/scripts.inc": {
+      "SixIsland_PatternBush_Text_BethanyIntro": [
+        "Estou curioso, como e que crias\\no teu Pokemon?$"
+      ],
+      "SixIsland_PatternBush_Text_BethanyDefeat": [
+        "Voce cria seu POKEMON com um\\nmonte de amor!$"
+      ],
+      "SixIsland_PatternBush_Text_BethanyPostBattle": [
+        "Da mesma forma que a tua mae te\\ncriou cheia de amor, devias\\lcriar o teu POKEMON.$"
+      ],
+      "SixIsland_PatternBush_Text_AllisonIntro": [
+        "Estou a trabalhar para\\npreservar a ecologia natural de\\lPOKEMON.$"
+      ],
+      "SixIsland_PatternBush_Text_AllisonDefeat": [
+        "Para alguem tao jovem, es\\nformidavel!$"
+      ],
+      "SixIsland_PatternBush_Text_AllisonPostBattle": [
+        "Nao estou a dizer que nao devas\\napanhar o Pokemon.\\pSo quero que as pessoas\\nlevantem o seu POKEMON com\\lresponsabilidade.$"
+      ],
+      "SixIsland_PatternBush_Text_GarretDefeat": [
+        "Heheh... O meu Pokemon nao e\\nfantastico?$"
+      ],
+      "SixIsland_PatternBush_Text_GarretPostBattle": [
+        "Ha uma rapariga perto do BUSH\\nque mede HERACROSS para\\ltreinadores.$"
+      ],
+      "SixIsland_PatternBush_Text_VanceDefeat": [
+        "Fui derrotado enquanto ainda\\nestava ocupado a celebrar!$"
+      ],
+      "SixIsland_PatternBush_Text_VancePostBattle": [
+        "Vou trazer o meu irmao mais\\nnovo da proxima vez.$"
+      ],
+      "SixIsland_PatternBush_Text_NashIntro": [
+        "Olha, olha! Ha padroes\\nengracados no chao.$"
+      ],
+      "SixIsland_PatternBush_Text_NashDefeat": [
+        "Fantastico!$"
+      ],
+      "SixIsland_PatternBush_Text_NashPostBattle": [
+        "Os padroes engracados no\\nchao...\\pParecem os padroes das roupas\\ndo meu avo.$"
+      ],
+      "SixIsland_PatternBush_Text_CordellIntro": [
+        "Aposto que pensas que sou um\\ntipo qualquer, nao achas?$"
+      ],
+      "SixIsland_PatternBush_Text_CordellDefeat": [
+        "Aposto que me achas fraco, nao\\ne?$"
+      ],
+      "SixIsland_PatternBush_Text_CordellPostBattle": [
+        "Ayup, voces da cidade aparecem\\ntao elegantes com um chapeu tao\\lchamativo...\\pQue tal dar-me isso?$"
+      ],
+      "SixIsland_PatternBush_Text_DaliaIntro": [
+        "Respira fundo. O ar nao esta\\ndelicioso?$"
+      ],
+      "SixIsland_PatternBush_Text_DaliaDefeat": [
+        "Se quiseres, posso ensinar-te a\\nrespirar correctamente.$"
+      ],
+      "SixIsland_PatternBush_Text_DaliaPostBattle": [
+        "Primeiro, expira. Apaga tudo.\\pQuando nao conseguires respirar\\nmais, inala o ar puro!\\pNao e refrescante?$"
+      ],
+      "SixIsland_PatternBush_Text_JoanaDefeat": [
+        "Perdi, mas continuo a rir-me.\\nSou a unica rapariga assim?$"
+      ],
+      "SixIsland_PatternBush_Text_RileyIntro": [
+        "Este e um bom lugar. Vou armar\\na minha tenda aqui.$"
+      ],
+      "SixIsland_PatternBush_Text_RileyDefeat": [
+        "Esmagado...$"
+      ],
+      "SixIsland_PatternBush_Text_RileyPostBattle": [
+        "Vou observar o ceu noturno\\naqui.$"
+      ],
+      "SixIsland_PatternBush_Text_MarcyIntro": [
+        "Eca! Acho que um insecto me\\npicou!$"
+      ],
+      "SixIsland_PatternBush_Text_MarcyDefeat": [
+        "Nao era um insecto. Cortei a\\nminha canela na relva.$"
+      ],
+      "SixIsland_PatternBush_Text_MarcyPostBattle": [
+        "Um pequeno corte assim... Um\\npouco de cuspo e suficiente\\lpara cura-lo!$"
+      ],
+      "SixIsland_PatternBush_Text_LaytonIntro": [
+        "Reparaste em alguma coisa\\nestranha nestas partes?$"
+      ],
+      "SixIsland_PatternBush_Text_LaytonDefeat": [
+        "Viste bem os teus pes?$"
+      ],
+      "SixIsland_PatternBush_Text_LaytonPostBattle": [
+        "Ha lugares aqui em PATTERN BUSH\\nonde a grama nao vai crescer.\\pQual poderia ser a causa de tal\\nfenomeno?$"
+      ]
+    },
+    "data/maps/SixIsland_PokemonCenter_1F_Frlg/scripts.inc": {
+      "SixIsland_PokemonCenter_1F_Text_SomeMonsEvolveByTradingWithHeldItem": [
+        "Voce sabe de POKEMON que\\nevoluem apenas apos o comercio,\\lsim?\\pMas sabia que ainda ha outros?\\pAlguns POKEMON evoluem apenas\\nquando negociados enquanto\\lmantem itens especificos.$"
+      ],
+      "SixIsland_PokemonCenter_1F_Text_RivalImpossibleToGetAllMonsAroundHere": [
+        "{RIVAL}Ola.{PLAYER}Como esta o\\nteu POKEDEX a encher-se?\\pParece que e impossivel\\nconseguir todo o POKEMON por\\landar por aqui.\\pTalvez haja Pokemon que nao\\nsaibamos algures longe...\\p... ... ... ... ... ... ... ...\\n...\\pSe eu nao conseguir, nao ha\\nmaneira de o conseguires.\\pNao vou ficar desesperado por\\ncausa disto.\\pVou continuar a recolher\\nPOKEMON ao meu proprio ritmo\\lenquanto os treino.\\pE o que vou fazer. Entao, nao\\nvale a pena ficar aqui. Mais\\lvale ir para casa.\\pEntao e isso! Cheira-te mais\\ntarde!$"
+      ]
+    },
+    "data/maps/SixIsland_RuinValley_Frlg/scripts.inc": {
+      "SixIsland_RuinValley_Text_CantFigureOutHowToGetInside": [
+        "Nao sei como vou entrar.$"
+      ],
+      "SixIsland_RuinValley_Text_IFoundThisPlace": [
+        "Deixa-me dizer-te, encontrei\\neste lugar.\\pNao fiques com inveja, esta\\nbem?$"
+      ],
+      "SixIsland_RuinValley_Text_CheckDoorMoreThoroughly": [
+        "A porta nao se mexe. Verifica-o\\nmelhor?$"
+      ],
+      "SixIsland_RuinValley_Text_LeftDoorAlone": [
+        "{PLAYER}Deixou a porta sozinha.$"
+      ],
+      "SixIsland_RuinValley_Text_SeveralDotsOnTheDoor": [
+        "Na inspecao mais proxima, ha\\nvarios pontos na porta...$"
+      ],
+      "SixIsland_RuinValley_Text_DoorIsOpen": [
+        "A porta esta aberta.$"
+      ],
+      "SixIsland_RuinValley_Text_StanlyIntro": [
+        "Parece haver muitos segredos\\nainda nao resolvidos neste\\lmundo.$"
+      ],
+      "SixIsland_RuinValley_Text_StanlyPostBattle": [
+        "Sugiro que tambem pense nos\\nsegredos e misterios do nosso\\lmundo uma vez por dia.$"
+      ],
+      "SixIsland_RuinValley_Text_FosterIntro": [
+        "Estou curioso, o que o obrigou\\na vir aqui?$"
+      ],
+      "SixIsland_RuinValley_Text_FosterDefeat": [
+        "Ha tanto tempo que nao luto,\\nque os meus instintos estao\\ldesligados.$"
+      ],
+      "SixIsland_RuinValley_Text_LarryIntro": [
+        "Dizem que ha pedras misteriosas\\nnesta ilha.\\pSuspeito que tenha algo a ver\\ncom as ruinas aqui.$"
+      ],
+      "SixIsland_RuinValley_Text_LarryDefeat": [
+        "Interessante.$"
+      ],
+      "SixIsland_RuinValley_Text_LarryPostBattle": [
+        "Aquelas ruinas ali...\\pNao tive sorte em descobrir\\ncomo entrar.$"
+      ],
+      "SixIsland_RuinValley_Text_DarylIntro": [
+        "Uma batalha contigo, tao alto!$"
+      ],
+      "SixIsland_RuinValley_Text_DarylDefeat": [
+        "Oh, o coracao partido de perder\\ntao facilmente para ti!$"
+      ],
+      "SixIsland_RuinValley_Text_DarylPostBattle": [
+        "Experimente a alegria de\\nescalar!$"
+      ],
+      "SixIsland_RuinValley_Text_HectorIntro": [
+        "Conheco bem as terras por aqui.$"
+      ],
+      "SixIsland_RuinValley_Text_HectorDefeat": [
+        "Nao precisas de ser tao\\ninsistente. Ficarei feliz em\\ldizer-lhe.$"
+      ],
+      "SixIsland_RuinValley_Text_HectorPostBattle": [
+        "A porta das ruinas... Tem estes\\npadroes estranhos gravados no\\lexterior.\\pMas nao sei o que significam.$"
+      ]
+    },
+    "data/maps/SixIsland_WaterPath_Frlg/scripts.inc": {
+      "SixIsland_WaterPath_Text_RoseIntro": [
+        "Deixei que uma brisa agradavel\\nme trouxesse ate aqui.$"
+      ],
+      "SixIsland_WaterPath_Text_RoseDefeat": [
+        "Riso... Es tao gira quando\\nestas determinada.$"
+      ],
+      "SixIsland_WaterPath_Text_EdwardIntro": [
+        "Estou a praticar em segredo\\npara ninguem me ver.$"
+      ],
+      "SixIsland_WaterPath_Text_EdwardDefeat": [
+        "Ninguem me viu a perder, certo?$"
+      ],
+      "SixIsland_WaterPath_Text_EdwardPostBattle": [
+        "Como artista, nao quero que as\\npessoas saibam do esforco que\\lfiz.$"
+      ],
+      "SixIsland_WaterPath_Text_SamirIntro": [
+        "Estas a sugerir que estas farto\\nde ver SWIMMERS como eu?\\pNao te odeies!$"
+      ],
+      "SixIsland_WaterPath_Text_SamirDefeat": [
+        "Nao, nao, nao.$"
+      ],
+      "SixIsland_WaterPath_Text_DeniseIntro": [
+        "O meu namorado esta sempre\\nocupado, por isso vim nadar\\lsozinho.$"
+      ],
+      "SixIsland_WaterPath_Text_DeniseDefeat": [
+        "Awww, eu sabia que isso ia\\nacontecer!$"
+      ],
+      "SixIsland_WaterPath_Text_DenisePostBattle": [
+        "Quando nao posso estar com o\\nmeu namorado, passo tempo com o\\lPokemon que ele me deu.$"
+      ],
+      "SixIsland_WaterPath_Text_EarlIntro": [
+        "Diga-me, onde estao as\\nmontanhas por aqui?$"
+      ],
+      "SixIsland_WaterPath_Text_EarlDefeat": [
+        "Perdi-me enquanto lutava!$"
+      ],
+      "SixIsland_WaterPath_Text_EarlPostBattle": [
+        "Nao ha montanhas por aqui?$"
+      ],
+      "SixIsland_WaterPath_Text_WantedUltimateHorn": [
+        "Procurado! O Corno Supremo!$"
+      ]
+    },
+    "data/maps/SixIsland_WaterPath_House1_Frlg/scripts.inc": {
+      "SixIsland_WaterPath_House1_Text_MayIMeasureHeracross": [
+        "Eeeeek! E um HERACROSS!\\pPor favor, por favor, posso\\nmedir o tamanho?$"
+      ],
+      "SixIsland_WaterPath_House1_Text_ItsXSizeDeserveReward": [
+        "Eeeek, e{STR_VAR_2}Nunca vi\\nnada assim! Mereces uma\\lrecompensa!$"
+      ],
+      "SixIsland_WaterPath_House1_Text_WantToSeeBiggerOne": [
+        "Quero ver um HERACROSS muito\\nmaior do que aquele.\\pOh, como eu os adoro, grande\\nHERACROSS!$"
+      ],
+      "SixIsland_WaterPath_House1_Text_ItsXSizeSameAsBefore": [
+        "Huh? Isto{STR_VAR_2}medicao...\\nBolas! E o mesmo de antes.$"
+      ],
+      "SixIsland_WaterPath_House1_Text_ThisWontDo": [
+        "Nao! Isto nao serve!\\pHERACROSS parece muito mais\\nmacho e fresco, e tem um chifre\\ladoravel!$"
+      ],
+      "SixIsland_WaterPath_House1_Text_YourBagIsFull": [
+        "O teu BAG esta cheio. A minha\\nrecompensa nao serve.$"
+      ],
+      "SixIsland_WaterPath_House1_Text_BiggestHeracrossIsXSize": [
+        "O maior HERACROSS que eu ja vi\\nmedido ate agora e:\\p{STR_VAR_3}!$"
+      ],
+      "SixIsland_WaterPath_House1_Text_BlankChartOfSomeSort": [
+        "E algum tipo de grafico em\\nbranco.\\pTem espacos para escrever em\\nregistros de algum tipo.$"
+      ]
+    },
+    "data/maps/SixIsland_WaterPath_House2_Frlg/scripts.inc": {
+      "SixIsland_WaterPath_House2_Text_MyNeighborMeasuredMe": [
+        "A minha altura e 67,0 polegadas\\nno botao.\\pSei que e precisamente porque o\\nmeu vizinho me mediu.$"
+      ]
+    },
+    "data/maps/SkyPillar_Outside/scripts.inc": {
+      "SkyPillar_Outside_Text_DoorIsClosed": [
+        "A porta esta fechada.$"
+      ]
+    },
+    "data/maps/SkyPillar_Top/scripts.inc": {
+      "SkyPillar_Top_Text_RayquazaFlewOff": [
+        "O RAYQUAZA acordado voou...$"
+      ]
+    },
+    "data/maps/SlateportCity/scripts.inc": {
+      "SlateportCity_Text_OhYourPokemon": [
+        "A serio? Sua{STR_VAR_1}...$"
+      ],
+      "SlateportCity_Text_PleaseGiveItThisEffortRibbon": [
+        "Foi estupendo!\\pComo sua recompensa, por favor,\\nde-lhe este EFFORT RIBBON.$"
+      ],
+      "SlateportCity_Text_ReceivedEffortRibbon": [
+        "{PLAYER}recebeu o EFFORT\\nRIBBON.$"
+      ],
+      "SlateportCity_Text_PutEffortRibbonOnMon": [
+        "{PLAYER}colocar o EFFORT RIBBON\\nem{STR_VAR_1}.$"
+      ],
+      "SlateportCity_Text_GoForItLittleHarder": [
+        "Tens de tentar com mais forca.\\pSe o fizeres, dou ao teu\\nPokemon algo bonito.$"
+      ],
+      "SlateportCity_Text_EffortRibbonLooksGoodOnIt": [
+        "Oh! Sua{STR_VAR_1}O EFFORT\\nRIBBON fica-lhe bem!$"
+      ]
+    }
+  },
+  "c": {}
+}

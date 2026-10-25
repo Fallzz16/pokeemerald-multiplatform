@@ -1,0 +1,805 @@
+{
+  "asm": {
+    "data/maps/Route9_Frlg/scripts.inc": {
+      "Route9_Text_AlanIntro": [
+        "Hahahaha! Manda ver!$"
+      ],
+      "Route9_Text_AlanDefeat": [
+        "Hahahaha! Ganhaste-me bem!$"
+      ],
+      "Route9_Text_AlanPostBattle": [
+        "Hahahaha! Nos, rapazes, rimos\\nsempre!$"
+      ],
+      "Route9_Text_ConnerDefeat": [
+        "Os meus insetos...$"
+      ]
+    },
+    "data/maps/RuinsOfAlph_Lab/scripts.inc": {
+      "RuinsOfAlph_Lab_Text_DeviceForTalkingToPokemon": [
+        "Estamos a desenvolver um\\ndispositivo para falar com o\\lPOKEMON.\\pMas nao tivemos muito\\nsucesso...$"
+      ],
+      "RuinsOfAlph_Lab_Text_IMadePokenav": [
+        "Eu fiz o POKeNAV!\\pComo engenheiro, sinto-me\\nabencoado por ter feito algo\\ltao grande!$"
+      ],
+      "RuinsOfAlph_Lab_Text_DeviceToVisualizePokemonDreams": [
+        "Estou a tentar desenvolver um\\ndispositivo que reproduz\\lvisualmente os sonhos de\\lPOKEMON...\\pMas nao esta a correr bem.$"
+      ],
+      "RuinsOfAlph_Lab_Text_DevelopDeviceToResurrectFossils": [
+        "Tenho tentado desenvolver um\\ndispositivo que ressuscite\\lPokemon de fosseis...\\pE esta a funcionar!$"
+      ],
+      "RuinsOfAlph_Lab_Text_OhIsThatSo": [
+        "Ai sim?\\pA minha pericia tecnologica e\\nexcelente, garanto-vos.$"
+      ],
+      "RuinsOfAlph_Lab_Text_OhIsThatSo2": [
+        "Nao tens este fossil. Volta se\\nconseguires encontra-lo.$"
+      ],
+      "RuinsOfAlph_Lab_Text_TwoFossilsPickOne": [
+        "Que surpresa! Tens mais de um\\nfossil?\\pInfelizmente, a minha maquina\\nso pode regenerar um POKEMON de\\lcada vez.\\pQue fossil gostaria de\\nregenerar?$"
+      ],
+      "RuinsOfAlph_Lab_Text_FossilizedMonBroughtBackToLife": [
+        "Obrigado por esperares!\\pO seu POKEMON fossilizado foi\\ntrazido de volta a vida!\\pO fossil era um antigo\\nPokemon.{STR_VAR_2}Foi!$"
+      ],
+      "RuinsOfAlph_Lab_Text_TooManyPokemon": [
+        "Tens muitos Pokemon. Nao tens\\nespaco para este.$"
+      ],
+      "RuinsOfAlph_Lab_Text_DevelopNewPokenavFeature": [
+        "Estou a tentar desenvolver uma\\nnova funcionalidade para o\\lPOKeNAV...\\pMas nao esta a correr bem.$"
+      ],
+      "RuinsOfAlph_Lab_Text_WhatToWorkOnNext": [
+        "Bem, agora o que devo trabalhar\\nem desenvolver a seguir?\\pNossa empresa nos permite fazer\\nnossas inspiracoes em\\lrealidade.\\pNao se pode pedir um ambiente\\nmelhor como engenheiro.$"
+      ]
+    },
+    "data/maps/AbandonedShip_CaptainsOffice/scripts.inc": {
+      "AbandonedShip_CaptainsOffice_Text_NoSuccessFindingScanner": [
+        "Estou a investigar esta nave em\\nnome da CAPT. STERN.\\pEle tambem me pediu para\\nencontrar um SCANNER, mas eu\\lnao tive nenhum sucesso...$"
+      ],
+      "AbandonedShip_CaptainsOffice_Text_OhCanYouDeliverScanner": [
+        "Oh! Isso e um SCANNER!\\pOuve, podes entregar isso a\\nCAPT. STERN?\\pQuero investigar mais este\\nnavio.$"
+      ],
+      "AbandonedShip_CaptainsOffice_Text_ThisIsSSCactus": [
+        "Esta nave chama-se S.S. CACTUS.\\nParece ser de uma epoca\\lanterior.$"
+      ]
+    },
+    "data/maps/AbandonedShip_Corridors_1F/scripts.inc": {
+      "AbandonedShip_Corridors_1F_Text_CharlieIntro": [
+        "O que ha de tao engracado em\\nter o meu tubo interior a bordo\\lda nave?$"
+      ],
+      "AbandonedShip_Corridors_1F_Text_CharlieDefeat": [
+        "Tu esmagaste-me!$"
+      ],
+      "AbandonedShip_Corridors_1F_Text_IsntItFunHere": [
+        "Nao e divertido aqui? Fico\\nexcitado por estar aqui!$"
+      ]
+    },
+    "data/maps/AbandonedShip_Corridors_B1F/scripts.inc": {
+      "AbandonedShip_Corridors_B1F_Text_DuncanDefeat": [
+        "Estou afundado!$"
+      ],
+      "AbandonedShip_Corridors_B1F_Text_DuncanPostBattle": [
+        "O fundo da nave afundou nas\\nprofundezas.\\pSe um Pokemon soubesse como ir\\ndebaixo de agua, poderiamos\\lfazer algum progresso...$"
+      ],
+      "AbandonedShip_Corridors_B1F_Text_YayItsAShip": [
+        "Boa! E uma nave!$"
+      ],
+      "AbandonedShip_Text_TheDoorIsOpen": [
+        "A porta esta aberta.$"
+      ]
+    },
+    "data/maps/AbandonedShip_HiddenFloorRooms/scripts.inc": {
+      "AbandonedShip_HiddenFloorRooms_Text_BrightShinyTrash": [
+        "E brilhante e brilhante! Mas e\\nso lixo...$"
+      ]
+    },
+    "data/maps/AbandonedShip_Rooms2_1F/scripts.inc": {
+      "AbandonedShip_Rooms2_1F_Text_JaniIntro": [
+        "Nao sou bom a nadar, mas sou\\nbom em batalhas!$"
+      ],
+      "AbandonedShip_Rooms2_1F_Text_JaniDefeat": [
+        "Oops. Nao correu muito bem.$"
+      ],
+      "AbandonedShip_Rooms2_1F_Text_JaniPostBattle": [
+        "Andar descalco nesta nave e\\nnojento.$"
+      ],
+      "AbandonedShip_Rooms2_1F_Text_GarrisonDefeat": [
+        "Ha algo em ti que brilha.$"
+      ],
+      "AbandonedShip_Rooms2_1F_Text_GarrisonPostBattle": [
+        "Numa cabana algures a bordo, vi\\nalgo a brilhar.$"
+      ]
+    },
+    "data/maps/AbandonedShip_Rooms2_B1F/scripts.inc": {
+      "AbandonedShip_Rooms2_B1F_Text_PerfectPlaceToGoExploring": [
+        "Este e um lugar perfeito para\\nexplorar! Isto e excitante!\\pAposto que ha tesouros\\nincriveis a bordo.$"
+      ]
+    },
+    "data/maps/AbandonedShip_Rooms_1F/scripts.inc": {
+      "AbandonedShip_Rooms_1F_Text_TakingALookAround": [
+        "Naves deste tipo sao raras, por\\nisso estou a dar uma vista de\\lolhos.\\pHmhm... Parece haver outras\\ncabanas...$"
+      ],
+      "AbandonedShip_Rooms_1F_Text_ThaliaIntro": [
+        "O que o obrigaria a vir aqui?\\nDeves estar curioso!$"
+      ],
+      "AbandonedShip_Rooms_1F_Text_ThaliaDefeat": [
+        "Nao so curioso, mas tambem\\nforte...$"
+      ],
+      "AbandonedShip_Rooms_1F_Text_ThaliaPostBattle": [
+        "O homem ao lado...\\pDiz que esta so a passear, mas\\nnao sei.$"
+      ],
+      "AbandonedShip_Rooms_1F_Text_ThaliaRegister": [
+        "Es tao durona! Deixa-me\\nregistar-te como recordacao!$"
+      ],
+      "AbandonedShip_Rooms_1F_Text_ThaliaRematchIntro": [
+        "O que te obrigaria a voltar?\\nDeves estar mesmo curioso!$"
+      ],
+      "AbandonedShip_Rooms_1F_Text_ThaliaRematchDefeat": [
+        "Nao es muito forte?$"
+      ],
+      "AbandonedShip_Rooms_1F_Text_ThaliaPostRematch": [
+        "Tenho a certeza que aquele\\nhomem esta a tramar alguma! Ele\\lage de forma tao suspeita!$"
+      ],
+      "AbandonedShip_Rooms_1F_Text_DemetriusIntro": [
+        "Waaah! Fui encontrado! ...Huh?$"
+      ],
+      "AbandonedShip_Rooms_1F_Text_DemetriusDefeat": [
+        "Nao es a minha mae.$"
+      ],
+      "AbandonedShip_Rooms_1F_Text_DemetriusPostBattle": [
+        "Estou com problemas com a minha\\nmae, por isso fugi. Mantenha em\\lsegredo onde estou!$"
+      ]
+    },
+    "data/maps/AbandonedShip_Rooms_B1F/scripts.inc": {
+      "AbandonedShip_Rooms_B1F_Text_GettingQueasy": [
+        "Urrrrppp...\\pEstou a ficar enjoado so de\\nestar a bordo desta nave...\\pNem se mexe, mas...$"
+      ]
+    },
+    "data/maps/AquaHideout_1F/scripts.inc": {
+      "AquaHideout_1F_Text_Grunt1Intro": [
+        "Ayiyiyi! Personagem suspeita\\navistada!$"
+      ],
+      "AquaHideout_1F_Text_Grunt1Defeat": [
+        "Perdi-a!$"
+      ]
+    },
+    "data/maps/AquaHideout_B1F/scripts.inc": {
+      "AquaHideout_B1F_Text_Grunt2Defeat": [
+        "Nao posso ganhar...$"
+      ],
+      "AquaHideout_B1F_Text_Grunt3Intro": [
+        "Abastecimento de combustivel\\ncarregado A-OK! Lanches em\\lcruzeiro carregados A-OK!\\pNao ha mais nada a fazer a nao\\nser um intrometido pesky!$"
+      ],
+      "AquaHideout_B1F_Text_Grunt3Defeat": [
+        "Levei uma grande lambida!$"
+      ],
+      "AquaHideout_B1F_Text_Grunt3PostBattle": [
+        "Humph! Isto devia ter\\nacontecido!\\pA minha missao era atrasar-te!$"
+      ],
+      "AquaHideout_B1F_Text_Grunt5Defeat": [
+        "Yawn... Perdi...$"
+      ],
+      "AquaHideout_B1F_Text_Grunt7Defeat": [
+        "Perdi de uma forma fixe...$"
+      ],
+      "AquaHideout_B1F_Text_Grunt7PostBattle": [
+        "Se tens um uniforme fixe, ficas\\nbem mesmo numa perda, nao\\lachas?$"
+      ]
+    },
+    "data/maps/AquaHideout_B2F/scripts.inc": {
+      "AquaHideout_B2F_Text_MattDefeat": [
+        "Hehehe... Entao, eu tambem\\nperdi...$"
+      ],
+      "AquaHideout_B2F_Text_MattPostBattle": [
+        "Hehehe!\\pO nosso BOSS ja foi a caminho\\nde alguma caverna debaixo do\\lmar!\\pSe vais perseguir, e melhor\\nprocurares o grande e largo mar\\lalem de LILYCOVE.\\pMas vai encontra-lo entao?\\nHehehe!$"
+      ],
+      "AquaHideout_B2F_Text_Grunt4Intro": [
+        "Wahahah, cansei-me de esperar!\\nTambem me deves uma batalha!$"
+      ],
+      "AquaHideout_B2F_Text_Grunt4Defeat": [
+        "Cansado de esperar... Perdido e\\natordoado...$"
+      ],
+      "AquaHideout_B2F_Text_Grunt6Defeat": [
+        "O que se passa contigo? Nao\\nestas nada cansado!$"
+      ],
+      "AquaHideout_B2F_Text_Grunt8Defeat": [
+        "Estava muito ocupado a pensar\\nnos paineis warp...$"
+      ],
+      "AquaHideout_B2F_Text_Grunt8PostBattle": [
+        "Tenho de aprender como posso\\nlutar mais eficazmente...$"
+      ]
+    },
+    "data/maps/AzaleaTown_House1/scripts.inc": {
+      "CharcoalKiln_Text_Boss1": [
+        "Todos os SLOWPOKE desapareceram\\nda cidade.\\pO protetor da floresta pode\\nestar zangado connosco...\\pPode ser um mau pressagio.\\nDeviamos ficar em casa.$"
+      ],
+      "CharcoalKiln_Text_Boss2": [
+        "O SLOWPOKE voltou...$"
+      ],
+      "CharcoalKiln_Text_Apprentice1": [
+        "Para onde foi todo o SLOWPOKE?\\pEstao a brincar?$"
+      ],
+      "CharcoalKiln_Text_Apprentice2": [
+        "O SLOWPOKE voltou!$"
+      ]
+    },
+    "data/maps/AzaleaTown_KurtsHouse/scripts.inc": {
+      "KurtsHouse_Text_KurtImCheckingItNow": [
+        "Estou a verificar agora.$"
+      ],
+      "KurtsHouse_Text_KurtAhHaISee": [
+        "Ah-ha! Estou a ver! Entao...$"
+      ],
+      "KurtsHouse_Text_Kurt_Whatwasthat": [
+        "Que som foi esse?!\\pVamos la fora investigar!$"
+      ],
+      "KurtsHouse_Text_GranddaughterSlowpokeGone": [
+        "O SLOWPOKE desapareceu... Foram\\nlevados por pessoas mas?$"
+      ],
+      "KurtsHouse_Text_GranddaughterLonely": [
+        "O avo foi-se... Estou tao so...$"
+      ],
+      "KurtsHouse_Text_GranddaughterSlowpokeBack": [
+        "O SLOWPOKE que o meu pai me deu\\nvoltou!\\pSeu TAIL esta crescendo de\\nvolta tambem!$"
+      ],
+      "KurtsHouse_Text_GranddaughterSound": [
+        "Esse som veio de ILEX\\nFOREST????$"
+      ],
+      "KurtsHouse_Text_CelebiStatue": [
+        "E uma estatua do protector da\\nfloresta.$"
+      ]
+    },
+    "data/maps/AzaleaTown_PokemonCenter/scripts.inc": {
+      "AzaleaPokecenter_Text_Gentleman": [
+        "O seu POKEMON conhece os\\nmovimentos HM?\\pEstes movimentos podem ser\\nutilizados mesmo que o seu\\lPOKEMON tenha desmaiado.$"
+      ]
+    },
+    "data/maps/BattleFrontier_BattleArenaBattleRoom/scripts.inc": {
+      "BattleFrontier_BattleArenaBattleRoom_Text_MonsWillBeRestored": [
+        "O seu POKEMON sera restaurado a\\nplena saude.$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor2ndOpponent": [
+        "A seguir, o seu segundo\\nadversario! Estas pronto para\\lseguir em frente?$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor3rdOpponent": [
+        "A seguir, o terceiro\\nadversario! Estas pronto para\\lseguir em frente?$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor4thOpponent": [
+        "A seguir, o teu quarto\\nadversario! Estas pronto para\\lseguir em frente?$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor5thOpponent": [
+        "A seguir, o teu quinto\\nadversario! Estas pronto para\\lseguir em frente?$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor6thOpponent": [
+        "A seguir, o teu sexto\\nadversario! Estas pronto para\\lseguir em frente?$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor7thOpponent": [
+        "A seguir, o teu setimo\\nadversario! Estas pronto para\\lseguir em frente?$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_SaveAndShutDown": [
+        "Gostaria de salvar o jogo e\\nfechar agora?$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_RetireFromChallenge": [
+        "Gostaria de se aposentar do seu\\ndesafio Set KO Tourney?$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_SavingPleaseWait": [
+        "Estou a guardar os teus dados\\ndo jogo. Por favor, espere.$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_RecordLastBattle": [
+        "Gostarias de gravar a tua\\nultima batalha no teu PASS\\lFRONTIER?$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_NowFaceTycoon": [
+        "Meu querido desafiante!\\pSeu nivel de habilidade e\\nrealmente surpreendente!\\pAgora gostariamos que\\nenfrentassem o nosso lider, o\\lARENA TYCOON!$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_PreparedForTycoon": [
+        "Uma batalha com a ARENA TYCOON!\\nEstas preparado?$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_IsThatRight": [
+        "A serio? Hmhm...$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_YouLookWeakTakeThingsEasy": [
+        "Nao sei como dize-lo, mas...\\nPara ser franco, pareces muito\\lfraco. Tens a certeza que me\\lqueres?\\pHmm...\\pEsta bem! Vamos comecar com\\ncoisas faceis!$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_IgniteMyPassionForBattle": [
+        "Esta bem! Vamos ver-te acender\\na minha paixao pela batalha!$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_ReceivedGutsSymbol": [
+        "O simbolo Guts foi gravado no\\nPASS FRONTIER!$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_GoingToBeFunNextTime": [
+        "Hmm...\\pVai ser divertido da proxima\\nvez! Estou ansioso por isso!$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_SoAreYouReady": [
+        "Entao, estas pronto?$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_WontAllowHalfheartedEffort": [
+        "Nao permitirei um esforco sem\\ncoracao! Preparem-se para uma\\lsurra!$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_GutsSymbolTookGoldenShine": [
+        "O simbolo de guts tomou um\\nbrilho dourado!$"
+      ],
+      "BattleFrontier_BattleArenaBattleRoom_Text_IfWeBattleAgainWontLose": [
+        "Arrrgh! Isto e tao irritante!\\pSe voltarmos a lutar, nao vou\\nperder! Nao te esquecas! Adeus!$"
+      ]
+    },
+    "data/maps/BattleFrontier_BattleArenaCorridor/scripts.inc": {
+      "BattleFrontier_BattleArenaCorridor_Text_PleaseStepIn": [
+        "As vossas batalhas serao\\ntravadas na sala ao lado. Por\\lfavor, entrem!$"
+      ]
+    },
+    "data/maps/BattleFrontier_BattleArenaLobby/scripts.inc": {
+      "BattleFrontier_BattleArenaLobby_Text_WishToTakeChallenge": [
+        "Agora, voce deseja aceitar o\\ndesafio BATTLE ARENA?$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_AwaitAnotherChallenge": [
+        "Aguardamos seu desafio em outra\\nocasiao!$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_WhichLevelMode": [
+        "O BATTLE ARENA oferece dois\\nniveis de desafio, Nivel 50 e\\lNivel Aberto. Qual e a sua\\lescolha?$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_SelectThreeMons": [
+        "Muito bem, agora escolha os\\nseus tres POKEMON, por favor.$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_NotEnoughValidMonsEnd": [
+        "Quando tiverem feito os vossos\\npreparativos, por favor,\\lvoltem.$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_DidntSaveBeforeShuttingDown": [
+        "Meu querido desafiante!\\pNao salvaste o jogo antes de\\nfechar, pois nao?\\pE lamentavel, mas isso resultou\\nna sua desqualificacao do seu\\ldesafio.\\pPode, naturalmente, comecar com\\num novo desafio.$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_CongratsOnSevenWins": [
+        "Felicitamos-vos pela vossa\\nesplendida serie de vitorias\\lsobre sete TREINADORES!$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_RecordAchievement": [
+        "Seu feito sera gravado. Por\\nfavor, espere enquanto salvo o\\ljogo.$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_PresentYouWithPrize": [
+        "Em comemoracao as tuas 7\\nvitorias, apresentamos-te este\\lpremio.$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_ReceivedPrize": [
+        "{PLAYER}recebeu o\\npremio{STR_VAR_1}.$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_BagFullReturnForPrize": [
+        "A serio? O teu BAG parece estar\\ncheio.\\pPeco-lhe que abra espaco e\\nretorne para o seu premio.$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_ThankYouWaitWhileSave": [
+        "Muito obrigado por participar!\\pPor favor, espere enquanto\\nsalvo o jogo.$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_AwaitAnotherChallenge2": [
+        "Aguardamos seu desafio em outra\\nocasiao!$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_LandingHitsWorked": [
+        "Ganhei no julgamento!\\pAterrissamento consistentemente\\nno POKEMON do oponente\\lfuncionou!$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_MatchWasDeclaredDraw": [
+        "A nossa partida foi declarada\\nempate.\\pQuando ficamos sem tempo, tanto\\no meu POKEMON como o adversario\\ltiveram a mesma quantidade de\\lHP esquerda.$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_OrderOfMonsImportant": [
+        "Na BATTLE ARENA, a ordem de\\nPokemon e totalmente\\limportante.\\pPor exemplo, se o seu primeiro\\nPOKEMON tem certas desvantagens\\lde tipo, tente fazer o seu\\lsegundo POKEMON com movimentos\\lque sao super eficazes contra o\\lprimeiro.\\pAcho que sera uma boa forma de\\nformar uma equipa eficaz.$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_RulesAreListed": [
+        "As regras do Set KO Tourney\\nestao listadas.$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_ReadWhichHeading": [
+        "Que rumo queres ler?$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_ExplainBattleRules": [
+        "O Set KO Tourney tem regras\\nespeciais, ao contrario das\\lbatalhas padrao.\\pPrimeiro, uma batalha dura\\napenas tres voltas.\\pSe o resultado nao e decidido\\napos tres voltas, vai para\\ljulgamento.\\pO REFEREE escolhera o vencedor\\ncom base em como o POKEMON\\llutou.\\pAlem disso, um POKEMON nao pode\\nser trocado ate que o resultado\\lda sua batalha seja decidido.$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_CongratsOnDefeatingTycoon": [
+        "Uma vitoria arrancada da ARENA\\nTYCOON, e uma varredura de sete\\ltrens!\\pFelicitamos-vos pelo vosso mais\\nesplendido desafio!$"
+      ],
+      "BattleFrontier_BattleArenaLobby_Text_PleaseAcceptBattlePoints": [
+        "Meu caro desafiante, em\\nreconhecimento do vosso\\lespirito incansavel, por favor\\laceitem estes Pontos de\\lBatalha.$"
+      ]
+    },
+    "data/maps/BattleFrontier_BattleDomeBattleRoom/scripts.inc": {
+      "BattleFrontier_BattleDomeBattleRoom_Text_PlayerVersusTrainer": [
+        "{STR_VAR_1}Combina!\\p{PLAYER}versus{STR_VAR_2}!\\pQue comece a batalha!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsWinner": [
+        "{PLAYER}e o vencedor! Parabens!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_TrainerIsWinner": [
+        "{STR_VAR_2}e o vencedor!\\nParabens!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsLv50Champ": [
+        "{PLAYER}e o Campeao do Torneio\\nde Batalha Nivel 50!\\pParabens!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsLvOpenChamp": [
+        "{PLAYER}e o campeao do torneio\\nde batalha de nivel aberto!\\pParabens!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_RefereesDecidedWinnerTrainer": [
+        "Os REFEREES chegaram a uma\\ndecisao!\\pO vencedor e... Meu Deus! O\\nvencedor e{STR_VAR_1}Parabens!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_RefereesDecidedWinnerPlayer": [
+        "Os REFEREES chegaram a uma\\ndecisao!\\pO vencedor e... Meu Deus! O\\nvencedor e{PLAYER}Parabens!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_BrightNewHope": [
+        "A nova esperanca brilhante!\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_RisingStar": [
+        "A estrela em ascensao!\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_WillTheyRaceToChampionship": [
+        "Este TRAiner vai correr para o\\ncampeonato?\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_CanAchieveChampionFirstTry": [
+        "Pode o feito de um campeonato\\nna primeira tentativa ser\\lalcancado?\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_CanLossBeAvenged": [
+        "A perda do ultimo jogo pode ser\\nvingada?\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_OnFireForChampionship": [
+        "O TRAiner esta em chamas para a\\nprimeira tentativa do\\lcampeonato!\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_WinHereAdvancesToFinal": [
+        "Uma vitoria aqui significa que\\neste TRAiner avanca para a\\lfinal!\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_WillLongHeldDreamComeTrue": [
+        "Sera que o longo sonho de um\\ncampeonato finalmente se\\ltornara realidade?\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_TheInvincibleChampion": [
+        "O campeao invencivel!\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_CanAnyoneHopeToBeatTrainer": [
+        "Alguem pode esperar vencer este\\nTRAiner?\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_DoBattlesExistSolelyForTrainer": [
+        "Existem batalhas apenas para\\neste TRAiner?\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_CurrentChampAimingToRetainTitle": [
+        "O atual campeao pretende manter\\no titulo!\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_FormerChampHasReturned": [
+        "O ex-campeao voltou!\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_FormerToughnessReturned": [
+        "A resistencia anterior voltou!\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_WillDoExpectedAdvanceToFinals": [
+        "Este TREINADOR fara como\\nesperado e avancara para as\\lfinais?\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_WillFormerChampRegainGlory": [
+        "O ex-campeao vai recuperar a\\ngloria perdida?\\p$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_FeelGlowOfTrueMaster": [
+        "Sinta o brilho de um verdadeiro\\nmestre!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_SpectatorTuckerChant": [
+        "TUCKER! TUCKER! TUCKER! TUCKER!\\nTUCKER!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_LetsSeeYourStrategy": [
+        "A tua estrategia! Vamos ver!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_IncredibleVictorIsPlayer": [
+        "Inacreditavel! E incrivel! O\\nvencedor e{PLAYER}!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_ReceivedTacticsSymbol": [
+        "O simbolo tactico foi gravado\\nno PASS FRONTIER!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_WontUnderestimateYouNextTime": [
+        "... ... ... ... ... ...\\pEu subestimei-te. Nao cometerei\\no mesmo erro da proxima vez...$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_CanWinStreakBeStretched": [
+        "Pode a faixa de vitoria ser\\nesticada? A confianca esta la!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_LegendHasReturnedDomeAceTucker": [
+        "Senhoras e senhores! Rapazes,\\nraparigas e Pokemon!\\pFinalmente! Finalmente, a lenda\\nvoltou!\\pSim, o nome dessa lenda! A\\nnossa propria DOME ACE! Nao e\\lmais do que TUCKER!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_UnleashAllPowerIPossess": [
+        "Libertarei todo o poder que\\npossuo! Aqui e agora!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_TacticsSymbolTookGoldenShine": [
+        "O simbolo tactico ganhou um\\nbrilho dourado!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_LookForwardToNextEncounter": [
+        "Voce e forte, mas acima de\\ntudo, voce tem um charme unico!\\pEm ti, vejo um potencial\\ndefinitivo para uma estrela\\lcomo eu.\\pAguardo ansiosamente o nosso\\nproximo encontro!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsLv50Champ2": [
+        "{PLAYER}e o Campeao do Torneio\\nde Batalha Nivel 50!\\pParabens!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsLvOpenChamp2": [
+        "{PLAYER}e o campeao do torneio\\nde batalha de nivel aberto!\\pParabens!$"
+      ],
+      "BattleFrontier_BattleDomeBattleRoom_Text_PlayerVersusTucker": [
+        "O jogo final!\\p{PLAYER}contra o ACE DOME,\\nTUCKER!\\pQue comece a batalha!$"
+      ]
+    },
+    "data/maps/BattleFrontier_BattleDomeLobby/scripts.inc": {
+      "BattleFrontier_BattleDomeLobby_Text_HopeToSeeYouAgain": [
+        "Esperamos ve-lo novamente.$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_OkayToSaveBeforeChallenge": [
+        "Antes de te mostrar o DOME\\nBATTLE, tenho de guardar os\\ldados. Pode ser?$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_WhichLevelMode": [
+        "O torneio oferece dois niveis\\nde desafio, Nivel 50 e Nivel\\lAberto. Qual e a sua escolha?$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_SelectThreeMons": [
+        "Agora selecione os tres POKEMON\\nque deseja inserir, por favor.$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_NotEnoughValidMonsEnd": [
+        "Por favor, venha ver-me quando\\nestiver pronto.$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_DidntSaveBeforeQuitting": [
+        "Com licenca!\\pNao salvaste antes de\\ndesistires do desafio da ultima\\lvez.\\pPor causa disso, seu desafio\\nate agora foi desqualificado.\\lDesculpa!$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_CongratsForWinningTourney": [
+        "Parabens por vencer o torneio\\nde batalha!$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_HereIsYourPrize": [
+        "Aqui esta o seu premio para a\\nsua vitoria no Torneio de\\lBatalha.$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_ReceivedPrize": [
+        "{PLAYER}recebeu o\\npremio{STR_VAR_1}.$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_ThankYouForPlaying": [
+        "Obrigado por jogar!$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_RecordWillBeSaved": [
+        "O teu registo sera salvo. Por\\nfavor, espere.$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_WeveBeenWaitingForYou": [
+        "Estavamos a tua espera!$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_OkayToSaveBeforeChallenge2": [
+        "Antes de te mostrar o DOME\\nBATTLE, tenho de guardar os\\ldados. Pode ser?$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_LastWinnerWasTough": [
+        "Viste? O ultimo torneio de\\nbatalha?\\pO vencedor,{STR_VAR_1}Foi muito\\ndificil.\\pVoce deve verificar os\\nresultados no monitor ao lado\\ldo PC.$"
+      ],
+      "BattleFrontier_OutsideWest_Text_QuestionMarkUnderConstruction": [
+        "O que? Em construcao!$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_WinnersGainReputation": [
+        "Quando um torneio de cadeias de\\ntreinamento ganha no BATTLE\\lDOME, ele ou ela ganha uma\\lreputacao como uma estrela.\\pTreinadores dificeis sao\\natraidos por essa reputacao\\lpara o BATTLE DOME.\\pUm verdadeiro superstar e um\\nTRAiner que pode continuar\\lganhando torneios.$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_TrashedInFirstRound": [
+        "Encontrei um dos favoritos do\\ntorneio na primeira rodada.\\pE claro que fui destruido...$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_NeedToCheckOpponentCarefully": [
+        "Teria ganho se tivesse mantido\\neste Pokemon na reserva.\\pVoce precisa verificar o\\nPOKEMON do seu oponente\\lcuidadosamente antes de\\lescolher o seu POKEMON lutando.$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_CongratsDefeatedTucker": [
+        "Parabens!\\pVoce derrotou o DOME ACE e\\nvenceu o Torneio de Batalha!$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_AwardTheseBattlePoints": [
+        "Em reconhecimento a sua\\nestrategia... uma coisa de\\lbeleza foi, tambem... nos\\lpremiamos-lhe estes pontos de\\lbatalha!$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_RecordLastMatch": [
+        "Gostaria de gravar o seu ultimo\\ncombate BATTLE DOME no seu PASS\\lFRONTIER?$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_RulesAreListed": [
+        "As regras do Torneio de Batalha\\nestao listadas.$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_ReadWhichHeading": [
+        "Que rumo queres ler?$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_ExplainMatchupRules": [
+        "As partidas do torneio sao\\nelaboradas com base na\\ltenacidade da POKEMON realizada\\lpelos TREINADORES.\\pAs partidas evitam ter os\\nTRAiners dificeis se\\lenfrentarem imediatamente.$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_ExplainDoubleKORules": [
+        "Se o combate POKEMON desmaiar\\nao mesmo tempo -- um KO duplo\\l-- em uma partida de torneio, o\\lREFEREES vai rever o jogo e\\ldeclarar o vencedor.$"
+      ],
+      "BattleFrontier_BattleDomeLobby_Text_ChampionshipDecline": [
+        "Volta quando estiveres pronto\\npara enfrentares o melhor que\\lja houve.$"
+      ]
+    },
+    "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc": {
+      "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound1": [
+        "A tua primeira partida e a\\nproxima. Estas pronto?$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForRound2": [
+        "A tua segunda partida e a\\nseguir. Estas pronto?$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForSemifinals": [
+        "A tua semifinal e a proxima.\\nEstas pronto?$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForFinals": [
+        "A tua ultima partida e a\\nseguir. Estas pronto?$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_ChooseTwoMons": [
+        "Por favor, escolha os dois\\nPOKEMON que vao aparecer em\\lbatalha.$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_RightThisWay": [
+        "Por aqui, por favor.$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_RestoreMonsToFullHealth": [
+        "Obrigado por competir!\\pVou restaurar o seu POKEMON a\\nplena saude.$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_Round1Complete": [
+        "Todas as partidas da 1a rodada\\nforam concluidas.\\pEstas sao as equipas que\\navancaram!$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_Round2Complete": [
+        "Todas as partidas da 2a rodada\\nforam concluidas.\\pEstas sao as equipas que\\navancaram!$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_SemifinalsComplete": [
+        "Todas as partidas semifinais\\nforam concluidas.\\pEstas sao as equipas que\\navancaram!$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_CongratsReadyForRound2": [
+        "Parabens por ter passado a 1a\\nrodada.\\pA 2a rodada e a proxima. Estas\\npronto?$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_CongratsReadyForSemifinals": [
+        "Parabens por avancar para as\\nsemifinais.\\pAs melhores quatro equipas\\nencontram-se nesta ronda. Estas\\lpronto?$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_CongratsReadyForFinals": [
+        "Parabens por avancar para o\\njogo final.\\pEs uma vitoria do campeonato.\\nEstas pronto?$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_PlayersNextOpponentIsTrainer": [
+        "{PLAYER}O proximo oponente e\\neste TRAiner.$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound1": [
+        "O torneio esta na 1a rodada.$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound2": [
+        "O torneio esta na 2a rodada.$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInSemifinals": [
+        "O torneio esta nas semifinais.$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInFinals": [
+        "O torneio e ate a final.$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_SaveAndQuitGame": [
+        "Gostaria de salvar e deixar o\\njogo?$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_RetireYourChallenge": [
+        "Gostaria de se aposentar do seu\\ndesafio de Torneio de Batalha?$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_SavingDataPleaseWait": [
+        "Estou a guardar os teus dados.\\nPor favor, espere.$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_RecordLastMatch": [
+        "Devo gravar a sua ultima\\npartida no seu PASS FRONTIER?$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerSilver": [
+        "Parabens por avancar para o\\njogo final.\\pPara a partida final, voce\\ndesafiara o DOME ACE TUCKER.\\pEstas pronto?$"
+      ],
+      "BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerGold": [
+        "Parabens por avancar para o\\njogo final.\\pPara a partida final, voce\\ndesafiara o DOME ACE TUCKER.\\pEstas pronto?$"
+      ]
+    },
+    "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc": {
+      "BattleFrontier_BattleFactoryBattleRoom_Text_GetAMoveOn": [
+        "Hey, hey! Mexam-se!$"
+      ],
+      "BattleFrontier_BattleFactoryBattleRoom_Text_ShakeOutKnowledgeBringItOn": [
+        "Agite cada pedacinho do seu\\nconhecimento e traga-o!$"
+      ],
+      "BattleFrontier_BattleFactoryBattleRoom_Text_NextTimeNoHoldsBarred": [
+        "Heh... Es uma faisca\\nbrilhante...\\pDa proxima vez, vou atras de ti\\ncom forca. Nao ha limites,\\lentendido?\\pContinuem os estudos!$"
+      ],
+      "BattleFrontier_BattleFactoryBattleRoom_Text_AllRightBringItOn": [
+        "Muito bem! Manda ver!$"
+      ],
+      "BattleFrontier_BattleFactoryBattleRoom_Text_KnowledgeSymbolTookGoldenShine": [
+        "O Simbolo do Conhecimento\\nassumiu um brilho dourado!$"
+      ],
+      "BattleFrontier_BattleFactoryBattleRoom_Text_LastTimeILoseToYou": [
+        "Pfft, meu!\\pE a ultima vez que perco para\\nti!\\pTemos de fazer isto outra vez.$"
+      ]
+    },
+    "data/maps/BattleFrontier_BattleFactoryLobby/scripts.inc": {
+      "BattleFrontier_BattleFactoryLobby_Text_TakeSinglesChallenge": [
+        "Gostarias de aceitar o desafio\\nda troca de batalha?$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_LookForwardToNextVisit": [
+        "Estamos ansiosos pela sua\\nproxima visita.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_WhichLevelMode": [
+        "Que nivel deseja desafiar?\\nNivel 50 ou Nivel Aberto?$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_OkayToSaveBeforeChallenge": [
+        "Antes de comecares o teu\\ndesafio, preciso de salvar o\\ljogo. Pode ser?$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_WillHoldMonsForSafekeeping": [
+        "Esta bem, vou guardar o teu\\nPokemon enquanto competes.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_StepThisWay": [
+        "Por aqui, por favor.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_ReturnMonsSaveResults": [
+        "Obrigado por participar!\\pDevolverei o seu Pokemon em\\ntroca do nosso aluguer.\\pTambem tenho de guardar os\\nresultados do evento. Por\\lfavor, espere.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_ReturnMons": [
+        "Devolverei o seu Pokemon em\\ntroca do nosso aluguer.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_CongratsSevenWins": [
+        "Parabens! Ganhaste sete\\ncombates seguidos!$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_AwardBattlePointsForStreak": [
+        "Em reconhecimento de sua serie\\nde 7 vitorias, nos lhe\\lpremiamos estes Pontos de\\lBatalha.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_MaxBattlePoints": [
+        "Oh, oh, oh!\\pSeus Pontos de Batalha estao no\\nmaximo.\\pPor favor, volte depois de usar\\nalguns Pontos de Batalha.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_WaitingForYouToResume": [
+        "Estavamos a tua espera!\\pAntes de retomarmos o teu\\ndesafio, tenho de salvar o\\ljogo.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_DidntSaveBeforeQuitting": [
+        "Lamento dizer isto, mas nao\\nsalvaste antes de deixares de\\ljogar da ultima vez.\\pComo resultado, voce foi\\ndesqualificado do seu desafio.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_WellReturnMons": [
+        "Devolveremos o seu POKEMON\\npessoal.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_ReceivedPrizeItem": [
+        "{PLAYER}recebeu o\\npremio{STR_VAR_1}.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_TakeDoublesChallenge": [
+        "Voce gostaria de enfrentar o\\ndesafio Dupla Troca de Batalha?$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_CongratsForDefeatingHead": [
+        "Parabens por derrotar o FACTORY\\nHEAD e ganhar sete partidas\\lseguidas!$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_AwardBattlePoints": [
+        "Em reconhecimento a vossa\\nriqueza de conhecimento e\\linteligencia, concedemos-vos\\lestes Pontos de Batalha.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_ExchangeMonsAndSave": [
+        "Deixa-me trocar o teu Pokemon\\npelo nosso Pokemon alugado.\\pPreciso de salvar os dados da\\nbatalha, por isso, espere.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_RecordLastMatch": [
+        "Gostarias de gravar a tua\\nultima partida da BATTLE\\lFACTORY no teu PASS FRONTIER?$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_NeedKnowledgeOfMonsMoves": [
+        "Ola! Tu ai!\\pVoce esta pensando que os\\neventos aqui sao faceis, uma\\lvez que voce nao precisa ter\\luma equipe aumentada de\\lPOKEMON?\\pNao teria tanta certeza de\\nganhar assim tao facilmente.\\pSe voce nao tem conhecimento\\ncompleto sobre POKEMON e seus\\lmovimentos, sera dificil\\lcontinuar ganhando.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_SwappedForWeakMon": [
+        "Troquei por um Pokemon fraco...\\nPensei que era bom ter...\\pEles limparam o chao\\nconnosco...$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_NeedToCheckOpponentsMons": [
+        "As coisas nao tem corrido do\\nmeu jeito.\\pVoce precisa verificar POKEMON\\ndo seu oponente durante a\\lbatalha para ver se eles sao\\lbons.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_CantFigureOutStaffHints": [
+        "Sabes como a equipa aqui te da\\nalgumas dicas sobre o teu\\lproximo adversario?\\pSou um homem adulto, mas tenho\\ndificuldade em descobrir as\\lpistas.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_RentalMonsAreVaried": [
+        "Sou muito durona, mas\\naborreco-me muito facilmente,\\lpor isso continuei a trocar e a\\llutar varias vezes.\\pDe qualquer forma, quando eu\\ncontinuei entrando em eventos\\lBattle Swap, notei que eles\\lvariaram o aluguel POKEMON.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_RulesAreListed": [
+        "As regras da troca de batalha\\nestao listadas.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_ReadWhichHeading": [
+        "Que rumo queres ler?$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_ExplainBasicRules": [
+        "Em um evento Battle Swap, voce\\npode usar apenas tres POKEMON.\\pSe voce esta alugando ou\\ntrocando, sua equipe pode nao\\lter dois ou mais do mesmo\\lPOKEMON.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_ExplainSwapPartnerRules": [
+        "Voce pode trocar POKEMON apenas\\ncom o TRAiner que voce acabou\\lde derrotar.\\pVoce pode trocar apenas por\\naqueles POKEMON usados pelo\\lTRAiner batido.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_ExplainSwapNumberRules": [
+        "Depois de cada batalha que voce\\nganhar, voce pode trocar por um\\ldos seus adversarios derrotados\\lPOKEMON.\\pVoce nao sera capaz de trocar\\nPOKEMON com o setimo TRAiner no\\levento.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_ExplainSwapNotesRules": [
+        "Ha dois pontos-chave a ter em\\nconta na troca de POKEMON.\\pPrimeiro, ao trocar, voce nao\\npode verificar as estatisticas\\ldo POKEMON que voce esta\\lprestes a receber.\\pEm segundo lugar, o POKEMON em\\nsua equipe estao alinhados em\\lsequencia, dependendo da ordem\\lem que voce os alugou.\\pEsta sequencia mantem-se\\ninalterada mesmo quando sao\\lfeitas swaps.$"
+      ],
+      "BattleFrontier_BattleFactoryLobby_Text_ExplainOpenLvRules": [
+        "No Nivel Aberto, o POKEMON\\nalugado e o POKEMON dos\\lTrainers adversarios sao todos\\lNivel 100.$"
+      ]
+    },
+    "data/maps/BattleFrontier_BattleFactoryPreBattleRoom/scripts.inc": {
+      "BattleFrontier_BattleFactoryPreBattleRoom_Text_HoldMonsChooseFromSelection": [
+        "Primeiro, manteremos o seu\\nPOKEMON em seguranca.\\pVoce pode entao escolher entre\\nnossa selecao de POKEMON.$"
+      ],
+      "BattleFrontier_BattleFactoryPreBattleRoom_Text_LetUsRestoreMons": [
+        "Obrigado por competir! Vamos\\nrestaurar o seu POKEMON!$"
+      ],
+      "BattleFrontier_BattleFactoryPreBattleRoom_Text_ReadyFor2ndOpponent": [
+        "O 2o jogo e o proximo! Estas\\npronto?$"
+      ],
+      "BattleFrontier_BattleFactoryPreBattleRoom_Text_ReadyFor3rdOpponent": [
+        "O terceiro jogo e o proximo!\\nEstas pronto?$"
+      ],
+      "BattleFrontier_BattleFactoryPreBattleRoom_Text_ReadyFor4thOpponent": [
+        "A quarta partida e a proxima!\\nEstas pronto?$"
+      ],
+      "BattleFrontier_BattleFactoryPreBattleRoom_Text_ReadyFor5thOpponent": [
+        "O 5o jogo e o proximo! Estas\\npronto?$"
+      ],
+      "BattleFrontier_BattleFactoryPreBattleRoom_Text_ReadyFor6thOpponent": [
+        "O 6o jogo e o proximo! Estas\\npronto?$"
+      ],
+      "BattleFrontier_BattleFactoryPreBattleRoom_Text_ReadyFor7thOpponent": [
+        "Finalmente, o 7o jogo e o\\nproximo! Estas pronto?$"
+      ]
+    }
+  },
+  "c": {}
+}

@@ -1,0 +1,575 @@
+{
+  "c": {
+    "src/battle_message.c": {
+      "gText_PkmnShroudedInMist": [
+        "{B_ATK_TEAM1} team became shrouded in mist!",
+        "A equipe {B_ATK_TEAM1} ficou\\nprotegida pela nevoa!"
+      ],
+      "gText_PkmnGettingPumped": [
+        "{B_DEF_NAME_WITH_PREFIX} is getting pumped!",
+        "{B_DEF_NAME_WITH_PREFIX} esta\\nconcentrando energia!"
+      ],
+      "gText_PkmnsXPreventsSwitching": [
+        "{B_BUFF1} is preventing switching out with its {B_LAST_ABILITY} Ability!\\p",
+        "A habilidade {B_LAST_ABILITY} de\\n{B_BUFF1} impede a troca!\\p"
+      ],
+      "gText_StatSharply": [
+        " sharply",
+        " muito"
+      ],
+      "gText_StatRose": [
+        "rose!",
+        "subiu!"
+      ],
+      "gText_StatFell": [
+        "fell!",
+        "caiu!"
+      ],
+      "gText_DefendersStatRose": [
+        "{B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1} rose{B_BUFF2}!",
+        "{B_BUFF1} de {B_DEF_NAME_WITH_PREFIX}\\nsubiu{B_BUFF2}!"
+      ],
+      "sText_GotAwaySafely": [
+        "{PLAY_SE SE_FLEE}You got away safely!\\p",
+        "{PLAY_SE SE_FLEE}Voce escapou em seguranca!\\p"
+      ],
+      "sText_PlayerDefeatedLinkTrainer": [
+        "You defeated {B_LINK_OPPONENT1_NAME}!",
+        "Voce venceu {B_LINK_OPPONENT1_NAME}!"
+      ],
+      "sText_TwoLinkTrainersDefeated": [
+        "You defeated {B_LINK_OPPONENT1_NAME} and {B_LINK_OPPONENT2_NAME}!",
+        "Voce venceu {B_LINK_OPPONENT1_NAME}\\ne {B_LINK_OPPONENT2_NAME}!"
+      ],
+      "sText_PlayerLostAgainstLinkTrainer": [
+        "You lost against {B_LINK_OPPONENT1_NAME}!",
+        "Voce perdeu para\\n{B_LINK_OPPONENT1_NAME}!"
+      ],
+      "sText_PlayerLostToTwo": [
+        "You lost to {B_LINK_OPPONENT1_NAME} and {B_LINK_OPPONENT2_NAME}!",
+        "Voce perdeu para\\n{B_LINK_OPPONENT1_NAME} e {B_LINK_OPPONENT2_NAME}!"
+      ],
+      "sText_PlayerBattledToDrawLinkTrainer": [
+        "You battled to a draw against {B_LINK_OPPONENT1_NAME}!",
+        "Empatou com\\n{B_LINK_OPPONENT1_NAME}!"
+      ],
+      "sText_PlayerBattledToDrawVsTwo": [
+        "You battled to a draw against {B_LINK_OPPONENT1_NAME} and {B_LINK_OPPONENT2_NAME}!",
+        "Empatou com {B_LINK_OPPONENT1_NAME}\\ne {B_LINK_OPPONENT2_NAME}!"
+      ],
+      "sText_WildFled": [
+        "{PLAY_SE SE_FLEE}{B_LINK_OPPONENT1_NAME} fled!",
+        "{PLAY_SE SE_FLEE}{B_LINK_OPPONENT1_NAME} fugiu!"
+      ],
+      "sText_TwoWildFled": [
+        "{PLAY_SE SE_FLEE}{B_LINK_OPPONENT1_NAME} and {B_LINK_OPPONENT2_NAME} fled!",
+        "{PLAY_SE SE_FLEE}{B_LINK_OPPONENT1_NAME} e\\n{B_LINK_OPPONENT2_NAME} fugiram!"
+      ],
+      "sText_PlayerDefeatedLinkTrainerTrainer1": [
+        "You defeated {B_TRAINER1_NAME_WITH_CLASS}!\\p",
+        "Voce venceu\\n{B_TRAINER1_NAME_WITH_CLASS}!\\p"
+      ],
+      "sText_OpponentMon1Appeared": [
+        "{B_OPPONENT_MON1_NAME} appeared!\\p",
+        "{B_OPPONENT_MON1_NAME} apareceu!\\p"
+      ],
+      "sText_WildPkmnAppeared": [
+        "You encountered a wild {B_OPPONENT_MON1_NAME}!\\p",
+        "Um {B_OPPONENT_MON1_NAME}\\nselvagem apareceu!\\p"
+      ],
+      "sText_LegendaryPkmnAppeared": [
+        "You encountered a wild {B_OPPONENT_MON1_NAME}!\\p",
+        "Um {B_OPPONENT_MON1_NAME}\\nselvagem apareceu!\\p"
+      ],
+      "sText_WildPkmnAppearedPause": [
+        "You encountered a wild {B_OPPONENT_MON1_NAME}!{PAUSE 127}",
+        "Um {B_OPPONENT_MON1_NAME}\\nselvagem apareceu!{PAUSE 127}"
+      ],
+      "sText_TwoWildPkmnAppeared": [
+        "Oh! A wild {B_OPPONENT_MON1_NAME} and {B_OPPONENT_MON2_NAME} appeared!\\p",
+        "Dois POKEMON selvagens!\\n{B_OPPONENT_MON1_NAME} e {B_OPPONENT_MON2_NAME}!\\p"
+      ],
+      "sText_GhostAppearedCantId": [
+        "The GHOST appeared!\\pDarn!\\nThe GHOST can't be ID'd!\\p",
+        "Um GHOST apareceu!\\pEita! Nao da para\\nidentificar o GHOST!\\p"
+      ],
+      "sText_TheGhostAppeared": [
+        "The GHOST appeared!\\p",
+        "Um GHOST apareceu!\\p"
+      ],
+      "sText_Trainer1WantsToBattle": [
+        "You are challenged by {B_TRAINER1_NAME_WITH_CLASS}!\\p",
+        "{B_TRAINER1_NAME_WITH_CLASS}\\nquer batalhar!\\p"
+      ],
+      "sText_LinkTrainerWantsToBattle": [
+        "You are challenged by {B_LINK_OPPONENT1_NAME}!",
+        "{B_LINK_OPPONENT1_NAME}\\nquer batalhar!"
+      ],
+      "sText_TwoLinkTrainersWantToBattle": [
+        "You are challenged by {B_LINK_OPPONENT1_NAME} and {B_LINK_OPPONENT2_NAME}!",
+        "{B_LINK_OPPONENT1_NAME} e\\n{B_LINK_OPPONENT2_NAME} querem lutar!"
+      ],
+      "sText_Trainer1SentOutPkmn": [
+        "{B_TRAINER1_NAME_WITH_CLASS} sent out {B_OPPONENT_MON1_NAME}!",
+        "{B_TRAINER1_NAME_WITH_CLASS} enviou\\n{B_OPPONENT_MON1_NAME}!"
+      ],
+      "sText_Trainer1SentOutTwoPkmn": [
+        "{B_TRAINER1_NAME_WITH_CLASS} sent out {B_OPPONENT_MON1_NAME} and {B_OPPONENT_MON2_NAME}!",
+        "{B_TRAINER1_NAME_WITH_CLASS} enviou\\n{B_OPPONENT_MON1_NAME} e {B_OPPONENT_MON2_NAME}!"
+      ],
+      "sText_Trainer1SentOutPkmn2": [
+        "{B_TRAINER1_NAME_WITH_CLASS} sent out {B_BUFF1}!",
+        "{B_TRAINER1_NAME_WITH_CLASS} enviou\\n{B_BUFF1}!"
+      ],
+      "sText_LinkTrainerIntroSendOutPkmn": [
+        "{B_LINK_OPPONENT1_NAME} sent out {B_LINK_OPPONENT_MON1_NAME}!",
+        "{B_LINK_OPPONENT1_NAME} enviou\\n{B_LINK_OPPONENT_MON1_NAME}!"
+      ],
+      "sText_LinkTrainerSentOutPkmn": [
+        "{B_LINK_OPPONENT1_NAME} sent out {B_BUFF1}!",
+        "{B_LINK_OPPONENT1_NAME} enviou\\n{B_BUFF1}!"
+      ],
+      "sText_LinkTrainer2SentOutPkmn2": [
+        "{B_LINK_OPPONENT2_NAME} sent out {B_BUFF1}!",
+        "{B_LINK_OPPONENT2_NAME} enviou\\n{B_BUFF1}!"
+      ],
+      "sText_LinkTrainerSentOutTwoPkmn": [
+        "{B_LINK_OPPONENT1_NAME} sent out {B_OPPONENT_MON1_NAME} and {B_OPPONENT_MON2_NAME}!",
+        "{B_LINK_OPPONENT1_NAME} enviou\\n{B_OPPONENT_MON1_NAME} e {B_OPPONENT_MON2_NAME}!"
+      ],
+      "sText_TwoLinkTrainersIntroSendOutPkmn": [
+        "{B_LINK_OPPONENT1_NAME} sent out {B_LINK_OPPONENT_MON1_NAME}! {B_LINK_OPPONENT2_NAME} sent out {B_LINK_OPPONENT_MON2_NAME}!",
+        "{B_LINK_OPPONENT1_NAME} enviou {B_LINK_OPPONENT_MON1_NAME}!\\p{B_LINK_OPPONENT2_NAME} enviou {B_LINK_OPPONENT_MON2_NAME}!"
+      ],
+      "sText_LinkTrainerSentOutPkmn2": [
+        "{B_LINK_OPPONENT1_NAME} sent out {B_LINK_OPPONENT_MON2_NAME}!",
+        "{B_LINK_OPPONENT1_NAME} enviou\\n{B_LINK_OPPONENT_MON2_NAME}!"
+      ],
+      "sText_LinkTrainerMultiSentOutPkmn": [
+        "{B_LINK_SCR_TRAINER_NAME} sent out {B_BUFF1}!",
+        "{B_LINK_SCR_TRAINER_NAME} enviou\\n{B_BUFF1}!"
+      ],
+      "sText_GoPkmn": [
+        "Go! {B_PLAYER_MON1_NAME}!",
+        "Vai, {B_PLAYER_MON1_NAME}!"
+      ],
+      "sText_GoTwoPkmn": [
+        "Go! {B_PLAYER_MON1_NAME} and {B_PLAYER_MON2_NAME}!",
+        "Vao, {B_PLAYER_MON1_NAME}\\ne {B_PLAYER_MON2_NAME}!"
+      ],
+      "sText_GoPkmn2": [
+        "Go! {B_BUFF1}!",
+        "Vai, {B_BUFF1}!"
+      ],
+      "sText_DoItPkmn": [
+        "You're in charge, {B_BUFF1}!",
+        "Conto com voce, {B_BUFF1}!"
+      ],
+      "sText_GoForItPkmn": [
+        "Go for it, {B_BUFF1}!",
+        "Manda ver, {B_BUFF1}!"
+      ],
+      "sText_JustALittleMorePkmn": [
+        "Just a little more! Hang in there, {B_BUFF1}!",
+        "So mais um pouco, {B_BUFF1}!"
+      ],
+      "sText_YourFoesWeakGetEmPkmn": [
+        "Your opponent's weak! Get 'em, {B_BUFF1}!",
+        "O rival esta fraco!\\nVai, {B_BUFF1}!"
+      ],
+      "sText_LinkPartnerSentOutPkmn1GoPkmn": [
+        "{B_LINK_PARTNER_NAME} sent out {B_LINK_PLAYER_MON1_NAME}! Go, {B_LINK_PLAYER_MON2_NAME}!",
+        "{B_LINK_PARTNER_NAME} enviou {B_LINK_PLAYER_MON1_NAME}!\\pVai, {B_LINK_PLAYER_MON2_NAME}!"
+      ],
+      "sText_LinkPartnerSentOutPkmn2GoPkmn": [
+        "{B_LINK_PARTNER_NAME} sent out {B_LINK_PLAYER_MON2_NAME}! Go, {B_LINK_PLAYER_MON1_NAME}!",
+        "{B_LINK_PARTNER_NAME} enviou {B_LINK_PLAYER_MON2_NAME}!\\pVai, {B_LINK_PLAYER_MON1_NAME}!"
+      ],
+      "sText_LinkPartnerSentOutPkmn1": [
+        "{B_LINK_PARTNER_NAME} sent out {B_BUFF1}!",
+        "{B_LINK_PARTNER_NAME} enviou\\n{B_BUFF1}!"
+      ],
+      "sText_LinkPartnerSentOutPkmn2": [
+        "{B_LINK_PARTNER_NAME} sent out {B_BUFF1}!",
+        "{B_LINK_PARTNER_NAME} enviou\\n{B_BUFF1}!"
+      ],
+      "sText_LinkPartnerWithdrewPkmn1": [
+        "{B_LINK_PARTNER_NAME} withdrew {B_LINK_PLAYER_MON1_NAME}!",
+        "{B_LINK_PARTNER_NAME} retirou\\n{B_LINK_PLAYER_MON1_NAME}!"
+      ],
+      "sText_LinkPartnerWithdrewPkmn2": [
+        "{B_LINK_PARTNER_NAME} withdrew {B_LINK_PLAYER_MON2_NAME}!",
+        "{B_LINK_PARTNER_NAME} retirou\\n{B_LINK_PLAYER_MON2_NAME}!"
+      ],
+      "sText_PkmnSwitchOut": [
+        "{B_BUFF1}, switch out! Come back!",
+        "{B_BUFF1}, volte! Trocar!"
+      ],
+      "sText_PkmnThatsEnough": [
+        "{B_BUFF1}, that's enough! Come back!",
+        "Chega, {B_BUFF1}! Volte!"
+      ],
+      "sText_PkmnComeBack": [
+        "{B_BUFF1}, come back!",
+        "{B_BUFF1}, volte!"
+      ],
+      "sText_PkmnOkComeBack": [
+        "OK, {B_BUFF1}! Come back!",
+        "Certo, {B_BUFF1}! Volte!"
+      ],
+      "sText_PkmnGoodComeBack": [
+        "Good job, {B_BUFF1}! Come back!",
+        "Muito bem, {B_BUFF1}! Volte!"
+      ],
+      "sText_Trainer1WithdrewPkmn": [
+        "{B_TRAINER1_NAME_WITH_CLASS} withdrew {B_BUFF1}!",
+        "{B_TRAINER1_NAME_WITH_CLASS} retirou\\n{B_BUFF1}!"
+      ],
+      "sText_Trainer2WithdrewPkmn": [
+        "{B_TRAINER2_NAME_WITH_CLASS} withdrew {B_BUFF1}!",
+        "{B_TRAINER2_NAME_WITH_CLASS} retirou\\n{B_BUFF1}!"
+      ],
+      "sText_LinkTrainer1WithdrewPkmn": [
+        "{B_LINK_OPPONENT1_NAME} withdrew {B_BUFF1}!",
+        "{B_LINK_OPPONENT1_NAME} retirou\\n{B_BUFF1}!"
+      ],
+      "sText_LinkTrainer2WithdrewPkmn": [
+        "{B_LINK_OPPONENT2_NAME} withdrew {B_BUFF1}!",
+        "{B_LINK_OPPONENT2_NAME} retirou\\n{B_BUFF1}!"
+      ],
+      "sText_WildPkmnPrefix": [
+        "The wild ",
+        "O selvagem "
+      ],
+      "sText_FoePkmnPrefix": [
+        "The opposing ",
+        "O oponente "
+      ],
+      "sText_WildPkmnPrefixLower": [
+        "the wild ",
+        "o selvagem "
+      ],
+      "sText_FoePkmnPrefixLower": [
+        "the opposing ",
+        "o oponente "
+      ],
+      "sText_FoePkmnPrefix2": [
+        "Opposing",
+        "Oponente"
+      ],
+      "sText_AllyPkmnPrefix": [
+        "Ally",
+        "Aliado"
+      ],
+      "sText_FoePkmnPrefix3": [
+        "Opposing",
+        "Oponente"
+      ],
+      "sText_AllyPkmnPrefix2": [
+        "Ally",
+        "Aliado"
+      ],
+      "sText_FoePkmnPrefix4": [
+        "Opposing",
+        "Oponente"
+      ],
+      "sText_AllyPkmnPrefix3": [
+        "Ally",
+        "Aliado"
+      ],
+      "sText_AttackerUsedX": [
+        "{B_ATK_NAME_WITH_PREFIX} used {B_BUFF3}!",
+        "{B_ATK_NAME_WITH_PREFIX} usou\\n{B_BUFF3}!"
+      ],
+      "sText_Attack": [
+        "Attack",
+        "Ataque"
+      ],
+      "sText_Defense": [
+        "Defense",
+        "Defesa"
+      ],
+      "sText_Speed": [
+        "Speed",
+        "Velocidade"
+      ],
+      "sText_SpAttack": [
+        "Sp. Atk",
+        "At. Esp."
+      ],
+      "sText_SpDefense": [
+        "Sp. Def",
+        "Def. Esp."
+      ],
+      "sText_Accuracy": [
+        "accuracy",
+        "precisao"
+      ],
+      "sText_Evasiveness": [
+        "evasiveness",
+        "evasiva"
+      ],
+      "sText_Someones": [
+        "someone's",
+        "de alguem"
+      ],
+      "sText_Lanettes": [
+        "LANETTE's",
+        "de LANETTE"
+      ],
+      "sText_Bills": [
+        "BILL's",
+        "de BILL"
+      ],
+      "sText_TwoInGameTrainersDefeated": [
+        "You defeated {B_TRAINER1_NAME_WITH_CLASS} and {B_TRAINER2_NAME_WITH_CLASS}!\\p",
+        "Voce venceu {B_TRAINER1_NAME_WITH_CLASS}\\ne {B_TRAINER2_NAME_WITH_CLASS}!\\p"
+      ],
+      "gText_drastically": [
+        " drastically",
+        " muito"
+      ],
+      "gText_severely": [
+        "severely ",
+        "muito "
+      ],
+      "sText_TerrainReturnedToNormal": [
+        "The terrain returned to normal!",
+        "O terreno voltou ao normal!"
+      ],
+      "gText_PkmnIsEvolving": [
+        "What?\\n{STR_VAR_1} is evolving!",
+        "O que?\\n{STR_VAR_1} esta evoluindo!"
+      ],
+      "gText_CongratsPkmnEvolved": [
+        "Congratulations! Your {STR_VAR_1}\\nevolved into {STR_VAR_2}!{WAIT_SE}\\p",
+        "Parabens! {STR_VAR_1}\\nevoluiu para {STR_VAR_2}!{WAIT_SE}\\p"
+      ],
+      "gText_PkmnStoppedEvolving": [
+        "Huh? {STR_VAR_1}\\nstopped evolving!\\p",
+        "Hein? {STR_VAR_1}\\nparou de evoluir!\\p"
+      ],
+      "gText_WhatWillPkmnDo": [
+        "What will\\n{B_BUFF1} do?",
+        "O que\\n{B_BUFF1} vai fazer?"
+      ],
+      "gText_WhatWillPkmnDo2": [
+        "What will\\n{B_PLAYER_NAME} do?",
+        "O que\\n{B_PLAYER_NAME} vai fazer?"
+      ],
+      "gText_WhatWillWallyDo": [
+        "What will\\nWALLY do?",
+        "O que\\nWALLY vai fazer?"
+      ],
+      "gText_LinkStandby": [
+        "{PAUSE 16}Link standby…",
+        "{PAUSE 16}Conectando..."
+      ],
+      "gText_BattleMenu": [
+        "Battle{CLEAR_TO 56}Bag\\nPokémon{CLEAR_TO 56}Run",
+        "Lutar{CLEAR_TO 56}Bolsa\\nPokemon{CLEAR_TO 56}Fugir"
+      ],
+      "gText_SafariZoneMenu": [
+        "Ball{CLEAR_TO 56}{POKEBLOCK}\\nGo Near{CLEAR_TO 56}Run",
+        "Ball{CLEAR_TO 56}{POKEBLOCK}\\nChegar Perto{CLEAR_TO 56}Fugir"
+      ],
+      "gText_SafariZoneMenuFrlg": [
+        "{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 13 14 15}BALL{CLEAR_TO 56}BAIT\\nROCK{CLEAR_TO 56}RUN",
+        "{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 13 14 15}BALL{CLEAR_TO 56}ISCA\\nPEDRA{CLEAR_TO 56}FUGIR"
+      ],
+      "gText_MoveInterfaceType": [
+        "TYPE/",
+        "TIPO/"
+      ],
+      "gText_WhichMoveToForget4": [
+        "{PALETTE 5}{BACKGROUND DYNAMIC_COLOR5}{TEXT_COLORS DYNAMIC_COLOR4 DYNAMIC_COLOR6 DYNAMIC_COLOR5}Which move should\\nbe forgotten?",
+        "{PALETTE 5}{BACKGROUND DYNAMIC_COLOR5}{TEXT_COLORS DYNAMIC_COLOR4 DYNAMIC_COLOR6 DYNAMIC_COLOR5}Qual golpe\\nesquecer?"
+      ],
+      "gText_BattleYesNoChoice": [
+        "{PALETTE 5}{BACKGROUND DYNAMIC_COLOR5}{TEXT_COLORS DYNAMIC_COLOR4 DYNAMIC_COLOR6 DYNAMIC_COLOR5}Yes\\nNo",
+        "{PALETTE 5}{BACKGROUND DYNAMIC_COLOR5}{TEXT_COLORS DYNAMIC_COLOR4 DYNAMIC_COLOR6 DYNAMIC_COLOR5}Sim\\nNao"
+      ],
+      "gText_BattleSwitchWhich": [
+        "{PALETTE 5}{BACKGROUND DYNAMIC_COLOR5}{TEXT_COLORS DYNAMIC_COLOR4 DYNAMIC_COLOR6 DYNAMIC_COLOR5}Switch\\nwhich?",
+        "{PALETTE 5}{BACKGROUND DYNAMIC_COLOR5}{TEXT_COLORS DYNAMIC_COLOR4 DYNAMIC_COLOR6 DYNAMIC_COLOR5}Trocar\\nqual?"
+      ],
+      "gText_SafariBalls": [
+        "Safari Balls",
+        "Safari Balls"
+      ],
+      "gText_SafariBallLeft": [
+        "Left: $",
+        "Restam: $"
+      ],
+      "gText_Sleep": [
+        "sleep",
+        "sono"
+      ],
+      "gText_Poison": [
+        "poison",
+        "veneno"
+      ],
+      "gText_Burn": [
+        "burn",
+        "queimadura"
+      ],
+      "gText_Paralysis": [
+        "paralysis",
+        "paralisia"
+      ],
+      "gText_Ice": [
+        "ice",
+        "gelo"
+      ],
+      "gText_Confusion": [
+        "confusion",
+        "confusao"
+      ],
+      "gText_Love": [
+        "love",
+        "paixao"
+      ],
+      "gText_Are": [
+        "are",
+        "estao"
+      ],
+      "gText_Are2": [
+        "are",
+        "estao"
+      ],
+      "gText_BadEgg": [
+        "Bad Egg",
+        "Egg Ruim"
+      ],
+      "gText_Win": [
+        "{BACKGROUND TRANSPARENT}{ACCENT TRANSPARENT}Win",
+        "{BACKGROUND TRANSPARENT}{ACCENT TRANSPARENT}Vitoria"
+      ],
+      "gText_Loss": [
+        "{BACKGROUND TRANSPARENT}{ACCENT TRANSPARENT}Loss",
+        "{BACKGROUND TRANSPARENT}{ACCENT TRANSPARENT}Derrota"
+      ],
+      "gText_Draw": [
+        "{BACKGROUND TRANSPARENT}{ACCENT TRANSPARENT}Draw",
+        "{BACKGROUND TRANSPARENT}{ACCENT TRANSPARENT}Empate"
+      ],
+      "gText_BattleTourney": [
+        "BATTLE TOURNEY",
+        "TORNEIO DE BATALHA"
+      ],
+      "gText_TheGreatNewHope": [
+        "The great new hope!\\p",
+        "Uma nova grande esperanca!\\p"
+      ],
+      "gText_WillChampionshipDreamComeTrue": [
+        "Will the championship dream come true?!\\p",
+        "Vai realizar o sonho do titulo?!\\p"
+      ],
+      "gText_AFormerChampion": [
+        "A former champion!\\p",
+        "Um ex-campeao!\\p"
+      ],
+      "gText_ThePreviousChampion": [
+        "The previous champion!\\p",
+        "O antigo campeao!\\p"
+      ],
+      "gText_TheUnbeatenChampion": [
+        "The unbeaten champion!\\p",
+        "O campeao invicto!\\p"
+      ],
+      "gText_Mind": [
+        "Mind",
+        "Mente"
+      ],
+      "gText_Skill": [
+        "Skill",
+        "Tecnica"
+      ],
+      "gText_Body": [
+        "Body",
+        "Corpo"
+      ],
+      "gText_Judgment": [
+        "{B_BUFF1}{CLEAR 13}Judgment{CLEAR 13}{B_BUFF2}",
+        "{B_BUFF1}{CLEAR 13}Julgamento{CLEAR 13}{B_BUFF2}"
+      ],
+      "sText_TwoTrainersSentPkmn": [
+        "{B_TRAINER1_NAME_WITH_CLASS} sent out {B_OPPONENT_MON1_NAME}!\\p{B_TRAINER2_NAME_WITH_CLASS} sent out {B_OPPONENT_MON2_NAME}!",
+        "{B_TRAINER1_NAME_WITH_CLASS} enviou {B_OPPONENT_MON1_NAME}!\\p{B_TRAINER2_NAME_WITH_CLASS} enviou {B_OPPONENT_MON2_NAME}!"
+      ],
+      "sText_Trainer2SentOutPkmn": [
+        "{B_TRAINER2_NAME_WITH_CLASS} sent out {B_BUFF1}!",
+        "{B_TRAINER2_NAME_WITH_CLASS} enviou\\n{B_BUFF1}!"
+      ],
+      "sText_TwoTrainersWantToBattle": [
+        "You are challenged by {B_TRAINER1_NAME_WITH_CLASS} and {B_TRAINER2_NAME_WITH_CLASS}!\\p",
+        "{B_TRAINER1_NAME_WITH_CLASS} e\\n{B_TRAINER2_NAME_WITH_CLASS} desafiam voce!\\p"
+      ],
+      "sText_InGamePartnerSentOutZGoN": [
+        "{B_PARTNER_NAME_WITH_CLASS} sent out {B_PLAYER_MON2_NAME}! Go, {B_PLAYER_MON1_NAME}!",
+        "{B_PARTNER_NAME_WITH_CLASS} enviou\\n{B_PLAYER_MON2_NAME}! Vai, {B_PLAYER_MON1_NAME}!"
+      ],
+      "sText_InGamePartnerSentOutNGoZ": [
+        "{B_PARTNER_NAME_WITH_CLASS} sent out {B_PLAYER_MON1_NAME}! Go, {B_PLAYER_MON2_NAME}!",
+        "{B_PARTNER_NAME_WITH_CLASS} enviou\\n{B_PLAYER_MON1_NAME}! Vai, {B_PLAYER_MON2_NAME}!"
+      ],
+      "sText_InGamePartnerSentOutPkmn1": [
+        "{B_PARTNER_NAME_WITH_CLASS} sent out {B_PLAYER_MON1_NAME}!",
+        "{B_PARTNER_NAME_WITH_CLASS} enviou\\n{B_PLAYER_MON1_NAME}!"
+      ],
+      "sText_InGamePartnerSentOutPkmn2": [
+        "{B_PARTNER_NAME_WITH_CLASS} sent out {B_PLAYER_MON2_NAME}!",
+        "{B_PARTNER_NAME_WITH_CLASS} enviou\\n{B_PLAYER_MON2_NAME}!"
+      ],
+      "sText_InGamePartnerWithdrewPkmn1": [
+        "{B_PARTNER_NAME_WITH_CLASS} withdrew {B_PLAYER_MON1_NAME}!",
+        "{B_PARTNER_NAME_WITH_CLASS} retirou\\n{B_PLAYER_MON1_NAME}!"
+      ],
+      "sText_InGamePartnerWithdrewPkmn2": [
+        "{B_PARTNER_NAME_WITH_CLASS} withdrew {B_PLAYER_MON2_NAME}!",
+        "{B_PARTNER_NAME_WITH_CLASS} retirou\\n{B_PLAYER_MON2_NAME}!"
+      ],
+      "sText_PlayerLostAgainstTrainer1": [
+        "You lost to {B_TRAINER1_NAME_WITH_CLASS}!",
+        "Voce perdeu para\\n{B_TRAINER1_NAME_WITH_CLASS}!"
+      ],
+      "sText_PlayerBattledToDrawTrainer1": [
+        "You battled to a draw against {B_TRAINER1_NAME_WITH_CLASS}!",
+        "Empatou com\\n{B_TRAINER1_NAME_WITH_CLASS}!"
+      ],
+      "gText_RecordBattleToPass": [
+        "Would you like to record your battle\\non your Frontier Pass?",
+        "Gravar a batalha\\nno Frontier Pass?"
+      ],
+      "gText_BattleRecordedOnPass": [
+        "{B_PLAYER_NAME}'s battle result was recorded\\non the Frontier Pass.",
+        "O resultado de {B_PLAYER_NAME}\\nfoi salvo no Frontier Pass."
+      ],
+      "sText_LinkTrainerWantsToBattlePause": [
+        "You are challenged by {B_LINK_OPPONENT1_NAME}!\\p",
+        "{B_LINK_OPPONENT1_NAME}\\nquer batalhar!\\p"
+      ],
+      "sText_TwoLinkTrainersWantToBattlePause": [
+        "You are challenged by {B_LINK_OPPONENT1_NAME} and {B_LINK_OPPONENT2_NAME}!\\p",
+        "{B_LINK_OPPONENT1_NAME} e\\n{B_LINK_OPPONENT2_NAME} querem lutar!\\p"
+      ],
+      "sText_Your1": [
+        "Your",
+        "Seu"
+      ],
+      "sText_Opposing1": [
+        "The opposing",
+        "O oponente"
+      ],
+      "sText_Your2": [
+        "your",
+        "seu"
+      ],
+      "sText_Opposing2": [
+        "the opposing",
+        "o oponente"
+      ]
+    }
+  },
+  "asm": {}
+}

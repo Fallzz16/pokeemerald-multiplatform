@@ -1,0 +1,809 @@
+{
+  "asm": {
+    "data/maps/Route21_South_Frlg/scripts.inc": {
+      "Route21_South_Text_NolanDefeat": [
+        "Isso queimou-se algum tempo.$"
+      ],
+      "Route21_South_Text_NolanPostBattle": [
+        "Espera! Tenho uma mordida! Sim!$"
+      ]
+    },
+    "data/maps/Route22_Frlg/scripts.inc": {
+      "Route22_Text_EarlyRivalDefeat": [
+        "Awww! Tiveste sorte!$"
+      ],
+      "Route22_Text_LateRivalDefeat": [
+        "O que?\\pFui descuidado contigo!$"
+      ],
+      "Route22_Text_LeagueGateSign": [
+        "LEAGUE POKEMON$"
+      ]
+    },
+    "data/maps/Route24_Frlg/scripts.inc": {
+      "Route24_Text_JustEarnedFabulousPrize": [
+        "Parabens! Venceste os nossos\\ncinco treinadores do concurso!\\pAcabaste de ganhar um premio\\nfabuloso!$"
+      ],
+      "Route24_Text_ReceivedNuggetFromMysteryTrainer": [
+        "{PLAYER}recebeu um NUGGET do\\nmisterioso TREINADOR!$"
+      ],
+      "Route24_Text_YouDontHaveAnyRoom": [
+        "Nao tens espaco!$"
+      ],
+      "Route24_Text_RocketDefeat": [
+        "Arrgh! Tu es bom!$"
+      ],
+      "Route24_Text_YoudBecomeTopRocketLeader": [
+        "Com a tua habilidade,\\ntornaste-te um lider de topo no\\lTEAM ROCKET.\\pVa la, pensa na oportunidade!\\nNao desperdices esta\\loportunidade.$"
+      ],
+      "Route24_Text_ShaneIntro": [
+        "Vi o teu feito da relva!$"
+      ],
+      "Route24_Text_ShaneDefeat": [
+        "Pensei que nao!$"
+      ],
+      "Route24_Text_ShanePostBattle": [
+        "Escondi-me porque as pessoas na\\nponte me assustaram.$"
+      ],
+      "Route24_Text_EthanIntro": [
+        "Esta bem! Eu sou o No. 5! Eu\\nbato-te!$"
+      ],
+      "Route24_Text_EthanDefeat": [
+        "Whoa! Demasiado!$"
+      ],
+      "Route24_Text_EthanPostBattle": [
+        "Fiz o meu melhor. Nao me\\narrependo!$"
+      ],
+      "Route24_Text_ReliIntro": [
+        "Estou a ficar cansado?$"
+      ],
+      "Route24_Text_ReliDefeat": [
+        "Eu tambem perdi!$"
+      ],
+      "Route24_Text_ReliPostBattle": [
+        "Fiz o meu melhor, por isso nao\\nme arrependo!$"
+      ],
+      "Route24_Text_TimmyIntro": [
+        "Nao vou ser facil!$"
+      ],
+      "Route24_Text_TimmyDefeat": [
+        "Ow! Bateu no chao!$"
+      ],
+      "Route24_Text_TimmyPostBattle": [
+        "Fiz o meu melhor. Nao me\\narrependo!$"
+      ],
+      "Route24_Text_AliIntro": [
+        "Eu sou o segundo! Agora e\\nserio!$"
+      ],
+      "Route24_Text_AliDefeat": [
+        "Como poderia perder?$"
+      ],
+      "Route24_Text_AliPostBattle": [
+        "Fiz o meu melhor. Nao me\\narrependo!$"
+      ],
+      "Route24_Text_CaleDefeat": [
+        "Whoo! Boa!$"
+      ],
+      "Route24_Text_CalePostBattle": [
+        "Fiz o meu melhor. Nao me\\narrependo!$"
+      ]
+    },
+    "data/maps/Route25_Frlg/scripts.inc": {
+      "Route25_Text_JoeyIntro": [
+        "Treinadores locais vem aqui\\npara praticar.$"
+      ],
+      "Route25_Text_JoeyDefeat": [
+        "Estas decente.$"
+      ],
+      "Route25_Text_JoeyPostBattle": [
+        "Todos os Pokemon tem fraquezas.\\nAte os mais fortes.\\pE por isso que e melhor criar\\nPOKEMON de tipos diferentes.$"
+      ],
+      "Route25_Text_DanDefeat": [
+        "Nao estou zangado!$"
+      ],
+      "Route25_Text_FlintIntro": [
+        "Sou um tipo fixe. Tenho uma\\nnamorada!$"
+      ],
+      "Route25_Text_FlintDefeat": [
+        "Raios...$"
+      ],
+      "Route25_Text_FlintPostBattle": [
+        "Bem. A minha namorada vai\\nanimar-me.$"
+      ],
+      "Route25_Text_KelseyIntro": [
+        "Ola! O meu namorado e fixe!$"
+      ],
+      "Route25_Text_KelseyDefeat": [
+        "O meu condicionamento nao e o\\nmelhor...$"
+      ],
+      "Route25_Text_KelseyPostBattle": [
+        "Quem me dera que o meu namorado\\nfosse tao bom como tu.$"
+      ],
+      "Route25_Text_ChadIntro": [
+        "Tive uma sensacao... Sabia que\\ntinha de lutar contigo!$"
+      ],
+      "Route25_Text_ChadDefeat": [
+        "Eu sabia que tambem ia perder!$"
+      ],
+      "Route25_Text_ChadPostBattle": [
+        "Se o teu POKEMON ficar confuso,\\nmuda-o.\\pE uma boa tactica.$"
+      ],
+      "Route25_Text_HaleyIntro": [
+        "O meu amigo tem muitos Pokemon\\ngiros. Estou com tanta inveja!$"
+      ],
+      "Route25_Text_HaleyDefeat": [
+        "Nao tenho tanta inveja!$"
+      ],
+      "Route25_Text_FranklinDefeat": [
+        "Trabalhaste muito!$"
+      ],
+      "Route25_Text_FranklinPostBattle": [
+        "Droga! Um ZUBAT mordeu-me\\nnaquela caverna.$"
+      ],
+      "Route25_Text_NobIntro": [
+        "Vou ver uma coleccao do\\nPOKeMANIAC na capa.$"
+      ],
+      "Route25_Text_NobDefeat": [
+        "Apanhaste-me, e muito bem,\\ntambem!$"
+      ],
+      "Route25_Text_NobPostBattle": [
+        "O POKeMANIAC faz jus ao seu\\nnome.\\pSua colecao inclui muitas\\nespecies raras de POKEMON.$"
+      ],
+      "Route25_Text_WayneDefeat": [
+        "Tu es alguma coisa.$"
+      ],
+      "Route25_Text_WaynePostBattle": [
+        "A trilha abaixo e um atalho\\npara CERULEAN CITY.$"
+      ]
+    },
+    "data/maps/Route25_SeaCottage_Frlg/scripts.inc": {
+      "Route25_SeaCottage_Text_NoPleaseChief": [
+        "Nao! Nao tenhas tanto frio!\\pVa la, tens de ajudar um tipo\\nem apuros!\\pO que me diz, chefe? Por favor?\\nEsta bem? Muito bem!$"
+      ],
+      "Route25_SeaCottage_Text_NoPleaseBeautiful": [
+        "Nao! Nao tenhas tanto frio!\\pVa la, tens de ajudar um tipo\\nem apuros!\\pO que dizes, linda? Por favor?\\nEsta bem? Muito bem!$"
+      ],
+      "Route25_SeaCottage_Text_YouveGotTooMuchStuff": [
+        "Tens demasiadas coisas!$"
+      ],
+      "Route25_SeaCottage_Text_TeleporterIsDisplayed": [
+        "O TELEPORTER e exibido no\\nmonitor do PC.$"
+      ],
+      "Route25_SeaCottage_Text_SeeWhichMon": [
+        "Que Pokemon queres ver?$"
+      ]
+    },
+    "data/maps/Route26/scripts.inc": {
+      "Route26_Text_CooltrainermJakeBeaten": [
+        "Estraguei tudo!$"
+      ],
+      "Route26_Text_CooltrainermGavenSeen": [
+        "Ao experimentar batalhas\\ndificeis, voce ganha poder.$"
+      ],
+      "Route26_Text_CooltrainermGavenBeaten": [
+        "Gaah! A vida e ainda mais dura!$"
+      ],
+      "Route26_Text_CooltrainerfJoyceSeen": [
+        "Ja que chegaste tao longe,\\ndeves ser bom.\\pVou dar a esta batalha tudo o\\nque tenho!$"
+      ],
+      "Route26_Text_CooltrainerfJoyceBeaten": [
+        "Nao! Nao acredito nisto!$"
+      ],
+      "Route26_Text_CooltrainerfJoyceAfter": [
+        "Derrotei oito GINASIO LEADERS,\\npor isso estava confiante.\\pVou ter de me esforcar mais da\\nproxima vez.$"
+      ],
+      "Route26_Text_CooltrainerfBethSeen": [
+        "Perdi para um treinador\\nchamado{RIVAL}.\\pEle era muito forte, mas...\\pEra como se ele tivesse de\\nganhar a qualquer custo.\\pSenti pena do seu Pokemon.$"
+      ],
+      "Route26_Text_CooltrainerfBethBeaten": [
+        "POKEMON nao sao ferramentas de\\nguerra.$"
+      ],
+      "Route26_Text_CooltrainerfBethAfter": [
+        "POKEMON sao parceiros valiosos\\npara toda a vida.$"
+      ],
+      "Route26_Text_PsychicRichardSeen": [
+        "Uau, olha para todos esses\\nBADS! Estou impressionado.\\pMas nao estas satisfeito so por\\ncolecciona-los, certo?$"
+      ],
+      "Route26_Text_PsychicRichardBeaten": [
+        "Boa batalha!$"
+      ],
+      "Route26_Text_PsychicRichardAfter": [
+        "As pessoas e POKEMON crescem a\\npartir de suas experiencias.\\pNao sejas preguicoso e\\ncomplacente.$"
+      ]
+    },
+    "data/maps/Route26_House1/scripts.inc": {
+      "Route26_Text_HealHouseRest": [
+        "O teu Pokemon parece um pouco\\ncansado.\\pDevias descansar um pouco.$"
+      ],
+      "Route26_Text_HealHouseKeepAtIt": [
+        "Ali!\\pO teu Pokemon esta com bom\\naspecto!\\pContinuem!$"
+      ]
+    },
+    "data/maps/Route26_House2/scripts.inc": {
+      "DayOfWeekSiblingsHouse_Text_Pokedex1": [
+        "Ha algo escrito aqui.\\pLer?$"
+      ],
+      "DayOfWeekSiblingsHouse_Text_Pokedex2": [
+        "Aos meus irmaos e irmas:\\pTemos orgulho em servir\\ntreinadores POKEMON.\\pQuando os treinadores falam\\ncontigo, da-lhes algo util.\\pAmor, MONICA\\pContinuar a ler?$"
+      ]
+    },
+    "data/maps/Route27/scripts.inc": {
+      "Route27_Text_FisherMessage": [
+        "Estas quedas marcam a borda de\\nJOHTO-a LEAGUE POKEMON esta\\llogo a frente.$"
+      ],
+      "Route27_Text_CooltrainermBlakeSeen": [
+        "Pareces muito forte. Deixa-me\\nlutar contigo!$"
+      ],
+      "Route27_Text_CooltrainermBlakeAfter": [
+        "Se voce prevalecer nesta dura\\ncaminhada, a verdade sera\\lrevelada!\\pDesculpa, so queria dizer uma\\ncoisa fixe.$"
+      ],
+      "Route27_Text_CooltrainermBrianSeen": [
+        "Hm? Es bom, nao es?$"
+      ],
+      "Route27_Text_CooltrainermBrianBeaten": [
+        "Tal como eu pensava!$"
+      ],
+      "Route27_Text_CooltrainermBrianAfter": [
+        "Um bom treinador pode\\nreconhecer outros bons\\ltreinadores.$"
+      ],
+      "Route27_Text_CooltrainerfReenaSeen": [
+        "Nao deves subestimar o POKEMON\\nselvagem por aqui.$"
+      ],
+      "Route27_Text_CooltrainerfReenaBeaten": [
+        "Oh! Es demasiado forte!$"
+      ],
+      "Route27_Text_CooltrainerfReenaAfter": [
+        "Es apenas uma crianca, mas\\ntambem nao deves ser\\lsubestimada.$"
+      ],
+      "Route27_Text_CooltrainerfMeganSeen": [
+        "E raro ver alguem vir aqui.\\pEstas a treinar sozinho?$"
+      ],
+      "Route27_Text_CooltrainerfMeganBeaten": [
+        "Oh! Es mesmo forte!$"
+      ],
+      "Route27_Text_CooltrainerfMeganAfter": [
+        "Estou a verificar POKEMON antes\\ne depois da evolucao.\\pA evolucao realmente torna\\nPOKEMON mais forte.\\pMas formas evoluidas tambem\\naprendem movimentos mais tarde.$"
+      ],
+      "Route27_Text_PsychicGilbertSeen": [
+        "Nao digas nada!\\pDeixa-me adivinhar o que estas\\na pensar.\\pMmmmmmm...\\pConsegui! Estas no desafio da\\nLEAGUE POKEMON!$"
+      ],
+      "Route27_Text_PsychicGilbertBeaten": [
+        "Es demais!$"
+      ],
+      "Route27_Text_PsychicGilbertAfter": [
+        "Com as tuas habilidades, vais\\nsair-te bem na LEAGUE.\\pE o que diz a minha premonicao.$"
+      ],
+      "Route27_Text_FisherScottSeen": [
+        "Estou a sentir-me bem hoje!\\pEu sinto que eu poderia\\narrancar ate mesmo o CHAMP\\lLEAGUE!$"
+      ],
+      "Route27_Text_FisherScottBeaten": [
+        "Nao! Nao nesta batalha!$"
+      ],
+      "Route27_Text_FisherScottAfter": [
+        "Tal como na pesca, esta tudo\\nacabado em POKEMON se\\ldesistires.$"
+      ]
+    },
+    "data/maps/Route27_House/scripts.inc": {
+      "SandstormHouse_Text_Woman1": [
+        "Onde vais com o POKEMON?\\pLEAGUE POKEMON?\\pO seu POKEMON e suficientemente\\nleal para ganhar?\\pDeixa-me ver...$"
+      ],
+      "SandstormHouse_Text_LoyalMon": [
+        "Ah! O seu Pokemon confia muito\\nem si.\\pE bom ver um bom treinador.\\pToma. Um presente para a sua\\nviagem.$"
+      ],
+      "SandstormHouse_Text_TM37Description": [
+        "A TM37 e SANDSTORM.\\pE uma jogada que causa danos em\\nambos os combatentes.\\pE so para treinadores\\navancados.\\pUsa-o se te atreveres. Boa\\nsorte!$"
+      ],
+      "SandstormHouse_Text_DisloyalMon": [
+        "Se nao confiar mais em ti, pode\\nser dificil.\\pConfianca e o laco que une\\nPOKEMON e treinadores.$"
+      ]
+    },
+    "data/maps/Route28_House/scripts.inc": {
+      "Route28House_Text_Celebrity1": [
+        "Meu Deus. Encontraste-me.\\pPor favor, nao contes a ninguem\\nsobre mim.\\pDou-te isto por guardares o meu\\nsegredo. Por favor?$"
+      ],
+      "Route28House_Text_Celebrity2": [
+        "E dificil ser uma celebridade.\\pPara onde quer que va, as\\npessoas perseguem-me.\\pSo quero ficar sozinha...$"
+      ]
+    },
+    "data/maps/Route2_EastBuilding_Frlg/scripts.inc": {
+      "Route2_EastBuilding_Text_GreatHereYouGo": [
+        "Optimo! Apanhaste ou\\npossuiste{STR_VAR_3}Tipos de\\lPokemon!\\pParabens! Aqui esta!$"
+      ],
+      "Route2_EastBuilding_Text_ReceivedHM05FromAide": [
+        "{PLAYER}recebeu HM05 da AIDE.$"
+      ],
+      "Route2_EastBuilding_Text_ExplainHM05": [
+        "HM05 contem o movimento oculto\\nFLASH.\\pFLASH ilumina ate mesmo a mais\\nescura das cavernas e\\lmasmorras.$"
+      ]
+    },
+    "data/maps/Route2_House_Frlg/scripts.inc": {
+      "Route2_House_Text_FaintedMonsCanUseFieldMoves": [
+        "Um POKEMON desmaiado nao tem\\nmais energia para lutar.\\pEle ainda pode usar movimentos\\ncomo CUT fora da batalha.$"
+      ]
+    },
+    "data/maps/Route2_ViridianForest_NorthEntrance_Frlg/scripts.inc": {
+      "Route2_ViridianForest_NorthEntrance_Text_ManyMonsOnlyInForests": [
+        "Muitos Pokemon vivem apenas em\\nflorestas e cavernas.\\pVoce precisa ser persistente e\\nolhar em todos os lugares para\\lobter tipos diferentes.$"
+      ],
+      "Route2_ViridianForest_NorthEntrance_Text_CanCutSkinnyTrees": [
+        "Ja reparaste nas arvores finas\\na beira da estrada?\\pOuvi dizer que podem ser\\ncortados por um movimento\\lespecial POKEMON.$"
+      ],
+      "Route2_ViridianForest_NorthEntrance_Text_CanCancelEvolution": [
+        "Conheces a tecnica da evolucao?\\pQuando um POKEMON esta a\\nevoluir, pode parar o processo.\\pE uma tecnica para criar\\nPOKEMON como eles sao.$"
+      ]
+    },
+    "data/maps/Route2_ViridianForest_SouthEntrance_Frlg/scripts.inc": {
+      "Route2_ViridianForest_SouthEntrance_Text_RattataHasWickedBite": [
+        "RATTATA pode ser pequeno, mas\\nnao subestime a sua mordida ma.\\pJa apanhaste um?$"
+      ]
+    },
+    "data/maps/Route30_House/scripts.inc": {
+      "Route30_BerryHouse_Text_CheckTrees": [
+        "Verifique arvores para BERRIES.\\nEles crescem de volta depois de\\lalgumas horas.$"
+      ]
+    },
+    "data/maps/Route30_MrPokemonsHouse/scripts.inc": {
+      "MrPokemonHouse_Text_Intro1": [
+        "Ola, ola! Deves ser.{PLAYER}.\\pPROF.ELM disse que voce iria\\nvisitar.$"
+      ],
+      "MrPokemonHouse_Text_Intro2": [
+        "Isto e o que eu quero que o\\nPROF.ELM examine.$"
+      ],
+      "MrPokemonHouse_Text_Intro3": [
+        "Eu conheco um casal que dirige\\num servico POKEMON DAY-CARE.\\pDeram-me aquele EGG.\\pFiquei intrigado, por isso\\nenviei correio para o PROF.ELM.\\pPara a evolucao POKEMON,\\nPROF.ELM e a autoridade.$"
+      ],
+      "MrPokemonHouse_Text_Intro5": [
+        "Se minha suposicao estiver\\ncorreta, PROF.ELM sabera.$"
+      ],
+      "MrPokemonHouse_Text_Heal": [
+        "Vais voltar para o PROF.ELM?\\pToma. O seu Pokemon deve\\ndescansar.$"
+      ],
+      "MrPokemonHouse_Text_DependingOnYou": [
+        "Estou a contar contigo!$"
+      ],
+      "MrPokemonHouse_Text_AlwaysNewDiscoveries": [
+        "A vida e deliciosa! Sempre,\\nnovas descobertas a serem\\lfeitas.$"
+      ],
+      "MrPokemonHouse_Text_GetDex": [
+        "{PLAYER}recebeu POKEDEX!$"
+      ],
+      "MrPokemonHouse_Text_OakParting": [
+        "Va conhecer muitos tipos de\\nPOKEMON e completar que\\lPOKEDEX!\\pO seu DEXNAV ira ajuda-lo a\\nprocura-los.\\pMas fiquei muito tempo.\\pTenho de ir ao GOLDENROD para o\\nmeu programa de radio habitual.\\p{PLAYER}Estou a contar contigo!$"
+      ],
+      "MrPokemonHouse_Text_Disappointed": [
+        "Isso e decepcionante. Isso e\\nmuito raro.$"
+      ],
+      "MrPokemonHouse_Text_ExpShare": [
+        "Tambem tenho um item especial\\npara ti.$"
+      ],
+      "MrPokemonHouse_Text_ForeignMagazines": [
+        "Esta cheio de revistas\\nestrangeiras.\\pNem sequer consigo ler os seus\\ntitulos...$"
+      ],
+      "MrPokemonHouse_Text_BrokenComputer": [
+        "E um computador grande. Hmm.\\nEsta partido.$"
+      ],
+      "MrPokemonHouse_Text_StrangeCoins": [
+        "Uma pilha de moedas estranhas!\\pTalvez sejam de outro pais...$"
+      ]
+    },
+    "data/maps/Route32_PokemonCenter/scripts.inc": {
+      "Route32_Pokecenter_Text_FishingGuruQuestion": [
+        "Este e um otimo local de pesca.\\pViste pessoas a pescar? E tu?\\pQuer um dos meus RODS?$"
+      ],
+      "Route32_Pokecenter_Text_FishingGuruYes": [
+        "E bom ouvir isso.\\pAgora tambem es um pescador!$"
+      ],
+      "Route32_Pokecenter_Text_FishingGuruGiveRod": [
+        "Pescar e optimo!\\pSe houver agua, seja o mar ou\\num riacho, experimente o seu\\lROD.$"
+      ],
+      "Route32_Pokecenter_Text_FishingGuruNo": [
+        "Oh, sim. Isso e\\ndecepcionante...$"
+      ],
+      "Route32_Pokecenter_Text_FishingGuruAfter": [
+        "Miudo. Como estao a morder?$"
+      ],
+      "Route32_Pokecenter_Text_CooltrainerF": [
+        "O que devo fazer com que o meu\\nPOKEMON segure?\\pTalvez um item que aumente o\\npoder do ATTACK...$"
+      ]
+    },
+    "data/maps/Route33/scripts.inc": {
+      "Route33_Text_HikerAnthony2Seen": [
+        "Vim pelo tunel, mas ainda tenho\\nmuita energia.$"
+      ],
+      "Route33_Text_HikerAnthony2Beaten": [
+        "Whoa! Tens mais ziper do que\\neu!$"
+      ],
+      "Route33_Text_HikerAnthony2After": [
+        "Nos HIKERS estamos no nosso\\nmelhor nas montanhas.$"
+      ],
+      "Route33_Text_HikerAnthonyDunsparce": [
+        "Arranjaste um DUNSPARCE?\\pTambem apanhei um.\\pDa uma vista de olhos a luz.\\nTem uma cara engracada!$"
+      ],
+      "Route33_Text_Lass": [
+        "Pant, pant...\\pAquela caverna era maior do que\\neu esperava.\\pCansei-me de explorar para o\\nMARILL, por isso sai.$"
+      ]
+    },
+    "data/maps/Route34/scripts.inc": {
+      "Route34_Text_YoungsterSamuel_Beaten": [
+        "Espancado por um estranho que\\npassa!$"
+      ],
+      "Route34_Text_YoungsterIan_Seen": [
+        "Sou o melhor da minha turma em\\nPokemon.$"
+      ],
+      "Route34_Text_YoungsterIan_Beaten": [
+        "Nao! Ha melhores treinadores...$"
+      ],
+      "Route34_Text_YoungsterIan_After": [
+        "Estou a tentar ser a estrela da\\nminha turma.$"
+      ],
+      "Route34_Text_CamperTodd_Seen": [
+        "Estou confiante na minha\\ncapacidade de criar POKEMON.\\pQueres ver?$"
+      ],
+      "Route34_Text_CamperTodd_Beaten": [
+        "Estraguei o meu treino?$"
+      ],
+      "Route34_Text_PicnickerGina_Seen": [
+        "Es treinador?\\pVamos praticar uma batalha.$"
+      ],
+      "Route34_Text_PicnickerGina_Beaten": [
+        "Nao! Nao consigo ganhar...$"
+      ],
+      "Route34_Text_PicnickerGina_After": [
+        "Es demasiado forte para ser um\\nparceiro de treino.$"
+      ],
+      "Route34_Text_OfficerKeith_Seen": [
+        "Quem esta ai? O que estas a\\ntramar?$"
+      ],
+      "Route34_Text_OfficerKeith_Win": [
+        "Es um miudo duro.$"
+      ],
+      "Route34_Text_OfficerKeith_After": [
+        "Sim, hoje nao ha nada de\\nerrado.\\pPorta-te bem e nao te metas em\\nsarilhos.$"
+      ],
+      "Route34_Text_OfficerKeith_Daytime": [
+        "Estou a patrulhar suspeitos.$"
+      ],
+      "Route34_Text_PokefanBrandon_Beaten": [
+        "Por que acaba assim?$"
+      ],
+      "Route34_Text_PokefanBrandon_After": [
+        "O meu Pokemon voltou com novos\\nmovimentos.\\pIsso me confundiu sem fim!$"
+      ]
+    },
+    "data/maps/Route34_DayCare/scripts.inc": {
+      "Route34_DayCare_Text_Bookshelf2": [
+        "Um livro sobre Pokemon!\\p{PLAYER}Revirou o livro.\\pDeve ter a palavra POKEMON\\nescrita em cada pagina.\\p{PLAYER}Guarda o livro.$"
+      ],
+      "Route34_DayCare_Text_ClerkNoRoom": [
+        "Parece que nao consegues\\ncarregar outro POKEMON.$"
+      ],
+      "Route34_DayCare_Text_ClerkQuestion": [
+        "Responde-me a esta pergunta. O\\nque achas deste ODD EGG?$"
+      ],
+      "Route34_DayCare_Text_Rejection": [
+        "Acho que este EGG nao e para\\nti.\\pSeria irresponsavel da minha\\nparte dar um EGG precioso como\\leste a alguem que nao seja tao\\lbem lido sobre o tema da\\lcriacao de Pokemons!$"
+      ],
+      "Route34_DayCare_Text_ReceivedOddEgg": [
+        "{PLAYER}Recebi o ODD EGG.$"
+      ],
+      "Route34_DayCare_Text_TakeCare": [
+        "Eu sabia que eras o treinador\\ncerto para o trabalho. Trata\\lbem disso!$"
+      ],
+      "Route34_DayCare_Text_ClerkAfter": [
+        "Vemos muitos desses ovos por\\naqui.\\pMas havia algo de diferente\\nnessa.$"
+      ],
+      "Route34_Text_DoYouWantEgg": [
+        "Ah, e voce!\\pEstavamos a criar o teu\\nPokemon, e meu Deus, ficamos\\lsurpreendidos!\\pO teu Pokemon tinha um EGG!\\pNao sabemos como foi parar la,\\nmas o teu Pokemon tinha-o.\\pQueres, sim?$"
+      ],
+      "Route34_Text_YourMonIsDoingFine": [
+        "Ah, e voce! E bom ver-te.\\nSua{STR_VAR_1}Esta tudo bem.$"
+      ],
+      "Route34_Text_IllKeepIt": [
+        "Entao, fico com ele. Obrigado!$"
+      ],
+      "Route34_Text_YouHaveNoRoomForIt": [
+        "Nao tens espaco para isso...\\nVolta quando tiveres espaco.$"
+      ],
+      "Route34_Text_ReceivedEgg": [
+        "{PLAYER}Recebi o EGG do\\nDAY-CARE MAN.$"
+      ],
+      "Route34_Text_TakeGoodCareOfIt": [
+        "Trata bem disso.$"
+      ],
+      "Route34_Text_SeeWifeIfYouWantToPickUpMon": [
+        "Se queres ir buscar o teu\\nPokemon, fala com a minha\\lmulher.$"
+      ],
+      "Route34_Text_YourMonsAreDoingFine": [
+        "Ah, e voce!\\nSua{STR_VAR_1}e{STR_VAR_2}Estao\\la ir bem.$"
+      ],
+      "Route34_Text_IWillKeepDoYouWantIt": [
+        "Vou ficar com ele. Queres isto,\\nsim?$"
+      ],
+      "Route34_DayCare_Text_WhichMonShouldWeRaise": [
+        "Que POKEMON devemos levantar\\npara voce?$"
+      ],
+      "Route34_DayCare_Text_WellRaiseYourMon": [
+        "Esta bem, vamos aumentar o\\nteu{STR_VAR_1}durante algum\\ltempo.\\pVolta mais tarde.$"
+      ],
+      "Route34_DayCare_Text_WeCanRaiseOneMore": [
+        "Podemos levantar dois dos teus\\nPokemon. Quer que levantemos\\lmais um?$"
+      ],
+      "Route34_DayCare_Text_HusbandWasLookingForYou": [
+        "O meu marido andava a tua\\nprocura.$"
+      ],
+      "Route34_DayCare_Text_FineThenComeAgain": [
+        "Esta bem, entao. Repete.$"
+      ],
+      "Route34_DayCare_Text_NotEnoughMoney": [
+        "Nao tens dinheiro suficiente...$"
+      ],
+      "Route34_DayCare_Text_TakeOtherOneBackToo": [
+        "Tambem aceitas o outro?$"
+      ],
+      "Route34_DayCare_Text_ComeAgain": [
+        "Esta bem. Repete.$"
+      ],
+      "Route34_DayCare_Text_GoodToSeeYou": [
+        "Ah, e voce! E bom ver-te. Seu\\nPOKEMON so pode estar fazendo o\\lbem!$"
+      ],
+      "Route34_DayCare_Text_YourMonHasGrownXLevels": [
+        "Por nivel, o\\nseu{STR_VAR_1}cresceu\\lpor{STR_VAR_2}.$"
+      ],
+      "Route34_DayCare_Text_YourTeamIsFull": [
+        "A tua equipa esta cheia. Abram\\nespaco e venham ver-me.$"
+      ],
+      "Route34_DayCare_Text_TakeBackWhichMon": [
+        "Que Pokemon vai retirar?$"
+      ],
+      "Route34_DayCare_Text_HeresYourMon": [
+        "Perfeito! Aqui esta o teu\\nPokemon.$"
+      ],
+      "Route34_DayCare_Text_YouHaveJustOneMon": [
+        "A serio? Mas so tens um\\nPokemon.\\pVolta noutra altura.$"
+      ],
+      "Route34_DayCare_Text_TakeYourMonBack": [
+        "Aceitas o teu POKEMON de volta?$"
+      ],
+      "Route34_DayCare_Text_WhatWillYouBattleWith": [
+        "Se me deixares aquele Pokemon,\\ncom o que lutaras?\\pVolta noutra altura.$"
+      ],
+      "Route34_DayCare_Text_YoullBeLeftWithJustOne": [
+        "Huh? Agora, agora.\\pSe deixares o Pokemon comigo,\\nficas com apenas um.\\pVai ficar melhor se apanhar\\nmais, ouso dizer.$"
+      ]
+    },
+    "data/maps/Route35/scripts.inc": {
+      "Route35_Text_CamperIvanSeen": [
+        "Tenho tirado dados POKEMON do\\nmeu radio. Acho que estou bem.$"
+      ],
+      "Route35_Text_CamperIvanBeaten": [
+        "Eu desisto!$"
+      ],
+      "Route35_Text_CamperIvanAfter": [
+        "A musica no radio muda o humor\\nde POKEMON selvagem.$"
+      ],
+      "Route35_Text_CamperElliotSeen": [
+        "Vou mostrar a minha namorada\\nque sou boazona!$"
+      ],
+      "Route35_Text_CamperElliotBeaten": [
+        "Gostava que tivesses perdido\\npor mim...$"
+      ],
+      "Route35_Text_CamperElliotAfter": [
+        "Fui humilhado a frente da minha\\nnamorada...$"
+      ],
+      "Route35_Text_PicnickerBrookeSeen": [
+        "O meu namorado e fraco, por\\nisso nao posso confiar nele.$"
+      ],
+      "Route35_Text_PicnickerBrookeBeaten": [
+        "Meu Deus! Es tao forte!$"
+      ],
+      "Route35_Text_PicnickerBrookeAfter": [
+        "Posso contar mais com o meu\\nPOKEMON do que com o meu\\lnamorado.$"
+      ],
+      "Route35_Text_PicnickerKimSeen": [
+        "Vais ao ginasio? Eu tambem!$"
+      ],
+      "Route35_Text_PicnickerKimBeaten": [
+        "Oh, sim. Nao consegui ganhar...$"
+      ],
+      "Route35_Text_PicnickerKimAfter": [
+        "Os GINASIO BADS sao bonitos. Eu\\ncolecciono-as.$"
+      ],
+      "Route35_Text_BirdKeeperBryanBeaten": [
+        "Caramba! Nao o suficiente!$"
+      ],
+      "Route35_Text_JugglerIrwinBeaten": [
+        "Ufa! Foi um choque!$"
+      ],
+      "Route35_Text_JugglerIrwinAfter": [
+        "Ia deslumbrar-te com o meu\\npremio POKEMON.\\pMas a tua proeza eletrizou-me!$"
+      ],
+      "Route35_Text_BugCatcherArnieSeen": [
+        "Vou a qualquer lado se o\\nPokemon aparecer la.$"
+      ],
+      "Route35_Text_BugCatcherArnieBeaten": [
+        "Huh? Nao devia ter perdido...$"
+      ],
+      "Route35_Text_BugCatcherArnieYanma": [
+        "Uau... Olha para todos aqueles\\nYANMA!\\pEstou tao impressionado que nao\\nme consigo mexer.$"
+      ],
+      "Route35_Text_FirebreatherWaltSeen": [
+        "Estou a praticar a respiracao\\nde fogo.$"
+      ],
+      "Route35_Text_FirebreatherWaltBeaten": [
+        "Ow! Queimei a ponta do nariz!$"
+      ],
+      "Route35_Text_FirebreatherWaltAfter": [
+        "A marcha POKEMON no radio atrai\\nPoKEMON selvagem.$"
+      ],
+      "Route35_Text_OfficerDirkSeen": [
+        "O perigo espreita a noite!$"
+      ],
+      "Route35_Text_OfficerDirkBeaten": [
+        "Opa!$"
+      ],
+      "Route35_Text_OfficerDirkAfter": [
+        "Sabes, a noite e divertida a\\nsua maneira.\\pMas nao exageres.$"
+      ],
+      "Route35_Text_OfficerDirkTough": [
+        "O teu Pokemon parece bastante\\nduro.\\pPodes ir para qualquer lado em\\nseguranca.$"
+      ]
+    },
+    "data/maps/Route36/scripts.inc": {
+      "Route36_Text_UseSquirtbottle": [
+        "Usar o SQUIRTBOTTLE?$"
+      ],
+      "Route36_Text_UsedSquirtbottle": [
+        "{PLAYER}usou o SQUIRTBOTTLE.$"
+      ],
+      "Route36_Text_SudowoodoAttacked": [
+        "A arvore estranha nao gosta do\\nSQUIRTBOTTLE!\\pA arvore estranha atacou!$"
+      ],
+      "Route36_Text_RockSmashGuy1": [
+        "Wa-hey!\\pIa partir aquela arvore com o\\nmeu soco de braco direito.\\pMas nao consegui! Sou um\\nfracasso!$"
+      ],
+      "Route36_Text_RockSmashGuy2": [
+        "Limpaste aquela arvore\\nmiseravel?\\pEstou impressionado! Quero que\\nfiques com isto.$"
+      ],
+      "Route36_Text_OddTree": [
+        "Uma arvore estranha esta a\\nbloquear o caminho.$"
+      ],
+      "Route36_Text_Lass2_ClearedSudowoodo": [
+        "Aquela arvore estranha\\ndesapareceu sem deixar rasto.\\pOh! Aquela arvore era mesmo uma\\nPokemon?$"
+      ],
+      "Route36_Text_PsychicMarkSeen": [
+        "Vou ler os teus pensamentos!$"
+      ],
+      "Route36_Text_PsychicMarkBeaten": [
+        "Enganei-me!$"
+      ],
+      "Route36_Text_PsychicMarkAfter": [
+        "Eu seria forte se pudesse dizer\\no que o meu oponente estava a\\lpensar.$"
+      ],
+      "Route36_Text_SchoolboyAlan1Seen": [
+        "Gracas aos meus estudos, estou\\npronto para qualquer POKEMON!$"
+      ],
+      "Route36_Text_SchoolboyAlan1Beaten": [
+        "Oops! Erro de computacao?$"
+      ],
+      "Route36_Text_SchoolboyAlanAfter": [
+        "Raios. Tambem estudo cinco\\nhoras por dia.\\pHa mais em aprender do que\\napenas ler livros.$"
+      ],
+      "Route36_Text_ArthurNope": [
+        "Ainda nao!$"
+      ],
+      "Route36_Text_ArthurGivesGift": [
+        "Toma. Podes ficar com isto.$"
+      ]
+    },
+    "data/maps/Route37/scripts.inc": {
+      "Route37_Text_PsychicGreg_Seen": [
+        "POKEMON nao pode fazer nada se\\nestiverem a dormir.\\pVou mostrar-te como isso e\\nassustador!$"
+      ],
+      "Route37_Text_PsychicGreg_Beaten": [
+        "Perdi. Isso e muito triste...$"
+      ],
+      "Route37_Text_PsychicGreg_After": [
+        "Por POKEMON para dormir ou\\nparalisar sao boas tecnicas de\\lbatalha.$"
+      ],
+      "Route37_Text_Sunny_GiveGift1": [
+        "Disseram-me para te dar isto se\\nte visse!$"
+      ],
+      "Route37_Text_Sunny_GiveGift2": [
+        "Disseram-me para te dar isto se\\nte visse!$"
+      ]
+    },
+    "data/maps/Route38/scripts.inc": {
+      "Route38_Text_BirdKeeperTobySeen": [
+        "Voa alto para o ceu, meu amado\\npassaro POKEMON!$"
+      ],
+      "Route38_Text_BirdKeeperTobyBeaten": [
+        "Sinto-me como se estivesse a\\nvoar.$"
+      ],
+      "Route38_Text_SchoolboyChad1Seen": [
+        "Deixa-me tentar algo que\\naprendi hoje.$"
+      ],
+      "Route38_Text_SchoolboyChad1Beaten": [
+        "Acho que nao estudei o\\nsuficiente.$"
+      ],
+      "Route38_Text_SchoolboyChadAfter": [
+        "Tenho de fazer tantos testes,\\nnao tenho muito tempo para\\lPOKEMON.\\pEntao, quando eu posso jogar,\\neu realmente me concentro.$"
+      ],
+      "Route38_Text_LassDana1Seen": [
+        "Pareces ser bom em POKEMON.\\pSe estiver, que tal dar-me um\\nconselho?$"
+      ],
+      "Route38_Text_LassDana1Beaten": [
+        "Estou a ver. Para que possas\\nlutar assim.$"
+      ],
+      "Route38_Text_BeautyValerieSeen": [
+        "Ola! Nao es um treinador giro?\\pPosso ver o seu Pokemon?$"
+      ],
+      "Route38_Text_BeautyValerieBeaten": [
+        "Ainda bem que vi o teu Pokemon!$"
+      ],
+      "Route38_Text_BeautyValerieAfter": [
+        "Quando vejo Pokemon, parece\\nacalmar-me os nervos.$"
+      ],
+      "Route38_Text_SailorHarrySeen": [
+        "Estive no estrangeiro, por isso\\nsei de todos os tipos de\\lPokemon!$"
+      ],
+      "Route38_Text_SailorHarryBeaten": [
+        "Sua habilidade e de classe\\nmundial!$"
+      ],
+      "Route38_Text_SailorHarryAfter": [
+        "Todos os tipos de pessoas ao\\nredor do mundo vivem felizes\\lcom POKEMON.$"
+      ],
+      "Route38_Text_BeautyOliviaSeen": [
+        "Nao achas que o meu Pokemon e\\neu somos lindos?$"
+      ]
+    },
+    "data/maps/Route39/scripts.inc": {
+      "Route39_Text_Woman": [
+        "Essa sombra... Talvez fosse um\\nPIDGEY gigante?$"
+      ],
+      "Route39_Text_SailorEugeneSeen": [
+        "Acabei de voltar para OLIVINE.\\pQue tal uma batalha POKEMON?$"
+      ],
+      "Route39_Text_SailorEugeneAfter": [
+        "O meu Pokemon foi apanhado e\\ncriado no estrangeiro.\\pSao meus companheiros nessas\\nlongas viagens.$"
+      ],
+      "Route39_Text_PokefanMDerekSeen": [
+        "Este e um bom momento para se\\ngabar sobre o meu PIKACHU!$"
+      ],
+      "Route39_Text_PokefanMDerekBeaten": [
+        "Nao tive tempo de mostrar\\nPIKACHU...$"
+      ],
+      "Route39_Text_PokefanMDerekAfter": [
+        "Nao estou a ouvir-te a\\ngabares-te!\\pNos, os POKe FANS, temos uma\\npolitica de nao ouvir os\\lelogios!$"
+      ],
+      "Route39_Text_PokefanFRuthSeen": [
+        "Tao querido Pokemon.\\pVamos mostrar o nosso Pokemon\\njuntos ao mesmo tempo.$"
+      ],
+      "Route39_Text_PokefanFRuthBeaten": [
+        "Nao me importo de perder.$"
+      ],
+      "Route39_Text_PokefanFRuthAfter": [
+        "Sabes sobre o bebe Pokemon?\\pAposto que sao adoraveis!$"
+      ],
+      "Route39_Text_PsychicNormanSeen": [
+        "Deixa-me ver do que o teu\\nPokemon e capaz.$"
+      ],
+      "Route39_Text_PsychicNormanBeaten": [
+        "O teu Pokemon tem potencial.$"
+      ],
+      "Route39_Text_PsychicNormanAfter": [
+        "Sabes como o POKEMON tem\\ncapacidades diferentes?\\pAs pessoas tambem sao assim.\\nTodos tem potencial diferente.$"
+      ],
+      "Route39_Text_PokefanFJaimeSeen": [
+        "Voce veio na hora certa.\\pVamos lutar.$"
+      ],
+      "Route39_Text_PokefanFJaimeBeaten": [
+        "Que desilusao...$"
+      ]
+    },
+    "data/maps/Route39_Barn/scripts.inc": {
+      "Route39_Text_BarnGaveBerry": [
+        "{PLAYER}Deu um ORAN BERRY ao\\nMILTANK.$"
+      ]
+    }
+  },
+  "c": {}
+}

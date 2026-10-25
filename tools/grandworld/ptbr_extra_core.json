@@ -1,0 +1,829 @@
+{
+  "c": {
+    "src/main_menu.c": {
+      "gText_SaveFileTooOld": [
+        "This save file was made by an older\\nversion of POKéMON WORLD\\pand can't be loaded here.\\pTo keep playing it, use that older\\nversion. Starting a NEW GAME\\nwill erase this save file.",
+        "Save de uma versao antiga\\nde POKEMON WORLD.\\pPara continuar, use essa\\nversao antiga. NOVO JOGO apaga\\no save atual."
+      ],
+      "gText_SaveFileTooNew": [
+        "This save file was made by a newer\\nversion of POKéMON WORLD\\pand can't be loaded here.\\pTo keep playing it, use the newer\\nversion. Starting a NEW GAME\\nwill erase this save file.",
+        "Save de uma versao recente\\nde POKEMON WORLD.\\pPara continuar, use essa\\nversao recente. NOVO JOGO apaga\\no save atual."
+      ],
+      "gText_RegionSaveDamaged": [
+        "Part of this save file's region\\nprogress data may be damaged.\\pStory progress in another region\\ncould be missing or altered.",
+        "Os dados regionais deste save\\npodem estar danificados.\\pO progresso em outras regioes\\npode ter sido afetado."
+      ],
+      "gText_BatteryRunDry": [
+        "The internal battery has run dry.\\nThe game can be played.\\pHowever, clock-based events will\\nno longer occur.",
+        "A bateria interna acabou.\\nVoce ainda pode jogar.\\pEventos ligados ao relogio\\nnao vao funcionar."
+      ],
+      "gText_MysteryGiftCantUse": [
+        "MYSTERY GIFT can't be used while\\nthe Wireless Adapter is attached.",
+        "PRES. MISTER. nao funciona\\ncom o adaptador conectado."
+      ],
+      "gText_MysteryEventsCantUse": [
+        "MYSTERY EVENTS can't be used while\\nthe Wireless Adapter is attached.",
+        "EVENTOS MIST. nao funcionam\\ncom o adaptador conectado."
+      ],
+      "gText_ContinueMenuPokedex": [
+        "POKéDEX",
+        "POKEDEX"
+      ]
+    },
+    "src/strings.c": {
+      "gText_PickOk": [
+        "{DPAD_UPDOWN}PICK {A_BUTTON}OK",
+        "{DPAD_UPDOWN}ESCOLHER {A_BUTTON}OK"
+      ],
+      "gText_PickNextCancel": [
+        "{DPAD_UPDOWN}PICK {A_BUTTON}NEXT {B_BUTTON}CANCEL",
+        "{DPAD_UPDOWN}OPCAO {A_BUTTON}SEGUIR {B_BUTTON}SAIR"
+      ],
+      "gText_PickCancel": [
+        "{DPAD_UPDOWN}PICK {A_BUTTON}{B_BUTTON}CANCEL",
+        "{DPAD_UPDOWN}OPCAO {A_BUTTON}{B_BUTTON}SAIR"
+      ],
+      "gText_AButtonExit": [
+        "{A_BUTTON}EXIT",
+        "{A_BUTTON}SAIR"
+      ],
+      "gText_CryOf": [
+        "CRY OF",
+        "SOM DE"
+      ],
+      "gText_SizeComparedTo": [
+        "SIZE COMPARED TO ",
+        "TAM. COMPARADO COM "
+      ],
+      "gText_PokedexRegistration": [
+        "POKéDEX registration completed.",
+        "Registro feito na POKEDEX."
+      ],
+      "gText_SwitchPokedexListings": [
+        "Switch POKéDEX listings.",
+        "Trocar a lista da POKEDEX."
+      ],
+      "gText_SelectPokedexMode": [
+        "Select the POKéDEX mode.",
+        "Escolha o modo da POKEDEX."
+      ],
+      "gText_SelectPokedexListingMode": [
+        "Select the POKéDEX listing mode.",
+        "Escolha a lista da POKEDEX."
+      ],
+      "gText_ListByFirstLetter": [
+        "List by the first letter in the name.\\nSpotted POKéMON only.",
+        "Ordenar pela letra inicial.\\nApenas POKEMON vistos."
+      ],
+      "gText_ListByBodyColor": [
+        "List by body color.\\nSpotted POKéMON only.",
+        "Ordenar pela cor do corpo.\\nApenas POKEMON vistos."
+      ],
+      "gText_ListByType": [
+        "List by type.\\nOwned POKéMON only.",
+        "Ordenar pelo tipo.\\nApenas POKEMON capturados."
+      ],
+      "gText_ExecuteSearchSwitch": [
+        "Execute search/switch.",
+        "Buscar ou trocar a lista."
+      ],
+      "gText_DexSortNumericalDescription": [
+        "POKéMON are listed according to their\\nnumber.",
+        "POKEMON em ordem de numero."
+      ],
+      "gText_DexSortAtoZDescription": [
+        "Spotted and owned POKéMON are listed\\nalphabetically.",
+        "POKEMON vistos e capturados\\nem ordem alfabetica."
+      ],
+      "gText_DexSortHeaviestDescription": [
+        "Owned POKéMON are listed from the\\nheaviest to the lightest.",
+        "Seus POKEMON, dos mais\\npesados aos mais leves."
+      ],
+      "gText_DexSortLightestDescription": [
+        "Owned POKéMON are listed from the\\nlightest to the heaviest.",
+        "Seus POKEMON, dos mais\\nleves aos mais pesados."
+      ],
+      "gText_DexSortTallestDescription": [
+        "Owned POKéMON are listed from the\\ntallest to the smallest.",
+        "Seus POKEMON, dos mais\\naltos aos mais baixos."
+      ],
+      "gText_DexSortSmallestDescription": [
+        "Owned POKéMON are listed from the\\nsmallest to the tallest.",
+        "Seus POKEMON, dos mais\\nbaixos aos mais altos."
+      ],
+      "gText_DexSearchDontSpecify": [
+        "DON'T SPECIFY.",
+        "QUALQUER UM."
+      ],
+      "gText_HOFDexRating": [
+        "Spotted POKéMON: {STR_VAR_1}!\\nOwned POKéMON: {STR_VAR_2}!\\pPROF. BIRCH's POKéDEX rating!\\pPROF. BIRCH: Let's see…\\p",
+        "POKEMON vistos: {STR_VAR_1}!\\nCapturados: {STR_VAR_2}!\\pNota do PROF. BIRCH!\\pPROF. BIRCH: Vamos ver...\\p"
+      ],
+      "gText_HOFDexSaving": [
+        "SAVING…\\nDON'T TURN OFF THE POWER.",
+        "SALVANDO...\\nNAO DESLIGUE O CONSOLE."
+      ],
+      "gText_HOFCorrupted": [
+        "The HALL OF FAME data is corrupted.",
+        "Dados do HALL DA FAMA danificados."
+      ],
+      "gText_HOFNumber": [
+        "HALL OF FAME No. {STR_VAR_1}",
+        "HALL DA FAMA N. {STR_VAR_1}"
+      ],
+      "gText_BirchInTrouble": [
+        "PROF. BIRCH is in trouble!\\nRelease a POKéMON and rescue him!",
+        "PROF. BIRCH precisa de ajuda!\\nEscolha um POKEMON para salva-lo!"
+      ],
+      "gText_Var1IsSelected": [
+        "{STR_VAR_1}\\nis selected.",
+        "{STR_VAR_1}\\nfoi escolhido."
+      ],
+      "gText_CantWriteMail": [
+        "You can't write\\nMAIL here.",
+        "Nao pode escrever\\nMAIL aqui."
+      ],
+      "gText_MoveVar1Where": [
+        "Move the\\n{STR_VAR_1}\\nwhere?",
+        "Mover\\n{STR_VAR_1}\\npara onde?"
+      ],
+      "gText_Var1CantBeHeld": [
+        "The {STR_VAR_1} can't be held.",
+        "{STR_VAR_1} nao pode ser segurado."
+      ],
+      "gText_ThrewAwayVar2Var1s": [
+        "Threw away {STR_VAR_2}\\n{STR_VAR_1}.",
+        "Descartou {STR_VAR_2}\\n{STR_VAR_1}."
+      ],
+      "gText_ConfirmTossItems": [
+        "Is it okay to\\nthrow away {STR_VAR_2}\\n{STR_VAR_1}?",
+        "Descartar {STR_VAR_2}\\n{STR_VAR_1}?"
+      ],
+      "gText_PressAnyDpadKey": [
+        "Press any {DPAD_NONE} key\\nto register item\\nin that slot.",
+        "Aperte {DPAD_NONE} para\\nregistrar o item\\nnesse atalho."
+      ],
+      "gText_DadsAdvice": [
+        "DAD's advice…\\n{PLAYER}, there's a time and place for\\leverything!{PAUSE_UNTIL_PRESS}",
+        "Conselho do PAPAI...\\n{PLAYER}, tudo tem hora e lugar!{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PlayerUsedVar2": [
+        "{PLAYER} used the\\n{STR_VAR_2}.{PAUSE_UNTIL_PRESS}",
+        "{PLAYER} usou\\n{STR_VAR_2}.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_RepelEffectsLingered": [
+        "But the effects of a REPEL\\nlingered from earlier.{PAUSE_UNTIL_PRESS}",
+        "O efeito de REPEL ainda\\nesta ativo.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_LureEffectsLingered": [
+        "But the effects of a Lure\\nlingered from earlier.{PAUSE_UNTIL_PRESS}",
+        "O efeito de Lure ainda\\nesta ativo.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_BoxFull": [
+        "The BOX is full.{PAUSE_UNTIL_PRESS}",
+        "A BOX esta cheia.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_TheField": [
+        "the field",
+        "o campo"
+      ],
+      "gText_TheBattle": [
+        "the battle",
+        "a batalha"
+      ],
+      "gText_ThePokemonList": [
+        "the POKéMON LIST",
+        "a equipe POKEMON"
+      ],
+      "gText_TheShop": [
+        "the shop",
+        "a loja"
+      ],
+      "gText_ThePC": [
+        "the PC",
+        "o PC"
+      ],
+      "gText_ThatItemIsSoldOut": [
+        "I'm sorry, but that item is sold out.{PAUSE_UNTIL_PRESS}",
+        "Desculpe, acabou o estoque.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_SoldOut": [
+        "SOLD OUT",
+        "ESGOTADO"
+      ],
+      "gText_InBagVar1": [
+        "IN BAG: {STR_VAR_1}",
+        "NA BOLSA: {STR_VAR_1}"
+      ],
+      "gText_QuitShopping": [
+        "Quit shopping.",
+        "Encerrar compras."
+      ],
+      "gText_Var1CertainlyHowMany": [
+        "{STR_VAR_1}? Certainly.\\nHow many would you like?",
+        "{STR_VAR_1}? Claro!\\nQuantos voce quer?"
+      ],
+      "gText_Var1CertainlyHowMany2": [
+        "{STR_VAR_1}? Certainly.\\nHow many would you like?",
+        "{STR_VAR_1}? Claro!\\nQuantos voce quer?"
+      ],
+      "gText_HereYouGoThankYou": [
+        "Here you go!\\nThank you very much.",
+        "Aqui esta!\\nMuito obrigado!"
+      ],
+      "gText_ThankYouIllSendItHome": [
+        "Thank you!\\nI'll send it to your home PC.",
+        "Obrigado!\\nVou mandar para seu PC."
+      ],
+      "gText_ThanksIllSendItHome": [
+        "Thanks!\\nI'll send it to your PC at home.",
+        "Obrigado!\\nVou mandar para seu PC."
+      ],
+      "gText_YouDontHaveMoney": [
+        "You don't have enough money.{PAUSE_UNTIL_PRESS}",
+        "Voce nao tem dinheiro suficiente.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_NoMoreRoomForThis": [
+        "You have no more room for this\\nitem.{PAUSE_UNTIL_PRESS}",
+        "Nao ha espaco para\\nesse item.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_SpaceForVar1Full": [
+        "The space for {STR_VAR_1} is full.{PAUSE_UNTIL_PRESS}",
+        "Sem espaco para {STR_VAR_1}.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_AnythingElseICanHelp": [
+        "Is there anything else I can help\\nyou with?",
+        "Posso ajudar com\\nmais alguma coisa?"
+      ],
+      "gText_CanIHelpWithAnythingElse": [
+        "Can I help you with anything else?",
+        "Precisa de mais alguma coisa?"
+      ],
+      "gText_ThrowInPremierBall": [
+        "I'll throw in a PREMIER BALL, too.{PAUSE_UNTIL_PRESS}",
+        "Leve uma PREMIER BALL de brinde!{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_ThrowInPremierBalls": [
+        "I'll throw in {STR_VAR_1} PREMIER BALLS, too.{PAUSE_UNTIL_PRESS}",
+        "Leve {STR_VAR_1} PREMIER BALLS de brinde!{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_CantBuyKeyItem": [
+        "{STR_VAR_2}? Oh, no.\\nI can't buy that.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_2}? Nao posso\\ncomprar esse item.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_HowManyToSell": [
+        "{STR_VAR_2}?\\nHow many would you like to sell?",
+        "{STR_VAR_2}?\\nQuantos deseja vender?"
+      ],
+      "gText_WontHaveEffect": [
+        "It won't have any effect.{PAUSE_UNTIL_PRESS}",
+        "Isso nao vai fazer efeito.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_CantBeUsedOnPkmn": [
+        "This can't be used on\\nthat POKéMON.{PAUSE_UNTIL_PRESS}",
+        "Nao pode usar isso\\nnesse POKEMON.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnCantSwitchOut": [
+        "{STR_VAR_1} can't be switched\\nout!{PAUSE_UNTIL_PRESS}",
+        "Nao da para trocar\\n{STR_VAR_1}!{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnAlreadyInBattle": [
+        "{STR_VAR_1} is already\\nin battle!{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} ja esta\\nna batalha!{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnAlreadySelected": [
+        "{STR_VAR_1} has already been\\nselected.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} ja foi\\nescolhido.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnHasNoEnergy": [
+        "{STR_VAR_1} has no energy\\nleft to battle!{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} nao tem forcas\\npara lutar!{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_CantSwitchWithAlly": [
+        "You can't switch {STR_VAR_1}'s\\nPOKéMON with one of yours!{PAUSE_UNTIL_PRESS}",
+        "Nao pode trocar {STR_VAR_1}\\ncom POKEMON de um aliado!{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_EggCantBattle": [
+        "An EGG can't battle!{PAUSE_UNTIL_PRESS}",
+        "EGG nao pode lutar!{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_CantUseUntilNewBadge": [
+        "This can't be used until a new\\nBADGE is obtained.{PAUSE_UNTIL_PRESS}",
+        "Precisa de outra INSIGNIA\\npara usar isso.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_NoMoreThanVar1Pkmn": [
+        "No more than {STR_VAR_1} POKéMON\\nmay enter.{PAUSE_UNTIL_PRESS}",
+        "So {STR_VAR_1} POKEMON\\npodem entrar.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_SendMailToPC": [
+        "Send the removed MAIL to\\nyour PC?",
+        "Enviar a MAIL\\npara seu PC?"
+      ],
+      "gText_MailSentToPC": [
+        "The MAIL was sent to your PC.{PAUSE_UNTIL_PRESS}",
+        "A MAIL foi enviada ao PC.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PCMailboxFull": [
+        "Your PC's MAILBOX is full.{PAUSE_UNTIL_PRESS}",
+        "A MAILBOX do PC esta cheia.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_MailMessageWillBeLost": [
+        "If the MAIL is removed, the\\nmessage will be lost. Okay?",
+        "Ao retirar a MAIL, a\\nmensagem sera perdida. Certo?"
+      ],
+      "gText_RemoveMailBeforeItem": [
+        "MAIL must be removed before\\nholding an item.{PAUSE_UNTIL_PRESS}",
+        "Retire a MAIL antes\\nde dar outro item.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnWasGivenItem": [
+        "{STR_VAR_1} was given the\\n{STR_VAR_2} to hold.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} recebeu\\n{STR_VAR_2} para segurar.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnAlreadyHoldingItemSwitch": [
+        "{STR_VAR_1} is already holding\\none {STR_VAR_2}.\\pWould you like to switch the\\ntwo items?",
+        "{STR_VAR_1} ja segura\\n{STR_VAR_2}.\\pDeseja trocar os\\ndois itens?"
+      ],
+      "gText_PkmnNotHolding": [
+        "{STR_VAR_1} isn't holding\\nanything.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} nao esta\\nsegurando nada.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_ReceivedItemFromPkmn": [
+        "Received the {STR_VAR_2}\\nfrom {STR_VAR_1}.{PAUSE_UNTIL_PRESS}",
+        "Recebeu {STR_VAR_2}\\nde {STR_VAR_1}.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_MailTakenFromPkmn": [
+        "MAIL was taken from the\\nPOKéMON.{PAUSE_UNTIL_PRESS}",
+        "A MAIL foi retirada do\\nPOKEMON.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_SwitchedPkmnItem": [
+        "The {STR_VAR_2} was taken and\\nreplaced with the {STR_VAR_1}.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_2} foi trocado\\npor {STR_VAR_1}.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnHoldingItemCantHoldMail": [
+        "This POKéMON is holding an\\nitem. It cannot hold MAIL.{PAUSE_UNTIL_PRESS}",
+        "Esse POKEMON ja segura\\num item. Nao pode usar MAIL.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_MailTransferredFromMailbox": [
+        "MAIL was transferred from\\nthe MAILBOX.{PAUSE_UNTIL_PRESS}",
+        "MAIL retirada da\\nMAILBOX.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_BagFullCouldNotRemoveItem": [
+        "The BAG is full. The POKéMON's\\nitem could not be removed.{PAUSE_UNTIL_PRESS}",
+        "A BOLSA esta cheia.\\nNao deu para retirar o item.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnLearnedMove3": [
+        "{STR_VAR_1} learned\\n{STR_VAR_2}!",
+        "{STR_VAR_1} aprendeu\\n{STR_VAR_2}!"
+      ],
+      "gText_PkmnLearnedMove4": [
+        "{STR_VAR_1} learned\\n{STR_VAR_2}!{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} aprendeu\\n{STR_VAR_2}!{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_StopLearningMove2": [
+        "Stop trying to teach\\n{STR_VAR_2}?",
+        "Desistir de ensinar\\n{STR_VAR_2}?"
+      ],
+      "gText_MoveNotLearned": [
+        "{STR_VAR_1} did not learn the\\nmove {STR_VAR_2}.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} nao aprendeu\\n{STR_VAR_2}.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_WhichMoveToForget": [
+        "Which move should be forgotten?{PAUSE_UNTIL_PRESS}",
+        "Qual golpe esquecer?{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnAlreadyKnows": [
+        "{STR_VAR_1} already knows\\n{STR_VAR_2}.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} ja conhece\\n{STR_VAR_2}.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnHPRestoredByVar2": [
+        "{STR_VAR_1}'s HP was restored\\nby {STR_VAR_2} point(s).{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} recuperou\\n{STR_VAR_2} pontos de HP.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnCuredOfPoison": [
+        "{STR_VAR_1} was cured of its\\npoisoning.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} nao esta mais\\nenvenenado.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnCuredOfParalysis": [
+        "{STR_VAR_1} was cured of\\nparalysis.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} se livrou\\nda paralisia.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnWokeUp2": [
+        "{STR_VAR_1} woke up.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} acordou.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnBurnHealed": [
+        "{STR_VAR_1}'s burn was healed.{PAUSE_UNTIL_PRESS}",
+        "A queimadura de {STR_VAR_1}\\nfoi curada.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnFrostbiteHealed": [
+        "{STR_VAR_1}'s frostbite was healed.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} nao esta mais\\ncom congelamento.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnThawedOut": [
+        "{STR_VAR_1} was thawed out.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} descongelou.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PPWasRestored": [
+        "PP was restored.{PAUSE_UNTIL_PRESS}",
+        "PP recuperado.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnRegainhedHealth": [
+        "{STR_VAR_1} regained health.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} recuperou a saude.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnBecameHealthy": [
+        "{STR_VAR_1} became healthy.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} ficou saudavel.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_MovesPPIncreased": [
+        "{STR_VAR_1}'s PP increased.{PAUSE_UNTIL_PRESS}",
+        "PP de {STR_VAR_1} aumentou.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnElevatedToLvVar2": [
+        "{STR_VAR_1} was elevated to\\nLv. {STR_VAR_2}.",
+        "{STR_VAR_1} chegou\\nao Lv. {STR_VAR_2}."
+      ],
+      "gText_PkmnGainedExp": [
+        "{STR_VAR_1} gained {STR_VAR_2} Exp. Points!{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} ganhou {STR_VAR_2} pontos Exp.!{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnGainedExpAndElevatedToLvVar3": [
+        "{STR_VAR_1} gained {STR_VAR_2} Exp. Points\\nand was elevated to Lv. {STR_VAR_3}!",
+        "{STR_VAR_1} ganhou {STR_VAR_2} Exp.\\ne subiu ao Lv. {STR_VAR_3}!"
+      ],
+      "gText_PkmnBaseVar2StatIncreased": [
+        "{STR_VAR_1}'s base {STR_VAR_2}\\nstat was raised.{PAUSE_UNTIL_PRESS}",
+        "O atributo {STR_VAR_2}\\nde {STR_VAR_1} aumentou.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnFriendlyBaseVar2Fell": [
+        "{STR_VAR_1} turned friendly.\\nThe base {STR_VAR_2} fell!{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} ficou mais amigavel.\\nA base de {STR_VAR_2} caiu!{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnAdoresBaseVar2Fell": [
+        "{STR_VAR_1} adores you!\\nThe base {STR_VAR_2} fell!{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} adora voce!\\nA base de {STR_VAR_2} caiu!{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnFriendlyBaseVar2CantFall": [
+        "{STR_VAR_1} turned friendly.\\nThe base {STR_VAR_2} can't fall!{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} ficou mais amigavel.\\nA base de {STR_VAR_2} nao cai!{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnSnappedOutOfConfusion": [
+        "{STR_VAR_1} snapped out of its\\nconfusion.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} saiu\\nda confusao.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnGotOverInfatuation": [
+        "{STR_VAR_1} got over its\\ninfatuation.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} superou\\na paixao.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_PkmnTransformed": [
+        "{STR_VAR_1} transformed!{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1} se transformou!{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_ThrowAwayItem": [
+        "Throw away this\\n{STR_VAR_1}?",
+        "Descartar\\n{STR_VAR_1}?"
+      ],
+      "gText_ItemThrownAway": [
+        "The {STR_VAR_1}\\nwas thrown away.{PAUSE_UNTIL_PRESS}",
+        "{STR_VAR_1}\\nfoi descartado.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_TeachWhichPokemon2": [
+        "Teach which POKéMON?",
+        "Ensinar a qual POKEMON?"
+      ],
+      "gText_ChoosePokemon": [
+        "Choose a POKéMON.",
+        "Escolha um POKEMON."
+      ],
+      "gText_MoveToWhere": [
+        "Move to where?",
+        "Mover para onde?"
+      ],
+      "gText_TeachWhichPokemon": [
+        "Teach which POKéMON?",
+        "Ensinar a qual POKEMON?"
+      ],
+      "gText_GiveToWhichPokemon": [
+        "Give to which POKéMON?",
+        "Dar a qual POKEMON?"
+      ],
+      "gText_DoWhatWithPokemon": [
+        "Do what with this {PKMN}?",
+        "Fazer o que com {PKMN}?"
+      ],
+      "gText_NothingToCut": [
+        "There's nothing to CUT.",
+        "Nao ha nada para CUT."
+      ],
+      "gText_CantSurfHere": [
+        "You can't SURF here.",
+        "Nao pode usar SURF aqui."
+      ],
+      "gText_AlreadySurfing": [
+        "You're already SURFING.",
+        "Voce ja esta usando SURF."
+      ],
+      "gText_CantUseHere": [
+        "Can't use that here.",
+        "Nao pode usar isso aqui."
+      ],
+      "gText_RestoreWhichMove": [
+        "Restore which move?",
+        "Recuperar qual golpe?"
+      ],
+      "gText_BoostPP": [
+        "Boost PP of which move?",
+        "Aumentar PP de qual golpe?"
+      ],
+      "gText_DoWhatWithItem": [
+        "Do what with an item?",
+        "Fazer o que com o item?"
+      ],
+      "gText_ChoosePokemon2": [
+        "Choose a POKéMON.",
+        "Escolha um POKEMON."
+      ],
+      "gText_PokemonAreNeeded": [
+        "{STR_VAR_1} POKéMON are needed.",
+        "Precisa de {STR_VAR_1} POKEMON."
+      ],
+      "gText_PokemonCantBeSame": [
+        "POKéMON can't be the same.",
+        "Nao pode repetir POKEMON."
+      ],
+      "gText_NoIdenticalHoldItems": [
+        "No identical hold items.",
+        "Nao pode repetir itens segurados."
+      ],
+      "gText_CurrentIsTooFast": [
+        "The current is much too fast!",
+        "A correnteza e forte demais!"
+      ],
+      "gText_DoWhatWithMail": [
+        "Do what with the MAIL?",
+        "Fazer o que com a MAIL?"
+      ],
+      "gText_ChoosePokemonCancel": [
+        "Choose POKéMON or CANCEL.",
+        "Escolha POKEMON ou CANCELAR."
+      ],
+      "gText_ChoosePokemonConfirm": [
+        "Choose POKéMON and confirm.",
+        "Escolha POKEMON e confirme."
+      ],
+      "gText_SendWhichMonToPC": [
+        "Send which POKéMON to the PC?",
+        "Enviar qual POKEMON ao PC?"
+      ],
+      "gText_MoveItemWhere": [
+        "Move item to where?",
+        "Mover o item para onde?"
+      ],
+      "gText_EnjoyCycling": [
+        "Let's enjoy cycling!",
+        "Vamos pedalar!"
+      ],
+      "gText_InUseAlready_PM": [
+        "This is in use already.",
+        "Isso ja esta em uso."
+      ],
+      "gText_AlreadyHoldingOne": [
+        "{STR_VAR_1} is already holding\\none {STR_VAR_2}.",
+        "{STR_VAR_1} ja segura\\n{STR_VAR_2}."
+      ],
+      "gText_NoUse": [
+        "No use.",
+        "Sem uso."
+      ],
+      "gText_Able": [
+        "ABLE",
+        "PODE"
+      ],
+      "gText_First_PM": [
+        "FIRST",
+        "PRIMEIRO"
+      ],
+      "gText_Second_PM": [
+        "SECOND",
+        "SEGUNDO"
+      ],
+      "gText_Third_PM": [
+        "THIRD",
+        "TERCEIRO"
+      ],
+      "gText_Able2": [
+        "ABLE",
+        "PODE"
+      ],
+      "gText_NotAble": [
+        "NOT ABLE",
+        "NAO PODE"
+      ],
+      "gText_Able3": [
+        "ABLE!",
+        "PODE!"
+      ],
+      "gText_NotAble2": [
+        "NOT ABLE!",
+        "NAO PODE!"
+      ],
+      "gText_Learned": [
+        "LEARNED",
+        "APRENDEU"
+      ],
+      "gText_Have": [
+        "HAVE",
+        "TEM"
+      ],
+      "gText_DontHave": [
+        "DON'T HAVE",
+        "NAO TEM"
+      ],
+      "gText_Fourth": [
+        "FOURTH",
+        "QUARTO"
+      ],
+      "gText_PkmnCantParticipate": [
+        "That POKéMON can't participate.{PAUSE_UNTIL_PRESS}",
+        "Esse POKEMON nao pode entrar.{PAUSE_UNTIL_PRESS}"
+      ],
+      "gText_CancelParticipation": [
+        "Cancel participation?",
+        "Cancelar participacao?"
+      ],
+      "gText_CancelBattle": [
+        "Cancel the battle?",
+        "Cancelar batalha?"
+      ],
+      "gText_ReturnToWaitingRoom": [
+        "Return to the WAITING ROOM?",
+        "Voltar a SALA DE ESPERA?"
+      ],
+      "gText_CancelChallenge": [
+        "Cancel the challenge?",
+        "Cancelar desafio?"
+      ],
+      "gText_EscapeFromHere": [
+        "Want to escape from here and return\\nto {STR_VAR_1}?",
+        "Sair daqui e voltar\\npara {STR_VAR_1}?"
+      ],
+      "gText_ReturnToHealingSpot": [
+        "Want to return to the healing spot\\nused last in {STR_VAR_1}?",
+        "Voltar ao ultimo local\\nde cura em {STR_VAR_1}?"
+      ],
+      "gText_OnlyPkmnForBattle": [
+        "That's your only\\nPOKéMON for battle.",
+        "Esse e seu unico\\nPOKEMON para lutar."
+      ],
+      "gText_PkmnCantBeTradedNow": [
+        "That POKéMON can't be traded\\nnow.",
+        "Esse POKEMON nao pode\\nser trocado agora."
+      ],
+      "gText_PkmnCantBeTraded": [
+        "That POKéMON can't be traded.",
+        "Esse POKEMON nao pode\\nser trocado."
+      ],
+      "gText_EggCantBeTradedNow": [
+        "An EGG can't be traded now.",
+        "EGG nao pode ser trocado agora."
+      ],
+      "gText_OtherTrainersPkmnCantBeTraded": [
+        "The other TRAINER's POKéMON\\ncan't be traded now.",
+        "POKEMON de outro TREINADOR\\nnao pode ser trocado agora."
+      ],
+      "gText_OtherTrainerCantAcceptPkmn": [
+        "The other TRAINER can't accept\\nthat POKéMON now.",
+        "O outro TREINADOR nao pode\\nreceber esse POKEMON agora."
+      ],
+      "gText_CantTradeWithTrainer": [
+        "You can't trade with that\\nTRAINER now.",
+        "Nao pode trocar com esse\\nTREINADOR agora."
+      ],
+      "gText_NotPkmnOtherTrainerWants": [
+        "That isn't the type of POKéMON\\nthat the other TRAINER wants.",
+        "Esse nao e o tipo de POKEMON\\nque o outro TREINADOR quer."
+      ],
+      "gText_ThatIsntAnEgg": [
+        "That isn't an EGG.",
+        "Isso nao e um EGG."
+      ],
+      "gText_Register": [
+        "Register",
+        "Registrar"
+      ],
+      "gText_RentalPkmn": [
+        "RENTAL POKéMON",
+        "POKEMON ALUGADO"
+      ],
+      "gText_TypeSlash": [
+        "TYPE/",
+        "TIPO/"
+      ],
+      "gText_Power": [
+        "POWER",
+        "PODER"
+      ],
+      "gText_Accuracy2": [
+        "ACCURACY",
+        "PRECISAO"
+      ],
+      "gText_Appeal": [
+        "APPEAL",
+        "APELO"
+      ],
+      "gText_Jam": [
+        "JAM",
+        "BLOQUEIO"
+      ],
+      "gText_Status": [
+        "STATUS",
+        "ESTADO"
+      ],
+      "gText_ExpPoints": [
+        "EXP. POINTS",
+        "PONTOS EXP."
+      ],
+      "gText_NextLv": [
+        "NEXT LV.",
+        "PROX. NV."
+      ],
+      "gText_RibbonsVar1": [
+        "RIBBONS: {STR_VAR_1}",
+        "FITAS: {STR_VAR_1}"
+      ],
+      "gText_Events": [
+        "EVENTS",
+        "EVENTOS"
+      ],
+      "gText_Switch": [
+        "Switch",
+        "Trocar"
+      ],
+      "gText_PkmnInfo": [
+        "POKéMON INFO",
+        "INFO POKEMON"
+      ],
+      "gText_PkmnSkills": [
+        "POKéMON SKILLS",
+        "ATRIB. POKEMON"
+      ],
+      "gText_BattleMoves": [
+        "BATTLE MOVES",
+        "GOLPES DE BATALHA"
+      ],
+      "gText_ContestMoves": [
+        "CONTEST MOVES",
+        "GOLPES DE CONCURSO"
+      ],
+      "gText_Info": [
+        "INFO",
+        "INFO"
+      ],
+      "gText_EggWillTakeALongTime": [
+        "It looks like this EGG will\\ntake a long time to hatch.",
+        "Este EGG vai demorar\\na chocar."
+      ],
+      "gText_EggWillTakeSomeTime": [
+        "What will hatch from this?\\nIt will take some time.",
+        "O que vai sair daqui?\\nAinda vai demorar."
+      ],
+      "gText_EggWillHatchSoon": [
+        "It moves occasionally.\\nIt should hatch soon.",
+        "Ele se mexe as vezes.\\nVai chocar em breve."
+      ],
+      "gText_EggAboutToHatch": [
+        "It's making sounds.\\nIt's about to hatch!",
+        "Ele esta fazendo sons.\\nVai chocar agora!"
+      ],
+      "gText_HMMovesCantBeForgotten2": [
+        "HM moves can't be\\nforgotten now.",
+        "Golpes HM nao podem\\nser esquecidos agora."
+      ],
+      "gText_OddEggFoundByCouple": [
+        "An odd POKéMON EGG found\\nby the DAY CARE couple.",
+        "EGG estranho, recebido\\nde um casal da DAY CARE."
+      ],
+      "gText_PeculiarEggNicePlace": [
+        "A peculiar POKéMON EGG\\nobtained at the nice place.",
+        "EGG especial, obtido\\nem um lugar bonito."
+      ],
+      "gText_PeculiarEggTrade": [
+        "A peculiar POKéMON EGG\\nobtained in a trade.",
+        "EGG especial recebido\\nem uma troca."
+      ],
+      "gText_EggFromHotSprings": [
+        "A POKéMON EGG obtained\\nat the hot springs.",
+        "EGG obtido nas\\nfontes termais."
+      ],
+      "gText_EggFromTraveler": [
+        "An odd POKéMON EGG\\nobtained from a traveler.",
+        "EGG estranho, recebido\\nde um viajante."
+      ],
+      "gText_OkayToDeleteFromRegistry": [
+        "Is it okay to delete {STR_VAR_1}\\nfrom the REGISTRY?",
+        "Apagar {STR_VAR_1}\\ndo REGISTRO?"
+      ]
+    }
+  },
+  "asm": {}
+}

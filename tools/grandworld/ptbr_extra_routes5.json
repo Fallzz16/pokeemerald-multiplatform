@@ -1,0 +1,60 @@
+{
+  "asm": {
+    "data/maps/Route109/scripts.inc": {
+      "DewfordTown_Text_BrineyLandedInSlateportDeliverGoods": [
+        "MR. BRINEY: Terra a vista!\\nChegamos a SLATEPORT!\\pAgora entregue os DEVON GOODS\\npara CAPT. STERN!$"
+      ],
+      "Route109_Text_BrineySailToDewfordQuestion": [
+        "MR. BRINEY: Voce precisa\\nentregar os DEVON GOODS.\\pQuer voltar a DEWFORD?$"
+      ],
+      "Route109_Text_BrineyDewfordItIs": [
+        "MR. BRINEY: Rumo a DEWFORD!\\pLevantar ancora!\\nPEEKO, vamos navegar!$"
+      ],
+      "Route109_Text_BrineyDeliverDevonGoods": [
+        "MR. BRINEY: Entregue\\nos DEVON GOODS.\\nVou esperar por aqui!$"
+      ],
+      "DewfordTown_Text_BrineyLandedInSlateport": [
+        "MR. BRINEY: Terra a vista!\\nChegamos a SLATEPORT!\\pAvise quando quiser\\nnavegar de novo!$"
+      ],
+      "Route109_Text_BrineyWhereAreWeBound": [
+        "MR. BRINEY: Ola, marujo!\\nNavego com voce quando quiser!\\pPara onde vamos?$"
+      ],
+      "Route109_Text_BrineyTellMeWhenYouNeedToSail": [
+        "MR. BRINEY: Me avise\\nquando quiser navegar!$"
+      ],
+      "Route109_Text_ChillAtMyPapasSpot": [
+        "Ei, TREINADORES!\\pSe querem descansar\\ndepois de uma batalha,\\lvisitem o lugar do meu pai!$"
+      ],
+      "Route109_Text_LittleKidsDartAround": [
+        "As criancas correm tao rapido!\\pNao posso tirar os olhos\\ndelas nem por um instante.\\pEstao com meus POKEMON,\\nentao devem estar bem...$"
+      ],
+      "Route109_Text_SandCastleTakingLongTime": [
+        "Estamos demorando muito\\npara fazer o castelo de areia.$"
+      ],
+      "Route109_Text_YouCanHaveThis": [
+        "Pode ficar com isto!$"
+      ],
+      "Route109_Text_WereGoingToMakeBigCastle": [
+        "Vamos usar toda a areia\\nda praia para um castelo!\\pSeremos rei e rainha!\\pVoce pode ser nosso ajudante!$"
+      ],
+      "Route109_Text_ZigzagoonPicksUpLitter": [
+        "A agua daqui e limpa.\\pMeu ZIGZAGOON recolhe\\no lixo da praia.\\pA agua suja vira chuva\\ne chega aos nossos rios.\\pTemos que cuidar do mar!$"
+      ],
+      "Route109_Text_ZigzagoonCry": [
+        "ZIGZAGOON: Guguu?$"
+      ],
+      "Route109_Text_SeashoreHouseSign": [
+        "SEASHORE HOUSE\\pBatalhas quentes\\nnas areias da praia!$"
+      ],
+      "Route109_Text_TrainerTipsSign": [
+        "DICAS PARA TREINADORES\\pPOKEMON do mesmo nivel\\npodem ter atributos diferentes.\\pPOKEMON treinados tendem\\na superar os selvagens!$"
+      ]
+    },
+    "data/maps/Route106/scripts.inc": {
+      "Route106_Text_TrainerTips": [
+        "DICAS PARA TREINADORES\\pAo pescar com uma ROD,\\naperte A quando algo fisgar.$"
+      ]
+    }
+  },
+  "c": {}
+}

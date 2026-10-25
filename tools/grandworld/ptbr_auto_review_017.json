@@ -1,0 +1,855 @@
+{
+  "asm": {
+    "data/maps/MtSilver_PokemonCenter/scripts.inc": {
+      "MtSilver_PokemonCenter_Text_Meara": [
+        "Sou investigadora do museu\\nPEWTER CITY.\\pUma quantidade invulgar de\\nartefactos foi descoberta nesta\\larea, por isso vim aqui para\\linvestigar.\\pNao ha registros de uma\\ncivilizacao ao redor da\\lmontanha, mas os artefatos sao\\lquase certamente feitos pelo\\lhomem.\\pE realmente muito misterioso.$"
+      ]
+    },
+    "data/maps/NationalPark_BugContest/scripts.inc": {
+      "NationalPark_BugContest_Text_Trash": [
+        "Nada aqui.$"
+      ]
+    },
+    "data/maps/NationalPark_Normal/scripts.inc": {
+      "NationalPark_Normal_Text_Lass": [
+        "Olha! Olha para a minha mala!\\pImprimi os meus favoritos do\\nmeu POKEDEX e coloquei-os na\\lminha bolsa.$"
+      ],
+      "NationalPark_Normal_Text_PokefanF": [
+        "Este e o MAIL que recebi da\\nminha filha. Isso anima-me.$"
+      ],
+      "NationalPark_Normal_Text_Teacher1": [
+        "Presta atencao, por favor!\\pTenho de parar de pensar como\\nprofessora.\\pVoce deve ser um treinador\\nPOKEMON.\\pJa que trabalhas tanto, quero\\nque fiques com isto.$"
+      ],
+      "NationalPark_Normal_Text_Youngster1": [
+        "Estou a brincar com\\nautocolantes que imprimi do meu\\lPOKEDEX.$"
+      ],
+      "NationalPark_Normal_Text_Youngster2": [
+        "Fico com o autocolante do outro\\ntipo se eu ganhar.$"
+      ],
+      "NationalPark_Normal_Text_SchoolboyJack1_Seen": [
+        "O mundo de POKEMON e profundo.\\pAinda ha muitas coisas que nao\\nsabemos.\\pMas eu sei mais do que tu!$"
+      ],
+      "NationalPark_Normal_Text_SchoolboyJack1_Beaten": [
+        "O que?$"
+      ],
+      "NationalPark_Normal_Text_SchoolboyJack_After": [
+        "Ha muito para aprender.\\pPor exemplo...\\pHa 50 tipos de TMs.\\pTrocou o nivel de POKEMON mais\\nrapido.$"
+      ],
+      "NationalPark_Normal_Text_PokefanFBeverly1_Seen": [
+        "O meu Pokemon e simplesmente\\nquerido.\\pDeixa-me dizer-te como as\\nminhas queridas me deixam\\lorgulhoso.$"
+      ],
+      "NationalPark_Normal_Text_PokefanFBeverly1_Beaten": [
+        "Posso vencer-te com orgulho,\\nmas...$"
+      ],
+      "NationalPark_Normal_Text_PokefanFBeverly_After": [
+        "Devo dizer que o teu Pokemon\\ntambem e muito giro.$"
+      ],
+      "NationalPark_Normal_Text_PokefanmWilliam_Seen": [
+        "Nos adoramos o nosso POKEMON,\\nmesmo que eles nao gostam de\\lnos.\\pE disso que se trata ser um\\nFAN.$"
+      ],
+      "NationalPark_Normal_Text_PokefanmWilliam_Beaten": [
+        "O meu Pokemon!$"
+      ],
+      "NationalPark_Normal_Text_PokefanmWilliam_After": [
+        "Perdi a batalha, mas o meu\\nPOKEMON ganhou o premio por ser\\lmuito adoravel.$"
+      ],
+      "NationalPark_Normal_Text_LassKrise_Seen": [
+        "Estou? Porque estas a olhar\\npara mim?\\pUma batalha?$"
+      ],
+      "NationalPark_Normal_Text_LassKrise_After": [
+        "Pensei que estavas a olhar para\\nmim porque sou giro!$"
+      ]
+    },
+    "data/maps/NewBarkTown_House2/scripts.inc": {
+      "NewBarkTown_House2_Text_ElmsWife": [
+        "Ola.{PLAYER}O meu marido esta\\nsempre tao ocupado, espero que\\lesteja bem.\\pQuando ele e apanhado na sua\\npesquisa POKEMON, ele ate se\\lesquece de comer.$"
+      ],
+      "NewBarkTown_House2_Text_ElmsSon": [
+        "Quando crescer, vou ajudar o\\nmeu pai!\\pVou ser um grande professor\\nPOKEMON!$"
+      ]
+    },
+    "data/maps/NewBarkTown_PlayersHouse_1F/scripts.inc": {
+      "NewBarkTown_PlayersHouse_1F_Text_ObtainedPokeGear": [
+        "{PLAYER}obteve o POKeNAV.$"
+      ]
+    },
+    "data/maps/NewBarkTown_PlayersHouse_2F/scripts.inc": {
+      "NewBarkTown_PlayersHouse_2F_Text_NES": [
+        "{PLAYER}Brincava com o NES.\\pEsta bem! Esta na hora de ir!$"
+      ]
+    },
+    "data/maps/NewMauville_Entrance/scripts.inc": {
+      "NewMauville_Entrance_Text_DoorIsLocked": [
+        "A porta esta trancada.$"
+      ]
+    },
+    "data/maps/NewMauville_Inside/scripts.inc": {
+      "NewMauville_Inside_Text_GeneratorRadiatingHeat": [
+        "O gerador esta irradiando calor\\nque pode ser sentido mesmo a\\ldistancia.\\pParece que deve ser desligado o\\nmais rapido possivel.$"
+      ],
+      "NewMauville_Inside_Text_GeneratorQuietedDown": [
+        "O gerador acalmou.$"
+      ],
+      "NewMauville_Inside_Text_SteppedOnSwitchGeneratorStopped": [
+        "{PLAYER}Pisei no interruptor.\\pClique...\\p... ... ... ... ... ... ... ...\\n... ... ... ... ... ... ... ...\\pO gerador parece ter parado...$"
+      ]
+    },
+    "data/maps/OldaleTown_House1/scripts.inc": {
+      "OldaleTown_House1_Text_LeftPokemonGoesOutFirst": [
+        "Quando uma batalha POKEMON\\ncomeca, a da esquerda da lista\\lsai primeiro.\\pAssim, quando voce obter mais\\nPOKEMON em seu partido, tente\\lmudar a ordem de seu POKEMON.\\pPode dar-te uma vantagem.$"
+      ]
+    },
+    "data/maps/OldaleTown_House2/scripts.inc": {
+      "OldaleTown_House2_Text_PokemonLevelUp": [
+        "Quando POKEMON batalha, eles\\neventualmente subir e tornar-se\\lmais forte.$"
+      ],
+      "OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon": [
+        "Se o POKEMON contigo se tornar\\nmais forte, poderas ir mais\\llonge daqui.$"
+      ]
+    },
+    "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc": {
+      "OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC": [
+        "Aquele PC no canto ha para\\nqualquer treinador POKEMON\\lusar.\\pNaturalmente, isso significa\\nque tambem podes usa-lo.$"
+      ]
+    },
+    "data/maps/OlivineCity/scripts.inc": {
+      "OlivineCity_Text_EonTicketWoman3": [
+        "Nao acredito que conheci o\\ncampeao!!!!$"
+      ],
+      "OlivineCity_Text_YoungsterPokegear": [
+        "Aquilo que tens... E um\\nPOKeNAV, certo? Isso e fixe.$"
+      ],
+      "OlivineCity_Text_YoungsterPokedex": [
+        "Uau, voce tem um POKEDEX!\\pIsso e tao fantastico.$"
+      ]
+    },
+    "data/maps/OlivineCity_Cafe/scripts.inc": {
+      "OlivineCity_Text_CafeSailorGotStrength": [
+        "No mar, a unica coisa com que\\npodes contar e contigo mesmo!\\pEstou tao orgulhoso do meu\\ncorpo! Devias treinar como eu!$"
+      ],
+      "OlivineCity_Text_CafeSailor": [
+        "Sempre que venho a esta cidade,\\nvisito sempre o OLIVINE CAFE.\\pTudo no menu me faz sentir mais\\nforte. Nao consigo parar de\\lcomer!$"
+      ]
+    },
+    "data/maps/OlivineCity_House1/scripts.inc": {
+      "OlivineCity_House1_Text_YouWillTradeWontYou": [
+        "Coleciono Pokemon! Voce tem\\num{STR_VAR_1}?\\pQuero troca-lo pela\\nminha{STR_VAR_2}?$"
+      ],
+      "OlivineCity_House1_Text_MonYouTakeCare": [
+        "Boa! Consegui-me.{STR_VAR_1}!\\p{STR_VAR_2}Cuida-te!$"
+      ],
+      "OlivineCity_House1_Text_ThisIsntAMon": [
+        "Nao, acho que nao. Isso nao\\ne...{STR_VAR_1}.$"
+      ],
+      "OlivineCity_House1_Text_YouWontTradeMe": [
+        "Nao queres trocar? Aww...$"
+      ],
+      "OlivineCity_House1_Text_After": [
+        "Ola, como esta o meu velho\\nVOLTORB?$"
+      ]
+    },
+    "data/maps/OlivineCity_House2/scripts.inc": {
+      "OlivineCity_Text_PunishmentBro": [
+        "No caminho para CIANWOOD, ha\\nquatro ilhas desertas.\\pCriancas mas sao levadas para\\nessas ilhas como castigo!$"
+      ],
+      "OlivineCity_Text_PunishmentBoy": [
+        "Sempre que me meto em sarilhos,\\no grande mano assusta-me\\lsempre.$"
+      ]
+    },
+    "data/maps/OlivineCity_House3/scripts.inc": {
+      "OlivineCity_Text_OfferGoodRod": [
+        "OLIVINE esta no mar!\\pE se for no mar, ha de haver\\npeixes!\\pEu pesquei aqui durante 30\\nanos.\\pGostaria de enfrentar o mar e\\ntentar pescar?$"
+      ],
+      "OlivineCity_Text_GiveGoodRod": [
+        "Ah, hahah! Temos um novo\\npescador em formacao!$"
+      ],
+      "OlivineCity_Text_GaveGoodRod": [
+        "Os peixes nao sao so\\nencontrados no mar, estao onde\\lha agua.\\pA proposito, o seu POKEDEX\\nmostra grupos de pesca para\\lPOKEMON.\\pDiferentes manchas podem conter\\ntipos de peixes semelhantes.$"
+      ],
+      "OlivineCity_Text_DontWantGoodRod": [
+        "O que? Nao gostas de pescar?\\nIsso e incompreensivel!$"
+      ],
+      "OlivineCity_Text_HaveGoodRod": [
+        "Como estao as coisas? Aterraste\\no grandalhao?$"
+      ]
+    },
+    "data/maps/OlivineCity_Lighthouse/scripts.inc": {
+      "OlivineLighthouse_Text_SailorHueySeen": [
+        "Os homens do mar estao sempre a\\nestragar-se para uma boa luta!$"
+      ],
+      "OlivineLighthouse_Text_SailorHueyBeaten": [
+        "Urf! Perdi!$"
+      ],
+      "OlivineLighthouse_Text_SailorHueyAfter": [
+        "Que poder! Gostaria de navegar\\npelos mares comigo?$"
+      ],
+      "OlivineLighthouse_Text_GentlemanAlfredSeen": [
+        "Hm? Isto nao e lugar para\\nbrincar.$"
+      ],
+      "OlivineLighthouse_Text_GentlemanAlfredBeaten": [
+        "Ah! Vejo que estas a falar a\\nserio.$"
+      ],
+      "OlivineLighthouse_Text_BirdKeeperTheoSeen": [
+        "Porque estas aqui? Vais ficar a\\nolhar? Sugiro que te vas\\lembora!$"
+      ],
+      "OlivineLighthouse_Text_BirdKeeperTheoBeaten": [
+        "Estas mesmo preocupado com o\\nPOKEMON doente...$"
+      ],
+      "OlivineLighthouse_Text_BirdKeeperTheoAfter": [
+        "Como e que se sobe?\\pQuero visitar o Pokemon doente,\\nmas nao consigo subir...$"
+      ],
+      "OlivineLighthouse_Text_SailorTerrellSeen": [
+        "Marinheiros sao gentis e\\nfortes. E tu?$"
+      ],
+      "OlivineLighthouse_Text_SailorTerrellBeaten": [
+        "Voces sao gentis e fortes...$"
+      ],
+      "OlivineLighthouse_Text_GentlemanPrestonSeen": [
+        "Viajo pelo mundo para treinar o\\nmeu Pokemon. Desejo lutar\\lcontigo.$"
+      ],
+      "OlivineLighthouse_Text_GentlemanPrestonBeaten": [
+        "Tenho de treinar mais...$"
+      ],
+      "OlivineLighthouse_Text_GentlemanPrestonAfter": [
+        "JASMINE costumava usar POKEMON\\ntipo ROCK como ONIX.$"
+      ],
+      "OlivineLighthouse_Text_SailorKentSeen": [
+        "JASMINE deve estar muito\\npreocupada com o Pokemon.\\pEla nem sequer sorri hoje em\\ndia.$"
+      ],
+      "OlivineLighthouse_Text_SailorKentBeaten": [
+        "Tambem nao consigo um\\nsorriso...$"
+      ],
+      "OlivineLighthouse_Text_LassConnieBeaten": [
+        "Aaack! O meu Pokemon!$"
+      ],
+      "OlivineLighthouse_Text_SailorErnestSeen": [
+        "Eu queria lutar com a JASMINE,\\nmas ela nao esta a altura.\\pEntao, e tu?$"
+      ],
+      "OlivineLighthouse_Text_SailorErnestBeaten": [
+        "Calma, calma. Es avassalador!$"
+      ],
+      "OlivineLighthouse_Text_BirdKeeperDenisSeen": [
+        "Estamos muito alto aqui. O meu\\npassaro Pokemon esta em\\lexcelente forma.$"
+      ],
+      "OlivineLighthouse_Text_BirdKeeperDenisBeaten": [
+        "Oops... Eles cairam...$"
+      ],
+      "OlivineLighthouse_Text_JasmineGetMedicine": [
+        "Posso pedir-lhe que me traga\\nalgum remedio? Por favor?$"
+      ],
+      "OlivineLighthouse_Text_JasmineAmphyHowFeeling": [
+        "JASMINE: ...\\pAMPHY, como te sentes?$"
+      ],
+      "OlivineLighthouse_Text_JasmineThankYou": [
+        "JASMINE: ... Estou tao\\naliviada...\\pIsto e tao maravilhoso...\\pMuito obrigado.\\p...vou voltar para o GINASIO...\\pTambem vos aviso, os tipos do\\nSTEEL sao poderosos.$"
+      ],
+      "OlivineLighthouse_Text_AmphyBreathingLabored": [
+        "Sua respiracao esta\\nterrivelmente sobrecarregada...$"
+      ]
+    },
+    "data/maps/OlivineCity_Mart/scripts.inc": {
+      "OlivineCity_Text_MartCooltrainerF": [
+        "O seu POKEMON ja sabe o que\\nfazer para transportar pessoas\\latraves da agua?$"
+      ]
+    },
+    "data/maps/OlivineCity_PortInside/scripts.inc": {
+      "OlivinePort_Text_NoPass": [
+        "{PLAYER}tentou mostrar\\no{STR_VAR_1}...\\p...Mas nao{STR_VAR_1}!\\pDesculpa! So pode embarcar se\\ntiver um{STR_VAR_1}.$"
+      ],
+      "OlivinePort_Text_SailorGetOnBoard": [
+        "Partimos em breve. Por favor,\\nsuba a bordo.$"
+      ],
+      "OlivinePort_Text_CantBoard": [
+        "Desculpa. Nao podes embarcar\\nagora.$"
+      ],
+      "OlivinePort_Text_WhereSail": [
+        "Para onde gostaria de velejar?$"
+      ],
+      "OlivinePort_Text_AskTicket": [
+        "Posso ver o seu S.S.TICKET?$"
+      ],
+      "OlivinePort_Text_ComeAgain": [
+        "Esperamos ve-lo novamente!$"
+      ],
+      "OlivinePort_Text_FlashTicket": [
+        "{PLAYER}O S.S.TICKET.\\pE isso. Obrigado!$"
+      ],
+      "OlivinePort_Text_NotSailingYet": [
+        "A S.S. AQUA ainda esta pronta\\npara a sua viagem inaugural.\\pPor favor, volta mais tarde!$"
+      ],
+      "OlivinePort_Text_FishingGuru2": [
+        "Quantos RODS tens?\\pDiferentes RODS pegar POKEMON\\ndiferente.$"
+      ],
+      "OlivinePort_Text_Youngster": [
+        "S.S.AQUA usa jatos para desviar\\nas ondas!$"
+      ],
+      "OlivinePort_Text_CooltrainerF": [
+        "Ha muitos Pokemon em KANTO.\\pGostava de poder ir...$"
+      ],
+      "OlivinePort_Text_SailorBeforeHOF": [
+        "Nao queremos que caias no mar,\\npor isso nao podes entrar.$"
+      ]
+    },
+    "data/maps/OlivineCity_PortOutside/scripts.inc": {
+      "OlivineCity_PortOutside_Text_Fisherman2": [
+        "Sim, estou a pescar.$"
+      ]
+    },
+    "data/maps/OneIsland_Frlg/scripts.inc": {
+      "Text_WhereDoYouWantToSail": [
+        "Ola! Para onde queres velejar?$"
+      ],
+      "OneIsland_Text_HavePCLinkageWithKanto": [
+        "A minha neta estava nervosa com\\numa nova descoberta.\\pEla disse que agora temos\\nligacao PC com pessoas em\\lKANTO.\\pNao sei o que isso significa,\\nmas o CELIO e um homem e tanto!$"
+      ],
+      "OneIsland_Text_HavePCLinkageWithHoenn": [
+        "A minha neta estava nervosa com\\numa nova descoberta.\\pEla disse que finalmente temos\\nligacao com pessoas em HOENN.\\pNao sei bem o que isso\\nsignifica, mas o CELIO e um\\lgrande homem.\\pDaria um bom marido para a\\nminha neta!$"
+      ],
+      "OneIsland_Text_IsntWarmClimateHereGreat": [
+        "Ola, estas a ver? O clima\\nquente aqui nao e optimo?$"
+      ]
+    },
+    "data/maps/OneIsland_House1_Frlg/scripts.inc": {
+      "OneIsland_House1_Text_GazeUponVolcanoOnSunnyDays": [
+        "Nos dias de sol, saio e olho\\npara o vulcao.\\pE a minha rotina diaria.$"
+      ],
+      "OneIsland_House1_Text_LastTimeMtEmberErupted": [
+        "Deixa-me pensar... Quando foi a\\nultima vez que a MT. EMBER\\lentrou em erupcao?$"
+      ]
+    },
+    "data/maps/OneIsland_House2_Frlg/scripts.inc": {
+      "OneIsland_House2_Text_IWantToStayHereForever": [
+        "Todos os jovens querem ir para\\ngrandes cidades.\\pMas quero ficar aqui para\\nsempre!$"
+      ]
+    },
+    "data/maps/OneIsland_KindleRoad_EmberSpa_Frlg/scripts.inc": {
+      "OneIsland_KindleRoad_EmberSpa_Text_WaterWarmsMeToCore": [
+        "Hm! Haaaaaaaaaaah!\\pAaaah! Isto e celestial! A agua\\naquece-me ate ao nucleo!\\pTambem devias saltar.\\pVa para o meio, relaxe, e fique\\nbom e quente!$"
+      ],
+      "OneIsland_KindleRoad_EmberSpa_Text_EnjoyBowlOfChowder": [
+        "A minha parte favorita do banho\\nsurge logo depois disto.\\pGosto de uma tigela de sopa\\npara me aquecer de dentro,\\ltambem!$"
+      ],
+      "OneIsland_KindleRoad_EmberSpa_Text_WaterExquisiteFullyRefreshed": [
+        "A agua esta perfeitamente\\nquente. Parece requintado...\\p{PLAYER}e os POKEMON foram\\ntotalmente revigorados!$"
+      ],
+      "OneIsland_KindleRoad_EmberSpa_Text_HotSpringIsTherapeutic": [
+        "Mergulhar numa piscina quente e\\nterapeutico, dizem as pessoas.$"
+      ],
+      "OneIsland_KindleRoad_EmberSpa_Text_SeeHowSmoothMySkinIs": [
+        "Olha para a minha cara. Ves\\ncomo a minha pele esta macia?\\pA agua quente mantem a minha\\npele mais nova do que a minha\\lidade.$"
+      ],
+      "OneIsland_KindleRoad_EmberSpa_Text_UsedThisToMakeEmberSpa": [
+        "As fontes termais vao de maos\\ndadas com vulcoes.\\pO SPA EMBER aqui, bem, eu fiz-o\\nha anos.\\pTirei a piscina de uma pedra\\ngigante a mao.\\pEstava a usar isto na altura.\\nAcho que posso separar-me dele.$"
+      ],
+      "OneIsland_KindleRoad_EmberSpa_Text_ExplainHM06": [
+        "Isso quebra pedras como se\\nfossem feitas de bolachas.$"
+      ]
+    },
+    "data/maps/OneIsland_KindleRoad_Frlg/scripts.inc": {
+      "OneIsland_KindleRoad_Text_MariaIntro": [
+        "O tempo esta lindo! Perfeito\\npara uma batalha!$"
+      ],
+      "OneIsland_KindleRoad_Text_MariaPostBattle": [
+        "Por favor, nao me salpicos a\\ncara! Vais estragar a\\lmaquilhagem.$"
+      ],
+      "OneIsland_KindleRoad_Text_AbigailIntro": [
+        "Estou a comecar a ter uma\\nqueimadura de sol...$"
+      ],
+      "OneIsland_KindleRoad_Text_AbigailDefeat": [
+        "Es tao horrivel.$"
+      ],
+      "OneIsland_KindleRoad_Text_AbigailPostBattle": [
+        "Gosto desse bone que tens.\\nTalvez eu devesse usar um\\ltambem...$"
+      ],
+      "OneIsland_KindleRoad_Text_FinnDefeat": [
+        "Bem, nao es durona?$"
+      ],
+      "OneIsland_KindleRoad_Text_FinnPostBattle": [
+        "O ceu e imenso por aqui.$"
+      ],
+      "OneIsland_KindleRoad_Text_GarrettIntro": [
+        "Fiz uma pausa para nadar, so\\npara me desafiares?$"
+      ],
+      "OneIsland_KindleRoad_Text_GarrettDefeat": [
+        "Mas que... Tu es bom!$"
+      ],
+      "OneIsland_KindleRoad_Text_GarrettPostBattle": [
+        "Em vez de usar SURF o tempo\\ntodo, voce deve nadar um pouco.$"
+      ],
+      "OneIsland_KindleRoad_Text_TommyIntro": [
+        "Espera! Espera um segundo! Acho\\nque apanhei uma grande!$"
+      ],
+      "OneIsland_KindleRoad_Text_TommyDefeat": [
+        "Perdi tudo outra vez...$"
+      ],
+      "OneIsland_KindleRoad_Text_TommyPostBattle": [
+        "Nao so perdi, como tambem o\\ngrandalhao fugiu de mim!$"
+      ],
+      "OneIsland_KindleRoad_Text_SharonIntro": [
+        "Podes ajudar-me com o meu\\ntreino?$"
+      ],
+      "OneIsland_KindleRoad_Text_SharonDefeat": [
+        "Foste um corte acima de mim.$"
+      ],
+      "OneIsland_KindleRoad_Text_SharonPostBattle": [
+        "Esta claro que es habilidoso.\\nGosto de ti!$"
+      ],
+      "OneIsland_KindleRoad_Text_TanyaIntro": [
+        "Nao ha um dia em que nao\\ntreinemos!$"
+      ],
+      "OneIsland_KindleRoad_Text_TanyaDefeat": [
+        "Sou tao idiota!$"
+      ],
+      "OneIsland_KindleRoad_Text_TanyaPostBattle": [
+        "Vou treinar ainda mais a partir\\nde agora!$"
+      ],
+      "OneIsland_KindleRoad_Text_SheaIntro": [
+        "Todas as manhas, antes do\\npequeno-almoco, nado por esta\\lilha.$"
+      ],
+      "OneIsland_KindleRoad_Text_SheaPostBattle": [
+        "Perdi porque estou cansado de\\ntoda a corrida que fiz...$"
+      ],
+      "OneIsland_KindleRoad_Text_HughIntro": [
+        "Veste-te apropriadamente para a\\nbatalha! Tira essa roupa\\lfrivola!$"
+      ],
+      "OneIsland_KindleRoad_Text_HughDefeat": [
+        "Porque eu?!$"
+      ],
+      "OneIsland_KindleRoad_Text_HughPostBattle": [
+        "Ate os artistas marciais estao\\na tornar-se conscientes da\\lmoda...$"
+      ],
+      "OneIsland_KindleRoad_Text_BryceIntro": [
+        "Sabes, tudo sabe bem quando\\nestamos na selva.$"
+      ],
+      "OneIsland_KindleRoad_Text_BryceDefeat": [
+        "Awww, estourou!$"
+      ],
+      "OneIsland_KindleRoad_Text_BrycePostBattle": [
+        "A agua nas regioes vulcanicas e\\ndeliciosa.$"
+      ],
+      "OneIsland_KindleRoad_Text_ClaireIntro": [
+        "O meu almoco encheu-nos, por\\nisso vais lutar connosco por\\lalgum exercicio?$"
+      ],
+      "OneIsland_KindleRoad_Text_ClaireDefeat": [
+        "Isso deixou-me toda suada.$"
+      ],
+      "OneIsland_KindleRoad_Text_ClairePostBattle": [
+        "O que devo fazer? Sinto-me\\nfaminto outra vez.$"
+      ],
+      "OneIsland_KindleRoad_Text_KiaIntro": [
+        "KIA: Meu irmao mais velho e eu\\nfazemos uma combinacao\\lincrivel!$"
+      ],
+      "OneIsland_KindleRoad_Text_MikPostBattle": [
+        "MIK: Como minha combinacao com\\na KIA pode falhar?$"
+      ],
+      "OneIsland_KindleRoad_Text_EmberSpaSign": [
+        "Acenda o fogo em seu coracao!\\nSPA EMBER$"
+      ]
+    },
+    "data/maps/OneIsland_PokemonCenter_1F_Frlg/scripts.inc": {
+      "OneIsland_PokemonCenter_1F_Text_PlayerIsRisingPokemonChamp": [
+        "CELIO, aqui e{PLAYER}, um\\ncandidato em ascensao como o\\lCHAMP POKEMON!$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_AcceptedMeteoriteFromBill": [
+        "{PLAYER}aceitou o METEORITE de\\nBILL.$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_ReceivedExtraPageForTownMap": [
+        "{PLAYER}recebeu uma pagina\\nextra para o MAP da TOWN!$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_HmmHowAboutLikeThis": [
+        "Hmm...\\pQue tal tentarmos assim...$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_GotPCWorkingStrollAWhileMore": [
+        "Ola.{PLAYER}!\\pViste? Temos o PC a funcionar!\\pTenho algumas coisas para\\nmostrar ao CELIO.\\pPodes ir dar um passeio mais um\\npouco?$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_UsualPCServicesUnavailable": [
+        "Os servicos de PC habituais nao\\nestao disponiveis...$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_YoullBeTradingFromTrainersFarAway": [
+        "Estou a modificar a Maquina de\\nRede.\\pEstou a muda-lo para que possa\\nlidar com negocios a longas\\ldistancias.\\pQuando eu terminar, estaras a\\ntrocar por POKEMON exotico de\\lTRAiners muito longe.$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_TryingToFindGem": [
+        "Estava a tentar encontrar a\\njoia mesmo enquanto estudava.\\pComo resultado, nao fiz nenhum\\nprogresso na minha busca e\\lestudos...\\pSe eu confiasse no BILL, tenho\\na certeza que a minha pesquisa\\lprogrediria.\\pMas desta vez, quero tentar\\nfazer as coisas sozinha.$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_OhThats": [
+        "Oh! Isso e...$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_MayIAskOneMoreFavor": [
+        "Obrigado!{PLAYER}Es\\nsimplesmente incrivel.\\p... ... ... ... ... ...\\pHum... Posso pedir-te mais um\\nfavor gigante?$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_PleaseINeedYourHelp": [
+        "Nao e nada estranho. Por favor,\\npreciso da tua ajuda.$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_HandedSapphireToCelio": [
+        "{PLAYER}Entreguei o SAPPHIRE ao\\nCELIO.$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_OkayThisIsGood": [
+        "Esta bem, isto e bom...$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_WishYouBestOfLuck": [
+        "Nao estou a chorar.\\pJa chega de falar de mim!\\p{PLAYER}Vais continuar a\\nprocura de Pokemon exotico,\\lcerto?\\pDesejo-lhe boa sorte!$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_BillsFirstMonWasAbra": [
+        "{PLAYER}Qual e o teu tipo\\nfavorito de Pokemon?\\pO BILL e um POKeMANIAC, por\\nisso adora todos os tipos.\\pAparentemente, o primeiro que\\nele apanhou foi um ABRA.$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_BillCantStomachMilk": [
+        "{PLAYER}Ha alguma coisa que nao\\nsuportas?\\pAparentemente, o BILL nao\\nconsegue comer leite.$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_EnormousVolcanoOnIsland": [
+        "Nesta ilha, ha um enorme\\nvulcao.\\pNao entrou em erupcao\\nultimamente, entao porque nao\\ldesfrutar de uma caminhada?$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_WishICouldTradeWithBoyfriend": [
+        "Quem me dera poder trocar\\nPOKEMON com o meu namorado que\\lmora longe...$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_TradedWithFarAwayBoyfriend": [
+        "Troquei o POKEMON com o meu\\nnamorado de longe!\\pTodos dizem que podemos\\nagradecer-lhe e ao CELIO.\\pEntao, obrigado!$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_MachineUnderAdjustment": [
+        "Nivel 0 da ligacao da maquina\\nde rede\\p...Sistema de armazenamento\\nPOKEMON em ajuste...$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_MachineLinkedWithKanto": [
+        "Maquina de rede Link Nivel 1\\pLigacao estabelecida com a\\nregiao KANTO.$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_MachineLinkedWithKantoAndHoenn": [
+        "Maquina de rede Link Nivel 2\\pLigacao estabelecida com as\\nregioes KANTO e HOENN.$"
+      ],
+      "OneIsland_PokemonCenter_1F_Text_ObtainedTriPass": [
+        "Obtive o TRI-PASS!$"
+      ]
+    },
+    "data/maps/OneIsland_TreasureBeach_Frlg/scripts.inc": {
+      "OneIsland_TreasureBeach_Text_AmaraIntro": [
+        "Deitado, sacudido pelas\\nondas... E requintado.$"
+      ],
+      "OneIsland_TreasureBeach_Text_AmaraDefeat": [
+        "Perdi... E uma sensacao\\nhorrivel.$"
+      ],
+      "OneIsland_TreasureBeach_Text_AmaraPostBattle": [
+        "O mar e agradavelmente quente\\nnestas partes.$"
+      ],
+      "OneIsland_TreasureBeach_Text_GoodThingsWashUpOnBeach": [
+        "Coisas boas sao levadas pela\\ncorrente do oceano para esta\\lpraia.\\pE por isso que venho aqui\\nmuitas vezes para um concerto\\lna praia.$"
+      ]
+    },
+    "data/maps/PacifidlogTown/scripts.inc": {
+      "PacifidlogTown_Text_FastRunningCurrent": [
+        "O mar entre PACIFIDLOG e\\nSLATEPORT tem uma mare de\\lcorrida rapida.\\pSe decidires ir para o SURF,\\npodes acabar varrido para outro\\llado.$"
+      ],
+      "PacifidlogTown_Text_NeatHousesOnWater": [
+        "Ves, nao e fixe? Estas casas\\nestao na agua!\\pEu nasci aqui!$"
+      ],
+      "PacifidlogTown_Text_SkyPillarTooScary": [
+        "O PILLAR SKY?\\pDeves estar a falar daquela\\ntorre alta um pouco mais longe.\\pSe me perguntasses, eu nao\\nescalava. E demasiado\\lassustador para subir tao alto.\\pVida ao nivel do mar em\\nPACIFIDLOG, que me convem muito\\lbem.$"
+      ]
+    },
+    "data/maps/PacifidlogTown_House1/scripts.inc": {
+      "PacifidlogTown_House1_Text_RegiStory": [
+        "Na regiao de HOENN, existem\\ntres POKEMON que representam o\\lpoder da rocha, gelo e aco.\\pDiz - se que cada um deles se\\nesconde dentro das cavernas.\\pEssa e a historia que ouvi\\nquando era crianca.$"
+      ],
+      "PacifidlogTown_House1_Text_SixDotsOpenThreeDoors": [
+        "Seis pontos abrem tres portas.\\pO avo costumava dizer isso, mas\\nnao sei o que quis dizer.$"
+      ]
+    },
+    "data/maps/PacifidlogTown_House2/scripts.inc": {
+      "PacifidlogTown_House2_Text_AhYourPokemon": [
+        "Ah! O teu Pokemon...$"
+      ],
+      "PacifidlogTown_House2_Text_AdoringPokemonTakeThis": [
+        "E obvio que gosta muito de ti.\\pUm Pokemon que adora e adoravel\\nmerece um TM como este, nao?$"
+      ],
+      "PacifidlogTown_House2_Text_PutInSomeMoreEffort": [
+        "Hmm... Nao e mau, mas tambem\\nnao e bom.\\pVoce, como instrutor, precisa\\nse esforcar mais.$"
+      ],
+      "PacifidlogTown_House2_Text_ViciousPokemonTakeThis": [
+        "Tem um aspecto cruel.\\pUm POKEMON assustador como esse\\nmerece um TM como este.$"
+      ],
+      "PacifidlogTown_House2_Text_GetGoodTMInXDays": [
+        "Sim. Em cerca de{STR_VAR_1}ou\\nassim dias, eu deveria estar\\lrecebendo um bom TM ou dois.\\pEntao devias vir ver-me. Dou-te\\num TM adequado para o teu\\lPOKEMON.$"
+      ],
+      "PacifidlogTown_House2_Text_VeryFriendlyWithTrainer": [
+        "Parece ser muito amigavel com o\\nTRAiner.$"
+      ],
+      "PacifidlogTown_House2_Text_DoesntLikeTrainerVeryMuch": [
+        "Nao parece gostar muito do\\nTRAiner.$"
+      ]
+    },
+    "data/maps/PacifidlogTown_House3/scripts.inc": {
+      "PacifidlogTown_House3_Text_WillingToTradeIt": [
+        "Olha para isto.{STR_VAR_2}!\\pE o{STR_VAR_2}que apanhei ontem\\npara celebrar o meu\\laniversario!\\pPosso ver que tu queres!\\nAfinal, e inestimavel!\\pFazemos assim. Eu poderia estar\\ndisposto a troca-lo por\\lum{STR_VAR_1}.$"
+      ],
+      "PacifidlogTown_House3_Text_ItsSubtlyDifferentThankYou": [
+        "Entao isto e...{STR_VAR_1}?\\pE uma especie de...{STR_VAR_2},\\ne ainda assim e sutilmente\\ldiferente.\\pObrigado!$"
+      ],
+      "PacifidlogTown_House3_Text_WontAcceptAnyLessThanRealMon": [
+        "Nao! Nao aceitarei menos do que\\num verdadeiro{STR_VAR_1}!$"
+      ],
+      "PacifidlogTown_House3_Text_NotDesperateOrAnything": [
+        "Entao, nao vais continuar com\\nisto?\\pFixe. Nao estou desesperado\\npara fazer uma troca.$"
+      ],
+      "PacifidlogTown_House3_Text_IsThatAPokedex": [
+        "Isso e um POKEDEX?\\pConheceste muitos Pokemon\\ndiferentes?\\pQuem me dera ser como tu.$"
+      ]
+    },
+    "data/maps/PacifidlogTown_House4/scripts.inc": {
+      "PacifidlogTown_House4_Text_PeopleSawHighFlyingPokemon": [
+        "As pessoas diziam que viram um\\nPokemon a voar alto sobre o\\lHOENN.\\pEsta sempre a voar? Nao precisa\\nde descansar?$"
+      ],
+      "PacifidlogTown_House4_Text_SkyPokemon": [
+        "Um Pokemon do ceu! Um Pokemon\\ndo ceu!$"
+      ],
+      "PacifidlogTown_House4_Text_WhereDidYouComeFrom": [
+        "De onde vieste?$"
+      ],
+      "PacifidlogTown_House4_Text_YouHaveToComeFromSomewhere": [
+        "Nao? Isso nao faz sentido. Tens\\nde vir de algum lado.\\pOh! Espera! Nao vais dizer que\\nnasceste no fundo do mar?$"
+      ]
+    },
+    "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc": {
+      "PacifidlogTown_PokemonCenter_1F_Text_OnColonyOfCorsola": [
+        "PACIFIDLOG TOWN flutua em cima\\nde uma colonia de CORSOLA.\\pSe te dissesse isso,\\nacreditarias em mim?$"
+      ],
+      "PacifidlogTown_PokemonCenter_1F_Text_AncestorsLivedOnBoats": [
+        "Os ancestrais das pessoas em\\nPACIFIDLOG foram ditos ter\\lnascido em barcos e entao viveu\\le morreu a bordo deles.\\pEntendo que viveram assim\\nporque estavam a procura de\\lalgo.$"
+      ]
+    },
+    "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc": {
+      "PalletTown_PlayersHouse_1F_Text_MovieOnTVFourBoysOnRailroad": [
+        "Ha um filme na televisao.\\nQuatro rapazes andam em carris.\\pE melhor eu ir tambem.$"
+      ],
+      "PalletTown_PlayersHouse_1F_Text_MovieOnTVGirlOnBrickRoad": [
+        "Ha um filme na televisao. Uma\\nrapariga com o cabelo em\\ltrancas esta a subir uma\\lestrada de tijolos.\\pE melhor eu ir tambem.$"
+      ],
+      "PalletTown_PlayersHouse_1F_Text_OopsWrongSide": [
+        "Lado errado...$"
+      ]
+    },
+    "data/maps/PalletTown_PlayersHouse_2F_Frlg/scripts.inc": {
+      "PalletTown_PlayersHouse_2F_Text_PlayedWithNES": [
+        "{PLAYER}Brincava com o NES.\\pEsta bem! Esta na hora de ir!$"
+      ]
+    },
+    "data/maps/PalletTown_RivalsHouse_Frlg/scripts.inc": {
+      "PalletTown_RivalsHouse_Text_ErrandForGrandpaThisWillHelp": [
+        "O avo pediu-te para fazeres um\\nrecado?\\pIsso e preguicoso da parte\\ndele. Toma, isto vai ajudar-te.$"
+      ],
+      "PalletTown_RivalsHouse_Text_DontHaveSpaceForThis": [
+        "Nao tens espaco para isto no\\nteu BAG.$"
+      ],
+      "PalletTown_RivalsHouse_Text_ExplainTownMap": [
+        "Voce pode usar o MAP da TOWN\\npara descobrir onde voce esta,\\lou verificar os nomes dos\\llugares.$"
+      ],
+      "PalletTown_RivalsHouse_Text_ItsBigMapOfKanto": [
+        "E um grande mapa da regiao\\nKANTO. Isto seria util!$"
+      ],
+      "PalletTown_RivalsHouse_Text_ShelvesCrammedFullOfBooks": [
+        "As prateleiras estao cheias de\\nlivros sobre POKEMON.$"
+      ],
+      "PalletTown_RivalsHouse_Text_DontNeedAnyGrooming": [
+        "Nao precisas que te prepares?\\nOk, vamos tomar cha.$"
+      ],
+      "PalletTown_RivalsHouse_Text_GroomWhichOne": [
+        "Qual deles devo preparar?$"
+      ],
+      "PalletTown_RivalsHouse_Text_CantGroomAnEgg": [
+        "Desculpa. Sinceramente, nao\\nconsigo preparar um EGG.$"
+      ],
+      "PalletTown_RivalsHouse_Text_CouldntLoveYouMore": [
+        "Nao pode amar-te mais do que\\nagora.\\pSeu Pokemon e feliz alem das\\npalavras.$"
+      ],
+      "PalletTown_RivalsHouse_Text_ItLooksVeryHappy": [
+        "Parece muito feliz.\\pQuem me dera.{RIVAL}podia ver\\nisto e aprender alguma coisa\\lcom ele.$"
+      ],
+      "PalletTown_RivalsHouse_Text_ItsQuiteFriendly": [
+        "E bastante amigavel contigo.\\nContinua a ser bom nisso!$"
+      ],
+      "PalletTown_RivalsHouse_Text_ItsWarmingUpToYou": [
+        "Esta a aquecer-te. A confianca\\ndeve estar a crescer entre\\lvoces.$"
+      ],
+      "PalletTown_RivalsHouse_Text_NotFamiliarWithYouYet": [
+        "Ainda nao te conheco bem.\\pPOKEMON sao todos bastante\\ncautelosos quando voce os tem\\lpela primeira vez.$"
+      ],
+      "PalletTown_RivalsHouse_Text_DontLikeWayItGlaresAtYou": [
+        "{PLAYER}Nao gosto da maneira\\ncomo te olha.\\pPodes tentar ser mais\\nsimpatico?$"
+      ],
+      "PalletTown_RivalsHouse_Text_WhyWouldMonHateYouSoMuch": [
+        "Nao e facil para mim dizer\\nisto, mas...\\pHa alguma razao para o teu\\nPokemon te odiar tanto?$"
+      ]
+    },
+    "data/maps/PetalburgCity_House1/scripts.inc": {
+      "PetalburgCity_House1_Text_TravelingIsWonderful": [
+        "Viajar e maravilhoso!\\pQuando era jovem, vagava pelos\\nmares e pelas montanhas!$"
+      ],
+      "PetalburgCity_House1_Text_GoOnAdventure": [
+        "Suspiro...\\pQuem me dera poder ir numa\\naventura com algum Pokemon...\\pRasteja atraves de alguma relva\\nhumida... Escalar montanhas\\lrochosas, rochosas...\\pAtravesse os mares furiosos...\\nAndar em cavernas escuras...\\pE, as vezes, ate fico com\\nsaudades de casa...\\pDeve ser fabuloso viajar!$"
+      ]
+    },
+    "data/maps/PetalburgCity_House2/scripts.inc": {
+      "PetalburgCity_House2_Text_BattledNormanOnce": [
+        "Uma vez lutei com o NORMAN, mas\\nele era muito forte.\\pComo diria?\\pTenho a sensacao de que ele\\nvive para o Pokemon.$"
+      ]
+    },
+    "data/maps/PetalburgCity_Mart/scripts.inc": {
+      "PetalburgCity_Mart_Text_WeakWillGrowStronger": [
+        "Mesmo que um POKEMON esteja\\nfraco agora, ficara mais forte.\\pO mais importante e o amor!\\nAmor pelo teu Pokemon!$"
+      ],
+      "PetalburgCity_Mart_Text_RepelIsUseful": [
+        "Usa REPEL? Mantem o Pokemon\\nafastado, por isso e util\\lquando se esta com pressa.$"
+      ]
+    },
+    "data/maps/PetalburgCity_PokemonCenter_1F/scripts.inc": {
+      "PetalburgCity_PokemonCenter_1F_Text_PCStorageSystem": [
+        "Aquele sistema de armazenamento\\nPOKEMON baseado em PC...\\pQuem quer que o tenha feito\\ndeve ser algum tipo de\\lfeiticeiro cientifico!$"
+      ],
+      "PetalburgCity_PokemonCenter_1F_Text_OranBerryRegainedHP": [
+        "Quando o meu Pokemon comeu um\\nORAN BERRY, recuperou HP!$"
+      ],
+      "PetalburgCity_PokemonCenter_1F_Text_ManyTypesOfPokemon": [
+        "Existem muitos tipos de\\nPOKEMON.\\pTodos os tipos tem seus pontos\\nfortes e fracos contra outros\\ltipos.\\pDependendo dos tipos de\\nPOKEMON, uma batalha pode ser\\lfacil ou dificil.$"
+      ]
+    },
+    "data/maps/PetalburgCity_WallysHouse/scripts.inc": {
+      "PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing": [
+        "Pergunto-me como esta o nosso\\nWALLY?$"
+      ],
+      "PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces": [
+        "Se o seu POKEMON pode SURF,\\nvoce sera capaz de ir a todos\\los tipos de lugares.$"
+      ],
+      "PetalburgCity_WallysHouse_Text_WallyWasReallyHappy": [
+        "WALLY ficou muito feliz quando\\nnos disse que tinha apanhado um\\lPokemon.\\pHa seculos que nao o via sorrir\\nassim.$"
+      ]
+    },
+    "data/maps/PetalburgWoods/scripts.inc": {
+      "PetalburgWoods_Text_NotAOneToBeFound": [
+        "Hmmm... Nao se encontra\\nnenhum...$"
+      ],
+      "PetalburgWoods_Text_IWasGoingToAmbushYou": [
+        "Eu ia emboscar-te, mas tiveste\\nde ficar em PETALBURG WOODS\\lpara sempre, nao foi?\\pCansei-me de esperar, por isso\\nestou aqui!$"
+      ],
+      "PetalburgWoods_Text_YouHaveToHelpMe": [
+        "Aiyeeh!\\pEs um treinador Pokemon, nao\\nes? Tens de me ajudar, por\\lfavor!$"
+      ],
+      "PetalburgWoods_Text_YoureKiddingMe": [
+        "Estas a brincar comigo! Es\\nforte!$"
+      ],
+      "PetalburgWoods_Text_ICantBeWastingTime": [
+        "Uh-oh! E uma crise! Nao posso\\nperder tempo!$"
+      ],
+      "PetalburgWoods_Text_ICouldntWin": [
+        "Tenho todos estes Pokemon, mas\\nnao podia ganhar...$"
+      ],
+      "PetalburgWoods_Text_CantBePopularIfILose": [
+        "Nao posso ser popular se\\nperder.$"
+      ],
+      "PetalburgWoods_Text_CantBePopularIfLose": [
+        "Nao posso ser popular se\\nperder.$"
+      ],
+      "PetalburgWoods_Text_IveBeenTrainingHard": [
+        "Podes ser popular se tiveres\\nPOKEMON forte, certo? Tenho\\ltreinado muito.$"
+      ],
+      "PetalburgWoods_Text_StayOutOfTallGrass": [
+        "Ola! O teu Pokemon esta bem?\\pSe o seu POKEMON for fraco e\\nquiser evitar batalhas, deve\\lmanter- se afastado da relva\\lalta.$"
+      ],
+      "PetalburgWoods_Text_HiddenItemsExplanation": [
+        "As vezes, ha coisas no chao,\\nmesmo que nao as consigas ver.\\pE por isso que vejo sempre onde\\nestou a andar.$"
+      ]
+    },
+    "data/maps/PewterCity_House1_Frlg/scripts.inc": {
+      "PewterCity_House1_Text_NidoranSit": [
+        "NIDORAN, senta-te!$"
+      ]
+    },
+    "data/maps/PewterCity_House2_Frlg/scripts.inc": {
+      "PewterCity_House2_Text_MonsLearnTechniquesAsTheyGrow": [
+        "POKEMON aprende novas tecnicas\\na medida que crescem.\\pMas alguns movimentos devem ser\\nensinados as pessoas.$"
+      ],
+      "PewterCity_House2_Text_MonsEasierCatchIfStatused": [
+        "Um POKEMON torna-se mais facil\\nde apanhar se tiver um problema\\lde estado.\\pSono, veneno, queimadura ou\\nparalisia... Sao todas\\leficazes.\\pMas apanhar o Pokemon nunca e\\numa coisa certa!$"
+      ]
+    },
+    "data/maps/PewterCity_Mart_Frlg/scripts.inc": {
+      "PewterCity_Mart_Text_GoodThingsIfRaiseMonsDiligently": [
+        "Coisas boas podem acontecer se\\nvoce criar POKEMON\\ldiligentemente.\\pAte os fracos podem\\nsurpreender-te se nao\\ldesistires deles.$"
+      ]
+    },
+    "data/maps/PewterCity_Museum_1F_Frlg/scripts.inc": {
+      "PewterCity_Museum_1F_Text_ComeAgain": [
+        "Volta outra vez!$"
+      ],
+      "PewterCity_Museum_1F_Text_DontHaveEnoughMoney": [
+        "Nao tens dinheiro suficiente.$"
+      ],
+      "PewterCity_Museum_1F_Text_PleaseEnjoyYourself": [
+        "Por favor, divirta-se.$"
+      ],
+      "PewterCity_Museum_1F_Text_DoYouKnowWhatAmberIs": [
+        "Nao podes entrar pelas\\ntraseiras! Boa tentativa,\\lmiudo, mas nao.\\pTanto faz! Sabes o que e AMBER?$"
+      ],
+      "PewterCity_Museum_1F_Text_AmberIsFossilizedSap": [
+        "AMBER e realmente seiva, aquela\\ncoisa gosma que escorre das\\larvores.\\pA antiga seiva fossilizou ao\\nlongo do tempo para se tornar\\lAMBER dura.$"
+      ],
+      "PewterCity_Museum_1F_Text_ShouldBeGratefulForLongLife": [
+        "Devia estar grato pela minha\\nlonga vida.\\pNunca pensei que veria os ossos\\nde um dragao!$"
+      ],
+      "PewterCity_Museum_1F_Text_DontHaveSpaceForThis": [
+        "Nao tens espaco para isto.$"
+      ],
+      "PewterCity_Museum_1F_Text_WeHaveTwoFossilsOnExhibit": [
+        "Temos dois fosseis de POKEMON\\nraros e pre-historicos em\\lexposicao.$"
+      ],
+      "PewterCity_Museum_1F_Text_BeautifulPieceOfAmber": [
+        "Ha um belo pedaco de AMBER em\\numa cor de ouro clara.$"
+      ],
+      "PewterCity_Museum_1F_Text_AerodactylFossil": [
+        "AERODACTYL Fossil Um POKEMON\\nprimitivo e raro.$"
+      ],
+      "PewterCity_Museum_1F_Text_KabutopsFossil": [
+        "KABUTOPS Fossil Um POKEMON\\nprimitivo e raro.$"
+      ]
+    },
+    "data/maps/PewterCity_Museum_2F_Frlg/scripts.inc": {
+      "Text_SeismicTossDeclined": [
+        "A serio? Tenho a certeza que\\nvoltas para isso.$"
+      ],
+      "Text_SeismicTossTaught": [
+        "Espero que nao atires a toalha.\\nContinua.$"
+      ],
+      "PewterCity_Museum_1F_Text_BoughtColorTVForMoonLanding": [
+        "20 de Julho de 1969!\\pA humanidade pisou pela\\nprimeira vez na lua naquele\\ldia.\\pComprei uma televisao a cores\\nso para poder ver as noticias.$"
+      ],
+      "PewterCity_Museum_1F_Text_RunningSpaceExhibitThisMonth": [
+        "Este mes, vamos fazer uma\\nexposicao espacial.$"
+      ],
+      "PewterCity_Museum_1F_Text_AskedDaddyToCatchPikachu": [
+        "Quero um PIKACHU! E tao giro!\\pPedi ao meu pai para me apanhar\\num!$"
+      ],
+      "PewterCity_Museum_1F_Text_PikachuSoonIPromise": [
+        "Sim, um PIKACHU em breve,\\nprometo!$"
+      ],
+      "PewterCity_Museum_1F_Text_SpaceShuttle": [
+        "Nave espacial$"
+      ]
+    },
+    "data/maps/PewterCity_PokemonCenter_1F_Frlg/scripts.inc": {
+      "PewterCity_PokemonCenter_1F_Text_TradingPikachuWithKid": [
+        "Vou trocar o Pokemon com aquele\\nmiudo.\\pEu tinha dois PIKACHU, entao\\nachei que podia trocar um.$"
+      ]
+    },
+    "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc": {
+      "PokemonLeague_AgathasRoom_Text_Defeat": [
+        "Meu Deus! Es algo especial,\\ncrianca!$"
+      ],
+      "PokemonLeague_AgathasRoom_Text_PostBattle": [
+        "Ganhaste!\\pAgora vejo o que o velhote ve\\nem ti.\\pNao tenho mais nada a dizer.\\nVai-te embora, crianca!$"
+      ]
+    },
+    "data/maps/PokemonLeague_BrunosRoom_Frlg/scripts.inc": {
+      "PokemonLeague_BrunosRoom_Text_Defeat": [
+        "Porque? Como poderia perder?$"
+      ],
+      "PokemonLeague_BrunosRoom_Text_PostBattle": [
+        "O meu trabalho esta feito. Vai\\nenfrentar o teu proximo\\ldesafio.$"
+      ]
+    }
+  },
+  "c": {}
+}

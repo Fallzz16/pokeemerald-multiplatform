@@ -1,0 +1,665 @@
+{
+  "asm": {
+    "data/maps/SlateportCity/scripts.inc": {
+      "SlateportCity_Text_WonderIfLighthouseStartlesPokemon": [
+        "A luz do farol chega a dezenas\\nde quilometros de distancia.\\pSera que nao assusta Pokemon no\\nmar?$"
+      ],
+      "SlateportCity_Text_SeaweedFullOfLife": [
+        "Olha para isto!\\pA alga marinha que se consegue\\ncontornar por estas bandas e\\lfresca e cheia de vida.\\pOra, parece que pode ate se\\nlevantar e atacar!$"
+      ],
+      "SlateportCity_Text_HowTownIsBornAndGrows": [
+        "Onde a agua esta limpa, os\\nfrutos da colheita abundante\\lrecolhem.\\pE onde as pessoas se reunem, um\\nmercado logo comeca.\\pE assim que uma cidade nasce e\\ncresce.$"
+      ],
+      "SlateportCity_Text_SlateportWonderfulPlace": [
+        "Compras onde voce pode respirar\\no cheiro do oceano...\\pSLATEPORT e um lugar\\nmaravilhoso!$"
+      ],
+      "SlateportCity_Text_EveryoneCallsHimCaptStern": [
+        "STERN, o sujeito que construiu\\no MUSEUM, tambem e lider de uma\\lequipe de exploracao submarina.\\pEntao, todos o chamam de CAPT.\\nSTERN.$"
+      ],
+      "SlateportCity_Text_WhatsLongLineOverThere": [
+        "O que e aquilo ali? Aquela\\nlonga fila...$"
+      ],
+      "SlateportCity_Text_QuitPushing": [
+        "Ola! Para de empurrar! Esta e a\\nlinha, nao ves?$"
+      ],
+      "SlateportCity_Text_AquaHasPolicy": [
+        "A TEAM AQUA tem uma politica de\\nmontagem e dispersao no local\\lda operacao.$"
+      ],
+      "SlateportCity_Text_DontButtIn": [
+        "Ei, tu ai! Nao te metas!$"
+      ],
+      "SlateportCity_Text_RemindsMeOfLongLineForGames": [
+        "Uma longa fila?\\pLembra-me as vezes em que me\\nformei para comprar jogos de\\lsucesso...$"
+      ],
+      "SlateportCity_Text_WhyAreWeLiningUp": [
+        "Porque estamos a fazer fila e a\\npagar? Deviamos entrar!$"
+      ],
+      "SlateportCity_Text_WhatDoYouWant": [
+        "O que? O que queres?$"
+      ],
+      "SlateportCity_Text_IllReadSignForYou": [
+        "Queres ler este cartaz? Eu\\nleio-te!$"
+      ],
+      "SlateportCity_Text_ShouldveBroughtMyGameBoy": [
+        "Grumble...\\pDevia ter trazido o meu Game\\nBoy Advance para nao me\\laborrecer na fila...\\pGrumble...$"
+      ],
+      "SlateportCity_Text_HotSpringsAfterOperation": [
+        "Quando esta operacao acabar,\\nlevo-te a um spa de termas!\\pFoi o que o nosso lider disse.\\nMal posso esperar!$"
+      ],
+      "SlateportCity_Text_SeaIsSoWet": [
+        "O mar e tao vasto...\\pPoderia o mar ter sido feito\\npelas lagrimas derramadas por\\lPOKEMON?$"
+      ],
+      "SlateportCity_Text_SinkOldBoats": [
+        "Voce sabe o que eles fazem com\\nnavios velhos que se tornam\\lranger demais para navegar?\\pAfundam-nos no mar para se\\ntornarem habitats de POKEMON.$"
+      ],
+      "SlateportCity_Text_BuyTooMuch": [
+        "Sempre que venho aqui, me\\nempolgo e compro muito.$"
+      ],
+      "SlateportCity_Text_CaptSternBeingInterviewed": [
+        "Esperava que fosse uma estrela\\nfamosa para conseguir um\\lautografo.\\pMas quem esta a ser\\nentrevistado? Nao e o CAPT?\\lSTERN?$"
+      ],
+      "SlateportCity_Text_InterviewerSoCool": [
+        "Aquela entrevistadora e tao\\nfixe e bonita.\\pQuando crescer, vou ser\\njornalista internacional!$"
+      ],
+      "SlateportCity_Text_SternSaysDiscoveredSomething": [
+        "CAPT. STERN diz que descobriram\\nalgo no fundo do mar.\\pO que sera? O que poderia ser?$"
+      ],
+      "SlateportCity_Text_AmIOnTV": [
+        "Hey! Estas a ver? Estou na\\ntelevisao?$"
+      ],
+      "SlateportCity_Text_FromHarborTryingToTakeSub": [
+        "E do HARBOR!\\pO submarino! Estao a tentar\\nleva-lo!$"
+      ],
+      "SlateportCity_Text_PleaseComeWithMe": [
+        "{PLAYER}{KUN}Por favor, vem\\ncomigo!$"
+      ],
+      "SlateportCity_Text_ExplainBerries": [
+        "Se um Pokemon selvagem se\\nmachucar, ele se cura\\lmastigando BERRIES.\\pSabias disso?\\pAlguem viu isso e teve a ideia\\nde fazer medicina de BERRIES.\\pSabias disso?\\pPara transformar BERRIES em\\nmedicamentos, eles devem ser\\lesmagados em po.\\pSabias disso?\\pPareces ter interesse em\\nBERRIES!$"
+      ],
+      "SlateportCity_Text_ExchangeWhatWithIt": [
+        "Com o que queres troca-lo?$"
+      ],
+      "SlateportCity_Text_RegisteredScott": [
+        "Registrado esta pessoa SCOTT no\\nPOKeNAV.$"
+      ]
+    },
+    "data/maps/SlateportCity_BattleTentCorridor/scripts.inc": {
+      "SlateportCity_ContestHall_Text_ExplainTorment": [
+        "E tipo TM41, sabes? E TORMENT,\\nestas a ouvir?\\pNao deixa o outro usar o mesmo\\nmovimento duas vezes seguidas.\\pOuve, nao estou a\\natormentar-te!$"
+      ],
+      "SlateportCity_ContestHall_Text_MCStepUpTakePartInContest": [
+        "Meu Deus! Nao e um Pokemon\\nelegante?\\pPor favor! Aproximem-se e tomem\\nparte nos nossos esplendidos\\lCONTESTS!\\pVais sair-te bem! Tenho a\\ncerteza! Os meus olhos nunca me\\lfalharam!$"
+      ],
+      "SlateportCity_ContestHall_Text_ItsAppealTime": [
+        "Esta na hora do recurso! Com o\\nque devo comecar?$"
+      ],
+      "SlateportCity_ContestHall_Text_RewardWithSageAdvice": [
+        "Ola! Voce deve ser um grande fa\\npara chegar tao perto da acao.\\pRecompenso o teu entusiasmo com\\neste sabio conselho.\\pSe um movimento correr muito\\nbem, o publico vai ficar\\lexcitado.\\pO POKEMON que faz o seu apelo\\ndireito quando todos estao\\lanimados...\\pBem, voce pensaria que algo bom\\ntem que acontecer!$"
+      ],
+      "SlateportCity_ContestHall_Text_MoreFreakedOutThanMon": [
+        "Nao consigo fazer isto! Estou\\nmais assustado que o meu\\lPokemon.\\pEstou a tremer e o meu coracao\\nesta a acelerar!$"
+      ],
+      "SlateportCity_ContestHall_Text_MonLooksOnTopOfGame": [
+        "Aquele Pokemon parece que esta\\nno topo do jogo.\\pUm POKEMON que faz bem no\\njulgamento secundario parece\\lser mais relaxado quando esta\\lfazendo apelos.$"
+      ],
+      "SlateportCity_ContestHall_Text_GetUrgeToMoveWithMon": [
+        "Nao tens vontade de te mudares\\ncom o POKEMON se estao a fazer\\lum apelo energetico?$"
+      ]
+    },
+    "data/maps/SlateportCity_BattleTentLobby/scripts.inc": {
+      "SlateportCity_BattleTentLobby_Text_CouldntFindMonForMe": [
+        "Nao consegui encontrar nenhum\\nPokemon que fosse para mim.\\pPensei que devia apresentar\\nqueixa ao tipo de la?\\pE ele nao me ouvia, tipo, hey!\\nQue chatice, meu!\\pEi, tu! Cala-te, sabes? Toma\\nisto!$"
+      ],
+      "SlateportCity_BattleTentLobby_Text_ExplainTorment": [
+        "E tipo TM41, sabes? E TORMENT,\\nestas a ouvir?\\pNao deixa o outro usar o mesmo\\nmovimento duas vezes seguidas.\\pOuve, nao estou a\\natormentar-te!$"
+      ],
+      "SlateportCity_BattleTentLobby_Text_BattleEvenWithoutToughMons": [
+        "Podes lutar o quanto quiseres\\naqui, mesmo que nao tenhas\\lnenhum POKEMON duro.$"
+      ],
+      "SlateportCity_BattleTentLobby_Text_NiceIfMoreSelection": [
+        "Nao seria bom se tivessem mais\\numa seleccao?$"
+      ]
+    },
+    "data/maps/SlateportCity_Harbor/scripts.inc": {
+      "SlateportCity_Harbor_Text_FerryServiceUnavailable": [
+        "Desculpe? Estas a procura de\\numa nave?\\pLamento, o servico de ferry nao\\nesta disponivel no momento...$"
+      ],
+      "SlateportCity_Harbor_Text_SailAnotherTime": [
+        "Por favor, naveguem connosco\\nnoutra altura!$"
+      ],
+      "SlateportCity_Harbor_Text_PleaseBoardFerry": [
+        "Por favor embarque no ferry e\\naguarde a partida.$"
+      ],
+      "SlateportCity_Harbor_Text_WhereWouldYouLikeToGo": [
+        "Entao, para onde queres ir?$"
+      ],
+      "SlateportCity_Harbor_Text_LoveToGoDeepUnderwaterSomeday": [
+        "Uma viagem ao fundo do mar...\\nComo sera?\\pAdorava ir para o fundo debaixo\\nde agua assim um dia.$"
+      ]
+    },
+    "data/maps/SlateportCity_NameRatersHouse/scripts.inc": {
+      "SlateportCity_NameRatersHouse_Text_FineNameSuggestBetterOne": [
+        "Hmmm...{STR_VAR_1}E mesmo? E um\\nbelo nome que me deste.\\pMas! Que dizes, se eu sugerisse\\num nome um pouco melhor?$"
+      ],
+      "SlateportCity_NameRatersHouse_Text_WhatShallNewNameBe": [
+        "Ainda bem. Entao, qual sera o\\nnovo apelido?$"
+      ],
+      "SlateportCity_NameRatersHouse_Text_MonShallBeKnownAsName": [
+        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pE um nome melhor do que antes!\\nQue sorte a sua!$"
+      ],
+      "SlateportCity_NameRatersHouse_Text_DoVisitAgain": [
+        "Estou a ver. Vem visitar-me\\noutra vez.$"
+      ],
+      "SlateportCity_NameRatersHouse_Text_NameNoDifferentYetSuperior": [
+        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pNao parece diferente de antes,\\ne no entanto, isto e muito\\lsuperior!\\pQue sorte a sua!$"
+      ],
+      "SlateportCity_NameRatersHouse_Text_MagnificentName": [
+        "Hmmm...{STR_VAR_1}E e!\\pE uma alcunha magnifica! E\\nimpecavelmente irrepreensivel!\\pVais fazer bem em apreciar o\\nteu{STR_VAR_1}agora e alem.$"
+      ],
+      "SlateportCity_NameRatersHouse_Text_ThatIsMerelyAnEgg": [
+        "Agora, agora. Isso e apenas um\\nEGG!$"
+      ]
+    },
+    "data/maps/SlateportCity_OceanicMuseum_1F/scripts.inc": {
+      "SlateportCity_OceanicMuseum_1F_Text_PleaseEnjoyYourself": [
+        "Por favor, divirta-se.$"
+      ],
+      "SlateportCity_OceanicMuseum_1F_Text_NotEnoughMoney": [
+        "A serio? Lamento, mas parece\\nque nao tem dinheiro\\lsuficiente.$"
+      ],
+      "SlateportCity_OceanicMuseum_1F_Text_CatchUpWithYourGroup": [
+        "A serio? Estas com aquele grupo\\nque entrou mais cedo?\\pEs o unico que esta atrasado. E\\nmelhor ires atras deles!$"
+      ],
+      "SlateportCity_OceanicMuseum_1F_Text_WouldStuffHereMakeMeRich": [
+        "Se eu roubasse as coisas aqui,\\nficaria rico?$"
+      ],
+      "SlateportCity_OceanicMuseum_1F_Text_CanLearnForNefariousDeeds": [
+        "O que aprendi aqui, posso usar\\nem actos nefastos...$"
+      ],
+      "SlateportCity_OceanicMuseum_1F_Text_RustboroBungled": [
+        "Se os nossos capangas nao\\nestragassem as coisas no\\lRUSTBORO, nao estariamos aqui!$"
+      ],
+      "SlateportCity_OceanicMuseum_1F_Text_LearnAboutSeaForBattling": [
+        "Quero aprender sobre o mar e\\nusar esse conhecimento para\\llutar.$"
+      ],
+      "SlateportCity_OceanicMuseum_1F_Text_MustBePokemonWeDontKnow": [
+        "O mar e vasto sem fim, e\\ninfinitamente profundo...\\pDeve haver muitos Pokemon que\\nnao sabemos.$"
+      ],
+      "SlateportCity_OceanicMuseum_1F_Text_WantSeaPokemon": [
+        "Quero um Pokemon do mar.\\pAcho que seria fixe abracar-me.$"
+      ],
+      "SlateportCity_OceanicMuseum_1F_Text_HopeINeverSeeYouAgain": [
+        "Esse TM fica-te mais bem do que\\na mim.\\pEspero nunca mais te ver!\\nWahahaha!$"
+      ],
+      "SlateportCity_OceanicMuseum_1F_Text_YouHaveToTakeThis": [
+        "Awww, vamos! Tens de levar isto\\ne deixar-me ir!$"
+      ],
+      "SlateportCity_OceanicMuseum_1F_Text_OceanSoilDisplay": [
+        "E uma amostra de solo do fundo\\ndo oceano.\\pAo longo de muitos anos, os\\nrestos de formas de vida se\\lestabelecem no fundo do mar,\\lfazendo camadas sedimentares.\\pAnalisando estas camadas, o\\npassado antigo e revelado.$"
+      ],
+      "SlateportCity_OceanicMuseum_1F_Text_BeachSandDisplay": [
+        "E uma amostra de areia da\\npraia.\\pPedras de montanhas sao lavadas\\npor rios onde sao lascadas e\\lmoidas.\\pSao reduzidos a graos e acabam\\ncomo areia nas praias.$"
+      ],
+      "SlateportCity_OceanicMuseum_1F_Text_FossilDisplay": [
+        "E um fossil com cumes\\nondulados.\\pO solo no fundo do oceano e\\nrevistado pela mare.\\pA agua do mar que flui marca o\\nsolo com pequenos cumes e\\lvales.\\pSe este solo for fossilizado,\\nchama-se marca de ondulacao.$"
+      ],
+      "SlateportCity_OceanicMuseum_1F_Text_DepthMeasuringMachine": [
+        "Uma estranha maquina gira sob\\numa cupula de vidro.\\pTalvez seja para medir a\\nprofundidade de algo...$"
+      ]
+    },
+    "data/maps/SlateportCity_OceanicMuseum_2F/scripts.inc": {
+      "SlateportCity_OceanicMuseum_2F_Text_WellTakeThoseParts": [
+        "Hehehe, espera! Vamos levar\\nessas pecas!$"
+      ],
+      "SlateportCity_OceanicMuseum_2F_Text_Grunt1Defeat": [
+        "Awaaaah! Um miudo bateu-me!$"
+      ],
+      "SlateportCity_OceanicMuseum_2F_Text_BossGoingToBeFurious": [
+        "Meu, que desastre... O BOSS vai\\nficar furioso...$"
+      ],
+      "SlateportCity_OceanicMuseum_2F_Text_LetMeTakeCareOfThis": [
+        "Humph, maricas choroes!\\nDeixa-me tratar disto!$"
+      ],
+      "SlateportCity_OceanicMuseum_2F_Text_Grunt2Defeat": [
+        "O que? Eu tambem perdi!$"
+      ],
+      "SlateportCity_OceanicMuseum_2F_Text_MeddlingKid": [
+        "E agora? Se nao conseguirmos as\\npecas, estamos dentro!\\pNao esperava ser intrometida\\npor um miudo intrometido!$"
+      ],
+      "SlateportCity_OceanicMuseum_2F_Text_CameToSeeWhatsTakingSoLong": [
+        "Vim ver o que demorava tanto a\\nroubar algumas partes, e voces,\\lSimpsons, estao presos por uma\\lcrianca?$"
+      ],
+      "SlateportCity_OceanicMuseum_2F_Text_WantToRideSubmarine": [
+        "O submarino e fantastico! Quero\\ndar uma volta!$"
+      ],
+      "SlateportCity_OceanicMuseum_2F_Text_PressureExperiment": [
+        "Uma bola de borracha esta se\\nexpandindo e encolhendo.\\pNo mar, o peso da propria agua\\nexerce pressao.\\pEm aguas rasas, a pressao nao e\\nmuito pesada.\\pNo entanto, em aguas\\nextremamente profundas, a\\lpressao pode atingir ate\\ldezenas de milhares de\\ltoneladas numa pequena area.$"
+      ],
+      "SlateportCity_OceanicMuseum_2F_Text_SurfaceSeawaterDisplay": [
+        "E uma exibicao no fluxo de agua\\ndo mar.\\pPara a superficie, a agua do\\nmar flui como correntes\\limpulsionadas pelos ventos.$"
+      ]
+    },
+    "data/maps/SlateportCity_PokemonCenter_1F/scripts.inc": {
+      "SlateportCity_PokemonCenter_1F_Text_RaiseDifferentTypesOfPokemon": [
+        "Queres uma dica para lutar?\\pDiria que esta a criar\\ndiferentes tipos de POKEMON de\\lforma equilibrada.\\pNao e bom fazer apenas um\\nPOKEMON forte.\\pSe tiver uma desvantagem do\\ntipo, pode nao ter uma chance.$"
+      ],
+      "SlateportCity_PokemonCenter_1F_Text_TradedMonWithFriend": [
+        "Troco Pokemon com os meus\\namigos.\\pSe um POKEMON negociado esta\\nsegurando um item, isso me faz\\lduas vezes mais feliz!$"
+      ]
+    },
+    "data/maps/SlateportCity_PokemonFanClub/scripts.inc": {
+      "SlateportCity_PokemonFanClub_Text_HowIsYourPokemonGrowing": [
+        "Como esta a crescer o seu\\nPOKEMON? Permita-me que o\\lexamine.$"
+      ],
+      "SlateportCity_PokemonFanClub_Text_HmHmISee": [
+        "Estou a ver...$"
+      ],
+      "SlateportCity_PokemonFanClub_Text_GiveMonMorePokeblocks": [
+        "Hmmm... Nao e mau, mas tambem\\nnao e bom...\\pVoce, o Treinador, tem de se\\nesforcar mais para criar este\\lPokemon!\\pPor exemplo, posso sugerir que\\nlhe de mais{POKEBLOCK}S?$"
+      ],
+      "SlateportCity_PokemonFanClub_Text_NoSpaceForReward": [
+        "Meu...\\pSeu POKEMON esta crescendo\\nmuito bem, entao voce merece\\luma recompensa.\\pInfelizmente, nao tens espaco\\npara isto no teu BAG.$"
+      ],
+      "SlateportCity_PokemonFanClub_Text_MonMostImpressiveGiveItThis": [
+        "Sua{STR_VAR_1}, esta crescendo\\nde uma maneira muito\\limpressionante! E um belo\\lespecime!\\pMas! Se lhe desse isto, ficaria\\nainda melhor! E verdade!$"
+      ],
+      "SlateportCity_PokemonFanClub_Text_NothingElseToGiveYou": [
+        "Desculpa, mas nao tenho mais\\nnada para te dar! Nenhuma!\\pAfinal, voce e abencoado com o\\ndom de criar POKEMON sem\\lrecorrer a quaisquer itens!$"
+      ],
+      "SlateportCity_PokemonFanClub_Text_ShowMePokemonThatLoveYou": [
+        "Adoro ver o Pokemon que adora\\nos seus treinadores.\\pPOKEMON sao muito sensiveis aos\\nsentimentos dos seus\\lTREINADORES.\\pSe tratares o teu POKEMON com\\namor e cuidado, eles vao\\ladorar-te.\\pQuando o teu Pokemon crescer\\npara te amar, por favor, vem\\lmostrar-me.$"
+      ],
+      "SlateportCity_PokemonFanClub_Text_PokemonAdoresYou": [
+        "O teu Pokemon adora-te mesmo.\\pPara voce, um instrutor muito\\ncompassivo, um presente do FAN\\lCLUB!$"
+      ],
+      "SlateportCity_PokemonFanClub_Text_TreatPokemonWithLove": [
+        "POKEMON sao muito sensiveis aos\\nsentimentos dos seus\\lTREINADORES.\\pSe tratares o teu POKEMON com\\namor e cuidado, eles vao\\ladorar-te.$"
+      ],
+      "SlateportCity_PokemonFanClub_Text_PokemonDontLikeFainting": [
+        "Se continuares a deixar um\\nPokemon desmaiar em batalha,\\lvai ficar ressentido.\\pEm breve, ficara menos\\nconfiante no TRAiner.\\pEm outras palavras, certamente\\nnao vai gostar muito de voce.$"
+      ]
+    },
+    "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc": {
+      "SlateportCity_SternsShipyard_1F_Text_CantMakeHeadsOrTails": [
+        "Umm... Se isto for aqui, e\\naquilo for ali...\\pEntao para onde vai esta coisa?\\nE quanto ao doohickey?\\pAaargh! Nao consigo entender\\nisto!$"
+      ],
+      "SlateportCity_SternsShipyard_1F_Text_SeaIsLikeLivingThing": [
+        "As estacoes, o tempo, onde a\\nlua se senta no ceu...\\pEstas e outras condicoes fazem\\no mar mudar sua expressao.\\pIsso mesmo! O mar e como uma\\ncoisa viva!$"
+      ],
+      "SlateportCity_SternsShipyard_1F_Text_GetSeasickEasily": [
+        "Fico enjoado facilmente. Em vez\\ndisso, posso ajudar.$"
+      ]
+    },
+    "data/maps/SlateportCity_SternsShipyard_2F/scripts.inc": {
+      "SlateportCity_SternsShipyard_2F_Text_ShipDesignMoreLikeBuilding": [
+        "Projetar um navio grande e mais\\ncomo fazer um edificio grande\\ldo que montar um veiculo de\\ltransporte.$"
+      ],
+      "SlateportCity_SternsShipyard_2F_Text_FloatsBecauseBuoyancy": [
+        "Nao achas estranho que uma nave\\nde ferro pesado flutue?\\pFlutua por causa de um\\nprincipio chamado\\lflutuabilidade.$"
+      ]
+    },
+    "data/maps/SlowpokeWell_B1F/scripts.inc": {
+      "SlowpokeWell_B1F_Text_GruntM29Seen": [
+        "Raios! Estava de guarda la em\\ncima quando um velhote gritou\\lcomigo.\\pAssustou-me tanto que cai aqui.\\pAcho que vou descarregar a\\nminha raiva descontando em ti!$"
+      ],
+      "SlowpokeWell_B1F_Text_ProtonSeen": [
+        "O que queres?\\pSe interromper o nosso\\ntrabalho, nao espere\\lmisericordia!$"
+      ],
+      "SlowpokeWell_B1F_Text_ProtonBeaten": [
+        "Saiste-te bem hoje, mas espera\\nate a proxima!$"
+      ],
+      "SlowpokeWell_B1F_Text_GruntM2Beaten": [
+        "Hyuck... Demasiado forte...$"
+      ],
+      "SlowpokeWell_B1F_Text_GruntF1Beaten": [
+        "Seu fedelho podre!$"
+      ],
+      "SlowpokeWell_B1F_Text_GruntF1After": [
+        "SLOWPOKETAILS crescem de volta\\nrapido!\\pO que ha de errado em\\nvende-los?$"
+      ],
+      "SlowpokeWell_B1F_Text_SlowpokeWithMail": [
+        "Um SLOWPOKE com o seu TAIL\\ncortado...\\pHuh? Tem o MAIL. Ler?$"
+      ],
+      "SlowpokeWell_B1F_Text_TaillessSlowpoke": [
+        "Um SLOWPOKE com o seu TAIL\\ncortado...$"
+      ]
+    },
+    "data/maps/SlowpokeWell_B2F/scripts.inc": {
+      "SlowpokeWell_Text_Slowking": [
+        "SLOWKING:\\n......................$"
+      ]
+    },
+    "data/maps/SootopolisCity/scripts.inc": {
+      "SootopolisCity_Text_DoorIsClosed": [
+        "A porta esta fechada.$"
+      ],
+      "SootopolisCity_Text_PhysicallyFitLivingHere": [
+        "Mergulhando no mar. Subindo e\\ndescendo escadas o tempo\\ltodo...\\pSe vives nesta cidade, acabas\\npor ficar fisicamente em forma.$"
+      ],
+      "SootopolisCity_Text_GiantPokemonSuddenlyAppeared": [
+        "Estes gigantes POKEMON de\\nrepente apareceram no meio da\\lcidade!\\pE nunca os vi antes!\\pPorque e que se estao a esmagar\\nassim?\\pPorque nao podem ser amigos,\\naqueles Pokemon?$"
+      ],
+      "SootopolisCity_Text_WhatIsThatGreenPokemon": [
+        "O que? O que? O que? O que e\\nesse Pokemon verde?!$"
+      ],
+      "SootopolisCity_Text_TwoPokemonArentAngry": [
+        "Tenho a sensacao de que os dois\\nPokemon nao estao zangados.\\pAcho que... Provavelmente nao\\nconseguem controlar o seu\\lproprio poder...$"
+      ],
+      "SootopolisCity_Text_FlyingMonStoppedRampage": [
+        "Aquele POKEMON voador desceu do\\nceu e parou o POKEMON\\lfurioso...$"
+      ],
+      "SootopolisCity_Text_WonderWhatWorldIsLike": [
+        "Nunca sai desta cidade.\\pComo sera o mundo do outro lado\\ndeste ceu redondo?$"
+      ],
+      "SootopolisCity_Text_ThisIsWicked": [
+        "Uau! Isto e mau!$"
+      ],
+      "SootopolisCity_Text_ThatWasWicked": [
+        "Uau! Isso foi mau!$"
+      ],
+      "SootopolisCity_Text_GoRedAndBlueMon": [
+        "Vai em frente, Pokemon\\nvermelho! Nao te afastes,\\lPokemon azul!$"
+      ],
+      "SootopolisCity_Text_DoYouKnowMonNames": [
+        "... ... ... ... ... ...\\pOla, sabes os nomes daqueles\\nlutadores de Pokemon?$"
+      ],
+      "SootopolisCity_Text_GreenOneSettlesThings": [
+        "Estava a pensar qual ganharia,\\no vermelho ou o azul, mas, oh\\lnao, e o verde que resolve as\\lcoisas!\\pQue reviravolta!$"
+      ],
+      "SootopolisCity_Text_SeeingLegendWithOwnEyes": [
+        "Ha uma lenda antiga que afirma\\nque a terra e o mar foram\\lmoldados por uma colossal\\lbatalha entre POKEMON.\\pEstou a ver isso acontecer com\\nos meus proprios olhos!\\pWhoa! Nunca esperei ser\\ntestemunha de algo tao enorme!$"
+      ],
+      "SootopolisCity_Text_SawLegendWithOwnEyes": [
+        "Ha uma lenda antiga que afirma\\nque a terra e o mar foram\\lmoldados por uma colossal\\lbatalha entre POKEMON.\\pEu vi isso acontecer com os\\nmeus proprios olhos!\\pWhoa! Nunca esperei ser\\ntestemunha de algo tao enorme!$"
+      ],
+      "SootopolisCity_Text_BigPokemonFighting": [
+        "Um grande Pokemon esta lutando\\ncom outro grande Pokemon!\\pPor favor, alguem os faca\\nparar!$"
+      ],
+      "SootopolisCity_Text_PrettyMonCameFromSky": [
+        "Um Pokemon bonito desceu do\\nceu...$"
+      ],
+      "SootopolisCity_Text_NoOrdinaryTourist": [
+        "Hm! Vieste ate a SOOTOPOLIS?\\nVoce nao e um turista comum.\\pMas suponho que isso tambem nao\\no torne um turista\\lextraordinario.$"
+      ],
+      "SootopolisCity_Text_CityRegainedCalm": [
+        "A cidade recuperou a calma...$"
+      ],
+      "SootopolisCity_Text_LeadSuperiorTrainerToCave": [
+        "Uma pessoa com uma vontade\\nforte e talento superior...\\pUm instrutor que tem\\nconhecimento e experiencia de\\lmuitos tipos de...\\pSe tal pessoa aparecesse, fui\\ninstruido pelo WALLACE a\\lconduzir aquele FORMAdor a esta\\lCAVE.$"
+      ],
+      "SootopolisCity_Text_AwakenedPokemonClash": [
+        "Meu...\\pO confronto entre os dois\\nacordou POKEMON foi sufocado\\lpelo despertar de um terceiro\\lPOKEMON...$"
+      ],
+      "SootopolisCity_Text_SootopolisSkyBeautiful": [
+        "SOOTOPOLIS surgiu como uma\\ncidade na cratera de um vulcao.\\pSe voce olhar para o ceu, o\\nlabio da cratera tambem e\\lvisivel. Entao, tudo que voce\\lve e o ceu em um circulo.\\pMas e isso que torna o ceu\\nacima de SOOTOPOLIS o mais\\lbonito.$"
+      ],
+      "SootopolisCity_Text_GiganticPokemonFight": [
+        "Quando dois Pokemon tao\\ngigantescos lutam tao\\lselvagemmente, nao ha muito que\\lpossamos fazer.$"
+      ],
+      "SootopolisCity_Text_FearedWorstWhenPokemonFlewDown": [
+        "Quando aquele terceiro Pokemon\\nvoou para baixo, temi o pior.$"
+      ],
+      "SootopolisCity_Text_NightSkyFavoriteScenery": [
+        "Um circulo de um ceu noturno\\nemoldurado pela cratera de um\\lvulcao...\\pE naquele anel, as estrelas\\ntremem e piscam como se\\lestivessem vivas... E o meu\\lcenario favorito.$"
+      ],
+      "SootopolisCity_Text_WeatherWentWild": [
+        "O tempo estava claro esta\\nmanha, mas...\\pDe repente, nuvens escuras se\\nformaram, a chuva comecou a\\lcair em lencois, e houve\\ltrovoes e relampagos, tambem.\\pO tempo passou-se\\ncompletamente!\\pTudo isto e por causa daqueles\\nPokemon?$"
+      ],
+      "SootopolisCity_Text_YouBroughtFlyingMon": [
+        "A serio?\\pFoste tu que trouxeste aquele\\nPokemon voador para aqui?\\pBem, voce e incrivel!$"
+      ],
+      "SootopolisCity_Text_ThankYouForHelpAcceptThis": [
+        "WALLACE:{PLAYER}{KUN}Os meus\\nolhos nao me enganaram.\\pGracas a tua ajuda,\\nSOOTOPOLIS... Nao, todo o HOENN\\lfoi salvo.\\pEm nome do povo, agradeco-lhe.\\pIsto e um presente meu. Por\\nfavor, aceite.$"
+      ],
+      "SootopolisCity_Text_DazzledByMentor": [
+        "WALLACE: Tenho certeza de que\\nvoce ficara deslumbrado com o\\lestilo de batalha incrivelmente\\lelegante do meu mentor.$"
+      ]
+    },
+    "data/maps/SootopolisCity_House1/scripts.inc": {
+      "SootopolisCity_House1_Text_DevelopedThisTM": [
+        "Ha trinta anos que permaneco na\\nSOOTOPOLIS a aperfeicoar as\\lminhas habilidades.\\pEu desenvolvi um TM quebrando.\\nEu deixo-o para ti!$"
+      ],
+      "SootopolisCity_House1_Text_ExplainBrickBreak": [
+        "TM31 contem BRICK BREAK! E uma\\njogada tao horrivel que nao\\lconsigo descreve-la.$"
+      ]
+    },
+    "data/maps/SootopolisCity_House2/scripts.inc": {
+      "SootopolisCity_House2_Text_DidYouKnowAboutMtPyreOrbs": [
+        "MT. PYRE...\\pNo seu pico estao duas esferas\\ncolocadas lado a lado. Sabias?$"
+      ],
+      "SootopolisCity_House2_Text_YesTwoOrbsSideBySide": [
+        "Sim, duas esferas lado a\\nlado...\\pA visao deles juntos... E de\\nalguma forma relaxante...$"
+      ],
+      "SootopolisCity_House2_Text_OughtToVisitAndSee": [
+        "A serio? Talvez devesses\\nvisitar-me e ver...$"
+      ]
+    },
+    "data/maps/SootopolisCity_House3/scripts.inc": {
+      "SootopolisCity_House3_Text_YouMustBePrettyStrong": [
+        "Entao deves ser muito forte.$"
+      ],
+      "SootopolisCity_House3_Text_LonesomeTryWorkingHarder": [
+        "Meu Deus... Isso e um pouco\\nsolitario.\\pTente trabalhar um pouco mais\\nduro para obter um fa seguindo.$"
+      ]
+    },
+    "data/maps/SootopolisCity_House4/scripts.inc": {
+      "SootopolisCity_House4_Text_AncientTreasuresWaitingInSea": [
+        "Oucam e eu digo-vos uma coisa\\nboa.\\pE suposto haver uma antiga\\nruina no mar por aqui.\\pPode haver tesouros a espera de\\nserem descobertos la em baixo.$"
+      ],
+      "SootopolisCity_House4_Text_StrollUnderwaterWithPokemon": [
+        "Tesouros antigos...\\pSeria bom se existissem, mas\\nmesmo que nao existissem, seria\\ltao bonito dar um passeio\\lsubaquatico com o meu Pokemon.$"
+      ]
+    },
+    "data/maps/SootopolisCity_House5/scripts.inc": {
+      "SootopolisCity_House5_Text_SootopolisMtPyreConnection": [
+        "Parece haver alguma ligacao\\nentre SOOTOPOLIS e MT. PYRE.\\pOs meus amigos e eu pesquisamos\\nno laboratorio onde eu\\ltrabalhava.$"
+      ],
+      "SootopolisCity_House5_Text_BrotherUsedToStudySea": [
+        "O meu irmao mais velho\\ncostumava estudar o mar.$"
+      ]
+    },
+    "data/maps/SootopolisCity_House6/scripts.inc": {
+      "SootopolisCity_House6_Text_TakeGoodCareOfIt": [
+        "Trata bem disso!$"
+      ],
+      "SootopolisCity_House6_Text_IllHoldItForYou": [
+        "Queres, mas agora nao? Esta\\nbem, entao eu seguro-te.$"
+      ],
+      "SootopolisCity_House6_Text_DontWantThisDoll": [
+        "Tens a certeza? Nao queres esta\\nDOLL?$"
+      ]
+    },
+    "data/maps/SootopolisCity_House7/scripts.inc": {
+      "SootopolisCity_House7_Text_CaveMadeToKeepSomething": [
+        "A caverna que liga o SOOTOPOLIS\\ne o mundo exterior...\\pParece que a caverna foi feita\\npara evitar que algo saisse.\\pOu estou so a imaginar coisas?$"
+      ]
+    },
+    "data/maps/SootopolisCity_LotadAndSeedotHouse/scripts.inc": {
+      "SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull1": [
+        "Hunh? O teu BAG esta cheio.$"
+      ],
+      "SootopolisCity_LotadAndSeedotHouse_Text_SeenBiggerSeedot": [
+        "{STR_VAR_2}E mesmo?\\pHmm... Ja vi um SEEDOT maior do\\nque este.$"
+      ],
+      "SootopolisCity_LotadAndSeedotHouse_Text_ThatsNotSeedot": [
+        "Oh, isto e uma grande coisa...\\nMas nao e um SEEDOT!$"
+      ],
+      "SootopolisCity_LotadAndSeedotHouse_Text_DontHaveBigSeedot": [
+        "Nao tens um SEEDOT grande? Que\\npena...\\pSe tiveres um SEEDOT grande,\\nvem mostrar-me.$"
+      ],
+      "SootopolisCity_LotadAndSeedotHouse_Text_WowMightBeBiggerThanSeedot": [
+        "{STR_VAR_2}Isso e grande!\\pPode ser ainda maior do que o\\nenorme SEEDOT que o meu irmao\\lmais velho viu.\\pObrigado por me mostrares! Este\\ne o meu agradecimento!$"
+      ],
+      "SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull2": [
+        "Hunh? O teu BAG esta cheio.$"
+      ],
+      "SootopolisCity_LotadAndSeedotHouse_Text_SeenBiggerLotad": [
+        "{STR_VAR_2}?\\pHmm... Ja vi um LOTAD maior do\\nque este aqui.$"
+      ]
+    },
+    "data/maps/SootopolisCity_Mart/scripts.inc": {
+      "SootopolisCity_Mart_Text_TooScaryOutside": [
+        "O que... O que esta a\\nacontecer?\\pQuero mesmo saber, mas e\\ndemasiado assustador ir la para\\lfora.$"
+      ],
+      "SootopolisCity_Mart_Text_DidSomethingAwaken": [
+        "Este tempo... Alguma coisa\\nacordou?$"
+      ]
+    },
+    "data/maps/SootopolisCity_MysteryEventsHouse_1F/scripts.inc": {
+      "SootopolisCity_MysteryEventsHouse_1F_Text_OnlyAmusementWatchingBattles": [
+        "Quando era jovem, viajei pelo\\nmundo como instrutor de\\lPokemon.\\pAgora que me tornei um velho\\nabutre, a minha unica diversao\\le ver jovens treinadores a\\llutar.$"
+      ],
+      "SootopolisCity_MysteryEventsHouse_1F_Text_DoorAppearsToBeLocked": [
+        "A porta parece estar trancada.$"
+      ],
+      "SootopolisCity_MysteryEventsHouse_1F_Text_ChallengeVisitingTrainer": [
+        "UMA FORMACAO\\nCHAMADA{STR_VAR_1}esta\\lvisitando minha casa.\\pGostaria de\\ndesafiar{STR_VAR_1}?$"
+      ],
+      "SootopolisCity_MysteryEventsHouse_1F_Text_YouWontBattle": [
+        "Nao vais lutar? Estou\\ndesiludido por nao te poder ver\\la lutar...$"
+      ],
+      "SootopolisCity_MysteryEventsHouse_1F_Text_KeepItTo3On3": [
+        "Optimo, optimo!\\pMas a minha casa nao e assim\\ntao resistente.\\pPosso pedir-lhe para baixar\\npara um jogo de 3 contra 3?$"
+      ],
+      "SootopolisCity_MysteryEventsHouse_1F_Text_SaveProgressBeforeBattle": [
+        "Antes de lutarem, devem salvar\\no vosso progresso.$"
+      ],
+      "SootopolisCity_MysteryEventsHouse_1F_Text_HopeToSeeGoodMatch": [
+        "Espero ver um bom jogo!$"
+      ],
+      "SootopolisCity_MysteryEventsHouse_B1F_Text_MatchEndedUpDraw": [
+        "A partida acabou em empate.$"
+      ],
+      "SootopolisCity_MysteryEventsHouse_1F_Text_BrilliantStandoff": [
+        "Entao, tornou-se um impasse.\\pFoi uma partida brilhante em\\nque nenhum dos lados concedeu\\lum passo!$"
+      ],
+      "SootopolisCity_MysteryEventsHouse_1F_Text_ThatWasSuperlative": [
+        "Isso foi superlativo!\\pOra, foi como ver-me novamente\\nna minha juventude!$"
+      ],
+      "SootopolisCity_MysteryEventsHouse_1F_Text_TooBadForYou": [
+        "Que pena para ti!\\pMas foi uma boa combinacao.\\nEspero que ganhes da proxima\\lvez.$"
+      ]
+    },
+    "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc": {
+      "SootopolisCity_PokemonCenter_1F_Text_EveryoneTakenRefuge": [
+        "Todos na cidade se refugiaram e\\nnao sairao de suas casas.\\pAte eu preferia nao me\\naventurar la fora.$"
+      ],
+      "SootopolisCity_PokemonCenter_1F_Text_AlwaysBeFriendsWithPokemon": [
+        "Sempre que, onde quer que\\naconteca, e aconteca o que\\lacontecer, serei sempre amigo\\lde POKEMON.\\pPorque e divertido estar com o\\nPokemon!$"
+      ],
+      "SootopolisCity_PokemonCenter_1F_Text_ArentPokemonOurFriends": [
+        "Pokemon nao sao nossos amigos?\\pPorque e que eles estao a\\nenlouquecer assim?$"
+      ]
+    },
+    "data/maps/SproutTower_1F/scripts.inc": {
+      "SproutTower_Text_SageChow_Seen": [
+        "Estamos de guarda nesta torre.\\pAqui, expressamos nossa\\ngratidao para honrar todos os\\lPOKEMON.$"
+      ],
+      "SproutTower_Text_SageChow_Beaten": [
+        "Obrigado!$"
+      ],
+      "SproutTower_Text_SageChow_AfterBattle": [
+        "Todos os seres vivos coexistem\\natraves da cooperacao.\\pDevemos ser sempre gratos por\\nisso.$"
+      ],
+      "SproutTower_Text_1F_Sage1": [
+        "So se voce chegar ao topo voce\\nvai obter um HM.$"
+      ],
+      "SproutTower_Text_1F_Sage2": [
+        "SPROUT TOWER foi construido ha\\nmuito tempo como um lugar para\\ltreinamento POKEMON.$"
+      ],
+      "SproutTower_Text_1F_Teacher": [
+        "Ves o pilar a tremer?\\pAs pessoas estao a treinar la\\nem cima.$"
+      ],
+      "SproutTower_Text_1F_Statue": [
+        "Uma estatua Pokemon...\\pParece muito distinto.$"
+      ]
+    },
+    "data/maps/SproutTower_2F/scripts.inc": {
+      "SproutTower_Text_SageNico_Seen": [
+        "Por mais que lutemos, a TOWER\\npermanecera forte.$"
+      ],
+      "SproutTower_Text_SageNico_Beaten": [
+        "Lutei muito, mas sou demasiado\\nfraco.$"
+      ],
+      "SproutTower_Text_SageNico_AfterBattle": [
+        "O pilar flexivel protege a\\nTOWER, mesmo contra terremotos.$"
+      ],
+      "SproutTower_Text_SageEdmond_Seen": [
+        "... como folhas ao vento...$"
+      ],
+      "SproutTower_Text_SageEdmond_Beaten": [
+        "Sou fraco!$"
+      ],
+      "SproutTower_Text_2F_Statue": [
+        "Uma estatua Pokemon...\\pParece muito distinto.$"
+      ]
+    },
+    "data/maps/SproutTower_3F/scripts.inc": {
+      "SproutTower_Text_SageLi_Seen": [
+        "Que bom que vieste!\\pSPROUT TOWER e um local de\\ntreinamento.\\pPessoas e POKEMON testam suas\\nligacoes para construir um\\lfuturo brilhante juntos.\\pEu sou o teste final.\\pPermita-me verificar as\\nligacoes entre o seu Pokemon e\\lvoce!$"
+      ],
+      "SproutTower_Text_SageLi_Beaten": [
+        "Excelente!$"
+      ],
+      "SproutTower_Text_SageLi_TakeFlash": [
+        "Voce e o seu POKEMON nao devem\\nter problemas em utilizar esta\\ljogada.\\pToma esta FLASH HM.$"
+      ],
+      "SproutTower_Text_SageLi_AfterBattle": [
+        "Espero que aprendas e crescas\\ncom a tua jornada.$"
+      ],
+      "SproutTower_Text_SageJin_Seen": [
+        "Treino para encontrar a\\niluminacao em POKEMON!$"
+      ],
+      "SproutTower_Text_SageJin_Beaten": [
+        "O meu treino esta incompleto...$"
+      ],
+      "SproutTower_Text_SageJin_AfterBattle": [
+        "A medida que o POKEMON se\\nfortalece, o treinador tambem\\lse fortalece.\\pNao, espera. A medida que o\\ntreinador fica mais forte, o\\lPOKEMON tambem fica.$"
+      ],
+      "SproutTower_Text_SageTroy_Seen": [
+        "Deixa-me ver o quanto confias\\nno teu Pokemon.$"
+      ],
+      "SproutTower_Text_SageTroy_Beaten": [
+        "Sim, a tua confianca e real!$"
+      ],
+      "SproutTower_Text_SageNeal_Beaten": [
+        "E a minha cabeca que brilha!$"
+      ],
+      "SproutTower_Text_SageNeal_AfterBattle": [
+        "Que haja luz na vossa jornada.$"
+      ]
+    },
+    "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc": {
+      "ThreeIsland_BerryForest_Text_HereItComesAgain": [
+        "Oh! La vem outra vez! Nao!\\nVai-te embora! Esta a\\lassustar-me!\\pWaaaaaaah! Quero o meu pai!$"
+      ]
+    },
+    "data/maps/ThreeIsland_BondBridge_Frlg/scripts.inc": {
+      "ThreeIsland_BondBridge_Text_NikkiIntro": [
+        "O sabor salgado do mar...\\nFaz-me cocegas no coracao.$"
+      ],
+      "ThreeIsland_BondBridge_Text_NikkiDefeat": [
+        "Sniff, sniff... Algo cheira\\nmal...$"
+      ],
+      "ThreeIsland_BondBridge_Text_VioletIntro": [
+        "Para onde vais com tanta\\npressa?$"
+      ],
+      "ThreeIsland_BondBridge_Text_VioletDefeat": [
+        "Estas a criar um POKEMON\\nmaravilhoso.$"
+      ],
+      "ThreeIsland_BondBridge_Text_AmiraIntro": [
+        "A minha mae disse que nao sei\\nnadar sem o meu anel.$"
+      ],
+      "ThreeIsland_BondBridge_Text_AmiraPostBattle": [
+        "Este ano, vou finalmente\\naprender a nadar!$"
+      ],
+      "ThreeIsland_BondBridge_Text_AlexisIntro": [
+        "Boa! Pokemon!$"
+      ],
+      "ThreeIsland_BondBridge_Text_AlexisDefeat": [
+        "O que acontece agora?$"
+      ]
+    }
+  },
+  "c": {}
+}

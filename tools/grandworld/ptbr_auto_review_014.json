@@ -1,0 +1,823 @@
+{
+  "asm": {
+    "data/maps/GoldenrodCity_UndergroundSwitches/scripts.inc": {
+      "GoldenrodUnderground_Text_BurglarDuncanAfter": [
+        "Roubar e vender! Isso e basico\\nno crime, miudo!$"
+      ],
+      "GoldenrodUnderground_Text_BurglarEddieSeen": [
+        "Abandonaram este projecto antes\\nde terminarem.\\pEstou a procura de sobras.$"
+      ],
+      "GoldenrodUnderground_Text_BurglarEddieBeaten": [
+        "Por cima!$"
+      ],
+      "GoldenrodUnderground_Text_GruntM13Seen": [
+        "Nao quero saber se estas\\nperdido.\\pSe apareceres aqui, nao passas\\nde uma vitima!$"
+      ],
+      "GoldenrodUnderground_Text_GruntM13Beaten": [
+        "Urk! Sim, achas-te fixe, nao e?$"
+      ],
+      "GoldenrodUnderground_Text_GruntF3Seen": [
+        "Estas perdido? Nao, nao podes\\nestar.\\pNao tens esse olhar assustado.\\pVou dar-te algo para teres\\nmedo!$"
+      ],
+      "GoldenrodUnderground_Text_GruntF3Beaten": [
+        "Como pudeste?$"
+      ],
+      "GoldenrodUnderground_Text_GruntF3After": [
+        "Vai para onde quiseres!\\nDesaparece! Ve se me importo!$"
+      ],
+      "GoldenrodUnderground_Text_Switch1": [
+        "SWITCH 1 activado.$"
+      ],
+      "GoldenrodUnderground_Text_Switch2": [
+        "SWITCH 2 activado.$"
+      ],
+      "GoldenrodUnderground_Text_Switch3": [
+        "SWITCH 3 activado.$"
+      ],
+      "GoldenrodUnderground_Text_Switch1Off": [
+        "SWITCH 1 desativado.$"
+      ],
+      "GoldenrodUnderground_Text_Switch2Off": [
+        "SWITCH 2 desativado.$"
+      ],
+      "GoldenrodUnderground_Text_Switch3Off": [
+        "SWITCH 3 desactivado.$"
+      ]
+    },
+    "data/maps/GoldenrodCity_UndergroundTunnel/scripts.inc": {
+      "GoldenrodCity_UndergroundTunnel_Text_Kimono1": [
+        "Os membros da Equipa Rocket de\\nfato preto andam por ai...\\pEstava a pensar o que se passa.\\nEntao, enfrentaram a Equipa\\lRocket? Es impressionante!\\pVoce pode ser capaz de\\nenfrentar o lendario POKe...$"
+      ],
+      "GoldenrodCity_UndergroundTunnel_Text_Kimono2": [
+        "Hahaha! Esquece. Tenho de ir\\nagora.$"
+      ],
+      "GoldenrodUnderground_Text_YoungerBrotherAskWhich": [
+        "OK, que Pokemon devo fazer?$"
+      ],
+      "GoldenrodUnderground_Text_YoungerBrotherLookCool": [
+        "Esta bem! Vou fazer parecer\\nfixe!$"
+      ],
+      "GoldenrodUnderground_Text_YoungerBrotherAllDone": [
+        "La vamos nos! Pronto!$"
+      ],
+      "GoldenrodUnderground_Text_YoungerBrotherDisappointed": [
+        "Nao? Que desilusao!$"
+      ],
+      "GoldenrodUnderground_Text_YoungerBrotherShortOnFunds": [
+        "Estas com pouco dinheiro.$"
+      ],
+      "GoldenrodUnderground_Text_YoungerBrotherOnePerDay": [
+        "So posso cortar um cabelo por\\ndia.\\pDesculpa, mas por hoje ja\\nacabei.$"
+      ],
+      "GoldenrodUnderground_Text_OlderBrotherAskWhich": [
+        "Em que POKEMON devo trabalhar?$"
+      ],
+      "GoldenrodUnderground_Text_OlderBrotherWatchItBeautiful": [
+        "Esta bem! Ve se ficas linda!$"
+      ],
+      "GoldenrodUnderground_Text_OlderBrotherAllDone": [
+        "Ali! Pronto!$"
+      ],
+      "GoldenrodUnderground_Text_OlderBrotherThatsAShame": [
+        "A serio? Que pena!$"
+      ],
+      "GoldenrodUnderground_Text_OlderBrotherNeedMoreMoney": [
+        "Vais precisar de mais dinheiro\\ndo que isso.$"
+      ],
+      "GoldenrodUnderground_Text_OlderBrotherOnePerDay": [
+        "Faco apenas um corte de cabelo\\npor dia. Ja acabei por hoje.$"
+      ],
+      "GoldenrodUnderground_Text_SupernerdEricBeaten": [
+        "Grumble...$"
+      ],
+      "GoldenrodUnderground_Text_SupernerdEricAfterBattle": [
+        "Acho que tenho de fazer as\\ncoisas de forma justa...$"
+      ],
+      "GoldenrodUnderground_Text_SupernerdTeruSeen": [
+        "Voce considera alinhamentos\\ntipo em batalha?\\pSe conhece as vantagens do seu\\ntipo, fara melhor em batalha.$"
+      ],
+      "GoldenrodUnderground_Text_SupernerdTeruAfterBattle": [
+        "Conheco os meus alinhamentos do\\ntipo POKEMON.\\pMas so uso um tipo de POKEMON.$"
+      ],
+      "GoldenrodUnderground_Text_PokemaniacIssacSeen": [
+        "O meu Pokemon acabou de cortar\\no cabelo!\\pVou mostrar-te como e forte!$"
+      ],
+      "GoldenrodUnderground_Text_PokemaniacIssacBeaten": [
+        "Aiyeee!$"
+      ],
+      "GoldenrodUnderground_Text_PokemaniacIssacAfterBattle": [
+        "O seu POKEMON gostara mais de\\nsi se lhes cortar os cabelos.$"
+      ],
+      "GoldenrodUnderground_Text_PokemaniacDonaldSeen": [
+        "Acho que tem um POKEMON raro\\nconsigo.\\pDeixa-me ve-los!$"
+      ],
+      "GoldenrodUnderground_Text_PokemaniacDonaldBeaten": [
+        "Gaah! Perdi! Isso deixa-me\\nzangado!$"
+      ],
+      "GoldenrodUnderground_Text_DoorsLocked": [
+        "A porta esta trancada...$"
+      ],
+      "GoldenrodUnderground_Text_DoorIsOpen": [
+        "A porta esta aberta.$"
+      ]
+    },
+    "data/maps/GraniteCave_StevensRoom/scripts.inc": {
+      "GraniteCave_StevensRoom_Text_RegisteredSteven": [
+        "STEVEN registado no POKeNAV.$"
+      ],
+      "GraniteCave_StevensRoom_Text_IveGotToHurryAlong": [
+        "Agora, tenho de me despachar.$"
+      ]
+    },
+    "data/maps/IcePath_1F/scripts.inc": {
+      "IcePath_1F_Text_Stuck1": [
+        "Meu... E voce,{PLAYER}Que bom\\nencontrar-te aqui!\\pPara dizer a verdade... as\\nminhas sandalias estao\\lcongeladas no gelo, e eu estou\\lpreso.\\pPor outras palavras, os meus\\nchinelos estao rapidamente\\lcongelados.\\pTee hee.\\pNao e motivo para rir.\\pImportas-te de me empurrar as\\ncostas?$"
+      ],
+      "IcePath_1F_Text_Stuck2": [
+        "Meu... E voce,{PLAYER}Que bom\\nencontrar-te aqui!\\pPara dizer a verdade... as\\nminhas sandalias estao\\lcongeladas no gelo, e eu estou\\lpreso.\\pEm outras palavras, meus\\nchinelos sao rapidamente\\lcongelado com o chao.\\pTee hee.\\pNao e motivo para rir. Pode\\nempurrar-me as costas?$"
+      ],
+      "IcePath_1F_Text_Cruel": [
+        "Nao sejas tao cruel. Vais\\nempurrar-me as costas, nao\\lvais?$"
+      ],
+      "IcePath_1F_Text_Thanks": [
+        "Es muito gentil. Muito\\nobrigado!$"
+      ]
+    },
+    "data/maps/IcePath_B1F/scripts.inc": {
+      "IcePath_B1F_Text_PuzzleSkipButton": [
+        "Queres saltar este puzzle?$"
+      ]
+    },
+    "data/maps/IcePath_B3F/scripts.inc": {
+      "IcePath_B3F_Text_SwinubTurnedAway": [
+        "A SWINUB nao gosta!$"
+      ],
+      "IcePath_B3F_Text_DelibirdAteBerry": [
+        "DELIBIRD gostou do BERRY\\nASPEAR!$"
+      ],
+      "IcePath_B3F_Text_DelibirdTurnedAway": [
+        "O DELIBIRD nao gosta!$"
+      ],
+      "IcePath_B3F_Text_NoRoomForTM": [
+        "Mas o teu BAG esta cheio! Abram\\nespaco e voltem.$"
+      ]
+    },
+    "data/maps/IlexForest/scripts.inc": {
+      "IlexForest_Text_ApprenticeAfter": [
+        "Uau! Muito obrigado!\\pO Pokemon do meu chefe nao me\\nobedece porque nao tenho magoa.$"
+      ],
+      "IlexForest_Text_ItsTheMissingPokemon": [
+        "E o POKEMON desaparecido!$"
+      ],
+      "IlexForest_Text_CharcoalMasterTalkAfter": [
+        "Queres aprender a fazer carvao\\ncomigo?\\pEstaras de primeira em dez\\nanos!$"
+      ],
+      "MoveTutor_Text_HeadbuttTeach": [
+        "O que estou a fazer?\\pEstou a sacudir arvores usando\\nHEADBUTT.\\pAchas que o teu Pokemon tambem\\nvai querer o HEADBUTT?\\pPosso ensinar-te o movimento\\nHEADBUTT, se quiseres. E\\ldivertido!$"
+      ],
+      "MoveTutor_Text_HeadbuttWhichMon": [
+        "Claro que sim! Seria optimo se\\no Pokemon se parecesse comigo.$"
+      ],
+      "MoveTutor_Text_HeadbuttDeclined": [
+        "Nao precisas de ser timido.\\nVamos a isto!$"
+      ],
+      "MoveTutor_Text_HeadbuttTaught": [
+        "Arvores rattle com HEADBUTT. As\\nvezes, Pokemon adormecido cai.$"
+      ],
+      "IlexForest_Text_Lass": [
+        "Aconteceu alguma coisa ao\\nguardiao da floresta?$"
+      ],
+      "IlexForest_Text_Signpost": [
+        "O ILEX FOREST esta tao cheio de\\narvores que nao se pode ver o\\lceu.\\pPor favor, cuidado com os itens\\nque podem ter sido deixados\\lcair.$"
+      ],
+      "IlexForest_Text_Shrine": [
+        "ILEX FOREST SHRINE...\\pE em honra do protector da\\nfloresta...$"
+      ],
+      "IlexForest_Text_BugCatcherWayneSeen": [
+        "Nao me surpreendas assim!\\pAssustaste um Pokemon!$"
+      ],
+      "IlexForest_Text_BugCatcherWayneBeaten": [
+        "Nunca tinha visto aquele\\nPokemon antes...$"
+      ],
+      "IlexForest_Text_BugCatcherWayneAfter": [
+        "Um Pokemon que nunca vi antes\\ncaiu da arvore quando usei\\lHEADBUTT.\\pEu deveria usar HEADBUTT em\\noutros lugares tambem.$"
+      ],
+      "IlexForest_Text_Kimono_Girl3": [
+        "Meu... Estas perdido, nao\\nestas?$"
+      ],
+      "IlexForest_Text_Kimono_Girl4": [
+        "Uau! Vais mostrar-me como sair?\\pEs um POKEMON tao inteligente!$"
+      ],
+      "IlexForest_Text_Kimono_Girl5": [
+        "Ate logo.$"
+      ]
+    },
+    "data/maps/InsideOfTruck/scripts.inc": {
+      "InsideOfTruck_Text_BoxPrintedWithMonLogo": [
+        "A caixa e impressa com um\\nlogotipo POKEMON.\\pE uma marca POKEMON em\\nmovimento e servico de entrega.$"
+      ]
+    },
+    "data/maps/JaggedPass/scripts.inc": {
+      "JaggedPass_Text_EricDefeat": [
+        "Perder deixou-me amargo!$"
+      ],
+      "JaggedPass_Text_EricPostBattle": [
+        "Sim, perdi em Pokemon...\\pMas, quando se trata do amor\\ndas montanhas, tenho-te\\lderrotado!$"
+      ],
+      "JaggedPass_Text_DianaIntro": [
+        "Este lugar nao e a tua\\ncaminhada casual. Nao e\\ladequado para um piquenique.$"
+      ],
+      "JaggedPass_Text_DianaDefeat": [
+        "Ohhh, nao! O chao esta muito\\nacidentado...$"
+      ],
+      "JaggedPass_Text_DianaPostBattle": [
+        "Sabias?\\pAlgumas pessoas andam de\\nbicicleta por este passo\\lhorrivelmente acidentado.$"
+      ],
+      "JaggedPass_Text_DianaRegister": [
+        "Vai voltar a esta area? Se\\nvoltares, quero uma revanche.$"
+      ],
+      "JaggedPass_Text_DianaRematchIntro": [
+        "Os piqueniques sao divertidos\\nonde quer que vas. Tal como o\\lPokemon!$"
+      ],
+      "JaggedPass_Text_DianaRematchDefeat": [
+        "So perdi porque o chao e muito\\nacidentado!$"
+      ],
+      "JaggedPass_Text_DianaPostRematch": [
+        "Vou esquecer-me de perder e\\naproveitar esta caminhada\\lacidentada.$"
+      ],
+      "JaggedPass_Text_EthanDefeat": [
+        "Estava tudo acabado enquanto\\nainda tentavamos encontrar um\\lbom pe...$"
+      ],
+      "JaggedPass_Text_EthanPostBattle": [
+        "Se eu tivesse um ACRO BIKE, eu\\nseria capaz de saltar bordas.$"
+      ],
+      "JaggedPass_Text_EthanRegister": [
+        "Quando me habituar a esta\\nconfusao, vou ganhar!\\pPodes registar-me no teu\\nPOKeNAV?$"
+      ],
+      "JaggedPass_Text_EthanRematchIntro": [
+        "Habituei-me a esta turbulencia.\\nCanto enquanto escalo.$"
+      ],
+      "JaggedPass_Text_EthanRematchDefeat": [
+        "Ainda nao e facil lutar neste\\nterreno acidentado...$"
+      ],
+      "JaggedPass_Text_GruntIntro": [
+        "Wah! O que fazes aqui?\\pO que estou a fazer num lugar\\ncomo este?\\pQue tens a ver com isso?$"
+      ],
+      "JaggedPass_Text_GoWhereverYouWant": [
+        "Esta bem, esta bem! Admito que\\nes forte!\\pNao te preocupes comigo. Vai\\npara onde quiseres!$"
+      ],
+      "JaggedPass_Text_BoulderShakingInResponseToEmblem": [
+        "Oh! Esta rocha esta a tremer em\\nresposta ao EMBLEM MAGMA!$"
+      ],
+      "JaggedPass_Text_JulioIntro": [
+        "Aiyeeh! E muito assustador\\nderrubar a montanha de uma so\\lvez!$"
+      ],
+      "JaggedPass_Text_JulioDefeat": [
+        "Sinto que estou a\\ndesmoronar-me...$"
+      ],
+      "JaggedPass_Text_JulioPostBattle": [
+        "A minha bicicleta saltou tanto,\\nque a minha traseira esta\\ldorida...$"
+      ],
+      "JaggedPass_Text_AutumnIntro": [
+        "Subo esta colina todos os dias.\\nConfio na minha forca!$"
+      ],
+      "JaggedPass_Text_AutumnDefeat": [
+        "Hmm... O que correu mal?$"
+      ],
+      "JaggedPass_Text_AutumnPostBattle": [
+        "O que e essa saliencia de rocha\\num pouco acima da colina daqui?$"
+      ]
+    },
+    "data/maps/JohtoIndigoPlateau/scripts.inc": {
+      "JohtoIndigoPlateau_Text_Sign": [
+        "INDIGO PLATEAU\\pA meta final para os\\ninstrutores!\\pQG da LEAGUE POKEMON$"
+      ]
+    },
+    "data/maps/JohtoIndigoPlateau_PokemonCenter/scripts.inc": {
+      "JohtoIndigoPlateau_Text_ShigyNinja": [
+        "Parabens por ter chegado!\\pVi muitos treinadores passarem\\npor aqui ao longo dos anos, e\\ltodos eles sao maravilhosamente\\lunicos.\\pDevias estar orgulhoso por\\nteres chegado tao longe!\\pAgora, vai busca-los!$"
+      ],
+      "JohtoIndigoPlateau_Text_Blackbelt": [
+        "A LEAGUE POKEMON nao esta neste\\nmomento a aceitar novos\\ldesafiantes.\\pPor favor, volta mais tarde.$"
+      ],
+      "JohtoIndigoPlateau_Text_RivalWin": [
+        "...\\pEsta bem. Perdi...$"
+      ],
+      "JohtoIndigoPlateau_Text_RivalAfter": [
+        "Ainda nao consigo ganhar.\\pTenho de pensar mais no meu\\nPokemon...\\pHumph! Tenta nao perder!$"
+      ],
+      "JohtoIndigoPlateau_Text_TeleportGuyYes": [
+        "Esta bem, esta bem. Imagina a\\ntua casa na tua mente...$"
+      ],
+      "JohtoIndigoPlateau_Text_TeleportGuyNo": [
+        "Esta bem, esta bem. Boa sorte\\npara ti!$"
+      ]
+    },
+    "data/maps/JohtoPokemonLeague_BrunosRoom/scripts.inc": {
+      "JohtoPokemonLeague_BrunosRoom_Text_Beaten": [
+        "Porque? Como poderiamos perder?$"
+      ],
+      "JohtoPokemonLeague_BrunosRoom_Text_Defeat": [
+        "Tendo perdido, nao tenho o\\ndireito de dizer nada...\\pVai enfrentar o teu proximo\\ndesafio!$"
+      ]
+    },
+    "data/maps/JohtoPokemonLeague_ChampionsRoom/scripts.inc": {
+      "JohtoPokemonLeague_ChampionsRoom_Text_BattleAfter": [
+        "...Whew.\\pTornaste-te verdadeiramente\\npoderoso.{PLAYER}.\\pO seu POKEMON respondeu a sua\\nforte e integro natureza.\\pComo treinador, continuara a\\ncrescer forte com o seu\\lPOKEMON.$"
+      ]
+    },
+    "data/maps/JohtoPokemonLeague_KarensRoom/scripts.inc": {
+      "JohtoPokemonLeague_KarensRoom_Text_Beaten": [
+        "Bem, nao es bom? Gosto disso\\nnum treinador.$"
+      ]
+    },
+    "data/maps/JohtoPokemonLeague_KogasRoom/scripts.inc": {
+      "JohtoPokemonLeague_KogasRoom_Text_Beaten": [
+        "Ah! Provaste o teu valor!$"
+      ],
+      "JohtoPokemonLeague_KogasRoom_Text_Defeat": [
+        "Submeti-te a tudo o que pude\\nreunir.\\pMas os meus esforcos falharam.\\nTenho de melhorar as minhas\\lhabilidades.\\pVa para a sala ao lado, e ponha\\nsuas habilidades para testar!$"
+      ]
+    },
+    "data/maps/JohtoPokemonLeague_WillsRoom/scripts.inc": {
+      "JohtoPokemonLeague_WillsRoom_Text_Beaten": [
+        "Nao acredito...$"
+      ]
+    },
+    "data/maps/JohtoVictoryRoad_1F/scripts.inc": {
+      "JohtoVictoryRoad_1F_Text_EdgarIntro": [
+        "Cheguei ate aqui algumas vezes,\\nmas a ultima parte e tao\\llonga...$"
+      ],
+      "JohtoVictoryRoad_1F_Text_EdgarDefeat": [
+        "O meu sonho acaba aqui outra\\nvez...$"
+      ],
+      "JohtoVictoryRoad_1F_Text_AlbertIntro": [
+        "Nao vim ate aqui para perder\\nagora. Essa possibilidade nao\\lexiste!$"
+      ],
+      "JohtoVictoryRoad_1F_Text_AlbertDefeat": [
+        "Impossivel... eu perdi?$"
+      ],
+      "JohtoVictoryRoad_1F_Text_AlbertPostBattle": [
+        "Eu perdi aqui...\\pIsso significa que nao tenho\\nqualificacoes para me tornar o\\lCHAMPION...$"
+      ],
+      "JohtoVictoryRoad_1F_Text_HopeDefeat": [
+        "Seu estilo de batalha e\\nfantastico...$"
+      ],
+      "JohtoVictoryRoad_1F_Text_HopePostBattle": [
+        "Parece ter potencial para se\\ntornar o CHAMPION.$"
+      ],
+      "JohtoVictoryRoad_1F_Text_QuincyDefeat": [
+        "Esta bem! Muito bem!$"
+      ],
+      "JohtoVictoryRoad_1F_Text_KatelynnIntro": [
+        "Nao tenho nada a dizer a\\nninguem que tenha chegado tao\\llonge. Vamos!$"
+      ],
+      "JohtoVictoryRoad_1F_Text_KatelynnDefeat": [
+        "Isto e uma desgraca...$"
+      ],
+      "JohtoVictoryRoad_1F_Text_KatelynnPostBattle": [
+        "Humph, va em frente. Ve se me\\nimporto.$"
+      ]
+    },
+    "data/maps/JohtoVictoryRoad_B1F/scripts.inc": {
+      "JohtoVictoryRoad_B1F_Text_SamuelDefeat": [
+        "Nao pude fazer nada...$"
+      ],
+      "JohtoVictoryRoad_B1F_Text_SamuelPostBattle": [
+        "A LEAGUE POKEMON tornou-se\\nnovamente distante... Que\\ldesilusao...$"
+      ],
+      "JohtoVictoryRoad_B1F_Text_ShannonIntro": [
+        "Para ganhar o seu caminho\\natraves da LEAGUE POKEMON, voce\\lprecisa da confianca do seu\\lPOKEMON.$"
+      ],
+      "JohtoVictoryRoad_B1F_Text_ShannonDefeat": [
+        "A tua relacao baseia-se numa\\nconfianca solida.$"
+      ],
+      "JohtoVictoryRoad_B1F_Text_ShannonPostBattle": [
+        "Estando juntos o tempo todo, a\\nconfianca cresce entre POKEMON\\le TREINADORES.$"
+      ],
+      "JohtoVictoryRoad_B1F_Text_MichelleDefeat": [
+        "E assim mesmo!$"
+      ],
+      "JohtoVictoryRoad_B1F_Text_MichellePostBattle": [
+        "Vai correr tudo bem, com\\ncerteza! Os vossos Pokemon\\lestao todos ansiosos por ir!$"
+      ],
+      "JohtoVictoryRoad_B1F_Text_MitchellIntro": [
+        "Os meus Pokemon sao\\ncosmosicamente inspiradores!$"
+      ],
+      "JohtoVictoryRoad_B1F_Text_MitchellDefeat": [
+        "Nunca conheci ninguem como tu.$"
+      ],
+      "JohtoVictoryRoad_B1F_Text_MitchellPostBattle": [
+        "Mesmo fora da batalha, sinto um\\npoder incrivel que emana de ti\\le do teu Pokemon.$"
+      ],
+      "JohtoVictoryRoad_B1F_Text_HalleIntro": [
+        "Nao precisas de te levantar!\\nCalma, vamos ter calma!$"
+      ],
+      "JohtoVictoryRoad_B1F_Text_HalleDefeat": [
+        "Whoa! Maravilhoso!$"
+      ]
+    },
+    "data/maps/JohtoVictoryRoad_B2F/scripts.inc": {
+      "JohtoVictoryRoad_B2F_Text_VitoIntro": [
+        "Treinei com toda a minha\\nfamilia, todos nos! Nao vou\\lperder para ninguem!$"
+      ],
+      "JohtoVictoryRoad_B2F_Text_VitoDefeat": [
+        "Melhor que a minha familia?!\\nIsso e possivel?!$"
+      ],
+      "JohtoVictoryRoad_B2F_Text_VitoPostBattle": [
+        "Eu era melhor do que todos na\\nminha familia. Nunca perdi\\lantes...\\pPerdi a minha confianca...\\nTalvez eu va para casa...$"
+      ],
+      "JohtoVictoryRoad_B2F_Text_OwenIntro": [
+        "Ouvi dizer que havia um miudo\\nduro por perto. Referem-se a\\lti?$"
+      ],
+      "JohtoVictoryRoad_B2F_Text_OwenDefeat": [
+        "O pequeno camarao e duro!$"
+      ],
+      "JohtoVictoryRoad_B2F_Text_CarolineIntro": [
+        "Deves estar a ficar cansado.$"
+      ],
+      "JohtoVictoryRoad_B2F_Text_CarolineDefeat": [
+        "Nenhum sinal de cansaco!$"
+      ],
+      "JohtoVictoryRoad_B2F_Text_JulieIntro": [
+        "Nao devias ficar complacente so\\nporque tens muitos INSIGNIA.\\pHavera sempre alguem melhor do\\nque tu!$"
+      ],
+      "JohtoVictoryRoad_B2F_Text_JulieDefeat": [
+        "Es melhor do que eu!$"
+      ],
+      "JohtoVictoryRoad_B2F_Text_JuliePostBattle": [
+        "Vejam os vossos INSIGNIAS\\nrecolhidos e lembrem-se dos\\lTRAiners que enfrentaram.$"
+      ],
+      "JohtoVictoryRoad_B2F_Text_FelixIntro": [
+        "Cheguei ate aqui, mas a tensao\\nesta a dar-me dores de\\lestomago...$"
+      ],
+      "JohtoVictoryRoad_B2F_Text_FelixDefeat": [
+        "Ooh... Doi...$"
+      ],
+      "JohtoVictoryRoad_B2F_Text_FelixPostBattle": [
+        "Nao consigo evitar ficar tenso\\nsabendo que estou perto da\\lLEAGUE POKEMON.\\pE tudo o que posso fazer para\\nfingir calma.$"
+      ],
+      "JohtoVictoryRoad_B2F_Text_DianneIntro": [
+        "A elite entre as elites\\nreune-se nesta caverna.\\pComo e que o encontras?$"
+      ],
+      "JohtoVictoryRoad_B2F_Text_DianneDefeat": [
+        "Nem um pouco abalada!$"
+      ],
+      "JohtoVictoryRoad_B2F_Text_DiannePostBattle": [
+        "Tens mesmo coragem! Gosto\\ndisso! Continuem!$"
+      ]
+    },
+    "data/maps/LakeOfRage/scripts.inc": {
+      "LakeOfRage_Text_LanceIntro1": [
+        "Veio aqui por causa dos\\nrumores?\\pVoce e...{PLAYER}Sou o LANCE,\\num treinador como tu.$"
+      ],
+      "LakeOfRage_Text_LanceIntro2": [
+        "Este homem aqui informou-me de\\nalguns rumores.\\pEntao viemos investigar...$"
+      ],
+      "LakeOfRage_Text_LanceIntro3": [
+        "Vi como lutaste antes.{PLAYER}.\\pPosso dizer que es um treinador\\ncom uma habilidade\\lconsideravel.\\pSe nao se importa, pode\\najudar-nos a investigar?$"
+      ],
+      "LakeOfRage_Text_LanceRefused": [
+        "Oh... Se mudares de ideias,\\najuda-nos.$"
+      ],
+      "LakeOfRage_Text_GrampsCleared": [
+        "Hahah! Os MAGIKARP estao a\\nmorder!$"
+      ],
+      "LakeOfRage_Text_SuperNerd": [
+        "Ouvi dizer que este lago foi\\nfeito por GYARADOS.\\pSera que ha alguma ligacao com\\no surto de massa deles agora?$"
+      ],
+      "LakeOfRage_Text_FisherAndreSeen": [
+        "Deixa-me lutar com o Pokemon\\nque acabei de apanhar!$"
+      ],
+      "LakeOfRage_Text_FisherAndreBeaten": [
+        "Posso ser um pescador\\nespecialista, mas sou um\\ltreinador POKEMON...$"
+      ],
+      "LakeOfRage_Text_FisherAndreAfter": [
+        "Nao vou perder como pescador!\\nEu apanho o Pokemon o dia todo.$"
+      ],
+      "LakeOfRage_Text_FisherRaymondSeen": [
+        "Nao importa o que eu faca, tudo\\no que eu pego e o mesmo\\lPOKEMON...$"
+      ],
+      "LakeOfRage_Text_FisherRaymondBeaten": [
+        "A minha linha esta\\nemaranhada...$"
+      ],
+      "LakeOfRage_Text_FisherRaymondAfter": [
+        "Porque e que nao apanho nenhum\\nbom Pokemon?$"
+      ],
+      "LakeOfRage_Text_CooltrainermAaronSeen": [
+        "Se um treinador ve outro\\ntreinador, ele tem que fazer um\\ldesafio.\\pEsse e o nosso destino.$"
+      ],
+      "LakeOfRage_Text_CooltrainermAaronBeaten": [
+        "Ufa... Boa batalha.$"
+      ],
+      "LakeOfRage_Text_CooltrainermAaronAfter": [
+        "POKEMON e seu treinador\\ntornam-se poderosos atraves da\\lluta constante.$"
+      ],
+      "LakeOfRage_Text_CooltrainerfLoisBeaten": [
+        "Muito bem!$"
+      ],
+      "LakeOfRage_Text_WesleyGivesGift": [
+        "Prazer em conhece-lo. Por\\nfavor, leve uma lembranca.$"
+      ],
+      "LakeOfRage_Text_Sign": [
+        "LAKE OF RAGE, tambem conhecido\\ncomo GYARADOS LAKE.$"
+      ]
+    },
+    "data/maps/LakeOfRageLowTide/scripts.inc": {
+      "LakeOfRageLowTide_Text_Sage": [
+        "Esta caverna contem um POKEMON\\nmuito forte para um treinador\\lcomum.$"
+      ]
+    },
+    "data/maps/LakeOfRage_House1/scripts.inc": {
+      "HiddenPowerGuy_Text_Intro": [
+        "...desviaste-te muito...\\pAqui meditei. Dentro de mim, um\\nnovo poder foi despertado.\\pDeixa-me partilhar o meu poder\\ncom o teu Pokemon. Toma isto,\\lcrianca.$"
+      ],
+      "HiddenPowerGuy_Text_Meditating": [
+        "Estou a meditar...$"
+      ]
+    },
+    "data/maps/LakeOfRage_House2/scripts.inc": {
+      "LakeOfRage_House2_Text_LastMon": [
+        "Nao me deixes levar o teu\\nultimo POKEMON!$"
+      ],
+      "LakeOfRage_House2_Text_ForMe": [
+        "Entao... Tens um MAGIKARP para\\nmim?$"
+      ],
+      "LakeOfRage_House2_Text_HaveMagikarp": [
+        "Ah, voce tem um MAGIKARP! Vamos\\nver o tamanho do bebe.$"
+      ],
+      "LakeOfRage_House2_Text_BigPayout": [
+        "Uau! Este e excelente!\\pTiro-te o chapeu!\\pAqui esta uma coisinha para o\\nseu problema.$"
+      ],
+      "LakeOfRage_House2_Text_Bonus": [
+        "O recorde e o mais importante.\\pPense nisso como um bonus!$"
+      ],
+      "LakeOfRage_House2_Text_TooShort": [
+        "Uau! Este e excelente!\\pGostaria de poder dizer isso,\\nmas ja vi um maior antes.\\pAcho que vale alguma coisa.$"
+      ],
+      "LakeOfRage_House2_Text_NotMagikarp": [
+        "O que? Isso nao e um MAGIKARP!$"
+      ],
+      "LakeOfRage_House2_Text_Refused": [
+        "Oh... Entao nao recebeste um\\nsuficientemente bom para me\\lmostrares? Talvez da proxima\\lvez.$"
+      ]
+    },
+    "data/maps/LavaridgeTown/scripts.inc": {
+      "LavaridgeTown_Text_MayNiceBadgesTakeThis": [
+        "MAY:{PLAYER}{KUN}Ha quanto\\ntempo!\\pA serio? Enquanto eu visitava\\nas fontes termais, voce tem o\\lLAVARIDGE GINASIO INSIGNIA.\\pVoce deve ter recolhido bom\\nPOKEMON... Nao, acho que\\lcriaste alguns.\\pAcho que seria bom para ti\\nteres isto.$"
+      ],
+      "LavaridgeTown_Text_HaveEggWillYouTakeIt": [
+        "Tenho aqui um EGG.\\pEsperava eclodi-lo cobrindo-o\\nem areia quente pelas fontes\\ltermais. Mas isso nao parece\\lser suficiente...\\pOuvi dizer que seria melhor se\\nfosse mantido junto com o\\lPokemon e carregado.\\pVoce e um treinador, nao e? E o\\nteu POKEMON irradia vitalidade.\\pEntao, o que me diz? Levas este\\nEGG para eclodir?$"
+      ],
+      "LavaridgeTown_Text_HopeYoullWalkPlentyWithEgg": [
+        "Optimo! Espero que ande\\nbastante com este EGG!$"
+      ],
+      "LavaridgeTown_Text_ReceivedTheEgg": [
+        "{PLAYER}recebeu o EGG.$"
+      ],
+      "LavaridgeTown_Text_NoRoomForThisEgg": [
+        "A serio? Tens demasiados\\nPokemon. Nao ha espaco para\\leste EGG...$"
+      ],
+      "LavaridgeTown_Text_AsYouWishThen": [
+        "Como desejar, entao...\\pSe mudares de ideias sobre o\\nEGG, estarei aqui.$"
+      ],
+      "LavaridgeTown_Text_EverySoOftenEggFoundAtDayCare": [
+        "De vez em quando, um EGG sera\\nencontrado no POKEMON DAY CARE.\\pOu pelo menos e assim que corre\\no boato.$"
+      ],
+      "LavaridgeTown_Text_HotSpringsNeverRunDry": [
+        "Tiramos a agua quente que\\nprecisamos, mas as fontes\\ltermais nunca secam.\\pNao e magico?\\pEstas fontes termais aparecem\\nperto de vulcoes ativos. Veias\\lde agua sob o solo sao\\laquecidas por magma para subir\\lbem como fontes termais.$"
+      ],
+      "LavaridgeTown_Text_PokemonNippedBackside": [
+        "Ser enterrado nesta areia\\nquente e... Suspiro...\\pTao quente e celestial...\\pEh? Gyaah! Ouch!\\pUm Pokemon mordeu-me as costas!$"
+      ],
+      "LavaridgeTown_Text_OhYouLikeHotSprings": [
+        "Gostas de termas, nao gostas?\\pIsso e surpreendente para um\\njovem como tu.$"
+      ],
+      "LavaridgeTown_Text_IfPokemonInHotSprings": [
+        "Se as pessoas colocarem POKEMON\\nem fontes termais, pode ser\\lmuito estranho.\\pPode ser um banho electrico, ou\\num banho de espuma, ou mesmo um\\lbanho de lava...$"
+      ],
+      "LavaridgeTown_Text_HotSpringsClaims": [
+        "Dizem que estas fontes termais\\nsao boas para acalmar a tensao\\lnervosa, aliviar os musculos,\\lresolver problemas romanticos e\\latrair dinheiro...$"
+      ]
+    },
+    "data/maps/LavaridgeTown_HerbShop/scripts.inc": {
+      "LavaridgeTown_HerbShop_Text_WelcomeToHerbShop": [
+        "Bem-vindo ao HERB SHOP, lar de\\nmedicamentos eficazes e\\lbaratos!$"
+      ],
+      "LavaridgeTown_HerbShop_Text_YouveComeToLookAtHerbalMedicine": [
+        "Veio ver a medicina de ervas em\\nLAVARIDGE?\\pIsso e bastante louvavel.\\pGosto de ti! Toma isto!$"
+      ],
+      "LavaridgeTown_HerbShop_Text_HerbalMedicineWorksButMonWillDislike": [
+        "A medicina herbal funciona\\nimpressionantemente bem. Mas o\\lteu Pokemon nao gostara de ti\\lpor isso. Deve ser\\lhorrivelmente amargo!$"
+      ]
+    },
+    "data/maps/LavaridgeTown_PokemonCenter_1F/scripts.inc": {
+      "LavaridgeTown_PokemonCenter_1F_Text_TrainersPokemonSpendTimeTogether": [
+        "Acho que o Pokemon se aproxima\\ndos seus treinadores se\\lpassarem tempo juntos.\\pQuanto mais tempo, melhor. E o\\nque eu acho.$"
+      ],
+      "LavaridgeTown_PokemonCenter_1F_Text_HotSpringCanInvigorate": [
+        "E magico como ficar sentado\\nnuma piscina pode revigorar.\\pQuem me dera poder deixar o meu\\nPokemon tambem.$"
+      ],
+      "LavaridgeTown_PokemonCenter_1F_Text_TrainersShouldRestToo": [
+        "Hohoho! Miudo, podes chegar as\\nfontes termais daqui.\\pSe POKEMON esta descansando,\\nassim tambem deve seus\\lTREINADORES.$"
+      ]
+    },
+    "data/maps/LavenderTown_Frlg/scripts.inc": {
+      "LavenderTown_Text_DoYouBelieveInGhosts": [
+        "Acreditas em fantasmas?$"
+      ],
+      "LavenderTown_Text_SoThereAreBelievers": [
+        "A serio? Entao, ha crentes...$"
+      ],
+      "LavenderTown_Text_JustImaginingWhiteHand": [
+        "Hahaha, acho que nao.\\pAquela mao branca no teu\\nombro... Estou so a imaginar.$"
+      ],
+      "LavenderTown_Text_TownKnownAsMonGraveSite": [
+        "Esta cidade e conhecida como o\\ntumulo de POKEMON.\\pOs servicos comemorativos sao\\nrealizados em POKEMON TOWER.$"
+      ]
+    },
+    "data/maps/LavenderTown_House2_Frlg/scripts.inc": {
+      "LavenderTown_House2_Text_GiveItANicerName": [
+        "{STR_VAR_1}E mesmo? E uma\\nalcunha decente!\\pMas, queres que lhe de um nome\\nmelhor?\\pQue tal?$"
+      ],
+      "LavenderTown_House2_Text_WhatShallNewNicknameBe": [
+        "Ainda bem. Entao, qual sera o\\nnovo apelido?$"
+      ],
+      "LavenderTown_House2_Text_FromNowOnShallBeKnownAsName": [
+        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pE um nome melhor do que antes!\\nQue sorte a sua!$"
+      ],
+      "LavenderTown_House2_Text_ISeeComeVisitAgain": [
+        "Estou a ver. Vem visitar-me\\noutra vez.$"
+      ],
+      "LavenderTown_House2_Text_FromNowOnShallBeKnownAsSameName": [
+        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pNao parece diferente de antes,\\ne no entanto, isto e muito\\lsuperior!\\pQue sorte a sua!$"
+      ],
+      "LavenderTown_House2_Text_TrulyImpeccableName": [
+        "{STR_VAR_1}E mesmo? E um nome\\nverdadeiramente impecavel!\\pCuida bem de ti.{STR_VAR_1}!$"
+      ],
+      "LavenderTown_House2_Text_ThatIsMerelyAnEgg": [
+        "Agora, agora. Isso e apenas um\\nEGG!$"
+      ]
+    },
+    "data/maps/LavenderTown_Mart_Frlg/scripts.inc": {
+      "LavenderTown_Mart_Text_TrainerDuosCanChallengeYou": [
+        "As vezes, um duo TREINADOR ira\\ndesafia-lo com dois POKEMON ao\\lmesmo tempo.\\pSe isso acontecer, tambem tens\\nde enviar dois Pokemon para a\\lbatalha.$"
+      ]
+    },
+    "data/maps/LavenderTown_PokemonCenter_1F_Frlg/scripts.inc": {
+      "LavenderTown_PokemonCenter_1F_Text_RocketsDoAnythingForMoney": [
+        "TEAM ROCKET fara qualquer coisa\\npor causa do dinheiro!\\pNao ha trabalho muito sujo,\\nnenhum ato muito hediondo,\\lnenhum crime muito perverso!$"
+      ],
+      "LavenderTown_PokemonCenter_1F_Text_PeoplePayForCuboneSkulls": [
+        "Sabes como as especies de\\nCUBONE usam cranios, certo?\\pAs pessoas pagam muito por uma.$"
+      ]
+    },
+    "data/maps/LavenderTown_VolunteerPokemonHouse_Frlg/scripts.inc": {
+      "LavenderTown_VolunteerPokemonHouse_Text_WhereDidMrFujiGo": [
+        "Estranho, o Sr. FUJI nao esta\\naqui. Onde e que ele foi?$"
+      ],
+      "LavenderTown_VolunteerPokemonHouse_Text_MonsNiceToHug": [
+        "Esta tao quente! Pokemon e tao\\nbom para abracar.$"
+      ],
+      "LavenderTown_VolunteerPokemonHouse_Text_IdLikeYouToHaveThis": [
+        "Sr. FUJI:{PLAYER}...\\pSua busca POKEDEX e uma que\\nrequer forte dedicacao.\\pSem profundo amor por POKEMON,\\nsua busca pode falhar.\\pNao sei se isto te vai ajudar,\\nmas gostava que ficasses com\\lele.$"
+      ],
+      "LavenderTown_VolunteerPokemonHouse_Text_ReceivedPokeFluteFromMrFuji": [
+        "{PLAYER}Recebeu um POKe FLUTE\\ndo Sr. FUJI.$"
+      ],
+      "LavenderTown_VolunteerPokemonHouse_Text_ExplainPokeFlute": [
+        "Ao ouvir o POKe FLUTE, Pokemon\\nadormecido acordara.\\pTente usa-lo em POKEMON que sao\\nobstaculos para dormir.$"
+      ],
+      "LavenderTown_VolunteerPokemonHouse_Text_MustMakeRoomForThis": [
+        "Tem de arranjar espaco para\\nisto!$"
+      ],
+      "LavenderTown_VolunteerPokemonHouse_Text_GrandPrizeDrawingClipped": [
+        "POKEMON FAN MAGAZINE Monthly\\nGrand Prize Drawing!\\pO formulario de candidatura\\ne...\\pDesapareceu! Foi arrancado.\\nAlguem ja se deve ter\\lcandidatado.$"
+      ]
+    },
+    "data/maps/LilycoveCity/scripts.inc": {
+      "LilycoveCity_Text_MayYouGoingToCollectBadges": [
+        "{PLAYER}{KUN}O que vais fazer?\\pRecolher todos os GINASIO\\nINSIGNIAS e aceitar o desafio\\lPOKEMON LEAGUE?\\pBem, enquanto coleccionas\\nINSIGNIAS,{PLAYER}{KUN}Vou\\ltrabalhar no meu POKEDEX. Vou\\lcompleta-lo antes de ti!\\pAte logo!$"
+      ],
+      "LilycoveCity_Text_MayYouGoingToPokemonLeague": [
+        "{PLAYER}{KUN}O que vais fazer?\\pAceita o desafio da LEAGUE\\nPOKEMON?\\pOu vais completar o teu\\nPOKEDEX?\\pPosso ter perdido para ti na\\nluta, mas vou acabar o meu\\lPOKEDEX antes de ti!\\pAte logo!$"
+      ],
+      "LilycoveCity_Text_BrendanDefeat": [
+        "Humph... Fizeste muitos\\naumentos.\\pIsso arde um pouco. Tive uma\\nvantagem em ti como treinador.$"
+      ],
+      "LilycoveCity_Text_BrendanYouGoingToCollectBadges": [
+        "{PLAYER}O que vais fazer?\\pRecolher todos os GINASIO\\nINSIGNIAS e aceitar o desafio\\lPOKEMON LEAGUE?\\pTalvez eu faca isso tambem...\\pSeja como for, aguenta-te!$"
+      ],
+      "LilycoveCity_Text_BrendanYouGoingToPokemonLeague": [
+        "{PLAYER}O que vais fazer?\\pJa que es tao forte, estas a\\naceitar o desafio da LEAGUE\\lPOKEMON?\\pAte eu, se treinasse mais o meu\\nPokemon, devia ser mais forte\\lque tu.{PLAYER}.\\pSeja como for, aguenta-te!$"
+      ],
+      "LilycoveCity_Text_DontGoNearCaveInCove": [
+        "Ei, tu!\\pNao te aproximes da caverna na\\nenseada!\\pPorque? Nao precisas de uma\\nrazao! Sou adulta, por isso\\louve-me!$"
+      ],
+      "LilycoveCity_Text_GetLostMessingUpTraining": [
+        "Hunh? O que queres?\\pEstas a estragar o nosso\\ntreino, por isso podes, tipo,\\ldesaparecer?$"
+      ],
+      "LilycoveCity_Text_StrangeCaveInCove": [
+        "Ja viste aquela caverna\\nestranha na enseada a beira da\\lcidade?$"
+      ],
+      "LilycoveCity_Text_ImFromKanto": [
+        "Eu vim da KANTO.\\pA regiao de HOENN e bonita com\\ntoda a sua agua e natureza\\lverdejante.\\pHunh? Espera um segundo...\\pPoderia haver POKEMON raro que\\nvive apenas nesta area?$"
+      ],
+      "LilycoveCity_Text_MissingPokemonCameBack": [
+        "O meu Pokemon desaparecido...\\nVoltou sem eu reparar!$"
+      ],
+      "LilycoveCity_Text_SeaRemainsForeverYoung": [
+        "Mesmo quando envelhecemos e\\nenrugamos, o mar permanece\\lsempre jovem com o brilho\\lvivido da vida...\\pFwohoho fwohohohoho...$"
+      ],
+      "LilycoveCity_Text_SixtyYearsAgoHusbandProposed": [
+        "Foi ha sessenta anos que o meu\\nmarido me pediu em casamento. O\\lmar permanece tao bonito como\\lsempre.\\pMufufufufufufu...$"
+      ],
+      "LilycoveCity_Text_DoYouKnowAboutBerryBlender": [
+        "Sabe sobre a maquina BERRY\\nBLENDER?$"
+      ],
+      "LilycoveCity_Text_FasterSpinBetterPokeblocks": [
+        "As pessoas tem de trabalhar\\njuntas para faze-lo girar mais\\ldepressa.\\pQuanto mais rapido conseguires\\nfaze-lo girar,\\lmelhor.{POKEBLOCK}Ja ouvi\\lfalar.$"
+      ],
+      "LilycoveCity_Text_ExplainBerryBlender": [
+        "E usado para fazer um tipo de\\ndoce chamado{POKEBLOCK}.\\pSe voce da um\\nbom{POKEBLOCK}para um POKEMON,\\lsua condicao vai melhorar\\lmuito.$"
+      ],
+      "LilycoveCity_Text_HeardTowerCalledSkyPillar": [
+        "Ouvi dizer que ha uma torre\\nalgures nas rotas maritimas.\\pE chamado de PILLAR SKY, ouvi\\ndizer.$"
+      ],
+      "LilycoveCity_Text_JustArrivedAndSawRarePokemon": [
+        "Acabamos de chegar aqui nas\\nnossas ferias de lua-de-mel.\\pVimos um Pokemon tipo DRAGON a\\nvoar no ceu.\\pPokemon fixe como aquele vive\\nna regiao de HOENN?$"
+      ],
+      "LilycoveCity_Text_HoneymoonVowToSeeRarePokemon": [
+        "Na nossa lua de mel, juramos\\nver o maximo de POKEMON raros\\lque pudermos.\\pAssim, ficamos encantados de\\nver um POKEMON raro assim que\\lchegamos.\\pEstamos totalmente felizes!$"
+      ]
+    },
+    "data/maps/LilycoveCity_ContestHall/scripts.inc": {
+      "LilycoveCity_ContestHall_Text_ManWhoWonEarlierHadPokeblocks": [
+        "Aquele jovem que ganhou antes\\ntinha um monte de coisas\\ldiferentes.{POKEBLOCK}S.\\pConsegues ganhar se tivesses\\ntantas dessas coisas?$"
+      ],
+      "LilycoveCity_ContestHall_Text_IsntThisPlaceHumongous": [
+        "Este lugar nao e enorme?\\pA tensao no ar... Nao e como um\\nsalao de CONTEST nos paus.$"
+      ],
+      "LilycoveCity_ContestHall_Text_RaisedMonToBeSmart": [
+        "Passei muitos anos, e toda a\\nminha sabedoria alem disso,\\lcriando este Pokemon para ser\\linteligente.\\pNao sera facilmente superada\\npelo Pokemon de um jovem\\lfilhote.\\pMinha querida esposa, estas a\\nver isto?$"
+      ],
+      "LilycoveCity_ContestHall_Text_IfMonPullsSmartMoveNext": [
+        "Ali esta!\\pSe o meu POKEMON fizer uma\\njogada inteligente a seguir, a\\lexcitacao do publico vai chegar\\lao fim!$"
+      ],
+      "LilycoveCity_ContestHall_Text_YoureBeautifulGrandpa": [
+        "Kiyaaah! Es lindo, avo!$"
+      ],
+      "LilycoveCity_ContestHall_Text_AllSeemToUseDifferentMoves": [
+        "Mesmo quando os TRAiners entram\\nno mesmo tipo de POKEMON, todos\\leles parecem usar diferentes\\lmovimentos para apelos.\\pE como a forma como as pessoas\\ntem estilos diferentes para\\llutar.$"
+      ],
+      "LilycoveCity_ContestHall_Text_PokemonSmarterThanTrainers": [
+        "Acho que o Pokemon parece mais\\nesperto que os seus\\ltreinadores. Por muito.$"
+      ],
+      "LilycoveCity_ContestHall_Text_EyesWillBeGluedToMyBeauty": [
+        "Um Pokemon tao bonito... Nao ha\\noutro igual.\\pOs olhos de todos ficarao\\ncolados a minha beleza.$"
+      ],
+      "LilycoveCity_ContestHall_Text_PokemonLooksLikeYoungerMe": [
+        "Este bonito Pokemon parece-se\\ncomigo quando era mais novo.\\pQuando disse isso, o meu marido\\nvomitou o cafe que estava a\\lbeber.\\pDisse alguma coisa engracada?$"
+      ],
+      "LilycoveCity_ContestHall_Text_GanderAtAllThosePrettyPokemon": [
+        "Wahahahah!\\pPodes dar uma vista de olhos a\\ntodos aqueles bonitos Pokemon?\\lAdoro este tipo de brilho!$"
+      ],
+      "LilycoveCity_ContestHall_Text_CantWinOnBeautyAlone": [
+        "Nem sempre se pode ganhar so\\ncom a beleza.\\pTens de preparar o teu POKEMON\\npara que seja bonito e\\lbrilhante como o meu.$"
+      ],
+      "LilycoveCity_ContestHall_Text_MyAzurillWasDistracted": [
+        "Nao... O meu doce AZURILL\\nestava distraido com outro\\lPokemon.$"
+      ],
+      "LilycoveCity_ContestHall_Text_MyMonAppealSoMuchCuter": [
+        "Todos os Pokemon sao muito\\ngiros.\\pNo entanto, se o meu Pokemon\\nfizesse um belo apelo...\\pTenho a certeza que seria muito\\nmais bonito que os outros.$"
+      ],
+      "LilycoveCity_ContestHall_Text_ComeOnDear": [
+        "Vamos, querida. Vai em frente!\\nO teu Pokemon e o melhor!$"
+      ],
+      "LilycoveCity_ContestHall_Text_ThatGirlThereIsCutest": [
+        "Acho que aquela rapariga ali e\\na mais gira de todas.\\pO que e isso? Estao a julgar o\\nPokemon pela aparencia?$"
+      ],
+      "LilycoveCity_ContestHall_Text_WantCuteMonOfMyOwn": [
+        "Ohh, vendo todos estes Pokemon\\nbonitos, eles fazem-nos querer\\lter o meu proprio!\\pVou apanhar alguns!$"
+      ]
+    },
+    "data/maps/LilycoveCity_ContestLobby/scripts.inc": {
+      "LilycoveCity_ContestLobby_Text_LinkContestsClosed": [
+        "LINK CONTESTS nao estao sendo\\ndetidos neste momento.\\lDesculpa!\\pPor favor, desfrute dos nossos\\nCONTESTS regulares no balcao a\\lesquerda!$"
+      ],
+      "LilycoveCity_ContestLobby_Text_LadyGaveMePokeblockCase": [
+        "Yippee!\\pA senhora da recepcao deu-me um\\ncaso para{POKEBLOCK}S!$"
+      ],
+      "LilycoveCity_ContestLobby_Text_MakePokeblocksDifferentBerries": [
+        "Marca{POKEBLOCK}S e coloca-los\\nla dentro.\\pQuando voce faz um{POKEBLOCK},\\ntodos tem que colocar um BERRY\\ldiferente.$"
+      ],
+      "LilycoveCity_ContestLobby_Text_ShouldITakePaintingToMuseum": [
+        "O que achas? Estou confiante no\\nque fiz, mas gostas?\\pUm trabalho deste calibre, nao\\nficaria fora de lugar num museu\\lde arte.\\pHuh? Um museu de arte esta\\nmesmo a procura de pinturas?\\pAchas que devo levar isto para\\nla?$"
+      ],
+      "LilycoveCity_ContestLobby_Text_IllTakePaintingToMuseum": [
+        "O que, a serio? Entao, claro,\\nvou levar este quadro para la\\lagora mesmo.\\pTambem lhe darei um titulo\\napropriado.\\pEspero que gostem e considerem\\nexibir isto.\\pPor favor, verifique se eles\\naceitaram isto. Obrigado!$"
+      ]
+    }
+  },
+  "c": {}
+}
