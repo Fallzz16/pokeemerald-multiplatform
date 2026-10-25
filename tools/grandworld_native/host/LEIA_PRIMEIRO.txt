@@ -36,3 +36,5 @@ O programa e destinado a Windows 10/11 x64. As DLLs estao inclusas.
 
 Codigo e progresso:
 https://github.com/Fallzz16/pokeemerald-multiplatform/pull/78
+
+Guia completo: tools/grandworld_native/STYLE_LAB_PTBR.md no GitHub.
