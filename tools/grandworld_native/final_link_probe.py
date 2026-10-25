@@ -151,6 +151,28 @@ def attach_coverage(result, source_audit, data_audit):
     return result
 
 
+
+def require_complete_input_coverage(result, report):
+    """Reject linked output if genuine C/ASM source inventory is incomplete.
+
+    Matching the files that happened to compile is not proof that *all*
+    original World/M8 files compiled. A missing module must never produce
+    an apparently successful game executable.
+    """
+    gates = ("source_object_set_verified", "data_object_set_verified",
+             "game_sources_all_compiled", "game_data_all_compiled")
+    missing = [key for key in gates if result.get(key) is not True]
+    result["full_input_inventory_verified"] = not missing
+    if missing:
+        result["link_succeeded"] = False
+        result["error"] = "original World/M8 compiled inventory is incomplete or mismatched"
+        result["input_coverage_failed_gates"] = missing
+        # A linker success with omitted game files is not a usable artifact.
+        Path(report).with_name(
+            "grandworld-WORLD-NOT-BOOT-VERIFIED").unlink(missing_ok=True)
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--code", required=True)
@@ -167,13 +189,7 @@ def main():
     if args.source_audit and args.data_audit:
         result.update(verify_compiled_objects(args.source_audit, args.data_audit,
                                               args.code, args.data))
-        if not (result["source_object_set_verified"] and
-                result["data_object_set_verified"]):
-            result["link_succeeded"] = False
-            result["error"] = "source audit and linked object set do not match"
-            # Do not leave an executable behind if source provenance is broken.
-            Path(args.report).with_name(
-                "grandworld-WORLD-NOT-BOOT-VERIFIED").unlink(missing_ok=True)
+        require_complete_input_coverage(result, args.report)
     Path(args.report).write_text(
         json.dumps(result, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({key: value for key, value in result.items()
