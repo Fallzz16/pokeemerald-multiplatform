@@ -60,6 +60,20 @@ class AuditRegressions(unittest.TestCase):
         with self.assertRaises(PackError):
             validate_zip(self.zip)
 
+    def test_reject_native_incompatible_filenames(self):
+        for invalid in (
+            "assets/menus/Loud.PNG",
+            "assets/menus/injected\\nname.bmp",
+            "assets/menus/injected\\tname.bmp",
+            "assets/menus/two..dots.bmp",
+            "assets/menus/space name.bmp",
+        ):
+            with self.subTest(path=invalid):
+                write_pack(self.zip, pathname=invalid)
+                with self.assertRaises(PackError):
+                    validate_zip(self.zip)
+
+
     def test_reject_malformed_logical_asset_id(self):
         write_pack(self.zip, logical="menus//background")
         with self.assertRaises(PackError):
