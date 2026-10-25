@@ -1,0 +1,23 @@
+import unittest
+from tools.grandworld_native.native_asm import normalize_host_assembly
+
+class NativeAsmTests(unittest.TestCase):
+    def test_arm_comments_on_data_directives_are_host_compatible(self):
+        before = '\t.byte 12, 34 @ World generated palette\n\t.long 0 @\n'
+        after, count = normalize_host_assembly(before)
+        self.assertEqual(after, '\t.byte 12, 34 # World generated palette\n\t.long 0 #\n')
+        self.assertEqual(count, 2)
+
+    def test_instruction_or_quoted_asset_is_never_modified(self):
+        text = ('.section .rodata,"a",@progbits\n'
+                '.incbin "graphics/@character/sample.bin"\n'
+                '\tcall symbol@PLT\n'
+                '\t# original host comment\n')
+        self.assertEqual(normalize_host_assembly(text), (text, 0))
+
+    def test_does_not_mutate_payload_bytes_or_noncomments(self):
+        original = '\t.byte 0x40, 0x41\n\t.asciz "mail@me"\n'
+        self.assertEqual(normalize_host_assembly(original), (original, 0))
+
+if __name__ == '__main__':
+    unittest.main()
