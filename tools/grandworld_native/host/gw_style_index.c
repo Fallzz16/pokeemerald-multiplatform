@@ -66,7 +66,12 @@ bool gw_styles_load(GWStyleIndex *index, const char *root)
     file = fopen(path, "rb");
     if (!file)
         return true; /* No packs installed is a valid classic-only setup. */
-    if (!fgets(line, sizeof(line), file) || strcmp(line, GW_PREFIX "\n") != 0) {
+    if (!fgets(line, sizeof(line), file)) {
+        fclose(file);
+        return false;
+    }
+    line[strcspn(line, "\r\n")] = 0;
+    if (strcmp(line, GW_PREFIX) != 0) {
         fclose(file);
         return false;
     }
@@ -75,9 +80,10 @@ bool gw_styles_load(GWStyleIndex *index, const char *root)
         char *fields[4] = {NULL, NULL, NULL, NULL};
         char *cursor = line;
         size_t len = strlen(line);
-        if (!len || line[len - 1] != '\n' || index->count == GW_STYLE_MAX_ASSETS)
+        if (!len || (line[len - 1] != '\n' && !feof(file)) ||
+            index->count == GW_STYLE_MAX_ASSETS)
             goto failure;
-        line[len - 1] = 0;
+        line[strcspn(line, "\r\n")] = 0;
         for (size_t k = 0; k < 3; ++k) {
             char *sep = strchr(cursor, '\t');
             if (!sep)
@@ -193,7 +199,12 @@ bool gw_styles_read_prefs(const GWStyleIndex *index, GWStylePrefs *prefs)
     file = fopen(path, "rb");
     if (!file)
         return true;
-    if (!fgets(buffer, sizeof(buffer), file) || strcmp(buffer, "GW_STYLE_V1\n")) {
+    if (!fgets(buffer, sizeof(buffer), file)) {
+        fclose(file);
+        return false;
+    }
+    buffer[strcspn(buffer, "\r\n")] = 0;
+    if (strcmp(buffer, "GW_STYLE_V1")) {
         fclose(file);
         return false;
     }
