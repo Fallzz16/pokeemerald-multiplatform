@@ -123,6 +123,9 @@ def compile_engine(world, out, compiler="gcc", use_preproc=False, all_sources=Fa
                              return_code=run.returncode,
                              errors=errors.splitlines()[:90],
                              bytes=obj.stat().st_size if obj.exists() else 0)
+                if run.returncode and obj.with_suffix(".s").is_file():
+                    entry["assembly_head"] = obj.with_suffix(".s").read_text(
+                        encoding="utf-8", errors="replace").splitlines()[:45]
             except (OSError, subprocess.TimeoutExpired, ValueError) as exc:
                 entry.update(status="toolchain_error", errors=[str(exc)])
         results.append(entry)
