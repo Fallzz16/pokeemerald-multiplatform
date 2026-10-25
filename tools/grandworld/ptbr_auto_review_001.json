@@ -194,52 +194,52 @@
     },
     "data/maps/CianwoodGym/scripts.inc": {
       "CianwoodGym_Text_ChuckIntro3": [
-        "Ali! Estas com medo agora?\\pO que? Nao tem nada a ver com\\nPOKEMON?\\pE verdade!\\pVamos. Vamos lutar!$"
+        "E ai? Ficou assustado?\\pO que? Isso nao tem nada\\na ver com POKEMON?\\pTem razao!\\pEntao vamos batalhar!$"
       ],
       "CianwoodGym_Text_ChuckLoss": [
-        "O que? Huh? Perdi?\\pQue tal isso! Es digno de\\nSTORMBADGE!$"
+        "O que? Hein? Eu perdi?\\pHa ha! Voce merece\\na STORMBADGE!$"
       ],
       "CianwoodGym_Text_GetStormBadge": [
-        "{PLAYER}recebeu STORMBADGE.$"
+        "{PLAYER} recebeu a STORMBADGE.$"
       ],
       "CianwoodGym_Text_ChuckBadgeSpeech": [
-        "STORMBADGE faz com que todos os\\nPokemon ate L70 obedecam, ate\\lmesmo os negociados.\\pToma, toma isto tambem!$"
+        "A STORMBADGE faz POKEMON\\nate o nivel 70 obedecerem,\\lmesmo os recebidos em trocas.\\pPegue isto tambem!$"
       ],
       "CianwoodGym_Text_ChuckRematchDefeat": [
-        "O que? Huh? Perdi? Outra vez?$"
+        "O que? Hein?\\nEu perdi de novo?$"
       ],
       "CianwoodGym_Text_BlackbeltYoshiSeen": [
-        "O meu Pokemon e eu somos\\nobrigados a unir-nos.\\pO nosso laco nunca sera\\nquebrado!$"
+        "Meus POKEMON e eu\\ntreinamos juntos todos os dias.\\pNosso vinculo nao se quebra!$"
       ],
       "CianwoodGym_Text_BlackbeltYoshiBeaten": [
-        "Isto nao e real!$"
+        "Nao acredito!$"
       ],
       "CianwoodGym_Text_BlackbeltYoshiAfter": [
-        "Voce parece ter uma forte\\nligacao com o seu POKEMON\\ltambem!$"
+        "Voce tambem tem um\\nvinculo forte com seus POKEMON!$"
       ],
       "CianwoodGym_Text_BlackbeltLaoSeen": [
-        "Nos, artistas marciais, nao\\ntemos medo de nada!$"
+        "Nos, artistas marciais,\\nnao temos medo de nada!$"
       ],
       "CianwoodGym_Text_BlackbeltLaoBeaten": [
-        "Isso e chocante!$"
+        "Que surpresa!$"
       ],
       "CianwoodGym_Text_BlackbeltLaoAfter": [
-        "Lutar contra Pokemon tem medo\\nde videntes...$"
+        "POKEMON do tipo FIGHTING\\nsofrem contra golpes PSYCHIC...$"
       ],
       "CianwoodGym_Text_BlackbeltNobSeen": [
-        "Palavras sao inuteis. Deixem os\\npunhos falarem!$"
+        "Chega de conversa!\\nDeixe meus punhos falarem!$"
       ],
       "CianwoodGym_Text_BlackbeltNobAfter": [
-        "Perdi! Estou sem palavras!$"
+        "Perdi! Fiquei sem palavras!$"
       ],
       "CianwoodGym_Text_BlackbeltLungSeen": [
-        "Os meus punhos vao quebrar o\\nteu Pokemon!$"
+        "Meus punhos vao acabar\\ncom seus POKEMON!$"
       ],
       "CianwoodGym_Text_BlackbeltLungBeaten": [
-        "Fiquei destrocado!$"
+        "Fui derrotado!$"
       ],
       "CianwoodGym_Text_BlackbeltLungAfter": [
-        "O meu Pokemon perdeu... O meu\\norgulho esta despedacado...$"
+        "Meus POKEMON perderam...\\nMeu orgulho ficou ferido...$"
       ]
     },
     "data/maps/CinnabarIsland_Gym_Frlg/scripts.inc": {
