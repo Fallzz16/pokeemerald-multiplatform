@@ -1,6 +1,7 @@
 #ifdef RENDERER_EASY_DRAW
 #include "global.h"
 #include <stdbool.h>
+#include <stdio.h>
 #include "platform/dma.h"
 
 #define mosaicBGEffectX (REG_MOSAIC & 0xF)
