@@ -9,6 +9,9 @@ import stat
 import tempfile
 import unittest
 import zipfile
+from unittest.mock import patch
+
+from tools.grandworld_native import asset_catalog
 
 from tools.grandworld_native.modpacks import PackError, validate_zip
 from tools.grandworld_native.pack_manager import install, toggle, list_packs
@@ -107,6 +110,21 @@ class AuditRegressions(unittest.TestCase):
         manifest.write_text('{"api":1,"id":"audit-safe","assets":[{"id":"menus/background","path":null}]}',
                             encoding="utf-8")
         self.assertEqual(available_styles(self.root, "menus"), ["classic"])
+
+    def test_builtin_classic_name_is_reserved(self):
+        write_pack(self.zip, pack_id="classic")
+        with self.assertRaises(PackError):
+            validate_zip(self.zip)
+
+    def test_excess_resources_rollback_enable_without_destroying_index(self):
+        write_pack(self.zip)
+        install(self.zip, self.root)
+        previous_catalog = (self.root / "runtime-assets.tsv").read_bytes()
+        with patch.object(asset_catalog, "MAX_CATALOG_ASSETS", 0):
+            with self.assertRaises(PackError):
+                toggle(self.root, "audit-safe", True)
+        self.assertEqual((self.root / "runtime-assets.tsv").read_bytes(), previous_catalog)
+        self.assertEqual(list_packs(self.root)[0]["enabled"], False)
 
     def test_malformed_metadata_does_not_crash_list(self):
         write_pack(self.zip)
