@@ -85,6 +85,11 @@ jobs:
             -lm -o world-platform-sanitized
           ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 \
             UBSAN_OPTIONS=halt_on_error=1 ./world-platform-sanitized
+      - name: P2 - expose actual World frame API on temporary native World
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/world_frame_overlay.py \
+            --world world --apply --report native-world-frame.json
       - name: P2 - probe real World engine objects (main, menu, regions, overworld, battles)
         run: |
           set -euo pipefail
@@ -110,6 +115,7 @@ jobs:
             saveabi.json
             dma.json
             native-engine-objects.json
+            native-world-frame.json
           if-no-files-found: warn
   fast-save-abi-audit:
     runs-on: ubuntu-24.04
@@ -244,6 +250,24 @@ jobs:
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/dma_api_overlay.py \
             --world world --apply --report native-dma-api-overlay.json
+      - name: P2 - native-only World gameplay frame extraction
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/world_frame_overlay.py \
+            --world world --apply --report native-world-frame-composed.json
+      - name: P2 - compile actual composited M8/World entry and gameplay objects
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/engine_probe.py \
+            --world world --output native-engine-m8-probe.json --objects native-m8-objects
+          python3 - <<'PY'
+          import json
+          r = json.load(open('native-engine-m8-probe.json'))
+          print("Composed M8/World engine objects:", r['compiled'], "/", r['requested'])
+          for unit in r['objects']:
+              print(unit['source'], unit['status'])
+              print("\\n".join(unit.get('errors', [])[:7]))
+          PY
       - name: P1 - record real C portability compiler diagnostics
         if: always()
         run: |
@@ -265,6 +289,8 @@ jobs:
             native-abi-report.json
             native-save-abi-overlay.json
             native-dma-api-overlay.json
+            native-world-frame-composed.json
+            native-engine-m8-probe.json
           if-no-files-found: warn
 
   host-sdl2-smoke:
