@@ -15,8 +15,10 @@ import zipfile
 
 try:
     from .modpacks import validate_zip, PackError
+    from .asset_catalog import generate_catalog
 except ImportError:
     from modpacks import validate_zip, PackError
+    from asset_catalog import generate_catalog
 
 INDEX = "enabled.json"
 
@@ -85,6 +87,7 @@ def install(archive, root):
             json.dumps({"schema": 1, "id": info["id"], "version": info["version"]}, indent=2) + "\n",
             encoding="utf-8")
         temp.rename(destination)
+        generate_catalog(root)
     finally:
         if temp.exists():
             shutil.rmtree(temp)
@@ -102,7 +105,14 @@ def toggle(root, pack_id, enabled):
         items.append(pack_id)
     elif not enabled and pack_id in items:
         items.remove(pack_id)
+    old_state = safe_index(root)
     write_index(root, state)
+    try:
+        generate_catalog(root)
+    except (PackError, OSError):
+        write_index(root, old_state)
+        generate_catalog(root)
+        raise
     return state
 
 
