@@ -1,0 +1,355 @@
+{
+  "asm": {
+    "data/maps/NewBarkTown/scripts.inc": {
+      "NewBarkTown_Text_MomNewHome": [
+        "Chegamos a NEW BARK TOWN,\\nem JOHTO.\\pO PROF. ELM esta esperando.\\nVisite seu LAB para pegar\\no primeiro POKEMON.$"
+      ],
+      "NewBarkTown_Text_LabSign": [
+        "LAB DO PROF. ELM$"
+      ],
+      "NewBarkTown_Text_Door": [
+        "A porta esta trancada.$"
+      ],
+      "NewBarkTown_Text_Wooper": [
+        "WOOPER: Woooooop.$"
+      ],
+      "NewBarkTown_Text_FatManState2": [
+        "Uau! Seu POKENAV e incrivel!\\nSua mae comprou para voce?$"
+      ],
+      "NewBarkTown_Text_FatManState3": [
+        "Ei, {PLAYER}!\\pOuvi dizer que o PROF. ELM\\ndescobriu novos POKEMON.$"
+      ],
+      "NewBarkTown_Text_LassState2": [
+        "Espere, {PLAYER}!\\pE perigoso sair sem POKEMON!\\pHa POKEMON selvagens na grama.$"
+      ],
+      "NewBarkTown_Text_LassState3": [
+        "Ah! Que POKEMON bonitinho!\\nQueria ter um tambem!$"
+      ],
+      "NewBarkTown_Text_LassState4": [
+        "Oi, {PLAYER}! Vai sair?\\pAvise sua mae antes.$"
+      ],
+      "NewBarkTown_Text_Silver1": [
+        "...\\pEntao este e o famoso\\nLAB do PROF. ELM...$"
+      ],
+      "NewBarkTown_Text_Silver2": [
+        "...O que voce esta olhando?$"
+      ],
+      "NewBarkTown_Text_Sign": [
+        "NEW BARK TOWN\\pOnde sopram ventos\\nde novos comecos.$"
+      ],
+      "NewBarkTown_Text_PlayersHouse": [
+        "CASA DE {PLAYER}$"
+      ],
+      "NewBarkTown_Text_ElmsHouse": [
+        "CASA DO PROF. ELM$"
+      ],
+      "BlackthornCity_Text_ElmCall": [
+        "PROF. ELM: Ola, {PLAYER}?\\pTenho algo para voce.\\nPasse no meu LAB!\\pAte mais!$"
+      ]
+    },
+    "data/maps/OldaleTown/scripts.inc": {
+      "OldaleTown_Text_SavingMyProgress": [
+        "Vou descansar um pouco\\ne salvar meu progresso.$"
+      ],
+      "OldaleTown_Text_IWorkAtPokemonMart": [
+        "Ola! Trabalho no POKEMON MART.\\pPode vir comigo?$"
+      ],
+      "OldaleTown_Text_ThisIsAPokemonMart": [
+        "Este e o POKEMON MART.\\nProcure pelo telhado azul.\\pVendemos POKE BALLS e\\noutros itens para TREINADORES.$"
+      ],
+      "OldaleTown_Text_PotionExplanation": [
+        "Uma POTION pode ser usada\\na qualquer hora.\\pEla ajuda muito na viagem.$"
+      ],
+      "OldaleTown_Text_WaitDontComeInHere": [
+        "Ei! Nao passe por aqui!\\pEstou estudando pegadas\\nde um POKEMON raro.$"
+      ],
+      "OldaleTown_Text_DiscoveredFootprints": [
+        "Encontrei pegadas\\nde um POKEMON raro!\\pVou terminar meu desenho.$"
+      ],
+      "OldaleTown_Text_FinishedSketchingFootprints": [
+        "Terminei o desenho.\\pAs pegadas eram minhas...$"
+      ],
+      "OldaleTown_Text_MayLetsGoBack": [
+        "MAY: {PLAYER}{KUN}!\\nVamos para casa!$"
+      ],
+      "OldaleTown_Text_BrendanLetsGoBack": [
+        "BRENDAN: Vou voltar\\nao LAB do meu pai.\\p{PLAYER}, volte tambem!$"
+      ],
+      "OldaleTown_Text_TownSign": [
+        "OLDALE TOWN\\nUma cidade de novos caminhos.$"
+      ]
+    },
+    "data/maps/LittlerootTown/scripts.inc": {
+      "LittlerootTown_Text_MomNewHome": [
+        "Chegamos a LITTLEROOT, em HOENN.\\pVisite o PROF. BIRCH\\npara pegar seu POKEMON.$"
+      ],
+      "LittlerootTown_Text_WaitPlayer": [
+        "MAE: Espere, {PLAYER}!$"
+      ],
+      "LittlerootTown_Text_SwitchShoesWithRunningShoes": [
+        "{PLAYER} colocou os\\nRUNNING SHOES.$"
+      ],
+      "LittlerootTown_Text_CanUsePCToStoreItems": [
+        "Voce pode guardar itens\\ne POKEMON no PC.\\pA tecnologia e incrivel!$"
+      ],
+      "LittlerootTown_Text_BirchSpendsDaysInLab": [
+        "O PROF. BIRCH estuda no LAB\\ne explora o mundo.\\pEle adora POKEMON.$"
+      ],
+      "LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut": [
+        "Cuidado com a grama!\\nPOKEMON selvagens aparecem ali!$"
+      ],
+      "LittlerootTown_Text_DangerousIfYouDontHavePokemon": [
+        "E perigoso sair sem\\nseu proprio POKEMON.$"
+      ],
+      "LittlerootTown_Text_CanYouGoSeeWhatsHappening": [
+        "Ola! Ha POKEMON assustadores\\nla fora!\\pPode ver o que aconteceu?$"
+      ],
+      "LittlerootTown_Text_YouSavedBirch": [
+        "Voce salvou o PROF. BIRCH!\\nAinda bem!$"
+      ],
+      "LittlerootTown_Text_GoodLuckCatchingPokemon": [
+        "Vai capturar POKEMON?\\nBoa sorte!$"
+      ],
+      "LittlerootTown_Text_TownSign": [
+        "LITTLEROOT TOWN\\nO inicio de uma jornada.$"
+      ],
+      "LittlerootTown_Text_ProfBirchsLab": [
+        "LAB POKEMON DO PROF. BIRCH$"
+      ],
+      "LittlerootTown_Text_PlayersHouse": [
+        "CASA DE {PLAYER}$"
+      ],
+      "LittlerootTown_Text_ProfBirchsHouse": [
+        "CASA DO PROF. BIRCH$"
+      ]
+    },
+    "data/maps/CherrygroveCity/scripts.inc": {
+      "CherrygroveCity_Text_GuideGentIntro": [
+        "Voce e novo como TREINADOR,\\nnao e? Percebi!\\pQuer conhecer a cidade?$"
+      ],
+      "CherrygroveCity_Text_GuideGentTourStart": [
+        "Certo!\\nMe acompanhe!$"
+      ],
+      "CherrygroveCity_Text_GuideGentPokecenter": [
+        "Este e o CENTRO POKEMON.\\pEle recupera a saude\\nda sua equipe.\\pVolte sempre que precisar!$"
+      ],
+      "CherrygroveCity_Text_GuideGentMart": [
+        "Este e o POKEMON MART.\\pAqui vendem BALLS e\\noutros itens para TREINADORES.$"
+      ],
+      "CherrygroveCity_Text_GuideGentRoute30": [
+        "A ROUTE 30 fica por aqui.\\pHa TREINADORES batalhando\\nnesse caminho.$"
+      ],
+      "CherrygroveCity_Text_GuideGentSea": [
+        "Aqui fica o mar.\\pAlguns POKEMON so vivem\\nna agua.$"
+      ],
+      "CherrygroveCity_Text_GuideGentMap": [
+        "Esta e minha casa!\\nObrigado pela companhia.\\pSe estiver perdido, consulte\\no mapa do seu POKENAV.$"
+      ],
+      "CherrygroveCity_Text_GuideGentDecline": [
+        "Ah, tudo bem...\\pSe mudar de ideia, volte aqui.$"
+      ],
+      "CherrygroveCity_Text_RivalSeen": [
+        "...\\pVoce ganhou um POKEMON\\nno LAB? Que desperdicio.\\pAlguem fraco como voce...$"
+      ],
+      "CherrygroveCity_Text_SilverWin": [
+        "Hmph. Feliz por ter vencido?$"
+      ],
+      "CherrygroveCity_Text_RivalAfter": [
+        "...\\pQuer saber quem sou?\\pSerei o maior\\nTREINADOR POKEMON do mundo.$"
+      ],
+      "CherrygroveCity_Text_RivalID": [
+        "Devolva!\\nEsse e meu TRAINER CARD!\\pAh, nao! Voce viu meu nome...$"
+      ],
+      "CherrygroveCity_Text_TeacherHaveMapCard": [
+        "Com POKEMON ao seu lado,\\nviajar fica muito mais divertido.$"
+      ],
+      "CherrygroveCity_Text_YoungsterNoPokedex": [
+        "A casa do MR. POKEMON\\nfica mais adiante.$"
+      ],
+      "CherrygroveCity_Text_YoungsterHavePokedex": [
+        "Batalhei na estrada.\\pMeus POKEMON perderam.\\nPreciso leva-los ao CENTRO!$"
+      ],
+      "CherrygroveCity_Text_MysticWaterGuyBefore": [
+        "Um POKEMON que capturei\\ncarregava um item.\\pAcho que e MYSTIC WATER.\\nQuer ficar com ele?$"
+      ],
+      "CherrygroveCity_Text_MysticWaterGuyAfter": [
+        "Vou voltar para a pesca!$"
+      ],
+      "CherrygroveCity_Text_CitySign": [
+        "CHERRYGROVE CITY\\pCidade das flores perfumadas.$"
+      ],
+      "CherrygroveCity_Text_GuideGentsHouseSign": [
+        "CASA DO GUIA$"
+      ],
+      "CherryGroveCity_Text_Staryu": [
+        "STARYU: Yuuuuuuuu.$"
+      ],
+      "CherryGroveCity_Text_Corsola": [
+        "CORSOLA: Corsola! La!$"
+      ],
+      "CherryGroveCity_Text_Krabby": [
+        "KRABBY: KOOOOKEEE!$"
+      ]
+    },
+    "data/maps/PalletTown_Frlg/scripts.inc": {
+      "PalletTown_Text_MomNewHome": [
+        "Voce chegou a PALLET TOWN,\\nem KANTO.\\pProcure o PROF. OAK\\npara ganhar seu POKEMON.$"
+      ],
+      "PalletTown_Text_OakDontGoOut": [
+        "OAK: Ei! Espere!\\nNao saia agora!$"
+      ],
+      "PalletTown_Text_OakGrassUnsafeNeedMon": [
+        "OAK: E perigoso!\\nPOKEMON selvagens vivem na grama!\\pVoce precisa de um POKEMON\\npara se proteger.\\pVenha comigo!$"
+      ],
+      "PalletTown_Text_RaisingMonsToo": [
+        "Eu tambem crio POKEMON.\\pQuando ficam fortes,\\npodem me proteger.$"
+      ],
+      "PalletTown_Text_CanStoreItemsAndMonsInPC": [
+        "A tecnologia e incrivel!\\pVoce pode guardar e tirar\\nitens e POKEMON usando o PC.$"
+      ],
+      "PalletTown_Text_OakPokemonResearchLab": [
+        "LAB DE PESQUISA DO PROF. OAK$"
+      ],
+      "PalletTown_Text_PlayersHouse": [
+        "CASA DE {PLAYER}$"
+      ],
+      "PalletTown_Text_RivalsHouse": [
+        "CASA DE {RIVAL}$"
+      ],
+      "PalletTown_Text_TownSign": [
+        "PALLET TOWN\\nO inicio da sua jornada.$"
+      ],
+      "PalletTown_Text_OakLetMeSeePokedex": [
+        "OAK: Ola, {PLAYER}!\\nVoce voltou!\\pComo anda sua POKEDEX?\\nDeixe eu ver...$"
+      ],
+      "PalletTown_Text_CaughtXPuttingInHonestEffort": [
+        "Voce capturou {STR_VAR_2}...\\pVejo que esta se esforcando.\\pContinue sua pesquisa!$"
+      ],
+      "PalletTown_Text_CaughtXImpressiveFollowMe": [
+        "Voce capturou {STR_VAR_2}?!\\nQue impressionante!\\p{PLAYER}, tenho um pedido.\\nVenha comigo.$"
+      ],
+      "PalletTown_Text_OakYouEnjoyingTraveling": [
+        "OAK: Ola, {PLAYER}!\\pParece que {PLAYER} gosta\\nde viajar pelo mundo.$"
+      ],
+      "PalletTown_Text_HmmIsThatRight": [
+        "Hmm...\\nEntendo...$"
+      ],
+      "PalletTown_Text_OhLookLook": [
+        "Ah!\\nOlha so!$"
+      ],
+      "PalletTown_Text_ReadItReadIt": [
+        "Leia, leia!$"
+      ],
+      "PalletTown_Text_PressStartToOpenMenu": [
+        "DICA DE TREINADOR\\pAperte START para abrir o MENU!$"
+      ],
+      "PalletTown_Text_SignsAreUsefulArentThey": [
+        "Essas placas ajudam muito, nao?$"
+      ],
+      "PalletTown_Text_LookCopiedTrainerTipsSign": [
+        "Olha so!\\pCopiei o texto de uma\\nplaca para TREINADORES!$"
+      ],
+      "PalletTown_Text_PressStartToOpenMenuCopy": [
+        "DICA DE TREINADOR!\\pAperte START para abrir o MENU!$"
+      ]
+    },
+    "data/maps/EverGrandeCity_ChampionsRoom/scripts.inc": {
+      "EverGrandeCity_ChampionsRoom_Text_IntroSpeech": [
+        "WALLACE: Bem-vindo, {PLAYER}{KUN}.\\pVoce ajudou SOOTOPOLIS CITY.\\pAgora vamos decidir\\nquem sera o CAMPEAO!$"
+      ],
+      "EverGrandeCity_ChampionsRoom_Text_PostBattleSpeech": [
+        "WALLACE: Seus POKEMON\\nlutaram com elegancia.\\pVoce conquistou\\no titulo de CAMPEAO!$"
+      ],
+      "EverGrandeCity_ChampionsRoom_Text_MayAdvice": [
+        "MAY: {PLAYER}{KUN}!\\pTenho dicas antes\\nde enfrentar o CAMPEAO!$"
+      ],
+      "EverGrandeCity_ChampionsRoom_Text_MayItsAlreadyOver": [
+        "MAY: O que?!\\p{PLAYER}{KUN}...\\nA batalha ja acabou?$"
+      ],
+      "EverGrandeCity_ChampionsRoom_Text_BrendanAdvice": [
+        "BRENDAN: {PLAYER}!\\pQuer dicas antes\\nde enfrentar o CAMPEAO?$"
+      ],
+      "EverGrandeCity_ChampionsRoom_Text_BrendanYouveWon": [
+        "BRENDAN: {PLAYER}...\\pVoce venceu mesmo\\no CAMPEAO?$"
+      ],
+      "EverGrandeCity_ChampionsRoom_Text_WallaceComeWithMe": [
+        "WALLACE: {PLAYER}{KUN}...\\pOu melhor, novo CAMPEAO!\\pVenha comigo.$"
+      ],
+      "EverGrandeCity_ChampionsRoom_Text_WallaceWaitOutside": [
+        "WALLACE: Desculpe...\\pDaqui em diante, so CAMPEOES\\npodem entrar.\\pEspere aqui.$"
+      ],
+      "EverGrandeCity_ChampionsRoom_Text_BirchCongratulations": [
+        "PROF. BIRCH: Parabens!\\pEntre na sala final\\ncom muito orgulho!$"
+      ],
+      "EverGrandeCity_ChampionsRoom_Text_MayCongratulations": [
+        "MAY: Ah, que pena...\\pEstou brincando!\\nEssas sao as regras.\\p{PLAYER}{KUN}, parabens!$"
+      ],
+      "EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations": [
+        "BRENDAN: O que?!\\pRegras sao regras...\\p{PLAYER}, parabens!$"
+      ]
+    },
+    "data/maps/AzaleaTown/scripts.inc": {
+      "AzaleaTown_Text_RivalBefore": [
+        "...Me diga uma coisa.\\pE verdade que a TEAM ROCKET\\nvoltou?\\pVoce venceu eles?\\nPare de mentir!$"
+      ],
+      "AzaleaTown_Text_RivalWin": [
+        "Hmph! POKEMON inuteis!\\pVoce so venceu porque\\nmeus POKEMON estavam fracos.$"
+      ],
+      "AzaleaTown_Text_RivalAfter": [
+        "Nao suporto os fracos.\\pVou ficar mais forte\\ne vencer todos eles.$"
+      ],
+      "AzaleaTown_Text_RivalLoss": [
+        "Hmph! Eu sabia\\nque voce estava mentindo.$"
+      ],
+      "AzaleaTown_Text_Rocket1": [
+        "E perigoso entrar aqui.\\nEstou de guarda.\\pSou muito bondoso, nao acha?$"
+      ],
+      "AzaleaTown_Text_Rocket2": [
+        "Conhece SLOWPOKETAIL?\\nDizem que e saboroso!$"
+      ],
+      "AzaleaTown_Text_GrampsBefore": [
+        "Os SLOWPOKE sumiram\\nda cidade...\\pOuvi falar que vendem\\nsuas caudas por ai.$"
+      ],
+      "AzaleaTown_Text_GrampsAfter": [
+        "Os SLOWPOKE voltaram!\\pTalvez so tenham saido\\npara passear.$"
+      ],
+      "AzaleaTown_Text_Teacher": [
+        "Veio pedir para KURT\\nfazer algumas BALLS?$"
+      ],
+      "AzaleaTown_Text_Youngster": [
+        "Atravesse AZALEA para\\nchegar a ILEX FOREST.\\pHa arvores no caminho.$"
+      ],
+      "AzaleaTown_Text_Slowpoke1": [
+        "SLOWPOKE: ...\\p...Bocejo?$"
+      ],
+      "AzaleaTown_Text_Kurt1": [
+        "ILEX FOREST esta agitada!\\pO que esta acontecendo?$"
+      ],
+      "AzaleaTown_Text_Kurt2": [
+        "{PLAYER}, aqui esta\\nsua GS BALL!$"
+      ],
+      "AzaleaTown_Text_Kurt3": [
+        "Pode investigar por que\\nILEX FOREST esta agitada?$"
+      ],
+      "AzaleaTown_Text_Sign": [
+        "AZALEA TOWN\\nPessoas e POKEMON\\nem harmonia.$"
+      ],
+      "AzaleaTown_Text_KurtsHouseSign": [
+        "CASA DE KURT$"
+      ],
+      "AzaleaTown_Text_GymSign": [
+        "AZALEA TOWN\\nGYM POKEMON\\pLIDER: BUGSY\\pEspecialista em POKEMON BUG.$"
+      ],
+      "AzaleaTown_Text_SlowpokeWellSign": [
+        "SLOWPOKE WELL\\pDizem que o bocejo de SLOWPOKE\\npode trazer a chuva.$"
+      ],
+      "AzaleaTown_Text_CharcoalKilnSign": [
+        "FABRICA DE CARVAO$"
+      ],
+      "AzaleaTown_Text_IlexForestSign": [
+        "ILEX FOREST\\pEntre pelo portao.$"
+      ]
+    }
+  },
+  "c": {}
+}
