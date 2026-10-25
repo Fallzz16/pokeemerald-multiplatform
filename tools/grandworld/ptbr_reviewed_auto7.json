@@ -2,7 +2,7 @@
   "status": "human_language_revision_complete; gameplay_visual_review_pending",
   "scope": "Only these existing machine-generated lines have received an individual Brazilian Portuguese wording pass; excludes unrelated auto text.",
   "original_auto_entry_count": 5200,
-  "reviewed_auto_entries": 175,
+  "reviewed_auto_entries": 210,
   "source_shards": [
     "ptbr_auto_review_001.json",
     "ptbr_auto_review_002.json"
@@ -198,6 +198,45 @@
       "CinnabarIsland_Gym_Text_RematchDefeat",
       "CinnabarIsland_Gym_Text_RematchPost",
       "CinnabarIsland_Gym_Text_RematchDecline"
+    ],
+    "data/maps/FuchsiaCity_Gym_Frlg/scripts.inc": [
+      "FuchsiaCity_Gym_Text_KogaExplainTM06",
+      "FuchsiaCity_Gym_Text_MakeSpaceForThis",
+      "FuchsiaCity_Gym_Text_KaydenIntro",
+      "FuchsiaCity_Gym_Text_KaydenDefeat",
+      "FuchsiaCity_Gym_Text_KaydenPostBattle",
+      "FuchsiaCity_Gym_Text_KirkIntro",
+      "FuchsiaCity_Gym_Text_KirkDefeat",
+      "FuchsiaCity_Gym_Text_NateIntro",
+      "FuchsiaCity_Gym_Text_NateDefeat",
+      "FuchsiaCity_Gym_Text_NatePostBattle",
+      "FuchsiaCity_Gym_Text_PhilIntro",
+      "FuchsiaCity_Gym_Text_PhilDefeat",
+      "FuchsiaCity_Gym_Text_PhilPostBattle",
+      "FuchsiaCity_Gym_Text_EdgarPostBattle",
+      "FuchsiaCity_Gym_Text_ShawnDefeat",
+      "FuchsiaCity_Gym_Text_ShawnPostBattle",
+      "FuchsiaCity_Gym_Text_GymGuyPostVictory",
+      "FuchsiaCity_Gym_Text_RematchDefeat",
+      "FuchsiaCity_Gym_Text_RematchDecline"
+    ],
+    "data/maps/CianwoodGym/scripts.inc": [
+      "CianwoodGym_Text_ChuckIntro3",
+      "CianwoodGym_Text_ChuckLoss",
+      "CianwoodGym_Text_GetStormBadge",
+      "CianwoodGym_Text_ChuckBadgeSpeech",
+      "CianwoodGym_Text_ChuckRematchDefeat",
+      "CianwoodGym_Text_BlackbeltYoshiSeen",
+      "CianwoodGym_Text_BlackbeltYoshiBeaten",
+      "CianwoodGym_Text_BlackbeltYoshiAfter",
+      "CianwoodGym_Text_BlackbeltLaoSeen",
+      "CianwoodGym_Text_BlackbeltLaoBeaten",
+      "CianwoodGym_Text_BlackbeltLaoAfter",
+      "CianwoodGym_Text_BlackbeltNobSeen",
+      "CianwoodGym_Text_BlackbeltNobAfter",
+      "CianwoodGym_Text_BlackbeltLungSeen",
+      "CianwoodGym_Text_BlackbeltLungBeaten",
+      "CianwoodGym_Text_BlackbeltLungAfter"
     ]
   }
 }
