@@ -28,6 +28,9 @@ on:
       - 'tools/grandworld/ptbr_extra_petalburg_rooms7.json'
       - 'tools/grandworld/ptbr_auto_review_*.json'
       - 'tools/grandworld/audit_ptbr_coverage.py'
+      - 'tools/grandworld/audit_ptbr_draft_quality.py'
+      - 'tools/grandworld/ptbr_reviewed_auto7.json'
+      - 'tools/grandworld/tests/test_audit_ptbr_draft_quality.py'
       - 'tools/grandworld/adapt_ptbr_greedy_gifts_qa.py'
       - 'tools/grandworld/tests/test_adapt_ptbr_greedy_gifts_qa.py'
       - 'tools/grandworld/adapt_ptbr_healthboxes_qa.py'
@@ -97,6 +100,7 @@ jobs:
           assert 'Quer salvar o jogo?' in Path('world/data/text/save.inc').read_text()
           PY
           python3 grandworld/tools/grandworld/audit_ptbr_coverage.py world --output ptbr-coverage.json
+          python3 grandworld/tools/grandworld/audit_ptbr_draft_quality.py --output ptbr-draft-quality.json
           python3 - <<'PY'
           import json
           from pathlib import Path
@@ -195,6 +199,7 @@ jobs:
             ptbr-preflight.json
             ptbr-report.json
             ptbr-coverage.json
+            ptbr-draft-quality.json
             ptbr-budget.json
             ptbr-evidence.json
             ptbr-m8-shadow.json
