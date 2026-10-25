@@ -11,6 +11,9 @@ from pathlib import Path
 OLD = 'if "Better leave the others alone" not in birch:'
 NEW = ('if "Better leave the others alone" not in birch '
        'and "Voce ja pegou seu POKEMON." not in birch:')
+ELM_OLD = 'if "Probably shouldn\'t touch" not in elm:'
+ELM_NEW = ('if "Probably shouldn\'t touch" not in elm '
+           'and "Provavelmente nao devia tocar!" not in elm:')
 QA_PATH = "test/overworld/ValidateGreedyGifts.py"
 MAP_PATH = "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.inc"
 MARKER = "LittlerootTown_ProfessorBirchsLab_Text_BetterLeaveOthersAlone:"
@@ -28,13 +31,12 @@ def apply(world, write=False):
         raise ValueError("expected translated Birch starter lock is missing")
     if qa.count(OLD) != 1 or NEW in qa:
         raise ValueError("original English-only QA guard changed or already patched")
-    other_guard = 'if "Probably shouldn\'t touch" not in elm:'
-    if qa.count(other_guard) != 1:
+    if qa.count(ELM_OLD) != 1 or ELM_NEW in qa:
         raise ValueError("Elm starter protection missing from baseline QA")
     if 'FLAG_JOHTO_STARTER_CHOSEN' not in qa:
         raise ValueError("the Johto flag assertion must remain present")
-    updated = qa.replace(OLD, NEW)
-    # This assertion must continue checking exactly the same warning, now in
+    updated = qa.replace(OLD, NEW).replace(ELM_OLD, ELM_NEW)
+    # These assertions must continue checking the same warnings, now in
     # either original English or the PT-BR ROM. Never remove any conditions.
     if write:
         path.write_text(updated, encoding="utf-8")
