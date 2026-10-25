@@ -30,7 +30,11 @@ class PackError(ValueError):
 def valid_path(path):
     if not isinstance(path, str) or not path or "\\" in path or "\x00" in path:
         return False
-    if path.startswith("/") or ":" in path or "//" in path:
+    # The C runtime's TSV reader accepts only this stable ASCII alphabet.
+    # Never let a ZIP filename inject a tab/newline or platform separator.
+    allowed = set("abcdefghijklmnopqrstuvwxyz0123456789-_/." )
+    if (path.startswith("/") or "//" in path or ".." in path
+            or any(char not in allowed for char in path)):
         return False
     parts = path.split("/")
     return all(part not in ("", ".", "..") and not part.startswith(".") for part in parts)
