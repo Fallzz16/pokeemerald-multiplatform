@@ -112,7 +112,9 @@ def translate_label(old, translator, cache):
         raise ValueError("non-ASCII normalized translation")
     if not translated.endswith("$"):
         raise ValueError("lost terminator")
-    if normalize(old) == translated:
+    old_visible = re.sub(r"\\[nlp]", " ", normalize(old[:-1]))
+    new_visible = re.sub(r"\\[nlp]", " ", translated[:-1])
+    if " ".join(old_visible.split()).casefold() == " ".join(new_visible.split()).casefold():
         raise ValueError("no translation")
     # Ignore long model generations that would damage ROM layout.
     if len(translated) > max(55, int(len(old) * 1.55)):
