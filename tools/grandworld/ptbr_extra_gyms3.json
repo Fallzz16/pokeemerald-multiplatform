@@ -1,0 +1,215 @@
+{
+  "asm": {
+    "data/maps/PewterCity_Gym_Frlg/scripts.inc": {
+      "PewterCity_Gym_Text_TakeThisWithYou": [
+        "BROCK: Espere!\\nLeve este presente!$"
+      ],
+      "PewterCity_Gym_Text_ReceivedTM39FromBrock": [
+        "{PLAYER} recebeu TM39\\nde BROCK!$"
+      ],
+      "PewterCity_Gym_Text_ExplainTM39": [
+        "BROCK: Uma TM ensina\\num golpe a um POKEMON.\\pTM39 contem ROCK TOMB.\\pUse-a com sabedoria!$"
+      ],
+      "PewterCity_Gym_Text_BrockPostBattle": [
+        "BROCK: O mundo tem muitos\\nTREINADORES diferentes.\\pVoce tem talento!\\nExplore outros GYMS!$"
+      ],
+      "PewterCity_Gym_Text_DontHaveRoomForThis": [
+        "Sua BOLSA esta cheia!$"
+      ],
+      "PewterCity_Gym_Text_LiamIntro": [
+        "Pare ai!\\pVoce esta a anos-luz\\nde enfrentar BROCK!$"
+      ],
+      "PewterCity_Gym_Text_LiamDefeat": [
+        "Droga!\\pAnos-luz medem distancia,\\nnao tempo!$"
+      ],
+      "PewterCity_Gym_Text_LiamPostBattle": [
+        "Voce e bom, mas BROCK\\ne muito mais forte!$"
+      ],
+      "PewterCity_Gym_Text_LetMeTakeYouToTheTop": [
+        "Ola, TREINADOR!\\pQuer chegar ao topo\\ne ser CAMPEAO?\\pVou te dar dicas!$"
+      ],
+      "PewterCity_Gym_Text_LetsGetHappening": [
+        "Certo! Vamos comecar!$"
+      ],
+      "PewterCity_Gym_Text_TryDifferentPartyOrders": [
+        "O primeiro POKEMON\\nda equipe abre a batalha.\\pTroque a ordem da equipe\\npara ter vantagem!$"
+      ],
+      "PewterCity_Gym_Text_ItsFreeLetsGetHappening": [
+        "As dicas sao gratuitas!\\nVamos comecar!$"
+      ],
+      "PewterCity_Gym_Text_YoureChampMaterial": [
+        "Como imaginei!\\nVoce tem jeito de CAMPEAO!$"
+      ],
+      "PewterCity_Gym_Text_GymStatue": [
+        "PEWTER GYM POKEMON\\nLIDER: BROCK\\pTREINADORES VENCEDORES:\\n{RIVAL}$"
+      ],
+      "PewterCity_Gym_Text_GymStatuePlayerWon": [
+        "PEWTER GYM POKEMON\\nLIDER: BROCK\\pTREINADORES VENCEDORES:\\n{RIVAL}, {PLAYER}$"
+      ],
+      "PewterCity_Gym_Text_RematchAsk": [
+        "BROCK: Voltou, CAMPEAO!\\pVamos testar sua forca\\nmais uma vez?$"
+      ],
+      "PewterCity_Gym_Text_RematchDefeat": [
+        "Minha equipe segue firme!\\nVoce ainda tem fraquezas.$"
+      ],
+      "PewterCity_Gym_Text_RematchPost": [
+        "BROCK: Seu espirito\\ne mais forte que pedra!\\pVolte para outra batalha.$"
+      ],
+      "PewterCity_Gym_Text_RematchDecline": [
+        "BROCK: Volte quando\\nestiver pronto!$"
+      ]
+    },
+    "data/maps/RustboroCity_Gym/scripts.inc": {
+      "RustboroCity_Gym_Text_RematchAsk": [
+        "ROXANNE: Agora que voce\\ne CAMPEAO, aceita\\numa nova batalha?$"
+      ],
+      "RustboroCity_Gym_Text_RematchDefeat": [
+        "Incrivel...\\nVoce e muito forte, CAMPEAO!$"
+      ],
+      "RustboroCity_Gym_Text_RematchPost": [
+        "ROXANNE: Cada batalha\\nme ensina algo novo!$"
+      ],
+      "RustboroCity_Gym_Text_RematchDecline": [
+        "ROXANNE: Volte quando\\nquiser treinar comigo!$"
+      ],
+      "RustboroCity_Gym_Text_GymGuideAdvice": [
+        "Ola, meu amigo!\\pQuer se tornar CAMPEAO?\\pVou te dar dicas\\npara vencer ROXANNE.\\pPOKEMON WATER e GRASS\\nsao fortes contra ROCK!$"
+      ],
+      "RustboroCity_Gym_Text_GymGuidePostVictory": [
+        "Uau! Bela vitoria!\\pOlhe seu TRAINER CARD!\\nA STONE BADGE esta nele!$"
+      ],
+      "RustboroCity_Gym_Text_JoshIntro": [
+        "Nao subestime\\nos TREINADORES deste GYM!$"
+      ],
+      "RustboroCity_Gym_Text_JoshDefeat": [
+        "Voce foi bom demais!$"
+      ],
+      "RustboroCity_Gym_Text_JoshPostBattle": [
+        "POKEMON ROCK sao\\nmuito poderosos!$"
+      ],
+      "RustboroCity_Gym_Text_TommyIntro": [
+        "Se nao consegue me vencer,\\ncomo vai enfrentar ROXANNE?$"
+      ],
+      "RustboroCity_Gym_Text_TommyDefeat": [
+        "Uau! Voce tem talento!$"
+      ],
+      "RustboroCity_Gym_Text_TommyPostBattle": [
+        "ROXANNE e muito mais\\nforte do que eu!\\pTenha cuidado com ela!$"
+      ],
+      "RustboroCity_Gym_Text_MarcIntro": [
+        "Estamos no centro da cidade,\\nmas meus POKEMON ROCK\\nadoram batalhar!$"
+      ],
+      "RustboroCity_Gym_Text_MarcDefeat": [
+        "Caramba! Voce luta bem!$"
+      ],
+      "RustboroCity_Gym_Text_MarcPostBattle": [
+        "ROXANNE conhece muito\\nsobre POKEMON ROCK.\\pEla usa o que aprendeu\\nna escola de TREINADORES.$"
+      ],
+      "RustboroCity_Gym_Text_RoxanneIntro": [
+        "Sou ROXANNE, LIDER\\ndo GYM de RUSTBORO.\\pUso o que aprendi na escola\\npara treinar POKEMON ROCK.\\pMostre sua forca!$"
+      ],
+      "RustboroCity_Gym_Text_RoxanneDefeat": [
+        "Entendo... Eu perdi.\\pVoce batalhou muito bem.\\pPelas regras da LIGA,\\nvoce merece a STONE BADGE!$"
+      ],
+      "RustboroCity_Gym_Text_ReceivedStoneBadge": [
+        "{PLAYER} recebeu a STONE BADGE\\nde ROXANNE!$"
+      ],
+      "RustboroCity_Gym_Text_StoneBadgeInfoTakeThis": [
+        "A STONE BADGE aumenta\\na forca da sua equipe.\\pAgora pode usar CUT\\nfora da batalha.\\pAceite este TM!$"
+      ],
+      "RustboroCity_Gym_Text_ExplainRockTomb": [
+        "TM39 ensina ROCK TOMB.\\pEsse golpe causa dano\\ne diminui a SPEED do alvo.$"
+      ],
+      "RustboroCity_Gym_Text_RoxannePostBattle": [
+        "Voce tem muito talento.\\pDesafie outros GYMS\\ne aprenda com as batalhas!$"
+      ],
+      "RustboroCity_Gym_Text_GymStatue": [
+        "RUSTBORO CITY GYM POKEMON$"
+      ],
+      "RustboroCity_Gym_Text_GymStatueCertified": [
+        "RUSTBORO CITY GYM POKEMON\\pLIDER: ROXANNE\\nTREINADORES VENCEDORES:\\n{PLAYER}$"
+      ],
+      "RustboroCity_Gym_Text_RoxanneRegisterCall": [
+        "ROXANNE: Ola, {PLAYER}!\\pSoube que esta indo\\nmuito bem na sua jornada.\\pVamos registrar nossos\\ncontatos no POKENAV!$"
+      ],
+      "RustboroCity_Gym_Text_RegisteredRoxanne": [
+        "ROXANNE foi registrada\\nno POKENAV!$"
+      ],
+      "RustboroCity_Gym_Text_RoxannePreRematch": [
+        "ROXANNE: Que bom ver voce!\\pTreinei muito desde\\nnossa ultima batalha.\\pAceita uma revanche?$"
+      ],
+      "RustboroCity_Gym_Text_RoxanneRematchDefeat": [
+        "Droga...\\nPerdi de novo!$"
+      ],
+      "RustboroCity_Gym_Text_RoxannePostRematch": [
+        "ROXANNE: Ainda tenho\\nmuito a aprender!\\pCada batalha me faz gostar\\nmais de treinar POKEMON.$"
+      ],
+      "RustboroCity_Gym_Text_RoxanneRematchNeedTwoMons": [
+        "ROXANNE: Que bom ver voce!\\pPodemos batalhar de novo,\\nmas voce precisa de dois\\nPOKEMON para este desafio.$"
+      ]
+    },
+    "data/maps/VioletCity_Gym/scripts.inc": {
+      "VioletGym_Text_Falkner_Intro": [
+        "Sou FALKNER, LIDER do GYM\\nde VIOLET CITY!\\pMeus POKEMON voadores\\nnao temem seus golpes!\\pPrepare-se!$"
+      ],
+      "VioletGym_Text_Falkner_WinLoss": [
+        "Droga... Perdi!\\pMeu pai me ensinou a\\nrespeitar bons TREINADORES.\\pAceite a ZEPHYRBADGE!$"
+      ],
+      "VioletGym_Text_ReceivedZephyrBadge": [
+        "{PLAYER} recebeu\\na ZEPHYRBADGE!$"
+      ],
+      "VioletGym_Text_Falkner_BadgeExplain": [
+        "A ZEPHYRBADGE fortalece\\nsua equipe.\\pTambem permite usar FLASH\\nfora da batalha.\\pLeve este presente!$"
+      ],
+      "VioletGym_Text_Falkner_TMExplain": [
+        "Uma TM ensina um golpe\\na um POKEMON.\\pTM32 contem DOUBLE TEAM.\\pEsse golpe aumenta\\na evasiva na batalha.$"
+      ],
+      "VioletGym_Text_Falkner_AfterFight": [
+        "Ha outros GYMS em JOHTO.\\pDesafie-os e melhore\\nsuas habilidades!$"
+      ],
+      "VioletGym_Text_Falkner_Rematch": [
+        "FALKNER: Voce venceu\\na ELITE FOUR!\\pMinha equipe FLYING esta\\nmais forte do que nunca.\\pQuer uma revanche?$"
+      ],
+      "VioletGym_Text_Falkner_RematchLoss": [
+        "Incrivel... Perdi de novo!\\pVou treinar ainda mais!$"
+      ],
+      "VioletGym_Text_Falkner_RematchPost": [
+        "Meus POKEMON continuarao\\na voar cada vez mais alto!\\pVolte para outra batalha!$"
+      ],
+      "VioletGym_Text_Falkner_RematchDecline": [
+        "FALKNER: Volte quando\\nsua equipe quiser voar!$"
+      ],
+      "VioletGym_Text_BirdKeeperRod_Seen": [
+        "O segredo e coragem!\\pTreinamos dia e noite\\ncom POKEMON voadores!$"
+      ],
+      "VioletGym_Text_BirdKeeperRod_Beaten": [
+        "Aaah! Perdi!$"
+      ],
+      "VioletGym_Text_BirdKeeperRod_After": [
+        "FALKNER e muito forte!\\pNao se ache o melhor\\nso porque me venceu!$"
+      ],
+      "VioletGym_Text_BirdKeeperAbe_Seen": [
+        "Quero ver se voce\\nmerece enfrentar FALKNER!$"
+      ],
+      "VioletGym_Text_BirdKeeperAbe_Beaten": [
+        "Nao pode ser!$"
+      ],
+      "VioletGym_Text_BirdKeeperAbe_After": [
+        "Que vergonha...\\nPerdi para um iniciante!$"
+      ],
+      "VioletGym_Text_GymGuide_Intro": [
+        "Ola! Nao sou TREINADOR,\\nmas sei dar dicas!\\pAcredite no seu sonho\\nde se tornar CAMPEAO!\\pUse golpes eletricos\\ncontra POKEMON voadores!$"
+      ],
+      "VioletGym_Text_GymGuide_Win": [
+        "Otima batalha!\\pVoce esta mais perto\\ndo titulo de CAMPEAO!$"
+      ],
+      "VioletCity_Gym_Text_GymStatue": [
+        "VIOLET CITY GYM POKEMON$"
+      ],
+      "VioletCity_Gym_Text_GymStatueCertified": [
+        "VIOLET CITY GYM POKEMON\\pLIDER: FALKNER\\nTREINADORES VENCEDORES:\\n{PLAYER}$"
+      ]
+    }
+  },
+  "c": {}
+}
