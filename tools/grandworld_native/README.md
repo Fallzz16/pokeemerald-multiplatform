@@ -157,6 +157,37 @@ needs Python. All pack images/audio must have appropriate usage rights.
   API definitions. The guarded disposable World header overlay and 32-bit probes
   are experiments; examine their latest CI before reporting progress.
 
+
+## Graphical plug-in management and native Style Lab (Windows)
+
+The Windows CI package contains `gw_theme_lab.exe`, its dependent DLLs,
+`ABRIR_STYLE_LAB.bat`, `INSTALAR_PACK.bat`, and the GUI launcher
+`GERENCIAR_PLUGINS.bat`. The launcher requires Python 3 with Tkinter.
+An optional, separately compiled `GW_Plugin_Manager.exe` uses PyInstaller to
+avoid requiring Python on Windows, if its independent CI succeeds. Put it in the
+same folder as `gw_theme_lab.exe` and the `mods/` directory.
+
+1. Extract the whole Windows archive.
+2. Open `GERENCIAR_PLUGINS.bat` or standalone `GW_Plugin_Manager.exe`.
+3. Use **Instalar ZIP**, **Ativar**, **Desativar**.
+4. Choose **Menu** and **Seguidor**, then **Salvar estilos**.
+5. Run `ABRIR_STYLE_LAB.bat`. **F1** opens style settings, arrow keys
+   switch active styles; **F5** refreshes the resource index.
+6. Styles are saved to `mods/style-settings.ini`, not Pokémon saves.
+
+The lab supports a default follower sprite `sprites/follower` and optional
+eight-direction variants named `sprites/follower/n`, `ne`, `e`, `se`,
+`s`, `sw`, `w`, `nw`. The visual orientation can look toward the
+trainer while movement remains four-way grid-based. In the Style Lab the
+follower movement is a demonstration, NOT the World follower mechanic.
+Missing direction artwork falls back to the default image.
+
+**Limitations:** no script/DLL plugins, no installed mods downloaded from a
+marketplace, no real game UI/tiles/audio replacement yet. This is a
+proof-of-concept asset pipeline and standalone UI. Porting the modern World
+engine and preserving its save ABI remain required before P1-P5 gameplay.
+Pack integrity checks are not proof of asset licensing.
+
 ## P0–P5 status matrix
 
 | Milestone | Current status | Hard completion gate |
