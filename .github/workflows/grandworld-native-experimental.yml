@@ -26,10 +26,20 @@ jobs:
           repository: evilchinesefood/PKMN-World
           ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
           path: world
-      - name: Install World 32-bit compiler and host SDL2 headers for relocatable probes
+      - name: Install World compiler and official i386 SDL2 headers (no i386 runtime)
         run: |
+          set -euo pipefail
+          sudo dpkg --add-architecture i386
           sudo apt-get update -qq
           sudo apt-get install -y gcc-multilib gcc-arm-none-eabi binutils-arm-none-eabi build-essential libpng-dev zlib1g-dev libsdl2-dev libsdl2-image-dev
+          mkdir -p "$RUNNER_TEMP/gw-sdl2-i386"
+          (
+            cd "$RUNNER_TEMP/gw-sdl2-i386"
+            apt-get download libsdl2-dev:i386
+            dpkg-deb -x libsdl2-dev_*_i386.deb extracted
+          )
+          test -s "$RUNNER_TEMP/gw-sdl2-i386/extracted/usr/include/i386-linux-gnu/SDL2/_real_SDL_config.h"
+          echo "GW_SDL_I386_INC=$RUNNER_TEMP/gw-sdl2-i386/extracted/usr/include/i386-linux-gnu" >> "$GITHUB_ENV"
       - name: Generate pinned World headers without building ROM
         run: |
           set -euo pipefail
@@ -81,7 +91,7 @@ jobs:
           pkg-config --modversion sdl2
           gcc -m32 -std=gnu17 -DPORTABLE -DGW_WORLD_NATIVE=1 -DMODERN=1 \
             -DNONMATCHING=1 -DEMERALD=1 -DALL_REGIONS=1 \
-            $(pkg-config --cflags sdl2) \
+            -I"$GW_SDL_I386_INC" $(pkg-config --cflags sdl2) \
             -iquote world/include -iquote world/src -iquote grandworld/tools/grandworld_native/host \
             -c grandworld/tools/grandworld_native/host/gw_world_desktop.c -o gw-world-desktop.o
           test -s gw-world-desktop.o
@@ -142,7 +152,7 @@ jobs:
           cp native-world-objects/*.o world-bridge-objects/
           cp gw-native-render.o world-bridge-objects/gw-native-render.o
           cp gw-world-desktop.o world-bridge-objects/gw-world-desktop.o
-          gcc -m32 -std=gnu17 -c $(pkg-config --cflags sdl2 SDL2_image) \
+          gcc -m32 -std=gnu17 -I"$GW_SDL_I386_INC" -c $(pkg-config --cflags sdl2 SDL2_image) \
             grandworld/tools/grandworld_native/host/gw_sdl_host.c \
             -o world-bridge-objects/gw-sdl-host.o
           for unit in bios dma cgb_audio; do
