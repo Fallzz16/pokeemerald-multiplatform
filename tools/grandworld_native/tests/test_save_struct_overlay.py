@@ -8,9 +8,9 @@ class NestedABITests(unittest.TestCase):
         modified = transform(source)
         for decl in DECLARATIONS:
             self.assertIn(decl[:-2], modified)
-        self.assertEqual(modified.count("#if defined(PORTABLE)"), 2)
-        self.assertEqual(modified.count("__attribute__((aligned(4)))"), 2)
-        self.assertEqual(modified.count("#endif"), 2)
+        self.assertEqual(modified.count("#if defined(PORTABLE)"), len(DECLARATIONS))
+        self.assertEqual(modified.count("__attribute__((aligned(4)))"), len(DECLARATIONS))
+        self.assertEqual(modified.count("#endif"), len(DECLARATIONS))
     def test_refuse_drift_or_repeated_application(self):
         source = "\n".join(DECLARATIONS)
         with self.assertRaises(ValueError):
