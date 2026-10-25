@@ -12,6 +12,44 @@ permissions:
   contents: read
 
 jobs:
+  fast-save-abi-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout diagnostics
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Checkout pinned World source (read-only reference)
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+      - name: Install 32-bit ABI compiler support
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y gcc-multilib
+      - name: Measure save structure without changing production code
+        run: |
+          python3 grandworld/tools/grandworld_native/abi_probe.py --world world --compiler gcc --output fast-save-abi.json
+          python3 - <<'PY'
+          import json
+          data = json.load(open('fast-save-abi.json', encoding='utf-8'))
+          assert data['production_save_assertion_changed'] is False
+          assert data['profiles']
+          for profile in data['profiles']:
+              print(profile['profile'], profile.get('values', {}).get('saveblock2'),
+                    profile.get('values', {}).get('domeTrainer.bytes'),
+                    profile.get('layout_deltas', {}).get('saveblock2'))
+          PY
+      - name: Save ABI metrics for native architecture decisions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grandworld-native-save-abi-fast
+          path: fast-save-abi.json
+          if-no-files-found: error
   plugin-backend-tests:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
