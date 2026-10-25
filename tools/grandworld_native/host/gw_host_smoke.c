@@ -8,6 +8,7 @@ static uint16_t pixels[240 * 160];
 
 int main(void)
 {
+    SDL_SetMainReady();
     GWNativeHost *host = gw_host_open("Grand World Native host test (not the game)", 2, true);
     if (!host) {
         fprintf(stderr, "FAIL: SDL2 native host init\n");
