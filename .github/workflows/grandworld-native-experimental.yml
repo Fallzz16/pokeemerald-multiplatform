@@ -103,6 +103,11 @@ jobs:
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/save_layout_probe.py \
             --world world --output native-save13-layout.json
+      - name: P2 - compare real GBA ARM APCS versus native save layouts
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/compare_world_save_types.py \
+            --world world --output native-save-abi-dual.json
       - name: P2 - expose actual World frame API on temporary native World
         run: |
           set -euo pipefail
@@ -141,6 +146,7 @@ jobs:
             native-engine-link.json
             native-world-frame.json
             native-save13-layout.json
+            native-save-abi-dual.json
           if-no-files-found: warn
   fast-save-abi-audit:
     runs-on: ubuntu-24.04
