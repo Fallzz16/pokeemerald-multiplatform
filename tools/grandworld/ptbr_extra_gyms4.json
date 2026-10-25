@@ -1,0 +1,177 @@
+{
+  "asm": {
+    "data/maps/DewfordTown_Gym/scripts.inc": {
+      "DewfordTown_Gym_Text_RematchAsk": [
+        "BRAWLY: O CAMPEAO chegou!\\pAs ondas estao fortes hoje.\\pQuer batalhar de novo?$"
+      ],
+      "DewfordTown_Gym_Text_RematchDefeat": [
+        "Que onda gigante!\\nFui derrotado!$"
+      ],
+      "DewfordTown_Gym_Text_RematchPost": [
+        "BRAWLY: Lutar com voce\\nme deixa cheio de energia!\\pNa proxima serei mais forte!$"
+      ],
+      "DewfordTown_Gym_Text_RematchDecline": [
+        "BRAWLY: Tudo bem!\\nVolte quando estiver pronto.$"
+      ],
+      "DewfordTown_Gym_Text_GymGuideAdvice": [
+        "Ola, futuro CAMPEAO\\n{PLAYER}!\\pBRAWLY usa POKEMON FIGHTING.\\pTente golpes PSYCHIC\\ne FLYING para vencer!$"
+      ],
+      "DewfordTown_Gym_Text_GymGuidePostVictory": [
+        "Uau! O GYM ficou iluminado!\\pSeu futuro tambem\\nparece brilhante!$"
+      ],
+      "DewfordTown_Gym_Text_TakaoIntro": [
+        "A forca decide tudo!\\nVamos lutar!$"
+      ],
+      "DewfordTown_Gym_Text_TakaoDefeat": [
+        "Faltou poder...$"
+      ],
+      "DewfordTown_Gym_Text_TakaoPostBattle": [
+        "Sua tecnica venceu\\nminha forca! Parabens!$"
+      ],
+      "DewfordTown_Gym_Text_JocelynIntro": [
+        "BRAWLY nem precisa\\nentrar nessa batalha!\\pVou derrotar voce!$"
+      ],
+      "DewfordTown_Gym_Text_JocelynDefeat": [
+        "Mas... Como?!\\nPerdi tao facilmente!$"
+      ],
+      "DewfordTown_Gym_Text_JocelynPostBattle": [
+        "Vou usar essa derrota\\npara treinar ainda mais!\\pUm dia serei LIDER de GYM!$"
+      ],
+      "DewfordTown_Gym_Text_LauraIntro": [
+        "Nao me subestime!\\pSe perder, nao reclame!$"
+      ],
+      "DewfordTown_Gym_Text_LauraDefeat": [
+        "Aaah!\\nEu perdi!$"
+      ],
+      "DewfordTown_Gym_Text_LauraPostBattle": [
+        "Treinar no escuro\\nfortalece minha coragem.\\pMas quase nunca consigo\\nver o rosto de BRAWLY!$"
+      ],
+      "DewfordTown_Gym_Text_LilithIntro": [
+        "Hehehe...\\nEsta perdido no escuro?$"
+      ],
+      "DewfordTown_Gym_Text_LilithDefeat": [
+        "Ah, voce...\\nNao quero nem te ver!$"
+      ],
+      "DewfordTown_Gym_Text_LilithPostBattle": [
+        "Voce deveria voltar\\npara a entrada do GYM!$"
+      ],
+      "DewfordTown_Gym_Text_BrendenIntro": [
+        "Vou mostrar a forca\\nde um marinheiro!$"
+      ],
+      "DewfordTown_Gym_Text_BrendenDefeat": [
+        "Como isso aconteceu?!\\nNao costumo perder assim!$"
+      ],
+      "DewfordTown_Gym_Text_BrendenPostBattle": [
+        "Muito bem! Voce merece\\nenfrentar nosso LIDER!$"
+      ],
+      "DewfordTown_Gym_Text_CristianIntro": [
+        "Para seguir em frente,\\nprecisa passar por mim!$"
+      ],
+      "DewfordTown_Gym_Text_CristianDefeat": [
+        "Grrrr!\\nMuito forte!$"
+      ],
+      "DewfordTown_Gym_Text_CristianPostBattle": [
+        "Voce venceu!\\nAgora conquiste a INSIGNIA!$"
+      ],
+      "DewfordTown_Gym_Text_BrawlyIntro": [
+        "Sou BRAWLY, LIDER\\ndo GYM de DEWFORD!\\pTreinei enfrentando ondas\\ne desafios todos os dias.\\pVamos descobrir sua forca!$"
+      ],
+      "DewfordTown_Gym_Text_BrawlyDefeat": [
+        "Incrivel! Voce me venceu!\\pAceite a KNUCKLE BADGE\\ncomo prova da vitoria!$"
+      ],
+      "DewfordTown_Gym_Text_ReceivedKnuckleBadge": [
+        "{PLAYER} recebeu a\\nKNUCKLE BADGE de BRAWLY!$"
+      ],
+      "DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis": [
+        "A KNUCKLE BADGE faz POKEMON\\nate o Lv. 30 obedecerem.\\pTambem permite usar FLASH\\nfora da batalha.\\pLeve este item!$"
+      ],
+      "DewfordTown_Gym_Text_ExplainBulkUp": [
+        "TM08 contem BULK UP.\\pEsse golpe aumenta\\nATTACK e DEFENSE.\\pE muito util na batalha!$"
+      ],
+      "DewfordTown_Gym_Text_RegisteredBrawly": [
+        "BRAWLY foi registrado\\nno POKENAV!$"
+      ],
+      "DewfordTown_Gym_Text_BrawlyPostBattle": [
+        "Sua habilidade de TREINADOR\\ncresce como uma grande onda!\\pContinue sua jornada!$"
+      ],
+      "DewfordTown_Gym_Text_GymStatue": [
+        "DEWFORD TOWN GYM POKEMON$"
+      ],
+      "DewfordTown_Gym_Text_GymStatueCertified": [
+        "DEWFORD TOWN GYM POKEMON\\pLIDER: BRAWLY\\nTREINADORES VENCEDORES:\\n{PLAYER}$"
+      ],
+      "DewfordTown_Gym_Text_BrawlyPreRematch": [
+        "BRAWLY: Uma onda sempre volta!\\pVoce ficou mais forte,\\ne eu tambem treinei.\\pVamos batalhar de novo?$"
+      ],
+      "DewfordTown_Gym_Text_BrawlyRematchDefeat": [
+        "Uau!\\nPerdi mais uma vez!$"
+      ],
+      "DewfordTown_Gym_Text_BrawlyPostRematch": [
+        "BRAWLY: As batalhas sao\\nprofundas como o mar!\\pAinda temos muito\\npara aprender.$"
+      ],
+      "DewfordTown_Gym_Text_BrawlyRematchNeedTwoMons": [
+        "BRAWLY: Esta pronto\\npara outra batalha?\\pVoce precisa de dois\\nPOKEMON para essa revanche.$"
+      ]
+    },
+    "data/maps/CeruleanCity_Gym_Frlg/scripts.inc": {
+      "CeruleanCity_Gym_Text_ExplainTM03": [
+        "TM03 ensina WATER PULSE.\\pUse em um POKEMON\\nque possa aprender esse golpe!$"
+      ],
+      "CeruleanCity_Gym_Text_ExplainCascadeBadge": [
+        "A CASCADEBADGE faz POKEMON\\nate Lv. 30 obedecerem.\\pInclui aqueles recebidos\\nem trocas!$"
+      ],
+      "CeruleanCity_Gym_Text_ReceivedTM03FromMisty": [
+        "{PLAYER} recebeu TM03\\nde MISTY!$"
+      ],
+      "CeruleanCity_Gym_Text_BetterMakeRoomForThis": [
+        "Abra espaco na BOLSA\\npara levar esse item!$"
+      ],
+      "CeruleanCity_Gym_Text_MistyDefeat": [
+        "Uau! Voce e muito forte!\\pAceite a CASCADEBADGE\\ncomo prova de sua vitoria!$"
+      ],
+      "CeruleanCity_Gym_Text_DianaIntro": [
+        "O que? Voce aqui?\\pVou vencer sem que\\nMISTY precise lutar!$"
+      ],
+      "CeruleanCity_Gym_Text_DianaDefeat": [
+        "Voce me derrotou!$"
+      ],
+      "CeruleanCity_Gym_Text_DianaPostBattle": [
+        "Enfrente outros TREINADORES\\npara descobrir sua forca!$"
+      ],
+      "CeruleanCity_Gym_Text_LuisIntro": [
+        "Splash!\\pSou seu primeiro desafio!$"
+      ],
+      "CeruleanCity_Gym_Text_LuisDefeat": [
+        "Isso nao pode ser!$"
+      ],
+      "CeruleanCity_Gym_Text_LuisPostBattle": [
+        "MISTY esta melhorando muito!\\pEla nao vai perder\\npara voce!$"
+      ],
+      "CeruleanCity_Gym_Text_GymGuyAdvice": [
+        "Ola, futuro CAMPEAO!\\pMISTY usa POKEMON WATER.\\pPOKEMON GRASS e ELECTRIC\\npodem levar vantagem!$"
+      ],
+      "CeruleanCity_Gym_Text_WeMakePrettyGoodTeam": [
+        "Voce venceu MISTY!\\pEu sabia que voce conseguiria!\\nFormamos uma boa equipe!$"
+      ],
+      "CeruleanCity_Gym_Text_GymStatue": [
+        "CERULEAN GYM POKEMON\\nLIDER: MISTY\\pTREINADORES VENCEDORES:\\n{RIVAL}$"
+      ],
+      "CeruleanCity_Gym_Text_GymStatuePlayerWon": [
+        "CERULEAN GYM POKEMON\\nLIDER: MISTY\\pTREINADORES VENCEDORES:\\n{RIVAL}, {PLAYER}$"
+      ],
+      "CeruleanCity_Gym_Text_RematchAsk": [
+        "MISTY: O CAMPEAO voltou!\\pQuer outra batalha comigo?$"
+      ],
+      "CeruleanCity_Gym_Text_RematchDefeat": [
+        "Hahaha! Eu te mandei\\npara o fundo do mar!$"
+      ],
+      "CeruleanCity_Gym_Text_RematchPost": [
+        "Voce e incrivel!\\pMeu STARMIE nao teve chance.\\nVolte sempre!$"
+      ],
+      "CeruleanCity_Gym_Text_RematchDecline": [
+        "Esta com medo?\\nVolte quando quiser nadar!$"
+      ]
+    }
+  },
+  "c": {}
+}
