@@ -179,8 +179,8 @@ class PortugueseStage1Tests(unittest.TestCase):
         import json
         registry = json.loads((SRC.parent / 'ptbr_reviewed_auto7.json').read_text())
         groups = registry['reviewed_labels_by_source']
-        self.assertEqual(registry['reviewed_auto_entries'], 120)
-        self.assertEqual(sum(map(len, groups.values())), 120)
+        self.assertEqual(registry['reviewed_auto_entries'], 175)
+        self.assertEqual(sum(map(len, groups.values())), 175)
         for source, symbols in groups.items():
             with self.subTest(source=source):
                 self.assertEqual(len(symbols), len(set(symbols)))
@@ -202,6 +202,10 @@ if __name__ == "__main__":
         self.assertNotIn('SEED BULLET', move)
         goldenrod = pt.ASM_SECTIONS['data/maps/GoldenrodCity_Gym/scripts.inc']
         self.assertIn('Que maldade!', ''.join(goldenrod['GoldenrodCity_Gym_Text_WhitneyYouMeanie']))
+        celadon = pt.ASM_SECTIONS['data/maps/CeladonCity_Gym_Frlg/scripts.inc']
+        self.assertIn('GIGA DRAIN', ''.join(celadon['CeladonCity_Gym_Text_ExplainTM19']))
+        cinnabar = pt.ASM_SECTIONS['data/maps/CinnabarIsland_Gym_Frlg/scripts.inc']
+        self.assertIn('TOMBSTONY', ''.join(cinnabar['CinnabarIsland_Gym_Text_QuizQuestion6']))
 
     def test_escape_typo_fails(self):
         with self.assertRaisesRegex(ValueError, "unknown text escape"):
