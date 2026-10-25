@@ -1,0 +1,112 @@
+name: Grand World - PT-BR Guarded Bulk Draft
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/grandworld-ptbr-bulk.yml'
+      - 'tools/grandworld/generate_ptbr_bulk_candidates.py'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: grandworld-ptbr-bulk-stage1
+  cancel-in-progress: true
+
+jobs:
+  candidate_generation:
+    if: github.event.pull_request.number == 77 && github.event.pull_request.head.repo.full_name == 'Fallzz16/pokeemerald-multiplatform'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    steps:
+      - name: Checkout exact translation branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/grandworld-ptbr-stage1-20261025
+          path: grandworld
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Checkout immutable World engine
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+          fetch-depth: 0
+      - name: Prepare compiler and offline translation model
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev python3-venv
+          python3 -m venv /tmp/ptbr-argos
+          /tmp/ptbr-argos/bin/pip install --disable-pip-version-check 'argostranslate>=1.9,<2'
+      - name: Recreate the pinned post-M8 game source
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/integrate_world.py world
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply --with-gen5-trial
+          python3 grandworld/tools/grandworld/add_hero_profiles.py world
+          python3 grandworld/tools/grandworld/add_kanto_avatar.py world
+          python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --shadows lean --report ptbr-bulk-shadow.json
+          python3 grandworld/tools/grandworld/apply_grass_only.py world --apply --report ptbr-bulk-grass.json
+      - name: Produce more than five thousand review-required text drafts
+        run: |
+          set -euo pipefail
+          /tmp/ptbr-argos/bin/python grandworld/tools/grandworld/generate_ptbr_bulk_candidates.py world --minimum 5000 --maximum 5200 --output-dir grandworld/tools/grandworld 2>&1 | tee ptbr-bulk-generator.log
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          index=json.loads(Path('grandworld/tools/grandworld/ptbr_auto_review_index.json').read_text())
+          assert index['added_entries'] >= 5000
+          assert index['review_required'] and not index['gameplay_approved']
+          assert all(Path('grandworld/tools/grandworld', n).is_file() for n in index['shards'])
+          PY
+      - name: No-write source validation and full Python test suite
+        run: |
+          set -euo pipefail
+          python3 -m compileall -q grandworld/tools/grandworld
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_*.py' -q
+          python3 grandworld/tools/grandworld/translate_ptbr_stage1.py world --report ptbr-bulk-preflight.json
+          python3 grandworld/tools/grandworld/audit_ptbr_coverage.py world --output ptbr-bulk-coverage.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          b=json.loads(Path('grandworld/tools/grandworld/ptbr_auto_review_index.json').read_text())
+          p=json.loads(Path('ptbr-bulk-preflight.json').read_text())
+          assert p['translation_entries'] >= 1535+b['added_entries']
+          assert p['translated_text_ascii_only'] and not p['save_format_modified']
+          PY
+      - name: Build and validate the actual GBA candidate before any push
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/translate_ptbr_stage1.py world --apply --report ptbr-bulk-applied.json
+          python3 grandworld/tools/grandworld/adapt_ptbr_greedy_gifts_qa.py world --apply
+          python3 grandworld/tools/grandworld/adapt_ptbr_healthboxes_qa.py world --apply
+          make -C world modern -j2 2>&1 | tee ptbr-bulk-build.log
+          make -C world validate 2>&1 | tee ptbr-bulk-validate.log
+          test -s world/pokemonworld.gba
+          git -C world diff --check
+      - name: Commit verified-build candidates to the SAME draft PR branch
+        run: |
+          set -euo pipefail
+          cd grandworld
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/grandworld/ptbr_auto_review_*.json
+          git diff --cached --check
+          git commit -m 'feat(ptbr): add 5200 protected machine-assisted dialogue drafts for review'
+          git push origin HEAD:refs/heads/feature/grandworld-ptbr-stage1-20261025
+      - name: Publish draft metrics and QA logs, never the GBA ROM
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: GRANDWORLD_PTBR_BULK_DRAFT_QA
+          if-no-files-found: warn
+          path: |
+            ptbr-bulk-generator.log
+            ptbr-bulk-preflight.json
+            ptbr-bulk-applied.json
+            ptbr-bulk-coverage.json
+            ptbr-bulk-build.log
+            ptbr-bulk-validate.log
+            grandworld/tools/grandworld/ptbr_auto_review_*.json
