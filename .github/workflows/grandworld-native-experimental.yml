@@ -45,12 +45,16 @@ jobs:
           data = json.load(open('fast-save-abi.json', encoding='utf-8'))
           assert data['production_save_assertion_changed'] is False
           profiles = {p['profile']: p for p in data['profiles']}
-          for name in ('gcc32', 'gcc32-dome-aligned-4'):
+          for name in ('gcc32', 'gcc32-dome-aligned-4', 'gcc32-time-dome-aligned-4'):
               p = profiles[name]
               assert p.get('ran') and 'saveblock2' in p.get('values', {}), (name, p.get('compiler_errors'))
               print(name, 'save_bytes=', p['values']['saveblock2'],
+                    'time_bytes=', p['values']['time.bytes'],
                     'dome_trainer_bytes=', p['values']['domeTrainer.bytes'],
                     'delta=', p['layout_deltas']['saveblock2'])
+          combined = profiles['gcc32-time-dome-aligned-4']
+          assert combined['values']['saveblock2'] == 0xF2C, combined['layout_deltas']
+          assert all(value == 0 for value in combined['layout_deltas'].values()), combined['layout_deltas']
           PY
       - name: Save ABI metrics for native architecture decisions
         if: always()
