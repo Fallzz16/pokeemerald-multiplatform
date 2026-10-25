@@ -49,8 +49,9 @@ def inspect(objects, output, compiler="gcc", nm="nm"):
     defined = subprocess.run([symbols_tool, "--defined-only", str(target)],
                              capture_output=True, text=True, timeout=30)
     info["World_entry_symbols"] = [
-        symbol for symbol in ("AgbMain", "AgbMainLoop", "GwWorldFrame",
-                              "GwWorldVBlank", "gMain", "RegionSwitch")
+        symbol for symbol in ("main", "AgbMain", "AgbMainLoop", "GwWorldFrame",
+                              "GwWorldVBlank", "DrawFrame", "gw_host_present_rgb555",
+                              "gw_host_poll", "gMain", "RegionSwitch")
         if any(row.strip().endswith(" " + symbol)
                for row in defined.stdout.splitlines())
     ]
