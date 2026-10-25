@@ -27,6 +27,6 @@ GWFace8 gw_follower_look_at(int dx, int dy, GWFace8 previous, int deadzone)
 
 const char *gw_follower_direction_name(GWFace8 facing)
 {
-    static const char *const names[] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW"};
-    return facing >= 0 && facing < GW_FACE_COUNT ? names[facing] : "S";
+    static const char *const names[] = {"n", "ne", "e", "se", "s", "sw", "w", "nw"};
+    return facing >= 0 && facing < GW_FACE_COUNT ? names[facing] : "s";
 }
