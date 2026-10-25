@@ -386,6 +386,21 @@ jobs:
           python3 grandworld/tools/grandworld_native/data_asm_probe.py \
             --world world --limit 25 --objects native-m8-data-objects \
             --report native-m8-data-asm.json
+      - name: P2 - measure real M8 C + original script/data objects in native linker
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/real_data_link_probe.py \
+            --code native-m8-survey-objects --data native-m8-data-objects \
+            --report native-m8-real-data-link.json
+          python3 - <<'PY'
+          import json
+          result = json.load(open('native-m8-real-data-link.json', encoding='utf-8'))
+          assert not result['game_executable_linked']
+          print('Compiled actual data objects:', result['data_object_count'])
+          print('Native relocatable link success:', result['partial_linked'])
+          print('Real data resolved symbols:', result.get('resolved_by_original_data_count', 0))
+          print('Blocked cause:', result.get('error', 'no linker failure'))
+          PY
       - name: P1 - record real C portability compiler diagnostics
         if: always()
         run: |
@@ -418,6 +433,7 @@ jobs:
             native-engine-m8-survey.json
             native-engine-m8-survey-link.json
             native-m8-data-asm.json
+            native-m8-real-data-link.json
           if-no-files-found: warn
 
   host-sdl2-smoke:
