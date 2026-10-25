@@ -7,7 +7,7 @@ No game content, script command, byte literal, or binary asset is fabricated.
 ARM GAS .align N means 2**N bytes; x86 GAS .align N means N bytes, so
 .p2align N is needed for *equivalent* alignment. ARM .word is a 32-bit
 value, but i386 GAS .word is 16-bit; use .4byte without changing the value.
-Three existing FRLG Celadon expressions need whitespace removed so native
+Three existing FRLG Celadon expressions (including preprocessed MAX_COINS=9999) need whitespace removed so native
 GAS passes them to their *original* comparison macro as one argument.
 """
 import argparse
@@ -20,7 +20,7 @@ import tempfile
 ALIGN = re.compile(r'^(?P<indent>[ \t]*)\.align[ \t]+(?P<n>[0-9]+)(?P<rest>(?:[ \t]*,[^\r\n]*)?)[ \t]*$')
 WORD = re.compile(r'^(?P<indent>[ \t]*)\.word(?=[ \t]+)(?P<rest>[^\r\n]+)$')
 CELE = re.compile(r'^(?P<prefix>[ \t]*goto_if_ge[ \t]+VAR_TEMP_1,[ \t]*)'
-                  r'\(MAX_COINS[ \t]+\+[ \t]+1\)[ \t]+-[ \t]+(?P<coins>10|20)'
+                  r'\((?P<limit>MAX_COINS|9999)[ \t]+\+[ \t]+1\)[ \t]+-[ \t]+(?P<coins>10|20)'
                   r'(?P<tail>,[ \t]*CeladonCity_GameCorner_EventScript_[A-Za-z0-9_]+[ \t]*)$')
 SOURCE = "data/maps/CeladonCity_GameCorner_Frlg/scripts.inc"
 EXPECTED_CELADON = 3
@@ -61,7 +61,7 @@ def transform_text(source, special_celadon=False):
         if special_celadon:
             match = CELE.fullmatch(line)
             if match:
-                line = (match.group("prefix") + "(MAX_COINS+1)-" +
+                line = (match.group("prefix") + "(" + match.group("limit") + "+1)-" +
                         match.group("coins") + match.group("tail"))
                 counters["celadon_expression"] += 1
         line, changed = _arm_comment(line)
