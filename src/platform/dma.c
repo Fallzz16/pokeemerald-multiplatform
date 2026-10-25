@@ -127,3 +127,12 @@ void DmaSet(int dmaNum, const void *src, void *dest, u32 control)
 
     RunDMAs(DMA_NOW);
 }
+#if defined(GW_WORLD_NATIVE)
+/* World MODERN's checked DmaSet macro routes through this symbol when the
+ * disposable native-only header overlay is enabled. The original GBA macro
+ * and its alignment assertions remain unchanged for GBA builds. */
+void GwNativeDmaSet(int dmaNum, const void *src, void *dest, u32 control)
+{
+    DmaSet(dmaNum, src, dest, control);
+}
+#endif
