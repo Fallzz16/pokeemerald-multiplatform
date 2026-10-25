@@ -72,13 +72,18 @@ Medições GCC 32 bits de referência (antes do experimento de alinhamento):
   offset documentado.
 - `BattleFrontier.domeTrainers` começa no offset esperado, mas
   `domeMonIds` e campos posteriores aparecem **32 bytes antes**.
-- Hipótese **sob teste**, e não correção de produção: cada
-  `struct BattleDomeTrainer` deveria ocupar 4 bytes, enquanto o
-  compilador nativo pode colocá-lo em 2 bytes. Existem 16 registros:
+- **Confirmado pelo compilador 32-bit:** cada `struct BattleDomeTrainer`
+  ocupa 2 bytes nativamente e precisa de 4; 16 registros explicam
   `16 × (4 - 2) = 32` bytes.
-- O restante de 4 bytes exige medir `struct Time` e os campos anteriores.
-- `abi_probe.py` experimenta `aligned(4)` **apenas em um header temporário**.
-  Os headers reais e os saves continuam intactos.
+- **Confirmado:** cada `struct Time` mede 6 bytes nativos e precisa de 8.
+  As duas instâncias explicam os outros 4 bytes.
+- Com os dois tipos alinhados em 4 bytes, o compilador mediu **3884 bytes**,
+  e **todos os offsets auditados coincidiram** (perfil `gcc32-time-dome-aligned-4`).
+  Evidência: [CI 40189037378](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40189037378).
+- `abi_probe.py` faz a comparação em headers temporários. O adaptador
+  `save_abi_overlay.py` consegue aplicar a alteração **somente para PORTABLE**
+  em uma árvore descartável **após** a referência GBA. Não foi feita migração
+  de saves e a semântica dos bitfields ainda exige testes específicos.
 
 Nunca retirar o `STATIC_ASSERT` para "resolver" P1. Conferir offsets e
 semântica dos bitfields entre compiladores antes de qualquer serialização.
