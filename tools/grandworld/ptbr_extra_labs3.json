@@ -1,0 +1,351 @@
+{
+  "asm": {
+    "data/maps/NewBarkTown_Lab/scripts.inc": {
+      "NewBarkTown_Lab_Text_ElmAideIsWaiting": [
+        "{PLAYER}! Meu assistente\\nesta esperando por voce\\lem VIOLET CITY!$"
+      ],
+      "NewBarkTown_Lab_Text_ElmIntro": [
+        "ELM: {PLAYER}, chegou!\\pPreciso pedir um favor\\npara voce, {PLAYER}.\\pEstou pesquisando POKEMON\\ne queria sua ajuda.$"
+      ],
+      "NewBarkTown_Lab_Text_ElmAccepted": [
+        "Obrigado, {PLAYER}!\\nVoce vai ajudar muito!$"
+      ],
+      "NewBarkTown_Lab_Text_ElmRefused": [
+        "Mas... Por favor,\\npreciso de sua ajuda!$"
+      ],
+      "NewBarkTown_Lab_Text_ElmResearchAmbitions": [
+        "Minha pesquisa vai ajudar\\na entender os misterios\\ldos POKEMON!$"
+      ],
+      "NewBarkTown_Lab_Text_ElmGotAnEmail": [
+        "Ah, chegou uma mensagem!\\pHum... Entendi...\\pInteressante!$"
+      ],
+      "NewBarkTown_Lab_Text_ElmMissionFromMrPokemon": [
+        "ELM: Meu conhecido\\nMR. POKEMON encontrou\\lmais uma coisa estranha.\\p{PLAYER}, poderia ir\\nate a casa dele por mim?$"
+      ],
+      "NewBarkTown_Lab_Text_ElmChooseAPokemon": [
+        "Quero que cuide de um\\ndestes tres POKEMON.\\pEle sera seu primeiro\\nparceiro, {PLAYER}!\\pPode escolher um!$"
+      ],
+      "NewBarkTown_Lab_Text_ElmWhereGoing": [
+        "ELM: Espere!\\nAonde voce vai?$"
+      ],
+      "NewBarkTown_Lab_Text_ChooseCyndaquil": [
+        "ELM: Quer {STR_VAR_1},\\no POKEMON {STR_VAR_2}?$"
+      ],
+      "NewBarkTown_Lab_Text_ChooseTotodile": [
+        "ELM: Vai escolher {STR_VAR_1},\\no POKEMON {STR_VAR_2}?$"
+      ],
+      "NewBarkTown_Lab_Text_ChooseChikorita": [
+        "ELM: Gostou de {STR_VAR_1},\\no POKEMON {STR_VAR_2}?$"
+      ],
+      "NewBarkTown_Lab_Text_DidntChooseStarter": [
+        "ELM: Pense com calma.\\nSeu parceiro e importante!$"
+      ],
+      "NewBarkTown_Lab_Text_ChoseStarter": [
+        "ELM: Boa escolha!\\nE um grande POKEMON!$"
+      ],
+      "NewBarkTown_Lab_Text_ReceivedStarter": [
+        "{PLAYER} recebeu {STR_VAR_1}!$"
+      ],
+      "NewBarkTown_Lab_Text_Nickname": [
+        "Quer dar um apelido\\npara {STR_VAR_1}?$"
+      ],
+      "NewBarkTown_Lab_Text_ElmDirections1": [
+        "A casa do MR. POKEMON\\nfica apos CHERRYGROVE CITY.\\pSiga a estrada principal\\ne tenha cuidado na grama!$"
+      ],
+      "NewBarkTown_Lab_Text_ElmLetYourMonBattle": [
+        "Se um POKEMON selvagem\\naparecer, deixe seu\\nPOKEMON batalhar!$"
+      ],
+      "NewBarkTown_Lab_Text_ElmDirections2": [
+        "ELM: Se aparecer POKEMON\\nselvagem, use seu parceiro.\\pSe ele se machucar,\\nuse a maquina de cura\\laqui ou um CENTRO POKEMON.$"
+      ],
+      "NewBarkTown_Lab_Text_GotElmsNumber": [
+        "{PLAYER} registrou o numero\\ndo PROF. ELM!$"
+      ],
+      "NewBarkTown_Lab_Text_ElmDescribesMrPokemon": [
+        "MR. POKEMON sempre acha\\nobjetos raros por ai.\\pNem todos sao uteis...$"
+      ],
+      "NewBarkTown_Lab_Text_ElmPokeBall": [
+        "Ha um POKEMON capturado\\npelo PROF. ELM aqui.$"
+      ],
+      "NewBarkTown_Lab_Text_ElmAfterTheft1": [
+        "ELM: {PLAYER}, que desastre!\\pVoce encontrou MR. POKEMON?\\pO que ele descobriu?$"
+      ],
+      "NewBarkTown_Lab_Text_ElmAfterTheft2": [
+        "{PLAYER} entregou o\\nMYSTERY EGG ao PROF. ELM.$"
+      ],
+      "NewBarkTown_Lab_Text_ElmAfterTheft3": [
+        "ELM: O que e isso?$"
+      ],
+      "NewBarkTown_Lab_Text_ElmAfterTheft4": [
+        "ELM: {PLAYER}, um EGG?!\\pQue descoberta incrivel!\\pO PROF. OAK deu uma POKEDEX\\npara voce, {PLAYER}?\\pVamos pesquisar, {PLAYER}!$"
+      ],
+      "NewBarkTown_Lab_Text_ElmStudyingEgg": [
+        "ELM: Nao desista!\\pVou ligar quando souber\\nmais sobre o EGG!$"
+      ],
+      "NewBarkTown_Lab_Text_ElmAideHasEgg": [
+        "ELM: {PLAYER}, voce ainda\\nnao encontrou meu ajudante?\\pEle esta no CENTRO POKEMON\\nde VIOLET CITY com o EGG!$"
+      ],
+      "NewBarkTown_Lab_Text_ElmWaitingEggHatch": [
+        "ELM: Oi!\\nHouve mudancas no EGG?$"
+      ],
+      "NewBarkTown_Lab_Text_ElmThoughtEggHatched": [
+        "{PLAYER}, achei que o EGG\\nja tinha chocado.\\pOnde esta o POKEMON?$"
+      ],
+      "NewBarkTown_Lab_Text_ShowTogepi1": [
+        "ELM: {PLAYER}, voce\\nparece muito bem!$"
+      ],
+      "NewBarkTown_Lab_Text_ShowTogepi2": [
+        "O que?!\\nEsse POKEMON?!$"
+      ],
+      "NewBarkTown_Lab_Text_ShowTogepi3": [
+        "O EGG chocou!\\pEntao POKEMON nascem\\nde EGGS...\\pAinda temos muito\\npara descobrir!$"
+      ],
+      "NewBarkTown_Lab_Text_ElmGiveEverstone1": [
+        "Obrigado, {PLAYER}!\\pVoce esta ajudando\\nminha pesquisa!\\pAceite este presente.$"
+      ],
+      "NewBarkTown_Lab_Text_ElmGiveEverstone2": [
+        "Este item e EVERSTONE.\\pUm POKEMON que segurar\\neste item nao vai evoluir\\lao subir de nivel.$"
+      ],
+      "NewBarkTown_Lab_Text_ElmCallYou": [
+        "ELM: {PLAYER}, vou ligar\\nse houver novidades!$"
+      ],
+      "NewBarkTown_Lab_Text_AideAfterTheft": [
+        "Que tristeza...\\nRoubaram um POKEMON.\\pQuem faz uma coisa dessas?$"
+      ],
+      "NewBarkTown_Lab_Text_ElmGiveMasterBall1": [
+        "ELM: Ola, {PLAYER}!\\pMinha pesquisa vai bem\\ngracas a sua ajuda.\\pTenho um presente!$"
+      ],
+      "NewBarkTown_Lab_Text_ElmGiveMasterBall2": [
+        "Esta e a MASTER BALL!\\pEla captura qualquer POKEMON\\nsem falhar.\\pUse com sabedoria, {PLAYER}!$"
+      ],
+      "NewBarkTown_Lab_Text_KimonoGirls": [
+        "As KIMONO GIRLS\\nvieram procurar voce.\\pEstao esperando no\\nECRUTEAK DANCE THEATER.$"
+      ],
+      "NewBarkTown_Lab_Text_KimonoWaiting": [
+        "ELM: As KIMONO GIRLS\\nestao esperando por voce\\lno ECRUTEAK DANCE THEATER.$"
+      ],
+      "NewBarkTown_Lab_Text_League": [
+        "ELM: Muito bem!\\pSua jornada foi longa.\\pAinda existem muitos\\nPOKEMON para conhecer.$"
+      ],
+      "NewBarkTown_Lab_Text_ElmGiveTicket1": [
+        "ELM: {PLAYER}, chegou!\\pTenho um presente para voce:\\no S.S. TICKET!\\pAgora pode explorar KANTO.$"
+      ],
+      "NewBarkTown_Lab_Text_ElmGiveTicket2": [
+        "O navio parte de OLIVINE.\\pVoce ja conhece bem\\nos caminhos, {PLAYER}.\\pBoa viagem!$"
+      ],
+      "NewBarkTown_Lab_Text_LabMonEgg": [
+        "Um EGG de POKEMON\\nestudado pelo PROF. ELM.$"
+      ],
+      "NewBarkTown_Lab_Text_AideGivePotion": [
+        "{PLAYER}, leve isto\\npara a viagem!$"
+      ],
+      "NewBarkTown_Lab_Text_AideAlwaysBusy": [
+        "Somos apenas tres no LAB.\\pEstamos sempre ocupados!$"
+      ],
+      "NewBarkTown_Lab_Text_AideSave": [
+        "Nao se esqueca de salvar!\\pAperte START e use\\na opcao SALVAR.$"
+      ],
+      "NewBarkTown_Lab_Text_AideTheftTestimony": [
+        "Ouvimos um barulho\\nperto do LAB.\\pAlguem roubou um POKEMON!$"
+      ],
+      "NewBarkTown_Lab_Text_AideGiveBalls": [
+        "{PLAYER}!\\pUse estas POKE BALLS\\npara completar a POKEDEX!$"
+      ],
+      "NewBarkTown_Lab_Text_AideExplainBalls": [
+        "Para preencher a POKEDEX,\\nvoce precisa capturar POKEMON.\\pUse POKE BALLS nos\\nPOKEMON selvagens da grama.$"
+      ],
+      "NewBarkTown_Lab_Text_Officer1": [
+        "Um POKEMON foi roubado.\\pEstamos investigando.\\pO suspeito e um jovem ruivo.$"
+      ],
+      "NewBarkTown_Lab_Text_Officer2_1": [
+        "Entao foi {RIVAL}\\nquem roubou o POKEMON?\\pObrigado pela ajuda!$"
+      ],
+      "NewBarkTown_Lab_Text_Officer2": [
+        "Obrigado por colaborar\\ncom a investigacao!$"
+      ],
+      "NewBarkTown_Lab_Text_Elm_CallMe": [
+        "Ola, {PLAYER}!\\pComo esta sua POKEDEX?\\pPode me ligar depois!$"
+      ]
+    },
+    "data/maps/PalletTown_ProfessorOaksLab_Frlg/scripts.inc": {
+      "PalletTown_ProfessorOaksLab_Text_RivalGrampsIsntAround": [
+        "{RIVAL}: Ah, e so {PLAYER}?\\nMeu avo nao esta aqui.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_RivalFedUpWithWaiting": [
+        "{RIVAL}: Avo!\\nCansei de esperar!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_RivalNoFairWhatAboutMe": [
+        "{RIVAL}: Avo, e eu?\\nIsso nao e justo!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_RivalGoChoosePlayer": [
+        "{RIVAL}: Escolha primeiro,\\n{PLAYER}! Eu sei esperar.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_RivalIllTakeThisOneThen": [
+        "{RIVAL}: Vou pegar este!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_RivalReceivedMonFromOak": [
+        "{RIVAL} recebeu {STR_VAR_1}\\ndo PROF. OAK!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_RivalMyMonLooksTougher": [
+        "{RIVAL}: Meu POKEMON parece\\nmais forte que o seu!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_RivalLetsCheckOutMons": [
+        "{RIVAL}: {PLAYER}!\\nVamos testar nossos POKEMON!\\pAceita batalhar comigo?$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_RivalDefeat": [
+        "O que?! Nao acredito!\\pEscolhi o POKEMON errado!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_RivalGoToughenMyMon": [
+        "{RIVAL}: Vou treinar meu POKEMON\\nate ele ficar forte!\\p{PLAYER}, avo, ate logo!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_RivalGramps": [
+        "{RIVAL}: Avo!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_RivalWhatDidYouCallMeFor": [
+        "{RIVAL}: Quase esqueci!\\nPor que me chamou, avo?$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_RivalLeaveItToMeGramps": [
+        "{RIVAL}: Certo, avo!\\nPode contar comigo!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_RivalTellSisNotToGiveYouMap": [
+        "{PLAYER}, nao preciso de voce.\\pVou pegar um TOWN MAP\\ncom minha irma.\\pVou pedir para ela\\nnao dar um para {PLAYER}!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakThreeMonsChooseOne": [
+        "OAK: {RIVAL}? Voce chegou!\\p{PLAYER}, venha aqui.\\pTenho tres POKEMON\\nnessas POKE BALLS.\\pEscolha seu primeiro parceiro!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakBePatientRival": [
+        "OAK: Calma, {RIVAL}.\\nVoce tambem vai ganhar um!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakWhichOneWillYouChoose": [
+        "OAK: {PLAYER}, ha tres POKEMON\\nnessas POKE BALLS.\\pQual deles voce quer?$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakHeyDontGoAwayYet": [
+        "OAK: Ei!\\nAinda nao va embora!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakChoosingCharmander": [
+        "CHARMANDER! Boa escolha.\\nEle precisa de paciencia.\\p{PLAYER}, quer mesmo\\nCHARMANDER, do tipo FIRE?$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakChoosingSquirtle": [
+        "SQUIRTLE! Boa escolha.\\nVale a pena treina-lo.\\p{PLAYER}, quer mesmo\\nSQUIRTLE, do tipo WATER?$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakChoosingBulbasaur": [
+        "BULBASAUR! Boa escolha.\\nEle e facil de criar.\\p{PLAYER}, quer mesmo\\nBULBASAUR, do tipo GRASS?$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakThisMonIsEnergetic": [
+        "Este POKEMON esta\\ncheio de energia!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_ReceivedMonFromOak": [
+        "{PLAYER} recebeu {STR_VAR_1}\\ndo PROF. OAK!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakCanReachNextTownWithMon": [
+        "OAK: Se aparecer POKEMON\\nselvagem na grama, seu\\nparceiro pode batalhar.\\pAssim podera chegar\\na cidade seguinte.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakBattleMonForItToGrow": [
+        "OAK: {PLAYER}, batalhar ajuda\\nseu POKEMON a crescer!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakHaveSomethingForMe": [
+        "OAK: {PLAYER}!\\nComo esta seu POKEMON?\\pEle parece gostar de voce.\\nVoce tem talento de TREINADOR!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_DeliveredOaksParcel": [
+        "{PLAYER} entregou\\nOAK'S PARCEL.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakCustomBallIOrdered": [
+        "Ah! Minha POKE BALL\\nencomendada chegou!\\pMuito obrigado!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakHaveRequestForYouTwo": [
+        "OAK: Lembrei!\\pTenho um pedido para voces.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakPokedexOnDesk": [
+        "Esta e minha invencao:\\na POKEDEX!\\pEla registra dados dos POKEMON\\nque voce encontra e captura.\\pE uma enciclopedia moderna!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakTakeTheseWithYou": [
+        "OAK: {PLAYER} e {RIVAL},\\nlevem estas POKEDEX!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_ReceivedPokedexFromOak": [
+        "{PLAYER} recebeu a POKEDEX\\ndo PROF. OAK!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakCatchMonsForDataTakeThese": [
+        "OAK: Ver POKEMON nao basta.\\pCapture-os para registrar\\ntodos os dados na POKEDEX.\\pO DEXNAV tambem vai ajudar.\\nLeve estas POKE BALLS!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_ReceivedFivePokeBalls": [
+        "{PLAYER} recebeu\\ncinco POKE BALLS!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_YouHaveNoRoomForThis": [
+        "Sua BOLSA esta cheia.\\pLibere espaco e volte\\npara buscar os itens.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakExplainCatching": [
+        "OAK: Quando um POKEMON\\nselvagem aparecer na grama,\\ltente captura-lo.\\pUse uma POKE BALL!\\nNem sempre funciona.\\pEnfraqueca o POKEMON\\npara facilitar a captura.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakCompleteMonGuideWasMyDream": [
+        "OAK: Sempre sonhei em criar\\num guia de todos os POKEMON.\\pHoje estou velho para\\nexplorar o mundo todo.\\pConto com a ajuda de voces!\\nCompletem a POKEDEX!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakMonsAroundWorldWait": [
+        "Os POKEMON do mundo\\nesperam por voce, {PLAYER}!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakAddedNothingToPokedex": [
+        "OAK: Ola, {PLAYER}!\\p{RIVAL} ja registrou POKEMON.\\pE voce, {PLAYER}?\\nVamos conferir seu progresso!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakComeSeeMeSometime": [
+        "OAK: Volte de vez em quando.\\pQuero ver o progresso\\nda sua POKEDEX!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_BlankEncyclopedia": [
+        "Parece uma enciclopedia,\\nmas as paginas estao vazias.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_ThoseArePokeBalls": [
+        "Sao POKE BALLS.\\nHa POKEMON dentro delas!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OaksLastMon": [
+        "E o ultimo POKEMON\\ndo PROF. OAK.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_PressStartToOpenMenu": [
+        "Aperte START\\npara abrir o MENU!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_SaveOptionInMenu": [
+        "Use SALVAR no MENU\\npara guardar seu progresso.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_AllMonTypesHaveStrongAndWeakPoints": [
+        "Cada tipo de POKEMON\\ntem vantagens e fraquezas.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_EmailMessage": [
+        "Ha uma mensagem no PC.\\pA LIGA POKEMON desafia\\nos melhores TREINADORES!\\pPrepare sua equipe\\ne tente conquistar o titulo.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_StudyAsOaksAide": [
+        "Sou assistente do PROF. OAK.\\nAjudo na pesquisa POKEMON.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_DaisyWillGroomMons": [
+        "Ola, {PLAYER}!\\pSeu POKEMON parece\\ngostar muito de voce.\\pDAISY pode cuidar dele\\ne deixa-lo ainda mais feliz.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakIsGoingToHaveRadioShow": [
+        "O PROF. OAK vai ter\\num programa de radio!\\pVai se chamar\\nPOKEMON SEMINAR.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakIsAuthorityOnMons": [
+        "O PROF. OAK e autoridade\\nna pesquisa POKEMON.\\pMuitos TREINADORES\\nadmiram seu trabalho.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakFavorToAskYouPlayer": [
+        "Excelente!\\p{PLAYER}, tenho outro\\npedido importante para voce.\\pEscute com atencao.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakSightingsOfRareMons": [
+        "OAK: Muitos POKEMON raros\\nestao aparecendo.\\pAlguns nunca foram\\nvistos em KANTO!\\p{PLAYER}, ajude a pesquisar\\nessas novas especies!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_RivalJustLetMeHandleEverything": [
+        "{RIVAL}: Ei, ouvi isso!\\pAvo, por que sempre da\\nmais atencao a {PLAYER}?\\pEu tambem capturei\\nmuitos POKEMON!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakNeedYourHelpTooNeedToSeePokedexes": [
+        "OAK: Claro que preciso\\nda ajuda dos dois!\\pMostrem suas POKEDEX\\npara mim, por favor.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakTookBothPokedexUnits": [
+        "O PROF. OAK pegou\\nas duas POKEDEX.$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakNowTheseUnitsCanRecordMoreData": [
+        "OAK: Prontinho!\\pAgora essas POKEDEX\\npodem registrar ainda mais\\nespecies de POKEMON!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_PlayersPokedexWasUpgraded": [
+        "A POKEDEX de {PLAYER}\\nfoi atualizada!$"
+      ],
+      "PalletTown_ProfessorOaksLab_Text_OakMustReallyWorkToFillPokedex": [
+        "OAK: {PLAYER} e {RIVAL}!\\pTrabalhem juntos para\\ncompletar as POKEDEX.\\pConto com voces!$"
+      ]
+    }
+  },
+  "c": {}
+}
