@@ -205,10 +205,19 @@ static void paint(int px, int py, int fx, int fy, GWFace8 facing, bool settings,
 /* Reload all packs and style preferences as one change. If the updated
  * catalog is corrupt or a PNG cannot be decoded, keep the last working
  * index, preferences and rendered assets. This changes no Pokemon saves. */
+typedef struct {
+    uint32_t bg[W * H];
+    uint32_t follower[FOLLOWER * FOLLOWER];
+    uint32_t directions[GW_FACE_COUNT][FOLLOWER * FOLLOWER];
+    bool has_direction[GW_FACE_COUNT];
+    bool has_bg, has_sprite;
+} GWVisualSnapshot;
+
 static bool reload_styles(const char *root)
 {
     GWStyleIndex *candidate = malloc(sizeof(*candidate));
     GWStyleIndex *previous = NULL;
+    GWVisualSnapshot *snapshot = NULL;
     GWStylePrefs next_prefs, old_prefs;
     bool good = false;
     if (!candidate)
@@ -217,21 +226,35 @@ static bool reload_styles(const char *root)
         !gw_styles_read_prefs(candidate, &next_prefs))
         goto finish;
     previous = malloc(sizeof(*previous));
-    if (!previous)
+    snapshot = malloc(sizeof(*snapshot));
+    if (!previous || !snapshot)
         goto finish;
     memcpy(previous, &library, sizeof(library));
     old_prefs = preferences;
+    memcpy(snapshot->bg, background, sizeof(background));
+    memcpy(snapshot->follower, companion, sizeof(companion));
+    memcpy(snapshot->directions, directional, sizeof(directional));
+    memcpy(snapshot->has_direction, has_direction, sizeof(has_direction));
+    snapshot->has_bg = custom_bg;
+    snapshot->has_sprite = custom_sprite;
+
     memcpy(&library, candidate, sizeof(library));
     preferences = next_prefs;
     if (!update_images()) {
         memcpy(&library, previous, sizeof(library));
         preferences = old_prefs;
-        /* Restore previously selected visual buffers as well. */
-        update_images();
+        /* Do not reopen old resources: they may have been deleted meanwhile. */
+        memcpy(background, snapshot->bg, sizeof(background));
+        memcpy(companion, snapshot->follower, sizeof(companion));
+        memcpy(directional, snapshot->directions, sizeof(directional));
+        memcpy(has_direction, snapshot->has_direction, sizeof(has_direction));
+        custom_bg = snapshot->has_bg;
+        custom_sprite = snapshot->has_sprite;
         goto finish;
     }
     good = true;
 finish:
+    free(snapshot);
     free(previous);
     free(candidate);
     return good;
