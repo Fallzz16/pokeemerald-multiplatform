@@ -1,12 +1,7 @@
 name: Grand World - PT-BR Guarded Bulk Draft
 
 on:
-  pull_request:
-    paths:
-      - '.github/workflows/grandworld-ptbr-bulk.yml'
-      - 'tools/grandworld/generate_ptbr_bulk_candidates.py'
-      - 'tools/grandworld/adapt_ptbr_greedy_gifts_qa.py'
-      - 'tools/grandworld/tests/test_adapt_ptbr_greedy_gifts_qa.py'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -18,7 +13,7 @@ concurrency:
 
 jobs:
   candidate_generation:
-    if: github.event.pull_request.number == 77 && github.event.pull_request.head.repo.full_name == 'Fallzz16/pokeemerald-multiplatform'
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-24.04
     timeout-minutes: 300
     steps:
@@ -100,7 +95,19 @@ jobs:
           cd grandworld
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for file in tools/grandworld/ptbr_auto_review_*.json; do
+            if git ls-files --error-unmatch "$file" > /dev/null 2>&1; then
+              if ! git diff --quiet -- "$file"; then
+                echo "Refusing to overwrite a previously tracked translated manifest: $file"
+                exit 1
+              fi
+            fi
+          done
           git add tools/grandworld/ptbr_auto_review_*.json
+          if git diff --cached --quiet; then
+            echo "No new manifests to commit; existing translations preserved."
+            exit 0
+          fi
           git diff --cached --check
           git commit -m 'feat(ptbr): add 5200 protected machine-assisted dialogue drafts for review'
           git push origin HEAD:refs/heads/feature/grandworld-ptbr-stage1-20261025
