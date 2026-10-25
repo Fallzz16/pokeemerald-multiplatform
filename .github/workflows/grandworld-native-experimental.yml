@@ -90,3 +90,29 @@ jobs:
           cmake -S tools/grandworld_native/host -B build/native-host -DCMAKE_BUILD_TYPE=Debug
           cmake --build build/native-host -j2
           ctest --test-dir build/native-host --output-on-failure
+
+  native-header-probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout adapters
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Checkout pinned World source
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+      - name: Compile portable sources against World headers (diagnostic only)
+        run: |
+          python3 grandworld/tools/grandworld_native/probe.py \
+            --world world --grandworld grandworld \
+            --output native-header-probe.json
+      - name: Save diagnostic report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grandworld-native-header-probe
+          path: native-header-probe.json
