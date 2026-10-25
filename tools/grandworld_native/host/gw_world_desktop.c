@@ -8,6 +8,7 @@
 #include <SDL.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <string.h>
 #include "global.h"
 #include "gw_sdl_host.h"
 
@@ -36,10 +37,17 @@ int main(int argc, char **argv)
     uint16_t frame[GW_SCREEN_WIDTH * GW_SCREEN_HEIGHT];
     Uint32 next_tick;
     bool headless = false;
-    (void)argv;
+    bool smoke_test = false;
+    int frame_count = 0;
+    int exit_code = 0;
 
-    if (argc > 1) {
-        fprintf(stderr, "Usage: grandworld-native [no arguments]\n");
+    /* The smoke test runs the REAL World boot and a real game frame.
+     * It uses a hidden SDL window and exits after the first presented frame. */
+    if (argc == 2 && strcmp(argv[1], "--smoke-test") == 0) {
+        headless = true;
+        smoke_test = true;
+    } else if (argc != 1) {
+        fprintf(stderr, "Usage: grandworld-native [--smoke-test]\n");
         return 2;
     }
     SDL_SetMainReady();
@@ -54,14 +62,26 @@ int main(int argc, char **argv)
      * entering AgbMainLoop forever, unchanged by the host-only overlay. */
     set_host_keys(0);
     AgbMain();
+    if (smoke_test) {
+        puts("WORLD_NATIVE_REAL_ENGINE_INIT_RETURNED");
+        fflush(stdout);
+    }
     next_tick = SDL_GetTicks();
-    while (gw_host_poll(host)) {
+    while (gw_host_poll(host) && (!smoke_test || frame_count < 1)) {
         set_host_keys(gw_host_keys(host));
         GwWorldFrame();
         DrawFrame(frame);          /* actual GBA renderer: VCount/HBlank */
         GwWorldVBlank();           /* actual World VBlank interrupt */
-        if (!gw_host_present_rgb555(host, frame, GW_SCREEN_WIDTH))
+        if (!gw_host_present_rgb555(host, frame, GW_SCREEN_WIDTH)) {
+            fprintf(stderr, "Real World framebuffer SDL2 presentation failed\n");
+            exit_code = 5;
             break;
+        }
+        ++frame_count;
+        if (smoke_test) {
+            puts("WORLD_NATIVE_REAL_ENGINE_FIRST_FRAME_PRESENTED");
+            fflush(stdout);
+        }
         next_tick += 16u;
         {
             Uint32 now = SDL_GetTicks();
@@ -72,5 +92,7 @@ int main(int argc, char **argv)
         }
     }
     gw_host_close(host);
-    return 0;
+    if (smoke_test && frame_count != 1)
+        return exit_code ? exit_code : 6;
+    return exit_code;
 }
