@@ -97,13 +97,15 @@ def _native_compile(command, world, src, obj, flags, use_preproc):
         assembled.args, assembled.returncode, assembled.stdout,
         generated.stderr + assembled.stderr)
 
-def compile_engine(world, out, compiler="gcc", use_preproc=False):
+def compile_engine(world, out, compiler="gcc", use_preproc=False, all_sources=False):
     world = Path(world).resolve()
     out = Path(out).resolve()
     command = shutil.which(compiler)
     results = []
     out.mkdir(parents=True, exist_ok=True)
-    for name in SOURCES:
+    sources = (sorted(path.name for path in (world / "src").glob("*.c"))
+               if all_sources else SOURCES)
+    for name in sources:
         src = world / "src" / name
         obj = out / name.replace(".c", ".o")
         entry = {"source": "src/" + name, "object": str(obj.name)}
@@ -126,10 +128,12 @@ def compile_engine(world, out, compiler="gcc", use_preproc=False):
         results.append(entry)
     return {"schema": 1, "stage": "P2_real_World_M8_source_object_probe",
             "compiler": command, "real_world_preprocessor": use_preproc,
+            "all_sources_requested": all_sources,
             "objects": results,
             "compiled": sum(x["status"] == "object_compiled" for x in results),
             "requested": len(SOURCES),
-            "main_object_ok": results[0]["status"] == "object_compiled",
+            "main_object_ok": any(x["source"] == "src/main.c" and
+                                  x["status"] == "object_compiled" for x in results),
             "world_engine_linked": False, "world_gameplay_booted": False}
 
 def main():
@@ -140,8 +144,10 @@ def main():
     p.add_argument("--compiler", default="gcc")
     p.add_argument("--use-world-preproc", action="store_true",
                    help="Use World charmap and asset pipeline for real resources")
+    p.add_argument("--all-sources", action="store_true",
+                   help="Inventory every real World src/*.c instead of just 24 core modules")
     args = p.parse_args()
-    result = compile_engine(args.world, args.objects, args.compiler, args.use_world_preproc)
+    result = compile_engine(args.world, args.objects, args.compiler, args.use_world_preproc, args.all_sources)
     Path(args.output).write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     for entry in result["objects"]:
         print(entry["source"], entry["status"], entry.get("bytes", 0), "bytes")
