@@ -202,6 +202,41 @@ static void paint(int px, int py, int fx, int fy, GWFace8 facing, bool settings,
     line_text(14, 122, "TEST HOST - NO GAMEPLAY", color555(230,166,157));
 }
 
+/* Reload all packs and style preferences as one change. If the updated
+ * catalog is corrupt or a PNG cannot be decoded, keep the last working
+ * index, preferences and rendered assets. This changes no Pokemon saves. */
+static bool reload_styles(const char *root)
+{
+    GWStyleIndex *candidate = malloc(sizeof(*candidate));
+    GWStyleIndex *previous = NULL;
+    GWStylePrefs next_prefs, old_prefs;
+    bool good = false;
+    if (!candidate)
+        return false;
+    if (!gw_styles_load(candidate, root) ||
+        !gw_styles_read_prefs(candidate, &next_prefs))
+        goto finish;
+    previous = malloc(sizeof(*previous));
+    if (!previous)
+        goto finish;
+    memcpy(previous, &library, sizeof(library));
+    old_prefs = preferences;
+    memcpy(&library, candidate, sizeof(library));
+    preferences = next_prefs;
+    if (!update_images()) {
+        memcpy(&library, previous, sizeof(library));
+        preferences = old_prefs;
+        /* Restore previously selected visual buffers as well. */
+        update_images();
+        goto finish;
+    }
+    good = true;
+finish:
+    free(previous);
+    free(candidate);
+    return good;
+}
+
 static bool style_advance(int category, int direction)
 {
     const char *kind = category == 0 ? "menus" : "sprites";
@@ -317,11 +352,8 @@ int main(int argc, char **argv)
         const bool f5 = key_state[SDL_SCANCODE_F5] != 0;
         const bool esc = key_state[SDL_SCANCODE_ESCAPE] != 0;
         if (f1 && !last_f1) settings = !settings;
-        if (f5 && !last_f5) {
-            if (gw_styles_load(&library, root) &&
-                gw_styles_read_prefs(&library, &preferences))
-                update_images();
-        }
+        if (f5 && !last_f5 && !reload_styles(root))
+            fprintf(stderr, "Could not reload mods: previous styles preserved\\n");
         if (settings) {
             if (press & (GW_KEY_UP | GW_KEY_DOWN)) category ^= 1;
             if ((press & GW_KEY_LEFT) && !style_advance(category, -1))
