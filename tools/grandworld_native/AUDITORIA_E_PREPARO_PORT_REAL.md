@@ -100,18 +100,32 @@ semântica dos bitfields entre compiladores antes de qualquer serialização.
 - [CI 40189300572](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40189300572):
   `save_abi_overlay.py` foi aplicado com sucesso **depois** da compilação e
   validação GBA, somente na árvore descartável da World.
-  Após o adaptador, `gba_easy_draw.c` passou no teste de sintaxe do GCC32
-  (com avisos de logging ainda pendentes). Os outros módulos ainda falham:
+  Após a auditoria de 25/10, concluímos uma camada de compatibilidade
+  *isolada* para os quatro componentes. O estado anterior, abaixo, foi
+  substituído pelas evidências mais recentes:
 
-| Módulo | Situação real de sintaxe | Próxima tarefa |
+- [CI 40191964730](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40191964730):
+  quatro arquivos passaram em GCC 32-bit com `-Werror=implicit-function-declaration`,
+  e o teste C executável validou BIOS (incluindo RLE), DMA
+  imediato/VBlank/repetição/fonte fixa, buffers de hardware e limites de áudio.
+- [CI 40192254680](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40192254680):
+  `gba_easy_draw.c` também gerou objeto nativo `.o`; o teste de runtime
+  com **AddressSanitizer e UndefinedBehaviorSanitizer** passou.
+- `dma_api_overlay.py` conserva o caminho GBA e redireciona somente
+  `GW_WORLD_NATIVE` aos registros emulados e à função de transferência
+  `GwNativeDmaSet`. Os `STATIC_ASSERT` do sistema de saves foram mantidos.
+
+| Módulo | Validação isolada em World 32-bit | Observação |
 |---|---|---|
-| `gba_easy_draw.c` | PASSOU (com warnings) | Padronizar include stdio/logger |
-| `bios.c` | BLOQUEADO | Resolver conflito de `REG_BASE` e macros `CpuSet/CpuFastSet` |
-| `dma.c` | BLOQUEADO | Compatibilizar `DMA_DEST_MASK`, `DMA_SRC_MASK`, macro `DmaSet` |
-| `cgb_audio.c` | BLOQUEADO | Mapear registradores `REG_ADDR_WAVE_RAM0` para RAM simulada |
+| `bios.c` | COMPILA E EXECUTA TESTES | Correção real de avanço de ponteiro RLE; cópia e preenchimento |
+| `dma.c` | COMPILA E EXECUTA TESTES | DMA 16/32-bit, NOW, VBlank, reload, canal inválido |
+| `gba_easy_draw.c` | COMPILA ARQUIVO OBJETO | A tela real da World ainda não está conectada |
+| `cgb_audio.c` | COMPILA E EXECUTA TESTES | RAM de ondas e limites de buffer; música do jogo ainda não validada |
 
-**Esses são testes `-fsyntax-only` em quatro módulos do port antigo;
-não são uma linkagem da World/M8, e P1 ainda não está concluído.**
+**Escopo da conclusão:** BIOS/DMA/memória/áudio da plataforma sob testes
+isolados. Ainda **não** existe um executável com toda a World/M8 ligada ao
+SDL2, nem teste end-to-end de saves. O próximo passo é integrar o ciclo
+principal real e testar os recursos dentro da engine, não apenas em harnesses.
 
 ## Arquitetura concreta recomendada
 
@@ -154,7 +168,11 @@ opções visuais não é necessário e deve ser evitado.
 - [x] P0 base GBA reproduzida e validada em execução anterior.
 - [x] Style Lab SDL2 e pack manager funcionais como protótipos.
 - [x] Correções de ZIP + regressões automáticas implementadas.
-- [ ] ABI nativo comprovadamente compatível campo a campo.
+- [x] Layout de `SaveBlock2`: tamanho e offsets, mais amostras de bitfields
+      conferidos entre GBA ARM APCS e GCC32 (não é save end-to-end).
+- [x] Componentes P1 de BIOS/DMA/memória/áudio compilados em harness World32.
+- [x] Testes de transferência/decodificação e ASan/UBSan nos caminhos exercitados.
+- [ ] Semântica completa dos saves e efeitos de hardware conferida em gameplay.
 - [ ] Linker gera World/M8 completo como nativo.
 - [ ] Bootstrap real World em SDL2.
 - [ ] Movimento nas 3 regiões + saves verificados.
