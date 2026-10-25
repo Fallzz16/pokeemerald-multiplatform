@@ -11,6 +11,8 @@ from pathlib import Path
 import shutil
 import subprocess
 
+from native_asm import normalize_host_assembly
+
 # Deliberately covers the actual World boot, regions, titles and gameplay.
 SOURCES = (
     "main.c",
@@ -74,10 +76,26 @@ def _native_compile(command, world, src, obj, flags, use_preproc):
     if processed.returncode:
         return subprocess.CompletedProcess(processed.args, processed.returncode,
                                           b"", processed.stderr.decode(errors="replace"))
-    # Input was already CPP-expanded, exactly as required by World preproc.
-    return subprocess.run([command, *flags, "-x", "c", "-c", "-", "-o",
-                           str(obj)], input=processed.stdout, cwd=world,
-                          capture_output=True, timeout=120)
+    # The output is World-C plus real charmap and incbin resources.
+    # First emit host assembler then convert only GNU ARM '@' comments to
+    # x86 '#' comments; preserve the original binary data directives.
+    assembly = obj.with_suffix(".s")
+    generated = subprocess.run(
+        [command, *flags, "-x", "c", "-S", "-", "-o", str(assembly)],
+        input=processed.stdout, cwd=world, capture_output=True, timeout=120)
+    if generated.returncode:
+        return generated
+    data = assembly.read_text(encoding="utf-8")
+    normalized, changed = normalize_host_assembly(data)
+    if changed:
+        assembly.write_text(normalized, encoding="utf-8")
+    assembled = subprocess.run(
+        [command, "-m32", "-x", "assembler", "-c", str(assembly), "-o", str(obj)],
+        cwd=world, capture_output=True, timeout=120)
+    # Keep assembler output for reproducibility and artifact debugging.
+    return subprocess.CompletedProcess(
+        assembled.args, assembled.returncode, assembled.stdout,
+        generated.stderr + assembled.stderr)
 
 def compile_engine(world, out, compiler="gcc", use_preproc=False):
     world = Path(world).resolve()
