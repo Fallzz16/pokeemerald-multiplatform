@@ -86,6 +86,11 @@ int main(void)
     if (memcmp(src, dma_dst, sizeof(src)) != 0)
         return failed(8, "VBlank DMA failed");
 
+    /* World DMA macro constants must use unsigned arithmetic on the host.
+     * Its 0x8000 enable bit moves into bit 31 of the 32-bit control value. */
+    if ((DMA_ENABLE << 16) != 0x80000000u)
+        return failed(20, "native DMA_ENABLE macro lost unsigned shift semantics");
+
     /* 16-bit DMA from fixed source must fill every destination halfword. */
     {
         u16 value = 0xA53Fu;
