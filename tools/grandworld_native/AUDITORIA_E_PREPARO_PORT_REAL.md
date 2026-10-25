@@ -223,10 +223,32 @@ argumentos Celadon na stream pré-processada da World:
   ainda não estão comprovados neste checkpoint.
 
 Este resultado **substitui a medição anterior 13/14** e a pendência de Celadon.
-O total exato de símbolos não resolvidos *após incorporar os dados* deverá ser
-lido de `native-m8-real-data-link.json` quando os artifacts estiverem
-disponíveis; **3.815** é somente o valor anterior da ligação **C isolado**.
-Não usar esse número como saldo definitivo da engine.
+**Medições exatas dos artifacts publicados na CI 40212201152:**
+
+- `native-m8-real-data-link.json`: **3.815** referências não resolvidas
+  distintas com apenas 405 objetos C, **677** após acrescentar os 14 dados
+  originais. Foram resolvidas **3.742** referências C anteriores, enquanto
+  os próprios dados acrescentaram **604** novas referências (sobretudo músicas
+  MIDI). Objeto combinado verdadeiro: **135.636.976 bytes**.
+- `native-m8-final-link-attempt.json`: 405 C, 14 dados, **5 objetos de
+  plataforma**, frontend genuíno presente e **650 símbolos distintos
+  indefinidos** registrados no linker final. **Zero definições duplicadas**,
+  mas `link_exit_code=1` e `link_succeeded=false`. Exemplos:
+  `VBlankIntrWait`, `SoftReset`, `BitUnPack`, `FastUnsafeCopy32`,
+  `GameCubeMultiBoot_Main`, `gNumMusicPlayers` e símbolos de músicas.
+- `native-m8-original-midi.json`: **600 fontes MIDI originais disponíveis**;
+  amostradas 24, **0/24 montaram** como ELF32. Primeira causa concreta:
+  comentários ARM na inclusão original `sound/MPlayDef.s`. O gate de
+  auditoria era informativo, não exigia pelo menos uma montagem. Foi criado
+  adaptador de inclusão nativa em
+  [48a9411c](https://github.com/Fallzz16/pokeemerald-multiplatform/commit/48a9411c6f32988734f3491232fe7c57f7aab440),
+  junto com testes ELF32; **a melhoria ainda exige CI com MIDI verdadeiro**.
+- `native-m8-first-frame-smoke.json`: `attempted=false`,
+  `real_game_initialized=false`, `real_first_frame_presented=false`,
+  `save_files_modified=false`, porque a linkagem final falhou.
+
+**Nenhuma destas medidas representa um executável jogável**, e a amostra
+MIDI não está ligada à engine real neste estágio.
 
 A proteção de cobertura total também exige os 405/405 objetos C e 14/14 objetos
 ASM presentes, não apenas subconjuntos compilados, antes de reconhecer uma
