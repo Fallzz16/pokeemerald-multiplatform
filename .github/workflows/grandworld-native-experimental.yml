@@ -29,7 +29,7 @@ jobs:
       - name: Install C 32-bit and header-generator requirements
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y gcc-multilib gcc-arm-none-eabi binutils-arm-none-eabi build-essential libpng-dev zlib1g-dev
+          sudo apt-get install -y gcc-multilib gcc-arm-none-eabi binutils-arm-none-eabi build-essential libpng-dev zlib1g-dev libsdl2-dev libsdl2-image-dev
       - name: Generate pinned World headers without building ROM
         run: |
           set -euo pipefail
@@ -72,6 +72,16 @@ jobs:
             -iquote world/include -iquote world/src -iquote grandworld/include -iquote grandworld/src \
             -c grandworld/src/platform/gba_easy_draw.c -o gw-native-render.o
           test -s gw-native-render.o
+      - name: P2 - compile real World SDL2 desktop entrypoint (no fake game)
+        run: |
+          set -euo pipefail
+          gcc -m32 -std=gnu17 -DPORTABLE -DGW_WORLD_NATIVE=1 -DMODERN=1 \
+            -DNONMATCHING=1 -DEMERALD=1 -DALL_REGIONS=1 \
+            $(pkg-config --cflags sdl2) \
+            -iquote world/include -iquote world/src -iquote grandworld/tools/grandworld_native/host \
+            -c grandworld/tools/grandworld_native/host/gw_world_desktop.c -o gw-world-desktop.o
+          test -s gw-world-desktop.o
+          echo "World SDL2 desktop entrypoint compiles; engine full link remains pending."
       - name: Verify native platform runtime with address/undefined sanitizers
         run: |
           set -euo pipefail
