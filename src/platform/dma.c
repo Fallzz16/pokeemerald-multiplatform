@@ -1,5 +1,24 @@
 #include "global.h"
 #include "platform/dma.h"
+#include <stdio.h>
+#include <string.h>
+
+#if defined(GW_WORLD_NATIVE)
+/* The modern World header's DmaSet macro directly writes GBA registers.
+ * This backend provides the function which also records host pointers. */
+#ifdef DmaSet
+#undef DmaSet
+#endif
+#ifndef DMA_DEST_MASK
+#define DMA_DEST_MASK (DMA_DEST_DEC | DMA_DEST_FIXED)
+#endif
+#ifndef DMA_SRC_MASK
+#define DMA_SRC_MASK (DMA_SRC_DEC | DMA_SRC_FIXED)
+#endif
+#ifndef DBGPRINTF
+#define DBGPRINTF(...) fprintf(stderr, __VA_ARGS__)
+#endif
+#endif
 
 struct DMATransfer {
     union {
@@ -90,7 +109,7 @@ void RunDMAs(u32 type)
 
 void DmaSet(int dmaNum, const void *src, void *dest, u32 control)
 {
-    if (dmaNum >= DMA_COUNT)
+    if (dmaNum < 0 || dmaNum >= DMA_COUNT)
     {
         DBGPRINTF("DmaSet with invalid DMA number: dmaNum=%d, src=%p, dest=%p, control=%d\n", dmaNum, src, dest, control);
         return;
