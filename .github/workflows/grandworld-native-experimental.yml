@@ -125,6 +125,7 @@ jobs:
             mingw-w64-x86_64-ninja
             mingw-w64-x86_64-SDL2
             mingw-w64-x86_64-SDL2_image
+            mingw-w64-x86_64-python
       - name: Build Windows native SDL2 host diagnostic (not Grand World gameplay)
         shell: msys2 {0}
         run: |
