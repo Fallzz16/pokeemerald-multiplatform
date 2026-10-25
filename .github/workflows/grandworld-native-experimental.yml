@@ -119,7 +119,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/engine_probe.py \
-            --world world --output native-engine-objects.json --objects native-world-objects
+            --world world --output native-engine-objects.json --objects native-world-objects --jobs 2
           python3 - <<'PY'
           import json
           r = json.load(open('native-engine-objects.json'))
@@ -363,7 +363,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/engine_probe.py \
-            --world world --output native-engine-m8-probe.json --objects native-m8-objects --use-world-preproc
+            --world world --output native-engine-m8-probe.json --objects native-m8-objects --use-world-preproc --jobs 2
           python3 - <<'PY'
           import json
           r = json.load(open('native-engine-m8-probe.json'))
@@ -382,7 +382,7 @@ jobs:
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/engine_survey.py \
             --world world --objects native-m8-survey-objects \
-            --limit 405 --report native-engine-m8-survey.json
+            --limit 405 --jobs 4 --report native-engine-m8-survey.json
           python3 - <<'PY'
           import json
           data = json.load(open('native-engine-m8-survey.json', encoding='utf-8'))
