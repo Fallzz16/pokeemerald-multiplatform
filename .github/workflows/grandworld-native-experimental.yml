@@ -106,6 +106,7 @@ jobs:
           set -euo pipefail
           python3 tools/grandworld_native/demo_pack.py --out build/demo-mods --install
           SDL_VIDEODRIVER=dummy build/native-host/gw_theme_lab --mods build/demo-mods/mods --selftest
+          build/native-host/gw_style_smoke build/demo-mods/mods
           python3 tools/grandworld_native/pack_manager.py --root build/demo-mods/mods list
 
 
@@ -140,6 +141,7 @@ jobs:
           python -V
           python tools/grandworld_native/demo_pack.py --out build/native-win/demo --install
           ./build/native-win/gw_theme_lab.exe --mods build/native-win/demo/mods --selftest
+          ./build/native-win/gw_style_smoke.exe build/native-win/demo/mods
           mkdir -p build/native-win/package
           cp build/native-win/gw_theme_lab.exe build/native-win/package/
           cp build/native-win/gw_host_preview.exe build/native-win/package/
