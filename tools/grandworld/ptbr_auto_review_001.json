@@ -58,61 +58,61 @@
     },
     "data/maps/BlackthornCity_Gym/scripts.inc": {
       "BlackthornGym_Text_ClairWinText": [
-        "Perdi?\\pNao acredito. Deve haver algum\\nengano...$"
+        "Eu perdi?\\pNao acredito!\\nDeve haver algum engano...$"
       ],
       "BlackthornGym_Text_ClairText_TooMuchToExpect": [
-        "O que se passa?\\pE esperar muito de ti?$"
+        "O que houve?\\pEstou exigindo demais de voce?$"
       ],
       "BlackthornGym_Text_ClairText_YouKeptMeWaiting": [
-        "Deixaste-me a espera!\\pAqui! Toma isto!$"
+        "Voce me fez esperar!\\pAqui! Pegue isto!$"
       ],
       "BlackthornGym_Text_ClairRematchDefeatText": [
-        "Perdi?\\pOutra vez?\\pNao acredito. Deve haver algum\\nengano...$"
+        "Eu perdi?\\pDe novo?\\pNao acredito!\\nDeve haver algum engano...$"
       ],
       "BlackthornGym_Text_ClairRematchPostText": [
-        "Hmph. Um verdadeiro mestre\\ndragao nunca para de treinar.\\pEnfrenta os meus dragoes quando\\nte atreveres.$"
+        "Hmph! Um verdadeiro mestre\\nde dragoes nunca para\\lde treinar.\\pVolte para enfrenta-los\\nquando tiver coragem!$"
       ],
       "BlackthornGym_Text_ClairRematchDeclineText": [
-        "Esta bem. Volte quando estiver\\npronto para enfrentar um mestre\\ldragao.$"
+        "Tudo bem. Volte quando\\nestiver pronto para enfrentar\\lum mestre de dragoes!$"
       ],
       "BlackthornGym_Text_CooltrainermCodySeenText": [
-        "Acabei de ter acesso ao tipo\\nDRAGON POKEMON!$"
+        "Acabei de receber permissao\\npara usar POKEMON DRAGON!$"
       ],
       "BlackthornGym_Text_CooltrainermCodyBeatenText": [
-        "Ratos! Se eu tivesse um\\nDRAGONITE!$"
+        "Droga! Se eu tivesse\\num DRAGONITE...$"
       ],
       "BlackthornGym_Text_CooltrainermCodyAfterBattleText": [
-        "Membros do nosso cla de\\nutilizadores de dragoes so\\lpodem usar o dragao POKEMON\\ldepois do nosso MASTER\\lpermitir.$"
+        "Os membros do nosso cla\\nso podem usar POKEMON\\ldo tipo DRAGON depois\\lda permissao do MASTER.$"
       ],
       "BlackthornGym_Text_CooltrainerfFranBeatenText": [
-        "Awww... Perdi...$"
+        "Ah, nao... Eu perdi...$"
       ],
       "BlackthornGym_Text_CooltrainermPaulSeenText": [
-        "A tua primeira batalha contra\\ndragoes?\\pVou mostrar-te como eles sao\\nduroes!$"
+        "Sua primeira batalha\\ncontra dragoes?\\pVou mostrar como eles\\nsao poderosos!$"
       ],
       "BlackthornGym_Text_CooltrainermPaulBeatenText": [
-        "O meu dragao Pokemon perdeu?$"
+        "Meu POKEMON DRAGON perdeu?$"
       ],
       "BlackthornGym_Text_CooltrainermPaulAfterBattleText": [
-        "O LANCE disse-te que gostava de\\nte ver outra vez?\\pNem pensar!$"
+        "LANCE disse que gostaria\\nde ver voce de novo?\\pNao pode ser!$"
       ],
       "BlackthornGym_Text_CooltrainermMikeSeenText": [
-        "A minha hipotese de perder? Nem\\num por cento!$"
+        "Minha chance de perder?\\nNem um por cento!$"
       ],
       "BlackthornGym_Text_CooltrainermMikeBeatenText": [
-        "Que estranho.$"
+        "Que estranho...$"
       ],
       "BlackthornGym_Text_CooltrainermMikeAfterBattleText": [
-        "Agora conheco as minhas\\nlacunas.\\pObrigado por me mostrares!$"
+        "Agora conheco\\nmeus pontos fracos.\\pObrigado por me mostrar!$"
       ],
       "BlackthornGym_Text_CooltrainerfLolaSeenText": [
-        "Os dragoes sao sagrados.\\pEstao cheios de energia vital.\\pSe nao estas a falar a serio,\\nnao vais conseguir vence-los.$"
+        "POKEMON do tipo DRAGON\\nsao considerados sagrados.\\pEles tem muita energia vital.\\pSem levar a batalha a serio,\\nvoce nao vai vencer!$"
       ],
       "BlackthornGym_Text_CooltrainerfLolaBeatenText": [
         "Muito bem!$"
       ],
       "BlackthornGym_Text_CooltrainerfLolaAfterBattleText": [
-        "Os dragoes sao fracos contra\\nmovimentos do tipo DRAGON.$"
+        "POKEMON do tipo DRAGON\\nsao fracos contra golpes DRAGON.$"
       ]
     },
     "data/maps/CeladonCity_Gym_Frlg/scripts.inc": {
@@ -643,67 +643,67 @@
     },
     "data/maps/MahoganyTown_Gym/scripts.inc": {
       "MahoganyTown_Gym_Text_PryceIntro": [
-        "POKEMON tem muitas experiencias\\nem suas vidas, assim como nos.\\pEu tambem vi e sofri muito na\\nminha vida.\\pJa que sou mais velho, deixa-me\\nmostrar-te o que quero dizer.\\pEstou com o POKEMON desde antes\\nde tu nasceres.\\pNao perco facilmente.\\pEu, o PRYCE, o treinador de\\nInverno, vou demonstrar o meu\\lpoder!$"
+        "POKEMON vivem muitas\\nexperiencias, assim como nos.\\pEu tambem ja vi e sofri\\nmuito nesta vida.\\pSou mais velho que voce.\\nVou mostrar o que aprendi!\\pTreino POKEMON desde antes\\nde voce nascer.\\pNao sou derrotado facilmente!\\pEu, PRYCE, o TREINADOR\\ndo inverno, mostrarei\\lo meu poder!$"
       ],
       "MahoganyTown_Gym_Text_PryceImpressed": [
-        "Estou impressionado com as tuas\\nproezas.\\pCom a tua forte vontade, sei\\nque superaras todos os\\lobstaculos da vida.\\pVoce e digno deste mal!$"
+        "Estou impressionado\\ncom sua habilidade!\\pCom tanta determinacao,\\nvoce superara os obstaculos\\lda vida.\\pVoce merece esta INSIGNIA!$"
       ],
       "MahoganyTown_Gym_Text_ReceivedBadge": [
-        "{PLAYER}recebeu GLACIERBADGE.$"
+        "{PLAYER} recebeu a GLACIERBADGE.$"
       ],
       "MahoganyTown_Gym_Text_HailSpeech": [
-        "Esse TM contem HAIL.\\pInflige danos a cada volta por\\n5 voltas.\\pDemonstra a dureza do inverno.$"
+        "Esta TM contem HAIL.\\pO golpe causa dano\\na cada turno, por 5 turnos.\\pAssim e o rigor do inverno!$"
       ],
       "MahoganyTown_Gym_Text_CherishPokemon": [
-        "Quando o gelo e a neve\\nderretem, chega a primavera.\\pTu e o teu POKEMON ficarao\\njuntos durante muitos anos.\\pPrezem o vosso tempo juntos!$"
+        "Quando a neve e o gelo\\nderretem, chega a primavera.\\pVoce e seus POKEMON\\nficarao juntos por anos.\\pValorize esse tempo!$"
       ],
       "MahoganyTown_Gym_Text_PryceRematchDefeat": [
-        "Mais uma vez estou\\nimpressionado com as tuas\\lproezas.\\pCom a tua forte vontade, sei\\nque superaras todos os\\lobstaculos da vida.$"
+        "Mais uma vez, sua habilidade\\nme impressionou!\\pCom sua determinacao,\\nvoce vai superar\\lqualquer obstaculo!$"
       ],
       "MahoganyTown_Gym_Text_PryceRematchPost": [
-        "O inverno da minha carreira\\nainda nao acabou.\\pVenha testar este treinador\\nvelho novamente quando quiser.$"
+        "Minha carreira ainda\\nnao chegou ao fim.\\pVolte para desafiar\\neste velho TREINADOR!$"
       ],
       "MahoganyTown_Gym_Text_PryceRematchDecline": [
-        "Fica para outra altura, entao.\\nO Winter e paciente, e eu\\ltambem.$"
+        "Deixamos para outra hora.\\pO inverno sabe esperar.\\nEu tambem!$"
       ],
       "MahoganyTown_Gym_Text_Guide": [
-        "PRYCE e um veterano que treinou\\nPOKEMON durante cerca de 50\\lanos.\\pEle tem uma linha solida de\\nPOKEMON para cobrir o que quer\\lque tragas.\\pFogo e um bom lugar para\\ncomecar, mas cuidado com a\\lchuva!$"
+        "PRYCE e um veterano que\\ntreina POKEMON ha 50 anos.\\pSua equipe esta preparada\\npara enfrentar qualquer rival.\\pGolpes FIRE sao uma boa\\nescolha, mas cuidado\\lcom a chuva!$"
       ],
       "MahoganyTown_Gym_Text_GuideWin": [
-        "O PRYCE e qualquer coisa, mas\\ntu es outra coisa!\\pEssa foi uma batalha quente que\\nsuperou a lacuna da geracao!$"
+        "PRYCE e incrivel,\\nmas voce foi ainda melhor!\\pQue batalha emocionante\\nentre duas geracoes!$"
       ],
       "MahoganyTown_Gym_Text_BoarderRonaldSeen": [
-        "Vou congelar o teu POKEMON, por\\nisso nao podes fazer nada!$"
+        "Vou congelar seus POKEMON\\ne voce nao podera reagir!$"
       ],
       "MahoganyTown_Gym_Text_BoarderRonaldBeaten": [
-        "Raios. Nao pude fazer nada.$"
+        "Droga! Nao consegui reagir!$"
       ],
       "MahoganyTown_Gym_Text_BoarderRonaldAfter": [
-        "Acho que ha uma jogada que um\\nPokemon pode usar enquanto esta\\lcongelado.$"
+        "Acho que existe um golpe\\nque POKEMON congelados\\lainda conseguem usar.$"
       ],
       "MahoganyTown_Gym_Text_BoarderBradSeen": [
-        "Este GINASIO tem um piso\\nescorregadio.\\pE divertido, nao e?\\pMas nao estamos a brincar!$"
+        "O chao deste GYM\\ne bem escorregadio!\\pDivertido, nao acha?\\pMas aqui a batalha\\ne coisa seria!$"
       ],
       "MahoganyTown_Gym_Text_BoarderBradBeaten": [
-        "Ves como estamos a falar a\\nserio?$"
+        "Viu como lutamos a serio?$"
       ],
       "MahoganyTown_Gym_Text_BoarderBradAfter": [
-        "Este GINASIO e optimo. Adoro\\nembarcar com o meu POKEMON!$"
+        "Adoro este GYM!\\pE muito bom deslizar\\ncom meus POKEMON!$"
       ],
       "MahoganyTown_Gym_Text_SkierRoxanneBeaten": [
-        "Nao perderia para ti no esqui!$"
+        "No esqui voce nao me venceria!$"
       ],
       "MahoganyTown_Gym_Text_SkierRoxanneAfter": [
-        "Se voce nao patinar com\\nprecisao, voce nao vai longe\\lneste Gym.$"
+        "Se nao deslizar\\ncom precisao, nao vai\\llonge neste GYM.$"
       ],
       "MahoganyTown_Gym_Text_SkierClarissaSeen": [
-        "Vejam a minha volta paralela!$"
+        "Veja minha curva perfeita!$"
       ],
       "MahoganyTown_Gym_Text_SkierClarissaBeaten": [
-        "Nao! Fizeste-me desaparecer!$"
+        "Nao! Voce me fez cair!$"
       ],
       "MahoganyTown_Gym_Text_SkierClarissaAfter": [
-        "Nao devia estar a gabar-me do\\nmeu esqui...$"
+        "Eu nao devia ter me gabado\\ntanto das minhas manobras...$"
       ]
     },
     "data/maps/MauvilleCity_Gym/scripts.inc": {
