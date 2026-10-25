@@ -202,3 +202,19 @@ caixas e progressao de todas as regioes continua obrigatorio para release.
 - Testes verificam a presenca dos 120 simbolos revisados e protegem a
   grafia de BULLET SEED, GIGA DRAIN e TOMBSTONY;
   a PR permanece draft, sem merge.
+
+
+## Auditoria de prioridade da revisao (25/10/2026)
+
+- tools/grandworld/audit_ptbr_draft_quality.py audita, sem editar, os 5.200
+  textos gerados pelo Argos e o registro ptbr_reviewed_auto7.json.
+- Estado atual: 210 falas receberam revisao linguistica humana; **4.990**
+  rascunhos automaticos ainda aguardam revisao individual.
+- Sinaliza termos do portugues europeu, residuos de ingles, espacos ausentes
+  depois de placeholders, possivel excesso de largura e ordem de nomes.
+- Sao alertas heuristicos, nao comprovam erro nem homologam visualmente.
+  O workflow anexa ptbr-draft-quality.json aos relatorios de compilacao.
+- A traducao mantem 6.787 entradas configuradas: 1.587 manuais mais
+  5.200 automaticas (210 destas revisadas posteriormente).
+- Proximo lote: priorizar falas e pontos de campanha nas tres regioes usando
+  a auditoria, mantendo o jogo, saves e codigo de progresso intactos.
