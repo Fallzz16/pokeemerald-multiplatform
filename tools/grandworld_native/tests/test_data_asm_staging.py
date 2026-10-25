@@ -74,6 +74,40 @@ class OriginalGameDataStagingTests(unittest.TestCase):
         self.assertTrue((self.output / "event_scripts.o").is_file())
         self.assertEqual(script.read_text(encoding="utf-8"), original)
 
+    def test_cpp_expanded_celadon_game_scripts_compile_from_saved_stream(self):
+        self.original.unlink()
+        scripts = self.world / "data/event_scripts.s"
+        original = (
+            ".macro goto_if_ge variable, coins, target\n"
+            "\t.4byte 0x12345678\n"
+            ".endm\n"
+            ".section .rodata\n"
+            "\tgoto_if_ge VAR_TEMP_1, (9999 + 1) - 10, "
+            "CeladonCity_GameCorner_EventScript_FisherNoRoomForCoins\n"
+            "\tgoto_if_ge VAR_TEMP_1, (9999 + 1) - 20, "
+            "CeladonCity_GameCorner_EventScript_ScientistNoRoomForCoins\n"
+            "\tgoto_if_ge VAR_TEMP_1, (9999 + 1) - 20, "
+            "CeladonCity_GameCorner_EventScript_GentlemanNoRoomForCoins\n"
+        )
+        scripts.write_text(original, encoding="utf-8")
+        prepared = prepare(self.world, self.output)
+        self.assertEqual(prepared["prepared"], 1)
+        compiled = assemble(self.world, self.output)
+        self.assertEqual(compiled["native_objects"], 1)
+        self.assertEqual(compiled["results"][0]["generated_asm_conversions"]
+                         ["celadon_expression"], 3)
+        self.assertTrue((self.output / "event_scripts.o").is_file())
+        self.assertEqual(scripts.read_text(encoding="utf-8"), original)
+
+    def test_unexpected_preprocessed_celadon_count_fails_closed(self):
+        self.original.unlink()
+        scripts = self.world / "data/event_scripts.s"
+        scripts.write_text(".section .rodata\n.byte 0x42\n", encoding="utf-8")
+        prepare(self.world, self.output)
+        with self.assertRaisesRegex(ValueError, "exactly three Celadon"):
+            assemble(self.world, self.output)
+        self.assertFalse((self.output / "event_scripts.o").exists())
+
     def test_tampering_with_staged_original_is_rejected(self):
         prepare(self.world, self.output)
         original = self.output / "_original_preproc/original.s"
