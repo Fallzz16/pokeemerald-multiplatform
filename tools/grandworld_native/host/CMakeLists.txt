@@ -20,7 +20,7 @@ else()
     set(GW_SDL_IMAGE PkgConfig::SDL2_IMAGE)
 endif()
 
-add_library(gw_native_host STATIC gw_sdl_host.c gw_style_index.c)
+add_library(gw_native_host STATIC gw_sdl_host.c gw_style_index.c gw_follower_visual.c)
 target_include_directories(gw_native_host PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(gw_native_host PUBLIC ${GW_SDL} ${GW_SDL_IMAGE})
 
@@ -38,3 +38,6 @@ target_link_libraries(gw_theme_lab PRIVATE gw_native_host)
 
 add_executable(gw_style_smoke gw_style_smoke.c)
 target_link_libraries(gw_style_smoke PRIVATE gw_native_host)
+
+add_executable(gw_follower_visual_smoke gw_follower_visual_smoke.c gw_follower_visual.c)
+add_test(NAME follower_eight_look_four_grid COMMAND gw_follower_visual_smoke)
