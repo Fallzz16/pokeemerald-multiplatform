@@ -1,24 +1,31 @@
 #include "gw_sdl_host.h"
 #include <stdint.h>
+#include <stdio.h>
 #define SDL_MAIN_HANDLED
 #include <SDL.h>
 
 #define WIDTH 240
 #define HEIGHT 160
 static uint16_t framebuffer[WIDTH * HEIGHT];
+static uint16_t theme[WIDTH * HEIGHT];
 
 static int clamp(int n, int minimum, int maximum)
 {
     return n < minimum ? minimum : (n > maximum ? maximum : n);
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
     SDL_SetMainReady();
     GWNativeHost *host = gw_host_open("Grand World Native: SDL2 host preview (NOT THE GAME)", 3, false);
     int player_x = 120, player_y = 80;
     if (!host)
         return 1;
+    if (argc > 1 && !gw_host_read_bmp_rgb555(argv[1], theme, WIDTH, HEIGHT)) {
+        fprintf(stderr, "Could not read BMP theme: %s\n", argv[1]);
+        gw_host_close(host);
+        return 2;
+    }
 
     for (int frame = 0; frame < 1800 && gw_host_poll(host); ++frame) {
         uint16_t input = gw_host_keys(host);
@@ -31,7 +38,7 @@ int main(void)
         for (int y = 0; y < HEIGHT; ++y) {
             for (int x = 0; x < WIDTH; ++x) {
                 int field = ((x / 16) + (y / 16)) % 2;
-                framebuffer[y * WIDTH + x] = field ? 0x19A5 : 0x1143;
+                framebuffer[y * WIDTH + x] = (argc > 1) ? theme[y * WIDTH + x] : (field ? 0x19A5 : 0x1143);
                 if (x >= player_x - 5 && x <= player_x + 5 &&
                     y >= player_y - 5 && y <= player_y + 5)
                     framebuffer[y * WIDTH + x] = 0x7FFF;
