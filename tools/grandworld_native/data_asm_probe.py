@@ -14,8 +14,10 @@ import subprocess
 
 try:
     from .native_asm import normalize_host_assembly
+    from .gba_data_asm_overlay import transform_text
 except ImportError:
     from native_asm import normalize_host_assembly
+    from gba_data_asm_overlay import transform_text
 
 
 def _run(argv, cwd, input_bytes=None, seconds=100):
@@ -23,9 +25,12 @@ def _run(argv, cwd, input_bytes=None, seconds=100):
                           capture_output=True, timeout=seconds)
 
 
-def inspect(world, objects, limit=25, compiler="gcc"):
+def inspect(world, objects, limit=25, compiler="gcc", prepared=None):
     world = Path(world).resolve()
     objects = Path(objects).resolve()
+    prepared = Path(prepared).resolve() if prepared else None
+    if prepared is not None and not prepared.is_dir():
+        raise ValueError("missing original GBA preprocessor output directory")
     if limit < 1 or limit > 100:
         raise ValueError("maximum of 100 real data ASM sources per audit")
     preproc = world / "tools/preproc/preproc"
@@ -44,28 +49,41 @@ def inspect(world, objects, limit=25, compiler="gcc"):
         object_file = objects / (source.stem + ".o")
         object_file.unlink(missing_ok=True)
         try:
-            a = _run([str(preproc), "-s", relative, "charmap.txt"], world)
-            if a.returncode:
-                result["status"] = "charmap_stage1_failed"
-                result["errors"] = a.stderr.decode(errors="replace").splitlines()[:12]
-                found.append(result)
-                continue
-            b = _run([cc, "-E", "-x", "assembler-with-cpp", "-iquote", "include",
-                      "-I", ".", "-Wno-trigraphs", "-DMODERN=1", "-DTESTING=0",
-                      "-DEMERALD=1", "-DALL_REGIONS=1", "-"], world, a.stdout)
-            if b.returncode:
-                result["status"] = "cpp_failed"
-                result["errors"] = b.stderr.decode(errors="replace").splitlines()[:12]
-                found.append(result)
-                continue
-            c = _run([str(preproc), "-ie", relative, "charmap.txt"], world, b.stdout)
-            if c.returncode:
-                result["status"] = "charmap_stage2_failed"
-                result["errors"] = c.stderr.decode(errors="replace").splitlines()[:12]
-                found.append(result)
-                continue
-            original_asm = c.stdout.decode("utf-8", errors="surrogateescape")
-            normalized, count = normalize_host_assembly(original_asm)
+            if prepared is not None:
+                intermediate = prepared / source.name
+                if not intermediate.is_file():
+                    result["status"] = "missing_authentic_preprocessed_assembly"
+                    found.append(result)
+                    continue
+                original_asm = intermediate.read_text(
+                    encoding="utf-8", errors="surrogateescape")
+                # Convert ARM directives only AFTER all charmap/CPP processing.
+                portable_asm, transforms = transform_text(original_asm)
+                normalized, count = normalize_host_assembly(portable_asm)
+                result["native_directive_changes"] = transforms
+            else:
+                a = _run([str(preproc), "-s", relative, "charmap.txt"], world)
+                if a.returncode:
+                    result["status"] = "charmap_stage1_failed"
+                    result["errors"] = a.stderr.decode(errors="replace").splitlines()[:12]
+                    found.append(result)
+                    continue
+                b = _run([cc, "-E", "-x", "assembler-with-cpp", "-iquote", "include",
+                          "-I", ".", "-Wno-trigraphs", "-DMODERN=1", "-DTESTING=0",
+                          "-DEMERALD=1", "-DALL_REGIONS=1", "-"], world, a.stdout)
+                if b.returncode:
+                    result["status"] = "cpp_failed"
+                    result["errors"] = b.stderr.decode(errors="replace").splitlines()[:12]
+                    found.append(result)
+                    continue
+                c = _run([str(preproc), "-ie", relative, "charmap.txt"], world, b.stdout)
+                if c.returncode:
+                    result["status"] = "charmap_stage2_failed"
+                    result["errors"] = c.stderr.decode(errors="replace").splitlines()[:12]
+                    found.append(result)
+                    continue
+                original_asm = c.stdout.decode("utf-8", errors="surrogateescape")
+                normalized, count = normalize_host_assembly(original_asm)
             object_file = objects / (source.stem + ".o")
             text = normalized.encode("utf-8", errors="surrogateescape")
             built = _run([cc, "-m32", "-x", "assembler", "-c", "-", "-o",
@@ -86,6 +104,7 @@ def inspect(world, objects, limit=25, compiler="gcc"):
             "original_source_files": len(sources),
             "native_objects": sum(x["native_object"] for x in found),
             "source_material_fabricated": False,
+            "original_gba_preprocessing_completed_first": prepared is not None,
             "actual_game_engine_linked": False,
             "results": found}
 
@@ -95,9 +114,11 @@ def main():
     p.add_argument("--world", required=True)
     p.add_argument("--objects", default="native-world-data-objects")
     p.add_argument("--limit", type=int, default=25)
+    p.add_argument("--prepared",
+                   help="directory of genuine GBA preprocessor outputs, created before host conversion")
     p.add_argument("--report", default="native-world-data-asm.json")
     args = p.parse_args()
-    data = inspect(args.world, args.objects, args.limit)
+    data = inspect(args.world, args.objects, args.limit, prepared=args.prepared)
     Path(args.report).write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
     print("World original data assembly:", data["native_objects"], "/",
           data["original_source_files"], "compiled for i386.")
