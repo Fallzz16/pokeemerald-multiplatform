@@ -11,7 +11,10 @@ from pathlib import Path
 import shutil
 import subprocess
 
-from native_asm import normalize_host_assembly
+try:
+    from .native_asm import normalize_host_assembly
+except ImportError:
+    from native_asm import normalize_host_assembly
 
 # Deliberately covers the actual World boot, regions, titles and gameplay.
 SOURCES = (
