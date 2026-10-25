@@ -32,7 +32,18 @@ def transform(source):
         "    GwNativeDmaSet((dmaNum), (src), (dest), (control))\n"
         "#else\n" + original + "\n#endif"
     )
-    return source[:start] + portable + source[end:]
+    updated = source[:start] + portable + source[end:]
+    header_guard = "#define GUARD_GBA_MACRO_H\\n"
+    if updated.count(header_guard) != 1:
+        raise ValueError("World DMA header guard changed")
+    # DMA_ENABLE<<16 otherwise promotes signed int 0x8000 and shifts into the
+    # sign bit (undefined behavior in C). Native-only unsigned flags preserve
+    # the exact hardware value without changing any GBA macro definitions.
+    unsigned_enable = (
+        header_guard + "\\n#if defined(GW_WORLD_NATIVE)\\n"
+        "#undef DMA_ENABLE\\n#define DMA_ENABLE 0x8000u\\n#endif\\n"
+    )
+    return updated.replace(header_guard, unsigned_enable, 1)
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
