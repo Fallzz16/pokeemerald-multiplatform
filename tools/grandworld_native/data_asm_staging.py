@@ -109,7 +109,14 @@ def assemble(world, output, compiler="gcc"):
         asm = payload.decode("utf-8", errors="surrogateescape")
         # This is a GENERATED assembler stream. World macros and assets were
         # already processed from the unmodified original game files.
-        converted, alterations = transform_text(asm, special_celadon=False)
+        # The genuine World preprocessor embeds .include sources into its
+        # saved stream. Converting the disposable .inc files AFTER prepare()
+        # cannot fix the three Celadon macro operands already snapshotted here.
+        # Reformat only those original expressions, never their numeric values.
+        is_events = source == "data/event_scripts.s"
+        converted, alterations = transform_text(asm, special_celadon=is_events)
+        if is_events and alterations["celadon_expression"] != 3:
+            raise ValueError("expected exactly three Celadon operands in original preprocessed event_scripts.s")
         converted, comment_changes = normalize_host_assembly(converted)
         native_bytes = converted.encode("utf-8", errors="surrogateescape")
         try:
