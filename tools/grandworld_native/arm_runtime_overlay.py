@@ -30,10 +30,6 @@ def wrap(source, begin, end, needle, native):
     # those original anchors, so a second pass cannot nest contradictory guards.
     if "#if defined(GW_WORLD_NATIVE)\n" + native.splitlines()[0] in source:
         raise ValueError("native ARM fallback already installed")
-    # Previously adapted inputs still contain the original ARM routine in
-    # their #else path. Reject the precise native branch, not only the ARM text.
-    if ("#if defined(GW_WORLD_NATIVE)\\n" + native) in source:
-        raise ValueError("native ARM adaptation already applied")
     if source.count(begin) != 1 or source.count(end) != 1:
         raise ValueError("pinned ARM function anchors moved")
     first = source.index(begin)
