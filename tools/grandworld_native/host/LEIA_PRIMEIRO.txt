@@ -1,26 +1,38 @@
-GRAND WORLD NATIVE - STYLE LAB EXPERIMENTAL
+GRAND WORLD NATIVE - STYLE LAB / PLUGINS EXPERIMENTAIS
 
-ATENCAO: Este aplicativo NAO e o jogo Grand World.
-E um teste das configuracoes visuais e do carregamento de plugins.
+ATENCAO: Isto NAO e o jogo Grand World.
+A engine World/M8 ainda nao esta portada para Windows.
+Este e um laboratorio real de recursos SDL2.
 
-1. Abra ABRIR_STYLE_LAB.bat.
-2. Pressione F1 para abrir o menu de estilos.
-3. Selecione MENU ou FOLLOWER com as setas para cima/baixo.
-4. Use esquerda/direita para trocar entre estilo CLASSIC e pacotes ativos.
-5. Pressione F1 para fechar. Pressione F5 para recarregar a lista de pacotes.
+COMO INICIAR
+1. Extraia TODO o ZIP para uma pasta.
+2. Execute ABRIR_STYLE_LAB.bat ou gw_theme_lab.exe.
+3. Aperte F1 para abrir o menu.
+4. Escolha MENU ou FOLLOWER com cima/baixo.
+5. Troque estilos com esquerda/direita.
+6. F1 fecha o menu. F5 recarrega a lista de pacotes.
 
-Para instalar um pacote novo, arraste o arquivo .zip sobre
-INSTALAR_PACK.bat. E preciso ter Python instalado.
-O pacote e validado antes de ser extraido; DLL, Python e codigo executavel
-nao sao aceitos como plugins.
+COMO GERENCIAR PLUGINS
+1. Execute GERENCIAR_PLUGINS.bat (requer Python 3 + Tkinter).
+2. Clique em "Instalar ZIP" para instalar um pacote de recursos.
+3. Ative/desative pacotes na lista.
+4. Escolha os estilos de menu e seguidor no programa.
+5. Clique em "Salvar estilos" e pressione F5 no Style Lab.
 
-Os estilos escolhidos ficam em mods/style-settings.ini.
-O catalogo fica em mods/runtime-assets.tsv.
-Nenhum save de Pokemon e alterado.
+Alternativa sem janela de plugins: arraste o .zip sobre INSTALAR_PACK.bat.
+O pacote incluido gw-demo-style.zip e original e pode ser usado em testes.
+Este gerenciador NAO aceita DLL, scripts, Python ou codigo de terceiros:
+apenas pacotes de arquivos de dados com hashes SHA-256.
 
-Requisitos: Windows 10/11 64 bits; arquivos .DLL incluidos nesta pasta.
-Imagens PNG e BMP sao suportadas. Extensoes WAV e OGG estao catalogadas,
-mas sua aplicacao in-game ainda depende de portabilidade da World.
+CONFIGURACOES / SEGURANCA
+mods/enabled.json -> pacotes habilitados
+mods/runtime-assets.tsv -> catalogo de recursos para o SDL2
+mods/style-settings.ini -> tema selecionado
 
-O Grand World jogavel (P1-P5) AINDA NAO foi portado para SDL2.
-Documentacao tecnica: https://github.com/Fallzz16/pokeemerald-multiplatform/pull/78
+Nenhum arquivo .sav ou progresso do Pokemon e modificado.
+Os sprites e menus sao carregados como PNG/BMP. Audio ainda nao
+substitui o sistema sonoro do jogo.
+O programa e destinado a Windows 10/11 x64. As DLLs estao inclusas.
+
+Codigo e progresso:
+https://github.com/Fallzz16/pokeemerald-multiplatform/pull/78
