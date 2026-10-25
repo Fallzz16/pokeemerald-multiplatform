@@ -76,7 +76,7 @@ class NativeWorldMusicTests(unittest.TestCase):
         self.assertEqual(report["original_MPlayDef_syntax_changes"]["arm_comment"], 2)
         self.assertEqual(support.read_text(encoding="utf-8"), original_support)
         self.assertEqual(song.read_text(encoding="utf-8"), original_song)
-        self.assertTrue((self.outputs / "mus_a.o").read_bytes().startswith(b"\\x7fELF\\x01"))
+        self.assertTrue((self.outputs / "mus_a.o").read_bytes().startswith(bytes((0x7f, 0x45, 0x4c, 0x46, 0x01))))
         staged = self.outputs / "_original_host_includes/MPlayDef.s"
         self.assertIn("# original GBA WAIT code", staged.read_text(encoding="utf-8"))
 
