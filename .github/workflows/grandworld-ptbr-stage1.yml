@@ -113,6 +113,15 @@ jobs:
           md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
           grep -Eq "^PASS [1-9][0-9]*/[1-9][0-9]* rom=$md5 .* suite=SmokeBoot$" _pwtest/SmokeBoot.PASS
           grep -Eq "^PASS [1-9][0-9]*/[1-9][0-9]* rom=$md5 .* suite=WorldTitle$" _pwtest/WorldTitle.PASS
+      - name: Mandatory all 51 World gameplay suites on this PT-BR ROM
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          timeout --signal=TERM --kill-after=10s 420s env PW_TIMEOUT=75 test/overworld/run-all.sh "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/ptbr-world-51-suites.log" 2>&1
+          grep -q 'green 51 / 51 expected' "$GITHUB_WORKSPACE/ptbr-world-51-suites.log"
+          grep -q 'SWEEP OK - every expected suite produced a fresh PASS stamped rom=' "$GITHUB_WORKSPACE/ptbr-world-51-suites.log"
       - name: Verify GBA memory and checksum; produce pinned manifest
         run: |
           set -euo pipefail
@@ -154,3 +163,4 @@ jobs:
             ptbr-validate.log
             ptbr-smoke-boot.log
             ptbr-smoke-title.log
+            ptbr-world-51-suites.log
