@@ -8,6 +8,7 @@ import argparse
 from collections import Counter
 import json
 import re
+import unicodedata
 from pathlib import Path
 
 # One deliberately reviewable entry per original string: upstream drift fails closed.
@@ -182,10 +183,43 @@ ASM_SECTIONS = {
     "data/text/save.inc": SAVE,
 }
 
+# Expanded text batches are owned by this same fail-closed translator.
+# Explicit originals in JSON prevent accidental replacements after upstream drift.
+for file_name in ("ptbr_extra_core.json", "ptbr_extra_events.json"):
+    batch_path = Path(__file__).with_name(file_name)
+    if batch_path.is_file():
+        batch = json.loads(batch_path.read_text(encoding="utf-8"))
+        for rel, data in batch.get("c", {}).items():
+            target = C_SECTIONS.setdefault(rel, {})
+            for label, pair in data.items():
+                if label in target:
+                    raise ValueError(f"duplicate localization label: {label}")
+                target[label] = tuple(pair)
+        for rel, data in batch.get("asm", {}).items():
+            target = ASM_SECTIONS.setdefault(rel, {})
+            for label, parts in data.items():
+                if label in target:
+                    raise ValueError(f"duplicate localization label: {label}")
+                target[label] = parts
+
 TOKEN = re.compile(r"\{[^{}]+\}")
-# The World charmap lacks tilde glyphs (ã/õ). The first stage is deliberately
-# limited to actual supported glyphs; a separate font-art task is mandatory.
-CUSTOM_CHARACTER_MAP = ("ã", "õ", "Ã", "Õ")
+# Keep source strings untouched, but normalize every NEW Portuguese line to ASCII.
+# Names of species/moves/items/abilities and runtime identifiers are not modified.
+CUSTOM_CHARACTER_MAP = ("ã", "õ", "Ã", "Õ", "ç", "Ç")
+
+
+def plain_ptbr(value):
+    value = (value.replace("POKéMON", "POKEMON")
+                  .replace("POKéDEX", "POKEDEX")
+                  .replace("Pokémon", "Pokemon")
+                  .replace("Pokédex", "Pokedex")
+                  .replace("…", "...")
+                  .replace("“", "'").replace("”", "'"))
+    value = "".join(c for c in unicodedata.normalize("NFKD", value)
+                    if not unicodedata.combining(c))
+    if any(ord(c) >= 128 for c in value):
+        raise ValueError("PT-BR translation contains non-ASCII characters: " + repr(value))
+    return value
 
 
 def validate_glyphs(world, text):
@@ -214,6 +248,7 @@ def validate_translation(world, old, new, label):
 def translate_c(world, source, replacements, path):
     count = 0
     for symbol, (old, new) in replacements.items():
+        new = plain_ptbr(new)
         validate_translation(world, old, new, symbol)
         pattern = (r"(?m)^([^\n]*\b" + re.escape(symbol)
                    + r"\[\]\s*=\s*_\(\")(" + re.escape(old) + r")"
@@ -240,6 +275,7 @@ def translate_asm(world, source, entries, path):
         if not original_parts or len(re.findall(r"(?m)^\s*\.string\b", original)) != len(original_parts):
             raise ValueError(f"{path}::{label}: unexpected ASM text format")
         old = "".join(original_parts)
+        parts = [plain_ptbr(part) for part in parts]
         new = "".join(parts)
         if not old.endswith("$") or not new.endswith("$"):
             raise ValueError(f"{path}::{label}: terminal $ lost")
@@ -293,6 +329,7 @@ def run(world, write=False):
         "item_names_translated": False,
         "save_format_modified": False,
         "accent_tilde_font_complete": False,
+        "translated_text_ascii_only": True,
         "full_text_review_complete": False,
         "gameplay_verified": False,
     }
