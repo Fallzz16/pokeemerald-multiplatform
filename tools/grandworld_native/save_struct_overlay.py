@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Apply two verified ARM APCS data-type alignments ONLY to disposable native World.
+"""Align five verified ARM APCS save types ONLY in disposable native World.
 
-This changes real Pokeblock storage stride from 7 to 8 and ItemSlot alignment
-from 2 to 4 on x86 GCC32, as measured against the pinned GBA World compiler.
-Original ARM declarations are preserved for non-PORTABLE builds. It does NOT
-suppress save checks or write Pokémon save files.
+GCC i386 differs from the GBA ARM APCS ABI for ItemSlot, Pokeblock, Pokevial,
+Mail and OldMan; the changes reproduce their expected alignment in PORTABLE
+builds. All field definitions and original GBA declarations remain intact.
+This does NOT establish save/reload compatibility until runtime tests pass;
+save-format assertions are never disabled or bypassed.
 """
 import argparse
 import hashlib
