@@ -1,0 +1,75 @@
+name: Grand World Native - Experimental P0/P1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'tools/grandworld_native/**'
+      - '.github/workflows/grandworld-native-experimental.yml'
+      - 'tools/grandworld/**'
+
+permissions:
+  contents: read
+
+jobs:
+  native-source-lab:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    steps:
+      - name: Checkout experimental Grand World adapters
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Checkout pinned World source (disposable)
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test P0 composer and safe data-pack validator
+        run: |
+          set -euo pipefail
+          python3 -m compileall -q grandworld/tools/grandworld_native
+          cd grandworld
+          python3 -m unittest discover -s tools/grandworld_native/tests -p 'test_*.py' -v
+          cd ..
+      - name: Install build and native probe prerequisites
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev libsdl2-dev
+      - name: P0 - materialize full M8 + PT-BR in isolated World tree
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/compose.py \
+            --world world --grandworld grandworld --apply --report native-compose-report.json \
+            2>&1 | tee native-compose.log
+          git -C world diff --check
+      - name: P0 - verify GBA reference still builds and validates
+        run: |
+          set -euo pipefail
+          make -C world modern -j2 2>&1 | tee native-baseline-gba.log
+          test -s world/pokemonworld.gba
+          make -C world validate 2>&1 | tee native-baseline-validate.log
+      - name: P1 - record real C portability compiler diagnostics
+        if: always()
+        run: |
+          python3 grandworld/tools/grandworld_native/probe.py \
+            --world world --grandworld grandworld --compiler gcc \
+            --output native-portability-probe.json
+      - name: Upload diagnostics (no ROM or commercial resources)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grandworld-native-p0-p1-diagnostics
+          path: |
+            native-compose-report.json
+            native-compose.log
+            native-baseline-gba.log
+            native-baseline-validate.log
+            native-portability-probe.json
+          if-no-files-found: warn
