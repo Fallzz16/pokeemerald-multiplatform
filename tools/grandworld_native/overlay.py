@@ -12,7 +12,7 @@ import tempfile
 
 DEFINES = {
     '#define ARM_FUNC __attribute__((target("arm")))':
-      '#if defined(GW_WORLD_NATIVE)\\n#define ARM_FUNC\\n#else\\n#define ARM_FUNC __attribute__((target("arm")))\\n#endif',
+      '#ifdef PORTABLE\n#define ARM_FUNC\n#else\n#define ARM_FUNC __attribute__((target("arm")))\n#endif',
     '#define SOUND_INFO_PTR (*(struct SoundInfo **)0x3007FF0)':
       '#ifdef PORTABLE\nextern struct SoundInfo *GW_SOUND_INFO_PTR;\n#define SOUND_INFO_PTR GW_SOUND_INFO_PTR\n#else\n#define SOUND_INFO_PTR (*(struct SoundInfo **)0x3007FF0)\n#endif',
     '#define INTR_CHECK     (*(u16 *)0x3007FF8)':
