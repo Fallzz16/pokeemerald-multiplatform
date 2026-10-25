@@ -1,0 +1,247 @@
+{
+  "c": {},
+  "asm": {
+    "data/maps/RegionHub/scripts.inc": {
+      "RegionHub_Text_TravelKanto": [
+        "Este portao leva a KANTO.\\pAo mudar de regiao, sua equipe\\nvai para as CAIXAS do PC.\\lAs MAIL vao para a caixa postal.\\pOs POKEMON retirados do PC\\nseguem as INSIGNIAS de KANTO.\\pVoce pode voltar aqui\\nquando quiser.\\pViajar para KANTO?$"
+      ],
+      "RegionHub_Text_TravelJohto": [
+        "Este portao leva a JOHTO.\\pAo mudar de regiao, sua equipe\\nvai para as CAIXAS do PC.\\lAs MAIL vao para a caixa postal.\\pOs POKEMON retirados do PC\\nseguem as INSIGNIAS de JOHTO.\\pVoce pode voltar aqui\\nquando quiser.\\pViajar para JOHTO?$"
+      ],
+      "RegionHub_Text_TravelHoenn": [
+        "Este portao leva a HOENN.\\pAo mudar de regiao, sua equipe\\nvai para as CAIXAS do PC.\\lAs MAIL vao para a caixa postal.\\pOs POKEMON retirados do PC\\nseguem as INSIGNIAS de HOENN.\\pVoce pode voltar aqui\\nquando quiser.\\pViajar para HOENN?$"
+      ],
+      "RegionHub_Text_TravelNoRoom": [
+        "Espere! Nao ha espaco\\npara a equipe ou as MAIL\\lnas CAIXAS do PC.\\pLibere espaco e volte\\npara viajar.$"
+      ],
+      "RegionHub_Text_TravelKantoSame": [
+        "Voltar a KANTO?\\pComo ja esta nessa regiao,\\nsua equipe fica com voce.\\pViajar para KANTO?$"
+      ],
+      "RegionHub_Text_TravelJohtoSame": [
+        "Voltar a JOHTO?\\pComo ja esta nessa regiao,\\nsua equipe fica com voce.\\pViajar para JOHTO?$"
+      ],
+      "RegionHub_Text_TravelHoennSame": [
+        "Voltar a HOENN?\\pComo ja esta nessa regiao,\\nsua equipe fica com voce.\\pViajar para HOENN?$"
+      ],
+      "RegionHub_Text_AttendantGiveHubPass": [
+        "Primeira viagem? Pegue\\no seu HUB PASS.\\pUse esse item da BOLSA\\npara voltar ao terminal.$"
+      ],
+      "RegionHub_Text_HubPassBagFull": [
+        "O bolso de KEY ITEMS esta\\ncheio. Nao posso dar\\no HUB PASS.\\pLibere espaco antes\\nde viajar.$"
+      ],
+      "RegionHub_Text_TravelFrontier": [
+        "Alem deste portao fica\\na BATTLE FRONTIER.\\pDeseja viajar para la?$"
+      ],
+      "RegionHub_Text_FrontierLocked": [
+        "A BATTLE FRONTIER abre para\\nquem venceu pelo menos uma\\nLIGA POKEMON.$"
+      ],
+      "RegionHub_Text_WorldTourTotal": [
+        "PLACAR MUNDIAL\\pINSIGNIAS conquistadas nas\\ntres regioes: {STR_VAR_1}/24!$"
+      ],
+      "RegionHub_Text_WorldTourBreakdown": [
+        "HOENN: {STR_VAR_1}/8\\nKANTO: {STR_VAR_2}/8\\lJOHTO: {STR_VAR_3}/8\\pConquiste as 24 e prove\\nseu talento!$"
+      ],
+      "RegionHub_Text_TourOffer": [
+        "Ah! Uma pessoa nova aqui!\\pSou o CURADOR e conheco\\ntodos os TREINADORES daqui.\\pQuer conhecer o terminal\\nantes de escolher a regiao?$"
+      ],
+      "RegionHub_Text_TourDeclined": [
+        "Tudo bem! Explore a vontade.\\pSe mudar de ideia,\\nfale comigo no balcao.$"
+      ],
+      "RegionHub_Text_TourHoenn": [
+        "Estas portas levam\\nas regioes. Esta e HOENN.\\pFale com o ATENDENTE\\ne confirme para viajar.$"
+      ],
+      "RegionHub_Text_TourJohto": [
+        "Esta porta leva a JOHTO.\\pAo trocar de regiao, sua\\nequipe vai para o PC.\\lAs CAIXAS sao compartilhadas.\\pAs INSIGNIAS valem apenas\\nna regiao onde voce esta.$"
+      ],
+      "RegionHub_Text_TourKanto": [
+        "Aqui fica KANTO.\\pMinha dica e comecar por aqui.\\pKANTO tem um caminho acessivel\\ne lideres que ensinam bem.$"
+      ],
+      "RegionHub_Text_TourFrontier": [
+        "Este portao esta fechado.\\pLeva a BATTLE FRONTIER,\\nacessivel apos vencer\\numa LIGA regional.$"
+      ],
+      "RegionHub_Text_TourBoard": [
+        "Este e o PLACAR MUNDIAL.\\pHa 24 INSIGNIAS ao todo,\\noito em cada regiao.\\pConquiste todas!$"
+      ],
+      "RegionHub_Text_TourMart": [
+        "Este e o balcao de compras.\\pHa BALLS, remedios e mais.\\nPegue o TOWN MAP antes de ir.$"
+      ],
+      "RegionHub_Text_TourCenter": [
+        "Aqui a ENFERMEIRA cura\\nsua equipe de graca.\\pTambem ha um PC para\\norganizar seus POKEMON.$"
+      ],
+      "RegionHub_Text_TourClosing": [
+        "Esse e o terminal.\\pPasse no meu balcao\\nantes de embarcar.\\lTenho um HUB PASS\\le um POKEVIAL para voce.\\pComece por KANTO, se quiser.\\pBoa viagem, TREINADOR!$"
+      ],
+      "RegionHub_Text_CuratorTourOffer": [
+        "Quer fazer um passeio\\npelo terminal mundial?$"
+      ],
+      "RegionHub_Text_CuratorTourAgain": [
+        "Quer visitar o terminal\\ncomigo de novo?$"
+      ]
+    },
+    "data/text/move_relearner.inc": {
+      "MoveRelearner_Text_WouldLearnNewMoves": [
+        "Ola! Ajudo seus POKEMON\\na reaprender golpes.\\nQuer minha ajuda?$"
+      ],
+      "MoveRelearner_Text_LevelUpMoves": [
+        "Golpes por nivel$"
+      ],
+      "MoveRelearner_Text_EggMoves": [
+        "Golpes de EGG$"
+      ],
+      "MoveRelearner_Text_TMMoves": [
+        "Golpes de TM$"
+      ],
+      "MoveRelearner_Text_TutormoveMoves": [
+        "Golpes de tutor$"
+      ],
+      "MoveRelearner_Text_SeeYa": [
+        "Ate mais!$"
+      ],
+      "MoveRelearner_Text_AnythingElse": [
+        "Precisa de mais alguma coisa?$"
+      ],
+      "MoveRelearner_Text_ChoosePkmn": [
+        "Escolha um POKEMON.$"
+      ],
+      "MoveRelearner_Text_HaveNoPkmn": [
+        "Voce nao tem POKEMON.$"
+      ],
+      "MoveRelearner_Text_CantTeachMoveToEgg": [
+        "Desculpe...\\nEGG nao aprende golpes.$"
+      ],
+      "MoveRelearner_Text_CantTeachMoveToPkmn": [
+        "Desculpe...\\pNao tenho golpes para\\nensinar a esse POKEMON.$"
+      ],
+      "MoveRelearner_Text_LevelUpMoveLWR": [
+        "golpe de nivel$"
+      ],
+      "MoveRelearner_Text_EggMoveLWR": [
+        "golpe de EGG$"
+      ],
+      "MoveRelearner_Text_TMMoveLWR": [
+        "golpe de TM$"
+      ],
+      "MoveRelearner_Text_TutorMoveLWR": [
+        "golpe do tutor$"
+      ],
+      "MoveRelearner_Text_MoveLWR": [
+        "golpe$"
+      ],
+      "MoveRelearner_Text_WhichXmoveShouldTeach": [
+        "Qual {STR_VAR_3} devo ensinar?$"
+      ],
+      "MoveRelearner_Text_ThankYouComeAgain": [
+        "Obrigado por vir!\\nVolte sempre!$"
+      ]
+    },
+    "data/text/check_furniture.inc": {
+      "Text_PictureBookShelf": [
+        "Ha livros ilustrados\\nsobre POKEMON.$"
+      ],
+      "Text_BookShelf": [
+        "Ha muitos livros\\nnessa estante.$"
+      ],
+      "Text_PokemonCenterBookShelf": [
+        "Revistas de POKEMON!\\nPOKEMON PAL...\\pPOKEMON HANDBOOK...\\nADORABLE POKEMON...$"
+      ],
+      "Text_Vase": [
+        "Esse vaso parece caro...\\nOlhou dentro...\\pEstava vazio.$"
+      ],
+      "Text_EmptyTrashCan": [
+        "Esta vazia.$"
+      ],
+      "Text_ShopShelf": [
+        "As prateleiras estao\\ncheias de itens POKEMON.$"
+      ],
+      "Text_Blueprint": [
+        "Uma planta tecnica?\\nParece complicada!$"
+      ]
+    },
+    "data/text/day_care_frlg.inc": {
+      "DayCare_Text_ImDaycareManSpeakToMyWife": [
+        "Sou o homem da DAY CARE.\\pCuidamos dos POKEMON\\ndos TREINADORES.\\pSe quiser ajuda,\\nfale com minha esposa.$"
+      ],
+      "DayCare_Text_DoYouWantEgg": [
+        "Ah, voce voltou!\\pEnquanto cuidavamos dos seus\\nPOKEMON, encontramos um EGG!\\pNao sabemos como surgiu.\\nQuer ficar com ele?$"
+      ],
+      "DayCare_Text_YourMonIsDoingFine": [
+        "Bom ver voce!\\n{STR_VAR_1} esta muito bem.$"
+      ],
+      "DayCare_Text_IllKeepIt": [
+        "Entao vou ficar com ele.\\nObrigado!$"
+      ],
+      "DayCare_Text_YouHaveNoRoomForIt": [
+        "Nao ha espaco na equipe.\\nVolte quando houver.$"
+      ],
+      "DayCare_Text_ReceivedEgg": [
+        "{PLAYER} recebeu um EGG\\ndo homem da DAY CARE.$"
+      ],
+      "DayCare_Text_TakeGoodCareOfIt": [
+        "Cuide bem dele.$"
+      ],
+      "DayCare_Text_YourMonsAreDoingFine": [
+        "Que bom ver voce!\\n{STR_VAR_1} e {STR_VAR_2}\\nestao muito bem.$"
+      ],
+      "DayCare_Text_IWillKeepDoYouWantIt": [
+        "Posso ficar com ele.\\nTem certeza?$"
+      ],
+      "DayCare_Text_WouldYouLikeUsToRaiseMon": [
+        "Sou da DAY CARE.\\pCuidamos dos POKEMON\\npara os TREINADORES.\\pQuer deixar algum aqui?$"
+      ],
+      "DayCare_Text_WhichMonShouldWeRaise": [
+        "Qual POKEMON\\nquer deixar conosco?$"
+      ],
+      "DayCare_Text_WellRaiseYourMon": [
+        "Certo! Vamos cuidar\\nde {STR_VAR_1}.\\pVolte para busca-lo.$"
+      ],
+      "DayCare_Text_WeCanRaiseOneMore": [
+        "Podemos cuidar de dois\\nPOKEMON de cada vez.\\pQuer deixar mais um?$"
+      ],
+      "DayCare_Text_HusbandWasLookingForYou": [
+        "Meu marido quer falar com voce.$"
+      ],
+      "DayCare_Text_FineThenComeAgain": [
+        "Tudo bem.\\nVolte sempre.$"
+      ],
+      "DayCare_Text_NotEnoughMoney": [
+        "Voce nao tem dinheiro suficiente.$"
+      ],
+      "DayCare_Text_TakeOtherOneBackToo": [
+        "Quer levar o outro\\nPOKEMON tambem?$"
+      ],
+      "DayCare_Text_ComeAgain": [
+        "Certo.\\nVolte sempre.$"
+      ],
+      "DayCare_Text_GoodToSeeYou": [
+        "Ola, que bom ver voce!\\pSeus POKEMON estao\\nmuito bem!$"
+      ],
+      "DayCare_Text_YourMonHasGrownXLevels": [
+        "{STR_VAR_1} ganhou\\n{STR_VAR_2} niveis.$"
+      ],
+      "DayCare_Text_YourPartyIsFull": [
+        "Sua equipe esta cheia.\\nAbra espaco e volte.$"
+      ],
+      "DayCare_Text_ItWillCostX": [
+        "Para levar {STR_VAR_1},\\nvoce paga ¥{STR_VAR_2}.$"
+      ],
+      "DayCare_Text_HeresYourMon": [
+        "Perfeito!\\nAqui esta seu POKEMON.$"
+      ],
+      "DayCare_Text_TookBackMon": [
+        "{PLAYER} levou {STR_VAR_1}\\nde volta da DAY CARE.$"
+      ],
+      "DayCare_Text_YouHaveJustOneMon": [
+        "Mas voce so tem\\num POKEMON.\\pVolte outra hora.$"
+      ],
+      "DayCare_Text_TakeYourMonBack": [
+        "Quer levar seu POKEMON?$"
+      ],
+      "DayCare_Text_WhatWillYouBattleWith": [
+        "Se deixar esse POKEMON,\\ncom qual vai lutar?\\pVolte outra hora.$"
+      ],
+      "DayCare_Text_Huh": [
+        "Hein?$"
+      ]
+    }
+  }
+}
