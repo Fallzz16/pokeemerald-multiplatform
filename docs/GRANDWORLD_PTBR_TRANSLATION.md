@@ -45,7 +45,7 @@ Manifests de localização revisáveis e ancorados no inglês original:
 - tools/grandworld/ptbr_extra_battle.json: 142 entradas (mensagens de batalha).
 - Dados anteriores incorporados em translate_ptbr_stage1.py: 98 entradas.
 
-Total configurado: 816 entradas em 29 arquivos do checkout World.
+Total configurado: 950 entradas em 33 arquivos do checkout World.
 A contagem não equivale a 450 diálogos exclusivos nem a porcentagem
 de localização de todo o jogo; a meta continua ser 100%.
 
