@@ -1,15 +1,46 @@
 #include "global.h"
+#include <stdio.h>
+#include <string.h>
+
+/* World headers define checked call-site macros under MODERN. The native
+ * implementation must still be able to declare the backing functions.
+ * Never change World/GBA call-site validation macros globally. */
+#if defined(GW_WORLD_NATIVE)
+#ifdef CpuSet
+#undef CpuSet
+#endif
+#ifdef CpuFastSet
+#undef CpuFastSet
+#endif
+#ifndef DBGPRINTF
+#define DBGPRINTF(...) fprintf(stderr, __VA_ARGS__)
+#endif
+#endif
+
 // BIOS function implementations are based on the VBA-M source code.
 
 //memory defines here because there's no better spot for them
+/* Memory objects agree with the World portable header overlay. Otherwise
+ * retain the existing multiplatform Emerald symbols unchanged. */
+#if defined(GW_WORLD_NATIVE)
+u16 GW_INTR_CHECK;
+void *GW_INTR_VECTOR;
+unsigned char GW_REG_BASE[0x400] __attribute__((aligned(4)));
+unsigned char GW_PLTT[PLTT_SIZE] __attribute__((aligned(4)));
+unsigned char VRAM_[VRAM_SIZE] __attribute__((aligned(4)));
+unsigned char GW_OAM[OAM_SIZE] __attribute__((aligned(4)));
+unsigned char FLASH_BASE[131072] __attribute__((aligned(4)));
+struct SoundInfo *GW_SOUND_INFO_PTR;
+#else
 u16 INTR_CHECK;
 void *INTR_VECTOR;
-unsigned char REG_BASE[0x400] __attribute__ ((aligned (4)));
-unsigned char PLTT[PLTT_SIZE] __attribute__ ((aligned (4)));
-unsigned char VRAM_[VRAM_SIZE] __attribute__ ((aligned (4)));
-unsigned char OAM[OAM_SIZE] __attribute__ ((aligned (4)));
-unsigned char FLASH_BASE[131072] __attribute__ ((aligned (4)));
+unsigned char REG_BASE[0x400] __attribute__((aligned(4)));
+unsigned char PLTT[PLTT_SIZE] __attribute__((aligned(4)));
+unsigned char VRAM_[VRAM_SIZE] __attribute__((aligned(4)));
+unsigned char OAM[OAM_SIZE] __attribute__((aligned(4)));
+unsigned char FLASH_BASE[131072] __attribute__((aligned(4)));
 struct SoundInfo *SOUND_INFO_PTR;
+#endif
 
 static uint32_t CPUReadMemory(const void *src)
 {
