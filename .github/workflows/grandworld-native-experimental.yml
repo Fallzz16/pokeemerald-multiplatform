@@ -41,6 +41,7 @@ jobs:
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/overlay.py --world world --apply --report memory.json
           python3 grandworld/tools/grandworld_native/save_abi_overlay.py --world world --apply --report saveabi.json
+          python3 grandworld/tools/grandworld_native/save_struct_overlay.py --world world --apply --output nested-save.json
           python3 grandworld/tools/grandworld_native/dma_api_overlay.py --world world --apply --report dma.json
       - name: Verify strict syntax compilation for all four platform modules
         run: |
@@ -141,6 +142,7 @@ jobs:
             native-probe.json
             memory.json
             saveabi.json
+            nested-save.json
             dma.json
             native-engine-objects.json
             native-engine-link.json
@@ -276,6 +278,11 @@ jobs:
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/save_abi_overlay.py \
             --world world --apply --report native-save-abi-overlay.json
+      - name: P2 - align actual nested GBA save types for native x86 only
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/save_struct_overlay.py \
+            --world world --apply --output native-save-nested.json
       - name: P1 - route World DMA to host backend (disposable headers)
         run: |
           set -euo pipefail
@@ -329,6 +336,7 @@ jobs:
             native-overlay-report.json
             native-abi-report.json
             native-save-abi-overlay.json
+            native-save-nested.json
             native-dma-api-overlay.json
             native-world-frame-composed.json
             native-save13-m8-layout.json
