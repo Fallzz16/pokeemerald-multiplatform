@@ -175,6 +175,34 @@ class PortugueseStage1Tests(unittest.TestCase):
         self.assertEqual("".join(dialogue[
             "PetalburgCity_Gym_Text_ReceivedBalanceBadge"]).count("{PLAYER}"), 1)
 
+    def test_human_reviewed_auto_gyms_and_move_name(self):
+        import json
+        registry = json.loads((SRC.parent / 'ptbr_reviewed_auto7.json').read_text())
+        groups = registry['reviewed_labels_by_source']
+        self.assertEqual(registry['reviewed_auto_entries'], 120)
+        self.assertEqual(sum(map(len, groups.values())), 120)
+        for source, symbols in groups.items():
+            with self.subTest(source=source):
+                self.assertEqual(len(symbols), len(set(symbols)))
+                self.assertTrue(all(label in pt.ASM_SECTIONS[source] for label in symbols))
+                for label in symbols:
+                    rendered = ''.join(pt.ASM_SECTIONS[source][label])
+                    self.assertTrue(rendered.endswith('
+        with self.assertRaisesRegex(ValueError, "unknown text escape"):
+            pt.validate_translation(self.root, r"Hello\n", r"Oi\z", "bad")
+
+
+if __name__ == "__main__":
+    unittest.main()
+), label)
+                    self.assertTrue(pt.plain_ptbr(rendered).isascii(), label)
+        azalea = pt.ASM_SECTIONS['data/maps/AzaleaTown_Gym/scripts.inc']
+        move = ''.join(azalea['AzaleaTown_Gym_Text_FuryCutterSpeech'])
+        self.assertIn('BULLET SEED', move)
+        self.assertNotIn('SEED BULLET', move)
+        goldenrod = pt.ASM_SECTIONS['data/maps/GoldenrodCity_Gym/scripts.inc']
+        self.assertIn('Que maldade!', ''.join(goldenrod['GoldenrodCity_Gym_Text_WhitneyYouMeanie']))
+
     def test_escape_typo_fails(self):
         with self.assertRaisesRegex(ValueError, "unknown text escape"):
             pt.validate_translation(self.root, r"Hello\n", r"Oi\z", "bad")
