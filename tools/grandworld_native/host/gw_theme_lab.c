@@ -277,6 +277,22 @@ int main(int argc, char **argv)
                 }
             }
         }
+        for (int face = 0; face < GW_FACE_COUNT; ++face) {
+            char id[64], resolved[GW_STYLE_MAX_PATH * 2];
+            const char *pack = preferences.sprites;
+            snprintf(id, sizeof(id), "sprites/follower/%s",
+                     gw_follower_direction_name((GWFace8)face));
+            if (strcmp(pack, "classic") &&
+                gw_styles_find(&library, "sprites", pack, id,
+                               resolved, sizeof(resolved))) {
+                static uint32_t scratch_pose[FOLLOWER * FOLLOWER];
+                if (!gw_host_read_image_argb(resolved, scratch_pose, FOLLOWER, FOLLOWER)) {
+                    fprintf(stderr, "FAIL: cannot load eight-direction pose %s\\n", id);
+                    gw_host_close(host);
+                    return 8;
+                }
+            }
+        }
         paint(px, py, fx, fy, facing, true, 0);
         if (!gw_host_present_rgb555(host, screen, W)) {
             gw_host_close(host);
