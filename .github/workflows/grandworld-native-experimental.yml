@@ -133,6 +133,37 @@ jobs:
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/engine_link_probe.py \
             --objects native-world-objects --report native-engine-link.json
+      - name: P2 - partial link real World engine, native GBA renderer and SDL2 host
+        run: |
+          set -euo pipefail
+          export PKG_CONFIG_LIBDIR=/usr/lib/i386-linux-gnu/pkgconfig:/usr/share/pkgconfig
+          mkdir -p world-bridge-objects
+          cp native-world-objects/*.o world-bridge-objects/
+          cp gw-native-render.o world-bridge-objects/gw-native-render.o
+          cp gw-world-desktop.o world-bridge-objects/gw-world-desktop.o
+          gcc -m32 -std=gnu17 -c $(pkg-config --cflags sdl2 SDL2_image) \
+            grandworld/tools/grandworld_native/host/gw_sdl_host.c \
+            -o world-bridge-objects/gw-sdl-host.o
+          for unit in bios dma cgb_audio; do
+            gcc -m32 -std=gnu11 -DPORTABLE -DNONMATCHING -DMODERN=1 \
+              -DPLATFORM_SDL2 -DGW_WORLD_NATIVE=1 -DRENDERER_EASY_DRAW \
+              -iquote world/include -iquote world/src \
+              -iquote grandworld/include -iquote grandworld/src \
+              -c grandworld/src/platform/${unit}.c \
+              -o world-bridge-objects/gw-platform-${unit}.o
+          done
+          python3 grandworld/tools/grandworld_native/engine_link_probe.py \
+            --objects world-bridge-objects --report native-world-sdl2-partial-link.json
+          python3 - <<'PY'
+          import json
+          r = json.load(open('native-world-sdl2-partial-link.json'))
+          assert r['partial_linked'], r.get('linker_diagnostics')
+          required = {'main', 'AgbMain', 'GwWorldFrame', 'GwWorldVBlank',
+                      'DrawFrame', 'gw_host_present_rgb555'}
+          assert required.issubset(set(r['World_entry_symbols'])), r['World_entry_symbols']
+          assert r['full_engine_linked'] is False
+          print('Real SDL2 + World partial link OK; missing dependencies:', r['unresolved_count'])
+          PY
       - name: Publish native compatibility diagnostics
         if: always()
         uses: actions/upload-artifact@v4
@@ -146,6 +177,7 @@ jobs:
             dma.json
             native-engine-objects.json
             native-engine-link.json
+            native-world-sdl2-partial-link.json
             native-world-frame.json
             native-save13-layout.json
             native-save-abi-dual.json
