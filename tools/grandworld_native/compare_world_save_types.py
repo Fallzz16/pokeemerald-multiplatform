@@ -35,6 +35,8 @@ FIELDS = [
     ("SaveBlock1.mail", "offsetof(struct SaveBlock1, mail)"),
     ("SaveBlock1.unlockedTrendySayings", "offsetof(struct SaveBlock1, unlockedTrendySayings)"),
     ("SaveBlock1.oldMan", "offsetof(struct SaveBlock1, oldMan)"),
+    ("sizeof OldMan", "sizeof(OldMan)"),
+    ("alignof OldMan", "__alignof__(OldMan)"),
     ("SaveBlock1.contestWinners", "offsetof(struct SaveBlock1, contestWinners)"),
     ("SaveBlock1.daycare", "offsetof(struct SaveBlock1, daycare)"),
     ("sizeof SaveBlock3", "sizeof(struct SaveBlock3)"),
