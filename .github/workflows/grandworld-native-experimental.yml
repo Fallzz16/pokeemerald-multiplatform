@@ -492,6 +492,13 @@ jobs:
           assert data['data_object_set_verified'], data.get('data_missing_object_files')
           assert not data['gameplay_verified'], 'Gameplay must be tested after boot.'
           PY
+      - name: P2 - real World one-frame boot smoke only after full native link
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/boot_smoke.py \
+            --link-report native-m8-final-link-attempt.json \
+            --executable grandworld-WORLD-NOT-BOOT-VERIFIED \
+            --report native-m8-first-frame-smoke.json
       - name: P1 - record real C portability compiler diagnostics
         if: always()
         run: |
@@ -529,6 +536,7 @@ jobs:
             native-gba-asm-dialect.json
             native-m8-real-data-link.json
             native-m8-final-link-attempt.json
+            native-m8-first-frame-smoke.json
             native-m8-unresolved-owner-audit.json
           if-no-files-found: warn
 
