@@ -277,21 +277,22 @@ void LZ77UnCompWram(const u32 *src, void *dst)
 
 void RLUnCompWram(const u32 *src, void *dest)
 {
+    const u8 *bytes = (const u8 *)src;
     int remaining = CPUReadMemory(src) >> 8;
     int padding = (4 - remaining) & 0x3;
     int blockHeader;
     int block;
-    src += 4;
+    bytes += 4;
     while (remaining > 0)
     {
-        blockHeader = CPUReadByte(src);
-        src++;
+        blockHeader = CPUReadByte(bytes);
+        bytes++;
         if (blockHeader & 0x80) // Compressed?
         {
             blockHeader &= 0x7F;
             blockHeader += 3;
-            block = CPUReadByte(src);
-            src++;
+            block = CPUReadByte(bytes);
+            bytes++;
             while (blockHeader-- && remaining)
             {
                 remaining--;
@@ -305,8 +306,8 @@ void RLUnCompWram(const u32 *src, void *dest)
             while (blockHeader-- && remaining)
             {
                 remaining--;
-                u8 byte = CPUReadByte(src);
-                src++;
+                u8 byte = CPUReadByte(bytes);
+                bytes++;
                 CPUWriteByte(dest, byte);
                 dest++;
             }
@@ -321,22 +322,23 @@ void RLUnCompWram(const u32 *src, void *dest)
 
 void RLUnCompVram(const u32 *src, void *dest)
 {
+    const u8 *bytes = (const u8 *)src;
     int remaining = CPUReadMemory(src) >> 8;
     int padding = (4 - remaining) & 0x3;
     int blockHeader;
     int block;
     int halfWord = 0;
-    src += 4;
+    bytes += 4;
     while (remaining > 0)
     {
-        blockHeader = CPUReadByte(src);
-        src++;
+        blockHeader = CPUReadByte(bytes);
+        bytes++;
         if (blockHeader & 0x80) // Compressed?
         {
             blockHeader &= 0x7F;
             blockHeader += 3;
-            block = CPUReadByte(src);
-            src++;
+            block = CPUReadByte(bytes);
+            bytes++;
             while (blockHeader-- && remaining)
             {
                 remaining--;
@@ -356,8 +358,8 @@ void RLUnCompVram(const u32 *src, void *dest)
             while (blockHeader-- && remaining)
             {
                 remaining--;
-                u8 byte = CPUReadByte(src);
-                src++;
+                u8 byte = CPUReadByte(bytes);
+                bytes++;
                 if ((u32)dest & 1)
                 {
                     halfWord |= byte << 8;
