@@ -472,6 +472,8 @@ jobs:
             --data native-m8-data-objects \
             --platform native-m8-platform \
             --frontend native-m8-desktop.o \
+            --source-audit native-engine-m8-survey.json \
+            --data-audit native-m8-data-asm.json \
             --report native-m8-final-link-attempt.json
           python3 - <<'PY'
           import json
