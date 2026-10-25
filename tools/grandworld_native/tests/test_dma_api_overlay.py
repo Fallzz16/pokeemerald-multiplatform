@@ -19,7 +19,7 @@ class DmaOverlayTests(unittest.TestCase):
         out = transform(SAMPLE)
         self.assertIn('#if defined(GW_WORLD_NATIVE)', out)
         self.assertIn('#define DMA_ENABLE 0x8000u', out)
-        self.assertIn('GwNativeDmaSet((dmaNum), (src), (dest), (control))', out)
+        self.assertIn('GwNativeDmaSet((dmaNum), (const volatile void *)(uintptr_t)(src), (volatile void *)(uintptr_t)(dest), (control))', out)
         self.assertIn('#else\n#define DmaSetUnchecked', out)
         self.assertIn('#if MODERN\n// NOTE: Assumes 16-bit DMAs.', out)
 
