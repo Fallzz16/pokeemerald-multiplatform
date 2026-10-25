@@ -58,9 +58,10 @@ Manifests de localização revisáveis e ancorados no inglês original:
 - tools/grandworld/ptbr_extra_routes4.json: 79 entradas (Petalburg, Goldenrod, Route 101, Route 29).
 - tools/grandworld/ptbr_extra_gyms4.json: 56 entradas (Misty e Brawly; lideres e NPCs).
 - tools/grandworld/ptbr_extra_dewford5.json: 23 entradas (Dewford, travessias com Briney, pesca e sinalizacao).
+- tools/grandworld/ptbr_extra_routes5.json: 17 entradas (Route 109, SLATEPORT, Briney e Route 106).
 - Dados anteriores incorporados em translate_ptbr_stage1.py: 98 entradas.
 
-Total configurado: 1.290 entradas em 45 arquivos do checkout World.
+Total configurado: 1.307 entradas em 47 arquivos do checkout World.
 
 Lote de continuidade de 25/10/2026: adicionadas 23 traducoes de Dewford e
 integradas ao tradutor e a verificacao minima de CI. Compilacao e testes
@@ -118,3 +119,11 @@ mapas/sprites/tabelas, checa orçamento EWRAM/IWRAM/ROM, roda boot/title e
 51 suites World no mGBA vinculados ao hash da propria ROM PT-BR e guarda
 relatorios, logs, inventario de pendencias e SHA256 do binario,
 mas nao publica arquivos de jogo de terceiros em artifacts. A PR permanece draft; nenhum merge automático.
+
+## Continuidade — segundo lote costeiro (25/10/2026)
+
+Adicionadas 17 entradas de Route 109 e Route 106, totalizando 40 novas
+entradas nesta continuidade desde as 1.267 anteriores. A falha Python
+SyntaxError do workflow #40172851882 foi identificada e corrigida no teste
+Dewford. Os commits mais recentes precisam da propria execucao Actions
+para confirmar compilacao, emulacao, cobertura e orcamento. PR draft mantida.
