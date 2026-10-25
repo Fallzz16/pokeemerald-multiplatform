@@ -66,32 +66,57 @@ def pack_path(root, pack_id):
 
 
 def install(archive, root):
-    info = validate_zip(archive)
+    """Stage an immutable local copy before validating and extracting a pack.
+
+    This closes the validate-then-reopen gap and rolls back a failed install.
+    The extracted content is never written outside the dedicated mod root.
+    """
     root = check_root(root)
     root.mkdir(parents=True, exist_ok=True)
-    destination = pack_path(root, info["id"])
-    if destination.exists():
-        raise PackError("pack already installed: " + info["id"])
-    temp = Path(tempfile.mkdtemp(prefix=".pack-", dir=root))
+    staging = Path(tempfile.mkdtemp(prefix=".pack-", dir=root))
+    copied = staging / "incoming.zip"
+    payload = staging / "content"
+    created = None
     try:
-        with zipfile.ZipFile(archive) as z:
+        # Bound input size before reading a potentially untrusted ZIP.
+        with open(archive, "rb") as source, copied.open("wb") as dest:
+            total = 0
+            while True:
+                chunk = source.read(1024 * 1024)
+                if not chunk:
+                    break
+                total += len(chunk)
+                if total > 300 * 1024 * 1024:
+                    raise PackError("archive exceeds 300 MiB")
+                dest.write(chunk)
+        info = validate_zip(copied)
+        destination = pack_path(root, info["id"])
+        if destination.exists() or destination.is_symlink():
+            raise PackError("pack already installed: " + info["id"])
+        payload.mkdir()
+        with zipfile.ZipFile(copied) as z:
             for name in z.namelist():
                 if name.endswith("/"):
                     continue
-                # validate_zip already validated paths, hashes, sizes, types.
-                target = temp.joinpath(*name.split("/"))
+                target = payload.joinpath(*name.split("/"))
                 target.parent.mkdir(parents=True, exist_ok=True)
                 with z.open(name) as incoming, target.open("wb") as outgoing:
                     shutil.copyfileobj(incoming, outgoing, length=1024 * 1024)
-        (temp / "install-info.json").write_text(
-            json.dumps({"schema": 1, "id": info["id"], "version": info["version"]}, indent=2) + "\n",
+        (payload / "install-info.json").write_text(
+            json.dumps({"schema": 1, "id": info["id"],
+                        "version": info["version"]}, indent=2) + "\n",
             encoding="utf-8")
-        temp.rename(destination)
+        payload.rename(destination)
+        created = destination
+        # Do not leave a partly installed pack if an existing catalog is broken.
         generate_catalog(root)
+        return info
+    except Exception:
+        if created is not None and created.is_dir() and not created.is_symlink():
+            shutil.rmtree(created)
+        raise
     finally:
-        if temp.exists():
-            shutil.rmtree(temp)
-    return info
+        shutil.rmtree(staging, ignore_errors=True)
 
 
 def toggle(root, pack_id, enabled):
