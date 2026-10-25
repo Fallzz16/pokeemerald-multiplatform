@@ -88,11 +88,11 @@ def diagnose(world, compiler):
                 profile_header = profile_header.replace(
                     anchor, anchor[:-2] + "} __attribute__((aligned(4)));")
             if aligned == "both":
-                time_anchor = ("struct Time\\n{\\n"
-                               "    /*0x00*/ s16 days;\\n"
-                               "    /*0x02*/ s8 hours;\\n"
-                               "    /*0x03*/ s8 minutes;\\n"
-                               "    /*0x04*/ s8 seconds;\\n"
+                time_anchor = ("struct Time\n{\n"
+                               "    /*0x00*/ s16 days;\n"
+                               "    /*0x02*/ s8 hours;\n"
+                               "    /*0x03*/ s8 minutes;\n"
+                               "    /*0x04*/ s8 seconds;\n"
                                "};")
                 if profile_header.count(time_anchor) != 1:
                     raise ValueError("Time struct alignment anchor mismatch")
