@@ -334,6 +334,11 @@ jobs:
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/wireless_callback_overlay.py \
             --world world --apply --output native-rfu-callbacks.json
+      - name: P2 - native-only ARM function adapters for RNG, multiboot wait and unused m4a SWI
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/arm_runtime_overlay.py \
+            --world world --apply --output native-arm-runtime-overlay.json
       - name: P2 - inspect composed World SaveBlock1/3 layout
         run: |
           set -euo pipefail
@@ -433,6 +438,7 @@ jobs:
             native-dma-api-overlay.json
             native-world-frame-composed.json
             native-rfu-callbacks.json
+            native-arm-runtime-overlay.json
             native-save13-m8-layout.json
             native-engine-m8-probe.json
             native-m8-gba-versus-host-save-layout.json
