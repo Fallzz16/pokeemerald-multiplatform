@@ -117,79 +117,79 @@
     },
     "data/maps/CeladonCity_Gym_Frlg/scripts.inc": {
       "CeladonCity_Gym_Text_ErikaPostBattle": [
-        "Voce esta catalogando POKEMON?\\nDevo dizer que estou\\limpressionado.\\pNunca recolheria POKEMON se nao\\nfossem atraentes.$"
+        "Voce esta registrando POKEMON?\\nFico impressionada.\\pEu so colecionaria POKEMON\\nque acho bonitos.$"
       ],
       "CeladonCity_Gym_Text_ReceivedTM19FromErika": [
-        "{PLAYER}recebeu TM19 da ERIKA.$"
+        "{PLAYER} recebeu TM19\\nde ERIKA.$"
       ],
       "CeladonCity_Gym_Text_ExplainTM19": [
-        "TM19 contem GIGA DRAIN.\\pMetade dos danos que inflige e\\ndrenada para curar o seu\\lPOKEMON.\\pNao concordas que e uma jogada\\nmaravilhosa?$"
+        "TM19 contem GIGA DRAIN.\\pMetade do dano causado\\nrecupera o HP do seu POKEMON.\\pNao e um golpe maravilhoso?$"
       ],
       "CeladonCity_Gym_Text_ShouldMakeRoomForThis": [
-        "Devias arranjar espaco para\\nisto.$"
+        "Voce precisa abrir espaco\\npara receber isto.$"
       ],
       "CeladonCity_Gym_Text_KayIntro": [
-        "Devia contar-te sobre este Gym.\\pSo as senhoras reais podem\\nentrar aqui!$"
+        "Vou te contar uma coisa\\nsobre este GYM.\\pSo mulheres elegantes\\npodem entrar aqui!$"
       ],
       "CeladonCity_Gym_Text_KayDefeat": [
-        "Es muito duro!$"
+        "Voce foi duro demais!$"
       ],
       "CeladonCity_Gym_Text_KayPostBattle": [
-        "Bleaah! Espero que o ERIKA\\nacabe contigo!$"
+        "Blergh!\\nTomara que ERIKA venca voce!$"
       ],
       "CeladonCity_Gym_Text_BridgetIntro": [
-        "Bem-vinda. Estava a ficar\\naborrecido.$"
+        "Ola, seja bem-vindo!\\nEu ja estava entediada.$"
       ],
       "CeladonCity_Gym_Text_BridgetDefeat": [
-        "A minha maquilhagem!$"
+        "Minha maquiagem!$"
       ],
       "CeladonCity_Gym_Text_TinaIntro": [
-        "Nao estavas a espreitar aqui\\nmais cedo?$"
+        "Voce nao estava olhando\\npor aqui mais cedo?$"
       ],
       "CeladonCity_Gym_Text_TinaDefeat": [
-        "Es um abridor de olhos!$"
+        "Voce me surpreendeu!$"
       ],
       "CeladonCity_Gym_Text_TinaPostBattle": [
-        "Estavas a olhar para a ERIKA...\\nNao estavas a olhar para mim...$"
+        "Ah, voce estava olhando\\npara ERIKA...\\pNao para mim...$"
       ],
       "CeladonCity_Gym_Text_TamiaIntro": [
-        "Olha, olha! Vejam o meu\\nPokemon!\\pGosto do tipo GRASS. Gosto de\\ncomo sao faceis de criar.$"
+        "Olhe, olhe!\\nVeja meus POKEMON!\\pGosto do tipo GRASS.\\nSao faceis de criar!$"
       ],
       "CeladonCity_Gym_Text_TamiaDefeat": [
-        "Nao!$"
+        "Ah, nao!$"
       ],
       "CeladonCity_Gym_Text_TamiaPostBattle": [
-        "So usamos Pokemon tipo GRASS no\\nnosso ginasio.\\pPorque? Tambem os usamos para\\nfazer arranjos florais!$"
+        "Neste GYM, usamos apenas\\nPOKEMON do tipo GRASS.\\pEles tambem ajudam\\nnos arranjos de flores!$"
       ],
       "CeladonCity_Gym_Text_LisaDefeat": [
-        "Oh! Voce!$"
+        "Ah! Voce me venceu!$"
       ],
       "CeladonCity_Gym_Text_LoriIntro": [
-        "Prazer em conhece-lo. Meu hobby\\ne treinamento POKEMON.$"
+        "Prazer em conhecer voce.\\nMeu hobby e treinar POKEMON.$"
       ],
       "CeladonCity_Gym_Text_LoriDefeat": [
-        "Oh! Esplendido!$"
+        "Ah! Excelente!$"
       ],
       "CeladonCity_Gym_Text_LoriPostBattle": [
-        "Tenho um encontro as cegas.\\nTenho de aprender a ser\\leducado, especialmente se tiver\\lde lutar.$"
+        "Tenho um encontro marcado.\\pPreciso aprender a ser educada,\\nate quando batalho!$"
       ],
       "CeladonCity_Gym_Text_MaryIntro": [
-        "Bem-vindos ao CELADON Gym!\\pE melhor nao subestimares as\\nsenhoras simpaticas.$"
+        "Bem-vindo ao GYM de CELADON!\\pNao subestime as garotas\\nque treinam por aqui.$"
       ],
       "CeladonCity_Gym_Text_MaryDefeat": [
-        "Oh! Espancado!$"
+        "Ah! Fui derrotada!$"
       ],
       "CeladonCity_Gym_Text_MaryPostBattle": [
-        "Nao trouxe o meu melhor\\nPOKEMON. Espera ate a proxima!$"
+        "Nao trouxe meu melhor POKEMON.\\nNa proxima voce vai ver!$"
       ],
       "CeladonCity_Gym_Text_RematchDefeat": [
-        "A fragrancia do meu jardim\\nfez-te dormir.$"
+        "A fragrancia do meu jardim\\nfez voce adormecer.$"
       ],
       "CeladonCity_Gym_Text_RematchPost": [
-        "Como te tornaste esplendido.\\pAs minhas flores rendem-se a\\nti. Visite o meu jardim\\lnovamente.$"
+        "Como voce ficou forte!\\pAte minhas flores\\nse curvam diante de voce.\\pVolte ao meu jardim!$"
       ],
       "CeladonCity_Gym_Text_RematchDecline": [
-        "As flores e eu aguardaremos o\\nvosso regresso.$"
+        "Eu e minhas flores\\nesperaremos sua volta.$"
       ]
     },
     "data/maps/CianwoodGym/scripts.inc": {
