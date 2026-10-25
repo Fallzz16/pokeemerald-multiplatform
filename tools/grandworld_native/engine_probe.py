@@ -112,6 +112,10 @@ def compile_engine(world, out, compiler="gcc", use_preproc=False, all_sources=Fa
         src = world / "src" / name
         obj = out / name.replace(".c", ".o")
         entry = {"source": "src/" + name, "object": str(obj.name)}
+        # Never let a failed incremental compile leave behind an older .o:
+        # that would fool a subsequent real-engine partial/final linker.
+        obj.unlink(missing_ok=True)
+        obj.with_suffix(".s").unlink(missing_ok=True)
         if not command:
             entry.update(status="compiler_missing", errors=["No host GCC"])
         elif not src.is_file():
