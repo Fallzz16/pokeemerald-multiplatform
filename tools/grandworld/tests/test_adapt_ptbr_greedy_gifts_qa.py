@@ -43,8 +43,9 @@ class PTBRGreedyGiftQATests(unittest.TestCase):
         result = qa.apply(self.root, write=True)
         self.assertTrue(result["qa_guard_preserved"])
         self.assertEqual(result["gameplay_files_modified"], 0)
-        self.assertEqual(self.check.read_text(), FAKE.replace(qa.OLD, qa.NEW))
+        self.assertEqual(self.check.read_text(), FAKE.replace(qa.OLD, qa.NEW).replace(qa.ELM_OLD, qa.ELM_NEW))
         self.assertIn("FLAG_JOHTO_STARTER_CHOSEN", self.check.read_text())
+        self.assertIn("Provavelmente nao devia tocar!", self.check.read_text())
 
     def test_missing_translated_birch_lock_rejected_without_writing(self):
         self.script.write_text(qa.MARKER + '\n\t.string "Wrong text$"\n')
