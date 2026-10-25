@@ -90,11 +90,42 @@ Future native runtime integration must be opt-in, require a versioned lookup
 API, atomic resource switches, fallback assets and separate user settings.
 It must never modify SaveBlocks for purely cosmetic changes.
 
+## Experimental pack management commands
+
+After validating a `.zip`, developers can install and enable it in a
+**dedicated mod directory**, which must be separate from all player saves:
+
+```sh
+python3 tools/grandworld_native/pack_manager.py --root ./test-modpacks install ./my-pack.zip
+python3 tools/grandworld_native/pack_manager.py --root ./test-modpacks list
+python3 tools/grandworld_native/pack_manager.py --root ./test-modpacks enable my-art-pack
+python3 tools/grandworld_native/pack_manager.py --root ./test-modpacks disable my-art-pack
+```
+
+The manager refuses to replace an installed pack, leaves installed files intact
+when disabled, and writes `enabled.json` atomically. **Activation only records
+the preference**: no gameplay resource substitution is hooked into the native
+engine yet. This feature runs on the developer host, not the game menu, and
+needs Python. All pack images/audio must have appropriate usage rights.
+
+## Verified milestones and important run evidence
+
+- P0 source composition and GBA reference/validator: confirmed on GitHub Actions
+  [run 40180883072](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40180883072).
+  This is a GBA baseline validation, not a native build.
+- C/SDL2 host surface compiled and passed synthetic 240x160 image/input tests on
+  Linux; Windows `gw_host_preview.exe` + `SDL2.dll` compiled in
+  [run 40182024859](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40182024859).
+  Neither contains a running Grand World engine.
+- P1 remains blocked by save-block layout invariants and differing GBA hardware
+  API definitions. The guarded disposable World header overlay and 32-bit probes
+  are experiments; examine their latest CI before reporting progress.
+
 ## P0–P5 status matrix
 
 | Milestone | Current status | Hard completion gate |
 |---|---|---|
-| P0 source composition | Code and CI provided, needs exact-run validation | Patches + GBA baseline build + validate |
+| P0 source composition | Reference GBA rebuild + validate passed in run 40180883072 | Patches + GBA baseline build + validate |
 | P1 linked native World | **Not implemented** | Full World executable links for host |
 | P2 title/menu SDL2 boot | **Not implemented** | Real window and reproducible captures |
 | P3 regions and save | **Not implemented** | Real 3-region QA, save/Continue |
