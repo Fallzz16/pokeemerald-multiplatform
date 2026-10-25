@@ -509,10 +509,12 @@ jobs:
           python3 grandworld/tools/grandworld_native/final_link_probe.py \
             --code native-m8-survey-objects \
             --data native-m8-data-objects \
+            --music native-m8-midi-objects \
             --platform native-m8-platform \
             --frontend native-m8-desktop.o \
             --source-audit native-engine-m8-survey.json \
             --data-audit native-m8-data-asm.json \
+            --music-audit native-m8-original-midi.json \
             --report native-m8-final-link-attempt.json
           python3 - <<'PY'
           import json
@@ -523,6 +525,9 @@ jobs:
           print('Duplicate definitions:', data.get('duplicate_definition_count'))
           assert data['source_object_set_verified'], data.get('source_stale_object_files')
           assert data['data_object_set_verified'], data.get('data_missing_object_files')
+          assert data['music_object_set_verified'], data.get('music_missing_object_files')
+          assert data['music_sources_all_compiled'], 'Original MIDI source inventory incomplete'
+          assert data['full_input_inventory_verified'], data.get('input_coverage_failed_gates')
           assert not data['gameplay_verified'], 'Gameplay must be tested after boot.'
           PY
       - name: P2 - real World one-frame boot smoke only after full native link
