@@ -53,10 +53,12 @@ Manifests de localização revisáveis e ancorados no inglês original:
 - tools/grandworld/ptbr_extra_services2.json: 112 entradas (trocas, loteria, recompensas globais, hub e outros).
 - tools/grandworld/ptbr_extra_regions2.json: 112 entradas (cidades iniciais, Johto/Kanto/Hoenn e Liga).
 - tools/grandworld/ptbr_extra_story2.json: 134 entradas (Violet, Pewter, Rustboro e laboratorio de Birch).
+- tools/grandworld/ptbr_extra_labs3.json: 114 entradas (Oak e Elm; Kanto e Johto).
+- tools/grandworld/ptbr_extra_gyms3.json: 68 entradas (Brock, Falkner e Roxanne; lideres, NPCs e dicas).
 - Dados anteriores incorporados em translate_ptbr_stage1.py: 98 entradas.
 
-Total configurado: 950 entradas em 33 arquivos do checkout World.
-A contagem não equivale a 950 diálogos exclusivos nem a porcentagem
+Total configurado: 1.132 entradas em 38 arquivos do checkout World.
+A contagem não equivale a 1.132 diálogos exclusivos nem a porcentagem
 de localização de todo o jogo; a meta continua ser 100%.
 
 O adaptador exige correspondência exata com todos os símbolos do upstream, valida
