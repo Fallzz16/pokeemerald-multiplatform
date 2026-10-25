@@ -392,6 +392,11 @@ jobs:
             --world world \
             --object world-engine-PARTIAL-NOT-EXECUTABLE.o \
             --report native-m8-unresolved-owner-audit.json
+      - name: P2 - adapt original GBA assembly alignment and macros to host GAS
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld_native/gba_data_asm_overlay.py \
+            --world world --apply --report native-gba-asm-dialect.json
       - name: P2 - probe original World script/data assembly for native linker
         run: |
           set -euo pipefail
@@ -446,6 +451,7 @@ jobs:
             native-engine-m8-survey.json
             native-engine-m8-survey-link.json
             native-m8-data-asm.json
+            native-gba-asm-dialect.json
             native-m8-real-data-link.json
             native-m8-unresolved-owner-audit.json
           if-no-files-found: warn
