@@ -41,7 +41,7 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get update
-          sudo apt-get install -y build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev libsdl2-dev gcc-multilib
+          sudo apt-get install -y build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev libsdl2-dev libsdl2-image-dev gcc-multilib
       - name: P0 - materialize full M8 + PT-BR in isolated World tree
         run: |
           set -euo pipefail
@@ -94,7 +94,7 @@ jobs:
       - name: Install C compiler and SDL2 dev headers
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential cmake libsdl2-dev
+          sudo apt-get install -y build-essential cmake libsdl2-dev libsdl2-image-dev
       - name: Compile real C/SDL2 host and test synthetic frame
         run: |
           set -euo pipefail
@@ -117,6 +117,7 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-ninja
             mingw-w64-x86_64-SDL2
+            mingw-w64-x86_64-SDL2_image
       - name: Build Windows native SDL2 host diagnostic (not Grand World gameplay)
         shell: msys2 {0}
         run: |
@@ -125,6 +126,7 @@ jobs:
           cmake --build build/native-win -j2
           test -f build/native-win/gw_host_preview.exe
           cp /mingw64/bin/SDL2.dll build/native-win/SDL2.dll
+          cp /mingw64/bin/SDL2_image.dll build/native-win/SDL2_image.dll
           export SDL_VIDEODRIVER=dummy
           ./build/native-win/gw_host_smoke.exe
       - name: Upload Windows SDL2 host diagnostic only
@@ -134,4 +136,5 @@ jobs:
           path: |
             build/native-win/gw_host_preview.exe
             build/native-win/SDL2.dll
+            build/native-win/SDL2_image.dll
           if-no-files-found: error
