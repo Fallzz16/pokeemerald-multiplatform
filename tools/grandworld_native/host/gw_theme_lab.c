@@ -6,6 +6,7 @@
 #include <SDL.h>
 #include "gw_sdl_host.h"
 #include "gw_style_index.h"
+#include "gw_follower_visual.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,6 +17,8 @@ static GWStylePrefs preferences;
 static uint16_t screen[W * H];
 static uint32_t background[W * H];
 static uint32_t companion[FOLLOWER * FOLLOWER];
+static uint32_t directional[GW_FACE_COUNT][FOLLOWER * FOLLOWER];
+static bool has_direction[GW_FACE_COUNT];
 static bool custom_bg, custom_sprite;
 
 /* Original tiny monospaced 5x7 glyphs, columns are seven-bit pixel masks. */
@@ -101,7 +104,7 @@ static void fill_default(void)
     rect(104, 0, 32, H, color555(203,185,133));
 }
 
-static void draw_companion(int x, int y)
+static void draw_companion(int x, int y, GWFace8 face)
 {
     if (!custom_sprite) {
         rect(x + 7, y + 8, 13, 12, color555(232,163,66));
@@ -110,9 +113,11 @@ static void draw_companion(int x, int y)
         rect(x + 15, y + 11, 2, 2, color555(33,37,41));
         return;
     }
+    const uint32_t *frame = (face >= 0 && face < GW_FACE_COUNT && has_direction[face])
+        ? directional[face] : companion;
     for (int j = 0; j < FOLLOWER; ++j) {
         for (int i = 0; i < FOLLOWER; ++i) {
-            uint32_t c = companion[j * FOLLOWER + i];
+            uint32_t c = frame[j * FOLLOWER + i];
             if ((c >> 24) >= 128)
                 dot(x + i, y + j, from_argb(c));
         }
@@ -124,6 +129,8 @@ static bool update_images(void)
     char path[GW_STYLE_MAX_PATH * 2];
     custom_bg = false;
     custom_sprite = false;
+    for (int face = 0; face < GW_FACE_COUNT; ++face)
+        has_direction[face] = false;
     if (strcmp(preferences.menus, "classic") &&
         gw_styles_find(&library, "menus", preferences.menus, "menus/background",
                        path, sizeof(path))) {
@@ -137,11 +144,23 @@ static bool update_images(void)
         if (!gw_host_read_image_argb(path, companion, FOLLOWER, FOLLOWER))
             return false;
         custom_sprite = true;
+        for (int face = 0; face < GW_FACE_COUNT; ++face) {
+            char logical[64];
+            snprintf(logical, sizeof(logical), "sprites/follower/%s",
+                     gw_follower_direction_name((GWFace8)face));
+            /* The baseline follower sprite is the fallback for partial packs. */
+            if (gw_styles_find(&library, "sprites", preferences.sprites,
+                               logical, path, sizeof(path))) {
+                if (!gw_host_read_image_argb(path, directional[face], FOLLOWER, FOLLOWER))
+                    return false;
+                has_direction[face] = true;
+            }
+        }
     }
     return true;
 }
 
-static void paint(int px, int py, bool settings, int category)
+static void paint(int px, int py, int fx, int fy, GWFace8 facing, bool settings, int category)
 {
     if (custom_bg) {
         for (int i = 0; i < W * H; ++i)
@@ -152,12 +171,17 @@ static void paint(int px, int py, bool settings, int category)
     }
     rect(px - 5, py - 10, 10, 16, color555(49,85,182));
     rect(px - 6, py - 14, 12, 5, color555(180,49,63));
-    draw_companion(px - 33, py + 3);
+    draw_companion(fx - FOLLOWER / 2, fy - FOLLOWER / 2, facing);
 
     if (!settings) {
         rect(4, 4, 202, 24, color555(23,49,55));
         line_text(10, 8, "GRAND WORLD NATIVE STYLE LAB", color555(235,246,214));
         line_text(10, 18, "F1: STYLES  F5: RELOAD", color555(197,207,160));
+        char direction_text[32];
+        snprintf(direction_text, sizeof(direction_text), "FOLLOWER LOOK: %s",
+                 gw_follower_direction_name(facing));
+        rect(4, 146, 142, 12, color555(23,49,55));
+        line_text(10, 149, direction_text, color555(235,246,214));
         return;
     }
     rect(6, 7, 228, 132, color555(21,43,52));
@@ -205,6 +229,8 @@ int main(int argc, char **argv)
     const char *root = "mods";
     bool selftest = false, settings = false, last_f1 = false, last_f5 = false;
     int category = 0, px = 120, py = 78;
+    int fx = 87, fy = 108, frames = 0;
+    GWFace8 facing = GW_FACE_NE;
     uint16_t oldkeys = 0;
     GWNativeHost *host;
     SDL_SetMainReady();
@@ -251,7 +277,7 @@ int main(int argc, char **argv)
                 }
             }
         }
-        paint(px, py, true, 0);
+        paint(px, py, fx, fy, facing, true, 0);
         if (!gw_host_present_rgb555(host, screen, W)) {
             gw_host_close(host);
             return 7;
@@ -291,7 +317,17 @@ int main(int argc, char **argv)
             if (py < 20) py = 20;
             if (py > H - 20) py = H - 20;
         }
-        paint(px, py, settings, category);
+        /* Follower moves only along one grid axis at a time, while its body
+           can look diagonally toward the player's current position. */
+        if (!settings && ++frames % 3 == 0) {
+            int dx = px - fx, dy = py - fy;
+            if (abs(dx) > 28 || abs(dy) > 28) {
+                if (abs(dx) >= abs(dy)) fx += dx > 0 ? 2 : -2;
+                else fy += dy > 0 ? 2 : -2;
+            }
+        }
+        facing = gw_follower_look_at(px - fx, py - fy, facing, 5);
+        paint(px, py, fx, fy, facing, settings, category);
         if (!gw_host_present_rgb555(host, screen, W))
             break;
         oldkeys = keys;
