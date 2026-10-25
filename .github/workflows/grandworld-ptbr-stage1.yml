@@ -24,6 +24,7 @@ on:
       - 'tools/grandworld/ptbr_extra_hoenn_routes6.json'
       - 'tools/grandworld/ptbr_extra_johto_routes6.json'
       - 'tools/grandworld/ptbr_extra_hoenn_routes7.json'
+      - 'tools/grandworld/ptbr_auto_review_*.json'
       - 'tools/grandworld/audit_ptbr_coverage.py'
       - 'tools/grandworld/adapt_ptbr_greedy_gifts_qa.py'
       - 'tools/grandworld/tests/test_adapt_ptbr_greedy_gifts_qa.py'
@@ -85,7 +86,9 @@ jobs:
           import json
           from pathlib import Path
           a=json.loads(Path('ptbr-report.json').read_text())
-          assert a['locale']=='pt-BR' and a['translation_entries']>=1535
+          bulk_index=Path('grandworld/tools/grandworld/ptbr_auto_review_index.json')
+          minimum=1535+json.loads(bulk_index.read_text())['added_entries'] if bulk_index.exists() else 1535
+          assert a['locale']=='pt-BR' and a['translation_entries']>=minimum
           assert not a['save_format_modified'] and a['translated_text_ascii_only']
           assert not a['item_names_translated'] and not a['move_names_translated']
           assert 'Novo Jogo' in Path('world/src/main_menu.c').read_text()
@@ -97,7 +100,9 @@ jobs:
           from pathlib import Path
           coverage=json.loads(Path('ptbr-coverage.json').read_text())
           translation=json.loads(Path('ptbr-report.json').read_text())
-          assert coverage['translation_entries']==translation['translation_entries']>=1535
+          bulk_index=Path('grandworld/tools/grandworld/ptbr_auto_review_index.json')
+          minimum=1535+json.loads(bulk_index.read_text())['added_entries'] if bulk_index.exists() else 1535
+          assert coverage['translation_entries']==translation['translation_entries']>=minimum
           assert coverage['totals']['defined']>coverage['totals']['translated']
           assert coverage['totals']['pending']>0
           PY
