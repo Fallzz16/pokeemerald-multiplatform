@@ -187,14 +187,7 @@ class PortugueseStage1Tests(unittest.TestCase):
                 self.assertTrue(all(label in pt.ASM_SECTIONS[source] for label in symbols))
                 for label in symbols:
                     rendered = ''.join(pt.ASM_SECTIONS[source][label])
-                    self.assertTrue(rendered.endswith('
-        with self.assertRaisesRegex(ValueError, "unknown text escape"):
-            pt.validate_translation(self.root, r"Hello\n", r"Oi\z", "bad")
-
-
-if __name__ == "__main__":
-    unittest.main()
-), label)
+                    self.assertEqual(rendered[-1], chr(36), label)
                     self.assertTrue(pt.plain_ptbr(rendered).isascii(), label)
         azalea = pt.ASM_SECTIONS['data/maps/AzaleaTown_Gym/scripts.inc']
         move = ''.join(azalea['AzaleaTown_Gym_Text_FuryCutterSpeech'])
