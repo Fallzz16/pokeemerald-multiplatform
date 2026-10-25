@@ -26,11 +26,10 @@ jobs:
           repository: evilchinesefood/PKMN-World
           ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
           path: world
-      - name: Install complete 32-bit World and SDL2 toolchain
+      - name: Install World 32-bit compiler and host SDL2 headers for relocatable probes
         run: |
-          sudo dpkg --add-architecture i386
           sudo apt-get update -qq
-          sudo apt-get install -y gcc-multilib gcc-arm-none-eabi binutils-arm-none-eabi build-essential libpng-dev zlib1g-dev libsdl2-dev:i386 libsdl2-image-dev:i386
+          sudo apt-get install -y gcc-multilib gcc-arm-none-eabi binutils-arm-none-eabi build-essential libpng-dev zlib1g-dev libsdl2-dev libsdl2-image-dev
       - name: Generate pinned World headers without building ROM
         run: |
           set -euo pipefail
@@ -78,7 +77,7 @@ jobs:
       - name: P2 - compile real World SDL2 desktop entrypoint (no fake game)
         run: |
           set -euo pipefail
-          export PKG_CONFIG_LIBDIR=/usr/lib/i386-linux-gnu/pkgconfig:/usr/share/pkgconfig
+          export PKG_CONFIG_LIBDIR=/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/share/pkgconfig
           pkg-config --modversion sdl2
           gcc -m32 -std=gnu17 -DPORTABLE -DGW_WORLD_NATIVE=1 -DMODERN=1 \
             -DNONMATCHING=1 -DEMERALD=1 -DALL_REGIONS=1 \
@@ -86,7 +85,8 @@ jobs:
             -iquote world/include -iquote world/src -iquote grandworld/tools/grandworld_native/host \
             -c grandworld/tools/grandworld_native/host/gw_world_desktop.c -o gw-world-desktop.o
           test -s gw-world-desktop.o
-          echo "World SDL2 desktop entrypoint compiles; engine full link remains pending."
+          test "$(readelf -h gw-world-desktop.o | grep -c 'Class:.*ELF32')" -eq 1
+          echo "World SDL2 entrypoint is a genuine ELF32 object; full i386 SDL2 library link remains in native-source-lab."
       - name: Verify native platform runtime with address/undefined sanitizers
         run: |
           set -euo pipefail
@@ -137,7 +137,7 @@ jobs:
       - name: P2 - partial link real World engine, native GBA renderer and SDL2 host
         run: |
           set -euo pipefail
-          export PKG_CONFIG_LIBDIR=/usr/lib/i386-linux-gnu/pkgconfig:/usr/share/pkgconfig
+          export PKG_CONFIG_LIBDIR=/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/share/pkgconfig
           mkdir -p world-bridge-objects
           cp native-world-objects/*.o world-bridge-objects/
           cp gw-native-render.o world-bridge-objects/gw-native-render.o
