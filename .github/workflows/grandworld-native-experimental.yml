@@ -367,12 +367,12 @@ jobs:
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/engine_link_probe.py \
             --objects native-m8-objects --report native-engine-m8-link.json
-      - name: P2 - extended real M8 native C source survey (240 files)
+      - name: P2 - full real M8 native C source survey (up to 405 files)
         run: |
           set -euo pipefail
           python3 grandworld/tools/grandworld_native/engine_survey.py \
             --world world --objects native-m8-survey-objects \
-            --limit 240 --report native-engine-m8-survey.json
+            --limit 405 --report native-engine-m8-survey.json
           python3 grandworld/tools/grandworld_native/engine_link_probe.py \
             --objects native-m8-survey-objects --report native-engine-m8-survey-link.json
       - name: P1 - record real C portability compiler diagnostics
