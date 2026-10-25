@@ -73,3 +73,20 @@ jobs:
             native-baseline-validate.log
             native-portability-probe.json
           if-no-files-found: warn
+
+  host-sdl2-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+      - name: Install C compiler and SDL2 dev headers
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake libsdl2-dev
+      - name: Compile real C/SDL2 host and test synthetic frame
+        run: |
+          set -euo pipefail
+          cmake -S tools/grandworld_native/host -B build/native-host -DCMAKE_BUILD_TYPE=Debug
+          cmake --build build/native-host -j2
+          ctest --test-dir build/native-host --output-on-failure
