@@ -432,6 +432,8 @@ jobs:
           import json
           result = json.load(open('native-m8-real-data-link.json', encoding='utf-8'))
           assert not result['game_executable_linked']
+          assert result['partial_linked'], result.get('diagnostics', result.get('error'))
+          assert result['code_object_count'] > 0 and result['data_object_count'] > 0
           print('Compiled actual data objects:', result['data_object_count'])
           print('Native relocatable link success:', result['partial_linked'])
           print('Real data resolved symbols:', result.get('resolved_by_original_data_count', 0))
