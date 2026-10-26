@@ -5,6 +5,9 @@
 local here=(debug.getinfo(1,"S").source:sub(2)):match("^(.*[/\\])") or ""
 package.path=here.."?.lua;"..package.path
 local S=require("symbols")
+-- Exact callbacks generated from THIS cartridge ELF; the function name occurs
+-- in several controller files, so picking the first address would be unsafe.
+local ACTION_FUNCS=dofile(here.."battle_action_callbacks.lua")
 local mode=os.getenv("GW_CYCLE_MODE")
 assert(mode=="FLEE" or mode=="CAPTURE", "use GW_CYCLE_MODE=FLEE or CAPTURE")
 local F=require("lib").new(S,"GrandWorldWild"..(mode=="FLEE" and "Flee" or "Capture"))
@@ -16,10 +19,12 @@ local function tap(key)
   F.press(key,2);F.idle(13)
 end
 local function activeActionMenu()
-  return S.gBattlerControllerFuncs>0x02000000
-     and S.HandleChooseActionAfterDma3>0x08000000
-     and (F.r32(S.gBattlerControllerFuncs+PLAYER_CONTROLLER*4)&~1)
-          ==(S.HandleChooseActionAfterDma3&~1)
+  if S.gBattlerControllerFuncs<=0x02000000 or #ACTION_FUNCS==0 then return false end
+  local now=F.r32(S.gBattlerControllerFuncs+PLAYER_CONTROLLER*4)&~1
+  for _,fn in ipairs(ACTION_FUNCS) do
+    if now==(fn&~1) then return true end
+  end
+  return false
 end
 -- A only advances story/battle intro when an action menu is NOT ready.
 -- Checks every frame BEFORE pressing, so cannot accidentally choose FIGHT.
