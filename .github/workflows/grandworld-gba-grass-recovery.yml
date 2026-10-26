@@ -41,7 +41,7 @@ jobs:
           set -euo pipefail
           sha_before=$(sha256sum world/src/data/wild_encounters.json | cut -d' ' -f1)
           python3 grandworld/tools/grandworld/propose_grass_species_recovery.py \
-            world/src/data/wild_encounters.json --report grass-recovery-plan.json \
+            world/src/data/wild_encounters.json --maps-dir world/data/maps --report grass-recovery-plan.json \
             --experimental-output /tmp/grandworld-candidate-only-wild-encounters.json
           sha_after=$(sha256sum world/src/data/wild_encounters.json | cut -d' ' -f1)
           test "$sha_before" = "$sha_after"
