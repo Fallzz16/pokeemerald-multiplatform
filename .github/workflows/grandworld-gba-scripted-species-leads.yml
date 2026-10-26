@@ -1,0 +1,56 @@
+name: Grand World GBA - Scripted Species Leads
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/grandworld-gba-scripted-species-leads.yml'
+      - 'tools/grandworld/audit_scripted_species_leads.py'
+      - 'tools/grandworld/tests/test_audit_scripted_species_leads.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  only_new_gift_and_event_leads:
+    name: Inspect pinned game scripts for 13 unresolved species
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout isolated audit code
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Checkout pinned World event scripts
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+      - name: Run seven new tests; do not rerun already-passed evo or GBA suites
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p test_audit_scripted_species_leads.py -v
+      - name: Inventory actual direct gift/egg/scripted-wild opcodes for thirteen residual species
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/audit_scripted_species_leads.py \
+            world/data/maps --output game-event-leads.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('game-event-leads.json').read_text())
+          assert p['map_script_files_scanned'] >= 200
+          assert p['original_residual_no_grass_or_evolution_path']==13
+          assert (p['source_declared_gift_or_battle_species']
+                  + p['no_direct_map_script_command_identified'])==13
+          assert not p['species_obtainability_certified']
+          assert not p['rom_or_save_modified']
+          print('Source-only event lead classes',
+                p['source_declared_gift_or_battle_species'],
+                p['no_direct_map_script_command_identified'])
+          PY
+      - name: Publish only script-opcode evidence, never ROM or save data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: GBA_THIRTEEN_SCRIPTED_SPECIES_EVENT_LEADS
+          if-no-files-found: warn
+          path: game-event-leads.json
