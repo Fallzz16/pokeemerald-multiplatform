@@ -210,6 +210,11 @@ F.run(function()
       local moved=F.step(direction)
       F.idle(25)
       walked=walked+1
+      local xx,yy=F.pos()
+      if xx>=0 and yy>=0 and xx<w and yy<h then
+        local _,nowGrass=cell(xx,yy)
+        if nowGrass then visitedGrass=true end
+      end
       if not F.ow() then
         -- An encounter might interrupt movement. Inspect it next iteration.
       elseif not moved then
