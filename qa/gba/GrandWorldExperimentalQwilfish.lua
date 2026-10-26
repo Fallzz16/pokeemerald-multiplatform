@@ -179,6 +179,10 @@ F.run(function()
         battles,species,TARGET_SPECIES,walked))
       if species==TARGET_SPECIES then match=true;F.shot("real_qwilfish_encounter");break end
       if not flee() then lastReason="real RUN could not restore field";break end
+      -- The overworld callback can be restored before the field animation
+      -- accepts directions. Never memoize that transient input delay as a wall.
+      F.idle(95)
+      blocked={}
       if battles>=MAX_BATTLES then lastReason="encounter attempt budget reached";break end
     else
       local x,y=F.pos()
@@ -202,7 +206,19 @@ F.run(function()
             end
           end
         end
-        if not direction then lastReason="grass patch has no walkable neighbor";break end
+        if not direction then
+          -- NPCs and transition frames can invalidate temporary collision
+          -- observations. Recheck all four REAL map neighbors before giving up.
+          blocked={}
+          direction=firstGrassNeighbor(x,y,cell,blocked,w)
+          if not direction then
+            for _,d in ipairs(DIRS) do
+              local pass=cell(x+d[2],y+d[3])
+              if pass then direction=d[1];break end
+            end
+          end
+          if not direction then lastReason="grass patch has no statically walkable neighbor";break end
+        end
       end
       local dx,dy=0,0
       for _,d in ipairs(DIRS) do if d[1]==direction then dx,dy=d[2],d[3] end end
@@ -218,6 +234,7 @@ F.run(function()
       if not F.ow() then
         -- An encounter might interrupt movement. Inspect it next iteration.
       elseif not moved then
+        F.idle(50)
         blocked[nextKey]=true
         if walked>200 and not visitedGrass then
           lastReason="couldn't reach grass after many real steps";break
