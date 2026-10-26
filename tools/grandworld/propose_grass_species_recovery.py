@@ -142,7 +142,7 @@ def propose(path, maps_dir=None, grass_evidence=None):
         "route_map_types_checked": maps_dir is not None,
         "ocean_routes_excluded": maps_dir is not None,
         "real_emulator_grass_gate_applied": proof is not None,
-        "grass_map_evidence_run": proof["workflow_run_url"] if proof else None,
+        "grass_map_evidence_run": proof.get("workflow_run_url") if proof else None,
         "all_proposed_maps_have_observed_grass": proof is not None,
         "mapped_records": len(encounters),
         "original_land_species": len(land_global),
