@@ -36,6 +36,8 @@ on:
       - 'tools/grandworld/adapt_ptbr_healthboxes_qa.py'
       - 'tools/grandworld/tests/test_adapt_ptbr_healthboxes_qa.py'
       - 'tools/grandworld/tests/test_translate_ptbr_stage1.py'
+      - 'tools/grandworld/audit_gba_arm_link.py'
+      - 'tools/grandworld/tests/test_audit_gba_arm_link.py'
       - 'docs/GRANDWORLD_PTBR_TRANSLATION.md'
   workflow_dispatch:
 
@@ -123,6 +125,22 @@ jobs:
           set -euo pipefail
           make -C world modern -j2 2>&1 | tee ptbr-build.log
           test -s world/pokemonworld.gba
+      - name: Mandatory authentic ARM ELF symbol and GBA ROM audit
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/audit_gba_arm_link.py \
+            --elf world/pokemonworld.elf --rom world/pokemonworld.gba \
+            --output ptbr-gba-arm-link.json
+          python3 - <<'PY'
+          import json
+          audit = json.load(open('ptbr-gba-arm-link.json', encoding='utf-8'))
+          assert audit['target'] == 'GBA_ARM7TDMI_not_x86'
+          assert audit['verified'] and audit['undefined_strong_symbol_count'] == 0
+          assert audit['gba_header_checksum_valid']
+          assert not audit['original_rom_modified'] and not audit['player_saves_accessed']
+          print('Genuine GBA ELF: %s; unresolved strong symbols: %s' % (
+              audit['machine'], audit['undefined_strong_symbol_count']))
+          PY
       - name: Validate maps scripts battles and species
         shell: bash
         run: |
@@ -201,6 +219,7 @@ jobs:
             ptbr-coverage.json
             ptbr-draft-quality.json
             ptbr-budget.json
+            ptbr-gba-arm-link.json
             ptbr-evidence.json
             ptbr-m8-shadow.json
             ptbr-grass-only.json
