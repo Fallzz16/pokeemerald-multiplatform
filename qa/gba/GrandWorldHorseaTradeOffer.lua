@@ -51,7 +51,7 @@ local function npcPath(w,h,passable,blocked)
   if sx<0 or sy<0 or sx>=w or sy>=h then return nil end
   local function key(x,y) return y*w+x end
   local start=key(sx,sy)
-  local q={{sx,sy,start}},seen={[start]=true},parent={},head=1
+  local q,seen,parent,head={{sx,sy,start}},{[start]=true},{},1
   local finish,goal
   while q[head] do
     local v=q[head];head=head+1
