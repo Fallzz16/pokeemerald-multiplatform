@@ -15,7 +15,7 @@ import re
 import sys
 
 METHODS = ("water_mons", "rock_smash_mons", "fishing_mons")
-ROUTE = re.compile(r"^MAP_ROUTE[0-9]")
+ROUTE = re.compile(r"^MAP_ROUTE[0-9]+$")
 EXPECTED_SLOTS = 12
 
 
@@ -32,7 +32,24 @@ def active_species(encounter, method):
     return [x for x in species if x != "SPECIES_NONE"]
 
 
-def propose(path):
+def route_is_land_map(name, maps_dir):
+    """A land encounter table is not evidence the map itself is walkable land."""
+    if maps_dir is None:
+        return True  # Unit-fixture mode only; production CLI requires --maps-dir.
+    if not ROUTE.fullmatch(name):
+        return False
+    suffix = name[len("MAP_ROUTE"):]
+    info = Path(maps_dir) / ("Route" + suffix) / "map.json"
+    try:
+        data = json.loads(info.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise ValueError(f"missing or invalid route map metadata: {info}") from exc
+    if data.get("id") != name or not isinstance(data.get("map_type"), str):
+        raise ValueError(f"route map metadata mismatch: {info}")
+    return data["map_type"] == "MAP_TYPE_ROUTE"
+
+
+def propose(path, maps_dir=None):
     raw = Path(path).read_bytes()
     root = json.loads(raw)
     groups = [g for g in root["wild_encounter_groups"]
@@ -54,6 +71,8 @@ def propose(path):
         for entry in encounters:
             name = entry.get("map", "")
             if not isinstance(name, str) or not ROUTE.match(name) or name in used_maps or map_counts[name] != 1:
+                continue
+            if not route_is_land_map(name, maps_dir):
                 continue
             land = entry.get("land_mons")
             if not isinstance(land, dict) or land.get("encounter_rate", 0) <= 0:
@@ -94,7 +113,9 @@ def propose(path):
         used_maps.add(route)
 
     return root, {
-        "version": 1, "source_sha256": hashlib.sha256(raw).hexdigest(),
+        "version": 2, "source_sha256": hashlib.sha256(raw).hexdigest(),
+        "route_map_types_checked": maps_dir is not None,
+        "ocean_routes_excluded": maps_dir is not None,
         "mapped_records": len(encounters),
         "original_land_species": len(land_global),
         "disabled_method_species_without_land": len(risk),
@@ -109,10 +130,10 @@ def propose(path):
     }
 
 
-def make_experimental_table(path, output):
+def make_experimental_table(path, output, maps_dir=None):
     original = Path(path)
     source_bytes = original.read_bytes()
-    root, report = propose(original)
+    root, report = propose(original, maps_dir=maps_dir)
     if not report["proposals"]:
         raise ValueError("no conservative same-route recovery entries to experiment with")
     group = next(g for g in root["wild_encounter_groups"] if g.get("label") == "gWildMonHeaders")
@@ -161,14 +182,16 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("source", type=Path)
     p.add_argument("--report", required=True, type=Path)
+    p.add_argument("--maps-dir", required=True, type=Path,
+                   help="Use real World map.json types; prohibit ocean routes")
     p.add_argument("--experimental-output", type=Path,
                    help="Write a SEPARATE candidate JSON. Never overwrites the real World data")
     args = p.parse_args()
     try:
         if args.experimental_output:
-            result = make_experimental_table(args.source, args.experimental_output)
+            result = make_experimental_table(args.source, args.experimental_output, maps_dir=args.maps_dir)
         else:
-            _, result = propose(args.source)
+            _, result = propose(args.source, maps_dir=args.maps_dir)
         args.report.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
         print(f"{result['proposed_count']} cautious same-route proposals; "
               f"{result['needs_manual_design_count']} still need manual region/biome design. "
