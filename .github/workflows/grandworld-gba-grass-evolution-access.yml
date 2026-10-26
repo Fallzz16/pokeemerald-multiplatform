@@ -1,0 +1,69 @@
+name: Grand World GBA - Evolution Paths for Grass-Only Gaps
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/grandworld-gba-grass-evolution-access.yml'
+      - 'tools/grandworld/audit_grass_evolution_access.py'
+      - 'tools/grandworld/tests/test_audit_grass_evolution_access.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  evolution_source_only:
+    name: Distinguish directly obtainable, evolution-dependent and unresolved
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Project audit code
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Original pinned World source for evolution graph
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+      - name: Only new source audit unit tests
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p test_audit_grass_evolution_access.py -v
+      - name: Create identical M8 integrated tables and 16 grass-evidenced candidate slots
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/integrate_world.py world
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply --with-gen5-trial
+          python3 grandworld/tools/grandworld/propose_grass_species_recovery.py \
+            world/src/data/wild_encounters.json --maps-dir world/data/maps \
+            --grass-evidence grandworld/qa/gba/verified_grass_tiles_20261026.json \
+            --report lineage-candidate-plan.json \
+            --experimental-output /tmp/lineage-only-candidate.json
+      - name: Audit original and proposed-source evolutionary paths without ROM rebuild
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/audit_grass_evolution_access.py \
+            --original world/src/data/wild_encounters.json \
+            --experimental /tmp/lineage-only-candidate.json \
+            --species-root world/src/data/pokemon \
+            --output evolution-lineage-risk.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('evolution-lineage-risk.json').read_text())
+          plan=json.loads(Path('lineage-candidate-plan.json').read_text())
+          assert r['original_species_at_risk']==36
+          assert r['direct_new_land_species']==plan['proposed_count']==16
+          assert sum(r['status_counts'].values())==36
+          assert not r['evolutions_usable_in_playthrough_confirmed']
+          assert not r['rom_modified'] and not r['saves_modified']
+          print('Strict original target:',r['original_species_at_risk'],'species; source evidence by category',r['status_counts'])
+          PY
+      - name: Upload only reproducible reports (no ROM or saves)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: GBA_GRASS_SPECIES_EVOLUTION_SOURCE_AUDIT
+          if-no-files-found: warn
+          path: |
+            evolution-lineage-risk.json
+            lineage-candidate-plan.json
