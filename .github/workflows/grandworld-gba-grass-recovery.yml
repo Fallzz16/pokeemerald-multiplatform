@@ -1,0 +1,79 @@
+name: Grand World GBA - Proposed Grass Species Recovery
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/grandworld-gba-grass-recovery.yml'
+      - 'tools/grandworld/propose_grass_species_recovery.py'
+      - 'tools/grandworld/tests/test_propose_grass_species_recovery.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  grass_recovery_source_only:
+    name: Plan same-route recovery; enforce no lost original species
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Isolated project checkout
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Pinned World source checkout
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+      - name: Test only new recovery invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_propose_grass_species_recovery.py' -v
+      - name: Materialize M8 wild tables in disposable World source checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/integrate_world.py world
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply --with-gen5-trial
+      - name: Propose and validate non-shipping same-route additions
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha_before=$(sha256sum world/src/data/wild_encounters.json | cut -d' ' -f1)
+          python3 grandworld/tools/grandworld/propose_grass_species_recovery.py \
+            world/src/data/wild_encounters.json --maps-dir world/data/maps --report grass-recovery-plan.json \
+            --experimental-output /tmp/grandworld-candidate-only-wild-encounters.json
+          sha_after=$(sha256sum world/src/data/wild_encounters.json | cut -d' ' -f1)
+          test "$sha_before" = "$sha_after"
+          python3 grandworld/tools/grandworld/audit_grass_only_access.py \
+            world/src/data/wild_encounters.json --output before-grass-access.json
+          python3 grandworld/tools/grandworld/audit_grass_only_access.py \
+            /tmp/grandworld-candidate-only-wild-encounters.json --output after-grass-access.json
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          p=json.loads(Path('grass-recovery-plan.json').read_text())
+          before=json.loads(Path('before-grass-access.json').read_text())
+          after=json.loads(Path('after-grass-access.json').read_text())
+          n=p['proposed_count']
+          assert n>0, 'no source-supported recovery proposals'
+          assert p['disabled_method_species_without_land']==before['disabled_method_species_not_in_any_land_table_count']
+          assert n+p['needs_manual_design_count']==before['disabled_method_species_not_in_any_land_table_count']
+          assert after['disabled_method_species_not_in_any_land_table_count']==before['disabled_method_species_not_in_any_land_table_count']-n
+          assert p['net_new_land_species_count']==n
+          assert not p['release_approved'] and not p['rom_emulator_verified']
+          assert not p['has_modified_game']
+          print(f"GBA experimental source plan: {n} provisional same-route recoveries, "
+                f"{p['needs_manual_design_count']} requiring manual biome/tiles review. "
+                "No default ROM, map or save edited.")
+          PY
+      - name: Preserve only evidence JSON (not ROM or candidate source table)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: GBA_GRASS_RECOVERY_DRAFT_PLAN
+          if-no-files-found: warn
+          path: |
+            grass-recovery-plan.json
+            before-grass-access.json
+            after-grass-access.json
