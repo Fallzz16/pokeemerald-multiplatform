@@ -7,7 +7,7 @@ package.path=here.."?.lua;"..package.path
 local S=require("symbols")
 -- Exact callbacks generated from THIS cartridge ELF; the function name occurs
 -- in several controller files, so picking the first address would be unsafe.
-local ACTION_FUNCS=dofile(here.."battle_action_callbacks.lua")
+local ACTION_FUNCS=dofile(here.."battle_action_callbacks.lua") -- interactive handlers, after DMA
 local mode=os.getenv("GW_CYCLE_MODE")
 assert(mode=="FLEE" or mode=="CAPTURE", "use GW_CYCLE_MODE=FLEE or CAPTURE")
 local F=require("lib").new(S,"GrandWorldWild"..(mode=="FLEE" and "Flee" or "Capture"))
@@ -143,17 +143,20 @@ F.run(function()
   F.check("physical walking triggered a battle without memory forcing",entered)
   F.check("the wild battle originated at a grass tile",entered and grass)
   if not entered then F.finish();return end
-  F.check("battle initialized a real opponent",F.battlers()>=2)
   local live=untilAction(16000)
-  F.check("player's real battle action menu became live",live)
+  F.check("player's real interactive battle action handler became live",live)
   if not live then F.finish();return end
+  F.idle(24)
+  F.check("battle initialized its actual player and opponent",F.battlers()>=2,
+    "battlers="..F.battlers())
   F.check("normal battle action selection starts at FIGHT",
     F.r8(S.gActionSelectionCursor)==0)
   F.shot("action_menu_"..mode)
   if mode=="FLEE" then
     tap("Down");tap("Right")
     F.check("GBA controller selected RUN action",
-      F.r8(S.gActionSelectionCursor)==ACTION_MENU_CURSOR)
+      F.r8(S.gActionSelectionCursor)==ACTION_MENU_CURSOR,
+      "cursor="..F.r8(S.gActionSelectionCursor))
     tap("A")
     local returned=comeBackToMap(16000)
     F.check("real RUN action returned to overworld",returned)
@@ -161,7 +164,8 @@ F.run(function()
     F.check("flee returns to the same route",F.grp()==ROUTE_GROUP and F.mapn()==ROUTE_MAP)
   else
     tap("Right")
-    F.check("GBA controller selected BAG action",F.r8(S.gActionSelectionCursor)==1)
+    F.check("GBA controller selected BAG action",F.r8(S.gActionSelectionCursor)==1,
+      "cursor="..F.r8(S.gActionSelectionCursor))
     tap("A")
     F.idle(180)
     local battleCallback=F.cb2()
