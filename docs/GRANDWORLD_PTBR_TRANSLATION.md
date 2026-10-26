@@ -218,3 +218,32 @@ caixas e progressao de todas as regioes continua obrigatorio para release.
   5.200 automaticas (210 destas revisadas posteriormente).
 - Proximo lote: priorizar falas e pontos de campanha nas tres regioes usando
   a auditoria, mantendo o jogo, saves e codigo de progresso intactos.
+
+
+## Regressao M8 de gameplay na ROM PT-BR (PR draft isolada)
+
+Apos a auditoria ARM #79, uma branch de QA separada adiciona uma etapa
+**obrigatoria** ao workflow PT-BR (alem das 51 suites World):
+
+- Executa no mGBA a captura/tutorial, hub com Pokemon carregado, seis
+  transicoes reais pelos atendentes entre Hoenn, Kanto e Johto, e a
+  travessia S.S. Aqua.
+- Exercita Save, reboot do nucleo GBA e Continue, incluindo a integridade
+  do Pokemon transportado e do identificador persistido do personagem.
+- Executa as seis identidades Brendan, May, Red, Leaf, Ethan e Lyra:
+  cada teste prepara a identidade por variavel persistente; **nao** testa
+  visualmente a tela de escolha, os sprites nem animacoes de todas as opcoes.
+- Mede OAM visivel no RegionHub, mas **nao** comprova FPS, CPU ou todos
+  os cenarios de desempenho.
+- Reusa geradores/testes da M8 e `qa_acceptance.load_suite_proof`;
+  exige 13 resultados exatos do emulador (813 checagens no total).
+  Qualquer PASS ausente, incompleto, contraditorio ou de outro MD5
+  faz o CI falhar. Relatorio JSON registra SHA256 da ROM exata executada.
+- Preserva saves pessoais, a ROM inglesa e branches anteriores; somente
+  o checkout descartavel dos testes e modificado.
+
+**Esta secao descreve a cobertura exigida, e nao o resultado do CI.**
+Aprovacao so depois de rodar efetivamente o workflow no HEAD desta branch.
+Mesmo com 813/813 aprovacoes, continuam pendentes homologacao visual de
+seis protagonistas, 24 ginasios, tres Ligas, performance sustentada,
+compativel save antigo e revisao completa da traducao. Release nao autorizado.
