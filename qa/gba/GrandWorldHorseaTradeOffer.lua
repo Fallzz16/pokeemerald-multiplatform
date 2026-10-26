@@ -22,6 +22,96 @@ local function trader()
   return nil
 end
 
+-- Compute a real field route around furniture and object collisions, instead
+-- of the lib.leg axis-first helper, which correctly stopped at (4,6).
+local GOALS={
+  {4,3,"Up"}, {5,2,"Left"}, {3,2,"Right"}, {4,1,"Down"},
+}
+local DIRS={
+  {"Up",0,-1},{"Left",-1,0},{"Right",1,0},{"Down",0,1},
+}
+local function grid()
+  local b=S.gBackupMapLayout
+  local width=F.r32(b+S.BackupMapLayout.width)
+  local height=F.r32(b+S.BackupMapLayout.height)
+  local ptr=F.r32(b+S.BackupMapLayout.map)
+  local w,h=width-15,height-14
+  if w<1 or h<1 or w>500 or h>500 or w*h>35000
+    or ptr<0x02000000 or ptr>=0x02040000 then return nil end
+  local function passable(x,y)
+    if x<0 or y<0 or x>=w or y>=h then return false end
+    local block=F.r16(ptr+2*((x+7)+(y+7)*width))
+    return (block&0x0C00)==0
+  end
+  return w,h,passable
+end
+
+local function npcPath(w,h,passable,blocked)
+  local sx,sy=F.pos()
+  if sx<0 or sy<0 or sx>=w or sy>=h then return nil end
+  local function key(x,y) return y*w+x end
+  local start=key(sx,sy)
+  local q={{sx,sy,start}},seen={[start]=true},parent={},head=1
+  local finish,goal
+  while q[head] do
+    local v=q[head];head=head+1
+    for _,t in ipairs(GOALS) do
+      if v[1]==t[1] and v[2]==t[2] then finish=v[3];goal=t;break end
+    end
+    if finish then break end
+    for _,d in ipairs(DIRS) do
+      local x,y=v[1]+d[2],v[2]+d[3]
+      local k=key(x,y)
+      if not seen[k] and not blocked[k] and passable(x,y) then
+        seen[k]=true;parent[k]={v[3],d[1]}
+        q[#q+1]={x,y,k}
+      end
+    end
+  end
+  if not finish then return nil end
+  local steps={}
+  while finish~=start do
+    local p=parent[finish]
+    if not p then return nil end
+    table.insert(steps,1,p[2])
+    finish=p[1]
+  end
+  return steps,goal
+end
+
+local function reachTrader()
+  local w,h,passable=grid()
+  if not w then return false,nil,nil,nil end
+  local blocked,lastDir={},nil
+  local reverse={Up="Down",Down="Up",Left="Right",Right="Left"}
+  for attempt=1,85 do
+    local path,goal=npcPath(w,h,passable,blocked)
+    if not path then
+      F.L("  npc-path exhausted collision graph after "..attempt.." attempts")
+      return false,nil,nil,nil
+    end
+    if #path==0 then
+      return true,goal[3],lastDir and reverse[lastDir] or nil,goal
+    end
+    local dir=path[1]
+    local x0,y0=F.pos()
+    F.step(dir);F.idle(15)
+    local x1,y1=F.pos()
+    if not F.ow() then return false,nil,nil,nil end
+    if x1==x0 and y1==y0 then
+      for _,d in ipairs(DIRS) do
+        if d[1]==dir then
+          blocked[(y0+d[3])*w+x0+d[2]]=true
+          F.L(string.format("  blocked NPC/furniture at (%d,%d) -> %s",x0,y0,dir))
+        end
+      end
+    else
+      lastDir=dir
+    end
+  end
+  return false,nil,nil,nil
+end
+
 F.run(function()
   client.speedmode(800)
   local started=F.boot(100)
@@ -40,20 +130,21 @@ F.run(function()
   local npc=trader()
   F.check("trade NPC is spawned at real map object coordinates",
     npc~=nil,"npc="..tostring(npc and npc.i or "missing"))
-  local walk=F.leg(4,3)
+  local walk,facing,back,goal=reachTrader()
   local x,y=F.pos()
-  F.check("real directional inputs can stand directly before trade NPC",
-    walk and x==4 and y==3,"position="..x..","..y)
-  if not walk then F.finish();return end
+  F.check("real joypad navigation reached a tile adjacent to the Horsea trader",
+    walk and goal~=nil and x==goal[1] and y==goal[2],
+    "position="..x..","..y)
+  if not walk then F.shot("horse_trade_path_blocked");F.finish();return end
 
-  F.face("Up")
+  F.face(facing)
   F.press("A",2);F.idle(60)
   F.shot("horse_trader_first_offer")
   local xx,yy=F.pos()
-  local block=not F.step("Down")
+  local block=(back~=nil) and not F.step(back)
   local qx,qy=F.pos()
-  F.check("talking to the trader locked field movement for real dialogue",
-    block and xx==qx and yy==qy and xx==4 and yy==3,
+  F.check("dialogue with actual trader locks movement along known open path",
+    block and xx==qx and yy==qy,
     string.format("before=(%d,%d) after=(%d,%d)",xx,yy,qx,qy))
   F.check("talking without Bagon never marks Horsea trade completed",
     not tradeCompleted())
