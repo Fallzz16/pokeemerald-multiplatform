@@ -125,6 +125,34 @@ modificar o cabeçalho de identidade/saves antes de testes explícitos.
    apos compilar e executar boot/title no mGBA. Ainda faltam regressões visuais
    manuais de texto, seis protagonistas, saves e homologação para release.
 
+## Gate de gameplay real PT-BR — progresso M8
+
+Esta continuacao adiciona ao workflow PT-BR, DEPOIS das 51 suites World, dez
+suites adicionais executadas na ROM GBA PT-BR efetivamente compilada:
+
+- `GrandWorldHubParty` (94 verificacoes) e `GrandWorldSixRoutes` (167),
+  atraves dos scripts de portoes reais e equipe compartilhada.
+- `GrandWorldHeroSave` (37) e `GrandWorldSaveBrendan`, `May`,
+  `Red`, `Leaf`, `Ethan`, `Lyra` (38 cada): Save pelo jogo, reinicializacao
+  do nucleo e Continue, com identidades preparadas nas variaveis persistentes.
+- `GrandWorldCrossRegionSave` (176): seis viagens reais seguidas de
+  Save/reboot/Continue, equipe e personagem preservados.
+
+O gate novo exige **10 suites, 702 verificacoes**. O script
+`audit_ptbr_gba_progression.py` usa o verificador ja existente em
+`qa_acceptance.py`: recusa arquivo PASS ausente, total de assercoes errado,
+carimbo de outra ROM, arquivo FAIL conflitante ou ROM com header incorreto.
+O relatorio `ptbr-mgba-progression.json` guarda hash SHA-256 e provas das
+suites, nao a ROM nem arquivos de save. Em CI com erro, o job falha; nunca
+transformar estes testes em `continue-on-error` para ocultar regressao.
+
+**Limites:** estes testes exercitam gameplay *automatizado real* no mGBA;
+eles nao selecionam os seis avatares pela interface da introducao, nao
+certificam todas as campanhas/ginasios nem demonstram compatibilidade
+com saves antigos de jogadores. O projeto continua draft e sem aprovacao
+de release. Confirmar os novos resultados do proprio Actions, sem inferir
+aprovacao da M8 inglesa.
+
 ## Entrega e segurança
 
 O workflow grandworld-ptbr-stage1.yml compila a ROM GBA real, valida
