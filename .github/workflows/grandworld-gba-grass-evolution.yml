@@ -1,0 +1,70 @@
+name: Grand World GBA - Grass Species Level Evolution Audit
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/grandworld-gba-grass-evolution.yml'
+      - 'tools/grandworld/audit_grass_evolution_access.py'
+      - 'tools/grandworld/tests/test_audit_grass_evolution_access.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  static_evolution_gates:
+    name: Identify level evolution alternatives without retesting known GBA gameplay
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout isolated GBA tooling
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Checkout pinned source for real evolution tables
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+      - name: Run only new conditional level-evolution audit unit tests
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_audit_grass_evolution_access.py' -v
+      - name: Prepare M8 wild encounter source in disposable World checkout
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/integrate_world.py world
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply --with-gen5-trial
+          python3 grandworld/tools/grandworld/audit_grass_only_access.py \
+            world/src/data/wild_encounters.json --output grass-access.json
+          python3 grandworld/tools/grandworld/propose_grass_species_recovery.py \
+            world/src/data/wild_encounters.json --maps-dir world/data/maps \
+            --report grass-route-proposals.json
+      - name: Cross-check grass-only risk against nine source evolution generations
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/audit_grass_evolution_access.py \
+            --wild world/src/data/wild_encounters.json \
+            --access grass-access.json \
+            --plan grass-route-proposals.json \
+            --species-info-dir world/src/data/pokemon/species_info \
+            --output grass-evolution-access.json
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          a=json.loads(Path('grass-evolution-access.json').read_text())
+          used=sum(len(a[k]) for k in ('already_in_land_level_evolution',
+                                      'conditional_on_candidate_level_evolution',
+                                      'not_explained_by_direct_level_evolution'))
+          assert used+a['candidate_land_species']==a['at_risk_species']
+          assert a['source_species_records']>=300
+          assert a['source_level_only'] and not a['compiled_evolution_flags_verified']
+          assert not a['release_approved']
+          print('Verified source-only alternative classifications:',used,
+                'among',a['at_risk_species'],'risk species')
+          PY
+      - name: Save report only - no ROM or species art
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: GRAND_WORLD_GBA_GRASS_EVOLUTION_SOURCE_AUDIT
+          if-no-files-found: warn
+          path: grass-evolution-access.json
