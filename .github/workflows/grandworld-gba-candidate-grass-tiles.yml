@@ -1,17 +1,17 @@
-name: Grand World GBA - Candidate Tall Grass Tile Survey
+name: Grand World GBA - Evidence-Gated Grass Species Candidate
 on:
   pull_request:
     paths:
       - '.github/workflows/grandworld-gba-candidate-grass-tiles.yml'
       - 'tools/grandworld/propose_grass_species_recovery.py'
       - 'tools/grandworld/tests/test_propose_grass_species_recovery.py'
-      - 'qa/gba/GrandWorldProposedGrassTiles.lua'
+      - 'qa/gba/verified_grass_tiles_20261026.json'
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   tentative_cartridge:
-    name: Check whether experimental land encounters have actual GBA grass tiles
+    name: Apply only emulator-evidenced grass route proposals to experimental GBA
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     steps:
@@ -26,6 +26,10 @@ jobs:
           ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
           path: world
           fetch-depth: 0
+      - name: Guard unverified and zero-grass route choices with new unit tests
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_propose_grass_species_recovery.py' -v
       - name: Install ARM build tools with timeout
         timeout-minutes: 14
         run: |
@@ -47,7 +51,9 @@ jobs:
         run: |
           set -euo pipefail
           python3 grandworld/tools/grandworld/propose_grass_species_recovery.py \
-            world/src/data/wild_encounters.json --maps-dir world/data/maps --report candidate-route-additions.json \
+            world/src/data/wild_encounters.json --maps-dir world/data/maps \
+            --grass-evidence grandworld/qa/gba/verified_grass_tiles_20261026.json \
+            --report candidate-route-additions.json \
             --experimental-output /tmp/proposed_wild_encounters.json
           python3 grandworld/tools/grandworld/audit_grass_only_access.py \
             world/src/data/wild_encounters.json --output grass-species-before.json
@@ -88,87 +94,45 @@ jobs:
           Path('experimental-cartridge-proof.json').write_text(json.dumps(out,indent=2)+'\n')
           print(json.dumps(out,indent=2))
           PY
-      - name: Generate ROM-specific map coordinates and check Lua syntax
+      - name: Verify revised plan against recorded real GBA tile evidence
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
-          import json,re
+          import json
           plan=json.loads(Path('candidate-route-additions.json').read_text())
-          groups=json.loads(Path('world/data/maps/map_groups.json').read_text())
-          out=[]
-          for v in plan['proposals']:
-              name=v['map']
-              assert re.fullmatch(r'MAP_ROUTE[0-9]+',name),name
-              short='Route'+name.removeprefix('MAP_ROUTE')
-              found=[(gnum,group.index(short))
-                     for gnum,gname in enumerate(groups['group_order'])
-                     if short in (group:=groups[gname])]
-              assert len(found)==1,(name,found)
-              gn,mn=found[0]
-              out.append(dict(name=name,species=v['species'],group=gn,map=mn))
-          assert len(out)==plan['proposed_count'] and len(out)>0
-          def q(s):return json.dumps(s,ensure_ascii=True)
-          code='return {\n'+''.join(
-              f'  {{name={q(x["name"])}, species={q(x["species"])}, group={x["group"]}, map={x["map"]}}},\n'
-              for x in out)+'}\n'
-          Path('world/test/overworld/lua/proposed_grass_routes.lua').write_text(code)
-          Path('candidate-map-id-report.json').write_text(json.dumps(out,indent=2)+'\n')
-          print(f"Generated {len(out)} ROM-specific mapped proposals (no hardcoded IDs)")
-          PY
-          cp grandworld/qa/gba/GrandWorldProposedGrassTiles.lua world/test/overworld/lua/
-      - name: Build pinned mGBA with actual cartridge CPU and memory layout
-        run: |
-          set -euo pipefail
-          sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends cmake liblua5.4-dev lua5.4
-          luac5.4 -p world/test/overworld/lua/GrandWorldProposedGrassTiles.lua
-          luac5.4 -p world/test/overworld/lua/proposed_grass_routes.lua
-          git clone --filter=blob:none https://github.com/mgba-emu/mgba.git mgba
-          git -C mgba checkout 669817d03e4858e65d0b992bcd96d3009236cc1e
-          git -C mgba apply ../world/test/overworld/mgba/0001-headless-video-buffer-save-and-rtc.patch
-          cmake -S mgba -B mgba/build -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_BUILD_TYPE=Release -DBUILD_HEADLESS=ON -DENABLE_SCRIPTING=ON -DUSE_LUA=ON -DBUILD_QT=OFF -DBUILD_SDL=OFF -DUSE_FFMPEG=OFF -DUSE_DISCORD_RPC=OFF -DBUILD_SHARED=OFF -DBUILD_STATIC=ON
-          cmake --build mgba/build -j2 --target mgba-headless
-      - name: Survey grass metatile behaviour on only the 17 new candidate maps
-        shell: bash
-        timeout-minutes: 20
-        run: |
-          set -euo pipefail
-          cd world
-          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
-          export PW_OUT="$GITHUB_WORKSPACE/proposed-grass-tile-proofs/"
-          mkdir -p "$PW_OUT"
-          md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
-          PW_TIMEOUT=720 test/overworld/mgba-run.sh \
-            test/overworld/lua/GrandWorldProposedGrassTiles.lua "$PWD/pokemonworld.gba" \
-            | tee "$PW_OUT/GrandWorldProposedGrassTiles.stdout.log"
-          expected=$(python3 -c "import json; print(1 + 3*json.load(open('../candidate-route-additions.json'))['proposed_count'])")
-          test -s "$PW_OUT/GrandWorldProposedGrassTiles.PASS"
-          test ! -e "$PW_OUT/GrandWorldProposedGrassTiles.FAIL"
-          grep -Eq "^PASS $expected/$expected rom=$md5 .* suite=GrandWorldProposedGrassTiles$" "$PW_OUT/GrandWorldProposedGrassTiles.PASS"
-      - name: Record only proof for grass tile existence, not species availability
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          from pathlib import Path
-          import hashlib,json
-          plan=json.loads(Path('candidate-route-additions.json').read_text())
-          rom=Path('world/pokemonworld.gba').read_bytes()
-          proof={'rom_sha256':hashlib.sha256(rom).hexdigest(),
-                 'scanned_candidate_maps':plan['proposed_count'],
-                 'grass_tile_existence_verified':True,
-                 'all_candidate_tiles_accessible_by_walking_verified':False,
-                 'species_random_encounter_verified':False,
-                 'biome_plausibility_reviewed':False,
-                 'release_approved':False}
-          Path('proposed-grass-tile-proofs/grass-tile-report.json').write_text(json.dumps(proof,indent=2)+'\n')
-          print(json.dumps(proof,indent=2))
+          ev=json.loads(Path('grandworld/qa/gba/verified_grass_tiles_20261026.json').read_text())
+          before=json.loads(Path('grass-species-before.json').read_text())
+          after=json.loads(Path('grass-species-after.json').read_text())
+          counts=ev['verified_map_tall_grass_counts']
+          assert plan['real_emulator_grass_gate_applied']
+          assert plan['all_proposed_maps_have_observed_grass']
+          assert counts['MAP_ROUTE111']==0, 'real emulator found ZERO Route111 grass tiles'
+          assert all(counts.get(x['map'],0)>0 for x in plan['proposals'])
+          assert all(x['map']!='MAP_ROUTE111' for x in plan['proposals'])
+          assert after['disabled_method_species_not_in_any_land_table_count'] == (
+              before['disabled_method_species_not_in_any_land_table_count']-plan['proposed_count'])
+          assert plan['proposed_count']+plan['needs_manual_design_count']==before['disabled_method_species_not_in_any_land_table_count']
+          assert not plan['release_approved'] and not plan['grass_tiles_verified']
+          result={'source_evidence_run':ev['workflow_run_url'],
+                  'evidence_rom_md5':ev['rom_md5'],
+                  'experimental_arm_gba_build_passed':True,
+                  'candidate_land_species':plan['proposed_count'],
+                  'without_eligible_known_grass_route':plan['needs_manual_design_count'],
+                  'rejected_zero_grass_route':'MAP_ROUTE111',
+                  'all_remaining_candidate_maps_have_grass_evidence':True,
+                  'actual_new_species_spawn_and_catch_verified':False,
+                  'all_candidate_grass_reachable_verified':False,
+                  'biome_coherence_verified':False,'release_approved':False}
+          Path('emulator-evidence-gated-plan.json').write_text(json.dumps(result,indent=2)+'\n')
+          print(json.dumps(result,indent=2))
           PY
       - name: Store only reports and logs; no copyrighted ROM or saves
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: GBA_EXPERIMENTAL_GRASS_TILE_SURVEY
+          name: GBA_EVIDENCE_GATED_GRASS_RECOVERY
           if-no-files-found: warn
           path: |
             candidate-route-additions.json
@@ -176,5 +140,4 @@ jobs:
             grass-species-after.json
             experimental-cartridge-proof.json
             experimental-recovery-build.log
-            candidate-map-id-report.json
-            proposed-grass-tile-proofs/
+            emulator-evidence-gated-plan.json
