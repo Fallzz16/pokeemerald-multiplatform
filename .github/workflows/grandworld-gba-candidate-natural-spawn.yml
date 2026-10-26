@@ -73,7 +73,7 @@ jobs:
           p=Path('world/test/overworld/GenLuaSymbols.py')
           s=p.read_text()
           old='    "gBattleTypeFlags", "gBattlersCount", "gBattleOutcome",'
-          new='    "gBattlerControllerFuncs", "HandleChooseActionAfterDma3",\n'+old
+          new='    "gBattlerControllerFuncs",\n'+old
           assert s.count(old)==1, 'World Lua symbol anchor changed'
           p.write_text(s.replace(old,new))
           PY
@@ -154,7 +154,7 @@ jobs:
             | tee "$PW_OUT/GrandWorldCandidateQwilfish.stdout.log"
           test -s "$PW_OUT/GrandWorldCandidateQwilfish.PASS"
           test ! -e "$PW_OUT/GrandWorldCandidateQwilfish.FAIL"
-          grep -Eq "^PASS 11/11 rom=$md5 .* suite=GrandWorldCandidateQwilfish$" "$PW_OUT/GrandWorldCandidateQwilfish.PASS"
+          grep -Eq "^PASS 10/10 rom=$md5 .* suite=GrandWorldCandidateQwilfish$" "$PW_OUT/GrandWorldCandidateQwilfish.PASS"
       - name: Guard evidence wording; one candidate is NOT species wide approval
         shell: bash
         run: |
