@@ -1,0 +1,65 @@
+name: Grand World GBA - Grass Species Access Audit
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/grandworld-gba-encounter-access.yml'
+      - 'tools/grandworld/audit_grass_only_access.py'
+      - 'tools/grandworld/tests/test_audit_grass_only_access.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit_m8_encounter_tables:
+    name: Inspect access at all mapped World land/water/rock/fishing tables
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout isolated Grand World changes
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Checkout pinned World engine source (never edit upstream)
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          path: world
+      - name: Validate only the new access audit, not previously green GBA suites
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_audit_grass_only_access.py' -v
+      - name: Compose M8 and grass-only into disposable source checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/integrate_world.py world
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply --with-gen5-trial
+          python3 grandworld/tools/grandworld/add_hero_profiles.py world
+          python3 grandworld/tools/grandworld/add_kanto_avatar.py world
+          python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --shadows lean --report /tmp/encounter-overworld-budget.json
+          python3 grandworld/tools/grandworld/apply_grass_only.py world --apply --report /tmp/encounter-grass-policy.json
+      - name: Audit actual integrated map wild tables without gameplay or ROM rebuild
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/audit_grass_only_access.py \
+            world/src/data/wild_encounters.json --output grass-access-inventory.json
+          test -s grass-access-inventory.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('grass-access-inventory.json').read_text())
+          assert r['mapped_encounter_records'] >= 300
+          assert r['source_sha256'] and len(r['source_sha256']) == 64
+          assert not r['globally_unobtainable_species_proven']
+          print("GBA M8 source inventory:",r['mapped_encounter_records'],"maps",
+                r['disabled_method_species_not_in_any_land_table_count'],"species needing review")
+          PY
+      - name: Attach only source inventory (no ROM, saves, or commercial assets)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: GRAND_WORLD_GBA_GRASS_ACCESS_INVENTORY
+          if-no-files-found: warn
+          path: grass-access-inventory.json
