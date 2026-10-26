@@ -47,16 +47,19 @@ local function countGrass()
   local base=S.gBackupMapLayout
   local width=F.r32(base+S.BackupMapLayout.width)
   local height=F.r32(base+S.BackupMapLayout.height)
-  -- A completely unbounded scan could read outside actual EWRAM on a bad map.
-  if width<1 or width>512 or height<1 or height>512
-     or width*height>35000 then return -1,width,height end
+  -- fieldmap.c: backup width = map width + MAP_OFFSET_W(15);
+  -- backup height = map height + MAP_OFFSET_H(14).  Count ONLY the
+  -- actual map, not the connection borders or uninitialized padding.
+  local mapWidth,mapHeight=width-15,height-14
+  if mapWidth<1 or mapWidth>500 or mapHeight<1 or mapHeight>500
+     or mapWidth*mapHeight>35000 then return -1,mapWidth,mapHeight end
   local count=0
-  for y=0,height-1 do
-    for x=0,width-1 do
+  for y=0,mapHeight-1 do
+    for x=0,mapWidth-1 do
       if behavior(x,y)==2 then count=count+1 end
     end
   end
-  return count,width,height
+  return count,mapWidth,mapHeight
 end
 
 F.run(function()
