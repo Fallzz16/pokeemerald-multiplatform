@@ -49,7 +49,25 @@ def route_is_land_map(name, maps_dir):
     return data["map_type"] == "MAP_TYPE_ROUTE"
 
 
-def propose(path, maps_dir=None):
+def validated_grass_evidence(source):
+    """Only accept a pinned real-mGBA map grass report; missing maps are ineligible."""
+    if source is None:
+        return None
+    data = json.loads(Path(source).read_text(encoding="utf-8"))
+    counts = data.get("verified_map_tall_grass_counts")
+    if (data.get("schema") != 1
+        or data.get("pinned_engine_sha") != "15d3888b0d81322a04d3c71b0bce18948761ee44"
+        or data.get("metatile_behavior") != 2
+        or data.get("map_coordinates_exclude_border") is not True
+        or not isinstance(counts, dict) or len(counts) < 1):
+        raise ValueError("untrusted or incomplete actual GBA grass map evidence")
+    for name, value in counts.items():
+        if not ROUTE.fullmatch(name) or not isinstance(value, int) or value < 0:
+            raise ValueError(f"corrupt grass tile evidence: {name}")
+    return data
+
+
+def propose(path, maps_dir=None, grass_evidence=None):
     raw = Path(path).read_bytes()
     root = json.loads(raw)
     groups = [g for g in root["wild_encounter_groups"]
@@ -60,6 +78,9 @@ def propose(path, maps_dir=None):
     land_global = {s for e in encounters for s in active_species(e, "land_mons")}
     disabled = {s for e in encounters for method in METHODS for s in active_species(e, method)}
     risk = sorted(disabled - land_global)
+    proof = validated_grass_evidence(grass_evidence)
+    if proof is not None and maps_dir is None:
+        raise ValueError("real grass proof requires real map metadata")
     used_maps = set()
     map_counts = Counter(e.get('map') for e in encounters)
     proposals, blocked = [], []
@@ -73,6 +94,10 @@ def propose(path, maps_dir=None):
             if not isinstance(name, str) or not ROUTE.match(name) or name in used_maps or map_counts[name] != 1:
                 continue
             if not route_is_land_map(name, maps_dir):
+                continue
+            # If a route is absent from the real emulator survey, it is
+            # unverified, not automatically eligible. No source-only guess.
+            if proof is not None and proof["verified_map_tall_grass_counts"].get(name, 0) <= 0:
                 continue
             land = entry.get("land_mons")
             if not isinstance(land, dict) or land.get("encounter_rate", 0) <= 0:
@@ -116,6 +141,9 @@ def propose(path, maps_dir=None):
         "version": 2, "source_sha256": hashlib.sha256(raw).hexdigest(),
         "route_map_types_checked": maps_dir is not None,
         "ocean_routes_excluded": maps_dir is not None,
+        "real_emulator_grass_gate_applied": proof is not None,
+        "grass_map_evidence_run": proof["workflow_run_url"] if proof else None,
+        "all_proposed_maps_have_observed_grass": proof is not None,
         "mapped_records": len(encounters),
         "original_land_species": len(land_global),
         "disabled_method_species_without_land": len(risk),
@@ -130,10 +158,10 @@ def propose(path, maps_dir=None):
     }
 
 
-def make_experimental_table(path, output, maps_dir=None):
+def make_experimental_table(path, output, maps_dir=None, grass_evidence=None):
     original = Path(path)
     source_bytes = original.read_bytes()
-    root, report = propose(original, maps_dir=maps_dir)
+    root, report = propose(original, maps_dir=maps_dir, grass_evidence=grass_evidence)
     if not report["proposals"]:
         raise ValueError("no conservative same-route recovery entries to experiment with")
     group = next(g for g in root["wild_encounter_groups"] if g.get("label") == "gWildMonHeaders")
@@ -184,14 +212,16 @@ def main():
     p.add_argument("--report", required=True, type=Path)
     p.add_argument("--maps-dir", required=True, type=Path,
                    help="Use real World map.json types; prohibit ocean routes")
+    p.add_argument("--grass-evidence", type=Path,
+                   help="Optional PINNED real mGBA map tile counts; block zero/unknown maps")
     p.add_argument("--experimental-output", type=Path,
                    help="Write a SEPARATE candidate JSON. Never overwrites the real World data")
     args = p.parse_args()
     try:
         if args.experimental_output:
-            result = make_experimental_table(args.source, args.experimental_output, maps_dir=args.maps_dir)
+            result = make_experimental_table(args.source, args.experimental_output, maps_dir=args.maps_dir, grass_evidence=args.grass_evidence)
         else:
-            _, result = propose(args.source, maps_dir=args.maps_dir)
+            _, result = propose(args.source, maps_dir=args.maps_dir, grass_evidence=args.grass_evidence)
         args.report.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
         print(f"{result['proposed_count']} cautious same-route proposals; "
               f"{result['needs_manual_design_count']} still need manual region/biome design. "
