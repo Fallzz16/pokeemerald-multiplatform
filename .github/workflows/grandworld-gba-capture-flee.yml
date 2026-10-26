@@ -57,7 +57,7 @@ jobs:
           p=Path('world/test/overworld/GenLuaSymbols.py')
           s=p.read_text()
           old='    "gBattleTypeFlags", "gBattlersCount", "gBattleOutcome",'
-          new='    "gBattlerControllerFuncs", "HandleChooseActionAfterDma3",\n'+old
+          new='    "gBattlerControllerFuncs",\n'+old
           assert s.count(old)==1, 'World Lua symbol anchor changed'
           p.write_text(s.replace(old,new))
           PY
@@ -68,6 +68,27 @@ jobs:
           set -euo pipefail
           make -C world modern -j2 > intro-gba-build.log 2>&1
           test -s world/pokemonworld.gba
+      - name: Resolve every duplicated battle action callback from this exact ELF
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          proc=subprocess.run(['arm-none-eabi-nm','-S','world/pokemonworld.elf'],
+                              text=True,capture_output=True,check=True)
+          addresses=set()
+          for line in proc.stdout.splitlines():
+              items=line.split()
+              if len(items)==4 and items[-1]=='HandleChooseActionAfterDma3':
+                  v=int(items[0],16)
+                  assert 0x08000000<=v<0x0A000000,hex(v)
+                  addresses.add(v)
+          assert 2<=len(addresses)<=8, 'expected distinct player/battle action callbacks'
+          target=Path('world/test/overworld/lua/battle_action_callbacks.lua')
+          target.write_text('return {'+', '.join(f'0x{x:08x}' for x in sorted(addresses))+'}\n')
+          print('battle controller callbacks: '+', '.join(hex(x) for x in sorted(addresses)))
+          PY
       - name: Build known pinned headless mGBA
         run: |
           set -euo pipefail
