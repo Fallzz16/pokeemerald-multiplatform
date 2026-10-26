@@ -183,6 +183,58 @@ jobs:
           timeout --signal=TERM --kill-after=10s 420s env PW_TIMEOUT=75 test/overworld/run-all.sh "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/ptbr-world-51-suites.log" 2>&1
           grep -q 'green 51 / 51 expected' "$GITHUB_WORKSPACE/ptbr-world-51-suites.log"
           grep -q 'SWEEP OK - every expected suite produced a fresh PASS stamped rom=' "$GITHUB_WORKSPACE/ptbr-world-51-suites.log"
+      - name: Mandatory translated-ROM M8 travel, six heroes, real saves, battles and OAM
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Existing pinned-World Lua test scenarios are extended IN THE DISPOSABLE
+          # checkout. Their actual hub scripts and Save/Continue are not mocked.
+          python3 grandworld/tools/grandworld/extend_hub_party_qa.py \
+            world/test/overworld/lua/HubPassReCross.lua \
+            world/test/overworld/lua/GrandWorldHubParty.lua
+          python3 grandworld/tools/grandworld/extend_six_routes_qa.py \
+            world/test/overworld/lua/GrandWorldHubParty.lua \
+            world/test/overworld/lua/GrandWorldSixRoutes.lua
+          python3 grandworld/tools/grandworld/extend_story_save_qa.py \
+            world/test/overworld/lua/StoryProgress.lua \
+            world/test/overworld/lua/GrandWorldHeroSave.lua
+          python3 grandworld/tools/grandworld/generate_hero_save_matrix.py \
+            world/test/overworld/lua/GrandWorldHeroSave.lua world/test/overworld/lua
+          python3 grandworld/tools/grandworld/extend_cross_region_save_qa.py \
+            world/test/overworld/lua/GrandWorldSixRoutes.lua \
+            world/test/overworld/lua/GrandWorldCrossRegionSave.lua
+          python3 grandworld/tools/grandworld/fix_catch_tutorial_input.py \
+            world/test/overworld/lua/CatchTutorial.lua
+          cp grandworld/tools/grandworld/lua/GrandWorldOamBudget.lua \
+            world/test/overworld/lua/GrandWorldOamBudget.lua
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          # Each mGBA run starts on a disposable test state. A crashing, partial,
+          # stale or wrong-ROM PASS can never satisfy the final evidence audit.
+          for suite in \
+            CatchTutorial GrandWorldHubParty GrandWorldSixRoutes \
+            GrandWorldHeroSave GrandWorldSaveBrendan GrandWorldSaveMay \
+            GrandWorldSaveRed GrandWorldSaveLeaf GrandWorldSaveEthan \
+            GrandWorldSaveLyra SSAquaKantoCrossing GrandWorldCrossRegionSave \
+            GrandWorldOamBudget; do
+            echo "TEST: $suite, localized GBA ROM"
+            timeout --signal=TERM --kill-after=10s 540s env PW_TIMEOUT=480 \
+              test/overworld/mgba-run.sh "test/overworld/lua/${suite}.lua" \
+              "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/ptbr-m8-${suite}.log" 2>&1 || {
+                tail -n 100 "$GITHUB_WORKSPACE/ptbr-m8-${suite}.log"
+                exit 1
+              }
+            grep -E 'VERDICT .*PASS' "$GITHUB_WORKSPACE/ptbr-m8-${suite}.log"
+          done
+          cd "$GITHUB_WORKSPACE"
+          python3 grandworld/tools/grandworld/audit_ptbr_m8_gameplay.py \
+            world/pokemonworld.gba world --output ptbr-m8-gameplay-evidence.json
+          python3 - <<'PY'
+          import json
+          a=json.load(open('ptbr-m8-gameplay-evidence.json',encoding='utf-8'))
+          assert a['all_required_checks_passed'] and a['verified_suites']==13
+          assert a['verified_checks']==813 and not a['release_approved']
+          PY
       - name: Verify GBA memory and checksum; produce pinned manifest
         run: |
           set -euo pipefail
@@ -195,13 +247,18 @@ jobs:
           assert rom[0xb2]==0x96 and (sum(rom[0xa0:0xbd])+rom[0xbd]+0x19)%256==0
           budget=json.loads(Path('ptbr-budget.json').read_text())
           report=json.loads(Path('ptbr-report.json').read_text())
+          runtime=json.loads(Path('ptbr-m8-gameplay-evidence.json').read_text())
           sha=hashlib.sha256(rom).hexdigest()
           assert budget['rom_sha256']==sha and budget['memory_budget_passed']
+          assert runtime['rom_sha256']==sha and runtime['verified_checks']==813
+          assert runtime['all_required_checks_passed'] and not runtime['release_approved']
           out={'locale':'pt-BR','stage':1,'rom_sha256':sha,
                'rom_bytes':len(rom),
                'grandworld_commit':subprocess.check_output(['git','-C','grandworld','rev-parse','HEAD'],text=True).strip(),
                'world_commit':subprocess.check_output(['git','-C','world','rev-parse','HEAD'],text=True).strip(),
                'translated_entries':report['translation_entries'],
+               'm8_verified_suites':runtime['verified_suites'],
+               'm8_verified_checks':runtime['verified_checks'],
                'gameplay_certified':False,'full_translation_complete':False,
                'release_approved':False}
           Path('ptbr-evidence.json').write_text(json.dumps(out,indent=2)+'\n')
@@ -228,5 +285,7 @@ jobs:
             ptbr-smoke-boot.log
             ptbr-smoke-title.log
             ptbr-world-51-suites.log
+            ptbr-m8-gameplay-evidence.json
+            ptbr-m8-*.log
             world/_pwtest/*.sweep.out
             world/_pwtest/*.FAIL
