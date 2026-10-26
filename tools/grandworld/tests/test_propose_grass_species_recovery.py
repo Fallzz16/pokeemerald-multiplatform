@@ -124,6 +124,52 @@ class RecoveryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "missing or invalid route map"):
             mod.propose(self.path, maps_dir=maps)
 
+    def test_actual_gba_evidence_blocks_zero_grass_route(self):
+        maps=Path(self.tmp.name)/"maps"
+        for name in ("Route30","Route31"):
+            p=maps/name
+            p.mkdir(parents=True)
+            (p/"map.json").write_text(json.dumps({
+                "id":"MAP_"+name.upper(),"map_type":"MAP_TYPE_ROUTE"}))
+        evidence=Path(self.tmp.name)/"real_emulator_tiles.json"
+        evidence.write_text(json.dumps({
+            "schema":1,
+            "pinned_engine_sha":"15d3888b0d81322a04d3c71b0bce18948761ee44",
+            "metatile_behavior":2,
+            "map_coordinates_exclude_border":True,
+            "workflow_run_url":"https://example.invalid/rom-proof",
+            "verified_map_tall_grass_counts":{"MAP_ROUTE30":0,"MAP_ROUTE31":15},
+        }))
+        _,out=mod.propose(self.path,maps_dir=maps,grass_evidence=evidence)
+        self.assertEqual(out["proposed_count"],1)
+        self.assertTrue(out["real_emulator_grass_gate_applied"])
+        self.assertEqual(out["proposals"][0]["map"],"MAP_ROUTE31")
+        self.assertEqual(out["proposals"][0]["species"],"SPECIES_MAGIKARP")
+        self.assertIn("SPECIES_BUIZEL",[q["species"] for q in out["blocked"]])
+
+    def test_unverified_route_never_defaults_to_grass(self):
+        maps=Path(self.tmp.name)/"maps"
+        for name in ("Route30","Route31"):
+            p=maps/name
+            p.mkdir(parents=True)
+            (p/"map.json").write_text(json.dumps({
+                "id":"MAP_"+name.upper(),"map_type":"MAP_TYPE_ROUTE"}))
+        evidence=Path(self.tmp.name)/"partial_map_evidence.json"
+        evidence.write_text(json.dumps({
+            "schema":1,"pinned_engine_sha":"15d3888b0d81322a04d3c71b0bce18948761ee44",
+            "metatile_behavior":2,"map_coordinates_exclude_border":True,
+            "verified_map_tall_grass_counts":{"MAP_ROUTE31":20},
+        }))
+        _,out=mod.propose(self.path,maps_dir=maps,grass_evidence=evidence)
+        self.assertEqual(out["proposed_count"],1)
+        self.assertEqual(out["proposals"][0]["map"],"MAP_ROUTE31")
+
+    def test_corrupt_emulator_proof_rejected(self):
+        invalid=Path(self.tmp.name)/"not_verifiable.json"
+        invalid.write_text(json.dumps({"schema":1,"verified_map_tall_grass_counts":{"MAP_ROUTE30":2}}))
+        with self.assertRaisesRegex(ValueError,"untrusted or incomplete"):
+            mod.propose(self.path,maps_dir=Path(self.tmp.name),grass_evidence=invalid)
+
     def test_rejects_truncated_table(self):
         self.data["wild_encounter_groups"][0]["encounters"]=[self.a]
         self.save()
