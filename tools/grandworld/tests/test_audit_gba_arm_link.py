@@ -1,12 +1,23 @@
 """GBA-only ARM linker audit: no Windows/SDL2 symbols are required."""
+import importlib.util
 from pathlib import Path
 import struct
 import tempfile
 import unittest
 
-from tools.grandworld.audit_gba_arm_link import (
-    AuditError, ROM_SIZE, analyze, inspect_elf_header, inspect_rom, parse_nm_posix,
-)
+# CI checks out Grand World under grandworld/; import the exact sibling tool,
+# independently of the repository's current working directory.
+SCRIPT = Path(__file__).resolve().parents[1] / "audit_gba_arm_link.py"
+spec = importlib.util.spec_from_file_location("grandworld_gba_arm_audit", SCRIPT)
+audit_module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(audit_module)
+
+AuditError = audit_module.AuditError
+ROM_SIZE = audit_module.ROM_SIZE
+analyze = audit_module.analyze
+inspect_elf_header = audit_module.inspect_elf_header
+inspect_rom = audit_module.inspect_rom
+parse_nm_posix = audit_module.parse_nm_posix
 
 GOOD_DEFINED = ("Start T 08000000 00000004\n"
                 "Init T 08000004 00000050\n"
