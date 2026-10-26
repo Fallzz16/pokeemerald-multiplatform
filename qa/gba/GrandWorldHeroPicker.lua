@@ -43,6 +43,7 @@ local function heroVar(id)
 end
 
 F.run(function()
+  client.speedmode(800)
   F.check("real ARM build exposes Oak gender and hero task symbols",
     S.Task_OakSpeech_HandleGenderInput >= 0x08000000
     and S.Task_OakSpeech_HandleOutfitInput >= 0x08000000
