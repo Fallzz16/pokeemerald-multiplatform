@@ -12,7 +12,6 @@ import hashlib
 import json
 from pathlib import Path
 import re
-import shutil
 import sys
 
 METHODS = ("water_mons", "rock_smash_mons", "fishing_mons")
@@ -45,6 +44,7 @@ def propose(path):
     disabled = {s for e in encounters for method in METHODS for s in active_species(e, method)}
     risk = sorted(disabled - land_global)
     used_maps = set()
+    map_counts = Counter(e.get('map') for e in encounters)
     proposals, blocked = [], []
 
     # Deterministic decisions: prefer a route with >=12 conventional land slots,
@@ -53,7 +53,7 @@ def propose(path):
         candidates = []
         for entry in encounters:
             name = entry.get("map", "")
-            if not isinstance(name, str) or not ROUTE.match(name):
+            if not isinstance(name, str) or not ROUTE.match(name) or name in used_maps or map_counts[name] != 1:
                 continue
             land = entry.get("land_mons")
             if not isinstance(land, dict) or land.get("encounter_rate", 0) <= 0:
@@ -75,11 +75,11 @@ def propose(path):
             # Replace the last copy of the most-repeated incumbent,
             # guaranteeing that incumbent stays available on THIS same map.
             i, replace = max(redundant, key=lambda t: (counts[t[1]], t[0]))
-            candidates.append((name in used_maps, -counts[replace], name, i, replace, method, entry))
+            candidates.append((-counts[replace], name, i, replace, method, entry))
         if not candidates:
-            blocked.append({"species": species, "reason": "no verified source-table route with land-slot duplicate; manual map/biome review required"})
+            blocked.append({"species": species, "reason": "no unique same-route land table with replaceable duplicate; manual grass-tile/biome review required"})
             continue
-        _, _, route, slot, replace, method, entry = min(candidates, key=lambda t: t[:4])
+        _, route, slot, replace, method, entry = min(candidates, key=lambda t: t[:3])
         proposal = {
             "species": species, "map": route, "slot": slot,
             "replaces_one_duplicate_of": replace,
