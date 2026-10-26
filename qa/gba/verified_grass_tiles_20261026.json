@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "evidence_type": "ROM-bound headless mGBA grass-metatile scan",
+  "workflow_run_url": "https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40311777168",
+  "rom_md5": "E9A407D73BF4194E0D069E138F1133E3",
+  "pinned_engine_sha": "15d3888b0d81322a04d3c71b0bce18948761ee44",
+  "metatile_behavior": 2,
+  "map_coordinates_exclude_border": true,
+  "verified_map_tall_grass_counts": {
+    "MAP_ROUTE111": 0,
+    "MAP_ROUTE30": 192,
+    "MAP_ROUTE118": 110,
+    "MAP_ROUTE47": 111,
+    "MAP_ROUTE102": 143,
+    "MAP_ROUTE45": 357,
+    "MAP_ROUTE28": 218,
+    "MAP_ROUTE114": 88,
+    "MAP_ROUTE103": 92,
+    "MAP_ROUTE104": 126,
+    "MAP_ROUTE35": 116,
+    "MAP_ROUTE44": 64,
+    "MAP_ROUTE32": 227,
+    "MAP_ROUTE42": 46,
+    "MAP_ROUTE34": 446,
+    "MAP_ROUTE115": 20,
+    "MAP_ROUTE121": 140
+  },
+  "grass_metatile_is_accessible_verified": false,
+  "biome_and_battle_rate_approved": false,
+  "candidate_species_caught_on_each_map": false,
+  "release_approved": false
+}
