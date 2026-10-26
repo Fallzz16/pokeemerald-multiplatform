@@ -66,11 +66,11 @@ local function nearestGrass(ctx,sx,sy)
   if sx<0 or sy<0 or sx>=ctx.mw or sy>=ctx.mh then return nil end
   -- BFS over ROM-loaded field collision flags. Navigation still has to
   -- succeed with actual controller input before counting as accessible.
-  local q={{sx,sy}},seen={[sx..":"..sy]=true},parents={},head=1
+  local q,seen,parents,head={{sx,sy}},{[sx..":"..sy]=true},{},1
   while q[head] and head<=12000 do
     local p=q[head];head=head+1
     if behavior(ctx,p[1],p[2])==2 and walkable(ctx,p[1],p[2]) then
-      local result={},k=p[1]..":"..p[2]
+      local result,k={},p[1]..":"..p[2]
       while parents[k] do
         local n=parents[k]
         table.insert(result,1,n[2])
@@ -155,7 +155,7 @@ F.run(function()
     route~=nil,"warp=("..ox..","..oy..")")
   if not route then F.finish();return end
   F.L(string.format("  grass plan: from (%d,%d) to (%d,%d) in %d tiles",ox,oy,tx,ty,#route))
-  local landSteps,battleCount,found,enteredOnGrass=0,0,false,0
+  local landSteps,battleCount,found=0,0,false
   local visitedReachable=false
   local previous=nil
   local pathCursor=1
