@@ -38,6 +38,15 @@ on:
       - 'tools/grandworld/tests/test_translate_ptbr_stage1.py'
       - 'tools/grandworld/audit_gba_arm_link.py'
       - 'tools/grandworld/tests/test_audit_gba_arm_link.py'
+      - 'tools/grandworld/audit_ptbr_gba_progression.py'
+      - 'tools/grandworld/tests/test_audit_ptbr_gba_progression.py'
+      - 'tools/grandworld/extend_hub_party_qa.py'
+      - 'tools/grandworld/extend_six_routes_qa.py'
+      - 'tools/grandworld/extend_cross_region_save_qa.py'
+      - 'tools/grandworld/extend_story_save_qa.py'
+      - 'tools/grandworld/generate_hero_save_matrix.py'
+      - 'tools/grandworld/tests/test_extend_*.py'
+      - 'tools/grandworld/tests/test_generate_hero_save_matrix.py'
       - 'docs/GRANDWORLD_PTBR_TRANSLATION.md'
   workflow_dispatch:
 
@@ -183,6 +192,59 @@ jobs:
           timeout --signal=TERM --kill-after=10s 420s env PW_TIMEOUT=75 test/overworld/run-all.sh "$PWD/pokemonworld.gba" > "$GITHUB_WORKSPACE/ptbr-world-51-suites.log" 2>&1
           grep -q 'green 51 / 51 expected' "$GITHUB_WORKSPACE/ptbr-world-51-suites.log"
           grep -q 'SWEEP OK - every expected suite produced a fresh PASS stamped rom=' "$GITHUB_WORKSPACE/ptbr-world-51-suites.log"
+      - name: Prepare six-hero save and all six real region-gate Lua probes on PT-BR ROM
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/extend_hub_party_qa.py \
+            world/test/overworld/lua/HubPassReCross.lua \
+            world/test/overworld/lua/GrandWorldHubParty.lua
+          python3 grandworld/tools/grandworld/extend_six_routes_qa.py \
+            world/test/overworld/lua/GrandWorldHubParty.lua \
+            world/test/overworld/lua/GrandWorldSixRoutes.lua
+          python3 grandworld/tools/grandworld/extend_cross_region_save_qa.py \
+            world/test/overworld/lua/GrandWorldSixRoutes.lua \
+            world/test/overworld/lua/GrandWorldCrossRegionSave.lua
+          python3 grandworld/tools/grandworld/extend_story_save_qa.py \
+            world/test/overworld/lua/StoryProgress.lua \
+            world/test/overworld/lua/GrandWorldHeroSave.lua
+          python3 grandworld/tools/grandworld/generate_hero_save_matrix.py \
+            world/test/overworld/lua/GrandWorldHeroSave.lua \
+            world/test/overworld/lua/
+          git -C world diff --check
+      - name: Mandatory real mGBA travel and persistent Save Continue on PT-BR ROM
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
+          for entry in \
+            GrandWorldHubParty:94 \
+            GrandWorldSixRoutes:167 \
+            GrandWorldHeroSave:37 \
+            GrandWorldSaveBrendan:38 \
+            GrandWorldSaveMay:38 \
+            GrandWorldSaveRed:38 \
+            GrandWorldSaveLeaf:38 \
+            GrandWorldSaveEthan:38 \
+            GrandWorldSaveLyra:38 \
+            GrandWorldCrossRegionSave:176; do
+            suite=$(printf '%s' "$entry" | cut -d: -f1)
+            count=$(printf '%s' "$entry" | cut -d: -f2)
+            rm -f "_pwtest/$suite.PASS" "_pwtest/$suite.FAIL"
+            PW_TIMEOUT=480 test/overworld/mgba-run.sh \
+              "test/overworld/lua/$suite.lua" "$PWD/pokemonworld.gba" \
+              | tee "$GITHUB_WORKSPACE/ptbr-mgba-$suite.log"
+            test -s "_pwtest/$suite.PASS"
+            test ! -e "_pwtest/$suite.FAIL"
+            grep -Eq "^PASS $count/$count rom=$md5 .* suite=$suite$" \
+              "_pwtest/$suite.PASS"
+          done
+          cd ..
+          python3 grandworld/tools/grandworld/audit_ptbr_gba_progression.py world \
+            --output ptbr-mgba-progression.json
+          test -s ptbr-mgba-progression.json
       - name: Verify GBA memory and checksum; produce pinned manifest
         run: |
           set -euo pipefail
@@ -220,6 +282,8 @@ jobs:
             ptbr-draft-quality.json
             ptbr-budget.json
             ptbr-gba-arm-link.json
+            ptbr-mgba-progression.json
+            ptbr-mgba-*.log
             ptbr-evidence.json
             ptbr-m8-shadow.json
             ptbr-grass-only.json
