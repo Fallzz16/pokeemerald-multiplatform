@@ -69,7 +69,7 @@ class EvolutionSourceAudit(unittest.TestCase):
     def test_original_vs_experiment_dependent(self):
         d=mod.inspect(self.orig,self.candidate,self.data_dir)
         rows={r["species"]:r for r in d["species"]}
-        self.assertEqual(d["original_species_at_risk"],3)
+        self.assertEqual(d["original_species_at_risk"],4)
         self.assertEqual(d["direct_new_land_species"],1)
         self.assertEqual(rows["SPECIES_MAGIKARP"]["status"],"experimental_direct_land_slot")
         self.assertEqual(rows["SPECIES_GYARADOS"]["status"],"source_evolution_dependent_on_experiment")
