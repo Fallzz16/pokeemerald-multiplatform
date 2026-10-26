@@ -68,7 +68,7 @@ jobs:
           set -euo pipefail
           make -C world modern -j2 > intro-gba-build.log 2>&1
           test -s world/pokemonworld.gba
-      - name: Resolve every duplicated battle action callback from this exact ELF
+      - name: Resolve actual interactive battle action callbacks from this exact ELF
         shell: bash
         run: |
           set -euo pipefail
@@ -80,7 +80,7 @@ jobs:
           addresses=set()
           for line in proc.stdout.splitlines():
               items=line.split()
-              if len(items)==4 and items[-1]=='HandleChooseActionAfterDma3':
+              if len(items)==4 and items[-1]=='HandleInputChooseAction':
                   v=int(items[0],16)
                   assert 0x08000000<=v<0x0A000000,hex(v)
                   addresses.add(v)
