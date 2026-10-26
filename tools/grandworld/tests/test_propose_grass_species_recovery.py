@@ -101,6 +101,29 @@ class RecoveryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"already exists"):
             mod.make_experimental_table(self.path,out)
 
+    def test_ocean_route_not_proposed_as_walkable_grass(self):
+        maps = Path(self.tmp.name) / "maps"
+        for route, kind in [("Route30", "MAP_TYPE_OCEAN_ROUTE"),
+                            ("Route31", "MAP_TYPE_ROUTE")]:
+            d = maps / route
+            d.mkdir(parents=True)
+            (d / "map.json").write_text(json.dumps({
+                "id": "MAP_" + route.upper(),
+                "map_type": kind,
+            }))
+        _, plan = mod.propose(self.path, maps_dir=maps)
+        self.assertEqual(plan["proposed_count"], 1)
+        self.assertTrue(plan["ocean_routes_excluded"])
+        self.assertTrue(plan["route_map_types_checked"])
+        self.assertEqual(plan["proposals"][0]["species"], "SPECIES_MAGIKARP")
+        self.assertIn("SPECIES_BUIZEL", [v["species"] for v in plan["blocked"]])
+
+    def test_missing_route_metadata_fails_closed(self):
+        maps = Path(self.tmp.name) / "missing-maps"
+        maps.mkdir()
+        with self.assertRaisesRegex(ValueError, "missing or invalid route map"):
+            mod.propose(self.path, maps_dir=maps)
+
     def test_rejects_truncated_table(self):
         self.data["wild_encounter_groups"][0]["encounters"]=[self.a]
         self.save()
