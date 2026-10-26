@@ -46,7 +46,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 grandworld/tools/grandworld/propose_grass_species_recovery.py \
-            world/src/data/wild_encounters.json --report candidate-route-additions.json \
+            world/src/data/wild_encounters.json --maps-dir world/data/maps --report candidate-route-additions.json \
             --experimental-output /tmp/proposed_wild_encounters.json
           python3 grandworld/tools/grandworld/audit_grass_only_access.py \
             world/src/data/wild_encounters.json --output grass-species-before.json
