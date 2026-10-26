@@ -1,0 +1,186 @@
+name: Grand World GBA - Natural Candidate Qwilfish in Route32
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/grandworld-gba-natural-route32-qwilfish.yml'
+      - 'qa/gba/GrandWorldExperimentalQwilfish.lua'
+      - 'qa/gba/verified_grass_tiles_20261026.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: grandworld-route32-qwilfish-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  real_intro:
+    name: Prove experimental Route32 Qwilfish actually spawns in real wild battle
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Checkout isolated Grand World changes
+        uses: actions/checkout@v4
+        with:
+          path: grandworld
+      - name: Checkout pinned original World engine
+        uses: actions/checkout@v4
+        with:
+          repository: evilchinesefood/PKMN-World
+          ref: 15d3888b0d81322a04d3c71b0bce18948761ee44
+          fetch-depth: 0
+          path: world
+      - name: Install ARM toolchain and mGBA dependencies (bounded, fail closed)
+        timeout-minutes: 14
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          set -euo pipefail
+          echo 'APT update: bounded to 360s (prior runner stalled before game tests)'
+          timeout --signal=TERM --kill-after=15s 360s sudo apt-get update -o Acquire::Retries=1 -o Acquire::http::Timeout=25
+          echo 'APT installation: bounded to 420s, no interactive prompts'
+          timeout --signal=TERM --kill-after=15s 420s sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev cmake liblua5.4-dev lua5.4
+          command -v arm-none-eabi-gcc
+          luac5.4 -p grandworld/qa/gba/GrandWorldExperimentalQwilfish.lua
+      - name: Compose pinned GBA M8 and PT-BR without changing the source engine
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/integrate_world.py world
+          python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply --with-gen5-trial
+          python3 grandworld/tools/grandworld/add_hero_profiles.py world
+          python3 grandworld/tools/grandworld/add_kanto_avatar.py world
+          python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --shadows lean --report intro-shadow.json
+          python3 grandworld/tools/grandworld/apply_grass_only.py world --apply --report intro-grass.json
+          python3 grandworld/tools/grandworld/translate_ptbr_stage1.py world --apply --report intro-translation.json
+          cp grandworld/qa/gba/GrandWorldExperimentalQwilfish.lua world/test/overworld/lua/
+          python3 grandworld/tools/grandworld/propose_grass_species_recovery.py \
+            world/src/data/wild_encounters.json --maps-dir world/data/maps \
+            --grass-evidence grandworld/qa/gba/verified_grass_tiles_20261026.json \
+            --report route32-candidate-plan.json \
+            --experimental-output /tmp/qwilfish-candidate-only.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          plan=json.loads(Path('route32-candidate-plan.json').read_text())
+          matches=[r for r in plan['proposals'] if r['species']=='SPECIES_QWILFISH']
+          assert len(matches)==1 and matches[0]['map']=='MAP_ROUTE32'
+          assert matches[0]['slot']==5
+          groups=json.loads(Path('world/data/maps/map_groups.json').read_text())
+          coords=[(i,groups[g].index('Route32')) for i,g in enumerate(groups['group_order'])
+                  if 'Route32' in groups[g]]
+          assert len(coords)==1
+          a,b=coords[0]
+          Path('world/test/overworld/lua/experimental_species_target.lua').write_text(
+              f'return {{species="SPECIES_QWILFISH", mapName="MAP_ROUTE32", slot=5, group={a}, map={b}, monStride=0}}\n')
+          print(f"Qwilfish experimental map group={a} map={b}; no hardcoded map IDs")
+          PY
+          cp /tmp/qwilfish-candidate-only.json world/src/data/wild_encounters.json
+          # Add two test-only link symbols to the generated ROM-bound Lua symbol table.
+          # This modifies only a throwaway World checkout; the game code is untouched.
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('world/test/overworld/GenLuaSymbols.py')
+          s=p.read_text()
+          old='    "gBattleTypeFlags", "gBattlersCount", "gBattleOutcome",'
+          new='    "gBattlerControllerFuncs",\n'+old
+          assert s.count(old)==1, 'World Lua symbol anchor changed'
+          p.write_text(s.replace(old,new))
+          PY
+          git -C world diff --check
+      - name: Build PT-BR GBA cartridge for focused wild battle QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          make -C world modern -j2 > intro-gba-build.log 2>&1
+          test -s world/pokemonworld.gba
+      - name: Resolve actual interactive battle action callbacks from this exact ELF
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          proc=subprocess.run(['arm-none-eabi-nm','-S','world/pokemonworld.elf'],
+                              text=True,capture_output=True,check=True)
+          addresses=set()
+          for line in proc.stdout.splitlines():
+              items=line.split()
+              if len(items)==4 and items[-1]=='HandleInputChooseAction':
+                  v=int(items[0],16)
+                  assert 0x08000000<=v<0x0A000000,hex(v)
+                  addresses.add(v)
+          assert 2<=len(addresses)<=8, 'expected distinct player/battle action callbacks'
+          target=Path('world/test/overworld/lua/battle_action_callbacks.lua')
+          target.write_text('return {'+', '.join(f'0x{x:08x}' for x in sorted(addresses))+'}\n')
+          print('battle controller callbacks: '+', '.join(hex(x) for x in sorted(addresses)))
+          mon_entries=[(int(items[0],16),int(items[1],16))
+                       for line in proc.stdout.splitlines() if (items:=line.split())
+                       and len(items)==4 and items[-1]=='gBattleMons']
+          assert len(mon_entries)==1 and mon_entries[0][1]%4==0
+          stride=mon_entries[0][1]//4
+          assert 40<=stride<512 and stride%2==0,mon_entries
+          cfg=Path('world/test/overworld/lua/experimental_species_target.lua')
+          source=cfg.read_text()
+          assert source.count('monStride=0')==1
+          cfg.write_text(source.replace('monStride=0',f'monStride={stride}'))
+          print(f"BattlePokemon stride extracted from current ROM ELF = {stride}")
+          PY
+      - name: Build known pinned headless mGBA
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none https://github.com/mgba-emu/mgba.git mgba
+          git -C mgba checkout 669817d03e4858e65d0b992bcd96d3009236cc1e
+          git -C mgba apply ../world/test/overworld/mgba/0001-headless-video-buffer-save-and-rtc.patch
+          cmake -S mgba -B mgba/build -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_BUILD_TYPE=Release -DBUILD_HEADLESS=ON -DENABLE_SCRIPTING=ON -DUSE_LUA=ON -DBUILD_QT=OFF -DBUILD_SDL=OFF -DUSE_FFMPEG=OFF -DUSE_DISCORD_RPC=OFF -DBUILD_SHARED=OFF -DBUILD_STATIC=ON
+          cmake --build mgba/build -j2 --target mgba-headless
+      - name: Physically search Route32 tall grass for naturally spawned Qwilfish
+        shell: bash
+        timeout-minutes: 30
+        run: |
+          set -euo pipefail
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          export PW_OUT="$GITHUB_WORKSPACE/candidate-qwilfish-proof/"
+          mkdir -p "$PW_OUT"
+          md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
+          rm -f "$PW_OUT/GrandWorldExperimentalQwilfish.PASS" "$PW_OUT/GrandWorldExperimentalQwilfish.FAIL"
+          PW_TIMEOUT=1000 test/overworld/mgba-run.sh \
+            test/overworld/lua/GrandWorldExperimentalQwilfish.lua "$PWD/pokemonworld.gba" \
+            | tee "$PW_OUT/GrandWorldExperimentalQwilfish.stdout.log"
+          test -s "$PW_OUT/GrandWorldExperimentalQwilfish.PASS"
+          test ! -e "$PW_OUT/GrandWorldExperimentalQwilfish.FAIL"
+          grep -Eq "^PASS 8/8 rom=$md5 .* suite=GrandWorldExperimentalQwilfish$" \
+            "$PW_OUT/GrandWorldExperimentalQwilfish.PASS"
+      - name: Accept only exact ROM-bound wild encounter, never source-only proof
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,json,re
+          rom=Path('world/pokemonworld.gba').read_bytes()
+          md5=hashlib.md5(rom).hexdigest().upper()
+          proof=Path('candidate-qwilfish-proof/GrandWorldExperimentalQwilfish.PASS').read_text()
+          assert re.fullmatch(rf'PASS 8/8 rom={md5} at=[^\r\n]+ suite=GrandWorldExperimentalQwilfish\s*',proof)
+          stdout=Path('candidate-qwilfish-proof/GrandWorldExperimentalQwilfish.stdout.log').read_text()
+          assert 'TRUE runtime evidence: wild Route32 species 211 (Qwilfish)' in stdout
+          report={'rom_sha256':hashlib.sha256(rom).hexdigest(),
+                  'species':'SPECIES_QWILFISH','map':'MAP_ROUTE32',
+                  'natural_spawn_in_real_battle':True,
+                  'battle_forcing_or_rng_ram_writes':False,
+                  'all_16_candidate_species_observed':False,
+                  'all_region_habitats_verified':False,
+                  'release_approved':False}
+          Path('candidate-qwilfish-proof/result.json').write_text(json.dumps(report,indent=2)+'\n')
+          print(json.dumps(report,indent=2))
+          PY
+      - name: Keep only QA logs, screenshots, hashes and patches
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: GBA_EXP_ROUTE32_NATURAL_QWILFISH_PROOF
+          if-no-files-found: warn
+          path: |
+            candidate-qwilfish-proof/
+            intro-translation.json
+            intro-gba-build.log
+            intro-shadow.json
+            intro-grass.json
+            route32-candidate-plan.json
