@@ -78,7 +78,7 @@ class NpcPickerTests(unittest.TestCase):
     def test_all_192_short_labels_distinct_and_fit_without_clipping(self):
         import re
         source = gw.header_text(gw.HUMAN_NPCS)
-        labels = re.findall(r'sGWAvatarName\\d{3}\\[\\] = _\\("([^"]+)"\\)', source)
+        labels = re.findall(r'sGWAvatarName\d{3}\[\] = _\("([^"]+)"\)', source)
         self.assertEqual(len(labels), 192)
         self.assertEqual(len(labels), len(set(labels)))
         self.assertTrue(all(0 < len(x) <= 12 for x in labels))
