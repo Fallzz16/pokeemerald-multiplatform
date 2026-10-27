@@ -38,7 +38,7 @@ jobs:
           python3 -m py_compile grandworld/tools/grandworld/verify_master_visible.py grandworld/tools/grandworld/add_npc_avatar_picker.py
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_add_npc_avatar_picker.py' -v
       - name: Install real ARM GBA build toolchain
-        timeout-minutes: 25
+        timeout-minutes: 50
         env:
           DEBIAN_FRONTEND: noninteractive
         shell: bash
@@ -88,6 +88,11 @@ jobs:
           make -C world modern -j2 > master-visible-arm-build.log 2>&1
           test -s world/pokemonworld.gba
           arm-none-eabi-size world/pokemonworld.elf | tee master-visible-arm-sections.txt
+          # Reuse M8's already unit-tested strict linker budget gate.
+          # Reserve >= 1MiB ROM, 8KiB EWRAM and 2KiB IWRAM for runtime.
+          python3 grandworld/tools/grandworld/evaluate_performance_budget.py \
+            world/pokemonworld.gba master-visible-arm-build.log \
+            --output master-visible-performance-budget.json
       - name: Build pinned headless mGBA (real GBA video/joypad)
         shell: bash
         run: |
@@ -212,6 +217,7 @@ jobs:
             master-visible-translation.json
             master-visible-arm-build.log
             master-visible-arm-sections.txt
+            master-visible-performance-budget.json
             master-visible-result.json
             npc-avatar-catalog.json
             npc-avatar-proofs/
