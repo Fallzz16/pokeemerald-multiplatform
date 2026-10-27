@@ -185,3 +185,10 @@ First close the in-game trade UI loop in the existing PR #95. Next target a prev
 - Original `SilphCo_7F_Frlg` worker x=0,y=7 present; real controller walking/interacting; `givemon SPECIES_LAPRAS, 25` delivered actual encrypted party species 131; `FLAG_GOT_LAPRAS_FROM_SILPH` persisted, party count one, and game returned to original overworld without fatal screen.
 - This closes **gift-event runtime execution**, NOT normal Kanto/Silph campaign reachability. Test setup used the game's original debug warp into 7F on disposable cartridge; no debug Lapras or RAM-injected party/flag, no release ROM/save distribution.
 - Lapras should therefore be categorized **source-script + mGBA execution proven (with debug map access)**. It still needs normal-play campaign reachability and ordinary save continuation before being Pokédex-certified.
+
+
+### Bagon source trap: unused Safari Zone test script
+
+Do **not** count `SafariZoneGate_SafariZoneEntrance_EventScript_Test` as an ordinary, accessible Bagon gift. In pinned original World `15d3888b0d81322a04d3c71b0bce18948761ee44`, `data/maps/SafariZoneGate_SafariZoneEntrance/scripts.inc` declares `givemon SPECIES_BAGON, 5` inside that `_EventScript_Test`, but `data/maps/SafariZoneGate_SafariZoneEntrance/map.json` does not bind the script to any of its **10 object events**. This isolated source finding does **not** prove absolute unreachable status from every script/command, but the obvious map NPC path is absent. Do not mistake this debug/test convenience for normal player acquisition.
+
+The clean requirement for [PR #95's Horsea trade](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/95) remains: identify and mGBA-test a genuine original **Bagon grass encounter** and normal NPC access (without debug). The separate mGBA trade-execution proof remains valid.
