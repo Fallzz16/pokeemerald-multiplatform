@@ -51,3 +51,12 @@ All **16** remain **ON HOLD**. These are subjective habitat recommendations grou
 - [PR #97](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/97): Horsea -> Seadra level-32 original evolution, newly submitted; require focused CI PASS evidence before labeling it validated.
 
 **No physical GBA cartridge, production release, full Pokédex completion, story reachability or save compatibility regression was newly certified by this note.**
+
+
+## Source-verified grass-only policy caveat (27 Oct 2026)
+
+The actual repository script `tools/grandworld/apply_grass_only.py` inserts a guard into `src/wild_encounter.c` so `GW_GRASS_ONLY_WILD` allows non-scripted stepping encounters **only** on metatile behaviors `MetatileBehavior_IsPokeGrass` and `MetatileBehavior_IsAshGrass`. It also makes standard Fishing and Rock Smash encounters return early. This is a confirmed **source-code rule**, not a claim that all map behaviors were already surveyed.
+
+**Implication:** source-defined `land_mons` in caves may be unreachable under the current grass-only policy even when the land table and wild encounter rate are valid. A newly identified example is Bagon in original `MAP_METEOR_FALLS_B1F_2R` land slots 2/4/6. If all walkable floor tiles there are non-grass, normal walking cannot trigger its table, so the PR #95 debug-prepared Bagon trade chain would still not be naturally available. [PR #99](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/99) is validating original cave walking and natural Bagon acquisition with real ROM/mGBA controls. Wait for its evidence before a categorical statement about that map.
+
+For an authentic GBA design, distinguish (a) **no overworld roaming sprites**, from (b) **no wild encounters outside grass**. The former can be compatible with standard cave encounters and traditional rods/Surf, whereas the latter excludes significant ordinary species acquisition. **No game policy or source code should be changed automatically on this observation; review first and amend only in a small isolated branch with affected-case regression tests.**
