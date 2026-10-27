@@ -142,7 +142,7 @@ F.run(function()
   -- Give the REQUESTED species using the game's actual debug menus.
   -- This is test setup only; no species or party memory is injected.
   F.dbg();F.sel(3);F.sel(1)
-  F.spin(3,7,1) -- Bagon species ID 371 in this pinned World
+  F.spin(3,7,0) -- Debug spinner is one-based: this selects Bagon ID 371 (371 input gave Shelgon 372)
   F.spin(0,1,5) -- level 15 in the real 3-digit spinner
   F.idle(140);F.bOut(7);F.idle(85)
   F.check("debug Give Pokemon UI added precisely one legal party mon",
