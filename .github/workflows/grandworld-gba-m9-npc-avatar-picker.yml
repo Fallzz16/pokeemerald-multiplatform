@@ -9,6 +9,7 @@ on:
       - 'tools/grandworld/add_npc_avatar_picker.py'
       - 'tools/grandworld/tests/test_add_npc_avatar_picker.py'
       - 'qa/gba/GrandWorldNpcAvatar.lua'
+      - 'qa/gba/GrandWorldNpcAvatarContinue.lua'
   workflow_dispatch:
 permissions:
   contents: read
@@ -63,7 +64,27 @@ jobs:
           python3 grandworld/tools/grandworld/add_kanto_avatar.py world
           python3 grandworld/tools/grandworld/add_npc_avatar_picker.py world --apply --report npc-avatar-catalog.json
           cp grandworld/qa/gba/GrandWorldNpcAvatar.lua world/test/overworld/lua/
+          cp grandworld/qa/gba/GrandWorldNpcAvatarContinue.lua world/test/overworld/lua/
           luac5.4 -p world/test/overworld/lua/GrandWorldNpcAvatar.lua
+          luac5.4 -p world/test/overworld/lua/GrandWorldNpcAvatarContinue.lua
+          # Only the disposable runner's working copy is patched. The original
+          # user save, tracked fixture or GBA ROM is NEVER written by this.
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('world/test/overworld/mgba-run.sh')
+          s=p.read_text()
+          old='echo "exit code: $rc"\nexit $rc'
+          assert s.count(old)==1
+          new='''echo "exit code: $rc"
+          if [[ $rc -eq 0 && -n "${PW_SAVE_EXPORT:-}" ]]; then
+            test -s "$WORK/Verify1.sav"
+            cp "$WORK/Verify1.sav" "$PW_SAVE_EXPORT"
+            test -s "$PW_SAVE_EXPORT"
+            echo "Exported disposable flash fixture to test workspace only."
+          fi
+          exit $rc'''
+          p.write_text(s.replace(old,new))
+          PY
           python3 - <<'PY'
           from pathlib import Path
           p=Path('world/test/overworld/GenLuaSymbols.py')
@@ -154,6 +175,59 @@ jobs:
             grep -Eq "^PASS 13/13 rom=$md5 .* suite=GrandWorldNpcAvatar$" \
               "$PW_OUT/GrandWorldNpcAvatar.PASS"
           done
+      - name: Save chosen Brock avatar to actual flash then restart GBA emulator
+        timeout-minutes: 25
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          data=json.loads(Path('../npc-avatar-target-BROCK.json').read_text())
+          (Path('test/overworld/lua')/'gw_npc_avatar_target.lua').write_text(
+             "return {"+", ".join(f'{k}={v}' for k,v in data.items() if k!='name')+"}\n")
+          PY
+          expected=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
+          export PW_OUT="$GITHUB_WORKSPACE/npc-avatar-save-proofs/newgame/"
+          mkdir -p "$PW_OUT"
+          PW_NPC_SAVE_ROUNDTRIP=1 \
+            PW_SAVE_EXPORT="$GITHUB_WORKSPACE/npc-avatar-roundtrip.sav" \
+            PW_TIMEOUT=900 \
+            test/overworld/mgba-run.sh \
+              test/overworld/lua/GrandWorldNpcAvatar.lua "$PWD/pokemonworld.gba" \
+            | tee "$PW_OUT/GrandWorldNpcAvatar.stdout.log"
+          test -s "$GITHUB_WORKSPACE/npc-avatar-roundtrip.sav"
+          test "$(stat -c '%s' "$GITHUB_WORKSPACE/npc-avatar-roundtrip.sav")" -eq 131072
+          grep -Eq "^PASS 15/15 rom=$expected .* suite=GrandWorldNpcAvatar$" \
+            "$PW_OUT/GrandWorldNpcAvatar.PASS"
+          export PW_OUT="$GITHUB_WORKSPACE/npc-avatar-save-proofs/continue/"
+          mkdir -p "$PW_OUT"
+          PW_TIMEOUT=900 \
+            test/overworld/mgba-run.sh \
+              test/overworld/lua/GrandWorldNpcAvatarContinue.lua \
+              "$PWD/pokemonworld.gba" "$GITHUB_WORKSPACE/npc-avatar-roundtrip.sav" \
+            | tee "$PW_OUT/GrandWorldNpcAvatarContinue.stdout.log"
+          grep -Eq "^PASS 8/8 rom=$expected .* suite=GrandWorldNpcAvatarContinue$" \
+            "$PW_OUT/GrandWorldNpcAvatarContinue.PASS"
+          python3 - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          rom=Path('pokemonworld.gba').read_bytes()
+          flash=Path('../npc-avatar-roundtrip.sav').read_bytes()
+          assert len(flash)==131072 and any(flash)
+          report={'cartridge_sha256':hashlib.sha256(rom).hexdigest(),
+                  'flash_fixture_size':len(flash),
+                  'save_reloaded_in_second_process':True,
+                  'tested_character':'BROCK','test_assertions':'15/15 then 8/8',
+                  'save_or_rom_exported_to_artifacts':False,
+                  'release_approved':False}
+          Path('../npc-avatar-save-roundtrip-evidence.json').write_text(
+              json.dumps(report,indent=2)+'\n')
+          print(json.dumps(report,indent=2))
+          PY
+          rm -f "$GITHUB_WORKSPACE/npc-avatar-roundtrip.sav"
       - name: Gate screenshots and logs against exact ARM cartridge hash
         run: |
           set -euo pipefail
@@ -226,6 +300,8 @@ jobs:
             master-visible-result.json
             npc-avatar-catalog.json
             npc-avatar-proofs/
+            npc-avatar-save-proofs/
+            npc-avatar-save-roundtrip-evidence.json
             npc-avatar-live-evidence.json
             npc-avatar-target-BROCK.json
             npc-avatar-target-SAGE.json
