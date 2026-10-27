@@ -69,7 +69,7 @@ jobs:
           assert 'SPECIES_BAGON = 371' in const
           assert 'SPECIES_HORSEA = 116' in const
           trade_data=(root/'src/data/trade.h').read_text()
-          offer=trade_data.split('[INGAME_TRADE_HORSEA] =',1)[1].split('},',1)[0]
+          offer=trade_data.split('[INGAME_TRADE_HORSEA] =',1)[1].split('[INGAME_TRADE_MEOWTH] =',1)[0]
           assert '.species = SPECIES_HORSEA' in offer
           assert '.requestedSpecies = SPECIES_BAGON' in offer
           print('Pinned trade, species IDs, box encryption and source confirmed')
