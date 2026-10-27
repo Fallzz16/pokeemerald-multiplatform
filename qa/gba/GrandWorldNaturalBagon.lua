@@ -132,7 +132,12 @@ F.run(function()
   local w,h,pass=liveGrid()
   F.check("actual underground collision grid is valid",w~=nil)
   if not w then F.finish();return end
-  local walked,battles,seenBagon,selectedBall,captured=0,0,false,false,false
+  local walked,movedCount,battles,seenBagon,selectedBall,captured=0,0,0,false,false,false
+  -- A joystick direction attempt is NOT proof the avatar changed tiles.
+  -- Keep independent movement and distinct-coordinate observations so
+  -- a blocked controller fixture cannot masquerade as cave exploration.
+  local uniquePositions={[select(2,F.pos())*w+select(1,F.pos())]=true}
+  local distinctPositions=1
   local blocked,lastPath,pathi={},{},1
   for iter=1,MAX_STEPS do
     if F.reportCrash("meteor_exploration") then break end
@@ -162,6 +167,15 @@ F.run(function()
       local x0,y0=F.pos()
       local moved=F.step(dir);F.idle(23)
       walked=walked+1
+      local nowX,nowY=F.pos()
+      if moved and (nowX~=x0 or nowY~=y0) then
+        movedCount=movedCount+1
+        local key=nowY*w+nowX
+        if not uniquePositions[key] then
+          uniquePositions[key]=true
+          distinctPositions=distinctPositions+1
+        end
+      end
       if not F.ow() then -- authentic encounter interrupted walking
       elseif not moved then
         local dx,dy=0,0
@@ -170,8 +184,11 @@ F.run(function()
       end
     end
   end
-  F.check("player physically walked traversable original cave floor",walked>=2,
-    "walked="..walked)
+  F.L(string.format("CAVE MOVEMENT: attempted=%d verified_moved=%d unique_tiles=%d, wild_battles=%d",
+    walked,movedCount,distinctPositions,battles))
+  F.check("player physically walked traversable original cave floor",movedCount>=2 and distinctPositions>=2,
+    string.format("attempts=%d actual_moves=%d unique_tiles=%d",
+      walked,movedCount,distinctPositions))
   F.check("real cave movement triggered at least one natural wild battle",battles>0,
     "battles="..battles)
   F.check("unmodified original land encounter naturally produced Bagon 371",seenBagon,
