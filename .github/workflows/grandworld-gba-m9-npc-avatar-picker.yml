@@ -139,7 +139,7 @@ jobs:
               | tee "$PW_OUT/GrandWorldNpcAvatar.stdout.log"
             test -s "$PW_OUT/GrandWorldNpcAvatar.PASS"
             test ! -e "$PW_OUT/GrandWorldNpcAvatar.FAIL"
-            grep -Eq "^PASS 12/12 rom=$md5 .* suite=GrandWorldNpcAvatar$" \
+            grep -Eq "^PASS 13/13 rom=$md5 .* suite=GrandWorldNpcAvatar$" \
               "$PW_OUT/GrandWorldNpcAvatar.PASS"
           done
       - name: Gate screenshots and logs against exact ARM cartridge hash
@@ -153,13 +153,13 @@ jobs:
           for name in ('BROCK','SAGE'):
               base=Path('npc-avatar-proofs')/name
               stamp=(base/'GrandWorldNpcAvatar.PASS').read_text()
-              assert re.fullmatch(rf'PASS 12/12 rom={expected} at=[^\r\n]+ suite=GrandWorldNpcAvatar\s*',stamp),stamp
+              assert re.fullmatch(rf'PASS 13/13 rom={expected} at=[^\r\n]+ suite=GrandWorldNpcAvatar\s*',stamp),stamp
               assert (base/'GrandWorldNpcAvatar_01_npc_avatar_menu_first_page.png').is_file()
               assert not (base/'GrandWorldNpcAvatar.FAIL').exists()
           Path('npc-avatar-live-evidence.json').write_text(json.dumps({
              'rom_sha256':hashlib.sha256(rom).hexdigest(),
              'named_native_npcs_tested':['BROCK','SAGE'],
-             'real_emulator_source_bound_checks':24,
+             'real_emulator_source_bound_checks':26,
              'quetzal_gfx_imported':False,
              'release_approved':False
            },indent=2)+'\n')
