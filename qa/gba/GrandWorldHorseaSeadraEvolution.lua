@@ -112,10 +112,22 @@ F.run(function()
   for frame=1,22000 do
     if monLevel()>=32 then seenLevel32=true end
     if monSpecies()==SEADRA then seenSeadra=true end
-    if seenSeadra and F.ow() then break end
+    if seenSeadra then break end
     joypad.set(frame%48==1 and {A=true} or {})
     emu.frameadvance()
     if frame%700==0 and F.reportCrash("seadra_evolution") then break end
+  end
+  -- Successful evolution returns to the Bag item context, not automatically
+  -- the overworld. The previous 13/14 run proved Seadra=117 but ended at
+  -- the original Items screen after blind A presses. Close it using B,
+  -- never write a game callback or falsify field state.
+  if seenSeadra then
+    F.idle(400)
+    for i=1,15 do
+      if F.ow() then break end
+      F.press("B",2);F.idle(40)
+      if i%5==0 and F.reportCrash("bag_return") then break end
+    end
   end
   F.check("original Rare Candy raised Horsea to at least level 32",
     seenLevel32,"level="..monLevel())
