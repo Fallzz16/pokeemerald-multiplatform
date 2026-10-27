@@ -25,7 +25,7 @@ local function giveHorsea31()
   F.dbg();F.sel(3);F.sel(1)
   -- Original UI's species spinner begins at ID 1 (115 increments = Horsea 116).
   F.spin(1,1,5)
-  F.spin(0,3,1) -- level 31, two-digit level input
+  F.spin(0,3,0) -- one-based UI: input 030 creates level 31 (prior 031 -> 32)
   F.idle(130);F.bOut(7);F.idle(90)
 end
 local function giveRareCandy()
