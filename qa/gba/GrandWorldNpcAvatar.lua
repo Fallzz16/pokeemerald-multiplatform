@@ -82,12 +82,16 @@ F.run(function()
     -- FIXED offset (old SaveHarvest approach) now opens Story instead of Save!
     -- Match World's proven StoryProgress.lua: real USM Save icon ID is 7.
     F.press("Start",2); F.idle(90)
+    local foundSave = F.selectStartIcon(7)
     F.check("source-identified Save icon available in live Start menu",
-      F.selectStartIcon(7))
-    for _=1,3 do
+      foundSave)
+    if not foundSave then F.finish(); return end
+    F.shot("npc_save_icon_selected")
+    for i=1,3 do
       F.press("A",2); F.idle(90)
+      F.shot("npc_save_confirmation_"..i)
     end
-    F.idle(600) -- give actual Flash Save dialog enough GBA frames to complete
+    F.idle(600) -- let the real Flash Save dialog finish writing
     F.check("original NPC ID unchanged after in-game Save inputs",
       var(0x40E5)==cfg.skinId)
     F.check("six-hero identity preserved after Save inputs",
