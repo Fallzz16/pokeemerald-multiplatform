@@ -217,6 +217,7 @@ static void GW_AvatarMenuInput(u8 taskId)
 
 def patch(world: Path, apply=False):
     required = ["src/oak_speech.c", "src/new_game.c", "src/field_player_avatar.c",
+                "src/palette_swap.c",
                 "include/constants/vars.h",
                 "src/data/object_events/object_event_graphics_info_pointers.h",
                 "src/data/object_events/object_event_graphics_info.h",
@@ -224,13 +225,13 @@ def patch(world: Path, apply=False):
     if any(not (world / p).is_file() for p in required):
         raise ValueError("not a complete pinned World checkout")
     names = roster(world)
-    oakp, newp, fieldp, varp = [world / p for p in (
+    oakp, newp, fieldp, palettep, varp = [world / p for p in (
         "src/oak_speech.c", "src/new_game.c", "src/field_player_avatar.c",
-        "include/constants/vars.h")]
+        "src/palette_swap.c", "include/constants/vars.h")]
     catp = world / "include/grandworld_avatar_catalog.h"
     if catp.exists():
         raise ValueError("avatar catalog already exists, refusing double-application")
-    oak, new, field, var = [p.read_text(encoding="utf-8") for p in (oakp, newp, fieldp, varp)]
+    oak, new, field, palette, var = [p.read_text(encoding="utf-8") for p in (oakp, newp, fieldp, palettep, varp)]
     var = replace_once(var,
        "#define VAR_UNUSED_0x40E5                                0x40E5 // Unused Var",
        "#define VAR_UNUSED_0x40E5                                0x40E5 // Unused Var\n"
@@ -268,12 +269,13 @@ def patch(world: Path, apply=False):
        '#include "grandworld_avatar_catalog.h"',
        "player catalog includes")
     field = replace_once(field,
-       "    return sPlayerAvatarGfxIds[state][gender];",
+       "    u16 hero = VarGet(VAR_PLAYER_CHARACTER);\n    if (hero == 2 && gender == MALE)",
        "    u16 skin = VarGet(VAR_GW_NPC_AVATAR);\n"
        "    if (state == PLAYER_AVATAR_STATE_NORMAL && skin != 0\n"
        "        && skin < GW_AVATAR_CHOICES_COUNT)\n"
        "        return sGWAvatarChoices[skin].graphicsId;\n"
-       "    return sPlayerAvatarGfxIds[state][gender];", "on-foot NPC graphics override")
+       "    u16 hero = VarGet(VAR_PLAYER_CHARACTER);\n    if (hero == 2 && gender == MALE)",
+       "on-foot NPC override before original Red/Leaf special-state switch")
     field = replace_once(field,
        "enum Gender GetPlayerAvatarGenderByGraphicsId(u16 gfxId)\n{\n    switch (gfxId)",
        "enum Gender GetPlayerAvatarGenderByGraphicsId(u16 gfxId)\n{\n"
@@ -282,16 +284,20 @@ def patch(world: Path, apply=False):
        "        && gfxId == sGWAvatarChoices[skin].graphicsId)\n"
        "        return gSaveBlock2Ptr->playerGender; // visual skin never alters selected identity\n"
        "    switch (gfxId)", "skin gender must not rewrite legacy hero gender")
-    field = replace_once(field,
-       "        if (table[gPlayerAvatar.gender][i].playerFlag & flags)\n"
-       "            return table[gPlayerAvatar.gender][i].graphicsId;",
-       "        if (table[gPlayerAvatar.gender][i].playerFlag & flags)\n"
-       "        {\n"
-       "            if (table[gPlayerAvatar.gender][i].playerFlag == PLAYER_AVATAR_FLAG_ON_FOOT)\n"
-       "                return GetPlayerAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, gPlayerAvatar.gender);\n"
-       "            return table[gPlayerAvatar.gender][i].graphicsId;\n"
-       "        }", "on-foot state graphics must restore NPC skin")
-    output = {oakp: oak, newp: new, fieldp: field, varp: var, catp: header_text(names)}
+    # The existing M8 Kanto adapter already restores all player graphics states
+    # through this central getter. Do not discard its validated FRLG bike/Surf art.
+    if field.count("return GetPlayerAvatarGraphicsIdByStateIdAndGender(i, gPlayerAvatar.gender);") != 1:
+        raise ValueError("M8 Kanto state routing absent: apply add_kanto_avatar.py first")
+    palette = replace_once(palette,
+       "    u16 hero = VarGet(VAR_PLAYER_CHARACTER);\n"
+       "    if (hero == 2 || hero == 3)",
+       "    if (VarGet(VAR_GW_NPC_AVATAR) != 0)\n"
+       "        return PLAYER_OUTFIT_RED; // preserve NPC native palette instead of hero recolor\n"
+       "    u16 hero = VarGet(VAR_PLAYER_CHARACTER);\n"
+       "    if (hero == 2 || hero == 3)",
+       "skip recoloring native NPC sprites")
+    output = {oakp: oak, newp: new, fieldp: field, palettep: palette,
+              varp: var, catp: header_text(names)}
     summary = {"npc_characters_from_original_world": len(names),
                "choices_including_classic": len(names) + 1,
                "menu_rows_per_page": PAGE_SIZE, "pages": (len(names) + PAGE_SIZE) // PAGE_SIZE,
