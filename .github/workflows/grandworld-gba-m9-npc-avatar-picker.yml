@@ -142,7 +142,7 @@ jobs:
           constants=re.findall(r'(?m)^\s*(OBJ_EVENT_GFX_[A-Z_0-9]+)\s*,',src)
           assert constants[0]=='OBJ_EVENT_GFX_BRENDAN_NORMAL',constants[:3]
           assert len(constants)>390
-          for name in ('BROCK','SAGE'):
+          for name in ('NINJA_BOY','AQUA_MEMBER_F','RED','LEAF','BROCK','FALKNER','KIMONO_GIRL','SAGE'):
               idx=names.index(name)+1
               gfx=constants.index('OBJ_EVENT_GFX_'+name)
               assert idx<=192 and gfx>0
@@ -154,7 +154,7 @@ jobs:
           cd world
           export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
           md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
-          for name in BROCK SAGE; do
+          for name in NINJA_BOY AQUA_MEMBER_F RED LEAF BROCK FALKNER KIMONO_GIRL SAGE; do
             export PW_OUT="$GITHUB_WORKSPACE/npc-avatar-proofs/$name/"
             mkdir -p "$PW_OUT"
             python3 - "$name" <<'PY'
@@ -236,7 +236,7 @@ jobs:
           from pathlib import Path
           rom=Path('world/pokemonworld.gba').read_bytes()
           expected=hashlib.md5(rom).hexdigest().upper()
-          for name in ('BROCK','SAGE'):
+          for name in ('NINJA_BOY','AQUA_MEMBER_F','RED','LEAF','BROCK','FALKNER','KIMONO_GIRL','SAGE'):
               base=Path('npc-avatar-proofs')/name
               stamp=(base/'GrandWorldNpcAvatar.PASS').read_text()
               assert re.fullmatch(rf'PASS 13/13 rom={expected} at=[^\r\n]+ suite=GrandWorldNpcAvatar\s*',stamp),stamp
@@ -244,8 +244,8 @@ jobs:
               assert not (base/'GrandWorldNpcAvatar.FAIL').exists()
           Path('npc-avatar-live-evidence.json').write_text(json.dumps({
              'rom_sha256':hashlib.sha256(rom).hexdigest(),
-             'named_native_npcs_tested':['BROCK','SAGE'],
-             'real_emulator_source_bound_checks':26,
+             'named_native_npcs_tested':["NINJA_BOY","AQUA_MEMBER_F","RED","LEAF","BROCK","FALKNER","KIMONO_GIRL","SAGE"],
+             'real_emulator_source_bound_checks':104,
              'quetzal_gfx_imported':False,
              'release_approved':False
            },indent=2)+'\n')
@@ -303,5 +303,4 @@ jobs:
             npc-avatar-save-proofs/
             npc-avatar-save-roundtrip-evidence.json
             npc-avatar-live-evidence.json
-            npc-avatar-target-BROCK.json
-            npc-avatar-target-SAGE.json
+            npc-avatar-target-*.json
