@@ -139,7 +139,7 @@ static void GW_DrawAvatarChoices(u8 taskId, bool8 firstDraw)
 {
     s16 *data = gTasks[taskId].data; // tPromptWindowId expands to data[index]
     u8 i, count;
-    u16 start = (u16)gTasks[taskId].data[13] * GW_AVATAR_PAGE_SIZE;
+    u16 start = (u16)gTasks[taskId].data[12] * GW_AVATAR_PAGE_SIZE;
     u8 window = gTasks[taskId].tMenuWindowId;
     u8 step = GetFontAttribute(FONT_SMALL, FONTATTR_MAX_LETTER_HEIGHT) + 2;
     // Reuse one buffer across all 33 pages: AddWindow/Free each L/R
@@ -193,7 +193,7 @@ static void GW_CloseAvatarChoices(u8 taskId)
 static void GW_AvatarMenuStart(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    gTasks[taskId].data[13] = 0;
+    gTasks[taskId].data[12] = 0; // free after outfit preview; data[13] is tMenuWindowId!
     VarSet(VAR_GW_NPC_AVATAR, 0); // 0 is compatible with pre-M9 saves
     gTasks[taskId].tMenuWindowId = WINDOW_NONE;
     // Use the EXISTING outfit prompt window (small, on the left).
@@ -231,13 +231,13 @@ static void GW_AvatarMenuInput(u8 taskId)
     // Apply page navigation BEFORE Menu_ProcessInputNoWrap to avoid accidental commits.
     if (gMain.newKeys & (L_BUTTON | R_BUTTON))
     {
-        s16 page = gTasks[taskId].data[13];
+        s16 page = gTasks[taskId].data[12];
         s16 maxPage = (GW_AVATAR_CHOICES_COUNT - 1) / GW_AVATAR_PAGE_SIZE;
         if (gMain.newKeys & R_BUTTON)
             page = page == maxPage ? 0 : page + 1;
         else
             page = page == 0 ? maxPage : page - 1;
-        gTasks[taskId].data[13] = page;
+        gTasks[taskId].data[12] = page;
         GW_DrawAvatarChoices(taskId, FALSE); // no heap churn when flipping pages
         PlaySE(SE_SELECT);
         return;
@@ -250,7 +250,7 @@ static void GW_AvatarMenuInput(u8 taskId)
         VarSet(VAR_GW_NPC_AVATAR, 0);
     else
     {
-        u16 index = (u16)gTasks[taskId].data[13] * GW_AVATAR_PAGE_SIZE + input;
+        u16 index = (u16)gTasks[taskId].data[12] * GW_AVATAR_PAGE_SIZE + input;
         if (index >= GW_AVATAR_CHOICES_COUNT)
             return; // fail closed, never persist a graphics ID outside the catalog
         VarSet(VAR_GW_NPC_AVATAR, index);
