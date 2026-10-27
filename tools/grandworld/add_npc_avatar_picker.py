@@ -114,9 +114,19 @@ def header_text(names):
         "#ifdef GW_NPC_AVATAR_DEFINE",
         'static const u8 sGWAvatarClassicName[] = _("CLASSICO");',
     ]
+    seen_labels = {"CLASSICO"}
     for i, name in enumerate(names, 1):
-        # GBA menu width: 14 tiles. Keep visible label at most 12 characters.
-        label = name.replace("_", " ")[:10]
+        # A 12-tile window uses FONT_SMALL. Preserve M/F suffixes when
+        # an NPC's full role label is too long, rather than showing two
+        # visually identical entries ("AQUA MEMBER" for both sprites).
+        full = name.replace("_", " ")
+        if len(full) > 12 and name.endswith(("_M", "_F")):
+            label = full[:10] + " " + name[-1]
+        else:
+            label = full[:12]
+        if label in seen_labels:
+            raise ValueError(f"ambiguous NPC menu label: {label!r} for {name}")
+        seen_labels.add(label)
         lines.append(f'static const u8 sGWAvatarName{i:03}[] = _("{label}");')
     lines.append("const struct GWAvatarChoice sGWAvatarChoices[GW_AVATAR_CHOICES_COUNT] = {")
     lines.append("    {sGWAvatarClassicName, 0},")
@@ -141,7 +151,10 @@ static void GW_DrawAvatarChoices(u8 taskId, bool8 firstDraw)
     u8 i, count;
     u16 start = (u16)gTasks[taskId].data[12] * GW_AVATAR_PAGE_SIZE;
     u8 window = gTasks[taskId].tMenuWindowId;
-    u8 step = GetFontAttribute(FONT_SMALL, FONTATTR_MAX_LETTER_HEIGHT) + 2;
+    // Six 14px rows overflow the last line of the 80px-tall window.
+    // The small font itself is 12px high: pack rows at their natural
+    // line height instead of allocating more EWRAM/VRAM for an extra row.
+    u8 step = GetFontAttribute(FONT_SMALL, FONTATTR_MAX_LETTER_HEIGHT);
     // Reuse one buffer across all 33 pages: AddWindow/Free each L/R
     // fragmented Oak's EWRAM and crashed at window.c:185 after several pages.
     // 12 * 10 tiles = 3840 bytes; baseBlock 360 + 120 = 480 (< 512).
