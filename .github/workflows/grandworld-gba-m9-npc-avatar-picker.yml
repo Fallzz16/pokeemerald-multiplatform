@@ -200,7 +200,7 @@ jobs:
             | tee "$PW_OUT/GrandWorldNpcAvatar.stdout.log"
           test -s "$GITHUB_WORKSPACE/npc-avatar-roundtrip.sav"
           test "$(stat -c '%s' "$GITHUB_WORKSPACE/npc-avatar-roundtrip.sav")" -eq 131072
-          grep -Eq "^PASS 15/15 rom=$expected .* suite=GrandWorldNpcAvatar$" \
+          grep -Eq "^PASS 16/16 rom=$expected .* suite=GrandWorldNpcAvatar$" \
             "$PW_OUT/GrandWorldNpcAvatar.PASS"
           export PW_OUT="$GITHUB_WORKSPACE/npc-avatar-save-proofs/continue/"
           mkdir -p "$PW_OUT"
@@ -220,7 +220,7 @@ jobs:
           report={'cartridge_sha256':hashlib.sha256(rom).hexdigest(),
                   'flash_fixture_size':len(flash),
                   'save_reloaded_in_second_process':True,
-                  'tested_character':'BROCK','test_assertions':'15/15 then 8/8',
+                  'tested_character':'BROCK','test_assertions':'16/16 then 8/8',
                   'save_or_rom_exported_to_artifacts':False,
                   'release_approved':False}
           Path('../npc-avatar-save-roundtrip-evidence.json').write_text(
