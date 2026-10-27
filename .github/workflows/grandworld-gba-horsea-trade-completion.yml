@@ -123,7 +123,7 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           import hashlib,json,re
-          base=Path('horse-trade-proofs')
+          base=Path('horse-trade-completion-proofs')
           rom=Path('world/pokemonworld.gba').read_bytes()
           md5=hashlib.md5(rom).hexdigest().upper()
           data=(base/'GrandWorldHorseaTradeCompleted.PASS').read_text()
