@@ -169,3 +169,11 @@ These are residual rows of the source-level evolution audit; 10 have no lead und
 ### Release / future-test gates
 
 First close the in-game trade UI loop in the existing PR #95. Next target a previously untested Lapras gift/Union Cave event, then source-dependent evolution, and only then biome-appropriate wild redistributions. Existing pass evidence for Route32 Qwilfish, hero selection, wild capture/flee, saves and intro is intentionally **not rerun**. Full 36-species Pokédex availability is **NOT** approved.
+
+
+### Live update: Bagon-for-Horsea completed (27 Oct 2026)
+
+- [PR #95](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/95), [real ARM GBA/mGBA run #40465755959](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40465755959): **12/12 exact-ROM-bound PASS** on commit `117956b9e6fa95c4e126a876f4a22ffa649effc5`.
+- Original PacifidlogTown House3 trader: real player movement and controller-driven storage `Left, Up, A, A` selects a valid Bagon; trade animation completes, source flag 0x9A becomes set, encrypted party species changes from Bagon 371 to Horsea 116, party count remains one, return to original map is verified, no fatal screen.
+- **Caveat**: Bagon provided through original debug Give Pokemon UI, NPC location reached through original debug warp. This proves **actual trade mechanics**, not natural Bagon capture, reachability via story progression or normal no-debug completion. Horsea -> Seadra level-32 remains untested; no game data modified.
+- Prior 9/12 run #40464068631 was a test navigation failure (left stranded at BOX1 selection), fixed by test-only cursor movement, not a new game mechanic.
