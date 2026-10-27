@@ -128,27 +128,36 @@ INTRO_FUNCTIONS = r'''
 static const u8 sGWAvatarHelp[] = _("NPC: L/R PAG.");
 static const struct WindowTemplate sGWAvatarWindow = {
     .bg = 0, .tilemapLeft = 16, .tilemapTop = 1,
-    .width = 12, .height = 12, .paletteNum = 15, .baseBlock = 360
+    .width = 12, .height = 10, .paletteNum = 15, .baseBlock = 360
 };
 
-static void GW_DrawAvatarChoices(u8 taskId)
+static void GW_DrawAvatarChoices(u8 taskId, bool8 firstDraw)
 {
     u8 i, count;
     u16 start = (u16)gTasks[taskId].data[13] * GW_AVATAR_PAGE_SIZE;
-    u8 window = AddWindow(&sGWAvatarWindow);
-    u8 step = GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT) + 2;
-    gTasks[taskId].tMenuWindowId = window;
-    PutWindowTilemap(window);
-    DrawStdFrameWithCustomTileAndPalette(window, TRUE, STD_WINDOW_BASE_TILE_NUM, 14);
+    u8 window = gTasks[taskId].tMenuWindowId;
+    u8 step = GetFontAttribute(FONT_SMALL, FONTATTR_MAX_LETTER_HEIGHT) + 2;
+    // Reuse one buffer across all 33 pages: AddWindow/Free each L/R
+    // fragmented Oak's EWRAM and crashed at window.c:185 after several pages.
+    // 12 * 10 tiles = 3840 bytes; baseBlock 360 + 120 = 480 (< 512).
+    if (firstDraw)
+    {
+        window = AddWindow(&sGWAvatarWindow);
+        if (window == WINDOW_NONE)
+            return; // fail closed: task stays on the dialogue stage
+        gTasks[taskId].tMenuWindowId = window;
+        PutWindowTilemap(window);
+        DrawStdFrameWithCustomTileAndPalette(window, TRUE, STD_WINDOW_BASE_TILE_NUM, 14);
+    }
     FillWindowPixelBuffer(window, PIXEL_FILL(1));
     count = GW_AVATAR_CHOICES_COUNT - start;
     if (count > GW_AVATAR_PAGE_SIZE)
         count = GW_AVATAR_PAGE_SIZE;
     for (i = 0; i < count; i++)
-        AddTextPrinterParameterized3(window, FONT_NORMAL, 8, i * step + 1,
+        AddTextPrinterParameterized3(window, FONT_SMALL, 8, i * step + 1,
                                      sOakSpeechResources->textColor, 0,
                                      sGWAvatarChoices[start + i].name);
-    InitMenuNormal(window, FONT_NORMAL, 0, 1, step, count, 0);
+    InitMenuNormal(window, FONT_SMALL, 0, 1, step, count, 0);
     CopyWindowToVram(window, COPYWIN_FULL);
 }
 
@@ -171,15 +180,16 @@ static void GW_AvatarMenuShow(u8 taskId)
 {
     if (!IsTextPrinterActiveOnWindow(WIN_INTRO_TEXTBOX))
     {
-        GW_DrawAvatarChoices(taskId);
-        gTasks[taskId].func = GW_AvatarMenuInput;
+        GW_DrawAvatarChoices(taskId, TRUE);
+        if (gTasks[taskId].tMenuWindowId != WINDOW_NONE)
+            gTasks[taskId].func = GW_AvatarMenuInput;
     }
 }
 
 static void GW_AvatarMenuInput(u8 taskId)
 {
     s8 input;
-    // 12*12 tiles + baseBlock 360 = 504, safely within the BG0 512-tile charblock.
+    // 12*10 tiles + baseBlock 360 = 480, safely within BG0's 512-tile charblock.
     // Apply page navigation BEFORE Menu_ProcessInputNoWrap to avoid accidental commits.
     if (gMain.newKeys & (L_BUTTON | R_BUTTON))
     {
@@ -190,8 +200,7 @@ static void GW_AvatarMenuInput(u8 taskId)
         else
             page = page == 0 ? maxPage : page - 1;
         gTasks[taskId].data[13] = page;
-        GW_CloseAvatarChoices(taskId);
-        GW_DrawAvatarChoices(taskId);
+        GW_DrawAvatarChoices(taskId, FALSE); // no heap churn when flipping pages
         PlaySE(SE_SELECT);
         return;
     }
