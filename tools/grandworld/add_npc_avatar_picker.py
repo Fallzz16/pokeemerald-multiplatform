@@ -137,6 +137,7 @@ static const struct WindowTemplate sGWAvatarWindow = {
 
 static void GW_DrawAvatarChoices(u8 taskId, bool8 firstDraw)
 {
+    s16 *data = gTasks[taskId].data; // tPromptWindowId expands to data[index]
     u8 i, count;
     u16 start = (u16)gTasks[taskId].data[13] * GW_AVATAR_PAGE_SIZE;
     u8 window = gTasks[taskId].tMenuWindowId;
@@ -178,6 +179,7 @@ static void GW_DrawAvatarChoices(u8 taskId, bool8 firstDraw)
 
 static void GW_CloseAvatarChoices(u8 taskId)
 {
+    s16 *data = gTasks[taskId].data;
     if (gTasks[taskId].tMenuWindowId != WINDOW_NONE)
     {
         ClearStdWindowAndFrameToTransparent(gTasks[taskId].tMenuWindowId, TRUE);
@@ -190,6 +192,7 @@ static void GW_CloseAvatarChoices(u8 taskId)
 
 static void GW_AvatarMenuStart(u8 taskId)
 {
+    s16 *data = gTasks[taskId].data;
     gTasks[taskId].data[13] = 0;
     VarSet(VAR_GW_NPC_AVATAR, 0); // 0 is compatible with pre-M9 saves
     gTasks[taskId].tMenuWindowId = WINDOW_NONE;
@@ -212,6 +215,7 @@ static void GW_AvatarMenuStart(u8 taskId)
 
 static void GW_AvatarMenuShow(u8 taskId)
 {
+    s16 *data = gTasks[taskId].data;
     if (!IsTextPrinterActiveOnWindow(tPromptWindowId))
     {
         GW_DrawAvatarChoices(taskId, TRUE);
