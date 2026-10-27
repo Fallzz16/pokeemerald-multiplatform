@@ -107,18 +107,22 @@ def header_text(names):
         " * Index zero = classic hero, others use a human World object graphic.",
         " * These labels identify World gfx, not Quetzal avatar slots. */",
         "struct GWAvatarChoice { const u8 *name; u16 graphicsId; };",
+        "#define GW_AVATAR_CHOICES_COUNT " + str(len(names) + 1),
+        "#define GW_AVATAR_PAGE_SIZE 6",
+        "extern const struct GWAvatarChoice sGWAvatarChoices[GW_AVATAR_CHOICES_COUNT];",
+        "/* Generate assets ONCE in field_player_avatar.c, never each include. */",
+        "#ifdef GW_NPC_AVATAR_DEFINE",
         'static const u8 sGWAvatarClassicName[] = _("CLASSICO");',
     ]
     for i, name in enumerate(names, 1):
         # GBA menu width: 14 tiles. Keep visible label at most 12 characters.
         label = name.replace("_", " ")[:10]
         lines.append(f'static const u8 sGWAvatarName{i:03}[] = _("{label}");')
-    lines.append("static const struct GWAvatarChoice sGWAvatarChoices[] = {")
+    lines.append("const struct GWAvatarChoice sGWAvatarChoices[GW_AVATAR_CHOICES_COUNT] = {")
     lines.append("    {sGWAvatarClassicName, 0},")
     for i, name in enumerate(names, 1):
         lines.append(f"    {{sGWAvatarName{i:03}, OBJ_EVENT_GFX_{name}}},")
-    lines += ["};", "#define GW_AVATAR_CHOICES_COUNT (sizeof(sGWAvatarChoices) / sizeof(sGWAvatarChoices[0]))",
-              "#define GW_AVATAR_PAGE_SIZE 6", "#endif"]
+    lines += ["};", "#endif /* GW_NPC_AVATAR_DEFINE */", "#endif /* include guard */"]
     return "\n".join(lines) + "\n"
 
 
@@ -149,6 +153,8 @@ static void GW_DrawAvatarChoices(u8 taskId, bool8 firstDraw)
             // skip this OPTIONAL menu, and NEVER dereference WINDOW_NONE.
             VarSet(VAR_GW_NPC_AVATAR, 0);
             gTasks[taskId].tMenuWindowId = WINDOW_NONE;
+            ClearDialogWindowAndFrame(tPromptWindowId, TRUE);
+            RemoveWindow(tPromptWindowId);
             gTasks[taskId].func = Task_OakSpeech_AskHardMode;
             return;
         }
@@ -170,22 +176,41 @@ static void GW_DrawAvatarChoices(u8 taskId, bool8 firstDraw)
 
 static void GW_CloseAvatarChoices(u8 taskId)
 {
-    ClearStdWindowAndFrameToTransparent(gTasks[taskId].tMenuWindowId, TRUE);
-    RemoveWindow(gTasks[taskId].tMenuWindowId);
+    if (gTasks[taskId].tMenuWindowId != WINDOW_NONE)
+    {
+        ClearStdWindowAndFrameToTransparent(gTasks[taskId].tMenuWindowId, TRUE);
+        RemoveWindow(gTasks[taskId].tMenuWindowId);
+    }
     gTasks[taskId].tMenuWindowId = WIN_INTRO_TEXTBOX;
+    ClearDialogWindowAndFrame(tPromptWindowId, TRUE);
+    RemoveWindow(tPromptWindowId);
 }
 
 static void GW_AvatarMenuStart(u8 taskId)
 {
     gTasks[taskId].data[13] = 0;
-    VarSet(VAR_GW_NPC_AVATAR, 0); // Old save/new intro and A-mash default is classic
-    OakSpeechPrintMessage(sGWAvatarHelp, sOakSpeechResources->textSpeed, FALSE);
+    VarSet(VAR_GW_NPC_AVATAR, 0); // 0 is compatible with pre-M9 saves
+    gTasks[taskId].tMenuWindowId = WINDOW_NONE;
+    // Use the EXISTING outfit prompt window (small, on the left).
+    // Printing into the 28x15 Oak textbox covered the top-right NPC list.
+    // Also avoids another large text-window allocation.
+    tPromptWindowId = AddWindow(&sOutfitPromptWindowTemplate);
+    if (tPromptWindowId == WINDOW_NONE)
+    {
+        gTasks[taskId].func = Task_OakSpeech_AskHardMode;
+        return;
+    }
+    DrawDialogueFrame(tPromptWindowId, FALSE);
+    AddTextPrinterParameterized2(tPromptWindowId, FONT_SMALL, sGWAvatarHelp,
+        sOakSpeechResources->textSpeed, NULL, TEXT_COLOR_DARK_GRAY,
+        TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+    CopyWindowToVram(tPromptWindowId, COPYWIN_FULL);
     gTasks[taskId].func = GW_AvatarMenuShow;
 }
 
 static void GW_AvatarMenuShow(u8 taskId)
 {
-    if (!IsTextPrinterActiveOnWindow(WIN_INTRO_TEXTBOX))
+    if (!IsTextPrinterActiveOnWindow(tPromptWindowId))
     {
         GW_DrawAvatarChoices(taskId, TRUE);
         if (gTasks[taskId].tMenuWindowId != WINDOW_NONE)
@@ -286,7 +311,7 @@ def patch(world: Path, apply=False):
     field = replace_once(field,
        '#include "constants/event_objects.h"',
        '#include "constants/event_objects.h"\n#include "constants/vars.h"\n'
-       '#include "grandworld_avatar_catalog.h"',
+       '#define GW_NPC_AVATAR_DEFINE\n#include "grandworld_avatar_catalog.h"',
        "player catalog includes")
     field = replace_once(field,
        "    u16 hero = VarGet(VAR_PLAYER_CHARACTER);\n    if (hero == 2 && gender == MALE)",
