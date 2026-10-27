@@ -75,6 +75,24 @@ class NpcPickerTests(unittest.TestCase):
         self.assertNotIn("gTasks[taskId].data[13]", body)
         self.assertIn("gTasks[taskId].tMenuWindowId", body)
 
+    def test_all_192_short_labels_distinct_and_fit_without_clipping(self):
+        import re
+        source = gw.header_text(gw.HUMAN_NPCS)
+        labels = re.findall(r'sGWAvatarName\\d{3}\\[\\] = _\\("([^"]+)"\\)', source)
+        self.assertEqual(len(labels), 192)
+        self.assertEqual(len(labels), len(set(labels)))
+        self.assertTrue(all(0 < len(x) <= 12 for x in labels))
+        for expected in ("RUNNING TR M", "RUNNING TR F",
+                         "AQUA MEMBE M", "AQUA MEMBE F",
+                         "COOLTRAINE M", "COOLTRAINE F"):
+            self.assertIn(expected, labels)
+        self.assertIn(
+            "step = GetFontAttribute(FONT_SMALL, FONTATTR_MAX_LETTER_HEIGHT);",
+            gw.INTRO_FUNCTIONS)
+        self.assertNotIn(
+            "step = GetFontAttribute(FONT_SMALL, FONTATTR_MAX_LETTER_HEIGHT) + 2;",
+            gw.INTRO_FUNCTIONS)
+
     def test_menu_fits_gba_bg_tiles_without_overrun(self):
         import re
         body = gw.INTRO_FUNCTIONS
