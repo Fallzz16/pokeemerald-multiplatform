@@ -238,6 +238,9 @@ def patch(world: Path, apply=False):
        "#define VAR_GW_NPC_AVATAR                               VAR_UNUSED_0x40E5 // M9 skin; 0=classic",
        "reserved non-save-expanding skin var")
     oak = replace_once(oak,
+       '#include "menu.h"', '#include "menu.h"\n#include "main.h"',
+       "GBA button state for L/R paginated NPC menu")
+    oak = replace_once(oak,
        '#include "constants/vars.h"',
        '#include "constants/vars.h"\n#include "constants/event_objects.h"\n'
        '#include "grandworld_avatar_catalog.h"', "oak avatar catalog includes")
