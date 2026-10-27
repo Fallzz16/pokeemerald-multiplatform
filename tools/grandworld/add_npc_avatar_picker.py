@@ -171,7 +171,9 @@ static void GW_DrawAvatarChoices(u8 taskId, bool8 firstDraw)
                                      sOakSpeechResources->textColor, 0,
                                      sGWAvatarChoices[start + i].name);
     InitMenuNormal(window, FONT_SMALL, 0, 1, step, count, 0);
-    CopyWindowToVram(window, COPYWIN_FULL);
+    // BG tilemap stays unchanged across pages. Avoid a redundant 2KiB
+    // tilemap DMA on every L/R; only the 4bpp window pixels need refreshing.
+    CopyWindowToVram(window, firstDraw ? COPYWIN_FULL : COPYWIN_GFX);
 }
 
 static void GW_CloseAvatarChoices(u8 taskId)
