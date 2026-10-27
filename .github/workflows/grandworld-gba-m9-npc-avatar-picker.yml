@@ -8,6 +8,7 @@ on:
       - 'docs/GRANDWORLD_GBA_M9_ROM_MASTER_VISIBLE_QUETZAL_20261027.md'
       - 'tools/grandworld/add_npc_avatar_picker.py'
       - 'tools/grandworld/tests/test_add_npc_avatar_picker.py'
+      - 'qa/gba/GrandWorldNpcAvatar.lua'
   workflow_dispatch:
 permissions:
   contents: read
@@ -44,7 +45,7 @@ jobs:
         run: |
           set -euo pipefail
           timeout --signal=TERM --kill-after=15s 360s sudo apt-get update -o Acquire::Retries=1 -o Acquire::http::Timeout=25
-          timeout --signal=TERM --kill-after=15s 1200s sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev
+          timeout --signal=TERM --kill-after=15s 1200s sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev cmake liblua5.4-dev lua5.4
           command -v arm-none-eabi-gcc
       - name: Compose M8 PT-BR without disabling visible or traditional wild encounters
         shell: bash
@@ -55,6 +56,16 @@ jobs:
           python3 grandworld/tools/grandworld/add_hero_profiles.py world
           python3 grandworld/tools/grandworld/add_kanto_avatar.py world
           python3 grandworld/tools/grandworld/add_npc_avatar_picker.py world --apply --report npc-avatar-catalog.json
+          cp grandworld/qa/gba/GrandWorldNpcAvatar.lua world/test/overworld/lua/
+          luac5.4 -p world/test/overworld/lua/GrandWorldNpcAvatar.lua
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('world/test/overworld/GenLuaSymbols.py')
+          s=p.read_text()
+          old='    "Task_OakSpeech_HandleGenderInput", "Task_OakSpeech_HandleOutfitInput",'
+          assert s.count(old)==1
+          p.write_text(s.replace(old,old+'\n    "GW_AvatarMenuInput",'))
+          PY
           python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --shadows lean --report master-visible-shadows.json
           # Crucial: DO NOT invoke apply_grass_only.py. Owner wants real visible OWEs.
           python3 grandworld/tools/grandworld/translate_ptbr_stage1.py world --apply --report master-visible-translation.json
@@ -75,6 +86,84 @@ jobs:
           set -euo pipefail
           make -C world modern -j2 > master-visible-arm-build.log 2>&1
           test -s world/pokemonworld.gba
+      - name: Build pinned headless mGBA (real GBA video/joypad)
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none https://github.com/mgba-emu/mgba.git mgba
+          git -C mgba checkout 669817d03e4858e65d0b992bcd96d3009236cc1e
+          git -C mgba apply ../world/test/overworld/mgba/0001-headless-video-buffer-save-and-rtc.patch
+          cmake -S mgba -B mgba/build -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_BUILD_TYPE=Release -DBUILD_HEADLESS=ON -DENABLE_SCRIPTING=ON -DUSE_LUA=ON -DBUILD_QT=OFF -DBUILD_SDL=OFF -DUSE_FFMPEG=OFF -DUSE_DISCORD_RPC=OFF -DBUILD_SHARED=OFF -DBUILD_STATIC=ON
+          cmake --build mgba/build -j2 --target mgba-headless
+      - name: Test native NPC menu and persistent sprite in actual GBA emulator
+        timeout-minutes: 35
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,re
+          from pathlib import Path
+          report=json.loads(Path('npc-avatar-catalog.json').read_text())
+          names=report['roster']
+          src=(Path('world')/'include/constants/event_objects.h').read_text()
+          constants=re.findall(r'(?m)^\s*(OBJ_EVENT_GFX_[A-Z_0-9]+)\s*,',src)
+          assert constants[0]=='OBJ_EVENT_GFX_BRENDAN_NORMAL',constants[:3]
+          assert len(constants)>390
+          for name in ('BROCK','SAGE'):
+              idx=names.index(name)+1
+              gfx=constants.index('OBJ_EVENT_GFX_'+name)
+              assert idx<=192 and gfx>0
+              Path(f'npc-avatar-target-{name}.json').write_text(json.dumps(
+                {'name':name,'skinId':idx,'graphicsId':gfx,
+                 'page':idx//6,'row':idx%6},indent=2)+'\n')
+              print(f"{name} skin {idx}, original graphic enum {gfx}, page {idx//6}, row {idx%6}")
+          PY
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
+          for name in BROCK SAGE; do
+            export PW_OUT="$GITHUB_WORKSPACE/npc-avatar-proofs/$name/"
+            mkdir -p "$PW_OUT"
+            python3 - "$name" <<'PY'
+          from pathlib import Path
+          import json,sys
+          data=json.loads((Path('..')/f'npc-avatar-target-{sys.argv[1]}.json').read_text())
+          target=(Path('test/overworld/lua')/'gw_npc_avatar_target.lua')
+          target.write_text("return {"
+              +", ".join(f'{k}={v}' for k,v in data.items() if k!='name')
+              +"}\n")
+          PY
+            rm -f "$PW_OUT/GrandWorldNpcAvatar.PASS" "$PW_OUT/GrandWorldNpcAvatar.FAIL"
+            PW_TIMEOUT=900 test/overworld/mgba-run.sh \
+              test/overworld/lua/GrandWorldNpcAvatar.lua "$PWD/pokemonworld.gba" \
+              | tee "$PW_OUT/GrandWorldNpcAvatar.stdout.log"
+            test -s "$PW_OUT/GrandWorldNpcAvatar.PASS"
+            test ! -e "$PW_OUT/GrandWorldNpcAvatar.FAIL"
+            grep -Eq "^PASS 12/12 rom=$md5 .* suite=GrandWorldNpcAvatar$" \
+              "$PW_OUT/GrandWorldNpcAvatar.PASS"
+          done
+      - name: Gate screenshots and logs against exact ARM cartridge hash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib,re
+          from pathlib import Path
+          rom=Path('world/pokemonworld.gba').read_bytes()
+          expected=hashlib.md5(rom).hexdigest().upper()
+          for name in ('BROCK','SAGE'):
+              base=Path('npc-avatar-proofs')/name
+              stamp=(base/'GrandWorldNpcAvatar.PASS').read_text()
+              assert re.fullmatch(rf'PASS 12/12 rom={expected} at=[^\r\n]+ suite=GrandWorldNpcAvatar\s*',stamp),stamp
+              assert (base/'GrandWorldNpcAvatar_01_npc_avatar_menu_first_page.png').is_file()
+              assert not (base/'GrandWorldNpcAvatar.FAIL').exists()
+          Path('npc-avatar-live-evidence.json').write_text(json.dumps({
+             'rom_sha256':hashlib.sha256(rom).hexdigest(),
+             'named_native_npcs_tested':['BROCK','SAGE'],
+             'real_emulator_source_bound_checks':24,
+             'quetzal_gfx_imported':False,
+             'release_approved':False
+           },indent=2)+'\n')
+          PY
       - name: Verify GBA cartridge identity and hash; NEVER claim live OWE QA here
         shell: bash
         run: |
@@ -122,3 +211,7 @@ jobs:
             master-visible-arm-build.log
             master-visible-result.json
             npc-avatar-catalog.json
+            npc-avatar-proofs/
+            npc-avatar-live-evidence.json
+            npc-avatar-target-BROCK.json
+            npc-avatar-target-SAGE.json
