@@ -74,5 +74,24 @@ F.run(function()
   F.check("no fatal screen while selecting and loading NPC",
     not F.reportCrash("npc_avatar_final"))
   F.shot("npc_avatar_actual_player_in_region_hub")
+  -- Optional full battery-save round-trip: only used in disposable CI runner.
+  -- These are REAL Start/A inputs, following World's tested SaveHarvest.lua
+  -- wheel path. No memory writes or savestates are used to fake persistence.
+  if os.getenv("PW_NPC_SAVE_ROUNDTRIP") == "1" then
+    F.press("Start", 2); F.idle(60)
+    for _ = 1, 10 do F.press("Left", 2); F.idle(8) end
+    for _ = 1, 2 do F.press("Right", 2); F.idle(12) end
+    F.press("A", 2); F.idle(90)  -- Start wheel: Save
+    F.press("A", 2); F.idle(60)  -- Information window
+    F.press("A", 2); F.idle(200) -- YES: flash commit
+    F.idle(300)
+    F.check("original NPC ID unchanged after in-game Save inputs",
+      var(0x40E5)==cfg.skinId)
+    F.check("six-hero identity preserved after Save inputs",
+      var(0x40FB)==0)
+    F.shot("npc_avatar_saved_using_start_menu")
+    -- A battery file is only proof when the separate runner confirms that
+    -- mGBA wrote it to flash AND another process successfully loads it.
+  end
   F.finish()
 end)
