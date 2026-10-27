@@ -12,6 +12,11 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+# Keep only the latest candidate for THIS experimental PR: building stale
+# revisions for 90 minutes wastes ARM toolchain downloads and runner capacity.
+concurrency:
+  group: gba-m9-npc-picker-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   gba_master_source_and_arm:
     name: Add 192 validated World NPC skins to intro and build real ARM GBA
