@@ -53,8 +53,8 @@ jobs:
           python3 grandworld/tools/grandworld/integrate_world.py world
           python3 grandworld/tools/grandworld/expand_gen4_pilot.py world --apply --with-gen5-trial
           python3 grandworld/tools/grandworld/add_hero_profiles.py world
-          python3 grandworld/tools/grandworld/add_npc_avatar_picker.py world --apply --report npc-avatar-catalog.json
           python3 grandworld/tools/grandworld/add_kanto_avatar.py world
+          python3 grandworld/tools/grandworld/add_npc_avatar_picker.py world --apply --report npc-avatar-catalog.json
           python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --shadows lean --report master-visible-shadows.json
           # Crucial: DO NOT invoke apply_grass_only.py. Owner wants real visible OWEs.
           python3 grandworld/tools/grandworld/translate_ptbr_stage1.py world --apply --report master-visible-translation.json
