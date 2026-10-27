@@ -53,6 +53,19 @@ class NpcPickerTests(unittest.TestCase):
         self.assertIn("firstDraw ? COPYWIN_FULL : COPYWIN_GFX", body)
         self.assertIn("ClearDialogWindowAndFrame(tPromptWindowId, TRUE)", body)
 
+    def test_existing_intro_prompt_task_macros_have_data_pointer(self):
+        # Oak's tPromptWindowId is a preprocessor alias for data[N].
+        # Without a local 'data' variable the GBA compiler rejects the file.
+        source = gw.INTRO_FUNCTIONS
+        for function in ("GW_DrawAvatarChoices", "GW_CloseAvatarChoices",
+                         "GW_AvatarMenuStart", "GW_AvatarMenuShow"):
+            marker = "static void " + function + "(u8 taskId"
+            start = source.index(marker)
+            open_brace = source.index("{", start)
+            body = source[open_brace:open_brace + 100]
+            with self.subTest(function=function):
+                self.assertIn("s16 *data = gTasks[taskId].data;", body)
+
     def test_menu_fits_gba_bg_tiles_without_overrun(self):
         import re
         body = gw.INTRO_FUNCTIONS
