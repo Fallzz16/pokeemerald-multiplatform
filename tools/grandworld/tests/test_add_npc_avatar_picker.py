@@ -24,6 +24,44 @@ class NpcPickerTests(unittest.TestCase):
         self.assertIn("OBJ_EVENT_GFX_MISTY", head)
         self.assertIn("sGWAvatarClassicName, 0", head)
         self.assertNotIn("3284", head)  # unverified Quetzal ROM graphics indices
+    def test_header_stores_strings_and_graphics_only_once(self):
+        head = gw.header_text(gw.HUMAN_NPCS)
+        self.assertEqual(len(gw.HUMAN_NPCS), 192)
+        self.assertIn("#define GW_AVATAR_CHOICES_COUNT 193", head)
+        self.assertIn("extern const struct GWAvatarChoice sGWAvatarChoices[", head)
+        self.assertIn("#ifdef GW_NPC_AVATAR_DEFINE", head)
+        self.assertEqual(head.count("const struct GWAvatarChoice sGWAvatarChoices["), 2)
+        self.assertEqual(head.count("static const u8 sGWAvatarName"), 192)
+        self.assertEqual(head.count("static const u8 sGWAvatarClassicName"), 1)
+
+    def test_repeated_pagination_does_not_allocate_or_free_windows(self):
+        body = gw.INTRO_FUNCTIONS
+        begin = body.index("static void GW_AvatarMenuInput(u8 taskId)\n{")
+        pagination = body[begin:body.index("    input = Menu_ProcessInputNoWrap();", begin)]
+        self.assertIn("GW_DrawAvatarChoices(taskId, FALSE)", pagination)
+        self.assertNotIn("AddWindow(", pagination)
+        self.assertNotIn("RemoveWindow(", pagination)
+        self.assertEqual(body.count("AddWindow(&sGWAvatarWindow)"), 1)
+        self.assertIn("if (window == WINDOW_NONE)", body)
+        self.assertIn("VarSet(VAR_GW_NPC_AVATAR, 0)", body)
+
+    def test_prompt_does_not_redraw_large_intro_dialogue_over_picker(self):
+        body = gw.INTRO_FUNCTIONS
+        self.assertIn("AddWindow(&sOutfitPromptWindowTemplate)", body)
+        self.assertIn("IsTextPrinterActiveOnWindow(tPromptWindowId)", body)
+        self.assertNotIn("OakSpeechPrintMessage(sGWAvatarHelp", body)
+        self.assertIn("ClearDialogWindowAndFrame(tPromptWindowId, TRUE)", body)
+
+    def test_menu_fits_gba_bg_tiles_without_overrun(self):
+        import re
+        body = gw.INTRO_FUNCTIONS
+        base = int(re.search(r"baseBlock = (\d+)", body).group(1))
+        width = int(re.search(r"width = (\d+)", body).group(1))
+        height = int(re.search(r"height = (\d+)", body).group(1))
+        self.assertLessEqual(base + width * height, 512)
+        self.assertEqual(gw.PAGE_SIZE, 6)
+        self.assertEqual((len(gw.HUMAN_NPCS) + gw.PAGE_SIZE) // gw.PAGE_SIZE, 33)
+
     def test_fail_closed_anchor_missing(self):
         with self.assertRaisesRegex(ValueError, "exactly one"):
             gw.replace_once("some other text", "old", "new", "fixture")
