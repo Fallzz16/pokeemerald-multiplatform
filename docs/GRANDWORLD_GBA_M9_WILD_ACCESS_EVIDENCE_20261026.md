@@ -87,3 +87,85 @@ other acquisition mechanisms have NOT been exhausted.
    actual production wild-table changes; never automatically merge to M8.
 
 All new PRs remain draft. Release readiness remains FALSE.
+
+
+## Consolidated 36-species matrix (27 Oct 2026)
+
+This is a **source-evidence summary**, NOT a ROM-release checklist and NOT a declaration that these Pokemon are globally unobtainable. Exact input artifacts: [initial 36-source inventory](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40300985431), [16 grass-gated provisional routes](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40313368346), [36-species lineage classification](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40316082335), [script search](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40316833046), and [trade search](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40317386041). These reports use original encounter-table SHA256 `c6eb187450227f0bccc40241f7f7820f4a8cbf7574dcaab17141bdba86bb01d3`.
+
+**Classification is mutually exclusive for the 36 originally at-risk species:** 4 original-land evolution paths, 13 experimental-only direct land, 6 evolution paths dependent on experiments, 13 residual with no recognized grass/evolution path. There are **zero original direct land-table entries** among the 36 *by definition*; the original source also lists 257 other land species. The 16 proposed grass placements comprise the **13 experimental-only direct** rows **plus 3 original-evolution** rows (Dragonair, Forretress, Pelipper); these two classifications must NOT be added to imply 39 species. The Route111 proposal was rejected after zero actual grass tiles were observed.
+
+### Original land evolution (4)
+
+EVO_LEVEL path starts from a species in an original terrestrial table. Candidate map is an optional, unapproved direct encounter (where listed).
+
+| Species | Source / dependency | Method / route | Gameplay evidence |
+|---|---|---|---|
+| Dragonair | Original land parent: Dratini | Route 45 | Source graph only; unapproved direct grass proposal if mapped |
+| Forretress | Original land parent: Pineco | Route 28 | Source graph only; unapproved direct grass proposal if mapped |
+| Magcargo | Original land parent: Slugma | — | Source graph only; unapproved direct grass proposal if mapped |
+| Pelipper | Original land parent: Wingull | Route 104 | Source graph only; unapproved direct grass proposal if mapped |
+
+### New experimental land only (13)
+
+No original terrestrial path established; all listed grass placements remain unmerged experiments. Only Qwilfish's *natural appearance* in Route 32 is proven in mGBA; biome acceptance and actual capture of new entries are not.
+
+| Species | Source / dependency | Method / route | Gameplay evidence |
+|---|---|---|---|
+| Barboach | Candidate `Route 114` | Experimental-only | No individual natural-spawn proof |
+| Buizel | Candidate `Route 30` | Experimental-only | No individual natural-spawn proof |
+| Carvanha | Candidate `Route 118` | Experimental-only | No individual natural-spawn proof |
+| Chinchou | Candidate `Route 47` | Experimental-only | No individual natural-spawn proof |
+| Corphish | Candidate `Route 102` | Experimental-only | No individual natural-spawn proof |
+| Goldeen | Candidate `Route 42` | Experimental-only | No individual natural-spawn proof |
+| Magikarp | Candidate `Route 103` | Experimental-only | No individual natural-spawn proof |
+| Poliwag | Candidate `Route 35` | Experimental-only | No individual natural-spawn proof |
+| Poliwhirl | Candidate `Route 44` | Experimental-only | No individual natural-spawn proof |
+| Qwilfish | Candidate `Route 32` | Experimental-only | 8/8 natural mGBA spawn, NOT habitat approval |
+| Staryu | Candidate `Route 34` | Experimental-only | No individual natural-spawn proof |
+| Tentacool | Candidate `Route 115` | Experimental-only | No individual natural-spawn proof |
+| Wailmer | Candidate `Route 121` | Experimental-only | No individual natural-spawn proof |
+
+### Evolution dependent on experimental land (6)
+
+Source EVO_LEVEL path exists, but the parent is itself experimentally placed; neither parent availability in stable M8 nor the specific evolution in gameplay is certified.
+
+| Species | Source / dependency | Method / route | Gameplay evidence |
+|---|---|---|---|
+| Gyarados | Magikarp (experimental) | EVO_LEVEL | Evolution itself not tested |
+| Lanturn | Chinchou (experimental) | EVO_LEVEL | Evolution itself not tested |
+| Seaking | Goldeen (experimental) | EVO_LEVEL | Evolution itself not tested |
+| Sharpedo | Carvanha (experimental) | EVO_LEVEL | Evolution itself not tested |
+| Wailord | Wailmer (experimental) | EVO_LEVEL | Evolution itself not tested |
+| Whiscash | Barboach (experimental) | EVO_LEVEL | Evolution itself not tested |
+
+### No recognized grass/evolution path (13)
+
+These are residual rows of the source-level evolution audit; 10 have no lead under the *limited* script/trade scans. This does NOT prove global impossibility; special/indirect sources and campaign reachability are unverified.
+
+| Species | Source / dependency | Method / route | Gameplay evidence |
+|---|---|---|---|
+| Clamperl | No additional direct source lead | Residual source audit | No certification of normal playthrough |
+| Finneon | No additional direct source lead | Residual source audit | No certification of normal playthrough |
+| Horsea | Trade: original NPC offers Horsea for Bagon (not gameplay-certified completion) | Residual source audit | No certification of normal playthrough |
+| Lapras | Silph Co. 7F gift; Union Cave B2F scripted battle (not gameplay-certified access) | Residual source audit | No certification of normal playthrough |
+| Luvdisc | No additional direct source lead | Residual source audit | No certification of normal playthrough |
+| Mantine | No additional direct source lead | Residual source audit | No certification of normal playthrough |
+| Nosepass | No additional direct source lead | Residual source audit | No certification of normal playthrough |
+| Octillery | No additional direct source lead | Residual source audit | No certification of normal playthrough |
+| Relicanth | No additional direct source lead | Residual source audit | No certification of normal playthrough |
+| Remoraid | No additional direct source lead | Residual source audit | No certification of normal playthrough |
+| Seadra | Possible level-32 evolution from traded Horsea (dependent) | Residual source audit | No certification of normal playthrough |
+| Shellder | No additional direct source lead | Residual source audit | No certification of normal playthrough |
+| Shellos | No additional direct source lead | Residual source audit | No certification of normal playthrough |
+
+### Verified/new live gates and unresolved trade
+
+- [PR #94](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/94) passed 11/11 real mGBA checks of walking to PacifidlogTown House3 trade NPC and declining safely ([run 40322180238](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40322180238)); NOT a completed trade.
+- [PR #95](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/95) used a source-verified level-15 Bagon prepared **by debug menu only**, got 9/12 real mGBA checks on [run 40464068631](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40464068631). Screenshots exposed an unselected storage/BOX1 grid; the original test never navigated to party Bagon. It does **not** establish a broken trade engine or successful receiving of Horsea. A narrower cursor-navigation correction is now committed on the PR #95 branch; check its *new* CI before upgrading status.
+- **Seadra remains conditional** on Horsea access and its real level-32 evolution. **Lapras remains conditional** on reaching and completing gift/event scripts. None of the ten residual species without these named leads is certified unobtainable by indirect methods.
+- No source encounters, species IDs, compiled game, PT-BR baseline, saves, story scripts, or original M8 stable branch were edited by this report. Avoid grass placement of aquatic species (particularly Magikarp, Tentacool, Qwilfish) without an explicit habitat-design decision.
+
+### Release / future-test gates
+
+First close the in-game trade UI loop in the existing PR #95. Next target a previously untested Lapras gift/Union Cave event, then source-dependent evolution, and only then biome-appropriate wild redistributions. Existing pass evidence for Route32 Qwilfish, hero selection, wild capture/flee, saves and intro is intentionally **not rerun**. Full 36-species Pokédex availability is **NOT** approved.
