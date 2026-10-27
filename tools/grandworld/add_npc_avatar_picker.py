@@ -111,7 +111,7 @@ def header_text(names):
     ]
     for i, name in enumerate(names, 1):
         # GBA menu width: 14 tiles. Keep visible label at most 12 characters.
-        label = name.replace("_", " ")[:12]
+        label = name.replace("_", " ")[:10]
         lines.append(f'static const u8 sGWAvatarName{i:03}[] = _("{label}");')
     lines.append("static const struct GWAvatarChoice sGWAvatarChoices[] = {")
     lines.append("    {sGWAvatarClassicName, 0},")
@@ -127,8 +127,8 @@ INTRO_FUNCTIONS = r'''
 // L/R changes a 6-row page. B returns to original hero appearance.
 static const u8 sGWAvatarHelp[] = _("NPC: L/R PAG.");
 static const struct WindowTemplate sGWAvatarWindow = {
-    .bg = 0, .tilemapLeft = 14, .tilemapTop = 1,
-    .width = 15, .height = 14, .paletteNum = 15, .baseBlock = 360
+    .bg = 0, .tilemapLeft = 16, .tilemapTop = 1,
+    .width = 12, .height = 12, .paletteNum = 15, .baseBlock = 360
 };
 
 static void GW_DrawAvatarChoices(u8 taskId)
@@ -179,6 +179,7 @@ static void GW_AvatarMenuShow(u8 taskId)
 static void GW_AvatarMenuInput(u8 taskId)
 {
     s8 input;
+    // 12*12 tiles + baseBlock 360 = 504, safely within the BG0 512-tile charblock.
     // Apply page navigation BEFORE Menu_ProcessInputNoWrap to avoid accidental commits.
     if (gMain.newKeys & (L_BUTTON | R_BUTTON))
     {
