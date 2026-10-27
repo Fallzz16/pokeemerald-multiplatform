@@ -73,7 +73,7 @@ jobs:
           assert len(land['mons'])==12
           assert 'SPECIES_BAGON = 371' in (root/'include/constants/species.h').read_text()
           Path('world/test/overworld/lua/bagon_cave_target.lua').write_text(
-              'return {species="SPECIES_BAGON", group=24, map=3, monStride=0}\\n')
+              'return {species="SPECIES_BAGON", group=24, map=3, monStride=0}\n')
           print('Original, unmodified cave land encounter (Bagon 3 of 12 slots) confirmed')
           PY
           # Add two test-only link symbols to the generated ROM-bound Lua symbol table.
@@ -187,4 +187,3 @@ jobs:
             natural-bagon-build.log
             natural-bagon-shadow.json
             natural-bagon-grass.json
-            meteor-original-plan.json
