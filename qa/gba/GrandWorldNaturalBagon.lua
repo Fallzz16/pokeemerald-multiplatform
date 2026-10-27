@@ -133,7 +133,7 @@ F.run(function()
   F.check("actual underground collision grid is valid",w~=nil)
   if not w then F.finish();return end
   local walked,battles,seenBagon,selectedBall,captured=0,0,false,false,false
-  local blocked={},lastPath={},pathi=1
+  local blocked,lastPath,pathi={},{},1
   for iter=1,MAX_STEPS do
     if F.reportCrash("meteor_exploration") then break end
     if F.grp()~=GROUP or F.mapn()~=MAP then F.L("  left Meteor Falls unexpectedly");break end
