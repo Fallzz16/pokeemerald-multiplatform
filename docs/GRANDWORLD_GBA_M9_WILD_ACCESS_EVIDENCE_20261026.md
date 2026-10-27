@@ -201,3 +201,12 @@ The clean requirement for [PR #95's Horsea trade](https://github.com/Fallzz16/po
 - Source presence does **not** prove the cave is accessible in normal story play or that walking triggers a Bagon encounter under the current grass-only integration. [Draft PR #99](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/99) specifically checks natural encounter and Master Ball capture in live pinned GBA/mGBA; its initial run ended at Lua syntax validation (not gameplay) and a fixed focused rerun is pending. Never mark normal Bagon acquisition as confirmed until live evidence exists.
 - If normal Bagon is confirmed in-game, the independent [PR #95 completed Horsea trade](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40465755959) forms a potential natural-to-trade species path; **campaign access is still separate**, and [PR #97](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/97) is validating real Horsea -> Seadra evolution at level 32.
 - This is a source/evidence addition only: no cave maps, wild JSON, save data, encounters, species IDs, stable M8 or original engine modified.
+
+
+### Original Bagon source is cave land, not grass-certified
+
+Source-precise audit of `src/data/wild_encounters.json` from **pinned World commit `15d3888b0d81322a04d3c71b0bce18948761ee44`** found `SPECIES_BAGON` in the original `land_mons` array only for **`MAP_METEOR_FALLS_B1F_2R`**, three entries at levels **25, 30 and 35**, encounter rate **10**. This map is **group 24, map 3**, with a warp to `MAP_METEOR_FALLS_B1F_1R`. The original table proves **encounter data only**.
+
+**Critical M9 dependency:** `apply_grass_only.py` filters random walking encounters to *grass/ash grass metatile behavior only*, even on maps that have `land_mons` tables. Meteor Falls is a cave; **grass-tile existence and reachability have not been verified in mGBA**. Consequently an original Bagon `land_mons` record does **not** certify the normal obtainable source for PR #95's Bagon-for-Horsea trade. A genuinely playable Bagon capture must be proven under the exact M8+PTBR grass-only ROM before normal-game Horsea/Seadra access is approved. Do not alter cave terrain, spawn rules, progression or encounter tables merely to satisfy a count; first run a narrow read-only mGBA tile and movement audit (as previously done for Route111).
+
+Unbound `SafariZoneGate_SafariZoneEntrance_EventScript_Test` is not a substitute for legitimate Bagon acquisition. No game-source changes are proposed by this evidence-only note.
