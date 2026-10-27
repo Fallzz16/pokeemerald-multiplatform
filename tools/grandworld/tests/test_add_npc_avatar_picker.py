@@ -50,6 +50,7 @@ class NpcPickerTests(unittest.TestCase):
         self.assertIn("AddWindow(&sOutfitPromptWindowTemplate)", body)
         self.assertIn("IsTextPrinterActiveOnWindow(tPromptWindowId)", body)
         self.assertNotIn("OakSpeechPrintMessage(sGWAvatarHelp", body)
+        self.assertIn("firstDraw ? COPYWIN_FULL : COPYWIN_GFX", body)
         self.assertIn("ClearDialogWindowAndFrame(tPromptWindowId, TRUE)", body)
 
     def test_menu_fits_gba_bg_tiles_without_overrun(self):
