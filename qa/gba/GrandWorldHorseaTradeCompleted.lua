@@ -168,18 +168,51 @@ F.run(function()
   F.press("A",2);F.idle(65)
   F.shot("trade_offer_with_bagon")
 
-  -- Only one Pokemon in the party (Bagon), so real A clicks select the
-  -- sole offered mon when the normal party picker opens.
-  -- We do NOT forge gSpecialVar_0x8004, trade flags or party data.
+  -- The original ingame_trade macro opens a Yes/No prompt and then
+  -- chooseboxmon SELECT_PC_MON_TRADE.  PR #95's failed 9/12 run left the
+  -- actual game on the empty BOX1 grid: blindly repeating A does NOT
+  -- choose the party's Bagon.  Move through the real storage interface.
+  -- No RAM, flags, party fields, cursor positions or RNG are injected.
+  local pickerOpened=false
+  for frame=1,2000 do
+    if not F.ow() then pickerOpened=true;break end
+    joypad.set(frame%36==1 and {A=true} or {})
+    emu.frameadvance()
+    if frame%500==0 and F.reportCrash("trade_before_box") then break end
+  end
+  F.L("  original NPC chooseboxmon reached non-overworld callback="..tostring(pickerOpened))
+  if not pickerOpened then
+    F.shot("trade_picker_not_opened")
+    F.finish()
+    return
+  end
+  F.idle(230) -- wait for the actual storage UI to finish its fade/load
+  F.shot("storage_selection_before_party")
+
+  -- Pinned World swsh_storage_system.c:
+  -- initial BOX grid slot 0 -> Left goes to PARTY slot 1 -> Up to
+  -- PARTY slot 0 (our source-verified Bagon); A opens context menu,
+  -- first menu command for OPTION_SELECT_MON is MENU_SELECT.
+  F.press("Left",2); F.idle(65)
+  F.press("Up",2); F.idle(65)
+  F.shot("party_bagon_cursor")
+  F.press("A",2); F.idle(90)
+  F.shot("party_bagon_select_menu")
+  F.press("A",2); F.idle(170)
+  F.shot("after_selecting_party_bagon")
+
+  -- Finish the real trade animation/dialogue.  A is used ONLY after the
+  -- cursor-driven selection above; bail out on genuine return without
+  -- completion, and never turn an unverified outcome into a PASS.
   local success=false
-  for frame=1,30000 do
+  for frame=1,36000 do
     if tradeCompleted() and partySpecies()==116 and F.ow() then
       success=true
       break
     end
-    joypad.set(frame%32==1 and {A=true} or {})
+    joypad.set(frame%38==1 and {A=true} or {})
     emu.frameadvance()
-    if frame%500==0 and F.reportCrash("trade_dialogue") then break end
+    if frame%1000==0 and F.reportCrash("trade_dialogue") then break end
   end
 
   F.check("NPC's real trade script set the completed persistent flag",
