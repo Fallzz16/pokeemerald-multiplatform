@@ -75,16 +75,19 @@ F.run(function()
     not F.reportCrash("npc_avatar_final"))
   F.shot("npc_avatar_actual_player_in_region_hub")
   -- Optional full battery-save round-trip: only used in disposable CI runner.
-  -- These are REAL Start/A inputs, following World's tested SaveHarvest.lua
+  -- These are REAL Start/A inputs, following World's tested StoryProgress.lua
   -- wheel path. No memory writes or savestates are used to fake persistence.
   if os.getenv("PW_NPC_SAVE_ROUNDTRIP") == "1" then
-    F.press("Start", 2); F.idle(60)
-    for _ = 1, 10 do F.press("Left", 2); F.idle(8) end
-    for _ = 1, 2 do F.press("Right", 2); F.idle(12) end
-    F.press("A", 2); F.idle(90)  -- Start wheel: Save
-    F.press("A", 2); F.idle(60)  -- Information window
-    F.press("A", 2); F.idle(200) -- YES: flash commit
-    F.idle(300)
+    -- Native World uses a reorderable six-icon start wheel. Selecting a
+    -- FIXED offset (old SaveHarvest approach) now opens Story instead of Save!
+    -- Match World's proven StoryProgress.lua: real USM Save icon ID is 7.
+    F.press("Start",2); F.idle(90)
+    F.check("source-identified Save icon available in live Start menu",
+      F.selectStartIcon(7))
+    for _=1,3 do
+      F.press("A",2); F.idle(90)
+    end
+    F.idle(600) -- give actual Flash Save dialog enough GBA frames to complete
     F.check("original NPC ID unchanged after in-game Save inputs",
       var(0x40E5)==cfg.skinId)
     F.check("six-hero identity preserved after Save inputs",
