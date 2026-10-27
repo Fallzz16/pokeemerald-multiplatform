@@ -66,6 +66,15 @@ class NpcPickerTests(unittest.TestCase):
             with self.subTest(function=function):
                 self.assertIn("s16 *data = gTasks[taskId].data;", body)
 
+    def test_oak_menu_window_slot_does_not_alias_pagination(self):
+        # Pinned World uses tMenuWindowId = data[13] in src/oak_speech.c.
+        # A page index in data[13] silently modifies the active window ID,
+        # sending later draws to unrelated windows (seen in mGBA 10/13).
+        body = gw.INTRO_FUNCTIONS
+        self.assertEqual(body.count("gTasks[taskId].data[12]"), 5)
+        self.assertNotIn("gTasks[taskId].data[13]", body)
+        self.assertIn("gTasks[taskId].tMenuWindowId", body)
+
     def test_menu_fits_gba_bg_tiles_without_overrun(self):
         import re
         body = gw.INTRO_FUNCTIONS
