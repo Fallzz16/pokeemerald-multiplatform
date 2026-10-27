@@ -125,7 +125,7 @@ def header_text(names):
 INTRO_FUNCTIONS = r'''
 // GBA M9: 6 old hero identities remain unchanged; NPC appearance is optional.
 // L/R changes a 6-row page. B returns to original hero appearance.
-static const u8 sGWAvatarHelp[] = _("NPC: L/R PAG."); 
+static const u8 sGWAvatarHelp[] = _("NPC: L/R PAG.");
 static const struct WindowTemplate sGWAvatarWindow = {
     .bg = 0, .tilemapLeft = 14, .tilemapTop = 1,
     .width = 15, .height = 14, .paletteNum = 15, .baseBlock = 360
