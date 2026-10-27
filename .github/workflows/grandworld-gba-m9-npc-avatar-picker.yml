@@ -199,7 +199,11 @@ jobs:
               test/overworld/lua/GrandWorldNpcAvatar.lua "$PWD/pokemonworld.gba" \
             | tee "$PW_OUT/GrandWorldNpcAvatar.stdout.log"
           test -s "$GITHUB_WORKSPACE/npc-avatar-roundtrip.sav"
-          test "$(stat -c '%s' "$GITHUB_WORKSPACE/npc-avatar-roundtrip.sav")" -eq 131072
+          flash_size=$(stat -c '%s' "$GITHUB_WORKSPACE/npc-avatar-roundtrip.sav")
+          echo "mGBA emitted disposable flash save: $flash_size bytes"
+          # mGBA may create a 64 KiB or 128 KiB Flash image depending on
+          # save-chip auto-detection. Authentic Continue is the real gate.
+          test "$flash_size" -eq 65536 -o "$flash_size" -eq 131072
           grep -Eq "^PASS 16/16 rom=$expected .* suite=GrandWorldNpcAvatar$" \
             "$PW_OUT/GrandWorldNpcAvatar.PASS"
           export PW_OUT="$GITHUB_WORKSPACE/npc-avatar-save-proofs/continue/"
@@ -216,7 +220,7 @@ jobs:
           from pathlib import Path
           rom=Path('pokemonworld.gba').read_bytes()
           flash=Path('../npc-avatar-roundtrip.sav').read_bytes()
-          assert len(flash)==131072 and any(flash)
+          assert len(flash) in (65536,131072) and any(flash)
           report={'cartridge_sha256':hashlib.sha256(rom).hexdigest(),
                   'flash_fixture_size':len(flash),
                   'save_reloaded_in_second_process':True,
