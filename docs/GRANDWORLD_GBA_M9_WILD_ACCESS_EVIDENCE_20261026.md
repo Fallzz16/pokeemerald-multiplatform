@@ -177,3 +177,11 @@ First close the in-game trade UI loop in the existing PR #95. Next target a prev
 - Original PacifidlogTown House3 trader: real player movement and controller-driven storage `Left, Up, A, A` selects a valid Bagon; trade animation completes, source flag 0x9A becomes set, encrypted party species changes from Bagon 371 to Horsea 116, party count remains one, return to original map is verified, no fatal screen.
 - **Caveat**: Bagon provided through original debug Give Pokemon UI, NPC location reached through original debug warp. This proves **actual trade mechanics**, not natural Bagon capture, reachability via story progression or normal no-debug completion. Horsea -> Seadra level-32 remains untested; no game data modified.
 - Prior 9/12 run #40464068631 was a test navigation failure (left stranded at BOX1 selection), fixed by test-only cursor movement, not a new game mechanic.
+
+
+### Live update: original Silph Lapras gift received (27 Oct 2026)
+
+- [PR #96](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/96); real GBA ARM/mGBA [run #40466888877](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40466888877): **12/12 ROM-bound PASS** on `07de314cf748f23cde413369fc4d65e2ac2bff37`.
+- Original `SilphCo_7F_Frlg` worker x=0,y=7 present; real controller walking/interacting; `givemon SPECIES_LAPRAS, 25` delivered actual encrypted party species 131; `FLAG_GOT_LAPRAS_FROM_SILPH` persisted, party count one, and game returned to original overworld without fatal screen.
+- This closes **gift-event runtime execution**, NOT normal Kanto/Silph campaign reachability. Test setup used the game's original debug warp into 7F on disposable cartridge; no debug Lapras or RAM-injected party/flag, no release ROM/save distribution.
+- Lapras should therefore be categorized **source-script + mGBA execution proven (with debug map access)**. It still needs normal-play campaign reachability and ordinary save continuation before being Pokédex-certified.
