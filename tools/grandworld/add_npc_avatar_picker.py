@@ -144,7 +144,14 @@ static void GW_DrawAvatarChoices(u8 taskId, bool8 firstDraw)
     {
         window = AddWindow(&sGWAvatarWindow);
         if (window == WINDOW_NONE)
-            return; // fail closed: task stays on the dialogue stage
+        {
+            // If memory is exhausted, leave the save on the classic skin,
+            // skip this OPTIONAL menu, and NEVER dereference WINDOW_NONE.
+            VarSet(VAR_GW_NPC_AVATAR, 0);
+            gTasks[taskId].tMenuWindowId = WINDOW_NONE;
+            gTasks[taskId].func = Task_OakSpeech_AskHardMode;
+            return;
+        }
         gTasks[taskId].tMenuWindowId = window;
         PutWindowTilemap(window);
         DrawStdFrameWithCustomTileAndPalette(window, TRUE, STD_WINDOW_BASE_TILE_NUM, 14);
