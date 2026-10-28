@@ -42,6 +42,97 @@ local function getLandHeader()
   return nil
 end
 
+-- Read the actual live map grid to route around trees/gates; NEVER move the
+-- avatar through memory or teleport to a grass tile. Collision bits are the
+-- packed World map format (include/global.fieldmap.h, bits 10-11).
+local function gridBlock(x, y)
+  local b = S.gBackupMapLayout
+  local w = F.r32(b + S.BackupMapLayout.width)
+  local h = F.r32(b + S.BackupMapLayout.height)
+  local mem = F.r32(b + S.BackupMapLayout.map)
+  local gx, gy = x + S.BackupMapLayout.mapOffset,
+                 y + S.BackupMapLayout.mapOffset
+  if w < 1 or w > 256 or h < 1 or h > 256 or
+     gx < 7 or gy < 7 or gx >= w - 7 or gy >= h - 7 or
+     mem < 0x02000000 or mem >= 0x02040000 then
+    return nil
+  end
+  return F.r16(mem + (gx + gy * w) * 2)
+end
+
+local DIR = {
+  {0, -1, "Up"}, {0, 1, "Down"},
+  {-1, 0, "Left"}, {1, 0, "Right"},
+}
+local function tileKey(x, y) return x .. "," .. y end
+
+local function findRoute(sx, sy, tx, ty, blocked)
+  local queue = {{x=sx, y=sy}}
+  local seen = {[tileKey(sx,sy)] = true}
+  local previous = {}
+  local head = 1
+  while head <= #queue and #queue < 1000 do
+    local current = queue[head]
+    if current.x == tx and current.y == ty then
+      local steps = {}
+      local k = tileKey(tx, ty)
+      while previous[k] do
+        local p = previous[k]
+        table.insert(steps, 1, p.step)
+        k = p.from
+      end
+      return steps
+    end
+    head = head + 1
+    for _, dir in ipairs(DIR) do
+      local nx, ny = current.x + dir[1], current.y + dir[2]
+      local key = tileKey(nx, ny)
+      local block = gridBlock(nx, ny)
+      if not seen[key] and not blocked[key] and block and
+         ((block >> 10) & 3) == 0 then
+        seen[key] = true
+        previous[key] = {from=tileKey(current.x,current.y),
+                         step={x=nx,y=ny,dir=dir[3]}}
+        queue[#queue + 1] = {x=nx, y=ny}
+      end
+    end
+  end
+  return nil
+end
+
+local function reachField(tx, ty)
+  local blocked = {}
+  for attempt = 1, 24 do
+    if not F.ow() or F.grp() ~= ROUTE29_GROUP or F.mapn() ~= ROUTE29_MAP then
+      return false, "left overworld or entered a traditional battle"
+    end
+    local cx, cy = F.pos()
+    if cx == tx and cy == ty then return true, "arrived via normal controls" end
+    local route = findRoute(cx, cy, tx, ty, blocked)
+    if not route then return false, "no collision-safe path found" end
+    F.L(string.format("  mapgrid detour attempt=%d from=(%d,%d) steps=%d",
+                      attempt, cx, cy, #route))
+    local blockedThisAttempt = false
+    for _, step in ipairs(route) do
+      if not F.ow() or F.grp() ~= ROUTE29_GROUP or F.mapn() ~= ROUTE29_MAP then
+        return false, "real encounter or map connection interrupted path"
+      end
+      if not F.step(step.dir) then
+        blocked[tileKey(step.x, step.y)] = true
+        blockedThisAttempt = true
+        F.L(string.format("  real field collision %s at (%d,%d), rerouting",
+                          step.dir, step.x, step.y))
+        break
+      end
+    end
+    if not blockedThisAttempt then
+      local x, y = F.pos()
+      if x == tx and y == ty then return true, "arrived" end
+    end
+  end
+  return false, "navigation retry budget exhausted"
+end
+
 local function generated()
   local out = {}
   for i = 0, 15 do
@@ -84,11 +175,12 @@ F.run(function()
   -- Original World battle-palette field fixture uses Route29 (25,9). Warp 0
   -- exits at (34,11), close to a gate but potentially outside any grass patch.
   -- Walking there uses ordinary GBA button inputs; do not move avatar via RAM.
-  local walked = F.leg(25, 9)
+  local walked, walkReason = reachField(25, 9)
   local cx, cy = F.pos()
   F.check("player traversed into the tested Route 29 field area",
           walked and cx == 25 and cy == 9 and F.ow(),
-          string.format("pos=(%d,%d), ow=%s", cx, cy, tostring(F.ow())))
+          string.format("pos=(%d,%d), ow=%s, reason=%s",
+                        cx, cy, tostring(F.ow()), walkReason))
   F.shot("route29_field_probe")
 
   -- Sample actual World object-event table, not the wild encounter config.
