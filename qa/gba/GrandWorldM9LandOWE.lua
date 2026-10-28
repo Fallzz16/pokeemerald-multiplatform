@@ -311,6 +311,20 @@ local function logSpawnGuard(stage)
                     stage, countdown, lock))
 end
 
+local STAGES = {
+  "frames", "field_or_dexnav_lock", "no_land_header", "owe_area_disabled",
+  "countdown_tick", "player_mid_step", "no_spawn_slot", "water_guard",
+  "rejected_spawn_tile", "filtered_or_missing_species", "graphics_budget",
+  "real_spawn_success"
+}
+local function logOWEStages(stage)
+  local parts = {}
+  for i = 0, 11 do
+    parts[#parts+1] = STAGES[i+1] .. "=" .. F.r16(S.gM9OWEProbe + i*2)
+  end
+  F.L("  OWE STAGES " .. stage .. ": " .. table.concat(parts, " "))
+end
+
 F.run(function()
   if not F.boot(100) then
     F.check("boot reaches the real GBA hub", false)
@@ -344,6 +358,7 @@ F.run(function()
   F.shot("route29_field_probe")
   logRuntimeBudget("field-before-spawn")
   logSpawnGuard("field-before-spawn")
+  logOWEStages("field-before-spawn")
   local grass = countNearbyGrass(cx, cy)
   F.check("Route 29 vantage point has actual encounter-grass tiles in spawn radius",
           walked and grass > 0, "grass tiles=" .. grass)
@@ -353,8 +368,10 @@ F.run(function()
   -- the engine's mid-step spawn guard cannot artificially suppress spawning.
   local seen, moved, visible, validGfx = {}, false, false, false
   local observed, firstShot = 0, false
-  for n = 1, 40 do
-    F.idle(60)
+  -- 47 is intentionally coprime with 30-frame minimum retry: sampling
+  -- every 60 frames previously aliased the countdown to the same value.
+  for n = 1, 51 do
+    F.idle(47)
     if n == 1 or n == 2 or n == 3 or n == 10 or n == 20 or n == 40 then
       logSpawnGuard("sample-" .. n)
     end
@@ -389,6 +406,7 @@ F.run(function()
           moved, "tracked IDs/species=" .. tostring(observed))
   logRuntimeBudget("field-after-2400-frames")
   logSpawnGuard("field-after-2400-frames")
+  logOWEStages("field-after-2400-frames")
   F.shot("route29_final_state")
   F.finish()
 end)
