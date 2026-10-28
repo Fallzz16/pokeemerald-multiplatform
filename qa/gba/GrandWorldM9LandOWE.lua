@@ -300,6 +300,17 @@ local function logRuntimeBudget(stage)
                     usedPalettes, S.SpritePalette.count))
 end
 
+-- Source-pinned local EWRAM symbols emitted only for the experimental test
+-- ROM via the workflow's GenLuaSymbols.py adapter. Read-only inspection:
+-- countdown=255 means encounters were disabled; a changing nonzero countdown
+-- means the update loop is live even when no visible object is created.
+local function logSpawnGuard(stage)
+  local countdown = F.r8(S.sOWESpawnCountdown)
+  local lock = F.r8(S.sLockFieldControls)
+  F.L(string.format("  OWE GUARDS %s: countdown=%d fieldControlsLocked=%d",
+                    stage, countdown, lock))
+end
+
 F.run(function()
   if not F.boot(100) then
     F.check("boot reaches the real GBA hub", false)
@@ -332,6 +343,7 @@ F.run(function()
                         cx, cy, tostring(tx), tostring(ty), tostring(F.ow()), walkReason))
   F.shot("route29_field_probe")
   logRuntimeBudget("field-before-spawn")
+  logSpawnGuard("field-before-spawn")
   local grass = countNearbyGrass(cx, cy)
   F.check("Route 29 vantage point has actual encounter-grass tiles in spawn radius",
           walked and grass > 0, "grass tiles=" .. grass)
@@ -343,6 +355,9 @@ F.run(function()
   local observed, firstShot = 0, false
   for n = 1, 40 do
     F.idle(60)
+    if n == 1 or n == 2 or n == 3 or n == 10 or n == 20 or n == 40 then
+      logSpawnGuard("sample-" .. n)
+    end
     if F.reportCrash("land_sample_" .. n) then break end
     if not F.ow() then
       F.L("overworld interrupted, stopping OWE probe")
@@ -373,6 +388,7 @@ F.run(function()
   F.check("generated land OWE changes map coordinates while idle",
           moved, "tracked IDs/species=" .. tostring(observed))
   logRuntimeBudget("field-after-2400-frames")
+  logSpawnGuard("field-after-2400-frames")
   F.shot("route29_final_state")
   F.finish()
 end)
