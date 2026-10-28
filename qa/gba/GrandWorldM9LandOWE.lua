@@ -88,8 +88,11 @@ local function metatileBehavior(x, y)
 end
 
 local function countNearbyGrass(cx, cy, silent)
-  local grass = 0
+  local grass, mismatched = 0, 0
   local types = {}
+  local center = gridBlock(cx, cy)
+  if not center then return 0 end
+  local elevation = (center >> 12) & 15
   for y = cy - 4, cy + 4 do
     for x = cx - 7, cx + 7 do
       if math.abs(x - cx) > 1 or math.abs(y - cy) > 1 then
@@ -98,20 +101,24 @@ local function countNearbyGrass(cx, cy, silent)
           local behavior = metatileBehavior(x, y)
           if behavior then
             types[behavior] = (types[behavior] or 0) + 1
-            -- MB_TALL_GRASS=2 from World EnountersIncenseLink.lua and
-            -- MB_LONG_GRASS=3 from the native metatile enum.
-            if behavior == 2 or behavior == 3 then grass = grass + 1 end
+            -- World explicitly rejects different-elevation land spawns.
+            -- Nearby grass on another ledge is not spawnable grass.
+            if behavior == 2 or behavior == 3 then
+              if ((b >> 12) & 15) == elevation then grass = grass + 1
+              else mismatched = mismatched + 1 end
+            end
           end
         end
       end
     end
   end
-  local details = {}
-  for behavior, n in pairs(types) do
-    details[#details + 1] = behavior .. ":" .. n
+  if not silent then
+    local details = {}
+    for behavior, n in pairs(types) do details[#details + 1] = behavior .. ":" .. n end
+    table.sort(details)
+    F.L(string.format("  Route29 window: elevation=%d same-level grass=%d other-level grass=%d types={%s}",
+                      elevation, grass, mismatched, table.concat(details, ", ")))
   end
-  table.sort(details)
-  if not silent then F.L("  Route29 spawn-window metatiles: " .. table.concat(details, ", ")) end
   return grass
 end
 
@@ -164,21 +171,37 @@ local function findFieldVantage()
   local sx, sy = F.pos()
   local queue = {{x=sx,y=sy,d=0}}
   local seen = {[tileKey(sx,sy)] = true}
-  local head, best, bestCount = 1, nil, 0
+  local head, fallback = 1, nil
   while head <= #queue and #queue <= 1800 do
     local p = queue[head]
     head = head + 1
-    local grass = countNearbyGrass(p.x, p.y, true)
-    local ownBehavior = metatileBehavior(p.x, p.y)
+    local current = gridBlock(p.x,p.y)
+    local ownBehavior = metatileBehavior(p.x,p.y)
     local dry = ownBehavior ~= 2 and ownBehavior ~= 3
-    if grass > bestCount and dry then
-      bestCount = grass
-      best = {x=p.x,y=p.y,d=p.d}
+    local elevation = current and ((current >> 12) & 15)
+    local grass = countNearbyGrass(p.x,p.y,true)
+    -- Require a WALKABLE adjacent grass tile on the same elevation as the
+    -- vantage. Eight grass tiles visible through a tree wall is not habitat.
+    local adjacent = false
+    for _, dir in ipairs(DIR) do
+      local x, y = p.x+dir[1], p.y+dir[2]
+      local block = gridBlock(x,y)
+      local behavior = metatileBehavior(x,y)
+      if block and ((block >> 10) & 3) == 0 and
+         ((block >> 12) & 15) == elevation and
+         (behavior == 2 or behavior == 3) then
+        adjacent = true
+      end
     end
-    if grass >= 8 and dry and p.d >= 2 then
-      F.L(string.format("  reachable terrestrial spawn vantage=(%d,%d), path=%d, grass=%d",
+    if grass > 0 and adjacent and dry then
+      F.L(string.format("  connected grass edge=(%d,%d), path=%d, same-level grass=%d",
                         p.x,p.y,p.d,grass))
-      return p.x, p.y, grass
+      return p.x,p.y,grass
+    end
+    -- Some routes have no dry verge; a reachable grass tile is an honest
+    -- fallback. Walking into it may trigger vanilla random encounters.
+    if (ownBehavior == 2 or ownBehavior == 3) and not fallback then
+      fallback={x=p.x,y=p.y,grass=math.max(grass,1)}
     end
     for _, dir in ipairs(DIR) do
       local x, y = p.x+dir[1], p.y+dir[2]
@@ -190,12 +213,13 @@ local function findFieldVantage()
       end
     end
   end
-  if best then
-    F.L(string.format("  best connected field vantage=(%d,%d), grass=%d, path=%d",
-                      best.x,best.y,bestCount,best.d))
-    return best.x,best.y,bestCount
+  if fallback then
+    F.L(string.format("  reachable grass tile fallback=(%d,%d)",
+                      fallback.x,fallback.y))
+    return fallback.x,fallback.y,fallback.grass
   end
-  return nil, nil, 0
+  F.L("  NO connected grass tile found from Route29 gate entry")
+  return nil,nil,0
 end
 
 local function reachField(tx, ty)
