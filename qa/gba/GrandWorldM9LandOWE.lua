@@ -87,7 +87,7 @@ local function metatileBehavior(x, y)
   return F.r16(attrs + localId * 2) & S.Metatiles.behaviorMask
 end
 
-local function countNearbyGrass(cx, cy)
+local function countNearbyGrass(cx, cy, silent)
   local grass = 0
   local types = {}
   for y = cy - 4, cy + 4 do
@@ -111,7 +111,7 @@ local function countNearbyGrass(cx, cy)
     details[#details + 1] = behavior .. ":" .. n
   end
   table.sort(details)
-  F.L("  Route29 spawn-window metatiles: " .. table.concat(details, ", "))
+  if not silent then F.L("  Route29 spawn-window metatiles: " .. table.concat(details, ", ")) end
   return grass
 end
 
@@ -153,6 +153,49 @@ local function findRoute(sx, sy, tx, ty, blocked)
     end
   end
   return nil
+end
+
+-- Find a field vantage point CONNECTED to the current player tile. Route29
+-- gate warp 0 is a tree-lined courtyard: hardcoding (25,9) picks a tile
+-- outside its connected walkable component and falsely blames OWE spawning.
+-- Search only real passable map tiles and require real tall/long grass in the
+-- 15x9 spawn rectangle. Prefer a dry standing tile, preserving random battles.
+local function findFieldVantage()
+  local sx, sy = F.pos()
+  local queue = {{x=sx,y=sy,d=0}}
+  local seen = {[tileKey(sx,sy)] = true}
+  local head, best, bestCount = 1, nil, 0
+  while head <= #queue and #queue <= 1800 do
+    local p = queue[head]
+    head = head + 1
+    local grass = countNearbyGrass(p.x, p.y, true)
+    local ownBehavior = metatileBehavior(p.x, p.y)
+    local dry = ownBehavior ~= 2 and ownBehavior ~= 3
+    if grass > bestCount and dry then
+      bestCount = grass
+      best = {x=p.x,y=p.y,d=p.d}
+    end
+    if grass >= 8 and dry and p.d >= 2 then
+      F.L(string.format("  reachable terrestrial spawn vantage=(%d,%d), path=%d, grass=%d",
+                        p.x,p.y,p.d,grass))
+      return p.x, p.y, grass
+    end
+    for _, dir in ipairs(DIR) do
+      local x, y = p.x+dir[1], p.y+dir[2]
+      local key = tileKey(x,y)
+      local block = gridBlock(x,y)
+      if not seen[key] and block and ((block >> 10) & 3) == 0 then
+        seen[key] = true
+        queue[#queue+1] = {x=x,y=y,d=p.d+1}
+      end
+    end
+  end
+  if best then
+    F.L(string.format("  best connected field vantage=(%d,%d), grass=%d, path=%d",
+                      best.x,best.y,bestCount,best.d))
+    return best.x,best.y,bestCount
+  end
+  return nil, nil, 0
 end
 
 local function reachField(tx, ty)
@@ -227,15 +270,18 @@ F.run(function()
           info ~= nil and info ~= 0,
           string.format("index=%s landInfo=0x%08X", tostring(headerIdx), info or 0))
 
-  -- Original World battle-palette field fixture uses Route29 (25,9). Warp 0
-  -- exits at (34,11), close to a gate but potentially outside any grass patch.
-  -- Walking there uses ordinary GBA button inputs; do not move avatar via RAM.
-  local walked, walkReason = reachField(25, 9)
+  -- Find nearby reachable tall/long grass using the in-game map grid.
+  -- Walking uses ordinary GBA button inputs; never write player coordinates.
+  local tx, ty, predictedGrass = findFieldVantage()
+  local walked, walkReason = false, "no reachable grass tiles"
+  if tx and predictedGrass > 0 then
+    walked, walkReason = reachField(tx, ty)
+  end
   local cx, cy = F.pos()
-  F.check("player traversed into the tested Route 29 field area",
-          walked and cx == 25 and cy == 9 and F.ow(),
-          string.format("pos=(%d,%d), ow=%s, reason=%s",
-                        cx, cy, tostring(F.ow()), walkReason))
+  F.check("player traversed to a connected Route 29 terrestrial spawn area",
+          walked and cx == tx and cy == ty and F.ow(),
+          string.format("pos=(%d,%d), dest=(%s,%s), ow=%s, reason=%s",
+                        cx, cy, tostring(tx), tostring(ty), tostring(F.ow()), walkReason))
   F.shot("route29_field_probe")
   local grass = countNearbyGrass(cx, cy)
   F.check("Route 29 vantage point has actual encounter-grass tiles in spawn radius",
