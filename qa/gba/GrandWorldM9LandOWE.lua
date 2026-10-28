@@ -60,6 +60,61 @@ local function gridBlock(x, y)
   return F.r16(mem + (gx + gy * w) * 2)
 end
 
+-- Adapted directly from pinned World's EncountersIncenseLink.lua runtime
+-- metatile reader. Map JSON or a visually green tile alone cannot prove
+-- the actual in-game encounter behavior used by TrySelectTileForOWE.
+local function metatileBehavior(x, y)
+  local block = gridBlock(x, y)
+  if not block then return nil end
+  local id = block & S.Metatiles.idMask
+  local layout = F.r32(S.gMapHeader + S.MapHeader.mapLayout)
+  local primary = F.r32(layout + S.MapLayout.primaryTileset)
+  local secondary = F.r32(layout + S.MapLayout.secondaryTileset)
+  local flags1 = F.r8(primary + S.Tileset.flags1)
+  local inPrimary = S.Metatiles.inPrimary
+  if (flags1 & S.Tileset.hasFrlgAttributesBit) ~= 0
+     or F.r8(layout + S.MapLayout.isFrlg) ~= 0
+     or F.r8(layout + S.MapLayout.isJohto) ~= 0 then
+    inPrimary = S.Metatiles.inPrimaryFrlg
+  end
+  local ts, localId
+  if id < inPrimary then ts, localId = primary, id
+  else ts, localId = secondary, id - inPrimary end
+  local attrs = F.r32(ts + S.Tileset.metatileAttributes)
+  if (F.r8(ts + S.Tileset.flags1) & S.Tileset.hasFrlgAttributesBit) ~= 0 then
+    return F.r32(attrs + localId * 4) & S.Metatiles.behaviorMaskFrlg
+  end
+  return F.r16(attrs + localId * 2) & S.Metatiles.behaviorMask
+end
+
+local function countNearbyGrass(cx, cy)
+  local grass = 0
+  local types = {}
+  for y = cy - 4, cy + 4 do
+    for x = cx - 7, cx + 7 do
+      if math.abs(x - cx) > 1 or math.abs(y - cy) > 1 then
+        local b = gridBlock(x, y)
+        if b and ((b >> 10) & 3) == 0 then
+          local behavior = metatileBehavior(x, y)
+          if behavior then
+            types[behavior] = (types[behavior] or 0) + 1
+            -- MB_TALL_GRASS=2 from World EnountersIncenseLink.lua and
+            -- MB_LONG_GRASS=3 from the native metatile enum.
+            if behavior == 2 or behavior == 3 then grass = grass + 1 end
+          end
+        end
+      end
+    end
+  end
+  local details = {}
+  for behavior, n in pairs(types) do
+    details[#details + 1] = behavior .. ":" .. n
+  end
+  table.sort(details)
+  F.L("  Route29 spawn-window metatiles: " .. table.concat(details, ", "))
+  return grass
+end
+
 local DIR = {
   {0, -1, "Up"}, {0, 1, "Down"},
   {-1, 0, "Left"}, {1, 0, "Right"},
@@ -182,14 +237,17 @@ F.run(function()
           string.format("pos=(%d,%d), ow=%s, reason=%s",
                         cx, cy, tostring(F.ow()), walkReason))
   F.shot("route29_field_probe")
+  local grass = countNearbyGrass(cx, cy)
+  F.check("Route 29 vantage point has actual encounter-grass tiles in spawn radius",
+          walked and grass > 0, "grass tiles=" .. grass)
 
   -- Sample actual World object-event table, not the wild encounter config.
   -- 4-second intervals, up to 40 seconds in-game. Wait while stationary so
   -- the engine's mid-step spawn guard cannot artificially suppress spawning.
   local seen, moved, visible, validGfx = {}, false, false, false
   local observed, firstShot = 0, false
-  for n = 1, 10 do
-    F.idle(240)
+  for n = 1, 40 do
+    F.idle(60)
     if F.reportCrash("land_sample_" .. n) then break end
     if not F.ow() then
       F.L("overworld interrupted, stopping OWE probe")
