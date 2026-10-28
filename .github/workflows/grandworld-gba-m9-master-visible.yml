@@ -63,6 +63,17 @@ jobs:
           python3 grandworld/tools/grandworld/patch_m9_owe_palette_budget.py world --apply --report m9-owe-palette-patch.json
           python3 grandworld/tools/grandworld/verify_master_visible.py world --report composed-master-visible-policy.json
           git -C world diff --check
+          # Test-only symbol visibility: no change to engine instructions or saves.
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path("world/test/overworld/GenLuaSymbols.py")
+          source=p.read_text(encoding="utf-8")
+          anchor='    "gObjectEvents", "gPlayerAvatar",\n'
+          assert source.count(anchor)==1, "pinned World symbol generator changed"
+          source=source.replace(anchor,
+              anchor+'    "sOWESpawnCountdown", "sLockFieldControls",\n',1)
+          p.write_text(source,encoding="utf-8")
+          PY
       - name: Compile actual GBA ROM rather than PC/SDL substitute
         shell: bash
         run: |
