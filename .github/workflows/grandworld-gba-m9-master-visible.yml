@@ -63,16 +63,37 @@ jobs:
           python3 grandworld/tools/grandworld/patch_m9_owe_palette_budget.py world --apply --report m9-owe-palette-patch.json
           python3 grandworld/tools/grandworld/verify_master_visible.py world --report composed-master-visible-policy.json
           git -C world diff --check
-          # Test-only symbol visibility: no change to engine instructions or saves.
+          # Test-only exported variables: same storage and semantics; local static
+          # symbol names can be optimized away by GCC in the ARM ELF, so the
+          # read-only Lua probe cannot resolve them without global linkage.
+          # Apply to disposable pinned World checkout only, never the M8/PR102.
           python3 - <<'PY'
           from pathlib import Path
-          p=Path("world/test/overworld/GenLuaSymbols.py")
-          source=p.read_text(encoding="utf-8")
+          changes={
+              "world/src/wild_encounter_ow.c": (
+                  "static EWRAM_DATA u8 sOWESpawnCountdown = 0;",
+                  "EWRAM_DATA u8 sOWESpawnCountdown = 0;"),
+              "world/src/script.c": (
+                  "static bool8 sLockFieldControls;",
+                  "bool8 sLockFieldControls;"),
+          }
+          staged={}
+          for path,(before,after) in changes.items():
+              p=Path(path)
+              source=p.read_text(encoding="utf-8")
+              if source.count(before)!=1 or after in source:
+                  raise RuntimeError(f"Source pin changed: {path}")
+              staged[p]=source.replace(before,after,1)
+          for p,source in staged.items():
+              p.write_text(source,encoding="utf-8")
+          generator=Path("world/test/overworld/GenLuaSymbols.py")
+          source=generator.read_text(encoding="utf-8")
           anchor='    "gObjectEvents", "gPlayerAvatar",\n'
-          assert source.count(anchor)==1, "pinned World symbol generator changed"
-          source=source.replace(anchor,
-              anchor+'    "sOWESpawnCountdown", "sLockFieldControls",\n',1)
-          p.write_text(source,encoding="utf-8")
+          if source.count(anchor)!=1:
+              raise RuntimeError("Pinned World symbol generator changed")
+          generator.write_text(source.replace(anchor,
+              anchor+'    "sOWESpawnCountdown", "sLockFieldControls",\n',1),
+              encoding="utf-8")
           PY
       - name: Compile actual GBA ROM rather than PC/SDL substitute
         shell: bash
