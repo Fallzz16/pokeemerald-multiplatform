@@ -276,6 +276,30 @@ local function generated()
   return out
 end
 
+-- Live occupancy probes, NOT static linker RAM and NOT a synthetic OAM test.
+-- The World symbol generator derives offsets from the same ARM build.
+local function logRuntimeBudget(stage)
+  local activeObjects, activeSprites, usedPalettes = 0, 0, 0
+  for i = 0, 15 do
+    if (F.r8(S.gObjectEvents + i * S.ObjectEvent.stride) & 1) ~= 0 then
+      activeObjects = activeObjects + 1
+    end
+  end
+  for i = 0, S.Sprite.count - 1 do
+    if (F.r16(S.gSprites + i * S.Sprite.stride + S.Sprite.inUse) & 1) ~= 0 then
+      activeSprites = activeSprites + 1
+    end
+  end
+  for i = 0, S.SpritePalette.count - 1 do
+    if F.r16(S.sSpritePaletteTags + i * 2) ~= S.SpritePalette.free then
+      usedPalettes = usedPalettes + 1
+    end
+  end
+  F.L(string.format("  LIVE GBA %s: objectEvents=%d/16 sprites=%d/%d objPalettes=%d/%d",
+                    stage, activeObjects, activeSprites, S.Sprite.count,
+                    usedPalettes, S.SpritePalette.count))
+end
+
 F.run(function()
   if not F.boot(100) then
     F.check("boot reaches the real GBA hub", false)
@@ -307,6 +331,7 @@ F.run(function()
           string.format("pos=(%d,%d), dest=(%s,%s), ow=%s, reason=%s",
                         cx, cy, tostring(tx), tostring(ty), tostring(F.ow()), walkReason))
   F.shot("route29_field_probe")
+  logRuntimeBudget("field-before-spawn")
   local grass = countNearbyGrass(cx, cy)
   F.check("Route 29 vantage point has actual encounter-grass tiles in spawn radius",
           walked and grass > 0, "grass tiles=" .. grass)
@@ -347,6 +372,7 @@ F.run(function()
           visible, "screen evidence taken=" .. tostring(firstShot))
   F.check("generated land OWE changes map coordinates while idle",
           moved, "tracked IDs/species=" .. tostring(observed))
+  logRuntimeBudget("field-after-2400-frames")
   F.shot("route29_final_state")
   F.finish()
 end)
