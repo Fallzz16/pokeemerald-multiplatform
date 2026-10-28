@@ -224,7 +224,7 @@ jobs:
             "$PWD/test/overworld/lua/fixtures/v7.srm" \
             | tee "$PW_OUT/GrandWorldNpcAvatarLegacy.stdout.log"
           md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
-          grep -Eq "^PASS 6/6 rom=$md5 .* suite=GrandWorldNpcAvatarLegacy$" \
+          grep -Eq "^PASS 8/8 rom=$md5 .* suite=GrandWorldNpcAvatarLegacy$" \
             "$PW_OUT/GrandWorldNpcAvatarLegacy.PASS"
       - name: Save chosen Brock avatar to actual flash then restart GBA emulator
         timeout-minutes: 25
