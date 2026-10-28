@@ -29,9 +29,18 @@ local function pickerActive()
 end
 F.run(function()
   F.check("new build contains original M9 NPC appearance code",S.GW_AvatarMenuInput>=0x08000000)
-  local loaded=F.boot()
-  F.check("old pre-M9 World v7 fixture loads to a controllable map",loaded and F.ow())
+  -- Original v7.srm is a REAL saved position in Oldale Center (group 2,
+  -- map 2, tile 7,4), not the new-game Region Hub. This makes the gate
+  -- non-vacuous: a silently rejected save MUST NOT pass.
+  local loaded=F.boot(2,true)
+  F.check("old v7 fixture actually Continue-loaded, not rejected into New Game",
+    loaded and F.ow() and F.grp()==2 and F.mapn()==2)
   if not loaded then F.finish();return end
+  local x,y=F.pos()
+  F.check("old save preserves harvested Oldale Center position",x==7 and y==4,
+    "loaded pos="..x..","..y)
+  F.check("old World save version migrated through native layout ladder",
+    F.r8(F.sb2()+S.SaveBlock2.saveVersion)==S.SAVE_FORMAT_VERSION)
   F.check("unused original save variable resolves to CLASSICO",
     value(0x40E5)==0,"raw legacy 0x40E5="..value(0x40E5))
   F.check("original player graphics are live after loading old save",
