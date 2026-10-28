@@ -10,6 +10,7 @@ on:
       - 'tools/grandworld/tests/test_add_npc_avatar_picker.py'
       - 'qa/gba/GrandWorldNpcAvatar.lua'
       - 'qa/gba/GrandWorldNpcAvatarContinue.lua'
+      - 'qa/gba/GrandWorldNpcAvatarClassic.lua'
   workflow_dispatch:
 permissions:
   contents: read
@@ -65,8 +66,10 @@ jobs:
           python3 grandworld/tools/grandworld/add_npc_avatar_picker.py world --apply --report npc-avatar-catalog.json
           cp grandworld/qa/gba/GrandWorldNpcAvatar.lua world/test/overworld/lua/
           cp grandworld/qa/gba/GrandWorldNpcAvatarContinue.lua world/test/overworld/lua/
+          cp grandworld/qa/gba/GrandWorldNpcAvatarClassic.lua world/test/overworld/lua/
           luac5.4 -p world/test/overworld/lua/GrandWorldNpcAvatar.lua
           luac5.4 -p world/test/overworld/lua/GrandWorldNpcAvatarContinue.lua
+          luac5.4 -p world/test/overworld/lua/GrandWorldNpcAvatarClassic.lua
           # Only the disposable runner's working copy is patched. The original
           # user save, tracked fixture or GBA ROM is NEVER written by this.
           python3 - <<'PY'
@@ -175,6 +178,31 @@ jobs:
             grep -Eq "^PASS 13/13 rom=$md5 .* suite=GrandWorldNpcAvatar$" \
               "$PW_OUT/GrandWorldNpcAvatar.PASS"
           done
+      - name: Test CLASSICO cancel and both L/R page wraps in real mGBA
+        timeout-minutes: 15
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,re
+          names=re.findall(r'(?m)^\s*(OBJ_EVENT_GFX_[A-Z0-9_]+)\s*,',
+                           Path('include/constants/event_objects.h').read_text())
+          assert names[0]=='OBJ_EVENT_GFX_BRENDAN_NORMAL'
+          (Path('test/overworld/lua')/'gw_npc_avatar_target.lua').write_text(
+              'return {skinId=0,graphicsId=0,page=0,row=0}\n')
+          PY
+          export PW_OUT="$GITHUB_WORKSPACE/npc-avatar-classic-proofs/"
+          mkdir -p "$PW_OUT"
+          PW_TIMEOUT=900 test/overworld/mgba-run.sh \
+            test/overworld/lua/GrandWorldNpcAvatarClassic.lua "$PWD/pokemonworld.gba" \
+            | tee "$PW_OUT/GrandWorldNpcAvatarClassic.stdout.log"
+          md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
+          grep -Eq "^PASS 11/11 rom=$md5 .* suite=GrandWorldNpcAvatarClassic$" \
+            "$PW_OUT/GrandWorldNpcAvatarClassic.PASS"
+          test -s "$PW_OUT/GrandWorldNpcAvatarClassic_01_npc_avatar_classic_after_wrap.png"
       - name: Save chosen Brock avatar to actual flash then restart GBA emulator
         timeout-minutes: 25
         shell: bash
@@ -305,6 +333,7 @@ jobs:
             npc-avatar-catalog.json
             npc-avatar-proofs/
             npc-avatar-save-proofs/
+            npc-avatar-classic-proofs/
             npc-avatar-save-roundtrip-evidence.json
             npc-avatar-live-evidence.json
             npc-avatar-target-*.json
