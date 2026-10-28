@@ -81,7 +81,10 @@ jobs:
           for path,(before,after) in changes.items():
               p=Path(path)
               source=p.read_text(encoding="utf-8")
-              if source.count(before)!=1 or after in source:
+              # The replacement text is a substring of the declaration
+              # before removing "static ", so "after in source" falsely
+              # rejected the original engine.
+              if source.count(before)!=1:
                   raise RuntimeError(f"Source pin changed: {path}")
               staged[p]=source.replace(before,after,1)
           for p,source in staged.items():
