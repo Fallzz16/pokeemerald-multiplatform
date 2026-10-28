@@ -42,6 +42,18 @@
 - Não afirmar que os 113 slots do Quetzal estão identificados ou importados; o catálogo Quetzal V7 ainda não prova os nomes dos 113 slots.
 - Não publicar arte extraída/ROMs de terceiros no GitHub.
 
+## Evidência posterior à falha: gravação verdadeira e orçamento da compilação ARM
+
+**Revisão comprovada:** execução [#40533910470](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40533910470), job concluído com **success** em 27/10/2026. Esta evidência é da revisão executada pelo CI, **não valida automaticamente o HEAD mais recente**.
+
+- **Oito NPCs em emulação real:** NINJA_BOY, AQUA_MEMBER_F, RED, LEAF, BROCK, FALKNER, KIMONO_GIRL e SAGE: 13/13 verificações cada, **104/104** no total. São amostras de gameplay, não 192 avatares validados individualmente.
+- **Menu Start e Save real:** o menu de roda tem ícones reordenáveis; o teste passou a escolher a ação Save pelo identificador de ícone **7**, usando `F.selectStartIcon(7)` da biblioteca de QA existente, em vez de um deslocamento fixo. Brock obteve **16/16**, inclusive mantendo o índice de aparência `161` após as entradas Save.
+- **Exportação descartável da Flash:** o mGBA produziu um `.sav` de **131088 bytes** em diretório temporário. A execução seguinte iniciou outro processo com o mesmo cartucho ARM e abriu **CONTINUE**: **8/8 verificações**, `VAR_GW_NPC_AVATAR=161`, `graphicsId=302`, identidade e gênero preservados. O arquivo de save foi removido e **não foi publicado** em artifact. Isso resolve o bloqueio relatado na execução #40526880543 para a revisão aprovada.
+- **Medição estática real do ELF/GBA:** linker contabilizou `ROM=24.566.120` bytes, `EWRAM=235.264` bytes, `IWRAM=28.200` bytes. Reportou livres `ROM=8.988.312` bytes, `EWRAM=26.880` bytes e `IWRAM=4.568` bytes e aprovou reservas mínimas de 1 MiB ROM, 8 KiB EWRAM e 2 KiB IWRAM.
+- **Limite importante:** essa medição é **estática**; não comprova FPS, ciclos/frame, fragmentação de heap em runtime, contagem de sprites ativos, consumo dinâmico de VRAM/OAM nem condições de seguidor + selvagens visíveis. Não extrapolar desempenho dos oito casos sem esses testes.
+
+**Novos gates pendentes no HEAD 033d807a39209144d120f592464bedd323eff93e em 28/10/2026:** testes de CLASSICO, B cancelar, wrap L/R, carregamento de fixture World v7 e repetição do roundtrip Brock. Workflow [#40702048526](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40702048526) encontrava-se em execução durante esta auditoria; consultar o status final antes de declarar esses casos aprovados. Nenhuma alteração da M8 estável ou da biblioteca privada Quetzal foi feita neste registro.
+
 ## Próximos gates objetivos
 
 - Validar os 9 testes Python, o `make modern` da ARM e o relatório de orçamento real do linker na MESMA revisão de fonte. Todo job tem que estar verde.
