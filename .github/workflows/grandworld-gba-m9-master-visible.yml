@@ -4,6 +4,9 @@ on:
     paths:
       - '.github/workflows/grandworld-gba-m9-master-visible.yml'
       - 'tools/grandworld/verify_master_visible.py'
+      - 'tools/grandworld/patch_m9_owe_palette_budget.py'
+      - 'tools/grandworld/tests/test_patch_m9_owe_palette_budget.py'
+      - 'docs/GRANDWORLD_GBA_M9_OWE_PALETTE_BUDGET_20261028.md'
       - 'tools/grandworld/tests/test_verify_master_visible.py'
       - 'docs/GRANDWORLD_GBA_M9_ROM_MASTER_VISIBLE_QUETZAL_20261027.md'
   workflow_dispatch:
@@ -31,6 +34,8 @@ jobs:
         run: |
           set -euo pipefail
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_verify_master_visible.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_patch_m9_owe_palette_budget.py' -v
+          python3 grandworld/tools/grandworld/patch_m9_owe_palette_budget.py world --report original-owe-palette-preflight.json
           python3 grandworld/tools/grandworld/verify_master_visible.py world --report original-master-visible-policy.json
           python3 -m py_compile grandworld/tools/grandworld/verify_master_visible.py
       - name: Install real ARM GBA build toolchain
@@ -54,6 +59,7 @@ jobs:
           python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --shadows lean --report master-visible-shadows.json
           # Crucial: DO NOT invoke apply_grass_only.py. Owner wants real visible OWEs.
           python3 grandworld/tools/grandworld/translate_ptbr_stage1.py world --apply --report master-visible-translation.json
+          python3 grandworld/tools/grandworld/patch_m9_owe_palette_budget.py world --apply --report m9-owe-palette-patch.json
           python3 grandworld/tools/grandworld/verify_master_visible.py world --report composed-master-visible-policy.json
           git -C world diff --check
       - name: Compile actual GBA ROM rather than PC/SDL substitute
@@ -80,6 +86,8 @@ jobs:
               "build_target":"authentic ARM Game Boy Advance 32MiB cartridge",
               "rom_sha256":hashlib.sha256(rom).hexdigest(),
               "visible_owe_enabled_by_config":True,
+              "owe_palette_budget_patch_applied_by_build_step":True,
+              "palette_runtime_gameplay_approved":False,
               "traditional_step_encounters_enabled_by_config":True,
               "fishing_rock_smash_original_hooks_present":True,
               "new_overworld_spawn_runtime_qa":False,
@@ -98,6 +106,8 @@ jobs:
           if-no-files-found: warn
           path: |
             original-master-visible-policy.json
+            original-owe-palette-preflight.json
+            m9-owe-palette-patch.json
             composed-master-visible-policy.json
             master-visible-shadows.json
             master-visible-translation.json
