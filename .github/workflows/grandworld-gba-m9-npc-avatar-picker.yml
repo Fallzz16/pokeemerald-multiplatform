@@ -11,6 +11,7 @@ on:
       - 'qa/gba/GrandWorldNpcAvatar.lua'
       - 'qa/gba/GrandWorldNpcAvatarContinue.lua'
       - 'qa/gba/GrandWorldNpcAvatarClassic.lua'
+      - 'qa/gba/GrandWorldNpcAvatarLegacy.lua'
   workflow_dispatch:
 permissions:
   contents: read
@@ -67,9 +68,11 @@ jobs:
           cp grandworld/qa/gba/GrandWorldNpcAvatar.lua world/test/overworld/lua/
           cp grandworld/qa/gba/GrandWorldNpcAvatarContinue.lua world/test/overworld/lua/
           cp grandworld/qa/gba/GrandWorldNpcAvatarClassic.lua world/test/overworld/lua/
+          cp grandworld/qa/gba/GrandWorldNpcAvatarLegacy.lua world/test/overworld/lua/
           luac5.4 -p world/test/overworld/lua/GrandWorldNpcAvatar.lua
           luac5.4 -p world/test/overworld/lua/GrandWorldNpcAvatarContinue.lua
           luac5.4 -p world/test/overworld/lua/GrandWorldNpcAvatarClassic.lua
+          luac5.4 -p world/test/overworld/lua/GrandWorldNpcAvatarLegacy.lua
           # Only the disposable runner's working copy is patched. The original
           # user save, tracked fixture or GBA ROM is NEVER written by this.
           python3 - <<'PY'
@@ -203,6 +206,26 @@ jobs:
           grep -Eq "^PASS 11/11 rom=$md5 .* suite=GrandWorldNpcAvatarClassic$" \
             "$PW_OUT/GrandWorldNpcAvatarClassic.PASS"
           test -s "$PW_OUT/GrandWorldNpcAvatarClassic_01_npc_avatar_classic_after_wrap.png"
+      - name: Verify older native World save retains CLASSICO in upgraded GBA
+        timeout-minutes: 15
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd world
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          export PW_OUT="$GITHUB_WORKSPACE/npc-avatar-legacy-proofs/"
+          mkdir -p "$PW_OUT"
+          # Original World v7 migration fixture; runner copies it to an
+          # isolated temporary file. Tracked fixture and user save unchanged.
+          test -s test/overworld/lua/fixtures/v7.srm
+          PW_TIMEOUT=900 test/overworld/mgba-run.sh \
+            test/overworld/lua/GrandWorldNpcAvatarLegacy.lua \
+            "$PWD/pokemonworld.gba" \
+            "$PWD/test/overworld/lua/fixtures/v7.srm" \
+            | tee "$PW_OUT/GrandWorldNpcAvatarLegacy.stdout.log"
+          md5=$(md5sum pokemonworld.gba | cut -d' ' -f1 | tr '[:lower:]' '[:upper:]')
+          grep -Eq "^PASS 6/6 rom=$md5 .* suite=GrandWorldNpcAvatarLegacy$" \
+            "$PW_OUT/GrandWorldNpcAvatarLegacy.PASS"
       - name: Save chosen Brock avatar to actual flash then restart GBA emulator
         timeout-minutes: 25
         shell: bash
@@ -334,6 +357,7 @@ jobs:
             npc-avatar-proofs/
             npc-avatar-save-proofs/
             npc-avatar-classic-proofs/
+            npc-avatar-legacy-proofs/
             npc-avatar-save-roundtrip-evidence.json
             npc-avatar-live-evidence.json
             npc-avatar-target-*.json
