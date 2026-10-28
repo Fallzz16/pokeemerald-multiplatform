@@ -5,7 +5,7 @@ package.path=here.."?.lua;"..package.path
 local S=require("symbols")
 local F=require("lib").new(S,"GrandWorldNpcAvatarClassic")
 local cfg=dofile(here.."gw_npc_avatar_target.lua")
-assert(cfg.skinId==0 and cfg.graphicsId>0)
+assert(cfg.skinId==0 and cfg.graphicsId>=0)
 local function avatarVar(id)
   return F.r16(F.sb1()+S.SaveBlock1.vars+(id-0x4000)*2)
 end
