@@ -69,6 +69,13 @@ jobs:
           set -euo pipefail
           make -C world modern -j2 > master-visible-arm-build.log 2>&1
           test -s world/pokemonworld.gba
+      - name: Audit actual ARM linker ROM/EWRAM/IWRAM headroom
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/evaluate_performance_budget.py \
+            world/pokemonworld.gba master-visible-arm-build.log \
+            --output m9-memory-budget.json
       - name: Verify GBA cartridge identity and hash; NEVER claim live OWE QA here
         shell: bash
         run: |
@@ -154,6 +161,7 @@ jobs:
             master-visible-translation.json
             master-visible-arm-build.log
             master-visible-result.json
+            m9-memory-budget.json
             m9-mgba-build.log
             m9-land-owe-log.txt
             m9-land-owe-evidence/
