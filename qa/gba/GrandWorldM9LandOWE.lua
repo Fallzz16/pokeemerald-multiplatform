@@ -12,6 +12,35 @@ local OWE_LOW, OWE_HIGH = 249, 252
 local OBJ_EVENT_MON = 1 << 14
 local SPECIES_MASK = 0x8FFF
 local ROUTE29_GROUP, ROUTE29_MAP = 75, 2
+local WILD_HEADER_STRIDE = 84 -- same verified ABI used by EncountersIncenseLink.lua
+
+-- These are the original World debug-controller inputs. They only populate a
+-- disposable CI test party; no generated OWE is fabricated or inserted.
+local function prepareParty()
+  if F.r8(S.gPartiesCount) ~= 0 then return true end
+  F.dbg()
+  F.idle(60)
+  for _ = 1, 2 do F.press("Down", 3); F.idle(16) end
+  F.press("A", 3); F.idle(60)
+  for _ = 1, 9 do F.press("Down", 3); F.idle(16) end
+  F.press("A", 3); F.idle(180)
+  for _ = 1, 8 do F.press("B", 3); F.idle(20) end
+  return F.r8(S.gPartiesCount) > 0
+end
+
+local function getLandHeader()
+  -- Detect missing land encounter header before attributing zero OWEs to VRAM.
+  -- Header ABI from pinned World's EncountersIncenseLink.lua test.
+  for i = 0, 1024 do
+    local header = S.gWildMonHeaders + i * WILD_HEADER_STRIDE
+    local grp, map = F.r8(header), F.r8(header + 1)
+    if grp == 255 and map == 255 then return nil end
+    if grp == ROUTE29_GROUP and map == ROUTE29_MAP then
+      return F.r32(header + 4), i
+    end
+  end
+  return nil
+end
 
 local function generated()
   local out = {}
@@ -40,11 +69,27 @@ F.run(function()
     F.finish()
     return
   end
+  F.check("disposable test party is available for legitimate wild battles", prepareParty(),
+          "party count=" .. F.r8(S.gPartiesCount))
   local arrived = F.warpTo(0, 7, 5, 0, 0, 2, 0, 0, 0,
                            ROUTE29_GROUP, ROUTE29_MAP, "m9_land_route29")
   F.check("reached Route 29 without RAM warp", arrived and F.grp() == ROUTE29_GROUP
           and F.mapn() == ROUTE29_MAP)
   if not arrived then F.finish(); return end
+  local info, headerIdx = getLandHeader()
+  F.check("Route 29 has a resident wild land encounter table",
+          info ~= nil and info ~= 0,
+          string.format("index=%s landInfo=0x%08X", tostring(headerIdx), info or 0))
+
+  -- Original World battle-palette field fixture uses Route29 (25,9). Warp 0
+  -- exits at (34,11), close to a gate but potentially outside any grass patch.
+  -- Walking there uses ordinary GBA button inputs; do not move avatar via RAM.
+  local walked = F.leg(25, 9)
+  local cx, cy = F.pos()
+  F.check("player traversed into the tested Route 29 field area",
+          walked and cx == 25 and cy == 9 and F.ow(),
+          string.format("pos=(%d,%d), ow=%s", cx, cy, tostring(F.ow())))
+  F.shot("route29_field_probe")
 
   -- Sample actual World object-event table, not the wild encounter config.
   -- 4-second intervals, up to 40 seconds in-game. Wait while stationary so
