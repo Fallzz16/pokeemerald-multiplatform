@@ -141,7 +141,7 @@ jobs:
           expected=hashlib.md5(rom).hexdigest().upper()
           base=Path('../m9-land-owe-evidence')
           stamp=(base/'GrandWorldM9LandOWE.PASS').read_text()
-          assert re.fullmatch(rf'PASS 8/8 rom={expected} at=[^\r\n]+ suite=GrandWorldM9LandOWE\s*',stamp),stamp
+          assert re.fullmatch(rf'PASS 9/9 rom={expected} at=[^\r\n]+ suite=GrandWorldM9LandOWE\s*',stamp),stamp
           assert not (base/'GrandWorldM9LandOWE.FAIL').exists()
           assert list(base.glob('GrandWorldM9LandOWE_*_actual_generated_land_owe.png')), 'no screenshot of generated land OWE'
           print('mGBA generated land OWE gate PASS against ARM ROM sha256='+hashlib.sha256(rom).hexdigest())
