@@ -42,7 +42,7 @@ def compose(world):
     before = (world / CONFIG).read_text(encoding="utf-8")
     source = (world / SOURCE).read_text(encoding="utf-8")
     for key, value in REQUIRED.items():
-        pattern = r"(?m)^([ \\t]*#define[ \\t]+" + re.escape(key) + r"[ \\t]+)([A-Za-z_][A-Za-z_0-9]*)([^\\n]*)$"
+        pattern = r"(?m)^([ \t]*#define[ \t]+" + re.escape(key) + r"[ \t]+)([A-Za-z_][A-Za-z_0-9]*)([^\n]*)$"
         matches = list(re.finditer(pattern, before))
         if len(matches) != 1 or matches[0].group(2) != value:
             raise ValueError(f"{CONFIG}: expected exactly {key}={value}")
@@ -51,7 +51,7 @@ def compose(world):
             raise ValueError(f"{SOURCE}: original replacement/shiny safeguard changed: {token}")
     after = before
     for key, value in CHANGES.items():
-        pattern = r"(?m)^([ \\t]*#define[ \\t]+" + re.escape(key) + r"[ \\t]+)(FALSE)([^\\n]*)$"
+        pattern = r"(?m)^([ \t]*#define[ \t]+" + re.escape(key) + r"[ \t]+)(FALSE)([^\n]*)$"
         after, count = re.subn(pattern, lambda m: m.group(1) + value + m.group(3), after)
         if count != 1:
             raise ValueError(f"{CONFIG}: failed to patch unique {key}")
