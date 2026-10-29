@@ -326,6 +326,116 @@ local function logOWEStages(stage)
   F.L("  OWE STAGES " .. stage .. ": " .. table.concat(parts, " "))
 end
 
+-- Fully live encounter QA. Move by ordinary GBA buttons to an accessible tile
+-- beside a generated OWE and press A. Do not seed IDs, inject objects, force
+-- scripts, edit flags/coordinates, or disable vanilla random encounters.
+-- A traditional grass battle MUST NOT count as an OWE interaction.
+local function battleWithGeneratedLandOWE()
+  local knownSpecies = {}
+  local engagedId, engagedSpecies
+  local function remember()
+    local mons=generated()
+    for id, o in pairs(mons) do
+      if o.visible and o.species > 0 then knownSpecies[id]=o.species end
+    end
+    return mons
+  end
+  local function checkEngaged()
+    local id=F.r16(S.gSpecialVar_LastTalked)
+    if id >= OWE_LOW and id <= OWE_HIGH and knownSpecies[id] then
+      engagedId, engagedSpecies = id, knownSpecies[id]
+      F.L(string.format("  live generated OWE interaction id=%d species=%d",
+                        engagedId, engagedSpecies))
+      return true
+    end
+    return false
+  end
+  local function battleStarted()
+    return F.battlers() >= 2
+  end
+  for attempt=1,45 do
+    if F.reportCrash("owe_interact_"..attempt) then break end
+    if battleStarted() or not F.ow() then break end
+    local mons=remember()
+    local px,py=F.pos()
+    local best=nil
+    for id,o in pairs(mons) do
+      if o.visible and o.species > 0 then
+        for _,dir in ipairs(DIR) do
+          local ax,ay=o.x-dir[1],o.y-dir[2]
+          local block=gridBlock(ax,ay)
+          local own=gridBlock(px,py)
+          if block and own and ((block >> 10) & 3)==0
+             and ((block >> 12) & 15)==((own >> 12) & 15) then
+            local route=findRoute(px,py,ax,ay,{})
+            if route and #route <= 14 then
+              local beh=metatileBehavior(ax,ay)
+              local penalty=((beh==2 or beh==3) and 6 or 0)
+              local score=#route+penalty
+              if not best or score<best.score then
+                best={id=id,species=o.species,route=route,
+                      face=dir[3],x=ax,y=ay,score=score}
+              end
+            end
+          end
+        end
+      end
+    end
+    if not best then
+      F.idle(30)
+    elseif #best.route > 0 then
+      -- Re-plan after EVERY step because OWEs move autonomously.
+      local routeStep=best.route[1]
+      F.step(routeStep.dir)
+      checkEngaged()
+    else
+      -- Require the SAME live OWE still be adjacent before pressing A.
+      local mon=generated()[best.id]
+      if mon and mon.species==best.species and
+         math.abs(mon.x-px)+math.abs(mon.y-py)==1 then
+        local face=nil
+        for _,d in ipairs(DIR) do
+          if px+d[1]==mon.x and py+d[2]==mon.y then face=d[3] end
+        end
+        if face then
+          F.face(face)
+          F.press("A",2)
+          checkEngaged()
+          F.idle(12)
+          F.L(string.format("  OWE interaction attempt=%d id=%d pos=(%d,%d) lastTalked=%d",
+                            attempt,best.id,px,py,F.r16(S.gSpecialVar_LastTalked)))
+        end
+      end
+    end
+    if engagedId then break end
+  end
+
+  if not engagedId then
+    F.L(string.format("  no generated OWE engagement; cb2=0x%08X battlers=%d lastTalked=%d",
+                      F.cb2(),F.battlers(),F.r16(S.gSpecialVar_LastTalked)))
+    F.shot("owe_interaction_not_engaged")
+    return false,false,"no generated local ID engaged"
+  end
+  F.shot("generated_owe_interaction")
+  -- Scripted OWEs can play a cry and approach before the battle callback.
+  for t=1,1200 do
+    if battleStarted() then
+      F.idle(90)
+      local battleSpecies=F.r16(S.gBattleMons+S.BattlePokemon.size)
+      F.L(string.format("  real OWE battle id=%d expected=%d battleSpecies=%d battlers=%d",
+                        engagedId,engagedSpecies,battleSpecies,F.battlers()))
+      F.shot("real_generated_owe_battle")
+      return true,battleSpecies==engagedSpecies,
+             string.format("id=%d expected=%d battleSpecies=%d",
+                           engagedId,engagedSpecies,battleSpecies)
+    end
+    if t%32==0 then F.press("A",1) else F.idle(1) end
+    if t%120==0 and F.reportCrash("owe_battle_wait") then break end
+  end
+  F.shot("owe_battle_not_started")
+  return false,false,string.format("id=%d never started a real battle",engagedId)
+end
+
 F.run(function()
   if not F.boot(100) then
     F.check("boot reaches the real GBA hub", false)
@@ -409,5 +519,10 @@ F.run(function()
   logSpawnGuard("field-after-2400-frames")
   logOWEStages("field-after-2400-frames")
   F.shot("route29_final_state")
+  local battled, speciesMatched, reason = battleWithGeneratedLandOWE()
+  F.check("contact with an automatically generated terrestrial OWE starts a real battle",
+          battled, reason)
+  F.check("real OWE battle opponent species matches the contacted overworld mon",
+          battled and speciesMatched, reason)
   F.finish()
 end)
