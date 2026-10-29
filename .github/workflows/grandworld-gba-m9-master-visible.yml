@@ -4,6 +4,8 @@ on:
     paths:
       - '.github/workflows/grandworld-gba-m9-master-visible.yml'
       - 'tools/grandworld/verify_master_visible.py'
+      - 'tools/grandworld/optimize_overworld_budget.py'
+      - 'tools/grandworld/tests/test_optimize_overworld_budget.py'
       - 'qa/gba/GrandWorldM9LandOWE.lua'
       - 'tools/grandworld/patch_m9_owe_palette_budget.py'
       - 'tools/grandworld/instrument_m9_owe_trace.py'
@@ -39,6 +41,7 @@ jobs:
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_verify_master_visible.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_patch_m9_owe_palette_budget.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_instrument_m9_owe_trace.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_optimize_overworld_budget.py' -v
           python3 grandworld/tools/grandworld/patch_m9_owe_palette_budget.py world --report original-owe-palette-preflight.json
           python3 grandworld/tools/grandworld/verify_master_visible.py world --report original-master-visible-policy.json
           python3 -m py_compile grandworld/tools/grandworld/verify_master_visible.py
@@ -61,6 +64,19 @@ jobs:
           python3 grandworld/tools/grandworld/add_hero_profiles.py world
           python3 grandworld/tools/grandworld/add_kanto_avatar.py world
           python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --shadows lean --report master-visible-shadows.json
+          # Detect the original M9 bug BEFORE running the ARM compiler. A
+          # standalone return after the replaced header check made all OWEs
+          # permanently unreachable despite the code compiling successfully.
+          python3 - <<'PY'
+          from pathlib import Path
+          src=Path("world/src/wild_encounter_ow.c").read_text(encoding="utf-8")
+          check="    if (!CheckCurrentWildMonHeaderForOWE(shouldSpawnWaterMons))\n        return;\n"
+          assert src.count(check)==1, "World guard changed"
+          after=src.split(check,1)[1]
+          assert after.lstrip().startswith("if (!WE_OW_ENCOUNTERS"), (
+              "Unconditional OWE return still present: " + repr(after[:140]))
+          print("OWE land spawn code is reachable after the checked header guard")
+          PY
           # Crucial: DO NOT invoke apply_grass_only.py. Owner wants real visible OWEs.
           python3 grandworld/tools/grandworld/translate_ptbr_stage1.py world --apply --report master-visible-translation.json
           python3 grandworld/tools/grandworld/patch_m9_owe_palette_budget.py world --apply --report m9-owe-palette-patch.json
