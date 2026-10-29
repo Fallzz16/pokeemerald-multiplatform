@@ -9,6 +9,7 @@ local F = require("lib").new(S, "GrandWorldM9LandOWE")
 
 -- Pinned World's include/constants/event_objects.h: four reserved generated IDs.
 local OWE_LOW, OWE_HIGH = 249, 252
+local FOLLOWER_LOCAL_ID = 254 -- World follower, separate from 249..252
 local OBJ_EVENT_MON = 1 << 14
 local SPECIES_MASK = 0x8FFF
 local ROUTE29_GROUP, ROUTE29_MAP = 75, 2
@@ -266,6 +267,7 @@ local function generated()
         out[localId] = {
           species = gfx & SPECIES_MASK,
           gfx = gfx,
+          spriteId = F.r8(b + 0x23), -- native ObjectEvent.spriteId
           x = F.rs16(b + S.ObjectEvent.x) - 7,
           y = F.rs16(b + S.ObjectEvent.y) - 7,
           visible = (F.r8(b + S.ObjectEvent.flags1) & 0x20) == 0,
@@ -274,6 +276,29 @@ local function generated()
     end
   end
   return out
+end
+
+-- Observe the native follower without forcing its visibility or adding objects.
+local function follower()
+  for i = 0, 15 do
+    local b = S.gObjectEvents + i * S.ObjectEvent.stride
+    if (F.r8(b) & 1) ~= 0
+       and F.r8(b + S.ObjectEvent.localId) == FOLLOWER_LOCAL_ID then
+      return {
+        gfx = F.r16(b + S.ObjectEvent.graphicsId),
+        spriteId = F.r8(b + 0x23),
+        x = F.rs16(b + S.ObjectEvent.x) - 7,
+        y = F.rs16(b + S.ObjectEvent.y) - 7,
+        visible = (F.r8(b + S.ObjectEvent.flags1) & 0x20) == 0,
+      }
+    end
+  end
+  return nil
+end
+
+local function spriteActive(id)
+  return id and id < S.Sprite.count and
+         (F.r16(S.gSprites + id * S.Sprite.stride + S.Sprite.inUse) & 1) ~= 0
 end
 
 -- Live occupancy probes, NOT static linker RAM and NOT a synthetic OAM test.
@@ -541,6 +566,7 @@ F.run(function()
   -- the engine's mid-step spawn guard cannot artificially suppress spawning.
   local seen, moved, visible, validGfx = {}, false, false, false
   local observed, firstShot = 0, false
+  local coexisted, distinctSprites, coexShot = false, false, false
   -- 47 is intentionally coprime with 30-frame minimum retry: sampling
   -- every 60 frames previously aliased the countdown to the same value.
   for n = 1, 51 do
@@ -553,7 +579,21 @@ F.run(function()
       F.L("overworld interrupted, stopping OWE probe")
       break
     end
+    local follow = follower()
     for localId, o in pairs(generated()) do
+      if follow and follow.visible and o.visible then
+        coexisted = true
+        local separate = follow.spriteId ~= o.spriteId
+                 and spriteActive(follow.spriteId) and spriteActive(o.spriteId)
+        distinctSprites = distinctSprites or separate
+        if not coexShot then
+          F.L(string.format("  OWE + follower: follower gfx=0x%04X sprite=%d @(%d,%d), wild id=%d sprite=%d, separate=%s",
+                            follow.gfx,follow.spriteId,follow.x,follow.y,
+                            localId,o.spriteId,tostring(separate)))
+          F.shot("generated_owe_with_follower")
+          coexShot = true
+        end
+      end
       observed = observed + 1
       local key = localId .. ":" .. o.species
       local prev = seen[key]
@@ -577,6 +617,10 @@ F.run(function()
           visible, "screen evidence taken=" .. tostring(firstShot))
   F.check("generated land OWE changes map coordinates while idle",
           moved, "tracked IDs/species=" .. tostring(observed))
+  F.check("player follower and a generated terrestrial OWE coexist visibly",
+          coexisted, "simultaneous real gObjectEvents observed=" .. tostring(coexisted))
+  F.check("follower and generated OWE use separate active sprite slots",
+          distinctSprites, "native gSprites both in-use and distinct=" .. tostring(distinctSprites))
   logRuntimeBudget("field-after-2400-frames")
   logSpawnGuard("field-after-2400-frames")
   logOWEStages("field-after-2400-frames")
@@ -602,5 +646,15 @@ F.run(function()
   end
   F.check("terrestrial OWE updater resumes after real battle exit",
           resumed,updateDetail)
+  local followAfter = (ran and returned and sameRoute) and follower() or nil
+  local followerStillVisible = followAfter ~= nil and followAfter.visible and
+                               spriteActive(followAfter.spriteId)
+  F.L(string.format("  follower after battle: %s",
+                    followAfter and string.format("gfx=0x%04X sprite=%d visible=%s",
+                    followAfter.gfx,followAfter.spriteId,tostring(followAfter.visible))
+                    or "ABSENT"))
+  F.check("follower is still visible with a live sprite after generated OWE battle",
+          followerStillVisible, "native follower localId=254 active=" ..
+          tostring(followerStillVisible))
   F.finish()
 end)
