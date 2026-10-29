@@ -29,7 +29,7 @@ class M9OweTraceTests(unittest.TestCase):
         original = self.source.read_bytes()
         r = mod.run(self.root)
         self.assertEqual(r["mode"], "preflight")
-        self.assertEqual(r["counter_fields"], 12)
+        self.assertEqual(r["counter_fields"], 16)
         self.assertFalse(r["actual_gameplay_approved"])
         self.assertEqual(original, self.source.read_bytes())
 
