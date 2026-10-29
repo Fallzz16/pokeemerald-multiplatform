@@ -436,6 +436,68 @@ local function battleWithGeneratedLandOWE()
   return false,false,string.format("id=%d never started a real battle",engagedId)
 end
 
+-- End-to-end battle lifecycle: use the same real button-only RUN sequence
+-- exercised by pinned World's KenyaMail.lua. No battle-outcome, HP, flags,
+-- party or ROM memory is ever written by the test. A normal loss/whiteout
+-- or a stray overworld transition MUST NOT be mistaken for a successful flee.
+local function fleeGeneratedLandBattle()
+  if F.ow() or F.battlers() < 2 then
+    return false,false,false,"no active generated wild battle"
+  end
+  local sawRunOutcome = false
+  local returned = false
+  for attempt = 1, 220 do
+    if F.reportCrash("generated_owe_flee_" .. attempt) then break end
+    if F.outcome() == 4 then sawRunOutcome = true end -- B_OUTCOME_RAN
+    if F.ow() then returned = true; break end
+    -- B backs out of submenus; Right + Down selects RUN in the
+    -- World's 2x2 battle command menu; A confirms. Retry if a faster
+    -- wild mon prevents escape on an early turn.
+    F.press("B",2);     F.idle(6)
+    F.press("Right",2); F.idle(6)
+    F.press("Down",2);  F.idle(6)
+    F.press("A",2);     F.idle(14)
+    if F.outcome() == 4 then sawRunOutcome = true end
+    if attempt == 1 or attempt % 25 == 0 then
+      F.L(string.format("  OWE escape attempt=%d outcome=%d battlers=%d ow=%s",
+                        attempt,F.outcome(),F.battlers(),tostring(F.ow())))
+    end
+  end
+  if F.ow() then returned = true end
+  if returned then F.idle(60) end
+  local sameRoute = returned and F.grp() == ROUTE29_GROUP
+                           and F.mapn() == ROUTE29_MAP
+  F.L(string.format("  OWE battle exit: ran=%s overworld=%s sameRoute=%s outcome=%d map=(%d,%d) pos=(%d,%d)",
+                    tostring(sawRunOutcome),tostring(returned),tostring(sameRoute),
+                    F.outcome(),F.grp(),F.mapn(),F.pos()))
+  F.shot(returned and "generated_owe_battle_return" or "generated_owe_exit_failed")
+  return sawRunOutcome,returned,sameRoute,
+         string.format("ran=%s overworld=%s map=(%d,%d) outcome=%d",
+                       tostring(sawRunOutcome),tostring(returned),
+                       F.grp(),F.mapn(),F.outcome())
+end
+
+-- Confirm the native OWE field update loop resumes AFTER a genuine wild battle,
+-- not merely that the battle screen transitioned away. Counter is exported on
+-- the disposable instrumentation build only (16-bit wrap is accounted for).
+local function checkOWELoopAfterBattle()
+  if not F.ow() or F.grp() ~= ROUTE29_GROUP or F.mapn() ~= ROUTE29_MAP then
+    return false,"not in Route29 overworld after fight"
+  end
+  local before=F.r16(S.gM9OWEProbe)
+  F.idle(180)
+  local after=F.r16(S.gM9OWEProbe)
+  local delta=(after-before) & 0xFFFF
+  local active=F.ow() and F.grp()==ROUTE29_GROUP and F.mapn()==ROUTE29_MAP
+  F.L(string.format("  OWE postbattle update: framesBefore=%d framesAfter=%d delta=%d overworld=%s",
+                    before,after,delta,tostring(active)))
+  logRuntimeBudget("field-after-real-battle-flee")
+  logOWEStages("field-after-real-battle-flee")
+  F.shot("generated_owe_postbattle_field")
+  return active and delta >= 60,
+         string.format("OWE frame delta=%d sameRoute=%s",delta,tostring(active))
+end
+
 F.run(function()
   if not F.boot(100) then
     F.check("boot reaches the real GBA hub", false)
@@ -524,5 +586,21 @@ F.run(function()
           battled, reason)
   F.check("real OWE battle opponent species matches the contacted overworld mon",
           battled and speciesMatched, reason)
+  -- This is a SEPARATE lifecycle gate. Battle start alone is not completion.
+  -- Deliberately emit failed assertions when the OWE battle never started.
+  local ran,returned,sameRoute,exitDetail = false,false,false,"no OWE battle"
+  if battled and speciesMatched then
+    ran,returned,sameRoute,exitDetail=fleeGeneratedLandBattle()
+  end
+  F.check("generated OWE battle ends by the real RUN action",
+          ran,exitDetail)
+  F.check("after fleeing a generated OWE the player returns to Route29",
+          ran and returned and sameRoute,exitDetail)
+  local resumed,updateDetail = false,"battle did not return to Route29"
+  if ran and returned and sameRoute then
+    resumed,updateDetail=checkOWELoopAfterBattle()
+  end
+  F.check("terrestrial OWE updater resumes after real battle exit",
+          resumed,updateDetail)
   F.finish()
 end)
