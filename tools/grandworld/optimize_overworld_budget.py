@@ -17,9 +17,13 @@ GUARD_OLD = """     || FlagGet(WE_FLAG_NO_ENCOUNTER)
 GUARD_NEW = """     || FlagGet(WE_FLAG_NO_ENCOUNTER)
      || (gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS && !WE_OWE_BATTLE_PIKE)"""
 PRIOR_GUARD = "if (ArePlayerFieldControlsLocked() || FlagGet(DN_FLAG_SEARCHING) || !CheckCurrentWildMonHeaderForOWE(shouldSpawnWaterMons))"
+# The original guard has a following return statement. Omitting it from
+# the replacement anchor leaves an unconditional return after the new guard,
+# silently disabling ALL automatically generated terrestrial OWEs.
 EARLY_OLD = ("    bool32 shouldSpawnWaterMons = ShouldSpawnWaterOWE();\n"
              "    \n"
-             "    " + PRIOR_GUARD + "\n")
+             "    " + PRIOR_GUARD + "\n"
+             "        return;\n")
 EARLY_NEW = ("    bool32 shouldSpawnWaterMons;\n"
              "    if (ArePlayerFieldControlsLocked() || FlagGet(DN_FLAG_SEARCHING))\n"
              "        return;\n"
