@@ -355,9 +355,18 @@ end
 -- beside a generated OWE and press A. Do not seed IDs, inject objects, force
 -- scripts, edit flags/coordinates, or disable vanilla random encounters.
 -- A traditional grass battle MUST NOT count as an OWE interaction.
-local function battleWithGeneratedLandOWE()
+local function battleWithGeneratedLandOWE(pending)
   local knownSpecies = {}
   local engagedId, engagedSpecies
+  if pending then
+    -- A native generated OWE can collide with the player while field
+    -- sampling runs. This is legitimate gameplay, not a synthetic battle.
+    -- The live ID/species were observed before transition; still verify
+    -- that the opponent in the REAL battle matches the visible mon.
+    engagedId, engagedSpecies = pending.id, pending.species
+    F.L(string.format("  spontaneous OWE encounter during field sampling id=%d species=%d",
+                      engagedId,engagedSpecies))
+  end
   local function remember()
     local mons=generated()
     for id, o in pairs(mons) do
@@ -379,6 +388,7 @@ local function battleWithGeneratedLandOWE()
     return F.battlers() >= 2
   end
   for attempt=1,45 do
+    if engagedId then break end
     if F.reportCrash("owe_interact_"..attempt) then break end
     if battleStarted() or not F.ow() then break end
     local mons=remember()
@@ -567,6 +577,7 @@ F.run(function()
   local seen, moved, visible, validGfx = {}, false, false, false
   local observed, firstShot, peakOWEs = 0, false, 0
   local coexisted, distinctSprites, coexShot = false, false, false
+  local lastSampleSpecies, spontaneousOWE = {}, nil
   -- 47 is intentionally coprime with 30-frame minimum retry: sampling
   -- every 60 frames previously aliased the countdown to the same value.
   for n = 1, 51 do
@@ -576,7 +587,16 @@ F.run(function()
     end
     if F.reportCrash("land_sample_" .. n) then break end
     if not F.ow() then
-      F.L("overworld interrupted, stopping OWE probe")
+      local id = F.r16(S.gSpecialVar_LastTalked)
+      local known = lastSampleSpecies[id]
+      if id >= OWE_LOW and id <= OWE_HIGH and known then
+        spontaneousOWE = {id=id, species=known}
+        F.L(string.format("  sampled generated OWE collision caused overworld transition id=%d species=%d battlers=%d",
+                          id,known,F.battlers()))
+      else
+        F.L(string.format("  non-OWE overworld interruption id=%d battlers=%d",
+                          id,F.battlers()))
+      end
       break
     end
     local follow = follower()
@@ -585,6 +605,7 @@ F.run(function()
     for _ in pairs(currentOWEs) do activeCount = activeCount + 1 end
     peakOWEs = math.max(peakOWEs, activeCount)
     for localId, o in pairs(currentOWEs) do
+      if o.visible and o.species > 0 then lastSampleSpecies[localId] = o.species end
       if follow and follow.visible and o.visible then
         coexisted = true
         local separate = follow.spriteId ~= o.spriteId
@@ -638,7 +659,7 @@ F.run(function()
           string.format("peak simultaneous=%d/4 total successful spawns=%d",
                         peakOWEs,successfulSpawns))
   F.shot("route29_final_state")
-  local battled, speciesMatched, reason = battleWithGeneratedLandOWE()
+  local battled, speciesMatched, reason = battleWithGeneratedLandOWE(spontaneousOWE)
   F.check("contact with an automatically generated terrestrial OWE starts a real battle",
           battled, reason)
   F.check("real OWE battle opponent species matches the contacted overworld mon",
