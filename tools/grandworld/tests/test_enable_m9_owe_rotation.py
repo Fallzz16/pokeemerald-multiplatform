@@ -15,10 +15,10 @@ class NativeOWERotationTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.world = Path(self.temp.name)
-        (self.world / "Makefile").write_text("modern:\\n\\t@true\\n")
-        cfg = "\\n".join("#define " + k + " " + v
-                           for k, v in patch.REQUIRED.items()) + "\\n"
-        c = "\\n".join(patch.SOURCE_TOKENS) + "\\n"
+        (self.world / "Makefile").write_text("modern:\n\t@true\n")
+        cfg = "\n".join("#define " + k + " " + v
+                           for k, v in patch.REQUIRED.items()) + "\n"
+        c = "\n".join(patch.SOURCE_TOKENS) + "\n"
         for path, data in ((patch.CONFIG, cfg), (patch.SOURCE, c)):
             file = self.world / path
             file.parent.mkdir(parents=True, exist_ok=True)
@@ -62,7 +62,7 @@ class NativeOWERotationTests(unittest.TestCase):
 
     def test_fails_closed_on_duplicate_flag(self):
         config = self.world / patch.CONFIG
-        config.write_text(config.read_text() + "#define WE_OWE_SPAWN_REPLACEMENT FALSE\\n")
+        config.write_text(config.read_text() + "#define WE_OWE_SPAWN_REPLACEMENT FALSE\n")
         with self.assertRaisesRegex(ValueError, "expected exactly WE_OWE_SPAWN_REPLACEMENT"):
             patch.run(self.world, apply=True)
 
