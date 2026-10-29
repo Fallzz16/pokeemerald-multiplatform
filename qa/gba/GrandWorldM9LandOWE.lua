@@ -315,11 +315,12 @@ local STAGES = {
   "frames", "field_or_dexnav_lock", "no_land_header", "owe_area_disabled",
   "countdown_tick", "player_mid_step", "no_spawn_slot", "water_guard",
   "rejected_spawn_tile", "filtered_or_missing_species", "graphics_budget",
-  "real_spawn_success"
+  "real_spawn_success", "passed_header", "timer_phase",
+  "countdown_completed", "attempt_started"
 }
 local function logOWEStages(stage)
   local parts = {}
-  for i = 0, 11 do
+  for i = 0, 15 do
     parts[#parts+1] = STAGES[i+1] .. "=" .. F.r16(S.gM9OWEProbe + i*2)
   end
   F.L("  OWE STAGES " .. stage .. ": " .. table.concat(parts, " "))
