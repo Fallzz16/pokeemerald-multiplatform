@@ -4,6 +4,16 @@ on:
     paths:
       - '.github/workflows/grandworld-gba-m9-master-visible.yml'
       - 'tools/grandworld/verify_master_visible.py'
+      - 'tools/grandworld/optimize_overworld_budget.py'
+      - 'tools/grandworld/tests/test_optimize_overworld_budget.py'
+      - 'qa/gba/GrandWorldM9LandOWE.lua'
+      - 'tools/grandworld/patch_m9_owe_palette_budget.py'
+      - 'tools/grandworld/enable_m9_owe_rotation.py'
+      - 'tools/grandworld/tests/test_enable_m9_owe_rotation.py'
+      - 'tools/grandworld/instrument_m9_owe_trace.py'
+      - 'tools/grandworld/tests/test_instrument_m9_owe_trace.py'
+      - 'tools/grandworld/tests/test_patch_m9_owe_palette_budget.py'
+      - 'docs/GRANDWORLD_GBA_M9_OWE_PALETTE_BUDGET_20261028.md'
       - 'tools/grandworld/tests/test_verify_master_visible.py'
       - 'docs/GRANDWORLD_GBA_M9_ROM_MASTER_VISIBLE_QUETZAL_20261027.md'
   workflow_dispatch:
@@ -31,6 +41,12 @@ jobs:
         run: |
           set -euo pipefail
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_verify_master_visible.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_patch_m9_owe_palette_budget.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_enable_m9_owe_rotation.py' -v
+          python3 grandworld/tools/grandworld/enable_m9_owe_rotation.py world --report original-owe-rotation-preflight.json
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_instrument_m9_owe_trace.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_optimize_overworld_budget.py' -v
+          python3 grandworld/tools/grandworld/patch_m9_owe_palette_budget.py world --report original-owe-palette-preflight.json
           python3 grandworld/tools/grandworld/verify_master_visible.py world --report original-master-visible-policy.json
           python3 -m py_compile grandworld/tools/grandworld/verify_master_visible.py
       - name: Install real ARM GBA build toolchain
@@ -41,7 +57,7 @@ jobs:
         run: |
           set -euo pipefail
           timeout --signal=TERM --kill-after=15s 360s sudo apt-get update -o Acquire::Retries=1 -o Acquire::http::Timeout=25
-          timeout --signal=TERM --kill-after=15s 1200s sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev
+          timeout --signal=TERM --kill-after=15s 1200s sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends build-essential gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libpng-dev zlib1g-dev cmake liblua5.4-dev lua5.4
           command -v arm-none-eabi-gcc
       - name: Compose M8 PT-BR without disabling visible or traditional wild encounters
         shell: bash
@@ -52,9 +68,61 @@ jobs:
           python3 grandworld/tools/grandworld/add_hero_profiles.py world
           python3 grandworld/tools/grandworld/add_kanto_avatar.py world
           python3 grandworld/tools/grandworld/optimize_overworld_budget.py world --apply --shadows lean --report master-visible-shadows.json
+          # Detect the original M9 bug BEFORE running the ARM compiler. A
+          # standalone return after the replaced header check made all OWEs
+          # permanently unreachable despite the code compiling successfully.
+          python3 - <<'PY'
+          from pathlib import Path
+          src=Path("world/src/wild_encounter_ow.c").read_text(encoding="utf-8")
+          check="    if (!CheckCurrentWildMonHeaderForOWE(shouldSpawnWaterMons))\n        return;\n"
+          assert src.count(check)==1, "World guard changed"
+          after=src.split(check,1)[1]
+          assert after.lstrip().startswith("if (!WE_OW_ENCOUNTERS"), (
+              "Unconditional OWE return still present: " + repr(after[:140]))
+          print("OWE land spawn code is reachable after the checked header guard")
+          PY
           # Crucial: DO NOT invoke apply_grass_only.py. Owner wants real visible OWEs.
           python3 grandworld/tools/grandworld/translate_ptbr_stage1.py world --apply --report master-visible-translation.json
+          python3 grandworld/tools/grandworld/patch_m9_owe_palette_budget.py world --apply --report m9-owe-palette-patch.json
+          python3 grandworld/tools/grandworld/enable_m9_owe_rotation.py world --apply --report m9-owe-rotation-patch.json
           python3 grandworld/tools/grandworld/verify_master_visible.py world --report composed-master-visible-policy.json
+          git -C world diff --check
+          # Test-only exported variables: same storage and semantics; local static
+          # symbol names can be optimized away by GCC in the ARM ELF, so the
+          # read-only Lua probe cannot resolve them without global linkage.
+          # Apply to disposable pinned World checkout only, never the M8/PR102.
+          python3 - <<'PY'
+          from pathlib import Path
+          changes={
+              "world/src/wild_encounter_ow.c": (
+                  "static EWRAM_DATA u8 sOWESpawnCountdown = 0;",
+                  "EWRAM_DATA u8 sOWESpawnCountdown = 0;"),
+              "world/src/script.c": (
+                  "static bool8 sLockFieldControls;",
+                  "bool8 sLockFieldControls;"),
+          }
+          staged={}
+          for path,(before,after) in changes.items():
+              p=Path(path)
+              source=p.read_text(encoding="utf-8")
+              # The replacement text is a substring of the declaration
+              # before removing "static ", so "after in source" falsely
+              # rejected the original engine.
+              if source.count(before)!=1:
+                  raise RuntimeError(f"Source pin changed: {path}")
+              staged[p]=source.replace(before,after,1)
+          for p,source in staged.items():
+              p.write_text(source,encoding="utf-8")
+          generator=Path("world/test/overworld/GenLuaSymbols.py")
+          source=generator.read_text(encoding="utf-8")
+          anchor='    "gObjectEvents", "gPlayerAvatar",\n'
+          if source.count(anchor)!=1:
+              raise RuntimeError("Pinned World symbol generator changed")
+          generator.write_text(source.replace(anchor,
+              anchor+'    "sOWESpawnCountdown", "sLockFieldControls", "gM9OWEProbe",\n',1),
+              encoding="utf-8")
+          PY
+          python3 grandworld/tools/grandworld/instrument_m9_owe_trace.py world --apply --report m9-owe-stage-trace.json
           git -C world diff --check
       - name: Compile actual GBA ROM rather than PC/SDL substitute
         shell: bash
@@ -62,6 +130,13 @@ jobs:
           set -euo pipefail
           make -C world modern -j2 > master-visible-arm-build.log 2>&1
           test -s world/pokemonworld.gba
+      - name: Audit actual ARM linker ROM/EWRAM/IWRAM headroom
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/evaluate_performance_budget.py \
+            world/pokemonworld.gba master-visible-arm-build.log \
+            --output m9-memory-budget.json
       - name: Verify GBA cartridge identity and hash; NEVER claim live OWE QA here
         shell: bash
         run: |
@@ -80,6 +155,8 @@ jobs:
               "build_target":"authentic ARM Game Boy Advance 32MiB cartridge",
               "rom_sha256":hashlib.sha256(rom).hexdigest(),
               "visible_owe_enabled_by_config":True,
+              "owe_palette_budget_patch_applied_by_build_step":True,
+              "palette_runtime_gameplay_approved":False,
               "traditional_step_encounters_enabled_by_config":True,
               "fishing_rock_smash_original_hooks_present":True,
               "new_overworld_spawn_runtime_qa":False,
@@ -90,6 +167,46 @@ jobs:
           Path("master-visible-result.json").write_text(json.dumps(result,indent=2)+"\n")
           print(json.dumps(result,indent=2))
           PY
+      - name: Compile generated-land-OWE Lua probe against actual World test interface
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp grandworld/qa/gba/GrandWorldM9LandOWE.lua world/test/overworld/lua/
+          luac5.4 -p world/test/overworld/lua/GrandWorldM9LandOWE.lua
+          test -s world/test/overworld/lua/mgba_shim.lua
+          test -s world/test/overworld/mgba/0001-headless-video-buffer-save-and-rtc.patch
+      - name: Build pinned, native mGBA headless runner
+        timeout-minutes: 25
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none https://github.com/mgba-emu/mgba.git mgba
+          git -C mgba checkout 669817d03e4858e65d0b992bcd96d3009236cc1e
+          git -C mgba apply ../world/test/overworld/mgba/0001-headless-video-buffer-save-and-rtc.patch
+          cmake -S mgba -B mgba/build -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_BUILD_TYPE=Release -DBUILD_HEADLESS=ON -DENABLE_SCRIPTING=ON -DUSE_LUA=ON -DBUILD_QT=OFF -DBUILD_SDL=OFF -DUSE_FFMPEG=OFF -DUSE_DISCORD_RPC=OFF -DBUILD_SHARED=OFF -DBUILD_STATIC=ON > m9-mgba-build.log 2>&1
+          cmake --build mgba/build -j2 --target mgba-headless >> m9-mgba-build.log 2>&1
+          test -x mgba/build/mgba-headless
+      - name: Real mGBA Route 29 generated terrestrial OWE smoke probe
+        timeout-minutes: 20
+        shell: bash
+        run: |
+          set -euo pipefail
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          mkdir -p "$GITHUB_WORKSPACE/m9-land-owe-evidence"
+          cd world
+          PW_OUT="$GITHUB_WORKSPACE/m9-land-owe-evidence" PW_TIMEOUT=900             test/overworld/mgba-run.sh test/overworld/lua/GrandWorldM9LandOWE.lua             "$PWD/pokemonworld.gba" | tee "$GITHUB_WORKSPACE/m9-land-owe-log.txt"
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, re
+          rom=Path('pokemonworld.gba').read_bytes()
+          expected=hashlib.md5(rom).hexdigest().upper()
+          base=Path('../m9-land-owe-evidence')
+          stamp=(base/'GrandWorldM9LandOWE.PASS').read_text()
+          assert re.fullmatch(rf'PASS 18/18 rom={expected} at=[^\r\n]+ suite=GrandWorldM9LandOWE\s*',stamp),stamp
+          assert not (base/'GrandWorldM9LandOWE.FAIL').exists()
+          assert list(base.glob('GrandWorldM9LandOWE_*_actual_generated_land_owe.png')), 'no screenshot of generated land OWE'
+          print('mGBA generated land OWE gate PASS against ARM ROM sha256='+hashlib.sha256(rom).hexdigest())
+          PY
       - name: Keep non-ROM, non-save evidence only
         if: always()
         uses: actions/upload-artifact@v4
@@ -98,8 +215,17 @@ jobs:
           if-no-files-found: warn
           path: |
             original-master-visible-policy.json
+            original-owe-palette-preflight.json
+            original-owe-rotation-preflight.json
+            m9-owe-rotation-patch.json
+            m9-owe-palette-patch.json
+            m9-owe-stage-trace.json
             composed-master-visible-policy.json
             master-visible-shadows.json
             master-visible-translation.json
             master-visible-arm-build.log
             master-visible-result.json
+            m9-memory-budget.json
+            m9-mgba-build.log
+            m9-land-owe-log.txt
+            m9-land-owe-evidence/

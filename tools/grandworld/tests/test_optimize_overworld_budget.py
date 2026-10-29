@@ -53,6 +53,41 @@ class OverworldBudgetTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             mod.apply(self.root, True)
 
+    def test_native_owe_guard_reaches_spawn_timer(self):
+        # This hardcoded C excerpt mirrors the pinned upstream source. The
+        # previous optimizer forgot the original guard's return statement,
+        # leaving a SECOND unconditional return after the replacement.
+        original = (
+            "void UpdateOverworldWildEncounter(void) {\n"
+            "    bool32 shouldSpawnWaterMons = ShouldSpawnWaterOWE();\n"
+            "    \n"
+            "    if (ArePlayerFieldControlsLocked() || FlagGet(DN_FLAG_SEARCHING) || "
+            "!CheckCurrentWildMonHeaderForOWE(shouldSpawnWaterMons))\n"
+            "        return;\n"
+            "\n    if (!WE_OW_ENCOUNTERS\n"
+            + mod.GUARD_OLD + "\n}\n"
+        )
+        self.encounter.write_text(original, encoding="utf-8")
+        mod.apply(self.root, True)
+        optimized = self.encounter.read_text(encoding="utf-8")
+        self.assertIn(mod.EARLY_NEW, optimized)
+        self.assertIn("\n    if (!WE_OW_ENCOUNTERS", optimized)
+        self.assertNotIn(mod.EARLY_NEW + "        return;\n", optimized)
+        self.assertEqual(optimized.count("        return;"), 2)
+        # No unrelated graphics, follower, cave, or random-encounter guards
+        # are changed by the early-return fix.
+        self.assertIn(mod.GUARD_NEW, optimized)
+
+    def test_changed_original_return_fails_closed(self):
+        original = self.encounter.read_bytes()
+        self.encounter.write_text(self.encounter.read_text().replace(
+            mod.EARLY_OLD, mod.EARLY_OLD.replace("        return;", "        return FALSE;")))
+        mutated = self.encounter.read_bytes()
+        with self.assertRaisesRegex(ValueError, "guard"):
+            mod.apply(self.root, True)
+        self.assertEqual(self.encounter.read_bytes(), mutated)
+        self.assertNotEqual(original, mutated)
+
     def test_explicit_full_shadows_retains_aesthetic_flag(self):
         original = self.config.read_bytes()
         result = mod.apply(self.root, True, shadows="full")
