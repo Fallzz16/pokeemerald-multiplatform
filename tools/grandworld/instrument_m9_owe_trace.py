@@ -15,8 +15,7 @@ DECL_NEW = """EWRAM_DATA u8 sOWESpawnCountdown = 0;
 // [4] countdown ticks, [5] moving player, [6] no free generated slot,
 // [7] incompatible water state, [8] rejected candidate spawn tile,
 // [9] invalid/filtered wild species, [10] insufficient graphics resources,
-// [11] spawned real overworld object.
-EWRAM_DATA u16 gM9OWEProbe[12];
+// [11] spawned real overworld object, [12] passed header guard,\n// [13] reached countdown branch, [14] countdown completed,\n// [15] reached map tile-selection attempt.\nEWRAM_DATA u16 gM9OWEProbe[16];
 """
 
 EARLY_OLD = """    bool32 shouldSpawnWaterMons;
@@ -39,6 +38,7 @@ EARLY_NEW = """    bool32 shouldSpawnWaterMons;
         gM9OWEProbe[2]++;
         return;
     }
+    gM9OWEProbe[12]++;
 """
 
 DISABLE_OLD = """     || InTrainerHillChallenge())
@@ -54,7 +54,8 @@ TICK_OLD = """    if (sOWESpawnCountdown)
         sOWESpawnCountdown--;
         return;
     }"""
-TICK_NEW = """    if (sOWESpawnCountdown)
+TICK_NEW = """    gM9OWEProbe[13]++;
+    if (sOWESpawnCountdown)
     {
         gM9OWEProbe[4]++;
         sOWESpawnCountdown--;
@@ -63,7 +64,8 @@ TICK_NEW = """    if (sOWESpawnCountdown)
 
 MOVING_OLD = """    if (player->currentCoords.x != player->previousCoords.x || player->currentCoords.y != player->previousCoords.y)
         return;"""
-MOVING_NEW = """    if (player->currentCoords.x != player->previousCoords.x || player->currentCoords.y != player->previousCoords.y)
+MOVING_NEW = """    gM9OWEProbe[14]++;
+    if (player->currentCoords.x != player->previousCoords.x || player->currentCoords.y != player->previousCoords.y)
     {
         gM9OWEProbe[5]++;
         return;
@@ -76,7 +78,8 @@ TILE_OLD = """    if (spawnSlot == OWE_INVALID_SPAWN_SLOT
         SetMinimumOWESpawnTimer();
         return;
     }"""
-TILE_NEW = """    if (spawnSlot == OWE_INVALID_SPAWN_SLOT)
+TILE_NEW = """    gM9OWEProbe[15]++;
+    if (spawnSlot == OWE_INVALID_SPAWN_SLOT)
     {
         gM9OWEProbe[6]++;
         SetMinimumOWESpawnTimer();
@@ -162,7 +165,7 @@ def run(world, apply=False):
     new = transform(old)
     if apply:
         path.write_text(new, encoding="utf-8")
-    return {"mode": "applied" if apply else "preflight", "counter_fields": 12,
+    return {"mode": "applied" if apply else "preflight", "counter_fields": 16,
             "actual_gameplay_approved": False, "ROM_distributed": False}
 
 
