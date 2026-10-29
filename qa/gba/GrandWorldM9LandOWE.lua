@@ -565,7 +565,7 @@ F.run(function()
   -- 4-second intervals, up to 40 seconds in-game. Wait while stationary so
   -- the engine's mid-step spawn guard cannot artificially suppress spawning.
   local seen, moved, visible, validGfx = {}, false, false, false
-  local observed, firstShot = 0, false
+  local observed, firstShot, peakOWEs = 0, false, 0
   local coexisted, distinctSprites, coexShot = false, false, false
   -- 47 is intentionally coprime with 30-frame minimum retry: sampling
   -- every 60 frames previously aliased the countdown to the same value.
@@ -580,7 +580,11 @@ F.run(function()
       break
     end
     local follow = follower()
-    for localId, o in pairs(generated()) do
+    local currentOWEs = generated()
+    local activeCount = 0
+    for _ in pairs(currentOWEs) do activeCount = activeCount + 1 end
+    peakOWEs = math.max(peakOWEs, activeCount)
+    for localId, o in pairs(currentOWEs) do
       if follow and follow.visible and o.visible then
         coexisted = true
         local separate = follow.spriteId ~= o.spriteId
@@ -624,6 +628,15 @@ F.run(function()
   logRuntimeBudget("field-after-2400-frames")
   logSpawnGuard("field-after-2400-frames")
   logOWEStages("field-after-2400-frames")
+  -- Instrumentation is on the disposable GBA test build, not the released
+  -- game: a count above four demonstrates real fresh spawns after exhausting
+  -- the four reserved local IDs. Do not conflate merely seeing moving OWEs
+  -- with replacement of older ones.
+  local successfulSpawns = F.r16(S.gM9OWEProbe + 11 * 2)
+  F.check("native wild rotation replenishes generated OWE slots",
+          peakOWEs == 4 and successfulSpawns > 4,
+          string.format("peak simultaneous=%d/4 total successful spawns=%d",
+                        peakOWEs,successfulSpawns))
   F.shot("route29_final_state")
   local battled, speciesMatched, reason = battleWithGeneratedLandOWE()
   F.check("contact with an automatically generated terrestrial OWE starts a real battle",
