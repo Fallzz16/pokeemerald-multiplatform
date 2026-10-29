@@ -8,6 +8,8 @@ on:
       - 'tools/grandworld/tests/test_optimize_overworld_budget.py'
       - 'qa/gba/GrandWorldM9LandOWE.lua'
       - 'tools/grandworld/patch_m9_owe_palette_budget.py'
+      - 'tools/grandworld/enable_m9_owe_rotation.py'
+      - 'tools/grandworld/tests/test_enable_m9_owe_rotation.py'
       - 'tools/grandworld/instrument_m9_owe_trace.py'
       - 'tools/grandworld/tests/test_instrument_m9_owe_trace.py'
       - 'tools/grandworld/tests/test_patch_m9_owe_palette_budget.py'
@@ -40,6 +42,8 @@ jobs:
           set -euo pipefail
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_verify_master_visible.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_patch_m9_owe_palette_budget.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_enable_m9_owe_rotation.py' -v
+          python3 grandworld/tools/grandworld/enable_m9_owe_rotation.py world --report original-owe-rotation-preflight.json
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_instrument_m9_owe_trace.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_optimize_overworld_budget.py' -v
           python3 grandworld/tools/grandworld/patch_m9_owe_palette_budget.py world --report original-owe-palette-preflight.json
@@ -80,6 +84,7 @@ jobs:
           # Crucial: DO NOT invoke apply_grass_only.py. Owner wants real visible OWEs.
           python3 grandworld/tools/grandworld/translate_ptbr_stage1.py world --apply --report master-visible-translation.json
           python3 grandworld/tools/grandworld/patch_m9_owe_palette_budget.py world --apply --report m9-owe-palette-patch.json
+          python3 grandworld/tools/grandworld/enable_m9_owe_rotation.py world --apply --report m9-owe-rotation-patch.json
           python3 grandworld/tools/grandworld/verify_master_visible.py world --report composed-master-visible-policy.json
           git -C world diff --check
           # Test-only exported variables: same storage and semantics; local static
@@ -197,7 +202,7 @@ jobs:
           expected=hashlib.md5(rom).hexdigest().upper()
           base=Path('../m9-land-owe-evidence')
           stamp=(base/'GrandWorldM9LandOWE.PASS').read_text()
-          assert re.fullmatch(rf'PASS 17/17 rom={expected} at=[^\r\n]+ suite=GrandWorldM9LandOWE\s*',stamp),stamp
+          assert re.fullmatch(rf'PASS 18/18 rom={expected} at=[^\r\n]+ suite=GrandWorldM9LandOWE\s*',stamp),stamp
           assert not (base/'GrandWorldM9LandOWE.FAIL').exists()
           assert list(base.glob('GrandWorldM9LandOWE_*_actual_generated_land_owe.png')), 'no screenshot of generated land OWE'
           print('mGBA generated land OWE gate PASS against ARM ROM sha256='+hashlib.sha256(rom).hexdigest())
@@ -211,6 +216,8 @@ jobs:
           path: |
             original-master-visible-policy.json
             original-owe-palette-preflight.json
+            original-owe-rotation-preflight.json
+            m9-owe-rotation-patch.json
             m9-owe-palette-patch.json
             m9-owe-stage-trace.json
             composed-master-visible-policy.json
