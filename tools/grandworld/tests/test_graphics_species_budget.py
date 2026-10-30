@@ -21,13 +21,13 @@ class GraphicsSpeciesTests(unittest.TestCase):
             lines = []
             for i in range(30):
                 lines.append(
-                    f"[SPECIES_TEST_G{gen}_{i}] = {{\n"
+                    f"    [SPECIES_TEST_G{gen}_{i}] = {{\n"
                     + ("OVERWORLD(sPicTable_Test, SIZE_64x64, SHADOW_SIZE_M, TRACKS_FOOT, sAnimTable_Following)\n"
                        if i == 0 else
                        "OVERWORLD(sPicTable_Test, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, sAnimTable_Following)\n")
                     + ("OVERWORLD_FEMALE(sPicTable_F, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, sAnimTable_Following)\n"
                        if i == 1 else "")
-                    + "},\n"
+                    + "    },\n"
                 )
             (self.src / f"gen_{gen}_families.h").write_text(
                 "".join(lines), encoding="utf-8")
