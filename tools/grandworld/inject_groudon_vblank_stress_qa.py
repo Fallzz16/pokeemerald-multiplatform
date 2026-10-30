@@ -45,8 +45,9 @@ EXTRA="""  -- Diagnostic-only: each mode repeats the SAME native 2KiB frame
   local maxBatch=F.r32(S.gGWPeakMeasuredBatchCycles)
   local maxComp=F.r32(S.gGWPeakCompressedInOneBatch)
   local maxRaw=F.r32(S.gGWPeakNormalInOneBatch)
-  F.L(string.format("GROUDON_BATCH baseline_samples=%d baseline_peak=%d max_batch_cycles=%d max_lz_copies=%d max_normal_copies=%d",
-    baselineN,baselinePeak,maxBatch,maxComp,maxRaw))
+  local rawTimerSkips=F.r32(S.gGWRawTimerSkips)
+  F.L(string.format("GROUDON_BATCH baseline_samples=%d baseline_peak=%d max_batch_cycles=%d max_lz_copies=%d max_normal_copies=%d raw_timer_skips=%d",
+    baselineN,baselinePeak,maxBatch,maxComp,maxRaw,rawTimerSkips))
   F.check("each experimental VBlank decode load level actually ran",
     modes[1].n>=3 and modes[2].n>=3 and modes[3].n>=3)
   F.check("GPU pixels match original frames after all stressed copy loads",
