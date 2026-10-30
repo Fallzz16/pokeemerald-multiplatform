@@ -15,7 +15,7 @@ from apply_groudon_frame_lz10 import (FRAME_COUNT, FRAME_BYTES,
                                        ROM_BASE, ROM_BYTES, FRAME_PREFIX)
 
 
-def prove(nm, rom, original, before, after, max_profile_ewram_increase=0, max_asm_iwram_increase=0):
+def prove(nm, rom, original, before, after, max_profile_ewram_increase=0, max_asm_iwram_increase=0, max_stress_ewram_increase=0):
     if len(rom)!=ROM_BYTES or rom[0xAC:0xB0]!=b"BPEE":
         raise ValueError("not a valid GBA ROM image")
     matches={}
@@ -55,7 +55,7 @@ def prove(nm, rom, original, before, after, max_profile_ewram_increase=0, max_as
     delta={key:base[key]-final[key] for key in ("ROM","EWRAM","IWRAM")}
     if delta["ROM"]<=0:
         raise ValueError("pilot has no real linker ROM payload saving")
-    if delta["EWRAM"] < -max_profile_ewram_increase or delta["IWRAM"] < -max_asm_iwram_increase:
+    if delta["EWRAM"] < -(max_profile_ewram_increase + max_stress_ewram_increase) or delta["IWRAM"] < -max_asm_iwram_increase:
         raise ValueError("pilot increased static EWRAM or IWRAM")
     if before["rom_sha256"]==after["rom_sha256"]:
         raise ValueError("candidate did not change actual ROM image")
@@ -71,6 +71,7 @@ def prove(nm, rom, original, before, after, max_profile_ewram_increase=0, max_as
         "linked_iwram_delta_bytes":delta["IWRAM"],
         "profiling_instrumentation_ewram_allowance_bytes":max_profile_ewram_increase,
         "optimized_asm_iwram_allowance_bytes":max_asm_iwram_increase,
+        "stress_instrumentation_ewram_allowance_bytes":max_stress_ewram_increase,
         "sprite_frame_dimension_changed":False,
         "obj_frame_tile_allocation_changed":False,
         "palettes_or_saves_changed":False,
@@ -91,16 +92,19 @@ def main():
     ap.add_argument("--output",type=Path,required=True)
     ap.add_argument("--max-profile-ewram-increase",type=int,default=0)
     ap.add_argument("--max-asm-iwram-increase",type=int,default=0)
+    ap.add_argument("--max-stress-ewram-increase",type=int,default=0)
     args=ap.parse_args()
     if not 0<=args.max_profile_ewram_increase<=16:
         ap.error("maximum profiler allowance is 16 B")
     if not 0<=args.max_asm_iwram_increase<=1536:
         ap.error("maximum optimized decoder allowance is 1536 B")
+    if not 0<=args.max_stress_ewram_increase<=112:
+        ap.error("maximum stress instrumentation allowance is 112 B")
     try:
         res=prove(args.symbols.read_text(),args.rom.read_bytes(),
                   json.loads(args.source_report.read_text()),
                   json.loads(args.baseline_budget.read_text()),
-                  json.loads(args.final_budget.read_text()),args.max_profile_ewram_increase,args.max_asm_iwram_increase)
+                  json.loads(args.final_budget.read_text()),args.max_profile_ewram_increase,args.max_asm_iwram_increase,args.max_stress_ewram_increase)
         args.output.write_text(json.dumps(res,indent=2)+"\n",encoding="utf-8")
         print(json.dumps({k:v for k,v in res.items()
                           if k!="frame_symbols_extracted_from_final_rom"},indent=2))
