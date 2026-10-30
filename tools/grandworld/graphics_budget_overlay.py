@@ -57,10 +57,32 @@ local function logGraphicsBudget(stage)
   local reserved = F.r16(S.gReservedSpriteTileCount)
   assert(used + free == 1024 and reserved <= 1024 and used >= reserved,
          "OBJ bitmap inconsistent with reserved tile count")
+  -- Exact identical *unfaded* OBJ palette colors across occupied slots.
+  -- These are AUDIT CANDIDATES, NOT safe deduplication: tags can have distinct
+  -- time-of-day blend behavior, ownership or release callbacks.
+  assert(S.gPlttBufferUnfaded and S.gPlttBufferUnfaded ~= 0,
+         "no native unfaded palette buffer symbol")
+  local colorsSeen, duplicateExtraSlots, duplicatePairs = {}, 0, 0
+  for slot = 0, S.SpritePalette.count - 1 do
+    if F.r16(S.sSpritePaletteTags + slot * 2) ~= S.SpritePalette.free then
+      local parts = {}
+      for color = 0, 15 do
+        parts[#parts+1] = string.format("%04X",
+          F.r16(S.gPlttBufferUnfaded + 512 + slot * 32 + color * 2))
+      end
+      local fingerprint = table.concat(parts, "")
+      local prev = colorsSeen[fingerprint] or 0
+      if prev > 0 then
+        duplicateExtraSlots = duplicateExtraSlots + 1
+        duplicatePairs = duplicatePairs + prev
+      end
+      colorsSeen[fingerprint] = prev + 1
+    end
+  end
   F.L(string.format(
-    "GRAPHICS_BUDGET stage=%s used=%d free=%d largest_free=%d free_runs=%d reserved=%d sprites=%d palettes=%d owe=%d follower=%d",
+    "GRAPHICS_BUDGET stage=%s used=%d free=%d largest_free=%d free_runs=%d reserved=%d sprites=%d palettes=%d owe=%d follower=%d palette_duplicate_slots=%d palette_duplicate_pairs=%d",
     stage, used, free, largestFree, freeRuns, reserved, sprites, palettes,
-    oweCount, followerAlive and 1 or 0))
+    oweCount, followerAlive and 1 or 0, duplicateExtraSlots, duplicatePairs))
 end
 
 """
