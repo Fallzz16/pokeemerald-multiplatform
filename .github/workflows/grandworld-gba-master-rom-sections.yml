@@ -10,6 +10,8 @@ on:
       - 'tools/grandworld/tests/test_graphics_species_budget.py'
       - 'tools/grandworld/graphics_linker_audit.py'
       - 'tools/grandworld/tests/test_graphics_linker_audit.py'
+      - 'tools/grandworld/overworld_payload_experiments.py'
+      - 'tools/grandworld/tests/test_overworld_payload_experiments.py'
       - 'qa/gba/baselines/m9_Os_18of18_budget.json'
   workflow_dispatch:
 permissions:
@@ -38,6 +40,7 @@ jobs:
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_graphics_budget.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_graphics_species_budget.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_graphics_linker_audit.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_overworld_payload_experiments.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_rom_compare.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_asset_inventory.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_verify_master_visible.py' -v
@@ -169,6 +172,11 @@ jobs:
           arm-none-eabi-nm -S world/pokemonworld.elf > master-elf-symbols.txt
           python3 grandworld/tools/grandworld/graphics_linker_audit.py \
             --symbols master-elf-symbols.txt --output master-graphics-linker-budget.json
+      - name: Audit exact linked sprite duplicates and reversible GBA LZ10
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/overworld_payload_experiments.py --rom world/pokemonworld.gba --symbols master-elf-symbols.txt --output master-overworld-payload-pilot.json --pilot-limit 24
       - name: Compare real linker ROM/EWRAM/IWRAM against pinned O2 baseline
         shell: bash
         run: |
@@ -289,6 +297,7 @@ jobs:
             master-graphics-budget.json
             master-species-graphics-budget.json
             master-graphics-linker-budget.json
+            master-overworld-payload-pilot.json
             m9-mgba-build.log
             m9-land-owe-log.txt
             m9-land-owe-evidence/
