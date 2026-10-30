@@ -108,7 +108,8 @@ def prepare(world, nm_text, rom):
     if not re.search(r"(?m)^#define OW_GFX_COMPRESS\s+FALSE\b", owconf):
         raise ValueError("FAIL CLOSED: whole-sheet compression must remain disabled")
     frames = locate_original(nm_text, rom)
-    compressed = [lz10_encode(frame) for frame in frames]
+    # BIOS LZ77UnCompVram writes halfwords: offset 1 is not VRAM-safe.
+    compressed = [lz10_encode(frame, min_distance=2) for frame in frames]
     for raw, coded in zip(frames, compressed):
         if lz10_decode(coded) != raw:
             raise ValueError("FAIL CLOSED: frame LZ10 roundtrip mismatch")
@@ -151,6 +152,7 @@ def prepare(world, nm_text, rom):
         "all_frames_lossless_roundtrip": True,
         "original_frame_sha256": [hashlib.sha256(f).hexdigest() for f in frames],
         "frame_endianness": "little",
+        "min_lz10_backref_distance": 2,
         "runtime": "LZ77UnCompVram in existing queued sprite copy process",
         "graphic_frame_dimension": "64x64",
         "whole_sheet_compression": False,
