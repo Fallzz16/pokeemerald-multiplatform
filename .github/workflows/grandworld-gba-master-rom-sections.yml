@@ -19,6 +19,9 @@ on:
       - 'tools/grandworld/groudon_cycle_probe_overlay.py'
       - 'tools/grandworld/groudon_cycle_profile_report.py'
       - 'tools/grandworld/tests/test_groudon_cycle_probe_overlay.py'
+      - 'tools/grandworld/groudon_fast_lz77_arm_overlay.py'
+      - 'tools/grandworld/groudon_fast_lz77_compare.py'
+      - 'tools/grandworld/tests/test_groudon_fast_lz77_arm_overlay.py'
       - 'qa/gba/baselines/m9_Os_18of18_budget.json'
   workflow_dispatch:
 permissions:
@@ -50,6 +53,7 @@ jobs:
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_overworld_payload_experiments.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_apply_groudon_frame_lz10.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_groudon_cycle_probe_overlay.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_groudon_fast_lz77_arm_overlay.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_rom_compare.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_asset_inventory.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_verify_master_visible.py' -v
@@ -172,6 +176,13 @@ jobs:
           arm-none-eabi-nm -S world/pokemonworld.elf > baseline-groudon-symbols.txt
           python3 grandworld/tools/grandworld/apply_groudon_frame_lz10.py world --rom world/pokemonworld.gba --symbols baseline-groudon-symbols.txt --output groudon-frame-compression-source.json --apply
           python3 grandworld/tools/grandworld/groudon_cycle_probe_overlay.py world --qa-source grandworld/qa/gba/GrandWorldGroudonFollowerLZ10.lua --apply
+          git clone --filter=blob:none https://github.com/HorstBaerbel/GBA-demo-framework.git gw-fast-lz77
+          git -C gw-fast-lz77 checkout 7f5410055d7fafb002ed7536b9cc45274f3a471b
+          test "$(git -C gw-fast-lz77 rev-parse HEAD)" = 7f5410055d7fafb002ed7536b9cc45274f3a471b
+          arm-none-eabi-gcc -E -P -x assembler-with-cpp gw-fast-lz77/src/compression/lz77_asm.s > world/src/gw_fast_lz77.s
+          grep -q 'MIT License' world/src/gw_fast_lz77.s
+          grep -q '^LZ77UnCompWrite16bit:' world/src/gw_fast_lz77.s
+          python3 grandworld/tools/grandworld/groudon_fast_lz77_arm_overlay.py world --apply --output groudon-fast-lz77-source.json
           git -C world diff --check
           make -C world modern -j2 O_LEVEL=s "CFLAGS=-ffunction-sections -fdata-sections" > groudon-frame-pilot-arm-build.log 2>&1
           cp groudon-frame-pilot-arm-build.log master-visible-arm-build.log
@@ -198,7 +209,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 grandworld/tools/grandworld/verify_groudon_frame_lz10.py --symbols master-elf-symbols.txt --rom world/pokemonworld.gba --source-report groudon-frame-compression-source.json --baseline-budget baseline-groudon-memory-budget.json --final-budget m9-memory-budget.json --max-profile-ewram-increase 16 --output groudon-frame-compression-verified.json
+          python3 grandworld/tools/grandworld/verify_groudon_frame_lz10.py --symbols master-elf-symbols.txt --rom world/pokemonworld.gba --source-report groudon-frame-compression-source.json --baseline-budget baseline-groudon-memory-budget.json --final-budget m9-memory-budget.json --max-profile-ewram-increase 16 --max-asm-iwram-increase 1536 --output groudon-frame-compression-verified.json
       - name: Audit exact linked sprite duplicates and reversible GBA LZ10
         shell: bash
         run: |
@@ -319,6 +330,7 @@ jobs:
           PY
           cd ..
           python3 grandworld/tools/grandworld/groudon_cycle_profile_report.py --log groudon-follower-mgba-log.txt --rom world/pokemonworld.gba --source-report groudon-frame-compression-source.json --link-report groudon-frame-compression-verified.json --output groudon-native-cycles-report.json
+          python3 grandworld/tools/grandworld/groudon_fast_lz77_compare.py --timer-report groudon-native-cycles-report.json --link-report groudon-frame-compression-verified.json --output groudon-fast-lz77-comparison.json
       - name: Gate claimed ROM savings only after actual GBA gameplay succeeds
         shell: bash
         run: |
@@ -327,11 +339,12 @@ jobs:
           import json
           d=json.load(open('master-rom-space-comparison.json'))
           assert d['smaller_rom_payload'], 'O(s) candidate did not reduce linker ROM usage'
-          assert d['no_ewram_iwram_static_regression'], 'O(s) increased measured static RAM usage'
+          assert d['memory']['EWRAM']['bytes_saved'] >= -16, 'profiler increased EWRAM beyond 16 B'
+          assert d['memory']['IWRAM']['bytes_saved'] >= -1536, 'optimized ARM code exceeded bounded IWRAM budget'
           assert d['reserves_preserved'], 'safety reserve violated'
           assert d['gameplay_proved_by_this_report'] is False
           assert d['fps_measured_by_this_report'] is False
-          print('ROM bytes saved with no static RAM regression and independent real mGBA 18/18 PASS')
+          print('ROM saved, 16 B profiler and <=1536 B decoder headroom, mGBA 18/18 + 12/12 + faster ARM LZ10 PASS')
           PY
       - name: Keep non-ROM, non-save evidence only
         if: always()
@@ -370,4 +383,6 @@ jobs:
             m9-land-owe-evidence/
             groudon-follower-mgba-log.txt
             groudon-native-cycles-report.json
+            groudon-fast-lz77-source.json
+            groudon-fast-lz77-comparison.json
             groudon-follower-evidence/
