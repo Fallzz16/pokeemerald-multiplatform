@@ -50,6 +50,9 @@ class NativeQueueStressTests(unittest.TestCase):
         self.assertIn("REG_VCOUNT < DISPLAY_HEIGHT",source)
         self.assertIn("gGWStressOverBudgetBatches[stressMode]++",source)
         self.assertIn("gGWStressSamples",self.gen.read_text())
+        self.assertIn("gGWRawTimerSkips",self.gen.read_text())
+        self.assertIn("gGWRawTimerSkips++",source)
+        self.assertEqual(source.count("gGWLZTimerConflicts++"),1)
 
     def test_missing_anchor_never_partially_writes(self):
         before=self.src.read_bytes()
