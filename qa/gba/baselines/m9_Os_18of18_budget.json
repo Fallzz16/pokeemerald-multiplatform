@@ -1,0 +1,26 @@
+{
+  "source": "https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40979558911",
+  "engine_commit": "15d3888b0d81322a04d3c71b0bce18948761ee44",
+  "grandworld_commit": "eaaf08455359a50f177c418f825792d715bcad28",
+  "profile": "modern -Os, M9 PTBR + OWE rotation, 18/18 real mGBA",
+  "rom_sha256": "197ad0bf9d92987e25fbe6e2c521cc8bd92ca8392fde99006ac72f7ce05559e7",
+  "rom_bytes": 33554432,
+  "linker_memory_bytes": {
+    "ROM": 24055972,
+    "EWRAM": 235244,
+    "IWRAM": 28168
+  },
+  "free_bytes": {
+    "ROM": 9498460,
+    "EWRAM": 26900,
+    "IWRAM": 4600
+  },
+  "minimum_reserved_bytes": {
+    "ROM": 1048576,
+    "EWRAM": 8192,
+    "IWRAM": 2048
+  },
+  "memory_budget_passed": true,
+  "real_emulator_suite": "GrandWorldM9LandOWE 18/18 PASS",
+  "caveat": "no FPS or save compatibility verification"
+}
