@@ -38,9 +38,14 @@ def analyze(root):
             if name in seen:
                 raise ValueError("duplicate species in inventory: " + name)
             seen.add(name)
-            # Scope ends at next initializer, not next #endif. Conditional
-            # compilation is NOT resolved and is explicitly unverified.
-            body = src[m.end():matches[i+1].start() if i+1 < len(matches) else len(src)]
+            # A species entry ends at its own four-space indented `},`.
+            # Do NOT consume macros/conditional definitions between entries:
+            # Gen2 Unown forms define an OVERWORLD macro between species.
+            # Nested initializer braces are indented further than four spaces.
+            close = re.search(r"(?m)^    \},[ \t]*$", src[m.end():])
+            if close is None:
+                raise ValueError(f"FAIL CLOSED: species initializer has no closing brace: {name}")
+            body = src[m.end():m.end() + close.start()]
             parsed = list(OVERWORLD.finditer(body))
             all_count = len(ALL_OVERWORLD.findall(body))
             if all_count != len(parsed):
