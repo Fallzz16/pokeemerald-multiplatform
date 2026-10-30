@@ -123,6 +123,10 @@ def symbols(nm_text, rom):
         address = int(match[1], 16)
         size = int(match[2], 16)
         kind, name = match[3], match[4]
+        # Ignore similarly named RAM/BSS/debug symbols; this tool only
+        # inspects actual ROM-resident read-only sprite arrays.
+        if kind.upper() not in ("R", "D"):
+            continue
         offset = address - ROM_BASE
         if not 0 <= offset < len(rom) or not 0 < size <= len(rom)-offset:
             raise ValueError(f"ELF graphic symbol outside GBA image: {name}")
