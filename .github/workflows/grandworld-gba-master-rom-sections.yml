@@ -15,6 +15,7 @@ on:
       - 'tools/grandworld/apply_groudon_frame_lz10.py'
       - 'tools/grandworld/tests/test_apply_groudon_frame_lz10.py'
       - 'tools/grandworld/verify_groudon_frame_lz10.py'
+      - 'qa/gba/GrandWorldGroudonFollowerLZ10.lua'
       - 'qa/gba/baselines/m9_Os_18of18_budget.json'
   workflow_dispatch:
 permissions:
@@ -278,6 +279,39 @@ jobs:
           python3 grandworld/tools/grandworld/graphics_budget_report.py \
             --log m9-land-owe-log.txt --rom world/pokemonworld.gba \
             --output master-graphics-budget.json
+      - name: Real mGBA native Groudon 64x64 follower animation versus original OBJ VRAM pixels
+        timeout-minutes: 20
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          report=json.loads(Path("groudon-frame-compression-source.json").read_text())
+          hashes=report["original_frame_fnv1a32"]
+          assert len(hashes)==6 and all(0<=n<=0xffffffff for n in hashes)
+          source=Path("grandworld/qa/gba/GrandWorldGroudonFollowerLZ10.lua").read_text()
+          assert source.count("__GROUDON_FNV_LIST__")==1
+          target=Path("world/test/overworld/lua/GrandWorldGroudonFollowerLZ10.lua")
+          target.write_text(source.replace("__GROUDON_FNV_LIST__",", ".join(f"0x{n:08X}" for n in hashes)))
+          PY
+          luac5.4 -p world/test/overworld/lua/GrandWorldGroudonFollowerLZ10.lua
+          export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
+          mkdir -p "$GITHUB_WORKSPACE/groudon-follower-evidence"
+          cd world
+          PW_OUT="$GITHUB_WORKSPACE/groudon-follower-evidence" PW_TIMEOUT=900 test/overworld/mgba-run.sh test/overworld/lua/GrandWorldGroudonFollowerLZ10.lua "$PWD/pokemonworld.gba" | tee "$GITHUB_WORKSPACE/groudon-follower-mgba-log.txt"
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,re
+          rom=Path('pokemonworld.gba').read_bytes()
+          expected=hashlib.md5(rom).hexdigest().upper()
+          base=Path('../groudon-follower-evidence')
+          stamp=(base/'GrandWorldGroudonFollowerLZ10.PASS').read_text()
+          assert re.fullmatch(rf'PASS 9/9 rom={expected} at=[^\r\n]+ suite=GrandWorldGroudonFollowerLZ10\s*',stamp),stamp
+          assert not (base/'GrandWorldGroudonFollowerLZ10.FAIL').exists()
+          assert list(base.glob('*groudon_64x64_lz10_visible.png')), "no Groudon visual evidence"
+          print('REAL GROUDON VISIBLE GPU-FRAME PASS at ROM SHA256='+hashlib.sha256(rom).hexdigest())
+          PY
       - name: Gate claimed ROM savings only after actual GBA gameplay succeeds
         shell: bash
         run: |
@@ -327,3 +361,5 @@ jobs:
             m9-mgba-build.log
             m9-land-owe-log.txt
             m9-land-owe-evidence/
+            groudon-follower-mgba-log.txt
+            groudon-follower-evidence/
