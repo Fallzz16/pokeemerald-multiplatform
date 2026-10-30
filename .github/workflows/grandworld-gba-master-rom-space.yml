@@ -139,6 +139,14 @@ jobs:
           python3 grandworld/tools/grandworld/evaluate_performance_budget.py \
             world/pokemonworld.gba master-visible-arm-build.log \
             --output m9-memory-budget.json
+      - name: Record top ARM linker sections and linked symbol sizes (read-only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          arm-none-eabi-size -A world/pokemonworld.elf > master-rom-sections.txt
+          arm-none-eabi-nm -S --size-sort world/pokemonworld.elf | tail -n 120 > master-rom-largest-symbols.txt
+          test -s master-rom-sections.txt
+          test -s master-rom-largest-symbols.txt
       - name: Compare real linker ROM/EWRAM/IWRAM against pinned O2 baseline
         shell: bash
         run: |
@@ -251,6 +259,8 @@ jobs:
             m9-memory-budget.json
             master-rom-space-comparison.json
             master-gba-asset-duplicates.json
+            master-rom-sections.txt
+            master-rom-largest-symbols.txt
             m9-mgba-build.log
             m9-land-owe-log.txt
             m9-land-owe-evidence/
