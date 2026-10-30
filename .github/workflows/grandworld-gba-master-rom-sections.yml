@@ -22,6 +22,11 @@ on:
       - 'tools/grandworld/groudon_fast_lz77_arm_overlay.py'
       - 'tools/grandworld/groudon_fast_lz77_compare.py'
       - 'tools/grandworld/tests/test_groudon_fast_lz77_arm_overlay.py'
+      - 'tools/grandworld/groudon_vblank_batch_stress_overlay.py'
+      - 'tools/grandworld/inject_groudon_vblank_stress_qa.py'
+      - 'tools/grandworld/groudon_vblank_batch_stress_report.py'
+      - 'tools/grandworld/tests/test_groudon_vblank_batch_stress_overlay.py'
+      - 'tools/grandworld/tests/test_groudon_vblank_stress_qa.py'
       - 'qa/gba/baselines/m9_Os_18of18_budget.json'
   workflow_dispatch:
 permissions:
@@ -54,6 +59,8 @@ jobs:
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_apply_groudon_frame_lz10.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_groudon_cycle_probe_overlay.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_groudon_fast_lz77_arm_overlay.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_groudon_vblank_batch_stress_overlay.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_groudon_vblank_stress_qa.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_rom_compare.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_asset_inventory.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_verify_master_visible.py' -v
@@ -183,6 +190,7 @@ jobs:
           grep -q 'MIT License' world/src/gw_fast_lz77.s
           grep -q '^LZ77UnCompWrite16bit:' world/src/gw_fast_lz77.s
           python3 grandworld/tools/grandworld/groudon_fast_lz77_arm_overlay.py world --apply --output groudon-fast-lz77-source.json
+          python3 grandworld/tools/grandworld/groudon_vblank_batch_stress_overlay.py world --apply --output groudon-vblank-batch-stress-preflight.json
           git -C world diff --check
           make -C world modern -j2 O_LEVEL=s "CFLAGS=-ffunction-sections -fdata-sections" > groudon-frame-pilot-arm-build.log 2>&1
           cp groudon-frame-pilot-arm-build.log master-visible-arm-build.log
@@ -209,7 +217,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 grandworld/tools/grandworld/verify_groudon_frame_lz10.py --symbols master-elf-symbols.txt --rom world/pokemonworld.gba --source-report groudon-frame-compression-source.json --baseline-budget baseline-groudon-memory-budget.json --final-budget m9-memory-budget.json --max-profile-ewram-increase 16 --max-asm-iwram-increase 1536 --output groudon-frame-compression-verified.json
+          python3 grandworld/tools/grandworld/verify_groudon_frame_lz10.py --symbols master-elf-symbols.txt --rom world/pokemonworld.gba --source-report groudon-frame-compression-source.json --baseline-budget baseline-groudon-memory-budget.json --final-budget m9-memory-budget.json --max-profile-ewram-increase 16 --max-asm-iwram-increase 1536 --max-stress-ewram-increase 112 --output groudon-frame-compression-verified.json
       - name: Audit exact linked sprite duplicates and reversible GBA LZ10
         shell: bash
         run: |
@@ -311,6 +319,7 @@ jobs:
           target=Path("world/test/overworld/lua/GrandWorldGroudonFollowerLZ10.lua")
           target.write_text(source.replace("__GROUDON_FNV_LIST__",", ".join(f"0x{n:08X}" for n in hashes)))
           PY
+          python3 grandworld/tools/grandworld/inject_groudon_vblank_stress_qa.py world/test/overworld/lua/GrandWorldGroudonFollowerLZ10.lua
           luac5.4 -p world/test/overworld/lua/GrandWorldGroudonFollowerLZ10.lua
           export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
           mkdir -p "$GITHUB_WORKSPACE/groudon-follower-evidence"
@@ -323,7 +332,7 @@ jobs:
           expected=hashlib.md5(rom).hexdigest().upper()
           base=Path('../groudon-follower-evidence')
           stamp=(base/'GrandWorldGroudonFollowerLZ10.PASS').read_text()
-          assert re.fullmatch(rf'PASS 12/12 rom={expected} at=[^\r\n]+ suite=GrandWorldGroudonFollowerLZ10\s*',stamp),stamp
+          assert re.fullmatch(rf'PASS 19/19 rom={expected} at=[^\r\n]+ suite=GrandWorldGroudonFollowerLZ10\s*',stamp),stamp
           assert not (base/'GrandWorldGroudonFollowerLZ10.FAIL').exists()
           assert list(base.glob('*groudon_64x64_lz10_visible.png')), "no Groudon visual evidence"
           print('REAL GROUDON VISIBLE GPU-FRAME PASS at ROM SHA256='+hashlib.sha256(rom).hexdigest())
@@ -331,6 +340,7 @@ jobs:
           cd ..
           python3 grandworld/tools/grandworld/groudon_cycle_profile_report.py --log groudon-follower-mgba-log.txt --rom world/pokemonworld.gba --source-report groudon-frame-compression-source.json --link-report groudon-frame-compression-verified.json --output groudon-native-cycles-report.json
           python3 grandworld/tools/grandworld/groudon_fast_lz77_compare.py --timer-report groudon-native-cycles-report.json --link-report groudon-frame-compression-verified.json --output groudon-fast-lz77-comparison.json
+          python3 grandworld/tools/grandworld/groudon_vblank_batch_stress_report.py --log groudon-follower-mgba-log.txt --rom world/pokemonworld.gba --source-report groudon-frame-compression-source.json --link-report groudon-frame-compression-verified.json --output groudon-vblank-batch-stress-result.json
       - name: Gate claimed ROM savings only after actual GBA gameplay succeeds
         shell: bash
         run: |
@@ -339,12 +349,12 @@ jobs:
           import json
           d=json.load(open('master-rom-space-comparison.json'))
           assert d['smaller_rom_payload'], 'O(s) candidate did not reduce linker ROM usage'
-          assert d['memory']['EWRAM']['bytes_saved'] >= -16, 'profiler increased EWRAM beyond 16 B'
+          assert d['memory']['EWRAM']['bytes_saved'] >= -128, 'CI-only profiler and stress exceeded 128 B EWRAM'
           assert d['memory']['IWRAM']['bytes_saved'] >= -1536, 'optimized ARM code exceeded bounded IWRAM budget'
           assert d['reserves_preserved'], 'safety reserve violated'
           assert d['gameplay_proved_by_this_report'] is False
           assert d['fps_measured_by_this_report'] is False
-          print('ROM saved, 16 B profiler and <=1536 B decoder headroom, mGBA 18/18 + 12/12 + faster ARM LZ10 PASS')
+          print('ROM saved with bounded test counters, mGBA 18/18 + 19/19 Groudon 2/3/4-copy real VBlank diagnostic PASS')
           PY
       - name: Keep non-ROM, non-save evidence only
         if: always()
@@ -385,4 +395,6 @@ jobs:
             groudon-native-cycles-report.json
             groudon-fast-lz77-source.json
             groudon-fast-lz77-comparison.json
+            groudon-vblank-batch-stress-preflight.json
+            groudon-vblank-batch-stress-result.json
             groudon-follower-evidence/
