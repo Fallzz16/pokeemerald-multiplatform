@@ -41,7 +41,7 @@ def prepare(world):
             if token not in data:
                 raise ValueError(f"{rel}: upstream cry configuration/behavior drift: {token}")
     before = (world / CONF).read_text(encoding="utf-8")
-    pattern = r"(?m)^(#define P_MODIFIED_MEGA_CRIES\s+)P_MEGA_EVOLUTIONS(\s*//[^\n]*)$"
+    pattern = r"(?m)^(#define P_MODIFIED_MEGA_CRIES[ \t]+)P_MEGA_EVOLUTIONS([ \t]*(?://[^\n]*)?)$"
     after, replacements = re.subn(pattern, r"\g<1>FALSE\g<2>", before)
     if replacements != 1 or "#define P_MODIFIED_MEGA_CRIES" not in after:
         raise ValueError("mega cry configuration not patchable exactly once")
