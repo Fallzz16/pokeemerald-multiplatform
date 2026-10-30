@@ -6,6 +6,8 @@ on:
       - 'tools/grandworld/graphics_budget_overlay.py'
       - 'tools/grandworld/graphics_budget_report.py'
       - 'tools/grandworld/tests/test_graphics_budget.py'
+      - 'tools/grandworld/graphics_species_budget.py'
+      - 'tools/grandworld/tests/test_graphics_species_budget.py'
       - 'qa/gba/baselines/m9_Os_18of18_budget.json'
   workflow_dispatch:
 permissions:
@@ -32,6 +34,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_graphics_budget.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_graphics_species_budget.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_rom_compare.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_asset_inventory.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_verify_master_visible.py' -v
@@ -125,6 +128,11 @@ jobs:
         run: |
           set -euo pipefail
           python3 grandworld/tools/grandworld/master_asset_inventory.py world --output master-gba-asset-duplicates.json
+      - name: Audit source-declared overworld frame dimensions across 9 generations
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/graphics_species_budget.py world --output master-species-graphics-budget.json
       - name: Compile actual GBA ROM rather than PC/SDL substitute
         shell: bash
         run: |
@@ -273,6 +281,7 @@ jobs:
             master-rom-sections.txt
             master-rom-largest-symbols.txt
             master-graphics-budget.json
+            master-species-graphics-budget.json
             m9-mgba-build.log
             m9-land-owe-log.txt
             m9-land-owe-evidence/
