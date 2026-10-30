@@ -24,9 +24,11 @@ WINDOW = 4096
 MAX_MATCH = 18
 
 
-def lz10_encode(data):
+def lz10_encode(data, *, min_distance=1):
     """Greedy BIOS LZ10 packetizer; not claimed optimal for production."""
     data = bytes(data)  # robust for mutable ROM buffers in instrumentation
+    if min_distance not in (1, 2):
+        raise ValueError("LZ10 min_distance must be 1 or 2")
     if len(data) > 0xFFFFFF:
         raise ValueError("LZ10 header only allows 24-bit uncompressed length")
     result = bytearray(bytes((0x10, len(data) & 255,
@@ -48,7 +50,7 @@ def lz10_encode(data):
                 candidates = positions.get(key, ())
                 for position in reversed(candidates[-12:]):
                     distance = at - position
-                    if not 1 <= distance <= WINDOW:
+                    if not min_distance <= distance <= WINDOW:
                         continue
                     length = 3
                     limit = min(MAX_MATCH, len(data) - at)
