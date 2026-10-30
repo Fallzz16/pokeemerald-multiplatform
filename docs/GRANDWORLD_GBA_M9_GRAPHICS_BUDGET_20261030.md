@@ -22,7 +22,7 @@ ela pode ocupar mais OBJ VRAM e atrapalhar Pokémon selvagens simultâneos.
    definitivas. Valida todos os trechos antes de gravar qualquer arquivo.
 2. graphics_budget_report.py: confere contagens e calcula ocupação,
    maior bloco contínuo livre e fragmentação com hash SHA256 da ROM.
-3. Workflow grandworld-gba-master-graphics-budget.yml: ARM/GBA real,
+3. Workflow grandworld-gba-master-rom-sections.yml: ARM/GBA real,
    preserva o perfil -Os+GC da PR #105 e reaproveita a prova mGBA 18/18.
 4. Testes unitários específicos para métricas, ausência de amostras,
    dados corrompidos e recusas de patch incompatível.
