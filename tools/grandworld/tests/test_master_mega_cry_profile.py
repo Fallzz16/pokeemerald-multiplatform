@@ -20,6 +20,10 @@ class MasterMegaCryProfileTests(unittest.TestCase):
             path = self.root / rel
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text("\n".join(tokens) + "\n")
+        for rel, (original, _) in profile.MEGA_SOURCE_PATCHES.items():
+            path = self.root / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text("/* unrelated species data */\n" + original + "\n")
         self.conf = self.root / profile.CONF
 
     def test_preflight_read_only(self):
@@ -38,6 +42,8 @@ class MasterMegaCryProfileTests(unittest.TestCase):
         self.assertIn("#define P_CRIES_ENABLED                  TRUE", current)
         self.assertIn("CRY_MODE_HIGH_PITCH", current)
         self.assertFalse(result["distinct_mega_cry_audio_kept"])
+        for rel, (_, guarded) in profile.MEGA_SOURCE_PATCHES.items():
+            self.assertIn(guarded, (self.root / rel).read_text())
 
     def test_reapplication_fails_closed(self):
         profile.run(self.root, apply=True)
@@ -49,6 +55,14 @@ class MasterMegaCryProfileTests(unittest.TestCase):
         path.write_text("changed original sound source")
         snapshot = self.conf.read_bytes()
         with self.assertRaisesRegex(ValueError, "drift"):
+            profile.run(self.root, apply=True)
+        self.assertEqual(snapshot, self.conf.read_bytes())
+
+    def test_unguarded_mega_species_drift_fails_closed(self):
+        path = self.root / next(iter(profile.MEGA_SOURCE_PATCHES))
+        path.write_text("upstream changed this species")
+        snapshot = self.conf.read_bytes()
+        with self.assertRaisesRegex(ValueError, "identifier drift"):
             profile.run(self.root, apply=True)
         self.assertEqual(snapshot, self.conf.read_bytes())
 
