@@ -2,9 +2,11 @@
 import importlib.util
 from pathlib import Path
 import tempfile
+import sys
 import unittest
 
 SOURCE = Path(__file__).resolve().parents[1]/"apply_groudon_frame_lz10.py"
+sys.path.insert(0,str(SOURCE.parent))
 spec=importlib.util.spec_from_file_location("apply_groudon_frame_lz10",SOURCE)
 mod=importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
