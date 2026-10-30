@@ -15,6 +15,10 @@ on:
       - 'tools/grandworld/apply_groudon_frame_lz10.py'
       - 'tools/grandworld/tests/test_apply_groudon_frame_lz10.py'
       - 'tools/grandworld/verify_groudon_frame_lz10.py'
+      - 'tools/grandworld/groudon_wram_stage_overlay.py'
+      - 'tools/grandworld/groudon_wram_stage_report.py'
+      - 'tools/grandworld/inject_groudon_stage_qa.py'
+      - 'tools/grandworld/tests/test_groudon_wram_stage_overlay.py'
       - 'qa/gba/GrandWorldGroudonFollowerLZ10.lua'
       - 'qa/gba/baselines/m9_Os_18of18_budget.json'
   workflow_dispatch:
@@ -46,6 +50,7 @@ jobs:
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_graphics_linker_audit.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_overworld_payload_experiments.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_apply_groudon_frame_lz10.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_groudon_wram_stage_overlay.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_rom_compare.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_asset_inventory.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_verify_master_visible.py' -v
@@ -167,6 +172,7 @@ jobs:
           python3 grandworld/tools/grandworld/evaluate_performance_budget.py world/pokemonworld.gba baseline-groudon-arm-build.log --output baseline-groudon-memory-budget.json
           arm-none-eabi-nm -S world/pokemonworld.elf > baseline-groudon-symbols.txt
           python3 grandworld/tools/grandworld/apply_groudon_frame_lz10.py world --rom world/pokemonworld.gba --symbols baseline-groudon-symbols.txt --output groudon-frame-compression-source.json --apply
+          python3 grandworld/tools/grandworld/groudon_wram_stage_overlay.py world --apply --output groudon-wram-stage-preflight.json
           git -C world diff --check
           make -C world modern -j2 O_LEVEL=s "CFLAGS=-ffunction-sections -fdata-sections" > groudon-frame-pilot-arm-build.log 2>&1
           cp groudon-frame-pilot-arm-build.log master-visible-arm-build.log
@@ -193,7 +199,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 grandworld/tools/grandworld/verify_groudon_frame_lz10.py --symbols master-elf-symbols.txt --rom world/pokemonworld.gba --source-report groudon-frame-compression-source.json --baseline-budget baseline-groudon-memory-budget.json --final-budget m9-memory-budget.json --output groudon-frame-compression-verified.json
+          python3 grandworld/tools/grandworld/verify_groudon_frame_lz10.py --symbols master-elf-symbols.txt --rom world/pokemonworld.gba --source-report groudon-frame-compression-source.json --baseline-budget baseline-groudon-memory-budget.json --final-budget m9-memory-budget.json --max-stage-ewram-increase 8256 --output groudon-frame-compression-verified.json
       - name: Audit exact linked sprite duplicates and reversible GBA LZ10
         shell: bash
         run: |
@@ -295,6 +301,7 @@ jobs:
           target=Path("world/test/overworld/lua/GrandWorldGroudonFollowerLZ10.lua")
           target.write_text(source.replace("__GROUDON_FNV_LIST__",", ".join(f"0x{n:08X}" for n in hashes)))
           PY
+          python3 grandworld/tools/grandworld/inject_groudon_stage_qa.py world/test/overworld/lua/GrandWorldGroudonFollowerLZ10.lua
           luac5.4 -p world/test/overworld/lua/GrandWorldGroudonFollowerLZ10.lua
           export MGBA_HEADLESS="$GITHUB_WORKSPACE/mgba/build/mgba-headless"
           mkdir -p "$GITHUB_WORKSPACE/groudon-follower-evidence"
@@ -307,11 +314,13 @@ jobs:
           expected=hashlib.md5(rom).hexdigest().upper()
           base=Path('../groudon-follower-evidence')
           stamp=(base/'GrandWorldGroudonFollowerLZ10.PASS').read_text()
-          assert re.fullmatch(rf'PASS 9/9 rom={expected} at=[^\r\n]+ suite=GrandWorldGroudonFollowerLZ10\s*',stamp),stamp
+          assert re.fullmatch(rf'PASS 12/12 rom={expected} at=[^\r\n]+ suite=GrandWorldGroudonFollowerLZ10\s*',stamp),stamp
           assert not (base/'GrandWorldGroudonFollowerLZ10.FAIL').exists()
           assert list(base.glob('*groudon_64x64_lz10_visible.png')), "no Groudon visual evidence"
           print('REAL GROUDON VISIBLE GPU-FRAME PASS at ROM SHA256='+hashlib.sha256(rom).hexdigest())
           PY
+          cd ..
+          python3 grandworld/tools/grandworld/groudon_wram_stage_report.py --log groudon-follower-mgba-log.txt --rom world/pokemonworld.gba --link-report groudon-frame-compression-verified.json --budget m9-memory-budget.json --output groudon-wram-stage-runtime.json
       - name: Gate claimed ROM savings only after actual GBA gameplay succeeds
         shell: bash
         run: |
@@ -320,11 +329,12 @@ jobs:
           import json
           d=json.load(open('master-rom-space-comparison.json'))
           assert d['smaller_rom_payload'], 'O(s) candidate did not reduce linker ROM usage'
-          assert d['no_ewram_iwram_static_regression'], 'O(s) increased measured static RAM usage'
+          assert d['memory']['EWRAM']['bytes_saved'] >= -8256, 'Groudon 4x2KiB stage increased EWRAM above explicit bound'
+          assert d['memory']['IWRAM']['bytes_saved'] >= 0, 'Groudon staging increased IWRAM'
           assert d['reserves_preserved'], 'safety reserve violated'
           assert d['gameplay_proved_by_this_report'] is False
           assert d['fps_measured_by_this_report'] is False
-          print('ROM bytes saved with no static RAM regression and independent real mGBA 18/18 PASS')
+          print('ROM bytes saved, EWRAM staging bounded, reserve preserved, real mGBA 18/18 + Groudon 12/12 PASS')
           PY
       - name: Keep non-ROM, non-save evidence only
         if: always()
@@ -358,6 +368,8 @@ jobs:
             groudon-frame-compression-source.json
             groudon-frame-pilot-arm-build.log
             groudon-frame-compression-verified.json
+            groudon-wram-stage-preflight.json
+            groudon-wram-stage-runtime.json
             m9-mgba-build.log
             m9-land-owe-log.txt
             m9-land-owe-evidence/
