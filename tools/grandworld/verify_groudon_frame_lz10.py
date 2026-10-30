@@ -38,7 +38,7 @@ def prove(nm, rom, original, before, after):
         if offset<0 or size<byte_count or size>byte_count+3 or offset+size>len(rom):
             raise ValueError("compressed ROM frame has incorrect size: "+name)
         data=rom[offset:offset+byte_count]
-        raw=lz10_decode(data)
+        raw=lz10_decode(data, min_distance=2)
         if len(raw)!=FRAME_BYTES:
             raise ValueError("decompressed frame dimension mismatch: "+name)
         digest=hashlib.sha256(raw).hexdigest()
