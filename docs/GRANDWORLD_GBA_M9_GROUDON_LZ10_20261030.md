@@ -72,3 +72,37 @@ de promover a mudança.
 
 Todos os dados de Pokémon, paletas, shinies, sprites-fonte, saves
 existentes, mapas e a M8 ficam preservados.
+
+## Homologacao visual definitiva do Groudon — 30/10/2026
+
+[GitHub Actions #41058785637](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/41058785637):
+**SUCCESS**. Dois builds ARM/GBA, mGBA Route29 **18/18** e
+mGBA seguidor Groudon **9/9**.
+[Artifact de evidencias, sem cartucho nem saves](https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/41058785637/artifacts/12978995079).
+
+A suite `GrandWorldGroudonFollowerLZ10` deu um Groudon pela
+interface de debug original apenas numa sessao mGBA descartavel, usou
+warp de debug para Route29, verificou o objeto real do seguidor de
+species **383**, sprite **3** e tiles OBJ a partir do indice **36**.
+Realizou **16 leituras completas de 2.048 bytes** de VRAM OBJ e todas
+corresponderam a algum hash de frame de origem; observou **tres
+frames diferentes (1, 3 e 5)** enquanto o jogador se movia. Foi
+gerado screenshot nativo do Groudon visivel; sem crash ou alteracao
+de save.
+
+A validacao de bytes via SHA256 feita no cartucho final ja havia
+aprovado seis de seis frames. A prova runtime com hashes FNV32 da
+VRAM amplia a garantia, mas nao testa todos os seis frames em tela:
+apenas tres apareceram nessa sequencia de passos.
+
+**Valores reproduzidos nesta execucao: ganho real de 8.056 bytes no
+payload vinculado da ROM; delta 0 B de EWRAM e 0 B de IWRAM estaticas**,
+sprites OWEs e seguidor continuaram funcionando. Os 32 MiB do
+arquivo .gba de cartucho preenchido nao foram reduzidos, apenas o
+espaco ocupado dentro dele.
+
+**Ainda pendente:** ciclos da BIOS LZ10 dentro do VBlank, multiplos
+Groudon simultaneos, Surf e regressao de saves antigos. A
+[PR #110](https://github.com/Fallzz16/pokeemerald-multiplatform/pull/110)
+mede ciclos via ferramenta nativa, em outra branch DRAFT com +16 B
+temporarios de EWRAM para telemetria, sem modificar este piloto.
