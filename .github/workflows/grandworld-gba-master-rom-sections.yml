@@ -3,6 +3,13 @@ on:
   pull_request:
     paths:
       - '.github/workflows/grandworld-gba-master-rom-sections.yml'
+      - 'tools/grandworld/graphics_budget_overlay.py'
+      - 'tools/grandworld/graphics_budget_report.py'
+      - 'tools/grandworld/tests/test_graphics_budget.py'
+      - 'tools/grandworld/graphics_species_budget.py'
+      - 'tools/grandworld/tests/test_graphics_species_budget.py'
+      - 'tools/grandworld/graphics_linker_audit.py'
+      - 'tools/grandworld/tests/test_graphics_linker_audit.py'
       - 'qa/gba/baselines/m9_Os_18of18_budget.json'
   workflow_dispatch:
 permissions:
@@ -28,6 +35,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_graphics_budget.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_graphics_species_budget.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_graphics_linker_audit.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_rom_compare.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_asset_inventory.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_verify_master_visible.py' -v
@@ -113,12 +123,19 @@ jobs:
               encoding="utf-8")
           PY
           python3 grandworld/tools/grandworld/instrument_m9_owe_trace.py world --apply --report m9-owe-stage-trace.json
+          cp grandworld/qa/gba/GrandWorldM9LandOWE.lua world/test/overworld/lua/
+          python3 grandworld/tools/grandworld/graphics_budget_overlay.py world --apply
           git -C world diff --check
       - name: Read-only exact asset reuse inventory
         shell: bash
         run: |
           set -euo pipefail
           python3 grandworld/tools/grandworld/master_asset_inventory.py world --output master-gba-asset-duplicates.json
+      - name: Audit source-declared overworld frame dimensions across 9 generations
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/graphics_species_budget.py world --output master-species-graphics-budget.json
       - name: Compile actual GBA ROM rather than PC/SDL substitute
         shell: bash
         run: |
@@ -149,6 +166,9 @@ jobs:
           arm-none-eabi-nm -S --size-sort world/pokemonworld.elf | tail -n 120 > master-rom-largest-symbols.txt
           test -s master-rom-sections.txt
           test -s master-rom-largest-symbols.txt
+          arm-none-eabi-nm -S world/pokemonworld.elf > master-elf-symbols.txt
+          python3 grandworld/tools/grandworld/graphics_linker_audit.py \
+            --symbols master-elf-symbols.txt --output master-graphics-linker-budget.json
       - name: Compare real linker ROM/EWRAM/IWRAM against pinned O2 baseline
         shell: bash
         run: |
@@ -186,11 +206,10 @@ jobs:
           Path("master-visible-result.json").write_text(json.dumps(result,indent=2)+"\n")
           print(json.dumps(result,indent=2))
           PY
-      - name: Compile generated-land-OWE Lua probe against actual World test interface
+      - name: Compile GBA OWE Lua probe including native OBJ bitmap telemetry
         shell: bash
         run: |
           set -euo pipefail
-          cp grandworld/qa/gba/GrandWorldM9LandOWE.lua world/test/overworld/lua/
           luac5.4 -p world/test/overworld/lua/GrandWorldM9LandOWE.lua
           test -s world/test/overworld/lua/mgba_shim.lua
           test -s world/test/overworld/mgba/0001-headless-video-buffer-save-and-rtc.patch
@@ -226,6 +245,10 @@ jobs:
           assert list(base.glob('GrandWorldM9LandOWE_*_actual_generated_land_owe.png')), 'no screenshot of generated land OWE'
           print('mGBA generated land OWE gate PASS against ARM ROM sha256='+hashlib.sha256(rom).hexdigest())
           PY
+          cd ..
+          python3 grandworld/tools/grandworld/graphics_budget_report.py \
+            --log m9-land-owe-log.txt --rom world/pokemonworld.gba \
+            --output master-graphics-budget.json
       - name: Gate claimed ROM savings only after actual GBA gameplay succeeds
         shell: bash
         run: |
@@ -263,6 +286,9 @@ jobs:
             master-gba-asset-duplicates.json
             master-rom-sections.txt
             master-rom-largest-symbols.txt
+            master-graphics-budget.json
+            master-species-graphics-budget.json
+            master-graphics-linker-budget.json
             m9-mgba-build.log
             m9-land-owe-log.txt
             m9-land-owe-evidence/
