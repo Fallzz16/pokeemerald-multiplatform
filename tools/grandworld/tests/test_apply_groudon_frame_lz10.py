@@ -52,6 +52,7 @@ class GroudonPilotTests(unittest.TestCase):
         sprite=self.sprite.read_text()
         header=(self.world/"src/data/object_events/grandworld_groudon_frame_lz10.h").read_text()
         self.assertEqual(table.count(".relativeFrames = 2"),6)
+        self.assertIn('#include "grandworld_groudon_frame_lz10.h"',table)
         for i in range(6):
             self.assertIn("sGWGroudonLzFrame"+str(i),header)
         self.assertIn("LZ77UnCompVram",sprite)
