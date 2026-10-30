@@ -126,7 +126,7 @@ def prepare(world, nm_text, rom):
     )
     table_new = single_replace(table, ANIM_ORIGINAL,
         '#if P_FAMILY_GROUDON\n'
-        '#include "data/object_events/grandworld_groudon_frame_lz10.h"\n'
+        '#include "grandworld_groudon_frame_lz10.h"\n'
         'static const struct SpriteFrameImage sPicTable_Groudon[] = {\n'
         + source_marker + '\n};',
         "Groudon 6-frame 64x64 sprite table")
