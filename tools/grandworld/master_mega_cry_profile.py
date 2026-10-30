@@ -31,6 +31,26 @@ REQUIRED = {
 }
 
 
+MEGA_SOURCE_PATCHES = {
+    "src/data/pokemon/species_info/gen_1_families.h": (
+        "        .cryId = CRY_SLOWBRO_MEGA,",
+        "        #if P_MODIFIED_MEGA_CRIES\n"
+        "        .cryId = CRY_SLOWBRO_MEGA,\n"
+        "        #else\n"
+        "        .cryId = CRY_SLOWBRO,\n"
+        "        #endif",
+    ),
+    "src/data/pokemon/species_info/gen_3_families.h": (
+        "        .cryId = CRY_RAYQUAZA_MEGA,",
+        "        #if P_MODIFIED_MEGA_CRIES\n"
+        "        .cryId = CRY_RAYQUAZA_MEGA,\n"
+        "        #else\n"
+        "        .cryId = CRY_RAYQUAZA,\n"
+        "        #endif",
+    ),
+}
+
+
 def prepare(world):
     world = Path(world)
     if not (world / "Makefile").is_file():
@@ -45,14 +65,22 @@ def prepare(world):
     after, replacements = re.subn(pattern, r"\g<1>FALSE\g<2>", before)
     if replacements != 1 or "#define P_MODIFIED_MEGA_CRIES" not in after:
         raise ValueError("mega cry configuration not patchable exactly once")
-    return before, after
+    source_changes = {}
+    for rel, (original, guarded) in MEGA_SOURCE_PATCHES.items():
+        source = (world / rel).read_text(encoding="utf-8")
+        if source.count(original) != 1 or guarded in source:
+            raise ValueError(f"{rel}: pinned Mega cry identifier drift or patch already applied")
+        source_changes[rel] = source.replace(original, guarded, 1)
+    return before, after, source_changes
 
 
 def run(world, apply=False):
     world = Path(world).resolve()
-    before, after = prepare(world)
+    before, after, source_changes = prepare(world)
     if apply:
         (world / CONF).write_text(after, encoding="utf-8")
+        for rel, updated in source_changes.items():
+            (world / rel).write_text(updated, encoding="utf-8")
     return {
         "profile": "MASTER_OPTIONAL_MEGA_CRY_SHARED_HIGH_PITCH",
         "mode": "applied" if apply else "read_only_preflight",
@@ -62,6 +90,7 @@ def run(world, apply=False):
         "regular_pokemon_cries_enabled": True,
         "mega_cries_remain_audible_via_native_pitched_mode": True,
         "species_or_forms_removed": 0,
+        "unpinned_mega_cry_identifiers_guarded": ["SLOWBRO_MEGA", "RAYQUAZA_MEGA"],
         "saves_modified": False,
         "gameplay_approved": False,
     }
