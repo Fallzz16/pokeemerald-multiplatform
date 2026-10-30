@@ -19,11 +19,13 @@ report = load("graphics_budget_report")
 
 
 def line(stage, *, used=360, free=664, largest=600, runs=2,
-         reserved=32, sprites=12, palettes=8, owe=2, follower=1):
+         reserved=32, sprites=12, palettes=8, owe=2, follower=1,
+         dup_slots=0, dup_pairs=0):
     return (
         f"  GRAPHICS_BUDGET stage={stage} used={used} free={free} "
         f"largest_free={largest} free_runs={runs} reserved={reserved} "
-        f"sprites={sprites} palettes={palettes} owe={owe} follower={follower}\n")
+        f"sprites={sprites} palettes={palettes} owe={owe} follower={follower} "
+        f"palette_duplicate_slots={dup_slots} palette_duplicate_pairs={dup_pairs}\n")
 
 
 class BudgetReportTests(unittest.TestCase):
@@ -46,6 +48,20 @@ class BudgetReportTests(unittest.TestCase):
         self.assertFalse(data["measured_fps"])
         self.assertEqual(data["rom_bytes_saved"], 0)
         self.assertFalse(data["ready_for_release"])
+
+    def test_identical_colors_are_only_audit_candidates(self):
+        data = report.analyze(self.good_log().replace(
+            "palette_duplicate_slots=0 palette_duplicate_pairs=0",
+            "palette_duplicate_slots=1 palette_duplicate_pairs=1"))
+        self.assertEqual(data["peak_exact_color_duplicate_palette_slots"], 1)
+        self.assertFalse(data["potential_palette_merging_safe"])
+
+    def test_corrupt_palette_pair_count_fails(self):
+        log = self.good_log().replace(
+            "palette_duplicate_slots=0 palette_duplicate_pairs=0",
+            "palette_duplicate_slots=1 palette_duplicate_pairs=1000")
+        with self.assertRaisesRegex(ValueError, "duplicate pair"):
+            report.analyze(log)
 
     def test_missing_required_snapshot_fails(self):
         with self.assertRaisesRegex(ValueError, "missing required snapshots"):
