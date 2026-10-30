@@ -12,7 +12,7 @@ LINE=re.compile(
     r"peak_batch_cycles=(\d+) over_budget=(\d+) crossed_vblank=(\d+) "
     r"pixel_samples=(\d+)")
 BATCH=re.compile(r"\bGROUDON_BATCH baseline_samples=(\d+) baseline_peak=(\d+) "
-                 r"max_batch_cycles=(\d+) max_lz_copies=(\d+) max_normal_copies=(\d+)")
+                 r"max_batch_cycles=(\d+) max_lz_copies=(\d+) max_normal_copies=(\d+) raw_timer_skips=(\d+)")
 VBLANK_CYCLES=83776
 
 
@@ -41,7 +41,7 @@ def summarize(log, finalrom, source, linker, qa_passes=True):
     b=BATCH.findall(log)
     if len(b)!=1:
         raise ValueError("FAIL CLOSED: missing aggregate GBA batch counter")
-    baseline,basepeak,maxbatch,maxlz,maxraw=map(int,b[0])
+    baseline,basepeak,maxbatch,maxlz,maxraw,rawskips=map(int,b[0])
     if baseline<3 or basepeak<=0 or maxbatch<modes[3]["peak_timed_queue_cycles"] or maxlz<4:
         raise ValueError("FAIL CLOSED: batch statistics inconsistent")
     if not source["all_frames_lossless_roundtrip"] or not linker["all_6_frames_unchanged_pixels"]:
@@ -60,6 +60,7 @@ def summarize(log, finalrom, source, linker, qa_passes=True):
         "maximum_sum_of_timed_sprite_queue_calls":maxbatch,
         "maximum_lz10_decodes_in_one_queue":maxlz,
         "maximum_normal_sprite_copies_in_one_queue":maxraw,
+        "nonintrusive_raw_copy_timer_skips":rawskips,
         "vblank_cycle_window":VBLANK_CYCLES,
         "four_decodes_observed_over_budget":True,
         "graphics_frames_byte_identical":True,
