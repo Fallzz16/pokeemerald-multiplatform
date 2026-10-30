@@ -16,6 +16,9 @@ on:
       - 'tools/grandworld/tests/test_apply_groudon_frame_lz10.py'
       - 'tools/grandworld/verify_groudon_frame_lz10.py'
       - 'qa/gba/GrandWorldGroudonFollowerLZ10.lua'
+      - 'tools/grandworld/groudon_cycle_probe_overlay.py'
+      - 'tools/grandworld/groudon_cycle_profile_report.py'
+      - 'tools/grandworld/tests/test_groudon_cycle_probe_overlay.py'
       - 'qa/gba/baselines/m9_Os_18of18_budget.json'
   workflow_dispatch:
 permissions:
@@ -46,6 +49,7 @@ jobs:
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_graphics_linker_audit.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_overworld_payload_experiments.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_apply_groudon_frame_lz10.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_groudon_cycle_probe_overlay.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_rom_compare.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_asset_inventory.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_verify_master_visible.py' -v
@@ -167,6 +171,7 @@ jobs:
           python3 grandworld/tools/grandworld/evaluate_performance_budget.py world/pokemonworld.gba baseline-groudon-arm-build.log --output baseline-groudon-memory-budget.json
           arm-none-eabi-nm -S world/pokemonworld.elf > baseline-groudon-symbols.txt
           python3 grandworld/tools/grandworld/apply_groudon_frame_lz10.py world --rom world/pokemonworld.gba --symbols baseline-groudon-symbols.txt --output groudon-frame-compression-source.json --apply
+          python3 grandworld/tools/grandworld/groudon_cycle_probe_overlay.py world --qa-source grandworld/qa/gba/GrandWorldGroudonFollowerLZ10.lua --apply
           git -C world diff --check
           make -C world modern -j2 O_LEVEL=s "CFLAGS=-ffunction-sections -fdata-sections" > groudon-frame-pilot-arm-build.log 2>&1
           cp groudon-frame-pilot-arm-build.log master-visible-arm-build.log
@@ -193,7 +198,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 grandworld/tools/grandworld/verify_groudon_frame_lz10.py --symbols master-elf-symbols.txt --rom world/pokemonworld.gba --source-report groudon-frame-compression-source.json --baseline-budget baseline-groudon-memory-budget.json --final-budget m9-memory-budget.json --output groudon-frame-compression-verified.json
+          python3 grandworld/tools/grandworld/verify_groudon_frame_lz10.py --symbols master-elf-symbols.txt --rom world/pokemonworld.gba --source-report groudon-frame-compression-source.json --baseline-budget baseline-groudon-memory-budget.json --final-budget m9-memory-budget.json --max-profile-ewram-increase 16 --output groudon-frame-compression-verified.json
       - name: Audit exact linked sprite duplicates and reversible GBA LZ10
         shell: bash
         run: |
@@ -290,7 +295,7 @@ jobs:
           report=json.loads(Path("groudon-frame-compression-source.json").read_text())
           hashes=report["original_frame_fnv1a32"]
           assert len(hashes)==6 and all(0<=n<=0xffffffff for n in hashes)
-          source=Path("grandworld/qa/gba/GrandWorldGroudonFollowerLZ10.lua").read_text()
+          source=Path("world/test/overworld/lua/GrandWorldGroudonFollowerLZ10.lua").read_text()
           assert source.count("__GROUDON_FNV_LIST__")==1
           target=Path("world/test/overworld/lua/GrandWorldGroudonFollowerLZ10.lua")
           target.write_text(source.replace("__GROUDON_FNV_LIST__",", ".join(f"0x{n:08X}" for n in hashes)))
@@ -307,11 +312,13 @@ jobs:
           expected=hashlib.md5(rom).hexdigest().upper()
           base=Path('../groudon-follower-evidence')
           stamp=(base/'GrandWorldGroudonFollowerLZ10.PASS').read_text()
-          assert re.fullmatch(rf'PASS 9/9 rom={expected} at=[^\r\n]+ suite=GrandWorldGroudonFollowerLZ10\s*',stamp),stamp
+          assert re.fullmatch(rf'PASS 12/12 rom={expected} at=[^\r\n]+ suite=GrandWorldGroudonFollowerLZ10\s*',stamp),stamp
           assert not (base/'GrandWorldGroudonFollowerLZ10.FAIL').exists()
           assert list(base.glob('*groudon_64x64_lz10_visible.png')), "no Groudon visual evidence"
           print('REAL GROUDON VISIBLE GPU-FRAME PASS at ROM SHA256='+hashlib.sha256(rom).hexdigest())
           PY
+          cd ..
+          python3 grandworld/tools/grandworld/groudon_cycle_profile_report.py --log groudon-follower-mgba-log.txt --rom world/pokemonworld.gba --source-report groudon-frame-compression-source.json --link-report groudon-frame-compression-verified.json --output groudon-native-cycles-report.json
       - name: Gate claimed ROM savings only after actual GBA gameplay succeeds
         shell: bash
         run: |
@@ -362,4 +369,5 @@ jobs:
             m9-land-owe-log.txt
             m9-land-owe-evidence/
             groudon-follower-mgba-log.txt
+            groudon-native-cycles-report.json
             groudon-follower-evidence/
