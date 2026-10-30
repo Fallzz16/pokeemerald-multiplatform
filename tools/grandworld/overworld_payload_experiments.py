@@ -81,7 +81,9 @@ def lz10_encode(data, *, min_distance=1):
     return bytes(result)
 
 
-def lz10_decode(encoded):
+def lz10_decode(encoded, *, min_distance=1):
+    if min_distance not in (1, 2):
+        raise ValueError("LZ10 min_distance must be 1 or 2")
     if len(encoded) < 4 or encoded[0] != 0x10:
         raise ValueError("invalid LZ10 header")
     size = int.from_bytes(encoded[1:4], "little")
@@ -102,7 +104,7 @@ def lz10_decode(encoded):
                 pos += 2
                 length = (n >> 4) + 3
                 distance = (((n & 15) << 8) | low) + 1
-                if distance > len(out) or len(out) + length > size:
+                if distance < min_distance or distance > len(out) or len(out) + length > size:
                     raise ValueError("invalid LZ10 back-reference")
                 for _ in range(length):
                     out.append(out[-distance])
