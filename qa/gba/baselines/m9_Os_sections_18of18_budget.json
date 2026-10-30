@@ -1,0 +1,26 @@
+{
+  "source": "https://github.com/Fallzz16/pokeemerald-multiplatform/actions/runs/40980352930",
+  "engine_commit": "15d3888b0d81322a04d3c71b0bce18948761ee44",
+  "grandworld_commit": "e7fbaffbbb1b1ee4cbb7775b903ff6fd94fb6218",
+  "profile": "modern -Os -ffunction-sections -fdata-sections + OWE M9, 18/18 real mGBA",
+  "rom_sha256": "f581ba7e6229732faa17e79a11825682861c67dcbf6ee4670dabff20dd3279ae",
+  "rom_bytes": 33554432,
+  "linker_memory_bytes": {
+    "ROM": 23724276,
+    "EWRAM": 235120,
+    "IWRAM": 28096
+  },
+  "free_bytes": {
+    "ROM": 9830156,
+    "EWRAM": 27024,
+    "IWRAM": 4672
+  },
+  "minimum_reserved_bytes": {
+    "ROM": 1048576,
+    "EWRAM": 8192,
+    "IWRAM": 2048
+  },
+  "memory_budget_passed": true,
+  "real_emulator_suite": "GrandWorldM9LandOWE 18/18 PASS",
+  "audio_note": "Distinct Mega cries are enabled in this baseline, not separately gameplay-tested."
+}
