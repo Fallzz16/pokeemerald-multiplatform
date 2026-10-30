@@ -111,7 +111,7 @@ def prepare(world, nm_text, rom):
     # BIOS LZ77UnCompVram writes halfwords: offset 1 is not VRAM-safe.
     compressed = [lz10_encode(frame, min_distance=2) for frame in frames]
     for raw, coded in zip(frames, compressed):
-        if lz10_decode(coded) != raw:
+        if lz10_decode(coded, min_distance=2) != raw:
             raise ValueError("FAIL CLOSED: frame LZ10 roundtrip mismatch")
         if len(coded) >= len(raw):
             raise ValueError("FAIL CLOSED: selected Groudon frame not compressible")
