@@ -12,7 +12,8 @@ import re
 import sys
 
 FIELDS = ("used", "free", "largest_free", "free_runs", "reserved",
-          "sprites", "palettes", "owe", "follower")
+          "sprites", "palettes", "owe", "follower",
+          "palette_duplicate_slots", "palette_duplicate_pairs")
 RECORD = re.compile(
     r"\bGRAPHICS_BUDGET stage=([a-z0-9-]+) "
     + r" ".join(rf"{key}=(\d+)" for key in FIELDS)
@@ -42,6 +43,13 @@ def analyze(log):
             raise ValueError(f"bad OBJ palette count: {stage}")
         if not 0 <= entry["owe"] <= 4 or entry["follower"] not in (0, 1):
             raise ValueError(f"bad wild/follower count: {stage}")
+        max_pairs = entry["palettes"] * (entry["palettes"] - 1) // 2
+        if not 0 <= entry["palette_duplicate_slots"] <= max(0, entry["palettes"]-1):
+            raise ValueError(f"bad palette duplicate slot count: {stage}")
+        if not 0 <= entry["palette_duplicate_pairs"] <= max_pairs:
+            raise ValueError(f"bad palette duplicate pair count: {stage}")
+        if (entry["palette_duplicate_slots"] == 0) != (entry["palette_duplicate_pairs"] == 0):
+            raise ValueError(f"inconsistent palette duplicates: {stage}")
         entries.append(entry)
     if not entries:
         raise ValueError("no native OBJ bitmap snapshots in real mGBA log")
@@ -74,6 +82,8 @@ def analyze(log):
         "smallest_largest_free_run": min(e["largest_free"] for e in entries),
         "peak_active_sprites": max(e["sprites"] for e in entries),
         "peak_palettes": max(e["palettes"] for e in entries),
+        "peak_exact_color_duplicate_palette_slots": max(e["palette_duplicate_slots"] for e in entries),
+        "potential_palette_merging_safe": False,
         "measured_fps": False,
         "rom_bytes_saved": 0,
         "ready_for_release": False,
