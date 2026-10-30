@@ -83,6 +83,14 @@ def locate_original(nm_text, rom):
     return [rom[off+i*FRAME_BYTES:off+(i+1)*FRAME_BYTES] for i in range(FRAME_COUNT)]
 
 
+def fnv1a32(data):
+    """Deterministic checksum for the mGBA-visible OBJ tile-buffer probe."""
+    value = 2166136261
+    for b in data:
+        value = ((value ^ b) * 16777619) & 0xFFFFFFFF
+    return value
+
+
 def make_header(encoded):
     lines = [
         "/* Auto-generated ONLY for disposable Grand World test build.",
@@ -151,6 +159,7 @@ def prepare(world, nm_text, rom):
         "candidate_raw_byte_saving_before_code_overhead": SIZE - sum((len(x)+3)&~3 for x in compressed),
         "all_frames_lossless_roundtrip": True,
         "original_frame_sha256": [hashlib.sha256(f).hexdigest() for f in frames],
+        "original_frame_fnv1a32": [fnv1a32(frame) for frame in frames],
         "frame_endianness": "little",
         "min_lz10_backref_distance": 2,
         "runtime": "LZ77UnCompVram in existing queued sprite copy process",
