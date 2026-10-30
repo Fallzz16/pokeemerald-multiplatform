@@ -26,6 +26,7 @@ MAX_MATCH = 18
 
 def lz10_encode(data):
     """Greedy BIOS LZ10 packetizer; not claimed optimal for production."""
+    data = bytes(data)  # robust for mutable ROM buffers in instrumentation
     if len(data) > 0xFFFFFF:
         raise ValueError("LZ10 header only allows 24-bit uncompressed length")
     result = bytearray(bytes((0x10, len(data) & 255,
