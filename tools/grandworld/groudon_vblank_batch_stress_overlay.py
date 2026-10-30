@@ -69,9 +69,10 @@ EWRAM_DATA u32 gGWStressVblankCrossings[4] = {0};
 EWRAM_DATA u32 gGWPeakMeasuredBatchCycles = 0;
 EWRAM_DATA u32 gGWPeakCompressedInOneBatch = 0;
 EWRAM_DATA u32 gGWPeakNormalInOneBatch = 0;
+EWRAM_DATA u32 gGWRawTimerSkips = 0; // Do not confuse busy timer with LZ10 contention.
 """
 OLD_SYMBOL='    "gGWLZCopyCount", "gGWLZTotalCycles", "gGWLZPeakCycles", "gGWLZTimerConflicts",\n'
-NEW_SYMBOL=OLD_SYMBOL+'''    "gGWStressExtraCopies", "gGWStressSamples", "gGWStressPeakBatchCycles",\n    "gGWStressOverBudgetBatches", "gGWStressVblankCrossings",\n    "gGWPeakMeasuredBatchCycles", "gGWPeakCompressedInOneBatch", "gGWPeakNormalInOneBatch",\n'''
+NEW_SYMBOL=OLD_SYMBOL+'''    "gGWStressExtraCopies", "gGWStressSamples", "gGWStressPeakBatchCycles",\n    "gGWStressOverBudgetBatches", "gGWStressVblankCrossings",\n    "gGWPeakMeasuredBatchCycles", "gGWPeakCompressedInOneBatch", "gGWPeakNormalInOneBatch", "gGWRawTimerSkips",\n'''
 
 NEW_BODY="""            if (sSpriteCopyRequests[i].size & 0x8000)
             {
@@ -107,7 +108,9 @@ NEW_BODY="""            if (sSpriteCopyRequests[i].size & 0x8000)
                 // Timers remain untouched if another game system owns them.
                 if ((REG_TM2CNT_H | REG_TM3CNT_H) & TIMER_ENABLE)
                 {
-                    gGWLZTimerConflicts++;
+                    // Native owners (link/eReader/audio) retain timers.
+                    // A skipped raw-copy SAMPLE is not a decoder conflict.
+                    gGWRawTimerSkips++;
                     CpuCopy16(sSpriteCopyRequests[i].src, sSpriteCopyRequests[i].dest, sSpriteCopyRequests[i].size);
                 }
                 else
