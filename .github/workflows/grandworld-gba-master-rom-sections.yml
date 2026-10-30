@@ -12,6 +12,9 @@ on:
       - 'tools/grandworld/tests/test_graphics_linker_audit.py'
       - 'tools/grandworld/overworld_payload_experiments.py'
       - 'tools/grandworld/tests/test_overworld_payload_experiments.py'
+      - 'tools/grandworld/apply_groudon_frame_lz10.py'
+      - 'tools/grandworld/tests/test_apply_groudon_frame_lz10.py'
+      - 'tools/grandworld/verify_groudon_frame_lz10.py'
       - 'qa/gba/baselines/m9_Os_18of18_budget.json'
   workflow_dispatch:
 permissions:
@@ -41,6 +44,7 @@ jobs:
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_graphics_species_budget.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_graphics_linker_audit.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_overworld_payload_experiments.py' -v
+          python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_apply_groudon_frame_lz10.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_rom_compare.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_master_asset_inventory.py' -v
           python3 -m unittest discover -s grandworld/tools/grandworld/tests -p 'test_verify_master_visible.py' -v
@@ -154,6 +158,18 @@ jobs:
           test -n "$sample"
           arm-none-eabi-readelf -SW "$sample" | grep -E '\.text\.[A-Za-z_]' >/dev/null
           test -s world/pokemonworld.gba
+      - name: Generate six genuine Groudon 64x64 LZ10 frames and relink experimental ARM ROM
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp master-visible-arm-build.log baseline-groudon-arm-build.log
+          python3 grandworld/tools/grandworld/evaluate_performance_budget.py world/pokemonworld.gba baseline-groudon-arm-build.log --output baseline-groudon-memory-budget.json
+          arm-none-eabi-nm -S world/pokemonworld.elf > baseline-groudon-symbols.txt
+          python3 grandworld/tools/grandworld/apply_groudon_frame_lz10.py world --rom world/pokemonworld.gba --symbols baseline-groudon-symbols.txt --output groudon-frame-compression-source.json --apply
+          git -C world diff --check
+          make -C world modern -j2 O_LEVEL=s "CFLAGS=-ffunction-sections -fdata-sections" > groudon-frame-pilot-arm-build.log 2>&1
+          cp groudon-frame-pilot-arm-build.log master-visible-arm-build.log
+          test -s world/pokemonworld.gba
       - name: Audit actual ARM linker ROM/EWRAM/IWRAM headroom
         shell: bash
         run: |
@@ -172,6 +188,11 @@ jobs:
           arm-none-eabi-nm -S world/pokemonworld.elf > master-elf-symbols.txt
           python3 grandworld/tools/grandworld/graphics_linker_audit.py \
             --symbols master-elf-symbols.txt --output master-graphics-linker-budget.json
+      - name: Verify real linked Groudon LZ10 frames and linker ROM/EWRAM/IWRAM savings
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 grandworld/tools/grandworld/verify_groudon_frame_lz10.py --symbols master-elf-symbols.txt --rom world/pokemonworld.gba --source-report groudon-frame-compression-source.json --baseline-budget baseline-groudon-memory-budget.json --final-budget m9-memory-budget.json --output groudon-frame-compression-verified.json
       - name: Audit exact linked sprite duplicates and reversible GBA LZ10
         shell: bash
         run: |
@@ -298,6 +319,11 @@ jobs:
             master-species-graphics-budget.json
             master-graphics-linker-budget.json
             master-overworld-payload-pilot.json
+            baseline-groudon-arm-build.log
+            baseline-groudon-memory-budget.json
+            groudon-frame-compression-source.json
+            groudon-frame-pilot-arm-build.log
+            groudon-frame-compression-verified.json
             m9-mgba-build.log
             m9-land-owe-log.txt
             m9-land-owe-evidence/
