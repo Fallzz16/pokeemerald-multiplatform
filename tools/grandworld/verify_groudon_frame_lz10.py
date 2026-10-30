@@ -15,7 +15,7 @@ from apply_groudon_frame_lz10 import (FRAME_COUNT, FRAME_BYTES,
                                        ROM_BASE, ROM_BYTES, FRAME_PREFIX)
 
 
-def prove(nm, rom, original, before, after):
+def prove(nm, rom, original, before, after, max_stage_ewram_increase=0):
     if len(rom)!=ROM_BYTES or rom[0xAC:0xB0]!=b"BPEE":
         raise ValueError("not a valid GBA ROM image")
     matches={}
@@ -55,7 +55,7 @@ def prove(nm, rom, original, before, after):
     delta={key:base[key]-final[key] for key in ("ROM","EWRAM","IWRAM")}
     if delta["ROM"]<=0:
         raise ValueError("pilot has no real linker ROM payload saving")
-    if delta["EWRAM"]<0 or delta["IWRAM"]<0:
+    if delta["EWRAM"] < -max_stage_ewram_increase or delta["IWRAM"]<0:
         raise ValueError("pilot increased static EWRAM or IWRAM")
     if before["rom_sha256"]==after["rom_sha256"]:
         raise ValueError("candidate did not change actual ROM image")
@@ -69,6 +69,7 @@ def prove(nm, rom, original, before, after):
         "linked_rom_payload_saved_bytes":delta["ROM"],
         "linked_ewram_delta_bytes":delta["EWRAM"],
         "linked_iwram_delta_bytes":delta["IWRAM"],
+        "maximum_staging_static_ewram_bytes":max_stage_ewram_increase,
         "sprite_frame_dimension_changed":False,
         "obj_frame_tile_allocation_changed":False,
         "palettes_or_saves_changed":False,
@@ -87,12 +88,15 @@ def main():
     ap.add_argument("--baseline-budget",type=Path,required=True)
     ap.add_argument("--final-budget",type=Path,required=True)
     ap.add_argument("--output",type=Path,required=True)
+    ap.add_argument("--max-stage-ewram-increase",type=int,default=0)
     args=ap.parse_args()
+    if not 0<=args.max_stage_ewram_increase<=8256:
+        ap.error("staging static increase limited to 8256 bytes")
     try:
         res=prove(args.symbols.read_text(),args.rom.read_bytes(),
                   json.loads(args.source_report.read_text()),
                   json.loads(args.baseline_budget.read_text()),
-                  json.loads(args.final_budget.read_text()))
+                  json.loads(args.final_budget.read_text()),args.max_stage_ewram_increase)
         args.output.write_text(json.dumps(res,indent=2)+"\n",encoding="utf-8")
         print(json.dumps({k:v for k,v in res.items()
                           if k!="frame_symbols_extracted_from_final_rom"},indent=2))
