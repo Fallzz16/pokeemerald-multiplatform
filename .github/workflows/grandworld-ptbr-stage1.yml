@@ -107,10 +107,10 @@ jobs:
           from pathlib import Path
           d=json.loads(Path('ptbr-draft-quality.json').read_text())
           assert d['automated_draft_entries']==5200
-          assert d['human_language_reviewed']==406
-          assert d['human_reviewed_stage8']==196
-          assert d['pending_human_language_review']==4794
-          print('Human-reviewed stage8 196/196, 406/5200 reviewed machine drafts, release not certified')
+          assert d['human_language_reviewed']==449
+          assert d['human_reviewed_stage8']==239
+          assert d['pending_human_language_review']==4751
+          print('Human-reviewed stage8 239/239, 449/5200 reviewed machine drafts, release not certified')
           PY
           python3 - <<'PY'
           import json
