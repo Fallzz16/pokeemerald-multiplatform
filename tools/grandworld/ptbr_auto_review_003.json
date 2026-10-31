@@ -14,7 +14,7 @@
         "Perdi, mas nao vou chorar...$"
       ],
       "Route109_SeashoreHouse_Text_SimonPostBattle": [
-        "Se um dos meus POKEMON soubesse\\no movimento para me carregar\\latraves da agua em suas costas,\\leu poderia me livrar deste tubo\\linterno.$"
+        "Se um dos meus POKEMON soubesse\\num golpe para me levar\\lpela agua, eu nao precisaria\\lmais usar esta boia\\lpara nadar.$"
       ]
     },
     "data/maps/Route10_Frlg/scripts.inc": {
@@ -107,7 +107,7 @@
         "Levei a noite toda a instalar\\nas portas...\\pE quase igual a minha\\ngrandeza!$"
       ],
       "Route110_TrickHouseEnd_Text_AllNightSettingUpArrows": [
-        "Levei a noite toda a montar\\nflechas...\\pE meu igual em grandeza!$"
+        "Passei a noite colocando\\nas setas...\\pVoce e tao esperto quanto eu!$"
       ],
       "Route110_TrickHouseEnd_Text_AllNightPolishingFloors": [
         "Levei toda a noite a polir\\npisos...\\pEstas acima de mim em grandeza!\\nPossivelmente...$"
@@ -354,7 +354,7 @@
         "Humph! Nao estou chateada! Eu\\nnao!$"
       ],
       "Route110_TrickHousePuzzle7_Text_AlvaroIntro": [
-        "Vi-te sempre tao de perto!$"
+        "Observei voce o tempo todo!$"
       ],
       "Route110_TrickHousePuzzle7_Text_AlvaroDefeat": [
         "Este resultado que eu nao\\nesperava...$"
@@ -583,7 +583,7 @@
         "E mesmo forte!\\pQuem me dera poder ser um\\ntREINADOR como voce!$"
       ],
       "Route119_WeatherInstitute_1F_Text_WhatWereAquasUpTo": [
-        "Ola! Fomos salvos pelas suas\\naccoes!\\pO que nao entendo e o que os\\nAQUAS estavam tramando.$"
+        "Ola! Voce nos salvou\\ncom sua ajuda!\\pMas nao entendo por que\\na EQUIPE AQUA veio aqui.$"
       ],
       "Route119_WeatherInstitute_1F_Text_TakeRestInBed": [
         "Ha uma cama... Vamos descansar.$"
@@ -679,7 +679,7 @@
         "Fiz meu melhor. Nao me\\narrependo.$"
       ],
       "Route11_Text_BraxtonIntro": [
-        "Cuidado! Estou a por uns cabos!$"
+        "Cuidado! Estou instalando fios!$"
       ],
       "Route11_Text_BraxtonDefeat": [
         "Isso foi electrico!$"
