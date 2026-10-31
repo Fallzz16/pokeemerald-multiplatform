@@ -62,7 +62,7 @@
     },
     "data/maps/NewBarkTown_House2/scripts.inc": {
       "NewBarkTown_House2_Text_ElmsWife": [
-        "Ola.{PLAYER}O meu marido esta\\nsempre tao ocupado, espero que\\lesteja bem.\\pQuando ele e apanhado na sua\\npesquisa POKEMON, ele ate se\\lesquece de comer.$"
+        "Ola.{PLAYER}Meu marido esta\\nsempre tao ocupado, espero que\\lesteja bem.\\pQuando ele e apanhado na sua\\npesquisa POKEMON, ele ate se\\lesquece de comer.$"
       ],
       "NewBarkTown_House2_Text_ElmsSon": [
         "Quando crescer, vou ajudar o\\nmeu pai!\\pVou ser um grande professor\\nPOKEMON!$"
@@ -104,12 +104,12 @@
         "Quando POKEMON batalha, eles\\neventualmente subir e tornar-se\\lmais forte.$"
       ],
       "OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon": [
-        "Se o POKEMON contigo se tornar\\nmais forte, poderas ir mais\\llonge daqui.$"
+        "Se o POKEMON com voce se tornar\\nmais forte, podera ir mais\\llonge daqui.$"
       ]
     },
     "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc": {
       "OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC": [
-        "Aquele PC no canto ha para\\nqualquer treinador POKEMON\\lusar.\\pNaturalmente, isso significa\\nque tambem pode usa-lo.$"
+        "Aquele PC no canto ha para\\nqualquer TREINADOR POKEMON\\lusar.\\pNaturalmente, isso significa\\nque tambem pode usa-lo.$"
       ]
     },
     "data/maps/OlivineCity/scripts.inc": {
@@ -552,10 +552,10 @@
     },
     "data/maps/PacifidlogTown_House2/scripts.inc": {
       "PacifidlogTown_House2_Text_AhYourPokemon": [
-        "Ah! O seu POKEMON...$"
+        "Ah! Seu POKEMON...$"
       ],
       "PacifidlogTown_House2_Text_AdoringPokemonTakeThis": [
-        "E obvio que gosta muito de ti.\\pUm POKEMON que adora e adoravel\\nmerece um TM como este, nao?$"
+        "E obvio que gosta muito de voce.\\pUm POKEMON que adora e adoravel\\nmerece um TM como este, nao?$"
       ],
       "PacifidlogTown_House2_Text_PutInSomeMoreEffort": [
         "Hmm... Nao e mau, mas tambem\\nnao e bom.\\pVoce, como instrutor, precisa\\nse esforcar mais.$"
@@ -617,7 +617,7 @@
         "Ha um filme na televisao.\\nQuatro rapazes andam em carris.\\pE melhor eu ir tambem.$"
       ],
       "PalletTown_PlayersHouse_1F_Text_MovieOnTVGirlOnBrickRoad": [
-        "Ha um filme na televisao. Uma\\nrapariga com o cabelo em\\ltrancas esta a subir uma\\lestrada de tijolos.\\pE melhor eu ir tambem.$"
+        "Ha um filme na televisao. Uma\\nrapariga com o cabelo em\\ltrancas esta subindo uma\\lestrada de tijolos.\\pE melhor eu ir tambem.$"
       ],
       "PalletTown_PlayersHouse_1F_Text_OopsWrongSide": [
         "Lado errado...$"
@@ -701,7 +701,7 @@
         "Aquele sistema de armazenamento\\nPOKEMON baseado em PC...\\pQuem quer que o tenha feito\\ndeve ser algum tipo de\\lfeiticeiro cientifico!$"
       ],
       "PetalburgCity_PokemonCenter_1F_Text_OranBerryRegainedHP": [
-        "Quando o meu POKEMON comeu um\\nORAN BERRY, recuperou HP!$"
+        "Quando meu POKEMON comeu um\\nORAN BERRY, recuperou HP!$"
       ],
       "PetalburgCity_PokemonCenter_1F_Text_ManyTypesOfPokemon": [
         "Existem muitos tipos de\\nPOKEMON.\\pTodos os tipos tem seus pontos\\nfortes e fracos contra outros\\ltipos.\\pDependendo dos tipos de\\nPOKEMON, uma batalha pode ser\\lfacil ou dificil.$"
@@ -712,7 +712,7 @@
         "Pergunto-me como esta o nosso\\nWALLY?$"
       ],
       "PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces": [
-        "Se o seu POKEMON pode SURF,\\nvoce sera capaz de ir a todos\\los tipos de lugares.$"
+        "Se seu POKEMON pode SURF,\\nvoce sera capaz de ir a todos\\los tipos de lugares.$"
       ],
       "PetalburgCity_WallysHouse_Text_WallyWasReallyHappy": [
         "WALLY ficou muito feliz quando\\nnos disse que tinha apanhado um\\lPokemon.\\pHa seculos que nao o via sorrir\\nassim.$"
@@ -782,7 +782,7 @@
         "Por favor, divirta-se.$"
       ],
       "PewterCity_Museum_1F_Text_DoYouKnowWhatAmberIs": [
-        "Nao pode entrar pelas\\ntraseiras! Boa tentativa,\\lmiudo, mas nao.\\pTanto faz! sabe o que e AMBER?$"
+        "Nao pode entrar pelas\\ntraseiras! Boa tentativa,\\lmiudo, mas nao.\\pTanto faz! Sabe o que e AMBER?$"
       ],
       "PewterCity_Museum_1F_Text_AmberIsFossilizedSap": [
         "AMBER e realmente seiva, aquela\\ncoisa gosma que escorre das\\larvores.\\pA antiga seiva fossilizou ao\\nlongo do tempo para se tornar\\lAMBER dura.$"
@@ -836,10 +836,10 @@
     },
     "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc": {
       "PokemonLeague_AgathasRoom_Text_Defeat": [
-        "Meu Deus! Es algo especial,\\ncrianca!$"
+        "Meu Deus! E algo especial,\\ncrianca!$"
       ],
       "PokemonLeague_AgathasRoom_Text_PostBattle": [
-        "venceu!\\pAgora vejo o que o velhote ve\\nem ti.\\pNao tenho mais nada a dizer.\\nVai-te embora, crianca!$"
+        "Venceu!\\pAgora vejo o que o velhote ve\\nem ti.\\pNao tenho mais nada a dizer.\\nVai-te embora, crianca!$"
       ]
     },
     "data/maps/PokemonLeague_BrunosRoom_Frlg/scripts.inc": {
@@ -847,7 +847,7 @@
         "Porque? Como poderia perder?$"
       ],
       "PokemonLeague_BrunosRoom_Text_PostBattle": [
-        "O meu trabalho esta feito. Vai\\nenfrentar o seu proximo\\ldesafio.$"
+        "Meu trabalho esta feito. Vai\\nenfrentar seu proximo\\ldesafio.$"
       ]
     }
   },
