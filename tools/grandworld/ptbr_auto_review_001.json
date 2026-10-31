@@ -366,7 +366,7 @@
         "De onde vieram os POKEMON?$"
       ],
       "SagePingSeenText": [
-        "Sera que voce consegue\\nferir nossos POKEMON?$"
+        "Sera que voce Consegue\\nferir nossos POKEMON?$"
       ],
       "SagePingBeatenText": [
         "Ah! Muito bem!$"
@@ -398,7 +398,7 @@
     },
     "data/maps/FortreeCity_Gym/scripts.inc": {
       "FortreeCity_Gym_Text_RematchDefeat": [
-        "O meu Pokemon e eu estamos de\\ncastigo... Muito bem feito.$"
+        "O meu POKEMON e eu estamos de\\ncastigo... Muito bem feito.$"
       ],
       "FortreeCity_Gym_Text_GymGuidePostVictory": [
         "conseguiu! conseguiu\\ndescolagem!$"
@@ -437,7 +437,7 @@
         "TM40 contem ACE AERIAL.\\pA sua velocidade... Nenhum\\nPOKEMON devera ser capaz de o\\levitar.\\p... ... ... ... ... ...$"
       ],
       "FortreeCity_Gym_Text_RegisteredWinona": [
-        "GINASIO LEADER WINONA registado\\nno POKeNAV.$"
+        "GINASIO LEADER WINONA registado\\nno POKENAV.$"
       ],
       "FortreeCity_Gym_Text_WinonaPostBattle": [
         "Embora me tenha apaixonado por\\nti, vou continuar devotado ao\\lBIRD POKEMON.$"
@@ -632,10 +632,10 @@
         "Parece-me que perdi sem estar\\nno controlo.$"
       ],
       "LavaridgeTown_Gym_1F_Text_ExplainOverheat": [
-        "Essa TM50 contem OVERHEAT.\\pEsse movimento causa serios\\ndanos ao oponente.\\pMas tambem corta fortemente o\\nSP. ATK do Pokemon a utilizar.\\lPode nao ser adequado para\\lbatalhas mais longas.$"
+        "Essa TM50 contem OVERHEAT.\\pEsse movimento causa serios\\ndanos ao oponente.\\pMas tambem corta fortemente o\\nSP. ATK do POKEMON a utilizar.\\lPode nao ser adequado para\\lbatalhas mais longas.$"
       ],
       "LavaridgeTown_Gym_1F_Text_RegisteredFlannery": [
-        "GINASIO LEADER FLANNERY\\nregistado no POKeNAV.$"
+        "GINASIO LEADER FLANNERY\\nregistado no POKENAV.$"
       ],
       "LavaridgeTown_Gym_1F_Text_FlanneryRematchDefeat": [
         "Ufa! A beira da erupcao!$"
@@ -720,7 +720,7 @@
         "Isso foi ligado, empolgado, com\\nexcesso de energia electrica,\\lmeu!$"
       ],
       "MauvilleCity_Gym_Text_KirkPostBattle": [
-        "Pokemon e rock, e tudo sobre\\ncoracao, whoa-yeah!$"
+        "POKEMON e rock, e tudo sobre\\ncoracao, whoa-yeah!$"
       ],
       "MauvilleCity_Gym_Text_ShawnIntro": [
         "Treinei com o WATTSON! Nao vou\\nperder facilmente!$"
@@ -756,7 +756,7 @@
         "Aquele TM34 ali contem SHOCK\\nWAVE.\\pE uma jogada de confianca que\\nnunca falha! pode contar com\\lisso!\\p... ... ... ... ... ...$"
       ],
       "MauvilleCity_Gym_Text_RegisteredWattson": [
-        "GINASIO LEADER WATTSON\\nregistado no POKeNAV.$"
+        "GINASIO LEADER WATTSON\\nregistado no POKENAV.$"
       ],
       "MauvilleCity_Gym_Text_WattsonPostBattle": [
         "Eu incho com otimismo, vendo um\\njovem PROMOTOR como voce!$"
