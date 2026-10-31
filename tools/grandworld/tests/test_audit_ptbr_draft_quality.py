@@ -16,12 +16,14 @@ class PTBRDraftQualityTests(unittest.TestCase):
         self.assertIn("possible_overflow", quality.flags("A" * 36 + "$"))
         self.assertIn("move_name_order", quality.flags("TM09 tem SEED BULLET.$"))
         self.assertEqual(quality.flags("Voce recebeu TM09: BULLET SEED.$"), [])
+        self.assertEqual(quality.flags("Fiz {POKEBLOCK}S com minha familia!$"), [])
 
     def test_registry_and_counts(self):
         report = quality.audit(SCRIPT.parent, example_limit=4)
         self.assertEqual(report["automated_draft_entries"], 5200)
-        self.assertEqual(report["human_language_reviewed"], 210)
-        self.assertEqual(report["pending_human_language_review"], 4990)
+        self.assertEqual(report["human_language_reviewed"], 368)
+        self.assertEqual(report["human_reviewed_stage8"], 158)
+        self.assertEqual(report["pending_human_language_review"], 4832)
         self.assertLessEqual(len(report["sample_unreviewed_warnings"]), 4)
         self.assertEqual(report["review_status"],
                          "diagnostic_only_no_gameplay_certification")
