@@ -106,157 +106,157 @@
     },
     "data/maps/PokemonTower_1F_Frlg/scripts.inc": {
       "PokemonTower_1F_Text_ErectedInMemoryOfDeadMons": [
-        "POKEMON TOWER foi erguido na\\nmemoria de POKEMON que morreu.$"
+        "A TORRE POKEMON foi erguida\\npara homenagear os POKEMON\\nque ja partiram.$"
       ],
       "PokemonTower_1F_Text_ComeToPayRespectsSon": [
-        "Veio prestar homenagem?\\pAbencoa o teu coracao amante de\\nPokemon, filho.$"
+        "Veio prestar homenagem?\\pQue bom saber que\\nse importa com os POKEMON!$"
       ],
       "PokemonTower_1F_Text_ComeToPayRespectsGirl": [
-        "Veio prestar homenagem?\\pAbencoa o teu coracao amante de\\nPokemon, miuda.$"
+        "Veio prestar homenagem?\\pVoce tem um coracao\\nmuito bondoso!$"
       ]
     },
     "data/maps/PokemonTower_2F_Frlg/scripts.inc": {
       "PokemonTower_2F_Text_RivalIntro": [
-        "{RIVAL}Ola.{PLAYER}O que te\\ntraz aqui? O teu Pokemon esta\\lmorto?\\pHey! Esta vivo!\\pPelo menos posso faze-los\\ndesmaiar! Vamos!$"
+        "{RIVAL}: Ola, {PLAYER}!\\pO que faz aqui?\\pSeu POKEMON esta bem?\\pAh, esta otimo!\\pEntao vamos batalhar!$"
       ],
       "PokemonTower_2F_Text_RivalDefeat": [
-        "O que? Seu fedelho!\\pTambem fui brando contigo!$"
+        "O que? Perdi para voce?\\pPeguei leve demais!$"
       ]
     },
     "data/maps/PokemonTower_3F_Frlg/scripts.inc": {
       "PokemonTower_3F_Text_HopeIntro": [
-        "Urrg...$"
+        "Urrgh...$"
       ],
       "PokemonTower_3F_Text_HopeDefeat": [
-        "Hwa! Estou salvo!$"
+        "Ufa! Estou livre!$"
       ],
       "PokemonTower_3F_Text_CarlyIntro": [
-        "Kekeke...$"
+        "He he he...$"
       ],
       "PokemonTower_3F_Text_CarlyDefeat": [
-        "Hmm? O que estou a fazer?$"
+        "Huh? O que aconteceu?$"
       ],
       "PokemonTower_3F_Text_CarlyPostBattle": [
-        "Desculpa! Eu estava possuido!$"
+        "Me desculpe!\\pEu estava sob\\na influencia de um espirito!$"
       ],
       "PokemonTower_3F_Text_PatriciaIntro": [
-        "Desaparece! Espirito Malevolo!$"
+        "Saia daqui!\\nEspirito misterioso!$"
       ],
       "PokemonTower_3F_Text_PatriciaDefeat": [
-        "Ufa! O espirito saiu!$"
+        "Ufa! O espirito foi embora!$"
       ],
       "PokemonTower_3F_Text_PatriciaPostBattle": [
-        "Os outros la em cima... Devem\\nter sido possuidos.$"
+        "As pessoas nos andares\\nsuperiores tambem podem\\nestar sendo controladas...$"
       ]
     },
     "data/maps/PokemonTower_4F_Frlg/scripts.inc": {
       "PokemonTower_4F_Text_PaulaIntro": [
-        "Ghost! Nao! Kwaaah!$"
+        "Um GHOST!\\nAaah!$"
       ],
       "PokemonTower_4F_Text_PaulaDefeat": [
-        "Onde esta o fantasma?$"
+        "Onde esta o GHOST?$"
       ],
       "PokemonTower_4F_Text_PaulaPostBattle": [
-        "Eu devia estar a sonhar...$"
+        "Acho que estava sonhando...$"
       ],
       "PokemonTower_4F_Text_LaurelIntro": [
-        "Sejam amaldicoados comigo!\\nKwaaah!$"
+        "Venha para o mundo\\ndos espiritos!$"
       ],
       "PokemonTower_4F_Text_LaurelDefeat": [
-        "O que?$"
+        "Huh? O que foi?$"
       ],
       "PokemonTower_4F_Text_LaurelPostBattle": [
-        "Nao podemos determinar a\\nidentidade dos fantasmas...$"
+        "Ainda nao sabemos\\nquem sao esses fantasmas...$"
       ],
       "PokemonTower_4F_Text_JodyIntro": [
-        "Huhuhu... Nao me batas!$"
+        "He he he...\\nNao me ataque!$"
       ],
       "PokemonTower_4F_Text_JodyDefeat": [
-        "Huh? Quem? O que?$"
+        "Quem? O que aconteceu?$"
       ],
       "PokemonTower_4F_Text_JodyPostBattle": [
-        "Que o falecido Pokemon descanse\\nem paz...$"
+        "Que os POKEMON daqui\\ndescansem em paz...$"
       ]
     },
     "data/maps/PokemonTower_5F_Frlg/scripts.inc": {
       "PokemonTower_5F_Text_RestHereInPurifiedSpace": [
-        "Vem, crianca! Purifiquei este\\nespaco. Podes descansar aqui.$"
+        "Venha, jovem TREINADOR!\\pEste lugar esta protegido.\\nPode descansar aqui!$"
       ],
       "PokemonTower_5F_Text_TammyIntro": [
-        "Da-me o teu... tudo...$"
+        "Me entregue... tudo...$"
       ],
       "PokemonTower_5F_Text_TammyPostBattle": [
-        "Eu estava sob posse.$"
+        "Eu estava sendo controlada!$"
       ],
       "PokemonTower_5F_Text_RuthIntro": [
-        "Tu... vais... juntar-te... a\\nnos...$"
+        "Voce... vai ficar...\\ncom a gente...$"
       ],
       "PokemonTower_5F_Text_RuthDefeat": [
         "Que pesadelo!$"
       ],
       "PokemonTower_5F_Text_RuthPostBattle": [
-        "Eu estava possuido.$"
+        "Eu estava sob\\na influencia de um espirito!$"
       ],
       "PokemonTower_5F_Text_KarinaPostBattle": [
-        "Recuperei os sentidos.$"
+        "Consegui recuperar a calma!$"
       ],
       "PokemonTower_5F_Text_JanaePostBattle": [
-        "Cai para espiritos malignos\\napesar do meu treino nas\\lmontanhas...$"
+        "Mesmo treinando tanto,\\nacabei sendo controlada\\npor um espirito...$"
       ],
       "PokemonTower_5F_Text_PurifiedZoneMonsFullyHealed": [
-        "Entrou na zona purificada e\\nprotegida.\\p{PLAYER}O Pokemon estava\\ncompletamente curado.$"
+        "Voce entrou na area protegida.\\pOs POKEMON de {PLAYER}\\nforam recuperados!$"
       ]
     },
     "data/maps/PokemonTower_6F_Frlg/scripts.inc": {
       "PokemonTower_6F_Text_AngelicaIntro": [
-        "Da-me... sangue...$"
+        "Quero... sua energia...$"
       ],
       "PokemonTower_6F_Text_AngelicaPostBattle": [
-        "Sinto-me anemica e fraca...$"
+        "Estou tao fraca...$"
       ],
       "PokemonTower_6F_Text_EmiliaIntro": [
-        "Kwaah!$"
+        "Aaah!$"
       ],
       "PokemonTower_6F_Text_EmiliaDefeat": [
-        "Alguma coisa caiu!$"
+        "Algo desapareceu!$"
       ],
       "PokemonTower_6F_Text_EmiliaPostBattle": [
-        "O meu cabelo nao caiu! Era um\\nespirito malevolo!$"
+        "Era so um espirito\\nque estava me assustando!$"
       ],
       "PokemonTower_6F_Text_JenniferIntro": [
-        "Ke...ke...ke...ke...ke...ke!$"
+        "He... he... he...$"
       ],
       "PokemonTower_6F_Text_JenniferPostBattle": [
-        "O que se passa aqui?$"
+        "O que esta acontecendo aqui?$"
       ],
       "PokemonTower_6F_Text_BeGoneIntruders": [
-        "Desaparece... Intrusos...$"
+        "Saiam daqui...\\nIntrusos...$"
       ],
       "PokemonTower_6F_Text_MothersSpiritWasCalmed": [
-        "O espirito da mae estava calmo.\\pPartiu para o alem...$"
+        "O espirito encontrou paz...\\pTudo ficou tranquilo.$"
       ]
     },
     "data/maps/PokemonTower_7F_Frlg/scripts.inc": {
       "PokemonTower_7F_Text_Grunt1Intro": [
-        "O que queres? Porque estas\\naqui?$"
+        "O que voce quer?\\nPor que esta aqui?$"
       ],
       "PokemonTower_7F_Text_Grunt1Defeat": [
-        "Desisto!$"
+        "Tudo bem! Eu desisto!$"
       ],
       "PokemonTower_7F_Text_Grunt1PostBattle": [
-        "Nao me vou esquecer disto!$"
+        "Nao vou esquecer\\nessa derrota!$"
       ],
       "PokemonTower_7F_Text_Grunt2Defeat": [
-        "Por favor! Chega!$"
+        "Por favor, ja chega!$"
       ],
       "PokemonTower_7F_Text_Grunt2PostBattle": [
-        "POKEMON so e bom para ganhar\\ndinheiro. Por que nao usa-los?\\pNao te metas nos nossos\\nassuntos!$"
+        "Para mim, POKEMON\\nservem para ganhar dinheiro!\\pNao se meta\\nnos nossos negocios!$"
       ],
       "PokemonTower_7F_Text_Grunt3Intro": [
-        "Nao estas a salvar ninguem,\\nmiudo!$"
+        "Nao vai salvar ninguem,\\npirralho!$"
       ],
       "PokemonTower_7F_Text_Grunt3PostBattle": [
-        "Nao te vais safar disto!$"
+        "Voce ainda vai\\nse arrepender disso!$"
       ]
     },
     "data/maps/ReceptionGate/scripts.inc": {
