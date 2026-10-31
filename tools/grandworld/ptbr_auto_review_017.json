@@ -62,7 +62,7 @@
     },
     "data/maps/NewBarkTown_House2/scripts.inc": {
       "NewBarkTown_House2_Text_ElmsWife": [
-        "Ola.{PLAYER}Meu marido esta\\nsempre tao ocupado, espero que\\lesteja bem.\\pQuando ele e apanhado na sua\\npesquisa POKEMON, ele ate se\\lesquece de comer.$"
+        "Ola, {PLAYER}! Meu marido\\nesta sempre ocupado. Espero\\lque esteja bem.\\pEle se envolve tanto em\\nsuas pesquisas com POKEMON\\lque ate esquece de comer!$"
       ],
       "NewBarkTown_House2_Text_ElmsSon": [
         "Quando crescer, vou ajudar o\\nmeu pai!\\pVou ser um grande professor\\nPOKEMON!$"
@@ -101,7 +101,7 @@
     },
     "data/maps/OldaleTown_House2/scripts.inc": {
       "OldaleTown_House2_Text_PokemonLevelUp": [
-        "Quando POKEMON batalha, eles\\neventualmente subir e tornar-se\\lmais forte.$"
+        "Quando batalham, os POKEMON\\nganham experiencia e\\lficam mais fortes!$"
       ],
       "OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon": [
         "Se o POKEMON com voce se tornar\\nmais forte, podera ir mais\\llonge daqui.$"
@@ -109,7 +109,7 @@
     },
     "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc": {
       "OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC": [
-        "Aquele PC no canto ha para\\nqualquer TREINADOR POKEMON\\lusar.\\pNaturalmente, isso significa\\nque tambem pode usa-lo.$"
+        "O PC ali no canto\\nesta disponivel para\\lqualquer TREINADOR.\\pIsso significa que\\nvoce tambem pode usa-lo!$"
       ]
     },
     "data/maps/OlivineCity/scripts.inc": {
