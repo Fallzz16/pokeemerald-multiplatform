@@ -14,12 +14,12 @@
         "Perdi, mas nao vou chorar...$"
       ],
       "Route109_SeashoreHouse_Text_SimonPostBattle": [
-        "Se um dos meus Pokemon soubesse\\no movimento para me carregar\\latraves da agua em suas costas,\\leu poderia me livrar deste tubo\\linterno.$"
+        "Se um dos meus POKEMON soubesse\\no movimento para me carregar\\latraves da agua em suas costas,\\leu poderia me livrar deste tubo\\linterno.$"
       ]
     },
     "data/maps/Route10_Frlg/scripts.inc": {
       "Route10_Text_MarkIntro": [
-        "veio ate aqui? Talvez tambem\\nsejas um POKeMANIAC? quer ver\\la minha coleccao?$"
+        "veio ate aqui? Talvez tambem\\nsejas um POKeMANIAC? quer ver\\la minha colecao?$"
       ],
       "Route10_Text_MarkDefeat": [
         "Humph. Nao estou zangado!$"
@@ -37,13 +37,13 @@
         "Ei, garoto! Quer ver\\nmeus POKEMON?$"
       ],
       "Route10_Text_HermanDefeat": [
-        "Nao! O meu Pokemon!$"
+        "Nao! O meu POKEMON!$"
       ],
       "Route10_Text_HermanPostBattle": [
         "Nao gosto de ti. Nao gosto de\\nninguem melhor do que eu!$"
       ],
       "Route10_Text_HeidiIntro": [
-        "Ja estive num ginasio Pokemon\\nalgumas vezes.\\pMas perco sempre.$"
+        "Ja estive num ginasio POKEMON\\nalgumas vezes.\\pMas perco sempre.$"
       ],
       "Route10_Text_HeidiDefeat": [
         "Ohh! Depois de todo o meu\\ntreino!$"
@@ -67,7 +67,7 @@
         "Estou muito cansada. Nao estava\\npreparado para isso.$"
       ],
       "Route10_Text_CarolPostBattle": [
-        "Os Pokemon aqui nas montanhas\\nsao tao gordos...\\pGostaria que houvesse um\\nPOKEMON rosa com um padrao\\lfloral!$"
+        "Os POKEMON aqui nas montanhas\\nsao tao gordos...\\pGostaria que houvesse um\\nPOKEMON rosa com um padrao\\lfloral!$"
       ]
     },
     "data/maps/Route10_PokemonCenter_1F_Frlg/scripts.inc": {
@@ -81,7 +81,7 @@
         "{PLAYER}Recebeu o EVERSTONE da\\nAIDE.$"
       ],
       "Route10_PokemonCenter_1F_Text_ExplainEverstone": [
-        "Fazer o POKEMON evoluir\\ncertamente pode adicionar ao\\lPOKEDEX.\\pNo entanto, as vezes, voce pode\\nnao querer que um determinado\\lPOKEMON evolua.\\pNesse caso, de o EVERSTONE\\naquele Pokemon.\\pImpedira a evolucao de acordo\\ncom o PROFESSOR.$"
+        "Fazer o POKEMON evoluir\\ncertamente pode adicionar ao\\lPOKEDEX.\\pNo entanto, as vezes, voce pode\\nnao querer que um determinado\\lPOKEMON evolua.\\pNesse caso, de o EVERSTONE\\naquele POKEMON.\\pImpedira a evolucao de acordo\\ncom o PROFESSOR.$"
       ]
     },
     "data/maps/Route110_TrickHouseEnd/scripts.inc": {
@@ -319,12 +319,12 @@
         "Esta tudo a girar. Nao aguento\\nmais isto...$"
       ],
       "Route110_TrickHousePuzzle6_Text_SebastianPostBattle": [
-        "Nao pareces nada afectado. Ou\\ntens a sua cara de poquer\\lligada?$"
+        "voce nao parece nada afectado. Ou\\ntens a sua cara de poquer\\lligada?$"
       ]
     },
     "data/maps/Route110_TrickHousePuzzle7/scripts.inc": {
       "Route110_TrickHousePuzzle7_Text_JoshuaDefeat": [
-        "Aiyeeh! Es demasiado forte!\\nComo e que consegue?$"
+        "Aiyeeh! Es demasiado forte!\\nComo e que Consegue?$"
       ],
       "Route110_TrickHousePuzzle7_Text_JoshuaPostBattle": [
         "Quem me dera poder aparecer e\\ndesaparecer como se fosse fumo.$"
@@ -479,7 +479,7 @@
         "Sou o FOSSIL MANIAC... Sou um\\ntipo simpatico que adora o\\lFOSSILS...\\pQueres um FOSSIL?\\pMas os FOSSILS por estas bandas\\npertencem-me... Nao para ti...\\pSe voce nao pode suportar ir\\nsem um FOSSIL, olhe em um\\ldeserto onde ha pedras e areia\\lque podem esconder FOSSILS...$"
       ],
       "Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils": [
-        "Encontraste um FOSSIL, nao foi?\\nIsso e tao bom... E tao\\lsonhador...\\pO que vai fazer com esse\\nFOSSIL?\\pPelo que ouvi, o DEVON esta a\\nfazer pesquisas sobre o\\lrelancamento do POKEMON da\\lFOSSILS...\\pAdoro os meus FOSSILS, por isso\\nnunca faria nada assim...$"
+        "Encontraste um FOSSIL, nao foi?\\nIsso e tao bom... E tao\\lsonhador...\\pO que vai fazer com esse\\nFOSSIL?\\pPelo que ouvi, o DEVON esta\\nfazer pesquisas sobre o\\lrelancamento do POKEMON da\\lFOSSILS...\\pAdoro os meus FOSSILS, por isso\\nnunca faria nada assim...$"
       ],
       "Route114_FossilManiacsTunnel_Text_FossilsAreWonderful": [
         "Os FOSSILS sao tao...\\nmaravilhosos... E tao\\lsonhador...$"
@@ -548,7 +548,7 @@
     },
     "data/maps/Route119/scripts.inc": {
       "Route119_Text_MayIntro": [
-        "MAY:{PLAYER}{KUN}Onde estavas?\\nEstava a sua procura!\\pQuanto mais forte ficaste?\\nDeixa-me ver por ti!\\pPronto com o seu Pokemon? Claro\\nque estas! Vai!$"
+        "MAY:{PLAYER}{KUN}Onde estavas?\\nEstava a sua procura!\\pQuanto mais forte ficaste?\\nDeixa-me ver por ti!\\pPronto com o seu POKEMON? Claro\\nque estas! Vai!$"
       ],
       "Route119_Text_MayDefeat": [
         "Achah!{PLAYER}{KUN}Es forte!\\pEstava preocupado que\\nestivesses a lutar com o seu\\ltreino.$"
@@ -594,7 +594,7 @@
         "O INSTITUTE criou um tipo de\\nPOKEMON que tem algo a ver com\\lo tempo. Estamos aqui para os\\llevar!$"
       ],
       "Route119_WeatherInstitute_2F_Text_Grunt2Defeat": [
-        "O nosso plano esta a ser\\nestragado por uma crianca?$"
+        "O nosso plano esta ser\\nestragado por uma crianca?$"
       ],
       "Route119_WeatherInstitute_2F_Text_Grunt3Defeat": [
         "capturou-me!$"
@@ -603,7 +603,7 @@
         "Nao me digas que tambem andas a\\nprocura daquele tempo?\\pIsso e um nao-nao! Viemos\\nbusca-lo primeiro!$"
       ],
       "Route119_WeatherInstitute_2F_Text_Grunt5Defeat": [
-        "Olha para o meu Pokemon.$"
+        "Olha para o meu POKEMON.$"
       ],
       "Route119_WeatherInstitute_2F_Text_Grunt5PostBattle": [
         "E depois? O que queremos...\\pO que realmente queremos nao\\nesta aqui... Ihihihihi...$"
@@ -615,7 +615,7 @@
         "Obrigado! Gracas a ti, estamos\\nseguros!\\pPode ser uma forma estranha de\\nte agradecer, mas aceita este\\lPokemon.$"
       ],
       "Route119_WeatherInstitute_2F_Text_NoRoomForPokemon": [
-        "Hm? Parece que nao tem espaco\\npara este Pokemon.$"
+        "Hm? Parece que nao tem espaco\\npara este POKEMON.$"
       ],
       "Route119_WeatherInstitute_2F_Text_PlayerReceivedCastform": [
         "{PLAYER}Recebido CASTFORM!$"
@@ -641,10 +641,10 @@
         "{PLAYER}recebido o{STR_VAR_2}Da\\nAIDE.$"
       ],
       "Route11_EastEntrance_2F_Text_ExplainItemfinder": [
-        "Ha itens no chao que podem\\nestar escondidos da vista.\\pUse o ITEMFINDER para detectar\\nquaisquer itens ocultos perto\\lde voce.\\pA maquina e um pouco limitada.\\nNao consegue localizar o item.\\pO que ele faz e mostrar a\\ndirecao onde o item esta.\\pUse-o para se orientar, e\\ndepois procure a area suspeita\\la mao.$"
+        "Ha itens no chao que podem\\nestar escondidos da vista.\\pUse o ITEMFINDER para detectar\\nquaisquer itens ocultos perto\\lde voce.\\pA maquina e um pouco limitada.\\nNao Consegue localizar o item.\\pO que ele faz e mostrar a\\ndirecao onde o item esta.\\pUse-o para se orientar, e\\ndepois procure a area suspeita\\la mao.$"
       ],
       "Route11_EastEntrance_2F_Text_BigMonAsleepOnRoad": [
-        "Vamos ver o que os binoculos\\ntem para mostrar...\\pUm grande Pokemon esta dormindo\\nem uma estrada!$"
+        "Vamos ver o que os binoculos\\ntem para mostrar...\\pUm grande POKEMON esta dormindo\\nem uma estrada!$"
       ],
       "Route11_EastEntrance_2F_Text_WhatABreathtakingView": [
         "Vamos ver o que os binoculos\\ntem para mostrar...\\pQue vista deslumbrante!$"
@@ -667,7 +667,7 @@
         "Tive uma oportunidade!$"
       ],
       "Route11_Text_JasperPostBattle": [
-        "Nao pode ser um cobarde no\\nmundo de Pokemon!$"
+        "Nao pode ser um cobarde no\\nmundo de POKEMON!$"
       ],
       "Route11_Text_EddieIntro": [
         "Vamos, mas nao facas batota!$"
@@ -691,7 +691,7 @@
         "Acabei de me tornar um\\ntreinador. Mas acho que posso\\lganhar.$"
       ],
       "Route11_Text_DillonDefeat": [
-        "O meu Pokemon nao podia\\nganhar... Nao cresceram o\\lsuficiente?$"
+        "O meu POKEMON nao podia\\nganhar... Nao cresceram o\\lsuficiente?$"
       ],
       "Route11_Text_DillonPostBattle": [
         "E agora? Deixa-me em paz!$"
@@ -718,10 +718,10 @@
         "Sou o melhor da turma. Treino\\ntodas as manhas.$"
       ],
       "Route11_Text_YasuDefeat": [
-        "Raios! O meu Pokemon precisa de\\nser mais forte!$"
+        "Raios! O meu POKEMON precisa de\\nser mais forte!$"
       ],
       "Route11_Text_YasuPostBattle": [
-        "Ha um Pokemon gordo que desce\\ndas montanhas.\\pAposto que seria forte se\\nconseguisses apanha-lo.$"
+        "Ha um POKEMON gordo que desce\\ndas montanhas.\\pAposto que seria forte se\\nconseguisses apanha-lo.$"
       ],
       "Route11_Text_BernieIntro": [
         "Cuidado com os fios vivos!$"
@@ -733,7 +733,7 @@
         "E melhor voltar ao trabalho.$"
       ],
       "Route11_Text_DaveIntro": [
-        "Criei o meu Pokemon com\\ncuidado. Ja devem estar\\lprontos!$"
+        "Criei o meu POKEMON com\\ncuidado. Ja devem estar\\lprontos!$"
       ],
       "Route11_Text_DaveDefeat": [
         "Adeus! Obrigado, e adeus!$"
@@ -761,7 +761,7 @@
         "Esta bem! Vamos mudar-nos para\\na MT. PYRE!$"
       ],
       "Route121_Text_AheadLoomsMtPyre": [
-        "A frente, a MT. PYRE...\\pE um monumento natural aos\\nespiritos de Pokemon...$"
+        "A frente, a MT. PYRE...\\pE um monumento natural aos\\nespiritos de POKEMON...$"
       ]
     },
     "data/maps/Route123/scripts.inc": {
