@@ -31,8 +31,11 @@ def flags(value):
         result.append("placeholder_joined_to_word")
     if "SEED BULLET" in value:
         result.append("move_name_order")
+    # Music switches and font selectors are renderer controls, not visible glyphs.
+    # Count variable placeholders conservatively; never count BGM IDs as letters.
+    visible = re.sub(r"\{(?:PLAY_BGM|MUS_[^{}]+|FONT_[^{}]+)\}", "", value)
     if any(len(re.sub(r"\{[^{}]+\}", "XXXXXXXX", line)) > 35
-           for line in BREAK.split(value.rstrip("$"))):
+           for line in BREAK.split(visible.rstrip("$"))):
         result.append("possible_overflow")
     return result
 
@@ -42,6 +45,7 @@ def audit(root, example_limit=150):
     index = json.loads((root / "ptbr_auto_review_index.json").read_text())
     registry = json.loads((root / "ptbr_reviewed_auto7.json").read_text())
     stage8 = json.loads((root / "ptbr_reviewed_stage8.json").read_text())
+    stage9 = json.loads((root / "ptbr_reviewed_stage9.json").read_text())
     reviewed = {(source, symbol)
                 for source, labels in registry["reviewed_labels_by_source"].items()
                 for symbol in labels}
@@ -53,6 +57,14 @@ def audit(root, example_limit=150):
     if len(new_reviewed) != stage8["reviewed_entries"]:
         raise ValueError("stage8 human review registry count drift")
     reviewed |= new_reviewed
+    stage9_reviewed = {(source, symbol)
+                       for source, labels in stage9["reviewed_labels_by_source"].items()
+                       for symbol in labels}
+    if reviewed & stage9_reviewed:
+        raise ValueError("stage9 review overlaps prior human revisions")
+    if len(stage9_reviewed) != stage9["reviewed_entries"]:
+        raise ValueError("stage9 human review registry count drift")
+    reviewed |= stage9_reviewed
     found = set()
     issues = Counter()
     by_file = defaultdict(Counter)
@@ -67,13 +79,13 @@ def audit(root, example_limit=150):
                     raise ValueError("duplicate draft label: " + repr(key))
                 found.add(key)
                 entries += 1
-                if key in new_reviewed:
+                if key in new_reviewed or key in stage9_reviewed:
                     text = "".join(parts)
                     if not text.isascii() or not text.endswith("$"):
-                        raise ValueError("stage8 reviewed text must be ASCII and complete: " + repr(key))
+                        raise ValueError("reviewed text must be ASCII and complete: " + repr(key))
                     mistakes = flags(text)
                     if mistakes:
-                        raise ValueError("stage8 reviewed text has quality warning: " + repr((key, mistakes)))
+                        raise ValueError("reviewed text has quality warning: " + repr((key, mistakes)))
                 if key in reviewed:
                     continue
                 for kind in flags("".join(parts)):
@@ -89,13 +101,15 @@ def audit(root, example_limit=150):
     if entries != index["added_entries"]:
         raise ValueError("draft count drift: %d != %d" %
                          (entries, index["added_entries"]))
-    if len(reviewed) != registry["reviewed_auto_entries"] + stage8["reviewed_entries"]:
+    if len(reviewed) != (registry["reviewed_auto_entries"]
+                        + stage8["reviewed_entries"] + stage9["reviewed_entries"]):
         raise ValueError("review registry count drift")
     return {
         "review_status": "diagnostic_only_no_gameplay_certification",
         "automated_draft_entries": entries,
         "human_language_reviewed": len(reviewed),
         "human_reviewed_stage8": len(new_reviewed),
+        "human_reviewed_stage9": len(stage9_reviewed),
         "pending_human_language_review": entries - len(reviewed),
         "heuristic_warnings": dict(issues),
         "warning_counts_by_file": {k: dict(v) for k, v in by_file.items()},
