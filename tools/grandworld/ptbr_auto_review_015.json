@@ -330,100 +330,100 @@
     },
     "data/maps/LilycoveCity_PokemonTrainerFanClub/scripts.inc": {
       "LilycoveCity_PokemonTrainerFanClub_Text_OhWowItsPlayer": [
-        "Oh, uau! E...{PLAYER}!$"
+        "Uau! E voce, {PLAYER}!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_HeardAboutYouImYourFan": [
-        "Ouvi as noticias! Es mesmo\\nforte, nao es?\\pNos sempre discutimos sobre\\nquem e o mais forte de todos os\\lTRAiners aqui.\\pQuando soube de ti, decidi ser\\nteu fa!\\pEspero que continues a lutar\\ncontra outros treinadores\\lduros.\\pAssim, poderemos ver mais das\\nvossas batalhas quentes.\\pIsso fara com que os outros\\naqui vejam como es fantastico.\\pLembra-te, estou a torcer por\\nti.{PLAYER}!$"
+        "Ouvi falar de voce!\\nQue TREINADOR forte!\\pAqui discutimos quem\\ne o melhor nas batalhas.\\pDecidi virar seu fa!\\pContinue enfrentando\\nTREINADORES poderosos!\\pAssim vamos acompanhar\\nsuas melhores batalhas.\\pEstou torcendo por voce,\\n{PLAYER}!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_YoureOneWeWantToWin": [
-        "Yo,{PLAYER}E a ti que queremos\\nganhar!$"
+        "Ei, {PLAYER}!\\nQueremos ver voce vencer!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_OthersDontKnowYoureTheBest": [
-        "Os outros nao sabem que es o\\nmelhor dos melhores!\\pNao e\\nverdade?{PLAYER}Mostra-lhes que\\ltens coragem!$"
+        "Os outros nao sabem\\ncomo voce e forte!\\p{PLAYER}, mostre a eles\\no seu verdadeiro talento!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_TrainerIsBestNoOneWantsToListen": [
-        "Raios... Tenho dito as pessoas\\nque{STR_VAR_1}e o melhor\\lagora...\\pMas ninguem quer ouvir...$"
+        "Vivo dizendo que\\n{STR_VAR_1} e o melhor!\\pMas ninguem quer me ouvir...$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_ImPullingForYou": [
-        "Oh!{PLAYER}!\\pVai em frente! Estou a torcer\\npor ti!$"
+        "{PLAYER}!\\pVai em frente!\\nEstou torcendo por voce!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_YouveSurpassedYourFather": [
-        "Superaste o teu proprio pai em\\ntodos os aspectos!\\pEstou a dizer-te, por isso nao\\nha duvida nenhuma!$"
+        "Voce ja superou\\nseu proprio pai!\\pTenho certeza disso!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_YourFatherNeverGaveUpSoKeepOnBattling": [
-        "Mesmo quando as coisas ficaram\\nsombrias, o teu pai nunca\\ldesistiu.\\pIsto eu sei que e verdade.\\pNunca desistes mesmo que\\npercas! Continua a lutar!$"
+        "Seu pai nunca desistiu,\\nmesmo nas horas dificeis!\\pSiga o exemplo dele.\\nContinue batalhando!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_LongWayToGoComparedToNorman": [
-        "NORMAN lutou com mais poder,\\ncarisma e exibicionismo do que\\lvoce.\\pMesmo que as pessoas possam\\ndizer que es forte...\\pAinda tens um longo caminho a\\npercorrer comparado com o teu\\lpai.$"
+        "NORMAN e forte,\\nseguro e impressionante!\\pVoce tambem e bom,\\nmas tem muito a aprender\\npara alcancar seu pai!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_YouAndNormanAreDifferent": [
-        "Estas a comecar a ter o mesmo\\nar de espanto que o NORMAN\\lexala.\\pMas ha algo conclusivamente\\ndiferente entre ti e o NORMAN.\\pNao posso dizer o que e isso.\\nTeras de encontra-lo tu mesmo.$"
+        "Voce esta ficando\\ncada vez mais como NORMAN.\\pMas existe algo\\nque torna voces diferentes.\\pDescubra isso\\npor conta propria!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_WeDiscussStrongestTrainers": [
-        "Somos todos fas de batalhas\\nPOKEMON.\\pDiscutimos quem consideramos\\nser o mais forte de todos os\\lTRAiners.\\pSe voce fosse se tornar famoso,\\npoderiamos ate se tornar seus\\lfas!$"
+        "Somos fas de batalhas POKEMON!\\pAdoramos discutir quem\\ne o TREINADOR mais forte.\\pSe voce ficar famoso,\\npodemos virar seus fas!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_OhWoweeItsPlayer": [
-        "Uau! E...{PLAYER}A serio,\\ntambem!\\pPor favor, aperte a minha mao,\\naperte a minha mao!$"
+        "Uau! E {PLAYER}!\\pPode apertar minha mao?\\nPor favor!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_AlwaysCheerForYou": [
-        "Vou sempre torcer por\\nti.{PLAYER}Sempre, sempre!\\pNao quero ver-te perder\\nnunca,{PLAYER}.\\pPorque sei que es muito\\nforte.{PLAYER}!$"
+        "Vou sempre torcer por voce,\\n{PLAYER}!\\pNunca quero ver voce perder,\\n{PLAYER}!\\pVoce e muito forte,\\n{PLAYER}!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_EveryoneThinksTrainerIsCool": [
-        "{STR_VAR_1}e muito fixe...\\pTodos pensam assim, certo?$"
+        "{STR_VAR_1} e muito legal!\\pTodo mundo acha isso, nao e?$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_TrainerIsReallyCoolItsJustMe": [
-        "{STR_VAR_1}E mesmo fixe, nao\\nachas?\\pMesmo que seja so eu, vou\\ncontinuar a aplaudir o meu\\ltreinador favorito.$"
+        "{STR_VAR_1} e incrivel!\\pMesmo que eu fique sozinho,\\nvou continuar torcendo!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_WishThereWasTrainerLikeThat": [
-        "O meu instrutor favorito e...\\pFixe...\\pForte...\\pE muito bom...\\pQuem me dera que houvesse um\\ntreinador assim...$"
+        "Meu TREINADOR favorito\\nprecisa ser legal,\\nforte e corajoso!\\pQueria conhecer\\nalguem assim...$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_WantToBeStrongLikeYou": [
-        "Whoa! E...{PLAYER}Malvada!\\pQuando crescer, quero ser forte\\ncomo tu.{PLAYER}!$"
+        "Uau! E {PLAYER}!\\nQue demais!\\pQuando crescer, quero\\nser forte como voce,\\n{PLAYER}!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_OnlyOneWhoCheersForYou": [
-        "Mesmo que eu seja o unico...\\pTu seras sempre o unico por\\nquem eu torco.{PLAYER}!\\pPorque acredito em ti.{PLAYER}!$"
+        "Mesmo que eu seja\\no unico fa de {PLAYER},\\nnao importa!\\pSempre vou acreditar\\nem voce, {PLAYER}!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_TrainerIsWickedlyCool": [
-        "{STR_VAR_1}e muito fixe...\\nQuero apertar a mao do meu\\lheroi.$"
+        "{STR_VAR_1} e incrivel!\\pQuero apertar\\na mao do meu heroi!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_NeverGoingToStopBeingTrainersFan": [
-        "Mesmo que eu seja o unico...\\pNunca vou deixar de\\nser{STR_VAR_1}E fa!\\pPorque ouvi\\ndizer,{STR_VAR_1}Nunca perde!$"
+        "Mesmo que eu seja\\no unico fa de {STR_VAR_1},\\nnunca vou desistir!\\pDizem que {STR_VAR_1}\\nnunca perde!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_YoureAmazingAfterAll": [
-        "{PLAYER}Afinal, es incrivel!\\pDesde que te vi, sabia que eras\\nfantastica.\\pParece que os meus olhos nao me\\nenganaram.$"
+        "{PLAYER}, voce e incrivel!\\pEu sabia que era forte\\ndesde a primeira vez!\\pNao me enganei!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_ImInYourCorner": [
-        "Quem se importa com os outros?\\nEstou do teu lado!\\pNao precisas de te preocupar.\\nVai la e luta como sempre.$"
+        "Nao ligue para os outros!\\pEstou do seu lado.\\nLute como sempre lutou!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_ThinkTrainerIsNumberOne": [
-        "Acho que es um treinador\\ndecente.\\pMas eu tambem acho\\nque{STR_VAR_1}e o numero um\\lagora.\\pE so a minha opiniao. Nao te\\npreocupes muito com isso.$"
+        "Voce luta bem,\\nmas para mim {STR_VAR_1}\\nainda e o numero um!\\pE so minha opiniao,\\nnao leve a mal!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_YoureMaybeStrongerThanTrainer": [
-        "Es mesmo forte. Talvez ate mais\\nforte que{STR_VAR_1}.\\pMas...{STR_VAR_1}Precisa de\\nmim.\\pSe eu nao\\ntorcer{STR_VAR_1}Quem?$"
+        "Talvez voce seja\\nmais forte que {STR_VAR_1}.\\pMas {STR_VAR_1} precisa\\nda minha torcida!\\pSe eu nao apoiar {STR_VAR_1},\\nquem vai apoiar?$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_YouChangedMyMind": [
-        "Mudaste-me de ideias! Es forte,\\nnao es?\\pQuero que me diga como\\nconseguiu ficar tao forte!$"
+        "Voce mudou minha opiniao!\\pComo ficou tao forte?\\nQuero aprender com voce!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_YouBattleAttractivelyInToughSituation": [
-        "Quanto mais dificil a situacao,\\nmais atraente voce batalha.\\pMal posso esperar pela tua\\nproxima batalha!$"
+        "Quanto mais dificil\\na batalha, melhor voce luta!\\pMal posso esperar\\npelo proximo duelo!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_TrainerIsStandout": [
-        "Entre os recem-chegados\\ntreinadores\\lquentes,{STR_VAR_1}e o\\ldestaque.\\pEssa dureza, simplesmente nao e\\nnormal.\\pEstas a ir bem, mas nao estas\\nna mesma classe\\lque...{STR_VAR_1}.$"
+        "Entre os novos TREINADORES,\\n{STR_VAR_1} se destaca!\\pSeu talento e raro!\\pVoce tambem e forte,\\nmas ainda nao supera\\n{STR_VAR_1}!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_NoOneCanKnockYouButTrainerStronger": [
-        "Es muito popular...\\pEs forte e estas a cuidar do\\nPokemon. Ninguem te pode bater.\\pMas, sabes, eu acredito\\nem{STR_VAR_1}.\\p{STR_VAR_1}e definitivamente\\nmais forte! Tenho a certeza!$"
+        "Voce e famoso e forte!\\pMas acredito em {STR_VAR_1}.\\pPara mim, {STR_VAR_1}\\nainda e o melhor de todos!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_YouImpressive": [
-        "Tu...\\pImpressionante!$"
+        "Voce...\\pImpressionante!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_OnlyIRecognizeYourTrueWorth": [
-        "O teu verdadeiro valor, esta\\ntudo bem se eu o reconhecer.\\pOs outros, duvido, entenderao o\\npoder oculto que bate dentro.$"
+        "Poucos percebem\\no seu verdadeiro talento.\\pMas eu consigo ver\\no poder dentro de voce!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_HaventRealizedPotential": [
-        "Sim, vejo forca nos teus olhos.\\pMas!\\pAinda nao percebeste o teu\\npotencial.$"
+        "Vejo muita forca\\nem seus olhos!\\pMas voce ainda nao\\ndescobriu todo seu potencial!$"
       ],
       "LilycoveCity_PokemonTrainerFanClub_Text_YourePowerfulButNotTrueStrength": [
-        "E verdade que e tremendamente\\npoderoso.\\pMas! Posso dizer...\\pEssa forca ainda nao pode ser\\nconsiderada verdadeira forca!\\pA verdadeira forca e...\\pNa verdade, tambem nao faco\\nideia.$"
+        "Voce e muito forte!\\pMas existe algo alem\\nda forca nas batalhas.\\pA verdadeira forca e...\\pBem... Eu tambem\\nnao sei explicar!$"
       ]
     },
     "data/maps/LittlerootTown/scripts.inc": {
