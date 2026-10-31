@@ -1,0 +1,235 @@
+{
+  "status": "human_language_revision_complete; visual_mGBA_review_pending",
+  "scope": "Only actually modified stage11 dialogue labels, no unchanged drafts counted",
+  "source_shards": [
+    "ptbr_auto_review_016.json"
+  ],
+  "source_diff_against": "feature/grandworld-ptbr-human-review-stage10-20261031",
+  "reviewed_entries": 170,
+  "reviewed_labels_by_source": {
+    "data/maps/MauvilleCity_BikeShop/scripts.inc": [
+      "MauvilleCity_BikeShop_Text_SandySlopes",
+      "MauvilleCity_BikeShop_Text_Wheelies",
+      "MauvilleCity_BikeShop_Text_BunnyHops",
+      "MauvilleCity_BikeShop_Text_Jumps"
+    ],
+    "data/maps/MauvilleCity_GameCorner/scripts.inc": [
+      "MauvilleCity_GameCorner_Text_DontHaveEnoughMoney",
+      "MauvilleCity_GameCorner_Text_WhichPrize",
+      "MauvilleCity_GameCorner_Text_SoYourChoiceIsTheTMX",
+      "MauvilleCity_GameCorner_Text_SendToYourHomePC",
+      "MauvilleCity_GameCorner_Text_NoRoomForPlacingDecor",
+      "MauvilleCity_GameCorner_Text_SoYourChoiceIsX",
+      "MauvilleCity_GameCorner_Text_CantCarryAnyMore",
+      "MauvilleCity_GameCorner_Text_YouWantItButNotNow",
+      "MauvilleCity_GameCorner_Text_DontBeNegative",
+      "MauvilleCity_GameCorner_Text_CantWinJackpot",
+      "MauvilleCity_GameCorner_Text_EasyToLoseTrackOfTime"
+    ],
+    "data/maps/MeteorFalls_1F_2R/scripts.inc": [
+      "MeteorFalls_1F_2R_Text_NicolasDefeat",
+      "MeteorFalls_1F_2R_Text_NicolasPostBattle",
+      "MeteorFalls_1F_2R_Text_NicolasRegister",
+      "MeteorFalls_1F_2R_Text_NicolasRematchIntro",
+      "MeteorFalls_1F_2R_Text_NicolasRematchDefeat",
+      "MeteorFalls_1F_2R_Text_NicolasPostRematch"
+    ],
+    "data/maps/MeteorFalls_StevensCave/scripts.inc": [
+      "MeteorFalls_StevensCave_Text_StevenDefeat"
+    ],
+    "data/maps/MirageTower_4F/scripts.inc": [
+      "MirageTower_4F_Text_LeaveClawFossilAlone"
+    ],
+    "data/maps/MossdeepCity/scripts.inc": [
+      "MossdeepCity_Text_WhatToDoWithWeirdRock",
+      "MossdeepCity_Text_FeelReliefOnLand",
+      "MossdeepCity_Text_NiceIfWorldCoveredByFlowers",
+      "MossdeepCity_Text_LifeNeedsSeaToLive",
+      "MossdeepCity_Text_SurfExhilarating"
+    ],
+    "data/maps/MossdeepCity_GameCorner_1F/scripts.inc": [
+      "RS_MysteryEventsHouse_Text_OldManGreeting",
+      "RS_MysteryEventsHouse_Text_DoorIsLocked",
+      "RS_MysteryEventsHouse_Text_ChallengeVisitingTrainer",
+      "RS_MysteryEventsHouse_Text_YouWontBattle",
+      "RS_MysteryEventsHouse_Text_KeepItToA3On3",
+      "RS_MysteryEventsHouse_Text_SaveYourProgress",
+      "RS_MysteryEventsHouse_Text_HopeToSeeAGoodMatch",
+      "RS_MysteryEventsHouse_Text_BattleTie",
+      "RS_MysteryEventsHouse_Text_BattleWon",
+      "RS_MysteryEventsHouse_Text_BattleLost"
+    ],
+    "data/maps/MossdeepCity_House1/scripts.inc": [
+      "MossdeepCity_House1_Text_HmmYourPokemon",
+      "MossdeepCity_House1_Text_ItLikesXPokeblocks",
+      "MossdeepCity_House1_Text_DoesntLikeOrDislikePokeblocks",
+      "MossdeepCity_House1_Text_HusbandCanTellPokeblockMonLikes"
+    ],
+    "data/maps/MossdeepCity_House3/scripts.inc": [
+      "MossdeepCity_House3_Text_YouWantSuperRod",
+      "MossdeepCity_House3_Text_SuperRodIsSuper",
+      "MossdeepCity_House3_Text_TryDroppingRodInWater",
+      "MossdeepCity_House3_Text_DontYouLikeToFish",
+      "MossdeepCity_House3_Text_GoAfterSeafloorPokemon"
+    ],
+    "data/maps/MossdeepCity_Mart/scripts.inc": [
+      "MossdeepCity_Mart_Text_ReviveIsFantastic"
+    ],
+    "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc": [
+      "MossdeepCity_PokemonCenter_1F_Text_AbilitiesMightChangeMoves"
+    ],
+    "data/maps/MossdeepCity_PokemonCenter_2F/scripts.inc": [
+      "MossdeepCity_PokemonCenter_2F_Text_Woman5"
+    ],
+    "data/maps/MossdeepCity_StevensHouse/scripts.inc": [
+      "MossdeepCity_StevensHouse_Text_ObtainedBeldum",
+      "MossdeepCity_StevensHouse_Text_NoSpaceForAnotherMon",
+      "MossdeepCity_StevensHouse_Text_CollectionOfRareRocks"
+    ],
+    "data/maps/MtEmber_Exterior_Frlg/scripts.inc": [
+      "Text_ExplosionDeclined",
+      "MtEmber_Exterior_Text_YoureInTheWayGetLost",
+      "MtEmber_Exterior_Text_PunchedThroughAtLast",
+      "MtEmber_Exterior_Text_SnoopsBeenListeningIn",
+      "MtEmber_Exterior_Text_Grunt1Intro",
+      "MtEmber_Exterior_Text_Grunt1Defeat",
+      "MtEmber_Exterior_Text_Grunt1PostBattle",
+      "MtEmber_Exterior_Text_Grunt2Intro",
+      "MtEmber_Exterior_Text_Grunt2Defeat",
+      "MtEmber_Exterior_Text_Grunt2PostBattle",
+      "MtEmber_Exterior_Text_WellRegroupDontStepInsideThere",
+      "MtEmber_Exterior_Text_LoganIntro",
+      "MtEmber_Exterior_Text_LoganDefeat",
+      "MtEmber_Exterior_Text_LoganPostBattle",
+      "MtEmber_Exterior_Text_BethIntro",
+      "MtEmber_Exterior_Text_BethDefeat",
+      "MtEmber_Exterior_Text_BethPostBattle",
+      "MtEmber_Exterior_Text_JocelynIntro",
+      "MtEmber_Exterior_Text_JocelynDefeat",
+      "MtEmber_Exterior_Text_JocelynPostBattle"
+    ],
+    "data/maps/MtMoon_1F_Frlg/scripts.inc": [
+      "MtMoon_1F_Text_MarcosDefeat",
+      "MtMoon_1F_Text_MarcosPostBattle",
+      "MtMoon_1F_Text_JoshIntro",
+      "MtMoon_1F_Text_JoshDefeat",
+      "MtMoon_1F_Text_JoshPostBattle",
+      "MtMoon_1F_Text_MiriamIntro",
+      "MtMoon_1F_Text_MiriamDefeat",
+      "MtMoon_1F_Text_MiriamPostBattle",
+      "MtMoon_1F_Text_JovanIntro",
+      "MtMoon_1F_Text_JovanDefeat",
+      "MtMoon_1F_Text_JovanPostBattle",
+      "MtMoon_1F_Text_IrisIntro",
+      "MtMoon_1F_Text_IrisDefeat",
+      "MtMoon_1F_Text_IrisPostBattle",
+      "MtMoon_1F_Text_KentIntro",
+      "MtMoon_1F_Text_KentDefeat",
+      "MtMoon_1F_Text_RobbyDefeat",
+      "MtMoon_1F_Text_RobbyPostBattle",
+      "MtMoon_1F_Text_ZubatIsABloodsucker"
+    ],
+    "data/maps/MtMoon_B2F_Frlg/scripts.inc": [
+      "MtMoon_B2F_Text_MiguelIntro",
+      "MtMoon_B2F_Text_MiguelDefeat",
+      "MtMoon_B2F_Text_WellEachTakeAFossil",
+      "MtMoon_B2F_Text_Grunt1Defeat",
+      "MtMoon_B2F_Text_Grunt2Defeat",
+      "MtMoon_B2F_Text_Grunt2PostBattle",
+      "MtMoon_B2F_Text_Grunt3Intro",
+      "MtMoon_B2F_Text_Grunt3Defeat",
+      "MtMoon_B2F_Text_Grunt3PostBattle",
+      "MtMoon_B2F_Text_Grunt4Intro",
+      "MtMoon_B2F_Text_Grunt4Defeat",
+      "MtMoon_B2F_Text_Grunt4PostBattle",
+      "MtMoon_B2F_Text_YouWantDomeFossil",
+      "MtMoon_B2F_Text_YouWantHelixFossil",
+      "MtMoon_B2F_Text_ObtainedHelixFossil",
+      "MtMoon_B2F_Text_ObtainedDomeFossil"
+    ],
+    "data/maps/MtMortar_1F_North/scripts.inc": [
+      "MountMortar2_Text_PokemaniacMillerSeen",
+      "MountMortar2_Text_PokemaniacMillerBeaten",
+      "MountMortar2_Text_PokemaniacMillerAfter",
+      "MountMortar2_Text_SupernerdMarkusBeaten"
+    ],
+    "data/maps/MtMortar_2F/scripts.inc": [
+      "MtMortar_2F_Text_SupernerdHughBeaten"
+    ],
+    "data/maps/MtMortar_B1F/scripts.inc": [
+      "MountMortar4_Text_KiyoWin",
+      "MountMortar4_Text_KiyoTyrogueReward",
+      "MountMortar4_Text_KiyoFullParty"
+    ],
+    "data/maps/MtPyre_1F/scripts.inc": [
+      "MtPyre_1F_Text_ComeToPayRespects",
+      "MtPyre_1F_Text_RestingPlaceOfZigzagoon"
+    ],
+    "data/maps/MtPyre_2F/scripts.inc": [
+      "MtPyre_2F_Text_MemoriesOfSkitty",
+      "MtPyre_2F_Text_TumbledFromFloorAbove",
+      "MtPyre_2F_Text_MarkIntro",
+      "MtPyre_2F_Text_MarkDefeat",
+      "MtPyre_2F_Text_MarkPostBattle",
+      "MtPyre_2F_Text_DezNotEnoughMons",
+      "MtPyre_2F_Text_LeahIntro",
+      "MtPyre_2F_Text_LeahDefeat",
+      "MtPyre_2F_Text_LeahPostBattle",
+      "MtPyre_2F_Text_ZanderIntro",
+      "MtPyre_2F_Text_ZanderDefeat",
+      "MtPyre_2F_Text_ZanderPostBattle"
+    ],
+    "data/maps/MtPyre_3F/scripts.inc": [
+      "MtPyre_3F_Text_WilliamIntro",
+      "MtPyre_3F_Text_WilliamDefeat",
+      "MtPyre_3F_Text_WilliamPostBattle",
+      "MtPyre_3F_Text_KaylaIntro",
+      "MtPyre_3F_Text_KaylaDefeat",
+      "MtPyre_3F_Text_KaylaPostBattle",
+      "MtPyre_3F_Text_GabrielleIntro",
+      "MtPyre_3F_Text_GabrielleDefeat",
+      "MtPyre_3F_Text_GabriellePostBattle",
+      "MtPyre_3F_Text_GabrielleRegister",
+      "MtPyre_3F_Text_GabrielleRematchIntro",
+      "MtPyre_3F_Text_GabrielleRematchDefeat",
+      "MtPyre_3F_Text_GabriellePostRematch"
+    ],
+    "data/maps/MtPyre_4F/scripts.inc": [
+      "MtPyre_5F_Text_AtsushiIntro",
+      "MtPyre_5F_Text_AtsushiDefeat",
+      "MtPyre_5F_Text_AtsushiPostBattle"
+    ],
+    "data/maps/MtPyre_5F/scripts.inc": [
+      "MtPyre_4F_Text_TashaIntro",
+      "MtPyre_4F_Text_TashaDefeat",
+      "MtPyre_4F_Text_TashaPostBattle"
+    ],
+    "data/maps/MtPyre_6F/scripts.inc": [
+      "MtPyre_6F_Text_ValerieIntro",
+      "MtPyre_6F_Text_ValerieDefeat",
+      "MtPyre_6F_Text_ValeriePostBattle",
+      "MtPyre_6F_Text_ValerieRegister",
+      "MtPyre_6F_Text_ValerieRematchIntro",
+      "MtPyre_6F_Text_ValerieRematchDefeat",
+      "MtPyre_6F_Text_ValeriePostRematch",
+      "MtPyre_6F_Text_CedricIntro",
+      "MtPyre_6F_Text_CedricDefeat",
+      "MtPyre_6F_Text_CedricPostBattle"
+    ],
+    "data/maps/MtPyre_Summit/scripts.inc": [
+      "MtPyre_Summit_Text_Grunt1Defeat",
+      "MtPyre_Summit_Text_Grunt1PostBattle",
+      "MtPyre_Summit_Text_Grunt2PostBattle",
+      "MtPyre_Summit_Text_Grunt3PostBattle",
+      "MtPyre_Summit_Text_Grunt4PostBattle",
+      "MtPyre_Summit_Text_ThoseTwoMenReturnedOrbs",
+      "MtPyre_Summit_Text_SuperAncientPokemonTaughtUs",
+      "MtPyre_Summit_Text_WillYouHearOutMyTale",
+      "MtPyre_Summit_Text_WellThatTooIsFine",
+      "MtPyre_Summit_Text_HearTheNewLegendOfHoenn",
+      "MtPyre_Summit_Text_HoennTrioTale"
+    ]
+  },
+  "original_gameplay_unchanged": true,
+  "release_approved": false
+}
