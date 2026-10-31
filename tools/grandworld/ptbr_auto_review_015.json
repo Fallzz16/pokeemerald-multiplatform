@@ -299,25 +299,25 @@
     },
     "data/maps/LilycoveCity_MoveDeletersHouse/scripts.inc": {
       "LilycoveCity_MoveDeletersHouse_Text_WhichMonShouldForget": [
-        "Que POKEMON deve esquecer uma\\njogada?$"
+        "Qual POKEMON deve\\nesquecer um golpe?$"
       ],
       "LilycoveCity_MoveDeletersHouse_Text_WhichMoveShouldBeForgotten": [
-        "Que movimento deve ser\\nesquecido?$"
+        "Qual golpe ele\\ndeve esquecer?$"
       ],
       "LilycoveCity_MoveDeletersHouse_Text_MonOnlyKnowsOneMove": [
-        "{STR_VAR_1}Sabe apenas um\\nmovimento para que nao possa\\lser esquecido...$"
+        "{STR_VAR_1} so conhece\\num golpe e nao pode esquece-lo!$"
       ],
       "LilycoveCity_MoveDeletersHouse_Text_MonHasForgottenMove": [
-        "Funcionou perfeitamente!\\p{STR_VAR_1}esqueceu-se{STR_VAR_2}Completamente.$"
+        "Tudo certo!\\p{STR_VAR_1} esqueceu\\n{STR_VAR_2}!$"
       ],
       "LilycoveCity_MoveDeletersHouse_Text_ComeAgain": [
-        "Volte novamente se houver\\nmovimentos que precisam ser\\lesquecidos.$"
+        "Se quiser apagar\\noutro golpe, pode voltar!$"
       ],
       "LilycoveCity_MoveDeletersHouse_Text_EggCantForgetMoves": [
-        "O que? Nenhum EGG deve saber de\\nmovimentos.$"
+        "Um EGG nao sabe\\ngolpes para esquecer!$"
       ],
       "LilycoveCity_MoveDeletersHouse_Text_CantForgetSurf": [
-        "Hm!\\pSua{STR_VAR_1}Nao parece\\ndisposto a esquecer o SURF.$"
+        "Hmm...\\p{STR_VAR_1} nao quer\\nesquecer SURF!$"
       ]
     },
     "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc": {
@@ -428,54 +428,54 @@
     },
     "data/maps/LittlerootTown/scripts.inc": {
       "LittlerootTown_Text_ComeHomeIfAnythingHappens": [
-        "... ... ... ... ... ... ... ...\\n... ... ... ... ... ... ... ...\\pPensar que agora tens o teu\\nproprio POKEMON... O teu pai\\lvai ficar muito contente.\\pMas por favor, tenha cuidado.\\nSe acontecer alguma coisa,\\lpodes voltar para casa.\\pVai busca-los, querida!$"
+        "...\\pAgora voce tem seu\\nproprio POKEMON!\\pSeu pai vai ficar\\nmuito orgulhoso!\\pMas tenha cuidado.\\nSe precisar, volte para casa!\\pBoa viagem!$"
       ]
     },
     "data/maps/LittlerootTown_BrendansHouse_1F/scripts.inc": {
       "PlayersHouse_1F_Text_DontPushYourselfTooHard": [
-        "Nao te esforces muito, querida.\\nPodes sempre voltar para casa.\\pVai em frente, querida!$"
+        "Nao se esforce demais!\\pVoce sempre pode\\nvoltar para casa.\\pBoa viagem!$"
       ],
       "PlayersHouse_1F_Text_Vigoroth1": [
-        "Fugiiiih!$"
+        "Vigoooo!$"
       ],
       "PlayersHouse_1F_Text_TheresAMovieOnTV": [
-        "Ha um filme na TV.\\pDois homens estao a dancar num\\ngrande teclado de piano.\\pE melhor ir andando!$"
+        "Esta passando um filme!\\pDois homens dancam\\nsobre um piano gigante.\\pMelhor seguir viagem!$"
       ]
     },
     "data/maps/LittlerootTown_BrendansHouse_2F/scripts.inc": {
       "PlayersHouse_2F_Text_ClockIsStopped": [
-        "O relogio esta parado...\\pE melhor preparar e comecar!$"
+        "O relogio esta parado...\\pPreciso acertar as horas!$"
       ],
       "Common_Text_LookCloserAtMap": [
-        "{PLAYER}deu uma olhada mais de\\nperto no{REGION}mapa da regiao.$"
+        "{PLAYER} examinou\\no mapa de {REGION}.$"
       ],
       "PlayersHouse_2F_Text_ItsAGameCube": [
-        "E um Nintendo GameCube.\\pUm Game Boy Advance esta\\nconectado para servir como\\lControlador.$"
+        "E um Nintendo GameCube!\\pUm Game Boy Advance\\nserve de controle.$"
       ]
     },
     "data/maps/LittlerootTown_MaysHouse_1F/scripts.inc": {
       "RivalsHouse_1F_Text_OhYoureTheNewNeighbor": [
-        "Ola. E voce e?\\p... ... ... ... ... ... ... ...\\n... ... ... ... ... ... ... ...\\l... ...\\pOh, voce e...{PLAYER}{KUN}O\\nnosso novo vizinho! Ola!\\pNos temos um{STR_VAR_1}da mesma\\nidade que tu.\\pNossa{STR_VAR_1}Estava animado\\nem fazer um novo amigo.\\pNossa{STR_VAR_1}Acho que esta\\nla em cima.$"
+        "Ola! Quem e voce?\\pAh, e {PLAYER}{KUN}!\\nNosso novo vizinho!\\pMeu {STR_VAR_1} tem\\nsua idade e quer\\nconhecer voce!\\pAcho que {STR_VAR_1}\\nesta no andar de cima.\\p{STR_VAR_1} vai gostar\\nde ter um novo amigo!$"
       ],
       "RivalsHouse_1F_Text_TooBusyToNoticeVisit": [
-        "Isso.{RIVAL}!\\pAcho que o nosso filho esta\\ndemasiado ocupado com o POKEMON\\lpara reparar que vieste\\lvisitar-me.{PLAYER}{KUN}.$"
+        "{RIVAL} esta ocupado\\ncom os POKEMON.\\pNem percebeu a visita\\nde {PLAYER}{KUN}!$"
       ],
       "RivalsHouse_1F_Text_ShouldGoHomeEverySoOften": [
-        "Acho maravilhoso as pessoas\\nviajarem com o POKEMON.\\pMas devias ir para casa de vez\\nem quando para avisares a tua\\lmae que estas bem.\\pEla pode nao dizer, mas tenho a\\ncerteza que se preocupa\\lcontigo.{PLAYER}{KUN}.$"
+        "Viajar com POKEMON\\ne maravilhoso!\\pMas visite sua mae\\nde vez em quando.\\pEla deve se preocupar\\ncom voce, {PLAYER}{KUN}!$"
       ],
       "RivalsHouse_1F_Text_DoYouHavePokemon": [
-        "Ola, vizinho!\\pJa tens o teu proprio POKEMON?$"
+        "Ola, vizinho!\\pVoce ja tem\\no seu proprio POKEMON?$"
       ]
     },
     "data/maps/LittlerootTown_MaysHouse_2F/scripts.inc": {
       "RivalsHouse_2F_Text_MayGettingReady": [
-        "POKEMON totalmente restaurado!\\nItens prontos, e...$"
+        "POKEMON recuperados!\\nItens organizados! E...$"
       ],
       "RivalsHouse_2F_Text_BrendanGettingReady": [
-        "POKEMON totalmente\\nrestaurado... Itens todos\\lembalados, e...$"
+        "POKEMON recuperados!\\nItens na mochila! E...$"
       ],
       "RivalsHouse_2F_Text_MayJustCheckingMyPokedex": [
-        "MAY:{PLAYER}{KUN}!\\pEstava so a verificar o meu\\nPOKEDEX.\\pAinda ha muito POKEMON que vi,\\nmas nao apanhei.\\pE ha muitos outros que acho que\\nirao evoluir.\\pOnde e que devo ir apanhar\\nalgum Pokemon a seguir?$"
+        "MAY: {PLAYER}{KUN}!\\pEstava vendo minha POKEDEX.\\pVi muitos POKEMON,\\nmas ainda nao capturei todos.\\pOutros ainda podem evoluir.\\pOnde sera que vou\\nprocurar agora?$"
       ]
     },
     "data/maps/MagmaHideout_1F/scripts.inc": {
