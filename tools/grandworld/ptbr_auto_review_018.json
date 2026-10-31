@@ -2,23 +2,23 @@
   "asm": {
     "data/maps/PokemonLeague_ChampionsRoom_Frlg/scripts.inc": {
       "PokemonLeague_ChampionsRoom_Text_Defeat": [
-        "Nao! Nao pode ser! Venceste-me\\nno meu melhor!\\pDepois de todo esse trabalho\\npara se tornar o CHAMP LEAGUE?\\pO meu reinado ja acabou? Nao e\\njusto!$"
+        "Nao! Impossivel!\\nVoce venceu minha melhor equipe!\\pTreinei muito para ser CAMPEAO!\\pMeu reinado acabou?\\nNao e justo!$"
       ],
       "PokemonLeague_ChampionsRoom_Text_OakPlayer": [
-        "OAK:{PLAYER}!$"
+        "OAK: {PLAYER}!$"
       ],
       "PokemonLeague_ChampionsRoom_Text_OakPlayerComeWithMe": [
-        "OAK:{PLAYER}.\\pCompreendes que a tua vitoria\\nnao foi apenas obra tua.\\pO vinculo que partilhas com o\\nteu POKEMON e maravilhoso.\\p{PLAYER}Vem comigo!$"
+        "OAK: {PLAYER}!\\pSua vitoria nao foi\\nconquistada sozinho.\\pO vinculo com seus POKEMON\\nfez toda a diferenca!\\p{PLAYER}, venha comigo!$"
       ]
     },
     "data/maps/PokemonLeague_LancesRoom_Frlg/scripts.inc": {
       "PokemonLeague_LancesRoom_Text_Defeat": [
-        "E isso!\\pDetesto admitir, mas es um\\nmestre Pokemon!$"
+        "E isso mesmo!\\pNao gosto de admitir,\\nmas voce e um MESTRE POKEMON!$"
       ]
     },
     "data/maps/PokemonLeague_LoreleisRoom_Frlg/scripts.inc": {
       "PokemonLeague_LoreleisRoom_Text_Defeat": [
-        "As coisas nao deviam ser assim!$"
+        "Isso nao deveria acontecer!$"
       ]
     },
     "data/maps/PokemonMansion_1F_Frlg/scripts.inc": {
@@ -261,60 +261,60 @@
     },
     "data/maps/ReceptionGate/scripts.inc": {
       "VictoryRoadGate_Text_Officer": [
-        "So os treinadores que se\\nprovaram podem passar.$"
+        "Somente TREINADORES\\nque provaram seu valor\\npodem passar por aqui!$"
       ],
       "VictoryRoadGate_Text_NotEnoughBadges": [
-        "Voce nao tem todos os GINASIO\\nINSIGNIAS de JOHTO.\\pDesculpa, mas nao te posso\\ndeixar passar.$"
+        "Voce ainda nao possui\\ntodas as INSIGNIAS de JOHTO.\\pDesculpe, mas nao pode passar!$"
       ],
       "VictoryRoadGate_Text_EightBadges": [
-        "Oh! Os oito BADS de JOHTO!\\pPor favor, va em frente!$"
+        "Uau! As oito INSIGNIAS\\nde JOHTO!\\pPode seguir em frente!$"
       ],
       "VictoryRoadGate_Text_LeftBlackBelt": [
-        "Este caminho leva a MT.SILVER.\\pVoce vera Pokemon\\nassustador-forte la fora.$"
+        "Este caminho leva a MT. SILVER.\\pExistem POKEMON\\nmuito fortes por la!$"
       ]
     },
     "data/maps/RegionHub_2F/scripts.inc": {
       "BattleNet_Text_DirectorIntro": [
-        "Bem-vindos a BATTLE NET!\\pO hardware de link antigo deste\\nandar agora executa uma rede de\\lsimulacao de batalha.\\pUm campeao como tu merece o\\nconjunto completo. Toma esta\\lMEGA RING!$"
+        "Bem-vindo a BATTLE NET!\\pEste andar agora oferece\\nsimulacoes de batalha.\\pUm CAMPEAO como voce\\nmerece uma MEGA RING!\\pAceite este presente!$"
       ],
       "BattleNet_Text_DirectorStoneLater": [
-        "Mudou de ideias? Volta quando\\nquiseres para a tua pedra de\\larranque gratis.$"
+        "Mudou de ideia?\\pVolte quando quiser\\nbuscar sua MEGA STONE inicial!$"
       ],
       "BattleNet_Text_VendorIntro": [
-        "MEGA STONES para SHARDS -\\nqualquer cor gasta o mesmo\\laqui.$"
+        "Troque SHARDS de qualquer cor\\npor MEGA STONES!$"
       ],
       "BattleNet_Text_VendorAnother": [
-        "Mais alguma coisa?$"
+        "Quer mais alguma coisa?$"
       ],
       "BattleNet_Text_VendorBye": [
-        "Vai em mega-tamanho!$"
+        "Tenha uma boa MEGA jornada!$"
       ],
       "BattleNet_Text_BpClerkPoor": [
-        "Precisas de pelo menos 4 BP.$"
+        "Voce precisa de pelo menos\\n4 BP para esta troca!$"
       ],
       "BattleNet_Text_BpClerkAnother": [
-        "Outro SHARD?$"
+        "Quer trocar por outro SHARD?$"
       ],
       "BattleNet_Text_BpClerkBye": [
-        "Gaste-os bem!$"
+        "Use seus itens com cuidado!$"
       ],
       "BattleNet_Text_StreakByeMsg": [
-        "Venha testar sua raia\\nnovamente!$"
+        "Volte para tentar\\numa nova sequencia!$"
       ],
       "BattleNet_Text_StreakConfirm": [
-        "TOWER STREAK: ate 7 sims em uma\\nlinha vs tipos aleatorios.\\p1 BP por vitoria, +5 BP para\\numa corrida perfeita. Uma perda\\ltermina a corrida. Comecar?$"
+        "TOWER STREAK:\\nsete batalhas simuladas\\ncontra tipos aleatorios!\\pGanhe 1 BP por vitoria.\\nUma sequencia perfeita\\nrende 5 BP extras!\\pSe perder, a sequencia acaba.\\nQuer comecar?$"
       ],
       "BattleNet_Text_StreakWinN": [
-        "Ganhar{STR_VAR_1}de 7!$"
+        "Vitoria {STR_VAR_1}\\nde 7!$"
       ],
       "BattleNet_Text_StreakEnded": [
-        "Atropelar...{STR_VAR_1}O\\nstraight vence. 1 BP pago por\\lvitoria.$"
+        "Sequencia encerrada!\\pVoce venceu {STR_VAR_1}\\nbatalhas seguidas.\\pGanhou 1 BP por vitoria!$"
       ],
       "BattleNet_Text_StreakNoWins": [
-        "Atropelar - sem vitorias desta\\nvez, por isso sem BP. Tenta\\loutra vez!$"
+        "Sequencia encerrada!\\pNenhuma vitoria desta vez.\\nVoce nao ganhou BP.\\pTente novamente!$"
       ],
       "BattleNet_Text_RoomLost": [
-        "O sim campeao da sala segura.\\nSem pressao desta vez.$"
+        "O CAMPEAO da sala venceu\\nesta simulacao.\\pTente outra vez!$"
       ]
     },
     "data/maps/RockTunnel_1F_Frlg/scripts.inc": {
