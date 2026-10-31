@@ -2,156 +2,156 @@
   "asm": {
     "data/maps/LilycoveCity_ContestLobby/scripts.inc": {
       "LilycoveCity_ContestLobby_Text_TakeMementoOfPainting": [
-        "Isso mesmo!\\pComo lembranca de eu pintar o\\nteu Pokemon, por favor toma\\listo.$"
+        "Isso mesmo!\\pComo lembranca por ter\\npintado seu POKEMON,\\laceite este presente!$"
       ],
       "LilycoveCity_ContestLobby_Text_ReceivedARibbon": [
-        "{PLAYER}recebeu um RIBBON.$"
+        "{PLAYER} recebeu uma RIBBON!$"
       ],
       "LilycoveCity_ContestLobby_Text_PutTheRibbonOnMon": [
-        "{PLAYER}Poe o RIBBON\\nno{STR_VAR_1}.$"
+        "{PLAYER} colocou a RIBBON\\nem {STR_VAR_1}!$"
       ],
       "LilycoveCity_ContestLobby_Text_OkaySeeYou": [
-        "Esta bem, ate logo!$"
+        "Tudo bem! Ate mais!$"
       ],
       "LilycoveCity_ContestLobby_Text_TakeHomeButIdLikeToTakeToMuseum": [
-        "Oh... Entao, acho que vou levar\\nisto para casa comigo...\\pMas gostava de levar isto ao\\nmuseu de arte... Esta bem?$"
+        "Entao vou levar\\nesta pintura para casa...\\pMas queria muito ve-la\\nexposta no museu de arte!$"
       ],
       "LilycoveCity_ContestLobby_Text_FineThatsTheWayItIs": [
-        "Esta bem, e assim que e. Vou\\npendurar isto na minha propria\\lcasa.\\pVou ter de me esforcar mais da\\nproxima vez. Vemo-nos por ai.$"
+        "Tudo bem. Vou pendurar\\na pintura na minha casa.\\pNa proxima vez,\\nvou me esforcar mais!\\pAte logo!$"
       ],
       "LilycoveCity_ContestLobby_Text_MasterRankHereICome": [
-        "Hoo, rapaz... Master Rank\\nCONTESTS, aqui vou eu.\\pO mundo sabera que o meu\\nquerido Pokemon e o ser mais\\lbonito de toda a existencia.\\lChegou a hora! Uheheheh.$"
+        "Ah, que emocao!\\pVou entrar no CONTEST\\nde MASTER RANK!\\pTodos vao descobrir\\ncomo meu POKEMON e lindo!\\pHe he he!$"
       ],
       "LilycoveCity_ContestLobby_Text_WholeVarietyOfPokemonHere": [
-        "Voce pode ver toda uma\\nvariedade de POKEMON aqui.\\pE por isso que faco deste lugar\\numa parte regular do meu\\lpasseio diario.$"
+        "Ha muitos POKEMON\\ndiferentes por aqui!\\pPor isso sempre venho\\npassear neste lugar.$"
       ],
       "LilycoveCity_ContestLobby_Text_ContestFeastForEyes": [
-        "Wow, sair para um CONTEST e um\\nbanquete para estes olhos!\\pOlha para todos os Pokemon que\\ngritam para serem pintados?$"
+        "Um CONTEST e um\\nespetaculo para os olhos!\\pQueria pintar todos\\nesses POKEMON lindos!$"
       ],
       "LilycoveCity_ContestLobby_Text_LavishedCareOnMon": [
-        "Dia apos dia, dei os meus\\ncuidados a este Pokemon.\\pA sua condicao esta a aumentar.\\nHoje, a vitoria e minha!$"
+        "Cuido do meu POKEMON\\ntodos os dias.\\pEle esta em otima forma.\\nHoje a vitoria sera nossa!$"
       ],
       "LilycoveCity_ContestLobby_Text_MadePokeblocksWithFamily": [
-        "Eu fiz.{POKEBLOCK}S com a mae,\\no pai e a irma mais velha. Eles\\lficaram optimos!\\pAposto que podes tornar mais\\nsuave, melhor.{POKEBLOCK}Se\\ltiveres mais pessoas.$"
+        "Fiz {POKEBLOCK}S com\\nminha familia!\\pFicaram muito bons!\\pCom mais pessoas, voce\\npode fazer {POKEBLOCK}S\\nmuito melhores!$"
       ]
     },
     "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc": {
       "LilycoveCity_CoveLilyMotel_1F_Text_GuestsDoubledByMascot": [
-        "Entao eles duplicaram os\\nconvidados usando POKEMON como\\latracoes?\\pBem, talvez eu devesse fazer\\numa bela mascote da nossa\\lpousada.\\pSera que isso atraira mais\\nconvidados para ficarem\\lconnosco?$"
+        "Um POKEMON como mascote\\natraiu mais hospedes?\\pTalvez eu devesse achar\\num mascote para o hotel!\\pSera que os visitantes\\ngostariam da ideia?$"
       ],
       "LilycoveCity_CoveLilyMotel_1F_Text_CantSeeTheTV": [
-        "Para a frente! Nao consigo ver\\na televisao!$"
+        "Saia da frente!\\nNao consigo ver a TV!$"
       ],
       "LilycoveCity_CoveLilyMotel_1F_Text_MonFoundLostItem": [
-        "Incrivel! Esta a dizer-me que\\num Pokemon encontrou o item\\lperdido de alguem?\\pJa e alguma coisa. Se\\ntivessemos um POKEMON assim...\\pPodemos recuperar qualquer\\ncoisa que os nossos convidados\\ltenham perdido...$"
+        "Um POKEMON encontrou\\num item perdido?\\pIncrivel!\\pSe tivessemos um assim,\\najudaria a encontrar\\nobjetos dos hospedes!$"
       ],
       "LilycoveCity_CoveLilyMotel_1F_Text_HouseSittingMonCaughtBurglar": [
-        "Incrivel! Um Pokemon que cuida\\nda casa apanhou um ladrao?\\pJa e alguma coisa. Se\\ntivessemos um POKEMON duro como\\lseguranca...\\pSeriamos capazes de\\nproporcionar aos nossos\\lconvidados maior seguranca.$"
+        "Um POKEMON pegou\\num ladrao em flagrante?\\pQue noticia incrivel!\\pUm mascote assim poderia\\ndeixar nosso hotel\\nmuito mais seguro!$"
       ]
     },
     "data/maps/LilycoveCity_CoveLilyMotel_2F/scripts.inc": {
       "LilycoveCity_CoveLilyMotel_2F_Text_FilledPokedexGiveYouThis": [
-        "Uau! Isso e fantastico! Sim, e\\nfantastico!\\pEste POKEDEX esta completamente\\ncheio! Voce realmente deve amar\\lPOKEMON!\\pEstou tao impressionada!\\pDeixe-me dar-lhe algo em\\nreconhecimento do seu feito!$"
+        "Uau! Sua POKEDEX\\nesta completa!\\pVoce deve amar\\nmesmo os POKEMON!\\pEstou impressionado!\\nAceite este presente\\npelo seu esforco!$"
       ],
       "LilycoveCity_CoveLilyMotel_2F_Text_GirlsAreCute": [
-        "A miuda TUBERS e gira, nao e?\\nPara lutar contra um bonito\\lTUBER...\\pE incrivel!\\pE os TWINS! Nao sao giros? Uma\\nbatalha 2 contra 2 contra o\\lTWINS...\\pE insuportavelmente divertido!$"
+        "As garotas TUBER\\nsao uma gracinha!\\pE as duplas TWINS?\\pUma batalha em dupla\\ncontra elas seria demais!$"
       ],
       "LilycoveCity_CoveLilyMotel_2F_Text_SeaBreezeTicklesHeart": [
-        "A brisa do mar faz-me cocegas\\nno coracao. E maravilhoso aqui!$"
+        "A brisa do mar me deixa\\ncom o coracao leve.\\pEste lugar e maravilhoso!$"
       ]
     },
     "data/maps/LilycoveCity_DepartmentStoreRooftop/scripts.inc": {
       "LilycoveCity_DepartmentStoreRooftop_Text_SetDatesForClearOutSales": [
-        "Eles nao marcaram datas para as\\nvendas?\\pVejo televisao, mas nunca\\nmostram anuncios.$"
+        "Quando sera a proxima\\nliquidacao?\\pVejo TV todo dia,\\nmas nao anunciam nada!$"
       ],
       "LilycoveCity_DepartmentStoreRooftop_Text_BeenWaitingForClearOutSale": [
-        "Sim! Estou a espera ha muito\\ntempo desta venda.\\pEles tem itens que voce so pode\\nobter aqui. Vou carregar, e o\\lque vou fazer!$"
+        "Estou esperando esta\\nliquidacao faz tempo!\\pHa itens que so\\nvendem aqui.\\pVou comprar bastante!$"
       ],
       "LilycoveCity_DepartmentStoreRooftop_Text_BoneDryThirsty": [
-        "Estou com sede!$"
+        "Que sede!$"
       ],
       "LilycoveCity_DepartmentStoreRooftop_Text_CanOfDrinkDroppedDown": [
-        "Clang!\\pUma lata de{STR_VAR_1}Caiu.$"
+        "Clanc!\\pCaiu uma lata de\\n{STR_VAR_1}!$"
       ],
       "LilycoveCity_DepartmentStoreRooftop_Text_ExtraCanOfDrinkDroppedDown": [
-        "Clang!\\pPonto! Uma lata extra\\nde{STR_VAR_1}Largado!$"
+        "Clanc!\\pCaiu uma lata extra\\nde {STR_VAR_1}!$"
       ],
       "LilycoveCity_DepartmentStoreRooftop_Text_NotEnoughMoney": [
-        "Nao ha dinheiro suficiente...$"
+        "Dinheiro insuficiente...$"
       ],
       "LilycoveCity_DepartmentStoreRooftop_Text_DecidedAgainstBuyingDrink": [
-        "Decidiu nao pagar uma bebida.$"
+        "Voce desistiu\\nde comprar a bebida.$"
       ]
     },
     "data/maps/LilycoveCity_DepartmentStore_1F/scripts.inc": {
       "LilycoveCity_DepartmentStore_1F_Text_MomBuyingMeFurniture": [
-        "Hoje, a minha mae vai\\ncomprar-me uns moveis bonitos.$"
+        "Minha mae vai comprar\\nmoveis para mim hoje!$"
       ],
       "LilycoveCity_DepartmentStore_1F_Text_BuyingSomethingForAzumarill": [
-        "Estou a comprar algo para o meu\\nAZUMARILL como recompensa por\\lganhar um CONTEST.$"
+        "Vou comprar um presente\\npara meu AZUMARILL.\\pEle venceu um CONTEST!$"
       ],
       "LilycoveCity_DepartmentStore_1F_Text_WirelessCommIsFun": [
-        "Comunicacao sem fios e muito\\ndivertido, nao e?\\pAcho que te deixa fazer coisas\\nque antes nao eram possiveis.\\pPor exemplo, agora pode\\nnegociar com pessoas que nao\\lpodia antes.\\pAcho que vai ser emocionante!$"
+        "A comunicacao sem fio\\ne muito divertida!\\pAgora podemos fazer coisas\\nque antes eram impossiveis.\\pComo trocar POKEMON\\ncom mais pessoas!$"
       ],
       "LilycoveCity_DepartmentStore_1F_Text_SpreadWordAboutWirelessComm": [
-        "Quero espalhar a noticia sobre\\ncomo a comunicacao sem fios\\lpode ser divertida.$"
+        "Quero contar a todos\\ncomo a comunicacao sem fio\\ne divertida!$"
       ]
     },
     "data/maps/LilycoveCity_DepartmentStore_2F/scripts.inc": {
       "LilycoveCity_DepartmentStore_2F_Text_LearnToUseItemsProperly": [
-        "Aprenda a usar os itens\\ncorretamente. Isso e basico, na\\lverdade.$"
+        "Aprender a usar itens\\nna hora certa e essencial!$"
       ],
       "LilycoveCity_DepartmentStore_2F_Text_GoodGiftForHusband": [
-        "O meu marido esta a espera em\\ncasa. O que lhe daria um bom\\lpresente?$"
+        "Meu marido esta em casa...\\pQual presente sera\\nque ele vai gostar?$"
       ],
       "LilycoveCity_DepartmentStore_2F_Text_StockUpOnItems": [
-        "Vou partir numa longa viagem em\\nbreve. Preciso de encher os\\litens.$"
+        "Vou fazer uma longa viagem.\\nPreciso levar muitos itens!$"
       ]
     },
     "data/maps/LilycoveCity_DepartmentStore_4F/scripts.inc": {
       "LilycoveCity_DepartmentStore_4F_Text_AttackOrDefenseTM": [
-        "Hmm...\\pUm ataque... Ou uma jogada\\ndefensiva...\\pNao e facil decidir quais\\nmovimentos TM devem ser\\lensinados a POKEMON...$"
+        "Hmm... Escolho um golpe\\nofensivo ou defensivo?\\pE dificil decidir\\nquais TMs ensinar!$"
       ],
       "LilycoveCity_DepartmentStore_4F_Text_FiftyDifferentTMs": [
-        "Ha tantos tipos diferentes de\\nmovimentos TM.\\pUm catalogo que li dizia que ha\\ncinquenta tipos diferentes.$"
+        "Existem muitas TMs!\\pLi que existem pelo menos\\ncinquenta tipos diferentes.$"
       ],
       "LilycoveCity_DepartmentStore_4F_Text_PokemonOnlyHaveFourMoves": [
-        "Eu gostaria de obter todos os\\ndiferentes TMs, mas um POKEMON\\laprende apenas quatro\\lmovimentos.$"
+        "Queria ter todas as TMs!\\pMas cada POKEMON so pode\\nconhecer quatro golpes.$"
       ]
     },
     "data/maps/LilycoveCity_DepartmentStore_5F/scripts.inc": {
       "LilycoveCity_DepartmentStore_5F_Text_SellManyCuteMatsHere": [
-        "Eles vendem muitos MATS bonitos\\naqui.\\pPergunto-me qual devo comprar?\\nTalvez os compre a todos...$"
+        "Vendem muitos TAPETES\\nbonitos aqui!\\pQual sera que eu compro?\\nTalvez todos!$"
       ],
       "LilycoveCity_DepartmentStore_5F_Text_ClosedRooftopForWeather": [
-        "Acho que fecharam o telhado\\nporque o tempo esta selvagem\\lhoje.$"
+        "Acho que fecharam\\no terraco por causa\\ndo mau tempo.$"
       ]
     },
     "data/maps/LilycoveCity_Harbor/scripts.inc": {
       "LilycoveCity_Harbor_Text_FerryUnavailable": [
-        "Desculpe? Estas a procura de\\numa nave?\\pLamento, o servico de ferry nao\\nesta disponivel no momento...$"
+        "Esta procurando o ferry?\\pDesculpe, mas o servico\\nesta suspenso por enquanto.$"
       ],
       "LilycoveCity_Harbor_Text_SailAnotherTime": [
-        "Por favor, naveguem connosco\\nnoutra altura!$"
+        "Esperamos voce em\\numa proxima viagem!$"
       ],
       "LilycoveCity_Harbor_Text_PleaseBoard": [
-        "Por favor embarque no ferry e\\naguarde a partida.$"
+        "Por favor, embarque no ferry\\ne aguarde a partida.$"
       ],
       "LilycoveCity_Harbor_Text_WhereWouldYouLikeToGo": [
-        "Entao, para onde queres ir?$"
+        "Para onde deseja viajar?$"
       ]
     },
     "data/maps/LilycoveCity_House1/scripts.inc": {
       "LilycoveCity_House1_Text_PokemonPartnersNotTools": [
-        "POKEMON sao parceiros de\\npessoas. Nao sao as nossas\\lferramentas.\\pInfelizmente, ha algumas\\npessoas que nao compreendem\\lque...$"
+        "POKEMON sao parceiros,\\nnao ferramentas!\\pInfelizmente, nem todos\\nentendem isso...$"
       ]
     },
     "data/maps/LilycoveCity_House2/scripts.inc": {
       "LilycoveCity_House2_Text_NotAwakeYetHaveThis": [
-        "Huh? O que? O que e isso?\\pAinda nao estou quase\\nacordado... Podes ficar com\\listo...$"
+        "Ha? O que foi?\\pAinda estou meio dormindo...\\nPode ficar com isto...$"
       ],
       "LilycoveCity_House2_Text_SleepIsEssential": [
-        "Yawn...\\pO sono e essencial para a boa\\nsaude... Dorme e recupera a\\lsaude...$"
+        "Aaah... Que sono...\\pDormir bem e essencial\\npara recuperar a energia!$"
       ]
     },
     "data/maps/LilycoveCity_House3/scripts.inc": {
@@ -179,10 +179,10 @@
     },
     "data/maps/LilycoveCity_House4/scripts.inc": {
       "LilycoveCity_House4_Text_MysteriesAtBottomOfSea": [
-        "Os maiores misterios deste\\nplaneta estao no fundo do mar.\\pAlguem disse isso, mas nao\\nsei...$"
+        "Dizem que os maiores\\nmisterios do mundo\\nestao no fundo do mar...\\pSera verdade?$"
       ],
       "LilycoveCity_House4_Text_UnderwaterTrenchMossdeepSootopolis": [
-        "Ha uma profunda trincheira\\nsubaquatica entre MOSSDEEP e\\lSOOTOPOLIS.\\pFoi o que me disseram.$"
+        "Existe uma fossa submarina\\nentre MOSSDEEP e SOOTOPOLIS.\\pFoi o que me contaram!$"
       ]
     },
     "data/maps/LilycoveCity_LilycoveMuseum_1F/scripts.inc": {
