@@ -19,13 +19,13 @@
         "Estamos a desenvolver um\\ndispositivo para falar com o\\lPOKEMON.\\pMas nao tivemos muito\\nsucesso...$"
       ],
       "RuinsOfAlph_Lab_Text_IMadePokenav": [
-        "Eu fiz o POKeNAV!\\pComo engenheiro, sinto-me\\nabencoado por ter feito algo\\ltao grande!$"
+        "Eu fiz o POKENAV!\\pComo engenheiro, sinto-me\\nabencoado por ter feito algo\\ltao grande!$"
       ],
       "RuinsOfAlph_Lab_Text_DeviceToVisualizePokemonDreams": [
-        "estou tentando desenvolver um\\ndispositivo que reproduz\\lvisualmente os sonhos de\\lPOKEMON...\\pMas nao esta a correr bem.$"
+        "estou tentando desenvolver um\\ndispositivo que reproduz\\lvisualmente os sonhos de\\lPOKEMON...\\pMas nao esta correr bem.$"
       ],
       "RuinsOfAlph_Lab_Text_DevelopDeviceToResurrectFossils": [
-        "Tenho tentado desenvolver um\\ndispositivo que ressuscite\\lPokemon de fosseis...\\pE esta a funcionar!$"
+        "Tenho tentado desenvolver um\\ndispositivo que ressuscite\\lPokemon de fosseis...\\pE esta funcionar!$"
       ],
       "RuinsOfAlph_Lab_Text_OhIsThatSo": [
         "Ai sim?\\pA minha pericia tecnologica e\\nexcelente, garanto-vos.$"
@@ -43,7 +43,7 @@
         "Sua equipe esta cheia.\\nNao ha espaco para este POKEMON.$"
       ],
       "RuinsOfAlph_Lab_Text_DevelopNewPokenavFeature": [
-        "estou tentando desenvolver uma\\nnova funcionalidade para o\\lPOKeNAV...\\pMas nao esta a correr bem.$"
+        "estou tentando desenvolver uma\\nnova funcionalidade para o\\lPOKeNAV...\\pMas nao esta correr bem.$"
       ],
       "RuinsOfAlph_Lab_Text_WhatToWorkOnNext": [
         "Bem, agora o que devo trabalhar\\nem desenvolver a seguir?\\pNossa empresa nos permite fazer\\nnossas inspiracoes em\\lrealidade.\\pNao se pode pedir um ambiente\\nmelhor como engenheiro.$"
@@ -76,7 +76,7 @@
         "Estou afundado!$"
       ],
       "AbandonedShip_Corridors_B1F_Text_DuncanPostBattle": [
-        "O fundo da nave afundou nas\\nprofundezas.\\pSe um Pokemon soubesse como ir\\ndebaixo de agua, poderiamos\\lfazer algum progresso...$"
+        "O fundo da nave afundou nas\\nprofundezas.\\pSe um POKEMON soubesse como ir\\ndebaixo de agua, poderiamos\\lfazer algum progresso...$"
       ],
       "AbandonedShip_Corridors_B1F_Text_YayItsAShip": [
         "Boa! E uma nave!$"
@@ -135,7 +135,7 @@
         "Nao es muito forte?$"
       ],
       "AbandonedShip_Rooms_1F_Text_ThaliaPostRematch": [
-        "Tenho a certeza que aquele\\nhomem esta a tramar alguma! Ele\\lage de forma tao suspeita!$"
+        "Tenho a certeza que aquele\\nhomem esta tramar alguma! Ele\\lage de forma tao suspeita!$"
       ],
       "AbandonedShip_Rooms_1F_Text_DemetriusIntro": [
         "Waaah! Fui encontrado! ...Huh?$"
@@ -418,7 +418,7 @@
         "A estrela em ascensao!\\p$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_WillTheyRaceToChampionship": [
-        "Este TRAiner vai correr para o\\ncampeonato?\\p$"
+        "Este TREINADOR vai correr para o\\ncampeonato?\\p$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_CanAchieveChampionFirstTry": [
         "Pode o feito de um campeonato\\nna primeira tentativa ser\\lalcancado?\\p$"
@@ -427,10 +427,10 @@
         "A perda do ultimo jogo pode ser\\nvingada?\\p$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_OnFireForChampionship": [
-        "O TRAiner esta em chamas para a\\nprimeira tentativa do\\lcampeonato!\\p$"
+        "O TREINADOR esta em chamas para a\\nprimeira tentativa do\\lcampeonato!\\p$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_WinHereAdvancesToFinal": [
-        "Uma vitoria aqui significa que\\neste TRAiner avanca para a\\lfinal!\\p$"
+        "Uma vitoria aqui significa que\\neste TREINADOR avanca para a\\lfinal!\\p$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_WillLongHeldDreamComeTrue": [
         "Sera que o longo sonho de um\\ncampeonato finalmente se\\ltornara realidade?\\p$"
@@ -442,7 +442,7 @@
         "Alguem pode esperar vencer este\\nTRAiner?\\p$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_DoBattlesExistSolelyForTrainer": [
-        "Existem batalhas apenas para\\neste TRAiner?\\p$"
+        "Existem batalhas apenas para\\neste TREINADOR?\\p$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_CurrentChampAimingToRetainTitle": [
         "O atual campeao pretende manter\\no titulo!\\p$"
@@ -481,7 +481,7 @@
         "Pode a faixa de vitoria ser\\nesticada? A confianca esta la!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_LegendHasReturnedDomeAceTucker": [
-        "Senhoras e senhores! Rapazes,\\nraparigas e Pokemon!\\pFinalmente! Finalmente, a lenda\\nvoltou!\\pSim, o nome dessa lenda! A\\nnossa propria DOME ACE! Nao e\\lmais do que TUCKER!$"
+        "Senhoras e senhores! Rapazes,\\nraparigas e POKEMON!\\pFinalmente! Finalmente, a lenda\\nvoltou!\\pSim, o nome dessa lenda! A\\nnossa propria DOME ACE! Nao e\\lmais do que TUCKER!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_UnleashAllPowerIPossess": [
         "Libertarei todo o poder que\\npossuo! Aqui e agora!$"
@@ -555,7 +555,7 @@
         "Encontrei um dos favoritos do\\ntorneio na primeira rodada.\\pE claro que fui destruido...$"
       ],
       "BattleFrontier_BattleDomeLobby_Text_NeedToCheckOpponentCarefully": [
-        "Teria ganho se tivesse mantido\\neste Pokemon na reserva.\\pVoce precisa verificar o\\nPOKEMON do seu oponente\\lcuidadosamente antes de\\lescolher o seu POKEMON lutando.$"
+        "Teria ganho se tivesse mantido\\neste POKEMON na reserva.\\pVoce precisa verificar o\\nPOKEMON do seu oponente\\lcuidadosamente antes de\\lescolher o seu POKEMON lutando.$"
       ],
       "BattleFrontier_BattleDomeLobby_Text_CongratsDefeatedTucker": [
         "Parabens!\\pVoce derrotou o DOME ACE e\\nvenceu o Torneio de Batalha!$"
@@ -579,7 +579,7 @@
         "Se o combate POKEMON desmaiar\\nao mesmo tempo -- um KO duplo\\l-- em uma partida de torneio, o\\lREFEREES vai rever o jogo e\\ldeclarar o vencedor.$"
       ],
       "BattleFrontier_BattleDomeLobby_Text_ChampionshipDecline": [
-        "Volta quando estiveres pronto\\npara enfrentares o melhor que\\lja houve.$"
+        "Volta quando estiver pronto\\npara enfrentares o melhor que\\lja houve.$"
       ]
     },
     "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc": {
@@ -623,7 +623,7 @@
         "Parabens por avancar para o\\njogo final.\\pEs uma vitoria do campeonato.\\nEstas pronto?$"
       ],
       "BattleFrontier_BattleDomePreBattleRoom_Text_PlayersNextOpponentIsTrainer": [
-        "{PLAYER}O proximo oponente e\\neste TRAiner.$"
+        "{PLAYER}O proximo oponente e\\neste TREINADOR.$"
       ],
       "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound1": [
         "O torneio esta na 1a rodada.$"
@@ -696,10 +696,10 @@
         "Por aqui, por favor.$"
       ],
       "BattleFrontier_BattleFactoryLobby_Text_ReturnMonsSaveResults": [
-        "Obrigado por participar!\\pDevolverei o seu Pokemon em\\ntroca do nosso aluguer.\\pTambem tenho de guardar os\\nresultados do evento. Por\\lfavor, espere.$"
+        "Obrigado por participar!\\pDevolverei o seu POKEMON em\\ntroca do nosso aluguer.\\pTambem tenho de guardar os\\nresultados do evento. Por\\lfavor, espere.$"
       ],
       "BattleFrontier_BattleFactoryLobby_Text_ReturnMons": [
-        "Devolverei o seu Pokemon em\\ntroca do nosso aluguer.$"
+        "Devolverei o seu POKEMON em\\ntroca do nosso aluguer.$"
       ],
       "BattleFrontier_BattleFactoryLobby_Text_CongratsSevenWins": [
         "Parabens! venceu sete\\ncombates seguidos!$"
@@ -732,7 +732,7 @@
         "Em reconhecimento a vossa\\nriqueza de conhecimento e\\linteligencia, concedemos-vos\\lestes Pontos de Batalha.$"
       ],
       "BattleFrontier_BattleFactoryLobby_Text_ExchangeMonsAndSave": [
-        "Deixa-me trocar o seu Pokemon\\npelo nosso Pokemon alugado.\\pPreciso de salvar os dados da\\nbatalha, por isso, espere.$"
+        "Deixa-me trocar o seu POKEMON\\npelo nosso POKEMON alugado.\\pPreciso de salvar os dados da\\nbatalha, por isso, espere.$"
       ],
       "BattleFrontier_BattleFactoryLobby_Text_RecordLastMatch": [
         "Gostarias de gravar a sua\\nultima partida da BATTLE\\lFACTORY no seu PASS FRONTIER?$"
@@ -741,7 +741,7 @@
         "Ola! Tu ai!\\pVoce esta pensando que os\\neventos aqui sao faceis, uma\\lvez que voce nao precisa ter\\luma equipe aumentada de\\lPOKEMON?\\pNao teria tanta certeza de\\nganhar assim tao facilmente.\\pSe voce nao tem conhecimento\\ncompleto sobre POKEMON e seus\\lmovimentos, sera dificil\\lcontinuar ganhando.$"
       ],
       "BattleFrontier_BattleFactoryLobby_Text_SwappedForWeakMon": [
-        "Troquei por um Pokemon fraco...\\nPensei que era bom ter...\\pEles limparam o chao\\nconnosco...$"
+        "Troquei por um POKEMON fraco...\\nPensei que era bom ter...\\pEles limparam o chao\\nconnosco...$"
       ],
       "BattleFrontier_BattleFactoryLobby_Text_NeedToCheckOpponentsMons": [
         "As coisas nao tem corrido do\\nmeu jeito.\\pVoce precisa verificar POKEMON\\ndo seu oponente durante a\\lbatalha para ver se eles sao\\lbons.$"
@@ -762,10 +762,10 @@
         "Em um evento Battle Swap, voce\\npode usar apenas tres POKEMON.\\pSe voce esta alugando ou\\ntrocando, sua equipe pode nao\\lter dois ou mais do mesmo\\lPOKEMON.$"
       ],
       "BattleFrontier_BattleFactoryLobby_Text_ExplainSwapPartnerRules": [
-        "Voce pode trocar POKEMON apenas\\ncom o TRAiner que voce acabou\\lde derrotar.\\pVoce pode trocar apenas por\\naqueles POKEMON usados pelo\\lTRAiner batido.$"
+        "Voce pode trocar POKEMON apenas\\ncom o TREINADOR que voce acabou\\lde derrotar.\\pVoce pode trocar apenas por\\naqueles POKEMON usados pelo\\lTRAiner batido.$"
       ],
       "BattleFrontier_BattleFactoryLobby_Text_ExplainSwapNumberRules": [
-        "Depois de cada batalha que voce\\nganhar, voce pode trocar por um\\ldos seus adversarios derrotados\\lPOKEMON.\\pVoce nao sera capaz de trocar\\nPOKEMON com o setimo TRAiner no\\levento.$"
+        "Depois de cada batalha que voce\\nganhar, voce pode trocar por um\\ldos seus adversarios derrotados\\lPOKEMON.\\pVoce nao sera capaz de trocar\\nPOKEMON com o setimo TREINADOR no\\levento.$"
       ],
       "BattleFrontier_BattleFactoryLobby_Text_ExplainSwapNotesRules": [
         "Ha dois pontos-chave a ter em\\nconta na troca de POKEMON.\\pPrimeiro, ao trocar, voce nao\\npode verificar as estatisticas\\ldo POKEMON que voce esta\\lprestes a receber.\\pEm segundo lugar, o POKEMON em\\nsua equipe estao alinhados em\\lsequencia, dependendo da ordem\\lem que voce os alugou.\\pEsta sequencia mantem-se\\ninalterada mesmo quando sao\\lfeitas swaps.$"
