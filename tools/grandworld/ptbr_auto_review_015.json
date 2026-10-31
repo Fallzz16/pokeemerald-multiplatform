@@ -480,128 +480,128 @@
     },
     "data/maps/MagmaHideout_1F/scripts.inc": {
       "MagmaHideout_1F_Text_Grunt1Intro": [
-        "Quando a TEAM MAGMA tem chamada\\nnominal, recebemos importantes\\ltarefas de guarda na ordem em\\lque nos alinhamos.\\pE por isso que estou preso\\nneste canto. Estou sempre\\latrasado para a chamada!$"
+        "Na EQUIPE MAGMA, as tarefas\\nsao dadas por ordem de chegada.\\pEu sempre chego atrasado!\\nPor isso guardo este canto...$"
       ],
       "MagmaHideout_1F_Text_Grunt1Defeat": [
-        "Tambem estou sempre atrasado\\npara as sessoes de treino!\\pDetesto dize-lo, mas sou\\nfraco...$"
+        "Tambem me atraso\\npara os treinos!\\pAcho que sou meio fraco...$"
       ],
       "MagmaHideout_1F_Text_Grunt1PostBattle": [
-        "Vou tentar esforcar-me um pouco\\nmais...$"
+        "Preciso me dedicar\\nmais aos treinos...$"
       ],
       "MagmaHideout_1F_Text_Grunt2Defeat": [
-        "Arrgh! Derrubado!$"
+        "Argh! Fui derrotado!$"
       ],
       "MagmaHideout_1F_Text_Grunt2PostBattle": [
-        "Afinal, nao te vou dizer. Vais\\ndescobrir quando la chegares!\\pSeria melhor guardares\\nsurpresas ate ao fim, nao\\lachas?$"
+        "Nao vou contar nada!\\pVoce vai descobrir\\no que vem pela frente!\\pNao quero estragar a surpresa!$"
       ]
     },
     "data/maps/MagmaHideout_2F_1R/scripts.inc": {
       "MagmaHideout_2F_1R_Text_Grunt14PostBattle": [
-        "Se sofre de arrepios, deve\\njuntar-se a TEAM MAGMA.$"
+        "Gosta de sentir arrepios?\\pEntao entre para\\na EQUIPE MAGMA!$"
       ],
       "MagmaHideout_2F_1R_Text_Grunt3Intro": [
-        "Alto ai!\\pNao esperas que mantenha a boca\\nfechada e te deixe passar por\\lmim?$"
+        "Alto la!\\pAcha mesmo que vou\\nte deixar passar assim?$"
       ],
       "MagmaHideout_2F_1R_Text_Grunt3Defeat": [
-        "Ooh uau! Eu admito!$"
+        "Uau! Voce me pegou!$"
       ],
       "MagmaHideout_2F_1R_Text_Grunt3PostBattle": [
-        "Talvez tivesse sido melhor se\\nte deixasse ir sem desafios...$"
+        "Talvez fosse melhor\\nter deixado voce passar...$"
       ],
       "MagmaHideout_2F_1R_Text_Grunt4Intro": [
-        "Ahah! Um intruso!$"
+        "Ah ha! Um intruso!$"
       ],
       "MagmaHideout_2F_1R_Text_Grunt4PostBattle": [
-        "Ja perdi.\\pPreciso mesmo de continuar a\\nandar em circulos?$"
+        "Ja perdi a batalha...\\pAinda tenho que\\ncontinuar patrulhando?$"
       ],
       "MagmaHideout_2F_1R_Text_Grunt5Intro": [
-        "Oh, oh! Um intruso!$"
+        "Ei! Tem um intruso aqui!$"
       ],
       "MagmaHideout_2F_1R_Text_Grunt5PostBattle": [
-        "Na verdade, nao sou\\nespecialista em lutar...$"
+        "Lutar nunca foi\\no meu ponto forte...$"
       ]
     },
     "data/maps/MagmaHideout_2F_2R/scripts.inc": {
       "MagmaHideout_2F_2R_Text_Grunt15Intro": [
-        "Nao tenho nada a ver contigo.\\nSo estou a seguir ordens!$"
+        "Nao tenho nada contra voce.\\nSo estou seguindo ordens!$"
       ],
       "MagmaHideout_2F_2R_Text_Grunt15Defeat": [
-        "Posso ter perdido, mas...$"
+        "Eu perdi, mas...$"
       ],
       "MagmaHideout_2F_2R_Text_Grunt6PostBattle": [
-        "Nao te sentes so por o mar\\nestar num lugar como este?$"
+        "Nao acha estranho\\npensar no mar estando\\naqui dentro do vulcao?$"
       ],
       "MagmaHideout_2F_2R_Text_Grunt7Intro": [
-        "As vezes ouve-se tremores aqui.\\pPode ser o vulcao a bater? Ou e\\nGROU...\\pOpa! Nao, nao, esquece!$"
+        "As vezes o chao treme aqui.\\pSera culpa do vulcao?\\nOu sera GROU...\\pOpa! Esqueca o que eu disse!$"
       ],
       "MagmaHideout_2F_2R_Text_Grunt7Defeat": [
-        "Es um lutador de fogo. Como um\\nvulcao!$"
+        "Voce luta com a forca\\nde um vulcao!$"
       ],
       "MagmaHideout_2F_2R_Text_Grunt8Intro": [
-        "Um dos nossos estava a\\npassar-se porque perdeu o seu\\lEMBLEM MAGMA...\\pEspera um minuto! Foi voce que\\no encontrou?$"
+        "Um dos nossos perdeu\\no MAGMA EMBLEM e surtou!\\pEspere... Foi voce\\nque encontrou o emblema?$"
       ],
       "MagmaHideout_2F_2R_Text_Grunt8Defeat": [
-        "Estou com dificuldade em\\nacreditar nisto...$"
+        "Nao acredito nisso...$"
       ],
       "MagmaHideout_2F_2R_Text_Grunt8PostBattle": [
-        "Sinto que o nosso plano vai\\nacabar em fracasso...$"
+        "Estou achando que\\nnosso plano vai fracassar...$"
       ]
     },
     "data/maps/MagmaHideout_3F_1R/scripts.inc": {
       "MagmaHideout_3F_1R_Text_Grunt9Intro": [
-        "O que fiz para merecer este\\nposto de guarda?\\pA minha orelha esquerda esta a\\narder!$"
+        "Por que me deram\\nessa tarefa de vigiar?\\pMinha orelha esquerda\\nesta queimando de calor!$"
       ],
       "MagmaHideout_3F_1R_Text_Grunt9Defeat": [
-        "Estou a ficar exausto...$"
+        "Estou exausto...$"
       ],
       "MagmaHideout_3F_1R_Text_Grunt9PostBattle": [
-        "Achas estranho estarmos a usar\\ncapuzes neste vulcao cheio de\\lmagma?$"
+        "Nao acha estranho\\nusarmos capuzes dentro\\nde um vulcao quente?$"
       ],
       "MagmaHideout_3F_1R_Text_Grunt16Defeat": [
-        "Nao! Nao se pode confiar em ti!$"
+        "Nao! Isso nao pode ser!$"
       ]
     },
     "data/maps/MagmaHideout_3F_2R/scripts.inc": {
       "MagmaHideout_3F_2R_Text_Grunt10Intro": [
-        "Compreendo tudo o que o nosso\\nlider diz. Mas sabes que mais?\\pFazer coisas como desenterrar\\num super-antigo Pokemon e\\lroubar o METEORITE de alguem...\\pAcho que estamos a ir longe\\ndemais. O que achas?$"
+        "Entendo o que nosso lider quer.\\pMas acordar um POKEMON\\nancestral e roubar\\num METEORITE...\\pNao estamos indo longe demais?\\nO que voce acha?$"
       ],
       "MagmaHideout_3F_2R_Text_Grunt10Defeat": [
-        "Acho que estamos a fazer algo\\nde errado.$"
+        "Acho que fizemos\\nalgo muito errado...$"
       ],
       "MagmaHideout_3F_2R_Text_Grunt10PostBattle": [
-        "Sabes, perder para ti\\nesclareceu-me.\\pDa proxima vez que vir o nosso\\nlider, vou perguntar-lhe o que\\lfazemos.$"
+        "Perder para voce\\nme fez pensar.\\pDa proxima vez, vou\\nquestionar nosso lider!$"
       ]
     },
     "data/maps/MagmaHideout_4F/scripts.inc": {
       "MagmaHideout_4F_Text_Grunt11Intro": [
-        "Tambem quero ver o GROUDON, mas\\nnao me deixam ver a cauda...\\pSinto-me muito frustrado.\\pNao! Eu falei sobre GROUDON!$"
+        "Eu tambem quero\\nver GROUDON!\\pMas nao me deixam chegar\\nnem perto da cauda!\\pOpa! Eu falei de GROUDON!\\nFinja que nao ouviu!$"
       ],
       "MagmaHideout_4F_Text_Grunt11Defeat": [
-        "Acho que e impossivel ganhar se\\nnao tivermos uma mente calma...$"
+        "Sem calma, nao da\\npara vencer uma batalha...$"
       ],
       "MagmaHideout_4F_Text_Grunt11PostBattle": [
-        "Sera que o GROUDON tem uma\\ncauda?$"
+        "Sera que GROUDON\\ntem uma cauda?$"
       ],
       "MagmaHideout_4F_Text_Grunt12Intro": [
-        "Fuhahaha! Em breve! Muito em\\nbreve! Nosso grande objetivo\\lsera alcancado!$"
+        "Ha ha ha!\\nFalta muito pouco!\\pNosso grande objetivo\\nesta quase realizado!$"
       ],
       "MagmaHideout_4F_Text_Grunt12Defeat": [
-        "Cheguei tao longe, mas agora\\nisto?$"
+        "Depois de chegar tao longe...\\nNao acredito!$"
       ],
       "MagmaHideout_4F_Text_Grunt13Intro": [
-        "Ainda nao acabaste! Nao vais\\npassar por mim facilmente!$"
+        "Nao acabou ainda!\\pVoce nao vai passar\\npor mim tao facilmente!$"
       ],
       "MagmaHideout_4F_Text_Grunt13Defeat": [
-        "Fui assim tao facil de\\nderrubar?$"
+        "Fui derrotado\\ntao facilmente assim?$"
       ],
       "MagmaHideout_4F_Text_Grunt13PostBattle": [
-        "Va la, mais uma partida...$"
+        "Que tal mais uma batalha?$"
       ],
       "MagmaHideout_4F_Text_TabithaDefeat": [
-        "Derrubado outra vez... Hehe...$"
+        "Perdi de novo...\\nHe he he...$"
       ],
       "MagmaHideout_4F_Text_MaxieDefeat": [
-        "O que o torna tao habil em\\nlidar com POKEMON?$"
+        "Como voce consegue\\ncontrolar tao bem\\nseus POKEMON?$"
       ]
     },
     "data/maps/MahoganyHideout_B1F/scripts.inc": {
