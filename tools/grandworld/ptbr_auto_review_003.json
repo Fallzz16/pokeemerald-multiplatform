@@ -436,19 +436,19 @@
         "Hmmm... Nao ha cinzas\\nsuficientes aqui. Nao consigo\\lfazer vidro com isto.\\pVejamos...{STR_VAR_1}E o numero\\nde passos que vai precisar de\\landar para eu te fazer um BLUE\\lFLUTE, buff-puff.$"
       ],
       "Route113_GlassWorkshop_Text_WhichGlassItemWoudYouLike": [
-        "Oh! Tem um monte de cinzas!\\pVou fazer-te uma peca de vidro.\\nQual deles gostarias de beber?$"
+        "Oh! Tem um monte de cinzas!\\pVou fazer-te uma peca de vidro.\\nQual deles gostaria de beber?$"
       ],
       "Route113_GlassWorkshop_Text_IsThatTheItemForYou": [
         "A{STR_VAR_1}, buff-puff? E esse\\npara voce?$"
       ],
       "Route113_GlassWorkshop_Text_WhichWouldYouLike": [
-        "Qual deles gostarias de beber?$"
+        "Qual deles gostaria de beber?$"
       ],
       "Route113_GlassWorkshop_Text_IllMakeItemForYou": [
         "A{STR_VAR_1}E, entao,\\nbuff-puff!\\pEsta bem! Eu faco-o para voce.\\nEspera so um pouco.$"
       ],
       "Route113_GlassWorkshop_Text_NotEnoughAshToMakeItem": [
-        "A{STR_VAR_1}, buff-puff?\\pMas nao ha cinzas suficientes\\npara fazer isso.\\pVejamos...{STR_VAR_2}E o numero\\nde passos que vai precisar de\\landar atraves de cinzas\\lvulcanicas para eu fazer esse\\litem, buff-puff.\\pQue item preferes que faca em\\nvez disso?$"
+        "A{STR_VAR_1}, buff-puff?\\pMas nao ha cinzas suficientes\\npara fazer isso.\\pVejamos...{STR_VAR_2}E o numero\\nde passos que vai precisar de\\landar atraves de cinzas\\lvulcanicas para eu fazer esse\\litem, buff-puff.\\pQue item prefere que faca em\\nvez disso?$"
       ],
       "Route113_GlassWorkshop_Text_AllThatAshButDontWantAnything": [
         "Coleccionaste todas essas\\ncinzas, mas nao quer nada,\\lbuff-puff?$"
@@ -479,7 +479,7 @@
         "Sou o FOSSIL MANIAC... Sou um\\ntipo simpatico que adora o\\lFOSSILS...\\pQueres um FOSSIL?\\pMas os FOSSILS por estas bandas\\npertencem-me... Nao para voce...\\pSe voce nao pode suportar ir\\nsem um FOSSIL, olhe em um\\ldeserto onde ha pedras e areia\\lque podem esconder FOSSILS...$"
       ],
       "Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils": [
-        "Encontraste um FOSSIL, nao foi?\\nIsso e tao bom... E tao\\lsonhador...\\pO que vai fazer com esse\\nfOSSIL?\\pPelo que ouvi, o DEVON esta\\nFazer pesquisas sobre o\\lrelancamento do POKEMON da\\lFOSSILS...\\pAdoro meus FOSSILS, por isso\\nnunca faria nada assim...$"
+        "Encontrou um FOSSIL, nao foi?\\nIsso e tao bom... E tao\\lsonhador...\\pO que vai fazer com esse\\nfOSSIL?\\pPelo que ouvi, o DEVON esta\\nFazer pesquisas sobre o\\lrelancamento do POKEMON da\\lFOSSILS...\\pAdoro meus FOSSILS, por isso\\nnunca faria nada assim...$"
       ],
       "Route114_FossilManiacsTunnel_Text_FossilsAreWonderful": [
         "Os FOSSILS sao tao...\\nmaravilhosos... E tao\\lsonhador...$"
@@ -540,7 +540,7 @@
         "Onde houver agua, tente a sua\\nsorte na pesca.$"
       ],
       "Route118_Text_DontYouLikeToFish": [
-        "Nao gostas de pescar?$"
+        "Nao gosta de pescar?$"
       ],
       "Route118_Text_CanCrossRiversWithSurf": [
         "Mesmo que nao haja um barco,\\nvoce pode atravessar rios e mar\\lse voce tem um POKEMON que\\lconhece SURF.\\pPOKEMON pode ser contado para\\nfazer tanto!$"
@@ -548,13 +548,13 @@
     },
     "data/maps/Route119/scripts.inc": {
       "Route119_Text_MayIntro": [
-        "MAY:{PLAYER}{KUN}Onde estava?\\nEstava sua procura!\\pQuanto mais forte ficaste?\\nDeixa-me ver por voce!\\pPronto com seu POKEMON? Claro\\nque estas! Vai!$"
+        "MAY:{PLAYER}{KUN}Onde estava?\\nEstava sua procura!\\pQuanto mais forte ficou?\\nDeixa-me ver por voce!\\pPronto com seu POKEMON? Claro\\nque estas! Vai!$"
       ],
       "Route119_Text_MayDefeat": [
         "Achah!{PLAYER}{KUN}E forte!\\pEstava preocupado que\\nestivesses a batalhar com o seu\\ltreino.$"
       ],
       "Route119_Text_BrendanDefeat": [
-        "Hmm... Ficaste bastante\\ndecente.$"
+        "Hmm... Ficou bastante\\ndecente.$"
       ],
       "Route119_Text_TallGrassSnaresBikeTires": [
         "Tch... Nao...\\pAs armadilhas de relva altas\\npneus BIKE. Nao ha maneira de\\landares de bicicleta aqui.$"
@@ -703,7 +703,7 @@
         "Minha primeira derrota!$"
       ],
       "Route11_Text_DirkPostBattle": [
-        "Tiveste sorte, so isso.$"
+        "Teve sorte, so isso.$"
       ],
       "Route11_Text_DarianIntro": [
         "Nunca ganhei antes...$"
