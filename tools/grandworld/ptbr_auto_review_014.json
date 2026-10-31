@@ -2,117 +2,117 @@
   "asm": {
     "data/maps/GoldenrodCity_UndergroundSwitches/scripts.inc": {
       "GoldenrodUnderground_Text_BurglarDuncanAfter": [
-        "Roubar e vender! Isso e basico\\nno crime, miudo!$"
+        "Roubar e vender! Esse e\\no jeito de ganhar dinheiro!$"
       ],
       "GoldenrodUnderground_Text_BurglarEddieSeen": [
-        "Abandonaram este projecto antes\\nde terminarem.\\pEstou a procura de sobras.$"
+        "Esta obra foi abandonada.\\pTalvez eu ache algo\\nde valor por aqui...$"
       ],
       "GoldenrodUnderground_Text_BurglarEddieBeaten": [
-        "Por cima!$"
+        "Ja chega!$"
       ],
       "GoldenrodUnderground_Text_GruntM13Seen": [
-        "Nao quero saber se estas\\nperdido.\\pSe apareceres aqui, nao passas\\nde uma vitima!$"
+        "Nao me importa se voce\\nse perdeu.\\pSe entrou aqui, vai\\nse arrepender!$"
       ],
       "GoldenrodUnderground_Text_GruntM13Beaten": [
-        "Urk! Sim, achas-te fixe, nao e?$"
+        "Argh! Voce e bom mesmo...$"
       ],
       "GoldenrodUnderground_Text_GruntF3Seen": [
-        "Estas perdido? Nao, nao podes\\nestar.\\pNao tens esse olhar assustado.\\pVou dar-te algo para teres\\nmedo!$"
+        "Voce se perdeu?\\pNao parece estar com medo.\\pEu vou mudar isso agora!$"
       ],
       "GoldenrodUnderground_Text_GruntF3Beaten": [
-        "Como pudeste?$"
+        "Como fui perder?$"
       ],
       "GoldenrodUnderground_Text_GruntF3After": [
-        "Vai para onde quiseres!\\nDesaparece! Ve se me importo!$"
+        "Vaze daqui!\\pPode ir para onde quiser.\\nNao me importa!$"
       ],
       "GoldenrodUnderground_Text_Switch1": [
-        "SWITCH 1 activado.$"
+        "INTERRUPTOR 1 ativado.$"
       ],
       "GoldenrodUnderground_Text_Switch2": [
-        "SWITCH 2 activado.$"
+        "INTERRUPTOR 2 ativado.$"
       ],
       "GoldenrodUnderground_Text_Switch3": [
-        "SWITCH 3 activado.$"
+        "INTERRUPTOR 3 ativado.$"
       ],
       "GoldenrodUnderground_Text_Switch1Off": [
-        "SWITCH 1 desativado.$"
+        "INTERRUPTOR 1 desativado.$"
       ],
       "GoldenrodUnderground_Text_Switch2Off": [
-        "SWITCH 2 desativado.$"
+        "INTERRUPTOR 2 desativado.$"
       ],
       "GoldenrodUnderground_Text_Switch3Off": [
-        "SWITCH 3 desactivado.$"
+        "INTERRUPTOR 3 desativado.$"
       ]
     },
     "data/maps/GoldenrodCity_UndergroundTunnel/scripts.inc": {
       "GoldenrodCity_UndergroundTunnel_Text_Kimono1": [
-        "Os membros da Equipa Rocket de\\nfato preto andam por ai...\\pEstava a pensar o que se passa.\\nEntao, enfrentaram a Equipa\\lRocket? Es impressionante!\\pVoce pode ser capaz de\\nenfrentar o lendario POKe...$"
+        "A EQUIPE ROCKET esta\\ncausando problemas... \\pVoce os enfrentou?\\nQue coragem!\\pTalvez consiga enfrentar\\nate um POKEMON lendario!$"
       ],
       "GoldenrodCity_UndergroundTunnel_Text_Kimono2": [
-        "Hahaha! Esquece. Tenho de ir\\nagora.$"
+        "Ha ha! Esqueca isso.\\nTenho que ir agora!$"
       ],
       "GoldenrodUnderground_Text_YoungerBrotherAskWhich": [
-        "OK, que Pokemon devo fazer?$"
+        "De qual POKEMON quer\\nque eu cuide?$"
       ],
       "GoldenrodUnderground_Text_YoungerBrotherLookCool": [
-        "Esta bem! Vou fazer parecer\\nfixe!$"
+        "Pode deixar!\\nVai ficar muito estiloso!$"
       ],
       "GoldenrodUnderground_Text_YoungerBrotherAllDone": [
-        "La vamos nos! Pronto!$"
+        "Prontinho! Ficou otimo!$"
       ],
       "GoldenrodUnderground_Text_YoungerBrotherDisappointed": [
-        "Nao? Que desilusao!$"
+        "Nao? Que pena...$"
       ],
       "GoldenrodUnderground_Text_YoungerBrotherShortOnFunds": [
-        "Estas com pouco dinheiro.$"
+        "Voce nao tem dinheiro\\nsuficiente.$"
       ],
       "GoldenrodUnderground_Text_YoungerBrotherOnePerDay": [
-        "So posso cortar um cabelo por\\ndia.\\pDesculpa, mas por hoje ja\\nacabei.$"
+        "So posso cortar o pelo\\nde um POKEMON por dia.\\pPor hoje ja terminei!$"
       ],
       "GoldenrodUnderground_Text_OlderBrotherAskWhich": [
-        "Em que POKEMON devo trabalhar?$"
+        "Qual POKEMON vai receber\\num corte de pelo?$"
       ],
       "GoldenrodUnderground_Text_OlderBrotherWatchItBeautiful": [
-        "Esta bem! Ve se ficas linda!$"
+        "Pode deixar comigo!\\nVai ficar uma beleza!$"
       ],
       "GoldenrodUnderground_Text_OlderBrotherAllDone": [
-        "Ali! Pronto!$"
+        "Pronto! Como ficou bonito!$"
       ],
       "GoldenrodUnderground_Text_OlderBrotherThatsAShame": [
-        "A serio? Que pena!$"
+        "Entendo. Que pena!$"
       ],
       "GoldenrodUnderground_Text_OlderBrotherNeedMoreMoney": [
-        "Vais precisar de mais dinheiro\\ndo que isso.$"
+        "Voce precisa de mais\\ndinheiro para isso.$"
       ],
       "GoldenrodUnderground_Text_OlderBrotherOnePerDay": [
-        "Faco apenas um corte de cabelo\\npor dia. Ja acabei por hoje.$"
+        "So atendo um POKEMON\\npor dia. Volte amanha!$"
       ],
       "GoldenrodUnderground_Text_SupernerdEricBeaten": [
-        "Grumble...$"
+        "Grr... Que derrota!$"
       ],
       "GoldenrodUnderground_Text_SupernerdEricAfterBattle": [
-        "Acho que tenho de fazer as\\ncoisas de forma justa...$"
+        "Acho que preciso lutar\\nde um jeito mais justo...$"
       ],
       "GoldenrodUnderground_Text_SupernerdTeruSeen": [
-        "Voce considera alinhamentos\\ntipo em batalha?\\pSe conhece as vantagens do seu\\ntipo, fara melhor em batalha.$"
+        "Voce conhece as vantagens\\nde cada tipo de POKEMON?\\pSaber disso ajuda muito\\nnas batalhas!$"
       ],
       "GoldenrodUnderground_Text_SupernerdTeruAfterBattle": [
-        "Conheco os meus alinhamentos do\\ntipo POKEMON.\\pMas so uso um tipo de POKEMON.$"
+        "Conheco bem as vantagens\\ndos tipos de POKEMON.\\pMas gosto de usar\\napenas um tipo!$"
       ],
       "GoldenrodUnderground_Text_PokemaniacIssacSeen": [
-        "O meu Pokemon acabou de cortar\\no cabelo!\\pVou mostrar-te como e forte!$"
+        "Meu POKEMON acabou de\\ncortar o pelo!\\pVou mostrar como ele\\nficou forte!$"
       ],
       "GoldenrodUnderground_Text_PokemaniacIssacBeaten": [
-        "Aiyeee!$"
+        "Aaaah! Nao pode ser!$"
       ],
       "GoldenrodUnderground_Text_PokemaniacIssacAfterBattle": [
-        "O seu POKEMON gostara mais de\\nsi se lhes cortar os cabelos.$"
+        "Um bom corte deixa\\nseu POKEMON mais feliz!$"
       ],
       "GoldenrodUnderground_Text_PokemaniacDonaldSeen": [
-        "Acho que tem um POKEMON raro\\nconsigo.\\pDeixa-me ve-los!$"
+        "Acho que voce tem\\num POKEMON raro!\\pDeixe-me ver!$"
       ],
       "GoldenrodUnderground_Text_PokemaniacDonaldBeaten": [
-        "Gaah! Perdi! Isso deixa-me\\nzangado!$"
+        "Argh! Essa derrota\\nme deixou furioso!$"
       ],
       "GoldenrodUnderground_Text_DoorsLocked": [
         "A porta esta trancada...$"
@@ -123,93 +123,93 @@
     },
     "data/maps/GraniteCave_StevensRoom/scripts.inc": {
       "GraniteCave_StevensRoom_Text_RegisteredSteven": [
-        "STEVEN registado no POKeNAV.$"
+        "STEVEN foi registrado\\nno POKENAV.$"
       ],
       "GraniteCave_StevensRoom_Text_IveGotToHurryAlong": [
-        "Agora, tenho de me despachar.$"
+        "Preciso seguir viagem.\\nAte mais!$"
       ]
     },
     "data/maps/IcePath_1F/scripts.inc": {
       "IcePath_1F_Text_Stuck1": [
-        "Meu... E voce,{PLAYER}Que bom\\nencontrar-te aqui!\\pPara dizer a verdade... as\\nminhas sandalias estao\\lcongeladas no gelo, e eu estou\\lpreso.\\pPor outras palavras, os meus\\nchinelos estao rapidamente\\lcongelados.\\pTee hee.\\pNao e motivo para rir.\\pImportas-te de me empurrar as\\ncostas?$"
+        "Ora, e voce, {PLAYER}!\\nQue bom te encontrar!\\pMinhas sandalias ficaram\\npresas no gelo!\\pEu tentei andar, mas\\nnao consigo sair daqui!\\pHe he... Nao tem graca.\\pPode me dar um empurrao\\npelas costas?$"
       ],
       "IcePath_1F_Text_Stuck2": [
-        "Meu... E voce,{PLAYER}Que bom\\nencontrar-te aqui!\\pPara dizer a verdade... as\\nminhas sandalias estao\\lcongeladas no gelo, e eu estou\\lpreso.\\pEm outras palavras, meus\\nchinelos sao rapidamente\\lcongelado com o chao.\\pTee hee.\\pNao e motivo para rir. Pode\\nempurrar-me as costas?$"
+        "{PLAYER}! Que alivio!\\pMinhas sandalias estao\\npresas no gelo.\\pNao consigo me mover!\\pHe he... Nem sei por que\\nestou rindo disso.\\pPode me empurrar\\npelas costas?$"
       ],
       "IcePath_1F_Text_Cruel": [
-        "Nao sejas tao cruel. Vais\\nempurrar-me as costas, nao\\lvais?$"
+        "Nao seja assim!\\pVai me ajudar a sair\\ndesse gelo, nao vai?$"
       ],
       "IcePath_1F_Text_Thanks": [
-        "Es muito gentil. Muito\\nobrigado!$"
+        "Muito obrigado!\\nVoce me salvou!$"
       ]
     },
     "data/maps/IcePath_B1F/scripts.inc": {
       "IcePath_B1F_Text_PuzzleSkipButton": [
-        "Queres saltar este puzzle?$"
+        "Quer pular este desafio?$"
       ]
     },
     "data/maps/IcePath_B3F/scripts.inc": {
       "IcePath_B3F_Text_SwinubTurnedAway": [
-        "A SWINUB nao gosta!$"
+        "SWINUB virou o rosto!$"
       ],
       "IcePath_B3F_Text_DelibirdAteBerry": [
-        "DELIBIRD gostou do BERRY\\nASPEAR!$"
+        "DELIBIRD comeu a\\nASPEAR BERRY!$"
       ],
       "IcePath_B3F_Text_DelibirdTurnedAway": [
-        "O DELIBIRD nao gosta!$"
+        "DELIBIRD virou o rosto!$"
       ],
       "IcePath_B3F_Text_NoRoomForTM": [
-        "Mas o teu BAG esta cheio! Abram\\nespaco e voltem.$"
+        "Sua BOLSA esta cheia!\\pAbra espaco e volte.$"
       ]
     },
     "data/maps/IlexForest/scripts.inc": {
       "IlexForest_Text_ApprenticeAfter": [
-        "Uau! Muito obrigado!\\pO Pokemon do meu chefe nao me\\nobedece porque nao tenho magoa.$"
+        "Muito obrigado!\\pO POKEMON do meu chefe\\nnao me obedecia!\\pAinda tenho muito\\nque aprender...$"
       ],
       "IlexForest_Text_ItsTheMissingPokemon": [
         "E o POKEMON desaparecido!$"
       ],
       "IlexForest_Text_CharcoalMasterTalkAfter": [
-        "Queres aprender a fazer carvao\\ncomigo?\\pEstaras de primeira em dez\\nanos!$"
+        "Quer aprender a fazer\\ncarvao comigo?\\pEm dez anos voce\\nvai ficar craque!$"
       ],
       "MoveTutor_Text_HeadbuttTeach": [
-        "O que estou a fazer?\\pEstou a sacudir arvores usando\\nHEADBUTT.\\pAchas que o teu Pokemon tambem\\nvai querer o HEADBUTT?\\pPosso ensinar-te o movimento\\nHEADBUTT, se quiseres. E\\ldivertido!$"
+        "O que estou fazendo?\\pEstou sacudindo arvores\\ncom HEADBUTT!\\pSeu POKEMON tambem\\nquer aprender HEADBUTT?\\pPosso ensinar o golpe.\\nE muito divertido!$"
       ],
       "MoveTutor_Text_HeadbuttWhichMon": [
-        "Claro que sim! Seria optimo se\\no Pokemon se parecesse comigo.$"
+        "Otimo! Em qual POKEMON\\nvou ensinar o golpe?$"
       ],
       "MoveTutor_Text_HeadbuttDeclined": [
-        "Nao precisas de ser timido.\\nVamos a isto!$"
+        "Nao precisa ter vergonha.\\nVolte quando quiser!$"
       ],
       "MoveTutor_Text_HeadbuttTaught": [
-        "Arvores rattle com HEADBUTT. As\\nvezes, Pokemon adormecido cai.$"
+        "HEADBUTT faz as arvores\\ntremerem!\\pAs vezes, um POKEMON\\ncai dos galhos.$"
       ],
       "IlexForest_Text_Lass": [
-        "Aconteceu alguma coisa ao\\nguardiao da floresta?$"
+        "Aconteceu alguma coisa\\ncom o guardiao da floresta?$"
       ],
       "IlexForest_Text_Signpost": [
-        "O ILEX FOREST esta tao cheio de\\narvores que nao se pode ver o\\lceu.\\pPor favor, cuidado com os itens\\nque podem ter sido deixados\\lcair.$"
+        "FLORESTA ILEX\\pAs arvores cobrem\\ntoda a luz do ceu.\\pCuidado com os itens\\nque caem pelo caminho!$"
       ],
       "IlexForest_Text_Shrine": [
-        "ILEX FOREST SHRINE...\\pE em honra do protector da\\nfloresta...$"
+        "ALTAR DA FLORESTA ILEX\\pDedicado ao protetor\\ndesta floresta...$"
       ],
       "IlexForest_Text_BugCatcherWayneSeen": [
-        "Nao me surpreendas assim!\\pAssustaste um Pokemon!$"
+        "Ei! Nao me assuste!\\pVoce espantou\\num POKEMON!$"
       ],
       "IlexForest_Text_BugCatcherWayneBeaten": [
-        "Nunca tinha visto aquele\\nPokemon antes...$"
+        "Nunca tinha visto\\naquele POKEMON...$"
       ],
       "IlexForest_Text_BugCatcherWayneAfter": [
-        "Um Pokemon que nunca vi antes\\ncaiu da arvore quando usei\\lHEADBUTT.\\pEu deveria usar HEADBUTT em\\noutros lugares tambem.$"
+        "Um POKEMON desconhecido\\ncaiu da arvore quando\\nusei HEADBUTT!\\pVou tentar o golpe\\nem outras arvores!$"
       ],
       "IlexForest_Text_Kimono_Girl3": [
-        "Meu... Estas perdido, nao\\nestas?$"
+        "Ora, voce se perdeu?$"
       ],
       "IlexForest_Text_Kimono_Girl4": [
-        "Uau! Vais mostrar-me como sair?\\pEs um POKEMON tao inteligente!$"
+        "Vai me mostrar a saida?\\pQue POKEMON inteligente!$"
       ],
       "IlexForest_Text_Kimono_Girl5": [
-        "Ate logo.$"
+        "Ate logo!$"
       ]
     },
     "data/maps/InsideOfTruck/scripts.inc": {
