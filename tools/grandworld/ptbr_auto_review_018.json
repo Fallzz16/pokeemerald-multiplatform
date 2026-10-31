@@ -78,7 +78,7 @@
         "Ufa! Que batalha!$"
       ],
       "PokemonMansion_1F_Text_BraydonPostBattle": [
-        "Nao consegue sair?\\pTente pular\\naquele buraco ali!$"
+        "Nao Consegue sair?\\pTente pular\\naquele buraco ali!$"
       ],
       "PokemonMansion_1F_Text_MewGaveBirthToMewtwo": [
         "DIARIO: 6 DE FEVEREIRO\\pMEW teve um filhote.\\pEle recebeu\\no nome de MEWTWO.$"
@@ -529,7 +529,7 @@
     },
     "data/maps/RustboroCity_CuttersHouse/scripts.inc": {
       "RustboroCity_CuttersHouse_Text_DadHelpedClearLandOfTrees": [
-        "Quando eles estavam expandindo\\na cidade de RUSTBORO, meu pai\\lajudou.\\pEle fez seu Pokemon usar CUT\\npara limpar a terra das\\larvores.$"
+        "Quando eles estavam expandindo\\na cidade de RUSTBORO, meu pai\\lajudou.\\pEle fez seu POKEMON usar CUT\\npara limpar a terra das\\larvores.$"
       ]
     },
     "data/maps/RustboroCity_DevonCorp_1F/scripts.inc": {
@@ -557,7 +557,7 @@
         "Estamos a desenvolver um\\ndispositivo para falar com o\\lPOKEMON.\\pMas nao tivemos muito\\nsucesso...$"
       ],
       "RustboroCity_DevonCorp_2F_Text_IMadePokenav": [
-        "Eu fiz o POKeNAV!\\pComo engenheiro, sinto-me\\nabencoado por ter feito algo\\ltao grande!$"
+        "Eu fiz o POKENAV!\\pComo engenheiro, sinto-me\\nabencoado por ter feito algo\\ltao grande!$"
       ],
       "RustboroCity_DevonCorp_2F_Text_DeviceToVisualizePokemonDreams": [
         "estou tentando desenvolver um\\ndispositivo que reproduz\\lvisualmente os sonhos de\\lPOKEMON...\\pMas nao esta a correr bem.$"
@@ -572,7 +572,7 @@
         "Obrigado por esperares!\\pO seu POKEMON fossilizado foi\\ntrazido de volta a vida!\\pO fossil era um antigo\\nPokemon.{STR_VAR_2}Foi!$"
       ],
       "RustboroCity_DevonCorp_2F_Text_TooManyPokemon": [
-        "tem muitos Pokemon. Nao tem\\nespaco para este.$"
+        "tem muitos POKEMON. Nao tem\\nespaco para este.$"
       ],
       "RustboroCity_DevonCorp_2F_Text_DevelopNewPokenavFeature": [
         "estou tentando desenvolver uma\\nnova funcionalidade para o\\lPOKeNAV...\\pMas nao esta a correr bem.$"
@@ -583,7 +583,7 @@
     },
     "data/maps/RustboroCity_DevonCorp_3F/scripts.inc": {
       "RustboroCity_DevonCorp_3F_Text_ReceivedPokenav": [
-        "{PLAYER}recebeu um POKeNAV.$"
+        "{PLAYER}recebeu um POKENAV.$"
       ],
       "RustboroCity_DevonCorp_3F_Text_PleaseGoAhead": [
         "Por favor, va em frente.$"
@@ -639,16 +639,16 @@
     },
     "data/maps/RustboroCity_House1/scripts.inc": {
       "RustboroCity_House1_Text_IllTradeIfYouWant": [
-        "Huh? O meu Pokemon e giro?\\nClaro, eu sabia disso.\\pMas se realmente quiseres,\\nestou disposto a troca-lo por\\lti.\\pVou trocar-te o\\nmeu{STR_VAR_2}para\\luma{STR_VAR_1}Se quiseres.$"
+        "Huh? O meu POKEMON e giro?\\nClaro, eu sabia disso.\\pMas se realmente quiseres,\\nestou disposto a troca-lo por\\lti.\\pVou trocar-te o\\nmeu{STR_VAR_2}para\\luma{STR_VAR_1}Se quiseres.$"
       ],
       "RustboroCity_House1_Text_PleaseBeGoodToMyPokemon": [
-        "Eheheh... Por favor, se bom\\npara o meu Pokemon.$"
+        "Eheheh... Por favor, se bom\\npara o meu POKEMON.$"
       ],
       "RustboroCity_House1_Text_DoesntLookLikeMonToMe": [
         "Huh? Isso nao se parece nada\\ncom um{STR_VAR_1}para mim.$"
       ],
       "RustboroCity_House1_Text_YouDontWantToThatsOkay": [
-        "Se nao quiseres, tudo bem. Mas\\no meu Pokemon e giro, sabe...$"
+        "Se nao quiseres, tudo bem. Mas\\no meu POKEMON e giro, sabe...$"
       ],
       "RustboroCity_House1_Text_AnyPokemonCanBeCute": [
         "Qualquer POKEMON pode ser\\nbonito se voce cria-lo com\\lcuidado e bondade.$"
@@ -690,7 +690,7 @@
         "sabe como alguns movimentos\\nPOKEMON podem confundir um\\lPOKEMON?\\pPor vezes, um POKEMON confuso\\nataca-se sem querer.\\pMas assim que sair da batalha,\\nvoltara ao normal.$"
       ],
       "RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry": [
-        "Um Pokemon segurando um BERRY\\nvai se curar...\\pHa muitos tipos de itens que\\nPOKEMON pode segurar...\\pE dificil anotar...$"
+        "Um POKEMON segurando um BERRY\\nvai se curar...\\pHa muitos tipos de itens que\\nPOKEMON pode segurar...\\pE dificil anotar...$"
       ]
     },
     "data/maps/RusturfTunnel/scripts.inc": {
@@ -729,7 +729,7 @@
     },
     "data/maps/SSAnne_1F_Room2_Frlg/scripts.inc": {
       "SSAnne_1F_Room2_Text_TylerIntro": [
-        "Adoro Pokemon! E tu?$"
+        "Adoro POKEMON! E tu?$"
       ],
       "SSAnne_1F_Room2_Text_TylerDefeat": [
         "Uau! Es fantastico!$"
@@ -801,7 +801,7 @@
     },
     "data/maps/SSAnne_2F_Corridor_Frlg/scripts.inc": {
       "SSAnne_2F_Corridor_Text_ThisShipIsLuxuryLiner": [
-        "Este navio e um navio de luxo\\npara os TRAiners do mundo!\\pEm todos os portos, fazemos\\nfestas com os TRAiners\\lconvidados.$"
+        "Este navio e um navio de luxo\\npara os TREINADORES do mundo!\\pEm todos os portos, fazemos\\nfestas com os TREINADORES\\lconvidados.$"
       ],
       "SSAnne_2F_Corridor_Text_RivalIntro": [
         "{RIVAL}Bonjour!{PLAYER}!\\pImagina ver-te\\naqui!{PLAYER}Foste mesmo\\lconvidado?\\pEntao, como vai o seu POKEDEX?\\pJa apanhei 40 tipos, amigo. Ha\\ntipos diferentes em todo o\\llado.\\pRasteje em areas gramadas, e\\nprocure por elas.$"
