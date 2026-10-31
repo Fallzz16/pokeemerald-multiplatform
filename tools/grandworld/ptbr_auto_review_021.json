@@ -35,10 +35,10 @@
         "Porque estamos a fazer fila e a\\npagar? Deviamos entrar!$"
       ],
       "SlateportCity_Text_WhatDoYouWant": [
-        "O que? O que queres?$"
+        "O que? O que quer?$"
       ],
       "SlateportCity_Text_IllReadSignForYou": [
-        "Queres ler este cartaz? Eu\\nleio-te!$"
+        "quer ler este cartaz? Eu\\nleio-te!$"
       ],
       "SlateportCity_Text_ShouldveBroughtMyGameBoy": [
         "Grumble...\\pDevia ter trazido o meu Game\\nBoy Advance para nao me\\laborrecer na fila...\\pGrumble...$"
@@ -77,7 +77,7 @@
         "Se um Pokemon selvagem se\\nmachucar, ele se cura\\lmastigando BERRIES.\\pSabias disso?\\pAlguem viu isso e teve a ideia\\nde fazer medicina de BERRIES.\\pSabias disso?\\pPara transformar BERRIES em\\nmedicamentos, eles devem ser\\lesmagados em po.\\pSabias disso?\\pPareces ter interesse em\\nBERRIES!$"
       ],
       "SlateportCity_Text_ExchangeWhatWithIt": [
-        "Com o que queres troca-lo?$"
+        "Com o que quer troca-lo?$"
       ],
       "SlateportCity_Text_RegisteredScott": [
         "Registrado esta pessoa SCOTT no\\nPOKeNAV.$"
@@ -85,7 +85,7 @@
     },
     "data/maps/SlateportCity_BattleTentCorridor/scripts.inc": {
       "SlateportCity_ContestHall_Text_ExplainTorment": [
-        "E tipo TM41, sabes? E TORMENT,\\nestas a ouvir?\\pNao deixa o outro usar o mesmo\\nmovimento duas vezes seguidas.\\pOuve, nao estou a\\natormentar-te!$"
+        "E tipo TM41, sabe? E TORMENT,\\nestas a ouvir?\\pNao deixa o outro usar o mesmo\\nmovimento duas vezes seguidas.\\pOuve, nao estou a\\natormentar-te!$"
       ],
       "SlateportCity_ContestHall_Text_MCStepUpTakePartInContest": [
         "Meu Deus! Nao e um Pokemon\\nelegante?\\pPor favor! Aproximem-se e tomem\\nparte nos nossos esplendidos\\lCONTESTS!\\pVais sair-te bem! Tenho a\\ncerteza! Os meus olhos nunca me\\lfalharam!$"
@@ -94,7 +94,7 @@
         "Esta na hora do recurso! Com o\\nque devo comecar?$"
       ],
       "SlateportCity_ContestHall_Text_RewardWithSageAdvice": [
-        "Ola! Voce deve ser um grande fa\\npara chegar tao perto da acao.\\pRecompenso o teu entusiasmo com\\neste sabio conselho.\\pSe um movimento correr muito\\nbem, o publico vai ficar\\lexcitado.\\pO POKEMON que faz o seu apelo\\ndireito quando todos estao\\lanimados...\\pBem, voce pensaria que algo bom\\ntem que acontecer!$"
+        "Ola! Voce deve ser um grande fa\\npara chegar tao perto da acao.\\pRecompenso o seu entusiasmo com\\neste sabio conselho.\\pSe um movimento correr muito\\nbem, o publico vai ficar\\lexcitado.\\pO POKEMON que faz o seu apelo\\ndireito quando todos estao\\lanimados...\\pBem, voce pensaria que algo bom\\ntem que acontecer!$"
       ],
       "SlateportCity_ContestHall_Text_MoreFreakedOutThanMon": [
         "Nao consigo fazer isto! Estou\\nmais assustado que o meu\\lPokemon.\\pEstou a tremer e o meu coracao\\nesta a acelerar!$"
@@ -103,18 +103,18 @@
         "Aquele Pokemon parece que esta\\nno topo do jogo.\\pUm POKEMON que faz bem no\\njulgamento secundario parece\\lser mais relaxado quando esta\\lfazendo apelos.$"
       ],
       "SlateportCity_ContestHall_Text_GetUrgeToMoveWithMon": [
-        "Nao tens vontade de te mudares\\ncom o POKEMON se estao a fazer\\lum apelo energetico?$"
+        "Nao tem vontade de te mudares\\ncom o POKEMON se estao a fazer\\lum apelo energetico?$"
       ]
     },
     "data/maps/SlateportCity_BattleTentLobby/scripts.inc": {
       "SlateportCity_BattleTentLobby_Text_CouldntFindMonForMe": [
-        "Nao consegui encontrar nenhum\\nPokemon que fosse para mim.\\pPensei que devia apresentar\\nqueixa ao tipo de la?\\pE ele nao me ouvia, tipo, hey!\\nQue chatice, meu!\\pEi, tu! Cala-te, sabes? Toma\\nisto!$"
+        "Nao consegui encontrar nenhum\\nPokemon que fosse para mim.\\pPensei que devia apresentar\\nqueixa ao tipo de la?\\pE ele nao me ouvia, tipo, hey!\\nQue chatice, meu!\\pEi, tu! Cala-te, sabe? Toma\\nisto!$"
       ],
       "SlateportCity_BattleTentLobby_Text_ExplainTorment": [
-        "E tipo TM41, sabes? E TORMENT,\\nestas a ouvir?\\pNao deixa o outro usar o mesmo\\nmovimento duas vezes seguidas.\\pOuve, nao estou a\\natormentar-te!$"
+        "E tipo TM41, sabe? E TORMENT,\\nestas a ouvir?\\pNao deixa o outro usar o mesmo\\nmovimento duas vezes seguidas.\\pOuve, nao estou a\\natormentar-te!$"
       ],
       "SlateportCity_BattleTentLobby_Text_BattleEvenWithoutToughMons": [
-        "Podes lutar o quanto quiseres\\naqui, mesmo que nao tenhas\\lnenhum POKEMON duro.$"
+        "pode lutar o quanto quiseres\\naqui, mesmo que nao tenhas\\lnenhum POKEMON duro.$"
       ],
       "SlateportCity_BattleTentLobby_Text_NiceIfMoreSelection": [
         "Nao seria bom se tivessem mais\\numa seleccao?$"
@@ -125,13 +125,13 @@
         "Desculpe? Estas a procura de\\numa nave?\\pLamento, o servico de ferry nao\\nesta disponivel no momento...$"
       ],
       "SlateportCity_Harbor_Text_SailAnotherTime": [
-        "Por favor, naveguem connosco\\nnoutra altura!$"
+        "Por favor, naveguem conosco\\nnoutra altura!$"
       ],
       "SlateportCity_Harbor_Text_PleaseBoardFerry": [
         "Por favor embarque no ferry e\\naguarde a partida.$"
       ],
       "SlateportCity_Harbor_Text_WhereWouldYouLikeToGo": [
-        "Entao, para onde queres ir?$"
+        "Entao, para onde quer ir?$"
       ],
       "SlateportCity_Harbor_Text_LoveToGoDeepUnderwaterSomeday": [
         "Uma viagem ao fundo do mar...\\nComo sera?\\pAdorava ir para o fundo debaixo\\nde agua assim um dia.$"
@@ -241,7 +241,7 @@
     },
     "data/maps/SlateportCity_PokemonCenter_1F/scripts.inc": {
       "SlateportCity_PokemonCenter_1F_Text_RaiseDifferentTypesOfPokemon": [
-        "Queres uma dica para lutar?\\pDiria que esta a criar\\ndiferentes tipos de POKEMON de\\lforma equilibrada.\\pNao e bom fazer apenas um\\nPOKEMON forte.\\pSe tiver uma desvantagem do\\ntipo, pode nao ter uma chance.$"
+        "quer uma dica para lutar?\\pDiria que esta a criar\\ndiferentes tipos de POKEMON de\\lforma equilibrada.\\pNao e bom fazer apenas um\\nPOKEMON forte.\\pSe tiver uma desvantagem do\\ntipo, pode nao ter uma chance.$"
       ],
       "SlateportCity_PokemonCenter_1F_Text_TradedMonWithFriend": [
         "Troco Pokemon com os meus\\namigos.\\pSe um POKEMON negociado esta\\nsegurando um item, isso me faz\\lduas vezes mais feliz!$"
@@ -258,7 +258,7 @@
         "Hmmm... Nao e mau, mas tambem\\nnao e bom...\\pVoce, o Treinador, tem de se\\nesforcar mais para criar este\\lPokemon!\\pPor exemplo, posso sugerir que\\nlhe de mais{POKEBLOCK}S?$"
       ],
       "SlateportCity_PokemonFanClub_Text_NoSpaceForReward": [
-        "Meu...\\pSeu POKEMON esta crescendo\\nmuito bem, entao voce merece\\luma recompensa.\\pInfelizmente, nao tens espaco\\npara isto no teu BAG.$"
+        "Meu...\\pSeu POKEMON esta crescendo\\nmuito bem, entao voce merece\\luma recompensa.\\pInfelizmente, nao tem espaco\\npara isto no seu BAG.$"
       ],
       "SlateportCity_PokemonFanClub_Text_MonMostImpressiveGiveItThis": [
         "Sua{STR_VAR_1}, esta crescendo\\nde uma maneira muito\\limpressionante! E um belo\\lespecime!\\pMas! Se lhe desse isto, ficaria\\nainda melhor! E verdade!$"
@@ -267,13 +267,13 @@
         "Desculpa, mas nao tenho mais\\nnada para te dar! Nenhuma!\\pAfinal, voce e abencoado com o\\ndom de criar POKEMON sem\\lrecorrer a quaisquer itens!$"
       ],
       "SlateportCity_PokemonFanClub_Text_ShowMePokemonThatLoveYou": [
-        "Adoro ver o Pokemon que adora\\nos seus treinadores.\\pPOKEMON sao muito sensiveis aos\\nsentimentos dos seus\\lTREINADORES.\\pSe tratares o teu POKEMON com\\namor e cuidado, eles vao\\ladorar-te.\\pQuando o teu Pokemon crescer\\npara te amar, por favor, vem\\lmostrar-me.$"
+        "Adoro ver o Pokemon que adora\\nos seus treinadores.\\pPOKEMON sao muito sensiveis aos\\nsentimentos dos seus\\lTREINADORES.\\pSe tratares o seu POKEMON com\\namor e cuidado, eles vao\\ladorar-te.\\pQuando o seu Pokemon crescer\\npara te amar, por favor, vem\\lmostrar-me.$"
       ],
       "SlateportCity_PokemonFanClub_Text_PokemonAdoresYou": [
-        "O teu Pokemon adora-te mesmo.\\pPara voce, um instrutor muito\\ncompassivo, um presente do FAN\\lCLUB!$"
+        "O seu Pokemon adora-te mesmo.\\pPara voce, um instrutor muito\\ncompassivo, um presente do FAN\\lCLUB!$"
       ],
       "SlateportCity_PokemonFanClub_Text_TreatPokemonWithLove": [
-        "POKEMON sao muito sensiveis aos\\nsentimentos dos seus\\lTREINADORES.\\pSe tratares o teu POKEMON com\\namor e cuidado, eles vao\\ladorar-te.$"
+        "POKEMON sao muito sensiveis aos\\nsentimentos dos seus\\lTREINADORES.\\pSe tratares o seu POKEMON com\\namor e cuidado, eles vao\\ladorar-te.$"
       ],
       "SlateportCity_PokemonFanClub_Text_PokemonDontLikeFainting": [
         "Se continuares a deixar um\\nPokemon desmaiar em batalha,\\lvai ficar ressentido.\\pEm breve, ficara menos\\nconfiante no TRAiner.\\pEm outras palavras, certamente\\nnao vai gostar muito de voce.$"
@@ -476,7 +476,7 @@
     },
     "data/maps/SootopolisCity_LotadAndSeedotHouse/scripts.inc": {
       "SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull1": [
-        "Hunh? O teu BAG esta cheio.$"
+        "Hunh? O seu BAG esta cheio.$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_SeenBiggerSeedot": [
         "{STR_VAR_2}E mesmo?\\pHmm... Ja vi um SEEDOT maior do\\nque este.$"
@@ -485,13 +485,13 @@
         "Oh, isto e uma grande coisa...\\nMas nao e um SEEDOT!$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_DontHaveBigSeedot": [
-        "Nao tens um SEEDOT grande? Que\\npena...\\pSe tiveres um SEEDOT grande,\\nvem mostrar-me.$"
+        "Nao tem um SEEDOT grande? Que\\npena...\\pSe tiveres um SEEDOT grande,\\nvem mostrar-me.$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_WowMightBeBiggerThanSeedot": [
         "{STR_VAR_2}Isso e grande!\\pPode ser ainda maior do que o\\nenorme SEEDOT que o meu irmao\\lmais velho viu.\\pObrigado por me mostrares! Este\\ne o meu agradecimento!$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull2": [
-        "Hunh? O teu BAG esta cheio.$"
+        "Hunh? O seu BAG esta cheio.$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_SeenBiggerLotad": [
         "{STR_VAR_2}?\\pHmm... Ja vi um LOTAD maior do\\nque este aqui.$"
@@ -516,7 +516,7 @@
         "UMA FORMACAO\\nCHAMADA{STR_VAR_1}esta\\lvisitando minha casa.\\pGostaria de\\ndesafiar{STR_VAR_1}?$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_YouWontBattle": [
-        "Nao vais lutar? Estou\\ndesiludido por nao te poder ver\\la lutar...$"
+        "Nao vai lutar? Estou\\ndesiludido por nao te poder ver\\la lutar...$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_KeepItTo3On3": [
         "Optimo, optimo!\\pMas a minha casa nao e assim\\ntao resistente.\\pPosso pedir-lhe para baixar\\npara um jogo de 3 contra 3?$"
@@ -642,7 +642,7 @@
         "Sniff, sniff... Algo cheira\\nmal...$"
       ],
       "ThreeIsland_BondBridge_Text_VioletIntro": [
-        "Para onde vais com tanta\\npressa?$"
+        "Para onde vai com tanta\\npressa?$"
       ],
       "ThreeIsland_BondBridge_Text_VioletDefeat": [
         "Estas a criar um POKEMON\\nmaravilhoso.$"
