@@ -89,7 +89,7 @@
         "Por aqui, por favor!$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_SavingDataPleaseWait": [
-        "Estou a guardar os teus dados.\\nPor favor, espere.$"
+        "Estou salvando seus dados.\\nAguarde um instante.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_RecordLatestBattle": [
         "Gostaria de gravar a sua ultima\\nbatalha no seu PASS FRONTIER?$"
@@ -103,7 +103,7 @@
     },
     "data/maps/BattleFrontier_BattlePalaceBattleRoom/scripts.inc": {
       "BattleFrontier_BattlePalaceBattleRoom_Text_LetMeRestoreYourMons": [
-        "Excelente... Deixa-me restaurar\\no teu Pokemon.$"
+        "Muito bem... Vou recuperar\\nseus POKEMON.$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor2ndOpponent": [
         "O 2o oponente e o proximo.\\nEstas preparado?$"
@@ -185,7 +185,7 @@
         "Para o feito de sua serie de 7\\nvitorias, apresentamos-lhe com\\lBattle Point(s).$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_NoSpaceForPrize": [
-        "Parece que nao tens espaco para\\no nosso premio.\\pDeve voltar quando tiver\\norganizado o seu BAG.$"
+        "Parece que voce nao tem\\nespaco para o premio.\\pVolte depois de organizar\\nsua BOLSA.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_WeHaveBeenWaiting": [
         "Estavamos a tua espera...$"
