@@ -5,7 +5,7 @@
     "ptbr_auto_review_019.json"
   ],
   "source_diff_against": "feature/grandworld-ptbr-human-review-stage15-20261031",
-  "reviewed_entries": 35,
+  "reviewed_entries": 123,
   "reviewed_labels_by_source": {
     "data/maps/SSAnne_2F_Room3_Frlg/scripts.inc": [
       "SSAnne_2F_Room3_Text_SeenMonsFerryPeople",
@@ -59,6 +59,140 @@
       "SSAnne_Kitchen_Text_HearAboutSnorlaxItsAGlutton",
       "SSAnne_Kitchen_Text_OnlyGetToPeelOnions",
       "SSAnne_Kitchen_Text_EelsAuBarbecue"
+    ],
+    "data/maps/SSAqua_1F/scripts.inc": [
+      "SSAqua_1F_Text_Sailor2_FirstTime",
+      "SSAqua_1F_Text_Sailor3",
+      "SSAqua_1F_Text_Grandpa"
+    ],
+    "data/maps/SSAqua_B1F/scripts.inc": [
+      "SSAqua_B1F_Text_SailorJeffSeen",
+      "SSAqua_B1F_Text_SailorJeffAfter",
+      "SSAqua_B1F_Text_PicnickerDebraSeen",
+      "SSAqua_B1F_Text_SailorGarrettSeen",
+      "SSAqua_B1F_Text_SailorKennethAfter",
+      "SSAqua_B1F_Text_SchoolboyRickyAfter"
+    ],
+    "data/maps/SSAqua_RoomNE/scripts.inc": [
+      "SSAqua_RoomNE_Text_HikerNolandSeen",
+      "SSAqua_RoomNE_Text_HikerNolandBeaten",
+      "SSAqua_RoomNE_Text_HikerNolandAfterBattle"
+    ],
+    "data/maps/SSAqua_RoomNNE/scripts.inc": [
+      "SSAqua_RoomNNE_Text_CooltrainermSeanSeen",
+      "SSAqua_RoomNNE_Text_CooltrainerfCarolSeen",
+      "SSAqua_RoomNNE_Text_CooltrainerfCarolBeaten",
+      "SSAqua_RoomNNE_Text_CooltrainerfCarolAfterBattle"
+    ],
+    "data/maps/SSAqua_RoomNW/scripts.inc": [
+      "SSAqua_RoomNW_Text_SailorStanlySeen",
+      "SSAqua_RoomNW_Text_SailorStanlyBeaten",
+      "SSAqua_RoomNW_Text_SailorStanlyAfterBattle",
+      "SSAqua_RoomNW_Text_GentlemanEdwardSeen",
+      "SSAqua_RoomNW_Text_GentlemanEdwardBeaten",
+      "SSAqua_RoomNW_Text_GentlemanEdwardAfterBattle",
+      "SSAqua_RoomNW_Text_BurglarCoreyAfterBattle"
+    ],
+    "data/maps/SSAqua_RoomSE/scripts.inc": [
+      "SSAqua_RoomSE_Text_PokefanmColinSeen",
+      "SSAqua_RoomSE_Text_PokefanmColinBeaten",
+      "SSAqua_RoomSE_Text_PokefanmColinAfter",
+      "SSAqua_RoomSE_Text_TwinsMegandpeg1Seen",
+      "SSAqua_RoomSE_Text_TwinsMegandpeg1After",
+      "SSAqua_RoomSE_Text_TwinsMegandpeg2Seen",
+      "SSAqua_RoomSE_Text_TwinsMegandpeg2After"
+    ],
+    "data/maps/SSAqua_RoomSSE/scripts.inc": [
+      "SSAqua_RoomSSE_Text_CantFindGranddaughter",
+      "SSAqua_RoomSSE_Text_EntertainedGranddaughter",
+      "SSAqua_RoomSSE_Text_GrandpaHaveThis",
+      "SSAqua_RoomSSE_Text_GrandpaTravelling",
+      "SSAqua_RoomSSE_Text_GranddaughterHadFun"
+    ],
+    "data/maps/SSAqua_RoomSSW/scripts.inc": [
+      "SSAqua_RoomSSW_Text_FirebreatherLyleSeen",
+      "SSAqua_RoomSSW_Text_FirebreatherLyleBeaten",
+      "SSAqua_RoomSSW_Text_FirebreatherLyleAfterBattle",
+      "SSAqua_RoomSSW_Text_BugCatcherKenSeen",
+      "SSAqua_RoomSSW_Text_BugCatcherKenBeaten",
+      "SSAqua_RoomSSW_Text_BugCatcherKenAfterBattle"
+    ],
+    "data/maps/SSAqua_RoomSW/scripts.inc": [
+      "SSAqua_RoomSW_Text_BeautyCassieSeen",
+      "SSAqua_RoomSW_Text_BeautyCassieBeaten",
+      "SSAqua_RoomSW_Text_GuitaristClydeBeaten",
+      "SSAqua_RoomSW_Text_GuitaristClydeAfterBattleMobile"
+    ],
+    "data/maps/SSTidalCorridor/scripts.inc": [
+      "SSTidal_Text_FastCurrentsHopeYouEnjoyVoyage",
+      "SSTidal_Text_HopeYouEnjoyVoyage",
+      "SSTidalCorridor_Text_CanRestInCabin2",
+      "SSTidalCorridor_Text_EnjoyYourCruise",
+      "SSTidalCorridor_Text_HorizonSpreadsBeyondPorthole"
+    ],
+    "data/maps/SSTidalLowerDeck/scripts.inc": [
+      "SSTidalLowerDeck_Text_PhillipIntro",
+      "SSTidalLowerDeck_Text_PhillipDefeat",
+      "SSTidalLowerDeck_Text_LeonardIntro",
+      "SSTidalLowerDeck_Text_LeonardDefeat"
+    ],
+    "data/maps/SSTidalRooms/scripts.inc": [
+      "SSTidalRooms_Text_ColtonDefeat",
+      "SSTidalRooms_Text_ColtonPostBattle",
+      "SSTidalRooms_Text_MicahIntro",
+      "SSTidalRooms_Text_MicahDefeat",
+      "SSTidalRooms_Text_MicahPostBattle",
+      "SSTidalRooms_Text_ThomasDefeat",
+      "SSTidalRooms_Text_GarretIntro",
+      "SSTidalRooms_Text_GarretDefeat",
+      "SSTidalRooms_Text_GarretPostBattle",
+      "SSTidalRooms_Text_NaomiIntro",
+      "SSTidalRooms_Text_NaomiDefeat",
+      "SSTidalRooms_Text_NaomiPostBattle"
+    ],
+    "data/maps/SafariZoneGate/scripts.inc": [
+      "SafariZone_Text_SilentNPC",
+      "SafariZone_Text_SlowpokeFan"
+    ],
+    "data/maps/SafariZoneGate_SafariZoneEntrance/scripts.inc": [
+      "SafariZoneGate_SafariZoneEntrance_Text_BaobaDeclined",
+      "SafariZoneGate_SafariZoneEntrance_Text_BaobaLastMon",
+      "SafariZoneGate_SafariZoneEntrance_Text_Engineer"
+    ],
+    "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc": [
+      "SafariZone_Center_Text_CatchingMonsAsGifts"
+    ],
+    "data/maps/SafariZone_East_RestHouse_Frlg/scripts.inc": [
+      "SafariZone_East_Text_HowManyDidYouCatch",
+      "SafariZone_East_Text_TiredFromAllTheFun"
+    ],
+    "data/maps/SafariZone_SecretHouse_Frlg/scripts.inc": [
+      "SafariZone_SecretHouse_Text_ReceivedHM03FromAttendant",
+      "SafariZone_SecretHouse_Text_DontHaveRoomForPrize"
+    ],
+    "data/maps/SafariZone_West_RestHouse_Frlg/scripts.inc": [
+      "SafariZone_West_Text_RocksMakeMonRunButEasierCatch",
+      "SafariZone_West_Text_BaitMakesMonStickAround",
+      "SafariZone_West_Text_HikedLotsDidntSeeMonIWanted"
+    ],
+    "data/maps/SaffronCity_House_Frlg/scripts.inc": [
+      "SaffronCity_House_Text_DontLookAtMyLetter"
+    ],
+    "data/maps/SaffronCity_Mart_Frlg/scripts.inc": [
+      "SaffronCity_Mart_Text_MaxRepelMoreEffectiveThanSuper",
+      "SaffronCity_Mart_Text_ReviveIsCostly"
+    ],
+    "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc": [
+      "SaffronCity_PokemonCenter_1F_Text_GrowthRatesDifferBySpecies",
+      "SaffronCity_PokemonCenter_1F_Text_SilphCoVictimOfFame"
+    ],
+    "data/maps/SeafoamIslands_B4F_Frlg/scripts.inc": [
+      "Text_RockSlideDeclined",
+      "Text_RockSlideTaught",
+      "SeafoamIslands_B4F_Text_BouldersMightChangeWaterFlow"
+    ],
+    "data/maps/SevenIsland_Frlg/scripts.inc": [
+      "Text_SwordsDanceDeclined"
     ]
   },
   "release_approved": false,
