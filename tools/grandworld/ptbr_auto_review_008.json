@@ -212,7 +212,7 @@
         "Em honra do vinculo que\\npartilhas com seu POKEMON,\\lapresentamos-te estes Pontos de\\lBatalha.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_LikeToRecordMatch": [
-        "Gostarias de gravar o seu\\nultimo batalha BATTLE PALACE no\\lteu PASS FRONTIER?$"
+        "Gostaria de gravar o seu\\nultimo batalha BATTLE PALACE no\\lteu PASS FRONTIER?$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_RulesAreListed": [
         "As regras do BATTLE HALL estao\\nlistadas.$"
@@ -503,7 +503,7 @@
         "Sua busca BATTLE PYRAMID sera\\nsalva para que voce possa parar\\lpor enquanto. Pode ser?$"
       ],
       "gText_BattlePyramidConfirmRetire": [
-        "Tem a certeza que quer\\ndeixar sua missao PYRAMID?$"
+        "Tem certeza que quer\\ndeixar sua missao PYRAMID?$"
       ],
       "BattlePyramid_Text_ExitHintUp1": [
         "A saida deste andar e nessa\\ndireccao.{UP_ARROW}$"
