@@ -232,274 +232,274 @@
     },
     "data/maps/SilphCo_10F_Frlg/scripts.inc": {
       "SilphCo_10F_Text_GruntIntro": [
-        "Bem-vindos ao 10F! Que bom que\\nvieste comigo!$"
+        "Bem-vindo ao decimo andar!\\pQue bom que voce chegou!\\nEstava procurando uma batalha!$"
       ],
       "SilphCo_10F_Text_GruntDefeat": [
-        "Estou atordoado!$"
+        "Fiquei atordoado!$"
       ],
       "SilphCo_10F_Text_GruntPostBattle": [
-        "Boa tentativa, mas a sala de\\nreunioes e mais um andar.$"
+        "Tentativa boa!\\pMas a sala do presidente\\nfica mais um andar acima!$"
       ],
       "SilphCo_10F_Text_TravisIntro": [
-        "Chega de brincadeiras!$"
+        "Chega de brincadeira!\\nVamos batalhar!$"
       ],
       "SilphCo_10F_Text_TravisDefeat": [
-        "Nao continua a esquerda!$"
+        "Nao siga pela esquerda!$"
       ],
       "SilphCo_10F_Text_TravisPostBattle": [
-        "Estas satisfeito em me bater?\\nEntao vai para casa!$"
+        "Satisfeito por me vencer?\\nAgora va para casa!$"
       ],
       "SilphCo_10F_Text_WaaaImScared": [
-        "Waaaaa! Estou com medo!$"
+        "Aaah! Estou com medo!$"
       ],
       "SilphCo_10F_Text_KeepMeCryingASecret": [
-        "Sobre eu chorar... Por favor,\\nmantem isso em segredo.$"
+        "Nao conte para ninguem\\nque voce me viu chorando!$"
       ]
     },
     "data/maps/SilphCo_11F_Frlg/scripts.inc": {
       "SilphCo_11F_Text_YouHaveNoRoomForThis": [
-        "Nao tens espaco para isto.$"
+        "Sua BOLSA esta cheia!$"
       ],
       "SilphCo_11F_Text_GiovanniDefeat": [
-        "Arrgh! Perdi outra vez?$"
+        "Argh! Perdi outra vez?$"
       ],
       "SilphCo_11F_Text_Grunt2Intro": [
-        "Pare ai mesmo! Nao te mexas!$"
+        "Pare agora mesmo!\\nNao avance!$"
       ],
       "SilphCo_11F_Text_Grunt2Defeat": [
-        "Por favor!$"
+        "Nao! Eu perdi!$"
       ],
       "SilphCo_11F_Text_Grunt1Defeat": [
-        "Gaah! Demolido!$"
+        "Ah! Fui derrotado!$"
       ],
       "SilphCo_11F_Text_MonitorHasMonsOnIt": [
-        "O monitor tem POKEMON nele!$"
+        "Ha imagens de POKEMON\\nna tela do monitor!$"
       ]
     },
     "data/maps/SilphCo_2F_Frlg/scripts.inc": {
       "SilphCo_2F_Text_ConnorIntro": [
-        "Socorro! Sou um empregado do\\nSILPH.$"
+        "Socorro!\\nSou funcionario da SILPH!$"
       ],
       "SilphCo_2F_Text_JerryIntro": [
-        "Esta fora dos limites! Vai para\\ncasa!$"
+        "Entrada proibida!\\nVa para casa!$"
       ],
       "SilphCo_2F_Text_JerryDefeat": [
-        "Es boa.$"
+        "Voce luta bem!$"
       ],
       "SilphCo_2F_Text_JerryPostBattle": [
-        "Consegues resolver o labirinto\\naqui? Nao e facil, digo-te!$"
+        "Consegue resolver\\neste labirinto?\\pNao e tao facil assim!$"
       ],
       "SilphCo_2F_Text_Grunt1Intro": [
-        "Nao sao permitidas criancas\\naqui!$"
+        "Criancas nao podem\\nentrar aqui!$"
       ],
       "SilphCo_2F_Text_Grunt1Defeat": [
-        "Duro!$"
+        "Essa doeu!$"
       ],
       "SilphCo_2F_Text_Grunt1PostBattle": [
-        "As telhas em forma de diamante\\nsao blocos de teletransporte.\\pSao transportadores para este\\nedificio de alta tecnologia.$"
+        "Os pisos em forma\\nde losango sao teletransportes.\\pEles levam a outras salas\\ndeste edificio!$"
       ],
       "SilphCo_2F_Text_Grunt2Intro": [
-        "Miudo! Porque estas aqui a\\nvaguear?$"
+        "Ei, pirralho!\\nPor que esta aqui?$"
       ],
       "SilphCo_2F_Text_Grunt2Defeat": [
-        "Fiz asneira!$"
+        "Estraguei tudo!$"
       ],
       "SilphCo_2F_Text_Grunt2PostBattle": [
-        "O SILPH CO. sera associado ao\\nTEAM ROCKET!$"
+        "A SILPH CO. vai fazer parte\\nda EQUIPE ROCKET!$"
       ]
     },
     "data/maps/SilphCo_3F_Frlg/scripts.inc": {
       "SilphCo_3F_Text_WhatAmIToDo": [
-        "Trabalho para o SILPH CO. O que\\ndevo fazer?$"
+        "Trabalho na SILPH CO.!\\nO que eu faco agora?$"
       ],
       "SilphCo_3F_Text_YouAndYourMonsSavedUs": [
-        "{PLAYER}Tu e o teu Pokemon\\nsalvaram-nos!$"
+        "{PLAYER}, voce e seus\\nPOKEMON nos salvaram!$"
       ],
       "SilphCo_3F_Text_GruntIntro": [
-        "Para de brincar connosco,\\nmiudo!$"
+        "Pare de atrapalhar\\nnosso trabalho, pirralho!$"
       ],
       "SilphCo_3F_Text_GruntDefeat": [
-        "Desisto!$"
+        "Tudo bem! Eu desisto!$"
       ],
       "SilphCo_3F_Text_JoseDefeat": [
-        "Apanhaste-me mesmo!$"
+        "Voce me pegou de surpresa!$"
       ]
     },
     "data/maps/SilphCo_4F_Frlg/scripts.inc": {
       "SilphCo_4F_Text_CantYouSeeImHiding": [
-        "Sssh! Nao ves que me estou a\\nesconder?$"
+        "Psiu! Nao esta vendo\\nque estou me escondendo?$"
       ],
       "SilphCo_4F_Text_RodneyIntro": [
-        "O meu Pokemon e o meu servo\\nleal.$"
+        "Meus POKEMON sao\\nmeus servos leais!$"
       ],
       "SilphCo_4F_Text_RodneyDefeat": [
-        "Raios! Seu fraco Pokemon!$"
+        "Droga! Meus POKEMON\\nme decepcionaram!$"
       ],
       "SilphCo_4F_Text_Grunt2Intro": [
-        "Intruso visto!$"
+        "Encontrei um intruso!$"
       ],
       "SilphCo_4F_Text_Grunt2Defeat": [
-        "Quem es tu?$"
+        "Quem e voce, afinal?$"
       ],
       "SilphCo_4F_Text_Grunt2PostBattle": [
-        "E melhor avisar o BOSS no 11F!$"
+        "Preciso avisar o chefe\\nno decimo primeiro andar!$"
       ]
     },
     "data/maps/SilphCo_5F_Frlg/scripts.inc": {
       "SilphCo_5F_Text_Grunt1Intro": [
-        "Ouvi dizer que um miudo andava\\npor ai.$"
+        "Ouvi falar de uma crianca\\nrondando pelos corredores!$"
       ],
       "SilphCo_5F_Text_BeauDefeat": [
-        "Bolas! Raios!$"
+        "Droga! Que vergonha!$"
       ],
       "SilphCo_5F_Text_DaltonIntro": [
-        "O que?\\pNao devia haver criancas aqui!$"
+        "O que?\\pNenhuma crianca\\ndeveria estar aqui!$"
       ],
       "SilphCo_5F_Text_DaltonDefeat": [
-        "Meu Deus!$"
+        "Nao acredito nisso!$"
       ],
       "SilphCo_5F_Text_Grunt2Defeat": [
-        "Tosse... Tosse...$"
+        "Cof! Cof!$"
       ]
     },
     "data/maps/SilphCo_6F_Frlg/scripts.inc": {
       "SilphCo_6F_Text_BetterGetBackToWork": [
-        "E melhor voltar ao trabalho.$"
+        "Melhor voltar ao trabalho!$"
       ],
       "SilphCo_6F_Text_HelpMePlease": [
-        "Meu Deus. Ajudem-me, por favor!$"
+        "Alguem me ajude,\\npor favor!$"
       ],
       "SilphCo_6F_Text_WeGotEngaged": [
-        "Ficamos noivos. Heheh!$"
+        "Ficamos noivos!\\nHa ha ha!$"
       ],
       "SilphCo_6F_Text_ThatManIsSuchACoward": [
-        "Aquele homem ao meu lado... Ele\\ne um cobarde!$"
+        "Aquele homem ao meu lado\\ne muito medroso!$"
       ],
       "SilphCo_6F_Text_NeedsMeToLookAfterHim": [
-        "Ele e tao indefeso, que\\nprecisava de alguem como eu\\lpara cuidar dele.$"
+        "Ele e tao inseguro\\nque preciso cuidar dele!$"
       ],
       "SilphCo_6F_Text_TargetedSilphForOurMonProducts": [
-        "Devem ter visado o SILPH para\\nos nossos produtos POKEMON.$"
+        "A EQUIPE ROCKET quer\\nnossos produtos POKEMON!$"
       ],
       "SilphCo_6F_Text_ComeWorkForSilphWhenYoureOlder": [
-        "Vem trabalhar para o SILPH\\nquando envelheceres.$"
+        "Quando crescer,\\nvenha trabalhar na SILPH!$"
       ],
       "SilphCo_6F_Text_Grunt1Defeat": [
-        "Fogo!$"
+        "Argh!$"
       ],
       "SilphCo_6F_Text_Grunt1PostBattle": [
-        "Nao importa! Os meus irmaos\\nvingar-me-ao!$"
+        "Nao importa!\\nMeus irmaos vao me vingar!$"
       ],
       "SilphCo_6F_Text_TaylorDefeat": [
-        "Atire!$"
+        "Droga!$"
       ],
       "SilphCo_6F_Text_Grunt2Defeat": [
         "Seu traidor!$"
       ],
       "SilphCo_6F_Text_Grunt2PostBattle": [
-        "Se defendes a justica,\\ntrais-nos aos maus!$"
+        "Se voce defende a justica,\\nentao e inimigo dos vilaoes!$"
       ]
     },
     "data/maps/SilphCo_7F_Frlg/scripts.inc": {
       "SilphCo_7F_Text_ObtainedLaprasFromEmployee": [
-        "{PLAYER}obteve um LAPRAS do\\nfuncionario do SILPH!$"
+        "{PLAYER} recebeu\\nLAPRAS de um funcionario!$"
       ],
       "SilphCo_7F_Text_ReallyDangerousHere": [
-        "Voce! E muito perigoso aqui!\\pVieste salvar-me? Nao podes!$"
+        "Ei! Este lugar e perigoso!\\pVeio me salvar?\\nQue coragem!$"
       ],
       "SilphCo_7F_Text_ThankYouSoMuch": [
         "Muito obrigado!$"
       ],
       "SilphCo_7F_Text_Grunt3Intro": [
-        "Uh-oh! Cheira-me a rato!$"
+        "Opa! Tem algo suspeito aqui!$"
       ],
       "SilphCo_7F_Text_Grunt3Defeat": [
-        "Luzes apagadas!$"
+        "Tudo ficou escuro!$"
       ],
       "SilphCo_7F_Text_JoshuaDefeat": [
-        "Acabei!$"
+        "Ja chega!$"
       ],
       "SilphCo_7F_Text_JoshuaPostBattle": [
-        "Apesar da sua idade, voce e um\\ntreinador habil!$"
+        "Voce e jovem,\\nmas batalha muito bem!$"
       ],
       "SilphCo_7F_Text_Grunt1Defeat": [
-        "Aack! Irmaos, eu perdi!$"
+        "Irmaos! Fui derrotado!$"
       ],
       "SilphCo_7F_Text_Grunt1PostBattle": [
-        "Nao importa. Os meus irmaos\\npagarao o favor!$"
+        "Meus irmaos vao\\nvingar esta derrota!$"
       ],
       "SilphCo_7F_Text_Grunt2Intro": [
-        "Um intruso infantil? Deve ser\\nvoce!$"
+        "O intruso e uma crianca?\\nEntao e voce!$"
       ],
       "SilphCo_7F_Text_Grunt2Defeat": [
-        "Esta bem! Perdi!$"
+        "Tudo bem! Eu perdi!$"
       ],
       "SilphCo_7F_Text_RivalWhatKeptYou": [
-        "{RIVAL}O que te\\natrasou,{PLAYER}?$"
+        "{RIVAL}: Demorou, {PLAYER}!\\nOnde estava voce?$"
       ],
       "SilphCo_7F_Text_RivalDefeat": [
-        "Oh, meu! Entao, estas pronto\\npara o BOSS ROCKET!$"
+        "Uau! Entao voce esta pronto\\npara enfrentar o chefe ROCKET!$"
       ]
     },
     "data/maps/SilphCo_8F_Frlg/scripts.inc": {
       "SilphCo_8F_Text_WonderIfSilphIsFinished": [
-        "Pergunto-me se o SILPH esta\\nacabado...$"
+        "Sera que a SILPH\\nchegou ao fim?$"
       ],
       "SilphCo_8F_Text_ThanksForSavingUs": [
-        "Obrigado por nos salvares!$"
+        "Obrigado por nos salvar!$"
       ],
       "SilphCo_8F_Text_Grunt1Intro": [
-        "Isso e o mais longe que voce\\nvai!$"
+        "Nao vai passar daqui!$"
       ],
       "SilphCo_8F_Text_Grunt1Defeat": [
-        "Nao chega!$"
+        "Nao pode ser!$"
       ],
       "SilphCo_8F_Text_Grunt1PostBattle": [
-        "Se nao voltares... Vou chamar\\nreforcos!$"
+        "Se nao for embora,\\nvou chamar reforcos!$"
       ],
       "SilphCo_8F_Text_ParkerIntro": [
-        "Estas a causar-nos problemas!$"
+        "Voce so nos causa problemas!$"
       ],
       "SilphCo_8F_Text_ParkerDefeat": [
-        "Huh? Perdi?$"
+        "O que? Eu perdi?$"
       ],
       "SilphCo_8F_Text_Grunt2Defeat": [
-        "Whoo! Irmaos!$"
+        "Irmaos! Me ajudem!$"
       ],
       "SilphCo_8F_Text_Grunt2PostBattle": [
-        "Deixo-te com os meus irmaos.$"
+        "Deixo voce\\npor conta dos meus irmaos!$"
       ]
     },
     "data/maps/SilphCo_9F_Frlg/scripts.inc": {
       "SilphCo_9F_Text_YouShouldTakeQuickNap": [
-        "Pareces cansado. Devias dormir\\numa sesta.$"
+        "Voce parece cansado!\\nDescanse um pouco!$"
       ],
       "SilphCo_9F_Text_DontGiveUp": [
-        "Nao desistas!$"
+        "Nao desista!$"
       ],
       "SilphCo_9F_Text_ThankYouSoMuch": [
-        "Muito obrigado.$"
+        "Muito obrigado!$"
       ],
       "SilphCo_9F_Text_Grunt1Intro": [
-        "O teu Pokemon parece adorar-te,\\nmiudo!$"
+        "Seus POKEMON\\ngostam muito de voce!$"
       ],
       "SilphCo_9F_Text_Grunt1PostBattle": [
-        "Se eu tivesse comecado na tua\\nidade...$"
+        "Se eu tivesse comecado\\na treinar na sua idade...$"
       ],
       "SilphCo_9F_Text_EdIntro": [
-        "O seu Pokemon tem pontos\\nfracos! Consigo apanha-los!$"
+        "Seus POKEMON tem fraquezas!\\pVou explorar cada uma delas!$"
       ],
       "SilphCo_9F_Text_EdDefeat": [
-        "Bateste-me!$"
+        "Voce me derrotou!$"
       ],
       "SilphCo_9F_Text_EdPostBattle": [
-        "Explorar pontos fracos\\nfunciona. Pense nas vantagens\\ldo tipo.$"
+        "Conhecer as fraquezas\\nde cada tipo ajuda\\nmuito nas batalhas!$"
       ],
       "SilphCo_9F_Text_Grunt2Defeat": [
-        "Warg! Irmaos, eu perdi!$"
+        "Irmaos, eu perdi!$"
       ],
       "SilphCo_9F_Text_Grunt2PostBattle": [
-        "Os meus irmaos vingar-me-ao!$"
+        "Meus irmaos vao me vingar!$"
       ]
     },
     "data/maps/SixIsland_DottedHole_SapphireRoom_Frlg/scripts.inc": {

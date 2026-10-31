@@ -160,92 +160,92 @@
     },
     "data/maps/SSAqua_1F/scripts.inc": {
       "SSAqua_1F_Text_Sailor2_FirstTime": [
-        "Aqui esta a sua cabana.\\pSe o seu POKEMON estiver\\nferido, durma na cama.\\pIsso vai cura-los.$"
+        "Esta e sua cabine!\\pSe algum POKEMON ficar cansado,\\ndurma nesta cama.\\pEla recupera\\nas energias da equipe!$"
       ],
       "SSAqua_1F_Text_Sailor3": [
-        "Os passageiros sao todos\\ntreinadores.\\pEstao todos ansiosos para lutar\\nnas suas cabanas.$"
+        "Todos os passageiros\\nsao TREINADORES.\\pEles adoram batalhar\\nnas proprias cabines!$"
       ],
       "SSAqua_1F_Text_Grandpa": [
-        "Whoa! Com licenca. Estava com\\npressa!\\pA minha neta desapareceu!\\pE so uma menina. Se a vires,\\navisa-me!$"
+        "Opa! Com licenca!\\nEstou com pressa!\\pMinha netinha desapareceu!\\pSe encontrar uma garotinha,\\npor favor, me avise!$"
       ],
       "SSAqua_1F_Text_GoAshorePrompt": [
-        "Queres ir para a praia?$"
+        "Deseja desembarcar?$"
       ]
     },
     "data/maps/SSAqua_B1F/scripts.inc": {
       "SSAqua_B1F_Text_BarfCan": [
-        "Eca! Nao devia ter olhado!$"
+        "Eca!\\nNao devia ter olhado aqui!$"
       ],
       "SSAqua_B1F_Text_FastShipOnDutySailor": [
-        "Ola, miudo. Podes procurar o\\nmeu amigo?\\pEle esta a brincar algures,\\naquele vagabundo preguicoso!\\pQuero encontra-lo, mas estou de\\nservico.$"
+        "Ola! Pode procurar\\nmeu colega de trabalho?\\pEle saiu para descansar\\ne ainda nao voltou!\\pEstou de servico\\ne nao posso sair daqui.$"
       ],
       "SSAqua_B1F_Text_FastShipOnDutySailorThanks": [
-        "Obrigado, miudo! Eu mastiguei-o\\nbem para que ele parasse de\\lrelaxar!$"
+        "Obrigado, garoto!\\pConversei bastante com ele.\\nAgora voltou ao trabalho!$"
       ],
       "SSAqua_B1F_Text_FastShipOnDutySailorSawGirl": [
-        "Uma menina?\\pPosso te-la visto passar por\\naqui.$"
+        "Uma menina?\\pAcho que vi\\numa passando por aqui!$"
       ],
       "SSAqua_B1F_Text_SailorJeffSeen": [
-        "Nada vence uma batalha quando\\nestou no meu intervalo.$"
+        "Nada como uma batalha\\nna hora do intervalo!$"
       ],
       "SSAqua_B1F_Text_SailorJeffBeaten": [
-        "Ganhar ou perder, a minha pausa\\nacabou!$"
+        "Ganhei ou perdi?\\nMinha pausa ja acabou!$"
       ],
       "SSAqua_B1F_Text_SailorJeffAfter": [
-        "Acho que nao posso ganhar se\\nnao falar a serio.$"
+        "Preciso batalhar\\ncom mais concentracao!$"
       ],
       "SSAqua_B1F_Text_PicnickerDebraSeen": [
-        "Estou tao aborrecida. Queres\\nlutar?$"
+        "Estou entediada!\\nQue tal uma batalha?$"
       ],
       "SSAqua_B1F_Text_PicnickerDebraBeaten": [
-        "Yow! Es demasiado forte!$"
+        "Uau! Voce e forte demais!$"
       ],
       "SSAqua_B1F_Text_JugglerFritzSeen": [
-        "Urrf... estou enjoado!$"
+        "Ufa... Estou enjoado!$"
       ],
       "SSAqua_B1F_Text_JugglerFritzBeaten": [
-        "Ja nao me consigo mexer...$"
+        "Nem consigo me mexer...$"
       ],
       "SSAqua_B1F_Text_SailorGarrettSeen": [
-        "E aqui que nos marinheiros\\ntrabalhamos!$"
+        "E aqui que\\nos marinheiros trabalham!$"
       ],
       "SSAqua_B1F_Text_SailorGarrettBeaten": [
-        "Perdi no meu campo...$"
+        "Perdi no meu proprio local!$"
       ],
       "SSAqua_B1F_Text_FisherJonahSeen": [
-        "Mesmo que estejamos no mar, nao\\nconsigo pescar!\\pIsto e aborrecido! Vamos lutar!$"
+        "Estamos no meio do mar\\ne nao consigo pescar!\\pQue tedio! Vamos batalhar!$"
       ],
       "SSAqua_B1F_Text_FisherJonahBeaten": [
-        "Ja nao estou aborrecido...$"
+        "Pelo menos o tedio acabou!$"
       ],
       "SSAqua_B1F_Text_BlackbeltWaiSeen": [
-        "Estou a erguer as pernas com\\nforca\\pcontra o balanco da nave!$"
+        "Estou treinando\\nmeu equilibrio!\\pO navio balanca muito!$"
       ],
       "SSAqua_B1F_Text_BlackbeltWaiBeaten": [
-        "Balancei e rolei!$"
+        "Acabei perdendo\\no equilibrio!$"
       ],
       "SSAqua_B1F_Text_SailorKennethBeaten": [
-        "A minha falta de treino e\\nobvia...$"
+        "Preciso treinar mais...$"
       ],
       "SSAqua_B1F_Text_SailorKennethAfter": [
-        "Oito badges! Devem provar que\\nbateste\\pGINASIO LEADERS.\\pNao admira que sejas tao bom!$"
+        "Oito INSIGNIAS!\\pEntao voce venceu\\noito LIDERES DE GINASIO!\\pAgora entendi\\npor que e tao forte!$"
       ],
       "SSAqua_B1F_Text_TeacherShirleySeen": [
-        "Nao ponhas um dedo nos meus\\nalunos!$"
+        "Nao se aproxime\\ndos meus alunos!$"
       ],
       "SSAqua_B1F_Text_SchoolboyRickyBeaten": [
-        "Eu estava farto!$"
+        "Ja cansei de batalhar!$"
       ],
       "SSAqua_B1F_Text_SchoolboyRickyAfter": [
-        "Li que ha quatro desses paineis\\nde pedra.$"
+        "Li que existem\\nquatro paineis de pedra!$"
       ]
     },
     "data/maps/SSAqua_CaptainsRoom/scripts.inc": {
       "SSAqua_CaptainsRoom_Text_GranddaughterHasToFindGrandpa": [
-        "Ola! Queres brincar comigo?\\p...Oh!\\pO avo esta preocupado comigo?\\pTenho de ir!\\pTenho de ir procurar o avo!$"
+        "Ola! Quer brincar comigo?\\p... Ah!\\pMeu avo esta preocupado?\\pPreciso encontra-lo agora!$"
       ],
       "SSAqua_CaptainsRoom_Text_CaptainExhausting": [
-        "Ufa! Obrigado por teres vindo.\\pManter aquela menina divertida\\nfoi cansativo.$"
+        "Ufa! Obrigado por vir!\\pFoi cansativo\\nbrincar com aquela menina!$"
       ]
     },
     "data/maps/SSAqua_PlayersRoom/scripts.inc": {
@@ -770,55 +770,55 @@
     },
     "data/maps/SeafloorCavern_Room1/scripts.inc": {
       "SeafloorCavern_Room1_Text_Grunt1Intro": [
-        "Nao precisamos de uma crianca\\npor perto! Vai para casa!$"
+        "Nao queremos\\ncriancas aqui!\\pVa para casa!$"
       ],
       "SeafloorCavern_Room1_Text_Grunt1Defeat": [
         "Quero ir para casa...$"
       ],
       "SeafloorCavern_Room1_Text_Grunt1PostBattle": [
-        "Quero ser promovido para poder\\nmandar nos GRUNTS...$"
+        "Quero ser promovido\\npara poder mandar\\nnos outros GRUNTS!$"
       ],
       "SeafloorCavern_Room1_Text_Grunt2Intro": [
-        "Aquele submarino... E minusculo\\npor dentro. Estou todo dorido!$"
+        "Aquele submarino\\ne apertado demais!\\pEstou todo dolorido!$"
       ],
       "SeafloorCavern_Room1_Text_Grunt2Defeat": [
-        "Perder deixa-me dorido!$"
+        "Perder tambem doi!$"
       ],
       "SeafloorCavern_Room1_Text_Grunt2PostBattle": [
-        "Aquele submarino que roubamos,\\nmeu, e brutal como um passeio.\\lEsta muito apertado la dentro!$"
+        "Roubamos aquele submarino,\\nmas e horrivel viajar nele!\\pNao tem espaco para ninguem!$"
       ]
     },
     "data/maps/SeafloorCavern_Room3/scripts.inc": {
       "SeafloorCavern_Room3_Text_Grunt5Intro": [
-        "Para que o nosso sonho se torne\\nreal, precisamos do poder de\\lPOKEMON.\\pMas intrometidos como tu usam o\\npoder de POKEMON para se\\lmeterem connosco, mesmo num\\llugar como este!\\pA vida nao funciona como\\nprecisamos!$"
+        "Nosso sonho exige\\no poder dos POKEMON!\\pMas voce insiste\\nem atrapalhar nossos planos!\\pPor que tudo precisa\\nser tao complicado?$"
       ]
     },
     "data/maps/SeafloorCavern_Room4/scripts.inc": {
       "SeafloorCavern_Room4_Text_Grunt3Intro": [
-        "Quem es tu? De onde vieste?$"
+        "Quem e voce?\\nDe onde veio?$"
       ],
       "SeafloorCavern_Room4_Text_Grunt3Defeat": [
-        "Perdi-o...$"
+        "Eu perdi...$"
       ],
       "SeafloorCavern_Room4_Text_Grunt3PostBattle": [
-        "Nao consigo encontrar a saida!\\pNao tenho medo. Nao me\\ninterpretes mal!$"
+        "Nao consigo achar a saida!\\pMas nao estou com medo!\\nEntendeu?$"
       ],
       "SeafloorCavern_Room4_Text_Grunt4Intro": [
-        "Quem es tu? Onde pensas que\\nvais?$"
+        "Quem e voce?\\nAonde pensa que vai?$"
       ],
       "SeafloorCavern_Room4_Text_Grunt4Defeat": [
-        "Falhei em ganhar!$"
+        "Nao consegui vencer!$"
       ],
       "SeafloorCavern_Room4_Text_Grunt4PostBattle": [
-        "O meu parceiro esqueceu-se do\\nmapa naquele submarino!\\pQue tal isso por ser inutil?$"
+        "Meu colega esqueceu\\no mapa no submarino!\\pComo alguem consegue\\nser tao descuidado?$"
       ]
     },
     "data/maps/SeafloorCavern_Room9/scripts.inc": {
       "SeafloorCavern_Room9_Text_ArchieDefeat": [
-        "O que? Eu perdi para uma\\ncrianca como voce?!$"
+        "O que?\\pPerdi para uma crianca?$"
       ],
       "SeafloorCavern_Room9_Text_RedOrbShinesByItself": [
-        "A ORB RED de repente comecou a\\nbrilhar sozinha!$"
+        "A RED ORB comecou\\na brilhar sozinha!$"
       ]
     },
     "data/maps/SeafoamIslands_B4F_Frlg/scripts.inc": {
