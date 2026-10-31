@@ -57,7 +57,7 @@
         "E mau!$"
       ],
       "Route3_Text_JanicePostBattle": [
-        "Nao devia estar a olhar se nao\\nqueres lutar!$"
+        "Nao devia estar a olhar se nao\\nqueres batalhar!$"
       ],
       "Route3_Text_GregIntro": [
         "E TREINADOR? Vamos tratar\\ndisso imediatamente!$"
@@ -122,7 +122,7 @@
         "Perdi essa!$"
       ],
       "Route40_Text_SwimmerfElaineAfter": [
-        "Diria que sou melhor nadador do\\nque tu. Sim!$"
+        "Diria que sou melhor nadador do\\nque voce. Sim!$"
       ],
       "Route40_Text_SwimmerfPaulaSeen": [
         "Sem tubo interior para mim.\\pEstou a agarrar-me a um POKEMON\\ndo mar!$"
@@ -263,7 +263,7 @@
         "As pessoas podem gostar de\\ntipos diferentes de POKEMON.\\pPOKEMON nao e apenas sobre ter\\no mais poderoso.$"
       ],
       "Route43_Text_FisherMarvinSeen": [
-        "Estou numa crise.\\pTalvez seja o equipamento que\\nestou a usar.\\pVamos lutar por uma mudanca de\\nritmo!$"
+        "Estou numa crise.\\pTalvez seja o equipamento que\\nestou a usar.\\pVamos batalhar por uma mudanca de\\nritmo!$"
       ],
       "Route43_Text_FisherMarvinBeaten": [
         "Perdi, mas sinto-me melhor.$"
@@ -304,7 +304,7 @@
         "Hmmmm... Isto nao esta certo.$"
       ],
       "Route44_Text_FisherEdgarAfter": [
-        "Sao 100 vitorias para 101\\nderrotas.\\pNao voltarei a lutar durante\\nalgum tempo.$"
+        "Sao 100 vitorias para 101\\nderrotas.\\pNao voltarei a batalhar durante\\nalgum tempo.$"
       ],
       "Route44_Text_BirdKeeperVance1Seen": [
         "Sabe sobre o lendario passaro\\nPOKEMON?$"
@@ -428,7 +428,7 @@
         "Acabou. Nao me importo. Nos, os\\nHIKERS, somos assim.$"
       ],
       "Route46_Text_CamperTedSeen": [
-        "Tambem estou criando o POKEMON!\\pVais lutar comigo?$"
+        "Tambem estou criando o POKEMON!\\pVais batalhar comigo?$"
       ],
       "Route46_Text_CamperTedBeaten": [
         "O que?$"
@@ -437,7 +437,7 @@
         "Fiz meu melhor, mas nao\\nconsegui.\\pSem desculpas, admito que\\nperdi.$"
       ],
       "Route46_Text_PicnickerErinSeen": [
-        "Eu tambem crio POKEMON!\\pVais lutar comigo?$"
+        "Eu tambem crio POKEMON!\\pVais batalhar comigo?$"
       ],
       "Route46_Text_PicnickerErinBeaten": [
         "Ratos!$"
@@ -544,10 +544,10 @@
         "Vem ver-me daqui a pouco.$"
       ],
       "Route5_PokemonDayCare_Text_MonNeedsToSpendMoreTime": [
-        "Ja voltou?\\pSua{STR_VAR_1}Tem de passar\\nmais tempo comigo.$"
+        "Ja voltou?\\pSua{STR_VAR_1}Precisa passar\\nmais tempo comigo.$"
       ],
       "Route5_PokemonDayCare_Text_OweMeXForMonsReturn": [
-        "Deves-me uma.{STR_VAR_2}para o\\nregresso deste POKEMON.$"
+        "Deve-me uma.{STR_VAR_2}para o\\nregresso deste POKEMON.$"
       ],
       "Route5_PokemonDayCare_Text_ThankYouHeresMon": [
         "Obrigado! Aqui esta o seu\\nPokemon.$"
@@ -789,7 +789,7 @@
         "Levantei-me cedo todos os dias\\npara levantar meu POKEMON dos\\lcasulos!$"
       ],
       "Route9_Text_BrentPostBattle": [
-        "Tenho de recolher mais do que\\ninsectos para ficar mais\\lforte...$"
+        "Preciso recolher mais do que\\ninsectos para ficar mais\\lforte...$"
       ]
     }
   },
