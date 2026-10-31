@@ -1,0 +1,224 @@
+{
+  "status": "human_language_revision_complete; ARM_GBA_mGBA_QA_pending",
+  "scope": "Only actually changed dialogue entries compared against stage13 branch, not unchanged drafts",
+  "source_diff_against": "feature/grandworld-ptbr-human-review-stage13-20261031",
+  "source_shards": [
+    "ptbr_auto_review_019.json",
+    "ptbr_auto_review_021.json"
+  ],
+  "reviewed_entries": 165,
+  "reviewed_labels_by_source": {
+    "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc": [
+      "SaffronCity_CopycatsHouse_1F_Text_DaughterIsSelfCentered",
+      "SaffronCity_CopycatsHouse_1F_Text_DaughterLikesToMimicPeople"
+    ],
+    "data/maps/SaffronCity_CopycatsHouse_2F_Frlg/scripts.inc": [
+      "Text_MimicDeclined",
+      "Text_MimicWhichMon",
+      "SaffronCity_CopycatsHouse_2F_Text_RareMonOnlyDoll",
+      "SaffronCity_CopycatsHouse_2F_Text_MarioWearingABucket"
+    ],
+    "data/maps/SaffronCity_Dojo_Frlg/scripts.inc": [
+      "SaffronCity_Dojo_Text_MasterKoichiDefeat",
+      "SaffronCity_Dojo_Text_StayAndTrainWithUs",
+      "SaffronCity_Dojo_Text_MikeIntro",
+      "SaffronCity_Dojo_Text_MikeDefeat",
+      "SaffronCity_Dojo_Text_HidekiIntro",
+      "SaffronCity_Dojo_Text_HidekiDefeat",
+      "SaffronCity_Dojo_Text_AaronIntro",
+      "SaffronCity_Dojo_Text_AaronDefeat",
+      "SaffronCity_Dojo_Text_AaronPostBattle",
+      "SaffronCity_Dojo_Text_HitoshiDefeat",
+      "SaffronCity_Dojo_Text_HitoshiPostBattle",
+      "SaffronCity_Dojo_Text_YouWantHitmonchan",
+      "SaffronCity_Dojo_Text_BetterNotGetGreedy",
+      "SaffronCity_Dojo_Text_EnemiesOnEverySide",
+      "SaffronCity_Dojo_Text_GoesAroundComesAround"
+    ],
+    "data/maps/SaffronCity_Frlg/scripts.inc": [
+      "SaffronCity_Text_WhatDoYouWantGetLost",
+      "SaffronCity_Text_DontGetDefiantOrIllHurtYou",
+      "SaffronCity_Text_CriminalLifeMakesMeFeelAlive",
+      "SaffronCity_Text_WatchWhereYoureWalking",
+      "SaffronCity_Text_WeCanExploitMonsAroundWorld",
+      "SaffronCity_Text_ImASecurityGuard",
+      "SaffronCity_Text_HesTakingASnooze"
+    ],
+    "data/maps/SaffronCity_MrPsychicsHouse_Frlg/scripts.inc": [
+      "SaffronCity_MrPsychicsHouse_Text_YouWantedThis",
+      "SaffronCity_MrPsychicsHouse_Text_ReceivedTM29FromMrPsychic",
+      "SaffronCity_MrPsychicsHouse_Text_YouveNoRoom"
+    ],
+    "data/maps/SaffronCity_PokemonTrainerFanClub_Frlg/scripts.inc": [
+      "SaffronCity_PokemonTrainerFanClub_Text_HuhYou",
+      "SaffronCity_PokemonTrainerFanClub_Text_YourePlayerWereYourFansNow",
+      "SaffronCity_PokemonTrainerFanClub_Text_AlwaysCheerForYou",
+      "SaffronCity_PokemonTrainerFanClub_Text_IllAlwaysBelieveInYou",
+      "SaffronCity_PokemonTrainerFanClub_Text_WasYourFanNotAnymore",
+      "SaffronCity_PokemonTrainerFanClub_Text_EveryonesYourFanButICantBe",
+      "SaffronCity_PokemonTrainerFanClub_Text_TrainersCoolWhenBattling",
+      "SaffronCity_PokemonTrainerFanClub_Text_CanYouAutographShorts",
+      "SaffronCity_PokemonTrainerFanClub_Text_CountingOnYou",
+      "SaffronCity_PokemonTrainerFanClub_Text_HadPleasureOfWatchingYouBattle",
+      "SaffronCity_PokemonTrainerFanClub_Text_NeverSeenTrainerOfYourMagnificence",
+      "SaffronCity_PokemonTrainerFanClub_Text_YouveStillAWaysToGo",
+      "SaffronCity_PokemonTrainerFanClub_Text_YoullBeTalkedAboutIfYouKeepWinning",
+      "SaffronCity_PokemonTrainerFanClub_Text_WantToBeLikeYouOneDay",
+      "SaffronCity_PokemonTrainerFanClub_Text_EveryoneButMeStoppedBeingYourFan",
+      "SaffronCity_PokemonTrainerFanClub_Text_WantToBeLikeSabrina",
+      "SaffronCity_PokemonTrainerFanClub_Text_CanIBecomeCoolTrainerOneDay",
+      "SaffronCity_PokemonTrainerFanClub_Text_TheWayYouBattleIsCool",
+      "SaffronCity_PokemonTrainerFanClub_Text_ImOnlyOneLeftOfYourFans",
+      "SaffronCity_PokemonTrainerFanClub_Text_LoveWayTrainerTalks",
+      "SaffronCity_PokemonTrainerFanClub_Text_ImLoneTrainerFan",
+      "SaffronCity_PokemonTrainerFanClub_Text_AdoreWayYouBattle",
+      "SaffronCity_PokemonTrainerFanClub_Text_ImYourNumberOneFan",
+      "SaffronCity_PokemonTrainerFanClub_Text_TrainerHasBeenOnFire",
+      "SaffronCity_PokemonTrainerFanClub_Text_EveryoneTalksAboutYou",
+      "SaffronCity_PokemonTrainerFanClub_Text_YouReallyAreAmazing",
+      "SaffronCity_PokemonTrainerFanClub_Text_ImYourOnlyFan",
+      "SaffronCity_PokemonTrainerFanClub_Text_WhyCantOthersSeeMastersDignity",
+      "SaffronCity_PokemonTrainerFanClub_Text_BelieveInMasterWithAllMyHeart",
+      "SaffronCity_PokemonTrainerFanClub_Text_YourBattleStyleIsEducational"
+    ],
+    "data/maps/SlateportCity_OceanicMuseum_1F/scripts.inc": [
+      "SlateportCity_OceanicMuseum_1F_Text_PleaseEnjoyYourself",
+      "SlateportCity_OceanicMuseum_1F_Text_NotEnoughMoney",
+      "SlateportCity_OceanicMuseum_1F_Text_CatchUpWithYourGroup",
+      "SlateportCity_OceanicMuseum_1F_Text_WouldStuffHereMakeMeRich",
+      "SlateportCity_OceanicMuseum_1F_Text_CanLearnForNefariousDeeds",
+      "SlateportCity_OceanicMuseum_1F_Text_RustboroBungled",
+      "SlateportCity_OceanicMuseum_1F_Text_LearnAboutSeaForBattling",
+      "SlateportCity_OceanicMuseum_1F_Text_MustBePokemonWeDontKnow",
+      "SlateportCity_OceanicMuseum_1F_Text_WantSeaPokemon",
+      "SlateportCity_OceanicMuseum_1F_Text_HopeINeverSeeYouAgain",
+      "SlateportCity_OceanicMuseum_1F_Text_YouHaveToTakeThis",
+      "SlateportCity_OceanicMuseum_1F_Text_OceanSoilDisplay",
+      "SlateportCity_OceanicMuseum_1F_Text_BeachSandDisplay",
+      "SlateportCity_OceanicMuseum_1F_Text_FossilDisplay",
+      "SlateportCity_OceanicMuseum_1F_Text_DepthMeasuringMachine"
+    ],
+    "data/maps/SlateportCity_OceanicMuseum_2F/scripts.inc": [
+      "SlateportCity_OceanicMuseum_2F_Text_WellTakeThoseParts",
+      "SlateportCity_OceanicMuseum_2F_Text_Grunt1Defeat",
+      "SlateportCity_OceanicMuseum_2F_Text_BossGoingToBeFurious",
+      "SlateportCity_OceanicMuseum_2F_Text_LetMeTakeCareOfThis",
+      "SlateportCity_OceanicMuseum_2F_Text_Grunt2Defeat",
+      "SlateportCity_OceanicMuseum_2F_Text_MeddlingKid",
+      "SlateportCity_OceanicMuseum_2F_Text_CameToSeeWhatsTakingSoLong",
+      "SlateportCity_OceanicMuseum_2F_Text_WantToRideSubmarine",
+      "SlateportCity_OceanicMuseum_2F_Text_PressureExperiment",
+      "SlateportCity_OceanicMuseum_2F_Text_SurfaceSeawaterDisplay"
+    ],
+    "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc": [
+      "SlateportCity_SternsShipyard_1F_Text_CantMakeHeadsOrTails",
+      "SlateportCity_SternsShipyard_1F_Text_SeaIsLikeLivingThing",
+      "SlateportCity_SternsShipyard_1F_Text_GetSeasickEasily"
+    ],
+    "data/maps/SlateportCity_SternsShipyard_2F/scripts.inc": [
+      "SlateportCity_SternsShipyard_2F_Text_ShipDesignMoreLikeBuilding",
+      "SlateportCity_SternsShipyard_2F_Text_FloatsBecauseBuoyancy"
+    ],
+    "data/maps/SlowpokeWell_B1F/scripts.inc": [
+      "SlowpokeWell_B1F_Text_GruntM29Seen",
+      "SlowpokeWell_B1F_Text_ProtonSeen",
+      "SlowpokeWell_B1F_Text_ProtonBeaten",
+      "SlowpokeWell_B1F_Text_GruntM2Beaten",
+      "SlowpokeWell_B1F_Text_GruntF1Beaten",
+      "SlowpokeWell_B1F_Text_GruntF1After",
+      "SlowpokeWell_B1F_Text_SlowpokeWithMail",
+      "SlowpokeWell_B1F_Text_TaillessSlowpoke"
+    ],
+    "data/maps/SootopolisCity/scripts.inc": [
+      "SootopolisCity_Text_PhysicallyFitLivingHere",
+      "SootopolisCity_Text_GiantPokemonSuddenlyAppeared",
+      "SootopolisCity_Text_WhatIsThatGreenPokemon",
+      "SootopolisCity_Text_TwoPokemonArentAngry",
+      "SootopolisCity_Text_FlyingMonStoppedRampage",
+      "SootopolisCity_Text_WonderWhatWorldIsLike",
+      "SootopolisCity_Text_ThisIsWicked",
+      "SootopolisCity_Text_ThatWasWicked",
+      "SootopolisCity_Text_GoRedAndBlueMon",
+      "SootopolisCity_Text_DoYouKnowMonNames",
+      "SootopolisCity_Text_GreenOneSettlesThings",
+      "SootopolisCity_Text_SeeingLegendWithOwnEyes",
+      "SootopolisCity_Text_SawLegendWithOwnEyes",
+      "SootopolisCity_Text_BigPokemonFighting",
+      "SootopolisCity_Text_PrettyMonCameFromSky",
+      "SootopolisCity_Text_NoOrdinaryTourist",
+      "SootopolisCity_Text_CityRegainedCalm",
+      "SootopolisCity_Text_LeadSuperiorTrainerToCave",
+      "SootopolisCity_Text_AwakenedPokemonClash",
+      "SootopolisCity_Text_SootopolisSkyBeautiful",
+      "SootopolisCity_Text_GiganticPokemonFight",
+      "SootopolisCity_Text_FearedWorstWhenPokemonFlewDown",
+      "SootopolisCity_Text_NightSkyFavoriteScenery",
+      "SootopolisCity_Text_WeatherWentWild",
+      "SootopolisCity_Text_YouBroughtFlyingMon",
+      "SootopolisCity_Text_ThankYouForHelpAcceptThis",
+      "SootopolisCity_Text_DazzledByMentor"
+    ],
+    "data/maps/SootopolisCity_House1/scripts.inc": [
+      "SootopolisCity_House1_Text_DevelopedThisTM",
+      "SootopolisCity_House1_Text_ExplainBrickBreak"
+    ],
+    "data/maps/SootopolisCity_House2/scripts.inc": [
+      "SootopolisCity_House2_Text_DidYouKnowAboutMtPyreOrbs",
+      "SootopolisCity_House2_Text_YesTwoOrbsSideBySide",
+      "SootopolisCity_House2_Text_OughtToVisitAndSee"
+    ],
+    "data/maps/SootopolisCity_House3/scripts.inc": [
+      "SootopolisCity_House3_Text_YouMustBePrettyStrong",
+      "SootopolisCity_House3_Text_LonesomeTryWorkingHarder"
+    ],
+    "data/maps/SootopolisCity_House4/scripts.inc": [
+      "SootopolisCity_House4_Text_AncientTreasuresWaitingInSea",
+      "SootopolisCity_House4_Text_StrollUnderwaterWithPokemon"
+    ],
+    "data/maps/SootopolisCity_House5/scripts.inc": [
+      "SootopolisCity_House5_Text_SootopolisMtPyreConnection",
+      "SootopolisCity_House5_Text_BrotherUsedToStudySea"
+    ],
+    "data/maps/SootopolisCity_House6/scripts.inc": [
+      "SootopolisCity_House6_Text_TakeGoodCareOfIt",
+      "SootopolisCity_House6_Text_IllHoldItForYou",
+      "SootopolisCity_House6_Text_DontWantThisDoll"
+    ],
+    "data/maps/SootopolisCity_House7/scripts.inc": [
+      "SootopolisCity_House7_Text_CaveMadeToKeepSomething"
+    ],
+    "data/maps/SproutTower_1F/scripts.inc": [
+      "SproutTower_Text_SageChow_Seen",
+      "SproutTower_Text_SageChow_Beaten",
+      "SproutTower_Text_SageChow_AfterBattle",
+      "SproutTower_Text_1F_Sage1",
+      "SproutTower_Text_1F_Sage2",
+      "SproutTower_Text_1F_Teacher",
+      "SproutTower_Text_1F_Statue"
+    ],
+    "data/maps/SproutTower_2F/scripts.inc": [
+      "SproutTower_Text_SageNico_Seen",
+      "SproutTower_Text_SageNico_Beaten",
+      "SproutTower_Text_SageNico_AfterBattle",
+      "SproutTower_Text_SageEdmond_Seen",
+      "SproutTower_Text_SageEdmond_Beaten",
+      "SproutTower_Text_2F_Statue"
+    ],
+    "data/maps/SproutTower_3F/scripts.inc": [
+      "SproutTower_Text_SageLi_Seen",
+      "SproutTower_Text_SageLi_Beaten",
+      "SproutTower_Text_SageLi_TakeFlash",
+      "SproutTower_Text_SageLi_AfterBattle",
+      "SproutTower_Text_SageJin_Seen",
+      "SproutTower_Text_SageJin_Beaten",
+      "SproutTower_Text_SageJin_AfterBattle",
+      "SproutTower_Text_SageTroy_Seen",
+      "SproutTower_Text_SageTroy_Beaten",
+      "SproutTower_Text_SageNeal_Beaten",
+      "SproutTower_Text_SageNeal_AfterBattle"
+    ]
+  },
+  "accentless_ascii": true,
+  "no_gameplay_source_changes": true,
+  "release_approved": false
+}

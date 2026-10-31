@@ -36,6 +36,7 @@ on:
       - 'tools/grandworld/ptbr_reviewed_stage11.json'
       - 'tools/grandworld/ptbr_reviewed_stage12.json'
       - 'tools/grandworld/ptbr_reviewed_stage13.json'
+      - 'tools/grandworld/ptbr_reviewed_stage14.json'
       - 'tools/grandworld/tests/test_audit_ptbr_draft_quality.py'
       - 'tools/grandworld/adapt_ptbr_greedy_gifts_qa.py'
       - 'tools/grandworld/tests/test_adapt_ptbr_greedy_gifts_qa.py'
@@ -112,15 +113,16 @@ jobs:
           from pathlib import Path
           d=json.loads(Path('ptbr-draft-quality.json').read_text())
           assert d['automated_draft_entries']==5200
-          assert d['human_language_reviewed']==1518
+          assert d['human_language_reviewed']==1683
           assert d['human_reviewed_stage8']==239
           assert d['human_reviewed_stage9']==328
           assert d['human_reviewed_stage10']==117
           assert d['human_reviewed_stage11']==170
           assert d['human_reviewed_stage12']==330
           assert d['human_reviewed_stage13']==124
-          assert d['pending_human_language_review']==3682
-          print('Human-reviewed stage13 124/124, 1518/5200 reviewed drafts, 3682 still pending; release not certified')
+          assert d['human_reviewed_stage14']==165
+          assert d['pending_human_language_review']==3517
+          print('Human-reviewed stage14 165/165, 1683/5200 reviewed drafts, 3517 still pending; release not certified')
           PY
           python3 - <<'PY'
           import json

@@ -554,94 +554,94 @@
     },
     "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc": {
       "SaffronCity_CopycatsHouse_1F_Text_DaughterIsSelfCentered": [
-        "A minha filha e tao\\negocentrica. Ela tem apenas\\lalguns amigos.$"
+        "Minha filha e muito\\ncentrada em si mesma.\\pEla quase nao tem amigos!$"
       ],
       "SaffronCity_CopycatsHouse_1F_Text_DaughterLikesToMimicPeople": [
-        "A minha filha gosta de imitar\\nas pessoas. E muito irritante.\\pA imitacao dela deu-lhe o\\napelido de COPYCAT por aqui.$"
+        "Minha filha adora\\nimitar outras pessoas.\\pPor isso todos aqui\\nchamam ela de COPYCAT!$"
       ]
     },
     "data/maps/SaffronCity_CopycatsHouse_2F_Frlg/scripts.inc": {
       "Text_MimicDeclined": [
-        "Nao gostas de MIMIC?$"
+        "Nao quer aprender MIMIC?$"
       ],
       "Text_MimicWhichMon": [
-        "Eu realmente amo MIMIC! Quem\\nvai aprender?$"
+        "Eu adoro o golpe MIMIC!\\pQual POKEMON\\nvai aprende-lo?$"
       ],
       "SaffronCity_CopycatsHouse_2F_Text_RareMonOnlyDoll": [
-        "Este e um POKEMON raro! Huh? E\\nso uma boneca!$"
+        "Um POKEMON muito raro!\\pO que? E apenas uma boneca!$"
       ],
       "SaffronCity_CopycatsHouse_2F_Text_MarioWearingABucket": [
-        "Um jogo com o MARIO a usar um\\nbalde na cabeca!$"
+        "Um jogo do MARIO\\ncom um balde na cabeca!$"
       ]
     },
     "data/maps/SaffronCity_Dojo_Frlg/scripts.inc": {
       "SaffronCity_Dojo_Text_MasterKoichiDefeat": [
-        "Hwa! Arrgh! Espancado!$"
+        "Argh! Fui derrotado!$"
       ],
       "SaffronCity_Dojo_Text_StayAndTrainWithUs": [
-        "Grunt! Fica e treina karate\\nconnosco!$"
+        "Fique aqui!\\nTreine KARATE com a gente!$"
       ],
       "SaffronCity_Dojo_Text_MikeIntro": [
-        "Hoargh! Tira os sapatos!$"
+        "Ei! Tire os sapatos\\nantes de entrar!$"
       ],
       "SaffronCity_Dojo_Text_MikeDefeat": [
-        "Desisto!$"
+        "Tudo bem! Eu desisto!$"
       ],
       "SaffronCity_Dojo_Text_HidekiIntro": [
-        "Ouvi dizer que es bom!\\nMostra-me!$"
+        "Dizem que voce e forte!\\nMostre seu talento!$"
       ],
       "SaffronCity_Dojo_Text_HidekiDefeat": [
-        "Juiz! Um ponto!$"
+        "Argh! Ponto para voce!$"
       ],
       "SaffronCity_Dojo_Text_AaronIntro": [
-        "Ola! Nao tenho medo de nada\\nduro!\\pParto pedras para treinar todos\\nos dias!$"
+        "Eu treino todos os dias!\\pQuebro pedras\\ncom as proprias maos!$"
       ],
       "SaffronCity_Dojo_Text_AaronDefeat": [
-        "Yow! Dedos espetados!$"
+        "Ai! Meus dedos!$"
       ],
       "SaffronCity_Dojo_Text_AaronPostBattle": [
-        "A unica coisa que nos assusta e\\no poder psiquico!$"
+        "Tememos apenas\\nos poderes psiquicos!$"
       ],
       "SaffronCity_Dojo_Text_HitoshiDefeat": [
-        "Oof! Desisto!$"
+        "Ufa! Eu desisto!$"
       ],
       "SaffronCity_Dojo_Text_HitoshiPostBattle": [
-        "Os principais cacas do outro\\nlado do comboio terrestre.$"
+        "O GINASIO fica\\ndo outro lado da cidade!$"
       ],
       "SaffronCity_Dojo_Text_YouWantHitmonchan": [
-        "Queres o HITMONCHAN que bate\\nnos pistoes?$"
+        "Quer escolher HITMONCHAN,\\no POKEMON que soca?$"
       ],
       "SaffronCity_Dojo_Text_BetterNotGetGreedy": [
-        "Ja levaste esta.$"
+        "Nao seja ganancioso!\\nJa escolheu seu POKEMON!$"
       ],
       "SaffronCity_Dojo_Text_EnemiesOnEverySide": [
-        "Inimigos de todos os lados!$"
+        "Inimigos por todos os lados!$"
       ],
       "SaffronCity_Dojo_Text_GoesAroundComesAround": [
-        "O que vai, volta.$"
+        "O que vai, volta!$"
       ]
     },
     "data/maps/SaffronCity_Frlg/scripts.inc": {
       "SaffronCity_Text_WhatDoYouWantGetLost": [
-        "O que queres? Desaparece!$"
+        "O que voce quer?\\nSaia daqui!$"
       ],
       "SaffronCity_Text_DontGetDefiantOrIllHurtYou": [
-        "Nao sejas desafiante! Ou terei\\nde te magoar!$"
+        "Nao desafie a EQUIPE ROCKET!\\nE melhor sair!$"
       ],
       "SaffronCity_Text_CriminalLifeMakesMeFeelAlive": [
-        "A minha vida como criminoso\\nfaz-me sentir tao vivo!$"
+        "Adoro a vida de criminoso!\\nHa ha ha!$"
       ],
       "SaffronCity_Text_WatchWhereYoureWalking": [
-        "Ow! Olha por onde andas!$"
+        "Ei! Olhe por onde anda!$"
       ],
       "SaffronCity_Text_WeCanExploitMonsAroundWorld": [
-        "Com o SILPH sob controle,\\npodemos explorar POKEMON em\\ltodo o mundo!\\pVamos ficar ricos, sim!$"
+        "Com a SILPH sob controle,\\npodemos explorar POKEMON\\ndo mundo inteiro!\\pVamos ficar ricos!$"
       ],
       "SaffronCity_Text_ImASecurityGuard": [
-        "Sou seguranca.\\pCriancas suspeitas que nao\\npermito!$"
+        "Sou o seguranca daqui!\\pNao deixo criancas\\nsuspeitas entrarem!$"
       ],
       "SaffronCity_Text_HesTakingASnooze": [
-        "Ronca...\\pHah! Ele esta a dormir!$"
+        "Zzz...\\pHa ha! Ele esta dormindo!$"
       ]
     },
     "data/maps/SaffronCity_House_Frlg/scripts.inc": {
@@ -659,13 +659,13 @@
     },
     "data/maps/SaffronCity_MrPsychicsHouse_Frlg/scripts.inc": {
       "SaffronCity_MrPsychicsHouse_Text_YouWantedThis": [
-        "Espera! Nao digas nada!\\pTu querias isto!$"
+        "Espere! Nao diga nada!\\pSei exatamente\\no que voce quer!$"
       ],
       "SaffronCity_MrPsychicsHouse_Text_ReceivedTM29FromMrPsychic": [
-        "{PLAYER}recebeu TM29 de MR.\\nPSYCHIC.$"
+        "{PLAYER} recebeu TM29\\nde MR. PSYCHIC!$"
       ],
       "SaffronCity_MrPsychicsHouse_Text_YouveNoRoom": [
-        "Onde pensas por isto? Nao tens\\nespaco.$"
+        "Sua BOLSA esta cheia!\\nAbra espaco primeiro!$"
       ]
     },
     "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc": {
@@ -678,94 +678,94 @@
     },
     "data/maps/SaffronCity_PokemonTrainerFanClub_Frlg/scripts.inc": {
       "SaffronCity_PokemonTrainerFanClub_Text_HuhYou": [
-        "Huh? Tu...$"
+        "O que?\\nVoce...$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_YourePlayerWereYourFansNow": [
-        "Talvez...\\pTu es! Voce e{PLAYER}!\\pEstavamos a falar de ti!\\pEstavamos a falar de como um\\ntreinador incrivelmente bom\\lapareceu.\\pE esse alguem es tu! Es tao\\nfixe!\\pEntao, decidimos que nos\\ntornariamos o seu FAN CLUB!\\pTodos esperamos que continues a\\nlutar e nos mostres como es\\lfixe.\\pAssim, talvez outras pessoas se\\ntornem fas como eu.$"
+        "Uau! E {PLAYER}!\\pEstavamos falando de voce!\\pUm TREINADOR incrivel\\napareceu em KANTO!\\pE esse TREINADOR e voce!\\pDecidimos criar\\num FAN CLUB em sua homenagem!\\pContinue vencendo batalhas\\ne mostrando seu talento!\\pVamos torcer por voce!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_AlwaysCheerForYou": [
-        "Estarei sempre a torcer por ti!\\pVai.{PLAYER}Vai!$"
+        "Vou sempre torcer por voce!\\pVai, {PLAYER}! Vai!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_IllAlwaysBelieveInYou": [
-        "Acreditarei sempre em\\nti.{PLAYER}.\\pPor favor, mostre aos outros\\ncomo e quando luta a serio.$"
+        "Sempre vou acreditar\\nem voce, {PLAYER}!\\pMostre a todos como\\nvoce sabe batalhar!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_WasYourFanNotAnymore": [
-        "Desculpa. Eu era teu fa antes.\\pMas agora, parece ter perdido a\\nunidade que tinha antes.\\pUltimamente, eu\\nacho{STR_VAR_1}Tem sido muito\\lmais fixe.$"
+        "Desculpe... Eu era seu fa.\\pMas parece que voce\\nperdeu o ritmo nas batalhas.\\pUltimamente, {STR_VAR_1}\\ntem me impressionado mais!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_EveryonesYourFanButICantBe": [
-        "Oh!{PLAYER}!\\pTem estado todos entusiasmados\\ncontigo recentemente.\\pCompreendo porque. Sei que es\\nforte.\\pMas, sabes que mais?\\pUma vez eu me\\ntornei{STR_VAR_1}Nao posso\\ldeixar de ser fa.$"
+        "Ah! E {PLAYER}!\\pTodo mundo esta\\nfalando de voce!\\pSei que voce e forte,\\nmas ainda torco por {STR_VAR_1}!\\pNao posso abandonar\\nmeu TREINADOR favorito!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_TrainersCoolWhenBattling": [
-        "Acho que os treinadores sao tao\\nfixes quando lutam.\\pTambem nao achas?$"
+        "TREINADORES ficam incriveis\\nquando batalham!\\pVoce tambem acha?$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_CanYouAutographShorts": [
-        "Oh! E...{PLAYER}Muito fixe!\\pOh! Sim!\\pPodes autografar alguma coisa?\\nE os meus calcoes?$"
+        "Uau! E {PLAYER}!\\pPode me dar um autografo?\\pQue tal assinar\\nmeus SHORTS?$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_CountingOnYou": [
-        "Por mais quente que tenha\\nsido...\\pE por mais frio que fique...\\pSempre acreditei em calcoes\\nusados!\\pConto contigo para continuares\\na ganhar!\\pAcredito em ti tanto quanto\\nacredito em calcoes!$"
+        "No calor ou no frio,\\nsempre uso SHORTS!\\pE sempre vou torcer\\npor suas vitorias!\\pAcredito em voce\\ntanto quanto em meus SHORTS!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_HadPleasureOfWatchingYouBattle": [
-        "{PLAYER}Tive o prazer de te ver\\nlutar.\\pTraz de volta doces memorias da\\nminha propria juventude ha\\lmuito perdida.\\pQue voce continue a encontrar\\nsucesso. Tens um fa em mim!$"
+        "{PLAYER}, vi sua batalha!\\pLembrei de quando\\neu era um jovem TREINADOR.\\pContinue se esforcando!\\nVoce tem minha torcida!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_NeverSeenTrainerOfYourMagnificence": [
-        "Viajei por todo o pais.\\pMas nunca vi um instrutor da\\nsua magnificencia.\\pTenha coragem em suas\\nhabilidades e continue lutando!\\pFaz-me essa promessa, meu jovem\\nidolo!$"
+        "Viajei por toda KANTO.\\pNunca vi um TREINADOR\\ncom tanto talento!\\pConfie na sua equipe\\ne continue batalhando!\\pPrometa que nao vai desistir!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_YouveStillAWaysToGo": [
-        "Ah, entao voce e o\\nmuito-falado{PLAYER}.\\pVoce certamente tem o olhar de\\num vencedor.\\pMas aceitar-te como um\\nverdadeiro grande Pokemon...\\p... ...\\pAinda tens muito que fazer!$"
+        "Entao voce e {PLAYER}...\\pTem olhar de vencedor!\\pMas para se tornar\\num grande TREINADOR,\\nainda precisa aprender muito!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_YoullBeTalkedAboutIfYouKeepWinning": [
-        "Todos nos aqui reunidos somos\\nfas de Treinadores Pokemon.\\pA forma como ficam em\\nbatalha... Sao a imagem da\\lfrieza.\\pTalvez tambem lhe falem aqui,\\nse continuar a ganhar.$"
+        "Somos fas de TREINADORES\\nPOKEMON talentosos!\\pAdoramos assistir batalhas!\\pSe continuar vencendo,\\nvamos falar muito de voce!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_WantToBeLikeYouOneDay": [
-        "E...{PLAYER}E que...{PLAYER}!\\pQuero ser como{PLAYER}Um dia!$"
+        "{PLAYER}! {PLAYER}!\\pQuero ser como {PLAYER}\\nquando crescer!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_EveryoneButMeStoppedBeingYourFan": [
-        "Todos deixaram de ser{PLAYER}E\\nfa...\\pMas isso significa que posso\\nter{PLAYER}So para mim!\\pBoa! Vai em frente! O meu\\nunico{PLAYER}!$"
+        "Todos deixaram de ser\\nfas de {PLAYER}...\\pAgora posso ser\\no unico fa de {PLAYER}!\\pVai, {PLAYER}!\\nVou torcer ainda mais!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_WantToBeLikeSabrina": [
-        "Sabes que mais? Quero ser como\\na SABRINA!\\pQuero ser uma rapariga psiquica\\ncomo ela!$"
+        "Quero ser como SABRINA!\\pMeu sonho e aprender\\na usar poderes psiquicos!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_CanIBecomeCoolTrainerOneDay": [
-        "Pergunto-me se posso tornar-me\\num treinador fixe um dia?$"
+        "Sera que um dia\\nserei um TREINADOR incrivel?$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_TheWayYouBattleIsCool": [
-        "Meu, oh, meu! Fixe! Muito fixe!\\p...Huh? Nao, tu nao.\\pTal como tu combates. Fixe.$"
+        "Uau! Que incrivel!\\pAh, nao e voce...\\nE seu jeito de batalhar!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_ImOnlyOneLeftOfYourFans": [
-        "Yo,{PLAYER}!\\pParece que sou o unico que\\nsobrou dos teus fas.\\pMas, sabes, gosto de ser um\\nunico fa... E menos stressante.\\pContinuem!$"
+        "Ei, {PLAYER}!\\pParece que sou\\nseu ultimo fa!\\pMas nao me importo!\\nContinue batalhando!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_LoveWayTrainerTalks": [
-        "{STR_VAR_1}E fixe, nao e? Adoro\\na maneira como ele fala.\\pGostaria de ter a oportunidade\\nde o conhecer pessoalmente uma\\lvez.$"
+        "{STR_VAR_1} e muito legal!\\pGosto do jeito\\nde falar desse TREINADOR!\\pQueria conhece-lo pessoalmente!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_ImLoneTrainerFan": [
-        "Da para acreditar? Todos se\\ntornaram seus fas.\\pDepois de tudo o que passamos,\\nsou o unico{STR_VAR_1}Fa?\\pSer o unico{STR_VAR_1}E o meu\\nestilo.$"
+        "Todo mundo virou seu fa!\\pAgora so eu torco\\npor {STR_VAR_1}!\\pMas gosto de ser diferente!\\n{STR_VAR_1} tem minha torcida!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_AdoreWayYouBattle": [
-        "Meu Deus! Es mesmo tu?{PLAYER}?\\pTenho de te dizer, adoro a\\nforma como lutas.\\pEspero que continues. Serei o\\nteu fa numero um!$"
+        "E voce, {PLAYER}!\\pGosto muito\\ndo seu jeito de batalhar!\\pContinue assim!\\nSou seu maior fa!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_ImYourNumberOneFan": [
-        "Meu Deus! Se nao for{PLAYER}!\\pE tao decepcionante... Percebi\\nque sou o teu fa numero um!\\pBem, nao pode ser evitado!\\nDeixa-me animar-te, pelo menos!\\pViva, viva, viva.{PLAYER}!$"
+        "{PLAYER}, que surpresa!\\pAcho que sou\\nseu fa numero um!\\pEntao vou torcer por voce!\\pVai, {PLAYER}! Vai!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_TrainerHasBeenOnFire": [
-        "Recentemente,{STR_VAR_1}esteve\\nem chamas.\\pA forma como ele luta... E\\nassim que eu gosto!$"
+        "Ultimamente, {STR_VAR_1}\\nesta batalhando muito bem!\\pGosto do estilo dele!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_EveryoneTalksAboutYou": [
-        "Ola! Se nao for{PLAYER}!\\pUltimamente, toda a gente fala\\nde ti.\\pSinto-me so porque\\nprefiro{STR_VAR_1}.$"
+        "Ola, {PLAYER}!\\pTodos falam de voce\\nultimamente!\\pMas meu favorito\\nainda e {STR_VAR_1}!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_YouReallyAreAmazing": [
-        "Incrivel!{PLAYER}Es mesmo\\nincrivel!\\pEm vez de ficar a ver, talvez\\ndevesse tornar-me treinador\\ltambem.$"
+        "{PLAYER}, voce e incrivel!\\pTalvez eu tambem devesse\\ncomecar a treinar POKEMON!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_ImYourOnlyFan": [
-        "Sou o teu unico fa...\\nSuspiro... Isto e solitario...\\pNao podes esforcar-te mais e\\nfazer os outros repararem em\\lti?$"
+        "Parece que sou\\nseu unico fa agora...\\pTente vencer mais batalhas\\ne conquistar novos fas!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_WhyCantOthersSeeMastersDignity": [
-        "Mestre.{STR_VAR_1}e tao\\ndigno... Ele e o meu tipo.\\pPorque e que os outros nao veem\\na dignidade que ele\\lsimplesmente exala?$"
+        "O mestre {STR_VAR_1}\\ntem muita classe!\\pPor que os outros\\nnao percebem isso?$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_BelieveInMasterWithAllMyHeart": [
-        "Eu acredito no\\nMestre{STR_VAR_1}com todo o meu\\lcoracao.\\pMesmo que eu seja o unico a\\nacreditar nele.\\pMas nunca me sentirei so.\\pNao se continuar a pensar no\\nMestre.{STR_VAR_1}.$"
+        "Acredito no mestre {STR_VAR_1}\\ncom todo o coracao!\\pMesmo que eu seja\\no unico fa de {STR_VAR_1},\\nnao vou desistir!$"
       ],
       "SaffronCity_PokemonTrainerFanClub_Text_YourBattleStyleIsEducational": [
-        "Ola!\\pO teu estilo de luta e muito\\neducativo.\\pEspero que continues a ligar-te\\nao sucesso, hiyah!$"
+        "Ola! Gosto muito\\ndo seu estilo de batalha!\\pSempre aprendo\\nalguma coisa com voce!$"
       ]
     },
     "data/maps/SeafloorCavern_Room1/scripts.inc": {
