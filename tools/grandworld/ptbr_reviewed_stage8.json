@@ -5,7 +5,7 @@
     "ptbr_auto_review_014.json",
     "ptbr_auto_review_015.json"
   ],
-  "reviewed_entries": 196,
+  "reviewed_entries": 239,
   "reviewed_labels_by_source": {
     "data/maps/GoldenrodCity_UndergroundSwitches/scripts.inc": [
       "GoldenrodUnderground_Text_BurglarDuncanAfter",
@@ -272,6 +272,55 @@
       "MagmaHideout_4F_Text_Grunt13PostBattle",
       "MagmaHideout_4F_Text_TabithaDefeat",
       "MagmaHideout_4F_Text_MaxieDefeat"
+    ],
+    "data/maps/MahoganyHideout_B1F/scripts.inc": [
+      "MahoganyHideout_B1F_Text_CameraGrunt1Seen",
+      "MahoganyHideout_B1F_Text_CameraGrunt1Beaten",
+      "MahoganyHideout_B1F_Text_CameraGrunt2Seen",
+      "MahoganyHideout_B1F_Text_CameraGrunt2Beaten",
+      "MahoganyHideout_B1F_Text_ScientistJedSeen",
+      "MahoganyHideout_B1F_Text_ScientistJedBeaten",
+      "MahoganyHideout_B1F_Text_ScientistJedAfter",
+      "MahoganyHideout_B1F_Text_GruntM16Seen",
+      "MahoganyHideout_B1F_Text_GruntM16After",
+      "MahoganyHideout_B1F_Text_SecurityCameraStatue",
+      "MahoganyHideout_B1F_Text_NothingThere",
+      "MahoganyHideout_B1F_Text_SecretSwitch",
+      "MahoganyHideout_B1F_Text_SwitchOff"
+    ],
+    "data/maps/MahoganyHideout_B2F/scripts.inc": [
+      "MahoganyHideout_B2F_Text_ArianaLoss",
+      "MahoganyHideout_B2F_Text_LanceStepBack",
+      "MahoganyHideout_B2F_Text_LanceWhirlpool",
+      "MahoganyHideout_B2F_Text_LanceMonMaster",
+      "MahoganyHideout_B2F_Text_B2FTransmitter",
+      "MahoganyHideout_B2F_Text_B2FDeactivateTransmitter",
+      "MahoganyHideout_B2F_Text_LanceHeals2",
+      "MahoganyHideout_B2F_Text_GruntM17Seen",
+      "MahoganyHideout_B2F_Text_GruntM17Beaten",
+      "MahoganyHideout_B2F_Text_GruntM18Seen",
+      "MahoganyHideout_B2F_Text_GruntM18Beaten",
+      "MahoganyHideout_B2F_Text_GruntM18After",
+      "MahoganyHideout_B2F_Text_GruntM19Seen",
+      "MahoganyHideout_B2F_Text_GruntM19After"
+    ],
+    "data/maps/MahoganyHideout_B3F/scripts.inc": [
+      "MahoganyHideout_B3F_Text_B3FRocket",
+      "MahoganyHideout_B3F_Text_B3FLockedDoorNeedsPassword",
+      "MahoganyHideout_B3F_Text_B3FLockedDoorOpenSesame",
+      "MahoganyHideout_B3F_Text_PetrelDisbelief",
+      "MahoganyHideout_B3F_Text_MurkrowMimic",
+      "MahoganyHideout_B3F_Text_GruntF5Seen",
+      "MahoganyHideout_B3F_Text_GruntF5Beaten",
+      "MahoganyHideout_B3F_Text_GruntF5After",
+      "MahoganyHideout_B3F_Text_GruntM28Seen",
+      "MahoganyHideout_B3F_Text_GruntM28Beaten",
+      "MahoganyHideout_B3F_Text_ScientistRossSeen",
+      "MahoganyHideout_B3F_Text_ScientistRossBeaten",
+      "MahoganyHideout_B3F_Text_ScientistRossAfter",
+      "MahoganyHideout_B3F_Text_ScientistMitchSeen",
+      "MahoganyHideout_B3F_Text_ScientistMitchBeaten",
+      "MahoganyHideout_B3F_Text_ScientistMitchAfter"
     ]
   },
   "accentless_ascii_only": true,
