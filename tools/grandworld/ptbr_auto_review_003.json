@@ -46,7 +46,7 @@
         "Ja estive num ginasio POKEMON\\nalgumas vezes.\\pMas perco sempre.$"
       ],
       "Route10_Text_HeidiDefeat": [
-        "Ohh! Depois de todo o meu\\ntreino!$"
+        "Ah! Mesmo depois de tanto\\ntreino!$"
       ],
       "Route10_Text_HeidiPostBattle": [
         "Reparei em alguns POKEMANIACS a\\nrondar por ai.\\pConsegues imaginar? Eles? Aqui\\nnas montanhas?$"
@@ -128,7 +128,7 @@
         "O que? Nao tem espaco para\\nisto? Que tipo de itens\\lcarrega?\\pMas tudo bem, ja que me\\ncontactaste, sua recompensa\\lestara comigo ate mais tarde.$"
       ],
       "Route110_TrickHouseEnd_Text_MakeNewTricksToStumpYou": [
-        "Tira esse sorriso presuncoso da\\ntua cara! E muito cedo para\\lpensar que venceu!\\pFarei novos truques para te\\nenganar. So pode gozar comigo\\lquando acabares.\\pVolte para a proxima parcela\\nemocionante!$"
+        "Tire esse sorriso do rosto!\\nAinda nao venceu de verdade!\\lNao se ache tao esperto!\\pVou preparar novos truques\\npara enganar voce. So podera\\lrir de mim depois de vencer!\\pVolte para o proximo\\ngrande desafio!$"
       ],
       "Route110_TrickHouseEnd_Text_YoureIgnoringMe": [
         "Ei! Voce esta tentando\\nme ignorar? Isso parte\\lmeu pobre\\lcoracao!$"
@@ -192,7 +192,7 @@
     },
     "data/maps/Route110_TrickHousePuzzle1/scripts.inc": {
       "Route110_TrickHousePuzzle1_Text_SallyIntro": [
-        "Vou hackear e cortar o meu\\ncaminho para a vitoria com o\\lCUT que acabamos de aprender!$"
+        "Vou abrir meu caminho\\nate a vitoria usando o\\lgolpe CUT!$"
       ],
       "Route110_TrickHousePuzzle1_Text_SallyDefeat": [
         "Porque estas a falar tao a\\nserio?$"
@@ -369,7 +369,7 @@
         "Oh, sim, e forte.$"
       ],
       "Route110_TrickHousePuzzle7_Text_EverettPostBattle": [
-        "Esperava trocar de lugar\\ncom voce quando te ganhasse,\\lmas...$"
+        "Achei que trocaria de lugar\\ncom voce depois de vencer,\\lmas perdi...$"
       ]
     },
     "data/maps/Route110_TrickHousePuzzle8/scripts.inc": {
@@ -386,7 +386,7 @@
         "Isto nao esta certo! Nao posso\\nperder!$"
       ],
       "Route110_TrickHousePuzzle8_Text_KeiraPostBattle": [
-        "E um milagre teres-me vencido.\\nPodes gabar-te disso.$"
+        "Foi um milagre voce vencer!\\nPode se orgulhar disso.$"
       ],
       "Route110_TrickHousePuzzle8_Text_LeroyDefeat": [
         "Entendo... Voce possui um\\nestilo extraordinario.$"
@@ -414,7 +414,7 @@
         "Quando se trata de batalhas\\nPOKEMON, tendemos a ser\\lbastante apaixonados.$"
       ],
       "Route111_WinstrateFamilysHouse_Text_StrongerFamilyMembers": [
-        "A mama e mais forte que o papa.\\pSou mais forte que a mama.\\pE a avo e mais forte que eu!\\pMas meu irmao mais velho e\\nainda mais forte que a avo.$"
+        "Mamae e mais forte que papai.\\pEu sou mais forte que mamae.\\pVovo e mais forte que eu!\\pMas meu irmao mais velho\\ne mais forte que vovo.$"
       ]
     },
     "data/maps/Route112_CableCarStation/scripts.inc": {
@@ -562,7 +562,7 @@
     },
     "data/maps/Route119_WeatherInstitute_1F/scripts.inc": {
       "Route119_WeatherInstitute_1F_Text_Grunt1Intro": [
-        "O BOSS interessou-se pela\\npesquisa que tem aqui, por isso\\lenviou-nos.\\pPara de te meteres!$"
+        "Nosso chefe se interessou\\npelas pesquisas daqui, entao\\lnos mandou investigar.\\pNao interfira nos planos!$"
       ],
       "Route119_WeatherInstitute_1F_Text_Grunt1Defeat": [
         "Raios... Condenado por uma\\ncrianca...$"
@@ -612,7 +612,7 @@
         "Ahahahaha! E muito forte!$"
       ],
       "Route119_WeatherInstitute_2F_Text_ThanksPleaseTakePokemon": [
-        "Obrigado! Gracas a ti, estamos\\nseguros!\\pPode ser uma forma estranha de\\nte agradecer, mas aceita este\\lPOKEMON.$"
+        "Obrigado! Gracas a voce,\\nestamos a salvo!\\pComo forma de agradecer,\\nquero dar este POKEMON\\lpara voce.$"
       ],
       "Route119_WeatherInstitute_2F_Text_NoRoomForPokemon": [
         "Hm? Parece que nao tem espaco\\npara este POKEMON.$"
@@ -691,7 +691,7 @@
         "Acabei de me tornar um\\ntREINADOR. Mas acho que posso\\lganhar.$"
       ],
       "Route11_Text_DillonDefeat": [
-        "Meu POKEMON nao podia\\nganhar... Nao cresceram o\\lsuficiente?$"
+        "Meus POKEMON nao venceram...\\nTalvez ainda precisem\\lde mais treino!$"
       ],
       "Route11_Text_DillonPostBattle": [
         "E agora? Deixa-me em paz!$"
