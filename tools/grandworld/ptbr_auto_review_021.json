@@ -162,81 +162,81 @@
     },
     "data/maps/SlateportCity_OceanicMuseum_1F/scripts.inc": {
       "SlateportCity_OceanicMuseum_1F_Text_PleaseEnjoyYourself": [
-        "Por favor, divirta-se.$"
+        "Aproveite sua visita!$"
       ],
       "SlateportCity_OceanicMuseum_1F_Text_NotEnoughMoney": [
-        "A serio? Lamento, mas parece\\nque nao tem dinheiro\\lsuficiente.$"
+        "Desculpe, mas voce\\nnao tem dinheiro suficiente!$"
       ],
       "SlateportCity_OceanicMuseum_1F_Text_CatchUpWithYourGroup": [
-        "A serio? Estas com aquele grupo\\nque entrou mais cedo?\\pEs o unico que esta atrasado. E\\nmelhor ires atras deles!$"
+        "Ah! Veio com aquele grupo?\\pTodos ja entraram no museu.\\nVa se juntar a eles!$"
       ],
       "SlateportCity_OceanicMuseum_1F_Text_WouldStuffHereMakeMeRich": [
-        "Se eu roubasse as coisas aqui,\\nficaria rico?$"
+        "Sera que eu ficaria rico\\nse roubasse estas coisas?$"
       ],
       "SlateportCity_OceanicMuseum_1F_Text_CanLearnForNefariousDeeds": [
-        "O que aprendi aqui, posso usar\\nem actos nefastos...$"
+        "Posso usar o que aprendi aqui\\nem nossos planos secretos!$"
       ],
       "SlateportCity_OceanicMuseum_1F_Text_RustboroBungled": [
-        "Se os nossos capangas nao\\nestragassem as coisas no\\lRUSTBORO, nao estariamos aqui!$"
+        "Se nao tivessemos falhado\\nem RUSTBORO,\\nnao estariamos aqui!$"
       ],
       "SlateportCity_OceanicMuseum_1F_Text_LearnAboutSeaForBattling": [
-        "Quero aprender sobre o mar e\\nusar esse conhecimento para\\llutar.$"
+        "Quero conhecer melhor o mar\\npara melhorar minhas batalhas!$"
       ],
       "SlateportCity_OceanicMuseum_1F_Text_MustBePokemonWeDontKnow": [
-        "O mar e vasto sem fim, e\\ninfinitamente profundo...\\pDeve haver muitos Pokemon que\\nnao sabemos.$"
+        "O mar e tao vasto\\ne profundo...\\pDeve ter muitos POKEMON\\nque ainda nao conhecemos!$"
       ],
       "SlateportCity_OceanicMuseum_1F_Text_WantSeaPokemon": [
-        "Quero um Pokemon do mar.\\pAcho que seria fixe abracar-me.$"
+        "Queria ter um POKEMON\\nque vive no mar!\\pSeria otimo abraca-lo!$"
       ],
       "SlateportCity_OceanicMuseum_1F_Text_HopeINeverSeeYouAgain": [
-        "Esse TM fica-te mais bem do que\\na mim.\\pEspero nunca mais te ver!\\nWahahaha!$"
+        "Esta TM combina mais com voce!\\pEspero nunca mais\\nte encontrar! Ha ha!$"
       ],
       "SlateportCity_OceanicMuseum_1F_Text_YouHaveToTakeThis": [
-        "Awww, vamos! Tens de levar isto\\ne deixar-me ir!$"
+        "Ei! Pegue logo esta TM\\ne me deixe ir embora!$"
       ],
       "SlateportCity_OceanicMuseum_1F_Text_OceanSoilDisplay": [
-        "E uma amostra de solo do fundo\\ndo oceano.\\pAo longo de muitos anos, os\\nrestos de formas de vida se\\lestabelecem no fundo do mar,\\lfazendo camadas sedimentares.\\pAnalisando estas camadas, o\\npassado antigo e revelado.$"
+        "Amostra de solo\\ndo fundo do oceano.\\pCom o passar dos anos,\\nrestos de seres vivos\\nformam camadas de sedimentos.\\pEssas camadas revelam\\nsegredos do passado!$"
       ],
       "SlateportCity_OceanicMuseum_1F_Text_BeachSandDisplay": [
-        "E uma amostra de areia da\\npraia.\\pPedras de montanhas sao lavadas\\npor rios onde sao lascadas e\\lmoidas.\\pSao reduzidos a graos e acabam\\ncomo areia nas praias.$"
+        "Amostra de areia da praia.\\pPedras descem das montanhas\\nlevadas pelos rios.\\pCom o tempo, elas se desgastam\\ne viram pequenos graos.\\pAssim surge a areia da praia!$"
       ],
       "SlateportCity_OceanicMuseum_1F_Text_FossilDisplay": [
-        "E um fossil com cumes\\nondulados.\\pO solo no fundo do oceano e\\nrevistado pela mare.\\pA agua do mar que flui marca o\\nsolo com pequenos cumes e\\lvales.\\pSe este solo for fossilizado,\\nchama-se marca de ondulacao.$"
+        "Fossil com marcas onduladas.\\pO movimento das ondas\\ncria formas na areia.\\pCom o tempo, o solo\\npode se transformar em fossil.\\pEssas marcas guardam\\num registro do mar antigo!$"
       ],
       "SlateportCity_OceanicMuseum_1F_Text_DepthMeasuringMachine": [
-        "Uma estranha maquina gira sob\\numa cupula de vidro.\\pTalvez seja para medir a\\nprofundidade de algo...$"
+        "Uma maquina estranha\\ngira sob uma redoma de vidro.\\pTalvez sirva para medir\\na profundidade do oceano!$"
       ]
     },
     "data/maps/SlateportCity_OceanicMuseum_2F/scripts.inc": {
       "SlateportCity_OceanicMuseum_2F_Text_WellTakeThoseParts": [
-        "Hehehe, espera! Vamos levar\\nessas pecas!$"
+        "Ha ha ha!\\nVamos levar essas pecas!$"
       ],
       "SlateportCity_OceanicMuseum_2F_Text_Grunt1Defeat": [
-        "Awaaaah! Um miudo bateu-me!$"
+        "Aaah! Fui derrotado\\npor uma crianca!$"
       ],
       "SlateportCity_OceanicMuseum_2F_Text_BossGoingToBeFurious": [
-        "Meu, que desastre... O BOSS vai\\nficar furioso...$"
+        "Que desastre...\\pNosso chefe vai ficar furioso!$"
       ],
       "SlateportCity_OceanicMuseum_2F_Text_LetMeTakeCareOfThis": [
-        "Humph, maricas choroes!\\nDeixa-me tratar disto!$"
+        "Seus fracotes!\\nDeixem comigo!$"
       ],
       "SlateportCity_OceanicMuseum_2F_Text_Grunt2Defeat": [
-        "O que? Eu tambem perdi!$"
+        "O que? Eu tambem perdi?$"
       ],
       "SlateportCity_OceanicMuseum_2F_Text_MeddlingKid": [
-        "E agora? Se nao conseguirmos as\\npecas, estamos dentro!\\pNao esperava ser intrometida\\npor um miudo intrometido!$"
+        "E agora? Sem aquelas pecas,\\nnosso plano vai falhar!\\pNao esperava perder\\npara uma crianca intrometida!$"
       ],
       "SlateportCity_OceanicMuseum_2F_Text_CameToSeeWhatsTakingSoLong": [
-        "Vim ver o que demorava tanto a\\nroubar algumas partes, e voces,\\lSimpsons, estao presos por uma\\lcrianca?$"
+        "Vim saber por que voces\\nestao demorando tanto!\\pE foram derrotados\\npor uma crianca?\\pQue vergonha para nossa equipe!$"
       ],
       "SlateportCity_OceanicMuseum_2F_Text_WantToRideSubmarine": [
-        "O submarino e fantastico! Quero\\ndar uma volta!$"
+        "O submarino e incrivel!\\nQueria dar uma volta nele!$"
       ],
       "SlateportCity_OceanicMuseum_2F_Text_PressureExperiment": [
-        "Uma bola de borracha esta se\\nexpandindo e encolhendo.\\pNo mar, o peso da propria agua\\nexerce pressao.\\pEm aguas rasas, a pressao nao e\\nmuito pesada.\\pNo entanto, em aguas\\nextremamente profundas, a\\lpressao pode atingir ate\\ldezenas de milhares de\\ltoneladas numa pequena area.$"
+        "Uma bola de borracha\\naumenta e diminui de tamanho.\\pNo mar, a agua\\nexerce muita pressao.\\pQuanto maior a profundidade,\\nmaior e a pressao!\\pNo fundo do oceano,\\nela pode ser enorme!$"
       ],
       "SlateportCity_OceanicMuseum_2F_Text_SurfaceSeawaterDisplay": [
-        "E uma exibicao no fluxo de agua\\ndo mar.\\pPara a superficie, a agua do\\nmar flui como correntes\\limpulsionadas pelos ventos.$"
+        "Uma exposicao\\nsobre correntes marinhas.\\pNa superficie do oceano,\\nos ventos movem a agua\\ne criam correntes!$"
       ]
     },
     "data/maps/SlateportCity_PokemonCenter_1F/scripts.inc": {
@@ -281,47 +281,47 @@
     },
     "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc": {
       "SlateportCity_SternsShipyard_1F_Text_CantMakeHeadsOrTails": [
-        "Umm... Se isto for aqui, e\\naquilo for ali...\\pEntao para onde vai esta coisa?\\nE quanto ao doohickey?\\pAaargh! Nao consigo entender\\nisto!$"
+        "Hmm... Esta peca vai aqui?\\nOu sera que vai ali?\\pE onde coloco esta outra?\\pAaah! Nao entendo nada!$"
       ],
       "SlateportCity_SternsShipyard_1F_Text_SeaIsLikeLivingThing": [
-        "As estacoes, o tempo, onde a\\nlua se senta no ceu...\\pEstas e outras condicoes fazem\\no mar mudar sua expressao.\\pIsso mesmo! O mar e como uma\\ncoisa viva!$"
+        "As estacoes, o clima\\ne ate a posicao da lua\\nmudam o comportamento do mar.\\pE como se o oceano\\nfosse um ser vivo!$"
       ],
       "SlateportCity_SternsShipyard_1F_Text_GetSeasickEasily": [
-        "Fico enjoado facilmente. Em vez\\ndisso, posso ajudar.$"
+        "Fico enjoado facilmente.\\pPrefiro ajudar a construir\\nos navios em terra firme!$"
       ]
     },
     "data/maps/SlateportCity_SternsShipyard_2F/scripts.inc": {
       "SlateportCity_SternsShipyard_2F_Text_ShipDesignMoreLikeBuilding": [
-        "Projetar um navio grande e mais\\ncomo fazer um edificio grande\\ldo que montar um veiculo de\\ltransporte.$"
+        "Projetar um navio enorme\\ne parecido com construir\\num grande edificio!$"
       ],
       "SlateportCity_SternsShipyard_2F_Text_FloatsBecauseBuoyancy": [
-        "Nao achas estranho que uma nave\\nde ferro pesado flutue?\\pFlutua por causa de um\\nprincipio chamado\\lflutuabilidade.$"
+        "Como um navio de ferro\\nconsegue flutuar?\\pIsso acontece por causa\\nde uma forca chamada empuxo!$"
       ]
     },
     "data/maps/SlowpokeWell_B1F/scripts.inc": {
       "SlowpokeWell_B1F_Text_GruntM29Seen": [
-        "Raios! Estava de guarda la em\\ncima quando um velhote gritou\\lcomigo.\\pAssustou-me tanto que cai aqui.\\pAcho que vou descarregar a\\nminha raiva descontando em ti!$"
+        "Argh! Um velho gritou comigo\\nquando eu estava de guarda.\\pFiquei tao assustado\\nque cai dentro do poco!\\pVou descontar minha raiva\\nnuma batalha contra voce!$"
       ],
       "SlowpokeWell_B1F_Text_ProtonSeen": [
-        "O que queres?\\pSe interromper o nosso\\ntrabalho, nao espere\\lmisericordia!$"
+        "O que voce quer?\\pNao interrompa\\nos negocios da EQUIPE ROCKET!\\pSe insistir,\\nvai se arrepender!$"
       ],
       "SlowpokeWell_B1F_Text_ProtonBeaten": [
-        "Saiste-te bem hoje, mas espera\\nate a proxima!$"
+        "Hoje voce venceu...\\nMas ainda vamos nos encontrar!$"
       ],
       "SlowpokeWell_B1F_Text_GruntM2Beaten": [
-        "Hyuck... Demasiado forte...$"
+        "Ugh... Forte demais!$"
       ],
       "SlowpokeWell_B1F_Text_GruntF1Beaten": [
-        "Seu fedelho podre!$"
+        "Seu pestinha!$"
       ],
       "SlowpokeWell_B1F_Text_GruntF1After": [
-        "SLOWPOKETAILS crescem de volta\\nrapido!\\pO que ha de errado em\\nvende-los?$"
+        "A cauda de SLOWPOKE\\ncresce de novo rapidamente!\\pQual e o problema\\nem vende-la?$"
       ],
       "SlowpokeWell_B1F_Text_SlowpokeWithMail": [
-        "Um SLOWPOKE com o seu TAIL\\ncortado...\\pHuh? Tem o MAIL. Ler?$"
+        "Um SLOWPOKE sem a cauda...\\pEle tem uma carta!\\nQuer ler?$"
       ],
       "SlowpokeWell_B1F_Text_TaillessSlowpoke": [
-        "Um SLOWPOKE com o seu TAIL\\ncortado...$"
+        "Um SLOWPOKE sem a cauda...$"
       ]
     },
     "data/maps/SlowpokeWell_B2F/scripts.inc": {
