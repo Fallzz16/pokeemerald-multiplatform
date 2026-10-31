@@ -534,19 +534,19 @@
     },
     "data/maps/RustboroCity_DevonCorp_1F/scripts.inc": {
       "RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp": [
-        "Ola e bem-vindos ao DEVON\\nCORPORATION.\\pSomos produtores orgulhosos de\\nitens e medicamentos que\\lmelhoram sua vida.$"
+        "Ola! Bem-vindo a DEVON\\nCORPORATION.\\pFabricamos produtos\\ne remedios para tornar\\lsua vida melhor.$"
       ],
       "RustboroCity_DevonCorp_1F_Text_StaffGotRobbed": [
-        "Um dos nossos investigadores\\nfoi roubado de uma encomenda\\limportante.$"
+        "Um de nossos pesquisadores\\nteve uma encomenda\\limportante roubada.$"
       ],
       "RustboroCity_DevonCorp_1F_Text_RobberWasntVeryBright": [
-        "Aquele pacote roubado...\\pClaro que e importante, mas nao\\ne nada que alguem possa usar.\\pNa minha opiniao, aquele ladrao\\nnao deve ter sido muito\\linteligente.$"
+        "Aquele pacote roubado...\\pE importante, mas nao serve\\npara qualquer pessoa.\\pNa minha opiniao,\\no ladrao nao foi muito\\linteligente.$"
       ],
       "RustboroCity_DevonCorp_1F_Text_OnlyAuthorizedPeopleEnter": [
         "Desculpe, so as pessoas\\nautorizadas podem entrar aqui.$"
       ],
       "RustboroCity_DevonCorp_1F_Text_HowCouldWeGetRobbed": [
-        "E mais do que estupido. Como\\npoderiamos ser roubados?$"
+        "Que absurdo! Como alguem\\nconseguiu nos roubar?$"
       ],
       "RustboroCity_DevonCorp_1F_Text_YoureAlwaysWelcomeHere": [
         "Ola! Es sempre bem-vindo aqui!$"
