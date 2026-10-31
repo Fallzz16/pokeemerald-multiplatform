@@ -125,52 +125,52 @@
     },
     "data/maps/OlivineCity_Cafe/scripts.inc": {
       "OlivineCity_Text_CafeSailorGotStrength": [
-        "No mar, a unica coisa com que\\npodes contar e contigo mesmo!\\pEstou tao orgulhoso do meu\\ncorpo! Devias treinar como eu!$"
+        "No mar, voce precisa\\nser forte e confiar em si!\\pEu treino bastante!\\nVoce deveria treinar tambem!$"
       ],
       "OlivineCity_Text_CafeSailor": [
-        "Sempre que venho a esta cidade,\\nvisito sempre o OLIVINE CAFE.\\pTudo no menu me faz sentir mais\\nforte. Nao consigo parar de\\lcomer!$"
+        "Sempre que volto a OLIVINE,\\nvisito este CAFE!\\pA comida me da muita energia.\\nNao consigo parar de comer!$"
       ]
     },
     "data/maps/OlivineCity_House1/scripts.inc": {
       "OlivineCity_House1_Text_YouWillTradeWontYou": [
-        "Coleciono Pokemon! Voce tem\\num{STR_VAR_1}?\\pQuero troca-lo pela\\nminha{STR_VAR_2}?$"
+        "Coleciono POKEMON raros!\\pVoce tem {STR_VAR_1}?\\pQuer trocar pelo\\nmeu {STR_VAR_2}?$"
       ],
       "OlivineCity_House1_Text_MonYouTakeCare": [
-        "Boa! Consegui-me.{STR_VAR_1}!\\p{STR_VAR_2}Cuida-te!$"
+        "Otimo! Recebi {STR_VAR_1}!\\p{STR_VAR_2}, cuide-se bem!$"
       ],
       "OlivineCity_House1_Text_ThisIsntAMon": [
-        "Nao, acho que nao. Isso nao\\ne...{STR_VAR_1}.$"
+        "Espere... Este POKEMON\\nnao e {STR_VAR_1}!$"
       ],
       "OlivineCity_House1_Text_YouWontTradeMe": [
-        "Nao queres trocar? Aww...$"
+        "Nao quer trocar?\\nQue pena...$"
       ],
       "OlivineCity_House1_Text_After": [
-        "Ola, como esta o meu velho\\nVOLTORB?$"
+        "Ola! Como esta\\nmeu antigo VOLTORB?$"
       ]
     },
     "data/maps/OlivineCity_House2/scripts.inc": {
       "OlivineCity_Text_PunishmentBro": [
-        "No caminho para CIANWOOD, ha\\nquatro ilhas desertas.\\pCriancas mas sao levadas para\\nessas ilhas como castigo!$"
+        "No caminho para CIANWOOD,\\nexistem quatro ilhas desertas.\\pMeu irmao conta que\\naquelas ilhas dao medo!$"
       ],
       "OlivineCity_Text_PunishmentBoy": [
-        "Sempre que me meto em sarilhos,\\no grande mano assusta-me\\lsempre.$"
+        "Quando faco alguma besteira,\\nmeu irmao mais velho\\nconta historias assustadoras!$"
       ]
     },
     "data/maps/OlivineCity_House3/scripts.inc": {
       "OlivineCity_Text_OfferGoodRod": [
-        "OLIVINE esta no mar!\\pE se for no mar, ha de haver\\npeixes!\\pEu pesquei aqui durante 30\\nanos.\\pGostaria de enfrentar o mar e\\ntentar pescar?$"
+        "OLIVINE fica na costa!\\pCom tanta agua,\\nha muitos POKEMON para pescar!\\pPesco aqui ha trinta anos.\\pQuer experimentar\\na GOOD ROD?$"
       ],
       "OlivineCity_Text_GiveGoodRod": [
-        "Ah, hahah! Temos um novo\\npescador em formacao!$"
+        "Ha ha ha!\\pTemos um novo pescador!$"
       ],
       "OlivineCity_Text_GaveGoodRod": [
-        "Os peixes nao sao so\\nencontrados no mar, estao onde\\lha agua.\\pA proposito, o seu POKEDEX\\nmostra grupos de pesca para\\lPOKEMON.\\pDiferentes manchas podem conter\\ntipos de peixes semelhantes.$"
+        "POKEMON aquaticos vivem\\nem muitos lugares.\\pSua POKEDEX pode mostrar\\nonde cada especie aparece!\\pExperimente pescar\\nem aguas diferentes!$"
       ],
       "OlivineCity_Text_DontWantGoodRod": [
-        "O que? Nao gostas de pescar?\\nIsso e incompreensivel!$"
+        "O que? Nao gosta de pescar?\\nNao consigo entender!$"
       ],
       "OlivineCity_Text_HaveGoodRod": [
-        "Como estao as coisas? Aterraste\\no grandalhao?$"
+        "Como vai a pescaria?\\nJa pegou um grandao?$"
       ]
     },
     "data/maps/OlivineCity_Lighthouse/scripts.inc": {
@@ -249,7 +249,7 @@
     },
     "data/maps/OlivineCity_Mart/scripts.inc": {
       "OlivineCity_Text_MartCooltrainerF": [
-        "O seu POKEMON ja sabe o que\\nfazer para transportar pessoas\\latraves da agua?$"
+        "Seu POKEMON ja sabe\\nusar SURF?\\pAssim voce pode\\natravessar o mar!$"
       ]
     },
     "data/maps/OlivineCity_PortInside/scripts.inc": {
@@ -292,57 +292,57 @@
     },
     "data/maps/OlivineCity_PortOutside/scripts.inc": {
       "OlivineCity_PortOutside_Text_Fisherman2": [
-        "Sim, estou a pescar.$"
+        "Sim, estou pescando!$"
       ]
     },
     "data/maps/OneIsland_Frlg/scripts.inc": {
       "Text_WhereDoYouWantToSail": [
-        "Ola! Para onde queres velejar?$"
+        "Ola! Para onde\\nquer viajar?$"
       ],
       "OneIsland_Text_HavePCLinkageWithKanto": [
-        "A minha neta estava nervosa com\\numa nova descoberta.\\pEla disse que agora temos\\nligacao PC com pessoas em\\lKANTO.\\pNao sei o que isso significa,\\nmas o CELIO e um homem e tanto!$"
+        "Minha neta ficou animada\\ncom uma nova descoberta!\\pAgora os PCs daqui\\nse conectam aos de KANTO.\\pNao entendo muito bem,\\nmas CELIO e incrivel!$"
       ],
       "OneIsland_Text_HavePCLinkageWithHoenn": [
-        "A minha neta estava nervosa com\\numa nova descoberta.\\pEla disse que finalmente temos\\nligacao com pessoas em HOENN.\\pNao sei bem o que isso\\nsignifica, mas o CELIO e um\\lgrande homem.\\pDaria um bom marido para a\\nminha neta!$"
+        "Minha neta ficou animada\\ncom uma nova descoberta!\\pAgora os PCs daqui\\nse conectam aos de HOENN!\\pCELIO e mesmo um genio!\\nMinha neta gosta muito dele!$"
       ],
       "OneIsland_Text_IsntWarmClimateHereGreat": [
-        "Ola, estas a ver? O clima\\nquente aqui nao e optimo?$"
+        "Ola! Voce gosta\\ndo clima quente desta ilha?$"
       ]
     },
     "data/maps/OneIsland_House1_Frlg/scripts.inc": {
       "OneIsland_House1_Text_GazeUponVolcanoOnSunnyDays": [
-        "Nos dias de sol, saio e olho\\npara o vulcao.\\pE a minha rotina diaria.$"
+        "Quando o sol aparece,\\nsaio para admirar o vulcao!\\pE meu costume diario.$"
       ],
       "OneIsland_House1_Text_LastTimeMtEmberErupted": [
-        "Deixa-me pensar... Quando foi a\\nultima vez que a MT. EMBER\\lentrou em erupcao?$"
+        "Deixe-me pensar...\\pQuando foi a ultima erupcao\\nde MT. EMBER?$"
       ]
     },
     "data/maps/OneIsland_House2_Frlg/scripts.inc": {
       "OneIsland_House2_Text_IWantToStayHereForever": [
-        "Todos os jovens querem ir para\\ngrandes cidades.\\pMas quero ficar aqui para\\nsempre!$"
+        "Os jovens sonham\\nem morar em cidades grandes.\\pMas eu quero\\nficar aqui para sempre!$"
       ]
     },
     "data/maps/OneIsland_KindleRoad_EmberSpa_Frlg/scripts.inc": {
       "OneIsland_KindleRoad_EmberSpa_Text_WaterWarmsMeToCore": [
-        "Hm! Haaaaaaaaaaah!\\pAaaah! Isto e celestial! A agua\\naquece-me ate ao nucleo!\\pTambem devias saltar.\\pVa para o meio, relaxe, e fique\\nbom e quente!$"
+        "Aaaah! Que maravilha!\\pEsta agua quente\\nrelaxa o corpo inteiro!\\pEntre tambem!\\nAproveite para descansar!$"
       ],
       "OneIsland_KindleRoad_EmberSpa_Text_EnjoyBowlOfChowder": [
-        "A minha parte favorita do banho\\nsurge logo depois disto.\\pGosto de uma tigela de sopa\\npara me aquecer de dentro,\\ltambem!$"
+        "Depois de um banho quente,\\ngosto de tomar uma sopa!\\pAssim fico bem aquecido!$"
       ],
       "OneIsland_KindleRoad_EmberSpa_Text_WaterExquisiteFullyRefreshed": [
-        "A agua esta perfeitamente\\nquente. Parece requintado...\\p{PLAYER}e os POKEMON foram\\ntotalmente revigorados!$"
+        "Que agua maravilhosa!\\p{PLAYER} e seus POKEMON\\nrecuperaram as energias!$"
       ],
       "OneIsland_KindleRoad_EmberSpa_Text_HotSpringIsTherapeutic": [
-        "Mergulhar numa piscina quente e\\nterapeutico, dizem as pessoas.$"
+        "Dizem que um banho quente\\najuda a relaxar!$"
       ],
       "OneIsland_KindleRoad_EmberSpa_Text_SeeHowSmoothMySkinIs": [
-        "Olha para a minha cara. Ves\\ncomo a minha pele esta macia?\\pA agua quente mantem a minha\\npele mais nova do que a minha\\lidade.$"
+        "Olhe meu rosto!\\pA agua quente deixa\\nminha pele bem macia!$"
       ],
       "OneIsland_KindleRoad_EmberSpa_Text_UsedThisToMakeEmberSpa": [
-        "As fontes termais vao de maos\\ndadas com vulcoes.\\pO SPA EMBER aqui, bem, eu fiz-o\\nha anos.\\pTirei a piscina de uma pedra\\ngigante a mao.\\pEstava a usar isto na altura.\\nAcho que posso separar-me dele.$"
+        "Fontes termais e vulcoes\\nandam lado a lado.\\pFui eu que construi\\neste SPA EMBER!\\pEscavei a piscina\\nnuma rocha enorme.\\pUsei esta ferramenta,\\nmas nao preciso mais dela!$"
       ],
       "OneIsland_KindleRoad_EmberSpa_Text_ExplainHM06": [
-        "Isso quebra pedras como se\\nfossem feitas de bolachas.$"
+        "Esta HM ajuda a quebrar\\npedras no caminho!$"
       ]
     },
     "data/maps/OneIsland_KindleRoad_Frlg/scripts.inc": {
