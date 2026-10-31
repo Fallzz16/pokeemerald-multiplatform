@@ -160,13 +160,13 @@
     },
     "data/maps/SSAqua_1F/scripts.inc": {
       "SSAqua_1F_Text_Sailor2_FirstTime": [
-        "Esta e sua cabine!\\pSe algum POKEMON ficar cansado,\\ndurma nesta cama.\\pEla recupera\\nas energias da equipe!$"
+        "Esta e sua cabine!\\pSe algum POKEMON se cansar,\\ndescanse nesta cama.\\pEla recupera\\nas forcas da equipe!$"
       ],
       "SSAqua_1F_Text_Sailor3": [
-        "Todos os passageiros\\nsao TREINADORES.\\pEles adoram batalhar\\nnas proprias cabines!$"
+        "Todos os passageiros\\nsao TREINADORES.\\pEles gostam de batalhar\\ndentro das cabines!$"
       ],
       "SSAqua_1F_Text_Grandpa": [
-        "Opa! Com licenca!\\nEstou com pressa!\\pMinha netinha desapareceu!\\pSe encontrar uma garotinha,\\npor favor, me avise!$"
+        "Com licenca!\\nEstou com pressa!\\pMinha netinha sumiu!\\pSe encontrar uma menina,\\npor favor, me avise!$"
       ],
       "SSAqua_1F_Text_GoAshorePrompt": [
         "Deseja desembarcar?$"
@@ -186,16 +186,16 @@
         "Uma menina?\\pAcho que vi\\numa passando por aqui!$"
       ],
       "SSAqua_B1F_Text_SailorJeffSeen": [
-        "Nada como uma batalha\\nna hora do intervalo!$"
+        "Nada melhor que batalhar\\ndurante o intervalo!$"
       ],
       "SSAqua_B1F_Text_SailorJeffBeaten": [
         "Ganhei ou perdi?\\nMinha pausa ja acabou!$"
       ],
       "SSAqua_B1F_Text_SailorJeffAfter": [
-        "Preciso batalhar\\ncom mais concentracao!$"
+        "Preciso prestar mais\\natencao nas batalhas!$"
       ],
       "SSAqua_B1F_Text_PicnickerDebraSeen": [
-        "Estou entediada!\\nQue tal uma batalha?$"
+        "Estou sem nada para fazer!\\nQue tal uma batalha?$"
       ],
       "SSAqua_B1F_Text_PicnickerDebraBeaten": [
         "Uau! Voce e forte demais!$"
@@ -207,7 +207,7 @@
         "Nem consigo me mexer...$"
       ],
       "SSAqua_B1F_Text_SailorGarrettSeen": [
-        "E aqui que\\nos marinheiros trabalham!$"
+        "E aqui que os marinheiros\\ntrabalham!$"
       ],
       "SSAqua_B1F_Text_SailorGarrettBeaten": [
         "Perdi no meu proprio local!$"
@@ -228,7 +228,7 @@
         "Preciso treinar mais...$"
       ],
       "SSAqua_B1F_Text_SailorKennethAfter": [
-        "Oito INSIGNIAS!\\pEntao voce venceu\\noito LIDERES DE GINASIO!\\pAgora entendi\\npor que e tao forte!$"
+        "Oito INSIGNIAS!\\pEntao voce derrotou\\noito LIDERES DE GINASIO!\\pAgora entendo\\npor que e tao forte!$"
       ],
       "SSAqua_B1F_Text_TeacherShirleySeen": [
         "Nao se aproxime\\ndos meus alunos!$"
@@ -237,7 +237,7 @@
         "Ja cansei de batalhar!$"
       ],
       "SSAqua_B1F_Text_SchoolboyRickyAfter": [
-        "Li que existem\\nquatro paineis de pedra!$"
+        "Li que existem quatro\\npaineis de pedra!$"
       ]
     },
     "data/maps/SSAqua_CaptainsRoom/scripts.inc": {
