@@ -36,7 +36,7 @@
     },
     "data/maps/BattleFrontier_Lounge5/scripts.inc": {
       "BattleFrontier_Lounge5_Text_NatureGirlGreeting": [
-        "Ehehe! Posso dizer o que\\nPokemon esta pensando!\\pPor favor! Posso ver o teu\\nPokemon?$"
+        "Ehehe! Posso dizer o que\\nPokemon esta pensando!\\pPor favor! Posso ver o seu\\nPokemon?$"
       ],
       "BattleFrontier_Lounge5_Text_NatureGirlNoneShown": [
         "Boo! Barato!$"
@@ -72,7 +72,7 @@
         "Que tolice! Um EGG esta a\\ndormir! Nao consigo falar com\\lele!$"
       ],
       "BattleFrontier_Lounge5_Text_LadyClaimsSheUnderstandsPokemon": [
-        "Que encantador! Aquela senhora\\ndiz que consegue entender\\lPokemon!$"
+        "Que encantador! Aquela senhora\\ndiz que Consegue entender\\lPokemon!$"
       ],
       "BattleFrontier_Lounge5_Text_GirlSayingSomethingProfound": [
         "Tenho a sensacao de que a\\nmenina esta a dizer algo\\lprofundo.$"
@@ -92,7 +92,7 @@
         "Desculpa! Eu nao pretendo\\ntrocar por nada alem de\\lum{STR_VAR_1}.$"
       ],
       "BattleFrontier_Lounge6_Text_WellThatsFineToo": [
-        "Nao vais? Bem, isso tambem e\\nbom. Por favor, venha\\lvisitar-nos novamente.$"
+        "Nao vai? Bem, isso tambem e\\nbom. Por favor, venha\\lvisitar-nos novamente.$"
       ],
       "BattleFrontier_Lounge6_Text_SkittySoMuchCuterThanImagined": [
         "Riso! Um SKITTY e muito mais\\nbonito do que eu imaginava.\\lEstou encantado!$"
@@ -112,16 +112,16 @@
         "Esta bem, agora escolhe o\\nPokemon para o qual devo\\lensinar.$"
       ],
       "BattleFrontier_Lounge7_Text_HaventGotEnoughPoints": [
-        "Mas que... Nao tens pontos de\\nbatalha suficientes!$"
+        "Mas que... Nao tem pontos de\\nbatalha suficientes!$"
       ],
       "BattleFrontier_Lounge7_Text_IllTakeBattlePoints": [
         "Ves como sou habilidoso agora?\\nEu fico com os seus Pontos de\\lBatalha, obrigado!$"
       ],
       "BattleFrontier_Lounge7_Text_YouDontWantTo": [
-        "O que e isso? Nao queres...\\pSe queres ver como sou\\nhabilidoso, vem ter comigo a\\lqualquer hora!$"
+        "O que e isso? Nao quer...\\pSe quer ver como sou\\nhabilidoso, vem ter comigo a\\lqualquer hora!$"
       ],
       "BattleFrontier_Lounge7_Text_RightTutorIntro": [
-        "Ihihihi!\\pEu sei que e dificil de ver\\nagora, mas eu costumava ser um\\ltreinador fantastico.\\pEu tinha uma reputacao como o\\nmais invencivel SWIMMER por\\lperto, eu lhe digo!\\p... ... ... ... ... ...\\pO que se passa? Nao acreditas\\nem mim.\\pNao sou como aquela mulher\\nidiota ali. Na verdade, tenho\\lexperiencia!\\pPosso prova-lo. Posso ensinar\\nos teus movimentos POKEMON.\\pMas as minhas licoes nao sao de\\ngraca. Que tal pagar pelos\\lmovimentos que dou com um pouco\\lde Pontos de Batalha?$"
+        "Ihihihi!\\pEu sei que e dificil de ver\\nagora, mas eu costumava ser um\\ltreinador fantastico.\\pEu tinha uma reputacao como o\\nmais invencivel SWIMMER por\\lperto, eu lhe digo!\\p... ... ... ... ... ...\\pO que se passa? Nao acreditas\\nem mim.\\pNao sou como aquela mulher\\nidiota ali. Na verdade, tenho\\lexperiencia!\\pPosso prova-lo. Posso ensinar\\nos seus movimentos POKEMON.\\pMas as minhas licoes nao sao de\\ngraca. Que tal pagar pelos\\lmovimentos que dou com um pouco\\lde Pontos de Batalha?$"
       ],
       "BattleFrontier_Lounge7_Text_RightTutorWelcomeBack": [
         "Ihihihi!\\pVoce veio aprender muito e\\nainda muito POKEMON movimentos?$"
@@ -186,7 +186,7 @@
     },
     "data/maps/BattleFrontier_Lounge8/scripts.inc": {
       "BattleFrontier_Lounge8_Text_WhatATrainerNeeds": [
-        "O que um treinador precisa...\\pConhecimento... estrategia...\\nSorte... Espirito...\\lespirito... Coragem... E\\lhabilidade...\\pBem, estou pronto em todos os\\nsentidos! Serei imparavel em\\ltodos os edificios!\\pHuh? Pokemon? O que e isso?$"
+        "O que um treinador precisa...\\pConhecimento... estrategia...\\nSorte... Espirito...\\lespirito... Coragem... E\\lhabilidade...\\pBem, estou pronto em todos os\\nsentidos! Serei imparavel em\\ltodos os edificios!\\pHuh? POKEMON? O que e isso?$"
       ]
     },
     "data/maps/BattleFrontier_Mart/scripts.inc": {
@@ -208,7 +208,7 @@
         "ZIGZAGOON parece vago...$"
       ],
       "BattleFrontier_OutsideEast_Text_PeopleCallMeBusybody": [
-        "As pessoas chamam-me\\nintrometida, mas nao consigo\\levitar.\\pO teu chapeu esta torto! Nao,\\nlixo no chao! Esta quase na\\lhora do jantar!\\pNao sei se posso ficar a ver no\\nBATTLE PALACE...$"
+        "As pessoas chamam-me\\nintrometida, mas nao consigo\\levitar.\\pO seu chapeu esta torto! Nao,\\nlixo no chao! Esta quase na\\lhora do jantar!\\pNao sei se posso ficar a ver no\\nBATTLE PALACE...$"
       ],
       "BattleFrontier_OutsideEast_Text_FastOnBikeAndBattles": [
         "Eu sou rapido no meu BIKE, e\\nisso vale para a maneira como\\leu luto, tambem.\\pGanhei jogos num piscar de\\nolhos!$"
@@ -217,7 +217,7 @@
         "Sou melhor que o meu pai em\\nPokemon.$"
       ],
       "BattleFrontier_OutsideEast_Text_GoRackUpSomeWinsForDaddy": [
-        "Va la, querida! Vai acumular\\nalgumas vitorias para o papa!\\pEs como a tua mae, por isso\\nvais dominar!$"
+        "Va la, querida! Vai acumular\\nalgumas vitorias para o papa!\\pEs como a sua mae, por isso\\nvais dominar!$"
       ],
       "BattleFrontier_OutsideEast_Text_SometimesImportantOldManInThere": [
         "As vezes vejo um velho muito\\nimportante a entrar ali.\\pEle tem um POKEMON fantastico.\\nMas ele parece muito simpatico.$"
@@ -232,10 +232,10 @@
         "Contigo ao meu lado, posso\\nfazer qualquer coisa.$"
       ],
       "BattleFrontier_OutsideEast_Text_OddTreeHereSeemsToWiggle": [
-        "Com licenca, jovem. Tens boa\\nvisao?\\pHa uma arvore estranha por\\naqui, e para os meus olhos\\lcansados parece mexer.$"
+        "Com licenca, jovem. tem boa\\nvisao?\\pHa uma arvore estranha por\\naqui, e para os meus olhos\\lcansados parece mexer.$"
       ],
       "BattleFrontier_OutsideEast_Text_OnceAnOddTreePastHere": [
-        "Com licenca, jovem. Tens boa\\nmemoria?\\pTenho a sensacao de que ja\\nhouve uma arvore estranha aqui.$"
+        "Com licenca, jovem. tem boa\\nmemoria?\\pTenho a sensacao de que ja\\nhouve uma arvore estranha aqui.$"
       ],
       "BattleFrontier_OutsideEast_Text_StickyMonWithLongTail": [
         "Eu... eu vi!\\pHavia um tipo pegajoso de um\\nPOKEMON com uma longa cauda a\\lfrente!\\pEstava escondido debaixo de uma\\npedra, e continuava a olhar\\lpara mim!$"
@@ -246,13 +246,13 @@
         "Lamento muito.\\pO ferry para SLATEPORT e\\nLILYCOVE serve apenas LEAGUE\\lCHAMPIONS.$"
       ],
       "BattleFrontier_OutsideWest_Text_SailWithUsAnotherTime": [
-        "Por favor, naveguem connosco\\nnoutra altura!$"
+        "Por favor, naveguem conosco\\nnoutra altura!$"
       ],
       "BattleFrontier_OutsideWest_Text_PleaseBoardFerry": [
         "Por favor embarque no ferry e\\naguarde a partida.$"
       ],
       "BattleFrontier_OutsideWest_Text_ThenWhereWouldYouLikeToGo": [
-        "Entao, para onde queres ir?$"
+        "Entao, para onde quer ir?$"
       ],
       "BattleFrontier_OutsideWest_Text_BestOutOfAllMyFriends": [
         "Sou o melhor de todos os meus\\namigos. Mas aqui... Fui inutil!$"
@@ -276,13 +276,13 @@
         "Nao, perdi.\\pAcho que hoje nao tenho muita\\nsorte. Vou adiar o meu desafio\\lda BATTLE PIKE ate amanha.$"
       ],
       "BattleFrontier_OutsideWest_Text_ChooseFishingOverBattling": [
-        "Acho que sou a unica pessoa\\naqui que, por alguma razao\\ldesconhecida, escolheria pescar\\lem vez de lutar.\\pHuh? Nao consegues apanhar nada\\naqui? Isso e decepcionante...$"
+        "Acho que sou a unica pessoa\\naqui que, por alguma razao\\ldesconhecida, escolheria pescar\\lem vez de lutar.\\pHuh? Nao Consegue capturar nada\\naqui? Isso e decepcionante...$"
       ],
       "BattleFrontier_OutsideWest_Text_KeepBattlingUntilIGetSymbol": [
         "Hoje, vou continuar a lutar,\\ncuste o que custar, ate ter um\\lSimbolo.$"
       ],
       "BattleFrontier_OutsideWest_Text_YoureOffToChallengeDome": [
-        "A serio? Vais desafiar o BATTLE\\nDOME?\\pDesejo-lhe boa sorte. Vamos\\nambos ganhar o nosso caminho e\\lenfrentar os desafios.$"
+        "A serio? vai desafiar o BATTLE\\nDOME?\\pDesejo-lhe boa sorte. Vamos\\nambos ganhar o nosso caminho e\\lenfrentar os desafios.$"
       ],
       "BattleFrontier_OutsideWest_Text_DomeIsHereGrandpa": [
         "Avo, aqui! O DOME BATTLE esta\\naqui! Vai busca-los, avo!$"
@@ -297,13 +297,13 @@
         "Huh? Estas a ouvir-te? Isso nao\\ne nada!\\pDa ultima vez que o vi, os\\nnossos olhos encontraram-se e\\las faiscas voaram!$"
       ],
       "BattleFrontier_OutsideWest_Text_DomeAceLookedBecauseOfMyCheering": [
-        "O que e isso? Pfft!\\pIsso so aconteceu porque estava\\nsentado ao teu lado!\\pA DOME ACE so olhou para o\\nnosso caminho porque o meu\\laplauso era tao alto!$"
+        "O que e isso? Pfft!\\pIsso so aconteceu porque estava\\nsentado ao seu lado!\\pA DOME ACE so olhou para o\\nnosso caminho porque o meu\\laplauso era tao alto!$"
       ],
       "BattleFrontier_OutsideWest_Text_DomeAceIsMine": [
         "Cala-te! Baixem esse barulho!\\pVoces, fas do tempo justo,\\ndeviam continuar a aplaudir por\\lalgum GINASIO LEADER!\\pA DOME ACE e minha! O unico\\nidolo para mim!$"
       ],
       "BattleFrontier_OutsideWest_Text_FansOverThereUsedToBeTrainers": [
-        "Aquelas pessoas a discutir\\nali...\\pE dificil de acreditar, mas\\neles ja foram treinadores, e\\lbons tambem.\\pCostumavam ser incrivelmente\\nduros, e tambem eram famosos.\\pMas eles foram obliterados por\\neste certo TRAiner em um\\ltorneio.\\pEles foram tao completamente\\nchicoteados, que ficaram\\lferidos pelo TRAiner.\\pAgora sao apenas fas do\\nTRAiner. Vao aplaudir o seu\\lidolo no BATTLE DOME todos os\\ldias.$"
+        "Aquelas pessoas a discutir\\nali...\\pE dificil de acreditar, mas\\neles ja foram treinadores, e\\lbons tambem.\\pCostumavam ser incrivelmente\\nduros, e tambem eram famosos.\\pMas eles foram obliterados por\\neste certo TREINADOR em um\\ltorneio.\\pEles foram tao completamente\\nchicoteados, que ficaram\\lferidos pelo TREINADOR.\\pAgora sao apenas fas do\\nTRAiner. Vao aplaudir o seu\\lidolo no BATTLE DOME todos os\\ldias.$"
       ]
     },
     "data/maps/BattleFrontier_PokemonCenter_1F/scripts.inc": {
@@ -313,13 +313,13 @@
     },
     "data/maps/BattleFrontier_RankingHall/scripts.inc": {
       "BattleFrontier_RankingHall_Text_IsYourNameOnThisList": [
-        "Ola, o teu nome esta nesta\\nlista?$"
+        "Ola, o seu nome esta nesta\\nlista?$"
       ],
       "BattleFrontier_RankingHall_Text_WowThatsSuper": [
         "Uau, isso e demais! Tambem\\nterei de me esforcar mais!$"
       ],
       "BattleFrontier_RankingHall_Text_WorkHarderIfYouSawFriendsName": [
-        "Ai sim?\\pSe visses o nome do teu amigo\\naqui, aposto que te faria\\ltrabalhar mais!$"
+        "Ai sim?\\pSe visses o nome do seu amigo\\naqui, aposto que te faria\\ltrabalhar mais!$"
       ],
       "BattleFrontier_RankingHall_Text_MyNamesNotUpThere": [
         "Hmm... O meu nome nao esta la\\nem cima...\\pBem, e natural desde que ainda\\nnao aceitei nenhum desafio.$"
@@ -327,7 +327,7 @@
     },
     "data/maps/BattleFrontier_ReceptionGate/scripts.inc": {
       "BattleFrontier_ReceptionGate_Text_FirstTimeHereThisWay": [
-        "E a tua primeira vez aqui? Por\\naqui, por favor!$"
+        "E a sua primeira vez aqui? Por\\naqui, por favor!$"
       ],
       "BattleFrontier_ReceptionGate_Text_IssueFrontierPass": [
         "Para um visitante pela primeira\\nvez, nos emitemos o PASS\\lFRONTIER.\\pE para uso em todas as\\ninstalacoes do BATTLE FRONTIER.\\pAqui esta!$"
@@ -336,7 +336,7 @@
         "Esperamos que voce aproveite\\ntudo o que o BATTLE FRONTIER\\ltem para oferecer!$"
       ],
       "BattleFrontier_ReceptionGate_Text_IfItIsntPlayerYouCame": [
-        "??: Bem, se nao\\ne{PLAYER}{KUN}Tu vieste aqui!$"
+        "??: Bem, se nao\\ne{PLAYER}{KUN}Tu veio aqui!$"
       ],
       "BattleFrontier_ReceptionGate_Text_LearnAboutWhich2": [
         "Sobre o que gostaria de\\naprender?$"
@@ -360,7 +360,7 @@
         "Sobre o que gostaria de\\naprender?$"
       ],
       "BattleFrontier_ReceptionGate_Text_SymbolsInfo": [
-        "Ha sete instalacoes no BATTLE\\nFRONTIER.\\pFORMADORES que obtem\\nreconhecimento por suas\\lhabilidades podem ser\\lrecompensados com simbolos de\\lcada uma das instalacoes.\\pPara ganhar um simbolo, os\\nTRAiners podem precisar\\lderrotar outros TRAiners em uma\\lfileira, e podem precisar\\lganhar eventos repetidamente.\\pNao e facil ganhar simbolos.\\nDesejo-lhe boa sorte!$"
+        "Ha sete instalacoes no BATTLE\\nFRONTIER.\\pFORMADORES que obtem\\nreconhecimento por suas\\lhabilidades podem ser\\lrecompensados com simbolos de\\lcada uma das instalacoes.\\pPara ganhar um simbolo, os\\nTRAiners podem precisar\\lderrotar outros TREINADORES em uma\\lfileira, e podem precisar\\lganhar eventos repetidamente.\\pNao e facil ganhar simbolos.\\nDesejo-lhe boa sorte!$"
       ],
       "BattleFrontier_ReceptionGate_Text_RecordedBattleInfo": [
         "E possivel gravar uma batalha\\nem seu PASS FRONTIER.\\pVoce pode gravar uma batalha\\nque teve com um amigo ou\\lamigos.\\pOu voce pode gravar uma batalha\\nconduzida no BATTLE FRONTIER\\lexcluindo fosforos no BATTLE\\lPIKE ou no BATTLE PYRAMID.\\pVoce pode escolher gravar sua\\npartida no final de uma\\lbatalha.$"
@@ -371,7 +371,7 @@
         "Pensando bem, foi uma viagem\\nterrivelmente longa...\\pSai de casa sozinho numa busca\\npara encontrar os Treiners\\lfortes.\\pNinguem pode imaginar quanto\\nesforco ou tempo levou para\\ltornar isto real.$"
       ],
       "BattleFrontier_ScottsHouse_Text_HaveThisAsMementoOfOurPathsCrossing": [
-        "Mas isso e tudo passado. Nao\\nvale a pena pensar nisso!\\pTudo o que quero e que gostes\\nde lutar ao teu coracao.\\p{PLAYER}{KUN}Quero que tenhas\\nisto como recordacao para\\lsempre os nossos caminhos\\lcruzados nas nossas viagens.$"
+        "Mas isso e tudo passado. Nao\\nvale a pena pensar nisso!\\pTudo o que quero e que gostes\\nde lutar ao seu coracao.\\p{PLAYER}{KUN}Quero que tenhas\\nisto como recordacao para\\lsempre os nossos caminhos\\lcruzados nas nossas viagens.$"
       ],
       "BattleFrontier_ScottsHouse_Text_ObtainedXBattlePoints": [
         "{PLAYER}obtido{STR_VAR_1}Pontos\\nde batalha.$"
@@ -386,7 +386,7 @@
         "Espero ouvir coisas ainda\\nmaiores sobre ti agora!$"
       ],
       "BattleFrontier_ScottsHouse_Text_ComeBackForThisLater": [
-        "Bem, se tens demasiadas coisas,\\nvolta para isto mais tarde.$"
+        "Bem, se tem demasiadas coisas,\\nvolta para isto mais tarde.$"
       ]
     },
     "data/maps/BlackthornCity/scripts.inc": {
@@ -406,7 +406,7 @@
         "SANTOS: ...\\pSou o SANTOS da familia da\\nsemana.\\pAdivinha.$"
       ],
       "BlackthornCity_SantosGivesGiftText": [
-        "Podes ficar com isto...$"
+        "pode ficar com isto...$"
       ],
       "BlackthornCity_SantosGaveGiftText": [
         "SANTOS: ...\\pSPELL TAG...\\pOs movimentos do tipo GHOST\\nficam mais fortes...\\pVai assustar-te...$"
@@ -417,7 +417,7 @@
     },
     "data/maps/BlackthornCity_House2/scripts.inc": {
       "BlackthornCity_House2_Text_YouWillTradeWontYou": [
-        "Coleciono Pokemon! Voce tem\\num{STR_VAR_1}?\\pQuero troca-lo pela\\nminha{STR_VAR_2}?$"
+        "Coleciono POKEMON! Voce tem\\num{STR_VAR_1}?\\pQuero troca-lo pela\\nminha{STR_VAR_2}?$"
       ],
       "BlackthornCity_House2_Text_MonYouTakeCare": [
         "Boa! Consegui-me.{STR_VAR_1}!\\p{STR_VAR_2}Cuida-te!$"
@@ -426,7 +426,7 @@
         "Nao, acho que nao. Isso nao\\ne...{STR_VAR_1}.$"
       ],
       "BlackthornCity_House2_Text_YouWontTradeMe": [
-        "Nao queres trocar? Aww...$"
+        "Nao quer trocar? Aww...$"
       ],
       "BlackthornCity_House2_Text_After": [
         "Ola, como esta o meu antigo MR\\nMIME?$"
@@ -472,13 +472,13 @@
     },
     "data/maps/BurnedTower_1F/scripts.inc": {
       "BurnedTowerSilver_BeforeText": [
-        "..............................\\pEs tu.\\pVim a procura de um legendario\\nPokemon que dizem ser o potro.\\pMas nao ha nada aqui!\\pNada, depois de todo o esforco\\nde vir a esta espelunca? Nem\\lpensar!\\pA culpa e toda tua!$"
+        "..............................\\pEs tu.\\pVim a procura de um legendario\\nPokemon que dizem ser o potro.\\pMas nao ha nada aqui!\\pNada, depois de todo o esforco\\nde vir a esta espelunca? Nem\\lpensar!\\pA culpa e toda sua!$"
       ],
       "BurnedTowerSilver_WinText": [
-        "Humph!\\pSo perdi porque os meus Pokemon\\nsao incrivelmente fracos.\\pQue patetico.$"
+        "Humph!\\pSo perdi porque os meus POKEMON\\nsao incrivelmente fracos.\\pQue patetico.$"
       ],
       "BurnedTowerSilver_AfterText1": [
-        "Tanto faz.\\pNunca conseguirias apanhar um\\nPokemon lendario.$"
+        "Tanto faz.\\pNunca conseguirias capturar um\\nPokemon lendario.$"
       ],
       "BurnedTowerSilver_LossText": [
         "Humph!\\pE por isso que odeio lutar\\ncontra maricas. E uma perda de\\ltempo.$"
@@ -509,10 +509,10 @@
     },
     "data/maps/CeladonCity_Condominiums_1F_Frlg/scripts.inc": {
       "CeladonCity_Condominiums_1F_Text_TryThisDrinkInstead": [
-        "Nao devias gastar todo o teu\\ndinheiro em bebidas.\\pExperimenta isto em vez disso.$"
+        "Nao devia gastar todo o seu\\ndinheiro em bebidas.\\pExperimenta isto em vez disso.$"
       ],
       "CeladonCity_Condominiums_1F_Text_MyDearMonsKeepMeCompany": [
-        "Meu caro Pokemon, faz-me\\ncompanhia. MEOWTH ate traz\\ldinheiro para casa!$"
+        "Meu caro POKEMON, faz-me\\ncompanhia. MEOWTH ate traz\\ldinheiro para casa!$"
       ]
     },
     "data/maps/CeladonCity_Condominiums_3F_Frlg/scripts.inc": {
@@ -546,7 +546,7 @@
         "Palestra POKEMON\\pJogando com o adaptador sem fio$"
       ],
       "CeladonCity_Condominiums_RoofRoom_Text_ReadWhichHeading": [
-        "Que rumo queres ler?$"
+        "Que rumo quer ler?$"
       ],
       "CeladonCity_Condominiums_RoofRoom_Text_PamphletOnTMs": [
         "E um panfleto sobre TMs.\\p... ...\\pHa 50 TM no total.\\pHa tambem sete HMs que podem\\nser usados repetidamente.\\pSILPH CO.$"
@@ -591,7 +591,7 @@
         "Vou comprar um presente para a\\nminha namorada.\\pAcho que sera uma DOLL POKe. E\\na coisa popular.$"
       ],
       "CeladonCity_DepartmentStore_4F_Text_CanRunAwayWithPokeDoll": [
-        "Ouvi algo util.\\pSe aparecer um Pokemon\\nselvagem, pode distrai-lo com\\luma DOLL POKe.\\pVoce pode fugir enquanto o\\nPOKEMON selvagem esta\\ldistraido.$"
+        "Ouvi algo util.\\pSe aparecer um POKEMON\\nselvagem, pode distrai-lo com\\luma DOLL POKe.\\pVoce pode fugir enquanto o\\nPOKEMON selvagem esta\\ldistraido.$"
       ]
     },
     "data/maps/CeladonCity_DepartmentStore_Roof_Frlg/scripts.inc": {
@@ -611,7 +611,7 @@
         "TM33 contem REFLECT.\\pE um movimento que enfraquece o\\npoder dos ataques fisicos do\\lteu inimigo.$"
       ],
       "CeladonCity_DepartmentStore_Roof_Text_DontHaveSpaceForThis": [
-        "Nao tens espaco para isto!$"
+        "Nao tem espaco para isto!$"
       ],
       "CeladonCity_DepartmentStore_Roof_Text_ImNotThirstyAfterAll": [
         "Nao, obrigado! Afinal, nao\\ntenho sede!$"
@@ -663,7 +663,7 @@
         "Acho que estas maquinas tem\\nprobabilidades diferentes.$"
       ],
       "CeladonCity_GameCorner_Text_DoYouWantToPlay": [
-        "Miudo, queres brincar?$"
+        "garoto, quer brincar?$"
       ],
       "CeladonCity_GameCorner_Text_WinsComeAndGo": [
         "As vitorias parecem ir e vir.\\nNada e certo.$"
@@ -687,7 +687,7 @@
         "Hey!\\pUm interruptor atras do cartaz?\\nVamos empurrar!$"
       ],
       "CeladonCity_GameCorner_Text_SlotMachineWantToPlay": [
-        "Uma maquina de fendas! Queres\\njogar?$"
+        "Uma maquina de fendas! quer\\njogar?$"
       ],
       "CeladonCity_GameCorner_Text_SomeonesKeys": [
         "As chaves de alguem! Eles\\nvoltam.$"
@@ -704,12 +704,12 @@
         "Entao, voce quer o{STR_VAR_1}?$"
       ],
       "CeladonCity_GameCorner_PrizeRoom_Text_YouWantTM": [
-        "Esta bem, um TM de{STR_VAR_2}E\\nisso que queres?$"
+        "Esta bem, um TM de{STR_VAR_2}E\\nisso que quer?$"
       ]
     },
     "data/maps/CeladonCity_Hotel_Frlg/scripts.inc": {
       "CeladonCity_Hotel_Text_ThisHotelIsForPeople": [
-        "Pokemon? Nao, isto e um hotel\\npara pessoas.\\pEstamos cheios, infelizmente.$"
+        "POKEMON? Nao, isto e um hotel\\npara pessoas.\\pEstamos cheios, infelizmente.$"
       ],
       "CeladonCity_Hotel_Text_OnVacationWithBrotherAndBoyfriend": [
         "Estou de ferias com o meu irmao\\ne namorado.\\pCELADON e uma cidade tao\\nbonita!$"
@@ -728,7 +728,7 @@
     },
     "data/maps/CeladonCity_PokemonCenter_1F_Frlg/scripts.inc": {
       "CeladonCity_PokemonCenter_1F_Text_PokeFluteAwakensSleepingMons": [
-        "Um POKE FLUTE desperta PoKEMON\\nadormecido. Sabes disso.\\pFaz isso com um som que so eles\\npodem ouvir.$"
+        "Um POKE FLUTE desperta PoKEMON\\nadormecido. sabe disso.\\pFaz isso com um som que so eles\\npodem ouvir.$"
       ]
     },
     "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc": {
@@ -753,7 +753,7 @@
         "Ola! Bem-vindos ao nosso BIKE\\nSHOP.\\pTemos apenas o BIKE para ti!$"
       ],
       "CeruleanCity_BikeShop_Text_SorryYouCantAffordIt": [
-        "Desculpa! Nao podes pagar!$"
+        "Desculpa! Nao pode pagar!$"
       ],
       "CeruleanCity_BikeShop_Text_ThankYouComeAgain": [
         "Obrigado! Volta outra vez!$"
@@ -765,7 +765,7 @@
         "Estas bicicletas sao fixes, mas\\nsao muito caras!$"
       ],
       "CeruleanCity_BikeShop_Text_WowYourBikeIsCool": [
-        "Uau. O teu BIKE e muito fixe!$"
+        "Uau. O seu BIKE e muito legal!$"
       ]
     },
     "data/maps/CeruleanCity_Frlg/scripts.inc": {
@@ -773,7 +773,7 @@
         "{RIVAL}Yo!{PLAYER}!\\pAinda estas a lutar aqui atras?\\pEstou optimo! Apanhei um monte\\nde POKEMON fortes e\\linteligentes!\\pDeixa-me ver o que\\napanhaste.{PLAYER}!$"
       ],
       "CeruleanCity_Text_RivalDefeat": [
-        "Hey! Calma! Ja ganhaste!$"
+        "Hey! Calma! Ja venceu!$"
       ],
       "CeruleanCity_Text_OhRightLittlePresentAsFavor": [
         "Sim, claro.\\pTenho pena de ti. Nao, a serio.\\nEstas sempre atras de mim.$"

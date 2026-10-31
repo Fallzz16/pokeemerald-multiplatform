@@ -2,7 +2,7 @@
   "asm": {
     "data/maps/MauvilleCity_BikeShop/scripts.inc": {
       "MauvilleCity_BikeShop_Text_SandySlopes": [
-        "Existem rampas de areia\\npor toda HOENN!\\pNao da para subir andando.\\pMas com a MACH BIKE,\\nvoce consegue passar!\\pQuer ler outra pagina?$"
+        "Existem rampas de areia\\npor toda HOENN!\\pNao da para subir andando.\\pMas com a MACH BIKE,\\nvoce Consegue passar!\\pQuer ler outra pagina?$"
       ],
       "MauvilleCity_BikeShop_Text_Wheelies": [
         "Aperte B na ACRO BIKE\\npara levantar a roda da frente.\\pUse o DIRECIONAL\\npara se mover empinando!\\pQuer ler outra pagina?$"
@@ -75,7 +75,7 @@
     },
     "data/maps/MauvilleCity_PokemonCenter_2F/scripts.inc": {
       "MauvilleCity_PokemonCenter_2F_Text_Youngster": [
-        "Sabias que podes ligar a\\nbatalha aqui no COLOSSEUM?\\pPuseram o teu disco na parede\\npara todos verem.\\pE embaracoso se perderes mais\\nvezes do que ganhas...$"
+        "Sabias que pode ligar a\\nbatalha aqui no COLOSSEUM?\\pPuseram o seu disco na parede\\npara todos verem.\\pE embaracoso se perderes mais\\nvezes do que ganhas...$"
       ]
     },
     "data/maps/MeteorFalls_1F_2R/scripts.inc": {
@@ -171,7 +171,7 @@
         "Nao parece ter preferencia\\npor nenhum {POKEBLOCK}S.$"
       ],
       "MossdeepCity_House1_Text_HusbandCanTellPokeblockMonLikes": [
-        "Meu marido consegue dizer\\nqual {POKEBLOCK} um POKEMON\\ngosta de comer!$"
+        "Meu marido Consegue dizer\\nqual {POKEBLOCK} um POKEMON\\ngosta de comer!$"
       ]
     },
     "data/maps/MossdeepCity_House3/scripts.inc": {

@@ -366,7 +366,7 @@
         "De onde vieram os POKEMON?$"
       ],
       "SagePingSeenText": [
-        "Sera que voce consegue\\nferir nossos POKEMON?$"
+        "Sera que voce Consegue\\nferir nossos POKEMON?$"
       ],
       "SagePingBeatenText": [
         "Ah! Muito bem!$"
@@ -398,16 +398,16 @@
     },
     "data/maps/FortreeCity_Gym/scripts.inc": {
       "FortreeCity_Gym_Text_RematchDefeat": [
-        "O meu Pokemon e eu estamos de\\ncastigo... Muito bem feito.$"
+        "O meu POKEMON e eu estamos de\\ncastigo... Muito bem feito.$"
       ],
       "FortreeCity_Gym_Text_GymGuidePostVictory": [
-        "Conseguiste! Conseguiste\\ndescolagem!$"
+        "conseguiu! conseguiu\\ndescolagem!$"
       ],
       "FortreeCity_Gym_Text_JaredIntro": [
         "Contemplem o elegante estilo de\\nbatalha de BIRD POKEMON!$"
       ],
       "FortreeCity_Gym_Text_JaredDefeat": [
-        "Tu... Es forte...$"
+        "Voce... e muito forte...$"
       ],
       "FortreeCity_Gym_Text_JaredPostBattle": [
         "Um TREINADOR tem de ser esperto\\npara acompanhar as mudancas\\linesperadas dos acontecimentos.\\pTens a inteligencia para chegar\\nao nosso LEADER?$"
@@ -428,7 +428,7 @@
         "Urk! Nao te consegui impedir.$"
       ],
       "FortreeCity_Gym_Text_DariusDefeat": [
-        "Pareces saber as tuas coisas!$"
+        "Pareces saber as suas coisas!$"
       ],
       "FortreeCity_Gym_Text_WinonaDefeat": [
         "Nunca antes vi um TREiner\\ncomandar POKEMON com mais graca\\ldo que eu...\\pEm reconhecimento as suas\\nproezas, apresento-lhe este\\lGINASIO INSIGNIA.$"
@@ -437,13 +437,13 @@
         "TM40 contem ACE AERIAL.\\pA sua velocidade... Nenhum\\nPOKEMON devera ser capaz de o\\levitar.\\p... ... ... ... ... ...$"
       ],
       "FortreeCity_Gym_Text_RegisteredWinona": [
-        "GINASIO LEADER WINONA registado\\nno POKeNAV.$"
+        "GINASIO LEADER WINONA registado\\nno POKENAV.$"
       ],
       "FortreeCity_Gym_Text_WinonaPostBattle": [
         "Embora me tenha apaixonado por\\nti, vou continuar devotado ao\\lBIRD POKEMON.$"
       ],
       "FortreeCity_Gym_Text_WinonaRematchDefeat": [
-        "Nao cheguei a tua altura outra\\nvez...$"
+        "Nao cheguei a sua altura outra\\nvez...$"
       ]
     },
     "data/maps/FuchsiaCity_Gym_Frlg/scripts.inc": {
@@ -578,7 +578,7 @@
         "Ser enterrado em areia quente\\npromove a circulacao.\\pE eficaz para curar as dores\\nnas articulacoes.$"
       ],
       "LavaridgeTown_Gym_1F_Text_AxleIntro": [
-        "Estou a tentar aliviar o meu\\nstress. Nao venhas aqui e\\lestressa-me!$"
+        "Estou tentando aliviar meu\\nestresse. Nao venha aqui para\\lme irritar!$"
       ],
       "LavaridgeTown_Gym_1F_Text_AxleDefeat": [
         "Espero que FLANNERY te ateie\\nfogo!$"
@@ -593,7 +593,7 @@
         "Brincar com fogo, e ser\\nqueimado...$"
       ],
       "LavaridgeTown_Gym_B1F_Text_KeeganPostBattle": [
-        "A tua habilidade e real... Mas\\no nosso LEADER FLANNERY e\\lforte.\\pSe nao te cuidares, seras\\nseriamente queimado.$"
+        "A sua habilidade e real... Mas\\no nosso LEADER FLANNERY e\\lforte.\\pSe nao te cuidares, seras\\nseriamente queimado.$"
       ],
       "LavaridgeTown_Gym_1F_Text_GeraldIntro": [
         "O seu POKEMON aguenta calor de\\n392 graus?$"
@@ -602,7 +602,7 @@
         "Nao queimou suficientemente\\nquente...$"
       ],
       "LavaridgeTown_Gym_1F_Text_GeraldPostBattle": [
-        "A temperatura do magma e de 392\\ngraus.\\pO teu POKEMON venceu-me, por\\nisso devem sobreviver\\lfacilmente em magma.$"
+        "A temperatura do magma e de 392\\ngraus.\\pSeu POKEMON me venceu,\\nentao deve aguentar\\lfacilmente o calor.$"
       ],
       "LavaridgeTown_Gym_1F_Text_DanielleIntro": [
         "Hum... Esta bem, vou lutar\\ncontigo.$"
@@ -632,10 +632,10 @@
         "Parece-me que perdi sem estar\\nno controlo.$"
       ],
       "LavaridgeTown_Gym_1F_Text_ExplainOverheat": [
-        "Essa TM50 contem OVERHEAT.\\pEsse movimento causa serios\\ndanos ao oponente.\\pMas tambem corta fortemente o\\nSP. ATK do Pokemon a utilizar.\\lPode nao ser adequado para\\lbatalhas mais longas.$"
+        "Essa TM50 contem OVERHEAT.\\pEsse movimento causa serios\\ndanos ao oponente.\\pMas tambem corta fortemente o\\nSP. ATK do POKEMON a utilizar.\\lPode nao ser adequado para\\lbatalhas mais longas.$"
       ],
       "LavaridgeTown_Gym_1F_Text_RegisteredFlannery": [
-        "GINASIO LEADER FLANNERY\\nregistado no POKeNAV.$"
+        "GINASIO LEADER FLANNERY\\nregistado no POKENAV.$"
       ],
       "LavaridgeTown_Gym_1F_Text_FlanneryRematchDefeat": [
         "Ufa! A beira da erupcao!$"
@@ -714,13 +714,13 @@
         "Es eletrizante! Abriste a\\nporta!$"
       ],
       "MauvilleCity_Gym_Text_KirkIntro": [
-        "A minha alma electrica vai\\ndestruir os teus sonhos.$"
+        "A minha alma electrica vai\\ndestruir os seus sonhos.$"
       ],
       "MauvilleCity_Gym_Text_KirkDefeat": [
         "Isso foi ligado, empolgado, com\\nexcesso de energia electrica,\\lmeu!$"
       ],
       "MauvilleCity_Gym_Text_KirkPostBattle": [
-        "Pokemon e rock, e tudo sobre\\ncoracao, whoa-yeah!$"
+        "POKEMON e rock, e tudo sobre\\ncoracao, whoa-yeah!$"
       ],
       "MauvilleCity_Gym_Text_ShawnIntro": [
         "Treinei com o WATTSON! Nao vou\\nperder facilmente!$"
@@ -735,7 +735,7 @@
         "O WATTSON diz que gosta de\\nmontar armadilhas com\\linterruptores.$"
       ],
       "MauvilleCity_Gym_Text_VivianDefeat": [
-        "Estou chocado com o teu poder!$"
+        "Seu poder me deixou chocado!$"
       ],
       "MauvilleCity_Gym_Text_VivianPostBattle": [
         "Ouvi dizer que a MAUVILLE foi\\nfundada pela WATTSON.\\pEle era treinador muito antes\\nde nos tornarmos treinadores.\\lEle deve saber todo o tipo de\\lcoisas!$"
@@ -753,10 +753,10 @@
         "{PLAYER}recebeu o DYNAMO\\nINSIGNIA de WATTSON.$"
       ],
       "MauvilleCity_Gym_Text_ExplainShockWave": [
-        "Aquele TM34 ali contem SHOCK\\nWAVE.\\pE uma jogada de confianca que\\nnunca falha! Podes contar com\\lisso!\\p... ... ... ... ... ...$"
+        "Aquele TM34 ali contem SHOCK\\nWAVE.\\pE uma jogada de confianca que\\nnunca falha! pode contar com\\lisso!\\p... ... ... ... ... ...$"
       ],
       "MauvilleCity_Gym_Text_RegisteredWattson": [
-        "GINASIO LEADER WATTSON\\nregistado no POKeNAV.$"
+        "GINASIO LEADER WATTSON\\nregistado no POKENAV.$"
       ],
       "MauvilleCity_Gym_Text_WattsonPostBattle": [
         "Eu incho com otimismo, vendo um\\njovem PROMOTOR como voce!$"

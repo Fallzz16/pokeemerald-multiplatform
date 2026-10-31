@@ -70,7 +70,7 @@
     },
     "data/maps/NewBarkTown_PlayersHouse_1F/scripts.inc": {
       "NewBarkTown_PlayersHouse_1F_Text_ObtainedPokeGear": [
-        "{PLAYER}obteve o POKeNAV.$"
+        "{PLAYER}obteve o POKENAV.$"
       ]
     },
     "data/maps/NewBarkTown_PlayersHouse_2F/scripts.inc": {
@@ -109,7 +109,7 @@
     },
     "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc": {
       "OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC": [
-        "Aquele PC no canto ha para\\nqualquer treinador POKEMON\\lusar.\\pNaturalmente, isso significa\\nque tambem podes usa-lo.$"
+        "Aquele PC no canto ha para\\nqualquer treinador POKEMON\\lusar.\\pNaturalmente, isso significa\\nque tambem pode usa-lo.$"
       ]
     },
     "data/maps/OlivineCity/scripts.inc": {
@@ -117,7 +117,7 @@
         "Nao acredito que conheci o\\ncampeao!!!!$"
       ],
       "OlivineCity_Text_YoungsterPokegear": [
-        "Aquilo que tens... E um\\nPOKeNAV, certo? Isso e fixe.$"
+        "Aquilo que tem... E um\\nPOKeNAV, certo? Isso e legal.$"
       ],
       "OlivineCity_Text_YoungsterPokedex": [
         "Uau, voce tem um POKEDEX!\\pIsso e tao fantastico.$"
@@ -536,7 +536,7 @@
         "O mar entre PACIFIDLOG e\\nSLATEPORT tem uma mare de\\lcorrida rapida.\\pSe decidires ir para o SURF,\\npodes acabar varrido para outro\\llado.$"
       ],
       "PacifidlogTown_Text_NeatHousesOnWater": [
-        "Ves, nao e fixe? Estas casas\\nestao na agua!\\pEu nasci aqui!$"
+        "Ves, nao e legal? Estas casas\\nestao na agua!\\pEu nasci aqui!$"
       ],
       "PacifidlogTown_Text_SkyPillarTooScary": [
         "O PILLAR SKY?\\pDeves estar a falar daquela\\ntorre alta um pouco mais longe.\\pSe me perguntasses, eu nao\\nescalava. E demasiado\\lassustador para subir tao alto.\\pVida ao nivel do mar em\\nPACIFIDLOG, que me convem muito\\lbem.$"
@@ -552,10 +552,10 @@
     },
     "data/maps/PacifidlogTown_House2/scripts.inc": {
       "PacifidlogTown_House2_Text_AhYourPokemon": [
-        "Ah! O teu Pokemon...$"
+        "Ah! O seu POKEMON...$"
       ],
       "PacifidlogTown_House2_Text_AdoringPokemonTakeThis": [
-        "E obvio que gosta muito de ti.\\pUm Pokemon que adora e adoravel\\nmerece um TM como este, nao?$"
+        "E obvio que gosta muito de ti.\\pUm POKEMON que adora e adoravel\\nmerece um TM como este, nao?$"
       ],
       "PacifidlogTown_House2_Text_PutInSomeMoreEffort": [
         "Hmm... Nao e mau, mas tambem\\nnao e bom.\\pVoce, como instrutor, precisa\\nse esforcar mais.$"
@@ -564,7 +564,7 @@
         "Tem um aspecto cruel.\\pUm POKEMON assustador como esse\\nmerece um TM como este.$"
       ],
       "PacifidlogTown_House2_Text_GetGoodTMInXDays": [
-        "Sim. Em cerca de{STR_VAR_1}ou\\nassim dias, eu deveria estar\\lrecebendo um bom TM ou dois.\\pEntao devias vir ver-me. Dou-te\\num TM adequado para o teu\\lPOKEMON.$"
+        "Sim. Em cerca de{STR_VAR_1}ou\\nassim dias, eu deveria estar\\lrecebendo um bom TM ou dois.\\pEntao devia vir ver-me. Dou-te\\num TM adequado para o seu\\lPOKEMON.$"
       ],
       "PacifidlogTown_House2_Text_VeryFriendlyWithTrainer": [
         "Parece ser muito amigavel com o\\nTRAiner.$"
@@ -575,7 +575,7 @@
     },
     "data/maps/PacifidlogTown_House3/scripts.inc": {
       "PacifidlogTown_House3_Text_WillingToTradeIt": [
-        "Olha para isto.{STR_VAR_2}!\\pE o{STR_VAR_2}que apanhei ontem\\npara celebrar o meu\\laniversario!\\pPosso ver que tu queres!\\nAfinal, e inestimavel!\\pFazemos assim. Eu poderia estar\\ndisposto a troca-lo por\\lum{STR_VAR_1}.$"
+        "Olha para isto.{STR_VAR_2}!\\pE o{STR_VAR_2}que apanhei ontem\\npara celebrar o meu\\laniversario!\\pPosso ver que tu quer!\\nAfinal, e inestimavel!\\pFazemos assim. Eu poderia estar\\ndisposto a troca-lo por\\lum{STR_VAR_1}.$"
       ],
       "PacifidlogTown_House3_Text_ItsSubtlyDifferentThankYou": [
         "Entao isto e...{STR_VAR_1}?\\pE uma especie de...{STR_VAR_2},\\ne ainda assim e sutilmente\\ldiferente.\\pObrigado!$"
@@ -584,10 +584,10 @@
         "Nao! Nao aceitarei menos do que\\num verdadeiro{STR_VAR_1}!$"
       ],
       "PacifidlogTown_House3_Text_NotDesperateOrAnything": [
-        "Entao, nao vais continuar com\\nisto?\\pFixe. Nao estou desesperado\\npara fazer uma troca.$"
+        "Entao, nao vai continuar com\\nisto?\\pFixe. Nao estou desesperado\\npara fazer uma troca.$"
       ],
       "PacifidlogTown_House3_Text_IsThatAPokedex": [
-        "Isso e um POKEDEX?\\pConheceste muitos Pokemon\\ndiferentes?\\pQuem me dera ser como tu.$"
+        "Isso e um POKEDEX?\\pConheceste muitos POKEMON\\ndiferentes?\\pQuem me dera ser como tu.$"
       ]
     },
     "data/maps/PacifidlogTown_House4/scripts.inc": {
@@ -595,13 +595,13 @@
         "As pessoas diziam que viram um\\nPokemon a voar alto sobre o\\lHOENN.\\pEsta sempre a voar? Nao precisa\\nde descansar?$"
       ],
       "PacifidlogTown_House4_Text_SkyPokemon": [
-        "Um Pokemon do ceu! Um Pokemon\\ndo ceu!$"
+        "Um POKEMON do ceu! Um POKEMON\\ndo ceu!$"
       ],
       "PacifidlogTown_House4_Text_WhereDidYouComeFrom": [
-        "De onde vieste?$"
+        "De onde veio?$"
       ],
       "PacifidlogTown_House4_Text_YouHaveToComeFromSomewhere": [
-        "Nao? Isso nao faz sentido. Tens\\nde vir de algum lado.\\pOh! Espera! Nao vais dizer que\\nnasceste no fundo do mar?$"
+        "Nao? Isso nao faz sentido. tem\\nde vir de algum lado.\\pOh! Espera! Nao vai dizer que\\nnasceste no fundo do mar?$"
       ]
     },
     "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc": {
@@ -680,20 +680,20 @@
         "Viajar e maravilhoso!\\pQuando era jovem, vagava pelos\\nmares e pelas montanhas!$"
       ],
       "PetalburgCity_House1_Text_GoOnAdventure": [
-        "Suspiro...\\pQuem me dera poder ir numa\\naventura com algum Pokemon...\\pRasteja atraves de alguma relva\\nhumida... Escalar montanhas\\lrochosas, rochosas...\\pAtravesse os mares furiosos...\\nAndar em cavernas escuras...\\pE, as vezes, ate fico com\\nsaudades de casa...\\pDeve ser fabuloso viajar!$"
+        "Suspiro...\\pQuem me dera poder ir numa\\naventura com algum POKEMON...\\pRasteja atraves de alguma relva\\nhumida... Escalar montanhas\\lrochosas, rochosas...\\pAtravesse os mares furiosos...\\nAndar em cavernas escuras...\\pE, as vezes, ate fico com\\nsaudades de casa...\\pDeve ser fabuloso viajar!$"
       ]
     },
     "data/maps/PetalburgCity_House2/scripts.inc": {
       "PetalburgCity_House2_Text_BattledNormanOnce": [
-        "Uma vez lutei com o NORMAN, mas\\nele era muito forte.\\pComo diria?\\pTenho a sensacao de que ele\\nvive para o Pokemon.$"
+        "Uma vez lutei com o NORMAN, mas\\nele era muito forte.\\pComo diria?\\pTenho a sensacao de que ele\\nvive para o POKEMON.$"
       ]
     },
     "data/maps/PetalburgCity_Mart/scripts.inc": {
       "PetalburgCity_Mart_Text_WeakWillGrowStronger": [
-        "Mesmo que um POKEMON esteja\\nfraco agora, ficara mais forte.\\pO mais importante e o amor!\\nAmor pelo teu Pokemon!$"
+        "Mesmo que um POKEMON esteja\\nfraco agora, ficara mais forte.\\pO mais importante e o amor!\\nAmor pelo seu POKEMON!$"
       ],
       "PetalburgCity_Mart_Text_RepelIsUseful": [
-        "Usa REPEL? Mantem o Pokemon\\nafastado, por isso e util\\lquando se esta com pressa.$"
+        "Usa REPEL? Mantem o POKEMON\\nafastado, por isso e util\\lquando se esta com pressa.$"
       ]
     },
     "data/maps/PetalburgCity_PokemonCenter_1F/scripts.inc": {
@@ -701,7 +701,7 @@
         "Aquele sistema de armazenamento\\nPOKEMON baseado em PC...\\pQuem quer que o tenha feito\\ndeve ser algum tipo de\\lfeiticeiro cientifico!$"
       ],
       "PetalburgCity_PokemonCenter_1F_Text_OranBerryRegainedHP": [
-        "Quando o meu Pokemon comeu um\\nORAN BERRY, recuperou HP!$"
+        "Quando o meu POKEMON comeu um\\nORAN BERRY, recuperou HP!$"
       ],
       "PetalburgCity_PokemonCenter_1F_Text_ManyTypesOfPokemon": [
         "Existem muitos tipos de\\nPOKEMON.\\pTodos os tipos tem seus pontos\\nfortes e fracos contra outros\\ltipos.\\pDependendo dos tipos de\\nPOKEMON, uma batalha pode ser\\lfacil ou dificil.$"
@@ -763,7 +763,7 @@
         "POKEMON aprende novas tecnicas\\na medida que crescem.\\pMas alguns movimentos devem ser\\nensinados as pessoas.$"
       ],
       "PewterCity_House2_Text_MonsEasierCatchIfStatused": [
-        "Um POKEMON torna-se mais facil\\nde apanhar se tiver um problema\\lde estado.\\pSono, veneno, queimadura ou\\nparalisia... Sao todas\\leficazes.\\pMas apanhar o Pokemon nunca e\\numa coisa certa!$"
+        "Um POKEMON torna-se mais facil\\nde capturar se tiver um problema\\lde estado.\\pSono, veneno, queimadura ou\\nparalisia... Sao todas\\leficazes.\\pMas capturar o POKEMON nunca e\\numa coisa certa!$"
       ]
     },
     "data/maps/PewterCity_Mart_Frlg/scripts.inc": {
@@ -776,13 +776,13 @@
         "Volta outra vez!$"
       ],
       "PewterCity_Museum_1F_Text_DontHaveEnoughMoney": [
-        "Nao tens dinheiro suficiente.$"
+        "Nao tem dinheiro suficiente.$"
       ],
       "PewterCity_Museum_1F_Text_PleaseEnjoyYourself": [
         "Por favor, divirta-se.$"
       ],
       "PewterCity_Museum_1F_Text_DoYouKnowWhatAmberIs": [
-        "Nao podes entrar pelas\\ntraseiras! Boa tentativa,\\lmiudo, mas nao.\\pTanto faz! Sabes o que e AMBER?$"
+        "Nao pode entrar pelas\\ntraseiras! Boa tentativa,\\lmiudo, mas nao.\\pTanto faz! sabe o que e AMBER?$"
       ],
       "PewterCity_Museum_1F_Text_AmberIsFossilizedSap": [
         "AMBER e realmente seiva, aquela\\ncoisa gosma que escorre das\\larvores.\\pA antiga seiva fossilizou ao\\nlongo do tempo para se tornar\\lAMBER dura.$"
@@ -791,7 +791,7 @@
         "Devia estar grato pela minha\\nlonga vida.\\pNunca pensei que veria os ossos\\nde um dragao!$"
       ],
       "PewterCity_Museum_1F_Text_DontHaveSpaceForThis": [
-        "Nao tens espaco para isto.$"
+        "Nao tem espaco para isto.$"
       ],
       "PewterCity_Museum_1F_Text_WeHaveTwoFossilsOnExhibit": [
         "Temos dois fosseis de POKEMON\\nraros e pre-historicos em\\lexposicao.$"
@@ -820,7 +820,7 @@
         "Este mes, vamos fazer uma\\nexposicao espacial.$"
       ],
       "PewterCity_Museum_1F_Text_AskedDaddyToCatchPikachu": [
-        "Quero um PIKACHU! E tao giro!\\pPedi ao meu pai para me apanhar\\num!$"
+        "Quero um PIKACHU! E tao giro!\\pPedi ao meu pai para me capturar\\num!$"
       ],
       "PewterCity_Museum_1F_Text_PikachuSoonIPromise": [
         "Sim, um PIKACHU em breve,\\nprometo!$"
@@ -831,7 +831,7 @@
     },
     "data/maps/PewterCity_PokemonCenter_1F_Frlg/scripts.inc": {
       "PewterCity_PokemonCenter_1F_Text_TradingPikachuWithKid": [
-        "Vou trocar o Pokemon com aquele\\nmiudo.\\pEu tinha dois PIKACHU, entao\\nachei que podia trocar um.$"
+        "Vou trocar o POKEMON com aquele\\nmiudo.\\pEu tinha dois PIKACHU, entao\\nachei que podia trocar um.$"
       ]
     },
     "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc": {
@@ -839,7 +839,7 @@
         "Meu Deus! Es algo especial,\\ncrianca!$"
       ],
       "PokemonLeague_AgathasRoom_Text_PostBattle": [
-        "Ganhaste!\\pAgora vejo o que o velhote ve\\nem ti.\\pNao tenho mais nada a dizer.\\nVai-te embora, crianca!$"
+        "venceu!\\pAgora vejo o que o velhote ve\\nem ti.\\pNao tenho mais nada a dizer.\\nVai-te embora, crianca!$"
       ]
     },
     "data/maps/PokemonLeague_BrunosRoom_Frlg/scripts.inc": {
@@ -847,7 +847,7 @@
         "Porque? Como poderia perder?$"
       ],
       "PokemonLeague_BrunosRoom_Text_PostBattle": [
-        "O meu trabalho esta feito. Vai\\nenfrentar o teu proximo\\ldesafio.$"
+        "O meu trabalho esta feito. Vai\\nenfrentar o seu proximo\\ldesafio.$"
       ]
     }
   },

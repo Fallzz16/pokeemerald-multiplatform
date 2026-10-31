@@ -11,16 +11,16 @@
         "Fiz uma pequena investigacao\\nsobre o seu proximo adversario.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInNormalType": [
-        "O TRAiner e aparentemente habil\\nno manuseio do tipo NORMAL.$"
+        "O TREINADOR e aparentemente habil\\nno manuseio do tipo NORMAL.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInElectricType": [
         "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lELECTRIC.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInGrassType": [
-        "O TRAiner e aparentemente habil\\nno manuseio do tipo GRASS.$"
+        "O TREINADOR e aparentemente habil\\nno manuseio do tipo GRASS.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInIceType": [
-        "O TRAiner e aparentemente habil\\nna manipulacao do tipo ICE.$"
+        "O TREINADOR e aparentemente habil\\nna manipulacao do tipo ICE.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInPoisonType": [
         "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lPOISON.$"
@@ -29,16 +29,16 @@
         "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lGROUND.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInPsychicType": [
-        "O TRAiner e aparentemente habil\\nna manipulacao do tipo PSYCHIC.$"
+        "O TREINADOR e aparentemente habil\\nna manipulacao do tipo PSYCHIC.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInBugType": [
-        "O TRAiner e aparentemente habil\\nna manipulacao do tipo BUG.$"
+        "O TREINADOR e aparentemente habil\\nna manipulacao do tipo BUG.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInRockType": [
         "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lROCK.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInGhostType": [
-        "O TRAiner e aparentemente habil\\nna manipulacao do tipo GHOST.$"
+        "O TREINADOR e aparentemente habil\\nna manipulacao do tipo GHOST.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInDragonType": [
         "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lDRAGON.$"
@@ -47,10 +47,10 @@
         "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lDARK.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInSteelType": [
-        "O TRAiner e aparentemente habil\\nna manipulacao do tipo STEEL.$"
+        "O TREINADOR e aparentemente habil\\nna manipulacao do tipo STEEL.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerHasNoClearFavorite": [
-        "O TRAiner parece nao ter\\nfavoritos claros quando se\\ltrata de tipo.$"
+        "O TREINADOR parece nao ter\\nfavoritos claros quando se\\ltrata de tipo.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_StyleSlowAndSteady": [
         "O estilo de batalha favorito\\nparece ser lento e estavel.$"
@@ -89,7 +89,7 @@
         "Por aqui, por favor!$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_SavingDataPleaseWait": [
-        "Estou a guardar os teus dados.\\nPor favor, espere.$"
+        "Estou salvando seus dados.\\nAguarde um instante.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_RecordLatestBattle": [
         "Gostaria de gravar a sua ultima\\nbatalha no seu PASS FRONTIER?$"
@@ -103,7 +103,7 @@
     },
     "data/maps/BattleFrontier_BattlePalaceBattleRoom/scripts.inc": {
       "BattleFrontier_BattlePalaceBattleRoom_Text_LetMeRestoreYourMons": [
-        "Excelente... Deixa-me restaurar\\no teu Pokemon.$"
+        "Muito bem... Vou recuperar\\nseus POKEMON.$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor2ndOpponent": [
         "O 2o oponente e o proximo.\\nEstas preparado?$"
@@ -159,7 +159,7 @@
         "As pessoas e o POKEMON sao as\\nmesmas...\\pSua natureza individual os\\ntorna bons em certas coisas, e\\lnao bons em outras.$"
       ],
       "BattleFrontier_BattlePalaceCorridor_Text_HeartfeltBondBetweenYouAndMons": [
-        "Vejo um forte e sincero vinculo\\nentre ti e o teu Pokemon...$"
+        "Vejo um forte e sincero vinculo\\nentre ti e o seu POKEMON...$"
       ]
     },
     "data/maps/BattleFrontier_BattlePalaceLobby/scripts.inc": {
@@ -185,10 +185,10 @@
         "Para o feito de sua serie de 7\\nvitorias, apresentamos-lhe com\\lBattle Point(s).$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_NoSpaceForPrize": [
-        "Parece que nao tens espaco para\\no nosso premio.\\pDeve voltar quando tiver\\norganizado o seu BAG.$"
+        "Parece que voce nao tem\\nespaco para o premio.\\pVolte depois de organizar\\nsua BOLSA.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_WeHaveBeenWaiting": [
-        "Estavamos a tua espera...$"
+        "Estavamos a sua espera...$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_FailedToSaveBeforeEndingChallenge": [
         "Suspiro...\\pVoce falhou em salvar antes de\\nterminar o seu desafio da\\lultima vez.\\pComo resultado, seu desafio foi\\ndesqualificado. E uma pena.$"
@@ -206,19 +206,19 @@
         "Pergunto-me que tipo de\\nnatureza um POKEMON teria se\\lfavorecesse a fraude dos seus\\ladversarios e a lapidacao\\llentamente.\\pFicaria surpreendido se fosse\\numa natureza LAX.\\pMas isso nao pode estar certo.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ToDefeatMavenAnd7Trainers": [
-        "Para derrotar o PALACE MAVEN e\\nsete TRAiners seguidos...$"
+        "Para derrotar o PALACE MAVEN e\\nsete TREINADORES seguidos...$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_PresentYouWithBattlePoints": [
-        "Em honra do vinculo que\\npartilhas com o teu POKEMON,\\lapresentamos-te estes Pontos de\\lBatalha.$"
+        "Em honra do vinculo que\\npartilhas com o seu POKEMON,\\lapresentamos-te estes Pontos de\\lBatalha.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_LikeToRecordMatch": [
-        "Gostarias de gravar o teu\\nultimo combate BATTLE PALACE no\\lteu PASS FRONTIER?$"
+        "Gostarias de gravar o seu\\nultimo combate BATTLE PALACE no\\lteu PASS FRONTIER?$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_RulesAreListed": [
         "As regras do BATTLE HALL estao\\nlistadas.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ReadWhichHeading": [
-        "Que rumo queres ler?$"
+        "Que rumo quer ler?$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesBasics": [
         "Aqui, POKEMON sao obrigados a\\npensar e lutar sozinhos.\\pAo contrario na natureza,\\nPOKEMON que vivem com as\\lpessoas comportam-se de forma\\ldiferente, dependendo de sua\\lnatureza.$"
@@ -230,7 +230,7 @@
         "Ha movimentos ofensivos que\\ncausam danos diretos ao\\linimigo.\\pHa movimentos defensivos que\\nsao usados para se preparar\\lpara ataques inimigos ou usados\\lpara curar HP e assim por\\ldiante.\\pHa tambem outros movimentos um\\npouco estranhos que podem\\lafetar os inimigos com\\lproblemas de estado, incluindo\\lveneno e paralisia.\\pPOKEMON considerara a\\nutilizacao de movimentos nestas\\ltres categorias.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesUnderpowered": [
-        "Quando nao estiver sob o\\ncomando do seu TRAiner, um\\lPOKEMON pode nao ser capaz de\\lutilizar eficazmente certos\\lmovimentos.\\pUM POKEMON nao e bom em usar\\nqualquer movimento que nao\\lgoste.\\pSe um POKEMON so conhece\\nmovimentos que nao correspondem\\la sua natureza, muitas vezes\\lsera incapaz de cumprir o seu\\lpotencial.$"
+        "Quando nao estiver sob o\\ncomando do seu TREINADOR, um\\lPOKEMON pode nao ser capaz de\\lutilizar eficazmente certos\\lmovimentos.\\pUM POKEMON nao e bom em usar\\nqualquer movimento que nao\\lgoste.\\pSe um POKEMON so conhece\\nmovimentos que nao correspondem\\la sua natureza, muitas vezes\\lsera incapaz de cumprir o seu\\lpotencial.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesWhenInDanger": [
         "Dependendo da sua natureza, um\\nPOKEMON pode comecar a usar\\lmovimentos que nao correspondem\\la sua natureza quando esta em\\lapuros.\\pSe um POKEMON comecar a\\ncomportar-se de forma estranha,\\lobserve- o cuidadosamente.$"
@@ -267,7 +267,7 @@
         "Por favor, por aqui...$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ChallengeEndedRecordResults": [
-        "O teu desafio terminou...\\pVou registar os seus\\nresultados. Por favor,\\lespera...$"
+        "O seu desafio terminou...\\pVou registar os seus\\nresultados. Por favor,\\lespera...$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_PossessLuckInAbundance": [
         "Voce completou o desafio...\\pDevo dizer... Pareces ter sorte\\nem abundancia...$"
@@ -297,16 +297,16 @@
         "Ouve! Ouve!\\pNao acha que as habilidades\\nespeciais de POKEMON serao\\luteis aqui?$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_TrainersWhicheverPathIChoose": [
-        "Que sitio e este? Nao consigo\\nperceber nada!\\pJa enfrentei o desafio varias\\nvezes, mas tudo o que faco e\\lencontrar os TRAiners onde eu\\lescolher.$"
+        "Que sitio e este? Nao consigo\\nperceber nada!\\pJa enfrentei o desafio varias\\nvezes, mas tudo o que faco e\\lencontrar os TREINADORES onde eu\\lescolher.$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_RulesAreListed": [
         "As regras da Escolha de Batalha\\nestao listadas.$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ReadWhichHeading": [
-        "Que rumo queres ler?$"
+        "Que rumo quer ler?$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ExplainPokenavBagRules": [
-        "O BAG e o POKeNAV nao podem ser\\nusados durante um desafio\\lBattle Choice.$"
+        "O BAG e o POKENAV nao podem ser\\nusados durante um desafio\\lBattle Choice.$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ExplainHeldItemRules": [
         "Durante um desafio de Battle\\nChoice, qualquer BERRY ou HERB\\lmantido por POKEMON sera eficaz\\lapenas uma vez.$"
@@ -328,13 +328,13 @@
         "Peco-vos que aproveitem o resto\\ndo vosso desafio de Escolha de\\lBatalha...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreOneMon": [
-        "Es um sortudo. Estou de bom\\nhumor agora.\\pVou restaurar um dos teus\\nPOKEMON a plena saude.$"
+        "Es um sortudo. Estou de bom\\nhumor agora.\\pVou restaurar um dos seus\\nPOKEMON a plena saude.$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_BestOfLuckFarewell": [
         "Boa sorte para ti. Adeus.$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_CareForBattleWillRestoreMons": [
-        "Com licenca...\\pGostaria de uma batalha?\\nRecupero o teu POKEMON se\\lganhares.$"
+        "Com licenca...\\pGostaria de uma batalha?\\nRecupero o seu POKEMON se\\lganhares.$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_NowShallWe": [
         "Muito bem... Vamos?$"
@@ -370,10 +370,10 @@
         "Devo pedir-te desculpa...\\pO meu DUSCLOPS tem uma natureza\\nTIMID...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_AttacksWhenStartled": [
-        "Ataca sem aviso se for\\nsurpreendido por outra\\lpessoa...\\pTu e o teu Pokemon estao bem?$"
+        "Ataca sem aviso se for\\nsurpreendido por outra\\lpessoa...\\pTu e o seu POKEMON estao bem?$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ApologizeHopeMonsAreFine": [
-        "Peco desculpa pelo que\\naconteceu... Espero que o teu\\lPokemon esteja bem.$"
+        "Peco desculpa pelo que\\naconteceu... Espero que o seu\\lPokemon esteja bem.$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_BattleSomewhatToughTrainer": [
         "Bem-vindo...\\pAqui, vamos fazer com que lutes\\ncom um treinador um pouco\\lduro...$"
@@ -385,7 +385,7 @@
         "Peco-vos que aproveitem o resto\\ndo vosso desafio de Escolha de\\lBatalha...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_HopeYouDidntUseUpLuck": [
-        "A tua sorte... Espero que nao\\ntenhas usado tudo aqui...$"
+        "A sua sorte... Espero que nao\\ntenhas usado tudo aqui...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_AllThereIsDisappear": [
         "...E tudo o que ha...\\nDesaparecer ja...$"
@@ -400,16 +400,16 @@
         "Nao me esquecerei de ti.$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ChoseRoomNoHeal": [
-        "Bem-vindos...\\pRiso... Pareces estar sem\\nsorte...\\pSe nao tivesses escolhido esta\\nsala, o teu Pokemon podia ter\\lsido curado...$"
+        "Bem-vindos...\\pRiso... Pareces estar sem\\nsorte...\\pSe nao tivesses escolhido esta\\nsala, o seu POKEMON podia ter\\lsido curado...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ChoseRoomHealOne": [
-        "Bem-vindos...\\pJa que escolheste esta sala,\\nvou restaurar um Pokemon a\\lplena saude...$"
+        "Bem-vindos...\\pJa que escolheste esta sala,\\nvou restaurar um POKEMON a\\lplena saude...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ChoseRoomHealTwo": [
         "Bem-vindos...\\pJa que escolheste esta sala,\\nvou restaurar dois POKEMON a\\lplena saude...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreAllMons": [
-        "Bem-vindos...\\pRiso... Devias agradecer as\\ntuas estrelas da sorte...\\pJa que escolheu esta sala, todo\\no seu POKEMON sera\\lrestaurado...$"
+        "Bem-vindos...\\pRiso... devia agradecer as\\ntuas estrelas da sorte...\\pJa que escolheu esta sala, todo\\no seu POKEMON sera\\lrestaurado...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ShallFetchOurMaster": [
         "Vou buscar o nosso mestre...$"
@@ -503,7 +503,7 @@
         "Sua busca BATTLE PYRAMID sera\\nsalva para que voce possa parar\\lpor enquanto. Pode ser?$"
       ],
       "gText_BattlePyramidConfirmRetire": [
-        "Tens a certeza que queres\\ndeixar a tua missao PYRAMID?$"
+        "tem a certeza que quer\\ndeixar a sua missao PYRAMID?$"
       ],
       "BattlePyramid_Text_ExitHintUp1": [
         "A saida deste andar e nessa\\ndireccao.{UP_ARROW}$"
@@ -605,85 +605,85 @@
         "Estas a procura de itens?\\pNao ha mais nada para ser\\nencontrado!$"
       ],
       "BattlePyramid_Text_EightItemsRemaining2": [
-        "Porque ganhaste, vou contar-te\\num pequeno segredo!\\pHa oito itens por aqui.$"
+        "Porque venceu, vou contar-te\\num pequeno segredo!\\pHa oito itens por aqui.$"
       ],
       "BattlePyramid_Text_SevenItemsRemaining2": [
-        "Porque ganhaste, vou contar-te\\num pequeno segredo!\\pHa sete itens por aqui.$"
+        "Porque venceu, vou contar-te\\num pequeno segredo!\\pHa sete itens por aqui.$"
       ],
       "BattlePyramid_Text_SixItemsRemaining2": [
-        "Porque ganhaste, vou contar-te\\num pequeno segredo!\\pHa seis itens por aqui.$"
+        "Porque venceu, vou contar-te\\num pequeno segredo!\\pHa seis itens por aqui.$"
       ],
       "BattlePyramid_Text_FiveItemsRemaining2": [
-        "Porque ganhaste, vou contar-te\\num pequeno segredo!\\pAinda ha cinco itens por aqui.$"
+        "Porque venceu, vou contar-te\\num pequeno segredo!\\pAinda ha cinco itens por aqui.$"
       ],
       "BattlePyramid_Text_FourItemsRemaining2": [
-        "Porque ganhaste, vou contar-te\\num pequeno segredo!\\pHa quatro itens por aqui.$"
+        "Porque venceu, vou contar-te\\num pequeno segredo!\\pHa quatro itens por aqui.$"
       ],
       "BattlePyramid_Text_ThreeItemsRemaining2": [
-        "Porque ganhaste, vou contar-te\\num pequeno segredo!\\pAinda ha tres itens por aqui.$"
+        "Porque venceu, vou contar-te\\num pequeno segredo!\\pAinda ha tres itens por aqui.$"
       ],
       "BattlePyramid_Text_TwoItemsRemaining2": [
-        "Porque ganhaste, vou contar-te\\num pequeno segredo!\\pAinda ha dois itens por aqui.$"
+        "Porque venceu, vou contar-te\\num pequeno segredo!\\pAinda ha dois itens por aqui.$"
       ],
       "BattlePyramid_Text_OneItemRemaining2": [
-        "Porque ganhaste, vou contar-te\\num pequeno segredo!\\pHa apenas um item por aqui.$"
+        "Porque venceu, vou contar-te\\num pequeno segredo!\\pHa apenas um item por aqui.$"
       ],
       "BattlePyramid_Text_ZeroItemsRemaining2": [
-        "Porque ganhaste, vou contar-te\\num pequeno segredo!\\pNao sobrou nada por aqui.$"
+        "Porque venceu, vou contar-te\\num pequeno segredo!\\pNao sobrou nada por aqui.$"
       ],
       "BattlePyramid_Text_EightItemsRemaining3": [
-        "Como estao as tuas coisas?\\pAcho que ha oito itens a espera\\nde serem encontrados neste\\landar.$"
+        "Como estao as suas coisas?\\pAcho que ha oito itens a espera\\nde serem encontrados neste\\landar.$"
       ],
       "BattlePyramid_Text_SevenItemsRemaining3": [
-        "Como estao as tuas coisas?\\pAcho que restam sete itens a\\nespera de serem encontrados\\lneste andar.$"
+        "Como estao as suas coisas?\\pAcho que restam sete itens a\\nespera de serem encontrados\\lneste andar.$"
       ],
       "BattlePyramid_Text_SixItemsRemaining3": [
-        "Como estao as tuas coisas?\\pAcho que restam seis itens a\\nespera de serem encontrados\\lneste andar.$"
+        "Como estao as suas coisas?\\pAcho que restam seis itens a\\nespera de serem encontrados\\lneste andar.$"
       ],
       "BattlePyramid_Text_FiveItemsRemaining3": [
-        "Como estao as tuas coisas?\\pAcho que restam cinco itens a\\nespera de serem encontrados\\lneste andar.$"
+        "Como estao as suas coisas?\\pAcho que restam cinco itens a\\nespera de serem encontrados\\lneste andar.$"
       ],
       "BattlePyramid_Text_FourItemsRemaining3": [
-        "Como estao as tuas coisas?\\pAcho que restam quatro itens a\\nespera de serem encontrados\\lneste andar.$"
+        "Como estao as suas coisas?\\pAcho que restam quatro itens a\\nespera de serem encontrados\\lneste andar.$"
       ],
       "BattlePyramid_Text_ThreeItemsRemaining3": [
-        "Como estao as tuas coisas?\\pAcho que ha tres itens a espera\\nde serem encontrados neste\\landar.$"
+        "Como estao as suas coisas?\\pAcho que ha tres itens a espera\\nde serem encontrados neste\\landar.$"
       ],
       "BattlePyramid_Text_TwoItemsRemaining3": [
-        "Como estao as tuas coisas?\\pAcho que ainda ha dois itens a\\nespera de serem encontrados\\lneste andar.$"
+        "Como estao as suas coisas?\\pAcho que ainda ha dois itens a\\nespera de serem encontrados\\lneste andar.$"
       ],
       "BattlePyramid_Text_OneItemRemaining3": [
-        "Como estao as tuas coisas?\\pAcho que ha apenas um item a\\nespera de ser encontrado neste\\landar.$"
+        "Como estao as suas coisas?\\pAcho que ha apenas um item a\\nespera de ser encontrado neste\\landar.$"
       ],
       "BattlePyramid_Text_ZeroItemsRemaining3": [
-        "Como estao as tuas coisas?\\pAcho que nao ha mais itens a\\nespera neste andar. Cuida-te!$"
+        "Como estao as suas coisas?\\pAcho que nao ha mais itens a\\nespera neste andar. Cuida-te!$"
       ],
       "BattlePyramid_Text_EightItemsRemaining4": [
-        "Es forte, por isso ganhaste uma\\ndica!\\pParece haver mais oito itens no\\nchao.$"
+        "Es forte, por isso venceu uma\\ndica!\\pParece haver mais oito itens no\\nchao.$"
       ],
       "BattlePyramid_Text_SevenItemsRemaining4": [
-        "Es forte, por isso ganhaste uma\\ndica!\\pParece haver mais sete itens no\\nchao.$"
+        "Es forte, por isso venceu uma\\ndica!\\pParece haver mais sete itens no\\nchao.$"
       ],
       "BattlePyramid_Text_SixItemsRemaining4": [
-        "Es forte, por isso ganhaste uma\\ndica!\\pParece haver mais seis itens no\\nchao.$"
+        "Es forte, por isso venceu uma\\ndica!\\pParece haver mais seis itens no\\nchao.$"
       ],
       "BattlePyramid_Text_FiveItemsRemaining4": [
-        "Es forte, por isso ganhaste uma\\ndica!\\pParece haver mais cinco itens\\nno chao.$"
+        "Es forte, por isso venceu uma\\ndica!\\pParece haver mais cinco itens\\nno chao.$"
       ],
       "BattlePyramid_Text_FourItemsRemaining4": [
-        "Es forte, por isso ganhaste uma\\ndica!\\pParece haver mais quatro itens\\nno chao.$"
+        "Es forte, por isso venceu uma\\ndica!\\pParece haver mais quatro itens\\nno chao.$"
       ],
       "BattlePyramid_Text_ThreeItemsRemaining4": [
-        "Es forte, por isso ganhaste uma\\ndica!\\pParece haver mais tres itens no\\nchao.$"
+        "Es forte, por isso venceu uma\\ndica!\\pParece haver mais tres itens no\\nchao.$"
       ],
       "BattlePyramid_Text_TwoItemsRemaining4": [
-        "Es forte, por isso ganhaste uma\\ndica!\\pParece haver mais dois itens no\\nchao.$"
+        "Es forte, por isso venceu uma\\ndica!\\pParece haver mais dois itens no\\nchao.$"
       ],
       "BattlePyramid_Text_OneItemRemaining4": [
-        "Es forte, por isso ganhaste uma\\ndica!\\pParece haver apenas mais um\\nitem no chao.$"
+        "Es forte, por isso venceu uma\\ndica!\\pParece haver apenas mais um\\nitem no chao.$"
       ],
       "BattlePyramid_Text_ZeroItemsRemaining4": [
-        "Es forte, por isso ganhaste uma\\ndica!\\pParece nao haver mais itens no\\nchao.$"
+        "Es forte, por isso venceu uma\\ndica!\\pParece nao haver mais itens no\\nchao.$"
       ],
       "BattlePyramid_Text_EightItemsRemaining6": [
         "Ja recolheste alguma coisa?\\pCreio que ha mais oito itens\\nneste andar.$"
@@ -761,13 +761,13 @@
         "Isto e tao perturbador!\\pMas nao ha mais treinadores que\\npossam engaja-lo!$"
       ],
       "BattlePyramid_Text_SevenTrainersRemaining3": [
-        "Impressionante!\\pMas ha mais sete treinadores\\nneste andar. Consegues\\lvence-los a todos?$"
+        "Impressionante!\\pMas ha mais sete treinadores\\nneste andar. Consegue\\lvence-los a todos?$"
       ],
       "BattlePyramid_Text_SixTrainersRemaining3": [
-        "Impressionante!\\pMas ha mais seis treinadores\\nneste andar. Consegues\\lvence-los a todos?$"
+        "Impressionante!\\pMas ha mais seis treinadores\\nneste andar. Consegue\\lvence-los a todos?$"
       ],
       "BattlePyramid_Text_FiveTrainersRemaining3": [
-        "Impressionante!\\pMas ha mais cinco treinadores\\nneste andar. Consegues\\lvence-los a todos?$"
+        "Impressionante!\\pMas ha mais cinco treinadores\\nneste andar. Consegue\\lvence-los a todos?$"
       ]
     }
   },
