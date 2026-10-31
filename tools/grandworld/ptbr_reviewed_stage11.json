@@ -5,8 +5,27 @@
     "ptbr_auto_review_016.json"
   ],
   "source_diff_against": "feature/grandworld-ptbr-human-review-stage10-20261031",
-  "reviewed_entries": 145,
+  "reviewed_entries": 170,
   "reviewed_labels_by_source": {
+    "data/maps/MauvilleCity_BikeShop/scripts.inc": [
+      "MauvilleCity_BikeShop_Text_SandySlopes",
+      "MauvilleCity_BikeShop_Text_Wheelies",
+      "MauvilleCity_BikeShop_Text_BunnyHops",
+      "MauvilleCity_BikeShop_Text_Jumps"
+    ],
+    "data/maps/MauvilleCity_GameCorner/scripts.inc": [
+      "MauvilleCity_GameCorner_Text_DontHaveEnoughMoney",
+      "MauvilleCity_GameCorner_Text_WhichPrize",
+      "MauvilleCity_GameCorner_Text_SoYourChoiceIsTheTMX",
+      "MauvilleCity_GameCorner_Text_SendToYourHomePC",
+      "MauvilleCity_GameCorner_Text_NoRoomForPlacingDecor",
+      "MauvilleCity_GameCorner_Text_SoYourChoiceIsX",
+      "MauvilleCity_GameCorner_Text_CantCarryAnyMore",
+      "MauvilleCity_GameCorner_Text_YouWantItButNotNow",
+      "MauvilleCity_GameCorner_Text_DontBeNegative",
+      "MauvilleCity_GameCorner_Text_CantWinJackpot",
+      "MauvilleCity_GameCorner_Text_EasyToLoseTrackOfTime"
+    ],
     "data/maps/MeteorFalls_1F_2R/scripts.inc": [
       "MeteorFalls_1F_2R_Text_NicolasDefeat",
       "MeteorFalls_1F_2R_Text_NicolasPostBattle",
@@ -27,6 +46,18 @@
       "MossdeepCity_Text_NiceIfWorldCoveredByFlowers",
       "MossdeepCity_Text_LifeNeedsSeaToLive",
       "MossdeepCity_Text_SurfExhilarating"
+    ],
+    "data/maps/MossdeepCity_GameCorner_1F/scripts.inc": [
+      "RS_MysteryEventsHouse_Text_OldManGreeting",
+      "RS_MysteryEventsHouse_Text_DoorIsLocked",
+      "RS_MysteryEventsHouse_Text_ChallengeVisitingTrainer",
+      "RS_MysteryEventsHouse_Text_YouWontBattle",
+      "RS_MysteryEventsHouse_Text_KeepItToA3On3",
+      "RS_MysteryEventsHouse_Text_SaveYourProgress",
+      "RS_MysteryEventsHouse_Text_HopeToSeeAGoodMatch",
+      "RS_MysteryEventsHouse_Text_BattleTie",
+      "RS_MysteryEventsHouse_Text_BattleWon",
+      "RS_MysteryEventsHouse_Text_BattleLost"
     ],
     "data/maps/MossdeepCity_House1/scripts.inc": [
       "MossdeepCity_House1_Text_HmmYourPokemon",
