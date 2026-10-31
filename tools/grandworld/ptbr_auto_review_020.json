@@ -2,224 +2,224 @@
   "asm": {
     "data/maps/SevenIsland_Frlg/scripts.inc": {
       "Text_SwordsDanceWhichMon": [
-        "Muito bem, escolha qual Pokemon\\neu devia ensinar.$"
+        "Muito bem!\\pQual POKEMON deve\\naprender SWORDS DANCE?$"
       ],
       "Text_SwordsDanceTaught": [
-        "Se ao menos conseguissemos\\nficar cada vez mais fortes...$"
+        "Continue treinando!\\nVoce ainda pode ficar mais forte!$"
       ],
       "SevenIsland_Text_IslandVirtuallyUntouched": [
-        "Esta ilha foi deixada\\npraticamente intocada em seu\\lestado natural.\\pPode ser um pouco dificil andar\\npor ai por causa disso.$"
+        "A natureza desta ilha\\nainda esta quase intocada.\\pPor isso, algumas trilhas\\nsao dificeis de atravessar!$"
       ]
     },
     "data/maps/SevenIsland_House_Room1_Frlg/scripts.inc": {
       "SevenIsland_House_Room1_Text_OnlyEnjoymentWatchingBattles": [
-        "Posso nao parecer muito agora,\\nmas quando era mais novo...\\pVoei por todo o lado,\\ndesafiando os Treinadores onde\\lquer que os encontrasse.\\pA minha unica fonte de prazer e\\nlembrar-me do passado enquanto\\lvia batalhas.$"
+        "Quando era mais jovem,\\nviajei pelo mundo\\nbatalhando com TREINADORES.\\pHoje gosto de observar\\nas batalhas dos outros.\\pElas me fazem lembrar\\ndas minhas aventuras!$"
       ],
       "SevenIsland_House_Room1_Text_SlightBreezeAroundBox": [
-        "Ha uma brisa leve soprando em\\ntorno da caixa.$"
+        "Uma brisa suave\\npassa ao redor da caixa.$"
       ],
       "SevenIsland_House_Room1_Text_ChallengeVisitingTrainer": [
-        "Ah! Bem-vindo, meu amigo!\\pDeixa-me dizer-te uma coisa. Ha\\num quarto escondido na cave.\\pUMA FORMACAO\\nCHAMADA{STR_VAR_1}esta a espera\\lla agora.\\pDiz-me, vieste\\ndesafiar{STR_VAR_1}Estou certo?$"
+        "Bem-vindo, meu amigo!\\pHa uma sala secreta\\naqui no porao.\\pO TREINADOR {STR_VAR_1}\\nesta esperando por alguem!\\pVeio desafiar {STR_VAR_1}?$"
       ],
       "SevenIsland_House_Room1_Text_OhYouWontBattle": [
-        "Oh... Nao vais lutar...\\pEstou a ver. ... ...\\pTalvez se mudar de ideias,\\nvolte.$"
+        "Nao quer batalhar?\\pEntendo... Que pena!\\pVolte se mudar de ideia!$"
       ],
       "SevenIsland_House_Room1_Text_LimitThreeMonsPerSide": [
-        "Ah! Vais lutar por mim?\\pEntao, valeu a pena mudar a\\ncaixa de lado.\\p... Mas ha um pequeno problema.\\pEste quarto escondido nao e\\nmuito resistente.\\pPosso fazer com que o limite a\\nbatalhas de tres POKEMON por\\llado?$"
+        "Excelente! Vai batalhar!\\pMas a sala secreta\\ne bastante pequena.\\pPodemos limitar a batalha\\na tres POKEMON por lado?$"
       ],
       "SevenIsland_House_Room1_Text_SaveProgressBeforeBattle": [
-        "Esta bem! Antes da sua batalha,\\ngostaria de salvar o seu jogo?$"
+        "Antes de batalhar,\\nquer salvar seu progresso?$"
       ],
       "SevenIsland_House_Room1_Text_DontHoldAnythingBack": [
-        "Esta bem. Nao escondas nada!$"
+        "Boa sorte!\\nMostre todo seu talento!$"
       ],
       "SevenIsland_House_Room2_Text_MatchEndedUpDraw": [
-        "A partida acabou em empate.$"
+        "A batalha terminou empatada!$"
       ],
       "SevenIsland_House_Room1_Text_DrawWasIt": [
-        "Um empate, nao foi?\\pNo entanto, permitam-me que\\ndiga que foi um espectaculo\\ldigno.\\pEu diria que foi uma batalha\\nmaravilhosa com um verdadeiro\\lsentido de profundidade!$"
+        "Um empate, nao foi?\\pMesmo assim, voces fizeram\\numa batalha maravilhosa!\\pFiquei impressionado!$"
       ],
       "SevenIsland_House_Room1_Text_AstoundingBattle": [
-        "Bravo!\\pBravo, de facto! Que batalha\\nespantosa!\\pFoi tao surpreendente, porque,\\ncontinua enchendo meus olhos de\\llagrimas!\\pO impulso e parry de tecnicas\\nhabilmente usadas!\\pO choque do poder sobre o\\npoder!\\pSim! Foi pura magnificencia!$"
+        "Bravo! Que batalha incrivel!\\pA maneira como usaram\\nsuas estrategias...\\pO confronto de forcas\\nfoi espetacular!\\pFoi uma batalha\\nque nunca vou esquecer!$"
       ],
       "SevenIsland_House_Room1_Text_FeelYourDisappointment": [
-        "Que pena! Sinto a tua\\ndesilusao.\\pNo entanto, esse desapontamento\\ne o que o tornara melhor.\\pUse-o, aprenda com ele, e\\nfaca-o motivar voce a buscar\\lgrandeza.\\pNao esqueca esta decepcao e\\nredobre seu treinamento!$"
+        "Sei que esta decepcionado.\\pMas uma derrota tambem\\npode ensinar muita coisa.\\pUse isso como incentivo\\ne continue treinando!\\pAinda pode ficar mais forte!$"
       ]
     },
     "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc": {
       "SevenIsland_PokemonCenter_1F_Text_EventsDependingOnConnections": [
-        "Nesta ilha, diferentes eventos\\nocorrem dependendo de conexoes.\\pO que sao essas ligacoes?\\pEles sao para voce descobrir\\npor conta propria.$"
+        "Acontecem coisas diferentes\\naqui dependendo das conexoes.\\pQue conexoes sao essas?\\pDescubra por conta propria!$"
       ],
       "SevenIsland_PokemonCenter_1F_Text_CheckOutTrainerTower": [
-        "Se estas confiante, devias ir\\nver o TRAiner TOWER.$"
+        "Se confia na sua equipe,\\nvisite a TRAINER TOWER!$"
       ]
     },
     "data/maps/SevenIsland_SevaultCanyon_Entrance_Frlg/scripts.inc": {
       "SevenIsland_SevaultCanyon_Entrance_Text_MiahIntro": [
-        "Kyahaha! Vou afastar-te sem\\nesforco!$"
+        "Ha ha ha!\\nVou vencer voce facilmente!$"
       ],
       "SevenIsland_SevaultCanyon_Entrance_Text_MiahDefeat": [
-        "Tch! Demasiado forte para mim!$"
+        "Argh! Voce e forte demais!$"
       ],
       "SevenIsland_SevaultCanyon_Entrance_Text_MiahPostBattle": [
-        "O que e isso? Nao ajo como\\npareco?\\pIsso faz parte da minha\\nestrategia!$"
+        "Nao ajo como pareco?\\pIsso faz parte\\nda minha estrategia!$"
       ],
       "SevenIsland_SevaultCanyon_Entrance_Text_MasonIntro": [
-        "Ola! Es membro do meu clube de\\nfas?$"
+        "Ola! Veio entrar\\npara o meu FAN CLUB?$"
       ],
       "SevenIsland_SevaultCanyon_Entrance_Text_MasonDefeat": [
-        "Entao nao es fa...\\pPosso mudar isso. Deixa-me\\ncantar para ti!$"
+        "Nao e meu fa?\\pTalvez uma musica\\nmude sua opiniao!$"
       ],
       "SevenIsland_SevaultCanyon_Entrance_Text_MasonPostBattle": [
-        "Lalalah... Meu Pokemon,\\nmando-os sair, todas as\\lraparigas gritam e gritam!$"
+        "La la la!\\pMeus POKEMON entram em cena\\ne todo mundo comeca a gritar!$"
       ],
       "SevenIsland_SevaultCanyon_Entrance_Text_NicolasIntro": [
-        "Esta ilha esta muito\\nespalhada... Nao e facil\\lpatrulhar o local.$"
+        "Esta ilha e enorme!\\pPatrulhar tudo isso\\ne muito cansativo!$"
       ],
       "SevenIsland_SevaultCanyon_Entrance_Text_NicolasDefeat": [
-        "Sim...$"
+        "Entendo...$"
       ],
       "SevenIsland_SevaultCanyon_Entrance_Text_NicolasPostBattle": [
-        "Treinadores como voce de\\ncidades, eles certamente sao\\lduros.\\pVai para o TOWER, nao vai?$"
+        "TREINADORES das cidades\\nrealmente sao fortes!\\pVoce vai desafiar\\na TRAINER TOWER?$"
       ],
       "SevenIsland_SevaultCanyon_Entrance_Text_MadelineIntro": [
-        "Eu castigo as pessoas que\\nabusam de POKEMON!$"
+        "Nao tolero quem\\nmaltrata POKEMON!$"
       ],
       "SevenIsland_SevaultCanyon_Entrance_Text_MadelineDefeat": [
-        "Nao parece ser um instrutor\\nproblematico.$"
+        "Voce parece ser\\num TREINADOR bondoso!$"
       ],
       "SevenIsland_SevaultCanyon_Entrance_Text_MadelinePostBattle": [
-        "Se tratares o teu Pokemon com\\nbondade, eles vao entender.$"
+        "Trate seus POKEMON\\ncom carinho!\\pEles vao entender\\nseus sentimentos!$"
       ]
     },
     "data/maps/SevenIsland_SevaultCanyon_Frlg/scripts.inc": {
       "SevenIsland_SevaultCanyon_Text_CyndyIntro": [
-        "O meu condicionamento esta em\\nalta forma!$"
+        "Estou em otima forma!\\nVamos batalhar!$"
       ],
       "SevenIsland_SevaultCanyon_Text_CyndyDefeat": [
-        "Huh? Algo nao esta bem...$"
+        "O que? Algo deu errado...$"
       ],
       "SevenIsland_SevaultCanyon_Text_EvanIntro": [
-        "Nao importa se tens o POKEMON\\nmais forte...\\pNao significa nada se voce nao\\nsabe como usa-los corretamente!$"
+        "Ter POKEMON fortes\\nnao basta para vencer!\\pVoce precisa saber\\ncomo usar o talento deles!$"
       ],
       "SevenIsland_SevaultCanyon_Text_EvanDefeat": [
-        "Es um mestre nisto.$"
+        "Voce domina mesmo\\na arte das batalhas!$"
       ],
       "SevenIsland_SevaultCanyon_Text_EvanPostBattle": [
-        "Voce ve-los de vez em quando,\\nTRAiners com POKEMON\\limpressionante que nao tem\\lideia do que fazer.\\pAntes de treinar POKEMON, os\\nproprios TRAiners precisam\\lcrescer.$"
+        "Ja vi TREINADORES\\ncom POKEMON impressionantes,\\nmas sem saber usa-los!\\pTreinadores tambem\\nprecisam aprender e evoluir!$"
       ],
       "SevenIsland_SevaultCanyon_Text_JacksonIntro": [
-        "Trabalho para proteger o\\nambiente. Por sua vez, a\\lnatureza protege-me!$"
+        "Protejo a natureza,\\ne ela cuida de mim!$"
       ],
       "SevenIsland_SevaultCanyon_Text_JacksonDefeat": [
-        "Whoa! Es forte! Que tal\\nproteger-me?$"
+        "Uau! Voce e forte!\\nPode me proteger tambem?$"
       ],
       "SevenIsland_SevaultCanyon_Text_JacksonPostBattle": [
-        "De longe entre as estrelas, o\\nnosso planeta e apenas uma gota\\lde agua.\\pMas queremos proteger essa gota\\nde agua para todos.$"
+        "Nosso planeta parece pequeno\\nquando visto das estrelas.\\pMas precisamos cuidar dele\\npara proteger a vida!$"
       ],
       "SevenIsland_SevaultCanyon_Text_KatelynIntro": [
-        "Esses sapatos que tens sao\\nmuito elegantes.$"
+        "Adorei seus sapatos!\\nSao muito estilosos!$"
       ],
       "SevenIsland_SevaultCanyon_Text_KatelynDefeat": [
-        "Es boa, apesar da tua beleza.$"
+        "Voce luta muito bem!$"
       ],
       "SevenIsland_SevaultCanyon_Text_LeroyIntro": [
-        "Pareces forte. Deixa-me lutar\\ncontigo, por favor!$"
+        "Voce parece forte!\\nQue tal batalhar comigo?$"
       ],
       "SevenIsland_SevaultCanyon_Text_LeroyDefeat": [
-        "Eu sabia! Es tao duro como eu\\npensava!$"
+        "Eu sabia que voce\\nseria um grande desafio!$"
       ],
       "SevenIsland_SevaultCanyon_Text_LeroyPostBattle": [
-        "A forma como lutaste deu-me\\nmuitos dados uteis.\\pMuito obrigado!$"
+        "Aprendi muito\\nvendo sua estrategia!\\pObrigado pela batalha!$"
       ],
       "SevenIsland_SevaultCanyon_Text_MichelleIntro": [
-        "Foi-me dada a melhor educacao\\npossivel para me tornar tao\\lforte.\\pNao quero perder para ninguem!$"
+        "Treinei muito para\\nme tornar uma grande lutadora!\\pNao vou perder para ninguem!$"
       ],
       "SevenIsland_SevaultCanyon_Text_MichelleDefeat": [
-        "Obrigado. Sinto que fui\\nlibertado por perder para ti.$"
+        "Acho que precisava\\ndessa derrota...$"
       ],
       "SevenIsland_SevaultCanyon_Text_MichellePostBattle": [
-        "Por alguma razao, fico furiosa\\ncom a minima coisa.\\pVou acalmar-me respirando\\nprofundamente.$"
+        "Fico irritada com facilidade.\\pPreciso aprender\\na manter a calma!$"
       ],
       "SevenIsland_SevaultCanyon_Text_NyaPostBattle": [
-        "NYA: Acho que vou precisar de\\nmuito mais tempero e tutoria no\\lLEX...\\pLEX, por favor, posso ficar\\ncontigo assim?$"
+        "NYA: Ainda preciso\\ntreinar mais com LEX.\\pLEX, podemos continuar\\nbatalhando juntos?$"
       ],
       "SevenIsland_SevaultCanyon_Text_NyaNotEnoughMons": [
-        "NYA: Desculpe, mas podemos\\nlutar em dois contra dois?$"
+        "NYA: Precisamos batalhar\\ncom dois POKEMON por lado!$"
       ],
       "SevenIsland_SevaultCanyon_Text_BrunoTrainedWithBrawly": [
-        "Treinar sozinho certamente nao\\ne uma coisa ruim.\\pMas tambem nao e mau apontar\\npara o topo com um parceiro.\\pAte o BRUNO... Ele treinou com\\num sujeito chamado BRAWLY\\lantes.$"
+        "Treinar sozinho e bom,\\nmas treinar com alguem\\npode ser ainda melhor!\\pAte BRUNO treinou\\ncom BRAWLY no passado!$"
       ]
     },
     "data/maps/SevenIsland_SevaultCanyon_House_Frlg/scripts.inc": {
       "SevenIsland_SevaultCanyon_House_Text_WouldYouLikeToDance": [
-        "Queres dancar?$"
+        "Quer dancar comigo?$"
       ],
       "SevenIsland_SevaultCanyon_House_Text_ComeOnDance": [
-        "Vamos, danca!$"
+        "Vamos la! Dance!$"
       ],
       "SevenIsland_SevaultCanyon_House_Text_DancedChanseyDance": [
-        "{PLAYER}dancou a danca CHANSEY!$"
+        "{PLAYER} dancou\\na danca de CHANSEY!$"
       ],
       "SevenIsland_SevaultCanyon_House_Text_YoureAllChipperNow": [
-        "Ahahahaha!\\pPronto, estao todos felizes\\nagora! Lucky!$"
+        "Ha ha ha!\\pTodo mundo parece\\nmais animado agora!$"
       ]
     },
     "data/maps/SevenIsland_SevaultCanyon_TanobyKey_Frlg/scripts.inc": {
       "SevenIsland_SevaultCanyon_TanobyKey_Text_MysteriousRumbleFarAway": [
-        "Um barulho misterioso ecoou\\nalgures longe.$"
+        "Um estrondo misterioso\\necoou ao longe!$"
       ]
     },
     "data/maps/SevenIsland_TanobyRuins_Frlg/scripts.inc": {
       "SevenIsland_TanobyRuins_Text_BrandonIntro": [
-        "Sabes alguma coisa sobre esta\\ncamara de pedra?$"
+        "Sabe alguma coisa\\nsobre esta sala de pedra?$"
       ],
       "SevenIsland_TanobyRuins_Text_BrandonDefeat": [
-        "Isso foi desnecessario. Nao\\nprecisavas de ser tao duro.$"
+        "Nao precisava\\nbatalhar tao serio!$"
       ],
       "SevenIsland_TanobyRuins_Text_BenjaminIntro": [
-        "Diz-se que um Pokemon mistico\\ndorme aqui dentro.$"
+        "Dizem que um POKEMON\\nmisterioso dorme aqui!$"
       ],
       "SevenIsland_TanobyRuins_Text_BenjaminDefeat": [
-        "Nao sou muito bom em batalhas.$"
+        "Nao sou muito bom\\nnas batalhas...$"
       ],
       "SevenIsland_TanobyRuins_Text_BenjaminPostBattle": [
-        "Ouvi dizer que ha outras ruinas\\ncomo esta aqui.\\pPoderiam ser os locais de\\ndescanso de outros misticos\\lPOKEMON?$"
+        "Ouvi falar de outras ruinas\\nparecidas com estas.\\pSera que tambem guardam\\nPOKEMON misteriosos?$"
       ],
       "SevenIsland_TanobyRuins_Text_EdnaIntro": [
-        "CLIFFORD esta me ensinando a\\npintar.$"
+        "CLIFFORD esta\\nme ensinando a pintar!$"
       ],
       "SevenIsland_TanobyRuins_Text_EdnaDefeat": [
-        "Podemos ter problemas por fazer\\nbarulho aqui.$"
+        "Melhor nao fazer\\nmuito barulho aqui!$"
       ],
       "SevenIsland_TanobyRuins_Text_CliffordIntro": [
-        "Hoje, alem da nossa licao,\\nviemos ver a camara.$"
+        "Viemos conhecer estas ruinas\\napos nossa aula de pintura!$"
       ],
       "SevenIsland_TanobyRuins_Text_CliffordDefeat": [
-        "Que extraordinario.$"
+        "Que batalha extraordinaria!$"
       ],
       "SevenIsland_TanobyRuins_Text_CliffordPostBattle": [
-        "Ah, entao voce esta estudando\\nPOKEMON sozinho...\\pSim, voce certamente e uma\\npessoa extraordinaria, de fato.$"
+        "Voce estuda POKEMON\\npor conta propria?\\pQue iniciativa admiravel!$"
       ]
     },
     "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc": {
       "SevenIsland_TrainerTower_Text_DarioIntro": [
-        "Senti a tua abordagem.$"
+        "Senti sua presenca\\nse aproximando!$"
       ],
       "SevenIsland_TrainerTower_Text_DarioDefeat": [
-        "Desiste...$"
+        "Eu me rendo...$"
       ],
       "SevenIsland_TrainerTower_Text_DarioPostBattle": [
-        "No teu futuro, sinto que\\nconheceras muitos outros.\\pAcho que estarao ligados uns\\naos outros por um estranho\\lpoder.$"
+        "Sinto que voce vai\\nconhecer muitas pessoas.\\pTalvez exista um poder\\nque una todas elas!$"
       ],
       "SevenIsland_TrainerTower_Text_RodetteIntro": [
-        "Algures nesta ilha, Pokemon\\npeculiares estao dormindo.$"
+        "Em algum lugar desta ilha,\\nPOKEMON raros descansam!$"
       ],
       "SevenIsland_TrainerTower_Text_RodetteDefeat": [
-        "Que treinador incrivel!$"
+        "Que TREINADOR incrivel!$"
       ],
       "SevenIsland_TrainerTower_Text_RodettePostBattle": [
-        "Algures nesta ilha, Pokemon\\npeculiares estao dormindo.\\pSera que estao a tua espera?$"
+        "POKEMON misteriosos\\ndormem nesta ilha...\\pSera que estao\\nesperando por voce?$"
       ]
     },
     "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc": {
