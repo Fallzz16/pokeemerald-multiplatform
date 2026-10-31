@@ -496,7 +496,7 @@
     },
     "data/maps/SafariZoneGate_SafariZoneEntrance/scripts.inc": {
       "SafariZoneGate_SafariZoneEntrance_Text_BaobaCaveDone": [
-        "Obrigado.{PLAYER}E tudo o que\\npreciso de ver.\\pAgora que sei o que o DEVON\\nesta a tramar, serei capaz de\\lmanter o meu SAFARI\\lcompetitivo. Toma, toma isto\\lcomo recompensa pelos teus\\lproblemas.$"
+        "Obrigado.{PLAYER}E tudo o que\\npreciso de ver.\\pAgora que sei o que o DEVON\\nesta a tramar, serei capaz de\\lmanter o meu SAFARI\\lcompetitivo. Toma, toma isto\\lcomo recompensa pelos seus\\lproblemas.$"
       ],
       "SafariZoneGate_SafariZoneEntrance_Text_BaobaWrong": [
         "Isso nao pode estar certo!$"
