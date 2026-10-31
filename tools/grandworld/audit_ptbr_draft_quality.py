@@ -46,6 +46,7 @@ def audit(root, example_limit=150):
     registry = json.loads((root / "ptbr_reviewed_auto7.json").read_text())
     stage8 = json.loads((root / "ptbr_reviewed_stage8.json").read_text())
     stage9 = json.loads((root / "ptbr_reviewed_stage9.json").read_text())
+    stage10 = json.loads((root / "ptbr_reviewed_stage10.json").read_text())
     reviewed = {(source, symbol)
                 for source, labels in registry["reviewed_labels_by_source"].items()
                 for symbol in labels}
@@ -65,6 +66,14 @@ def audit(root, example_limit=150):
     if len(stage9_reviewed) != stage9["reviewed_entries"]:
         raise ValueError("stage9 human review registry count drift")
     reviewed |= stage9_reviewed
+    stage10_reviewed = {(source, symbol)
+                        for source, labels in stage10["reviewed_labels_by_source"].items()
+                        for symbol in labels}
+    if reviewed & stage10_reviewed:
+        raise ValueError("stage10 review overlaps prior human revisions")
+    if len(stage10_reviewed) != stage10["reviewed_entries"]:
+        raise ValueError("stage10 human review registry count drift")
+    reviewed |= stage10_reviewed
     found = set()
     issues = Counter()
     by_file = defaultdict(Counter)
@@ -79,7 +88,7 @@ def audit(root, example_limit=150):
                     raise ValueError("duplicate draft label: " + repr(key))
                 found.add(key)
                 entries += 1
-                if key in new_reviewed or key in stage9_reviewed:
+                if key in new_reviewed or key in stage9_reviewed or key in stage10_reviewed:
                     text = "".join(parts)
                     if not text.isascii() or not text.endswith("$"):
                         raise ValueError("reviewed text must be ASCII and complete: " + repr(key))
@@ -102,7 +111,8 @@ def audit(root, example_limit=150):
         raise ValueError("draft count drift: %d != %d" %
                          (entries, index["added_entries"]))
     if len(reviewed) != (registry["reviewed_auto_entries"]
-                        + stage8["reviewed_entries"] + stage9["reviewed_entries"]):
+                        + stage8["reviewed_entries"] + stage9["reviewed_entries"]
+                        + stage10["reviewed_entries"]):
         raise ValueError("review registry count drift")
     return {
         "review_status": "diagnostic_only_no_gameplay_certification",
@@ -110,6 +120,7 @@ def audit(root, example_limit=150):
         "human_language_reviewed": len(reviewed),
         "human_reviewed_stage8": len(new_reviewed),
         "human_reviewed_stage9": len(stage9_reviewed),
+        "human_reviewed_stage10": len(stage10_reviewed),
         "pending_human_language_review": entries - len(reviewed),
         "heuristic_warnings": dict(issues),
         "warning_counts_by_file": {k: dict(v) for k, v in by_file.items()},
