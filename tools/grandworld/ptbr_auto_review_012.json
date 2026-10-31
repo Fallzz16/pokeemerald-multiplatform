@@ -7,7 +7,7 @@
     },
     "data/maps/CeruleanCity_House1_Frlg/scripts.inc": {
       "CeruleanCity_House1_Text_BadgesHaveAmazingSecrets": [
-        "Somente os TREINADORES\\nqualificados podem coletar BADS\\lPOKEMON.\\pVejo que tem pelo menos uma.\\pAqueles INSIGNIAS tem segredos\\nincriveis, sabia?$"
+        "So TREINADORES experientes\\npodem conseguir INSIGNIAS\\lde GINASIO.\\pVejo que ja tem uma!\\pEssas INSIGNIAS guardam\\nsegredos incriveis, sabia?$"
       ],
       "CeruleanCity_House1_Text_DescribeWhichBadge": [
         "Agora...\\pQual dos oito INSIGNIAS devo\\ndescrever?$"
