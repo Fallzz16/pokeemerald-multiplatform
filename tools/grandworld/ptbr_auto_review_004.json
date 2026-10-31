@@ -8,7 +8,7 @@
         "Huh?{STR_VAR_2}?\\pEste e do mesmo tamanho que eu\\nvi antes.$"
       ],
       "Route12_FishingHouse_Text_HmmXSizeDoesntMeasureUp": [
-        "Hmm... Esta\\ne...{STR_VAR_2}Muito tempo.\\pNao esta a altura\\ndo{STR_VAR_3}Uma que trouxeste\\lantes.$"
+        "Hmm... Esta\\ne...{STR_VAR_2}Muito tempo.\\pNao esta altura\\ndo{STR_VAR_3}Uma que trouxeste\\lantes.$"
       ],
       "Route12_FishingHouse_Text_DoesntLookLikeMagikarp": [
         "Uh... Isso nao se parece muito\\ncom um MAGIKARP.$"
@@ -58,7 +58,7 @@
         "Com um ROD melhor, eu poderia\\npegar melhor POKEMON...$"
       ],
       "Route12_Text_LucaIntro": [
-        "A electricidade e a minha\\nespecialidade.\\pMas nao sei nada sobre Pokemon\\ndo mar.$"
+        "A electricidade e a minha\\nespecialidade.\\pMas nao sei nada sobre POKEMON\\ndo mar.$"
       ],
       "Route12_Text_LucaDefeat": [
         "Desligado!$"
@@ -70,7 +70,7 @@
         "Toca demasiado!$"
       ],
       "Route12_Text_HankPostBattle": [
-        "Acho que pode ser bom no que\\ngostas.\\pBem, venceu-me em Pokemon,\\nmas nao consegue vencer-me na\\lpesca.$"
+        "Acho que pode ser bom no que\\ngostas.\\pBem, venceu-me em POKEMON,\\nmas nao Consegue vencer-me na\\lpesca.$"
       ],
       "Route12_Text_ElliotIntro": [
         "Adoro pescar, nao me\\ninterpretes mal.\\pMas seria melhor se eu tivesse\\nmais trabalho.$"
@@ -112,7 +112,7 @@
         "O meu passaro POKEMON quer\\nlutar contigo!$"
       ],
       "Route13_Text_SebastianPostBattle": [
-        "O meu Pokemon parece feliz,\\napesar de terem perdido.$"
+        "O meu POKEMON parece feliz,\\napesar de terem perdido.$"
       ],
       "Route13_Text_SusieIntro": [
         "Disseram-me que sou bom para\\numa crianca.$"
@@ -246,7 +246,7 @@
         "O que? Voce!$"
       ],
       "Route14_Text_IsaacPostBattle": [
-        "Criar Pokemon e uma seca, meu.$"
+        "Criar POKEMON e uma seca, meu.$"
       ],
       "Route14_Text_GeraldIntro": [
         "Viemos ate aqui por causa dos\\nespacos abertos.$"
@@ -269,7 +269,7 @@
     },
     "data/maps/Route15_Frlg/scripts.inc": {
       "Route15_Text_KindraIntro": [
-        "Tenho alguns Pokemon em\\nnegocios. Posso experimenta-los\\lem ti?$"
+        "Tenho alguns POKEMON em\\nnegocios. Posso experimenta-los\\lem ti?$"
       ],
       "Route15_Text_KindraDefeat": [
         "Nao chega!$"
@@ -293,7 +293,7 @@
         "Talvez eu nao seja feito para\\nbatalhas. Nao sou o tipo certo,\\lacho eu.$"
       ],
       "Route15_Text_ChesterIntro": [
-        "Hmm? Os meus passaros estao a\\ntremer! Es bom, nao es?$"
+        "Hmm? Os meus passaros estao\\ntremer! Es bom, nao es?$"
       ],
       "Route15_Text_ChesterDefeat": [
         "Tal como eu pensava!$"
@@ -314,7 +314,7 @@
         "POKEMON nao e sobre ganhar ou\\nperder para mim.$"
       ],
       "Route15_Text_OliviaPostBattle": [
-        "Adoro ter o meu Pokemon a\\ncumprimentar-me quando chego a\\lcasa.\\pE tao reconfortante.$"
+        "Adoro ter o meu POKEMON a\\ncumprimentar-me quando chego a\\lcasa.\\pE tao reconfortante.$"
       ],
       "Route15_Text_ErnestIntro": [
         "garoto! Vamos! Acabei de tirar\\nisto de um falhado!$"
@@ -332,13 +332,13 @@
         "Estava a brincar sobre o\\ndinheiro. Nao me leves a serio.$"
       ],
       "Route15_Text_CeliaIntro": [
-        "O que esta a acontecer? Trocar\\nPokemon!$"
+        "O que esta acontecer? Trocar\\nPokemon!$"
       ],
       "Route15_Text_CeliaDefeat": [
         "Eu disse troca!$"
       ],
       "Route15_Text_CeliaPostBattle": [
-        "Estou sempre a trocar Pokemon\\ncom os meus amigos.$"
+        "Estou sempre a trocar POKEMON\\ncom os meus amigos.$"
       ],
       "Route15_Text_YazminIntro": [
         "quer brincar com o meu\\nPokemon?$"
@@ -405,7 +405,7 @@
         "Mal, mal, mal!$"
       ],
       "Route16_Text_CamronPostBattle": [
-        "Se vou comer Pokemon, eles\\npodem ser ferozes.\\pUsava-os para deixar os meus\\ninimigos em farrapos.$"
+        "Se vou comer POKEMON, eles\\npodem ser ferozes.\\pUsava-os para deixar os meus\\ninimigos em farrapos.$"
       ],
       "Route16_Text_RubenIntro": [
         "Ola! Vamos divertir-nos!$"
@@ -566,7 +566,7 @@
         "Raios!$"
       ],
       "Route18_Text_JacobPostBattle": [
-        "Esta e a minha area favorita\\npara capturar Pokemon.$"
+        "Esta e a minha area favorita\\npara capturar POKEMON.$"
       ]
     },
     "data/maps/Route19_Frlg/scripts.inc": {
@@ -646,7 +646,7 @@
         "Estou exausto...$"
       ],
       "Route19_Text_ConniePostBattle": [
-        "Se eu montasse um Pokemon no\\nmar, gostaria de um LAPRAS.\\pLAPRAS e tao grande, aposto que\\nme manteria seco na agua.$"
+        "Se eu montasse um POKEMON no\\nmar, gostaria de um LAPRAS.\\pLAPRAS e tao grande, aposto que\\nme manteria seco na agua.$"
       ],
       "Route19_Text_LucPostBattle": [
         "LUC: Minha irma mais velha e\\nforte e agradavel. Acho-a\\lfantastica!$"
@@ -696,7 +696,7 @@
         "Montar um POKEMON com certeza\\nparece divertido!$"
       ],
       "Route20_Text_RogerIntro": [
-        "Montei o meu passaro Pokemon\\nate aqui.$"
+        "Montei o meu passaro POKEMON\\nate aqui.$"
       ],
       "Route20_Text_RogerDefeat": [
         "Nao! Agora o que devo fazer?$"
@@ -731,7 +731,7 @@
         "Bolas!$"
       ],
       "Route21_North_Text_RonaldPostBattle": [
-        "Nao consigo capturar nada de\\nbom. Nem um bom Pokemon para\\lser tido!$"
+        "Nao consigo capturar nada de\\nbom. Nem um bom POKEMON para\\lser tido!$"
       ],
       "Route21_North_Text_WadeIntro": [
         "Tenho uma grande carga! quer\\nir?$"
@@ -751,13 +751,13 @@
     },
     "data/maps/Route21_South_Frlg/scripts.inc": {
       "Route21_South_Text_JackIntro": [
-        "Apanhei o meu Pokemon no mar.$"
+        "Apanhei o meu POKEMON no mar.$"
       ],
       "Route21_South_Text_JackDefeat": [
         "Mergulhador! Para baixo!$"
       ],
       "Route21_South_Text_JackPostBattle": [
-        "Onde capturou o seu Pokemon?$"
+        "Onde capturou o seu POKEMON?$"
       ],
       "Route21_South_Text_JeromeIntro": [
         "Neste momento, estou numa\\nreuniao de triatlo.$"
