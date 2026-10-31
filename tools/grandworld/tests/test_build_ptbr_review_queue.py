@@ -13,7 +13,7 @@ class PTBRReviewQueueTests(unittest.TestCase):
     def test_quality_flags(self):
         flags, priority = queue.classify(
             "{PLAYER}recebeu isso. Queres mais?$", "data/maps/Test/scripts.inc",
-            "Text_TrainerIntro",
+            "Text_RivalIntro",
         )
         self.assertIn("placeholder_joined_to_word", flags)
         self.assertIn("pt_pt_grammar", flags)
