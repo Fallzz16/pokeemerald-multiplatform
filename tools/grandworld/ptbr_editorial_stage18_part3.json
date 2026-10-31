@@ -1,0 +1,49 @@
+{
+  "stage": 18,
+  "status": "editorial_ai_rewrite_pending_independent_linguistic_and_visual_review",
+  "base_commit": "66f9162b11e9f92a07445c36c9124d0f32f1d2dc",
+  "part": 3,
+  "entries": 18,
+  "previously_assisted_stage17": 12,
+  "previously_untouched_by_stage17": 6,
+  "changed_labels_by_shard_and_source": {
+    "tools/grandworld/ptbr_auto_review_017.json": {
+      "data/maps/NewBarkTown_House2/scripts.inc": [
+        "NewBarkTown_House2_Text_ElmsWife"
+      ],
+      "data/maps/OldaleTown_House2/scripts.inc": [
+        "OldaleTown_House2_Text_PokemonLevelUp"
+      ],
+      "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc": [
+        "OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_021.json": {
+      "data/maps/SlateportCity/scripts.inc": [
+        "SlateportCity_Text_DontButtIn",
+        "SlateportCity_Text_IllReadSignForYou",
+        "SlateportCity_Text_HotSpringsAfterOperation",
+        "SlateportCity_Text_SinkOldBoats"
+      ],
+      "data/maps/SlateportCity_BattleTentCorridor/scripts.inc": [
+        "SlateportCity_ContestHall_Text_ExplainTorment",
+        "SlateportCity_ContestHall_Text_MCStepUpTakePartInContest",
+        "SlateportCity_ContestHall_Text_RewardWithSageAdvice",
+        "SlateportCity_ContestHall_Text_MonLooksOnTopOfGame",
+        "SlateportCity_ContestHall_Text_GetUrgeToMoveWithMon"
+      ],
+      "data/maps/SlateportCity_BattleTentLobby/scripts.inc": [
+        "SlateportCity_BattleTentLobby_Text_CouldntFindMonForMe",
+        "SlateportCity_BattleTentLobby_Text_ExplainTorment",
+        "SlateportCity_BattleTentLobby_Text_BattleEvenWithoutToughMons"
+      ],
+      "data/maps/SlateportCity_PokemonCenter_1F/scripts.inc": [
+        "SlateportCity_PokemonCenter_1F_Text_RaiseDifferentTypesOfPokemon",
+        "SlateportCity_PokemonCenter_1F_Text_TradedMonWithFriend"
+      ],
+      "data/maps/SlateportCity_PokemonFanClub/scripts.inc": [
+        "SlateportCity_PokemonFanClub_Text_NoSpaceForReward"
+      ]
+    }
+  }
+}
