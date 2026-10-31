@@ -25,7 +25,7 @@
     },
     "data/maps/Route12_Frlg/scripts.inc": {
       "Route12_Text_MonSprawledOutInSlumber": [
-        "Um POKEMON e espalhado num sono\\nprofundo e confortavel.$"
+        "Um POKEMON dorme esticado\\nem sono profundo!$"
       ],
       "Text_SnorlaxWokeUp": [
         "O SNORLAX acordou!\\pAtacou com raiva!$"
@@ -121,7 +121,7 @@
         "Ohh! Perdi!$"
       ],
       "Route13_Text_SusiePostBattle": [
-        "Quero tornar-me um bom\\ntREINADOR. Vou treinar muito,\\lapenas observa.$"
+        "Quero ser um bom\\nTREINADOR! Vou treinar bastante.\\lPode ficar de olho!$"
       ],
       "Route13_Text_ValerieIntro": [
         "Uau! Seus INSIGNIAS sao\\ndemasiado fixes!$"
@@ -210,7 +210,7 @@
         "Tente ensinar a POKEMON um\\nmovimento que seja do mesmo\\ltipo.\\pIsso aparentemente aumenta o\\npoder da mudanca.$"
       ],
       "Route14_Text_MarlonDefeat": [
-        "Atirado em chama!$"
+        "Fui consumido pelas chamas!$"
       ],
       "Route14_Text_MarlonPostBattle": [
         "Bird POKEMON e meu verdadeiro\\namor. Nao quero criar mais\\lnada.$"
@@ -240,7 +240,7 @@
         "O que? O que ainda quer?$"
       ],
       "Route14_Text_IsaacIntro": [
-        "Preciso de me queimar algum\\ntempo. Cala-te e batalha.$"
+        "Preciso passar o tempo.\\nFique quieto e vamos batalhar.$"
       ],
       "Route14_Text_IsaacDefeat": [
         "O que? Voce!$"
@@ -323,7 +323,7 @@
         "Porque nao?$"
       ],
       "Route15_Text_AlexIntro": [
-        "Da-me todo seu dinheiro\\nquando perderes para mim,\\lmiudo!$"
+        "Quando perder, entregue\\ntodo o seu dinheiro,\\lentendeu, garoto?$"
       ],
       "Route15_Text_AlexDefeat": [
         "Isso nao pode ser verdade!$"
@@ -393,7 +393,7 @@
         "Odeio perder! Sai da minha\\nfrente!$"
       ],
       "Route16_Text_HideoIntro": [
-        "Ei, voce bateste-me!$"
+        "Ei! Voce me atingiu!$"
       ],
       "Route16_Text_HideoPostBattle": [
         "Estaremos sempre por aqui,\\nmesmo que nao gostes.\\pVoce pode desviar para\\nVERMILION de FUCHSIA ao longo\\lda costa.$"
