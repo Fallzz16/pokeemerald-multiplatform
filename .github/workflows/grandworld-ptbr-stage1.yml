@@ -30,6 +30,7 @@ on:
       - 'tools/grandworld/audit_ptbr_coverage.py'
       - 'tools/grandworld/audit_ptbr_draft_quality.py'
       - 'tools/grandworld/ptbr_reviewed_auto7.json'
+      - 'tools/grandworld/ptbr_reviewed_stage8.json'
       - 'tools/grandworld/tests/test_audit_ptbr_draft_quality.py'
       - 'tools/grandworld/adapt_ptbr_greedy_gifts_qa.py'
       - 'tools/grandworld/tests/test_adapt_ptbr_greedy_gifts_qa.py'
@@ -101,6 +102,16 @@ jobs:
           PY
           python3 grandworld/tools/grandworld/audit_ptbr_coverage.py world --output ptbr-coverage.json
           python3 grandworld/tools/grandworld/audit_ptbr_draft_quality.py --output ptbr-draft-quality.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('ptbr-draft-quality.json').read_text())
+          assert d['automated_draft_entries']==5200
+          assert d['human_language_reviewed']==406
+          assert d['human_reviewed_stage8']==196
+          assert d['pending_human_language_review']==4794
+          print('Human-reviewed stage8 196/196, 406/5200 reviewed machine drafts, release not certified')
+          PY
           python3 - <<'PY'
           import json
           from pathlib import Path
