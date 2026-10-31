@@ -80,49 +80,49 @@
     },
     "data/maps/MeteorFalls_1F_2R/scripts.inc": {
       "MeteorFalls_1F_2R_Text_NicolasDefeat": [
-        "Urgh! Nao esperava que fosses\\ntao forte!$"
+        "Ufa! Voce e\\nmais forte do que pensei!$"
       ],
       "MeteorFalls_1F_2R_Text_NicolasPostBattle": [
-        "O caminho a frente permanece\\nlongo e duro.\\pQuando e que o meu Pokemon e eu\\nnos tornaremos os melhores?$"
+        "Ainda tenho um longo\\ncaminho pela frente.\\pQuando meus POKEMON\\ne eu seremos os melhores?$"
       ],
       "MeteorFalls_1F_2R_Text_NicolasRegister": [
-        "Quero saber mais sobre o teu\\npoder. Deixa-me registar-te no\\lmeu POKeNAV.$"
+        "Quero acompanhar\\nseu progresso!\\pVamos trocar registros\\nno POKENAV!$"
       ],
       "MeteorFalls_1F_2R_Text_NicolasRematchIntro": [
-        "Desde que nos conhecemos,\\ntreinamos duro com a nossa mira\\lno numero um.\\pAjude-nos a ver o quanto mais\\nforte nos tornamos!$"
+        "Desde nossa ultima batalha,\\ntreinei sem parar!\\pVamos descobrir\\nquem ficou mais forte!$"
       ],
       "MeteorFalls_1F_2R_Text_NicolasRematchDefeat": [
-        "Urgh! Nao esperava que fosses\\ntao forte!$"
+        "Nossa! Voce continua\\nmuito forte!$"
       ],
       "MeteorFalls_1F_2R_Text_NicolasPostRematch": [
-        "Obviamente continuaste o teu\\ntreino POKEMON.\\pEnquanto permaneceres forte, eu\\ntambem posso ficar mais forte!$"
+        "Voce tambem continuou\\ntreinando seus POKEMON!\\pIsso me incentiva\\na melhorar ainda mais!$"
       ]
     },
     "data/maps/MeteorFalls_StevensCave/scripts.inc": {
       "MeteorFalls_StevensCave_Text_StevenDefeat": [
-        "Tu... Nao fazia ideia que te\\ntornavas tao forte...$"
+        "Voce... Ficou tao forte!\\nEu nao esperava isso!$"
       ]
     },
     "data/maps/MirageTower_4F/scripts.inc": {
       "MirageTower_4F_Text_LeaveClawFossilAlone": [
-        "{PLAYER}Deixou o CLAW FOSSIL\\nsozinho.$"
+        "{PLAYER} deixou\\nCLAW FOSSIL no lugar.$"
       ]
     },
     "data/maps/MossdeepCity/scripts.inc": {
       "MossdeepCity_Text_WhatToDoWithWeirdRock": [
-        "Sim, tu tambem achas! O que\\nvais fazer com uma pedra\\lestranha?$"
+        "Voce tambem acha estranho?\\pO que faria\\ncom uma pedra assim?$"
       ],
       "MossdeepCity_Text_FeelReliefOnLand": [
-        "Sou um SAILOR, por isso o mar e\\nobviamente mais importante para\\lmim.\\pMas sabes? Quando volto a terra\\ndepois de uma longa viagem,\\lsinto-me aliviado!$"
+        "Sou MARINHEIRO e adoro o mar!\\pMas depois de uma longa viagem,\\ne tao bom pisar em terra firme!$"
       ],
       "MossdeepCity_Text_NiceIfWorldCoveredByFlowers": [
-        "Nao seria bom?\\pSe o mundo inteiro estivesse\\ncoberto de plantas e flores\\lcomo esta ilha?$"
+        "Seria maravilhoso\\nse o mundo inteiro\\ntivesse plantas e flores!$"
       ],
       "MossdeepCity_Text_LifeNeedsSeaToLive": [
-        "Toda a vida precisa do mar para\\nviver, apesar de ter sua casa\\lna terra.\\pA vida, tendo corrido seu\\ncurso, torna-se terra e retorna\\la terra.\\pE o mar esta sempre ligado a\\nterra.\\pSim, como na costa.$"
+        "Toda forma de vida\\nprecisa do mar.\\pA terra tambem sustenta\\ntodas as criaturas.\\pO mar e a terra\\nestao sempre ligados!$"
       ],
       "MossdeepCity_Text_SurfExhilarating": [
-        "Uma viagem num navio e boa.\\pMas atravessar o mar com\\nPOKEMON usando SURF...\\pQue viagem emocionante! Nao\\nconcorda, jovem?$"
+        "Viajar de barco e bom...\\pMas cruzar o mar\\ncom SURF e emocionante!\\pNao acha, jovem?$"
       ],
       "MossdeepCity_Text_ItsAWhiteRock": [
         "E uma pedra branca.$"
@@ -162,48 +162,48 @@
     },
     "data/maps/MossdeepCity_House1/scripts.inc": {
       "MossdeepCity_House1_Text_HmmYourPokemon": [
-        "Hmm! Sua{STR_VAR_1}...$"
+        "Hmm! Seu {STR_VAR_1}...$"
       ],
       "MossdeepCity_House1_Text_ItLikesXPokeblocks": [
-        "Gosta.{STR_VAR_1}S, nao e?\\pNao, tenho a certeza disso! Ele\\ndefinitivamente\\lgosta{STR_VAR_1}S!$"
+        "Ele gosta de {STR_VAR_1}S,\\nnao e?\\pTenho certeza!\\nAdora {STR_VAR_1}S!$"
       ],
       "MossdeepCity_House1_Text_DoesntLikeOrDislikePokeblocks": [
-        "Nao parece gostar ou nao gostar\\nde nenhum{POKEBLOCK}S.$"
+        "Nao parece ter preferencia\\npor nenhum {POKEBLOCK}S.$"
       ],
       "MossdeepCity_House1_Text_HusbandCanTellPokeblockMonLikes": [
-        "Meu marido pode dizer que tipo\\nde{POKEBLOCK}E um Pokemon gosta\\lde uma olhada.$"
+        "Meu marido consegue dizer\\nqual {POKEBLOCK} um POKEMON\\ngosta de comer!$"
       ]
     },
     "data/maps/MossdeepCity_House3/scripts.inc": {
       "MossdeepCity_House3_Text_YouWantSuperRod": [
-        "Ola, treinador! UM SUPER ROD\\nrealmente e super!\\pDiz o que quiseres, mas este\\nbebe pode apanhar o Pokemon no\\lfundo do mar!\\pO que achas? Queres, nao\\nqueres?$"
+        "Ola, TREINADOR!\\pA SUPER ROD e incrivel!\\nDa para pescar POKEMON\\nnas aguas mais profundas!\\pQuer experimentar?$"
       ],
       "MossdeepCity_House3_Text_SuperRodIsSuper": [
-        "Podes crer! Afinal, um SUPER\\nROD e realmente super!$"
+        "Pode acreditar!\\nA SUPER ROD e super mesmo!$"
       ],
       "MossdeepCity_House3_Text_TryDroppingRodInWater": [
-        "Se houver agua, tente cair no\\nseu ROD e veja o que morde!$"
+        "Quando encontrar agua,\\nuse sua vara para pescar!\\pVeja o que aparece!$"
       ],
       "MossdeepCity_House3_Text_DontYouLikeToFish": [
-        "Hunh? Nao gostas de pescar?$"
+        "O que? Voce nao gosta\\nde pescar?$"
       ],
       "MossdeepCity_House3_Text_GoAfterSeafloorPokemon": [
-        "Vai atras do fundo do mar com o\\nteu SUPER ROD.$"
+        "Use a SUPER ROD\\npara pescar POKEMON raros!$"
       ]
     },
     "data/maps/MossdeepCity_Mart/scripts.inc": {
       "MossdeepCity_Mart_Text_ReviveIsFantastic": [
-        "REVIVE e fantastico!\\pDe-o a um Pokemon desmaiado, e\\no Pokemon surgira.\\pMas tenha cuidado, REVIVE nao\\nrestaura o PP usado de\\lmovimentos.$"
+        "REVIVE e um item incrivel!\\pEle recupera um POKEMON\\nque desmaiou na batalha.\\pMas nao recupera os PP\\ndos golpes usados!$"
       ]
     },
     "data/maps/MossdeepCity_PokemonCenter_1F/scripts.inc": {
       "MossdeepCity_PokemonCenter_1F_Text_AbilitiesMightChangeMoves": [
-        "Dependendo das habilidades\\nespeciais de POKEMON, alguns\\lmovimentos podem mudar ou nao\\lfuncionar.$"
+        "Algumas habilidades POKEMON\\nmudam o efeito dos golpes.\\pOutras podem ate\\nimpedir seu funcionamento!$"
       ]
     },
     "data/maps/MossdeepCity_PokemonCenter_2F/scripts.inc": {
       "MossdeepCity_PokemonCenter_2F_Text_Woman5": [
-        "Se eu ganhar um monte de\\nbatalhas link e mostrar a todos\\lcomo eu sou bom, eu poderia\\lobter um fa seguindo!$"
+        "Se eu ganhar muitas\\nbatalhas por conexao,\\ntalvez conquiste varios fas!$"
       ]
     },
     "data/maps/MossdeepCity_SpaceCenter_1F/scripts.inc": {
@@ -323,13 +323,13 @@
     },
     "data/maps/MossdeepCity_StevensHouse/scripts.inc": {
       "MossdeepCity_StevensHouse_Text_ObtainedBeldum": [
-        "{PLAYER}obteve um BELDUM.$"
+        "{PLAYER} recebeu BELDUM!$"
       ],
       "MossdeepCity_StevensHouse_Text_NoSpaceForAnotherMon": [
-        "Nao ha espaco para outro\\nPOKEMON.$"
+        "Nao ha espaco\\npara outro POKEMON!$"
       ],
       "MossdeepCity_StevensHouse_Text_CollectionOfRareRocks": [
-        "E uma colecao de rochas raras e\\npedras montadas pela STEVEN.$"
+        "Uma colecao de pedras\\nraras de STEVEN!$"
       ]
     },
     "data/maps/MtChimney/scripts.inc": {
@@ -614,32 +614,32 @@
     },
     "data/maps/MtMortar_1F_North/scripts.inc": {
       "MountMortar2_Text_PokemaniacMillerSeen": [
-        "Nao vou perder desta vez!$"
+        "Nao vou perder\\ndesta vez!$"
       ],
       "MountMortar2_Text_PokemaniacMillerBeaten": [
-        "Perdi para um miudo...?$"
+        "Perdi para voce...?$"
       ],
       "MountMortar2_Text_PokemaniacMillerAfter": [
-        "Ha algum tempo, este tipo do\\nkarate queria lutar.\\pEle era ridiculamente bom. Ele\\nacabou de nos bater.\\pEle foi mais fundo dizendo que\\nera para seu treinamento.\\pComo sera que ele esta?$"
+        "Um lutador de KARATE\\npassou por aqui.\\pEle era muito forte!\\pFoi treinar mais fundo\\nna montanha.\\pComo sera que ele esta?$"
       ],
       "MountMortar2_Text_SupernerdMarkusBeaten": [
-        "Confundi-te com outra pessoa...$"
+        "Confundi voce\\ncom outra pessoa...$"
       ]
     },
     "data/maps/MtMortar_2F/scripts.inc": {
       "MtMortar_2F_Text_SupernerdHughBeaten": [
-        "Desculpa, enganei-me.\\nJulguei-te mal.$"
+        "Foi mal!\\nJulguei voce errado!$"
       ]
     },
     "data/maps/MtMortar_B1F/scripts.inc": {
       "MountMortar4_Text_KiyoWin": [
-        "Waaaarggh! Estou derrotado!$"
+        "Argh! Fui derrotado!$"
       ],
       "MountMortar4_Text_KiyoTyrogueReward": [
-        "Estou arrasado...\\pO meu treino ainda nao e\\nsuficiente...\\pMas uma perda e uma perda.\\nAdmito.\\pComo prova de que me\\nderrotaste, vou dar-te uma rara\\lluta contra o Pokemon.$"
+        "Ainda preciso treinar muito...\\pMas voce mereceu vencer!\\pComo prova da vitoria,\\nvou dar um POKEMON raro\\ndo tipo FIGHTING!$"
       ],
       "MountMortar4_Text_KiyoFullParty": [
-        "Nao tens espaco na tua festa!$"
+        "Seu time esta cheio!\\nNao ha espaco para o POKEMON!$"
       ]
     },
     "data/maps/MtPyre_1F/scripts.inc": {
