@@ -401,7 +401,7 @@
         "O meu Pokemon e eu estamos de\\ncastigo... Muito bem feito.$"
       ],
       "FortreeCity_Gym_Text_GymGuidePostVictory": [
-        "Conseguiste! Conseguiste\\ndescolagem!$"
+        "conseguiu! conseguiu\\ndescolagem!$"
       ],
       "FortreeCity_Gym_Text_JaredIntro": [
         "Contemplem o elegante estilo de\\nbatalha de BIRD POKEMON!$"
@@ -428,7 +428,7 @@
         "Urk! Nao te consegui impedir.$"
       ],
       "FortreeCity_Gym_Text_DariusDefeat": [
-        "Pareces saber as tuas coisas!$"
+        "Pareces saber as suas coisas!$"
       ],
       "FortreeCity_Gym_Text_WinonaDefeat": [
         "Nunca antes vi um TREiner\\ncomandar POKEMON com mais graca\\ldo que eu...\\pEm reconhecimento as suas\\nproezas, apresento-lhe este\\lGINASIO INSIGNIA.$"
@@ -443,7 +443,7 @@
         "Embora me tenha apaixonado por\\nti, vou continuar devotado ao\\lBIRD POKEMON.$"
       ],
       "FortreeCity_Gym_Text_WinonaRematchDefeat": [
-        "Nao cheguei a tua altura outra\\nvez...$"
+        "Nao cheguei a sua altura outra\\nvez...$"
       ]
     },
     "data/maps/FuchsiaCity_Gym_Frlg/scripts.inc": {
@@ -593,7 +593,7 @@
         "Brincar com fogo, e ser\\nqueimado...$"
       ],
       "LavaridgeTown_Gym_B1F_Text_KeeganPostBattle": [
-        "A tua habilidade e real... Mas\\no nosso LEADER FLANNERY e\\lforte.\\pSe nao te cuidares, seras\\nseriamente queimado.$"
+        "A sua habilidade e real... Mas\\no nosso LEADER FLANNERY e\\lforte.\\pSe nao te cuidares, seras\\nseriamente queimado.$"
       ],
       "LavaridgeTown_Gym_1F_Text_GeraldIntro": [
         "O seu POKEMON aguenta calor de\\n392 graus?$"
@@ -714,7 +714,7 @@
         "Es eletrizante! Abriste a\\nporta!$"
       ],
       "MauvilleCity_Gym_Text_KirkIntro": [
-        "A minha alma electrica vai\\ndestruir os teus sonhos.$"
+        "A minha alma electrica vai\\ndestruir os seus sonhos.$"
       ],
       "MauvilleCity_Gym_Text_KirkDefeat": [
         "Isso foi ligado, empolgado, com\\nexcesso de energia electrica,\\lmeu!$"
@@ -753,7 +753,7 @@
         "{PLAYER}recebeu o DYNAMO\\nINSIGNIA de WATTSON.$"
       ],
       "MauvilleCity_Gym_Text_ExplainShockWave": [
-        "Aquele TM34 ali contem SHOCK\\nWAVE.\\pE uma jogada de confianca que\\nnunca falha! Podes contar com\\lisso!\\p... ... ... ... ... ...$"
+        "Aquele TM34 ali contem SHOCK\\nWAVE.\\pE uma jogada de confianca que\\nnunca falha! pode contar com\\lisso!\\p... ... ... ... ... ...$"
       ],
       "MauvilleCity_Gym_Text_RegisteredWattson": [
         "GINASIO LEADER WATTSON\\nregistado no POKeNAV.$"
