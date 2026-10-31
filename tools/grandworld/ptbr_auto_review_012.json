@@ -28,7 +28,7 @@
         "O SP. ATK e SP. DEF\\nestatisticas de todos os seus\\lPOKEMON subir um pouco.\\pTambem permite que voce use o\\nmovimento WATERFALL fora da\\lbatalha.$"
       ],
       "CeruleanCity_House1_Text_AllMonsWillObeyYou": [
-        "Todos os Pokemon te obedecerao!$"
+        "Todos os POKEMON te obedecerao!$"
       ]
     },
     "data/maps/CeruleanCity_House2_Frlg/scripts.inc": {
@@ -38,7 +38,7 @@
     },
     "data/maps/CeruleanCity_House3_Frlg/scripts.inc": {
       "CeruleanCity_House3_Text_PleaseTradeWithMyHusband": [
-        "O meu marido gosta de negociar\\nPOKEMON.\\pEstas a coleccionar Pokemon\\npara o seu Pokedex, nao estas?\\pImportas-te de trocar com ele?$"
+        "O meu marido gosta de negociar\\nPOKEMON.\\pEstas a coleccionar POKEMON\\npara o seu Pokedex, nao estas?\\pImportas-te de trocar com ele?$"
       ]
     },
     "data/maps/CeruleanCity_House4_Frlg/scripts.inc": {
@@ -88,7 +88,7 @@
     },
     "data/maps/CherrygroveCity_House1/scripts.inc": {
       "CherrygroveCity_GymSpeechHouse_Text_PokefanM": [
-        "Estas a tentar ver como es bom\\ncomo treinador de Pokemon?\\pE melhor visitar os GyMS\\nPokemon por todo o JOHTO e\\lrecolher INSIGNIAS.$"
+        "Estas a tentar ver como es bom\\ncomo treinador de POKEMON?\\pE melhor visitar os GyMS\\nPokemon por todo o JOHTO e\\lrecolher INSIGNIAS.$"
       ]
     },
     "data/maps/CherrygroveCity_House2/scripts.inc": {
@@ -101,7 +101,7 @@
         "POKEMON ganhar experiencia em\\nbatalha e mudar sua forma.$"
       ],
       "CherrygroveCity_EvolutionHouse_Text_Lass": [
-        "Mudanca Pokemon?\\pFicaria chocado se alguem\\nfizesse isso!$"
+        "Mudanca POKEMON?\\pFicaria chocado se alguem\\nfizesse isso!$"
       ]
     },
     "data/maps/CherrygroveCity_PokemonCenter/scripts.inc": {
@@ -126,12 +126,12 @@
         "Detesto admitir, mas venceu.$"
       ],
       "CianwoodCity_Text_EusineAfter": [
-        "Es incrivel.{PLAYER}!\\pNao admira que Pokemon gravite\\npara ti.\\pJa percebi.\\pVou continuar a procura da\\nSUICUNE.\\pTenho a certeza que voltaremos\\na ver-nos.\\pVemo-nos por ai!$"
+        "Es incrivel.{PLAYER}!\\pNao admira que POKEMON gravite\\npara ti.\\pJa percebi.\\pVou continuar a procura da\\nSUICUNE.\\pTenho a certeza que voltaremos\\na ver-nos.\\pVemo-nos por ai!$"
       ]
     },
     "data/maps/CianwoodHouse1/scripts.inc": {
       "CianwoodCity_Text_OldManIntro": [
-        "Nao me lembro da ultima vez que\\nalguem me visitou.\\pQuando era jovem, tambem era\\ninstrutor de Pokemon. Tentei\\lchegar a torre e mergulhar no\\loceano.\\pEsforcei-me muito em muitas\\ncoisas.\\pBem, agora vou com calma, a\\nouvir as ondas e os ventos\\lnesta praia.$"
+        "Nao me lembro da ultima vez que\\nalguem me visitou.\\pQuando era jovem, tambem era\\ninstrutor de POKEMON. Tentei\\lchegar a torre e mergulhar no\\loceano.\\pEsforcei-me muito em muitas\\ncoisas.\\pBem, agora vou com calma, a\\nouvir as ondas e os ventos\\lnesta praia.$"
       ],
       "CianwoodCity_Text_BellTowerStory": [
         "Ja ouviu falar do TIN TOWER em\\nECRUTEAK?\\pHa o que chamam de Sino Limpo\\nno topo da torre.\\pNao fazem nenhum barulho com\\nventos fortes.\\pSo ha uma maneira de faze-los\\ntocar.\\pE para obter outro BELL CLEAR\\ncomo aqueles no topo da torre.\\pFui atras dele quando era\\njovem. Mas nunca recebi um...$"
@@ -147,7 +147,7 @@
     },
     "data/maps/CianwoodHouse3/scripts.inc": {
       "CianwoodCity_Text_ManiacAskShuckle": [
-        "Estou em choque!\\pUm tipo da sua idade com olhos\\npenetrantes e cabelo comprido\\lentrou.\\pEle assustou-me para lhe dar o\\nmeu precioso Pokemon!\\pAinda tenho um, mas e se ele\\nvoltar?\\pPareces forte. pode tomar\\nconta do meu Pokemon por uns\\ltempos?$"
+        "Estou em choque!\\pUm tipo da sua idade com olhos\\npenetrantes e cabelo comprido\\lentrou.\\pEle assustou-me para lhe dar o\\nmeu precioso POKEMON!\\pAinda tenho um, mas e se ele\\nvoltar?\\pPareces forte. pode tomar\\nconta do meu POKEMON por uns\\ltempos?$"
       ],
       "CianwoodCity_Text_ManiacTakeCareShuckle": [
         "Obrigado!\\pCuide bem dele, por favor!$"
@@ -162,19 +162,19 @@
         "Oh, nao... O que faco se ele\\nvoltar?$"
       ],
       "CianwoodCity_Text_ManiacHowsdoing": [
-        "Ola! Como esta o meu Pokemon?$"
+        "Ola! Como esta o meu POKEMON?$"
       ],
       "CianwoodCity_Text_ManiacAskReturn": [
-        "Ola! Como esta o meu Pokemon?\\pAcho que estou segura agora,\\npor isso posso te-la de volta?$"
+        "Ola! Como esta o meu POKEMON?\\pAcho que estou segura agora,\\npor isso posso te-la de volta?$"
       ],
       "CianwoodCity_Text_ManiacThankYou": [
         "Obrigado!$"
       ],
       "CianwoodCity_Text_ManiacShuckleNotThere": [
-        "Nao tem o meu Pokemon contigo.$"
+        "Nao tem o meu POKEMON contigo.$"
       ],
       "CianwoodCity_Text_ManiacShuckleLikesYou": [
-        "O meu Pokemon gostou de ti.\\pEsta bem, devia ficar com ele.\\pMas promete ser bom para ele!$"
+        "O meu POKEMON gostou de ti.\\pEsta bem, devia ficar com ele.\\pMas promete ser bom para ele!$"
       ],
       "CianwoodCity_Text_ManiacRobbed": [
         "Alguma coisa nao esta bem.$"
@@ -200,7 +200,7 @@
         "{PLAYER}recebeu TENTACOOL.$"
       ],
       "CianwoodCity_Text_PokecenterLass": [
-        "Conheceu o POKeMANIAC?\\pEsta sempre a gabar-se do seu\\nraro Pokemon.$"
+        "Conheceu o POKeMANIAC?\\pEsta sempre a gabar-se do seu\\nraro POKEMON.$"
       ],
       "CianwoodCity_Text_GymGuideWin": [
         "{PLAYER}venceu! Da para ver\\nolhando para ti!$"
@@ -314,7 +314,7 @@
     },
     "data/maps/DragonsDen_Cavern/scripts.inc": {
       "DragonsDen_Cavern_Text_SilverTraining1": [
-        "O que?{PLAYER}?\\pNao, nao vou lutar contigo\\nagora...\\pO meu Pokemon nao esta pronto\\npara te vencer.\\pNao posso forca-los muito.\\pEu tenho que ser disciplinado\\npara me tornar o maior\\ltreinador POKEMON...$"
+        "O que?{PLAYER}?\\pNao, nao vou lutar contigo\\nagora...\\pO meu POKEMON nao esta pronto\\npara te vencer.\\pNao posso forca-los muito.\\pEu tenho que ser disciplinado\\npara me tornar o maior\\ltreinador POKEMON...$"
       ],
       "DragonsDen_Cavern_Text_SilverTraining2": [
         "...\\pUfa...\\pAprende a ficar fora do meu\\ncaminho...$"
@@ -361,7 +361,7 @@
         "O que e mais importante para a\\ncriacao de POKEMON?$"
       ],
       "DragonsDen_Shrine_Text_Question5": [
-        "Pokemon forte. Pokemon fraco. O\\nque e mais importante?$"
+        "POKEMON forte. POKEMON fraco. O\\nque e mais importante?$"
       ],
       "DragonsDen_Shrine_Text_WrongAnswer1": [
         "Hah? Nao percebi bem...$"
@@ -376,7 +376,7 @@
         "Estou a ver...\\pGosta muito de POKEMON.\\pMuito louvavel.\\pEssa conviccao e o que importa!\\p{PLAYER}Nao percas essa crenca.\\pEle vai leva-lo ate a LEAGUE\\nPOKEMON.$"
       ],
       "DragonsDen_Shrine_Text_ClairYouPassed": [
-        "Entao, como correu?\\pAcho que nao vale a pena\\nperguntar. Falhaste?\\p..................................\\pO que? Passaste?$"
+        "Entao, como correu?\\pAcho que nao vale a pena\\nperguntar. Falhaste?\\p..................................\\pO que? Passou?$"
       ],
       "DragonsDen_Shrine_Text_ClairThatCantBe": [
         "Nao pode ser!$"
@@ -423,10 +423,10 @@
         "A torre que costumava ser\\naqui...\\pA minha avo disse-me que era\\nmuito mais alto.\\pOuvi dizer que ha fantasmas\\nnele agora.$"
       ],
       "EcruteakCity_Text_Lass2_ReleasedBeasts": [
-        "Tres grandes Pokemon fugiram em\\ndirecoes diferentes. Quais\\leram?$"
+        "Tres grandes POKEMON fugiram em\\ndirecoes diferentes. Quais\\leram?$"
       ],
       "EcruteakCity_Text_Gramps3": [
-        "No passado distante...\\pEsta torre ardeu num incendio.\\nTres Pokemon sem nome pereceram\\lnele.\\pUm POKEMON de cor arco-iris\\ndesceu do ceu e\\lressuscitou-os...\\pE uma lenda que foi transmitida\\npor ECRUTEAK GINASIO LEADERS.\\pEu?\\pEu era treinador ha muito\\ntempo. Hohoho!$"
+        "No passado distante...\\pEsta torre ardeu num incendio.\\nTres POKEMON sem nome pereceram\\lnele.\\pUm POKEMON de cor arco-iris\\ndesceu do ceu e\\lressuscitou-os...\\pE uma lenda que foi transmitida\\npor ECRUTEAK GINASIO LEADERS.\\pEu?\\pEu era treinador ha muito\\ntempo. Hohoho!$"
       ],
       "EcruteakCity_Text_TinTowerSign": [
         "TIN TOWER\\pDiz-se que um legendario\\nPokemon pousa aqui.$"
@@ -440,10 +440,10 @@
     },
     "data/maps/EcruteakCity_House1/scripts.inc": {
       "EcruteakLugiaSpeechHouse_Text_Gramps": [
-        "Isto aconteceu quando eu era\\njovem.\\pO ceu de repente ficou preto.\\nUm Pokemon voador gigante\\lestava bloqueando o sol.\\pO que sera que era aquele\\nPokemon?\\pEra como um passaro e um\\ndragao.$"
+        "Isto aconteceu quando eu era\\njovem.\\pO ceu de repente ficou preto.\\nUm POKEMON voador gigante\\lestava bloqueando o sol.\\pO que sera que era aquele\\nPokemon?\\pEra como um passaro e um\\ndragao.$"
       ],
       "EcruteakLugiaSpeechHouse_Text_Youngster": [
-        "Ha mesmo um Pokemon assim tao\\ngrande?\\pSe existe, deve ser poderoso.$"
+        "Ha mesmo um POKEMON assim tao\\ngrande?\\pSe existe, deve ser poderoso.$"
       ]
     },
     "data/maps/EcruteakCity_House2/scripts.inc": {
@@ -460,15 +460,15 @@
         "ECRUTEAK e uma cidade muito\\nantiga. Muitas geracoes\\lpassaram sua historia em livros\\lcomo estes.$"
       ],
       "Ecruteak_Text_TwoTowers": [
-        "Em ECRUTEAK, havia duas torres.\\pCada torre era o potro do\\npoderoso POKEMON voador.\\pMas uma das torres queimou-se.\\pOs dois Pokemon nao sao vistos\\ndesde...\\pContinuar a ler?$"
+        "Em ECRUTEAK, havia duas torres.\\pCada torre era o potro do\\npoderoso POKEMON voador.\\pMas uma das torres queimou-se.\\pOs dois POKEMON nao sao vistos\\ndesde...\\pContinuar a ler?$"
       ],
       "Ecruteak_Text_ThreeMon": [
-        "ECRUTEAK tambem era o lar de\\ntres Pokemon que correram pela\\lcidade.\\pDizem que nasceram de agua,\\nrelampago e fogo.\\pMas nao podiam conter seu poder\\nexcessivo.\\pEntao dizem que os tres\\ncorreram como o vento para a\\lpradaria.$"
+        "ECRUTEAK tambem era o lar de\\ntres POKEMON que correram pela\\lcidade.\\pDizem que nasceram de agua,\\nrelampago e fogo.\\pMas nao podiam conter seu poder\\nexcessivo.\\pEntao dizem que os tres\\ncorreram como o vento para a\\lpradaria.$"
       ]
     },
     "data/maps/EcruteakCity_Mart/scripts.inc": {
       "EcruteakMart_Text_Granny": [
-        "Se usar o REVIVE, um Pokemon\\ndesmaiado vai acordar.$"
+        "Se usar o REVIVE, um POKEMON\\ndesmaiado vai acordar.$"
       ]
     },
     "data/maps/EcruteakCity_SageOffice1/scripts.inc": {
@@ -491,10 +491,10 @@
         "O TIN TOWER a frente e uma\\ntorre de nove niveis de beleza\\ldivina.\\pAcalma a alma de todos os que a\\nveem.$"
       ],
       "EcruteakTinTowerEntrance_Text_WanderingSageClearBell": [
-        "A TIN TOWER tremeu! Um Pokemon\\ndeve ter voltado ao topo!$"
+        "A TIN TOWER tremeu! Um POKEMON\\ndeve ter voltado ao topo!$"
       ],
       "EcruteakTinTowerEntrance_Text_Gramps": [
-        "Duas torres... Dois Pokemon...\\pMas quando um ardeu, ambos\\nPOKEMON voou para longe, para\\lnunca mais voltar.$"
+        "Duas torres... Dois POKEMON...\\pMas quando um ardeu, ambos\\nPOKEMON voou para longe, para\\lnunca mais voltar.$"
       ]
     },
     "data/maps/EcruteakCity_Theater/scripts.inc": {
@@ -538,7 +538,7 @@
         "Nao estavamos errados sobre ti.\\nEs realmente digno disto...\\pPor favor, aceite.$"
       ],
       "EcruteakCity_Theater_Text_GirlHooh": [
-        "Irmas grandes! Acabei de ver a\\ngrande sombra de um Pokemon\\lsobre o TIN TOWER!\\pPode ser...$"
+        "Irmas grandes! Acabei de ver a\\ngrande sombra de um POKEMON\\lsobre o TIN TOWER!\\pPode ser...$"
       ],
       "EcruteakCity_Theater_Text_ZukiHooh": [
         "ZUKI:{PLAYER}Estaremos no TIN\\nTOWER. Vemo-nos la!$"
@@ -560,7 +560,7 @@
     },
     "data/maps/EverGrandeCity_GlaciasRoom/scripts.inc": {
       "EverGrandeCity_GlaciasRoom_Text_Defeat": [
-        "Tu e o seu Pokemon... Que calor\\nardem os vossos espiritos!\\pO calor todo consome.\\pNao e surpresa que as minhas\\nhabilidades geladas nao te\\ltenham feito mal.$"
+        "Tu e o seu POKEMON... Que calor\\nardem os vossos espiritos!\\pO calor todo consome.\\pNao e surpresa que as minhas\\nhabilidades geladas nao te\\ltenham feito mal.$"
       ],
       "EverGrandeCity_GlaciasRoom_Text_PostBattleSpeech": [
         "Avancem para o quarto ao lado.\\pE la, confirme o lado\\nverdadeiramente temivel da\\lLEAGUE POKEMON.$"
@@ -571,7 +571,7 @@
         "Bolas. Perdi-me.$"
       ],
       "EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech": [
-        "Ha uma ligacao definitiva entre\\nti e o seu Pokemon, tambem.\\pNao o reconheci, por isso e\\nnatural que tenha perdido.\\pSim, gostaria de ver ate onde o\\nteu laco te levara.\\pVai para o quarto ao lado.$"
+        "Ha uma ligacao definitiva entre\\nti e o seu POKEMON, tambem.\\pNao o reconheci, por isso e\\nnatural que tenha perdido.\\pSim, gostaria de ver ate onde o\\nteu laco te levara.\\pVai para o quarto ao lado.$"
       ]
     },
     "data/maps/EverGrandeCity_PokemonLeague_1F/scripts.inc": {
@@ -640,7 +640,7 @@
     },
     "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc": {
       "FallarborTown_PokemonCenter_1F_Text_FossilManiacEdgeOfTown": [
-        "Imagino como Pokemon era ha\\nmuito tempo.\\pTalvez o FOSSIL MANIAC a beira\\nda cidade saiba.$"
+        "Imagino como POKEMON era ha\\nmuito tempo.\\pTalvez o FOSSIL MANIAC a beira\\nda cidade saiba.$"
       ],
       "FallarborTown_PokemonCenter_1F_Text_PlantHardyTrees": [
         "Nos campos de FALLARBOR,\\nplantamos mudas de arvores\\lresistentes que prosperam ate\\lmesmo em cinzas vulcanicas.$"
@@ -748,7 +748,7 @@
         "Esfrega, esfrega...$"
       ],
       "FiveIsland_MemorialPillar_Text_YourMonsLookHealthy": [
-        "Ola... O seu Pokemon parece\\nsaudavel...$"
+        "Ola... O seu POKEMON parece\\nsaudavel...$"
       ],
       "FiveIsland_MemorialPillar_Text_ThisIsWhereIBuriedMyOnix": [
         "Foi aqui que enterrei o meu\\nONIX... Chamava-se TECTONIX...$"
@@ -777,7 +777,7 @@
         "Vou preparar uma refeicao para\\numa pessoa de alta sociedade.$"
       ],
       "FiveIsland_PokemonCenter_1F_Text_YoureOnQuestToCatchEveryMon": [
-        "Estas numa missao para capturar\\ntodos os tipos de Pokemon?\\pQue incrivel. Por favor, diz-me\\nse apanhares um forte!$"
+        "Estas numa missao para capturar\\ntodos os tipos de POKEMON?\\pQue incrivel. Por favor, diz-me\\nse apanhares um forte!$"
       ]
     },
     "data/maps/FiveIsland_ResortGorgeous_Frlg/scripts.inc": {
@@ -844,7 +844,7 @@
     },
     "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc": {
       "FiveIsland_ResortGorgeous_House_Text_WishToSeeMonPlease": [
-        "Quero ver um Pokemon. Um\\nquerido.{STR_VAR_1}.\\pQuero ver um imediatamente. Por\\nfavor, realize o meu desejo.$"
+        "Quero ver um POKEMON. Um\\nquerido.{STR_VAR_1}.\\pQuero ver um imediatamente. Por\\nfavor, realize o meu desejo.$"
       ],
       "FiveIsland_ResortGorgeous_House_Text_ButlerYesMyLady": [
         "Sim, minha senhora.$"
