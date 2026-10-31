@@ -1,0 +1,230 @@
+{
+  "status": "human_language_revision_complete; visual_mGBA_review_pending",
+  "scope": "Human-edited entries changed in stage8 only, independent of previously reviewed stage7.",
+  "source_shards": [
+    "ptbr_auto_review_014.json",
+    "ptbr_auto_review_015.json"
+  ],
+  "reviewed_entries": 158,
+  "reviewed_labels_by_source": {
+    "data/maps/GoldenrodCity_UndergroundSwitches/scripts.inc": [
+      "GoldenrodUnderground_Text_BurglarDuncanAfter",
+      "GoldenrodUnderground_Text_BurglarEddieSeen",
+      "GoldenrodUnderground_Text_BurglarEddieBeaten",
+      "GoldenrodUnderground_Text_GruntM13Seen",
+      "GoldenrodUnderground_Text_GruntM13Beaten",
+      "GoldenrodUnderground_Text_GruntF3Seen",
+      "GoldenrodUnderground_Text_GruntF3Beaten",
+      "GoldenrodUnderground_Text_GruntF3After",
+      "GoldenrodUnderground_Text_Switch1",
+      "GoldenrodUnderground_Text_Switch2",
+      "GoldenrodUnderground_Text_Switch3",
+      "GoldenrodUnderground_Text_Switch1Off",
+      "GoldenrodUnderground_Text_Switch2Off",
+      "GoldenrodUnderground_Text_Switch3Off"
+    ],
+    "data/maps/GoldenrodCity_UndergroundTunnel/scripts.inc": [
+      "GoldenrodCity_UndergroundTunnel_Text_Kimono1",
+      "GoldenrodCity_UndergroundTunnel_Text_Kimono2",
+      "GoldenrodUnderground_Text_YoungerBrotherAskWhich",
+      "GoldenrodUnderground_Text_YoungerBrotherLookCool",
+      "GoldenrodUnderground_Text_YoungerBrotherAllDone",
+      "GoldenrodUnderground_Text_YoungerBrotherDisappointed",
+      "GoldenrodUnderground_Text_YoungerBrotherShortOnFunds",
+      "GoldenrodUnderground_Text_YoungerBrotherOnePerDay",
+      "GoldenrodUnderground_Text_OlderBrotherAskWhich",
+      "GoldenrodUnderground_Text_OlderBrotherWatchItBeautiful",
+      "GoldenrodUnderground_Text_OlderBrotherAllDone",
+      "GoldenrodUnderground_Text_OlderBrotherThatsAShame",
+      "GoldenrodUnderground_Text_OlderBrotherNeedMoreMoney",
+      "GoldenrodUnderground_Text_OlderBrotherOnePerDay",
+      "GoldenrodUnderground_Text_SupernerdEricBeaten",
+      "GoldenrodUnderground_Text_SupernerdEricAfterBattle",
+      "GoldenrodUnderground_Text_SupernerdTeruSeen",
+      "GoldenrodUnderground_Text_SupernerdTeruAfterBattle",
+      "GoldenrodUnderground_Text_PokemaniacIssacSeen",
+      "GoldenrodUnderground_Text_PokemaniacIssacBeaten",
+      "GoldenrodUnderground_Text_PokemaniacIssacAfterBattle",
+      "GoldenrodUnderground_Text_PokemaniacDonaldSeen",
+      "GoldenrodUnderground_Text_PokemaniacDonaldBeaten"
+    ],
+    "data/maps/GraniteCave_StevensRoom/scripts.inc": [
+      "GraniteCave_StevensRoom_Text_RegisteredSteven",
+      "GraniteCave_StevensRoom_Text_IveGotToHurryAlong"
+    ],
+    "data/maps/IcePath_1F/scripts.inc": [
+      "IcePath_1F_Text_Stuck1",
+      "IcePath_1F_Text_Stuck2",
+      "IcePath_1F_Text_Cruel",
+      "IcePath_1F_Text_Thanks"
+    ],
+    "data/maps/IcePath_B1F/scripts.inc": [
+      "IcePath_B1F_Text_PuzzleSkipButton"
+    ],
+    "data/maps/IcePath_B3F/scripts.inc": [
+      "IcePath_B3F_Text_SwinubTurnedAway",
+      "IcePath_B3F_Text_DelibirdAteBerry",
+      "IcePath_B3F_Text_DelibirdTurnedAway",
+      "IcePath_B3F_Text_NoRoomForTM"
+    ],
+    "data/maps/IlexForest/scripts.inc": [
+      "IlexForest_Text_ApprenticeAfter",
+      "IlexForest_Text_CharcoalMasterTalkAfter",
+      "MoveTutor_Text_HeadbuttTeach",
+      "MoveTutor_Text_HeadbuttWhichMon",
+      "MoveTutor_Text_HeadbuttDeclined",
+      "MoveTutor_Text_HeadbuttTaught",
+      "IlexForest_Text_Lass",
+      "IlexForest_Text_Signpost",
+      "IlexForest_Text_Shrine",
+      "IlexForest_Text_BugCatcherWayneSeen",
+      "IlexForest_Text_BugCatcherWayneBeaten",
+      "IlexForest_Text_BugCatcherWayneAfter",
+      "IlexForest_Text_Kimono_Girl3",
+      "IlexForest_Text_Kimono_Girl4",
+      "IlexForest_Text_Kimono_Girl5"
+    ],
+    "data/maps/InsideOfTruck/scripts.inc": [
+      "InsideOfTruck_Text_BoxPrintedWithMonLogo"
+    ],
+    "data/maps/JaggedPass/scripts.inc": [
+      "JaggedPass_Text_EricDefeat",
+      "JaggedPass_Text_EricPostBattle",
+      "JaggedPass_Text_DianaIntro",
+      "JaggedPass_Text_DianaDefeat",
+      "JaggedPass_Text_DianaPostBattle",
+      "JaggedPass_Text_DianaRegister",
+      "JaggedPass_Text_DianaRematchIntro",
+      "JaggedPass_Text_DianaRematchDefeat",
+      "JaggedPass_Text_DianaPostRematch",
+      "JaggedPass_Text_EthanDefeat",
+      "JaggedPass_Text_EthanPostBattle",
+      "JaggedPass_Text_EthanRegister",
+      "JaggedPass_Text_EthanRematchIntro",
+      "JaggedPass_Text_EthanRematchDefeat",
+      "JaggedPass_Text_GruntIntro",
+      "JaggedPass_Text_GoWhereverYouWant",
+      "JaggedPass_Text_BoulderShakingInResponseToEmblem",
+      "JaggedPass_Text_JulioIntro",
+      "JaggedPass_Text_JulioDefeat",
+      "JaggedPass_Text_JulioPostBattle",
+      "JaggedPass_Text_AutumnIntro",
+      "JaggedPass_Text_AutumnDefeat",
+      "JaggedPass_Text_AutumnPostBattle"
+    ],
+    "data/maps/JohtoIndigoPlateau/scripts.inc": [
+      "JohtoIndigoPlateau_Text_Sign"
+    ],
+    "data/maps/JohtoIndigoPlateau_PokemonCenter/scripts.inc": [
+      "JohtoIndigoPlateau_Text_ShigyNinja",
+      "JohtoIndigoPlateau_Text_Blackbelt",
+      "JohtoIndigoPlateau_Text_RivalWin",
+      "JohtoIndigoPlateau_Text_RivalAfter",
+      "JohtoIndigoPlateau_Text_TeleportGuyYes",
+      "JohtoIndigoPlateau_Text_TeleportGuyNo"
+    ],
+    "data/maps/JohtoPokemonLeague_BrunosRoom/scripts.inc": [
+      "JohtoPokemonLeague_BrunosRoom_Text_Beaten",
+      "JohtoPokemonLeague_BrunosRoom_Text_Defeat"
+    ],
+    "data/maps/JohtoPokemonLeague_ChampionsRoom/scripts.inc": [
+      "JohtoPokemonLeague_ChampionsRoom_Text_BattleAfter"
+    ],
+    "data/maps/JohtoPokemonLeague_KarensRoom/scripts.inc": [
+      "JohtoPokemonLeague_KarensRoom_Text_Beaten"
+    ],
+    "data/maps/JohtoPokemonLeague_KogasRoom/scripts.inc": [
+      "JohtoPokemonLeague_KogasRoom_Text_Beaten",
+      "JohtoPokemonLeague_KogasRoom_Text_Defeat"
+    ],
+    "data/maps/JohtoPokemonLeague_WillsRoom/scripts.inc": [
+      "JohtoPokemonLeague_WillsRoom_Text_Beaten"
+    ],
+    "data/maps/JohtoVictoryRoad_1F/scripts.inc": [
+      "JohtoVictoryRoad_1F_Text_EdgarIntro",
+      "JohtoVictoryRoad_1F_Text_EdgarDefeat",
+      "JohtoVictoryRoad_1F_Text_AlbertIntro",
+      "JohtoVictoryRoad_1F_Text_AlbertDefeat",
+      "JohtoVictoryRoad_1F_Text_AlbertPostBattle",
+      "JohtoVictoryRoad_1F_Text_HopeDefeat",
+      "JohtoVictoryRoad_1F_Text_HopePostBattle",
+      "JohtoVictoryRoad_1F_Text_QuincyDefeat",
+      "JohtoVictoryRoad_1F_Text_KatelynnIntro",
+      "JohtoVictoryRoad_1F_Text_KatelynnDefeat",
+      "JohtoVictoryRoad_1F_Text_KatelynnPostBattle"
+    ],
+    "data/maps/LilycoveCity_ContestLobby/scripts.inc": [
+      "LilycoveCity_ContestLobby_Text_TakeMementoOfPainting",
+      "LilycoveCity_ContestLobby_Text_ReceivedARibbon",
+      "LilycoveCity_ContestLobby_Text_PutTheRibbonOnMon",
+      "LilycoveCity_ContestLobby_Text_OkaySeeYou",
+      "LilycoveCity_ContestLobby_Text_TakeHomeButIdLikeToTakeToMuseum",
+      "LilycoveCity_ContestLobby_Text_FineThatsTheWayItIs",
+      "LilycoveCity_ContestLobby_Text_MasterRankHereICome",
+      "LilycoveCity_ContestLobby_Text_WholeVarietyOfPokemonHere",
+      "LilycoveCity_ContestLobby_Text_ContestFeastForEyes",
+      "LilycoveCity_ContestLobby_Text_LavishedCareOnMon",
+      "LilycoveCity_ContestLobby_Text_MadePokeblocksWithFamily"
+    ],
+    "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc": [
+      "LilycoveCity_CoveLilyMotel_1F_Text_GuestsDoubledByMascot",
+      "LilycoveCity_CoveLilyMotel_1F_Text_CantSeeTheTV",
+      "LilycoveCity_CoveLilyMotel_1F_Text_MonFoundLostItem",
+      "LilycoveCity_CoveLilyMotel_1F_Text_HouseSittingMonCaughtBurglar"
+    ],
+    "data/maps/LilycoveCity_CoveLilyMotel_2F/scripts.inc": [
+      "LilycoveCity_CoveLilyMotel_2F_Text_FilledPokedexGiveYouThis",
+      "LilycoveCity_CoveLilyMotel_2F_Text_GirlsAreCute",
+      "LilycoveCity_CoveLilyMotel_2F_Text_SeaBreezeTicklesHeart"
+    ],
+    "data/maps/LilycoveCity_DepartmentStoreRooftop/scripts.inc": [
+      "LilycoveCity_DepartmentStoreRooftop_Text_SetDatesForClearOutSales",
+      "LilycoveCity_DepartmentStoreRooftop_Text_BeenWaitingForClearOutSale",
+      "LilycoveCity_DepartmentStoreRooftop_Text_BoneDryThirsty",
+      "LilycoveCity_DepartmentStoreRooftop_Text_CanOfDrinkDroppedDown",
+      "LilycoveCity_DepartmentStoreRooftop_Text_ExtraCanOfDrinkDroppedDown",
+      "LilycoveCity_DepartmentStoreRooftop_Text_NotEnoughMoney",
+      "LilycoveCity_DepartmentStoreRooftop_Text_DecidedAgainstBuyingDrink"
+    ],
+    "data/maps/LilycoveCity_DepartmentStore_1F/scripts.inc": [
+      "LilycoveCity_DepartmentStore_1F_Text_MomBuyingMeFurniture",
+      "LilycoveCity_DepartmentStore_1F_Text_BuyingSomethingForAzumarill",
+      "LilycoveCity_DepartmentStore_1F_Text_WirelessCommIsFun",
+      "LilycoveCity_DepartmentStore_1F_Text_SpreadWordAboutWirelessComm"
+    ],
+    "data/maps/LilycoveCity_DepartmentStore_2F/scripts.inc": [
+      "LilycoveCity_DepartmentStore_2F_Text_LearnToUseItemsProperly",
+      "LilycoveCity_DepartmentStore_2F_Text_GoodGiftForHusband",
+      "LilycoveCity_DepartmentStore_2F_Text_StockUpOnItems"
+    ],
+    "data/maps/LilycoveCity_DepartmentStore_4F/scripts.inc": [
+      "LilycoveCity_DepartmentStore_4F_Text_AttackOrDefenseTM",
+      "LilycoveCity_DepartmentStore_4F_Text_FiftyDifferentTMs",
+      "LilycoveCity_DepartmentStore_4F_Text_PokemonOnlyHaveFourMoves"
+    ],
+    "data/maps/LilycoveCity_DepartmentStore_5F/scripts.inc": [
+      "LilycoveCity_DepartmentStore_5F_Text_SellManyCuteMatsHere",
+      "LilycoveCity_DepartmentStore_5F_Text_ClosedRooftopForWeather"
+    ],
+    "data/maps/LilycoveCity_Harbor/scripts.inc": [
+      "LilycoveCity_Harbor_Text_FerryUnavailable",
+      "LilycoveCity_Harbor_Text_SailAnotherTime",
+      "LilycoveCity_Harbor_Text_PleaseBoard",
+      "LilycoveCity_Harbor_Text_WhereWouldYouLikeToGo"
+    ],
+    "data/maps/LilycoveCity_House1/scripts.inc": [
+      "LilycoveCity_House1_Text_PokemonPartnersNotTools"
+    ],
+    "data/maps/LilycoveCity_House2/scripts.inc": [
+      "LilycoveCity_House2_Text_NotAwakeYetHaveThis",
+      "LilycoveCity_House2_Text_SleepIsEssential"
+    ],
+    "data/maps/LilycoveCity_House4/scripts.inc": [
+      "LilycoveCity_House4_Text_MysteriesAtBottomOfSea",
+      "LilycoveCity_House4_Text_UnderwaterTrenchMossdeepSootopolis"
+    ]
+  },
+  "accentless_ascii_only": true,
+  "requires_unchanged_event_control_tokens": true,
+  "release_approved": false
+}
