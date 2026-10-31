@@ -1,0 +1,171 @@
+{
+  "status": "human_review_done; rom_qa_pending",
+  "scope": "Stage13 changed dialogue labels only (compared to stage12), no counts from unchanged draft texts",
+  "source_shards": [
+    "ptbr_auto_review_019.json",
+    "ptbr_auto_review_020.json"
+  ],
+  "source_diff_against": "feature/grandworld-ptbr-human-review-stage12-20261031",
+  "reviewed_entries": 124,
+  "reviewed_labels_by_source": {
+    "data/maps/SSAqua_1F/scripts.inc": [
+      "SSAqua_1F_Text_Sailor2_FirstTime",
+      "SSAqua_1F_Text_Sailor3",
+      "SSAqua_1F_Text_Grandpa",
+      "SSAqua_1F_Text_GoAshorePrompt"
+    ],
+    "data/maps/SSAqua_B1F/scripts.inc": [
+      "SSAqua_B1F_Text_BarfCan",
+      "SSAqua_B1F_Text_FastShipOnDutySailor",
+      "SSAqua_B1F_Text_FastShipOnDutySailorThanks",
+      "SSAqua_B1F_Text_FastShipOnDutySailorSawGirl",
+      "SSAqua_B1F_Text_SailorJeffSeen",
+      "SSAqua_B1F_Text_SailorJeffBeaten",
+      "SSAqua_B1F_Text_SailorJeffAfter",
+      "SSAqua_B1F_Text_PicnickerDebraSeen",
+      "SSAqua_B1F_Text_PicnickerDebraBeaten",
+      "SSAqua_B1F_Text_JugglerFritzSeen",
+      "SSAqua_B1F_Text_JugglerFritzBeaten",
+      "SSAqua_B1F_Text_SailorGarrettSeen",
+      "SSAqua_B1F_Text_SailorGarrettBeaten",
+      "SSAqua_B1F_Text_FisherJonahSeen",
+      "SSAqua_B1F_Text_FisherJonahBeaten",
+      "SSAqua_B1F_Text_BlackbeltWaiSeen",
+      "SSAqua_B1F_Text_BlackbeltWaiBeaten",
+      "SSAqua_B1F_Text_SailorKennethBeaten",
+      "SSAqua_B1F_Text_SailorKennethAfter",
+      "SSAqua_B1F_Text_TeacherShirleySeen",
+      "SSAqua_B1F_Text_SchoolboyRickyBeaten",
+      "SSAqua_B1F_Text_SchoolboyRickyAfter"
+    ],
+    "data/maps/SSAqua_CaptainsRoom/scripts.inc": [
+      "SSAqua_CaptainsRoom_Text_GranddaughterHasToFindGrandpa",
+      "SSAqua_CaptainsRoom_Text_CaptainExhausting"
+    ],
+    "data/maps/SeafloorCavern_Room1/scripts.inc": [
+      "SeafloorCavern_Room1_Text_Grunt1Intro",
+      "SeafloorCavern_Room1_Text_Grunt1PostBattle",
+      "SeafloorCavern_Room1_Text_Grunt2Intro",
+      "SeafloorCavern_Room1_Text_Grunt2Defeat",
+      "SeafloorCavern_Room1_Text_Grunt2PostBattle"
+    ],
+    "data/maps/SeafloorCavern_Room3/scripts.inc": [
+      "SeafloorCavern_Room3_Text_Grunt5Intro"
+    ],
+    "data/maps/SeafloorCavern_Room4/scripts.inc": [
+      "SeafloorCavern_Room4_Text_Grunt3Intro",
+      "SeafloorCavern_Room4_Text_Grunt3Defeat",
+      "SeafloorCavern_Room4_Text_Grunt3PostBattle",
+      "SeafloorCavern_Room4_Text_Grunt4Intro",
+      "SeafloorCavern_Room4_Text_Grunt4Defeat",
+      "SeafloorCavern_Room4_Text_Grunt4PostBattle"
+    ],
+    "data/maps/SeafloorCavern_Room9/scripts.inc": [
+      "SeafloorCavern_Room9_Text_ArchieDefeat",
+      "SeafloorCavern_Room9_Text_RedOrbShinesByItself"
+    ],
+    "data/maps/SilphCo_10F_Frlg/scripts.inc": [
+      "SilphCo_10F_Text_GruntIntro",
+      "SilphCo_10F_Text_GruntDefeat",
+      "SilphCo_10F_Text_GruntPostBattle",
+      "SilphCo_10F_Text_TravisIntro",
+      "SilphCo_10F_Text_TravisDefeat",
+      "SilphCo_10F_Text_TravisPostBattle",
+      "SilphCo_10F_Text_WaaaImScared",
+      "SilphCo_10F_Text_KeepMeCryingASecret"
+    ],
+    "data/maps/SilphCo_11F_Frlg/scripts.inc": [
+      "SilphCo_11F_Text_YouHaveNoRoomForThis",
+      "SilphCo_11F_Text_GiovanniDefeat",
+      "SilphCo_11F_Text_Grunt2Intro",
+      "SilphCo_11F_Text_Grunt2Defeat",
+      "SilphCo_11F_Text_Grunt1Defeat",
+      "SilphCo_11F_Text_MonitorHasMonsOnIt"
+    ],
+    "data/maps/SilphCo_2F_Frlg/scripts.inc": [
+      "SilphCo_2F_Text_ConnorIntro",
+      "SilphCo_2F_Text_JerryIntro",
+      "SilphCo_2F_Text_JerryDefeat",
+      "SilphCo_2F_Text_JerryPostBattle",
+      "SilphCo_2F_Text_Grunt1Intro",
+      "SilphCo_2F_Text_Grunt1Defeat",
+      "SilphCo_2F_Text_Grunt1PostBattle",
+      "SilphCo_2F_Text_Grunt2Intro",
+      "SilphCo_2F_Text_Grunt2Defeat",
+      "SilphCo_2F_Text_Grunt2PostBattle"
+    ],
+    "data/maps/SilphCo_3F_Frlg/scripts.inc": [
+      "SilphCo_3F_Text_WhatAmIToDo",
+      "SilphCo_3F_Text_YouAndYourMonsSavedUs",
+      "SilphCo_3F_Text_GruntIntro",
+      "SilphCo_3F_Text_GruntDefeat",
+      "SilphCo_3F_Text_JoseDefeat"
+    ],
+    "data/maps/SilphCo_4F_Frlg/scripts.inc": [
+      "SilphCo_4F_Text_CantYouSeeImHiding",
+      "SilphCo_4F_Text_RodneyIntro",
+      "SilphCo_4F_Text_RodneyDefeat",
+      "SilphCo_4F_Text_Grunt2Intro",
+      "SilphCo_4F_Text_Grunt2Defeat",
+      "SilphCo_4F_Text_Grunt2PostBattle"
+    ],
+    "data/maps/SilphCo_5F_Frlg/scripts.inc": [
+      "SilphCo_5F_Text_Grunt1Intro",
+      "SilphCo_5F_Text_BeauDefeat",
+      "SilphCo_5F_Text_DaltonIntro",
+      "SilphCo_5F_Text_DaltonDefeat",
+      "SilphCo_5F_Text_Grunt2Defeat"
+    ],
+    "data/maps/SilphCo_6F_Frlg/scripts.inc": [
+      "SilphCo_6F_Text_BetterGetBackToWork",
+      "SilphCo_6F_Text_HelpMePlease",
+      "SilphCo_6F_Text_WeGotEngaged",
+      "SilphCo_6F_Text_ThatManIsSuchACoward",
+      "SilphCo_6F_Text_NeedsMeToLookAfterHim",
+      "SilphCo_6F_Text_TargetedSilphForOurMonProducts",
+      "SilphCo_6F_Text_ComeWorkForSilphWhenYoureOlder",
+      "SilphCo_6F_Text_Grunt1Defeat",
+      "SilphCo_6F_Text_Grunt1PostBattle",
+      "SilphCo_6F_Text_TaylorDefeat",
+      "SilphCo_6F_Text_Grunt2PostBattle"
+    ],
+    "data/maps/SilphCo_7F_Frlg/scripts.inc": [
+      "SilphCo_7F_Text_ObtainedLaprasFromEmployee",
+      "SilphCo_7F_Text_ReallyDangerousHere",
+      "SilphCo_7F_Text_Grunt3Intro",
+      "SilphCo_7F_Text_Grunt3Defeat",
+      "SilphCo_7F_Text_JoshuaDefeat",
+      "SilphCo_7F_Text_JoshuaPostBattle",
+      "SilphCo_7F_Text_Grunt1Defeat",
+      "SilphCo_7F_Text_Grunt1PostBattle",
+      "SilphCo_7F_Text_Grunt2Intro",
+      "SilphCo_7F_Text_Grunt2Defeat",
+      "SilphCo_7F_Text_RivalWhatKeptYou",
+      "SilphCo_7F_Text_RivalDefeat"
+    ],
+    "data/maps/SilphCo_8F_Frlg/scripts.inc": [
+      "SilphCo_8F_Text_WonderIfSilphIsFinished",
+      "SilphCo_8F_Text_ThanksForSavingUs",
+      "SilphCo_8F_Text_Grunt1Intro",
+      "SilphCo_8F_Text_Grunt1Defeat",
+      "SilphCo_8F_Text_Grunt1PostBattle",
+      "SilphCo_8F_Text_ParkerIntro",
+      "SilphCo_8F_Text_ParkerDefeat",
+      "SilphCo_8F_Text_Grunt2Defeat",
+      "SilphCo_8F_Text_Grunt2PostBattle"
+    ],
+    "data/maps/SilphCo_9F_Frlg/scripts.inc": [
+      "SilphCo_9F_Text_YouShouldTakeQuickNap",
+      "SilphCo_9F_Text_DontGiveUp",
+      "SilphCo_9F_Text_ThankYouSoMuch",
+      "SilphCo_9F_Text_Grunt1Intro",
+      "SilphCo_9F_Text_Grunt1PostBattle",
+      "SilphCo_9F_Text_EdIntro",
+      "SilphCo_9F_Text_EdDefeat",
+      "SilphCo_9F_Text_EdPostBattle",
+      "SilphCo_9F_Text_Grunt2Defeat",
+      "SilphCo_9F_Text_Grunt2PostBattle"
+    ]
+  },
+  "release_approved": false
+}
