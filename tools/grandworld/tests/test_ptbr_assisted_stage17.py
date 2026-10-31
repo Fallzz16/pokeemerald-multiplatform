@@ -6,7 +6,7 @@ import re
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-TOKEN_SPLIT = re.compile(r"\\\\[npl]")
+TOKEN_SPLIT = re.compile(r"\\[npl]")
 PART_FILES = [f"ptbr_assisted_stage17_part{i}.json" for i in range(1, 4)]
 REVIEW_FILES = ["ptbr_reviewed_auto7.json"] + [
     f"ptbr_reviewed_stage{i}.json" for i in range(8, 17)
@@ -62,7 +62,7 @@ class PTBRAssistedStage17Tests(unittest.TestCase):
             self.assertTrue(text.endswith("$"), (source, label))
             self.assertEqual(text.count("$"), 1, (source, label))
             for line in TOKEN_SPLIT.split(text[:-1]):
-                visible = re.sub(r"\\{[^{}]+\\}", "XXXXXXXX", line)
+                visible = re.sub(r"\{[^{}]+\}", "XXXXXXXX", line)
                 self.assertLessEqual(len(visible), 35, (source, label, visible))
 
     def test_scope_and_manual_review_remain_distinct(self):
