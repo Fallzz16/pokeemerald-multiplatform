@@ -5,7 +5,7 @@
         "Ja vi POKEMON levando\\npessoas pela agua!$"
       ],
       "SSAnne_2F_Room3_Text_SomeTreesCanBeCutDown": [
-        "Pequenas arvores podem ser\\ncortadas usando o movimento\\lCUT.\\pMas lembra-te disto! CUT e uma\\ntecnica HM.\\pUma vez aprendido, nao e tao\\nfacilmente descartado.$"
+        "Arvores pequenas podem ser\\ncortadas usando o golpe\\lCUT.\\pMas lembre-se: CUT e um\\ngolpe HM.\\pDepois de aprendido,\\ne dificil esquece-lo.$"
       ]
     },
     "data/maps/SSAnne_2F_Room4_Frlg/scripts.inc": {
@@ -44,7 +44,7 @@
         "No alto-mar, vejo POKEMON\\npassando de vez em quando.$"
       ],
       "SSAnne_B1F_Room1_Text_BarnyIntro": [
-        "Ola, estranho!\\pNao sei se es dos mares ou\\nmontanhas, mas para e conversa.\\pTodos os meus Pokemon sao do\\nmar.$"
+        "Ola, visitante!\\pSe voce veio do mar ou das\\nmontanhas, pare e converse!\\pTodos os meus POKEMON sao\\ndo mar.$"
       ],
       "SSAnne_B1F_Room1_Text_BarnyDefeat": [
         "Droga! Deixei voce escapar!$"
@@ -72,29 +72,29 @@
         "Argh! Fui derrotado!$"
       ],
       "SSAnne_B1F_Room3_Text_DylanPostBattle": [
-        "Sea POKEMON vive em aguas\\nprofundas. Vai precisar de um\\lROD para pesca-los!$"
+        "POKEMON marinhos vivem em aguas\\nprofundas. Voce precisa de uma\\lvara para pesca-los!$"
       ]
     },
     "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc": {
       "SSAnne_B1F_Room4_Text_LeonardIntro": [
-        "Sabes o que dizem sobre\\nmarinheiros e combates!$"
+        "Sabe o que dizem sobre\\nmarinheiros e batalhas?$"
       ],
       "SSAnne_B1F_Room4_Text_LeonardDefeat": [
         "Certo! Boa batalha, amigo!$"
       ],
       "SSAnne_B1F_Room4_Text_LeonardPostBattle": [
-        "Hahaha! Queres ser marinheiro,\\namigo?$"
+        "Ha ha ha! Quer ser marinheiro,\\nmeu amigo?$"
       ],
       "SSAnne_B1F_Room4_Text_DuncanIntro": [
-        "Vamos la, entao! O orgulho do\\nmeu marinheiro esta em jogo!$"
+        "Vamos la! Meu orgulho\\nde marinheiro esta em jogo!$"
       ],
       "SSAnne_B1F_Room4_Text_DuncanDefeat": [
-        "O teu espirito afundou-me!$"
+        "Sua coragem me derrotou!$"
       ]
     },
     "data/maps/SSAnne_CaptainsOffice_Frlg/scripts.inc": {
       "SSAnne_CaptainsOffice_Text_YouHaveNoRoomForThis": [
-        "Nao! Nao tens espaco para isto!$"
+        "Nao! Voce esta sem espaco!$"
       ],
       "SSAnne_CaptainsOffice_Text_YuckShouldntHaveLooked": [
         "Eca! Nao devia ter olhado!$"
@@ -102,57 +102,57 @@
     },
     "data/maps/SSAnne_Deck_Frlg/scripts.inc": {
       "SSAnne_Deck_Text_ShipDepartingSoon": [
-        "A festa acabou. A nave partira\\nem breve.$"
+        "A festa acabou. O navio parte\\nem breve.$"
       ],
       "SSAnne_Deck_Text_ScrubbingDecksHardWork": [
-        "Ufa! Esfregar decks e trabalho\\nduro!$"
+        "Ufa! Esfregar o conves\\nda um trabalho enorme!$"
       ],
       "SSAnne_Deck_Text_FeelSeasick": [
-        "Urf... sinto-me mal...\\pEnjoei, por isso sai para\\napanhar ar...$"
+        "Urgh... Nao estou bem...\\pFiquei enjoado, entao vim\\ntomar um ar...$"
       ],
       "SSAnne_Deck_Text_EdmondIntro": [
         "Amigo!\\pVamos fazer um joguinho!$"
       ],
       "SSAnne_Deck_Text_EdmondDefeat": [
-        "Es impressionante!$"
+        "Voce e impressionante!$"
       ],
       "SSAnne_Deck_Text_EdmondPostBattle": [
         "Quantos tipos de POKEMON voce\\nacha que existem neste mundo\\lgrande?$"
       ],
       "SSAnne_Deck_Text_TrevorIntro": [
-        "Ola! Estas enjoado?$"
+        "Ola! Voce esta enjoado?$"
       ],
       "SSAnne_Deck_Text_TrevorDefeat": [
         "Fui descuidado!$"
       ],
       "SSAnne_Deck_Text_TrevorPostBattle": [
-        "O meu pai disse que ha 100\\ntipos de Pokemon. Acho que ha\\lmais.$"
+        "Meu pai disse que ha 100\\ntipos de POKEMON. Acho que ha\\lmuito mais!$"
       ]
     },
     "data/maps/SSAnne_Kitchen_Frlg/scripts.inc": {
       "SSAnne_Kitchen_Text_BusyOutOfTheWay": [
-        "Tu, meu pequeno! Estamos\\nocupados! Saiam da frente!$"
+        "Ei, voce! Estamos\\nocupados! Saia da frente!$"
       ],
       "SSAnne_Kitchen_Text_SawOddBerryInTrash": [
-        "Vi um estranho BERRY no lixo. O\\nque sera que foi isso?$"
+        "Vi uma BERRY estranha no lixo.\\nO que sera que era?$"
       ],
       "SSAnne_Kitchen_Text_SoBusyImDizzy": [
-        "Estou tao ocupado que estou a\\nficar tonto! Tens de me dar\\lespaco!$"
+        "Estou tao ocupado que\\nestou ficando tonto!\\lPreciso de espaco!$"
       ],
       "SSAnne_Kitchen_Text_PeelSpudsEveryDay": [
         "Hum-de-hum-de-ho...\\pDescasco batatas todos os dias!\\nHum-hum...$"
       ],
       "SSAnne_Kitchen_Text_HearAboutSnorlaxItsAGlutton": [
-        "Ouviste falar do SNORLAX? E um\\nglutao.\\pNenhum outro POKEMON come e\\ndorme como SNORLAX pode e faz!$"
+        "Ja ouviu falar de SNORLAX?\\nEle come demais!\\pNenhum outro POKEMON come\\ne dorme tanto quanto ele!$"
       ],
       "SSAnne_Kitchen_Text_OnlyGetToPeelOnions": [
-        "Sniff... sniff...\\pSo consigo descascar cebolas...\\nSnivel...$"
+        "Snif... Snif...\\pSo me deixam descascar cebolas...\\nSnif...$"
       ],
       "SSAnne_Kitchen_Text_SalmonDuSalad": [
         "Salmon du Salad!\\pOs convidados podem reclamar\\nque e peixe novamente, no\\lentanto!$"
       ],
       "SSAnne_Kitchen_Text_EelsAuBarbecue": [
-        "Enguias au Churrasco!\\pOs convidados vao amotinar-se,\\nreceio.$"
+        "Enguias ao churrasco!\\pReceio que os convidados\\nvao reclamar!$"
       ],
       "SSAnne_Kitchen_Text_PrimeBeefsteak": [
         "Primeiro Beefsteak!\\pMas ja chega de files de carne?$"
