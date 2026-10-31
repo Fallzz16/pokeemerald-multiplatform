@@ -602,7 +602,7 @@
         "E tao dificil todos os dias...\\pO que e dificil? Precisa de\\nperguntar?\\pEsta a tentar descobrir o que\\nfazer para as refeicoes todos\\los dias.\\pNao e facil arranjar refeicoes\\ntodos os dias.$"
       ],
       "RustboroCity_Flat1_2F_Text_HelloDoYouKnowFunnyPhrase": [
-        "Ola! Bem-vindo a casa PEPPER.\\pTenho uma pergunta para voce. Ja\\nalguma vez tomaste conta de\\lbebes?\\pSou um novo pai, por isso criar\\num filho e novo para mim.\\pE tenho um problema. A minha\\nfilha WALDA nao se ri o\\lsuficiente.\\pAcho que ela riria por mim se\\nlhe dissesse algo engracado.\\pConheces alguma palavra ou\\nfrase engracada que me possas\\ldizer?$"
+        "Ola! Bem-vindo a casa PEPPER.\\pTenho uma pergunta para voce. Ja\\nalguma vez tomaste conta de\\lbebes?\\pSou um novo pai, por isso criar\\num filho e novo para mim.\\pE tenho um problema. Minha\\nfilha WALDA nao se ri o\\lsuficiente.\\pAcho que ela riria por mim se\\nlhe dissesse algo engracado.\\pConheces alguma palavra ou\\nfrase engracada que me possas\\ldizer?$"
       ],
       "RustboroCity_Flat1_2F_Text_BeenSayingXDoYouKnowBetterPhrase": [
         "Tenho estado a\\ndizer...{STR_VAR_1}Para a\\ldivertir ultimamente.\\pConhece uma palavra melhor ou\\numa frase que possa funcionar?$"
@@ -807,7 +807,7 @@
         "{RIVAL}Bonjour!{PLAYER}!\\pImagina ver-te\\naqui!{PLAYER}Foi mesmo\\lconvidado?\\pEntao, como vai seu POKEDEX?\\pJa apanhei 40 tipos, amigo. Ha\\ntipos diferentes em todo o\\llado.\\pRasteje em areas gramadas, e\\nprocure por elas.$"
       ],
       "SSAnne_2F_Corridor_Text_RivalDefeat": [
-        "Humph!\\pPelo menos estas a criar o seu\\nPokemon!$"
+        "Humph!\\pPelo menos estas a criar seu\\nPokemon!$"
       ],
       "SSAnne_2F_Corridor_Text_RivalPostBattle": [
         "{RIVAL}Ouvi dizer que havia um\\nmestre CUT a bordo.\\pMas ele era apenas um velho\\nenjoado!\\pCUT em si e realmente util.\\nSim, vai ser util.\\pDevias ir ve-lo tambem.\\nCheira-te!$"
