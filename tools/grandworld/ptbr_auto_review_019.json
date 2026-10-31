@@ -2,7 +2,7 @@
   "asm": {
     "data/maps/SSAnne_2F_Room3_Frlg/scripts.inc": {
       "SSAnne_2F_Room3_Text_SeenMonsFerryPeople": [
-        "Ah, sim, eu vi algumas pessoas\\nPokemon balsa atraves da agua!$"
+        "Ja vi POKEMON levando\\npessoas pela agua!$"
       ],
       "SSAnne_2F_Room3_Text_SomeTreesCanBeCutDown": [
         "Pequenas arvores podem ser\\ncortadas usando o movimento\\lCUT.\\pMas lembra-te disto! CUT e uma\\ntecnica HM.\\pUma vez aprendido, nao e tao\\nfacilmente descartado.$"
@@ -13,19 +13,19 @@
         "Qual voce acha mais digno, um\\nPOKEMON forte ou raro?$"
       ],
       "SSAnne_2F_Room4_Text_LamarDefeat": [
-        "Tenho de vos saudar!$"
+        "Tenho que admitir: voce venceu!$"
       ],
       "SSAnne_2F_Room4_Text_LamarPostBattle": [
-        "Pessoalmente, prefiro POKEMON\\nforte e raro.$"
+        "Eu prefiro POKEMON\\nfortes e raros.$"
       ],
       "SSAnne_2F_Room4_Text_DawnIntro": [
-        "Acho que nao te vi na festa.$"
+        "Acho que nao vi voce na festa.$"
       ],
       "SSAnne_2F_Room4_Text_DawnDefeat": [
         "Calma!$"
       ],
       "SSAnne_2F_Room4_Text_DawnPostBattle": [
-        "Adoro o teu forte Pokemon! Como\\nte invejo por eles!$"
+        "Adorei seus POKEMON! Como\\neu queria ter um assim!$"
       ]
     },
     "data/maps/SSAnne_2F_Room6_Frlg/scripts.inc": {
@@ -35,41 +35,41 @@
     },
     "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc": {
       "SSAnne_B1F_Room1_Text_PhillipIntro": [
-        "Matey, vais andar na prancha se\\nperderes!$"
+        "Se perder, vai andar na prancha,\\nmarujo!$"
       ],
       "SSAnne_B1F_Room1_Text_PhillipDefeat": [
-        "Argh! Espancado por um miudo!$"
+        "Argh! Perdi para uma crianca!$"
       ],
       "SSAnne_B1F_Room1_Text_PhillipPostBattle": [
-        "Quando estamos no mar, Pokemon\\nas vezes passa por la.$"
+        "No alto-mar, vejo POKEMON\\npassando de vez em quando.$"
       ],
       "SSAnne_B1F_Room1_Text_BarnyIntro": [
         "Ola, estranho!\\pNao sei se es dos mares ou\\nmontanhas, mas para e conversa.\\pTodos os meus Pokemon sao do\\nmar.$"
       ],
       "SSAnne_B1F_Room1_Text_BarnyDefeat": [
-        "Raios! Deixei-o escapar!$"
+        "Droga! Deixei voce escapar!$"
       ],
       "SSAnne_B1F_Room1_Text_BarnyPostBattle": [
-        "Eu tambem ia fazer de ti minha\\nassistente!$"
+        "Queria levar voce como\\nmeu ajudante!$"
       ]
     },
     "data/maps/SSAnne_B1F_Room2_Frlg/scripts.inc": {
       "SSAnne_B1F_Room2_Text_HueyIntro": [
-        "Ate nos marinheiros temos\\nPokemon, tambem!$"
+        "Nos marinheiros tambem\\ntreinamos POKEMON!$"
       ],
       "SSAnne_B1F_Room2_Text_HueyDefeat": [
-        "Nao es mau.$"
+        "Voce luta bem!$"
       ],
       "SSAnne_B1F_Room2_Text_HueyPostBattle": [
-        "Apanhamos todos os nossos\\nPokemon enquanto estavamos no\\lmar.$"
+        "Capturamos nossos\\nPOKEMON durante viagens\\lpelo mar.$"
       ]
     },
     "data/maps/SSAnne_B1F_Room3_Frlg/scripts.inc": {
       "SSAnne_B1F_Room3_Text_DylanIntro": [
-        "Gosto de criancas mal-humoradas\\ncomo tu!$"
+        "Gosto de criancas valentes\\ncomo voce!$"
       ],
       "SSAnne_B1F_Room3_Text_DylanDefeat": [
-        "Argh! Perdi-a!$"
+        "Argh! Fui derrotado!$"
       ],
       "SSAnne_B1F_Room3_Text_DylanPostBattle": [
         "Sea POKEMON vive em aguas\\nprofundas. Vai precisar de um\\lROD para pesca-los!$"
