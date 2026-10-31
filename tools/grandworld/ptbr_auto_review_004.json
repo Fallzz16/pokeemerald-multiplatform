@@ -46,7 +46,7 @@
         "Tch! So uma batata frita...$"
       ],
       "Route12_Text_NedPostBattle": [
-        "Segura-te! Minha linha esta\\npresa!$"
+        "Ei, espere! Minha linha\\nde pesca esta presa!$"
       ],
       "Route12_Text_ChipIntro": [
         "Seja paciente. A pesca e um\\njogo de espera.$"
@@ -109,10 +109,10 @@
     },
     "data/maps/Route13_Frlg/scripts.inc": {
       "Route13_Text_SebastianIntro": [
-        "Meu passaro POKEMON quer\\nlutar com voce!$"
+        "Meu POKEMON voador quer\\nbatalhar com voce!$"
       ],
       "Route13_Text_SebastianPostBattle": [
-        "Meu POKEMON parece feliz,\\napesar de terem perdido.$"
+        "Meu POKEMON parece feliz,\\nmesmo depois de perder.$"
       ],
       "Route13_Text_SusieIntro": [
         "Disseram-me que sou bom para\\numa crianca.$"
@@ -130,7 +130,7 @@
         "Nao o suficiente!$"
       ],
       "Route13_Text_GwenIntro": [
-        "Meu bonito POKEMON deseja\\nconhece-lo.$"
+        "Meu lindo POKEMON quer\\nconhecer voce!$"
       ],
       "Route13_Text_GwenDefeat": [
         "Muito bem! Venceu mesmo!$"
@@ -195,13 +195,13 @@
         "Tem HMs, certo? POKEMON nao\\npode esquecer esses movimentos\\lfacilmente.$"
       ],
       "Route14_Text_MitchIntro": [
-        "Meu passaro POKEMON deve\\nestar pronto para a batalha.$"
+        "Meu POKEMON voador ja deve\\n estar pronto para batalhar.$"
       ],
       "Route14_Text_MitchDefeat": [
         "Ainda nao esta pronto!$"
       ],
       "Route14_Text_MitchPostBattle": [
-        "Meu passaro POKEMON precisa\\naprender melhores movimentos.$"
+        "Meu POKEMON voador precisa\\naprender golpes melhores.$"
       ],
       "Route14_Text_BeckDefeat": [
         "Que chatice!$"
@@ -213,7 +213,7 @@
         "Fui consumido pelas chamas!$"
       ],
       "Route14_Text_MarlonPostBattle": [
-        "Bird POKEMON e meu verdadeiro\\namor. Nao quero criar mais\\lnada.$"
+        "POKEMON voadores sao\\nminha verdadeira paixao.\\lNao quero treinar outros!$"
       ],
       "Route14_Text_DonaldIntro": [
         "Ja ouviu a lenda das miragens\\naladas?$"
@@ -269,16 +269,16 @@
     },
     "data/maps/Route15_Frlg/scripts.inc": {
       "Route15_Text_KindraIntro": [
-        "Tenho alguns POKEMON em\\nnegocios. Posso experimenta-los\\lem ti?$"
+        "Tenho alguns POKEMON\\nque recebi em trocas.\\lPosso testa-los com voce?$"
       ],
       "Route15_Text_KindraDefeat": [
         "Nao chega!$"
       ],
       "Route15_Text_KindraPostBattle": [
-        "Voce nao pode mudar o apelido\\nde qualquer POKEMON voce comeca\\lem uma troca.\\pSo o TREINADOR Original pode\\nmudar o apelido.$"
+        "Voce nao pode mudar o nome\\nde um POKEMON recebido\\lem troca.\\pSo o TREINADOR ORIGINAL\\npode mudar o apelido.$"
       ],
       "Route15_Text_BeckyIntro": [
-        "Parece gentil, por isso acho\\nque te posso vencer.\\pVou tentar!$"
+        "Voce parece tao gentil\\nque acho que posso vencer!\\pVou tentar!$"
       ],
       "Route15_Text_BeckyDefeat": [
         "Nao, errado!$"
@@ -305,7 +305,7 @@
         "Tambem estava tao gira!$"
       ],
       "Route15_Text_GracePostBattle": [
-        "Eu perdoo-te. Eu aguento. Ja\\nsou crescidinha.$"
+        "Eu perdoo voce!\\nJa sou crescidinha!$"
       ],
       "Route15_Text_OliviaIntro": [
         "Eu crio POKEMON para proteccao\\nporque vivo sozinho.$"
@@ -372,7 +372,7 @@
         "O que quer?$"
       ],
       "Route16_Text_LaoDefeat": [
-        "Nao te atrevas a rir!$"
+        "Nao ouse rir de mim!$"
       ],
       "Route16_Text_LaoPostBattle": [
         "Gostamos de ficar aqui. O que\\ntens com isso?$"
@@ -425,7 +425,7 @@
     },
     "data/maps/Route16_House_Frlg/scripts.inc": {
       "Route16_House_Text_FoundMySecretRetreat": [
-        "Meu Deus. Encontrou o meu\\nretiro secreto.\\pPor favor, nao digas a ninguem\\nque estou aqui. Vou\\lcompensar-te com isto!$"
+        "Nossa! Voce descobriu\\nmeu esconderijo secreto.\\pPor favor, nao conte a\\nninguem que estou aqui.\\lAceite isto como agradecimento!$"
       ],
       "Route16_House_Text_ReceivedHM02FromGirl": [
         "{PLAYER}Recebeu HM02 da menina.$"
