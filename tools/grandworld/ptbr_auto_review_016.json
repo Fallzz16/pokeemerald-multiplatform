@@ -644,178 +644,178 @@
     },
     "data/maps/MtPyre_1F/scripts.inc": {
       "MtPyre_1F_Text_ComeToPayRespects": [
-        "Veio prestar respeito aos\\nespiritos de Pokemon?\\pDeve gostar muito do seu\\nPOKEMON.$"
+        "Voce veio homenagear\\nos POKEMON daqui?\\pDeve gostar muito\\ndos seus companheiros!$"
       ],
       "MtPyre_1F_Text_RestingPlaceOfZigzagoon": [
-        "Este e o lugar de descanso\\nfinal do meu ZIGZAGOON. Eu\\lgostava...$"
+        "Meu querido ZIGZAGOON\\ndescansa aqui...\\pSinto muita saudade dele.$"
       ]
     },
     "data/maps/MtPyre_2F/scripts.inc": {
       "MtPyre_2F_Text_MemoriesOfSkitty": [
-        "Memorias da minha querida\\nSKITTY... Os meus olhos\\ltransbordam a pensar nisso.$"
+        "Quando lembro\\nda minha querida SKITTY,\\nfico emocionado...$"
       ],
       "MtPyre_2F_Text_TumbledFromFloorAbove": [
-        "Ooch, ouch... Ha buracos no\\nchao aqui e ali.\\pNao reparei e cai do chao.$"
+        "Ai! Que dor!\\pExistem buracos\\nno chao desta torre.\\pNao vi um deles\\ne acabei caindo!$"
       ],
       "MtPyre_2F_Text_MarkIntro": [
-        "Hey! Esta a procura de POKEMON?\\nVieste atras de mim! Voce e\\lrude!$"
+        "Ei! Tambem veio\\nprocurar POKEMON raros?\\pNao me atrapalhe!$"
       ],
       "MtPyre_2F_Text_MarkDefeat": [
-        "Ayieeeeh! Desculpa, perdoa-me,\\npor favor!$"
+        "Ah! Me desculpe,\\npor favor!$"
       ],
       "MtPyre_2F_Text_MarkPostBattle": [
-        "As pessoas nao vem aqui muitas\\nvezes, por isso pensei que\\lhaveria Pokemon raro.$"
+        "Poucas pessoas\\nvem ate aqui.\\pAchei que encontraria\\nPOKEMON raros!$"
       ],
       "MtPyre_2F_Text_DezNotEnoughMons": [
-        "DEZ: Se voce quer nos desafiar,\\nvoce deve trazer pelo menos\\ldois POKEMON.\\pO meu namorado e forte. So um\\nPokemon nao serve.$"
+        "DEZ: Se quer uma batalha\\ndupla, traga dois POKEMON!\\pMeu parceiro e forte.\\nUm POKEMON so nao basta!$"
       ],
       "MtPyre_2F_Text_LeahIntro": [
-        "Es uma visao desconhecida...\\nSaiam antes que algo vos\\laconteca!$"
+        "Nao conheco voce...\\pE melhor sair\\ndaqui agora!$"
       ],
       "MtPyre_2F_Text_LeahDefeat": [
-        "Hmm... Es duravel.$"
+        "Hmm... Voce resiste bem!$"
       ],
       "MtPyre_2F_Text_LeahPostBattle": [
-        "A nossa familia e treinadora\\naqui desde o tempo da minha\\lbisavo...\\pE meu dever proteger esta\\nmontanha...$"
+        "Minha familia protege\\neste lugar ha geracoes.\\pAgora cabe a mim\\ncuidar desta montanha!$"
       ],
       "MtPyre_2F_Text_ZanderIntro": [
-        "Kiyaaaah! Estou aterrorizada!$"
+        "Aaah! Que susto!$"
       ],
       "MtPyre_2F_Text_ZanderDefeat": [
-        "Nao! Perdi o juizo!$"
+        "Nao! Perdi a calma!$"
       ],
       "MtPyre_2F_Text_ZanderPostBattle": [
-        "Fico assustada sempre que vejo\\nalgo a mexer-se...\\pNao devia ter vindo treinar...$"
+        "Qualquer coisa que\\nse mexe me assusta!\\pNao deveria ter\\nvindo treinar aqui...$"
       ]
     },
     "data/maps/MtPyre_3F/scripts.inc": {
       "MtPyre_3F_Text_WilliamIntro": [
-        "A rica atmosfera da montanha\\nelevou o meu poder psiquico!\\pUma crianca como tu... Sonhas\\nem ganhar?$"
+        "A energia desta montanha\\nfortaleceu meus poderes!\\pVoce acha que\\npode me vencer?$"
       ],
       "MtPyre_3F_Text_WilliamDefeat": [
-        "Afogo-me em autopiedade...$"
+        "Estou decepcionado\\ncomigo mesmo...$"
       ],
       "MtPyre_3F_Text_WilliamPostBattle": [
-        "Os meus poderes psiquicos\\ncresceram varias vezes, mas...$"
+        "Treinei meus poderes\\npsiquicos por muito tempo.\\pMas ainda preciso melhorar!$"
       ],
       "MtPyre_3F_Text_KaylaIntro": [
-        "Ahahahaha!\\pIsto nao e lugar para criancas,\\nmuito menos para ti!$"
+        "Ha ha ha!\\pEste nao e lugar\\npara criancas!$"
       ],
       "MtPyre_3F_Text_KaylaDefeat": [
-        "Eu perdi isso...$"
+        "Eu perdi...$"
       ],
       "MtPyre_3F_Text_KaylaPostBattle": [
-        "Isto significa que o meu treino\\nainda nao e suficiente...\\pTenho de continuar a trabalhar\\npara a cimeira...\\pVai, eu!$"
+        "Ainda tenho que treinar mais.\\pNao vou desistir\\nantes de chegar ao topo!$"
       ],
       "MtPyre_3F_Text_GabrielleIntro": [
-        "Porque vieste aqui?$"
+        "Por que voce veio aqui?$"
       ],
       "MtPyre_3F_Text_GabrielleDefeat": [
-        "Foi incrivel! Es um treinador\\nmuito especial.$"
+        "Incrivel!\\nVoce e especial!$"
       ],
       "MtPyre_3F_Text_GabriellePostBattle": [
-        "POKEMON nao e mais deste mundo.\\nPOKEMON que estao com voce\\lagora.\\pE o POKEMON que voce vai\\nencontrar no futuro...\\pTodos devem ser igualmente\\napreciados. Por favor,\\llembra-te disso.$"
+        "Os POKEMON que ja partiram,\\nos que estao com voce\\ne aqueles que vai conhecer...\\pTodos merecem\\no mesmo carinho.\\pNunca se esqueca disso!$"
       ],
       "MtPyre_3F_Text_GabrielleRegister": [
-        "Gostaria de ver o teu POKEMON\\nquando crescerem mais...\\pPor favor, preciso de ver o seu\\nPOKeNAV.$"
+        "Quero ver seus POKEMON\\nquando ficarem mais fortes!\\pVamos trocar contatos\\nno POKENAV!$"
       ],
       "MtPyre_3F_Text_GabrielleRematchIntro": [
-        "Es tu...\\pVeio mostrar-me o seu Pokemon?$"
+        "Ola, voce voltou!\\pVeio me mostrar\\nseus POKEMON?$"
       ],
       "MtPyre_3F_Text_GabrielleRematchDefeat": [
-        "Que incrivel! Es uma pessoa\\nespecial.$"
+        "Incrivel!\\nVoce realmente e especial!$"
       ],
       "MtPyre_3F_Text_GabriellePostRematch": [
-        "POKEMON nao e mais deste mundo.\\nPOKEMON que estao com voce\\lagora.\\pE o POKEMON que voce vai\\nencontrar no futuro...\\pTodos devem ser igualmente\\napreciados. Vejo que te\\llembraste disso.$"
+        "Os POKEMON que ja partiram,\\nos que estao com voce\\ne os que ainda vai conhecer...\\pTodos merecem carinho!\\pFico feliz que\\nvoce se lembrou disso!$"
       ]
     },
     "data/maps/MtPyre_4F/scripts.inc": {
       "MtPyre_5F_Text_AtsushiIntro": [
-        "Professor... Por favor, cuide\\ndo meu progresso!$"
+        "Professor, acompanhe\\nmeu progresso!$"
       ],
       "MtPyre_5F_Text_AtsushiDefeat": [
-        "Professor... Por favor,\\nperdoa-me!$"
+        "Professor, perdoe\\nminha derrota!$"
       ],
       "MtPyre_5F_Text_AtsushiPostBattle": [
-        "Ate eu melhorar, o meu\\nprofessor, que descansa aqui,\\lnunca encontrara a verdadeira\\lpaz...$"
+        "Meu professor descansou aqui.\\pVou continuar treinando\\npara honrar seus ensinamentos!$"
       ]
     },
     "data/maps/MtPyre_5F/scripts.inc": {
       "MtPyre_4F_Text_TashaIntro": [
-        "Adoro todas as coisas\\nhorriveis... E como uma\\ldoenca...\\pQuando estou aqui... Tremo de\\nmedo...$"
+        "Gosto de historias\\nde misterio...\\pMas este lugar\\nme da arrepios!$"
       ],
       "MtPyre_4F_Text_TashaDefeat": [
-        "Perder, nao gosto...$"
+        "Eu nao gosto de perder!$"
       ],
       "MtPyre_4F_Text_TashaPostBattle": [
-        "Quero ver coisas terriveis...\\nNao posso ir...\\pFica... Nao ficas comigo?$"
+        "Queria explorar\\nmais este lugar...\\pMas estou com medo!\\nPode ficar por perto?$"
       ]
     },
     "data/maps/MtPyre_6F/scripts.inc": {
       "MtPyre_6F_Text_ValerieIntro": [
-        "Quando estou aqui... Um poder\\ncurioso flui para mim...$"
+        "Sinto uma energia\\nmisteriosa aqui...$"
       ],
       "MtPyre_6F_Text_ValerieDefeat": [
-        "O poder esta a desaparecer...$"
+        "A energia esta sumindo...$"
       ],
       "MtPyre_6F_Text_ValeriePostBattle": [
-        "Talvez o poder seja dos\\nespiritos de Pokemon em sono\\lsaudavel aqui...$"
+        "Talvez essa energia\\nvenha das lembrancas\\ndos POKEMON daqui...$"
       ],
       "MtPyre_6F_Text_ValerieRegister": [
-        "Fufufu... perdi o jogo, mas...\\nTenho uma pequena habilidade...\\pSem nunca por as maos no teu\\nPOKeNAV... Ola!$"
+        "He he... Eu perdi,\\nmas tenho um talento!\\pConsigo registrar\\nseu POKENAV sem tocar nele!$"
       ],
       "MtPyre_6F_Text_ValerieRematchIntro": [
-        "Atras de ti... O que e...$"
+        "Atras de voce...\\nO que sera aquilo?$"
       ],
       "MtPyre_6F_Text_ValerieRematchDefeat": [
-        "Algo desapareceu...$"
+        "Aquela energia sumiu...$"
       ],
       "MtPyre_6F_Text_ValeriePostRematch": [
-        "O Pokemon em repouso aqui... As\\nvezes, tocam...$"
+        "As lembrancas dos POKEMON\\nainda parecem presentes aqui.\\pAs vezes consigo senti-las...$"
       ],
       "MtPyre_6F_Text_CedricIntro": [
-        "Perdeste o rumo? Nao tenha medo\\nporque estou aqui!$"
+        "Voce esta perdido?\\pNao se preocupe.\\nEu conheco este lugar!$"
       ],
       "MtPyre_6F_Text_CedricDefeat": [
-        "Nao estavas perdido?$"
+        "Voce nao estava perdido?$"
       ],
       "MtPyre_6F_Text_CedricPostBattle": [
-        "Eu tinha a sensacao de que um\\nTRAiner perdido seria em panico\\le facil de vencer.\\pEsta sujo e nao volto a\\ntentar...$"
+        "Pensei que um TREINADOR\\nperdido seria facil de vencer.\\pNao farei isso de novo!$"
       ]
     },
     "data/maps/MtPyre_Summit/scripts.inc": {
       "MtPyre_Summit_Text_Grunt1Defeat": [
-        "Pensei que eras um dos MAGMAS\\nque por acaso voltou...$"
+        "Pensei que voce fosse\\num dos MAGMA voltando...$"
       ],
       "MtPyre_Summit_Text_Grunt1PostBattle": [
-        "Sim, entao es forte... Mas\\nsomos muitos!$"
+        "Voce e forte...\\nMas somos muitos!$"
       ],
       "MtPyre_Summit_Text_Grunt2PostBattle": [
-        "Tu nao sabes nada! Entao porque\\nestas a brincar connosco?$"
+        "Voce nao sabe de nada!\\pEntao por que\\nesta nos atrapalhando?$"
       ],
       "MtPyre_Summit_Text_Grunt3PostBattle": [
-        "Nao importa! Ganhamos algum\\ntempo!\\pO BOSS devia ter roubado o que\\nprocurava!$"
+        "Nao importa!\\nConseguimos ganhar tempo!\\pO chefe ja deve ter\\npegado o que queria!$"
       ],
       "MtPyre_Summit_Text_Grunt4PostBattle": [
-        "Temos uma grande combinacao\\nentre os nossos membros e o\\lnosso lider.$"
+        "Nossa equipe e unida!\\pTrabalhamos muito bem\\ncom nosso lider!$"
       ],
       "MtPyre_Summit_Text_ThoseTwoMenReturnedOrbs": [
-        "Os dois homens que levaram a\\nORBS voltaram para devolve-los\\lsozinhos.\\pAqueles homens... Talvez nao\\nsejam assim tao maus...$"
+        "Aqueles dois homens\\nvoltaram para devolver\\nas ORBS que levaram.\\pTalvez nao sejam\\ntao maus assim...$"
       ],
       "MtPyre_Summit_Text_SuperAncientPokemonTaughtUs": [
-        "As personificacoes da terra, do\\nmar e do ceu...\\pDiz-se que sao as identidades\\ndo super-antigo POKEMON...\\pDa mesma forma que nos humanos\\ne POKEMON temos vida, nosso\\lmundo, tambem, esta vivo...\\pOs super antigos Pokemon\\nensinaram-nos que...$"
+        "POKEMON da terra,\\ndo mar e do ceu...\\pEsses seres antigos\\nfazem parte das lendas!\\pAssim como pessoas e POKEMON,\\no proprio mundo tem vida.\\pFoi isso que aprendemos\\ncom os POKEMON ancestrais!$"
       ],
       "MtPyre_Summit_Text_WillYouHearOutMyTale": [
-        "MT. PYRE e onde acalmamos os\\nespiritos de POKEMON que\\lpassaram...\\pEste e um lugar alto onde se\\npode ver todo o HOENN...\\pOs espiritos desencarnados de\\nPOKEMON devem encontrar consolo\\laqui...\\pE coincidencia que estejas\\naqui...\\pVais ouvir a minha historia?\\nUma historia ha muito contada\\lna regiao de HOENN?$"
+        "MT. PYRE e um lugar\\npara lembrar dos POKEMON\\nque ja partiram.\\pDaqui podemos ver\\nquase toda HOENN.\\pAs lembrancas deles\\nencontram paz aqui.\\pJa que voce chegou ate aqui,\\nquer ouvir uma antiga\\nlenda da regiao de HOENN?$"
       ],
       "MtPyre_Summit_Text_WellThatTooIsFine": [
-        "Entendo... Bem, isso tambem,\\nesta bem...$"
+        "Entendo...\\nTudo bem, entao.$"
       ],
       "MtPyre_Summit_Text_HearTheNewLegendOfHoenn": [
-        "E meu papel transmitir as\\nlendas da HOENN as geracoes\\lfuturas.\\pE a crise que acabou em\\nSOOTOPOLIS reescreveu uma\\llenda...\\pTens tempo para ouvir a nova\\nlenda do HOENN?$"
+        "Meu dever e transmitir\\nas lendas de HOENN.\\pMas os eventos em SOOTOPOLIS\\nmudaram nossa historia.\\pQuer ouvir a nova\\nlenda de HOENN?$"
       ],
       "MtPyre_Summit_Text_HoennTrioTale": [
-        "Aconteceu ha muito, muito\\ntempo...\\pO mundo foi esmagado por um\\nferoz confronto entre o POKEMON\\lda terra e o POKEMON do mar...\\pO POKEMON da terra ergueu\\nmontanhas e criou\\lcontinentes...\\pO POKEMON do mar levantou\\nenormes ondas e esculpiu\\loceanos...\\pO seu feroz duelo irritou-se\\nsem fim.\\pO mundo foi engolido por\\nenormes incendios e tempestades\\lcrueis.\\pFoi entao que o POKEMON do ceu\\ndesceu de uma tempestade.\\pO Pokemon, brilhando um verde\\nvivido, enfurecidou os dois\\lPokemon.\\pEntao, seu dever cumprido, o\\nverde POKEMON voou para o azul\\lselvagem la...$"
+        "Ha muito, muito tempo...\\pO POKEMON da terra\\ne o POKEMON do mar\\nentraram em conflito!\\pUm ergueu montanhas\\ne criou continentes.\\pO outro levantou ondas\\ne formou os oceanos.\\pSeu confronto parecia\\nnao ter fim.\\pEntao veio uma grande\\ntempestade!\\pUm POKEMON verde\\ndesceu do ceu.\\pEle acalmou\\naqueles dois gigantes.\\pDepois, voltou a voar\\npara o ceu distante...$"
       ]
     }
   },
