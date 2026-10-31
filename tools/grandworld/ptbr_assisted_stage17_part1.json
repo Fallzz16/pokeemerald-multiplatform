@@ -11,7 +11,7 @@
     6,
     7
   ],
-  "modified_entries": 458,
+  "modified_entries": 457,
   "changed_labels_by_shard_and_source": {
     "tools/grandworld/ptbr_auto_review_001.json": {
       "data/maps/FortreeCity_Gym/scripts.inc": [
@@ -46,9 +46,7 @@
       ]
     },
     "tools/grandworld/ptbr_auto_review_002.json": {
-      "data/maps/PetalburgCity_Gym/scripts.inc": [
-        "PetalburgCity_Gym_Text_BerkePostBattle"
-      ],
+      "data/maps/PetalburgCity_Gym/scripts.inc": [],
       "data/maps/FiveIsland_RocketWarehouse_Frlg/scripts.inc": [
         "FiveIsland_RocketWarehouse_Text_Grunt1Intro",
         "FiveIsland_RocketWarehouse_Text_Admin1Intro",
