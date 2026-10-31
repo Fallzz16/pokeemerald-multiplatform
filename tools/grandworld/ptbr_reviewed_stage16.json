@@ -1,0 +1,66 @@
+{
+  "status": "human_reviewed_text_ready; ARM_GBA_mGBA_QA_pending",
+  "scope": "Only changed dialogue symbols compared to stage15",
+  "source_shards": [
+    "ptbr_auto_review_019.json"
+  ],
+  "source_diff_against": "feature/grandworld-ptbr-human-review-stage15-20261031",
+  "reviewed_entries": 35,
+  "reviewed_labels_by_source": {
+    "data/maps/SSAnne_2F_Room3_Frlg/scripts.inc": [
+      "SSAnne_2F_Room3_Text_SeenMonsFerryPeople",
+      "SSAnne_2F_Room3_Text_SomeTreesCanBeCutDown"
+    ],
+    "data/maps/SSAnne_2F_Room4_Frlg/scripts.inc": [
+      "SSAnne_2F_Room4_Text_LamarDefeat",
+      "SSAnne_2F_Room4_Text_LamarPostBattle",
+      "SSAnne_2F_Room4_Text_DawnIntro",
+      "SSAnne_2F_Room4_Text_DawnPostBattle"
+    ],
+    "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc": [
+      "SSAnne_B1F_Room1_Text_PhillipIntro",
+      "SSAnne_B1F_Room1_Text_PhillipDefeat",
+      "SSAnne_B1F_Room1_Text_PhillipPostBattle",
+      "SSAnne_B1F_Room1_Text_BarnyIntro",
+      "SSAnne_B1F_Room1_Text_BarnyDefeat",
+      "SSAnne_B1F_Room1_Text_BarnyPostBattle"
+    ],
+    "data/maps/SSAnne_B1F_Room2_Frlg/scripts.inc": [
+      "SSAnne_B1F_Room2_Text_HueyIntro",
+      "SSAnne_B1F_Room2_Text_HueyDefeat",
+      "SSAnne_B1F_Room2_Text_HueyPostBattle"
+    ],
+    "data/maps/SSAnne_B1F_Room3_Frlg/scripts.inc": [
+      "SSAnne_B1F_Room3_Text_DylanIntro",
+      "SSAnne_B1F_Room3_Text_DylanDefeat",
+      "SSAnne_B1F_Room3_Text_DylanPostBattle"
+    ],
+    "data/maps/SSAnne_B1F_Room4_Frlg/scripts.inc": [
+      "SSAnne_B1F_Room4_Text_LeonardIntro",
+      "SSAnne_B1F_Room4_Text_LeonardPostBattle",
+      "SSAnne_B1F_Room4_Text_DuncanIntro",
+      "SSAnne_B1F_Room4_Text_DuncanDefeat"
+    ],
+    "data/maps/SSAnne_CaptainsOffice_Frlg/scripts.inc": [
+      "SSAnne_CaptainsOffice_Text_YouHaveNoRoomForThis"
+    ],
+    "data/maps/SSAnne_Deck_Frlg/scripts.inc": [
+      "SSAnne_Deck_Text_ShipDepartingSoon",
+      "SSAnne_Deck_Text_ScrubbingDecksHardWork",
+      "SSAnne_Deck_Text_FeelSeasick",
+      "SSAnne_Deck_Text_EdmondDefeat",
+      "SSAnne_Deck_Text_TrevorIntro",
+      "SSAnne_Deck_Text_TrevorPostBattle"
+    ],
+    "data/maps/SSAnne_Kitchen_Frlg/scripts.inc": [
+      "SSAnne_Kitchen_Text_BusyOutOfTheWay",
+      "SSAnne_Kitchen_Text_SawOddBerryInTrash",
+      "SSAnne_Kitchen_Text_SoBusyImDizzy",
+      "SSAnne_Kitchen_Text_HearAboutSnorlaxItsAGlutton",
+      "SSAnne_Kitchen_Text_OnlyGetToPeelOnions",
+      "SSAnne_Kitchen_Text_EelsAuBarbecue"
+    ]
+  },
+  "release_approved": false,
+  "no_gameplay_changes": true
+}
