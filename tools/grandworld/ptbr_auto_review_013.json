@@ -35,7 +35,7 @@
     },
     "data/maps/FortreeCity_House2/scripts.inc": {
       "FortreeCity_House2_Text_HiddenPowersArousedByNature": [
-        "Pessoas... POKEMON...\\pSeus poder ocultos sao\\ndespertados por viver em\\lambientes naturais...$"
+        "Pessoas... POKEMON...\\pSeus poderes ocultos sao\\ndespertados por viver em\\lambientes naturais...$"
       ],
       "FortreeCity_House2_Text_CoinInWhichHand": [
         "Deixa esta velha ver se o seu\\npoder oculto acordou...\\pTenho uma moeda na mao.\\pAgora, me diga, dei-lhe a mao\\ndireita? Ou a esquerda?$"
