@@ -12,52 +12,52 @@
     },
     "data/maps/NationalPark_Normal/scripts.inc": {
       "NationalPark_Normal_Text_Lass": [
-        "Olha! Olha para a minha mala!\\pImprimi os meus favoritos do\\nmeu POKEDEX e coloquei-os na\\lminha bolsa.$"
+        "Olhe minha bolsa!\\pColei imagens dos meus\\nPOKEMON favoritos da POKEDEX!$"
       ],
       "NationalPark_Normal_Text_PokefanF": [
-        "Este e o MAIL que recebi da\\nminha filha. Isso anima-me.$"
+        "Minha filha me mandou\\numa mensagem!\\pFico muito feliz\\nquando leio!$"
       ],
       "NationalPark_Normal_Text_Teacher1": [
-        "Presta atencao, por favor!\\pTenho de parar de pensar como\\nprofessora.\\pVoce deve ser um treinador\\nPOKEMON.\\pJa que trabalhas tanto, quero\\nque fiques com isto.$"
+        "Preste atencao!\\pAh, esqueci que nao\\nestou dando aula!\\pVoce e TREINADOR, nao e?\\pAceite este presente\\npelo seu esforco!$"
       ],
       "NationalPark_Normal_Text_Youngster1": [
-        "Estou a brincar com\\nautocolantes que imprimi do meu\\lPOKEDEX.$"
+        "Estou brincando\\ncom adesivos da POKEDEX!$"
       ],
       "NationalPark_Normal_Text_Youngster2": [
-        "Fico com o autocolante do outro\\ntipo se eu ganhar.$"
+        "Se eu ganhar,\\nrecebo um adesivo novo!$"
       ],
       "NationalPark_Normal_Text_SchoolboyJack1_Seen": [
-        "O mundo de POKEMON e profundo.\\pAinda ha muitas coisas que nao\\nsabemos.\\pMas eu sei mais do que tu!$"
+        "O mundo dos POKEMON\\ne cheio de misterios!\\pSei mais sobre ele\\ndo que voce!$"
       ],
       "NationalPark_Normal_Text_SchoolboyJack1_Beaten": [
-        "O que?$"
+        "O que? Eu perdi?$"
       ],
       "NationalPark_Normal_Text_SchoolboyJack_After": [
-        "Ha muito para aprender.\\pPor exemplo...\\pHa 50 tipos de TMs.\\pTrocou o nivel de POKEMON mais\\nrapido.$"
+        "Ainda tenho muito a aprender!\\pPor exemplo, existem\\nvarios tipos de TM.\\pE POKEMON ganham experiencia\\nmais rapido em batalhas!$"
       ],
       "NationalPark_Normal_Text_PokefanFBeverly1_Seen": [
-        "O meu Pokemon e simplesmente\\nquerido.\\pDeixa-me dizer-te como as\\nminhas queridas me deixam\\lorgulhoso.$"
+        "Meus POKEMON sao lindos!\\pVou mostrar como\\neles me deixam orgulhosa!$"
       ],
       "NationalPark_Normal_Text_PokefanFBeverly1_Beaten": [
-        "Posso vencer-te com orgulho,\\nmas...$"
+        "Meu orgulho nao bastou...$"
       ],
       "NationalPark_Normal_Text_PokefanFBeverly_After": [
-        "Devo dizer que o teu Pokemon\\ntambem e muito giro.$"
+        "Seus POKEMON\\ntambem sao muito bonitos!$"
       ],
       "NationalPark_Normal_Text_PokefanmWilliam_Seen": [
-        "Nos adoramos o nosso POKEMON,\\nmesmo que eles nao gostam de\\lnos.\\pE disso que se trata ser um\\nFAN.$"
+        "Adoramos nossos POKEMON,\\nmesmo quando ficam teimosos!\\pIsso e ser um verdadeiro FA!$"
       ],
       "NationalPark_Normal_Text_PokefanmWilliam_Beaten": [
-        "O meu Pokemon!$"
+        "Meus POKEMON!$"
       ],
       "NationalPark_Normal_Text_PokefanmWilliam_After": [
-        "Perdi a batalha, mas o meu\\nPOKEMON ganhou o premio por ser\\lmuito adoravel.$"
+        "Perdi a batalha,\\nmas meus POKEMON\\nsao os mais fofos!$"
       ],
       "NationalPark_Normal_Text_LassKrise_Seen": [
-        "Estou? Porque estas a olhar\\npara mim?\\pUma batalha?$"
+        "Ei! Por que esta\\nolhando para mim?\\pQuer batalhar?$"
       ],
       "NationalPark_Normal_Text_LassKrise_After": [
-        "Pensei que estavas a olhar para\\nmim porque sou giro!$"
+        "Achei que estivesse\\nolhando porque sou bonita!$"
       ]
     },
     "data/maps/NewBarkTown_House2/scripts.inc": {
@@ -175,76 +175,76 @@
     },
     "data/maps/OlivineCity_Lighthouse/scripts.inc": {
       "OlivineLighthouse_Text_SailorHueySeen": [
-        "Os homens do mar estao sempre a\\nestragar-se para uma boa luta!$"
+        "Marinheiros nunca\\nfogem de uma boa batalha!$"
       ],
       "OlivineLighthouse_Text_SailorHueyBeaten": [
-        "Urf! Perdi!$"
+        "Argh! Eu perdi!$"
       ],
       "OlivineLighthouse_Text_SailorHueyAfter": [
-        "Que poder! Gostaria de navegar\\npelos mares comigo?$"
+        "Que forca impressionante!\\pQuer viajar pelos mares\\ncom minha tripulacao?$"
       ],
       "OlivineLighthouse_Text_GentlemanAlfredSeen": [
-        "Hm? Isto nao e lugar para\\nbrincar.$"
+        "Ei! Este nao e lugar\\npara brincadeiras!$"
       ],
       "OlivineLighthouse_Text_GentlemanAlfredBeaten": [
-        "Ah! Vejo que estas a falar a\\nserio.$"
+        "Entendi! Voce fala serio!$"
       ],
       "OlivineLighthouse_Text_BirdKeeperTheoSeen": [
-        "Porque estas aqui? Vais ficar a\\nolhar? Sugiro que te vas\\lembora!$"
+        "Por que veio ate aqui?\\pE melhor ir embora!$"
       ],
       "OlivineLighthouse_Text_BirdKeeperTheoBeaten": [
-        "Estas mesmo preocupado com o\\nPOKEMON doente...$"
+        "Voce tambem esta preocupado\\ncom aquele POKEMON...$"
       ],
       "OlivineLighthouse_Text_BirdKeeperTheoAfter": [
-        "Como e que se sobe?\\pQuero visitar o Pokemon doente,\\nmas nao consigo subir...$"
+        "Como chego ao topo?\\pQuero visitar o POKEMON\\ndoente, mas estou perdido!$"
       ],
       "OlivineLighthouse_Text_SailorTerrellSeen": [
-        "Marinheiros sao gentis e\\nfortes. E tu?$"
+        "Marinheiros sao\\nfortes e gentis!\\pE voce?$"
       ],
       "OlivineLighthouse_Text_SailorTerrellBeaten": [
-        "Voces sao gentis e fortes...$"
+        "Voce tambem e\\nforte e gentil...$"
       ],
       "OlivineLighthouse_Text_GentlemanPrestonSeen": [
-        "Viajo pelo mundo para treinar o\\nmeu Pokemon. Desejo lutar\\lcontigo.$"
+        "Viajo para treinar\\nmeus POKEMON!\\pGostaria de batalhar!$"
       ],
       "OlivineLighthouse_Text_GentlemanPrestonBeaten": [
-        "Tenho de treinar mais...$"
+        "Preciso treinar mais...$"
       ],
       "OlivineLighthouse_Text_GentlemanPrestonAfter": [
-        "JASMINE costumava usar POKEMON\\ntipo ROCK como ONIX.$"
+        "JASMINE usava POKEMON\\nROCK, como ONIX!$"
       ],
       "OlivineLighthouse_Text_SailorKentSeen": [
-        "JASMINE deve estar muito\\npreocupada com o Pokemon.\\pEla nem sequer sorri hoje em\\ndia.$"
+        "JASMINE esta preocupada\\ncom aquele POKEMON.\\pFaz tempo que\\nnao vejo ela sorrir...$"
       ],
       "OlivineLighthouse_Text_SailorKentBeaten": [
-        "Tambem nao consigo um\\nsorriso...$"
+        "Nem eu consigo sorrir...$"
       ],
       "OlivineLighthouse_Text_LassConnieBeaten": [
-        "Aaack! O meu Pokemon!$"
+        "Ah! Meu POKEMON!$"
       ],
       "OlivineLighthouse_Text_SailorErnestSeen": [
-        "Eu queria lutar com a JASMINE,\\nmas ela nao esta a altura.\\pEntao, e tu?$"
+        "Queria enfrentar JASMINE,\\nmas ela nao esta no GINASIO.\\pQue tal batalhar com voce?$"
       ],
       "OlivineLighthouse_Text_SailorErnestBeaten": [
-        "Calma, calma. Es avassalador!$"
+        "Uau! Voce e forte demais!$"
       ],
       "OlivineLighthouse_Text_BirdKeeperDenisSeen": [
-        "Estamos muito alto aqui. O meu\\npassaro Pokemon esta em\\lexcelente forma.$"
+        "Estamos muito alto!\\pMeus POKEMON voadores\\nse sentem bem aqui!$"
       ],
       "OlivineLighthouse_Text_BirdKeeperDenisBeaten": [
-        "Oops... Eles cairam...$"
+        "Ops... Que derrota!$"
       ],
       "OlivineLighthouse_Text_JasmineGetMedicine": [
-        "Posso pedir-lhe que me traga\\nalgum remedio? Por favor?$"
+        "Por favor...\\pPode buscar um remedio\\npara este POKEMON?$"
       ],
       "OlivineLighthouse_Text_JasmineAmphyHowFeeling": [
-        "JASMINE: ...\\pAMPHY, como te sentes?$"
+        "JASMINE: ...\\pAMPHY, esta se sentindo melhor?$"
       ],
       "OlivineLighthouse_Text_JasmineThankYou": [
-        "JASMINE: ... Estou tao\\naliviada...\\pIsto e tao maravilhoso...\\pMuito obrigado.\\p...vou voltar para o GINASIO...\\pTambem vos aviso, os tipos do\\nSTEEL sao poderosos.$"
+        "JASMINE: Que alivio...\\pMuito obrigada\\npor sua ajuda!\\pAMPHY esta muito melhor!\\pVou voltar ao GINASIO.\\nVolte la quando quiser!\\pMeus POKEMON STEEL\\nsao muito fortes!$"
       ],
       "OlivineLighthouse_Text_AmphyBreathingLabored": [
-        "Sua respiracao esta\\nterrivelmente sobrecarregada...$"
+        "AMPHY parece\\nter dificuldade para respirar...$"
       ]
     },
     "data/maps/OlivineCity_Mart/scripts.inc": {
@@ -254,40 +254,40 @@
     },
     "data/maps/OlivineCity_PortInside/scripts.inc": {
       "OlivinePort_Text_NoPass": [
-        "{PLAYER}tentou mostrar\\no{STR_VAR_1}...\\p...Mas nao{STR_VAR_1}!\\pDesculpa! So pode embarcar se\\ntiver um{STR_VAR_1}.$"
+        "{PLAYER} mostrou\\n{STR_VAR_1}...\\pMas nao e {STR_VAR_1}!\\pDesculpe! Precisa\\nter um {STR_VAR_1}.$"
       ],
       "OlivinePort_Text_SailorGetOnBoard": [
-        "Partimos em breve. Por favor,\\nsuba a bordo.$"
+        "Vamos partir em breve!\\nPor favor, embarque!$"
       ],
       "OlivinePort_Text_CantBoard": [
-        "Desculpa. Nao podes embarcar\\nagora.$"
+        "Desculpe! Nao e possivel\\nembarcar agora.$"
       ],
       "OlivinePort_Text_WhereSail": [
-        "Para onde gostaria de velejar?$"
+        "Para onde deseja viajar?$"
       ],
       "OlivinePort_Text_AskTicket": [
-        "Posso ver o seu S.S.TICKET?$"
+        "Pode mostrar\\nseu S.S.TICKET?$"
       ],
       "OlivinePort_Text_ComeAgain": [
-        "Esperamos ve-lo novamente!$"
+        "Esperamos voce novamente!$"
       ],
       "OlivinePort_Text_FlashTicket": [
-        "{PLAYER}O S.S.TICKET.\\pE isso. Obrigado!$"
+        "{PLAYER} mostrou\\no S.S.TICKET!\\pTudo certo! Obrigado!$"
       ],
       "OlivinePort_Text_NotSailingYet": [
-        "A S.S. AQUA ainda esta pronta\\npara a sua viagem inaugural.\\pPor favor, volta mais tarde!$"
+        "A S.S. AQUA ainda nao\\ncomecou suas viagens.\\pPor favor, volte mais tarde!$"
       ],
       "OlivinePort_Text_FishingGuru2": [
-        "Quantos RODS tens?\\pDiferentes RODS pegar POKEMON\\ndiferente.$"
+        "Quantas varas de pesca\\nfaltam na sua colecao?\\pCada vara pode atrair\\nPOKEMON diferentes!$"
       ],
       "OlivinePort_Text_Youngster": [
-        "S.S.AQUA usa jatos para desviar\\nas ondas!$"
+        "A S.S. AQUA usa jatos\\npara cortar as ondas!$"
       ],
       "OlivinePort_Text_CooltrainerF": [
-        "Ha muitos Pokemon em KANTO.\\pGostava de poder ir...$"
+        "Ha tantos POKEMON\\nna regiao de KANTO!\\pQueria conhecer todos!$"
       ],
       "OlivinePort_Text_SailorBeforeHOF": [
-        "Nao queremos que caias no mar,\\npor isso nao podes entrar.$"
+        "Nao queremos que\\nninguem caia no mar!\\pA entrada esta fechada!$"
       ]
     },
     "data/maps/OlivineCity_PortOutside/scripts.inc": {
