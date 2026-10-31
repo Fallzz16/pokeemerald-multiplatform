@@ -214,169 +214,169 @@
     },
     "data/maps/InsideOfTruck/scripts.inc": {
       "InsideOfTruck_Text_BoxPrintedWithMonLogo": [
-        "A caixa e impressa com um\\nlogotipo POKEMON.\\pE uma marca POKEMON em\\nmovimento e servico de entrega.$"
+        "A caixa tem o logotipo\\nde uma empresa de mudancas.\\pO simbolo e um POKEMON!$"
       ]
     },
     "data/maps/JaggedPass/scripts.inc": {
       "JaggedPass_Text_EricDefeat": [
-        "Perder deixou-me amargo!$"
+        "Essa derrota foi amarga!$"
       ],
       "JaggedPass_Text_EricPostBattle": [
-        "Sim, perdi em Pokemon...\\pMas, quando se trata do amor\\ndas montanhas, tenho-te\\lderrotado!$"
+        "Voce me venceu na batalha...\\pMas meu amor pelas montanhas\\ncontinua imbatavel!$"
       ],
       "JaggedPass_Text_DianaIntro": [
-        "Este lugar nao e a tua\\ncaminhada casual. Nao e\\ladequado para um piquenique.$"
+        "Este caminho e perigoso!\\pNao e lugar para\\num piquenique tranquilo.$"
       ],
       "JaggedPass_Text_DianaDefeat": [
-        "Ohhh, nao! O chao esta muito\\nacidentado...$"
+        "Ai! Esse terreno\\ne muito irregular!$"
       ],
       "JaggedPass_Text_DianaPostBattle": [
-        "Sabias?\\pAlgumas pessoas andam de\\nbicicleta por este passo\\lhorrivelmente acidentado.$"
+        "Sabia que ha gente\\nque atravessa este lugar\\nde bicicleta? Que coragem!$"
       ],
       "JaggedPass_Text_DianaRegister": [
-        "Vai voltar a esta area? Se\\nvoltares, quero uma revanche.$"
+        "Vai voltar por aqui?\\pQuero uma revanche\\nquando voltar!$"
       ],
       "JaggedPass_Text_DianaRematchIntro": [
-        "Os piqueniques sao divertidos\\nonde quer que vas. Tal como o\\lPokemon!$"
+        "Um piquenique e divertido\\nem qualquer lugar!\\pUma batalha tambem!$"
       ],
       "JaggedPass_Text_DianaRematchDefeat": [
-        "So perdi porque o chao e muito\\nacidentado!$"
+        "Esse chao irregular\\nme atrapalhou!$"
       ],
       "JaggedPass_Text_DianaPostRematch": [
-        "Vou esquecer-me de perder e\\naproveitar esta caminhada\\lacidentada.$"
+        "Vou deixar a derrota\\npara tras e aproveitar\\na caminhada!$"
       ],
       "JaggedPass_Text_EthanDefeat": [
-        "Estava tudo acabado enquanto\\nainda tentavamos encontrar um\\lbom pe...$"
+        "Perdi o equilibrio...\\nE a batalha tambem!$"
       ],
       "JaggedPass_Text_EthanPostBattle": [
-        "Se eu tivesse um ACRO BIKE, eu\\nseria capaz de saltar bordas.$"
+        "Com uma ACRO BIKE,\\neu poderia pular\\npelas pedras!$"
       ],
       "JaggedPass_Text_EthanRegister": [
-        "Quando me habituar a esta\\nconfusao, vou ganhar!\\pPodes registar-me no teu\\nPOKeNAV?$"
+        "Vou treinar mais\\ne vencer da proxima vez!\\pMe registre no POKENAV\\npara uma revanche!$"
       ],
       "JaggedPass_Text_EthanRematchIntro": [
-        "Habituei-me a esta turbulencia.\\nCanto enquanto escalo.$"
+        "Agora conheco bem\\nessas pedras!\\pPode vir!$"
       ],
       "JaggedPass_Text_EthanRematchDefeat": [
-        "Ainda nao e facil lutar neste\\nterreno acidentado...$"
+        "Ainda e dificil lutar\\nneste terreno...$"
       ],
       "JaggedPass_Text_GruntIntro": [
-        "Wah! O que fazes aqui?\\pO que estou a fazer num lugar\\ncomo este?\\pQue tens a ver com isso?$"
+        "Ei! O que faz aqui?\\pO que eu estou fazendo?\\nNao e da sua conta!$"
       ],
       "JaggedPass_Text_GoWhereverYouWant": [
-        "Esta bem, esta bem! Admito que\\nes forte!\\pNao te preocupes comigo. Vai\\npara onde quiseres!$"
+        "Tudo bem! Voce e forte!\\pPode passar.\\nEu nao vou impedir!$"
       ],
       "JaggedPass_Text_BoulderShakingInResponseToEmblem": [
-        "Oh! Esta rocha esta a tremer em\\nresposta ao EMBLEM MAGMA!$"
+        "A rocha reagiu\\nao MAGMA EMBLEM!\\pEla esta tremendo!$"
       ],
       "JaggedPass_Text_JulioIntro": [
-        "Aiyeeh! E muito assustador\\nderrubar a montanha de uma so\\lvez!$"
+        "Uaaah!\\pDa um medo danado\\nandar por aqui!$"
       ],
       "JaggedPass_Text_JulioDefeat": [
-        "Sinto que estou a\\ndesmoronar-me...$"
+        "Estou acabado...$"
       ],
       "JaggedPass_Text_JulioPostBattle": [
-        "A minha bicicleta saltou tanto,\\nque a minha traseira esta\\ldorida...$"
+        "Pulei tanto com a bike\\nque estou todo dolorido!$"
       ],
       "JaggedPass_Text_AutumnIntro": [
-        "Subo esta colina todos os dias.\\nConfio na minha forca!$"
+        "Subo esta encosta\\ntodos os dias!\\pMinhas pernas sao fortes!$"
       ],
       "JaggedPass_Text_AutumnDefeat": [
-        "Hmm... O que correu mal?$"
+        "O que deu errado?$"
       ],
       "JaggedPass_Text_AutumnPostBattle": [
-        "O que e essa saliencia de rocha\\num pouco acima da colina daqui?$"
+        "O que sera aquela pedra\\nla em cima da encosta?$"
       ]
     },
     "data/maps/JohtoIndigoPlateau/scripts.inc": {
       "JohtoIndigoPlateau_Text_Sign": [
-        "INDIGO PLATEAU\\pA meta final para os\\ninstrutores!\\pQG da LEAGUE POKEMON$"
+        "PLATO INDIGO\\pO destino final\\ndos TREINADORES!\\pSEDE DA LIGA POKEMON$"
       ]
     },
     "data/maps/JohtoIndigoPlateau_PokemonCenter/scripts.inc": {
       "JohtoIndigoPlateau_Text_ShigyNinja": [
-        "Parabens por ter chegado!\\pVi muitos treinadores passarem\\npor aqui ao longo dos anos, e\\ltodos eles sao maravilhosamente\\lunicos.\\pDevias estar orgulhoso por\\nteres chegado tao longe!\\pAgora, vai busca-los!$"
+        "Parabens por chegar aqui!\\pVi muitos TREINADORES\\npassarem por este lugar.\\pCada um tem seu jeito.\\pTenha orgulho de chegar\\ntao longe!\\pAgora, va vencer!$"
       ],
       "JohtoIndigoPlateau_Text_Blackbelt": [
-        "A LEAGUE POKEMON nao esta neste\\nmomento a aceitar novos\\ldesafiantes.\\pPor favor, volta mais tarde.$"
+        "A LIGA POKEMON nao esta\\naceitando novos desafios.\\pPor favor, volte mais tarde.$"
       ],
       "JohtoIndigoPlateau_Text_RivalWin": [
-        "...\\pEsta bem. Perdi...$"
+        "...\\pCerto. Eu perdi...$"
       ],
       "JohtoIndigoPlateau_Text_RivalAfter": [
-        "Ainda nao consigo ganhar.\\pTenho de pensar mais no meu\\nPokemon...\\pHumph! Tenta nao perder!$"
+        "Ainda nao consigo vencer.\\pPreciso entender melhor\\nmeus POKEMON...\\pHmph! Nao va perder!$"
       ],
       "JohtoIndigoPlateau_Text_TeleportGuyYes": [
-        "Esta bem, esta bem. Imagina a\\ntua casa na tua mente...$"
+        "Tudo bem!\\pImagine sua casa\\ncom bastante clareza...$"
       ],
       "JohtoIndigoPlateau_Text_TeleportGuyNo": [
-        "Esta bem, esta bem. Boa sorte\\npara ti!$"
+        "Tudo bem. Boa sorte!$"
       ]
     },
     "data/maps/JohtoPokemonLeague_BrunosRoom/scripts.inc": {
       "JohtoPokemonLeague_BrunosRoom_Text_Beaten": [
-        "Porque? Como poderiamos perder?$"
+        "Como? Eu fui derrotado?$"
       ],
       "JohtoPokemonLeague_BrunosRoom_Text_Defeat": [
-        "Tendo perdido, nao tenho o\\ndireito de dizer nada...\\pVai enfrentar o teu proximo\\ndesafio!$"
+        "Eu perdi e nao tenho\\nmais nada a dizer.\\pVa enfrentar\\no proximo desafio!$"
       ]
     },
     "data/maps/JohtoPokemonLeague_ChampionsRoom/scripts.inc": {
       "JohtoPokemonLeague_ChampionsRoom_Text_BattleAfter": [
-        "...Whew.\\pTornaste-te verdadeiramente\\npoderoso.{PLAYER}.\\pO seu POKEMON respondeu a sua\\nforte e integro natureza.\\pComo treinador, continuara a\\ncrescer forte com o seu\\lPOKEMON.$"
+        "Ufa...\\pVoce ficou muito forte,\\n{PLAYER}.\\pSeus POKEMON responderam\\na sua determinacao.\\pContinue crescendo\\njunto com eles!$"
       ]
     },
     "data/maps/JohtoPokemonLeague_KarensRoom/scripts.inc": {
       "JohtoPokemonLeague_KarensRoom_Text_Beaten": [
-        "Bem, nao es bom? Gosto disso\\nnum treinador.$"
+        "Voce luta muito bem!\\nGosto disso em um TREINADOR.$"
       ]
     },
     "data/maps/JohtoPokemonLeague_KogasRoom/scripts.inc": {
       "JohtoPokemonLeague_KogasRoom_Text_Beaten": [
-        "Ah! Provaste o teu valor!$"
+        "Ah! Voce provou\\nseu verdadeiro valor!$"
       ],
       "JohtoPokemonLeague_KogasRoom_Text_Defeat": [
-        "Submeti-te a tudo o que pude\\nreunir.\\pMas os meus esforcos falharam.\\nTenho de melhorar as minhas\\lhabilidades.\\pVa para a sala ao lado, e ponha\\nsuas habilidades para testar!$"
+        "Usei tudo que sabia,\\nmas fui derrotado.\\pPreciso treinar mais.\\pA proxima sala espera\\npor voce. Boa sorte!$"
       ]
     },
     "data/maps/JohtoPokemonLeague_WillsRoom/scripts.inc": {
       "JohtoPokemonLeague_WillsRoom_Text_Beaten": [
-        "Nao acredito...$"
+        "Nao... Nao acredito!$"
       ]
     },
     "data/maps/JohtoVictoryRoad_1F/scripts.inc": {
       "JohtoVictoryRoad_1F_Text_EdgarIntro": [
-        "Cheguei ate aqui algumas vezes,\\nmas a ultima parte e tao\\llonga...$"
+        "Cheguei ate aqui varias vezes,\\nmas a ultima parte\\ne sempre a mais dificil...$"
       ],
       "JohtoVictoryRoad_1F_Text_EdgarDefeat": [
-        "O meu sonho acaba aqui outra\\nvez...$"
+        "Meu sonho acaba aqui\\nde novo...$"
       ],
       "JohtoVictoryRoad_1F_Text_AlbertIntro": [
-        "Nao vim ate aqui para perder\\nagora. Essa possibilidade nao\\lexiste!$"
+        "Cheguei longe demais\\npara perder agora!\\pVamos batalhar!$"
       ],
       "JohtoVictoryRoad_1F_Text_AlbertDefeat": [
-        "Impossivel... eu perdi?$"
+        "Impossivel! Eu perdi?$"
       ],
       "JohtoVictoryRoad_1F_Text_AlbertPostBattle": [
-        "Eu perdi aqui...\\pIsso significa que nao tenho\\nqualificacoes para me tornar o\\lCHAMPION...$"
+        "Perdi aqui...\\pTalvez ainda nao esteja\\npronto para ser CAMPEAO.$"
       ],
       "JohtoVictoryRoad_1F_Text_HopeDefeat": [
-        "Seu estilo de batalha e\\nfantastico...$"
+        "Seu jeito de lutar\\ne incrivel!$"
       ],
       "JohtoVictoryRoad_1F_Text_HopePostBattle": [
-        "Parece ter potencial para se\\ntornar o CHAMPION.$"
+        "Voce tem potencial\\npara ser CAMPEAO!$"
       ],
       "JohtoVictoryRoad_1F_Text_QuincyDefeat": [
-        "Esta bem! Muito bem!$"
+        "Muito bem! Voce venceu!$"
       ],
       "JohtoVictoryRoad_1F_Text_KatelynnIntro": [
-        "Nao tenho nada a dizer a\\nninguem que tenha chegado tao\\llonge. Vamos!$"
+        "Quem chegou ate aqui\\nnao precisa de discurso.\\pVamos lutar!$"
       ],
       "JohtoVictoryRoad_1F_Text_KatelynnDefeat": [
-        "Isto e uma desgraca...$"
+        "Que vergonha...$"
       ],
       "JohtoVictoryRoad_1F_Text_KatelynnPostBattle": [
-        "Humph, va em frente. Ve se me\\nimporto.$"
+        "Hmph! Siga em frente.\\nNao ligo!$"
       ]
     },
     "data/maps/JohtoVictoryRoad_B1F/scripts.inc": {
