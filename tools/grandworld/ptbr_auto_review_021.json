@@ -26,7 +26,7 @@
         "A TEAM AQUA tem uma politica de\\nmontagem e dispersao no local\\lda operacao.$"
       ],
       "SlateportCity_Text_DontButtIn": [
-        "Ei, tu ai! Nao te metas!$"
+        "Ei, voce ai! Nao te metas!$"
       ],
       "SlateportCity_Text_RemindsMeOfLongLineForGames": [
         "Uma longa fila?\\pLembra-me as vezes em que me\\nformei para comprar jogos de\\lsucesso...$"
@@ -108,13 +108,13 @@
     },
     "data/maps/SlateportCity_BattleTentLobby/scripts.inc": {
       "SlateportCity_BattleTentLobby_Text_CouldntFindMonForMe": [
-        "Nao consegui encontrar nenhum\\nPokemon que fosse para mim.\\pPensei que devia apresentar\\nqueixa ao tipo de la?\\pE ele nao me ouvia, tipo, hey!\\nQue chatice, meu!\\pEi, tu! Cala-te, sabe? Toma\\nisto!$"
+        "Nao consegui encontrar nenhum\\nPokemon que fosse para mim.\\pPensei que devia apresentar\\nqueixa ao tipo de la?\\pE ele nao me ouvia, tipo, hey!\\nQue chatice, meu!\\pEi, voce! Cala-te, sabe? Toma\\nisto!$"
       ],
       "SlateportCity_BattleTentLobby_Text_ExplainTorment": [
         "E tipo TM41, sabe? E TORMENT,\\nestas a ouvir?\\pNao deixa o outro usar o mesmo\\nmovimento duas vezes seguidas.\\pOuve, nao estou a\\natormentar-te!$"
       ],
       "SlateportCity_BattleTentLobby_Text_BattleEvenWithoutToughMons": [
-        "Pode lutar o quanto quiseres\\naqui, mesmo que nao tenha\\lnenhum POKEMON duro.$"
+        "Pode batalhar o quanto quiseres\\naqui, mesmo que nao tenha\\lnenhum POKEMON duro.$"
       ],
       "SlateportCity_BattleTentLobby_Text_NiceIfMoreSelection": [
         "Nao seria bom se tivessem mais\\numa seleccao?$"
@@ -241,7 +241,7 @@
     },
     "data/maps/SlateportCity_PokemonCenter_1F/scripts.inc": {
       "SlateportCity_PokemonCenter_1F_Text_RaiseDifferentTypesOfPokemon": [
-        "Quer uma dica para lutar?\\pDiria que esta criando\\ndiferentes tipos de POKEMON de\\lforma equilibrada.\\pNao e bom fazer apenas um\\nPOKEMON forte.\\pSe tiver uma desvantagem do\\ntipo, pode nao ter uma chance.$"
+        "Quer uma dica para batalhar?\\pDiria que esta criando\\ndiferentes tipos de POKEMON de\\lforma equilibrada.\\pNao e bom fazer apenas um\\nPOKEMON forte.\\pSe tiver uma desvantagem do\\ntipo, pode nao ter uma chance.$"
       ],
       "SlateportCity_PokemonCenter_1F_Text_TradedMonWithFriend": [
         "Troco POKEMON com meus\\namigos.\\pSe um POKEMON negociado esta\\nsegurando um item, isso me faz\\lduas vezes mais feliz!$"
@@ -255,7 +255,7 @@
         "Estou vendo...$"
       ],
       "SlateportCity_PokemonFanClub_Text_GiveMonMorePokeblocks": [
-        "Hmmm... Nao e mau, mas tambem\\nnao e bom...\\pVoce, o TREINADOR, tem de se\\nesforcar mais para criar este\\lPokemon!\\pPor exemplo, posso sugerir que\\nlhe de mais{POKEBLOCK}S?$"
+        "Hmmm... Nao e mau, mas tambem\\nnao e bom...\\pVoce, o TREINADOR, precisa se\\nesforcar mais para criar este\\lPokemon!\\pPor exemplo, posso sugerir que\\nlhe de mais{POKEBLOCK}S?$"
       ],
       "SlateportCity_PokemonFanClub_Text_NoSpaceForReward": [
         "Meu...\\pSeu POKEMON esta crescendo\\nmuito bem, entao voce merece\\luma recompensa.\\pInfelizmente, nao tem espaco\\npara isto no seu BAG.$"
@@ -516,7 +516,7 @@
         "UMA FORMACAO\\nCHAMADA{STR_VAR_1}esta\\lvisitando minha casa.\\pGostaria de\\ndesafiar{STR_VAR_1}?$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_YouWontBattle": [
-        "Nao vai lutar? Estou\\ndesiludido por nao te poder ver\\la lutar...$"
+        "Nao vai batalhar? Estou\\ndesiludido por nao te poder ver\\la batalhar...$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_KeepItTo3On3": [
         "Optimo, optimo!\\pMas minha casa nao e assim\\ntao resistente.\\pPosso pedir-lhe para baixar\\npara um jogo de 3 contra 3?$"
