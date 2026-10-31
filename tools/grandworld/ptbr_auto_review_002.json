@@ -2,129 +2,129 @@
   "asm": {
     "data/maps/MossdeepCity_Gym/scripts.inc": {
       "MossdeepCity_Gym_Text_PrestonDefeat": [
-        "Perdi! Tenho de acalmar o meu\\nespirito outra vez!$"
+        "Perdi! Preciso recuperar\\nminha concentracao!$"
       ],
       "MossdeepCity_Gym_Text_PrestonPostBattle": [
-        "A perda indecisa. E o meu aviso\\npara ti.$"
+        "Uma derrota inesperada...\\nPreciso aprender com ela!$"
       ],
       "MossdeepCity_Gym_Text_VirgilIntro": [
-        "Deixa-me ver o teu talento!$"
+        "Deixe-me ver\\no seu talento!$"
       ],
       "MossdeepCity_Gym_Text_VirgilDefeat": [
-        "Voce possui um talento\\nespetacular!$"
+        "Seu talento e incrivel!$"
       ],
       "MossdeepCity_Gym_Text_BlakeDefeat": [
-        "As minhas habilidades de luta\\nPOKEMON tambem estao fora de\\lsincronia!$"
+        "Minhas tecnicas de batalha\\ntambem perderam o ritmo!$"
       ],
       "MossdeepCity_Gym_Text_HannahIntro": [
-        "Quando perderes para mim, nao\\nsejas muito dura contigo mesma.\\pNao e que sejas fraco. Sou\\ndemasiado forte!$"
+        "Nao fique triste\\nquando perder para mim!\\pNao e que voce seja fraco.\\nEu e que sou muito forte!$"
       ],
       "MossdeepCity_Gym_Text_HannahDefeat": [
-        "Es demasiado forte!$"
+        "Voce e forte demais!$"
       ],
       "MossdeepCity_Gym_Text_HannahPostBattle": [
-        "Nao me vou rebaixar por perder.\\nSo preciso de treinar mais.\\pPensamento positivo, esse e o\\nmeu ponto forte!$"
+        "Uma derrota nao vai\\nme deixar desanimada!\\pVou continuar treinando.\\nPreciso pensar positivo!$"
       ],
       "MossdeepCity_Gym_Text_SamanthaIntro": [
-        "Vejo o teu futuro...\\pSe me conseguires vencer, eu\\ndigo-te o teu futuro!$"
+        "Consigo ver seu futuro...\\pSe me vencer,\\neu conto o que vi!$"
       ],
       "MossdeepCity_Gym_Text_SamanthaDefeat": [
-        "Eu rendo-me!$"
+        "Eu me rendo!$"
       ],
       "MossdeepCity_Gym_Text_MauraIntro": [
-        "As estradas que percorreste...\\nO que voce experimentou...\\pVem ter comigo com tudo o que\\naprendeste!$"
+        "Pense nos caminhos\\nque voce percorreu.\\pUse tudo o que aprendeu\\ne venha me enfrentar!$"
       ],
       "MossdeepCity_Gym_Text_MauraDefeat": [
-        "Percorreste um caminho de\\ngrandeza!$"
+        "Voce percorreu\\num caminho incrivel!$"
       ],
       "MossdeepCity_Gym_Text_MauraPostBattle": [
-        "Um futuro brilhante aguarda\\naqueles que trabalharam\\ldiligentemente.\\pPara aqueles que lazed ocioso,\\nha apenas desespero no fim.\\pO que vai, volta...$"
+        "Quem se esforca tem\\num futuro brilhante!\\pQuem fica parado\\nnao chega a lugar nenhum.\\pTudo que vai, volta!$"
       ],
       "MossdeepCity_Gym_Text_SylviaIntro": [
-        "Mesmo em risco de vida, vou\\nganhar esta batalha!$"
+        "Vou vencer esta batalha\\ncuste o que custar!$"
       ],
       "MossdeepCity_Gym_Text_SylviaDefeat": [
-        "O que fazes... Apavora-me...$"
+        "Sua forca me assusta...$"
       ],
       "MossdeepCity_Gym_Text_SylviaPostBattle": [
-        "Como te atreves a vencer-me...\\pNao sera culpa minha se algo\\nhorrivel te acontecer...$"
+        "Como ousou me derrotar?\\pTalvez voce tenha\\nmuita sorte pela frente...$"
       ],
       "MossdeepCity_Gym_Text_NateIntro": [
-        "Hohoho.\\pPrecisas que te mostre o quao\\ntenaz o tipo PSYCHIC pode ser.$"
+        "Ho ho ho!\\pVou mostrar como\\no tipo PSYCHIC e resistente!$"
       ],
       "MossdeepCity_Gym_Text_NateDefeat": [
-        "Oh! Ora, ora! Seu estilo de\\nbatalha e fantastico!$"
+        "Ora, ora!\\nQue estilo de batalha incrivel!$"
       ],
       "MossdeepCity_Gym_Text_NatePostBattle": [
-        "Nao deixo que me derrote, por\\nmuito mau que seja.$"
+        "Preciso treinar mais\\npara nao perder assim!$"
       ],
       "MossdeepCity_Gym_Text_KathleenIntro": [
-        "Deixa-me mostrar-te um momento\\nhorrivel e horrivel!$"
+        "Prepare-se para\\num duelo assustador!$"
       ],
       "MossdeepCity_Gym_Text_KathleenDefeat": [
-        "Nao!$"
+        "Nao! Eu perdi!$"
       ],
       "MossdeepCity_Gym_Text_KathleenPostBattle": [
-        "A tua vitalidade e contagiosa!\\nAfasta-te de mim, depressa!$"
+        "Sua energia e contagiante!\\pFique longe de mim!$"
       ],
       "MossdeepCity_Gym_Text_CliffordIntro": [
-        "Posso ter ultrapassado o meu\\nauge, mas sugiro que nao sejas\\lcondescendente comigo.$"
+        "Talvez meus melhores dias\\ntenham ficado para tras.\\pMas nao me subestime!$"
       ],
       "MossdeepCity_Gym_Text_CliffordDefeat": [
-        "Ah, voce transborda com o poder\\nda juventude!$"
+        "Voce tem muita\\nenergia da juventude!$"
       ],
       "MossdeepCity_Gym_Text_CliffordPostBattle": [
-        "Parece que nao consegui superar\\na tua energia juvenil.$"
+        "Nao consegui vencer\\nsua energia juvenil!$"
       ],
       "MossdeepCity_Gym_Text_MaceyIntro": [
-        "Nao vais chegar ao fim! Nao se\\neu puder evitar!$"
+        "Nao vai chegar ate o fim!\\nNao enquanto eu estiver aqui!$"
       ],
       "MossdeepCity_Gym_Text_MaceyDefeat": [
-        "Como pudeste ser tao\\nridiculamente forte?$"
+        "Como voce consegue\\nser tao forte?$"
       ],
       "MossdeepCity_Gym_Text_MaceyPostBattle": [
-        "Humph! Voce pode ser forte, mas\\nvoce nao e adequado para o tipo\\lPSYCHIC!\\pA forma como combates e brutal!$"
+        "Hmph! Voce e forte,\\nmas seu estilo e bruto!\\pAinda tem muito a aprender\\nsobre o tipo PSYCHIC!$"
       ],
       "MossdeepCity_Gym_Text_NicholasIntro": [
-        "Escreveu! Prova o meu super\\nPOKEMON poder de combate duro!$"
+        "Prepare-se!\\pVou mostrar o poder\\ndos meus POKEMON!$"
       ],
       "MossdeepCity_Gym_Text_NicholasDefeat": [
-        "Oh! Feito!$"
+        "Ah! Acabou tudo!$"
       ],
       "MossdeepCity_Gym_Text_NicholasPostBattle": [
-        "Muito bem! Acho que vou\\ndesenvolver um poder POKEMON\\linvencivel a seguir.$"
+        "Vou continuar treinando\\nate dominar um poder\\nPOKEMON imbatavel!$"
       ],
       "MossdeepCity_Gym_Text_RegisteredTateAndLiza": [
-        "Registrado GINASIO LEADERS TATE\\n& LIZA no POKeNAV.$"
+        "TATE e LIZA foram\\nregistrados no POKENAV!$"
       ]
     },
     "data/maps/OlivineCity_Gym/scripts.inc": {
       "OlivineCity_Gym_Text_Gent2": [
-        "Impressionante! Voce deve\\ncontinuar sua viagem para\\llugares diferentes.\\pJa que podes usar o SURF,\\nporque nao experimentas no LAKE\\lOF RAGE?$"
+        "Impressionante!\\pContinue explorando\\nlugares diferentes.\\pSe ja pode usar SURF,\\nvisite o LAGO DA FURIA!$"
       ],
       "OlivineCity_Gym_Text_JasmineBetterTrainer": [
-        "...Es melhor treinador do que\\neu, em habilidade e bondade.\\pDe acordo com as regras da\\nLEAGUE, confiro-lhe este mal.$"
+        "Voce e um TREINADOR\\nmelhor do que eu.\\pPelas regras da LIGA,\\nreceba esta INSIGNIA!$"
       ],
       "OlivineCity_Gym_Text_ReceivedMineralBadge": [
-        "{PLAYER}recebeu MINERALBADGE.$"
+        "{PLAYER} recebeu\\nMINERALBADGE!$"
       ],
       "OlivineCity_Gym_Text_JasmineIronTailSpeech": [
-        "Voce poderia usar esse TM para\\nensinar IRON TAIL.$"
+        "Esta TM ensina\\no golpe IRON TAIL.$"
       ],
       "OlivineCity_Gym_Text_JasmineGoodLuck": [
-        "Hum... Nao sei como dizer isto,\\nmas boa sorte...$"
+        "Bem... Eu nao sei\\nmuito bem o que dizer...\\pBoa sorte!$"
       ],
       "OlivineCity_Gym_Text_JasmineRematchText": [
-        "Parabens, JOHTO CHAMPION.\\pTornaste-te tao forte...\\pPergunto-me se melhorei.\\pGostaria de testar isso?\\pQueres ter uma revanche comigo?$"
+        "Parabens, CAMPEAO DE JOHTO!\\pVoce ficou muito forte.\\pSera que eu melhorei?\\nVamos descobrir!\\pQuer uma revanche?$"
       ],
       "OlivineCity_Gym_Text_JasmineRematchDefeatText": [
-        "...Es melhor treinador do que\\neu, em habilidade e bondade.$"
+        "Voce e melhor do que eu\\ne tem um grande coracao.$"
       ],
       "OlivineCity_Gym_Text_JasmineRematchPostText": [
-        "Obrigado pela batalha.\\pVou continuar a treinar. Por\\nfavor, visite-me novamente\\lquando quiser...$"
+        "Obrigada pela batalha!\\pVou continuar treinando.\\nVolte quando quiser!$"
       ],
       "OlivineCity_Gym_Text_JasmineRematchDeclineText": [
-        "Eu compreendo. Por favor, volta\\nquando quiseres lutar...$"
+        "Entendo...\\nVolte quando quiser lutar!$"
       ]
     },
     "data/maps/PetalburgCity_Gym/scripts.inc": {
