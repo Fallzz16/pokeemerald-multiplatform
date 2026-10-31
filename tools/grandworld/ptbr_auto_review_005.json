@@ -10,7 +10,7 @@
     },
     "data/maps/Route22_Frlg/scripts.inc": {
       "Route22_Text_EarlyRivalDefeat": [
-        "Awww! Tiveste sorte!$"
+        "Awww! Teve sorte!$"
       ],
       "Route22_Text_LateRivalDefeat": [
         "O que?\\pFui descuidado com voce!$"
@@ -160,7 +160,7 @@
         "Nao! Nao tenha tanto frio!\\pVa la, precisa ajudar um tipo\\nem apuros!\\pO que me diz, chefe? Por favor?\\nEsta bem? Muito bem!$"
       ],
       "Route25_SeaCottage_Text_NoPleaseBeautiful": [
-        "Nao! Nao tenha tanto frio!\\pVa la, precisa ajudar um tipo\\nem apuros!\\pO que dizes, linda? Por favor?\\nEsta bem? Muito bem!$"
+        "Nao! Nao tenha tanto frio!\\pVa la, precisa ajudar um tipo\\nem apuros!\\pO que diz, linda? Por favor?\\nEsta bem? Muito bem!$"
       ],
       "Route25_SeaCottage_Text_YouveGotTooMuchStuff": [
         "Tem demasiadas coisas!$"
@@ -183,7 +183,7 @@
         "Gaah! A vida e ainda mais dura!$"
       ],
       "Route26_Text_CooltrainerfJoyceSeen": [
-        "Ja que chegaste tao longe,\\ndeves ser bom.\\pVou dar a esta batalha tudo o\\nque tenho!$"
+        "Ja que chegou tao longe,\\ndeves ser bom.\\pVou dar a esta batalha tudo o\\nque tenho!$"
       ],
       "Route26_Text_CooltrainerfJoyceBeaten": [
         "Nao! Nao acredito nisto!$"
@@ -298,7 +298,7 @@
     },
     "data/maps/Route28_House/scripts.inc": {
       "Route28House_Text_Celebrity1": [
-        "Meu Deus. Encontraste-me.\\pPor favor, nao contes a ninguem\\nsobre mim.\\pDou-te isto por guardares o meu\\nsegredo. Por favor?$"
+        "Meu Deus. Encontrou-me.\\pPor favor, nao contes a ninguem\\nsobre mim.\\pDou-te isto por guardares o meu\\nsegredo. Por favor?$"
       ],
       "Route28House_Text_Celebrity2": [
         "E dificil ser uma celebridade.\\pPara onde quer que va, as\\npessoas perseguem-me.\\pSo quero ficar sozinha...$"
@@ -328,7 +328,7 @@
         "Ja reparaste nas arvores finas\\na beira da estrada?\\pOuvi dizer que podem ser\\ncortados por um movimento\\lespecial POKEMON.$"
       ],
       "Route2_ViridianForest_NorthEntrance_Text_CanCancelEvolution": [
-        "Conheces a tecnica da evolucao?\\pQuando um POKEMON esta\\nevoluir, pode parar o processo.\\pE uma tecnica para criar\\nPOKEMON como eles sao.$"
+        "Conhece a tecnica da evolucao?\\pQuando um POKEMON esta\\nevoluir, pode parar o processo.\\pE uma tecnica para criar\\nPOKEMON como eles sao.$"
       ]
     },
     "data/maps/Route2_ViridianForest_SouthEntrance_Frlg/scripts.inc": {
