@@ -14,7 +14,7 @@
         "Uh... Isso nao se parece muito\\ncom um MAGIKARP.$"
       ],
       "Route12_FishingHouse_Text_NoRoomForGift": [
-        "Nao!\\pTinha um presente para ti, mas\\nnao tens espaco para isso.$"
+        "Nao!\\pTenho um presente para voce,\\nmas falta espaco na sua BOLSA.$"
       ],
       "Route12_FishingHouse_Text_MostGiganticMagikarpXSize": [
         "O MAGIKARP mais gigantesco que\\nja testemunhei...\\p{STR_VAR_3}!$"
@@ -34,7 +34,7 @@
         "O SNORLAX acalmou-se. Deu um\\nenorme bocejo... E voltou para\\las montanhas.$"
       ],
       "Text_WantToUsePokeFlute": [
-        "Queres usar o POKe FLUTE?$"
+        "Quer usar a POKE FLUTE?$"
       ],
       "Text_PlayedPokeFlute": [
         "{PLAYER}Tocava o POKe FLUTE.$"
@@ -101,7 +101,7 @@
         "{PLAYER}recebeu TM27 da menina.$"
       ],
       "Route12_NorthEntrance_2F_Text_DontHaveRoomForThis": [
-        "Nao tens espaco para isto.$"
+        "Nao ha espaco para isso.$"
       ],
       "Route12_NorthEntrance_2F_Text_TheresManFishing": [
         "Vamos ver o que os binoculos\\ntem para mostrar...\\pHa um homem a pescar!$"
@@ -136,7 +136,7 @@
         "Muito bem! Ganhaste mesmo!$"
       ],
       "Route13_Text_GwenPostBattle": [
-        "Tens de fazer uma batalha\\nPOKEMON para os endurecer.$"
+        "Voce precisa batalhar\\npara fortalecer seus POKEMON.$"
       ],
       "Route13_Text_AlmaIntro": [
         "Encontrei CARBOS numa caverna\\numa vez enquanto estava a\\lfalar.$"
