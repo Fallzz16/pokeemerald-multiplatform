@@ -10,7 +10,7 @@
     },
     "data/maps/SSAnne_2F_Room4_Frlg/scripts.inc": {
       "SSAnne_2F_Room4_Text_LamarIntro": [
-        "Qual voce acha mais digno, um\\nPOKEMON forte ou raro?$"
+        "Voce prefere um POKEMON\\nforte ou um raro?$"
       ],
       "SSAnne_2F_Room4_Text_LamarDefeat": [
         "Tenho que admitir: voce venceu!$"
@@ -30,7 +30,7 @@
     },
     "data/maps/SSAnne_2F_Room6_Frlg/scripts.inc": {
       "SSAnne_2F_Room6_Text_ManyPeopleGetSeasick": [
-        "Ouvi dizer que muitas pessoas\\nficam enjoadas.$"
+        "Muita gente fica enjoada\\nquando viaja de navio.$"
       ]
     },
     "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc": {
@@ -97,7 +97,7 @@
         "Nao! Voce esta sem espaco!$"
       ],
       "SSAnne_CaptainsOffice_Text_YuckShouldntHaveLooked": [
-        "Eca! Nao devia ter olhado!$"
+        "Eca! Melhor nao ter olhado!$"
       ]
     },
     "data/maps/SSAnne_Deck_Frlg/scripts.inc": {
@@ -111,13 +111,13 @@
         "Urgh... Nao estou bem...\\pFiquei enjoado, entao vim\\ntomar um ar...$"
       ],
       "SSAnne_Deck_Text_EdmondIntro": [
-        "Amigo!\\pVamos fazer um joguinho!$"
+        "Ei, amigo!\\pVamos nos divertir batalhando!$"
       ],
       "SSAnne_Deck_Text_EdmondDefeat": [
         "Voce e impressionante!$"
       ],
       "SSAnne_Deck_Text_EdmondPostBattle": [
-        "Quantos tipos de POKEMON voce\\nacha que existem neste mundo\\lgrande?$"
+        "Quantos tipos de POKEMON\\nsera que existem neste\\lmundo enorme?$"
       ],
       "SSAnne_Deck_Text_TrevorIntro": [
         "Ola! Voce esta enjoado?$"
@@ -140,7 +140,7 @@
         "Estou tao ocupado que\\nestou ficando tonto!\\lPreciso de espaco!$"
       ],
       "SSAnne_Kitchen_Text_PeelSpudsEveryDay": [
-        "Hum-de-hum-de-ho...\\pDescasco batatas todos os dias!\\nHum-hum...$"
+        "La la la...\\pDescasco batatas todo dia!\\nLa la la...$"
       ],
       "SSAnne_Kitchen_Text_HearAboutSnorlaxItsAGlutton": [
         "Ja ouviu falar de SNORLAX?\\nEle come demais!\\pNenhum outro POKEMON come\\ne dorme tanto quanto ele!$"
@@ -149,7 +149,7 @@
         "Snif... Snif...\\pSo me deixam descascar cebolas...\\nSnif...$"
       ],
       "SSAnne_Kitchen_Text_SalmonDuSalad": [
-        "Salmon du Salad!\\pOs convidados podem reclamar\\nque e peixe novamente, no\\lentanto!$"
+        "Salmao com salada!\\pSera que os convidados\\nvao reclamar do peixe\\lde novo?$"
       ],
       "SSAnne_Kitchen_Text_EelsAuBarbecue": [
         "Enguias ao churrasco!\\pReceio que os convidados\\nvao reclamar!$"
