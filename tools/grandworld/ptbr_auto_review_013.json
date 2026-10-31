@@ -35,7 +35,7 @@
     },
     "data/maps/FortreeCity_House2/scripts.inc": {
       "FortreeCity_House2_Text_HiddenPowersArousedByNature": [
-        "Pessoas... POKEMON...\\pSeus poderes ocultos sao\\ndespertados por viver em\\lambientes naturais...$"
+        "Pessoas... POKEMON...\\pSeus poder ocultos sao\\ndespertados por viver em\\lambientes naturais...$"
       ],
       "FortreeCity_House2_Text_CoinInWhichHand": [
         "Deixa esta velha ver se o seu\\npoder oculto acordou...\\pTenho uma moeda na mao.\\pAgora, me diga, dei-lhe a mao\\ndireita? Ou a esquerda?$"
@@ -270,7 +270,7 @@
         "Esta bem. Esperamos que\\nparticipe no futuro.$"
       ],
       "Route35NationalParkGate_Text_FirstMonCantBattle": [
-        "Uh-oh... O primeiro POKEMON do\\nteu partido nao pode lutar.\\pPor favor, troque-o com o\\nPOKEMON que voce quer usar,\\lentao venha me ver.$"
+        "Uh-oh... O primeiro POKEMON do\\nteu partido nao pode batalhar.\\pPor favor, troque-o com o\\nPOKEMON que voce quer usar,\\lentao venha me ver.$"
       ],
       "Route35NationalParkGate_Text_MakeRoom": [
         "Uh-oh... Tanto sua festa como\\no seu PC BOX estao cheios.\\pNao tem espaco para por o\\ninsecto POKEMON que apanha.\\pPor favor, arranjem espaco na\\nvossa festa ou no seu PC BOX\\le venham ter comigo.$"
@@ -539,7 +539,7 @@
     },
     "data/maps/GoldenrodCity_PokemonCenter/scripts.inc": {
       "GoldenrodCity_PokemonCenter_GrannyText": [
-        "Adoro viver na cidade grande!\\nMudei-me para ca quando era\\ljovem, como tu!$"
+        "Adoro viver na cidade grande!\\nMudei-me para ca quando era\\ljovem, como voce!$"
       ],
       "GoldenrodCity_PokemonCenter_GameboyKidText2": [
         "Disse ao meu irmao que o\\ntelhado e feito de ouro\\lverdadeiro. Ele vai acreditar\\lem tudo!$"
@@ -672,7 +672,7 @@
         "Hahaha!\\pQue chato. Foi muito facil\\ntomar conta deste lugar!\\pVa la, diverte-me!$"
       ],
       "GoldenrodCity_RadioTower_2F_Text_GruntF2Beaten": [
-        "Quem e tu?$"
+        "Quem e voce?$"
       ],
       "GoldenrodCity_RadioTower_2F_Text_GruntF2After": [
         "Se me bateres, nao me esqueco!$"
@@ -719,7 +719,7 @@
         "Estou acabado!$"
       ],
       "GoldenrodCity_RadioTower_3F_Text_ScientistMarcSeen": [
-        "Uma crianca desconhecida a\\nvaguear aqui?\\pQuem e tu?$"
+        "Uma crianca desconhecida a\\nvaguear aqui?\\pQuem e voce?$"
       ],
       "GoldenrodCity_RadioTower_3F_Text_ScientistMarcBeaten": [
         "Tch! Levei-te demasiado a\\nserio!$"
@@ -771,7 +771,7 @@
         "Esta bem, esta bem. Eu digo-te\\nonde ele esta.$"
       ],
       "GoldenrodCity_RadioTower_5F_Text_ExecutiveF1After": [
-        "{PLAYER}Nao e?\\pUm pirralho como tu nao vai\\napreciar a magnificencia do\\lTEAM ROCKET.\\pQue pena. Admiro seu poder.$"
+        "{PLAYER}Nao e?\\pUm pirralho como voce nao vai\\napreciar a magnificencia do\\lTEAM ROCKET.\\pQue pena. Admiro seu poder.$"
       ]
     },
     "data/maps/GoldenrodCity_TrainStation/scripts.inc": {
