@@ -29,6 +29,10 @@ on:
       - 'tools/grandworld/ptbr_auto_review_*.json'
       - 'tools/grandworld/audit_ptbr_coverage.py'
       - 'tools/grandworld/audit_ptbr_draft_quality.py'
+      - 'tools/grandworld/build_ptbr_review_queue.py'
+      - 'tools/grandworld/ptbr_editorial_stage18_part*.json'
+      - 'tools/grandworld/tests/test_ptbr_editorial_stage18.py'
+      - 'tools/grandworld/tests/test_build_ptbr_review_queue.py'
       - 'tools/grandworld/ptbr_reviewed_auto7.json'
       - 'tools/grandworld/ptbr_reviewed_stage8.json'
       - 'tools/grandworld/ptbr_reviewed_stage9.json'
@@ -110,6 +114,7 @@ jobs:
           PY
           python3 grandworld/tools/grandworld/audit_ptbr_coverage.py world --output ptbr-coverage.json
           python3 grandworld/tools/grandworld/audit_ptbr_draft_quality.py --output ptbr-draft-quality.json
+          python3 grandworld/tools/grandworld/build_ptbr_review_queue.py --output ptbr-review-queue.json
           python3 - <<'PY'
           import json
           from pathlib import Path
@@ -227,6 +232,7 @@ jobs:
             ptbr-report.json
             ptbr-coverage.json
             ptbr-draft-quality.json
+            ptbr-review-queue.json
             ptbr-budget.json
             ptbr-evidence.json
             ptbr-m8-shadow.json
