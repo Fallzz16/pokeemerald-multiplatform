@@ -19,9 +19,9 @@ nao contam.
 - Viridian Gym (18): GIOVANNI, fim da EQUIPE ROCKET, treinadores,
   TM26 e revanche;
 - Mossdeep Space Center (37): lancamentos, pesquisadores,
-  STEVEN e cientistas, combustivel e invasões de NPCs;
+  STEVEN e cientistas, combustivel e invasoes de NPCs;
 - Mt. Chimney e estacao de teleferico (34): METEORITE, plano
-  MAGMA, TRABITHA/TABITHA, interacoes e rematches.
+  MAGMA, TABITHA, interacoes e rematches.
 
 Os dados realmente modificados estao em
 `ptbr_auto_review_002.json` e `ptbr_auto_review_016.json`.
