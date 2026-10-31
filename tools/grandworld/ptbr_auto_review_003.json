@@ -19,7 +19,7 @@
     },
     "data/maps/Route10_Frlg/scripts.inc": {
       "Route10_Text_MarkIntro": [
-        "Vieste ate aqui? Talvez tambem\\nsejas um POKeMANIAC? Queres ver\\la minha coleccao?$"
+        "veio ate aqui? Talvez tambem\\nsejas um POKeMANIAC? quer ver\\la minha coleccao?$"
       ],
       "Route10_Text_MarkDefeat": [
         "Humph. Nao estou zangado!$"
@@ -75,7 +75,7 @@
         "Os tipos de POKEMON combinam de\\nforma diferente entre si.\\pCada tipo e mais forte do que\\nalguns tipos e mais fraco do\\lque outros.$"
       ],
       "Route10_PokemonCenter_1F_Text_GreatHereYouGo": [
-        "Optimo! Apanhaste ou\\npossuiste{STR_VAR_3}Tipos de\\lPokemon!\\pParabens! Aqui esta!$"
+        "Optimo! capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPokemon!\\pParabens! Aqui esta!$"
       ],
       "Route10_PokemonCenter_1F_Text_ReceivedEverstoneFromAide": [
         "{PLAYER}Recebeu o EVERSTONE da\\nAIDE.$"
@@ -86,7 +86,7 @@
     },
     "data/maps/Route110_TrickHouseEnd/scripts.inc": {
       "Route110_TrickHouseEnd_Text_YouveMadeItToMe": [
-        "Aak! Conseguiste? Hmmm... Es\\nesperto!$"
+        "Aak! conseguiu? Hmmm... Es\\nesperto!$"
       ],
       "Route110_TrickHouseEnd_Text_AllNightToPlantTrees": [
         "Levei a noite toda a plantar\\naquelas arvores...\\pVoce e quase igual em grandeza\\npor um, dois, tres, quatro,\\lcinco, seis lugares!$"
@@ -116,7 +116,7 @@
         "O que devo fazer? A minha fonte\\nde ideias para truques secou...\\pTalvez esteja na hora de fazer\\numa viagem pelo pais numa\\lmissao para criar novos\\ltruques...$"
       ],
       "Route110_TrickHouseEnd_Text_NoRoomInPC": [
-        "O que? Nao ha espaco no teu PC?\\nO que devo fazer com isso?\\pEu gostaria de poder dizer\\nisso, mas eu sou muito gentil e\\lcarinhoso, entao volte mais\\ltarde!$"
+        "O que? Nao ha espaco no seu PC?\\nO que devo fazer com isso?\\pEu gostaria de poder dizer\\nisso, mas eu sou muito gentil e\\lcarinhoso, entao volte mais\\ltarde!$"
       ],
       "Route110_TrickHouseEnd_Text_LeavingOnJourney": [
         "... ... ... ... ... ...\\pVou partir numa viagem de\\ndescoberta. Uma busca em busca\\lde novos truques.\\pDesejo que um dia me visites e\\nme entretenhas novamente.\\pE agora, adeus!$"
@@ -125,10 +125,10 @@
         "Esta bem! Mereceste esta\\nrecompensa!$"
       ],
       "Route110_TrickHouseEnd_Text_NoRoomForThis": [
-        "O que? Nao tens espaco para\\nisto? Que tipo de itens\\lcarrega?\\pMas tudo bem, ja que me\\ncontactaste, a tua recompensa\\lestara comigo ate mais tarde.$"
+        "O que? Nao tem espaco para\\nisto? Que tipo de itens\\lcarrega?\\pMas tudo bem, ja que me\\ncontactaste, a sua recompensa\\lestara comigo ate mais tarde.$"
       ],
       "Route110_TrickHouseEnd_Text_MakeNewTricksToStumpYou": [
-        "Tira esse sorriso presuncoso da\\ntua cara! E muito cedo para\\lpensar que ganhaste!\\pFarei novos truques para te\\nenganar. So podes gozar comigo\\lquando acabares.\\pVolte para a proxima parcela\\nemocionante!$"
+        "Tira esse sorriso presuncoso da\\ntua cara! E muito cedo para\\lpensar que venceu!\\pFarei novos truques para te\\nenganar. So pode gozar comigo\\lquando acabares.\\pVolte para a proxima parcela\\nemocionante!$"
       ],
       "Route110_TrickHouseEnd_Text_YoureIgnoringMe": [
         "Agora, agora! Estas a\\nignorar-me agora? Agora isso,\\leu considero de partir o\\lcoracao!$"
@@ -178,7 +178,7 @@
         "Ah, e voce! Estas aqui para\\naceitar a recompensa de antes,\\lnao e verdade? Sim, estou!\\pAqui! Eu dou-to agora!$"
       ],
       "Route110_TrickHouseEntrance_Text_DidYouNotComeToClaimReward": [
-        "Hah? Nao vieste pedir a tua\\nrecompensa?$"
+        "Hah? Nao veio pedir a sua\\nrecompensa?$"
       ],
       "Route110_TrickHousePuzzle_Text_FoundAScroll": [
         "{PLAYER}Encontrei um\\npergaminho.$"
@@ -224,7 +224,7 @@
         "Depois daquela batalha, ainda\\nestou mais confuso!$"
       ],
       "Route110_TrickHousePuzzle2_Text_TedPostBattle": [
-        "Podes apertar todos os botoes\\npor mim?$"
+        "pode apertar todos os botoes\\npor mim?$"
       ],
       "Route110_TrickHousePuzzle2_Text_PaulDefeat": [
         "Tambem es bom a lutar?$"
@@ -241,7 +241,7 @@
         "Continuo a voltar para este\\nmesmo lugar!$"
       ],
       "Route110_TrickHousePuzzle3_Text_JustinDefeat": [
-        "Ja estou com problemas, e\\ndepois tens de me vencer? Nao e\\ljusto!$"
+        "Ja estou com problemas, e\\ndepois tem de me vencer? Nao e\\ljusto!$"
       ],
       "Route110_TrickHousePuzzle3_Text_JustinPostBattle": [
         "Esta cheio de portas aqui! Esta\\nmuito pequeno e escuro aqui!\\lSocorro!$"
@@ -282,7 +282,7 @@
         "Posso empurrar pedras, mas nao\\nconsigo resolver o puzzle...$"
       ],
       "Route110_TrickHousePuzzle4_Text_YujiPostBattle": [
-        "Nao e suficientemente bom para\\nser forte... Tens de usar a\\lcabeca. Se inteligente!$"
+        "Nao e suficientemente bom para\\nser forte... tem de usar a\\lcabeca. Se inteligente!$"
       ],
       "Route110_TrickHousePuzzle4_Text_PaulaPostBattle": [
         "Alguem chegou ao fim?$"
@@ -313,18 +313,18 @@
         "Acho que perdi porque estava a\\ntentar enganar.$"
       ],
       "Route110_TrickHousePuzzle6_Text_SebastianIntro": [
-        "Estou a ficar tonto com estas\\nportas rotativas...$"
+        "estou ficando tonto com estas\\nportas rotativas...$"
       ],
       "Route110_TrickHousePuzzle6_Text_SebastianDefeat": [
         "Esta tudo a girar. Nao aguento\\nmais isto...$"
       ],
       "Route110_TrickHousePuzzle6_Text_SebastianPostBattle": [
-        "Nao pareces nada afectado. Ou\\ntens a tua cara de poquer\\lligada?$"
+        "Nao pareces nada afectado. Ou\\ntens a sua cara de poquer\\lligada?$"
       ]
     },
     "data/maps/Route110_TrickHousePuzzle7/scripts.inc": {
       "Route110_TrickHousePuzzle7_Text_JoshuaDefeat": [
-        "Aiyeeh! Es demasiado forte!\\nComo e que consegues?$"
+        "Aiyeeh! Es demasiado forte!\\nComo e que consegue?$"
       ],
       "Route110_TrickHousePuzzle7_Text_JoshuaPostBattle": [
         "Quem me dera poder aparecer e\\ndesaparecer como se fosse fumo.$"
@@ -394,16 +394,16 @@
     },
     "data/maps/Route111_OldLadysRestStop/scripts.inc": {
       "Route111_OldLadysRestStop_Text_RestUpHere": [
-        "Oh, querida, querida. O teu\\nPokemon nao esta exausto?\\pSe quiseres, descansa aqui. E\\numa boa ideia! Devias fazer\\lisso.$"
+        "Oh, querida, querida. O seu\\nPokemon nao esta exausto?\\pSe quiseres, descansa aqui. E\\numa boa ideia! devia fazer\\lisso.$"
       ],
       "Route111_OldLadysRestStop_Text_TakeYourTimeRestUp": [
         "Isso mesmo. Fique a vontade e\\ndescanse!$"
       ],
       "Route111_OldLadysRestStop_Text_StillTiredTakeAnotherRest": [
-        "Oh, querida, querida. O seu\\nPOKEMON ainda esta cansado?\\pDevias descansar mais um pouco.\\nE uma boa ideia. Devias fazer\\lisso.$"
+        "Oh, querida, querida. O seu\\nPOKEMON ainda esta cansado?\\pDevias descansar mais um pouco.\\nE uma boa ideia. devia fazer\\lisso.$"
       ],
       "Route111_OldLadysRestStop_Text_DontNeedToBeShy": [
-        "A serio? Nao precisas de ser\\ntimido.$"
+        "A serio? Nao precisa de ser\\ntimido.$"
       ]
     },
     "data/maps/Route111_WinstrateFamilysHouse/scripts.inc": {
@@ -422,7 +422,7 @@
         "Por aqui, por favor.$"
       ],
       "Route112_CableCarStation_Text_RideAnotherTime": [
-        "Por favor, venha connosco\\nnoutra altura.$"
+        "Por favor, venha conosco\\nnoutra altura.$"
       ]
     },
     "data/maps/Route113_GlassWorkshop/scripts.inc": {
@@ -433,10 +433,10 @@
         "Coleccionaste cinzas? Deixa-me\\nver.$"
       ],
       "Route113_GlassWorkshop_Text_NotEnoughAshNeedX": [
-        "Hmmm... Nao ha cinzas\\nsuficientes aqui. Nao consigo\\lfazer vidro com isto.\\pVejamos...{STR_VAR_1}E o numero\\nde passos que vais precisar de\\landar para eu te fazer um BLUE\\lFLUTE, buff-puff.$"
+        "Hmmm... Nao ha cinzas\\nsuficientes aqui. Nao consigo\\lfazer vidro com isto.\\pVejamos...{STR_VAR_1}E o numero\\nde passos que vai precisar de\\landar para eu te fazer um BLUE\\lFLUTE, buff-puff.$"
       ],
       "Route113_GlassWorkshop_Text_WhichGlassItemWoudYouLike": [
-        "Oh! Tens um monte de cinzas!\\pVou fazer-te uma peca de vidro.\\nQual deles gostarias de beber?$"
+        "Oh! tem um monte de cinzas!\\pVou fazer-te uma peca de vidro.\\nQual deles gostarias de beber?$"
       ],
       "Route113_GlassWorkshop_Text_IsThatTheItemForYou": [
         "A{STR_VAR_1}, buff-puff? E esse\\npara ti?$"
@@ -448,19 +448,19 @@
         "A{STR_VAR_1}E, entao,\\nbuff-puff!\\pEsta bem! Eu faco-o para ti.\\nEspera so um pouco.$"
       ],
       "Route113_GlassWorkshop_Text_NotEnoughAshToMakeItem": [
-        "A{STR_VAR_1}, buff-puff?\\pMas nao ha cinzas suficientes\\npara fazer isso.\\pVejamos...{STR_VAR_2}E o numero\\nde passos que vais precisar de\\landar atraves de cinzas\\lvulcanicas para eu fazer esse\\litem, buff-puff.\\pQue item preferes que faca em\\nvez disso?$"
+        "A{STR_VAR_1}, buff-puff?\\pMas nao ha cinzas suficientes\\npara fazer isso.\\pVejamos...{STR_VAR_2}E o numero\\nde passos que vai precisar de\\landar atraves de cinzas\\lvulcanicas para eu fazer esse\\litem, buff-puff.\\pQue item preferes que faca em\\nvez disso?$"
       ],
       "Route113_GlassWorkshop_Text_AllThatAshButDontWantAnything": [
-        "Coleccionaste todas essas\\ncinzas, mas nao queres nada,\\lbuff-puff?$"
+        "Coleccionaste todas essas\\ncinzas, mas nao quer nada,\\lbuff-puff?$"
       ],
       "Route113_GlassWorkshop_Text_IveFinishedGlassItem": [
         "Ah, eu terminei o\\nseu{STR_VAR_1}Toma-o, bufa.$"
       ],
       "Route113_GlassWorkshop_Text_NoRoomInBag": [
-        "A serio? Nao tens espaco no teu\\nBAG.\\pEu guardo-o, por isso volta\\nmais tarde.$"
+        "A serio? Nao tem espaco no seu\\nBAG.\\pEu guardo-o, por isso volta\\nmais tarde.$"
       ],
       "Route113_GlassWorkshop_Text_NoRoomInPC": [
-        "A serio? Nao tens espaco no teu\\nPC?\\pEu guardo-o, por isso volta\\nmais tarde.$"
+        "A serio? Nao tem espaco no seu\\nPC?\\pEu guardo-o, por isso volta\\nmais tarde.$"
       ],
       "Route113_GlassWorkshop_Text_FunToBlowGlassFlute": [
         "E divertido soprar uma flauta\\nde vidro enquanto o meu chefe\\lfala.\\pHuff-huff! Puff-puff!$"
@@ -479,13 +479,13 @@
         "Sou o FOSSIL MANIAC... Sou um\\ntipo simpatico que adora o\\lFOSSILS...\\pQueres um FOSSIL?\\pMas os FOSSILS por estas bandas\\npertencem-me... Nao para ti...\\pSe voce nao pode suportar ir\\nsem um FOSSIL, olhe em um\\ldeserto onde ha pedras e areia\\lque podem esconder FOSSILS...$"
       ],
       "Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils": [
-        "Encontraste um FOSSIL, nao foi?\\nIsso e tao bom... E tao\\lsonhador...\\pO que vais fazer com esse\\nFOSSIL?\\pPelo que ouvi, o DEVON esta a\\nfazer pesquisas sobre o\\lrelancamento do POKEMON da\\lFOSSILS...\\pAdoro os meus FOSSILS, por isso\\nnunca faria nada assim...$"
+        "Encontraste um FOSSIL, nao foi?\\nIsso e tao bom... E tao\\lsonhador...\\pO que vai fazer com esse\\nFOSSIL?\\pPelo que ouvi, o DEVON esta a\\nfazer pesquisas sobre o\\lrelancamento do POKEMON da\\lFOSSILS...\\pAdoro os meus FOSSILS, por isso\\nnunca faria nada assim...$"
       ],
       "Route114_FossilManiacsTunnel_Text_FossilsAreWonderful": [
         "Os FOSSILS sao tao...\\nmaravilhosos... E tao\\lsonhador...$"
       ],
       "Route114_FossilManiacsTunnel_Text_NotSafeThatWay": [
-        "Oh... Nao e seguro assim...\\pEstava a escavar, sabes...\\nQuando a parede caiu...\\pAcho que ha uma caverna gigante\\npor baixo...\\pMas deixei-o em paz porque acho\\nque nao ha nenhum FOSSILS la...$"
+        "Oh... Nao e seguro assim...\\pEstava a escavar, sabe...\\nQuando a parede caiu...\\pAcho que ha uma caverna gigante\\npor baixo...\\pMas deixei-o em paz porque acho\\nque nao ha nenhum FOSSILS la...$"
       ]
     },
     "data/maps/Route114_LanettesHouse/scripts.inc": {
@@ -548,10 +548,10 @@
     },
     "data/maps/Route119/scripts.inc": {
       "Route119_Text_MayIntro": [
-        "MAY:{PLAYER}{KUN}Onde estavas?\\nEstava a tua procura!\\pQuanto mais forte ficaste?\\nDeixa-me ver por ti!\\pPronto com o teu Pokemon? Claro\\nque estas! Vai!$"
+        "MAY:{PLAYER}{KUN}Onde estavas?\\nEstava a sua procura!\\pQuanto mais forte ficaste?\\nDeixa-me ver por ti!\\pPronto com o seu Pokemon? Claro\\nque estas! Vai!$"
       ],
       "Route119_Text_MayDefeat": [
-        "Achah!{PLAYER}{KUN}Es forte!\\pEstava preocupado que\\nestivesses a lutar com o teu\\ltreino.$"
+        "Achah!{PLAYER}{KUN}Es forte!\\pEstava preocupado que\\nestivesses a lutar com o seu\\ltreino.$"
       ],
       "Route119_Text_BrendanDefeat": [
         "Hmm... Ficaste bastante\\ndecente.$"
@@ -568,13 +568,13 @@
         "Raios... Condenado por uma\\ncrianca...$"
       ],
       "Route119_WeatherInstitute_1F_Text_Grunt4Intro": [
-        "Huh? O que faz aqui um miudo?$"
+        "Huh? O que faz aqui um garoto?$"
       ],
       "Route119_WeatherInstitute_1F_Text_Grunt4Defeat": [
         "Huh? Eu perdi?!$"
       ],
       "Route119_WeatherInstitute_1F_Text_Grunt4PostBattle": [
-        "Oh, nao... Vou apanhar uma\\norelha por perder para uma\\lcrianca...\\pDevia dormir uma sesta na\\ncama...$"
+        "Oh, nao... Vou capturar uma\\norelha por perder para uma\\lcrianca...\\pDevia dormir uma sesta na\\ncama...$"
       ],
       "Route119_WeatherInstitute_1F_Text_EveryoneWentUpstairs": [
         "Enquanto dormia, todos subiram!$"
@@ -597,7 +597,7 @@
         "O nosso plano esta a ser\\nestragado por uma crianca?$"
       ],
       "Route119_WeatherInstitute_2F_Text_Grunt3Defeat": [
-        "Apanhaste-me!$"
+        "capturou-me!$"
       ],
       "Route119_WeatherInstitute_2F_Text_Grunt5Intro": [
         "Nao me digas que tambem andas a\\nprocura daquele tempo?\\pIsso e um nao-nao! Viemos\\nbusca-lo primeiro!$"
@@ -635,7 +635,7 @@
     },
     "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc": {
       "Route11_EastEntrance_2F_Text_GreatHereYouGo": [
-        "Optimo! Apanhaste ou\\npossuiste{STR_VAR_3}Tipos de\\lPokemon!\\pParabens! Aqui esta!$"
+        "Optimo! capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPokemon!\\pParabens! Aqui esta!$"
       ],
       "Route11_EastEntrance_2F_Text_ReceivedItemfinderFromAide": [
         "{PLAYER}recebido o{STR_VAR_2}Da\\nAIDE.$"
@@ -667,7 +667,7 @@
         "Tive uma oportunidade!$"
       ],
       "Route11_Text_JasperPostBattle": [
-        "Nao podes ser um cobarde no\\nmundo de Pokemon!$"
+        "Nao pode ser um cobarde no\\nmundo de Pokemon!$"
       ],
       "Route11_Text_EddieIntro": [
         "Vamos, mas nao facas batota!$"
@@ -771,19 +771,19 @@
     },
     "data/maps/Route124_DivingTreasureHuntersHouse/scripts.inc": {
       "Route124_DivingTreasureHuntersHouse_Text_ThatsAShardIllTradeYou": [
-        "Ola! Isso... Isso e um SHARD!\\nEstou a procura deles!\\pMeu, tens de trocar isso\\ncomigo! Eu dou-te uma coisa\\lboa!$"
+        "Ola! Isso... Isso e um SHARD!\\nEstou a procura deles!\\pMeu, tem de trocar isso\\ncomigo! Eu dou-te uma coisa\\lboa!$"
       ],
       "Route124_DivingTreasureHuntersHouse_Text_WhatDoYouWantToTrade": [
-        "O que queres trocar?$"
+        "O que quer trocar?$"
       ],
       "Route124_DivingTreasureHuntersHouse_Text_YoullTradeShardForStone": [
-        "Vais trocar o\\nteu{STR_VAR_1}para a\\lminha{STR_VAR_2}Entao?$"
+        "vai trocar o\\nteu{STR_VAR_1}para a\\lminha{STR_VAR_2}Entao?$"
       ],
       "Route124_DivingTreasureHuntersHouse_Text_ItsADeal": [
         "Esta feito! Usa isso com\\nsabedoria!$"
       ],
       "Route124_DivingTreasureHuntersHouse_Text_TradeSomethingElse": [
-        "Queres trocar outra coisa?$"
+        "quer trocar outra coisa?$"
       ],
       "Route124_DivingTreasureHuntersHouse_Text_ComeBackIfYouChangeMind": [
         "Nao? Isso e desanimador. Se\\nmudares de ideias, volta.$"
@@ -802,7 +802,7 @@
     },
     "data/maps/Route12_FishingHouse_Frlg/scripts.inc": {
       "Route12_FishingHouse_Text_TakeThisAndFish": [
-        "Grande! Gosto do teu estilo.\\nAcho que podemos ser amigos.\\pToma isto e pesca, jovem amigo!$"
+        "Grande! Gosto do seu estilo.\\nAcho que podemos ser amigos.\\pToma isto e pesca, jovem amigo!$"
       ],
       "Route12_FishingHouse_Text_IfYouCatchBigMagikarpShowMe": [
         "Pescar e um modo de vida! E\\ncomo a melhor poesia.\\pDos mares aos rios, sai e pousa\\no grande, meu amigo.\\pAgora, tenho um pedido.\\pSe apanhares um grande MAGIKARP\\ncom esse ROD, quero ve-lo.\\pPor mais que eu goste de\\npescar, eu tambem adoro ver\\lMAGIKARP gigante.$"
