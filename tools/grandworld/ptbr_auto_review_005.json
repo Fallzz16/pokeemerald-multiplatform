@@ -306,7 +306,7 @@
     },
     "data/maps/Route2_EastBuilding_Frlg/scripts.inc": {
       "Route2_EastBuilding_Text_GreatHereYouGo": [
-        "Optimo! Capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
+        "Otimo! Capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
       ],
       "Route2_EastBuilding_Text_ReceivedHM05FromAide": [
         "{PLAYER}Recebeu HM05 da AIDE.$"
@@ -393,7 +393,7 @@
         "E bom ouvir isso.\\pAgora tambem e um pescador!$"
       ],
       "Route32_Pokecenter_Text_FishingGuruGiveRod": [
-        "Pescar e optimo!\\pSe houver agua, seja o mar ou\\num riacho, experimente o seu\\lROD.$"
+        "Pescar e otimo!\\pSe houver agua, seja o mar ou\\num riacho, experimente o seu\\lROD.$"
       ],
       "Route32_Pokecenter_Text_FishingGuruNo": [
         "Oh, sim. Isso e\\ndecepcionante...$"
@@ -763,7 +763,7 @@
         "Acabei de voltar para OLIVINE.\\pQue tal uma batalha POKEMON?$"
       ],
       "Route39_Text_SailorEugeneAfter": [
-        "Meu POKEMON foi apanhado e\\ncriado no estrangeiro.\\pSao meus companheiros nessas\\nlongas viagens.$"
+        "Meu POKEMON foi capturado e\\ncriado no estrangeiro.\\pSao meus companheiros nessas\\nlongas viagens.$"
       ],
       "Route39_Text_PokefanMDerekSeen": [
         "Este e um bom momento para se\\ngabar sobre meu PIKACHU!$"
