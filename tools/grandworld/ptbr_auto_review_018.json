@@ -569,7 +569,7 @@
         "Que surpresa! Nao tem um, mas\\ndois, fosseis?\\pInfelizmente, minha maquina\\nso pode regenerar um POKEMON de\\lcada vez.\\pGostaria de escolher um dos\\nseus fosseis para regeneracao?$"
       ],
       "RustboroCity_DevonCorp_2F_Text_FossilizedMonBroughtBackToLife": [
-        "Obrigado por esperares!\\pO seu POKEMON fossilizado foi\\ntrazido de volta a vida!\\pO fossil era um antigo\\nPokemon.{STR_VAR_2}Foi!$"
+        "Obrigado por esperar!\\pO seu POKEMON fossilizado foi\\ntrazido de volta a vida!\\pO fossil era um antigo\\nPokemon.{STR_VAR_2}Foi!$"
       ],
       "RustboroCity_DevonCorp_2F_Text_TooManyPokemon": [
         "Tem muitos POKEMON. Nao tem\\nespaco para este.$"
@@ -729,7 +729,7 @@
     },
     "data/maps/SSAnne_1F_Room2_Frlg/scripts.inc": {
       "SSAnne_1F_Room2_Text_TylerIntro": [
-        "Adoro POKEMON! E tu?$"
+        "Adoro POKEMON! E voce?$"
       ],
       "SSAnne_1F_Room2_Text_TylerDefeat": [
         "Uau! E fantastico!$"
