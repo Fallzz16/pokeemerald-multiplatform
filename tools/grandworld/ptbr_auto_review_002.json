@@ -203,85 +203,85 @@
     },
     "data/maps/SaffronCity_Gym_Frlg/scripts.inc": {
       "SaffronCity_Gym_Text_SabrinaIntro": [
-        "Tive uma visao da sua chegada.\\pTenho poderes psiquicos desde\\ncrianca.\\pComecou quando uma colher eu\\ndescuidadamente joguei,\\ldobrado.\\pNao gosto de lutar, mas se\\nquiseres, mostro-te os meus\\lpoderes!{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}$"
+        "Eu previ sua chegada!\\pTenho poderes psiquicos\\ndesde pequena.\\pUm dia entortei uma colher\\nsem nem encostar nela!\\pNao gosto de batalhas,\\nmas vou mostrar meu poder!{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}$"
       ],
       "SaffronCity_Gym_Text_SabrinaDefeat": [
-        "Esta perda choca-me! Mas uma\\nperda e uma perda.\\pAdmito que nao trabalhei o\\nsuficiente para ganhar.\\pA tua vitoria ganhou-te o\\nMARSHBADGE.$"
+        "Eu nao esperava perder!\\pMas uma derrota\\ne uma derrota.\\pVoce mereceu vencer\\ne ganhar a MARSHBADGE!$"
       ],
       "SaffronCity_Gym_Text_SabrinaPostBattle": [
-        "Poder psiquico nao e algo que\\napenas algumas pessoas tem.\\pToda a gente tem poder\\npsiquico. As pessoas nao\\lpercebem.$"
+        "Poderes psiquicos\\nnao sao tao raros.\\pTodo mundo tem algum poder,\\nmesmo sem perceber!$"
       ],
       "SaffronCity_Gym_Text_ExplainMarshBadgeTakeThis": [
-        "O MARSHBADGE faz com que o\\nPokemon te obedeca.\\pPokemon mais forte vai se\\ntornar selvagem, ignorando suas\\lordens em batalha.\\pSo nao levantes muito o teu\\nPOKEMON para evitar esse\\lproblema.\\pEspera, por favor leva este TM\\ncontigo.$"
+        "Com a MARSHBADGE,\\nos POKEMON obedecem melhor.\\pMas POKEMON muito fortes\\npodem ignorar suas ordens!\\pE tem mais uma coisa:\\naceite esta TM!$"
       ],
       "SaffronCity_Gym_Text_ReceivedTM04FromSabrina": [
-        "{PLAYER}recebeu TM04 da\\nSABRINA.$"
+        "{PLAYER} recebeu TM04\\nde SABRINA!$"
       ],
       "SaffronCity_Gym_Text_ExplainTM04": [
-        "TM04 e CALM MIND.\\pFaz com que o POKEMON se\\nconcentre para aumentar tanto\\lSP. ATK e SP. DEF.$"
+        "TM04 ensina CALM MIND.\\pEsse golpe aumenta\\nSP. ATK e SP. DEF!$"
       ],
       "SaffronCity_Gym_Text_BagFullOfOtherItems": [
-        "Seu BAG esta cheio de outros\\nitens.$"
+        "Sua BOLSA esta cheia!$"
       ],
       "SaffronCity_Gym_Text_AmandaIntro": [
-        "A SABRINA e muito mais nova do\\nque eu, mas ganhou o meu\\lrespeito.$"
+        "SABRINA e mais jovem\\nque eu, mas tem meu respeito!$"
       ],
       "SaffronCity_Gym_Text_AmandaDefeat": [
-        "Nao chega!$"
+        "Nao foi suficiente!$"
       ],
       "SaffronCity_Gym_Text_AmandaPostBattle": [
-        "Numa batalha de iguais, aquele\\ncom o mais forte vencera.\\pSe deseja vencer a SABRINA,\\nconcentre-se e queira vencer.$"
+        "Numa batalha equilibrada,\\nvence quem tem mais vontade!\\pConcentre-se se quiser\\nvencer SABRINA!$"
       ],
       "SaffronCity_Gym_Text_JohanIntro": [
-        "O nosso poder invisivel\\nassusta-te?$"
+        "Nosso poder invisivel\\nte deixa com medo?$"
       ],
       "SaffronCity_Gym_Text_JohanDefeat": [
-        "Nunca previ isto!$"
+        "Nao previ essa derrota!$"
       ],
       "SaffronCity_Gym_Text_StacyIntro": [
-        "POKEMON assume a aparencia de\\nseus TREINADORES.\\pO teu Pokemon deve ser duro,\\nentao!$"
+        "POKEMON podem se parecer\\ncom seus TREINADORES.\\pOs seus devem ser fortes!$"
       ],
       "SaffronCity_Gym_Text_StacyDefeat": [
-        "Eu sabia!$"
+        "Eu ja imaginava!$"
       ],
       "SaffronCity_Gym_Text_TyronIntro": [
-        "Compreendes, nao e?\\pSo esse poder nao e suficiente\\npara ganhar no mundo de\\lPOKEMON?$"
+        "Entende agora?\\pTer poderes psiquicos\\nnao garante uma vitoria!$"
       ],
       "SaffronCity_Gym_Text_TyronDefeat": [
-        "Nao acredito nisto!$"
+        "Nao acredito!$"
       ],
       "SaffronCity_Gym_Text_TashaIntro": [
-        "Tu e eu, o nosso Pokemon\\nlutara!$"
+        "Eu e meus POKEMON\\nvamos enfrentar voce!$"
       ],
       "SaffronCity_Gym_Text_TashaDefeat": [
-        "Afinal, perdi!$"
+        "Eu perdi, afinal...$"
       ],
       "SaffronCity_Gym_Text_TashaPostBattle": [
-        "Eu sabia que isto ia acontecer.$"
+        "No fundo eu ja sabia\\nque isso aconteceria...$"
       ],
       "SaffronCity_Gym_Text_CameronDefeat": [
-        "Ow! Para baixo e para fora!$"
+        "Ai! Fui derrotado!$"
       ],
       "SaffronCity_Gym_Text_PrestonIntro": [
-        "SAFFRON POKEMON Gym e famoso\\npor treinar videntes.\\pQueres ver a SABRINA, nao\\nqueres? Consigo ver!$"
+        "O GINASIO de SAFFRON\\ntreina pessoas com poderes!\\pQuer encontrar SABRINA?\\nEu sabia!$"
       ],
       "SaffronCity_Gym_Text_PrestonPostBattle": [
-        "Isso mesmo! Usei telepatia para\\nler a tua mente!$"
+        "Usei telepatia\\npara ler sua mente!$"
       ],
       "SaffronCity_Gym_Text_GymGuyPostVictory": [
-        "Poder psiquico?\\pSe eu tivesse isso, ganharia\\nmuito nas slot machines!$"
+        "Poderes psiquicos?\\pSeria legal saber\\no que os outros pensam!$"
       ],
       "SaffronCity_Gym_Text_RematchAsk": [
-        "Eu previ o teu regresso.\\pO meu poder anseia por outro\\nduelo. Vamos?$"
+        "Eu previ sua volta!\\pMeus poderes estao prontos\\npara outra batalha.\\nVamos?$"
       ],
       "SaffronCity_Gym_Text_RematchDefeat": [
-        "Como eu previ... A tua mente\\ncede a minha.$"
+        "Era o que eu esperava!\\nMinha mente venceu a sua.$"
       ],
       "SaffronCity_Gym_Text_RematchPost": [
-        "Desafiaste todas as minhas\\nprevisoes.\\pProcura-me outra vez quando\\nquiseres.$"
+        "Voce superou\\nminhas previsoes!\\pVolte quando quiser\\numa nova batalha!$"
       ],
       "SaffronCity_Gym_Text_RematchDecline": [
-        "Sabia que recusarias. Voltem\\nprontos.$"
+        "Sabia que recusaria.\\nVolte quando estiver pronto!$"
       ]
     },
     "data/maps/SootopolisCity_Gym_1F/scripts.inc": {
@@ -374,49 +374,49 @@
     },
     "data/maps/VermilionCity_Gym_Frlg/scripts.inc": {
       "VermilionCity_Gym_Text_LtSurgeIntro": [
-        "Miudo! O que pensas que estas a\\nfazer aqui?\\pNao viveras muito tempo em\\ncombate! Nao com o teu fraco\\lpoder!\\pEstou-te a dizer, miudo, a\\nelectricidade Pokemon salvou-me\\ldurante a guerra!\\pEles transformaram os meus\\ninimigos em paralisia!\\pO mesmo que te vou\\nfazer!{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}$"
+        "Ei, garoto!\\nO que veio fazer aqui?\\pSeus POKEMON parecem fracos!\\pOs meus POKEMON ELETRICOS\\nme ajudaram muito no passado!\\pAgora vou mostrar\\nsua verdadeira forca!{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}$"
       ],
       "VermilionCity_Gym_Text_ReceivedTM34FromLtSurge": [
-        "{PLAYER}recebeu TM34 da Tenente\\nSURGE.$"
+        "{PLAYER} recebeu TM34\\nde LT. SURGE!$"
       ],
       "VermilionCity_Gym_Text_TuckerDefeat": [
-        "Para! Es muito bom!$"
+        "Pare! Voce e muito forte!$"
       ],
       "VermilionCity_Gym_Text_BailyIntro": [
-        "Sou leve, mas sou bom com\\nelectricidade!\\pFoi por isso que me juntei a\\neste GINASIO.$"
+        "Sou novato, mas entendo\\nmuito de eletricidade!\\pPor isso entrei\\nneste GINASIO!$"
       ],
       "VermilionCity_Gym_Text_BailyDefeat": [
-        "Frito!$"
+        "Fui torrado!$"
       ],
       "VermilionCity_Gym_Text_DwayneIntro": [
-        "Isto nao e lugar para criancas!\\nNem mesmo se fores bom!$"
+        "Este lugar nao e\\npara criancas!\\pMesmo que voce seja forte!$"
       ],
       "VermilionCity_Gym_Text_DwayneDefeat": [
-        "Uau! Surpreendeu-me!$"
+        "Uau! Que surpresa!$"
       ],
       "VermilionCity_Gym_Text_GymGuyPostVictory": [
-        "Ufa! Aquele fosforo era\\nelectrico!$"
+        "Ufa! Essa batalha\\nfoi eletrizante!$"
       ],
       "VermilionCity_Gym_Text_NopeOnlyTrashHere": [
-        "Nao! So ha lixo aqui.$"
+        "Nao ha nada alem de lixo!$"
       ],
       "VermilionCity_Gym_Text_SwitchUnderTrashFirstLockOpened": [
-        "Hey! Ha um interruptor debaixo\\ndo lixo! Liga-o!\\pA primeira fechadura electrica\\nabriu!$"
+        "Ei! Um interruptor\\nembaixo do lixo!\\pA primeira trava eletrica\\nfoi destravada!$"
       ],
       "VermilionCity_Gym_Text_SecondLockOpened": [
-        "A segunda fechadura electrica\\nabriu! A porta motorizada\\labriu-se!$"
+        "A segunda trava eletrica\\nfoi destravada!\\pA porta se abriu!$"
       ],
       "VermilionCity_Gym_Text_OnlyTrashLocksWereReset": [
-        "Nao! So ha lixo aqui.\\pHey! As fechaduras electricas\\nforam reiniciadas!$"
+        "So tem lixo aqui!\\pAs travas eletricas\\nforam reiniciadas!$"
       ],
       "VermilionCity_Gym_Text_RematchDefeat": [
-        "Bzzzt! Foste frito! Treina com\\nmais forca, soldado!$"
+        "Bzzzt! Voce perdeu!\\nTreine mais, soldado!$"
       ],
       "VermilionCity_Gym_Text_RematchPost": [
-        "Whoa! Encurralaste todo o meu\\npelotao!\\pAparece para um choque a\\nqualquer hora!$"
+        "Voce superou\\nmeu pelotao inteiro!\\pVolte quando quiser\\noutra batalha eletrizante!$"
       ],
       "VermilionCity_Gym_Text_RematchDecline": [
-        "Ha! Retirar enquanto podes,\\nsoldado!$"
+        "Ha! Recuar agora?\\nVolte quando estiver pronto!$"
       ]
     },
     "data/maps/ViridianCity_Gym_Frlg/scripts.inc": {
