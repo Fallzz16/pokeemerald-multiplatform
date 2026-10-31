@@ -2,10 +2,10 @@
   "asm": {
     "data/maps/SlateportCity/scripts.inc": {
       "SlateportCity_Text_WonderIfLighthouseStartlesPokemon": [
-        "A luz do farol chega a dezenas\\nde quilometros de distancia.\\pSera que nao assusta Pokemon no\\nmar?$"
+        "A luz do farol chega a dezenas\\nde quilometros de distancia.\\pSera que nao assusta POKEMON no\\nmar?$"
       ],
       "SlateportCity_Text_SeaweedFullOfLife": [
-        "Olha para isto!\\pA alga marinha que se consegue\\ncontornar por estas bandas e\\lfresca e cheia de vida.\\pOra, parece que pode ate se\\nlevantar e atacar!$"
+        "Olha para isto!\\pA alga marinha que se Consegue\\ncontornar por estas bandas e\\lfresca e cheia de vida.\\pOra, parece que pode ate se\\nlevantar e atacar!$"
       ],
       "SlateportCity_Text_HowTownIsBornAndGrows": [
         "Onde a agua esta limpa, os\\nfrutos da colheita abundante\\lrecolhem.\\pE onde as pessoas se reunem, um\\nmercado logo comeca.\\pE assim que uma cidade nasce e\\ncresce.$"
@@ -74,7 +74,7 @@
         "{PLAYER}{KUN}Por favor, vem\\ncomigo!$"
       ],
       "SlateportCity_Text_ExplainBerries": [
-        "Se um Pokemon selvagem se\\nmachucar, ele se cura\\lmastigando BERRIES.\\pSabias disso?\\pAlguem viu isso e teve a ideia\\nde fazer medicina de BERRIES.\\pSabias disso?\\pPara transformar BERRIES em\\nmedicamentos, eles devem ser\\lesmagados em po.\\pSabias disso?\\pPareces ter interesse em\\nBERRIES!$"
+        "Se um POKEMON selvagem se\\nmachucar, ele se cura\\lmastigando BERRIES.\\pSabias disso?\\pAlguem viu isso e teve a ideia\\nde fazer medicina de BERRIES.\\pSabias disso?\\pPara transformar BERRIES em\\nmedicamentos, eles devem ser\\lesmagados em po.\\pSabias disso?\\pPareces ter interesse em\\nBERRIES!$"
       ],
       "SlateportCity_Text_ExchangeWhatWithIt": [
         "Com o que quer troca-lo?$"
@@ -88,7 +88,7 @@
         "E tipo TM41, sabe? E TORMENT,\\nestas a ouvir?\\pNao deixa o outro usar o mesmo\\nmovimento duas vezes seguidas.\\pOuve, nao estou a\\natormentar-te!$"
       ],
       "SlateportCity_ContestHall_Text_MCStepUpTakePartInContest": [
-        "Meu Deus! Nao e um Pokemon\\nelegante?\\pPor favor! Aproximem-se e tomem\\nparte nos nossos esplendidos\\lCONTESTS!\\pVais sair-te bem! Tenho a\\ncerteza! Os meus olhos nunca me\\lfalharam!$"
+        "Meu Deus! Nao e um POKEMON\\nelegante?\\pPor favor! Aproximem-se e tomem\\nparte nos nossos esplendidos\\lCONTESTS!\\pVais sair-te bem! Tenho a\\ncerteza! Os meus olhos nunca me\\lfalharam!$"
       ],
       "SlateportCity_ContestHall_Text_ItsAppealTime": [
         "Esta na hora do recurso! Com o\\nque devo comecar?$"
@@ -100,7 +100,7 @@
         "Nao consigo fazer isto! Estou\\nmais assustado que o meu\\lPokemon.\\pEstou a tremer e o meu coracao\\nesta a acelerar!$"
       ],
       "SlateportCity_ContestHall_Text_MonLooksOnTopOfGame": [
-        "Aquele Pokemon parece que esta\\nno topo do jogo.\\pUm POKEMON que faz bem no\\njulgamento secundario parece\\lser mais relaxado quando esta\\lfazendo apelos.$"
+        "Aquele POKEMON parece que esta\\nno topo do jogo.\\pUm POKEMON que faz bem no\\njulgamento secundario parece\\lser mais relaxado quando esta\\lfazendo apelos.$"
       ],
       "SlateportCity_ContestHall_Text_GetUrgeToMoveWithMon": [
         "Nao tem vontade de te mudares\\ncom o POKEMON se estao a fazer\\lum apelo energetico?$"
@@ -244,7 +244,7 @@
         "quer uma dica para lutar?\\pDiria que esta a criar\\ndiferentes tipos de POKEMON de\\lforma equilibrada.\\pNao e bom fazer apenas um\\nPOKEMON forte.\\pSe tiver uma desvantagem do\\ntipo, pode nao ter uma chance.$"
       ],
       "SlateportCity_PokemonCenter_1F_Text_TradedMonWithFriend": [
-        "Troco Pokemon com os meus\\namigos.\\pSe um POKEMON negociado esta\\nsegurando um item, isso me faz\\lduas vezes mais feliz!$"
+        "Troco POKEMON com os meus\\namigos.\\pSe um POKEMON negociado esta\\nsegurando um item, isso me faz\\lduas vezes mais feliz!$"
       ]
     },
     "data/maps/SlateportCity_PokemonFanClub/scripts.inc": {
@@ -267,16 +267,16 @@
         "Desculpa, mas nao tenho mais\\nnada para te dar! Nenhuma!\\pAfinal, voce e abencoado com o\\ndom de criar POKEMON sem\\lrecorrer a quaisquer itens!$"
       ],
       "SlateportCity_PokemonFanClub_Text_ShowMePokemonThatLoveYou": [
-        "Adoro ver o Pokemon que adora\\nos seus treinadores.\\pPOKEMON sao muito sensiveis aos\\nsentimentos dos seus\\lTREINADORES.\\pSe tratares o seu POKEMON com\\namor e cuidado, eles vao\\ladorar-te.\\pQuando o seu Pokemon crescer\\npara te amar, por favor, vem\\lmostrar-me.$"
+        "Adoro ver o POKEMON que adora\\nos seus treinadores.\\pPOKEMON sao muito sensiveis aos\\nsentimentos dos seus\\lTREINADORES.\\pSe tratares o seu POKEMON com\\namor e cuidado, eles vao\\ladorar-te.\\pQuando o seu POKEMON crescer\\npara te amar, por favor, vem\\lmostrar-me.$"
       ],
       "SlateportCity_PokemonFanClub_Text_PokemonAdoresYou": [
-        "O seu Pokemon adora-te mesmo.\\pPara voce, um instrutor muito\\ncompassivo, um presente do FAN\\lCLUB!$"
+        "O seu POKEMON adora-te mesmo.\\pPara voce, um instrutor muito\\ncompassivo, um presente do FAN\\lCLUB!$"
       ],
       "SlateportCity_PokemonFanClub_Text_TreatPokemonWithLove": [
         "POKEMON sao muito sensiveis aos\\nsentimentos dos seus\\lTREINADORES.\\pSe tratares o seu POKEMON com\\namor e cuidado, eles vao\\ladorar-te.$"
       ],
       "SlateportCity_PokemonFanClub_Text_PokemonDontLikeFainting": [
-        "Se continuares a deixar um\\nPokemon desmaiar em batalha,\\lvai ficar ressentido.\\pEm breve, ficara menos\\nconfiante no TRAiner.\\pEm outras palavras, certamente\\nnao vai gostar muito de voce.$"
+        "Se continuares a deixar um\\nPokemon desmaiar em batalha,\\lvai ficar ressentido.\\pEm breve, ficara menos\\nconfiante no TREINADOR.\\pEm outras palavras, certamente\\nnao vai gostar muito de voce.$"
       ]
     },
     "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc": {
@@ -548,7 +548,7 @@
         "Sempre que, onde quer que\\naconteca, e aconteca o que\\lacontecer, serei sempre amigo\\lde POKEMON.\\pPorque e divertido estar com o\\nPokemon!$"
       ],
       "SootopolisCity_PokemonCenter_1F_Text_ArentPokemonOurFriends": [
-        "Pokemon nao sao nossos amigos?\\pPorque e que eles estao a\\nenlouquecer assim?$"
+        "POKEMON nao sao nossos amigos?\\pPorque e que eles estao a\\nenlouquecer assim?$"
       ]
     },
     "data/maps/SproutTower_1F/scripts.inc": {
@@ -576,7 +576,7 @@
     },
     "data/maps/SproutTower_2F/scripts.inc": {
       "SproutTower_Text_SageNico_Seen": [
-        "O pilar desta torre\\nse curva sem quebrar!\\pSera que voce consegue\\nser tao resistente?$"
+        "O pilar desta torre\\nse curva sem quebrar!\\pSera que voce Consegue\\nser tao resistente?$"
       ],
       "SproutTower_Text_SageNico_Beaten": [
         "Lutei bastante,\\nmas ainda sou fraco...$"
@@ -654,7 +654,7 @@
         "Este ano, vou finalmente\\naprender a nadar!$"
       ],
       "ThreeIsland_BondBridge_Text_AlexisIntro": [
-        "Boa! Pokemon!$"
+        "Boa! POKEMON!$"
       ],
       "ThreeIsland_BondBridge_Text_AlexisDefeat": [
         "O que acontece agora?$"
