@@ -70,7 +70,7 @@
     },
     "data/maps/NewBarkTown_PlayersHouse_1F/scripts.inc": {
       "NewBarkTown_PlayersHouse_1F_Text_ObtainedPokeGear": [
-        "{PLAYER}obteve o POKeNAV.$"
+        "{PLAYER}obteve o POKENAV.$"
       ]
     },
     "data/maps/NewBarkTown_PlayersHouse_2F/scripts.inc": {
@@ -552,10 +552,10 @@
     },
     "data/maps/PacifidlogTown_House2/scripts.inc": {
       "PacifidlogTown_House2_Text_AhYourPokemon": [
-        "Ah! O seu Pokemon...$"
+        "Ah! O seu POKEMON...$"
       ],
       "PacifidlogTown_House2_Text_AdoringPokemonTakeThis": [
-        "E obvio que gosta muito de ti.\\pUm Pokemon que adora e adoravel\\nmerece um TM como este, nao?$"
+        "E obvio que gosta muito de ti.\\pUm POKEMON que adora e adoravel\\nmerece um TM como este, nao?$"
       ],
       "PacifidlogTown_House2_Text_PutInSomeMoreEffort": [
         "Hmm... Nao e mau, mas tambem\\nnao e bom.\\pVoce, como instrutor, precisa\\nse esforcar mais.$"
@@ -587,7 +587,7 @@
         "Entao, nao vai continuar com\\nisto?\\pFixe. Nao estou desesperado\\npara fazer uma troca.$"
       ],
       "PacifidlogTown_House3_Text_IsThatAPokedex": [
-        "Isso e um POKEDEX?\\pConheceste muitos Pokemon\\ndiferentes?\\pQuem me dera ser como tu.$"
+        "Isso e um POKEDEX?\\pConheceste muitos POKEMON\\ndiferentes?\\pQuem me dera ser como tu.$"
       ]
     },
     "data/maps/PacifidlogTown_House4/scripts.inc": {
@@ -595,7 +595,7 @@
         "As pessoas diziam que viram um\\nPokemon a voar alto sobre o\\lHOENN.\\pEsta sempre a voar? Nao precisa\\nde descansar?$"
       ],
       "PacifidlogTown_House4_Text_SkyPokemon": [
-        "Um Pokemon do ceu! Um Pokemon\\ndo ceu!$"
+        "Um POKEMON do ceu! Um POKEMON\\ndo ceu!$"
       ],
       "PacifidlogTown_House4_Text_WhereDidYouComeFrom": [
         "De onde veio?$"
@@ -680,20 +680,20 @@
         "Viajar e maravilhoso!\\pQuando era jovem, vagava pelos\\nmares e pelas montanhas!$"
       ],
       "PetalburgCity_House1_Text_GoOnAdventure": [
-        "Suspiro...\\pQuem me dera poder ir numa\\naventura com algum Pokemon...\\pRasteja atraves de alguma relva\\nhumida... Escalar montanhas\\lrochosas, rochosas...\\pAtravesse os mares furiosos...\\nAndar em cavernas escuras...\\pE, as vezes, ate fico com\\nsaudades de casa...\\pDeve ser fabuloso viajar!$"
+        "Suspiro...\\pQuem me dera poder ir numa\\naventura com algum POKEMON...\\pRasteja atraves de alguma relva\\nhumida... Escalar montanhas\\lrochosas, rochosas...\\pAtravesse os mares furiosos...\\nAndar em cavernas escuras...\\pE, as vezes, ate fico com\\nsaudades de casa...\\pDeve ser fabuloso viajar!$"
       ]
     },
     "data/maps/PetalburgCity_House2/scripts.inc": {
       "PetalburgCity_House2_Text_BattledNormanOnce": [
-        "Uma vez lutei com o NORMAN, mas\\nele era muito forte.\\pComo diria?\\pTenho a sensacao de que ele\\nvive para o Pokemon.$"
+        "Uma vez lutei com o NORMAN, mas\\nele era muito forte.\\pComo diria?\\pTenho a sensacao de que ele\\nvive para o POKEMON.$"
       ]
     },
     "data/maps/PetalburgCity_Mart/scripts.inc": {
       "PetalburgCity_Mart_Text_WeakWillGrowStronger": [
-        "Mesmo que um POKEMON esteja\\nfraco agora, ficara mais forte.\\pO mais importante e o amor!\\nAmor pelo seu Pokemon!$"
+        "Mesmo que um POKEMON esteja\\nfraco agora, ficara mais forte.\\pO mais importante e o amor!\\nAmor pelo seu POKEMON!$"
       ],
       "PetalburgCity_Mart_Text_RepelIsUseful": [
-        "Usa REPEL? Mantem o Pokemon\\nafastado, por isso e util\\lquando se esta com pressa.$"
+        "Usa REPEL? Mantem o POKEMON\\nafastado, por isso e util\\lquando se esta com pressa.$"
       ]
     },
     "data/maps/PetalburgCity_PokemonCenter_1F/scripts.inc": {
@@ -701,7 +701,7 @@
         "Aquele sistema de armazenamento\\nPOKEMON baseado em PC...\\pQuem quer que o tenha feito\\ndeve ser algum tipo de\\lfeiticeiro cientifico!$"
       ],
       "PetalburgCity_PokemonCenter_1F_Text_OranBerryRegainedHP": [
-        "Quando o meu Pokemon comeu um\\nORAN BERRY, recuperou HP!$"
+        "Quando o meu POKEMON comeu um\\nORAN BERRY, recuperou HP!$"
       ],
       "PetalburgCity_PokemonCenter_1F_Text_ManyTypesOfPokemon": [
         "Existem muitos tipos de\\nPOKEMON.\\pTodos os tipos tem seus pontos\\nfortes e fracos contra outros\\ltipos.\\pDependendo dos tipos de\\nPOKEMON, uma batalha pode ser\\lfacil ou dificil.$"
@@ -763,7 +763,7 @@
         "POKEMON aprende novas tecnicas\\na medida que crescem.\\pMas alguns movimentos devem ser\\nensinados as pessoas.$"
       ],
       "PewterCity_House2_Text_MonsEasierCatchIfStatused": [
-        "Um POKEMON torna-se mais facil\\nde capturar se tiver um problema\\lde estado.\\pSono, veneno, queimadura ou\\nparalisia... Sao todas\\leficazes.\\pMas capturar o Pokemon nunca e\\numa coisa certa!$"
+        "Um POKEMON torna-se mais facil\\nde capturar se tiver um problema\\lde estado.\\pSono, veneno, queimadura ou\\nparalisia... Sao todas\\leficazes.\\pMas capturar o POKEMON nunca e\\numa coisa certa!$"
       ]
     },
     "data/maps/PewterCity_Mart_Frlg/scripts.inc": {
@@ -831,7 +831,7 @@
     },
     "data/maps/PewterCity_PokemonCenter_1F_Frlg/scripts.inc": {
       "PewterCity_PokemonCenter_1F_Text_TradingPikachuWithKid": [
-        "Vou trocar o Pokemon com aquele\\nmiudo.\\pEu tinha dois PIKACHU, entao\\nachei que podia trocar um.$"
+        "Vou trocar o POKEMON com aquele\\nmiudo.\\pEu tinha dois PIKACHU, entao\\nachei que podia trocar um.$"
       ]
     },
     "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc": {
