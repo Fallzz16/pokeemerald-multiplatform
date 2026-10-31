@@ -171,7 +171,7 @@
         "Sua forca...\\nVoce e de verdade!$"
       ],
       "PetalburgCity_Gym_Text_BerkePostBattle": [
-        "Seu pai e muito forte.\\nEu o respeito bastante.\\pVejo a mesma determinacao\\nem voce.\\pEspero que voces tenham\\numa grande batalha!$"
+        "Seu pai e muito forte.\\neu o respeito bastante.\\pVejo a mesma determinacao\\nem voce.\\pEspero que voces tenham\\numa grande batalha!$"
       ],
       "PetalburgCity_Gym_Text_MaryDefeat": [
         "Voce foi melhor do que eu...$"
@@ -534,16 +534,16 @@
     },
     "data/maps/FiveIsland_RocketWarehouse_Frlg/scripts.inc": {
       "FiveIsland_RocketWarehouse_Text_ManyMonsLockedInPen": [
-        "Ha muitos POKEMON trancados\\nNa...$"
+        "Ha muitos POKEMON trancados\\nna...$"
       ],
       "FiveIsland_RocketWarehouse_Text_PenUnlockedMonsFled": [
-        "A porta da caneta esta\\nDestrancada. O POKEMON parece\\lTer fugido.$"
+        "A porta da caneta esta\\ndestrancada. O POKEMON parece\\lter fugido.$"
       ],
       "FiveIsland_RocketWarehouse_Text_Grunt2Defeat": [
         "O que pensa que esta fazendo?!$"
       ],
       "FiveIsland_RocketWarehouse_Text_Grunt1Intro": [
-        "Agora seu POKEMON parece\\nForte. Estas disposto a\\lVende-los?\\pA serio? Queria lutar?$"
+        "Agora seu POKEMON parece\\nforte. Estas disposto a\\lvende-los?\\pA serio? Queria lutar?$"
       ],
       "FiveIsland_RocketWarehouse_Text_Grunt1Defeat": [
         "Mas... Demasiado!$"
@@ -555,31 +555,31 @@
         "Nao... voce...$"
       ],
       "FiveIsland_RocketWarehouse_Text_Grunt3PostBattle": [
-        "Nao te metas com os adultos,\\nSeu idiota!$"
+        "Nao te metas com os adultos,\\nseu idiota!$"
       ],
       "FiveIsland_RocketWarehouse_Text_Admin1Intro": [
-        "Nao sei nem me importo se o que\\nEstou fazendo e certo ou\\lErrado...\\pAcabei de depositar minha fe\\nEm GIOVANNI e fazer o que me\\lMandam.$"
+        "Nao sei nem me importo se o que\\nestou fazendo e certo ou\\lerrado...\\pAcabei de depositar minha fe\\nem GIOVANNI e fazer o que me\\lmandam.$"
       ],
       "FiveIsland_RocketWarehouse_Text_Admin1Defeat": [
         "Estou destrocado...$"
       ],
       "FiveIsland_RocketWarehouse_Text_Admin1PostBattle": [
-        "Estas a fazer as coisas de\\nAcordo com suas crencas e\\lMorais.\\pAgora percebo...$"
+        "Estas a fazer as coisas de\\nacordo com suas crencas e\\lmorais.\\pAgora percebo...$"
       ],
       "FiveIsland_RocketWarehouse_Text_MadeItSoYouCanComeBackThrough": [
-        "Consegui que voltasses por ali.\\pPorque nao vai descansar e te\\nRefrescar para o que esta por\\lVir?\\pO ADMIN depois de mim e\\nSuperior a mim como instrutor.\\pE melhor que te armes num\\nDesafio duro.$"
+        "Consegui que voltasses por ali.\\pPorque nao vai descansar e te\\nrefrescar para o que esta por\\lvir?\\pO ADMIN depois de mim e\\nsuperior a mim como instrutor.\\pE melhor que te armes num\\ndesafio duro.$"
       ],
       "FiveIsland_RocketWarehouse_Text_Admin2Intro": [
-        "Ja chega de fazeres de heroi,\\nMiudo.\\pEspalhando mentiras sobre como\\nO TEAM ROCKET...\\pE uma tentativa tao obvia de\\nCausar confusao nas nossas\\lFileiras.\\pFelizmente, nao somos tao\\nIgnorantes em cair nas mentiras\\lDe uma crianca!\\pE agora, vou mostrar-te como um\\nAdulto zangado pode ser\\lAssustador!$"
+        "Ja chega de fazeres de heroi,\\nmiudo.\\pEspalhando mentiras sobre como\\no TEAM ROCKET...\\pE uma tentativa tao obvia de\\ncausar confusao nas nossas\\lfileiras.\\pFelizmente, nao somos tao\\nignorantes em cair nas mentiras\\lde uma crianca!\\pE agora, vou mostrar-te como um\\nadulto zangado pode ser\\lassustador!$"
       ],
       "FiveIsland_RocketWarehouse_Text_GideonIntro": [
-        "Quase consegui vender o\\nSAPPHIRE por muito dinheiro...\\pEntao, tinhas de vir e estragar\\nTudo!\\pFufufufu... Nao ha perdao para\\nTi!$"
+        "Quase consegui vender o\\nSAPPHIRE por muito dinheiro...\\pEntao, tinhas de vir e estragar\\ntudo!\\pFufufufu... Nao ha perdao para\\nti!$"
       ],
       "FiveIsland_RocketWarehouse_Text_GideonDefeat": [
         "Gah! Raios! Raios! Raios!$"
       ],
       "FiveIsland_RocketWarehouse_Text_GideonPostBattle": [
-        "Se nao posso vende-lo, e\\nInutil! Vai em frente, toma!$"
+        "Se nao posso vende-lo, e\\ninutil! Vai em frente, toma!$"
       ],
       "FiveIsland_RocketWarehouse_Text_GetLostLeaveMeBe": [
         "O que voce quer agora?\\nVa embora e me deixe em paz!$"
@@ -587,41 +587,41 @@
     },
     "data/maps/FiveIsland_WaterLabyrinth_Frlg/scripts.inc": {
       "FiveIsland_WaterLabyrinth_Text_LetMeTakeLookAtMons": [
-        "Viaja por todo o lado, nao e?\\pNao estas a conduzir o seu\\nPOKEMON muito duramente, pois\\lNao?\\pDeixa-me ver. ... ... ... ...\\n... ...$"
+        "Viaja por todo o lado, nao e?\\pNao estas a conduzir o seu\\nPOKEMON muito duramente, pois\\lnao?\\pDeixa-me ver. ... ... ... ...\\n... ...$"
       ],
       "FiveIsland_WaterLabyrinth_Text_HmmISeeIsee": [
         "Ah, hmm... Estou vendo...$"
       ],
       "FiveIsland_WaterLabyrinth_Text_TreatMonRightHaveThis": [
-        "Impressionante. Trata bem o seu\\nPOKEMON.\\pAcho que pode confiar-lhe isto.\\pPor favor, gostava que ficasses\\nCom isto.$"
+        "Impressionante. Trata bem o seu\\nPOKEMON.\\pAcho que pode confiar-lhe isto.\\pPor favor, gostava que ficasses\\ncom isto.$"
       ],
       "FiveIsland_WaterLabyrinth_Text_ReceivedEggFromMan": [
         "{PLAYER}Recebi um EGG do homem!$"
       ],
       "FiveIsland_WaterLabyrinth_Text_DontHaveSpaceInYourParty": [
-        "...Infelizmente, nao tem\\nEspaco para isto na sua festa.\\pE melhor voltar noutra\\nAltura.$"
+        "...Infelizmente, nao tem\\nespaco para isto na sua festa.\\pE melhor voltar noutra\\naltura.$"
       ],
       "FiveIsland_WaterLabyrinth_Text_GladIMetSomeoneLikeYou": [
-        "Recebi esse EGG enquanto\\nViajava.\\pAinda bem que conheci alguem\\nComo tu.$"
+        "Recebi esse EGG enquanto\\nviajava.\\pAinda bem que conheci alguem\\ncomo tu.$"
       ],
       "FiveIsland_WaterLabyrinth_Text_AlizeIntro": [
-        "Este e um excelente ambiente\\nPara a criacao de POKEMON.$"
+        "Este e um excelente ambiente\\npara a criacao de POKEMON.$"
       ],
       "FiveIsland_WaterLabyrinth_Text_AlizeDefeat": [
-        "Seu POKEMON esta crescendo\\nAdmiravelmente bem!$"
+        "Seu POKEMON esta crescendo\\nadmiravelmente bem!$"
       ],
       "FiveIsland_WaterLabyrinth_Text_AlizePostBattle": [
-        "Sabe, acho que tem talento\\nPara ser um bom BREEDER.$"
+        "Sabe, acho que tem talento\\npara ser um bom BREEDER.$"
       ]
     },
     "data/maps/Gate_EcruteakCity_Route42/scripts.inc": {
       "Route42_Text_EcruteakGateOfficer": [
-        "MT. MORTAR e como um labirinto\\nDentro.\\pTem cuidado. Nao te percas ai.$"
+        "MT. MORTAR e como um labirinto\\ndentro.\\pTem cuidado. Nao te percas ai.$"
       ]
     },
     "data/maps/Gate_GoldenrodCity_Route35/scripts.inc": {
       "Route35GoldenrodGate_Text_RandyThanks": [
-        "Vai? Perfeito! Obrigado,\\nMiudo!\\pMeu amigo e um tipo gordinho\\nQue esta sempre a dormir.\\pVai reconhece-lo imediatamente!$"
+        "Vai? Perfeito! Obrigado,\\nmiudo!\\pMeu amigo e um tipo gordinho\\nque esta sempre a dormir.\\pVai reconhece-lo imediatamente!$"
       ],
       "Route35GoldenrodGate_Text_ReceivedMonWithMail": [
         "{PLAYER}Recebeu um POKEMON com\\nMAIL.$"
@@ -633,24 +633,24 @@
         "Oh... Esquece, entao...$"
       ],
       "Route35GoldenrodGate_Text_ThanksForDelivery": [
-        "Obrigado, garoto! Fez a\\nEntrega para mim!\\pAqui esta algo para o seu\\nTrabalho!$"
+        "Obrigado, garoto! Fez a\\nentrega para mim!\\pAqui esta algo para o seu\\ntrabalho!$"
       ],
       "Route35GoldenrodGate_Text_RandyMyPalSnoozing": [
-        "Meu amigo estava dormindo,\\nCerto? O que e que eu disse?$"
+        "Meu amigo estava dormindo,\\ncerto? O que e que eu disse?$"
       ],
       "Route35GoldenrodGate_Text_PokefanF_TreeBlocking": [
-        "Uma arvore estranha esta\\nBloquear a estrada.\\pSe falares, contorce-te.\\pOuvi dizer que ficou selvagem\\nQuando alguem o regou com um\\lSQUIRTBOTTLE.$"
+        "Uma arvore estranha esta\\nbloquear a estrada.\\pSe falares, contorce-te.\\pOuvi dizer que ficou selvagem\\nquando alguem o regou com um\\lSQUIRTBOTTLE.$"
       ],
       "Route35GoldenrodGate_Text_PokefanF_Lullaby": [
         "Gosto da cancao de ninar\\nPOKEMON que tocam no radio.$"
       ],
       "Route35GoldenrodGate_Text_Fisher": [
-        "Pergunto-me quantos tipos de\\nPOKEMON existem no mundo.\\pTres anos atras, PROF.OAK disse\\nQue havia 150 tipos diferentes.\\pMas recentemente ouvi dizer que\\nHa mais de 400!$"
+        "Pergunto-me quantos tipos de\\nPOKEMON existem no mundo.\\pTres anos atras, PROF.OAK disse\\nque havia 150 tipos diferentes.\\pMas recentemente ouvi dizer que\\nha mais de 400!$"
       ]
     },
     "data/maps/Gate_MahoganyTown_Route43/scripts.inc": {
       "Route43MahoganyGate_Text_Officer": [
-        "So as pessoas que iam para LAKE\\nOF RAGE passaram por aqui\\lUltimamente.$"
+        "So as pessoas que iam para LAKE\\nOF RAGE passaram por aqui\\lultimamente.$"
       ],
       "Route43MahoganyGate_Text_Officer_RocketsCleared": [
         "Hoje em dia, ninguem vai a LAKE\\nOF RAGE.$"
@@ -658,10 +658,10 @@
     },
     "data/maps/Gate_Route29_Route46/scripts.inc": {
       "Gate_Route29_Route46_Text_Officer": [
-        "Nao pode escalar bordas.\\pMas pode saltar deles para\\nApanhar um atalho.$"
+        "Nao pode escalar bordas.\\pMas pode saltar deles para\\napanhar um atalho.$"
       ],
       "Gate_Route29_Route46_Text_Youngster": [
-        "Diferentes tipos de POKEMON\\nAparecem aqui.\\pSe quer apanha-los todos,\\nTens de procurar em todo o\\lLado.$"
+        "Diferentes tipos de POKEMON\\naparecem aqui.\\pSe quer apanha-los todos,\\ntens de procurar em todo o\\llado.$"
       ]
     },
     "data/maps/Gate_Route31_VioletCity/scripts.inc": {
@@ -669,7 +669,7 @@
         "Ola! Visitaste o SPROUT TOWER?$"
       ],
       "Gate_Route31_VioletCity_Text_CooltrainerF": [
-        "Eu vi o POKEMON mais bonito la\\nFora.\\pParecia muito com PIKACHU!$"
+        "Eu vi o POKEMON mais bonito la\\nfora.\\pParecia muito com PIKACHU!$"
       ]
     },
     "data/maps/Gate_Route43/scripts.inc": {
@@ -677,37 +677,37 @@
         "Muito obrigado!$"
       ],
       "Gate_Route43_Rocket_Text_AllYouGot": [
-        "Entao paga o que tem, por\\nFavor.$"
+        "Entao paga o que tem, por\\nfavor.$"
       ],
       "Gate_Route43_Rocket_Text_KickOut": [
-        "Uau!\\pEstas sem dinheiro!\\pQuase sinto pena de voce.\\pEsta bem, pode passar...\\pNao digas ao outro guarda, esta\\nBem?$"
+        "Uau!\\pEstas sem dinheiro!\\pQuase sinto pena de voce.\\pEsta bem, pode passar...\\pNao digas ao outro guarda, esta\\nbem?$"
       ],
       "Gate_Route43_Rocket_Text_MakingABundle": [
-        "He-he-he. Estamos fazendo uma\\nFortuna.\\pTodos querem ver o que se passa\\nEm LAKE OF RAGE.$"
+        "He-he-he. Estamos fazendo uma\\nfortuna.\\pTodos querem ver o que se passa\\nem LAKE OF RAGE.$"
       ],
       "Route43Gate_Text_OfficerFoundTM": [
-        "Fui perseguido pelo meu posto\\nPor uns bandidos de preto.\\pDeixaram isto para tras.\\pDeixa-me desconfortavel. pode\\nTira-lo?$"
+        "Fui perseguido pelo meu posto\\npor uns bandidos de preto.\\pDeixaram isto para tras.\\pDeixa-me desconfortavel. pode\\ntira-lo?$"
       ],
       "Gate_Route43_Text_ReceivedTM30": [
         "{PLAYER}Recebeu TM36.$"
       ],
       "Gate_Route43_Text_OfficerAvoidGrass": [
-        "Use este portao para evitar\\nAndar na grama.$"
+        "Use este portao para evitar\\nandar na grama.$"
       ]
     },
     "data/maps/Gate_RuinsOfAlph_Route32/scripts.inc": {
       "Gate_RuinsOfAlph_Route32_Text_Youngster": [
-        "Ha desenhos em paineis de\\nPedra.\\pTentei move-los. O que sera que\\nSao?$"
+        "Ha desenhos em paineis de\\npedra.\\pTentei move-los. O que sera que\\nsao?$"
       ]
     },
     "data/maps/Gate_RuinsOfAlph_Route36/scripts.inc": {
       "Gate_RuinsOfAlph_Route36_Text_Youngster": [
-        "Ha desenhos em paineis de\\nPedra.\\pTentei move-los. O que sera que\\nSao?$"
+        "Ha desenhos em paineis de\\npedra.\\pTentei move-los. O que sera que\\nsao?$"
       ]
     },
     "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.inc": {
       "LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex": [
-        "PROF. BIRCH: O POKEDEX e uma\\nFerramenta de alta tecnologia\\lQue automaticamente faz um\\lRegistro de qualquer POKEMON\\lQue voce encontrar ou pegar.\\pMeu filho,{RIVAL}, vai para\\nTodo o lado com ele.\\pSempre que meu filho apanha\\nUm POKEMON raro e regista os\\lSeus dados no POKEDEX,\\lPorque,{RIVAL}Procura-me\\lEnquanto faco o trabalho de\\lCampo e mostra-me.$"
+        "PROF. BIRCH: O POKEDEX e uma\\nferramenta de alta tecnologia\\lque automaticamente faz um\\lregistro de qualquer POKEMON\\lque voce encontrar ou pegar.\\pMeu filho,{RIVAL}, vai para\\ntodo o lado com ele.\\pSempre que meu filho apanha\\num POKEMON raro e regista os\\lseus dados no POKEDEX,\\lporque,{RIVAL}Procura-me\\lenquanto faco o trabalho de\\lcampo e mostra-me.$"
       ]
     },
     "data/maps/NewBarkTown_Lab/scripts.inc": {
@@ -794,7 +794,7 @@
     },
     "data/maps/Route109_SeashoreHouse/scripts.inc": {
       "Route109_SeashoreHouse_Text_TakeTheseSodaPopBottles": [
-        "Estas escaldante! Aquelas\\nBatalhas comecaram! Estou mais\\lDo que satisfeito!\\pComo agradecimento por me\\nMostrares sua mare de sorte,\\lQuero que leves isto.\\pSao meia duzia de garrafas de\\nSODA POP!$"
+        "Estas escaldante! Aquelas\\nbatalhas comecaram! Estou mais\\ldo que satisfeito!\\pComo agradecimento por me\\nmostrares sua mare de sorte,\\lquero que leves isto.\\pSao meia duzia de garrafas de\\nSODA POP!$"
       ],
       "Route109_SeashoreHouse_Text_HereYouGo": [
         "Aqui esta!$"
@@ -806,10 +806,10 @@
         "Nao? Que pena.$"
       ],
       "Route109_SeashoreHouse_Text_DwayneDefeated": [
-        "Foi uma batalha escaldante!\\nPosso aceitar essa perda,\\lAmigo!$"
+        "Foi uma batalha escaldante!\\nPosso aceitar essa perda,\\lamigo!$"
       ],
       "Route109_SeashoreHouse_Text_DwaynePostBattle": [
-        "Sempre que estou em SLATEPORT,\\nEu gosto de batalhas quentes e\\lSODA POP gelado!$"
+        "Sempre que estou em SLATEPORT,\\neu gosto de batalhas quentes e\\lSODA POP gelado!$"
       ]
     }
   },
