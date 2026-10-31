@@ -1,0 +1,207 @@
+{
+  "status": "human_reviewed_text_ready; native_ARM_GBA_and_mGBA_QA_pending",
+  "scope": "Only actually changed stage15 dialogue labels compared to stage14",
+  "source_shards": [
+    "ptbr_auto_review_020.json"
+  ],
+  "source_diff_against": "feature/grandworld-ptbr-human-review-stage14-20261031",
+  "reviewed_entries": 154,
+  "reviewed_labels_by_source": {
+    "data/maps/SevenIsland_Frlg/scripts.inc": [
+      "Text_SwordsDanceWhichMon",
+      "Text_SwordsDanceTaught",
+      "SevenIsland_Text_IslandVirtuallyUntouched"
+    ],
+    "data/maps/SevenIsland_House_Room1_Frlg/scripts.inc": [
+      "SevenIsland_House_Room1_Text_OnlyEnjoymentWatchingBattles",
+      "SevenIsland_House_Room1_Text_SlightBreezeAroundBox",
+      "SevenIsland_House_Room1_Text_ChallengeVisitingTrainer",
+      "SevenIsland_House_Room1_Text_OhYouWontBattle",
+      "SevenIsland_House_Room1_Text_LimitThreeMonsPerSide",
+      "SevenIsland_House_Room1_Text_SaveProgressBeforeBattle",
+      "SevenIsland_House_Room1_Text_DontHoldAnythingBack",
+      "SevenIsland_House_Room2_Text_MatchEndedUpDraw",
+      "SevenIsland_House_Room1_Text_DrawWasIt",
+      "SevenIsland_House_Room1_Text_AstoundingBattle",
+      "SevenIsland_House_Room1_Text_FeelYourDisappointment"
+    ],
+    "data/maps/SevenIsland_PokemonCenter_1F_Frlg/scripts.inc": [
+      "SevenIsland_PokemonCenter_1F_Text_EventsDependingOnConnections",
+      "SevenIsland_PokemonCenter_1F_Text_CheckOutTrainerTower"
+    ],
+    "data/maps/SevenIsland_SevaultCanyon_Entrance_Frlg/scripts.inc": [
+      "SevenIsland_SevaultCanyon_Entrance_Text_MiahIntro",
+      "SevenIsland_SevaultCanyon_Entrance_Text_MiahDefeat",
+      "SevenIsland_SevaultCanyon_Entrance_Text_MiahPostBattle",
+      "SevenIsland_SevaultCanyon_Entrance_Text_MasonIntro",
+      "SevenIsland_SevaultCanyon_Entrance_Text_MasonDefeat",
+      "SevenIsland_SevaultCanyon_Entrance_Text_MasonPostBattle",
+      "SevenIsland_SevaultCanyon_Entrance_Text_NicolasIntro",
+      "SevenIsland_SevaultCanyon_Entrance_Text_NicolasDefeat",
+      "SevenIsland_SevaultCanyon_Entrance_Text_NicolasPostBattle",
+      "SevenIsland_SevaultCanyon_Entrance_Text_MadelineIntro",
+      "SevenIsland_SevaultCanyon_Entrance_Text_MadelineDefeat",
+      "SevenIsland_SevaultCanyon_Entrance_Text_MadelinePostBattle"
+    ],
+    "data/maps/SevenIsland_SevaultCanyon_Frlg/scripts.inc": [
+      "SevenIsland_SevaultCanyon_Text_CyndyIntro",
+      "SevenIsland_SevaultCanyon_Text_CyndyDefeat",
+      "SevenIsland_SevaultCanyon_Text_EvanIntro",
+      "SevenIsland_SevaultCanyon_Text_EvanDefeat",
+      "SevenIsland_SevaultCanyon_Text_EvanPostBattle",
+      "SevenIsland_SevaultCanyon_Text_JacksonIntro",
+      "SevenIsland_SevaultCanyon_Text_JacksonDefeat",
+      "SevenIsland_SevaultCanyon_Text_JacksonPostBattle",
+      "SevenIsland_SevaultCanyon_Text_KatelynIntro",
+      "SevenIsland_SevaultCanyon_Text_KatelynDefeat",
+      "SevenIsland_SevaultCanyon_Text_LeroyIntro",
+      "SevenIsland_SevaultCanyon_Text_LeroyDefeat",
+      "SevenIsland_SevaultCanyon_Text_LeroyPostBattle",
+      "SevenIsland_SevaultCanyon_Text_MichelleIntro",
+      "SevenIsland_SevaultCanyon_Text_MichelleDefeat",
+      "SevenIsland_SevaultCanyon_Text_MichellePostBattle",
+      "SevenIsland_SevaultCanyon_Text_NyaPostBattle",
+      "SevenIsland_SevaultCanyon_Text_NyaNotEnoughMons",
+      "SevenIsland_SevaultCanyon_Text_BrunoTrainedWithBrawly"
+    ],
+    "data/maps/SevenIsland_SevaultCanyon_House_Frlg/scripts.inc": [
+      "SevenIsland_SevaultCanyon_House_Text_WouldYouLikeToDance",
+      "SevenIsland_SevaultCanyon_House_Text_ComeOnDance",
+      "SevenIsland_SevaultCanyon_House_Text_DancedChanseyDance",
+      "SevenIsland_SevaultCanyon_House_Text_YoureAllChipperNow"
+    ],
+    "data/maps/SevenIsland_SevaultCanyon_TanobyKey_Frlg/scripts.inc": [
+      "SevenIsland_SevaultCanyon_TanobyKey_Text_MysteriousRumbleFarAway"
+    ],
+    "data/maps/SevenIsland_TanobyRuins_Frlg/scripts.inc": [
+      "SevenIsland_TanobyRuins_Text_BrandonIntro",
+      "SevenIsland_TanobyRuins_Text_BrandonDefeat",
+      "SevenIsland_TanobyRuins_Text_BenjaminIntro",
+      "SevenIsland_TanobyRuins_Text_BenjaminDefeat",
+      "SevenIsland_TanobyRuins_Text_BenjaminPostBattle",
+      "SevenIsland_TanobyRuins_Text_EdnaIntro",
+      "SevenIsland_TanobyRuins_Text_EdnaDefeat",
+      "SevenIsland_TanobyRuins_Text_CliffordIntro",
+      "SevenIsland_TanobyRuins_Text_CliffordDefeat",
+      "SevenIsland_TanobyRuins_Text_CliffordPostBattle"
+    ],
+    "data/maps/SevenIsland_TrainerTower_Frlg/scripts.inc": [
+      "SevenIsland_TrainerTower_Text_DarioIntro",
+      "SevenIsland_TrainerTower_Text_DarioDefeat",
+      "SevenIsland_TrainerTower_Text_DarioPostBattle",
+      "SevenIsland_TrainerTower_Text_RodetteIntro",
+      "SevenIsland_TrainerTower_Text_RodetteDefeat",
+      "SevenIsland_TrainerTower_Text_RodettePostBattle"
+    ],
+    "data/maps/SixIsland_DottedHole_SapphireRoom_Frlg/scripts.inc": [
+      "SixIsland_DottedHole_SapphireRoom_Text_FoundSapphire",
+      "SixIsland_DottedHole_SapphireRoom_Text_IWasRightInTailingYou"
+    ],
+    "data/maps/SixIsland_Frlg/scripts.inc": [
+      "SixIsland_Text_SkyAtNightIsFantastic"
+    ],
+    "data/maps/SixIsland_GreenPath_Frlg/scripts.inc": [
+      "SixIsland_GreenPath_Text_JaclynDefeat"
+    ],
+    "data/maps/SixIsland_House_Frlg/scripts.inc": [
+      "SixIsland_House_Text_GoodPlaceForNatureAndHistory"
+    ],
+    "data/maps/SixIsland_OutcastIsland_Frlg/scripts.inc": [
+      "SixIsland_OutcastIsland_Text_RocketIntro",
+      "SixIsland_OutcastIsland_Text_RocketPostBattle",
+      "SixIsland_OutcastIsland_Text_TylorIntro",
+      "SixIsland_OutcastIsland_Text_TylorDefeat",
+      "SixIsland_OutcastIsland_Text_TylorPostBattle",
+      "SixIsland_OutcastIsland_Text_MymoPostBattle",
+      "SixIsland_OutcastIsland_Text_NicoleIntro",
+      "SixIsland_OutcastIsland_Text_NicoleDefeat",
+      "SixIsland_OutcastIsland_Text_NicolePostBattle",
+      "SixIsland_OutcastIsland_Text_GebNotEnoughMons"
+    ],
+    "data/maps/SixIsland_PatternBush_Frlg/scripts.inc": [
+      "SixIsland_PatternBush_Text_BethanyIntro",
+      "SixIsland_PatternBush_Text_BethanyDefeat",
+      "SixIsland_PatternBush_Text_BethanyPostBattle",
+      "SixIsland_PatternBush_Text_AllisonIntro",
+      "SixIsland_PatternBush_Text_AllisonDefeat",
+      "SixIsland_PatternBush_Text_AllisonPostBattle",
+      "SixIsland_PatternBush_Text_GarretDefeat",
+      "SixIsland_PatternBush_Text_GarretPostBattle",
+      "SixIsland_PatternBush_Text_VanceDefeat",
+      "SixIsland_PatternBush_Text_VancePostBattle",
+      "SixIsland_PatternBush_Text_NashIntro",
+      "SixIsland_PatternBush_Text_NashDefeat",
+      "SixIsland_PatternBush_Text_NashPostBattle",
+      "SixIsland_PatternBush_Text_CordellIntro",
+      "SixIsland_PatternBush_Text_CordellDefeat",
+      "SixIsland_PatternBush_Text_CordellPostBattle",
+      "SixIsland_PatternBush_Text_DaliaIntro",
+      "SixIsland_PatternBush_Text_DaliaDefeat",
+      "SixIsland_PatternBush_Text_DaliaPostBattle",
+      "SixIsland_PatternBush_Text_JoanaDefeat",
+      "SixIsland_PatternBush_Text_RileyIntro",
+      "SixIsland_PatternBush_Text_RileyDefeat",
+      "SixIsland_PatternBush_Text_RileyPostBattle",
+      "SixIsland_PatternBush_Text_MarcyIntro",
+      "SixIsland_PatternBush_Text_MarcyDefeat",
+      "SixIsland_PatternBush_Text_MarcyPostBattle",
+      "SixIsland_PatternBush_Text_LaytonIntro",
+      "SixIsland_PatternBush_Text_LaytonDefeat",
+      "SixIsland_PatternBush_Text_LaytonPostBattle"
+    ],
+    "data/maps/SixIsland_PokemonCenter_1F_Frlg/scripts.inc": [
+      "SixIsland_PokemonCenter_1F_Text_SomeMonsEvolveByTradingWithHeldItem"
+    ],
+    "data/maps/SixIsland_RuinValley_Frlg/scripts.inc": [
+      "SixIsland_RuinValley_Text_CantFigureOutHowToGetInside",
+      "SixIsland_RuinValley_Text_IFoundThisPlace",
+      "SixIsland_RuinValley_Text_CheckDoorMoreThoroughly",
+      "SixIsland_RuinValley_Text_LeftDoorAlone",
+      "SixIsland_RuinValley_Text_SeveralDotsOnTheDoor",
+      "SixIsland_RuinValley_Text_DoorIsOpen",
+      "SixIsland_RuinValley_Text_StanlyIntro",
+      "SixIsland_RuinValley_Text_StanlyPostBattle",
+      "SixIsland_RuinValley_Text_FosterIntro",
+      "SixIsland_RuinValley_Text_FosterDefeat",
+      "SixIsland_RuinValley_Text_LarryIntro",
+      "SixIsland_RuinValley_Text_LarryDefeat",
+      "SixIsland_RuinValley_Text_LarryPostBattle",
+      "SixIsland_RuinValley_Text_DarylIntro",
+      "SixIsland_RuinValley_Text_DarylDefeat",
+      "SixIsland_RuinValley_Text_DarylPostBattle",
+      "SixIsland_RuinValley_Text_HectorIntro",
+      "SixIsland_RuinValley_Text_HectorDefeat",
+      "SixIsland_RuinValley_Text_HectorPostBattle"
+    ],
+    "data/maps/SixIsland_WaterPath_Frlg/scripts.inc": [
+      "SixIsland_WaterPath_Text_RoseIntro",
+      "SixIsland_WaterPath_Text_RoseDefeat",
+      "SixIsland_WaterPath_Text_EdwardIntro",
+      "SixIsland_WaterPath_Text_EdwardDefeat",
+      "SixIsland_WaterPath_Text_EdwardPostBattle",
+      "SixIsland_WaterPath_Text_SamirIntro",
+      "SixIsland_WaterPath_Text_SamirDefeat",
+      "SixIsland_WaterPath_Text_DeniseIntro",
+      "SixIsland_WaterPath_Text_DeniseDefeat",
+      "SixIsland_WaterPath_Text_DenisePostBattle",
+      "SixIsland_WaterPath_Text_EarlIntro",
+      "SixIsland_WaterPath_Text_EarlDefeat",
+      "SixIsland_WaterPath_Text_WantedUltimateHorn"
+    ],
+    "data/maps/SixIsland_WaterPath_House1_Frlg/scripts.inc": [
+      "SixIsland_WaterPath_House1_Text_MayIMeasureHeracross",
+      "SixIsland_WaterPath_House1_Text_ItsXSizeDeserveReward",
+      "SixIsland_WaterPath_House1_Text_WantToSeeBiggerOne",
+      "SixIsland_WaterPath_House1_Text_ItsXSizeSameAsBefore",
+      "SixIsland_WaterPath_House1_Text_ThisWontDo",
+      "SixIsland_WaterPath_House1_Text_YourBagIsFull",
+      "SixIsland_WaterPath_House1_Text_BiggestHeracrossIsXSize",
+      "SixIsland_WaterPath_House1_Text_BlankChartOfSomeSort"
+    ],
+    "data/maps/SixIsland_WaterPath_House2_Frlg/scripts.inc": [
+      "SixIsland_WaterPath_House2_Text_MyNeighborMeasuredMe"
+    ]
+  },
+  "release_approved": false,
+  "no_gameplay_changes": true
+}
