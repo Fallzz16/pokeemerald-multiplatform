@@ -11,7 +11,7 @@
         "Nao esta interessado?! Nao\\ndevias ter tanto medo de\\larriscar!$"
       ],
       "BattleFrontier_Lounge3_Text_BackedWrongTrainer": [
-        "Apoiei o TREINADOR errado outra\\nvez!\\pTalvez devesse lutar\\nnormalmente como toda a\\lgente...$"
+        "Apoiei o TREINADOR errado outra\\nvez!\\pTalvez devesse batalhar\\nnormalmente como toda a\\lgente...$"
       ],
       "BattleFrontier_Lounge3_Text_TrainerGoodButRattled": [
         "Aquele TREINADOR...\\pEle e bom, mas ele fica agitado\\ndemasiado facilmente para\\lsobreviver ao DOME BATTLE...$"
@@ -42,13 +42,13 @@
         "Boo! Barato!$"
       ],
       "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow": [
-        "Hmhm...\\pEste diz que gosta de lutar!\\nVai batalhar mesmo que tenha\\lmuitos ouchies!$"
+        "Hmhm...\\pEste diz que gosta de batalhar!\\nVai batalhar mesmo que tenha\\lmuitos ouchies!$"
       ],
       "BattleFrontier_Lounge5_Text_NatureGirlAttackHighDefenseLow": [
-        "Hmhm...\\pEste diz que gosta de lutar!\\nMas, se tiver bastante barulho,\\lvai preocupar-se consigo mesmo!$"
+        "Hmhm...\\pEste diz que gosta de batalhar!\\nMas, se tiver bastante barulho,\\lvai preocupar-se consigo mesmo!$"
       ],
       "BattleFrontier_Lounge5_Text_NatureGirlAttackHighSupportLow": [
-        "Hmhm...\\pEste diz que gosta de lutar!\\nMas se ficar bastante\\lassobiado, vai ficar\\lsorrateiro!$"
+        "Hmhm...\\pEste diz que gosta de batalhar!\\nMas se ficar bastante\\lassobiado, vai ficar\\lsorrateiro!$"
       ],
       "BattleFrontier_Lounge5_Text_NatureGirlDefenseHighAttackLow": [
         "Hmhm...\\pEste diz que cuida de si mesmo!\\nMas se tiver bastantes rugas,\\lvai bater de volta!$"
@@ -157,7 +157,7 @@
         "Um fraco choque de eletricidade\\nque paralisa o inimigo.$"
       ],
       "BattleFrontier_Lounge7_Text_SwordsDanceDesc": [
-        "Uma danca de luta que aumenta\\nfortemente ATTACK.$"
+        "Uma danca de batalha que aumenta\\nfortemente ATTACK.$"
       ],
       "BattleFrontier_Lounge7_Text_SnoreDesc": [
         "Um ataque alto que so pode ser\\nusado enquanto dorme.$"
@@ -199,7 +199,7 @@
     },
     "data/maps/BattleFrontier_OutsideEast/scripts.inc": {
       "BattleFrontier_OutsideEast_Text_ConquerLeagueAndFrontier": [
-        "Minha grande ambicao e\\nconquistar tanto o BATTLE\\lFRONTIER como a LEAGUE POKEMON.\\pE se meu sonho se realizar...\\pVou perguntar a MIMI aqui ao\\nlado se ela sera minha amiga!$"
+        "Minha grande ambicao e\\nconquistar tanto o BATTLE\\lFRONTIER como a LIGA POKEMON.\\pE se meu sonho se realizar...\\pVou perguntar a MIMI aqui ao\\nlado se ela sera minha amiga!$"
       ],
       "BattleFrontier_OutsideEast_Text_ThriveInDarkness": [
         "Eu prospero na escuridao...\\nSim... O que e digno de mim?\\lNinguem mais que o PYRAMID\\lBATTLE...\\pQue dizes a vaguear na\\nescuridao e em total e total\\ldesespero?$"
@@ -276,10 +276,10 @@
         "Nao, perdi.\\pAcho que hoje nao tenho muita\\nsorte. Vou adiar meu desafio\\lda BATTLE PIKE ate amanha.$"
       ],
       "BattleFrontier_OutsideWest_Text_ChooseFishingOverBattling": [
-        "Acho que sou a unica pessoa\\naqui que, por alguma razao\\ldesconhecida, escolheria pescar\\lem vez de lutar.\\pHuh? Nao Consegue capturar nada\\naqui? Isso e decepcionante...$"
+        "Acho que sou a unica pessoa\\naqui que, por alguma razao\\ldesconhecida, escolheria pescar\\lem vez de batalhar.\\pHuh? Nao Consegue capturar nada\\naqui? Isso e decepcionante...$"
       ],
       "BattleFrontier_OutsideWest_Text_KeepBattlingUntilIGetSymbol": [
-        "Hoje, vou continuar a lutar,\\ncuste o que custar, ate ter um\\lSimbolo.$"
+        "Hoje, vou continuar a batalhar,\\ncuste o que custar, ate ter um\\lSimbolo.$"
       ],
       "BattleFrontier_OutsideWest_Text_YoureOffToChallengeDome": [
         "A serio? Vai desafiar o BATTLE\\nDOME?\\pDesejo-lhe boa sorte. Vamos\\nambos ganhar nosso caminho e\\lenfrentar os desafios.$"
@@ -336,7 +336,7 @@
         "Esperamos que voce aproveite\\ntudo o que o BATTLE FRONTIER\\ltem para oferecer!$"
       ],
       "BattleFrontier_ReceptionGate_Text_IfItIsntPlayerYouCame": [
-        "??: Bem, se nao\\ne{PLAYER}{KUN}Tu veio aqui!$"
+        "??: Bem, se nao\\ne{PLAYER}{KUN}Voce veio aqui!$"
       ],
       "BattleFrontier_ReceptionGate_Text_LearnAboutWhich2": [
         "Sobre o que gostaria de\\naprender?$"
@@ -371,7 +371,7 @@
         "Pensando bem, foi uma viagem\\nterrivelmente longa...\\pSai de casa sozinho numa busca\\npara encontrar os Treiners\\lfortes.\\pNinguem pode imaginar quanto\\nesforco ou tempo levou para\\ltornar isto real.$"
       ],
       "BattleFrontier_ScottsHouse_Text_HaveThisAsMementoOfOurPathsCrossing": [
-        "Mas isso e tudo passado. Nao\\nvale a pena pensar nisso!\\pTudo o que quero e que gostes\\nde lutar ao seu coracao.\\p{PLAYER}{KUN}Quero que tenha\\nisto como recordacao para\\lsempre nossos caminhos\\lcruzados nas nossas viagens.$"
+        "Mas isso e tudo passado. Nao\\nvale a pena pensar nisso!\\pTudo o que quero e que gostes\\nde batalhar ao seu coracao.\\p{PLAYER}{KUN}Quero que tenha\\nisto como recordacao para\\lsempre nossos caminhos\\lcruzados nas nossas viagens.$"
       ],
       "BattleFrontier_ScottsHouse_Text_ObtainedXBattlePoints": [
         "{PLAYER}obtido{STR_VAR_1}Pontos\\nde batalha.$"
@@ -472,7 +472,7 @@
     },
     "data/maps/BurnedTower_1F/scripts.inc": {
       "BurnedTowerSilver_BeforeText": [
-        "..............................\\pEs tu.\\pVim a procura de um legendario\\nPokemon que dizem ser o potro.\\pMas nao ha nada aqui!\\pNada, depois de todo o esforco\\nde vir a esta espelunca? Nem\\lpensar!\\pA culpa e toda sua!$"
+        "..............................\\pEs voce.\\pVim a procura de um legendario\\nPokemon que dizem ser o potro.\\pMas nao ha nada aqui!\\pNada, depois de todo o esforco\\nde vir a esta espelunca? Nem\\lpensar!\\pA culpa e toda sua!$"
       ],
       "BurnedTowerSilver_WinText": [
         "Humph!\\pSo perdi porque meus POKEMON\\nsao incrivelmente fracos.\\pQue patetico.$"
@@ -481,7 +481,7 @@
         "Tanto faz.\\pNunca conseguirias capturar um\\nPokemon lendario.$"
       ],
       "BurnedTowerSilver_LossText": [
-        "Humph!\\pE por isso que odeio lutar\\ncontra maricas. E uma perda de\\ltempo.$"
+        "Humph!\\pE por isso que odeio batalhar\\ncontra maricas. E uma perda de\\ltempo.$"
       ],
       "BurnedTowerSilver_AfterText2": [
         "Humph!\\pPorque estas a cair num buraco?\\nQue genio!\\pBem feito!$"
@@ -577,7 +577,7 @@
         "Um jogo de puzzle! Parece\\nviciante!$"
       ],
       "CeladonCity_DepartmentStore_3F_Text_FightingGame": [
-        "Um jogo de luta! Parece duro!$"
+        "Um jogo de batalha! Parece duro!$"
       ],
       "CeladonCity_DepartmentStore_3F_Text_RedGreenBothArePokemon": [
         "Vermelho e Verde! Ambos sao\\nPokemon!$"
@@ -770,7 +770,7 @@
     },
     "data/maps/CeruleanCity_Frlg/scripts.inc": {
       "CeruleanCity_Text_RivalIntro": [
-        "{RIVAL}Yo!{PLAYER}!\\pAinda estas a lutar aqui atras?\\pEstou optimo! Apanhei um monte\\nde POKEMON fortes e\\linteligentes!\\pDeixa-me ver o que\\napanhaste.{PLAYER}!$"
+        "{RIVAL}Yo!{PLAYER}!\\pAinda estas a batalhar aqui atras?\\pEstou optimo! Apanhei um monte\\nde POKEMON fortes e\\linteligentes!\\pDeixa-me ver o que\\napanhaste.{PLAYER}!$"
       ],
       "CeruleanCity_Text_RivalDefeat": [
         "Hey! Calma! Ja venceu!$"
@@ -779,7 +779,7 @@
         "Sim, claro.\\pTenho pena de voce. Nao, a serio.\\nEstas sempre atras de mim.$"
       ],
       "CeruleanCity_Text_ExplainFameCheckerSmellYa": [
-        "Nao tenho tempo para andar com\\num atrasado como tu.\\pEsta bem, desta vez eu\\nrealmente estou fora.\\lCheira-te!$"
+        "Nao tenho tempo para andar com\\num atrasado como voce.\\pEsta bem, desta vez eu\\nrealmente estou fora.\\lCheira-te!$"
       ],
       "CeruleanCity_Text_GruntIntro": [
         "Hey! Fica fora! O jardim nao e\\nteu!\\p...Huh? Eu?\\pSou um espectador inocente! Nao\\nacreditas em\\lmim?{PLAY_BGM}{MUS_RG_ENCOUNTER_ROCKET}$"
@@ -794,7 +794,7 @@
         "Abram espaco para isto! Nao\\nposso fugir ate te dar!$"
       ],
       "CeruleanCity_Text_TrainerLifeIsToughIsntIt": [
-        "Tambem e TREINADOR?\\pA recolher, a lutar... E uma\\nvida dificil, nao e?$"
+        "Tambem e TREINADOR?\\pA recolher, a batalhar... E uma\\nvida dificil, nao e?$"
       ],
       "CeruleanCity_Text_PokemonEncyclopediaAmusing": [
         "Estas a fazer uma enciclopedia\\nem POKEMON? Parece divertido.$"
