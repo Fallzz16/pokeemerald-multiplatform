@@ -381,185 +381,185 @@
     },
     "data/maps/JohtoVictoryRoad_B1F/scripts.inc": {
       "JohtoVictoryRoad_B1F_Text_SamuelDefeat": [
-        "Nao pude fazer nada...$"
+        "Nao consegui reagir...$"
       ],
       "JohtoVictoryRoad_B1F_Text_SamuelPostBattle": [
-        "A LEAGUE POKEMON tornou-se\\nnovamente distante... Que\\ldesilusao...$"
+        "A LIGA POKEMON parece\\nainda mais distante...\\pQue decepcao!$"
       ],
       "JohtoVictoryRoad_B1F_Text_ShannonIntro": [
-        "Para ganhar o seu caminho\\natraves da LEAGUE POKEMON, voce\\lprecisa da confianca do seu\\lPOKEMON.$"
+        "Para chegar a LIGA POKEMON,\\nvoce precisa confiar\\nnos seus POKEMON!$"
       ],
       "JohtoVictoryRoad_B1F_Text_ShannonDefeat": [
-        "A tua relacao baseia-se numa\\nconfianca solida.$"
+        "Seu vinculo com os POKEMON\\ne muito forte!$"
       ],
       "JohtoVictoryRoad_B1F_Text_ShannonPostBattle": [
-        "Estando juntos o tempo todo, a\\nconfianca cresce entre POKEMON\\le TREINADORES.$"
+        "Quanto mais tempo passamos\\ncom nossos POKEMON,\\nmaior fica nossa confianca!$"
       ],
       "JohtoVictoryRoad_B1F_Text_MichelleDefeat": [
-        "E assim mesmo!$"
+        "E disso que estou falando!$"
       ],
       "JohtoVictoryRoad_B1F_Text_MichellePostBattle": [
-        "Vai correr tudo bem, com\\ncerteza! Os vossos Pokemon\\lestao todos ansiosos por ir!$"
+        "Vai dar tudo certo!\\pSeus POKEMON parecem\\nansiosos para o desafio!$"
       ],
       "JohtoVictoryRoad_B1F_Text_MitchellIntro": [
-        "Os meus Pokemon sao\\ncosmosicamente inspiradores!$"
+        "Meus POKEMON tem\\num poder de outro mundo!$"
       ],
       "JohtoVictoryRoad_B1F_Text_MitchellDefeat": [
-        "Nunca conheci ninguem como tu.$"
+        "Nunca enfrentei\\nalguem como voce!$"
       ],
       "JohtoVictoryRoad_B1F_Text_MitchellPostBattle": [
-        "Mesmo fora da batalha, sinto um\\npoder incrivel que emana de ti\\le do teu Pokemon.$"
+        "Mesmo fora das batalhas,\\nsinto uma forca enorme\\nvinda de voce e seus POKEMON!$"
       ],
       "JohtoVictoryRoad_B1F_Text_HalleIntro": [
-        "Nao precisas de te levantar!\\nCalma, vamos ter calma!$"
+        "Sem pressa!\\pVamos lutar com calma\\ne concentracao!$"
       ],
       "JohtoVictoryRoad_B1F_Text_HalleDefeat": [
-        "Whoa! Maravilhoso!$"
+        "Nossa! Foi maravilhoso!$"
       ]
     },
     "data/maps/JohtoVictoryRoad_B2F/scripts.inc": {
       "JohtoVictoryRoad_B2F_Text_VitoIntro": [
-        "Treinei com toda a minha\\nfamilia, todos nos! Nao vou\\lperder para ninguem!$"
+        "Treinei com toda\\na minha familia!\\pNao vou perder\\npara ninguem!$"
       ],
       "JohtoVictoryRoad_B2F_Text_VitoDefeat": [
-        "Melhor que a minha familia?!\\nIsso e possivel?!$"
+        "Voce e mais forte\\ndo que minha familia inteira?$"
       ],
       "JohtoVictoryRoad_B2F_Text_VitoPostBattle": [
-        "Eu era melhor do que todos na\\nminha familia. Nunca perdi\\lantes...\\pPerdi a minha confianca...\\nTalvez eu va para casa...$"
+        "Eu era o mais forte\\nda minha familia.\\pNunca tinha perdido...\\pAcho que vou voltar\\npara casa e treinar mais.$"
       ],
       "JohtoVictoryRoad_B2F_Text_OwenIntro": [
-        "Ouvi dizer que havia um miudo\\nduro por perto. Referem-se a\\lti?$"
+        "Ouvi falar de um TREINADOR\\nmuito forte por aqui.\\pE voce?$"
       ],
       "JohtoVictoryRoad_B2F_Text_OwenDefeat": [
-        "O pequeno camarao e duro!$"
+        "Voce e pequeno,\\nmas luta muito bem!$"
       ],
       "JohtoVictoryRoad_B2F_Text_CarolineIntro": [
-        "Deves estar a ficar cansado.$"
+        "Voce deve estar cansado\\ndepois de chegar ate aqui!$"
       ],
       "JohtoVictoryRoad_B2F_Text_CarolineDefeat": [
-        "Nenhum sinal de cansaco!$"
+        "Nem parece cansado!$"
       ],
       "JohtoVictoryRoad_B2F_Text_JulieIntro": [
-        "Nao devias ficar complacente so\\nporque tens muitos INSIGNIA.\\pHavera sempre alguem melhor do\\nque tu!$"
+        "Nao fique convencido\\nso porque tem muitas INSIGNIAS.\\pSempre existe alguem\\nmais forte!$"
       ],
       "JohtoVictoryRoad_B2F_Text_JulieDefeat": [
-        "Es melhor do que eu!$"
+        "Voce e melhor do que eu!$"
       ],
       "JohtoVictoryRoad_B2F_Text_JuliePostBattle": [
-        "Vejam os vossos INSIGNIAS\\nrecolhidos e lembrem-se dos\\lTRAiners que enfrentaram.$"
+        "Olhe para suas INSIGNIAS\\ne lembre dos TREINADORES\\nque enfrentou!$"
       ],
       "JohtoVictoryRoad_B2F_Text_FelixIntro": [
-        "Cheguei ate aqui, mas a tensao\\nesta a dar-me dores de\\lestomago...$"
+        "Cheguei ate aqui,\\nmas estou muito nervoso!\\pAte meu estomago esta doendo!$"
       ],
       "JohtoVictoryRoad_B2F_Text_FelixDefeat": [
-        "Ooh... Doi...$"
+        "Ai... Que dor!$"
       ],
       "JohtoVictoryRoad_B2F_Text_FelixPostBattle": [
-        "Nao consigo evitar ficar tenso\\nsabendo que estou perto da\\lLEAGUE POKEMON.\\pE tudo o que posso fazer para\\nfingir calma.$"
+        "A LIGA POKEMON esta perto.\\pFico tao nervoso\\nque mal consigo disfarcar!$"
       ],
       "JohtoVictoryRoad_B2F_Text_DianneIntro": [
-        "A elite entre as elites\\nreune-se nesta caverna.\\pComo e que o encontras?$"
+        "Os melhores TREINADORES\\nse encontram nesta caverna.\\pO que acha disso?$"
       ],
       "JohtoVictoryRoad_B2F_Text_DianneDefeat": [
-        "Nem um pouco abalada!$"
+        "Nem fiquei abalada!$"
       ],
       "JohtoVictoryRoad_B2F_Text_DiannePostBattle": [
-        "Tens mesmo coragem! Gosto\\ndisso! Continuem!$"
+        "Voce tem muita coragem!\\nContinue assim!$"
       ]
     },
     "data/maps/LakeOfRage/scripts.inc": {
       "LakeOfRage_Text_LanceIntro1": [
-        "Veio aqui por causa dos\\nrumores?\\pVoce e...{PLAYER}Sou o LANCE,\\num treinador como tu.$"
+        "Voce veio por causa\\ndos boatos?\\pAh, voce e {PLAYER}!\\nSou LANCE, um TREINADOR\\nassim como voce.$"
       ],
       "LakeOfRage_Text_LanceIntro2": [
-        "Este homem aqui informou-me de\\nalguns rumores.\\pEntao viemos investigar...$"
+        "Este homem nos contou\\nsobre alguns boatos.\\pViemos investigar\\no que esta acontecendo.$"
       ],
       "LakeOfRage_Text_LanceIntro3": [
-        "Vi como lutaste antes.{PLAYER}.\\pPosso dizer que es um treinador\\ncom uma habilidade\\lconsideravel.\\pSe nao se importa, pode\\najudar-nos a investigar?$"
+        "Vi sua batalha, {PLAYER}.\\pVoce tem muito talento!\\pPode me ajudar\\na investigar este misterio?$"
       ],
       "LakeOfRage_Text_LanceRefused": [
-        "Oh... Se mudares de ideias,\\najuda-nos.$"
+        "Tudo bem...\\pSe mudar de ideia,\\nme procure!$"
       ],
       "LakeOfRage_Text_GrampsCleared": [
-        "Hahah! Os MAGIKARP estao a\\nmorder!$"
+        "Ha ha ha!\\nOs MAGIKARP estao mordendo!$"
       ],
       "LakeOfRage_Text_SuperNerd": [
-        "Ouvi dizer que este lago foi\\nfeito por GYARADOS.\\pSera que ha alguma ligacao com\\no surto de massa deles agora?$"
+        "Dizem que os GYARADOS\\nformaram este lago.\\pSera que isso tem relacao\\ncom o que ocorre agora?$"
       ],
       "LakeOfRage_Text_FisherAndreSeen": [
-        "Deixa-me lutar com o Pokemon\\nque acabei de apanhar!$"
+        "Vou testar o POKEMON\\nque acabei de pescar!$"
       ],
       "LakeOfRage_Text_FisherAndreBeaten": [
-        "Posso ser um pescador\\nespecialista, mas sou um\\ltreinador POKEMON...$"
+        "Pesco muito bem,\\nmas como TREINADOR...$"
       ],
       "LakeOfRage_Text_FisherAndreAfter": [
-        "Nao vou perder como pescador!\\nEu apanho o Pokemon o dia todo.$"
+        "Na pescaria eu nao perco!\\pPasso o dia inteiro\\npescando POKEMON!$"
       ],
       "LakeOfRage_Text_FisherRaymondSeen": [
-        "Nao importa o que eu faca, tudo\\no que eu pego e o mesmo\\lPOKEMON...$"
+        "Nao importa o que eu tente,\\nso pesco o mesmo POKEMON!$"
       ],
       "LakeOfRage_Text_FisherRaymondBeaten": [
-        "A minha linha esta\\nemaranhada...$"
+        "Minha linha embaracou...$"
       ],
       "LakeOfRage_Text_FisherRaymondAfter": [
-        "Porque e que nao apanho nenhum\\nbom Pokemon?$"
+        "Por que nao consigo\\npescar um POKEMON melhor?$"
       ],
       "LakeOfRage_Text_CooltrainermAaronSeen": [
-        "Se um treinador ve outro\\ntreinador, ele tem que fazer um\\ldesafio.\\pEsse e o nosso destino.$"
+        "Quando dois TREINADORES\\nse encontram, eles batalham!\\pEsse e o nosso destino!$"
       ],
       "LakeOfRage_Text_CooltrainermAaronBeaten": [
-        "Ufa... Boa batalha.$"
+        "Ufa! Que batalha!$"
       ],
       "LakeOfRage_Text_CooltrainermAaronAfter": [
-        "POKEMON e seu treinador\\ntornam-se poderosos atraves da\\lluta constante.$"
+        "POKEMON e TREINADORES\\nficam mais fortes\\na cada batalha!$"
       ],
       "LakeOfRage_Text_CooltrainerfLoisBeaten": [
-        "Muito bem!$"
+        "Parabens! Voce venceu!$"
       ],
       "LakeOfRage_Text_WesleyGivesGift": [
-        "Prazer em conhece-lo. Por\\nfavor, leve uma lembranca.$"
+        "Prazer em conhecer voce!\\pAceite esta lembranca!$"
       ],
       "LakeOfRage_Text_Sign": [
-        "LAKE OF RAGE, tambem conhecido\\ncomo GYARADOS LAKE.$"
+        "LAGO DA FURIA\\pTambem conhecido\\ncomo LAGO DOS GYARADOS.$"
       ]
     },
     "data/maps/LakeOfRageLowTide/scripts.inc": {
       "LakeOfRageLowTide_Text_Sage": [
-        "Esta caverna contem um POKEMON\\nmuito forte para um treinador\\lcomum.$"
+        "Esta caverna abriga\\num POKEMON muito forte.\\pNao e lugar para\\nTREINADORES despreparados!$"
       ]
     },
     "data/maps/LakeOfRage_House1/scripts.inc": {
       "HiddenPowerGuy_Text_Intro": [
-        "...desviaste-te muito...\\pAqui meditei. Dentro de mim, um\\nnovo poder foi despertado.\\pDeixa-me partilhar o meu poder\\ncom o teu Pokemon. Toma isto,\\lcrianca.$"
+        "Voce chegou ate aqui...\\pMeditando neste lugar,\\ndescobri um novo poder!\\pQuero compartilhar\\nesse poder com seu POKEMON.\\pAceite este presente!$"
       ],
       "HiddenPowerGuy_Text_Meditating": [
-        "Estou a meditar...$"
+        "Estou meditando...$"
       ]
     },
     "data/maps/LakeOfRage_House2/scripts.inc": {
       "LakeOfRage_House2_Text_LastMon": [
-        "Nao me deixes levar o teu\\nultimo POKEMON!$"
+        "Nao vou ficar com\\nseu ultimo POKEMON!$"
       ],
       "LakeOfRage_House2_Text_ForMe": [
-        "Entao... Tens um MAGIKARP para\\nmim?$"
+        "Entao... Tem um MAGIKARP\\npara me mostrar?$"
       ],
       "LakeOfRage_House2_Text_HaveMagikarp": [
-        "Ah, voce tem um MAGIKARP! Vamos\\nver o tamanho do bebe.$"
+        "Ah, um MAGIKARP!\\pVamos medir o tamanho dele!$"
       ],
       "LakeOfRage_House2_Text_BigPayout": [
-        "Uau! Este e excelente!\\pTiro-te o chapeu!\\pAqui esta uma coisinha para o\\nseu problema.$"
+        "Nossa! Que MAGIKARP enorme!\\pEstou impressionado!\\pAceite este premio!$"
       ],
       "LakeOfRage_House2_Text_Bonus": [
-        "O recorde e o mais importante.\\pPense nisso como um bonus!$"
+        "O recorde e o que importa!\\pConsidere isto um bonus!$"
       ],
       "LakeOfRage_House2_Text_TooShort": [
-        "Uau! Este e excelente!\\pGostaria de poder dizer isso,\\nmas ja vi um maior antes.\\pAcho que vale alguma coisa.$"
+        "Esse MAGIKARP e bom!\\pMas ja vi um maior.\\pMesmo assim, merece\\numa recompensa!$"
       ],
       "LakeOfRage_House2_Text_NotMagikarp": [
         "O que? Isso nao e um MAGIKARP!$"
       ],
       "LakeOfRage_House2_Text_Refused": [
-        "Oh... Entao nao recebeste um\\nsuficientemente bom para me\\lmostrares? Talvez da proxima\\lvez.$"
+        "Nao quer mostrar?\\pTudo bem! Volte\\nquando encontrar outro!$"
       ]
     },
     "data/maps/LavaridgeTown/scripts.inc": {
