@@ -213,7 +213,7 @@
         "Perdi enquanto estava perdido\\nem pensamentos!$"
       ],
       "Route110_TrickHousePuzzle1_Text_RobinPostBattle": [
-        "E forte! Quem e tu?$"
+        "E forte! Quem e voce?$"
       ]
     },
     "data/maps/Route110_TrickHousePuzzle2/scripts.inc": {
@@ -227,13 +227,13 @@
         "Pode apertar todos os botoes\\npor mim?$"
       ],
       "Route110_TrickHousePuzzle2_Text_PaulDefeat": [
-        "Tambem e bom a lutar?$"
+        "Tambem e bom a batalhar?$"
       ],
       "Route110_TrickHousePuzzle2_Text_GeorgiaIntro": [
         "Quero fazer meu proprio\\nGINASIO um dia. Estou estudando\\lcomo montar armadilhas.$"
       ],
       "Route110_TrickHousePuzzle2_Text_GeorgiaDefeat": [
-        "Nao estudei a lutar o\\nsuficiente!$"
+        "Nao estudei a batalhar o\\nsuficiente!$"
       ]
     },
     "data/maps/Route110_TrickHousePuzzle3/scripts.inc": {
@@ -241,7 +241,7 @@
         "Continuo a voltar para este\\nmesmo lugar!$"
       ],
       "Route110_TrickHousePuzzle3_Text_JustinDefeat": [
-        "Ja estou com problemas, e\\ndepois tem de me vencer? Nao e\\ljusto!$"
+        "Ja estou com problemas, e\\ndepois precisa me vencer? Nao e\\ljusto!$"
       ],
       "Route110_TrickHousePuzzle3_Text_JustinPostBattle": [
         "Esta cheio de portas aqui! Esta\\nmuito pequeno e escuro aqui!\\lSocorro!$"
@@ -250,7 +250,7 @@
         "Nao sei o que se passa aqui.\\nEstou comecando a sentir-me\\ltriste...$"
       ],
       "Route110_TrickHousePuzzle3_Text_MarthaDefeat": [
-        "Tu... E horrivel!$"
+        "Voce... E horrivel!$"
       ],
       "Route110_TrickHousePuzzle3_Text_MarthaPostBattle": [
         "Eu sei que sou fraco! E nao\\ntenho sentido de direccao!$"
@@ -262,15 +262,15 @@
         "Nao percebo. Como e que eu\\nperdi?$"
       ],
       "Route110_TrickHousePuzzle3_Text_AlanPostBattle": [
-        "Nao percebo. Quantas armadilhas\\nha nesta casa?\\pPodes ser tu a resolver isso.$"
+        "Nao percebo. Quantas armadilhas\\nha nesta casa?\\pPodes ser voce a resolver isso.$"
       ]
     },
     "data/maps/Route110_TrickHousePuzzle4/scripts.inc": {
       "Route110_TrickHousePuzzle4_Text_CoraIntro": [
-        "E muito trabalho pensar nisto.\\nEu so queria lutar!$"
+        "E muito trabalho pensar nisto.\\nEu so queria batalhar!$"
       ],
       "Route110_TrickHousePuzzle4_Text_CoraDefeat": [
-        "Mesmo que tenha perdido, ainda\\ngosto de lutar com os melhores!$"
+        "Mesmo que tenha perdido, ainda\\ngosto de batalhar com os melhores!$"
       ],
       "Route110_TrickHousePuzzle4_Text_CoraPostBattle": [
         "Nao concorda? Voce iria a\\nqualquer lugar se os\\ltREINADORES estivessem la.$"
@@ -282,7 +282,7 @@
         "Posso empurrar pedras, mas nao\\nconsigo resolver o puzzle...$"
       ],
       "Route110_TrickHousePuzzle4_Text_YujiPostBattle": [
-        "Nao e suficientemente bom para\\nser forte... tem de usar a\\lcabeca. Se inteligente!$"
+        "Nao e suficientemente bom para\\nser forte... precisa usar a\\lcabeca. Se inteligente!$"
       ],
       "Route110_TrickHousePuzzle4_Text_PaulaPostBattle": [
         "Alguem chegou ao fim?$"
@@ -380,7 +380,7 @@
         "Isso deve significar que tambem\\ne forte...$"
       ],
       "Route110_TrickHousePuzzle8_Text_KeiraIntro": [
-        "Considere-se com sorte por\\nestar a lutar comigo!$"
+        "Considere-se com sorte por\\nestar a batalhar comigo!$"
       ],
       "Route110_TrickHousePuzzle8_Text_KeiraDefeat": [
         "Isto nao esta certo! Nao posso\\nperder!$"
@@ -551,7 +551,7 @@
         "MAY:{PLAYER}{KUN}Onde estava?\\nEstava sua procura!\\pQuanto mais forte ficaste?\\nDeixa-me ver por voce!\\pPronto com seu POKEMON? Claro\\nque estas! Vai!$"
       ],
       "Route119_Text_MayDefeat": [
-        "Achah!{PLAYER}{KUN}E forte!\\pEstava preocupado que\\nestivesses a lutar com o seu\\ltreino.$"
+        "Achah!{PLAYER}{KUN}E forte!\\pEstava preocupado que\\nestivesses a batalhar com o seu\\ltreino.$"
       ],
       "Route119_Text_BrendanDefeat": [
         "Hmm... Ficaste bastante\\ndecente.$"
@@ -580,7 +580,7 @@
         "Enquanto dormia, todos subiram!$"
       ],
       "Route119_WeatherInstitute_1F_Text_WowYoureStrong": [
-        "E mesmo forte!\\pQuem me dera poder ser um\\ntREINADOR como tu!$"
+        "E mesmo forte!\\pQuem me dera poder ser um\\ntREINADOR como voce!$"
       ],
       "Route119_WeatherInstitute_1F_Text_WhatWereAquasUpTo": [
         "Ola! Fomos salvos pelas suas\\naccoes!\\pO que nao entendo e o que os\\nAQUAS estavam tramando.$"
@@ -771,7 +771,7 @@
     },
     "data/maps/Route124_DivingTreasureHuntersHouse/scripts.inc": {
       "Route124_DivingTreasureHuntersHouse_Text_ThatsAShardIllTradeYou": [
-        "Ola! Isso... Isso e um SHARD!\\nEstou a procura deles!\\pMeu, tem de trocar isso\\ncomigo! Eu dou-te uma coisa\\lboa!$"
+        "Ola! Isso... Isso e um SHARD!\\nEstou a procura deles!\\pMeu, precisa trocar isso\\ncomigo! Eu dou-te uma coisa\\lboa!$"
       ],
       "Route124_DivingTreasureHuntersHouse_Text_WhatDoYouWantToTrade": [
         "O que quer trocar?$"
@@ -805,7 +805,7 @@
         "Grande! Gosto do seu estilo.\\nAcho que podemos ser amigos.\\pToma isto e pesca, jovem amigo!$"
       ],
       "Route12_FishingHouse_Text_IfYouCatchBigMagikarpShowMe": [
-        "Pescar e um modo de vida! E\\ncomo a melhor poesia.\\pDos mares aos rios, sai e pousa\\no grande, meu amigo.\\pAgora, tenho um pedido.\\pSe apanhares um grande MAGIKARP\\ncom esse ROD, quero ve-lo.\\pPor mais que eu goste de\\npescar, eu tambem adoro ver\\lMAGIKARP gigante.$"
+        "Pescar e um modo de vida! E\\ncomo a melhor poesia.\\pDos mares aos rios, sai e pousa\\no grande, meu amigo.\\pAgora, tenho um pedido.\\pSe capturar um grande MAGIKARP\\ncom esse ROD, quero ve-lo.\\pPor mais que eu goste de\\npescar, eu tambem adoro ver\\lMAGIKARP gigante.$"
       ],
       "Route12_FishingHouse_Text_OhThatsDisappointing": [
         "Oh... Isso e tao\\ndecepcionante...$"
