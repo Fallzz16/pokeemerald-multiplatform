@@ -70,7 +70,7 @@
         "Toca demasiado!$"
       ],
       "Route12_Text_HankPostBattle": [
-        "Acho que podes ser bom no que\\ngostas.\\pBem, ganhaste-me em Pokemon,\\nmas nao consegues vencer-me na\\lpesca.$"
+        "Acho que pode ser bom no que\\ngostas.\\pBem, venceu-me em Pokemon,\\nmas nao consegue vencer-me na\\lpesca.$"
       ],
       "Route12_Text_ElliotIntro": [
         "Adoro pescar, nao me\\ninterpretes mal.\\pMas seria melhor se eu tivesse\\nmais trabalho.$"
@@ -124,7 +124,7 @@
         "Quero tornar-me um bom\\ntreinador. Vou treinar muito,\\lapenas observa.$"
       ],
       "Route13_Text_ValerieIntro": [
-        "Uau! Os teus INSIGNIAS sao\\ndemasiado fixes!$"
+        "Uau! Os seus INSIGNIAS sao\\ndemasiado fixes!$"
       ],
       "Route13_Text_ValerieDefeat": [
         "Nao o suficiente!$"
@@ -133,7 +133,7 @@
         "Meu bonito POKEMON deseja\\nconhece-lo.$"
       ],
       "Route13_Text_GwenDefeat": [
-        "Muito bem! Ganhaste mesmo!$"
+        "Muito bem! venceu mesmo!$"
       ],
       "Route13_Text_GwenPostBattle": [
         "Voce precisa batalhar\\npara fortalecer seus POKEMON.$"
@@ -160,7 +160,7 @@
         "Pergunto-me o que e mais forte,\\nmasculino ou feminino POKEMON?$"
       ],
       "Route13_Text_SheilaIntro": [
-        "Queres lutar comigo?$"
+        "quer lutar comigo?$"
       ],
       "Route13_Text_SheilaDefeat": [
         "Ja acabou?$"
@@ -192,7 +192,7 @@
         "Ainda nao chega.$"
       ],
       "Route14_Text_CarterPostBattle": [
-        "Tens HMs, certo? POKEMON nao\\npode esquecer esses movimentos\\lfacilmente.$"
+        "tem HMs, certo? POKEMON nao\\npode esquecer esses movimentos\\lfacilmente.$"
       ],
       "Route14_Text_MitchIntro": [
         "O meu passaro POKEMON deve\\nestar pronto para a batalha.$"
@@ -237,7 +237,7 @@
         "Arrg! Perdido! Desaparece!$"
       ],
       "Route14_Text_LukasPostBattle": [
-        "O que? O que ainda queres?$"
+        "O que? O que ainda quer?$"
       ],
       "Route14_Text_IsaacIntro": [
         "Preciso de me queimar algum\\ntempo. Cala-te e luta.$"
@@ -255,16 +255,16 @@
         "Toalhita!$"
       ],
       "Route14_Text_GeraldPostBattle": [
-        "E fixe teres tornado o teu\\nPokemon tao forte.\\pO poder esta certo! E tu sabes\\ndisso!$"
+        "E legal teres tornado o seu\\nPokemon tao forte.\\pO poder esta certo! E tu sabe\\ndisso!$"
       ],
       "Route14_Text_MalikIntro": [
-        "Batalha POKEMON? Fixe! Rumble!$"
+        "Batalha POKEMON? legal! Rumble!$"
       ],
       "Route14_Text_MalikDefeat": [
         "Explodiu!$"
       ],
       "Route14_Text_MalikPostBattle": [
-        "Sabes quem ganharia, tu e eu a\\nsos!$"
+        "sabe quem ganharia, tu e eu a\\nsos!$"
       ]
     },
     "data/maps/Route15_Frlg/scripts.inc": {
@@ -317,13 +317,13 @@
         "Adoro ter o meu Pokemon a\\ncumprimentar-me quando chego a\\lcasa.\\pE tao reconfortante.$"
       ],
       "Route15_Text_ErnestIntro": [
-        "Miudo! Vamos! Acabei de tirar\\nisto de um falhado!$"
+        "garoto! Vamos! Acabei de tirar\\nisto de um falhado!$"
       ],
       "Route15_Text_ErnestDefeat": [
         "Porque nao?$"
       ],
       "Route15_Text_AlexIntro": [
-        "Da-me todo o teu dinheiro\\nquando perderes para mim,\\lmiudo!$"
+        "Da-me todo o seu dinheiro\\nquando perderes para mim,\\lmiudo!$"
       ],
       "Route15_Text_AlexDefeat": [
         "Isso nao pode ser verdade!$"
@@ -341,7 +341,7 @@
         "Estou sempre a trocar Pokemon\\ncom os meus amigos.$"
       ],
       "Route15_Text_YazminIntro": [
-        "Queres brincar com o meu\\nPokemon?$"
+        "quer brincar com o meu\\nPokemon?$"
       ],
       "Route15_Text_YazminDefeat": [
         "Eu estava muito impaciente!$"
@@ -352,7 +352,7 @@
     },
     "data/maps/Route15_WestEntrance_2F_Frlg/scripts.inc": {
       "Route15_WestEntrance_2F_Text_GreatHereYouGo": [
-        "Optimo! Apanhaste ou\\npossuiste{STR_VAR_3}Tipos de\\lPokemon!\\pParabens! Aqui esta!$"
+        "Optimo! capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPokemon!\\pParabens! Aqui esta!$"
       ],
       "Route15_WestEntrance_2F_Text_ReceivedItemFromAide": [
         "{PLAYER}recebido o{STR_VAR_2}Da\\nAIDE.$"
@@ -369,7 +369,7 @@
     },
     "data/maps/Route16_Frlg/scripts.inc": {
       "Route16_Text_LaoIntro": [
-        "O que queres?$"
+        "O que quer?$"
       ],
       "Route16_Text_LaoDefeat": [
         "Nao te atrevas a rir!$"
@@ -381,7 +381,7 @@
         "Nocaute!$"
       ],
       "Route16_Text_KojiPostBattle": [
-        "Esquece, quem precisa do teu\\nBIKE!$"
+        "Esquece, quem precisa do seu\\nBIKE!$"
       ],
       "Route16_Text_LukeIntro": [
         "Vem brincar, ratinho!$"
@@ -434,7 +434,7 @@
         "HM02 e FLY. E uma jogada\\nmaravilhosamente conveniente.\\pPor favor, use-o bem.$"
       ],
       "Route16_House_Text_DontHaveAnyRoomForThis": [
-        "Nao tens espaco para isto.$"
+        "Nao tem espaco para isto.$"
       ]
     },
     "data/maps/Route16_NorthEntrance_1F_Frlg/scripts.inc": {
@@ -456,7 +456,7 @@
         "Vamos ver o que os binoculos\\ntem para mostrar...\\pHa um longo caminho sobre a\\nagua muito longe.$"
       ],
       "Route16_NorthEntrance_2F_Text_GreatHereYouGo": [
-        "Optimo! Apanhaste ou\\npossuiste{STR_VAR_3}Tipos de\\lPokemon!\\pParabens! Aqui esta!$"
+        "Optimo! capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPokemon!\\pParabens! Aqui esta!$"
       ]
     },
     "data/maps/Route17_Frlg/scripts.inc": {
@@ -467,13 +467,13 @@
         "Queimado!$"
       ],
       "Route17_Text_IsaiahIntro": [
-        "Estou muito orgulhoso do meu\\ncorpo, miudo. Vamos!$"
+        "Estou muito orgulhoso do meu\\ncorpo, garoto. Vamos!$"
       ],
       "Route17_Text_IsaiahPostBattle": [
         "Podia tirar-te daqui!$"
       ],
       "Route17_Text_VirgilIntro": [
-        "Vais para a FUCHSIA?$"
+        "vai para a FUCHSIA?$"
       ],
       "Route17_Text_VirgilDefeat": [
         "Bater e queimar!$"
@@ -524,13 +524,13 @@
         "A inclinacao torna dificil\\ndirigir.$"
       ],
       "Route17_Text_WilliamIntro": [
-        "Desaparece, miudo! Estou\\nexausto!$"
+        "Desaparece, garoto! Estou\\nexausto!$"
       ],
       "Route17_Text_WilliamDefeat": [
         "Estas satisfeito?$"
       ],
       "Route17_Text_WilliamPostBattle": [
-        "Preciso de apanhar alguns zs!$"
+        "Preciso de capturar alguns zs!$"
       ],
       "Route17_Text_WatchOutForDiscardedItems": [
         "E um aviso.\\pCuidado com os itens\\ndescartados.$"
@@ -566,7 +566,7 @@
         "Raios!$"
       ],
       "Route18_Text_JacobPostBattle": [
-        "Esta e a minha area favorita\\npara apanhar Pokemon.$"
+        "Esta e a minha area favorita\\npara capturar Pokemon.$"
       ]
     },
     "data/maps/Route19_Frlg/scripts.inc": {
@@ -577,10 +577,10 @@
         "Tudo aquecido!$"
       ],
       "Route19_Text_RichardPostBattle": [
-        "Obrigado, miudo! Estou pronto\\npara nadar.$"
+        "Obrigado, garoto! Estou pronto\\npara nadar.$"
       ],
       "Route19_Text_ReeceIntro": [
-        "Espera! Devagar! Vais ter um\\nataque cardiaco!$"
+        "Espera! Devagar! vai ter um\\nataque cardiaco!$"
       ],
       "Route19_Text_ReeceDefeat": [
         "Ooh! Que frio!$"
@@ -619,7 +619,7 @@
         "Estou a olhar para o mar para\\nesquecer a coisa ma que\\laconteceu!$"
       ],
       "Route19_Text_AnyaIntro": [
-        "Adoro a tua boleia! Posso ficar\\ncom ele se ganhar?$"
+        "Adoro a sua boleia! Posso ficar\\ncom ele se ganhar?$"
       ],
       "Route19_Text_AnyaDefeat": [
         "Oh! Perdi!$"
@@ -669,7 +669,7 @@
         "Adoro flutuar com os peixes\\naqui entre as ondas.$"
       ],
       "Route20_Text_TiffanyPostBattle": [
-        "Queres flutuar comigo?$"
+        "quer flutuar comigo?$"
       ],
       "Route20_Text_IreneIntro": [
         "Tambem estas de ferias?$"
@@ -687,7 +687,7 @@
         "Devia estar a encher o meu\\nPokemon, nao eu!$"
       ],
       "Route20_Text_DarrinIntro": [
-        "Porque estas a montar um\\nPokemon? Nao sabes nadar?$"
+        "Porque estas a montar um\\nPokemon? Nao sabe nadar?$"
       ],
       "Route20_Text_DarrinDefeat": [
         "Ouch! Torpedo!$"
@@ -717,7 +717,7 @@
         "CINNABAR, no oeste, tem um LAB\\npara POKEMON.\\pO meu pai trabalha la.$"
       ],
       "Route20_Text_MelissaDefeat": [
-        "Espera! Devias esperar!$"
+        "Espera! devia esperar!$"
       ],
       "Route20_Text_MelissaPostBattle": [
         "CINNABAR e uma ilha vulcanica.\\pOuvi dizer que saiu do mar\\nquando um vulcao entrou em\\lerupcao.$"
@@ -725,16 +725,16 @@
     },
     "data/maps/Route21_North_Frlg/scripts.inc": {
       "Route21_North_Text_RonaldIntro": [
-        "Queres saber se os peixes estao\\na morder?$"
+        "quer saber se os peixes estao\\na morder?$"
       ],
       "Route21_North_Text_RonaldDefeat": [
         "Bolas!$"
       ],
       "Route21_North_Text_RonaldPostBattle": [
-        "Nao consigo apanhar nada de\\nbom. Nem um bom Pokemon para\\lser tido!$"
+        "Nao consigo capturar nada de\\nbom. Nem um bom Pokemon para\\lser tido!$"
       ],
       "Route21_North_Text_WadeIntro": [
-        "Tenho uma grande carga! Queres\\nir?$"
+        "Tenho uma grande carga! quer\\nir?$"
       ],
       "Route21_North_Text_WadeDefeat": [
         "A MAGIKARP nao esta na nota,\\npois nao?$"
@@ -757,7 +757,7 @@
         "Mergulhador! Para baixo!$"
       ],
       "Route21_South_Text_JackPostBattle": [
-        "Onde apanhaste o teu Pokemon?$"
+        "Onde capturou o seu Pokemon?$"
       ],
       "Route21_South_Text_JeromeIntro": [
         "Neste momento, estou numa\\nreuniao de triatlo.$"
@@ -781,7 +781,7 @@
         "Nao assustes os peixes!$"
       ],
       "Route21_South_Text_ClaudeDefeat": [
-        "Desculpa! Estou tao frustrado\\npor nao apanhar nada.$"
+        "Desculpa! Estou tao frustrado\\npor nao capturar nada.$"
       ],
       "Route21_South_Text_ClaudePostBattle": [
         "Nao apanhei nada. Este lugar\\npode ser mesmo uma piscina\\lgigante?$"
