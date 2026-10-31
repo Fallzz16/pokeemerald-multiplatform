@@ -32,19 +32,19 @@
         "Uma longa fila?\\pLembra-me as vezes em que me\\nformei para comprar jogos de\\lsucesso...$"
       ],
       "SlateportCity_Text_WhyAreWeLiningUp": [
-        "Porque estamos a fazer fila e a\\npagar? Deviamos entrar!$"
+        "Porque estamos fazendo fila e a\\npagar? Deviamos entrar!$"
       ],
       "SlateportCity_Text_WhatDoYouWant": [
         "O que? O que quer?$"
       ],
       "SlateportCity_Text_IllReadSignForYou": [
-        "quer ler este cartaz? Eu\\nleio-te!$"
+        "Quer ler este cartaz? Eu\\nleio-te!$"
       ],
       "SlateportCity_Text_ShouldveBroughtMyGameBoy": [
-        "Grumble...\\pDevia ter trazido o meu Game\\nBoy Advance para nao me\\laborrecer na fila...\\pGrumble...$"
+        "Grumble...\\pDevia ter trazido meu Game\\nBoy Advance para nao me\\laborrecer na fila...\\pGrumble...$"
       ],
       "SlateportCity_Text_HotSpringsAfterOperation": [
-        "Quando esta operacao acabar,\\nlevo-te a um spa de termas!\\pFoi o que o nosso lider disse.\\nMal posso esperar!$"
+        "Quando esta operacao acabar,\\nlevo-te a um spa de termas!\\pFoi o que nosso lider disse.\\nMal posso esperar!$"
       ],
       "SlateportCity_Text_SeaIsSoWet": [
         "O mar e tao vasto...\\pPoderia o mar ter sido feito\\npelas lagrimas derramadas por\\lPOKEMON?$"
@@ -56,7 +56,7 @@
         "Sempre que venho aqui, me\\nempolgo e compro muito.$"
       ],
       "SlateportCity_Text_CaptSternBeingInterviewed": [
-        "Esperava que fosse uma estrela\\nfamosa para conseguir um\\lautografo.\\pMas quem esta a ser\\nentrevistado? Nao e o CAPT?\\lSTERN?$"
+        "Esperava que fosse uma estrela\\nfamosa para conseguir um\\lautografo.\\pMas quem esta sendo\\nentrevistado? Nao e o CAPT?\\lSTERN?$"
       ],
       "SlateportCity_Text_InterviewerSoCool": [
         "Aquela entrevistadora e tao\\nfixe e bonita.\\pQuando crescer, vou ser\\njornalista internacional!$"
@@ -68,7 +68,7 @@
         "Hey! Estas a ver? Estou na\\ntelevisao?$"
       ],
       "SlateportCity_Text_FromHarborTryingToTakeSub": [
-        "E do HARBOR!\\pO submarino! Estao a tentar\\nleva-lo!$"
+        "E do HARBOR!\\pO submarino! Estao tentando\\nleva-lo!$"
       ],
       "SlateportCity_Text_PleaseComeWithMe": [
         "{PLAYER}{KUN}Por favor, vem\\ncomigo!$"
@@ -88,22 +88,22 @@
         "E tipo TM41, sabe? E TORMENT,\\nestas a ouvir?\\pNao deixa o outro usar o mesmo\\nmovimento duas vezes seguidas.\\pOuve, nao estou a\\natormentar-te!$"
       ],
       "SlateportCity_ContestHall_Text_MCStepUpTakePartInContest": [
-        "Meu Deus! Nao e um POKEMON\\nelegante?\\pPor favor! Aproximem-se e tomem\\nparte nos nossos esplendidos\\lCONTESTS!\\pVais sair-te bem! Tenho a\\ncerteza! Os meus olhos nunca me\\lfalharam!$"
+        "Meu Deus! Nao e um POKEMON\\nelegante?\\pPor favor! Aproximem-se e tomem\\nparte nos nossos esplendidos\\lCONTESTS!\\pVais sair-te bem! Tenho a\\ncerteza! Meus olhos nunca me\\lfalharam!$"
       ],
       "SlateportCity_ContestHall_Text_ItsAppealTime": [
         "Esta na hora do recurso! Com o\\nque devo comecar?$"
       ],
       "SlateportCity_ContestHall_Text_RewardWithSageAdvice": [
-        "Ola! Voce deve ser um grande fa\\npara chegar tao perto da acao.\\pRecompenso o seu entusiasmo com\\neste sabio conselho.\\pSe um movimento correr muito\\nbem, o publico vai ficar\\lexcitado.\\pO POKEMON que faz o seu apelo\\ndireito quando todos estao\\lanimados...\\pBem, voce pensaria que algo bom\\ntem que acontecer!$"
+        "Ola! Voce deve ser um grande fa\\npara chegar tao perto da acao.\\pRecompenso seu entusiasmo com\\neste sabio conselho.\\pSe um movimento correr muito\\nbem, o publico vai ficar\\lexcitado.\\pO POKEMON que faz seu apelo\\ndireito quando todos estao\\lanimados...\\pBem, voce pensaria que algo bom\\ntem que acontecer!$"
       ],
       "SlateportCity_ContestHall_Text_MoreFreakedOutThanMon": [
-        "Nao consigo fazer isto! Estou\\nmais assustado que o meu\\lPokemon.\\pEstou a tremer e o meu coracao\\nesta a acelerar!$"
+        "Nao consigo fazer isto! Estou\\nmais assustado que meu\\lPokemon.\\pEstou a tremer e meu coracao\\nesta a acelerar!$"
       ],
       "SlateportCity_ContestHall_Text_MonLooksOnTopOfGame": [
         "Aquele POKEMON parece que esta\\nno topo do jogo.\\pUm POKEMON que faz bem no\\njulgamento secundario parece\\lser mais relaxado quando esta\\lfazendo apelos.$"
       ],
       "SlateportCity_ContestHall_Text_GetUrgeToMoveWithMon": [
-        "Nao tem vontade de te mudares\\ncom o POKEMON se estao a fazer\\lum apelo energetico?$"
+        "Nao tem vontade de te mudares\\ncom o POKEMON se estao fazendo\\lum apelo energetico?$"
       ]
     },
     "data/maps/SlateportCity_BattleTentLobby/scripts.inc": {
@@ -114,7 +114,7 @@
         "E tipo TM41, sabe? E TORMENT,\\nestas a ouvir?\\pNao deixa o outro usar o mesmo\\nmovimento duas vezes seguidas.\\pOuve, nao estou a\\natormentar-te!$"
       ],
       "SlateportCity_BattleTentLobby_Text_BattleEvenWithoutToughMons": [
-        "pode lutar o quanto quiseres\\naqui, mesmo que nao tenhas\\lnenhum POKEMON duro.$"
+        "Pode lutar o quanto quiseres\\naqui, mesmo que nao tenha\\lnenhum POKEMON duro.$"
       ],
       "SlateportCity_BattleTentLobby_Text_NiceIfMoreSelection": [
         "Nao seria bom se tivessem mais\\numa seleccao?$"
@@ -145,13 +145,13 @@
         "Ainda bem. Entao, qual sera o\\nnovo apelido?$"
       ],
       "SlateportCity_NameRatersHouse_Text_MonShallBeKnownAsName": [
-        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pE um nome melhor do que antes!\\nQue sorte a sua!$"
+        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pE um nome melhor do que antes!\\nQue sorte sua!$"
       ],
       "SlateportCity_NameRatersHouse_Text_DoVisitAgain": [
-        "Estou a ver. Vem visitar-me\\noutra vez.$"
+        "Estou vendo. Vem visitar-me\\noutra vez.$"
       ],
       "SlateportCity_NameRatersHouse_Text_NameNoDifferentYetSuperior": [
-        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pNao parece diferente de antes,\\ne no entanto, isto e muito\\lsuperior!\\pQue sorte a sua!$"
+        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pNao parece diferente de antes,\\ne no entanto, isto e muito\\lsuperior!\\pQue sorte sua!$"
       ],
       "SlateportCity_NameRatersHouse_Text_MagnificentName": [
         "Hmmm...{STR_VAR_1}E e!\\pE uma alcunha magnifica! E\\nimpecavelmente irrepreensivel!\\pVais fazer bem em apreciar o\\nteu{STR_VAR_1}agora e alem.$"
@@ -241,21 +241,21 @@
     },
     "data/maps/SlateportCity_PokemonCenter_1F/scripts.inc": {
       "SlateportCity_PokemonCenter_1F_Text_RaiseDifferentTypesOfPokemon": [
-        "quer uma dica para lutar?\\pDiria que esta a criar\\ndiferentes tipos de POKEMON de\\lforma equilibrada.\\pNao e bom fazer apenas um\\nPOKEMON forte.\\pSe tiver uma desvantagem do\\ntipo, pode nao ter uma chance.$"
+        "Quer uma dica para lutar?\\pDiria que esta criando\\ndiferentes tipos de POKEMON de\\lforma equilibrada.\\pNao e bom fazer apenas um\\nPOKEMON forte.\\pSe tiver uma desvantagem do\\ntipo, pode nao ter uma chance.$"
       ],
       "SlateportCity_PokemonCenter_1F_Text_TradedMonWithFriend": [
-        "Troco POKEMON com os meus\\namigos.\\pSe um POKEMON negociado esta\\nsegurando um item, isso me faz\\lduas vezes mais feliz!$"
+        "Troco POKEMON com meus\\namigos.\\pSe um POKEMON negociado esta\\nsegurando um item, isso me faz\\lduas vezes mais feliz!$"
       ]
     },
     "data/maps/SlateportCity_PokemonFanClub/scripts.inc": {
       "SlateportCity_PokemonFanClub_Text_HowIsYourPokemonGrowing": [
-        "Como esta a crescer o seu\\nPOKEMON? Permita-me que o\\lexamine.$"
+        "Como esta crescendo seu\\nPOKEMON? Permita-me que o\\lexamine.$"
       ],
       "SlateportCity_PokemonFanClub_Text_HmHmISee": [
-        "Estou a ver...$"
+        "Estou vendo...$"
       ],
       "SlateportCity_PokemonFanClub_Text_GiveMonMorePokeblocks": [
-        "Hmmm... Nao e mau, mas tambem\\nnao e bom...\\pVoce, o Treinador, tem de se\\nesforcar mais para criar este\\lPokemon!\\pPor exemplo, posso sugerir que\\nlhe de mais{POKEBLOCK}S?$"
+        "Hmmm... Nao e mau, mas tambem\\nnao e bom...\\pVoce, o TREINADOR, tem de se\\nesforcar mais para criar este\\lPokemon!\\pPor exemplo, posso sugerir que\\nlhe de mais{POKEBLOCK}S?$"
       ],
       "SlateportCity_PokemonFanClub_Text_NoSpaceForReward": [
         "Meu...\\pSeu POKEMON esta crescendo\\nmuito bem, entao voce merece\\luma recompensa.\\pInfelizmente, nao tem espaco\\npara isto no seu BAG.$"
@@ -267,13 +267,13 @@
         "Desculpa, mas nao tenho mais\\nnada para te dar! Nenhuma!\\pAfinal, voce e abencoado com o\\ndom de criar POKEMON sem\\lrecorrer a quaisquer itens!$"
       ],
       "SlateportCity_PokemonFanClub_Text_ShowMePokemonThatLoveYou": [
-        "Adoro ver o POKEMON que adora\\nos seus treinadores.\\pPOKEMON sao muito sensiveis aos\\nsentimentos dos seus\\lTREINADORES.\\pSe tratares o seu POKEMON com\\namor e cuidado, eles vao\\ladorar-te.\\pQuando o seu POKEMON crescer\\npara te amar, por favor, vem\\lmostrar-me.$"
+        "Adoro ver o POKEMON que adora\\nos seus TREINADORES.\\pPOKEMON sao muito sensiveis aos\\nsentimentos dos seus\\lTREINADORES.\\pSe tratares seu POKEMON com\\namor e cuidado, eles vao\\ladorar-te.\\pQuando seu POKEMON crescer\\npara te amar, por favor, vem\\lmostrar-me.$"
       ],
       "SlateportCity_PokemonFanClub_Text_PokemonAdoresYou": [
-        "O seu POKEMON adora-te mesmo.\\pPara voce, um instrutor muito\\ncompassivo, um presente do FAN\\lCLUB!$"
+        "Seu POKEMON adora-te mesmo.\\pPara voce, um instrutor muito\\ncompassivo, um presente do FAN\\lCLUB!$"
       ],
       "SlateportCity_PokemonFanClub_Text_TreatPokemonWithLove": [
-        "POKEMON sao muito sensiveis aos\\nsentimentos dos seus\\lTREINADORES.\\pSe tratares o seu POKEMON com\\namor e cuidado, eles vao\\ladorar-te.$"
+        "POKEMON sao muito sensiveis aos\\nsentimentos dos seus\\lTREINADORES.\\pSe tratares seu POKEMON com\\namor e cuidado, eles vao\\ladorar-te.$"
       ],
       "SlateportCity_PokemonFanClub_Text_PokemonDontLikeFainting": [
         "Se continuares a deixar um\\nPokemon desmaiar em batalha,\\lvai ficar ressentido.\\pEm breve, ficara menos\\nconfiante no TREINADOR.\\pEm outras palavras, certamente\\nnao vai gostar muito de voce.$"
@@ -476,7 +476,7 @@
     },
     "data/maps/SootopolisCity_LotadAndSeedotHouse/scripts.inc": {
       "SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull1": [
-        "Hunh? O seu BAG esta cheio.$"
+        "Hunh? Seu BAG esta cheio.$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_SeenBiggerSeedot": [
         "{STR_VAR_2}E mesmo?\\pHmm... Ja vi um SEEDOT maior do\\nque este.$"
@@ -488,10 +488,10 @@
         "Nao tem um SEEDOT grande? Que\\npena...\\pSe tiveres um SEEDOT grande,\\nvem mostrar-me.$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_WowMightBeBiggerThanSeedot": [
-        "{STR_VAR_2}Isso e grande!\\pPode ser ainda maior do que o\\nenorme SEEDOT que o meu irmao\\lmais velho viu.\\pObrigado por me mostrares! Este\\ne o meu agradecimento!$"
+        "{STR_VAR_2}Isso e grande!\\pPode ser ainda maior do que o\\nenorme SEEDOT que meu irmao\\lmais velho viu.\\pObrigado por me mostrares! Este\\ne meu agradecimento!$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull2": [
-        "Hunh? O seu BAG esta cheio.$"
+        "Hunh? Seu BAG esta cheio.$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_SeenBiggerLotad": [
         "{STR_VAR_2}?\\pHmm... Ja vi um LOTAD maior do\\nque este aqui.$"
@@ -507,7 +507,7 @@
     },
     "data/maps/SootopolisCity_MysteryEventsHouse_1F/scripts.inc": {
       "SootopolisCity_MysteryEventsHouse_1F_Text_OnlyAmusementWatchingBattles": [
-        "Quando era jovem, viajei pelo\\nmundo como instrutor de\\lPokemon.\\pAgora que me tornei um velho\\nabutre, a minha unica diversao\\le ver jovens treinadores a\\llutar.$"
+        "Quando era jovem, viajei pelo\\nmundo como instrutor de\\lPokemon.\\pAgora que me tornei um velho\\nabutre, minha unica diversao\\le ver jovens TREINADORES a\\llutar.$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_DoorAppearsToBeLocked": [
         "A porta parece estar trancada.$"
@@ -519,10 +519,10 @@
         "Nao vai lutar? Estou\\ndesiludido por nao te poder ver\\la lutar...$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_KeepItTo3On3": [
-        "Optimo, optimo!\\pMas a minha casa nao e assim\\ntao resistente.\\pPosso pedir-lhe para baixar\\npara um jogo de 3 contra 3?$"
+        "Optimo, optimo!\\pMas minha casa nao e assim\\ntao resistente.\\pPosso pedir-lhe para baixar\\npara um jogo de 3 contra 3?$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_SaveProgressBeforeBattle": [
-        "Antes de lutarem, devem salvar\\no vosso progresso.$"
+        "Antes de lutarem, devem salvar\\no seu progresso.$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_HopeToSeeGoodMatch": [
         "Espero ver um bom jogo!$"
@@ -537,7 +537,7 @@
         "Isso foi superlativo!\\pOra, foi como ver-me novamente\\nna minha juventude!$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_TooBadForYou": [
-        "Que pena para ti!\\pMas foi uma boa combinacao.\\nEspero que ganhes da proxima\\lvez.$"
+        "Que pena para voce!\\pMas foi uma boa combinacao.\\nEspero que ganhes da proxima\\lvez.$"
       ]
     },
     "data/maps/SootopolisCity_PokemonCenter_1F/scripts.inc": {
@@ -631,7 +631,7 @@
     },
     "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc": {
       "ThreeIsland_BerryForest_Text_HereItComesAgain": [
-        "Oh! La vem outra vez! Nao!\\nVai-te embora! Esta a\\lassustar-me!\\pWaaaaaaah! Quero o meu pai!$"
+        "Oh! La vem outra vez! Nao!\\nVai-te embora! Esta a\\lassustar-me!\\pWaaaaaaah! Quero meu pai!$"
       ]
     },
     "data/maps/ThreeIsland_BondBridge_Frlg/scripts.inc": {
@@ -648,7 +648,7 @@
         "Estas a criar um POKEMON\\nmaravilhoso.$"
       ],
       "ThreeIsland_BondBridge_Text_AmiraIntro": [
-        "A minha mae disse que nao sei\\nnadar sem o meu anel.$"
+        "Minha mae disse que nao sei\\nnadar sem meu anel.$"
       ],
       "ThreeIsland_BondBridge_Text_AmiraPostBattle": [
         "Este ano, vou finalmente\\naprender a nadar!$"
