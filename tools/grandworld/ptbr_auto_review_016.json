@@ -165,7 +165,7 @@
         "Hmm! Seu {STR_VAR_1}...$"
       ],
       "MossdeepCity_House1_Text_ItLikesXPokeblocks": [
-        "Ele gosta de {STR_VAR_1}S,\\nnao e?\\pTenho certeza!\\nAdora {STR_VAR_1}S!$"
+        "Seu POKEMON gosta\\ndo sabor {STR_VAR_1}, nao e?\\pTenho certeza!\\nEle adora {STR_VAR_1}!$"
       ],
       "MossdeepCity_House1_Text_DoesntLikeOrDislikePokeblocks": [
         "Nao parece ter preferencia\\npor nenhum {POKEBLOCK}S.$"
