@@ -606,137 +606,137 @@
     },
     "data/maps/MahoganyHideout_B1F/scripts.inc": {
       "MahoganyHideout_B1F_Text_CameraGrunt1Seen": [
-        "Hey! Alerta de intruso!$"
+        "Ei! Um intruso!\\nAlerta!$"
       ],
       "MahoganyHideout_B1F_Text_CameraGrunt1Beaten": [
-        "Bolas... eu falhei...$"
+        "Droga! Eu falhei!$"
       ],
       "MahoganyHideout_B1F_Text_CameraGrunt2Seen": [
-        "E a minha vez! Nao ha\\nescapatoria!$"
+        "Agora e minha vez!\\nNao vai escapar!$"
       ],
       "MahoganyHideout_B1F_Text_CameraGrunt2Beaten": [
-        "As camaras de vigilancia estao\\nnas estatuas POKEMON.\\pContinuaremos a aparecer ate\\nteres um interruptor secreto.$"
+        "As estatuas de PERSIAN\\ntem cameras escondidas!\\pVamos continuar aparecendo\\nate voce achar o interruptor!$"
       ],
       "MahoganyHideout_B1F_Text_ScientistJedSeen": [
-        "Isto ja foi um esconderijo\\nninja.\\pHa armadilhas para confundir\\nintrusos como tu.$"
+        "Este lugar ja foi\\num esconderijo ninja.\\pEsta cheio de armadilhas\\npara intrusos como voce!$"
       ],
       "MahoganyHideout_B1F_Text_ScientistJedBeaten": [
-        "Ja percebi...$"
+        "Entendi... Voce venceu.$"
       ],
       "MahoganyHideout_B1F_Text_ScientistJedAfter": [
-        "Esta bem. Vou divulgar um\\nsegredo sobre o nosso\\lesconderijo.\\pAquela coisa no chao a frente e\\num painel warp.\\pSe pisares, vais voltar para a\\nentrada.$"
+        "Vou contar um segredo.\\pAquele painel no chao\\ne um teletransporte.\\pSe pisar nele, vai\\nvoltar para a entrada!$"
       ],
       "MahoganyHideout_B1F_Text_GruntM16Seen": [
-        "Heheh. Estas com sorte, punk?$"
+        "He he! Esta com sorte\\nhoje, pirralho?$"
       ],
       "MahoganyHideout_B1F_Text_GruntM16After": [
-        "Nem sei onde estao as\\narmadilhas.\\pTeras de recolher a tua coragem\\ne andar.$"
+        "Nem eu sei onde ficam\\ntodas as armadilhas.\\pVoce vai ter que\\narriscar e seguir!$"
       ],
       "MahoganyHideout_B1F_Text_SecurityCameraStatue": [
-        "E uma estatua PERSIAN...$"
+        "E uma estatua de PERSIAN...$"
       ],
       "MahoganyHideout_B1F_Text_NothingThere": [
-        "Um painel estranho... Nada\\naqui.$"
+        "Um painel estranho...\\nNao ha nada aqui.$"
       ],
       "MahoganyHideout_B1F_Text_SecretSwitch": [
-        "Um interruptor secreto! E\\nmelhor premir.$"
+        "Um interruptor secreto!\\nMelhor apertar!$"
       ],
       "MahoganyHideout_B1F_Text_SwitchOff": [
-        "O interruptor esta desligado.$"
+        "O interruptor foi desligado.$"
       ]
     },
     "data/maps/MahoganyHideout_B2F/scripts.inc": {
       "MahoganyHideout_B2F_Text_ArianaLoss": [
-        "Tu es mesmo forte. E uma pena.\\pSe te juntasses a Equipa\\nRocket, podias tornar-te um\\lExecutivo.$"
+        "Voce e muito forte...\\pQue desperdicio!\\pSe entrasse para\\na EQUIPE ROCKET,\\npoderia virar um executivo!$"
       ],
       "MahoganyHideout_B2F_Text_LanceStepBack": [
-        "Desculpa.{PLAYER}Vi como\\nestavas bem, por isso fiquei\\lpara tras.\\pAgora tudo o que resta fazer e\\ndesligar esse estranho sinal de\\lradio.$"
+        "Desculpe, {PLAYER}.\\pVi que voce estava indo bem,\\nentao fiquei para tras.\\pAgora precisamos desligar\\naquele sinal de radio!$"
       ],
       "MahoganyHideout_B2F_Text_LanceWhirlpool": [
-        "E o HM DIVE. Ensine-o a um\\nPOKEMON para explorar aguas\\lprofundas.\\pMas tenha isto em mente.\\pVoce pode usar isso fora de\\nbatalha apenas uma vez que voce\\lganhou o GINASIO INSIGNIA\\lcerto.$"
+        "Esta e a HM DIVE.\\pEnsine-a a um POKEMON\\npara explorar aguas profundas.\\pMas lembre-se:\\pVoce so podera usar\\nfora das batalhas depois\\nde ganhar a INSIGNIA certa!$"
       ],
       "MahoganyHideout_B2F_Text_LanceMonMaster": [
-        "{PLAYER}...\\pA jornada para se tornar o\\nMASTER POKEMON e longa e\\ldificil.\\pSabendo disso, vai continuar?\\p...\\pEstou a ver. Nao, tens razao.\\pSe desistisses assim tao\\nfacilmente, nunca terias\\lperseguido aquele sonho.\\pEstou ansioso para ve-lo\\nnovamente!$"
+        "{PLAYER}...\\pO caminho ate se tornar\\nMESTRE POKEMON e longo.\\pMesmo sabendo disso,\\nvoce vai continuar?\\p...\\pEntendi.\\pQuem desiste facilmente\\nnem chega a ter esse sonho.\\pQuero encontrar voce\\nde novo um dia!$"
       ],
       "MahoganyHideout_B2F_Text_B2FTransmitter": [
-        "E o transmissor de radio que\\nesta a enviar o sinal sinistro.\\pEsta a funcionar em plena\\ncapacidade.$"
+        "Este transmissor envia\\no misterioso sinal de radio.\\pEsta funcionando\\ncom potencia maxima!$"
       ],
       "MahoganyHideout_B2F_Text_B2FDeactivateTransmitter": [
-        "O transmissor de radio\\nfinalmente parou a transmissao\\ldo mal.$"
+        "O transmissor de radio\\nparou de enviar\\no sinal maligno!$"
       ],
       "MahoganyHideout_B2F_Text_LanceHeals2": [
-        "LANCE:{PLAYER}Vamos dar o nosso\\nmelhor pelo Pokemon.$"
+        "LANCE: {PLAYER}, vamos\\najudar os POKEMON!$"
       ],
       "MahoganyHideout_B2F_Text_GruntM17Seen": [
-        "A porta nao abre?\\pBem... Tem de ter uma senha que\\nso o TEAM ROCKET sabe.$"
+        "A porta nao abre?\\pClaro que nao!\\nSo a EQUIPE ROCKET\\nconhece a senha!$"
       ],
       "MahoganyHideout_B2F_Text_GruntM17Beaten": [
-        "O que? Perdi?$"
+        "O que? Eu perdi?$"
       ],
       "MahoganyHideout_B2F_Text_GruntM18Seen": [
-        "Um miudo? Nao gosto disto, mas\\ntenho de te eliminar.$"
+        "Uma crianca aqui?\\pNao gosto disso,\\nmas vou te derrotar!$"
       ],
       "MahoganyHideout_B2F_Text_GruntM18Beaten": [
-        "Eu sabia que ia perder...$"
+        "Eu sabia que perderia...$"
       ],
       "MahoganyHideout_B2F_Text_GruntM18After": [
-        "Tambem fui exterminado na\\nultima missao por um miudo.\\pQuando estavamos a raptar o\\nPokemon, um miudo com cabelos\\lruivos e olhos feios deu-me uma\\lcoca...$"
+        "Na ultima missao,\\num garoto me derrotou.\\pEstavamos roubando POKEMON.\\pEle tinha cabelos ruivos\\ne um olhar assustador!$"
       ],
       "MahoganyHideout_B2F_Text_GruntM19Seen": [
-        "Sua peste podre!$"
+        "Seu pestinha!$"
       ],
       "MahoganyHideout_B2F_Text_GruntM19After": [
-        "So o chefe sabe a senha daquela\\nporta.\\pOnde esta o chefe? Quem sabe?\\nVai procurar por ti mesmo.$"
+        "So o chefe sabe\\na senha daquela porta.\\pOnde ele esta?\\nDescubra por conta propria!$"
       ]
     },
     "data/maps/MahoganyHideout_B3F/scripts.inc": {
       "MahoganyHideout_B3F_Text_B3FRocket": [
-        "Urrggh... O tipo da capa e\\nincrivelmente duro...$"
+        "Argh... O homem de capa\\ne forte demais...$"
       ],
       "MahoganyHideout_B3F_Text_B3FLockedDoorNeedsPassword": [
-        "A porta esta fechada...\\pPrecisa de duas senhas para\\nabrir.$"
+        "A porta esta trancada...\\pVoce precisa de duas senhas.$"
       ],
       "MahoganyHideout_B3F_Text_B3FLockedDoorOpenSesame": [
-        "A porta esta fechada...\\p{PLAYER}inseriu as duas senhas.\\pA porta abriu-se!$"
+        "A porta esta trancada...\\p{PLAYER} digitou\\nas duas senhas.\\pA porta se abriu!$"
       ],
       "MahoganyHideout_B3F_Text_PetrelDisbelief": [
-        "...Huh? Nao pareco nada com o\\nGIOVANNI?\\pNem me pareco com o GIOVANNI?\\nPorque? Trabalhei tanto para o\\limitar!$"
+        "O que? Nao pareco\\ncom GIOVANNI?\\pMas me esforcei tanto\\npara imitar o chefe!$"
       ],
       "MahoganyHideout_B3F_Text_MurkrowMimic": [
-        "MURKROW esta imitando a voz de\\nPETREL!\\pVoce pode ser capaz de...?$"
+        "MURKROW esta imitando\\na voz de PETREL!\\pTalvez voce consiga...$"
       ],
       "MahoganyHideout_B3F_Text_GruntF5Seen": [
-        "Eu sei a senha?\\pTalvez.\\pMas nenhum fracote vai\\nconseguir!$"
+        "Sei a senha?\\pTalvez eu saiba!\\pMas nao vou contar\\nao primeiro fracote!$"
       ],
       "MahoganyHideout_B3F_Text_GruntF5Beaten": [
-        "Esta bem. Para. Eu digo-te.$"
+        "Tudo bem! Eu conto!$"
       ],
       "MahoganyHideout_B3F_Text_GruntF5After": [
-        "A senha do quarto do chefe e\\nSLOWPOKETAIL.\\pMas e inutil a menos que tenhas\\nduas senhas.$"
+        "Uma das senhas\\ne SLOWPOKETAIL.\\pMas precisa das duas\\npara abrir a porta!$"
       ],
       "MahoganyHideout_B3F_Text_GruntM28Seen": [
-        "Hyuck-hyuck-hyuck!\\pLembro-me de ti do poco!\\pEstas a desafiar-me outra vez?\\pHah! Es doido, mas tens\\ncoragem!\\pVou avisar-te, melhorei!\\pSe me venceres, digo-te uma\\nsenha para o quarto do chefe!$"
+        "He he he!\\pLembro de voce do poco!\\nQuer me enfrentar de novo?\\pQue coragem!\\pEu fiquei mais forte!\\pSe me vencer,\\nconto uma das senhas!$"
       ],
       "MahoganyHideout_B3F_Text_GruntM28Beaten": [
-        "Hyuck-hyuck-hyuck! Es bom!$"
+        "He he he! Voce e bom!$"
       ],
       "MahoganyHideout_B3F_Text_ScientistRossSeen": [
-        "Eu trabalhava para o SILPH, mas\\nagora faco pesquisa para o TEAM\\lROCKET.\\pUma crianca intrometida como tu\\nprecisa de ser punida.$"
+        "Eu trabalhava na SILPH,\\nmas agora sou da ROCKET.\\pCrianas intrometidas\\nprecisam de uma licao!$"
       ],
       "MahoganyHideout_B3F_Text_ScientistRossBeaten": [
-        "Um mero erro tatico\\ncustou-me...$"
+        "Foi um erro de estrategia...$"
       ],
       "MahoganyHideout_B3F_Text_ScientistRossAfter": [
-        "Um sinal de radio que deixa\\nPokemon louco...\\pA minha experiencia e um\\nsucesso completo.\\pA minha promocao esta\\ngarantida. Esta perda nao\\lsignifica absolutamente nada.$"
+        "Meu sinal de radio\\ndeixa os POKEMON furiosos!\\pO experimento foi um sucesso!\\pMinha promocao esta garantida.\\nEssa derrota nao importa!$"
       ],
       "MahoganyHideout_B3F_Text_ScientistMitchSeen": [
-        "Nao me interessa que o POKEMON\\nseja magoado pela nossa\\lexperiencia.$"
+        "Nao me importa se\\nos POKEMON se machucam\\nnos nossos experimentos!$"
       ],
       "MahoganyHideout_B3F_Text_ScientistMitchBeaten": [
-        "Pensar e o meu forte, nao\\nlutar.$"
+        "Sou bom em pensar,\\nnao em batalhar...$"
       ],
       "MahoganyHideout_B3F_Text_ScientistMitchAfter": [
-        "Se aumentarmos a potencia do\\nnosso sinal de radio para\\ltransmissao nacional...\\pO pensamento me excita!$"
+        "E se aumentarmos\\no alcance do sinal\\npara todo o pais?\\pQue ideia empolgante!$"
       ]
     },
     "data/maps/MahoganyTown_House1/scripts.inc": {
