@@ -630,49 +630,49 @@
     },
     "data/maps/PalletTown_RivalsHouse_Frlg/scripts.inc": {
       "PalletTown_RivalsHouse_Text_ErrandForGrandpaThisWillHelp": [
-        "O avo pediu-te para fazeres um\\nrecado?\\pIsso e preguicoso da parte\\ndele. Toma, isto vai ajudar-te.$"
+        "Meu avo mandou voce\\nfazer um favor?\\pEle poderia fazer sozinho!\\pTome, isto vai ajudar!$"
       ],
       "PalletTown_RivalsHouse_Text_DontHaveSpaceForThis": [
-        "Nao tens espaco para isto no\\nteu BAG.$"
+        "Sua BOLSA esta cheia!\\nAbra espaco primeiro!$"
       ],
       "PalletTown_RivalsHouse_Text_ExplainTownMap": [
-        "Voce pode usar o MAP da TOWN\\npara descobrir onde voce esta,\\lou verificar os nomes dos\\llugares.$"
+        "O TOWN MAP mostra\\nonde voce esta.\\pEle tambem revela\\nos nomes das cidades!$"
       ],
       "PalletTown_RivalsHouse_Text_ItsBigMapOfKanto": [
-        "E um grande mapa da regiao\\nKANTO. Isto seria util!$"
+        "Um mapa detalhado\\nda regiao de KANTO!\\nParece muito util!$"
       ],
       "PalletTown_RivalsHouse_Text_ShelvesCrammedFullOfBooks": [
-        "As prateleiras estao cheias de\\nlivros sobre POKEMON.$"
+        "Estas prateleiras estao\\ncheias de livros POKEMON!$"
       ],
       "PalletTown_RivalsHouse_Text_DontNeedAnyGrooming": [
-        "Nao precisas que te prepares?\\nOk, vamos tomar cha.$"
+        "Nao quer cuidar\\ndo pelo do seu POKEMON?\\pTudo bem! Vamos tomar um cha!$"
       ],
       "PalletTown_RivalsHouse_Text_GroomWhichOne": [
-        "Qual deles devo preparar?$"
+        "Qual POKEMON\\nvai receber cuidados?$"
       ],
       "PalletTown_RivalsHouse_Text_CantGroomAnEgg": [
-        "Desculpa. Sinceramente, nao\\nconsigo preparar um EGG.$"
+        "Nao consigo cuidar\\ndo pelo de um EGG!$"
       ],
       "PalletTown_RivalsHouse_Text_CouldntLoveYouMore": [
-        "Nao pode amar-te mais do que\\nagora.\\pSeu Pokemon e feliz alem das\\npalavras.$"
+        "Seu POKEMON esta\\ntotalmente feliz!\\pParece gostar muito de voce!$"
       ],
       "PalletTown_RivalsHouse_Text_ItLooksVeryHappy": [
-        "Parece muito feliz.\\pQuem me dera.{RIVAL}podia ver\\nisto e aprender alguma coisa\\lcom ele.$"
+        "Seu POKEMON parece\\nmuito feliz!\\p{RIVAL} deveria ver isso\\ne aprender com voce!$"
       ],
       "PalletTown_RivalsHouse_Text_ItsQuiteFriendly": [
-        "E bastante amigavel contigo.\\nContinua a ser bom nisso!$"
+        "Seu POKEMON e\\nmuito amigavel!\\pContinue cuidando bem dele!$"
       ],
       "PalletTown_RivalsHouse_Text_ItsWarmingUpToYou": [
-        "Esta a aquecer-te. A confianca\\ndeve estar a crescer entre\\lvoces.$"
+        "Seu POKEMON esta\\nse acostumando com voce!\\pA confianca entre voces\\nesta crescendo!$"
       ],
       "PalletTown_RivalsHouse_Text_NotFamiliarWithYouYet": [
-        "Ainda nao te conheco bem.\\pPOKEMON sao todos bastante\\ncautelosos quando voce os tem\\lpela primeira vez.$"
+        "Seu POKEMON ainda nao\\nte conhece muito bem.\\pDemonstre paciencia\\ne cuide dele!$"
       ],
       "PalletTown_RivalsHouse_Text_DontLikeWayItGlaresAtYou": [
-        "{PLAYER}Nao gosto da maneira\\ncomo te olha.\\pPodes tentar ser mais\\nsimpatico?$"
+        "{PLAYER}, nao gostei\\ndo olhar desse POKEMON.\\pTente conquistar\\nsua confianca!$"
       ],
       "PalletTown_RivalsHouse_Text_WhyWouldMonHateYouSoMuch": [
-        "Nao e facil para mim dizer\\nisto, mas...\\pHa alguma razao para o teu\\nPokemon te odiar tanto?$"
+        "Desculpe perguntar, mas...\\pPor que esse POKEMON\\nnao confia em voce?$"
       ]
     },
     "data/maps/PetalburgCity_House1/scripts.inc": {
@@ -720,37 +720,37 @@
     },
     "data/maps/PetalburgWoods/scripts.inc": {
       "PetalburgWoods_Text_NotAOneToBeFound": [
-        "Hmmm... Nao se encontra\\nnenhum...$"
+        "Hmm... Nao encontro nenhum...$"
       ],
       "PetalburgWoods_Text_IWasGoingToAmbushYou": [
-        "Eu ia emboscar-te, mas tiveste\\nde ficar em PETALBURG WOODS\\lpara sempre, nao foi?\\pCansei-me de esperar, por isso\\nestou aqui!$"
+        "Eu queria pegar voce\\nde surpresa!\\pMas demorou tanto\\nque cansei de esperar!$"
       ],
       "PetalburgWoods_Text_YouHaveToHelpMe": [
-        "Aiyeeh!\\pEs um treinador Pokemon, nao\\nes? Tens de me ajudar, por\\lfavor!$"
+        "Aaah!\\pVoce e TREINADOR POKEMON,\\nnao e?\\pPreciso da sua ajuda!$"
       ],
       "PetalburgWoods_Text_YoureKiddingMe": [
-        "Estas a brincar comigo! Es\\nforte!$"
+        "Nao acredito!\\nVoce e muito forte!$"
       ],
       "PetalburgWoods_Text_ICantBeWastingTime": [
-        "Uh-oh! E uma crise! Nao posso\\nperder tempo!$"
+        "Nao posso perder tempo!\\nPreciso sair daqui!$"
       ],
       "PetalburgWoods_Text_ICouldntWin": [
-        "Tenho todos estes Pokemon, mas\\nnao podia ganhar...$"
+        "Mesmo com meus POKEMON,\\nnao consegui vencer...$"
       ],
       "PetalburgWoods_Text_CantBePopularIfILose": [
-        "Nao posso ser popular se\\nperder.$"
+        "Nao vou ficar famoso\\nse continuar perdendo!$"
       ],
       "PetalburgWoods_Text_CantBePopularIfLose": [
-        "Nao posso ser popular se\\nperder.$"
+        "Se eu perder,\\nninguem vai me admirar!$"
       ],
       "PetalburgWoods_Text_IveBeenTrainingHard": [
-        "Podes ser popular se tiveres\\nPOKEMON forte, certo? Tenho\\ltreinado muito.$"
+        "POKEMON fortes\\natraem admiradores!\\pPor isso treinei bastante!$"
       ],
       "PetalburgWoods_Text_StayOutOfTallGrass": [
-        "Ola! O teu Pokemon esta bem?\\pSe o seu POKEMON for fraco e\\nquiser evitar batalhas, deve\\lmanter- se afastado da relva\\lalta.$"
+        "Ola! Seus POKEMON estao bem?\\pSe estiverem fracos\\ne quiser evitar batalhas,\\nfuja da grama alta!$"
       ],
       "PetalburgWoods_Text_HiddenItemsExplanation": [
-        "As vezes, ha coisas no chao,\\nmesmo que nao as consigas ver.\\pE por isso que vejo sempre onde\\nestou a andar.$"
+        "As vezes existem itens\\nescondidos pelo caminho.\\pEu sempre presto atencao\\nonde estou pisando!$"
       ]
     },
     "data/maps/PewterCity_House1_Frlg/scripts.inc": {
