@@ -5,7 +5,7 @@
     "ptbr_auto_review_014.json",
     "ptbr_auto_review_015.json"
   ],
-  "reviewed_entries": 158,
+  "reviewed_entries": 196,
   "reviewed_labels_by_source": {
     "data/maps/GoldenrodCity_UndergroundSwitches/scripts.inc": [
       "GoldenrodUnderground_Text_BurglarDuncanAfter",
@@ -222,6 +222,56 @@
     "data/maps/LilycoveCity_House4/scripts.inc": [
       "LilycoveCity_House4_Text_MysteriesAtBottomOfSea",
       "LilycoveCity_House4_Text_UnderwaterTrenchMossdeepSootopolis"
+    ],
+    "data/maps/MagmaHideout_1F/scripts.inc": [
+      "MagmaHideout_1F_Text_Grunt1Intro",
+      "MagmaHideout_1F_Text_Grunt1Defeat",
+      "MagmaHideout_1F_Text_Grunt1PostBattle",
+      "MagmaHideout_1F_Text_Grunt2Defeat",
+      "MagmaHideout_1F_Text_Grunt2PostBattle"
+    ],
+    "data/maps/MagmaHideout_2F_1R/scripts.inc": [
+      "MagmaHideout_2F_1R_Text_Grunt14PostBattle",
+      "MagmaHideout_2F_1R_Text_Grunt3Intro",
+      "MagmaHideout_2F_1R_Text_Grunt3Defeat",
+      "MagmaHideout_2F_1R_Text_Grunt3PostBattle",
+      "MagmaHideout_2F_1R_Text_Grunt4Intro",
+      "MagmaHideout_2F_1R_Text_Grunt4PostBattle",
+      "MagmaHideout_2F_1R_Text_Grunt5Intro",
+      "MagmaHideout_2F_1R_Text_Grunt5PostBattle"
+    ],
+    "data/maps/MagmaHideout_2F_2R/scripts.inc": [
+      "MagmaHideout_2F_2R_Text_Grunt15Intro",
+      "MagmaHideout_2F_2R_Text_Grunt15Defeat",
+      "MagmaHideout_2F_2R_Text_Grunt6PostBattle",
+      "MagmaHideout_2F_2R_Text_Grunt7Intro",
+      "MagmaHideout_2F_2R_Text_Grunt7Defeat",
+      "MagmaHideout_2F_2R_Text_Grunt8Intro",
+      "MagmaHideout_2F_2R_Text_Grunt8Defeat",
+      "MagmaHideout_2F_2R_Text_Grunt8PostBattle"
+    ],
+    "data/maps/MagmaHideout_3F_1R/scripts.inc": [
+      "MagmaHideout_3F_1R_Text_Grunt9Intro",
+      "MagmaHideout_3F_1R_Text_Grunt9Defeat",
+      "MagmaHideout_3F_1R_Text_Grunt9PostBattle",
+      "MagmaHideout_3F_1R_Text_Grunt16Defeat"
+    ],
+    "data/maps/MagmaHideout_3F_2R/scripts.inc": [
+      "MagmaHideout_3F_2R_Text_Grunt10Intro",
+      "MagmaHideout_3F_2R_Text_Grunt10Defeat",
+      "MagmaHideout_3F_2R_Text_Grunt10PostBattle"
+    ],
+    "data/maps/MagmaHideout_4F/scripts.inc": [
+      "MagmaHideout_4F_Text_Grunt11Intro",
+      "MagmaHideout_4F_Text_Grunt11Defeat",
+      "MagmaHideout_4F_Text_Grunt11PostBattle",
+      "MagmaHideout_4F_Text_Grunt12Intro",
+      "MagmaHideout_4F_Text_Grunt12Defeat",
+      "MagmaHideout_4F_Text_Grunt13Intro",
+      "MagmaHideout_4F_Text_Grunt13Defeat",
+      "MagmaHideout_4F_Text_Grunt13PostBattle",
+      "MagmaHideout_4F_Text_TabithaDefeat",
+      "MagmaHideout_4F_Text_MaxieDefeat"
     ]
   },
   "accentless_ascii_only": true,
