@@ -16,7 +16,7 @@
         "O que?\\pFui descuidado com voce!$"
       ],
       "Route22_Text_LeagueGateSign": [
-        "LEAGUE POKEMON$"
+        "LIGA POKEMON$"
       ]
     },
     "data/maps/Route24_Frlg/scripts.inc": {
@@ -30,7 +30,7 @@
         "Voce esta sem espaco!$"
       ],
       "Route24_Text_RocketDefeat": [
-        "Arrgh! Tu e bom!$"
+        "Arrgh! Voce e bom!$"
       ],
       "Route24_Text_YoudBecomeTopRocketLeader": [
         "Com sua habilidade,\\ntornou-te um lider de topo no\\lTEAM ROCKET.\\pVa la, pensa na oportunidade!\\nNao desperdices esta\\loportunidade.$"
@@ -116,10 +116,10 @@
         "Meu condicionamento nao e o\\nmelhor...$"
       ],
       "Route25_Text_KelseyPostBattle": [
-        "Quem me dera que meu namorado\\nfosse tao bom como tu.$"
+        "Quem me dera que meu namorado\\nfosse tao bom como voce.$"
       ],
       "Route25_Text_ChadIntro": [
-        "Tive uma sensacao... Sabia que\\ntinha de lutar com voce!$"
+        "Tive uma sensacao... Sabia que\\ntinha de batalhar com voce!$"
       ],
       "Route25_Text_ChadDefeat": [
         "Eu sabia que tambem ia perder!$"
@@ -149,7 +149,7 @@
         "O POKeMANIAC faz jus ao seu\\nnome.\\pSua colecao inclui muitas\\nespecies raras de POKEMON.$"
       ],
       "Route25_Text_WayneDefeat": [
-        "Tu e alguma coisa.$"
+        "Voce e alguma coisa.$"
       ],
       "Route25_Text_WaynePostBattle": [
         "A trilha abaixo e um atalho\\npara CERULEAN CITY.$"
@@ -157,10 +157,10 @@
     },
     "data/maps/Route25_SeaCottage_Frlg/scripts.inc": {
       "Route25_SeaCottage_Text_NoPleaseChief": [
-        "Nao! Nao tenha tanto frio!\\pVa la, tem de ajudar um tipo\\nem apuros!\\pO que me diz, chefe? Por favor?\\nEsta bem? Muito bem!$"
+        "Nao! Nao tenha tanto frio!\\pVa la, precisa ajudar um tipo\\nem apuros!\\pO que me diz, chefe? Por favor?\\nEsta bem? Muito bem!$"
       ],
       "Route25_SeaCottage_Text_NoPleaseBeautiful": [
-        "Nao! Nao tenha tanto frio!\\pVa la, tem de ajudar um tipo\\nem apuros!\\pO que dizes, linda? Por favor?\\nEsta bem? Muito bem!$"
+        "Nao! Nao tenha tanto frio!\\pVa la, precisa ajudar um tipo\\nem apuros!\\pO que dizes, linda? Por favor?\\nEsta bem? Muito bem!$"
       ],
       "Route25_SeaCottage_Text_YouveGotTooMuchStuff": [
         "Tem demasiadas coisas!$"
@@ -228,7 +228,7 @@
     },
     "data/maps/Route27/scripts.inc": {
       "Route27_Text_FisherMessage": [
-        "Estas quedas marcam a borda de\\nJOHTO-a LEAGUE POKEMON esta\\llogo a frente.$"
+        "Estas quedas marcam a borda de\\nJOHTO-a LIGA POKEMON esta\\llogo a frente.$"
       ],
       "Route27_Text_CooltrainermBlakeSeen": [
         "Parece muito forte. Deixa-me\\nlutar com voce!$"
@@ -246,13 +246,13 @@
         "Um bom TREINADOR pode\\nreconhecer outros bons\\ltREINADORES.$"
       ],
       "Route27_Text_CooltrainerfReenaSeen": [
-        "Nao deves subestimar o POKEMON\\nselvagem por aqui.$"
+        "Nao deve subestimar o POKEMON\\nselvagem por aqui.$"
       ],
       "Route27_Text_CooltrainerfReenaBeaten": [
         "Oh! E demasiado forte!$"
       ],
       "Route27_Text_CooltrainerfReenaAfter": [
-        "E apenas uma crianca, mas\\ntambem nao deves ser\\lsubestimada.$"
+        "E apenas uma crianca, mas\\ntambem nao deve ser\\lsubestimada.$"
       ],
       "Route27_Text_CooltrainerfMeganSeen": [
         "E raro ver alguem vir aqui.\\pEstas a treinar sozinho?$"
@@ -317,7 +317,7 @@
     },
     "data/maps/Route2_House_Frlg/scripts.inc": {
       "Route2_House_Text_FaintedMonsCanUseFieldMoves": [
-        "Um POKEMON desmaiado nao tem\\nmais energia para lutar.\\pEle ainda pode usar movimentos\\ncomo CUT fora da batalha.$"
+        "Um POKEMON desmaiado nao tem\\nmais energia para batalhar.\\pEle ainda pode usar movimentos\\ncomo CUT fora da batalha.$"
       ]
     },
     "data/maps/Route2_ViridianForest_NorthEntrance_Frlg/scripts.inc": {
@@ -343,7 +343,7 @@
     },
     "data/maps/Route30_MrPokemonsHouse/scripts.inc": {
       "MrPokemonHouse_Text_Intro1": [
-        "Ola, ola! Deves ser.{PLAYER}.\\pPROF.ELM disse que voce iria\\nvisitar.$"
+        "Ola, ola! Deve ser.{PLAYER}.\\pPROF.ELM disse que voce iria\\nvisitar.$"
       ],
       "MrPokemonHouse_Text_Intro2": [
         "Isto e o que eu quero que o\\nPROF.ELM examine.$"
@@ -387,7 +387,7 @@
     },
     "data/maps/Route32_PokemonCenter/scripts.inc": {
       "Route32_Pokecenter_Text_FishingGuruQuestion": [
-        "Este e um otimo local de pesca.\\pViu pessoas a pescar? E tu?\\pQuer um dos meus RODS?$"
+        "Este e um otimo local de pesca.\\pViu pessoas a pescar? E voce?\\pQuer um dos meus RODS?$"
       ],
       "Route32_Pokecenter_Text_FishingGuruYes": [
         "E bom ouvir isso.\\pAgora tambem e um pescador!$"
@@ -549,7 +549,7 @@
         "Por nivel, o\\nseu{STR_VAR_1}Cresceu\\lpor{STR_VAR_2}.$"
       ],
       "Route34_DayCare_Text_YourTeamIsFull": [
-        "Sua equipa esta cheia. Abram\\nespaco e venham ver-me.$"
+        "Sua equipe esta cheia. Abram\\nespaco e venham ver-me.$"
       ],
       "Route34_DayCare_Text_TakeBackWhichMon": [
         "Que POKEMON vai retirar?$"
@@ -725,7 +725,7 @@
         "Acho que nao estudei o\\nsuficiente.$"
       ],
       "Route38_Text_SchoolboyChadAfter": [
-        "Tenho de fazer tantos testes,\\nnao tenho muito tempo para\\lPOKEMON.\\pEntao, quando eu posso jogar,\\neu realmente me concentro.$"
+        "Preciso fazer tantos testes,\\nnao tenho muito tempo para\\lPOKEMON.\\pEntao, quando eu posso jogar,\\neu realmente me concentro.$"
       ],
       "Route38_Text_LassDana1Seen": [
         "Parece ser bom em POKEMON.\\pSe estiver, que tal dar-me um\\nconselho?$"
@@ -793,7 +793,7 @@
         "Sabe como o POKEMON tem\\ncapacidades diferentes?\\pAs pessoas tambem sao assim.\\nTodos tem potencial diferente.$"
       ],
       "Route39_Text_PokefanFJaimeSeen": [
-        "Voce veio na hora certa.\\pVamos lutar.$"
+        "Voce veio na hora certa.\\pVamos batalhar.$"
       ],
       "Route39_Text_PokefanFJaimeBeaten": [
         "Que desilusao...$"
