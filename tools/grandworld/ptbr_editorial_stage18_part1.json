@@ -1,0 +1,180 @@
+{
+  "stage": 18,
+  "status": "editorial_ai_rewrite_pending_independent_linguistic_and_visual_review",
+  "base_commit": "66f9162b11e9f92a07445c36c9124d0f32f1d2dc",
+  "part": 1,
+  "entries": 71,
+  "previously_assisted_stage17": 36,
+  "previously_untouched_by_stage17": 35,
+  "changed_labels_by_shard_and_source": {
+    "tools/grandworld/ptbr_auto_review_003.json": {
+      "data/maps/Route109_SeashoreHouse/scripts.inc": [
+        "Route109_SeashoreHouse_Text_SimonPostBattle"
+      ],
+      "data/maps/Route10_Frlg/scripts.inc": [
+        "Route10_Text_HeidiDefeat"
+      ],
+      "data/maps/Route110_TrickHouseEnd/scripts.inc": [
+        "Route110_TrickHouseEnd_Text_AllNightSettingUpArrows",
+        "Route110_TrickHouseEnd_Text_MakeNewTricksToStumpYou"
+      ],
+      "data/maps/Route110_TrickHousePuzzle1/scripts.inc": [
+        "Route110_TrickHousePuzzle1_Text_SallyIntro"
+      ],
+      "data/maps/Route110_TrickHousePuzzle7/scripts.inc": [
+        "Route110_TrickHousePuzzle7_Text_AlvaroIntro",
+        "Route110_TrickHousePuzzle7_Text_EverettPostBattle"
+      ],
+      "data/maps/Route110_TrickHousePuzzle8/scripts.inc": [
+        "Route110_TrickHousePuzzle8_Text_KeiraPostBattle"
+      ],
+      "data/maps/Route111_WinstrateFamilysHouse/scripts.inc": [
+        "Route111_WinstrateFamilysHouse_Text_StrongerFamilyMembers"
+      ],
+      "data/maps/Route119_WeatherInstitute_1F/scripts.inc": [
+        "Route119_WeatherInstitute_1F_Text_Grunt1Intro",
+        "Route119_WeatherInstitute_1F_Text_WhatWereAquasUpTo"
+      ],
+      "data/maps/Route119_WeatherInstitute_2F/scripts.inc": [
+        "Route119_WeatherInstitute_2F_Text_ThanksPleaseTakePokemon"
+      ],
+      "data/maps/Route11_Frlg/scripts.inc": [
+        "Route11_Text_BraxtonIntro",
+        "Route11_Text_DillonDefeat"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_004.json": {
+      "data/maps/Route12_Frlg/scripts.inc": [
+        "Route12_Text_NedPostBattle"
+      ],
+      "data/maps/Route13_Frlg/scripts.inc": [
+        "Route13_Text_SebastianIntro",
+        "Route13_Text_SebastianPostBattle",
+        "Route13_Text_GwenIntro"
+      ],
+      "data/maps/Route14_Frlg/scripts.inc": [
+        "Route14_Text_MitchIntro",
+        "Route14_Text_MitchPostBattle",
+        "Route14_Text_BeckPostBattle",
+        "Route14_Text_MarlonPostBattle",
+        "Route14_Text_IsaacPostBattle"
+      ],
+      "data/maps/Route15_Frlg/scripts.inc": [
+        "Route15_Text_KindraIntro",
+        "Route15_Text_KindraPostBattle",
+        "Route15_Text_BeckyIntro",
+        "Route15_Text_GracePostBattle",
+        "Route15_Text_OliviaPostBattle"
+      ],
+      "data/maps/Route16_Frlg/scripts.inc": [
+        "Route16_Text_LaoDefeat",
+        "Route16_Text_RubenPostBattle"
+      ],
+      "data/maps/Route16_House_Frlg/scripts.inc": [
+        "Route16_House_Text_FoundMySecretRetreat"
+      ],
+      "data/maps/Route17_Frlg/scripts.inc": [
+        "Route17_Text_IsaiahPostBattle"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_005.json": {
+      "data/maps/Route24_Frlg/scripts.inc": [
+        "Route24_Text_YoudBecomeTopRocketLeader",
+        "Route24_Text_EthanIntro"
+      ],
+      "data/maps/Route25_Frlg/scripts.inc": [
+        "Route25_Text_HaleyIntro"
+      ],
+      "data/maps/Route26/scripts.inc": [
+        "Route26_Text_PsychicRichardAfter"
+      ],
+      "data/maps/Route27/scripts.inc": [
+        "Route27_Text_PsychicGilbertAfter"
+      ],
+      "data/maps/Route27_House/scripts.inc": [
+        "SandstormHouse_Text_TM37Description",
+        "SandstormHouse_Text_DisloyalMon"
+      ],
+      "data/maps/Route28_House/scripts.inc": [
+        "Route28House_Text_Celebrity1"
+      ],
+      "data/maps/Route32_PokemonCenter/scripts.inc": [
+        "Route32_Pokecenter_Text_CooltrainerF"
+      ],
+      "data/maps/Route34/scripts.inc": [
+        "Route34_Text_OfficerKeith_After",
+        "Route34_Text_PokefanBrandon_After"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_006.json": {
+      "data/maps/Route3_Frlg/scripts.inc": [
+        "Route3_Text_TunnelFromCeruleanTiring"
+      ],
+      "data/maps/Route41/scripts.inc": [
+        "Route41_Text_SwimmermCharlieSeen"
+      ],
+      "data/maps/Route43/scripts.inc": [
+        "Route43_Text_PokemaniacBrentBeaten",
+        "Route43_Text_PokemaniacRonBeaten",
+        "Route43_Text_FisherMarvinSeen",
+        "Route43_Text_CamperSpencerSeen",
+        "Route43_Text_PicnickerTiffanyWantsPicnic"
+      ],
+      "data/maps/Route44/scripts.inc": [
+        "Route44_Text_FisherEdgarSeen"
+      ],
+      "data/maps/Route45/scripts.inc": [
+        "Route45_Text_BlackbeltKenjiSeen"
+      ],
+      "data/maps/Route46/scripts.inc": [
+        "Route46_Text_HikerBaileySeen"
+      ],
+      "data/maps/Route47/scripts.inc": [
+        "Route47_Text_CamperSeen"
+      ],
+      "data/maps/Route4_Frlg/scripts.inc": [
+        "Text_MegaPunchTaught",
+        "Text_MegaKickTaught"
+      ],
+      "data/maps/Route4_PokemonCenter_1F_Frlg/scripts.inc": [
+        "Route4_PokemonCenter_1F_Text_OnlyDoingThisAsFavorToYou"
+      ],
+      "data/maps/Route6_Frlg/scripts.inc": [
+        "Route6_Text_ElijahIntro",
+        "Route6_Text_ElijahPostBattle"
+      ],
+      "data/maps/Route8_Frlg/scripts.inc": [
+        "Route8_Text_MeganDefeat",
+        "Route8_Text_RicardoIntro"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_007.json": {
+      "data/maps/AbandonedShip_Corridors_1F/scripts.inc": [
+        "AbandonedShip_Corridors_1F_Text_CharlieIntro"
+      ],
+      "data/maps/AbandonedShip_Rooms2_1F/scripts.inc": [
+        "AbandonedShip_Rooms2_1F_Text_GarrisonDefeat"
+      ],
+      "data/maps/AbandonedShip_Rooms_1F/scripts.inc": [
+        "AbandonedShip_Rooms_1F_Text_ThaliaRematchIntro"
+      ],
+      "data/maps/BattleFrontier_BattleArenaBattleRoom/scripts.inc": [
+        "BattleFrontier_BattleArenaBattleRoom_Text_NowFaceTycoon"
+      ],
+      "data/maps/BattleFrontier_BattleArenaLobby/scripts.inc": [
+        "BattleFrontier_BattleArenaLobby_Text_DidntSaveBeforeShuttingDown",
+        "BattleFrontier_BattleArenaLobby_Text_PresentYouWithPrize"
+      ],
+      "data/maps/BattleFrontier_BattleDomeBattleRoom/scripts.inc": [
+        "BattleFrontier_BattleDomeBattleRoom_Text_LookForwardToNextEncounter"
+      ],
+      "data/maps/BattleFrontier_BattleDomeLobby/scripts.inc": [
+        "BattleFrontier_BattleDomeLobby_Text_OkayToSaveBeforeChallenge",
+        "BattleFrontier_BattleDomeLobby_Text_OkayToSaveBeforeChallenge2"
+      ],
+      "data/maps/BattleFrontier_BattleFactoryBattleRoom/scripts.inc": [
+        "BattleFrontier_BattleFactoryBattleRoom_Text_LastTimeILoseToYou"
+      ]
+    }
+  }
+}
