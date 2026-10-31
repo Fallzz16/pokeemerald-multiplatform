@@ -210,7 +210,7 @@
         "Tente ensinar a POKEMON um\\nmovimento que seja do mesmo\\ltipo.\\pIsso aparentemente aumenta o\\npoder da mudanca.$"
       ],
       "Route14_Text_MarlonDefeat": [
-        "Atirado em chamas!$"
+        "Atirado em chama!$"
       ],
       "Route14_Text_MarlonPostBattle": [
         "Bird POKEMON e meu verdadeiro\\namor. Nao quero criar mais\\lnada.$"
@@ -425,7 +425,7 @@
     },
     "data/maps/Route16_House_Frlg/scripts.inc": {
       "Route16_House_Text_FoundMySecretRetreat": [
-        "Meu Deus. Encontraste o meu\\nretiro secreto.\\pPor favor, nao digas a ninguem\\nque estou aqui. Vou\\lcompensar-te com isto!$"
+        "Meu Deus. Encontrou o meu\\nretiro secreto.\\pPor favor, nao digas a ninguem\\nque estou aqui. Vou\\lcompensar-te com isto!$"
       ],
       "Route16_House_Text_ReceivedHM02FromGirl": [
         "{PLAYER}Recebeu HM02 da menina.$"
@@ -509,7 +509,7 @@
         "Ufa! Bom treino!$"
       ],
       "Route17_Text_JamalPostBattle": [
-        "Tenho a certeza que perdi peso!$"
+        "Tenho certeza que perdi peso!$"
       ],
       "Route17_Text_CoreyIntro": [
         "Se um rebelde!$"
