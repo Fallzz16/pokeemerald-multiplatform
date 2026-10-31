@@ -164,7 +164,7 @@
     },
     "data/maps/BattleFrontier_BattlePalaceLobby/scripts.inc": {
       "BattleFrontier_BattlePalaceLobby_Text_ReturnWhenFortified": [
-        "Quando tiver fortalecido o seu\\ncoracao e POKEMON, tem de\\lregressar.$"
+        "Quando tiver fortalecido o seu\\ncoracao e POKEMON, precisa\\lregressar.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_NotEnoughValidMonsEnd": [
         "Volta quando tiveres feito os\\nteus preparativos.$"
@@ -200,7 +200,7 @@
         "Para um tipo duro como eu,\\nPOKEMON e o melhor.\\pO ataque e a melhor defesa! Um\\nataque implacavel e o maximo!\\pMas nao era sobre isso que eu\\nqueria falar.\\pDe vez em quando passa por aqui\\numa senhora muito gira.\\pEla diz que pode dizer o que\\nPokemon esta pensando.\\pNao sei, mas ela e muito gira.\\pHuh? Porque estas a olhar para\\nmim assim?$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_NatureAndMovesKeyHere": [
-        "Hmm...\\pParece que a natureza de\\nPOKEMON e os movimentos que\\llhes foram ensinados sao as\\lchaves para lutar aqui.\\pPara ser mais preciso, e o quao\\nbem os movimentos correspondem\\la natureza do POKEMON.\\pSe seu POKEMON estiver em\\nperigo e nao puder fazer jus ao\\lseu potencial, podera ter de\\lexaminar a forma como os seus\\lmovimentos correspondem a sua\\lnatureza.$"
+        "Hmm...\\pParece que a natureza de\\nPOKEMON e os movimentos que\\llhes foram ensinados sao as\\lchaves para batalhar aqui.\\pPara ser mais preciso, e o quao\\nbem os movimentos correspondem\\la natureza do POKEMON.\\pSe seu POKEMON estiver em\\nperigo e nao puder fazer jus ao\\lseu potencial, podera ter de\\lexaminar a forma como os seus\\lmovimentos correspondem a sua\\lnatureza.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_WhatNatureFavorsChippingAway": [
         "Pergunto-me que tipo de\\nnatureza um POKEMON teria se\\lfavorecesse a fraude dos seus\\ladversarios e a lapidacao\\llentamente.\\pFicaria surpreendido se fosse\\numa natureza LAX.\\pMas isso nao pode estar certo.$"
@@ -212,7 +212,7 @@
         "Em honra do vinculo que\\npartilhas com seu POKEMON,\\lapresentamos-te estes Pontos de\\lBatalha.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_LikeToRecordMatch": [
-        "Gostarias de gravar o seu\\nultimo combate BATTLE PALACE no\\lteu PASS FRONTIER?$"
+        "Gostarias de gravar o seu\\nultimo batalha BATTLE PALACE no\\lteu PASS FRONTIER?$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_RulesAreListed": [
         "As regras do BATTLE HALL estao\\nlistadas.$"
@@ -221,7 +221,7 @@
         "Que rumo quer ler?$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesBasics": [
-        "Aqui, POKEMON sao obrigados a\\npensar e lutar sozinhos.\\pAo contrario na natureza,\\nPOKEMON que vivem com as\\lpessoas comportam-se de forma\\ldiferente, dependendo de sua\\lnatureza.$"
+        "Aqui, POKEMON sao obrigados a\\npensar e batalhar sozinhos.\\pAo contrario na natureza,\\nPOKEMON que vivem com as\\lpessoas comportam-se de forma\\ldiferente, dependendo de sua\\lnatureza.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesNature": [
         "Dependendo da sua natureza, um\\nPOKEMON pode preferir atacar,\\laconteca o que acontecer.\\pOutro POKEMON pode preferir\\nproteger-se de qualquer dano.\\pNo entanto, outro pode gostar\\nde aborrecer ou confundir seus\\linimigos.\\pDevido sua natureza, um\\nPOKEMON tera movimentos\\lfavoritos que e bom em usar.\\pPode tambem nao gostar de\\ncertos movimentos que tem\\ldificuldade em usar.$"
@@ -291,7 +291,7 @@
         "Arrgh! Estraguei a minha\\noportunidade! Eu estava a um\\lquarto do golo!\\pNeste lugar, e melhor teres\\ncuidado com o veneno, o\\lcongelamento, e assim por\\ldiante.$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_NeverHadToBattleTrainer": [
-        "Ja completei o desafio 10\\nvezes, mas nunca tive de lutar\\lcontra um TREINADOR.$"
+        "Ja completei o desafio 10\\nvezes, mas nunca tive de batalhar\\lcontra um TREINADOR.$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ThinkAbilitiesUsefulHere": [
         "Ouve! Ouve!\\pNao acha que as habilidades\\nespeciais de POKEMON serao\\luteis aqui?$"
