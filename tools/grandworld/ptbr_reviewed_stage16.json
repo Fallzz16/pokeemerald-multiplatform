@@ -1,21 +1,25 @@
 {
   "status": "human_reviewed_text_ready; ARM_GBA_mGBA_QA_pending",
-  "scope": "Only changed dialogue symbols compared to stage15",
+  "scope": "Only newly reviewed labels not present in stages 7-15; previously reviewed improvements excluded",
   "source_shards": [
     "ptbr_auto_review_019.json"
   ],
   "source_diff_against": "feature/grandworld-ptbr-human-review-stage15-20261031",
-  "reviewed_entries": 123,
+  "reviewed_entries": 121,
   "reviewed_labels_by_source": {
     "data/maps/SSAnne_2F_Room3_Frlg/scripts.inc": [
       "SSAnne_2F_Room3_Text_SeenMonsFerryPeople",
       "SSAnne_2F_Room3_Text_SomeTreesCanBeCutDown"
     ],
     "data/maps/SSAnne_2F_Room4_Frlg/scripts.inc": [
+      "SSAnne_2F_Room4_Text_LamarIntro",
       "SSAnne_2F_Room4_Text_LamarDefeat",
       "SSAnne_2F_Room4_Text_LamarPostBattle",
       "SSAnne_2F_Room4_Text_DawnIntro",
       "SSAnne_2F_Room4_Text_DawnPostBattle"
+    ],
+    "data/maps/SSAnne_2F_Room6_Frlg/scripts.inc": [
+      "SSAnne_2F_Room6_Text_ManyPeopleGetSeasick"
     ],
     "data/maps/SSAnne_B1F_Room1_Frlg/scripts.inc": [
       "SSAnne_B1F_Room1_Text_PhillipIntro",
@@ -42,13 +46,16 @@
       "SSAnne_B1F_Room4_Text_DuncanDefeat"
     ],
     "data/maps/SSAnne_CaptainsOffice_Frlg/scripts.inc": [
-      "SSAnne_CaptainsOffice_Text_YouHaveNoRoomForThis"
+      "SSAnne_CaptainsOffice_Text_YouHaveNoRoomForThis",
+      "SSAnne_CaptainsOffice_Text_YuckShouldntHaveLooked"
     ],
     "data/maps/SSAnne_Deck_Frlg/scripts.inc": [
       "SSAnne_Deck_Text_ShipDepartingSoon",
       "SSAnne_Deck_Text_ScrubbingDecksHardWork",
       "SSAnne_Deck_Text_FeelSeasick",
+      "SSAnne_Deck_Text_EdmondIntro",
       "SSAnne_Deck_Text_EdmondDefeat",
+      "SSAnne_Deck_Text_EdmondPostBattle",
       "SSAnne_Deck_Text_TrevorIntro",
       "SSAnne_Deck_Text_TrevorPostBattle"
     ],
@@ -56,22 +63,11 @@
       "SSAnne_Kitchen_Text_BusyOutOfTheWay",
       "SSAnne_Kitchen_Text_SawOddBerryInTrash",
       "SSAnne_Kitchen_Text_SoBusyImDizzy",
+      "SSAnne_Kitchen_Text_PeelSpudsEveryDay",
       "SSAnne_Kitchen_Text_HearAboutSnorlaxItsAGlutton",
       "SSAnne_Kitchen_Text_OnlyGetToPeelOnions",
+      "SSAnne_Kitchen_Text_SalmonDuSalad",
       "SSAnne_Kitchen_Text_EelsAuBarbecue"
-    ],
-    "data/maps/SSAqua_1F/scripts.inc": [
-      "SSAqua_1F_Text_Sailor2_FirstTime",
-      "SSAqua_1F_Text_Sailor3",
-      "SSAqua_1F_Text_Grandpa"
-    ],
-    "data/maps/SSAqua_B1F/scripts.inc": [
-      "SSAqua_B1F_Text_SailorJeffSeen",
-      "SSAqua_B1F_Text_SailorJeffAfter",
-      "SSAqua_B1F_Text_PicnickerDebraSeen",
-      "SSAqua_B1F_Text_SailorGarrettSeen",
-      "SSAqua_B1F_Text_SailorKennethAfter",
-      "SSAqua_B1F_Text_SchoolboyRickyAfter"
     ],
     "data/maps/SSAqua_RoomNE/scripts.inc": [
       "SSAqua_RoomNE_Text_HikerNolandSeen",
