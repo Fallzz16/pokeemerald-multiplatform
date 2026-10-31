@@ -208,117 +208,117 @@
     },
     "data/maps/MossdeepCity_SpaceCenter_1F/scripts.inc": {
       "MossdeepCity_SpaceCenter_1F_Text_RocketLaunchImminent": [
-        "O lancamento do foguete esta\\niminente!$"
+        "O lancamento do foguete\\nesta chegando!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_SuccessfulLaunchNumber": [
-        "O foguete foi lancado em\\nseguranca! Foi um lancamento\\lbem sucedido, nao.{STR_VAR_1}!$"
+        "O foguete partiu\\nsem problemas!\\pFoi o lancamento\\nnumero {STR_VAR_1}!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_HaywireButRocketLaunchImminent": [
-        "Sei que as coisas estao um\\npouco confusas, mas...\\pO lancamento do foguete esta\\niminente!$"
+        "Sei que esta tudo confuso,\\nmas o lancamento\\nesta chegando!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_HaywireButSuccessfulLaunchNumber": [
-        "Sei que as coisas estao um\\npouco confusas, mas...\\pO foguete foi lancado em\\nseguranca! Foi um lancamento\\lbem sucedido, nao.{STR_VAR_1}!$"
+        "Mesmo com a confusao,\\no foguete partiu em seguranca!\\pLancamento numero\\n{STR_VAR_1} concluido!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_RocketLaunchDemandsPerfection": [
-        "Um lancamento de foguetes exige\\nperfeicao. Nem mesmo uma margem\\lde erro de 1% e permitida.\\pMesmo que esteja 99% bem, tudo\\ne inutil se 1% nao for bom.\\pApesar disso, nunca paramos de\\ntentar. Porque? E um sonho que\\lnunca acaba.$"
+        "Lancar um foguete exige\\nprecisao absoluta.\\pMesmo um erro de 1%\\npode arruinar tudo!\\pAinda assim, continuamos\\ntentando realizar esse sonho!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_FoundThisYouCanHaveIt": [
-        "Estava a dar um passeio pela\\npraia quando encontrei isto.\\pNao e nada que eu precise, por\\nisso podes ficar com ele.$"
+        "Achei isto durante\\num passeio pela praia.\\pNao preciso do item,\\nentao pode ficar com ele!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_HoennFamousForMeteorShowers": [
-        "A regiao de HOENN tem sido\\nfamosa por suas chuvas de\\lmeteoros ha muito tempo.$"
+        "HOENN e famosa\\npor suas chuvas de meteoros!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_DidPokemonComeFromSpace": [
-        "Algumas pessoas afirmam que\\nPokemon veio do espaco. Pode\\lser verdade?$"
+        "Dizem que alguns POKEMON\\nvieram do espaco.\\pSera que isso e verdade?$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_RocketsBoggleMyMind": [
-        "Um pedaco gigante de metal\\natravessa os ceus e voa para o\\lespaco...\\pIsso deixa-me confuso!$"
+        "Uma enorme maquina de metal\\nvoando pelo espaco...\\pParece ate impossivel!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_Grunt3Intro": [
-        "Como prometido, viemos buscar o\\ncombustivel!$"
+        "Viemos buscar\\no combustivel, como avisamos!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_Grunt3Defeat": [
-        "Acabou o combustivel...$"
+        "Minha energia acabou...$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_Grunt3PostBattle": [
-        "Nao penses que estas numa boa\\nso porque me venceste!$"
+        "Nao pense que tudo acabou\\nso porque me venceu!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_Grunt1Intro": [
-        "Nos demos-te um aviso justo!\\nNao ha nada furtivo em nos!$"
+        "Nos avisamos que viriamos!\\nNada de ataques escondidos!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_Grunt1Defeat": [
-        "Grrr... Deviamos ter usado\\ntraicao furtiva...$"
+        "Grrr... Deveriamos\\nter chegado de surpresa!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_Grunt1PostBattle": [
-        "Ja percebi! Da proxima vez,\\nviremos sem avisar.$"
+        "Da proxima vez,\\nnao vamos avisar!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_Grunt4Defeat": [
-        "Por favor, podes dar-me\\ncombustivel? Ate um copo\\lchintzy serve!$"
+        "Pode me dar combustivel?\\nUm pouquinho ja serve!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_Grunt4PostBattle": [
-        "O que vamos fazer com o\\ncombustivel?\\pComo vou saber? Pergunte ao\\nnosso lider la em cima!$"
+        "O que faremos\\ncom o combustivel?\\pPergunte ao nosso lider!\\nEle esta la em cima!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_Grunt2Intro": [
-        "O nosso lider disse que\\nninguem, mas ninguem, passa por\\lmim!$"
+        "Nosso lider ordenou:\\nninguem passa por mim!$"
       ],
       "MossdeepCity_SpaceCenter_1F_Text_Grunt2PostBattle": [
-        "Por favor, diga ao nosso lider\\nque nunca abandonei o meu\\lposto. Que fiquei ate ao fim...$"
+        "Diga ao lider\\nque nao abandonei meu posto!\\pFiquei aqui ate o fim!$"
       ]
     },
     "data/maps/MossdeepCity_SpaceCenter_2F/scripts.inc": {
       "MossdeepCity_SpaceCenter_2F_Text_MossdeepIdealForRockets": [
-        "MOSSDEEP tem principalmente\\ntempo ensolarado, e seus ventos\\lsao estaveis.\\pE um local ideal para lancar\\nfoguetes.$"
+        "MOSSDEEP tem dias ensolarados\\ne ventos constantes.\\pE um lugar ideal\\npara lancar foguetes!$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_WouldveLikedToBeAstronaut": [
-        "Se eu fosse um pouco mais novo,\\nteria gostado de ser\\lastronauta...\\pNao... Nao e tarde demais!\\nPosso e vou tentar!$"
+        "Eu queria ser astronauta\\nquando era mais jovem...\\pMas ainda tenho tempo!\\nVou continuar tentando!$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_WishOrdinaryPeopleCouldGoIntoSpace": [
-        "Quem me dera que um dia as\\npessoas comuns pudessem ir para\\lo espaco...$"
+        "Tomara que um dia\\ntodos possam viajar\\npelo espaco!$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_YoureOutnumberedTakeUsOn": [
-        "O que se passa contigo?\\pEstas em desvantagem de tres\\npara um, mas ainda queres\\lenfrentar-nos?$"
+        "O que deu em voce?\\pSomos tres contra um,\\ne ainda quer batalhar?$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_GoodAnswer": [
-        "Boa resposta! E o que uma\\npessoa inteligente faz!$"
+        "Boa resposta!\\nVoce pensou direito!$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_Grunt5Intro": [
-        "Es um tipo imprudente, nao es?\\nEsta bem, eu vou primeiro!$"
+        "Voce e ousado, hein?\\nEu vou primeiro!$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_Grunt5Defeat": [
-        "Perdi! Mas!$"
+        "Perdi! Mas ainda...$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_Grunt6Intro": [
-        "E muito cedo para ser aliviado!\\nSou o proximo!$"
+        "Nao comemore ainda!\\nAgora e minha vez!$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_Grunt6Defeat": [
-        "Eu tambem perdi! Mas!$"
+        "Eu tambem perdi! Mas...$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_Grunt7Intro": [
-        "Aposto que queres fazer uma\\npausa. Mas nao te vou deixar\\lfazer isso!$"
+        "Acha que vai descansar?\\nNem pensar!$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_Grunt7Defeat": [
-        "Deviamos ter feito uma pausa...\\nEra o que deviamos ter feito...$"
+        "Deveriamos ter\\nfeito uma pausa...$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_Grunt6PostBattle": [
-        "Tres de nos aqui, e olha para a\\nconfusao em que nos metemos.$"
+        "Nos tres tentamos\\ne acabamos perdendo!$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_Grunt7PostBattle": [
-        "Nos os tres perdemos assim...\\nParecemos piores do que o\\lhabitual por tres!$"
+        "Tres derrotas seguidas!\\nQue vergonha!$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_Grunt5PostBattle": [
-        "Estamos a ser uteis para o\\nnosso lider?$"
+        "Sera que estamos\\najudando nosso lider?$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_WellTakeCareOfYou": [
-        "Hehehe!\\pViemos ate aqui para arranjar\\ncombustivel, e estamos a\\linterferir outra vez!\\pSe tambem te vais meter\\nconnosco, tratamos de ti ao\\lmesmo tempo!$"
+        "He he he!\\pViemos buscar combustivel\\npara nossos planos!\\pSe ficar no caminho,\\nvamos enfrentar voce tambem!$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_StevenAreYouReadyToBattle": [
-        "STEVEN:{PLAYER}{KUN}Vais\\najudar-me?\\pVamos para a batalha juntos!\\nEstas pronto?$"
+        "STEVEN: {PLAYER}{KUN}!\\nVai me ajudar?\\pVamos batalhar juntos!\\nEsta pronto?$"
       ],
       "MossdeepCity_SpaceCenter_2F_Text_JustWantToExpandLand": [
-        "Tudo o que eu quero... So quero\\nexpandir a massa terrestre...$"
+        "Eu so queria...\\pAumentar a area\\nterrestre do mundo...$"
       ],
       "MossdeepCity_SpaceCenter_Text_TabithaDefeat": [
-        "Estou com o nosso lider...$"
+        "Ainda estou do lado\\ndo nosso lider...$"
       ]
     },
     "data/maps/MossdeepCity_StevensHouse/scripts.inc": {
@@ -334,111 +334,111 @@
     },
     "data/maps/MtChimney/scripts.inc": {
       "MtChimney_Text_TabithaDefeat": [
-        "Hehehe...\\pMesmo que tenha perdido, se o\\nnosso lider acordar aquela\\lcoisa...$"
+        "He he he...\\pMesmo perdendo,\\nse nosso lider acordar\\nAQUELE POKEMON...$"
       ],
       "MtChimney_Text_Grunt2Defeat": [
-        "Hunh? Como assim, perdi?$"
+        "Huh? Eu perdi?$"
       ],
       "MtChimney_Text_Grunt1Intro": [
-        "Se houvesse mais terra, eu\\nteria uma casa grande!\\pVou construi-lo em lava\\nendurecida!$"
+        "Se existisse mais terra,\\neu teria uma casa enorme!\\pConstruiria sobre\\na lava endurecida!$"
       ],
       "MtChimney_Text_Grunt1Defeat": [
-        "O meu sonho de uma casa\\ngrande...$"
+        "Meu sonho da casa enorme...$"
       ],
       "MtChimney_Text_Grunt1PostBattle": [
-        "Um miudo como tu devia estar a\\nespirrar nas ondas!$"
+        "Uma crianca como voce\\ndeveria estar na praia!$"
       ],
       "MtChimney_Text_YouBetterNotMessWithUs": [
-        "E melhor nao te meteres\\nconnosco!\\pEstamos a tentar acordar essa\\ncoisa para o beneficio de\\ltodos!$"
+        "Nao se meta conosco!\\pVamos despertar\\num grande poder\\npara ajudar todo mundo!$"
       ],
       "MtChimney_Text_DouseThemInFire": [
-        "Sim! Apaguem-nos no fogo!$"
+        "Isso! Vamos usar fogo!$"
       ],
       "MtChimney_Text_KeepMakingMoreLand": [
-        "Vamos continuar a fazer mais\\nterra!$"
+        "Vamos criar mais terra!$"
       ],
       "MtChimney_Text_ThankYouDear": [
-        "Obrigado, querida!$"
+        "Muito obrigado!$"
       ],
       "MtChimney_Text_YouveNotGotTheMoney": [
-        "Meu Deus. Nao podes comprar\\nnada se nao tiveres o dinheiro.$"
+        "Voce nao pode comprar\\nsem ter dinheiro suficiente!$"
       ],
       "MtChimney_Text_OhFineThen": [
-        "Esta bem.$"
+        "Tudo bem!$"
       ],
       "MtChimney_Text_MeteoriteFittedOnMachine": [
-        "Um METEORITE e montado em uma\\nmaquina misteriosa...\\pA maquina parece estar\\narmazenando energia no\\lMETEORITE.$"
+        "Um METEORITE esta preso\\nnuma maquina estranha...\\pParece estar armazenando\\nmuita energia!$"
       ],
       "MtChimney_Text_RemoveTheMeteorite": [
-        "Um METEORITE e montado em uma\\nmaquina misteriosa...\\pDeseja remover o METEORITE?$"
+        "Um METEORITE esta preso\\nnuma maquina estranha...\\pQuer retirar o METEORITE?$"
       ],
       "MtChimney_Text_PlayerRemovedMeteorite": [
-        "{PLAYER}removeu o METEORITE da\\nmaquina misteriosa.$"
+        "{PLAYER} retirou o METEORITE\\nda maquina!$"
       ],
       "MtChimney_Text_PlayerLeftMeteorite": [
-        "{PLAYER}Deixou o METEORITE onde\\nestava.$"
+        "{PLAYER} deixou o METEORITE\\nna maquina.$"
       ],
       "MtChimney_Text_MachineMakesNoResponse": [
-        "Esta maquina misteriosa... Nao\\nda qualquer resposta.$"
+        "A maquina estranha\\nnao apresenta reacao...$"
       ],
       "MtChimney_Text_ShelbyIntro": [
-        "Estive nas fontes termais e\\nrefresquei os meus ossos\\lcansados. Neste momento\\lsinto-me forte!$"
+        "Acabei de relaxar\\nnas fontes termais.\\pAgora estou pronto\\npara uma batalha!$"
       ],
       "MtChimney_Text_ShelbyDefeat": [
-        "Meu Deus. Agora, voce e demais!$"
+        "Nossa! Voce e forte demais!$"
       ],
       "MtChimney_Text_ShelbyRegister": [
-        "Obrigado, crianca. Foi\\ndivertido, como se estivesse a\\llutar com o meu proprio neto.\\pPor favor, venha me ver\\nnovamente para uma revanche.$"
+        "Foi divertido batalhar!\\pParecia estar lutando\\ncom meu proprio neto!\\pVolte para uma revanche!$"
       ],
       "MtChimney_Text_ShelbyRematchIntro": [
-        "Se voce pode misturar seu\\ncoracao com os de seu POKEMON,\\lpor que, voce deve ser capaz de\\lalcancar grandes coisas.$"
+        "Se voce e seus POKEMON\\nlutarem com o mesmo coracao,\\nvao conquistar grandes coisas!$"
       ],
       "MtChimney_Text_ShelbyRematchDefeat": [
-        "Meu Deus. Agora, voce e demais!$"
+        "Nossa! Voce e forte demais!$"
       ],
       "MtChimney_Text_ShelbyPostRematch": [
-        "Talvez o seu coracao se tenha\\ntornado um so com o coracao do\\lseu POKEMON.$"
+        "Voce e seus POKEMON\\nparecem pensar como um so!$"
       ],
       "MtChimney_Text_MelissaIntro": [
-        "Tenho o fogo em mim, querida.\\nNao aguento! Tenho de lutar!$"
+        "Estou cheia de energia!\\pPreciso de uma batalha agora!$"
       ],
       "MtChimney_Text_MelissaDefeat": [
-        "Foi uma partida escaldante!$"
+        "Que batalha quente!$"
       ],
       "MtChimney_Text_ShirleyIntro": [
-        "Desde que tomei banho nas\\ntermas, tenho-me sentido muito\\lbem! Tenho a certeza que vou\\lganhar!$"
+        "As fontes termais\\nme deixaram renovada!\\pTenho certeza de que vou vencer!$"
       ],
       "MtChimney_Text_ShirleyDefeat": [
-        "Yowch! Estou a arrefecer da\\nagua.$"
+        "Ai! Minha sorte esfriou!$"
       ],
       "MtChimney_Text_ShirleyPostBattle": [
-        "Terei de dar outro mergulho nas\\nfontes termais. Queres\\ljuntar-te a mim?\\pEstava a brincar!$"
+        "Vou tomar outro banho\\nnas fontes termais!\\pQuer vir junto?\\nHa ha! Estou brincando!$"
       ],
       "MtChimney_Text_SawyerIntro": [
-        "Esta e uma bela montanha! Ha\\nmuita gente boa por perto para\\lcompanhia!$"
+        "Que montanha maravilhosa!\\pHa muita gente legal\\npara conhecer aqui!$"
       ],
       "MtChimney_Text_SawyerDefeat": [
-        "Tambem es uma verdadeira marca\\nde fogo!$"
+        "Voce luta com muita energia!$"
       ],
       "MtChimney_Text_SawyerRegister": [
-        "Gosto de bolas de fogo como tu.\\nDeixa-me registar-te no meu\\lPOKeNAV.$"
+        "Gosto do seu estilo!\\pVamos trocar contatos\\nno POKENAV!$"
       ],
       "MtChimney_Text_SawyerRematchIntro": [
-        "Estou feliz rodeado por pessoas\\nquentes por aqui. Nao vou\\lperder!$"
+        "O clima e quente aqui,\\ne eu adoro isso!\\pNao vou perder!$"
       ],
       "MtChimney_Text_SawyerRematchDefeat": [
-        "Ainda es a mesma marca de fogo\\nde antes!$"
+        "Continua com\\na mesma energia de antes!$"
       ],
       "MtChimney_Text_SawyerPostRematch": [
-        "Na verdade, esta mesmo quente\\naqui. Estou demasiado vestido\\lpara estas partes.$"
+        "O clima aqui e mesmo quente!\\pAcho que me vesti demais!$"
       ]
     },
     "data/maps/MtChimney_CableCarStation/scripts.inc": {
       "MtChimney_CableCarStation_Text_StepThisWay": [
-        "Por aqui, por favor.$"
+        "Por aqui, por favor!$"
       ],
       "MtChimney_CableCarStation_Text_RideAnotherTime": [
-        "Por favor, venha connosco\\nnoutra altura.$"
+        "Volte quando quiser\\noutra viagem!$"
       ]
     },
     "data/maps/MtEmber_Exterior_Frlg/scripts.inc": {
