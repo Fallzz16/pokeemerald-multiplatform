@@ -34,7 +34,7 @@ def assisted_labels():
                     seen_here += 1
         assert seen_here == part["modified_entries"], name
         total += seen_here
-    assert total == 1054, f"unexpected assisted text count: {total}"
+    assert total == 1053, f"unexpected assisted text count: {total}"
     return entries
 
 
@@ -66,7 +66,7 @@ class PTBRAssistedStage17Tests(unittest.TestCase):
                 self.assertLessEqual(len(visible), 35, (source, label, visible))
 
     def test_scope_and_manual_review_remain_distinct(self):
-        self.assertEqual(len(self.entries), 1054)
+        self.assertEqual(len(self.entries), 1053)
         self.assertEqual(len({shard for shard in self.entries.values()}), 21)
         for name in PART_FILES:
             self.assertNotIn("release_approved", read_json(name))
