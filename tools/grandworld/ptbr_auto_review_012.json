@@ -16,13 +16,13 @@
         "Venha visitar-me quando quiser.$"
       ],
       "CeruleanCity_House1_Text_AttackStatFlash": [
-        "A estatistica ATTACK de todos\\nos seus POKEMON aumenta um\\lpouco.\\pEle tambem permite que voce use\\no movimento FLASH fora da\\lbatalha.$"
+        "O atributo ATTACK dos seus\\nPOKEMON aumenta um\\lpouco.\\pVoce tambem pode usar\\no golpe FLASH fora\\ldas batalhas.$"
       ],
       "CeruleanCity_House1_Text_ObeyLv30Cut": [
-        "O POKEMON ate 30 vai\\nobedecer-te.\\pIsso inclui ate mesmo\\nforasteiros que voce obter em\\lcomercios.\\pPOKEMON de niveis mais altos\\nsera indisciplinado na batalha,\\lno entanto.\\pEle tambem permite que voce use\\no movimento CUT fora da\\lbatalha.$"
+        "POKEMON ate o nivel 30\\nobedecem a voce.\\pIsso vale ate para\\nPOKEMON recebidos em\\ltrocas.\\pPOKEMON acima desse nivel\\npodem desobedecer,\\lno entanto.\\pVoce tambem pode usar\\no golpe CUT fora\\ldas batalhas.$"
       ],
       "CeruleanCity_House1_Text_ObeyLv70RockSmash": [
-        "POKEMON ate ao Lv. 70\\nobedecera.\\pIsso inclui ate mesmo\\nforasteiros que voce obter em\\lcomercios.\\pPOKEMON de niveis mais altos\\nsera indisciplinado na batalha,\\lno entanto.\\pTambem permite que voce use o\\nmovimento ROCK SMASH fora da\\lbatalha.$"
+        "POKEMON ate o nivel 70\\nobedecem a voce.\\pIsso vale ate para\\nPOKEMON recebidos em\\ltrocas.\\pPOKEMON acima desse nivel\\npodem desobedecer,\\lno entanto.\\pVoce tambem pode usar\\nROCK SMASH fora\\ldas batalhas.$"
       ],
       "CeruleanCity_House1_Text_SpStatsWaterfall": [
         "O SP. ATK e SP. DEF\\nestatisticas de todos os seus\\lPOKEMON subir um pouco.\\pTambem permite que voce use o\\nmovimento WATERFALL fora da\\lbatalha.$"
@@ -43,10 +43,10 @@
     },
     "data/maps/CeruleanCity_House4_Frlg/scripts.inc": {
       "CeruleanCity_House4_Text_NothingEntertaining": [
-        "Suspiro... Demasiado tempo,\\nmuito pouco para fazer...\\pNao esta acontecendo nada de\\ndivertido?$"
+        "Que tedio... Tenho tanto\\ntempo livre e nada para fazer!\\pSera que nao acontece\\nnada divertido por aqui?$"
       ],
       "CeruleanCity_House4_Text_NewNewsInformativeHaveThis": [
-        "Ah! Uma nova noticia!\\pHmm...\\pEstou a ver! Isso foi bastante\\ninformativo!\\pAplaudo-o por se interessar\\npelas noticias na sua\\ljuventude.\\pComo agradecimento por\\npartilhar as noticias comigo,\\lquero que fiques com isto.$"
+        "Ah! Uma novidade!\\pHmm...\\pMuito interessante!\\nObrigado por me contar!\\pE otimo ver jovens\\nque acompanham as\\lnoticias do mundo.\\pEm agradecimento,\\naceite este pequeno\\lpresente!$"
       ],
       "CeruleanCity_House4_Text_IncredibleNewsHaveBerries": [
         "Oh, oh! Esta noticia!\\pHmm...\\pIncrivel! Que noticia incrivel!\\pNao vejo uma noticia tao\\nincrivel ha muito tempo!\\pObrigado por partilhar esta\\nnoticia fantastica. Come um\\lmonte de BERRIES!$"
@@ -55,7 +55,7 @@
         "E uma pena nao partilhar esta\\nnoticia com outras pessoas...\\pGostava de poder dizer a\\nalguem... Avisar os outros...$"
       ],
       "CeruleanCity_House4_Text_ThanksForSpreadingNewsTakeThis": [
-        "Espalhou-me a noticia?\\pAs boas noticias valem a pena\\nquando todo tipo de pessoas as\\lcompartilham.\\pComo agradecimento por\\ndivulgares as noticias, toma\\listo!$"
+        "Uma noticia nova?\\pBoas noticias ficam melhores\\nquando todo mundo\\las compartilha!\\pObrigado por me contar.\\nAceite este\\lpresente!$"
       ],
       "CeruleanCity_House4_Text_MagnificentNewsSpreadHaveBerries": [
         "Espalhou mais noticias?\\nMagnifico!\\pEssa noticia deve estar\\nencantada por ser transmitida.\\pSim, de fato!\\pConsidere isso uma demonstracao\\nde apreco de mim e das\\lnoticias.\\pDou-te mais BERRIES do que\\ncostumo fazer.$"
@@ -72,7 +72,7 @@
         "Por que precisa mentir para mim?\\pQuantas BERRIES tem? Nenhuma!$"
       ],
       "CeruleanCity_House1_Text_TakeInterestInAllSortsOfThings": [
-        "Nao tem interesse em BERRIES?\\pJovem, e importante\\ninteressar-se por todo o tipo\\lde coisas.$"
+        "Nao gosta de BERRIES?\\pJovem, e importante\\nter interesse em varias\\lcoisas diferentes.$"
       ],
       "CeruleanCity_House5_Text_ExchangeWithWhat": [
         "Com o que quer troca-lo?$"
@@ -83,30 +83,30 @@
     },
     "data/maps/CeruleanCity_PokemonCenter_1F_Frlg/scripts.inc": {
       "CeruleanCity_PokemonCenter_1F_Text_TryTradingUpstairs": [
-        "Colectores em todo o comercio\\nmundial POKEMON entre si.\\pVoce poderia obter muito mais\\nvariedade por comercio.\\pO POKEMON voce comeca em\\ncomercios crescer rapidamente,\\ltambem.$"
+        "TREINADORES do mundo todo\\ntrocam POKEMON entre si.\\pVoce pode conhecer especies\\nnovas fazendo trocas.\\pPOKEMON recebidos em troca\\nganham experiencia\\lmais rapidamente.$"
       ]
     },
     "data/maps/CherrygroveCity_House1/scripts.inc": {
       "CherrygroveCity_GymSpeechHouse_Text_PokefanM": [
-        "Estas a tentar ver como e bom\\ncomo TREINADOR de POKEMON?\\pE melhor visitar os GyMS\\nPokemon por todo o JOHTO e\\lrecolher INSIGNIAS.$"
+        "Quer saber se voce e\\num bom TREINADOR?\\pVisite os GINASIOS\\nde JOHTO e conquiste\\lINSIGNIAS!$"
       ]
     },
     "data/maps/CherrygroveCity_House2/scripts.inc": {
       "CherrygroveCity_GuideHouse_Text_GuideGent": [
-        "Quando eu era um rapazinho, era\\num grande TREINADOR!\\pAqui esta um conselho: Pegue\\nmuito POKEMON!\\pTratai-os todos com bondade!$"
+        "Quando eu era jovem,\\nera um grande TREINADOR!\\pAqui vai uma dica: Capture\\nmuitos POKEMON diferentes!\\pTrate todos com carinho!$"
       ]
     },
     "data/maps/CherrygroveCity_House3/scripts.inc": {
       "CherrygroveCity_EvolutionHouse_Text_Youngster": [
-        "POKEMON ganhar experiencia em\\nbatalha e mudar sua forma.$"
+        "POKEMON ganham experiencia\\nem batalhas e podem evoluir.$"
       ],
       "CherrygroveCity_EvolutionHouse_Text_Lass": [
-        "Mudanca POKEMON?\\pFicaria chocado se alguem\\nfizesse isso!$"
+        "POKEMON podem evoluir?\\pNossa! Eu ficaria surpresa\\nao ver isso acontecer!$"
       ]
     },
     "data/maps/CherrygroveCity_PokemonCenter/scripts.inc": {
       "CherryGrove_Pokecenter_Text_Fisher": [
-        "E optimo. Posso guardar\\nqualquer quantidade de POKEMON,\\le e tudo gratis.$"
+        "No PC, consigo guardar\\nquantos POKEMON quiser,\\le sem pagar nada!$"
       ],
       "CherryGrove_Pokecenter_Text_Gentleman": [
         "Esse PC e gratuito para\\nqualquer TREINADOR usar.$"
@@ -126,7 +126,7 @@
         "Detesto admitir, mas venceu.$"
       ],
       "CianwoodCity_Text_EusineAfter": [
-        "E incrivel.{PLAYER}!\\pNao admira que POKEMON gravite\\npara ti.\\pJa percebi.\\pVou continuar a procura da\\nSUICUNE.\\pTenho a certeza que voltaremos\\na ver-nos.\\pVemo-nos por ai!$"
+        "Incrivel, {PLAYER}!\\pAgora sei por que os POKEMON\\ngostam tanto de voce.\\pEntendi tudo.\\pVou continuar procurando\\nSUICUNE.\\pTenho certeza de que vamos\\nnos encontrar novamente.\\pAte logo!$"
       ]
     },
     "data/maps/CianwoodHouse1/scripts.inc": {
