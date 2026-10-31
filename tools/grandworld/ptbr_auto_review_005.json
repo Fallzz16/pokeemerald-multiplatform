@@ -13,7 +13,7 @@
         "Awww! Tiveste sorte!$"
       ],
       "Route22_Text_LateRivalDefeat": [
-        "O que?\\pFui descuidado contigo!$"
+        "O que?\\pFui descuidado com voce!$"
       ],
       "Route22_Text_LeagueGateSign": [
         "LEAGUE POKEMON$"
@@ -21,46 +21,46 @@
     },
     "data/maps/Route24_Frlg/scripts.inc": {
       "Route24_Text_JustEarnedFabulousPrize": [
-        "Parabens! Venceste os nossos\\ncinco treinadores do concurso!\\pAcabaste de ganhar um premio\\nfabuloso!$"
+        "Parabens! Venceu os nossos\\nCinco TREINADORES do concurso!\\pAcabou de ganhar um premio\\nFabuloso!$"
       ],
       "Route24_Text_ReceivedNuggetFromMysteryTrainer": [
-        "{PLAYER}recebeu um NUGGET do\\nmisterioso TREINADOR!$"
+        "{PLAYER}Recebeu um NUGGET do\\nMisterioso TREINADOR!$"
       ],
       "Route24_Text_YouDontHaveAnyRoom": [
         "Voce esta sem espaco!$"
       ],
       "Route24_Text_RocketDefeat": [
-        "Arrgh! Tu es bom!$"
+        "Arrgh! Tu e bom!$"
       ],
       "Route24_Text_YoudBecomeTopRocketLeader": [
-        "Com a sua habilidade,\\ntornaste-te um lider de topo no\\lTEAM ROCKET.\\pVa la, pensa na oportunidade!\\nNao desperdices esta\\loportunidade.$"
+        "Com sua habilidade,\\nTornou-te um lider de topo no\\lTEAM ROCKET.\\pVa la, pensa na oportunidade!\\nNao desperdices esta\\lOportunidade.$"
       ],
       "Route24_Text_ShaneIntro": [
-        "Vi o seu feito da relva!$"
+        "Vi seu feito da relva!$"
       ],
       "Route24_Text_ShaneDefeat": [
         "Pensei que nao!$"
       ],
       "Route24_Text_ShanePostBattle": [
-        "Escondi-me porque as pessoas na\\nponte me assustaram.$"
+        "Escondi-me porque as pessoas na\\nPonte me assustaram.$"
       ],
       "Route24_Text_EthanIntro": [
-        "Esta bem! Eu sou o No. 5! Eu\\nbato-te!$"
+        "Esta bem! Eu sou o No. 5! Eu\\nBato-te!$"
       ],
       "Route24_Text_EthanDefeat": [
         "Whoa! Demasiado!$"
       ],
       "Route24_Text_EthanPostBattle": [
-        "Fiz o meu melhor. Nao me\\narrependo!$"
+        "Fiz meu melhor. Nao me\\nArrependo!$"
       ],
       "Route24_Text_ReliIntro": [
-        "estou ficando cansado?$"
+        "Estou ficando cansado?$"
       ],
       "Route24_Text_ReliDefeat": [
         "Eu tambem perdi!$"
       ],
       "Route24_Text_ReliPostBattle": [
-        "Fiz o meu melhor, por isso nao\\nme arrependo!$"
+        "Fiz meu melhor, por isso nao\\nMe arrependo!$"
       ],
       "Route24_Text_TimmyIntro": [
         "Nao vou ser facil!$"
@@ -69,27 +69,27 @@
         "Ow! Bateu no chao!$"
       ],
       "Route24_Text_TimmyPostBattle": [
-        "Fiz o meu melhor. Nao me\\narrependo!$"
+        "Fiz meu melhor. Nao me\\nArrependo!$"
       ],
       "Route24_Text_AliIntro": [
-        "Eu sou o segundo! Agora e\\nserio!$"
+        "Eu sou o segundo! Agora e\\nSerio!$"
       ],
       "Route24_Text_AliDefeat": [
         "Como poderia perder?$"
       ],
       "Route24_Text_AliPostBattle": [
-        "Fiz o meu melhor. Nao me\\narrependo!$"
+        "Fiz meu melhor. Nao me\\nArrependo!$"
       ],
       "Route24_Text_CaleDefeat": [
         "Whoo! Boa!$"
       ],
       "Route24_Text_CalePostBattle": [
-        "Fiz o meu melhor. Nao me\\narrependo!$"
+        "Fiz meu melhor. Nao me\\nArrependo!$"
       ]
     },
     "data/maps/Route25_Frlg/scripts.inc": {
       "Route25_Text_JoeyIntro": [
-        "Treinadores locais vem aqui\\npara praticar.$"
+        "TREINADORES locais vem aqui\\nPara praticar.$"
       ],
       "Route25_Text_JoeyDefeat": [
         "Estas decente.$"
@@ -101,34 +101,34 @@
         "Nao estou zangado!$"
       ],
       "Route25_Text_FlintIntro": [
-        "Sou um tipo legal. Tenho uma\\nnamorada!$"
+        "Sou um tipo legal. Tenho uma\\nNamorada!$"
       ],
       "Route25_Text_FlintDefeat": [
         "Raios...$"
       ],
       "Route25_Text_FlintPostBattle": [
-        "Bem. A minha namorada vai\\nanimar-me.$"
+        "Bem. Minha namorada vai\\nAnimar-me.$"
       ],
       "Route25_Text_KelseyIntro": [
-        "Ola! O meu namorado e legal!$"
+        "Ola! Meu namorado e legal!$"
       ],
       "Route25_Text_KelseyDefeat": [
-        "O meu condicionamento nao e o\\nmelhor...$"
+        "Meu condicionamento nao e o\\nMelhor...$"
       ],
       "Route25_Text_KelseyPostBattle": [
-        "Quem me dera que o meu namorado\\nfosse tao bom como tu.$"
+        "Quem me dera que meu namorado\\nFosse tao bom como tu.$"
       ],
       "Route25_Text_ChadIntro": [
-        "Tive uma sensacao... Sabia que\\ntinha de lutar contigo!$"
+        "Tive uma sensacao... Sabia que\\nTinha de lutar com voce!$"
       ],
       "Route25_Text_ChadDefeat": [
         "Eu sabia que tambem ia perder!$"
       ],
       "Route25_Text_ChadPostBattle": [
-        "Se seu POKEMON ficar confuso,\\ntroque-o.\\pEssa e uma boa estrategia.$"
+        "Se seu POKEMON ficar confuso,\\nTroque-o.\\pEssa e uma boa estrategia.$"
       ],
       "Route25_Text_HaleyIntro": [
-        "O meu amigo tem muitos POKEMON\\ngiros. Estou com tanta inveja!$"
+        "Meu amigo tem muitos POKEMON\\nGiros. Estou com tanta inveja!$"
       ],
       "Route25_Text_HaleyDefeat": [
         "Nao tenho tanta inveja!$"
@@ -137,36 +137,36 @@
         "Trabalhaste muito!$"
       ],
       "Route25_Text_FranklinPostBattle": [
-        "Droga! Um ZUBAT mordeu-me\\nnaquela caverna.$"
+        "Droga! Um ZUBAT mordeu-me\\nNaquela caverna.$"
       ],
       "Route25_Text_NobIntro": [
         "Vou ver uma colecao do\\nPOKeMANIAC na capa.$"
       ],
       "Route25_Text_NobDefeat": [
-        "capturou-me, e muito bem,\\ntambem!$"
+        "Capturou-me, e muito bem,\\nTambem!$"
       ],
       "Route25_Text_NobPostBattle": [
-        "O POKeMANIAC faz jus ao seu\\nnome.\\pSua colecao inclui muitas\\nespecies raras de POKEMON.$"
+        "O POKeMANIAC faz jus ao seu\\nNome.\\pSua colecao inclui muitas\\nEspecies raras de POKEMON.$"
       ],
       "Route25_Text_WayneDefeat": [
-        "Tu es alguma coisa.$"
+        "Tu e alguma coisa.$"
       ],
       "Route25_Text_WaynePostBattle": [
-        "A trilha abaixo e um atalho\\npara CERULEAN CITY.$"
+        "A trilha abaixo e um atalho\\nPara CERULEAN CITY.$"
       ]
     },
     "data/maps/Route25_SeaCottage_Frlg/scripts.inc": {
       "Route25_SeaCottage_Text_NoPleaseChief": [
-        "Nao! Nao tenhas tanto frio!\\pVa la, tem de ajudar um tipo\\nem apuros!\\pO que me diz, chefe? Por favor?\\nEsta bem? Muito bem!$"
+        "Nao! Nao tenha tanto frio!\\pVa la, tem de ajudar um tipo\\nEm apuros!\\pO que me diz, chefe? Por favor?\\nEsta bem? Muito bem!$"
       ],
       "Route25_SeaCottage_Text_NoPleaseBeautiful": [
-        "Nao! Nao tenhas tanto frio!\\pVa la, tem de ajudar um tipo\\nem apuros!\\pO que dizes, linda? Por favor?\\nEsta bem? Muito bem!$"
+        "Nao! Nao tenha tanto frio!\\pVa la, tem de ajudar um tipo\\nEm apuros!\\pO que dizes, linda? Por favor?\\nEsta bem? Muito bem!$"
       ],
       "Route25_SeaCottage_Text_YouveGotTooMuchStuff": [
-        "tem demasiadas coisas!$"
+        "Tem demasiadas coisas!$"
       ],
       "Route25_SeaCottage_Text_TeleporterIsDisplayed": [
-        "O TELEPORTER e exibido no\\nmonitor do PC.$"
+        "O TELEPORTER e exibido no\\nMonitor do PC.$"
       ],
       "Route25_SeaCottage_Text_SeeWhichMon": [
         "Que POKEMON quer ver?$"
@@ -177,45 +177,45 @@
         "Estraguei tudo!$"
       ],
       "Route26_Text_CooltrainermGavenSeen": [
-        "Ao experimentar batalhas\\ndificeis, voce ganha poder.$"
+        "Ao experimentar batalhas\\nDificeis, voce ganha poder.$"
       ],
       "Route26_Text_CooltrainermGavenBeaten": [
         "Gaah! A vida e ainda mais dura!$"
       ],
       "Route26_Text_CooltrainerfJoyceSeen": [
-        "Ja que chegaste tao longe,\\ndeves ser bom.\\pVou dar a esta batalha tudo o\\nque tenho!$"
+        "Ja que chegaste tao longe,\\nDeves ser bom.\\pVou dar a esta batalha tudo o\\nQue tenho!$"
       ],
       "Route26_Text_CooltrainerfJoyceBeaten": [
         "Nao! Nao acredito nisto!$"
       ],
       "Route26_Text_CooltrainerfJoyceAfter": [
-        "Derrotei oito GINASIO LEADERS,\\npor isso estava confiante.\\pVou ter de me esforcar mais da\\nproxima vez.$"
+        "Derrotei oito GINASIO LEADERS,\\nPor isso estava confiante.\\pVou ter de me esforcar mais da\\nProxima vez.$"
       ],
       "Route26_Text_CooltrainerfBethSeen": [
-        "Perdi para um treinador\\nchamado{RIVAL}.\\pEle era muito forte, mas...\\pEra como se ele tivesse de\\nganhar a qualquer custo.\\pSenti pena do seu POKEMON.$"
+        "Perdi para um TREINADOR\\nChamado{RIVAL}.\\pEle era muito forte, mas...\\pEra como se ele tivesse de\\nGanhar a qualquer custo.\\pSenti pena do seu POKEMON.$"
       ],
       "Route26_Text_CooltrainerfBethBeaten": [
-        "POKEMON nao sao ferramentas de\\nguerra.$"
+        "POKEMON nao sao ferramentas de\\nGuerra.$"
       ],
       "Route26_Text_CooltrainerfBethAfter": [
-        "POKEMON sao parceiros valiosos\\npara toda a vida.$"
+        "POKEMON sao parceiros valiosos\\nPara toda a vida.$"
       ],
       "Route26_Text_PsychicRichardSeen": [
-        "Uau, olha para todos esses\\nBADS! Estou impressionado.\\pMas nao estas satisfeito so por\\ncolecciona-los, certo?$"
+        "Uau, olha para todos esses\\nBADS! Estou impressionado.\\pMas nao estas satisfeito so por\\nColecciona-los, certo?$"
       ],
       "Route26_Text_PsychicRichardBeaten": [
         "Boa batalha!$"
       ],
       "Route26_Text_PsychicRichardAfter": [
-        "As pessoas e POKEMON crescem a\\npartir de suas experiencias.\\pNao sejas preguicoso e\\ncomplacente.$"
+        "As pessoas e POKEMON crescem a\\nPartir de suas experiencias.\\pNao sejas preguicoso e\\nComplacente.$"
       ]
     },
     "data/maps/Route26_House1/scripts.inc": {
       "Route26_Text_HealHouseRest": [
-        "O seu POKEMON parece um pouco\\ncansado.\\pDevias descansar um pouco.$"
+        "Seu POKEMON parece um pouco\\nCansado.\\pDevias descansar um pouco.$"
       ],
       "Route26_Text_HealHouseKeepAtIt": [
-        "Ali!\\pO seu POKEMON esta com bom\\naspecto!\\pContinuem!$"
+        "Ali!\\pSeu POKEMON esta com bom\\nAspecto!\\pContinuem!$"
       ]
     },
     "data/maps/Route26_House2/scripts.inc": {
@@ -223,160 +223,160 @@
         "Ha algo escrito aqui.\\pLer?$"
       ],
       "DayOfWeekSiblingsHouse_Text_Pokedex2": [
-        "Aos meus irmaos e irmas:\\pTemos orgulho em servir\\ntreinadores POKEMON.\\pQuando os treinadores falam\\ncontigo, da-lhes algo util.\\pAmor, MONICA\\pContinuar a ler?$"
+        "Aos meus irmaos e irmas:\\pTemos orgulho em servir\\nTREINADORES POKEMON.\\pQuando os TREINADORES falam\\nCom voce, da-lhes algo util.\\pAmor, MONICA\\pContinuar a ler?$"
       ]
     },
     "data/maps/Route27/scripts.inc": {
       "Route27_Text_FisherMessage": [
-        "Estas quedas marcam a borda de\\nJOHTO-a LEAGUE POKEMON esta\\llogo a frente.$"
+        "Estas quedas marcam a borda de\\nJOHTO-a LEAGUE POKEMON esta\\lLogo a frente.$"
       ],
       "Route27_Text_CooltrainermBlakeSeen": [
-        "Pareces muito forte. Deixa-me\\nlutar contigo!$"
+        "Parece muito forte. Deixa-me\\nLutar com voce!$"
       ],
       "Route27_Text_CooltrainermBlakeAfter": [
-        "Se voce prevalecer nesta dura\\ncaminhada, a verdade sera\\lrevelada!\\pDesculpa, so queria dizer uma\\ncoisa legal.$"
+        "Se voce prevalecer nesta dura\\nCaminhada, a verdade sera\\lRevelada!\\pDesculpa, so queria dizer uma\\nCoisa legal.$"
       ],
       "Route27_Text_CooltrainermBrianSeen": [
-        "Hm? Es bom, nao es?$"
+        "Hm? E bom, nao e?$"
       ],
       "Route27_Text_CooltrainermBrianBeaten": [
         "Tal como eu pensava!$"
       ],
       "Route27_Text_CooltrainermBrianAfter": [
-        "Um bom treinador pode\\nreconhecer outros bons\\ltreinadores.$"
+        "Um bom TREINADOR pode\\nReconhecer outros bons\\lTREINADORES.$"
       ],
       "Route27_Text_CooltrainerfReenaSeen": [
-        "Nao deves subestimar o POKEMON\\nselvagem por aqui.$"
+        "Nao deves subestimar o POKEMON\\nSelvagem por aqui.$"
       ],
       "Route27_Text_CooltrainerfReenaBeaten": [
-        "Oh! Es demasiado forte!$"
+        "Oh! E demasiado forte!$"
       ],
       "Route27_Text_CooltrainerfReenaAfter": [
-        "Es apenas uma crianca, mas\\ntambem nao deves ser\\lsubestimada.$"
+        "E apenas uma crianca, mas\\nTambem nao deves ser\\lSubestimada.$"
       ],
       "Route27_Text_CooltrainerfMeganSeen": [
         "E raro ver alguem vir aqui.\\pEstas a treinar sozinho?$"
       ],
       "Route27_Text_CooltrainerfMeganBeaten": [
-        "Oh! Es mesmo forte!$"
+        "Oh! E mesmo forte!$"
       ],
       "Route27_Text_CooltrainerfMeganAfter": [
-        "Estou a verificar POKEMON antes\\ne depois da evolucao.\\pA evolucao realmente torna\\nPOKEMON mais forte.\\pMas formas evoluidas tambem\\naprendem movimentos mais tarde.$"
+        "Estou verificando POKEMON antes\\nE depois da evolucao.\\pA evolucao realmente torna\\nPOKEMON mais forte.\\pMas formas evoluidas tambem\\nAprendem movimentos mais tarde.$"
       ],
       "Route27_Text_PsychicGilbertSeen": [
-        "Nao digas nada!\\pDeixa-me adivinhar o que estas\\na pensar.\\pMmmmmmm...\\pConsegui! Estas no desafio da\\nLEAGUE POKEMON!$"
+        "Nao digas nada!\\pDeixa-me adivinhar o que estas\\nA pensar.\\pMmmmmmm...\\pConsegui! Estas no desafio da\\nLEAGUE POKEMON!$"
       ],
       "Route27_Text_PsychicGilbertBeaten": [
-        "Es demais!$"
+        "E demais!$"
       ],
       "Route27_Text_PsychicGilbertAfter": [
-        "Com as suas habilidades, vai\\nsair-te bem na LEAGUE.\\pE o que diz a minha premonicao.$"
+        "Com suas habilidades, vai\\nSair-te bem na LEAGUE.\\pE o que diz minha premonicao.$"
       ],
       "Route27_Text_FisherScottSeen": [
-        "Estou a sentir-me bem hoje!\\pEu sinto que eu poderia\\narrancar ate mesmo o CHAMP\\lLEAGUE!$"
+        "Estou sentindo-me bem hoje!\\pEu sinto que eu poderia\\nArrancar ate mesmo o CHAMP\\lLEAGUE!$"
       ],
       "Route27_Text_FisherScottBeaten": [
         "Nao! Nao nesta batalha!$"
       ],
       "Route27_Text_FisherScottAfter": [
-        "Tal como na pesca, esta tudo\\nacabado em POKEMON se\\ldesistires.$"
+        "Tal como na pesca, esta tudo\\nAcabado em POKEMON se\\lDesistires.$"
       ]
     },
     "data/maps/Route27_House/scripts.inc": {
       "SandstormHouse_Text_Woman1": [
-        "Onde vai com o POKEMON?\\pLEAGUE POKEMON?\\pO seu POKEMON e suficientemente\\nleal para ganhar?\\pDeixa-me ver...$"
+        "Onde vai com o POKEMON?\\pLEAGUE POKEMON?\\pSeu POKEMON e suficientemente\\nLeal para ganhar?\\pDeixa-me ver...$"
       ],
       "SandstormHouse_Text_LoyalMon": [
-        "Ah! O seu POKEMON confia muito\\nem si.\\pE bom ver um bom treinador.\\pToma. Um presente para a sua\\nviagem.$"
+        "Ah! Seu POKEMON confia muito\\nEm si.\\pE bom ver um bom TREINADOR.\\pToma. Um presente para a sua\\nViagem.$"
       ],
       "SandstormHouse_Text_TM37Description": [
-        "A TM37 e SANDSTORM.\\pE uma jogada que causa danos em\\nambos os combatentes.\\pE so para treinadores\\navancados.\\pUsa-o se te atreveres. Boa\\nsorte!$"
+        "A TM37 e SANDSTORM.\\pE uma jogada que causa danos em\\nAmbos os combatentes.\\pE so para TREINADORES\\nAvancados.\\pUsa-o se te atreveres. Boa\\nSorte!$"
       ],
       "SandstormHouse_Text_DisloyalMon": [
-        "Se nao confiar mais em ti, pode\\nser dificil.\\pConfianca e o laco que une\\nPOKEMON e treinadores.$"
+        "Se nao confiar mais em ti, pode\\nSer dificil.\\pConfianca e o laco que une\\nPOKEMON e TREINADORES.$"
       ]
     },
     "data/maps/Route28_House/scripts.inc": {
       "Route28House_Text_Celebrity1": [
-        "Meu Deus. Encontraste-me.\\pPor favor, nao contes a ninguem\\nsobre mim.\\pDou-te isto por guardares o meu\\nsegredo. Por favor?$"
+        "Meu Deus. Encontraste-me.\\pPor favor, nao contes a ninguem\\nSobre mim.\\pDou-te isto por guardares o meu\\nSegredo. Por favor?$"
       ],
       "Route28House_Text_Celebrity2": [
-        "E dificil ser uma celebridade.\\pPara onde quer que va, as\\npessoas perseguem-me.\\pSo quero ficar sozinha...$"
+        "E dificil ser uma celebridade.\\pPara onde quer que va, as\\nPessoas perseguem-me.\\pSo quero ficar sozinha...$"
       ]
     },
     "data/maps/Route2_EastBuilding_Frlg/scripts.inc": {
       "Route2_EastBuilding_Text_GreatHereYouGo": [
-        "Optimo! capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPokemon!\\pParabens! Aqui esta!$"
+        "Optimo! Capturou ou\\nPossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
       ],
       "Route2_EastBuilding_Text_ReceivedHM05FromAide": [
-        "{PLAYER}recebeu HM05 da AIDE.$"
+        "{PLAYER}Recebeu HM05 da AIDE.$"
       ],
       "Route2_EastBuilding_Text_ExplainHM05": [
-        "HM05 contem o movimento oculto\\nFLASH.\\pFLASH ilumina ate mesmo a mais\\nescura das cavernas e\\lmasmorras.$"
+        "HM05 contem o movimento oculto\\nFLASH.\\pFLASH ilumina ate mesmo a mais\\nEscura das cavernas e\\lMasmorras.$"
       ]
     },
     "data/maps/Route2_House_Frlg/scripts.inc": {
       "Route2_House_Text_FaintedMonsCanUseFieldMoves": [
-        "Um POKEMON desmaiado nao tem\\nmais energia para lutar.\\pEle ainda pode usar movimentos\\ncomo CUT fora da batalha.$"
+        "Um POKEMON desmaiado nao tem\\nMais energia para lutar.\\pEle ainda pode usar movimentos\\nComo CUT fora da batalha.$"
       ]
     },
     "data/maps/Route2_ViridianForest_NorthEntrance_Frlg/scripts.inc": {
       "Route2_ViridianForest_NorthEntrance_Text_ManyMonsOnlyInForests": [
-        "Muitos POKEMON vivem apenas em\\nflorestas e cavernas.\\pVoce precisa ser persistente e\\nolhar em todos os lugares para\\lobter tipos diferentes.$"
+        "Muitos POKEMON vivem apenas em\\nFlorestas e cavernas.\\pVoce precisa ser persistente e\\nOlhar em todos os lugares para\\lObter tipos diferentes.$"
       ],
       "Route2_ViridianForest_NorthEntrance_Text_CanCutSkinnyTrees": [
-        "Ja reparaste nas arvores finas\\na beira da estrada?\\pOuvi dizer que podem ser\\ncortados por um movimento\\lespecial POKEMON.$"
+        "Ja reparaste nas arvores finas\\nA beira da estrada?\\pOuvi dizer que podem ser\\nCortados por um movimento\\lEspecial POKEMON.$"
       ],
       "Route2_ViridianForest_NorthEntrance_Text_CanCancelEvolution": [
-        "Conheces a tecnica da evolucao?\\pQuando um POKEMON esta\\nevoluir, pode parar o processo.\\pE uma tecnica para criar\\nPOKEMON como eles sao.$"
+        "Conheces a tecnica da evolucao?\\pQuando um POKEMON esta\\nEvoluir, pode parar o processo.\\pE uma tecnica para criar\\nPOKEMON como eles sao.$"
       ]
     },
     "data/maps/Route2_ViridianForest_SouthEntrance_Frlg/scripts.inc": {
       "Route2_ViridianForest_SouthEntrance_Text_RattataHasWickedBite": [
-        "RATTATA pode ser pequeno, mas\\nnao subestime a sua mordida ma.\\pJa capturou um?$"
+        "RATTATA pode ser pequeno, mas\\nNao subestime sua mordida ma.\\pJa capturou um?$"
       ]
     },
     "data/maps/Route30_House/scripts.inc": {
       "Route30_BerryHouse_Text_CheckTrees": [
-        "Verifique arvores para BERRIES.\\nEles crescem de volta depois de\\lalgumas horas.$"
+        "Verifique arvores para BERRIES.\\nEles crescem de volta depois de\\lAlgumas horas.$"
       ]
     },
     "data/maps/Route30_MrPokemonsHouse/scripts.inc": {
       "MrPokemonHouse_Text_Intro1": [
-        "Ola, ola! Deves ser.{PLAYER}.\\pPROF.ELM disse que voce iria\\nvisitar.$"
+        "Ola, ola! Deves ser.{PLAYER}.\\pPROF.ELM disse que voce iria\\nVisitar.$"
       ],
       "MrPokemonHouse_Text_Intro2": [
         "Isto e o que eu quero que o\\nPROF.ELM examine.$"
       ],
       "MrPokemonHouse_Text_Intro3": [
-        "Eu conheco um casal que dirige\\num servico POKEMON DAY-CARE.\\pDeram-me aquele EGG.\\pFiquei intrigado, por isso\\nenviei correio para o PROF.ELM.\\pPara a evolucao POKEMON,\\nPROF.ELM e a autoridade.$"
+        "Eu conheco um casal que dirige\\nUm servico POKEMON DAY-CARE.\\pDeram-me aquele EGG.\\pFiquei intrigado, por isso\\nEnviei correio para o PROF.ELM.\\pPara a evolucao POKEMON,\\nPROF.ELM e a autoridade.$"
       ],
       "MrPokemonHouse_Text_Intro5": [
-        "Se minha suposicao estiver\\ncorreta, PROF.ELM sabera.$"
+        "Se minha suposicao estiver\\nCorreta, PROF.ELM sabera.$"
       ],
       "MrPokemonHouse_Text_Heal": [
-        "vai voltar para o PROF.ELM?\\pToma. O seu POKEMON deve\\ndescansar.$"
+        "Vai voltar para o PROF.ELM?\\pToma. Seu POKEMON deve\\nDescansar.$"
       ],
       "MrPokemonHouse_Text_DependingOnYou": [
-        "Estou a contar contigo!$"
+        "Estou contando com voce!$"
       ],
       "MrPokemonHouse_Text_AlwaysNewDiscoveries": [
-        "A vida e deliciosa! Sempre,\\nnovas descobertas a serem\\lfeitas.$"
+        "A vida e deliciosa! Sempre,\\nNovas descobertas a serem\\lFeitas.$"
       ],
       "MrPokemonHouse_Text_GetDex": [
-        "{PLAYER}recebeu POKEDEX!$"
+        "{PLAYER}Recebeu POKEDEX!$"
       ],
       "MrPokemonHouse_Text_OakParting": [
-        "Va conhecer muitos tipos de\\nPOKEMON e completar que\\lPOKEDEX!\\pO seu DEXNAV ira ajuda-lo a\\nprocura-los.\\pMas fiquei muito tempo.\\pTenho de ir ao GOLDENROD para o\\nmeu programa de radio habitual.\\p{PLAYER}Estou a contar contigo!$"
+        "Va conhecer muitos tipos de\\nPOKEMON e completar que\\lPOKEDEX!\\pSeu DEXNAV ira ajuda-lo a\\nProcura-los.\\pMas fiquei muito tempo.\\pTenho de ir ao GOLDENROD para o\\nMeu programa de radio habitual.\\p{PLAYER}Estou contando com voce!$"
       ],
       "MrPokemonHouse_Text_Disappointed": [
-        "Isso e decepcionante. Isso e\\nmuito raro.$"
+        "Isso e decepcionante. Isso e\\nMuito raro.$"
       ],
       "MrPokemonHouse_Text_ExpShare": [
-        "Tambem tenho um item especial\\npara ti.$"
+        "Tambem tenho um item especial\\nPara voce.$"
       ],
       "MrPokemonHouse_Text_ForeignMagazines": [
-        "Esta cheio de revistas\\nestrangeiras.\\pNem sequer consigo ler os seus\\ntitulos...$"
+        "Esta cheio de revistas\\nEstrangeiras.\\pNem sequer consigo ler os seus\\nTitulos...$"
       ],
       "MrPokemonHouse_Text_BrokenComputer": [
         "E um computador grande. Hmm.\\nEsta partido.$"
@@ -387,112 +387,112 @@
     },
     "data/maps/Route32_PokemonCenter/scripts.inc": {
       "Route32_Pokecenter_Text_FishingGuruQuestion": [
-        "Este e um otimo local de pesca.\\pViste pessoas a pescar? E tu?\\pQuer um dos meus RODS?$"
+        "Este e um otimo local de pesca.\\pViu pessoas a pescar? E tu?\\pQuer um dos meus RODS?$"
       ],
       "Route32_Pokecenter_Text_FishingGuruYes": [
-        "E bom ouvir isso.\\pAgora tambem es um pescador!$"
+        "E bom ouvir isso.\\pAgora tambem e um pescador!$"
       ],
       "Route32_Pokecenter_Text_FishingGuruGiveRod": [
-        "Pescar e optimo!\\pSe houver agua, seja o mar ou\\num riacho, experimente o seu\\lROD.$"
+        "Pescar e optimo!\\pSe houver agua, seja o mar ou\\nUm riacho, experimente o seu\\lROD.$"
       ],
       "Route32_Pokecenter_Text_FishingGuruNo": [
-        "Oh, sim. Isso e\\ndecepcionante...$"
+        "Oh, sim. Isso e\\nDecepcionante...$"
       ],
       "Route32_Pokecenter_Text_FishingGuruAfter": [
-        "garoto. Como estao morder?$"
+        "Garoto. Como estao morder?$"
       ],
       "Route32_Pokecenter_Text_CooltrainerF": [
-        "O que devo fazer com que o meu\\nPOKEMON segure?\\pTalvez um item que aumente o\\npoder do ATTACK...$"
+        "O que devo fazer com que o meu\\nPOKEMON segure?\\pTalvez um item que aumente o\\nPoder do ATTACK...$"
       ]
     },
     "data/maps/Route33/scripts.inc": {
       "Route33_Text_HikerAnthony2Seen": [
-        "Vim pelo tunel, mas ainda tenho\\nmuita energia.$"
+        "Vim pelo tunel, mas ainda tenho\\nMuita energia.$"
       ],
       "Route33_Text_HikerAnthony2Beaten": [
-        "Whoa! tem mais ziper do que\\neu!$"
+        "Whoa! Tem mais ziper do que\\nEu!$"
       ],
       "Route33_Text_HikerAnthony2After": [
-        "Nos HIKERS estamos no nosso\\nmelhor nas montanhas.$"
+        "Nos HIKERS estamos no nosso\\nMelhor nas montanhas.$"
       ],
       "Route33_Text_HikerAnthonyDunsparce": [
         "Arranjaste um DUNSPARCE?\\pTambem apanhei um.\\pDa uma vista de olhos a luz.\\nTem uma cara engracada!$"
       ],
       "Route33_Text_Lass": [
-        "Pant, pant...\\pAquela caverna era maior do que\\neu esperava.\\pCansei-me de explorar para o\\nMARILL, por isso sai.$"
+        "Pant, pant...\\pAquela caverna era maior do que\\nEu esperava.\\pCansei-me de explorar para o\\nMARILL, por isso sai.$"
       ]
     },
     "data/maps/Route34/scripts.inc": {
       "Route34_Text_YoungsterSamuel_Beaten": [
-        "Espancado por um estranho que\\npassa!$"
+        "Espancado por um estranho que\\nPassa!$"
       ],
       "Route34_Text_YoungsterIan_Seen": [
-        "Sou o melhor da minha turma em\\nPokemon.$"
+        "Sou o melhor da minha turma em\\nPOKEMON.$"
       ],
       "Route34_Text_YoungsterIan_Beaten": [
-        "Nao! Ha melhores treinadores...$"
+        "Nao! Ha melhores TREINADORES...$"
       ],
       "Route34_Text_YoungsterIan_After": [
-        "estou tentando ser a estrela da\\nminha turma.$"
+        "Estou tentando ser a estrela da\\nMinha turma.$"
       ],
       "Route34_Text_CamperTodd_Seen": [
-        "Estou confiante na minha\\ncapacidade de criar POKEMON.\\pQueres ver?$"
+        "Estou confiante na minha\\nCapacidade de criar POKEMON.\\pQueres ver?$"
       ],
       "Route34_Text_CamperTodd_Beaten": [
-        "Estraguei o meu treino?$"
+        "Estraguei meu treino?$"
       ],
       "Route34_Text_PicnickerGina_Seen": [
-        "Es treinador?\\pVamos praticar uma batalha.$"
+        "E TREINADOR?\\pVamos praticar uma batalha.$"
       ],
       "Route34_Text_PicnickerGina_Beaten": [
         "Nao! Nao consigo ganhar...$"
       ],
       "Route34_Text_PicnickerGina_After": [
-        "Es demasiado forte para ser um\\nparceiro de treino.$"
+        "E demasiado forte para ser um\\nParceiro de treino.$"
       ],
       "Route34_Text_OfficerKeith_Seen": [
-        "Quem esta ai? O que estas a\\ntramar?$"
+        "Quem esta ai? O que estas a\\nTramar?$"
       ],
       "Route34_Text_OfficerKeith_Win": [
-        "Es um garoto duro.$"
+        "E um garoto duro.$"
       ],
       "Route34_Text_OfficerKeith_After": [
-        "Sim, hoje nao ha nada de\\nerrado.\\pPorta-te bem e nao te metas em\\nsarilhos.$"
+        "Sim, hoje nao ha nada de\\nErrado.\\pPorta-te bem e nao te metas em\\nSarilhos.$"
       ],
       "Route34_Text_OfficerKeith_Daytime": [
-        "Estou a patrulhar suspeitos.$"
+        "Estou patrulhando suspeitos.$"
       ],
       "Route34_Text_PokefanBrandon_Beaten": [
         "Por que acaba assim?$"
       ],
       "Route34_Text_PokefanBrandon_After": [
-        "O meu POKEMON voltou com novos\\nmovimentos.\\pIsso me confundiu sem fim!$"
+        "Meu POKEMON voltou com novos\\nMovimentos.\\pIsso me confundiu sem fim!$"
       ]
     },
     "data/maps/Route34_DayCare/scripts.inc": {
       "Route34_DayCare_Text_Bookshelf2": [
-        "Um livro sobre POKEMON!\\p{PLAYER}Revirou o livro.\\pDeve ter a palavra POKEMON\\nescrita em cada pagina.\\p{PLAYER}Guarda o livro.$"
+        "Um livro sobre POKEMON!\\p{PLAYER}Revirou o livro.\\pDeve ter a palavra POKEMON\\nEscrita em cada pagina.\\p{PLAYER}Guarda o livro.$"
       ],
       "Route34_DayCare_Text_ClerkNoRoom": [
-        "Parece que nao Consegue\\ncarregar outro POKEMON.$"
+        "Parece que nao Consegue\\nCarregar outro POKEMON.$"
       ],
       "Route34_DayCare_Text_ClerkQuestion": [
-        "Responde-me a esta pergunta. O\\nque achas deste ODD EGG?$"
+        "Responde-me a esta pergunta. O\\nQue achas deste ODD EGG?$"
       ],
       "Route34_DayCare_Text_Rejection": [
-        "Acho que este EGG nao e para\\nti.\\pSeria irresponsavel da minha\\nparte dar um EGG precioso como\\leste a alguem que nao seja tao\\lbem lido sobre o tema da\\lcriacao de Pokemons!$"
+        "Acho que este EGG nao e para\\nTi.\\pSeria irresponsavel da minha\\nParte dar um EGG precioso como\\lEste a alguem que nao seja tao\\lBem lido sobre o tema da\\lCriacao de POKEMON!$"
       ],
       "Route34_DayCare_Text_ReceivedOddEgg": [
         "{PLAYER}Recebi o ODD EGG.$"
       ],
       "Route34_DayCare_Text_TakeCare": [
-        "Eu sabia que eras o treinador\\ncerto para o trabalho. Trata\\lbem disso!$"
+        "Eu sabia que era o TREINADOR\\nCerto para o trabalho. Trata\\lBem disso!$"
       ],
       "Route34_DayCare_Text_ClerkAfter": [
-        "Vemos muitos desses ovos por\\naqui.\\pMas havia algo de diferente\\nnessa.$"
+        "Vemos muitos desses ovos por\\nAqui.\\pMas havia algo de diferente\\nNessa.$"
       ],
       "Route34_Text_DoYouWantEgg": [
-        "Ah, e voce!\\pEstavamos a criar o seu\\nPokemon, e meu Deus, ficamos\\lsurpreendidos!\\pO seu POKEMON tinha um EGG!\\pNao sabemos como foi parar la,\\nmas o seu POKEMON tinha-o.\\pQueres, sim?$"
+        "Ah, e voce!\\pEstavamos criando o seu\\nPOKEMON, e meu Deus, ficamos\\lSurpreendidos!\\pSeu POKEMON tinha um EGG!\\pNao sabemos como foi parar la,\\nMas seu POKEMON tinha-o.\\pQueres, sim?$"
       ],
       "Route34_Text_YourMonIsDoingFine": [
         "Ah, e voce! E bom ver-te.\\nSua{STR_VAR_1}Esta tudo bem.$"
@@ -510,25 +510,25 @@
         "Trata bem disso.$"
       ],
       "Route34_Text_SeeWifeIfYouWantToPickUpMon": [
-        "Se quer ir buscar o seu\\nPokemon, fala com a minha\\lmulher.$"
+        "Se quer ir buscar o seu\\nPOKEMON, fala com a minha\\lMulher.$"
       ],
       "Route34_Text_YourMonsAreDoingFine": [
-        "Ah, e voce!\\nSua{STR_VAR_1}e{STR_VAR_2}Estao\\la ir bem.$"
+        "Ah, e voce!\\nSua{STR_VAR_1}E{STR_VAR_2}Estao\\lA ir bem.$"
       ],
       "Route34_Text_IWillKeepDoYouWantIt": [
-        "Vou ficar com ele. quer isto,\\nsim?$"
+        "Vou ficar com ele. quer isto,\\nSim?$"
       ],
       "Route34_DayCare_Text_WhichMonShouldWeRaise": [
-        "Que POKEMON devemos levantar\\npara voce?$"
+        "Que POKEMON devemos levantar\\nPara voce?$"
       ],
       "Route34_DayCare_Text_WellRaiseYourMon": [
-        "Esta bem, vamos aumentar o\\nteu{STR_VAR_1}durante algum\\ltempo.\\pVolta mais tarde.$"
+        "Esta bem, vamos aumentar o\\nTeu{STR_VAR_1}Durante algum\\lTempo.\\pVolta mais tarde.$"
       ],
       "Route34_DayCare_Text_WeCanRaiseOneMore": [
-        "Podemos levantar dois dos seus\\nPokemon. Quer que levantemos\\lmais um?$"
+        "Podemos levantar dois dos seus\\nPOKEMON. Quer que levantemos\\lMais um?$"
       ],
       "Route34_DayCare_Text_HusbandWasLookingForYou": [
-        "O meu marido andava a sua\\nprocura.$"
+        "Meu marido andava a sua\\nProcura.$"
       ],
       "Route34_DayCare_Text_FineThenComeAgain": [
         "Esta bem, entao. Repete.$"
@@ -543,69 +543,69 @@
         "Esta bem. Repete.$"
       ],
       "Route34_DayCare_Text_GoodToSeeYou": [
-        "Ah, e voce! E bom ver-te. Seu\\nPOKEMON so pode estar fazendo o\\lbem!$"
+        "Ah, e voce! E bom ver-te. Seu\\nPOKEMON so pode estar fazendo o\\lBem!$"
       ],
       "Route34_DayCare_Text_YourMonHasGrownXLevels": [
-        "Por nivel, o\\nseu{STR_VAR_1}cresceu\\lpor{STR_VAR_2}.$"
+        "Por nivel, o\\nSeu{STR_VAR_1}Cresceu\\lPor{STR_VAR_2}.$"
       ],
       "Route34_DayCare_Text_YourTeamIsFull": [
-        "A sua equipa esta cheia. Abram\\nespaco e venham ver-me.$"
+        "Sua equipa esta cheia. Abram\\nEspaco e venham ver-me.$"
       ],
       "Route34_DayCare_Text_TakeBackWhichMon": [
         "Que POKEMON vai retirar?$"
       ],
       "Route34_DayCare_Text_HeresYourMon": [
-        "Perfeito! Aqui esta o seu\\nPokemon.$"
+        "Perfeito! Aqui esta o seu\\nPOKEMON.$"
       ],
       "Route34_DayCare_Text_YouHaveJustOneMon": [
-        "A serio? Mas so tem um\\nPokemon.\\pVolta noutra altura.$"
+        "A serio? Mas so tem um\\nPOKEMON.\\pVolta noutra altura.$"
       ],
       "Route34_DayCare_Text_TakeYourMonBack": [
-        "Aceitas o seu POKEMON de volta?$"
+        "Aceitas seu POKEMON de volta?$"
       ],
       "Route34_DayCare_Text_WhatWillYouBattleWith": [
-        "Se me deixares aquele POKEMON,\\ncom o que lutaras?\\pVolta noutra altura.$"
+        "Se me deixares aquele POKEMON,\\nCom o que lutaras?\\pVolta noutra altura.$"
       ],
       "Route34_DayCare_Text_YoullBeLeftWithJustOne": [
-        "Huh? Agora, agora.\\pSe deixares o POKEMON comigo,\\nficas com apenas um.\\pVai ficar melhor se capturar\\nmais, ouso dizer.$"
+        "Huh? Agora, agora.\\pSe deixares o POKEMON comigo,\\nFicas com apenas um.\\pVai ficar melhor se capturar\\nMais, ouso dizer.$"
       ]
     },
     "data/maps/Route35/scripts.inc": {
       "Route35_Text_CamperIvanSeen": [
-        "Tenho tirado dados POKEMON do\\nmeu radio. Acho que estou bem.$"
+        "Tenho tirado dados POKEMON do\\nMeu radio. Acho que estou bem.$"
       ],
       "Route35_Text_CamperIvanBeaten": [
         "Eu desisto!$"
       ],
       "Route35_Text_CamperIvanAfter": [
-        "A musica no radio muda o humor\\nde POKEMON selvagem.$"
+        "A musica no radio muda o humor\\nDe POKEMON selvagem.$"
       ],
       "Route35_Text_CamperElliotSeen": [
-        "Vou mostrar a minha namorada\\nque sou boazona!$"
+        "Vou mostrar minha namorada\\nQue sou boazona!$"
       ],
       "Route35_Text_CamperElliotBeaten": [
-        "Gostava que tivesses perdido\\npor mim...$"
+        "Gostava que tivesses perdido\\nPor mim...$"
       ],
       "Route35_Text_CamperElliotAfter": [
-        "Fui humilhado a frente da minha\\nnamorada...$"
+        "Fui humilhado a frente da minha\\nNamorada...$"
       ],
       "Route35_Text_PicnickerBrookeSeen": [
-        "O meu namorado e fraco, por\\nisso nao posso confiar nele.$"
+        "Meu namorado e fraco, por\\nIsso nao posso confiar nele.$"
       ],
       "Route35_Text_PicnickerBrookeBeaten": [
-        "Meu Deus! Es tao forte!$"
+        "Meu Deus! E tao forte!$"
       ],
       "Route35_Text_PicnickerBrookeAfter": [
-        "Posso contar mais com o meu\\nPOKEMON do que com o meu\\lnamorado.$"
+        "Posso contar mais com o meu\\nPOKEMON do que com o meu\\lNamorado.$"
       ],
       "Route35_Text_PicnickerKimSeen": [
-        "vai ao ginasio? Eu tambem!$"
+        "Vai ao ginasio? Eu tambem!$"
       ],
       "Route35_Text_PicnickerKimBeaten": [
         "Oh, sim. Nao consegui ganhar...$"
       ],
       "Route35_Text_PicnickerKimAfter": [
-        "Os GINASIO BADS sao bonitos. Eu\\ncolecciono-as.$"
+        "Os GINASIO BADS sao bonitos. Eu\\nColecciono-as.$"
       ],
       "Route35_Text_BirdKeeperBryanBeaten": [
         "Caramba! Nao o suficiente!$"
@@ -614,25 +614,25 @@
         "Ufa! Foi um choque!$"
       ],
       "Route35_Text_JugglerIrwinAfter": [
-        "Ia deslumbrar-te com o meu\\npremio POKEMON.\\pMas a sua proeza eletrizou-me!$"
+        "Ia deslumbrar-te com o meu\\nPremio POKEMON.\\pMas sua proeza eletrizou-me!$"
       ],
       "Route35_Text_BugCatcherArnieSeen": [
-        "Vou a qualquer lado se o\\nPokemon aparecer la.$"
+        "Vou a qualquer lado se o\\nPOKEMON aparecer la.$"
       ],
       "Route35_Text_BugCatcherArnieBeaten": [
         "Huh? Nao devia ter perdido...$"
       ],
       "Route35_Text_BugCatcherArnieYanma": [
-        "Uau... Olha para todos aqueles\\nYANMA!\\pEstou tao impressionado que nao\\nme consigo mexer.$"
+        "Uau... Olha para todos aqueles\\nYANMA!\\pEstou tao impressionado que nao\\nMe consigo mexer.$"
       ],
       "Route35_Text_FirebreatherWaltSeen": [
-        "Estou a praticar a respiracao\\nde fogo.$"
+        "Estou praticando a respiracao\\nDe fogo.$"
       ],
       "Route35_Text_FirebreatherWaltBeaten": [
         "Ow! Queimei a ponta do nariz!$"
       ],
       "Route35_Text_FirebreatherWaltAfter": [
-        "A marcha POKEMON no radio atrai\\nPoKEMON selvagem.$"
+        "A marcha POKEMON no radio atrai\\nPOKEMON selvagem.$"
       ],
       "Route35_Text_OfficerDirkSeen": [
         "O perigo espreita a noite!$"
@@ -641,10 +641,10 @@
         "Opa!$"
       ],
       "Route35_Text_OfficerDirkAfter": [
-        "sabe, a noite e divertida a\\nsua maneira.\\pMas nao exageres.$"
+        "Sabe, a noite e divertida a\\nSua maneira.\\pMas nao exageres.$"
       ],
       "Route35_Text_OfficerDirkTough": [
-        "O seu POKEMON parece bastante\\nduro.\\pPodes ir para qualquer lado em\\nseguranca.$"
+        "Seu POKEMON parece bastante\\nDuro.\\pPodes ir para qualquer lado em\\nSeguranca.$"
       ]
     },
     "data/maps/Route36/scripts.inc": {
@@ -652,40 +652,40 @@
         "Usar o SQUIRTBOTTLE?$"
       ],
       "Route36_Text_UsedSquirtbottle": [
-        "{PLAYER}usou o SQUIRTBOTTLE.$"
+        "{PLAYER}Usou o SQUIRTBOTTLE.$"
       ],
       "Route36_Text_SudowoodoAttacked": [
         "A arvore estranha nao gosta do\\nSQUIRTBOTTLE!\\pA arvore estranha atacou!$"
       ],
       "Route36_Text_RockSmashGuy1": [
-        "Wa-hey!\\pIa partir aquela arvore com o\\nmeu soco de braco direito.\\pMas nao consegui! Sou um\\nfracasso!$"
+        "Wa-hey!\\pIa partir aquela arvore com o\\nMeu soco de braco direito.\\pMas nao consegui! Sou um\\nFracasso!$"
       ],
       "Route36_Text_RockSmashGuy2": [
-        "Limpaste aquela arvore\\nmiseravel?\\pEstou impressionado! Quero que\\nfiques com isto.$"
+        "Limpaste aquela arvore\\nMiseravel?\\pEstou impressionado! Quero que\\nFiques com isto.$"
       ],
       "Route36_Text_OddTree": [
-        "Uma arvore estranha esta\\nbloquear o caminho.$"
+        "Uma arvore estranha esta\\nBloquear o caminho.$"
       ],
       "Route36_Text_Lass2_ClearedSudowoodo": [
-        "Aquela arvore estranha\\ndesapareceu sem deixar rasto.\\pOh! Aquela arvore era mesmo uma\\nPokemon?$"
+        "Aquela arvore estranha\\nDesapareceu sem deixar rasto.\\pOh! Aquela arvore era mesmo uma\\nPOKEMON?$"
       ],
       "Route36_Text_PsychicMarkSeen": [
-        "Vou ler os seus pensamentos!$"
+        "Vou ler seus pensamentos!$"
       ],
       "Route36_Text_PsychicMarkBeaten": [
         "Enganei-me!$"
       ],
       "Route36_Text_PsychicMarkAfter": [
-        "Eu seria forte se pudesse dizer\\no que o meu oponente estava a\\lpensar.$"
+        "Eu seria forte se pudesse dizer\\nO que meu oponente estava a\\lPensar.$"
       ],
       "Route36_Text_SchoolboyAlan1Seen": [
-        "Gracas aos meus estudos, estou\\npronto para qualquer POKEMON!$"
+        "Gracas aos meus estudos, estou\\nPronto para qualquer POKEMON!$"
       ],
       "Route36_Text_SchoolboyAlan1Beaten": [
         "Oops! Erro de computacao?$"
       ],
       "Route36_Text_SchoolboyAlanAfter": [
-        "Raios. Tambem estudo cinco\\nhoras por dia.\\pHa mais em aprender do que\\napenas ler livros.$"
+        "Raios. Tambem estudo cinco\\nHoras por dia.\\pHa mais em aprender do que\\nApenas ler livros.$"
       ],
       "Route36_Text_ArthurNope": [
         "Ainda nao!$"
@@ -696,63 +696,63 @@
     },
     "data/maps/Route37/scripts.inc": {
       "Route37_Text_PsychicGreg_Seen": [
-        "POKEMON nao pode fazer nada se\\nestiverem a dormir.\\pVou mostrar-te como isso e\\nassustador!$"
+        "POKEMON nao pode fazer nada se\\nEstiverem a dormir.\\pVou mostrar-te como isso e\\nAssustador!$"
       ],
       "Route37_Text_PsychicGreg_Beaten": [
         "Perdi. Isso e muito triste...$"
       ],
       "Route37_Text_PsychicGreg_After": [
-        "Por POKEMON para dormir ou\\nparalisar sao boas tecnicas de\\lbatalha.$"
+        "Por POKEMON para dormir ou\\nParalisar sao boas tecnicas de\\lBatalha.$"
       ],
       "Route37_Text_Sunny_GiveGift1": [
-        "Disseram-me para te dar isto se\\nte visse!$"
+        "Disseram-me para te dar isto se\\nTe visse!$"
       ],
       "Route37_Text_Sunny_GiveGift2": [
-        "Disseram-me para te dar isto se\\nte visse!$"
+        "Disseram-me para te dar isto se\\nTe visse!$"
       ]
     },
     "data/maps/Route38/scripts.inc": {
       "Route38_Text_BirdKeeperTobySeen": [
-        "Voa alto para o ceu, meu amado\\npassaro POKEMON!$"
+        "Voa alto para o ceu, meu amado\\nPassaro POKEMON!$"
       ],
       "Route38_Text_BirdKeeperTobyBeaten": [
-        "Sinto-me como se estivesse a\\nvoar.$"
+        "Sinto-me como se estivesse a\\nVoar.$"
       ],
       "Route38_Text_SchoolboyChad1Seen": [
-        "Deixa-me tentar algo que\\naprendi hoje.$"
+        "Deixa-me tentar algo que\\nAprendi hoje.$"
       ],
       "Route38_Text_SchoolboyChad1Beaten": [
-        "Acho que nao estudei o\\nsuficiente.$"
+        "Acho que nao estudei o\\nSuficiente.$"
       ],
       "Route38_Text_SchoolboyChadAfter": [
-        "Tenho de fazer tantos testes,\\nnao tenho muito tempo para\\lPOKEMON.\\pEntao, quando eu posso jogar,\\neu realmente me concentro.$"
+        "Tenho de fazer tantos testes,\\nNao tenho muito tempo para\\lPOKEMON.\\pEntao, quando eu posso jogar,\\nEu realmente me concentro.$"
       ],
       "Route38_Text_LassDana1Seen": [
-        "Pareces ser bom em POKEMON.\\pSe estiver, que tal dar-me um\\nconselho?$"
+        "Parece ser bom em POKEMON.\\pSe estiver, que tal dar-me um\\nConselho?$"
       ],
       "Route38_Text_LassDana1Beaten": [
-        "Estou a ver. Para que possas\\nlutar assim.$"
+        "Estou vendo. Para que possas\\nLutar assim.$"
       ],
       "Route38_Text_BeautyValerieSeen": [
-        "Ola! Nao es um treinador giro?\\pPosso ver o seu POKEMON?$"
+        "Ola! Nao e um TREINADOR giro?\\pPosso ver seu POKEMON?$"
       ],
       "Route38_Text_BeautyValerieBeaten": [
-        "Ainda bem que vi o seu POKEMON!$"
+        "Ainda bem que vi seu POKEMON!$"
       ],
       "Route38_Text_BeautyValerieAfter": [
-        "Quando vejo POKEMON, parece\\nacalmar-me os nervos.$"
+        "Quando vejo POKEMON, parece\\nAcalmar-me os nervos.$"
       ],
       "Route38_Text_SailorHarrySeen": [
-        "Estive no estrangeiro, por isso\\nsei de todos os tipos de\\lPokemon!$"
+        "Estive no estrangeiro, por isso\\nSei de todos os tipos de\\lPOKEMON!$"
       ],
       "Route38_Text_SailorHarryBeaten": [
-        "Sua habilidade e de classe\\nmundial!$"
+        "Sua habilidade e de classe\\nMundial!$"
       ],
       "Route38_Text_SailorHarryAfter": [
-        "Todos os tipos de pessoas ao\\nredor do mundo vivem felizes\\lcom POKEMON.$"
+        "Todos os tipos de pessoas ao\\nRedor do mundo vivem felizes\\lCom POKEMON.$"
       ],
       "Route38_Text_BeautyOliviaSeen": [
-        "nao acha que o meu POKEMON e\\neu somos lindos?$"
+        "Nao acha que meu POKEMON e\\nEu somos lindos?$"
       ]
     },
     "data/maps/Route39/scripts.inc": {
@@ -763,34 +763,34 @@
         "Acabei de voltar para OLIVINE.\\pQue tal uma batalha POKEMON?$"
       ],
       "Route39_Text_SailorEugeneAfter": [
-        "O meu POKEMON foi apanhado e\\ncriado no estrangeiro.\\pSao meus companheiros nessas\\nlongas viagens.$"
+        "Meu POKEMON foi apanhado e\\nCriado no estrangeiro.\\pSao meus companheiros nessas\\nLongas viagens.$"
       ],
       "Route39_Text_PokefanMDerekSeen": [
-        "Este e um bom momento para se\\ngabar sobre o meu PIKACHU!$"
+        "Este e um bom momento para se\\nGabar sobre meu PIKACHU!$"
       ],
       "Route39_Text_PokefanMDerekBeaten": [
         "Nao tive tempo de mostrar\\nPIKACHU...$"
       ],
       "Route39_Text_PokefanMDerekAfter": [
-        "Nao estou a ouvir-te a\\ngabares-te!\\pNos, os POKe FANS, temos uma\\npolitica de nao ouvir os\\lelogios!$"
+        "Nao estou ouvindo-te a\\nGabares-te!\\pNos, os POKe FANS, temos uma\\nPolitica de nao ouvir os\\lElogios!$"
       ],
       "Route39_Text_PokefanFRuthSeen": [
-        "Tao querido POKEMON.\\pVamos mostrar o nosso POKEMON\\njuntos ao mesmo tempo.$"
+        "Tao querido POKEMON.\\pVamos mostrar nosso POKEMON\\nJuntos ao mesmo tempo.$"
       ],
       "Route39_Text_PokefanFRuthBeaten": [
         "Nao me importo de perder.$"
       ],
       "Route39_Text_PokefanFRuthAfter": [
-        "sabe sobre o bebe POKEMON?\\pAposto que sao adoraveis!$"
+        "Sabe sobre o bebe POKEMON?\\pAposto que sao adoraveis!$"
       ],
       "Route39_Text_PsychicNormanSeen": [
-        "Deixa-me ver do que o seu\\nPokemon e capaz.$"
+        "Deixa-me ver do que o seu\\nPOKEMON e capaz.$"
       ],
       "Route39_Text_PsychicNormanBeaten": [
-        "O seu POKEMON tem potencial.$"
+        "Seu POKEMON tem potencial.$"
       ],
       "Route39_Text_PsychicNormanAfter": [
-        "sabe como o POKEMON tem\\ncapacidades diferentes?\\pAs pessoas tambem sao assim.\\nTodos tem potencial diferente.$"
+        "Sabe como o POKEMON tem\\nCapacidades diferentes?\\pAs pessoas tambem sao assim.\\nTodos tem potencial diferente.$"
       ],
       "Route39_Text_PokefanFJaimeSeen": [
         "Voce veio na hora certa.\\pVamos lutar.$"
