@@ -709,10 +709,10 @@
         "{PLAYER}O que vai fazer?\\pRecolher todos os GINASIO\\nINSIGNIAS e aceitar o desafio\\lPOKEMON LEAGUE?\\pTalvez eu faca isso tambem...\\pSeja como for, aguenta-te!$"
       ],
       "LilycoveCity_Text_BrendanYouGoingToPokemonLeague": [
-        "{PLAYER}O que vai fazer?\\pJa que e tao forte, estas a\\naceitar o desafio da LEAGUE\\lPOKEMON?\\pAte eu, se treinasse mais o meu\\nPokemon, devia ser mais forte\\lque tu.{PLAYER}.\\pSeja como for, aguenta-te!$"
+        "{PLAYER}O que vai fazer?\\pJa que e tao forte, estas a\\naceitar o desafio da LEAGUE\\lPOKEMON?\\pAte eu, se treinasse mais o meu\\nPokemon, devia ser mais forte\\lque voce.{PLAYER}.\\pSeja como for, aguenta-te!$"
       ],
       "LilycoveCity_Text_DontGoNearCaveInCove": [
-        "Ei, tu!\\pNao te aproximes da caverna na\\nenseada!\\pPorque? Nao precisa de uma\\nrazao! Sou adulta, por isso\\louve-me!$"
+        "Ei, voce!\\pNao te aproximes da caverna na\\nenseada!\\pPorque? Nao precisa de uma\\nrazao! Sou adulta, por isso\\louve-me!$"
       ],
       "LilycoveCity_Text_GetLostMessingUpTraining": [
         "Hunh? O que quer?\\pEstas a estragar o nosso\\ntreino, por isso pode, tipo,\\ldesaparecer?$"
@@ -736,7 +736,7 @@
         "Sabe sobre a maquina BERRY\\nBLENDER?$"
       ],
       "LilycoveCity_Text_FasterSpinBetterPokeblocks": [
-        "As pessoas tem de trabalhar\\njuntas para faze-lo girar mais\\ldepressa.\\pQuanto mais rapido conseguires\\nfaze-lo girar,\\lmelhor.{POKEBLOCK}Ja ouvi\\lfalar.$"
+        "As pessoas precisa trabalhar\\njuntas para faze-lo girar mais\\ldepressa.\\pQuanto mais rapido conseguir\\nfaze-lo girar,\\lmelhor.{POKEBLOCK}Ja ouvi\\lfalar.$"
       ],
       "LilycoveCity_Text_ExplainBerryBlender": [
         "E usado para fazer um tipo de\\ndoce chamado{POKEBLOCK}.\\pSe voce da um\\nbom{POKEBLOCK}para um POKEMON,\\lsua condicao vai melhorar\\lmuito.$"
