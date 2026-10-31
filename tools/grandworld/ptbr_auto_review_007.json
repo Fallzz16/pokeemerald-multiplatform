@@ -135,7 +135,7 @@
         "Nao e muito forte?$"
       ],
       "AbandonedShip_Rooms_1F_Text_ThaliaPostRematch": [
-        "Tenho a certeza que aquele\\nhomem esta tramar alguma! Ele\\lage de forma tao suspeita!$"
+        "Tenho certeza que aquele\\nhomem esta tramar alguma! Ele\\lage de forma tao suspeita!$"
       ],
       "AbandonedShip_Rooms_1F_Text_DemetriusIntro": [
         "Waaah! Fui encontrado! ...Huh?$"
@@ -180,7 +180,7 @@
         "Perdi de uma forma legal...$"
       ],
       "AquaHideout_B1F_Text_Grunt7PostBattle": [
-        "Se tem um uniforme legal, ficas\\nbem mesmo numa perda, nao\\lachas?$"
+        "Se tem um uniforme legal, fica\\nbem mesmo numa perda, nao\\lachas?$"
       ]
     },
     "data/maps/AquaHideout_B2F/scripts.inc": {
@@ -283,7 +283,7 @@
         "Estou guardando seus dados\\ndo jogo. Por favor, espere.$"
       ],
       "BattleFrontier_BattleArenaBattleRoom_Text_RecordLastBattle": [
-        "Gostarias de gravar a sua\\nultima batalha no seu PASS\\lFRONTIER?$"
+        "Gostaria de gravar a sua\\nultima batalha no seu PASS\\lFRONTIER?$"
       ],
       "BattleFrontier_BattleArenaBattleRoom_Text_NowFaceTycoon": [
         "Meu querido desafiante!\\pSeu nivel de habilidade e\\nrealmente surpreendente!\\pAgora gostariamos que\\nenfrentassem nosso lider, o\\lARENA TYCOON!$"
@@ -295,7 +295,7 @@
         "A serio? Hmhm...$"
       ],
       "BattleFrontier_BattleArenaBattleRoom_Text_YouLookWeakTakeThingsEasy": [
-        "Nao sei como dize-lo, mas...\\nPara ser franco, parece muito\\lfraco. tem a certeza que me\\lqueres?\\pHmm...\\pEsta bem! Vamos comecar com\\ncoisas faceis!$"
+        "Nao sei como dize-lo, mas...\\nPara ser franco, parece muito\\lfraco. tem certeza que me\\lqueres?\\pHmm...\\pEsta bem! Vamos comecar com\\ncoisas faceis!$"
       ],
       "BattleFrontier_BattleArenaBattleRoom_Text_IgniteMyPassionForBattle": [
         "Esta bem! Vamos ver-te acender\\na minha paixao pela batalha!$"
@@ -427,7 +427,7 @@
         "A perda do ultimo jogo pode ser\\nvingada?\\p$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_OnFireForChampionship": [
-        "O TREINADOR esta em chamas para a\\nprimeira tentativa do\\lcampeonato!\\p$"
+        "O TREINADOR esta em chama para a\\nprimeira tentativa do\\lcampeonato!\\p$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_WinHereAdvancesToFinal": [
         "Uma vitoria aqui significa que\\neste TREINADOR avanca para a\\lfinal!\\p$"
@@ -678,7 +678,7 @@
     },
     "data/maps/BattleFrontier_BattleFactoryLobby/scripts.inc": {
       "BattleFrontier_BattleFactoryLobby_Text_TakeSinglesChallenge": [
-        "Gostarias de aceitar o desafio\\nda troca de batalha?$"
+        "Gostaria de aceitar o desafio\\nda troca de batalha?$"
       ],
       "BattleFrontier_BattleFactoryLobby_Text_LookForwardToNextVisit": [
         "Estamos ansiosos pela sua\\nproxima visita.$"
@@ -735,7 +735,7 @@
         "Me deixe trocar seu POKEMON\\npelo nosso POKEMON alugado.\\pPreciso de salvar os dados da\\nbatalha, por isso, espere.$"
       ],
       "BattleFrontier_BattleFactoryLobby_Text_RecordLastMatch": [
-        "Gostarias de gravar a sua\\nultima partida da BATTLE\\lFACTORY no seu PASS FRONTIER?$"
+        "Gostaria de gravar a sua\\nultima partida da BATTLE\\lFACTORY no seu PASS FRONTIER?$"
       ],
       "BattleFrontier_BattleFactoryLobby_Text_NeedKnowledgeOfMonsMoves": [
         "Ola! Voce ai!\\pVoce esta pensando que os\\neventos aqui sao faceis, uma\\lvez que voce nao precisa ter\\luma equipe aumentada de\\lPOKEMON?\\pNao teria tanta certeza de\\nganhar assim tao facilmente.\\pSe voce nao tem conhecimento\\ncompleto sobre POKEMON e seus\\lmovimentos, sera dificil\\lcontinuar ganhando.$"
