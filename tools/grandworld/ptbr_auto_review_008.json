@@ -11,16 +11,16 @@
         "Fiz uma pequena investigacao\\nsobre o seu proximo adversario.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInNormalType": [
-        "O TRAiner e aparentemente habil\\nno manuseio do tipo NORMAL.$"
+        "O TREINADOR e aparentemente habil\\nno manuseio do tipo NORMAL.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInElectricType": [
         "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lELECTRIC.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInGrassType": [
-        "O TRAiner e aparentemente habil\\nno manuseio do tipo GRASS.$"
+        "O TREINADOR e aparentemente habil\\nno manuseio do tipo GRASS.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInIceType": [
-        "O TRAiner e aparentemente habil\\nna manipulacao do tipo ICE.$"
+        "O TREINADOR e aparentemente habil\\nna manipulacao do tipo ICE.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInPoisonType": [
         "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lPOISON.$"
@@ -29,16 +29,16 @@
         "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lGROUND.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInPsychicType": [
-        "O TRAiner e aparentemente habil\\nna manipulacao do tipo PSYCHIC.$"
+        "O TREINADOR e aparentemente habil\\nna manipulacao do tipo PSYCHIC.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInBugType": [
-        "O TRAiner e aparentemente habil\\nna manipulacao do tipo BUG.$"
+        "O TREINADOR e aparentemente habil\\nna manipulacao do tipo BUG.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInRockType": [
         "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lROCK.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInGhostType": [
-        "O TRAiner e aparentemente habil\\nna manipulacao do tipo GHOST.$"
+        "O TREINADOR e aparentemente habil\\nna manipulacao do tipo GHOST.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInDragonType": [
         "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lDRAGON.$"
@@ -47,10 +47,10 @@
         "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lDARK.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInSteelType": [
-        "O TRAiner e aparentemente habil\\nna manipulacao do tipo STEEL.$"
+        "O TREINADOR e aparentemente habil\\nna manipulacao do tipo STEEL.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerHasNoClearFavorite": [
-        "O TRAiner parece nao ter\\nfavoritos claros quando se\\ltrata de tipo.$"
+        "O TREINADOR parece nao ter\\nfavoritos claros quando se\\ltrata de tipo.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_StyleSlowAndSteady": [
         "O estilo de batalha favorito\\nparece ser lento e estavel.$"
@@ -159,7 +159,7 @@
         "As pessoas e o POKEMON sao as\\nmesmas...\\pSua natureza individual os\\ntorna bons em certas coisas, e\\lnao bons em outras.$"
       ],
       "BattleFrontier_BattlePalaceCorridor_Text_HeartfeltBondBetweenYouAndMons": [
-        "Vejo um forte e sincero vinculo\\nentre ti e o seu Pokemon...$"
+        "Vejo um forte e sincero vinculo\\nentre ti e o seu POKEMON...$"
       ]
     },
     "data/maps/BattleFrontier_BattlePalaceLobby/scripts.inc": {
@@ -206,7 +206,7 @@
         "Pergunto-me que tipo de\\nnatureza um POKEMON teria se\\lfavorecesse a fraude dos seus\\ladversarios e a lapidacao\\llentamente.\\pFicaria surpreendido se fosse\\numa natureza LAX.\\pMas isso nao pode estar certo.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ToDefeatMavenAnd7Trainers": [
-        "Para derrotar o PALACE MAVEN e\\nsete TRAiners seguidos...$"
+        "Para derrotar o PALACE MAVEN e\\nsete TREINADORES seguidos...$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_PresentYouWithBattlePoints": [
         "Em honra do vinculo que\\npartilhas com o seu POKEMON,\\lapresentamos-te estes Pontos de\\lBatalha.$"
@@ -230,7 +230,7 @@
         "Ha movimentos ofensivos que\\ncausam danos diretos ao\\linimigo.\\pHa movimentos defensivos que\\nsao usados para se preparar\\lpara ataques inimigos ou usados\\lpara curar HP e assim por\\ldiante.\\pHa tambem outros movimentos um\\npouco estranhos que podem\\lafetar os inimigos com\\lproblemas de estado, incluindo\\lveneno e paralisia.\\pPOKEMON considerara a\\nutilizacao de movimentos nestas\\ltres categorias.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesUnderpowered": [
-        "Quando nao estiver sob o\\ncomando do seu TRAiner, um\\lPOKEMON pode nao ser capaz de\\lutilizar eficazmente certos\\lmovimentos.\\pUM POKEMON nao e bom em usar\\nqualquer movimento que nao\\lgoste.\\pSe um POKEMON so conhece\\nmovimentos que nao correspondem\\la sua natureza, muitas vezes\\lsera incapaz de cumprir o seu\\lpotencial.$"
+        "Quando nao estiver sob o\\ncomando do seu TREINADOR, um\\lPOKEMON pode nao ser capaz de\\lutilizar eficazmente certos\\lmovimentos.\\pUM POKEMON nao e bom em usar\\nqualquer movimento que nao\\lgoste.\\pSe um POKEMON so conhece\\nmovimentos que nao correspondem\\la sua natureza, muitas vezes\\lsera incapaz de cumprir o seu\\lpotencial.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesWhenInDanger": [
         "Dependendo da sua natureza, um\\nPOKEMON pode comecar a usar\\lmovimentos que nao correspondem\\la sua natureza quando esta em\\lapuros.\\pSe um POKEMON comecar a\\ncomportar-se de forma estranha,\\lobserve- o cuidadosamente.$"
@@ -297,7 +297,7 @@
         "Ouve! Ouve!\\pNao acha que as habilidades\\nespeciais de POKEMON serao\\luteis aqui?$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_TrainersWhicheverPathIChoose": [
-        "Que sitio e este? Nao consigo\\nperceber nada!\\pJa enfrentei o desafio varias\\nvezes, mas tudo o que faco e\\lencontrar os TRAiners onde eu\\lescolher.$"
+        "Que sitio e este? Nao consigo\\nperceber nada!\\pJa enfrentei o desafio varias\\nvezes, mas tudo o que faco e\\lencontrar os TREINADORES onde eu\\lescolher.$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_RulesAreListed": [
         "As regras da Escolha de Batalha\\nestao listadas.$"
@@ -306,7 +306,7 @@
         "Que rumo quer ler?$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ExplainPokenavBagRules": [
-        "O BAG e o POKeNAV nao podem ser\\nusados durante um desafio\\lBattle Choice.$"
+        "O BAG e o POKENAV nao podem ser\\nusados durante um desafio\\lBattle Choice.$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ExplainHeldItemRules": [
         "Durante um desafio de Battle\\nChoice, qualquer BERRY ou HERB\\lmantido por POKEMON sera eficaz\\lapenas uma vez.$"
@@ -370,7 +370,7 @@
         "Devo pedir-te desculpa...\\pO meu DUSCLOPS tem uma natureza\\nTIMID...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_AttacksWhenStartled": [
-        "Ataca sem aviso se for\\nsurpreendido por outra\\lpessoa...\\pTu e o seu Pokemon estao bem?$"
+        "Ataca sem aviso se for\\nsurpreendido por outra\\lpessoa...\\pTu e o seu POKEMON estao bem?$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ApologizeHopeMonsAreFine": [
         "Peco desculpa pelo que\\naconteceu... Espero que o seu\\lPokemon esteja bem.$"
@@ -400,10 +400,10 @@
         "Nao me esquecerei de ti.$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ChoseRoomNoHeal": [
-        "Bem-vindos...\\pRiso... Pareces estar sem\\nsorte...\\pSe nao tivesses escolhido esta\\nsala, o seu Pokemon podia ter\\lsido curado...$"
+        "Bem-vindos...\\pRiso... Pareces estar sem\\nsorte...\\pSe nao tivesses escolhido esta\\nsala, o seu POKEMON podia ter\\lsido curado...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ChoseRoomHealOne": [
-        "Bem-vindos...\\pJa que escolheste esta sala,\\nvou restaurar um Pokemon a\\lplena saude...$"
+        "Bem-vindos...\\pJa que escolheste esta sala,\\nvou restaurar um POKEMON a\\lplena saude...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ChoseRoomHealTwo": [
         "Bem-vindos...\\pJa que escolheste esta sala,\\nvou restaurar dois POKEMON a\\lplena saude...$"
@@ -761,13 +761,13 @@
         "Isto e tao perturbador!\\pMas nao ha mais treinadores que\\npossam engaja-lo!$"
       ],
       "BattlePyramid_Text_SevenTrainersRemaining3": [
-        "Impressionante!\\pMas ha mais sete treinadores\\nneste andar. consegue\\lvence-los a todos?$"
+        "Impressionante!\\pMas ha mais sete treinadores\\nneste andar. Consegue\\lvence-los a todos?$"
       ],
       "BattlePyramid_Text_SixTrainersRemaining3": [
-        "Impressionante!\\pMas ha mais seis treinadores\\nneste andar. consegue\\lvence-los a todos?$"
+        "Impressionante!\\pMas ha mais seis treinadores\\nneste andar. Consegue\\lvence-los a todos?$"
       ],
       "BattlePyramid_Text_FiveTrainersRemaining3": [
-        "Impressionante!\\pMas ha mais cinco treinadores\\nneste andar. consegue\\lvence-los a todos?$"
+        "Impressionante!\\pMas ha mais cinco treinadores\\nneste andar. Consegue\\lvence-los a todos?$"
       ]
     }
   },
