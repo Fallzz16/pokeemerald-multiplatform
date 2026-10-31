@@ -1,0 +1,426 @@
+{
+  "status": "human_language_revision_complete; gameplay_visual_review_pending",
+  "scope": "Stage9 newly and individually revised auto-draft dialogue labels in pinned GBA engine",
+  "original_auto_entry_count": 5200,
+  "reviewed_entries": 328,
+  "source_shards": [
+    "ptbr_auto_review_002.json",
+    "ptbr_auto_review_014.json",
+    "ptbr_auto_review_015.json"
+  ],
+  "reviewed_labels_by_source": {
+    "data/maps/MossdeepCity_Gym/scripts.inc": [
+      "MossdeepCity_Gym_Text_PrestonDefeat",
+      "MossdeepCity_Gym_Text_PrestonPostBattle",
+      "MossdeepCity_Gym_Text_VirgilIntro",
+      "MossdeepCity_Gym_Text_VirgilDefeat",
+      "MossdeepCity_Gym_Text_BlakeDefeat",
+      "MossdeepCity_Gym_Text_HannahIntro",
+      "MossdeepCity_Gym_Text_HannahDefeat",
+      "MossdeepCity_Gym_Text_HannahPostBattle",
+      "MossdeepCity_Gym_Text_SamanthaIntro",
+      "MossdeepCity_Gym_Text_SamanthaDefeat",
+      "MossdeepCity_Gym_Text_MauraIntro",
+      "MossdeepCity_Gym_Text_MauraDefeat",
+      "MossdeepCity_Gym_Text_MauraPostBattle",
+      "MossdeepCity_Gym_Text_SylviaIntro",
+      "MossdeepCity_Gym_Text_SylviaDefeat",
+      "MossdeepCity_Gym_Text_SylviaPostBattle",
+      "MossdeepCity_Gym_Text_NateIntro",
+      "MossdeepCity_Gym_Text_NateDefeat",
+      "MossdeepCity_Gym_Text_NatePostBattle",
+      "MossdeepCity_Gym_Text_KathleenIntro",
+      "MossdeepCity_Gym_Text_KathleenDefeat",
+      "MossdeepCity_Gym_Text_KathleenPostBattle",
+      "MossdeepCity_Gym_Text_CliffordIntro",
+      "MossdeepCity_Gym_Text_CliffordDefeat",
+      "MossdeepCity_Gym_Text_CliffordPostBattle",
+      "MossdeepCity_Gym_Text_MaceyIntro",
+      "MossdeepCity_Gym_Text_MaceyDefeat",
+      "MossdeepCity_Gym_Text_MaceyPostBattle",
+      "MossdeepCity_Gym_Text_NicholasIntro",
+      "MossdeepCity_Gym_Text_NicholasDefeat",
+      "MossdeepCity_Gym_Text_NicholasPostBattle",
+      "MossdeepCity_Gym_Text_RegisteredTateAndLiza"
+    ],
+    "data/maps/OlivineCity_Gym/scripts.inc": [
+      "OlivineCity_Gym_Text_Gent2",
+      "OlivineCity_Gym_Text_JasmineBetterTrainer",
+      "OlivineCity_Gym_Text_ReceivedMineralBadge",
+      "OlivineCity_Gym_Text_JasmineIronTailSpeech",
+      "OlivineCity_Gym_Text_JasmineGoodLuck",
+      "OlivineCity_Gym_Text_JasmineRematchText",
+      "OlivineCity_Gym_Text_JasmineRematchDefeatText",
+      "OlivineCity_Gym_Text_JasmineRematchPostText",
+      "OlivineCity_Gym_Text_JasmineRematchDeclineText"
+    ],
+    "data/maps/SaffronCity_Gym_Frlg/scripts.inc": [
+      "SaffronCity_Gym_Text_SabrinaIntro",
+      "SaffronCity_Gym_Text_SabrinaDefeat",
+      "SaffronCity_Gym_Text_SabrinaPostBattle",
+      "SaffronCity_Gym_Text_ExplainMarshBadgeTakeThis",
+      "SaffronCity_Gym_Text_ReceivedTM04FromSabrina",
+      "SaffronCity_Gym_Text_ExplainTM04",
+      "SaffronCity_Gym_Text_BagFullOfOtherItems",
+      "SaffronCity_Gym_Text_AmandaIntro",
+      "SaffronCity_Gym_Text_AmandaDefeat",
+      "SaffronCity_Gym_Text_AmandaPostBattle",
+      "SaffronCity_Gym_Text_JohanIntro",
+      "SaffronCity_Gym_Text_JohanDefeat",
+      "SaffronCity_Gym_Text_StacyIntro",
+      "SaffronCity_Gym_Text_StacyDefeat",
+      "SaffronCity_Gym_Text_TyronIntro",
+      "SaffronCity_Gym_Text_TyronDefeat",
+      "SaffronCity_Gym_Text_TashaIntro",
+      "SaffronCity_Gym_Text_TashaDefeat",
+      "SaffronCity_Gym_Text_TashaPostBattle",
+      "SaffronCity_Gym_Text_CameronDefeat",
+      "SaffronCity_Gym_Text_PrestonIntro",
+      "SaffronCity_Gym_Text_PrestonPostBattle",
+      "SaffronCity_Gym_Text_GymGuyPostVictory",
+      "SaffronCity_Gym_Text_RematchAsk",
+      "SaffronCity_Gym_Text_RematchDefeat",
+      "SaffronCity_Gym_Text_RematchPost",
+      "SaffronCity_Gym_Text_RematchDecline"
+    ],
+    "data/maps/VermilionCity_Gym_Frlg/scripts.inc": [
+      "VermilionCity_Gym_Text_LtSurgeIntro",
+      "VermilionCity_Gym_Text_ReceivedTM34FromLtSurge",
+      "VermilionCity_Gym_Text_TuckerDefeat",
+      "VermilionCity_Gym_Text_BailyIntro",
+      "VermilionCity_Gym_Text_BailyDefeat",
+      "VermilionCity_Gym_Text_DwayneIntro",
+      "VermilionCity_Gym_Text_DwayneDefeat",
+      "VermilionCity_Gym_Text_GymGuyPostVictory",
+      "VermilionCity_Gym_Text_NopeOnlyTrashHere",
+      "VermilionCity_Gym_Text_SwitchUnderTrashFirstLockOpened",
+      "VermilionCity_Gym_Text_SecondLockOpened",
+      "VermilionCity_Gym_Text_OnlyTrashLocksWereReset",
+      "VermilionCity_Gym_Text_RematchDefeat",
+      "VermilionCity_Gym_Text_RematchPost",
+      "VermilionCity_Gym_Text_RematchDecline"
+    ],
+    "data/maps/CinnabarIsland_PokemonLab_Entrance_Frlg/scripts.inc": [
+      "CinnabarIsland_PokemonLab_Entrance_Text_StudyMonsExtensively",
+      "CinnabarIsland_PokemonLab_Entrance_Text_MeetingRoomSign",
+      "CinnabarIsland_PokemonLab_Entrance_Text_RAndDRoomSign",
+      "CinnabarIsland_PokemonLab_Entrance_Text_TestingRoomSign"
+    ],
+    "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc": [
+      "Text_MetronomeTeach",
+      "Text_MetronomeDeclined",
+      "Text_MetronomeWhichMon",
+      "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe",
+      "CinnabarIsland_PokemonLab_ExperimentRoom_Text_NoIsTooBad",
+      "CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife",
+      "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ReceivedMonFromDoctor",
+      "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain",
+      "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor",
+      "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk",
+      "CinnabarIsland_PokemonLab_ExperimentRoom_Text_YouComeAgain"
+    ],
+    "data/maps/CinnabarIsland_PokemonLab_ResearchRoom_Frlg/scripts.inc": [
+      "CinnabarIsland_PokemonLab_ResearchRoom_Text_EeveeCanEvolveIntroThreeMons",
+      "CinnabarIsland_PokemonLab_ResearchRoom_Text_AnAmberPipe"
+    ],
+    "data/maps/RocketHideout_B1F_Frlg/scripts.inc": [
+      "RocketHideout_B1F_Text_Grunt1Intro",
+      "RocketHideout_B1F_Text_Grunt1Defeat",
+      "RocketHideout_B1F_Text_Grunt2PostBattle",
+      "RocketHideout_B1F_Text_Grunt3Intro",
+      "RocketHideout_B1F_Text_Grunt3Defeat",
+      "RocketHideout_B1F_Text_Grunt4Intro",
+      "RocketHideout_B1F_Text_Grunt4Defeat",
+      "RocketHideout_B1F_Text_Grunt5Intro",
+      "RocketHideout_B1F_Text_Grunt5Defeat",
+      "RocketHideout_B1F_Text_Grunt5PostBattle"
+    ],
+    "data/maps/RocketHideout_B2F_Frlg/scripts.inc": [
+      "RocketHideout_B2F_Text_GruntDefeat"
+    ],
+    "data/maps/RocketHideout_B3F_Frlg/scripts.inc": [
+      "RocketHideout_B3F_Text_Grunt1Defeat",
+      "RocketHideout_B3F_Text_Grunt2Intro",
+      "RocketHideout_B3F_Text_Grunt2Defeat"
+    ],
+    "data/maps/RocketHideout_B4F_Frlg/scripts.inc": [
+      "RocketHideout_B4F_Text_GiovanniPostBattle",
+      "RocketHideout_B4F_Text_Grunt2Defeat",
+      "RocketHideout_B4F_Text_Grunt3Intro",
+      "RocketHideout_B4F_Text_Grunt1Defeat"
+    ],
+    "data/maps/RocketHideout_Elevator_Frlg/scripts.inc": [
+      "RocketHideout_Elevator_Text_AppearsToNeedAKey"
+    ],
+    "data/maps/JohtoVictoryRoad_B1F/scripts.inc": [
+      "JohtoVictoryRoad_B1F_Text_SamuelDefeat",
+      "JohtoVictoryRoad_B1F_Text_SamuelPostBattle",
+      "JohtoVictoryRoad_B1F_Text_ShannonIntro",
+      "JohtoVictoryRoad_B1F_Text_ShannonDefeat",
+      "JohtoVictoryRoad_B1F_Text_ShannonPostBattle",
+      "JohtoVictoryRoad_B1F_Text_MichelleDefeat",
+      "JohtoVictoryRoad_B1F_Text_MichellePostBattle",
+      "JohtoVictoryRoad_B1F_Text_MitchellIntro",
+      "JohtoVictoryRoad_B1F_Text_MitchellDefeat",
+      "JohtoVictoryRoad_B1F_Text_MitchellPostBattle",
+      "JohtoVictoryRoad_B1F_Text_HalleIntro",
+      "JohtoVictoryRoad_B1F_Text_HalleDefeat"
+    ],
+    "data/maps/JohtoVictoryRoad_B2F/scripts.inc": [
+      "JohtoVictoryRoad_B2F_Text_VitoIntro",
+      "JohtoVictoryRoad_B2F_Text_VitoDefeat",
+      "JohtoVictoryRoad_B2F_Text_VitoPostBattle",
+      "JohtoVictoryRoad_B2F_Text_OwenIntro",
+      "JohtoVictoryRoad_B2F_Text_OwenDefeat",
+      "JohtoVictoryRoad_B2F_Text_CarolineIntro",
+      "JohtoVictoryRoad_B2F_Text_CarolineDefeat",
+      "JohtoVictoryRoad_B2F_Text_JulieIntro",
+      "JohtoVictoryRoad_B2F_Text_JulieDefeat",
+      "JohtoVictoryRoad_B2F_Text_JuliePostBattle",
+      "JohtoVictoryRoad_B2F_Text_FelixIntro",
+      "JohtoVictoryRoad_B2F_Text_FelixDefeat",
+      "JohtoVictoryRoad_B2F_Text_FelixPostBattle",
+      "JohtoVictoryRoad_B2F_Text_DianneIntro",
+      "JohtoVictoryRoad_B2F_Text_DianneDefeat",
+      "JohtoVictoryRoad_B2F_Text_DiannePostBattle"
+    ],
+    "data/maps/LakeOfRage/scripts.inc": [
+      "LakeOfRage_Text_LanceIntro1",
+      "LakeOfRage_Text_LanceIntro2",
+      "LakeOfRage_Text_LanceIntro3",
+      "LakeOfRage_Text_LanceRefused",
+      "LakeOfRage_Text_GrampsCleared",
+      "LakeOfRage_Text_SuperNerd",
+      "LakeOfRage_Text_FisherAndreSeen",
+      "LakeOfRage_Text_FisherAndreBeaten",
+      "LakeOfRage_Text_FisherAndreAfter",
+      "LakeOfRage_Text_FisherRaymondSeen",
+      "LakeOfRage_Text_FisherRaymondBeaten",
+      "LakeOfRage_Text_FisherRaymondAfter",
+      "LakeOfRage_Text_CooltrainermAaronSeen",
+      "LakeOfRage_Text_CooltrainermAaronBeaten",
+      "LakeOfRage_Text_CooltrainermAaronAfter",
+      "LakeOfRage_Text_CooltrainerfLoisBeaten",
+      "LakeOfRage_Text_WesleyGivesGift",
+      "LakeOfRage_Text_Sign"
+    ],
+    "data/maps/LakeOfRageLowTide/scripts.inc": [
+      "LakeOfRageLowTide_Text_Sage"
+    ],
+    "data/maps/LakeOfRage_House1/scripts.inc": [
+      "HiddenPowerGuy_Text_Intro",
+      "HiddenPowerGuy_Text_Meditating"
+    ],
+    "data/maps/LakeOfRage_House2/scripts.inc": [
+      "LakeOfRage_House2_Text_LastMon",
+      "LakeOfRage_House2_Text_ForMe",
+      "LakeOfRage_House2_Text_HaveMagikarp",
+      "LakeOfRage_House2_Text_BigPayout",
+      "LakeOfRage_House2_Text_Bonus",
+      "LakeOfRage_House2_Text_TooShort",
+      "LakeOfRage_House2_Text_Refused"
+    ],
+    "data/maps/LavaridgeTown/scripts.inc": [
+      "LavaridgeTown_Text_MayNiceBadgesTakeThis",
+      "LavaridgeTown_Text_HaveEggWillYouTakeIt",
+      "LavaridgeTown_Text_HopeYoullWalkPlentyWithEgg",
+      "LavaridgeTown_Text_ReceivedTheEgg",
+      "LavaridgeTown_Text_NoRoomForThisEgg",
+      "LavaridgeTown_Text_AsYouWishThen",
+      "LavaridgeTown_Text_EverySoOftenEggFoundAtDayCare",
+      "LavaridgeTown_Text_HotSpringsNeverRunDry",
+      "LavaridgeTown_Text_PokemonNippedBackside",
+      "LavaridgeTown_Text_OhYouLikeHotSprings",
+      "LavaridgeTown_Text_IfPokemonInHotSprings",
+      "LavaridgeTown_Text_HotSpringsClaims"
+    ],
+    "data/maps/LavaridgeTown_HerbShop/scripts.inc": [
+      "LavaridgeTown_HerbShop_Text_WelcomeToHerbShop",
+      "LavaridgeTown_HerbShop_Text_YouveComeToLookAtHerbalMedicine",
+      "LavaridgeTown_HerbShop_Text_HerbalMedicineWorksButMonWillDislike"
+    ],
+    "data/maps/LavaridgeTown_PokemonCenter_1F/scripts.inc": [
+      "LavaridgeTown_PokemonCenter_1F_Text_TrainersPokemonSpendTimeTogether",
+      "LavaridgeTown_PokemonCenter_1F_Text_HotSpringCanInvigorate",
+      "LavaridgeTown_PokemonCenter_1F_Text_TrainersShouldRestToo"
+    ],
+    "data/maps/LavenderTown_Frlg/scripts.inc": [
+      "LavenderTown_Text_DoYouBelieveInGhosts",
+      "LavenderTown_Text_SoThereAreBelievers",
+      "LavenderTown_Text_JustImaginingWhiteHand",
+      "LavenderTown_Text_TownKnownAsMonGraveSite"
+    ],
+    "data/maps/LavenderTown_House2_Frlg/scripts.inc": [
+      "LavenderTown_House2_Text_GiveItANicerName",
+      "LavenderTown_House2_Text_WhatShallNewNicknameBe",
+      "LavenderTown_House2_Text_FromNowOnShallBeKnownAsName",
+      "LavenderTown_House2_Text_ISeeComeVisitAgain",
+      "LavenderTown_House2_Text_FromNowOnShallBeKnownAsSameName",
+      "LavenderTown_House2_Text_TrulyImpeccableName",
+      "LavenderTown_House2_Text_ThatIsMerelyAnEgg"
+    ],
+    "data/maps/LavenderTown_Mart_Frlg/scripts.inc": [
+      "LavenderTown_Mart_Text_TrainerDuosCanChallengeYou"
+    ],
+    "data/maps/LavenderTown_PokemonCenter_1F_Frlg/scripts.inc": [
+      "LavenderTown_PokemonCenter_1F_Text_RocketsDoAnythingForMoney",
+      "LavenderTown_PokemonCenter_1F_Text_PeoplePayForCuboneSkulls"
+    ],
+    "data/maps/LavenderTown_VolunteerPokemonHouse_Frlg/scripts.inc": [
+      "LavenderTown_VolunteerPokemonHouse_Text_WhereDidMrFujiGo",
+      "LavenderTown_VolunteerPokemonHouse_Text_MonsNiceToHug",
+      "LavenderTown_VolunteerPokemonHouse_Text_IdLikeYouToHaveThis",
+      "LavenderTown_VolunteerPokemonHouse_Text_ReceivedPokeFluteFromMrFuji",
+      "LavenderTown_VolunteerPokemonHouse_Text_ExplainPokeFlute",
+      "LavenderTown_VolunteerPokemonHouse_Text_MustMakeRoomForThis",
+      "LavenderTown_VolunteerPokemonHouse_Text_GrandPrizeDrawingClipped"
+    ],
+    "data/maps/LilycoveCity_LilycoveMuseum_1F/scripts.inc": [
+      "LilycoveCity_LilycoveMuseum_1F_Text_NotDisturbYouTakeYourTime",
+      "LilycoveCity_LilycoveMuseum_1F_Text_HaveYouAnInterestInPaintings",
+      "LilycoveCity_LilycoveMuseum_1F_Text_HonoredYoudVisitInSpiteOfThat",
+      "LilycoveCity_LilycoveMuseum_1F_Text_ExcellentCanYouComeWithMe",
+      "LilycoveCity_LilycoveMuseum_1F_Text_VeryOldPainting",
+      "LilycoveCity_LilycoveMuseum_1F_Text_OddLandscapeFantasticScenery",
+      "LilycoveCity_LilycoveMuseum_1F_Text_PaintingOfBeautifulWoman",
+      "LilycoveCity_LilycoveMuseum_1F_Text_PaintingOfLegendaryPokemon",
+      "LilycoveCity_LilycoveMuseum_1F_Text_PaintingOfGrassPokemon",
+      "LilycoveCity_LilycoveMuseum_1F_Text_PaintingOfBerries",
+      "LilycoveCity_LilycoveMuseum_Text_BirdPokemonSculptureReplica",
+      "LilycoveCity_LilycoveMuseum_1F_Text_StoneTabletWithAncientText",
+      "LilycoveCity_LilycoveMuseum_1F_Text_WorksOfMagnificence",
+      "LilycoveCity_LilycoveMuseum_1F_Text_MustntForgetLoveForFineArts",
+      "LilycoveCity_LilycoveMuseum_1F_Text_ThisLadyIsPretty",
+      "LilycoveCity_LilycoveMuseum_1F_Text_ThisPokemonIsAdorable",
+      "LilycoveCity_LilycoveMuseum_1F_Text_CuratorHasBeenCheerful",
+      "LilycoveCity_LilycoveMuseum_1F_Text_AimToSeeGreatPaintings"
+    ],
+    "data/maps/LilycoveCity_LilycoveMuseum_2F/scripts.inc": [
+      "LilycoveCity_LilycoveMuseum_2F_Text_ThisIsExhibitHall",
+      "LilycoveCity_LilycoveMuseum_2F_Text_ExplainExhibitHall",
+      "LilycoveCity_LilycoveMuseum_2F_Text_PleaseObtainPaintingsForExhibit",
+      "LilycoveCity_LilycoveMuseum_2F_Text_WishToFillExhibit",
+      "LilycoveCity_LilycoveMuseum_2F_Text_ThanksAddedNewPainting",
+      "LilycoveCity_LilycoveMuseum_2F_Text_ItsYouPlayer",
+      "LilycoveCity_LilycoveMuseum_2F_Text_TokenOfGratitude",
+      "LilycoveCity_LilycoveMuseum_2F_Text_KeepThisForYou",
+      "LilycoveCity_LilycoveMuseum_2F_Text_HonorToHaveYouVisit",
+      "LilycoveCity_LilycoveMuseum_2F_Text_ItsPinkPictureFrame",
+      "LilycoveCity_LilycoveMuseum_2F_Text_ItsYellowPictureFrame",
+      "LilycoveCity_LilycoveMuseum_2F_Text_ItsBluePictureFrame",
+      "LilycoveCity_LilycoveMuseum_2F_Text_ItsRedPictureFrame",
+      "LilycoveCity_LilycoveMuseum_2F_Text_ItsGreenPictureFrame",
+      "LilycoveCity_LilycoveMuseum_2F_Text_ItsPaintingOfPokemon",
+      "LilycoveCity_LilycoveMuseum_2F_Text_NewPaintingsSurprisedMe",
+      "LilycoveCity_LilycoveMuseum_2F_Text_NewPaintingsRatherAmusing",
+      "LilycoveCity_LilycoveMuseum_2F_Text_ThesePaintingsOfYourPokemon"
+    ],
+    "data/maps/LilycoveCity_MoveDeletersHouse/scripts.inc": [
+      "LilycoveCity_MoveDeletersHouse_Text_WhichMonShouldForget",
+      "LilycoveCity_MoveDeletersHouse_Text_WhichMoveShouldBeForgotten",
+      "LilycoveCity_MoveDeletersHouse_Text_MonOnlyKnowsOneMove",
+      "LilycoveCity_MoveDeletersHouse_Text_MonHasForgottenMove",
+      "LilycoveCity_MoveDeletersHouse_Text_ComeAgain",
+      "LilycoveCity_MoveDeletersHouse_Text_EggCantForgetMoves",
+      "LilycoveCity_MoveDeletersHouse_Text_CantForgetSurf"
+    ],
+    "data/maps/LilycoveCity_PokemonTrainerFanClub/scripts.inc": [
+      "LilycoveCity_PokemonTrainerFanClub_Text_OhWowItsPlayer",
+      "LilycoveCity_PokemonTrainerFanClub_Text_HeardAboutYouImYourFan",
+      "LilycoveCity_PokemonTrainerFanClub_Text_YoureOneWeWantToWin",
+      "LilycoveCity_PokemonTrainerFanClub_Text_OthersDontKnowYoureTheBest",
+      "LilycoveCity_PokemonTrainerFanClub_Text_TrainerIsBestNoOneWantsToListen",
+      "LilycoveCity_PokemonTrainerFanClub_Text_ImPullingForYou",
+      "LilycoveCity_PokemonTrainerFanClub_Text_YouveSurpassedYourFather",
+      "LilycoveCity_PokemonTrainerFanClub_Text_YourFatherNeverGaveUpSoKeepOnBattling",
+      "LilycoveCity_PokemonTrainerFanClub_Text_LongWayToGoComparedToNorman",
+      "LilycoveCity_PokemonTrainerFanClub_Text_YouAndNormanAreDifferent",
+      "LilycoveCity_PokemonTrainerFanClub_Text_WeDiscussStrongestTrainers",
+      "LilycoveCity_PokemonTrainerFanClub_Text_OhWoweeItsPlayer",
+      "LilycoveCity_PokemonTrainerFanClub_Text_AlwaysCheerForYou",
+      "LilycoveCity_PokemonTrainerFanClub_Text_EveryoneThinksTrainerIsCool",
+      "LilycoveCity_PokemonTrainerFanClub_Text_TrainerIsReallyCoolItsJustMe",
+      "LilycoveCity_PokemonTrainerFanClub_Text_WishThereWasTrainerLikeThat",
+      "LilycoveCity_PokemonTrainerFanClub_Text_WantToBeStrongLikeYou",
+      "LilycoveCity_PokemonTrainerFanClub_Text_OnlyOneWhoCheersForYou",
+      "LilycoveCity_PokemonTrainerFanClub_Text_TrainerIsWickedlyCool",
+      "LilycoveCity_PokemonTrainerFanClub_Text_NeverGoingToStopBeingTrainersFan",
+      "LilycoveCity_PokemonTrainerFanClub_Text_YoureAmazingAfterAll",
+      "LilycoveCity_PokemonTrainerFanClub_Text_ImInYourCorner",
+      "LilycoveCity_PokemonTrainerFanClub_Text_ThinkTrainerIsNumberOne",
+      "LilycoveCity_PokemonTrainerFanClub_Text_YoureMaybeStrongerThanTrainer",
+      "LilycoveCity_PokemonTrainerFanClub_Text_YouChangedMyMind",
+      "LilycoveCity_PokemonTrainerFanClub_Text_YouBattleAttractivelyInToughSituation",
+      "LilycoveCity_PokemonTrainerFanClub_Text_TrainerIsStandout",
+      "LilycoveCity_PokemonTrainerFanClub_Text_NoOneCanKnockYouButTrainerStronger",
+      "LilycoveCity_PokemonTrainerFanClub_Text_YouImpressive",
+      "LilycoveCity_PokemonTrainerFanClub_Text_OnlyIRecognizeYourTrueWorth",
+      "LilycoveCity_PokemonTrainerFanClub_Text_HaventRealizedPotential",
+      "LilycoveCity_PokemonTrainerFanClub_Text_YourePowerfulButNotTrueStrength"
+    ],
+    "data/maps/LittlerootTown/scripts.inc": [
+      "LittlerootTown_Text_ComeHomeIfAnythingHappens"
+    ],
+    "data/maps/LittlerootTown_BrendansHouse_1F/scripts.inc": [
+      "PlayersHouse_1F_Text_DontPushYourselfTooHard",
+      "PlayersHouse_1F_Text_Vigoroth1",
+      "PlayersHouse_1F_Text_TheresAMovieOnTV"
+    ],
+    "data/maps/LittlerootTown_BrendansHouse_2F/scripts.inc": [
+      "PlayersHouse_2F_Text_ClockIsStopped",
+      "Common_Text_LookCloserAtMap",
+      "PlayersHouse_2F_Text_ItsAGameCube"
+    ],
+    "data/maps/LittlerootTown_MaysHouse_1F/scripts.inc": [
+      "RivalsHouse_1F_Text_OhYoureTheNewNeighbor",
+      "RivalsHouse_1F_Text_TooBusyToNoticeVisit",
+      "RivalsHouse_1F_Text_ShouldGoHomeEverySoOften",
+      "RivalsHouse_1F_Text_DoYouHavePokemon"
+    ],
+    "data/maps/LittlerootTown_MaysHouse_2F/scripts.inc": [
+      "RivalsHouse_2F_Text_MayGettingReady",
+      "RivalsHouse_2F_Text_BrendanGettingReady",
+      "RivalsHouse_2F_Text_MayJustCheckingMyPokedex"
+    ],
+    "data/maps/MahoganyTown_House1/scripts.inc": [
+      "MahoganyRedGyaradosHouse_Text_Teacher_Rockets"
+    ],
+    "data/maps/MahoganyTown_PokemonCenter/scripts.inc": [
+      "MahoganyTown_PokemonCenter_Text_Youngster",
+      "MahoganyTown_PokemonCenter_Text_CooltrainerF"
+    ],
+    "data/maps/MahoganyTown_Shop/scripts.inc": [
+      "MahoganyTown_Shop_Text_Granny",
+      "MahoganyMart1F_Text_BlackBelt",
+      "MahoganyMart1F_Text_BlackBelt_Lance",
+      "MahoganyMart1F_Text_Lance_Radio",
+      "MahoganyMart1F_Text_Lance_Stairs",
+      "MahoganyMart1F_Text_Lance_SplitUp"
+    ],
+    "data/maps/Mahoganytown/scripts.inc": [
+      "MahoganyTown_Text_RageCandyBarMerchantSavorIt",
+      "MahoganyTown_Text_RageCandyBarMerchantNotEnoughMoney",
+      "MahoganyTown_Text_RageCandyBarMerchantRefused",
+      "MahoganyTown_Text_GrampsClearedRocketHideout",
+      "MahoganyTown_Text_Fisher",
+      "MahoganyTown_Text_Lass"
+    ],
+    "data/maps/MauvilleCity/scripts.inc": [
+      "MauvilleCity_Text_ThankYouNotEnoughToBattle",
+      "MauvilleCity_Text_RegisteredWally",
+      "MauvilleCity_Text_NurseHurtMonBackToHealth",
+      "MauvilleCity_Text_AllSortsOfPeopleComeThrough",
+      "MauvilleCity_Text_ExplainTV",
+      "MauvilleCity_Text_BeenCheckingOutTV"
+    ],
+    "data/maps/MauvilleCity_BikeShop/scripts.inc": [
+      "MauvilleCity_BikeShop_Text_ChoseMachBike",
+      "MauvilleCity_BikeShop_Text_ChoseAcroBike",
+      "MauvilleCity_BikeShop_Text_HandbooksAreInBack",
+      "MauvilleCity_BikeShop_Text_HowToRideMachBike"
+    ]
+  },
+  "accentless_ascii_only": true,
+  "source_diff_against": "feature/grandworld-ptbr-human-review-stage8-20261031",
+  "release_approved": false
+}
