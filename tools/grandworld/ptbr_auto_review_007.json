@@ -62,7 +62,7 @@
     },
     "data/maps/AbandonedShip_Corridors_1F/scripts.inc": {
       "AbandonedShip_Corridors_1F_Text_CharlieIntro": [
-        "O que ha de tao engracado em\\nter meu tubo interior a bordo\\lda nave?$"
+        "Qual e o problema de eu\\nlevar uma boia neste\\lnavio?$"
       ],
       "AbandonedShip_Corridors_1F_Text_CharlieDefeat": [
         "Voce me esmagou!$"
@@ -101,7 +101,7 @@
         "Andar descalco nesta nave e\\nnojento.$"
       ],
       "AbandonedShip_Rooms2_1F_Text_GarrisonDefeat": [
-        "Ha algo em ti que brilha.$"
+        "Voce tem um brilho especial!$"
       ],
       "AbandonedShip_Rooms2_1F_Text_GarrisonPostBattle": [
         "Numa cabana algures a bordo, vi\\nalgo a brilhar.$"
@@ -129,7 +129,7 @@
         "E tao durona! Me deixe\\nregistar-te como recordacao!$"
       ],
       "AbandonedShip_Rooms_1F_Text_ThaliaRematchIntro": [
-        "O que te obrigaria a voltar?\\nDeves estar mesmo curioso!$"
+        "Veio me visitar de novo?\\nVoce deve ser bem curioso!$"
       ],
       "AbandonedShip_Rooms_1F_Text_ThaliaRematchDefeat": [
         "Nao e muito forte?$"
@@ -286,7 +286,7 @@
         "Gostaria de gravar a sua\\nultima batalha no seu PASS\\lFRONTIER?$"
       ],
       "BattleFrontier_BattleArenaBattleRoom_Text_NowFaceTycoon": [
-        "Meu querido desafiante!\\pSeu nivel de habilidade e\\nrealmente surpreendente!\\pAgora gostariamos que\\nenfrentassem nosso lider, o\\lARENA TYCOON!$"
+        "Caro desafiante!\\pSuas habilidades sao\\nrealmente impressionantes!\\pAgora voce vai enfrentar\\nnosso lider, o\\lARENA TYCOON!$"
       ],
       "BattleFrontier_BattleArenaBattleRoom_Text_PreparedForTycoon": [
         "Uma batalha com a ARENA TYCOON!\\nEstas preparado?$"
@@ -341,7 +341,7 @@
         "Quando tiverem feito os vossos\\npreparativos, por favor,\\lvoltem.$"
       ],
       "BattleFrontier_BattleArenaLobby_Text_DidntSaveBeforeShuttingDown": [
-        "Meu querido desafiante!\\pNao salvaste o jogo antes de\\nfechar, pois nao?\\pE lamentavel, mas isso resultou\\nna sua desqualificacao do seu\\ldesafio.\\pPode, naturalmente, comecar com\\num novo desafio.$"
+        "Caro desafiante!\\pVoce nao salvou o jogo\\nantes de desligar, certo?\\pInfelizmente, isso causou\\nsua desclassificacao\\ldeste desafio.\\pMas voce pode iniciar\\num novo desafio.$"
       ],
       "BattleFrontier_BattleArenaLobby_Text_CongratsOnSevenWins": [
         "Felicitamos-vos pela sua\\nesplendida serie de vitorias\\lsobre sete TREINADORES!$"
@@ -350,7 +350,7 @@
         "Seu feito sera gravado. Por\\nfavor, espere enquanto salvo o\\ljogo.$"
       ],
       "BattleFrontier_BattleArenaLobby_Text_PresentYouWithPrize": [
-        "Em comemoracao as suas 7\\nvitorias, apresentamos-te este\\lpremio.$"
+        "Por suas sete vitorias,\\noferecemos este\\lpremio especial!$"
       ],
       "BattleFrontier_BattleArenaLobby_Text_ReceivedPrize": [
         "{PLAYER}recebeu o\\npremio{STR_VAR_1}.$"
@@ -490,7 +490,7 @@
         "O simbolo tactico ganhou um\\nbrilho dourado!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_LookForwardToNextEncounter": [
-        "Voce e forte, mas acima de\\ntudo, voce tem um charme unico!\\pEm ti, vejo um potencial\\ndefinitivo para uma estrela\\lcomo eu.\\pAguardo ansiosamente o nosso\\nproximo encontro!$"
+        "Voce e muito forte\\ne tem um estilo unico!\\pVejo em voce o potencial\\nde uma verdadeira estrela.\\lAssim como eu!\\pEspero nossa proxima\\nbatalha!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsLv50Champ2": [
         "{PLAYER}e o Campeao do Torneio\\nde Batalha Nivel 50!\\pParabens!$"
@@ -507,7 +507,7 @@
         "Esperamos ve-lo novamente.$"
       ],
       "BattleFrontier_BattleDomeLobby_Text_OkayToSaveBeforeChallenge": [
-        "Antes de te mostrar o DOME\\nBATTLE, preciso guardar os\\ldados. Pode ser?$"
+        "Antes de iniciar o\\nBATTLE DOME, preciso salvar\\los dados. Tudo bem?$"
       ],
       "BattleFrontier_BattleDomeLobby_Text_WhichLevelMode": [
         "O torneio oferece dois niveis\\nde desafio, Nivel 50 e Nivel\\lAberto. Qual e sua escolha?$"
@@ -540,7 +540,7 @@
         "Estavamos sua espera!$"
       ],
       "BattleFrontier_BattleDomeLobby_Text_OkayToSaveBeforeChallenge2": [
-        "Antes de te mostrar o DOME\\nBATTLE, preciso guardar os\\ldados. Pode ser?$"
+        "Antes de iniciar o\\nBATTLE DOME, preciso salvar\\los dados. Tudo bem?$"
       ],
       "BattleFrontier_BattleDomeLobby_Text_LastWinnerWasTough": [
         "Viu? O ultimo torneio de\\nbatalha?\\pO vencedor,{STR_VAR_1}Foi muito\\ndificil.\\pVoce deve verificar os\\nresultados no monitor ao lado\\ldo PC.$"
@@ -673,7 +673,7 @@
         "O Simbolo do Conhecimento\\nassumiu um brilho dourado!$"
       ],
       "BattleFrontier_BattleFactoryBattleRoom_Text_LastTimeILoseToYou": [
-        "Pfft, meu!\\pE a ultima vez que perco para\\nti!\\pTemos de fazer isto outra vez.$"
+        "Puxa vida!\\pNao vou perder para\\nvoce outra vez!\\pPrecisamos batalhar de novo!$"
       ]
     },
     "data/maps/BattleFrontier_BattleFactoryLobby/scripts.inc": {

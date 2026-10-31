@@ -36,6 +36,11 @@ class PTBRDraftQualityTests(unittest.TestCase):
         self.assertEqual(report["human_reviewed_stage15"], 154)
         self.assertEqual(report["human_reviewed_stage16"], 125)
         self.assertEqual(report["pending_human_language_review"], 3238)
+        self.assertEqual(report["stage17_assisted_not_human_approved"], 1053)
+        self.assertEqual(report["stage18_editorial_rewritten_not_human_approved"], 135)
+        self.assertEqual(report["stage18_editorial_upgraded_from_assisted"], 65)
+        self.assertEqual(report["stage18_newly_touched_drafts"], 70)
+        self.assertEqual(report["still_without_assisted_or_editorial_touch"], 2115)
         self.assertLessEqual(len(report["sample_unreviewed_warnings"]), 4)
         self.assertEqual(report["review_status"],
                          "diagnostic_only_no_gameplay_certification")

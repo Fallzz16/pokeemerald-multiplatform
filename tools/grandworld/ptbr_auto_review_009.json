@@ -14,7 +14,7 @@
         "Impressionante!\\pMas ainda ha mais um TREINADOR\\nneste andar. Consegue vencer?$"
       ],
       "BattlePyramid_Text_ZeroTrainersRemaining3": [
-        "Impressionante!\\pPassaste por todos os TREINADORES\\ndeste andar.$"
+        "Impressionante!\\pVoce venceu todos os\\nTREINADORES deste andar!$"
       ],
       "BattlePyramid_Text_SevenTrainersRemaining4": [
         "Talvez possa varrer os sete\\nTRAiners que restam neste\\landar.$"
@@ -62,7 +62,7 @@
         "Voce pode ter o que e preciso\\npara vencer o unico\\lespecialista que permanece.$"
       ],
       "BattlePyramid_Text_ZeroTrainersRemaining5": [
-        "Suas habilidades sao\\nirrepreensiveis.\\pNao ha mais TREINADORES aqui\\nque tenham alguma hipotese de\\lte vencer.$"
+        "Suas habilidades sao\\nimpressionantes!\\pNao restou nenhum\\nTREINADOR capaz de\\lencarar voce!$"
       ],
       "BattlePyramid_Text_SevenTrainersRemaining6": [
         "Pode continuar a ganhar contra\\nos sete TREINADORES restantes?$"
@@ -86,7 +86,7 @@
         "Pode continuar a ganhar contra\\no ultimo TREINADOR restante?$"
       ],
       "BattlePyramid_Text_ZeroTrainersRemaining6": [
-        "Nao ha mais TREINADORES que\\npossam enfrentar-te agora...$"
+        "Nao ha mais TREINADORES\\npara desafiar voce aqui!$"
       ]
     },
     "data/maps/BattleFrontier_BattlePyramidLobby/scripts.inc": {
@@ -290,7 +290,7 @@
         "O simbolo de habilidade tomou\\num brilho dourado!$"
       ],
       "BattleFrontier_BattleTowerBattleRoom_Text_WishICouldBattleYouAgain": [
-        "Foi divertido...\\pNunca tive uma batalha POKEMON\\ntao agradavel antes...\\pQuem me dera poder batalhar\\ncontigo outra vez...$"
+        "Foi muito divertido...\\pNunca participei de uma\\nbatalha tao boa!\\pQueria batalhar com voce\\nmais uma vez...$"
       ]
     },
     "data/maps/BattleFrontier_BattleTowerLobby/scripts.inc": {

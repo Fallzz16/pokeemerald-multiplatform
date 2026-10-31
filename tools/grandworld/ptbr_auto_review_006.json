@@ -36,7 +36,7 @@
     },
     "data/maps/Route3_Frlg/scripts.inc": {
       "Route3_Text_TunnelFromCeruleanTiring": [
-        "Ufa... E melhor descansar...\\nGroan...\\pAquele tunel da CERULEAN\\ntira-te muito!$"
+        "Ufa... Preciso descansar...\\nAi, ai...\\pAquele tunel de CERULEAN\\ne muito cansativo!$"
       ],
       "Route3_Text_ColtonDefeat": [
         "Bateste-me outra vez!$"
@@ -148,7 +148,7 @@
     },
     "data/maps/Route41/scripts.inc": {
       "Route41_Text_SwimmermCharlieSeen": [
-        "A agua esta quente aqui. Sou\\nfrouxo e flexivel.\\pClaro, eu levo-te!$"
+        "A agua esta quente aqui.\\nEstou bem relaxado!\\pMas posso batalhar com voce!$"
       ],
       "Route41_Text_SwimmermCharlieBeaten": [
         "Caramba! Tenho pele de ameixa!$"
@@ -251,25 +251,25 @@
         "Hey! Tem algum POKEMON raro?$"
       ],
       "Route43_Text_PokemaniacBrentBeaten": [
-        "Meu pobre POKEMON! Queridas!$"
+        "Ah, meus pobres POKEMON!$"
       ],
       "Route43_Text_PokemaniacBrentAfter": [
         "Ficaria feliz em ter um unico\\nPOKEMON raro.$"
       ],
       "Route43_Text_PokemaniacRonBeaten": [
-        "Meu NIDOKING correu muito\\nbem!$"
+        "Meu NIDOKING batalhou\\nmuito bem!$"
       ],
       "Route43_Text_PokemaniacRonAfter": [
         "As pessoas podem gostar de\\ntipos diferentes de POKEMON.\\pPOKEMON nao e apenas sobre ter\\no mais poderoso.$"
       ],
       "Route43_Text_FisherMarvinSeen": [
-        "Estou numa crise.\\pTalvez seja o equipamento que\\nestou a usar.\\pVamos batalhar por uma mudanca de\\nritmo!$"
+        "Acho que estou numa fase ruim.\\pTalvez seja o equipamento\\nque estou usando.\\pQue tal uma batalha para\\nmudar o ritmo?$"
       ],
       "Route43_Text_FisherMarvinBeaten": [
         "Perdi, mas sinto-me melhor.$"
       ],
       "Route43_Text_CamperSpencerSeen": [
-        "Posso fazer tanto com o meu\\nPokemon. E super divertido!$"
+        "Me divirto muito\\ncom meus POKEMON!$"
       ],
       "Route43_Text_CamperSpencerBeaten": [
         "Perder nao e nada divertido...$"
@@ -284,7 +284,7 @@
         "Eu joguei demais!$"
       ],
       "Route43_Text_PicnickerTiffanyWantsPicnic": [
-        "Vou fazer um piquenique com o\\nPokemon.\\pNao te juntas a nos?$"
+        "Vou fazer um piquenique\\ncom meus POKEMON.\\pQuer vir com a gente?$"
       ]
     },
     "data/maps/Route44/scripts.inc": {
@@ -298,7 +298,7 @@
         "O POLIWAG que escapou... foi\\nenorme.\\pEu juro que devia ter 16 pes de\\ncomprimento!$"
       ],
       "Route44_Text_FisherEdgarSeen": [
-        "Eu pesco ate nao poder mais.\\pTambem luto ate cair.\\pE minha relacao com o meu\\nPokemon.$"
+        "Pesco ate nao aguentar mais.\\pE batalho ate ficar exausto.\\pEssa e minha vida\\ncom os POKEMON.$"
       ],
       "Route44_Text_FisherEdgarBeaten": [
         "Hmmmm... Isto nao esta certo.$"
@@ -384,7 +384,7 @@
         "Nao consigo encontrar uma\\nmaneira de ganhar!\\pContinua!\\pE toma isto. E o presente que\\nnao podias aceitar quando nos\\lconhecemos.$"
       ],
       "Route45_Text_BlackbeltKenjiSeen": [
-        "Estava treinando aqui sozinha.\\pEis os frutos do meu trabalho!$"
+        "Estava treinando aqui sozinho.\\pVeja o resultado do meu treino!$"
       ],
       "Route45_Text_BlackbeltKenjiAfter": [
         "Isto exige medidas extremas.\\pTenho de ir para as colinas e\\ntreinar em solidao.$"
@@ -419,7 +419,7 @@
     },
     "data/maps/Route46/scripts.inc": {
       "Route46_Text_HikerBaileySeen": [
-        "Certo! Vou mostrar-te o poder\\nda montanha POKEMON!$"
+        "Vou mostrar o poder\\ndos POKEMON das montanhas!$"
       ],
       "Route46_Text_HikerBaileyBeaten": [
         "Misericordia! Mostraste-me o\\nteu poder!$"
@@ -454,7 +454,7 @@
         "Depois de uma batalha voce deve\\nsempre sair com uma risada\\lpartida!$"
       ],
       "Route47_Text_CamperSeen": [
-        "Nao sou bom com multidoes\\ngrandes, por isso estou a\\lacampar aqui com meu POKEMON!$"
+        "Nao gosto de multidoes,\\npor isso acampo aqui\\lcom meus POKEMON!$"
       ],
       "Route47_Text_CamperBeaten": [
         "Devia ir mais fundo para a\\nmontanha.$"
@@ -495,7 +495,7 @@
         "Esta bem! Que POKEMON vai\\naprender?$"
       ],
       "Text_MegaPunchTaught": [
-        "Agora, somos camaradas no\\ncaminho dos socos!\\pDevias ir antes que sejas visto\\npor um tolo que treina apenas\\los pontapes dele.$"
+        "Agora somos companheiros\\nno caminho dos socos!\\pE melhor ir antes que\\no mestre dos chutes\\lveja voce por aqui!$"
       ],
       "Text_MegaKickTeach": [
         "Um pontape de ferocidade\\nbrutal!\\pCheio de poder destrutivo!\\pQuando voce chegar a ele, MEGA\\nKICK e o ataque final! Nao\\lconcordas?\\pEsta bem! Eu ensino-o ao seu\\nPokemon!$"
@@ -507,12 +507,12 @@
         "Muito bem! Que POKEMON quer\\naprender?$"
       ],
       "Text_MegaKickTaught": [
-        "Agora, somos almas gemeas no\\ncaminho dos pontapes!\\pDevias correr antes que sejas\\nvisto pelo idiota iludido que\\ltreina so um simples soco ali.$"
+        "Agora somos parceiros\\nno caminho dos chutes!\\pMelhor sair antes que\\no mestre dos socos\\lveja voce por aqui!$"
       ]
     },
     "data/maps/Route4_PokemonCenter_1F_Frlg/scripts.inc": {
       "Route4_PokemonCenter_1F_Text_OnlyDoingThisAsFavorToYou": [
-        "Nao? Diz que nao? So estou a\\nfazer-te um favor!$"
+        "Nao? Voce vai recusar?\\nSo quero ajudar voce!$"
       ],
       "Route4_PokemonCenter_1F_Text_NoRoomForMorePokemon": [
         "Parece que nao ha mais espaco\\npara mais POKEMON.$"
@@ -620,13 +620,13 @@
         "Quero ficar mais forte. Qual e\\no seu segredo?$"
       ],
       "Route6_Text_ElijahIntro": [
-        "Nunca te vi por aqui. Estas\\nbem?$"
+        "Nunca vi voce por aqui.\\nEsta tudo bem?$"
       ],
       "Route6_Text_ElijahDefeat": [
         "E bom demais!$"
       ],
       "Route6_Text_ElijahPostBattle": [
-        "Meu POKEMON e fraco? Ou sou\\napenas ma? Qual achas que e?$"
+        "Meus POKEMON sao fracos?\\nOu sera que eu sou ruim?$"
       ]
     },
     "data/maps/Route6_NorthEntrance_Frlg/scripts.inc": {
@@ -692,7 +692,7 @@
         "Devemos parecer tolos aqui\\nparados.$"
       ],
       "Route8_Text_MeganDefeat": [
-        "Olha o que fez ao meu pobre\\nPokemon!$"
+        "Veja o que fez com\\nmeus pobres POKEMON!$"
       ],
       "Route8_Text_RichIntro": [
         "Sou um gamba!$"
@@ -707,7 +707,7 @@
         "O que e um POKEMON giro,\\nredondo e fofinho?$"
       ],
       "Route8_Text_RicardoIntro": [
-        "Minha bicicleta esta\\npassar-se, meu.$"
+        "Minha bicicleta esta\\ndando problema, cara!$"
       ],
       "Route8_Text_RicardoDefeat": [
         "Caramba. Nao estou metido\\nnisto.$"

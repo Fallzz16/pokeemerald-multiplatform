@@ -1,0 +1,125 @@
+{
+  "stage": 18,
+  "status": "editorial_ai_rewrite_pending_independent_linguistic_and_visual_review",
+  "base_commit": "66f9162b11e9f92a07445c36c9124d0f32f1d2dc",
+  "part": 2,
+  "entries": 46,
+  "previously_assisted_stage17": 17,
+  "previously_untouched_by_stage17": 29,
+  "changed_labels_by_shard_and_source": {
+    "tools/grandworld/ptbr_auto_review_008.json": {
+      "data/maps/BattleFrontier_BattlePalaceCorridor/scripts.inc": [
+        "BattleFrontier_BattlePalaceCorridor_Text_HeartfeltBondBetweenYouAndMons"
+      ],
+      "data/maps/BattleFrontier_BattlePikeRoomNormal/scripts.inc": [
+        "BattleFrontier_BattlePikeRoomNormal_Text_ApologizeForKirlia",
+        "BattleFrontier_BattlePikeRoomNormal_Text_ApologizeForDusclops"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_009.json": {
+      "data/maps/BattleFrontier_BattlePyramidFloor/scripts.inc": [
+        "BattlePyramid_Text_ZeroTrainersRemaining3",
+        "BattlePyramid_Text_ZeroTrainersRemaining5",
+        "BattlePyramid_Text_ZeroTrainersRemaining6"
+      ],
+      "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.inc": [
+        "BattleFrontier_BattleTowerBattleRoom_Text_WishICouldBattleYouAgain"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_010.json": {
+      "data/maps/BattleFrontier_BattleTowerMultiPartnerRoom/scripts.inc": [
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_FishermanAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberFAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteMAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_DragonTamerAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_NinjaBoyAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_AromaLadyAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CamperAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PicnickerReject"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_011.json": {
+      "data/maps/BattleFrontier_Lounge3/scripts.inc": [
+        "BattleFrontier_Lounge3_Text_BackedWrongTrainer"
+      ],
+      "data/maps/BattleFrontier_Lounge5/scripts.inc": [
+        "BattleFrontier_Lounge5_Text_NatureGirlEgg"
+      ],
+      "data/maps/BattleFrontier_Lounge7/scripts.inc": [
+        "BattleFrontier_Lounge7_Text_LeftTutorWelcomeBack",
+        "BattleFrontier_Lounge7_Text_RightTutorWelcomeBack"
+      ],
+      "data/maps/BattleFrontier_Mart/scripts.inc": [
+        "BattleFrontier_Mart_Text_ChaperonGrandson"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_012.json": {
+      "data/maps/CeruleanCity_House1_Frlg/scripts.inc": [
+        "CeruleanCity_House1_Text_AttackStatFlash",
+        "CeruleanCity_House1_Text_ObeyLv30Cut",
+        "CeruleanCity_House1_Text_ObeyLv70RockSmash"
+      ],
+      "data/maps/CeruleanCity_House4_Frlg/scripts.inc": [
+        "CeruleanCity_House4_Text_NothingEntertaining",
+        "CeruleanCity_House4_Text_NewNewsInformativeHaveThis",
+        "CeruleanCity_House4_Text_ThanksForSpreadingNewsTakeThis"
+      ],
+      "data/maps/CeruleanCity_House5_Frlg/scripts.inc": [
+        "CeruleanCity_House1_Text_TakeInterestInAllSortsOfThings"
+      ],
+      "data/maps/CeruleanCity_PokemonCenter_1F_Frlg/scripts.inc": [
+        "CeruleanCity_PokemonCenter_1F_Text_TryTradingUpstairs"
+      ],
+      "data/maps/CherrygroveCity_House1/scripts.inc": [
+        "CherrygroveCity_GymSpeechHouse_Text_PokefanM"
+      ],
+      "data/maps/CherrygroveCity_House2/scripts.inc": [
+        "CherrygroveCity_GuideHouse_Text_GuideGent"
+      ],
+      "data/maps/CherrygroveCity_House3/scripts.inc": [
+        "CherrygroveCity_EvolutionHouse_Text_Youngster",
+        "CherrygroveCity_EvolutionHouse_Text_Lass"
+      ],
+      "data/maps/CherrygroveCity_PokemonCenter/scripts.inc": [
+        "CherryGrove_Pokecenter_Text_Fisher"
+      ],
+      "data/maps/CianwoodCity/scripts.inc": [
+        "CianwoodCity_Text_EusineAfter"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_013.json": {
+      "data/maps/FortreeCity/scripts.inc": [
+        "FortreeCity_Text_GymSign"
+      ],
+      "data/maps/FortreeCity_House1/scripts.inc": [
+        "FortreeCity_House1_Text_TradingMemoriesWithOthers"
+      ],
+      "data/maps/FortreeCity_House2/scripts.inc": [
+        "FortreeCity_House2_Text_YourHiddenPowerHasAwoken"
+      ],
+      "data/maps/FortreeCity_House5/scripts.inc": [
+        "FortreeCity_House5_Text_TreeHousesAreGreat",
+        "FortreeCity_House5_Text_AdaptedToNature"
+      ],
+      "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc": [
+        "FourIsland_LoreleisHouse_Text_StuffedMonDollsGalore"
+      ],
+      "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc": [
+        "FourIsland_PokemonCenter_1F_Text_RareIceMonsInCave"
+      ],
+      "data/maps/FuchsiaCity_House3_Frlg/scripts.inc": [
+        "FuchsiaCity_House3_Text_WhichMonShouldForgetMove"
+      ],
+      "data/maps/FuchsiaCity_PokemonCenter_1F_Frlg/scripts.inc": [
+        "FuchsiaCity_PokemonCenter_1F_Text_CantBecomeGoodTrainerWithOneMon"
+      ],
+      "data/maps/FuchsiaCity_SafariZone_Office_Frlg/scripts.inc": [
+        "FuchsiaCity_SafariZone_Office_Text_WardenIsVeryKnowledgeable"
+      ],
+      "data/maps/FuchsiaCity_WardensHouse_Frlg/scripts.inc": [
+        "FuchsiaCity_WardensHouse_Text_MonPhotosFossilsOnDisplay"
+      ]
+    }
+  }
+}

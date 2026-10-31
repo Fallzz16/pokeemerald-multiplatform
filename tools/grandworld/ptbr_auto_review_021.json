@@ -26,7 +26,7 @@
         "A TEAM AQUA tem uma politica de\\nmontagem e dispersao no local\\lda operacao.$"
       ],
       "SlateportCity_Text_DontButtIn": [
-        "Ei, voce ai! Nao te metas!$"
+        "Ei, voce! Nao se meta!$"
       ],
       "SlateportCity_Text_RemindsMeOfLongLineForGames": [
         "Uma longa fila?\\pLembra-me as vezes em que me\\nformei para comprar jogos de\\lsucesso...$"
@@ -38,19 +38,19 @@
         "O que? O que quer?$"
       ],
       "SlateportCity_Text_IllReadSignForYou": [
-        "Quer ler este cartaz? Eu\\nleio-te!$"
+        "Quer ler essa placa?\\nEu posso ler para voce!$"
       ],
       "SlateportCity_Text_ShouldveBroughtMyGameBoy": [
         "Grumble...\\pDevia ter trazido meu Game\\nBoy Advance para nao me\\laborrecer na fila...\\pGrumble...$"
       ],
       "SlateportCity_Text_HotSpringsAfterOperation": [
-        "Quando esta operacao acabar,\\nlevo-te a um spa de termas!\\pFoi o que nosso lider disse.\\nMal posso esperar!$"
+        "Quando essa missao acabar,\\nvou levar voce as termas!\\pNosso lider prometeu isso.\\nMal posso esperar!$"
       ],
       "SlateportCity_Text_SeaIsSoWet": [
         "O mar e tao vasto...\\pPoderia o mar ter sido feito\\npelas lagrimas derramadas por\\lPOKEMON?$"
       ],
       "SlateportCity_Text_SinkOldBoats": [
-        "Voce sabe o que eles fazem com\\nnavios velhos que se tornam\\lranger demais para navegar?\\pAfundam-nos no mar para se\\ntornarem habitats de POKEMON.$"
+        "Sabe o que fazem com\\nnavios velhos demais\\lpara navegar?\\pAfundam no mar para virarem\\nabrigo para POKEMON aquaticos.$"
       ],
       "SlateportCity_Text_BuyTooMuch": [
         "Sempre que venho aqui, me\\nempolgo e compro muito.$"
@@ -85,36 +85,36 @@
     },
     "data/maps/SlateportCity_BattleTentCorridor/scripts.inc": {
       "SlateportCity_ContestHall_Text_ExplainTorment": [
-        "E tipo TM41, sabe? E TORMENT,\\nestas a ouvir?\\pNao deixa o outro usar o mesmo\\nmovimento duas vezes seguidas.\\pOuve, nao estou a\\natormentar-te!$"
+        "TM41 ensina TORMENT.\\nJa ouviu falar?\\pEsse golpe impede que o alvo\\nrepita o mesmo movimento.\\pMas nao estou aqui\\npara atormentar voce!$"
       ],
       "SlateportCity_ContestHall_Text_MCStepUpTakePartInContest": [
-        "Meu Deus! Nao e um POKEMON\\nelegante?\\pPor favor! Aproximem-se e tomem\\nparte nos nossos esplendidos\\lCONTESTS!\\pVais sair-te bem! Tenho a\\ncerteza! Meus olhos nunca me\\lfalharam!$"
+        "Nossa! Que POKEMON\\nelegante!\\pVenham conhecer e participar\\nde nossos maravilhosos\\lCONTESTS!\\pVoce pode vencer! Eu\\ntenho certeza disso!\\lMeus olhos nao falham!$"
       ],
       "SlateportCity_ContestHall_Text_ItsAppealTime": [
         "Esta na hora do recurso! Com o\\nque devo comecar?$"
       ],
       "SlateportCity_ContestHall_Text_RewardWithSageAdvice": [
-        "Ola! Voce deve ser um grande fa\\npara chegar tao perto da acao.\\pRecompenso seu entusiasmo com\\neste sabio conselho.\\pSe um movimento correr muito\\nbem, o publico vai ficar\\lexcitado.\\pO POKEMON que faz seu apelo\\ndireito quando todos estao\\lanimados...\\pBem, voce pensaria que algo bom\\ntem que acontecer!$"
+        "Voce parece ser um grande fa\\npara vir tao perto da acao!\\pVou recompensar seu interesse\\ncom uma dica especial.\\pQuando um golpe impressiona\\no publico, todos ficam\\lanimados.\\pPOKEMON que fazem o\\nmovimento certo nessa\\lhora podem brilhar!\\pE ai coisas boas\\npodem acontecer!$"
       ],
       "SlateportCity_ContestHall_Text_MoreFreakedOutThanMon": [
         "Nao consigo fazer isto! Estou\\nmais assustado que meu\\lPokemon.\\pEstou a tremer e meu coracao\\nesta a acelerar!$"
       ],
       "SlateportCity_ContestHall_Text_MonLooksOnTopOfGame": [
-        "Aquele POKEMON parece que esta\\nno topo do jogo.\\pUm POKEMON que faz bem no\\njulgamento secundario parece\\lser mais relaxado quando esta\\lfazendo apelos.$"
+        "Aquele POKEMON parece\\nestar em otima forma!\\pPOKEMON que vao bem\\nna avaliacao preliminar\\lficam mais confiantes\\ldurante as apresentacoes.$"
       ],
       "SlateportCity_ContestHall_Text_GetUrgeToMoveWithMon": [
-        "Nao tem vontade de te mudares\\ncom o POKEMON se estao fazendo\\lum apelo energetico?$"
+        "Quando seu POKEMON faz\\numa apresentacao animada,\\lvoce tambem nao quer dancar?$"
       ]
     },
     "data/maps/SlateportCity_BattleTentLobby/scripts.inc": {
       "SlateportCity_BattleTentLobby_Text_CouldntFindMonForMe": [
-        "Nao consegui encontrar nenhum\\nPokemon que fosse para mim.\\pPensei que devia apresentar\\nqueixa ao tipo de la?\\pE ele nao me ouvia, tipo, hey!\\nQue chatice, meu!\\pEi, voce! Cala-te, sabe? Toma\\nisto!$"
+        "Nao achei nenhum\\nPOKEMON que combinasse comigo.\\pPensei em reclamar\\ncom o funcionario daqui.\\pMas ele nao quis ouvir!\\nQue coisa chata!\\pEi, voce! Pegue\\nisto de uma vez!$"
       ],
       "SlateportCity_BattleTentLobby_Text_ExplainTorment": [
-        "E tipo TM41, sabe? E TORMENT,\\nestas a ouvir?\\pNao deixa o outro usar o mesmo\\nmovimento duas vezes seguidas.\\pOuve, nao estou a\\natormentar-te!$"
+        "TM41 ensina TORMENT.\\nJa ouviu falar?\\pEsse golpe impede que o alvo\\nrepita o mesmo movimento.\\pMas nao estou aqui\\npara atormentar voce!$"
       ],
       "SlateportCity_BattleTentLobby_Text_BattleEvenWithoutToughMons": [
-        "Pode batalhar o quanto quiseres\\naqui, mesmo que nao tenha\\lnenhum POKEMON duro.$"
+        "Pode participar quantas\\nvezes quiser, mesmo sem\\lPOKEMON muito fortes.$"
       ],
       "SlateportCity_BattleTentLobby_Text_NiceIfMoreSelection": [
         "Nao seria bom se tivessem mais\\numa seleccao?$"
@@ -241,10 +241,10 @@
     },
     "data/maps/SlateportCity_PokemonCenter_1F/scripts.inc": {
       "SlateportCity_PokemonCenter_1F_Text_RaiseDifferentTypesOfPokemon": [
-        "Quer uma dica para batalhar?\\pDiria que esta criando\\ndiferentes tipos de POKEMON de\\lforma equilibrada.\\pNao e bom fazer apenas um\\nPOKEMON forte.\\pSe tiver uma desvantagem do\\ntipo, pode nao ter uma chance.$"
+        "Quer uma dica de batalha?\\pTreine POKEMON\\nde tipos diferentes\\lpara equilibrar sua equipe.\\pNao dependa apenas de um\\nPOKEMON muito forte.\\pUm adversario de outro\\ntipo pode surpreender voce!$"
       ],
       "SlateportCity_PokemonCenter_1F_Text_TradedMonWithFriend": [
-        "Troco POKEMON com meus\\namigos.\\pSe um POKEMON negociado esta\\nsegurando um item, isso me faz\\lduas vezes mais feliz!$"
+        "Costumo trocar POKEMON\\ncom meus amigos.\\pSe algum deles vier\\nsegurando um item,\\lmelhor ainda!$"
       ]
     },
     "data/maps/SlateportCity_PokemonFanClub/scripts.inc": {
@@ -258,7 +258,7 @@
         "Hmmm... Nao e mau, mas tambem\\nnao e bom...\\pVoce, o TREINADOR, precisa se\\nesforcar mais para criar este\\lPokemon!\\pPor exemplo, posso sugerir que\\nlhe de mais{POKEBLOCK}S?$"
       ],
       "SlateportCity_PokemonFanClub_Text_NoSpaceForReward": [
-        "Meu...\\pSeu POKEMON esta crescendo\\nmuito bem, entao voce merece\\luma recompensa.\\pInfelizmente, nao tem espaco\\npara isto no seu BAG.$"
+        "Nossa!\\pSeu POKEMON esta crescendo\\nmuito bem. Voce merece\\luma recompensa!\\pMas nao tem espaco\\npara ela na BOLSA.$"
       ],
       "SlateportCity_PokemonFanClub_Text_MonMostImpressiveGiveItThis": [
         "Sua{STR_VAR_1}, esta crescendo\\nde uma maneira muito\\limpressionante! E um belo\\lespecime!\\pMas! Se lhe desse isto, ficaria\\nainda melhor! E verdade!$"

@@ -33,7 +33,7 @@
         "Arrgh! Voce e bom!$"
       ],
       "Route24_Text_YoudBecomeTopRocketLeader": [
-        "Com sua habilidade,\\ntornou-te um lider de topo no\\lTEAM ROCKET.\\pVa la, pensa na oportunidade!\\nNao desperdices esta\\loportunidade.$"
+        "Com sua habilidade,\\nvoce seria um lider de elite\\lda EQUIPE ROCKET.\\pPense nessa oportunidade!\\nNao deixe essa chance\\lescapar!$"
       ],
       "Route24_Text_ShaneIntro": [
         "Vi seu feito da relva!$"
@@ -45,7 +45,7 @@
         "Escondi-me porque as pessoas na\\nponte me assustaram.$"
       ],
       "Route24_Text_EthanIntro": [
-        "Esta bem! Eu sou o No. 5! Eu\\nbato-te!$"
+        "Muito bem! Sou o quinto!\\nVou derrotar voce!$"
       ],
       "Route24_Text_EthanDefeat": [
         "Whoa! Demasiado!$"
@@ -128,7 +128,7 @@
         "Se seu POKEMON ficar confuso,\\ntroque-o.\\pEssa e uma boa estrategia.$"
       ],
       "Route25_Text_HaleyIntro": [
-        "Meu amigo tem muitos POKEMON\\ngiros. Estou com tanta inveja!$"
+        "Meu amigo tem varios POKEMON\\nlindinhos! Tenho tanta inveja!$"
       ],
       "Route25_Text_HaleyDefeat": [
         "Nao tenho tanta inveja!$"
@@ -207,7 +207,7 @@
         "Boa batalha!$"
       ],
       "Route26_Text_PsychicRichardAfter": [
-        "As pessoas e POKEMON crescem a\\npartir de suas experiencias.\\pNao sejas preguicoso e\\ncomplacente.$"
+        "Pessoas e POKEMON crescem\\ncom suas experiencias.\\pNao seja preguicoso nem\\nse acomode!$"
       ]
     },
     "data/maps/Route26_House1/scripts.inc": {
@@ -270,7 +270,7 @@
         "E demais!$"
       ],
       "Route27_Text_PsychicGilbertAfter": [
-        "Com suas habilidades, vai\\nsair-te bem na LEAGUE.\\pE o que diz minha premonicao.$"
+        "Com essas habilidades,\\nvoce vai se sair bem na LIGA.\\pEssa e minha previsao!$"
       ],
       "Route27_Text_FisherScottSeen": [
         "Estou sentindo-me bem hoje!\\pEu sinto que eu poderia\\narrancar ate mesmo o CHAMP\\lLEAGUE!$"
@@ -290,15 +290,15 @@
         "Ah! Seu POKEMON confia muito\\nem si.\\pE bom ver um bom TREINADOR.\\pToma. Um presente para a sua\\nviagem.$"
       ],
       "SandstormHouse_Text_TM37Description": [
-        "A TM37 e SANDSTORM.\\pE uma jogada que causa danos em\\nambos os combatentes.\\pE so para TREINADORES\\navancados.\\pUsa-o se te atreveres. Boa\\nsorte!$"
+        "TM37 ensina SANDSTORM.\\pEsse golpe causa danos\\naos POKEMON no campo.\\pE melhor que TREINADORES\\nexperientes o usem.\\pUse com cuidado e\\nboa sorte!$"
       ],
       "SandstormHouse_Text_DisloyalMon": [
-        "Se nao confiar mais em ti, pode\\nser dificil.\\pConfianca e o laco que une\\nPOKEMON e TREINADORES.$"
+        "Se seu POKEMON nao confiar\\nem voce, tudo fica dificil.\\pConfianca e o laco\\nentre POKEMON e TREINADORES.$"
       ]
     },
     "data/maps/Route28_House/scripts.inc": {
       "Route28House_Text_Celebrity1": [
-        "Meu Deus. Encontrou-me.\\pPor favor, nao contes a ninguem\\nsobre mim.\\pDou-te isto por guardares o meu\\nsegredo. Por favor?$"
+        "Nossa! Voce me encontrou.\\pPor favor, nao conte a ninguem\\nque estou escondido aqui.\\pAceite isto por guardar\\nmeu segredo, esta bem?$"
       ],
       "Route28House_Text_Celebrity2": [
         "E dificil ser uma celebridade.\\pPara onde quer que va, as\\npessoas perseguem-me.\\pSo quero ficar sozinha...$"
@@ -402,7 +402,7 @@
         "Garoto. Como estao morder?$"
       ],
       "Route32_Pokecenter_Text_CooltrainerF": [
-        "O que devo fazer com que o meu\\npOKEMON segure?\\pTalvez um item que aumente o\\nPoder do ATTACK...$"
+        "Que item devo dar para\\nmeu POKEMON segurar?\\pTalvez um que aumente\\no poder do ATTACK...$"
       ]
     },
     "data/maps/Route33/scripts.inc": {
@@ -457,7 +457,7 @@
         "E um garoto duro.$"
       ],
       "Route34_Text_OfficerKeith_After": [
-        "Sim, hoje nao ha nada de\\nerrado.\\pPorta-te bem e nao te metas em\\nsarilhos.$"
+        "Hoje esta tudo em\\nordem por aqui.\\pComporte-se bem e nao\\narranje confusao!$"
       ],
       "Route34_Text_OfficerKeith_Daytime": [
         "Estou patrulhando suspeitos.$"
@@ -466,7 +466,7 @@
         "Por que acaba assim?$"
       ],
       "Route34_Text_PokefanBrandon_After": [
-        "Meu POKEMON voltou com novos\\nmovimentos.\\pIsso me confundiu sem fim!$"
+        "Meu POKEMON aprendeu\\ngolpes novos!\\pFiquei muito surpreso!$"
       ]
     },
     "data/maps/Route34_DayCare/scripts.inc": {

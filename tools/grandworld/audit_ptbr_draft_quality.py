@@ -128,6 +128,36 @@ def audit(root, example_limit=150):
     if len(stage16_reviewed) != stage16["reviewed_entries"]:
         raise ValueError("stage16 human review registry count drift")
     reviewed |= stage16_reviewed
+    # Assisted and AI-editorial work improves source text but is not
+    # equivalent to independent linguistic review. Never inflate reviewed.
+    def candidate_labels(prefix, count):
+        labels = set()
+        for part_number in range(1, count + 1):
+            path = root / f"{prefix}_part{part_number}.json"
+            part = json.loads(path.read_text(encoding="utf-8"))
+            for sources in part["changed_labels_by_shard_and_source"].values():
+                for source, symbols in sources.items():
+                    for symbol in symbols:
+                        key = (source, symbol)
+                        if key in labels:
+                            raise ValueError("duplicate assisted/editorial symbol: " + repr(key))
+                        labels.add(key)
+            if sum(len(symbols)
+                   for sources in part["changed_labels_by_shard_and_source"].values()
+                   for symbols in sources.values()) != part[
+                       "modified_entries" if prefix == "ptbr_assisted_stage17" else "entries"
+                   ]:
+                raise ValueError("assisted/editorial part count drift: " + str(path))
+        return labels
+
+    assisted17 = candidate_labels("ptbr_assisted_stage17", 3)
+    editorial18 = candidate_labels("ptbr_editorial_stage18", 3)
+    if assisted17 & reviewed or editorial18 & reviewed:
+        raise ValueError("assisted/editorial review overlaps previously reviewed text")
+    if len(assisted17) != 1053 or len(editorial18) != 135:
+        raise ValueError("assisted/editorial registry total drift")
+    if len(editorial18 - assisted17) != 70:
+        raise ValueError("editorial genuinely new coverage drift")
     found = set()
     issues = Counter()
     by_file = defaultdict(Counter)
@@ -184,6 +214,11 @@ def audit(root, example_limit=150):
         "human_reviewed_stage15": len(stage15_reviewed),
         "human_reviewed_stage16": len(stage16_reviewed),
         "pending_human_language_review": entries - len(reviewed),
+        "stage17_assisted_not_human_approved": len(assisted17),
+        "stage18_editorial_rewritten_not_human_approved": len(editorial18),
+        "stage18_editorial_upgraded_from_assisted": len(editorial18 & assisted17),
+        "stage18_newly_touched_drafts": len(editorial18 - assisted17),
+        "still_without_assisted_or_editorial_touch": entries - len(reviewed | assisted17 | editorial18),
         "heuristic_warnings": dict(issues),
         "warning_counts_by_file": {k: dict(v) for k, v in by_file.items()},
         "sample_unreviewed_warnings": examples,
