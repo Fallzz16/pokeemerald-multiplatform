@@ -33,7 +33,7 @@
         "Arrgh! Voce e bom!$"
       ],
       "Route24_Text_YoudBecomeTopRocketLeader": [
-        "Com sua habilidade,\\ntornou-te um lider de topo no\\lTEAM ROCKET.\\pVa la, pensa na oportunidade!\\nNao desperdices esta\\loportunidade.$"
+        "Com sua habilidade,\\nvoce seria um lider de elite\\lda EQUIPE ROCKET.\\pPense nessa oportunidade!\\nNao deixe essa chance\\lescapar!$"
       ],
       "Route24_Text_ShaneIntro": [
         "Vi seu feito da relva!$"
@@ -290,10 +290,10 @@
         "Ah! Seu POKEMON confia muito\\nem si.\\pE bom ver um bom TREINADOR.\\pToma. Um presente para a sua\\nviagem.$"
       ],
       "SandstormHouse_Text_TM37Description": [
-        "A TM37 e SANDSTORM.\\pE uma jogada que causa danos em\\nambos os combatentes.\\pE so para TREINADORES\\navancados.\\pUsa-o se te atreveres. Boa\\nsorte!$"
+        "TM37 ensina SANDSTORM.\\pEsse golpe causa danos\\naos POKEMON no campo.\\pE melhor que TREINADORES\\nexperientes o usem.\\pUse com cuidado e\\nboa sorte!$"
       ],
       "SandstormHouse_Text_DisloyalMon": [
-        "Se nao confiar mais em ti, pode\\nser dificil.\\pConfianca e o laco que une\\nPOKEMON e TREINADORES.$"
+        "Se seu POKEMON nao confiar\\nem voce, tudo fica dificil.\\pConfianca e o laco\\nentre POKEMON e TREINADORES.$"
       ]
     },
     "data/maps/Route28_House/scripts.inc": {
@@ -457,7 +457,7 @@
         "E um garoto duro.$"
       ],
       "Route34_Text_OfficerKeith_After": [
-        "Sim, hoje nao ha nada de\\nerrado.\\pPorta-te bem e nao te metas em\\nsarilhos.$"
+        "Hoje esta tudo em\\nordem por aqui.\\pComporte-se bem e nao\\narranje confusao!$"
       ],
       "Route34_Text_OfficerKeith_Daytime": [
         "Estou patrulhando suspeitos.$"
