@@ -75,7 +75,7 @@
         "Os tipos de POKEMON combinam de\\nforma diferente entre si.\\pCada tipo e mais forte do que\\nalguns tipos e mais fraco do\\lque outros.$"
       ],
       "Route10_PokemonCenter_1F_Text_GreatHereYouGo": [
-        "Optimo! Capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
+        "Otimo! Capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
       ],
       "Route10_PokemonCenter_1F_Text_ReceivedEverstoneFromAide": [
         "{PLAYER}Recebeu o EVERSTONE da\\nAIDE.$"
@@ -635,7 +635,7 @@
     },
     "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc": {
       "Route11_EastEntrance_2F_Text_GreatHereYouGo": [
-        "Optimo! Capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
+        "Otimo! Capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
       ],
       "Route11_EastEntrance_2F_Text_ReceivedItemfinderFromAide": [
         "{PLAYER}Recebido o{STR_VAR_2}Da\\nAIDE.$"
@@ -750,7 +750,7 @@
         "STEVEN:{PLAYER}{KUN}Mostra-me o\\nteu verdadeiro poder como\\ltREINADOR!$"
       ],
       "Route120_Text_StevenGoodbye": [
-        "STEVEN:{PLAYER}{KUN}.\\pGosto de ver POKEMON e\\nTREINADORES que se esforcam\\ljuntos.\\pAcho que estas a ir muito bem.\\pBem, vamos voltar a\\nencontrar-nos algures.$"
+        "STEVEN:{PLAYER}{KUN}.\\pGosto de ver POKEMON e\\nTREINADORES que se esforcam\\ljuntos.\\pAcho que estas a ir muito bem.\\pBem, vamos voltar a\\nencontrar-nos em algum lugar.$"
       ],
       "Kecleon_Text_SomethingUnseeable": [
         "Algo inviavel esta no caminho.$"
