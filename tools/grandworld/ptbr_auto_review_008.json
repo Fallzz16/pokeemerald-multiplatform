@@ -159,7 +159,7 @@
         "As pessoas e o POKEMON sao as\\nmesmas...\\pSua natureza individual os\\ntorna bons em certas coisas, e\\lnao bons em outras.$"
       ],
       "BattleFrontier_BattlePalaceCorridor_Text_HeartfeltBondBetweenYouAndMons": [
-        "Vejo um forte e sincero vinculo\\nentre ti e seu POKEMON...$"
+        "Vejo um vinculo verdadeiro\\nentre voce e seus POKEMON...$"
       ]
     },
     "data/maps/BattleFrontier_BattlePalaceLobby/scripts.inc": {
@@ -364,10 +364,10 @@
         "Olha aqui! Ja chega!$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ApologizeForKirlia": [
-        "Devo pedir-te desculpa...\\pA minha KIRLIA tem uma natureza\\nTIMID...$"
+        "Quero pedir desculpas...\\pMinha KIRLIA tem uma\\nnatureza TIMID...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ApologizeForDusclops": [
-        "Devo pedir-te desculpa...\\pO meu DUSCLOPS tem uma natureza\\nTIMID...$"
+        "Quero pedir desculpas...\\pMeu DUSCLOPS tem uma\\nnatureza TIMID...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_AttacksWhenStartled": [
         "Ataca sem aviso se for\\nsurpreendido por outra\\lpessoa...\\pTu e seu POKEMON estao bem?$"
