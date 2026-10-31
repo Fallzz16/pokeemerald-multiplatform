@@ -25,7 +25,7 @@ class PTBRDraftQualityTests(unittest.TestCase):
     def test_registry_and_counts(self):
         report = quality.audit(SCRIPT.parent, example_limit=4)
         self.assertEqual(report["automated_draft_entries"], 5200)
-        self.assertEqual(report["human_language_reviewed"], 1683)
+        self.assertEqual(report["human_language_reviewed"], 1837)
         self.assertEqual(report["human_reviewed_stage8"], 239)
         self.assertEqual(report["human_reviewed_stage9"], 328)
         self.assertEqual(report["human_reviewed_stage10"], 117)
@@ -33,7 +33,8 @@ class PTBRDraftQualityTests(unittest.TestCase):
         self.assertEqual(report["human_reviewed_stage12"], 330)
         self.assertEqual(report["human_reviewed_stage13"], 124)
         self.assertEqual(report["human_reviewed_stage14"], 165)
-        self.assertEqual(report["pending_human_language_review"], 3517)
+        self.assertEqual(report["human_reviewed_stage15"], 154)
+        self.assertEqual(report["pending_human_language_review"], 3363)
         self.assertLessEqual(len(report["sample_unreviewed_warnings"]), 4)
         self.assertEqual(report["review_status"],
                          "diagnostic_only_no_gameplay_certification")
