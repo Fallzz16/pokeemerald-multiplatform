@@ -1,0 +1,422 @@
+{
+  "status": "human_language_review_complete; mGBA_visual_review_pending",
+  "scope": "Exactly changed dialogue entries in stage12, counted by comparing previous branch, not unchanged drafts",
+  "source_shards": [
+    "ptbr_auto_review_017.json",
+    "ptbr_auto_review_018.json"
+  ],
+  "source_diff_against": "feature/grandworld-ptbr-human-review-stage11-20261031",
+  "reviewed_entries": 330,
+  "reviewed_labels_by_source": {
+    "data/maps/NationalPark_Normal/scripts.inc": [
+      "NationalPark_Normal_Text_Lass",
+      "NationalPark_Normal_Text_PokefanF",
+      "NationalPark_Normal_Text_Teacher1",
+      "NationalPark_Normal_Text_Youngster1",
+      "NationalPark_Normal_Text_Youngster2",
+      "NationalPark_Normal_Text_SchoolboyJack1_Seen",
+      "NationalPark_Normal_Text_SchoolboyJack1_Beaten",
+      "NationalPark_Normal_Text_SchoolboyJack_After",
+      "NationalPark_Normal_Text_PokefanFBeverly1_Seen",
+      "NationalPark_Normal_Text_PokefanFBeverly1_Beaten",
+      "NationalPark_Normal_Text_PokefanFBeverly_After",
+      "NationalPark_Normal_Text_PokefanmWilliam_Seen",
+      "NationalPark_Normal_Text_PokefanmWilliam_Beaten",
+      "NationalPark_Normal_Text_PokefanmWilliam_After",
+      "NationalPark_Normal_Text_LassKrise_Seen",
+      "NationalPark_Normal_Text_LassKrise_After"
+    ],
+    "data/maps/OlivineCity_Cafe/scripts.inc": [
+      "OlivineCity_Text_CafeSailorGotStrength",
+      "OlivineCity_Text_CafeSailor"
+    ],
+    "data/maps/OlivineCity_House1/scripts.inc": [
+      "OlivineCity_House1_Text_YouWillTradeWontYou",
+      "OlivineCity_House1_Text_MonYouTakeCare",
+      "OlivineCity_House1_Text_ThisIsntAMon",
+      "OlivineCity_House1_Text_YouWontTradeMe",
+      "OlivineCity_House1_Text_After"
+    ],
+    "data/maps/OlivineCity_House2/scripts.inc": [
+      "OlivineCity_Text_PunishmentBro",
+      "OlivineCity_Text_PunishmentBoy"
+    ],
+    "data/maps/OlivineCity_House3/scripts.inc": [
+      "OlivineCity_Text_OfferGoodRod",
+      "OlivineCity_Text_GiveGoodRod",
+      "OlivineCity_Text_GaveGoodRod",
+      "OlivineCity_Text_DontWantGoodRod",
+      "OlivineCity_Text_HaveGoodRod"
+    ],
+    "data/maps/OlivineCity_Lighthouse/scripts.inc": [
+      "OlivineLighthouse_Text_SailorHueySeen",
+      "OlivineLighthouse_Text_SailorHueyBeaten",
+      "OlivineLighthouse_Text_SailorHueyAfter",
+      "OlivineLighthouse_Text_GentlemanAlfredSeen",
+      "OlivineLighthouse_Text_GentlemanAlfredBeaten",
+      "OlivineLighthouse_Text_BirdKeeperTheoSeen",
+      "OlivineLighthouse_Text_BirdKeeperTheoBeaten",
+      "OlivineLighthouse_Text_BirdKeeperTheoAfter",
+      "OlivineLighthouse_Text_SailorTerrellSeen",
+      "OlivineLighthouse_Text_SailorTerrellBeaten",
+      "OlivineLighthouse_Text_GentlemanPrestonSeen",
+      "OlivineLighthouse_Text_GentlemanPrestonBeaten",
+      "OlivineLighthouse_Text_GentlemanPrestonAfter",
+      "OlivineLighthouse_Text_SailorKentSeen",
+      "OlivineLighthouse_Text_SailorKentBeaten",
+      "OlivineLighthouse_Text_LassConnieBeaten",
+      "OlivineLighthouse_Text_SailorErnestSeen",
+      "OlivineLighthouse_Text_SailorErnestBeaten",
+      "OlivineLighthouse_Text_BirdKeeperDenisSeen",
+      "OlivineLighthouse_Text_BirdKeeperDenisBeaten",
+      "OlivineLighthouse_Text_JasmineGetMedicine",
+      "OlivineLighthouse_Text_JasmineAmphyHowFeeling",
+      "OlivineLighthouse_Text_JasmineThankYou",
+      "OlivineLighthouse_Text_AmphyBreathingLabored"
+    ],
+    "data/maps/OlivineCity_Mart/scripts.inc": [
+      "OlivineCity_Text_MartCooltrainerF"
+    ],
+    "data/maps/OlivineCity_PortInside/scripts.inc": [
+      "OlivinePort_Text_NoPass",
+      "OlivinePort_Text_SailorGetOnBoard",
+      "OlivinePort_Text_CantBoard",
+      "OlivinePort_Text_WhereSail",
+      "OlivinePort_Text_AskTicket",
+      "OlivinePort_Text_ComeAgain",
+      "OlivinePort_Text_FlashTicket",
+      "OlivinePort_Text_NotSailingYet",
+      "OlivinePort_Text_FishingGuru2",
+      "OlivinePort_Text_Youngster",
+      "OlivinePort_Text_CooltrainerF",
+      "OlivinePort_Text_SailorBeforeHOF"
+    ],
+    "data/maps/OlivineCity_PortOutside/scripts.inc": [
+      "OlivineCity_PortOutside_Text_Fisherman2"
+    ],
+    "data/maps/OneIsland_Frlg/scripts.inc": [
+      "Text_WhereDoYouWantToSail",
+      "OneIsland_Text_HavePCLinkageWithKanto",
+      "OneIsland_Text_HavePCLinkageWithHoenn",
+      "OneIsland_Text_IsntWarmClimateHereGreat"
+    ],
+    "data/maps/OneIsland_House1_Frlg/scripts.inc": [
+      "OneIsland_House1_Text_GazeUponVolcanoOnSunnyDays",
+      "OneIsland_House1_Text_LastTimeMtEmberErupted"
+    ],
+    "data/maps/OneIsland_House2_Frlg/scripts.inc": [
+      "OneIsland_House2_Text_IWantToStayHereForever"
+    ],
+    "data/maps/OneIsland_KindleRoad_EmberSpa_Frlg/scripts.inc": [
+      "OneIsland_KindleRoad_EmberSpa_Text_WaterWarmsMeToCore",
+      "OneIsland_KindleRoad_EmberSpa_Text_EnjoyBowlOfChowder",
+      "OneIsland_KindleRoad_EmberSpa_Text_WaterExquisiteFullyRefreshed",
+      "OneIsland_KindleRoad_EmberSpa_Text_HotSpringIsTherapeutic",
+      "OneIsland_KindleRoad_EmberSpa_Text_SeeHowSmoothMySkinIs",
+      "OneIsland_KindleRoad_EmberSpa_Text_UsedThisToMakeEmberSpa",
+      "OneIsland_KindleRoad_EmberSpa_Text_ExplainHM06"
+    ],
+    "data/maps/OneIsland_KindleRoad_Frlg/scripts.inc": [
+      "OneIsland_KindleRoad_Text_MariaIntro",
+      "OneIsland_KindleRoad_Text_MariaPostBattle",
+      "OneIsland_KindleRoad_Text_AbigailIntro",
+      "OneIsland_KindleRoad_Text_AbigailDefeat",
+      "OneIsland_KindleRoad_Text_AbigailPostBattle",
+      "OneIsland_KindleRoad_Text_FinnDefeat",
+      "OneIsland_KindleRoad_Text_FinnPostBattle",
+      "OneIsland_KindleRoad_Text_GarrettIntro",
+      "OneIsland_KindleRoad_Text_GarrettDefeat",
+      "OneIsland_KindleRoad_Text_GarrettPostBattle",
+      "OneIsland_KindleRoad_Text_TommyIntro",
+      "OneIsland_KindleRoad_Text_TommyDefeat",
+      "OneIsland_KindleRoad_Text_TommyPostBattle",
+      "OneIsland_KindleRoad_Text_SharonIntro",
+      "OneIsland_KindleRoad_Text_SharonDefeat",
+      "OneIsland_KindleRoad_Text_SharonPostBattle",
+      "OneIsland_KindleRoad_Text_TanyaIntro",
+      "OneIsland_KindleRoad_Text_TanyaDefeat",
+      "OneIsland_KindleRoad_Text_TanyaPostBattle",
+      "OneIsland_KindleRoad_Text_SheaIntro",
+      "OneIsland_KindleRoad_Text_SheaPostBattle",
+      "OneIsland_KindleRoad_Text_HughIntro",
+      "OneIsland_KindleRoad_Text_HughDefeat",
+      "OneIsland_KindleRoad_Text_HughPostBattle",
+      "OneIsland_KindleRoad_Text_BryceIntro",
+      "OneIsland_KindleRoad_Text_BryceDefeat",
+      "OneIsland_KindleRoad_Text_BrycePostBattle",
+      "OneIsland_KindleRoad_Text_ClaireIntro",
+      "OneIsland_KindleRoad_Text_ClaireDefeat",
+      "OneIsland_KindleRoad_Text_ClairePostBattle",
+      "OneIsland_KindleRoad_Text_KiaIntro",
+      "OneIsland_KindleRoad_Text_MikPostBattle",
+      "OneIsland_KindleRoad_Text_EmberSpaSign"
+    ],
+    "data/maps/OneIsland_PokemonCenter_1F_Frlg/scripts.inc": [
+      "OneIsland_PokemonCenter_1F_Text_PlayerIsRisingPokemonChamp",
+      "OneIsland_PokemonCenter_1F_Text_AcceptedMeteoriteFromBill",
+      "OneIsland_PokemonCenter_1F_Text_ReceivedExtraPageForTownMap",
+      "OneIsland_PokemonCenter_1F_Text_HmmHowAboutLikeThis",
+      "OneIsland_PokemonCenter_1F_Text_GotPCWorkingStrollAWhileMore",
+      "OneIsland_PokemonCenter_1F_Text_UsualPCServicesUnavailable",
+      "OneIsland_PokemonCenter_1F_Text_YoullBeTradingFromTrainersFarAway",
+      "OneIsland_PokemonCenter_1F_Text_TryingToFindGem",
+      "OneIsland_PokemonCenter_1F_Text_MayIAskOneMoreFavor",
+      "OneIsland_PokemonCenter_1F_Text_PleaseINeedYourHelp",
+      "OneIsland_PokemonCenter_1F_Text_HandedSapphireToCelio",
+      "OneIsland_PokemonCenter_1F_Text_OkayThisIsGood",
+      "OneIsland_PokemonCenter_1F_Text_WishYouBestOfLuck",
+      "OneIsland_PokemonCenter_1F_Text_BillsFirstMonWasAbra",
+      "OneIsland_PokemonCenter_1F_Text_BillCantStomachMilk",
+      "OneIsland_PokemonCenter_1F_Text_EnormousVolcanoOnIsland",
+      "OneIsland_PokemonCenter_1F_Text_WishICouldTradeWithBoyfriend",
+      "OneIsland_PokemonCenter_1F_Text_TradedWithFarAwayBoyfriend",
+      "OneIsland_PokemonCenter_1F_Text_MachineUnderAdjustment",
+      "OneIsland_PokemonCenter_1F_Text_MachineLinkedWithKanto",
+      "OneIsland_PokemonCenter_1F_Text_MachineLinkedWithKantoAndHoenn",
+      "OneIsland_PokemonCenter_1F_Text_ObtainedTriPass"
+    ],
+    "data/maps/PalletTown_RivalsHouse_Frlg/scripts.inc": [
+      "PalletTown_RivalsHouse_Text_ErrandForGrandpaThisWillHelp",
+      "PalletTown_RivalsHouse_Text_DontHaveSpaceForThis",
+      "PalletTown_RivalsHouse_Text_ExplainTownMap",
+      "PalletTown_RivalsHouse_Text_ItsBigMapOfKanto",
+      "PalletTown_RivalsHouse_Text_ShelvesCrammedFullOfBooks",
+      "PalletTown_RivalsHouse_Text_DontNeedAnyGrooming",
+      "PalletTown_RivalsHouse_Text_GroomWhichOne",
+      "PalletTown_RivalsHouse_Text_CantGroomAnEgg",
+      "PalletTown_RivalsHouse_Text_CouldntLoveYouMore",
+      "PalletTown_RivalsHouse_Text_ItLooksVeryHappy",
+      "PalletTown_RivalsHouse_Text_ItsQuiteFriendly",
+      "PalletTown_RivalsHouse_Text_ItsWarmingUpToYou",
+      "PalletTown_RivalsHouse_Text_NotFamiliarWithYouYet",
+      "PalletTown_RivalsHouse_Text_DontLikeWayItGlaresAtYou",
+      "PalletTown_RivalsHouse_Text_WhyWouldMonHateYouSoMuch"
+    ],
+    "data/maps/PetalburgWoods/scripts.inc": [
+      "PetalburgWoods_Text_NotAOneToBeFound",
+      "PetalburgWoods_Text_IWasGoingToAmbushYou",
+      "PetalburgWoods_Text_YouHaveToHelpMe",
+      "PetalburgWoods_Text_YoureKiddingMe",
+      "PetalburgWoods_Text_ICantBeWastingTime",
+      "PetalburgWoods_Text_ICouldntWin",
+      "PetalburgWoods_Text_CantBePopularIfILose",
+      "PetalburgWoods_Text_CantBePopularIfLose",
+      "PetalburgWoods_Text_IveBeenTrainingHard",
+      "PetalburgWoods_Text_StayOutOfTallGrass",
+      "PetalburgWoods_Text_HiddenItemsExplanation"
+    ],
+    "data/maps/PokemonLeague_ChampionsRoom_Frlg/scripts.inc": [
+      "PokemonLeague_ChampionsRoom_Text_Defeat",
+      "PokemonLeague_ChampionsRoom_Text_OakPlayer",
+      "PokemonLeague_ChampionsRoom_Text_OakPlayerComeWithMe"
+    ],
+    "data/maps/PokemonLeague_LancesRoom_Frlg/scripts.inc": [
+      "PokemonLeague_LancesRoom_Text_Defeat"
+    ],
+    "data/maps/PokemonLeague_LoreleisRoom_Frlg/scripts.inc": [
+      "PokemonLeague_LoreleisRoom_Text_Defeat"
+    ],
+    "data/maps/PokemonMansion_1F_Frlg/scripts.inc": [
+      "PokemonMansion_1F_Text_TedIntro",
+      "PokemonMansion_1F_Text_TedPostBattle",
+      "PokemonMansion_1F_Text_JohnsonIntro",
+      "PokemonMansion_1F_Text_JohnsonDefeat",
+      "PokemonMansion_1F_Text_JohnsonPostBattle"
+    ],
+    "data/maps/PokemonMansion_2F_Frlg/scripts.inc": [
+      "PokemonMansion_Text_PressSecretSwitch",
+      "PokemonMansion_Text_WhoWouldnt",
+      "PokemonMansion_Text_NotQuiteYet",
+      "PokemonMansion_1F_Text_ArnieIntro",
+      "PokemonMansion_1F_Text_ArnieDefeat",
+      "PokemonMansion_1F_Text_ArniePostBattle",
+      "PokemonMansion_1F_Text_NewMonDiscoveredInGuyanaJungle",
+      "PokemonMansion_1F_Text_ChristenedDiscoveredMonMew"
+    ],
+    "data/maps/PokemonMansion_3F_Frlg/scripts.inc": [
+      "PokemonMansion_1F_Text_SimonIntro",
+      "PokemonMansion_1F_Text_SimonPostBattle",
+      "PokemonMansion_1F_Text_BraydonIntro",
+      "PokemonMansion_1F_Text_BraydonDefeat",
+      "PokemonMansion_1F_Text_BraydonPostBattle",
+      "PokemonMansion_1F_Text_MewGaveBirthToMewtwo"
+    ],
+    "data/maps/PokemonMansion_B1F_Frlg/scripts.inc": [
+      "PokemonMansion_B1F_Text_LewisIntro",
+      "PokemonMansion_B1F_Text_LewisPostBattle",
+      "PokemonMansion_B1F_Text_IvanIntro",
+      "PokemonMansion_B1F_Text_IvanDefeat",
+      "PokemonMansion_B1F_Text_IvanPostBattle",
+      "PokemonMansion_B1F_Text_MewtwoIsFarTooPowerful"
+    ],
+    "data/maps/PokemonTower_1F_Frlg/scripts.inc": [
+      "PokemonTower_1F_Text_ErectedInMemoryOfDeadMons",
+      "PokemonTower_1F_Text_ComeToPayRespectsSon",
+      "PokemonTower_1F_Text_ComeToPayRespectsGirl"
+    ],
+    "data/maps/PokemonTower_2F_Frlg/scripts.inc": [
+      "PokemonTower_2F_Text_RivalIntro",
+      "PokemonTower_2F_Text_RivalDefeat"
+    ],
+    "data/maps/PokemonTower_3F_Frlg/scripts.inc": [
+      "PokemonTower_3F_Text_HopeIntro",
+      "PokemonTower_3F_Text_HopeDefeat",
+      "PokemonTower_3F_Text_CarlyIntro",
+      "PokemonTower_3F_Text_CarlyDefeat",
+      "PokemonTower_3F_Text_CarlyPostBattle",
+      "PokemonTower_3F_Text_PatriciaIntro",
+      "PokemonTower_3F_Text_PatriciaDefeat",
+      "PokemonTower_3F_Text_PatriciaPostBattle"
+    ],
+    "data/maps/PokemonTower_4F_Frlg/scripts.inc": [
+      "PokemonTower_4F_Text_PaulaIntro",
+      "PokemonTower_4F_Text_PaulaDefeat",
+      "PokemonTower_4F_Text_PaulaPostBattle",
+      "PokemonTower_4F_Text_LaurelIntro",
+      "PokemonTower_4F_Text_LaurelDefeat",
+      "PokemonTower_4F_Text_LaurelPostBattle",
+      "PokemonTower_4F_Text_JodyIntro",
+      "PokemonTower_4F_Text_JodyDefeat",
+      "PokemonTower_4F_Text_JodyPostBattle"
+    ],
+    "data/maps/PokemonTower_5F_Frlg/scripts.inc": [
+      "PokemonTower_5F_Text_RestHereInPurifiedSpace",
+      "PokemonTower_5F_Text_TammyIntro",
+      "PokemonTower_5F_Text_TammyPostBattle",
+      "PokemonTower_5F_Text_RuthIntro",
+      "PokemonTower_5F_Text_RuthPostBattle",
+      "PokemonTower_5F_Text_KarinaPostBattle",
+      "PokemonTower_5F_Text_JanaePostBattle",
+      "PokemonTower_5F_Text_PurifiedZoneMonsFullyHealed"
+    ],
+    "data/maps/PokemonTower_6F_Frlg/scripts.inc": [
+      "PokemonTower_6F_Text_AngelicaIntro",
+      "PokemonTower_6F_Text_AngelicaPostBattle",
+      "PokemonTower_6F_Text_EmiliaIntro",
+      "PokemonTower_6F_Text_EmiliaDefeat",
+      "PokemonTower_6F_Text_EmiliaPostBattle",
+      "PokemonTower_6F_Text_JenniferIntro",
+      "PokemonTower_6F_Text_JenniferPostBattle",
+      "PokemonTower_6F_Text_BeGoneIntruders",
+      "PokemonTower_6F_Text_MothersSpiritWasCalmed"
+    ],
+    "data/maps/PokemonTower_7F_Frlg/scripts.inc": [
+      "PokemonTower_7F_Text_Grunt1Intro",
+      "PokemonTower_7F_Text_Grunt1Defeat",
+      "PokemonTower_7F_Text_Grunt1PostBattle",
+      "PokemonTower_7F_Text_Grunt2Defeat",
+      "PokemonTower_7F_Text_Grunt2PostBattle",
+      "PokemonTower_7F_Text_Grunt3Intro",
+      "PokemonTower_7F_Text_Grunt3PostBattle"
+    ],
+    "data/maps/ReceptionGate/scripts.inc": [
+      "VictoryRoadGate_Text_Officer",
+      "VictoryRoadGate_Text_NotEnoughBadges",
+      "VictoryRoadGate_Text_EightBadges",
+      "VictoryRoadGate_Text_LeftBlackBelt"
+    ],
+    "data/maps/RegionHub_2F/scripts.inc": [
+      "BattleNet_Text_DirectorIntro",
+      "BattleNet_Text_DirectorStoneLater",
+      "BattleNet_Text_VendorIntro",
+      "BattleNet_Text_VendorAnother",
+      "BattleNet_Text_VendorBye",
+      "BattleNet_Text_BpClerkPoor",
+      "BattleNet_Text_BpClerkAnother",
+      "BattleNet_Text_BpClerkBye",
+      "BattleNet_Text_StreakByeMsg",
+      "BattleNet_Text_StreakConfirm",
+      "BattleNet_Text_StreakWinN",
+      "BattleNet_Text_StreakEnded",
+      "BattleNet_Text_StreakNoWins",
+      "BattleNet_Text_RoomLost"
+    ],
+    "data/maps/RockTunnel_1F_Frlg/scripts.inc": [
+      "RockTunnel_1F_Text_LennyIntro",
+      "RockTunnel_1F_Text_LennyDefeat",
+      "RockTunnel_1F_Text_LennyPostBattle",
+      "RockTunnel_1F_Text_OliverIntro",
+      "RockTunnel_1F_Text_OliverDefeat",
+      "RockTunnel_1F_Text_LucasIntro",
+      "RockTunnel_1F_Text_LucasDefeat",
+      "RockTunnel_1F_Text_LucasPostBattle",
+      "RockTunnel_1F_Text_AshtonIntro",
+      "RockTunnel_1F_Text_AshtonDefeat",
+      "RockTunnel_1F_Text_AshtonPostBattle",
+      "RockTunnel_1F_Text_LeahIntro",
+      "RockTunnel_1F_Text_LeahDefeat",
+      "RockTunnel_1F_Text_LeahPostBattle",
+      "RockTunnel_1F_Text_DanaIntro",
+      "RockTunnel_1F_Text_DanaDefeat",
+      "RockTunnel_1F_Text_DanaPostBattle",
+      "RockTunnel_1F_Text_ArianaIntro",
+      "RockTunnel_1F_Text_ArianaDefeat",
+      "RockTunnel_1F_Text_ArianaPostBattle"
+    ],
+    "data/maps/RockTunnel_B1F_Frlg/scripts.inc": [
+      "RockTunnel_B1F_Text_SofiaIntro",
+      "RockTunnel_B1F_Text_SofiaDefeat",
+      "RockTunnel_B1F_Text_SofiaPostBattle",
+      "RockTunnel_B1F_Text_DudleyIntro",
+      "RockTunnel_B1F_Text_DudleyDefeat",
+      "RockTunnel_B1F_Text_DudleyPostBattle",
+      "RockTunnel_B1F_Text_CooperIntro",
+      "RockTunnel_B1F_Text_CooperDefeat",
+      "RockTunnel_B1F_Text_CooperPostBattle",
+      "RockTunnel_B1F_Text_SteveIntro",
+      "RockTunnel_B1F_Text_SteveDefeat",
+      "RockTunnel_B1F_Text_AllenIntro",
+      "RockTunnel_B1F_Text_AllenDefeat",
+      "RockTunnel_B1F_Text_AllenPostBattle",
+      "RockTunnel_B1F_Text_MarthaIntro",
+      "RockTunnel_B1F_Text_MarthaDefeat",
+      "RockTunnel_B1F_Text_MarthaPostBattle",
+      "RockTunnel_B1F_Text_EricIntro",
+      "RockTunnel_B1F_Text_EricDefeat",
+      "RockTunnel_B1F_Text_EricPostBattle",
+      "RockTunnel_B1F_Text_WinstonIntro",
+      "RockTunnel_B1F_Text_WinstonDefeat",
+      "RockTunnel_B1F_Text_WinstonPostBattle"
+    ],
+    "data/maps/RuinsOfAlph_B1F/scripts.inc": [
+      "RuinsOfAlph_B1F_Text_Presence",
+      "RuinsOfAlph_B1F_Text_Hiker",
+      "RuinsOfAlph_B1F_Text_Teacher",
+      "RuinsOfAlph_B1F_Text_Gramps"
+    ],
+    "data/maps/RuinsOfAlph_Outside/scripts.inc": [
+      "RuinsOfAlph_Outside_Text_SuperNerdStan_Seen",
+      "RuinsOfAlph_Outside_Text_SuperNerdStan_Beaten",
+      "RuinsOfAlph_Outside_Text_PsychicNathan_Seen",
+      "RuinsOfAlph_Outside_Text_PsychicNathan_After",
+      "RuinsOfAlph_Outside_Text_Youngster1",
+      "RuinsOfAlph_Outside_Text_Youngster2"
+    ],
+    "data/maps/RuinsOfAlph_PuzzleAndRewardChambers/scripts.inc": [
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Reward",
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Mon",
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Solved",
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Receptionist1",
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Receptionist2",
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Receptionist3",
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Kabuto",
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_UnownText",
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Statue",
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Aerodactyl",
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Omanyte",
+      "RuinsOfAlph_PuzzleAndRewardChambers_Text_Hooh"
+    ],
+    "data/maps/RusturfTunnel/scripts.inc": [
+      "RusturfTunnel_Text_ComeAndGetSome",
+      "RusturfTunnel_Text_GruntIntro",
+      "RusturfTunnel_Text_GruntDefeat",
+      "RusturfTunnel_Text_YouShatteredBoulderTakeHM",
+      "RusturfTunnel_Text_BoyfriendOnOtherSideOfRock",
+      "RusturfTunnel_Text_MikeIntro",
+      "RusturfTunnel_Text_MikeDefeat",
+      "RusturfTunnel_Text_MikePostBattle"
+    ]
+  },
+  "release_approved": false,
+  "source_gameplay_modified": false
+}
