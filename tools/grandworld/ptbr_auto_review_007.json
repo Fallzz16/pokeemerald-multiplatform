@@ -31,7 +31,7 @@
         "Ai sim?\\pA minha pericia tecnologica e\\nexcelente, garanto-vos.$"
       ],
       "RuinsOfAlph_Lab_Text_OhIsThatSo2": [
-        "Nao tens este fossil. Volta se\\nconseguires encontra-lo.$"
+        "Voce nao tem esse fossil.\\nVolte quando encontrar um.$"
       ],
       "RuinsOfAlph_Lab_Text_TwoFossilsPickOne": [
         "Que surpresa! Tens mais de um\\nfossil?\\pInfelizmente, a minha maquina\\nso pode regenerar um POKEMON de\\lcada vez.\\pQue fossil gostaria de\\nregenerar?$"
@@ -40,7 +40,7 @@
         "Obrigado por esperares!\\pO seu POKEMON fossilizado foi\\ntrazido de volta a vida!\\pO fossil era um antigo\\nPokemon.{STR_VAR_2}Foi!$"
       ],
       "RuinsOfAlph_Lab_Text_TooManyPokemon": [
-        "Tens muitos Pokemon. Nao tens\\nespaco para este.$"
+        "Sua equipe esta cheia.\\nNao ha espaco para este POKEMON.$"
       ],
       "RuinsOfAlph_Lab_Text_DevelopNewPokenavFeature": [
         "Estou a tentar desenvolver uma\\nnova funcionalidade para o\\lPOKeNAV...\\pMas nao esta a correr bem.$"
