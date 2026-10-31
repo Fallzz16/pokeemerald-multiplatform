@@ -72,7 +72,7 @@
         "Que tolice! Um EGG esta a\\ndormir! Nao consigo falar com\\lele!$"
       ],
       "BattleFrontier_Lounge5_Text_LadyClaimsSheUnderstandsPokemon": [
-        "Que encantador! Aquela senhora\\ndiz que consegue entender\\lPokemon!$"
+        "Que encantador! Aquela senhora\\ndiz que Consegue entender\\lPokemon!$"
       ],
       "BattleFrontier_Lounge5_Text_GirlSayingSomethingProfound": [
         "Tenho a sensacao de que a\\nmenina esta a dizer algo\\lprofundo.$"
@@ -186,7 +186,7 @@
     },
     "data/maps/BattleFrontier_Lounge8/scripts.inc": {
       "BattleFrontier_Lounge8_Text_WhatATrainerNeeds": [
-        "O que um treinador precisa...\\pConhecimento... estrategia...\\nSorte... Espirito...\\lespirito... Coragem... E\\lhabilidade...\\pBem, estou pronto em todos os\\nsentidos! Serei imparavel em\\ltodos os edificios!\\pHuh? Pokemon? O que e isso?$"
+        "O que um treinador precisa...\\pConhecimento... estrategia...\\nSorte... Espirito...\\lespirito... Coragem... E\\lhabilidade...\\pBem, estou pronto em todos os\\nsentidos! Serei imparavel em\\ltodos os edificios!\\pHuh? POKEMON? O que e isso?$"
       ]
     },
     "data/maps/BattleFrontier_Mart/scripts.inc": {
@@ -276,7 +276,7 @@
         "Nao, perdi.\\pAcho que hoje nao tenho muita\\nsorte. Vou adiar o meu desafio\\lda BATTLE PIKE ate amanha.$"
       ],
       "BattleFrontier_OutsideWest_Text_ChooseFishingOverBattling": [
-        "Acho que sou a unica pessoa\\naqui que, por alguma razao\\ldesconhecida, escolheria pescar\\lem vez de lutar.\\pHuh? Nao consegue capturar nada\\naqui? Isso e decepcionante...$"
+        "Acho que sou a unica pessoa\\naqui que, por alguma razao\\ldesconhecida, escolheria pescar\\lem vez de lutar.\\pHuh? Nao Consegue capturar nada\\naqui? Isso e decepcionante...$"
       ],
       "BattleFrontier_OutsideWest_Text_KeepBattlingUntilIGetSymbol": [
         "Hoje, vou continuar a lutar,\\ncuste o que custar, ate ter um\\lSimbolo.$"
@@ -303,7 +303,7 @@
         "Cala-te! Baixem esse barulho!\\pVoces, fas do tempo justo,\\ndeviam continuar a aplaudir por\\lalgum GINASIO LEADER!\\pA DOME ACE e minha! O unico\\nidolo para mim!$"
       ],
       "BattleFrontier_OutsideWest_Text_FansOverThereUsedToBeTrainers": [
-        "Aquelas pessoas a discutir\\nali...\\pE dificil de acreditar, mas\\neles ja foram treinadores, e\\lbons tambem.\\pCostumavam ser incrivelmente\\nduros, e tambem eram famosos.\\pMas eles foram obliterados por\\neste certo TRAiner em um\\ltorneio.\\pEles foram tao completamente\\nchicoteados, que ficaram\\lferidos pelo TRAiner.\\pAgora sao apenas fas do\\nTRAiner. Vao aplaudir o seu\\lidolo no BATTLE DOME todos os\\ldias.$"
+        "Aquelas pessoas a discutir\\nali...\\pE dificil de acreditar, mas\\neles ja foram treinadores, e\\lbons tambem.\\pCostumavam ser incrivelmente\\nduros, e tambem eram famosos.\\pMas eles foram obliterados por\\neste certo TREINADOR em um\\ltorneio.\\pEles foram tao completamente\\nchicoteados, que ficaram\\lferidos pelo TREINADOR.\\pAgora sao apenas fas do\\nTRAiner. Vao aplaudir o seu\\lidolo no BATTLE DOME todos os\\ldias.$"
       ]
     },
     "data/maps/BattleFrontier_PokemonCenter_1F/scripts.inc": {
@@ -360,7 +360,7 @@
         "Sobre o que gostaria de\\naprender?$"
       ],
       "BattleFrontier_ReceptionGate_Text_SymbolsInfo": [
-        "Ha sete instalacoes no BATTLE\\nFRONTIER.\\pFORMADORES que obtem\\nreconhecimento por suas\\lhabilidades podem ser\\lrecompensados com simbolos de\\lcada uma das instalacoes.\\pPara ganhar um simbolo, os\\nTRAiners podem precisar\\lderrotar outros TRAiners em uma\\lfileira, e podem precisar\\lganhar eventos repetidamente.\\pNao e facil ganhar simbolos.\\nDesejo-lhe boa sorte!$"
+        "Ha sete instalacoes no BATTLE\\nFRONTIER.\\pFORMADORES que obtem\\nreconhecimento por suas\\lhabilidades podem ser\\lrecompensados com simbolos de\\lcada uma das instalacoes.\\pPara ganhar um simbolo, os\\nTRAiners podem precisar\\lderrotar outros TREINADORES em uma\\lfileira, e podem precisar\\lganhar eventos repetidamente.\\pNao e facil ganhar simbolos.\\nDesejo-lhe boa sorte!$"
       ],
       "BattleFrontier_ReceptionGate_Text_RecordedBattleInfo": [
         "E possivel gravar uma batalha\\nem seu PASS FRONTIER.\\pVoce pode gravar uma batalha\\nque teve com um amigo ou\\lamigos.\\pOu voce pode gravar uma batalha\\nconduzida no BATTLE FRONTIER\\lexcluindo fosforos no BATTLE\\lPIKE ou no BATTLE PYRAMID.\\pVoce pode escolher gravar sua\\npartida no final de uma\\lbatalha.$"
@@ -417,7 +417,7 @@
     },
     "data/maps/BlackthornCity_House2/scripts.inc": {
       "BlackthornCity_House2_Text_YouWillTradeWontYou": [
-        "Coleciono Pokemon! Voce tem\\num{STR_VAR_1}?\\pQuero troca-lo pela\\nminha{STR_VAR_2}?$"
+        "Coleciono POKEMON! Voce tem\\num{STR_VAR_1}?\\pQuero troca-lo pela\\nminha{STR_VAR_2}?$"
       ],
       "BlackthornCity_House2_Text_MonYouTakeCare": [
         "Boa! Consegui-me.{STR_VAR_1}!\\p{STR_VAR_2}Cuida-te!$"
@@ -475,7 +475,7 @@
         "..............................\\pEs tu.\\pVim a procura de um legendario\\nPokemon que dizem ser o potro.\\pMas nao ha nada aqui!\\pNada, depois de todo o esforco\\nde vir a esta espelunca? Nem\\lpensar!\\pA culpa e toda sua!$"
       ],
       "BurnedTowerSilver_WinText": [
-        "Humph!\\pSo perdi porque os meus Pokemon\\nsao incrivelmente fracos.\\pQue patetico.$"
+        "Humph!\\pSo perdi porque os meus POKEMON\\nsao incrivelmente fracos.\\pQue patetico.$"
       ],
       "BurnedTowerSilver_AfterText1": [
         "Tanto faz.\\pNunca conseguirias capturar um\\nPokemon lendario.$"
@@ -512,7 +512,7 @@
         "Nao devia gastar todo o seu\\ndinheiro em bebidas.\\pExperimenta isto em vez disso.$"
       ],
       "CeladonCity_Condominiums_1F_Text_MyDearMonsKeepMeCompany": [
-        "Meu caro Pokemon, faz-me\\ncompanhia. MEOWTH ate traz\\ldinheiro para casa!$"
+        "Meu caro POKEMON, faz-me\\ncompanhia. MEOWTH ate traz\\ldinheiro para casa!$"
       ]
     },
     "data/maps/CeladonCity_Condominiums_3F_Frlg/scripts.inc": {
@@ -591,7 +591,7 @@
         "Vou comprar um presente para a\\nminha namorada.\\pAcho que sera uma DOLL POKe. E\\na coisa popular.$"
       ],
       "CeladonCity_DepartmentStore_4F_Text_CanRunAwayWithPokeDoll": [
-        "Ouvi algo util.\\pSe aparecer um Pokemon\\nselvagem, pode distrai-lo com\\luma DOLL POKe.\\pVoce pode fugir enquanto o\\nPOKEMON selvagem esta\\ldistraido.$"
+        "Ouvi algo util.\\pSe aparecer um POKEMON\\nselvagem, pode distrai-lo com\\luma DOLL POKe.\\pVoce pode fugir enquanto o\\nPOKEMON selvagem esta\\ldistraido.$"
       ]
     },
     "data/maps/CeladonCity_DepartmentStore_Roof_Frlg/scripts.inc": {
@@ -709,7 +709,7 @@
     },
     "data/maps/CeladonCity_Hotel_Frlg/scripts.inc": {
       "CeladonCity_Hotel_Text_ThisHotelIsForPeople": [
-        "Pokemon? Nao, isto e um hotel\\npara pessoas.\\pEstamos cheios, infelizmente.$"
+        "POKEMON? Nao, isto e um hotel\\npara pessoas.\\pEstamos cheios, infelizmente.$"
       ],
       "CeladonCity_Hotel_Text_OnVacationWithBrotherAndBoyfriend": [
         "Estou de ferias com o meu irmao\\ne namorado.\\pCELADON e uma cidade tao\\nbonita!$"
