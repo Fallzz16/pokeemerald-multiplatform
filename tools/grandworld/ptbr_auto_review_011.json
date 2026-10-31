@@ -11,7 +11,7 @@
         "Nao esta interessado?! Nao\\ndevias ter tanto medo de\\larriscar!$"
       ],
       "BattleFrontier_Lounge3_Text_BackedWrongTrainer": [
-        "Apoiei o TREINADOR errado outra\\nvez!\\pTalvez devesse batalhar\\nnormalmente como toda a\\lgente...$"
+        "Apoiei o TREINADOR errado\\nmais uma vez!\\pAcho que eu deveria\\nparticipar dos desafios,\\lem vez de ficar assistindo...$"
       ],
       "BattleFrontier_Lounge3_Text_TrainerGoodButRattled": [
         "Aquele TREINADOR...\\pEle e bom, mas ele fica agitado\\ndemasiado facilmente para\\lsobreviver ao DOME BATTLE...$"
@@ -69,7 +69,7 @@
         "Hmhm...\\pEste diz que gosta de ser\\nsorrateiro! Diz que gosta de\\lser sorrateiro, mesmo que tenha\\lmuito barulho!$"
       ],
       "BattleFrontier_Lounge5_Text_NatureGirlEgg": [
-        "Que tolice! Um EGG esta a\\ndormir! Nao consigo falar com\\lele!$"
+        "Que bobagem! Esse EGG\\nesta dormindo!\\lNao consigo falar com ele!$"
       ],
       "BattleFrontier_Lounge5_Text_LadyClaimsSheUnderstandsPokemon": [
         "Que encantador! Aquela senhora\\ndiz que Consegue entender\\lPokemon!$"
@@ -100,7 +100,7 @@
     },
     "data/maps/BattleFrontier_Lounge7/scripts.inc": {
       "BattleFrontier_Lounge7_Text_LeftTutorWelcomeBack": [
-        "Buhahaha!\\pVoce esta de volta para\\naprender movimentos especiais e\\lainda bonito POKEMON?$"
+        "Buhahaha!\\pVoltou para ensinar\\ngolpes especiais aos\\lseus POKEMON?$"
       ],
       "BattleFrontier_Lounge7_Text_TeachWhichMove": [
         "Esta bem, esta bem, olha aqui!\\nQue movimento devo dar?$"
@@ -124,7 +124,7 @@
         "Ihihihi!\\pEu sei que e dificil de ver\\nagora, mas eu costumava ser um\\ltreinador fantastico.\\pEu tinha uma reputacao como o\\nmais invencivel SWIMMER por\\lperto, eu lhe digo!\\p... ... ... ... ... ...\\pO que se passa? Nao acreditas\\nem mim.\\pNao sou como aquela mulher\\nidiota ali. Na verdade, tenho\\lexperiencia!\\pPosso prova-lo. Posso ensinar\\nos seus movimentos POKEMON.\\pMas minhas licoes nao sao de\\ngraca. Que tal pagar pelos\\lmovimentos que dou com um pouco\\lde Pontos de Batalha?$"
       ],
       "BattleFrontier_Lounge7_Text_RightTutorWelcomeBack": [
-        "Ihihihi!\\pVoce veio aprender muito e\\nainda muito POKEMON movimentos?$"
+        "Ihihihi!\\pVeio aprender novos\\ngolpes para seus POKEMON?$"
       ],
       "BattleFrontier_Lounge7_Text_ThinkLadiesDontGetAlong": [
         "Aquelas senhoras, a maneira\\ncomo se falam mal, devem achar\\lque nao se dao bem.\\pMas se isso fosse verdade, eles\\nnao ficariam aqui juntos, pois\\lnao?$"
@@ -191,7 +191,7 @@
     },
     "data/maps/BattleFrontier_Mart/scripts.inc": {
       "BattleFrontier_Mart_Text_ChaperonGrandson": [
-        "Viemos aqui para acompanhar o\\nnosso neto.\\pMas ja que estamos aqui,\\nachamos que deviamos comprar\\llembrancas.$"
+        "Viemos acompanhar\\nnosso neto.\\pMas, ja que estamos aqui,\\nvamos comprar umas\\llembrancinhas!$"
       ],
       "BattleFrontier_Mart_Text_ProteinMakeNiceGift": [
         "Querida, o que achas disto?\\nIsto nao daria um bom presente?\\pE... PRO... TE... IN? Parece\\ndelicioso, nao parece?$"
