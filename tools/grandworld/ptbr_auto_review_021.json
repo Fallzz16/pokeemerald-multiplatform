@@ -553,80 +553,80 @@
     },
     "data/maps/SproutTower_1F/scripts.inc": {
       "SproutTower_Text_SageChow_Seen": [
-        "Estamos de guarda nesta torre.\\pAqui, expressamos nossa\\ngratidao para honrar todos os\\lPOKEMON.$"
+        "Protegemos esta torre.\\pAqui aprendemos a agradecer\\npela ajuda dos POKEMON!$"
       ],
       "SproutTower_Text_SageChow_Beaten": [
-        "Obrigado!$"
+        "Obrigado pela batalha!$"
       ],
       "SproutTower_Text_SageChow_AfterBattle": [
-        "Todos os seres vivos coexistem\\natraves da cooperacao.\\pDevemos ser sempre gratos por\\nisso.$"
+        "Todos os seres vivos\\ndependem uns dos outros.\\pDevemos sempre\\nser gratos por isso!$"
       ],
       "SproutTower_Text_1F_Sage1": [
-        "So se voce chegar ao topo voce\\nvai obter um HM.$"
+        "Quem chegar ao topo\\nda SPROUT TOWER\\npode receber uma HM!$"
       ],
       "SproutTower_Text_1F_Sage2": [
-        "SPROUT TOWER foi construido ha\\nmuito tempo como um lugar para\\ltreinamento POKEMON.$"
+        "A SPROUT TOWER foi erguida\\nha muito tempo.\\pEla serve para treinar\\ne aprender sobre POKEMON!$"
       ],
       "SproutTower_Text_1F_Teacher": [
-        "Ves o pilar a tremer?\\pAs pessoas estao a treinar la\\nem cima.$"
+        "Viu o pilar balancando?\\pHa pessoas treinando\\nnos andares superiores!$"
       ],
       "SproutTower_Text_1F_Statue": [
-        "Uma estatua Pokemon...\\pParece muito distinto.$"
+        "Uma estatua de POKEMON...\\pEla parece muito antiga!$"
       ]
     },
     "data/maps/SproutTower_2F/scripts.inc": {
       "SproutTower_Text_SageNico_Seen": [
-        "Por mais que lutemos, a TOWER\\npermanecera forte.$"
+        "O pilar desta torre\\nse curva sem quebrar!\\pSera que voce consegue\\nser tao resistente?$"
       ],
       "SproutTower_Text_SageNico_Beaten": [
-        "Lutei muito, mas sou demasiado\\nfraco.$"
+        "Lutei bastante,\\nmas ainda sou fraco...$"
       ],
       "SproutTower_Text_SageNico_AfterBattle": [
-        "O pilar flexivel protege a\\nTOWER, mesmo contra terremotos.$"
+        "O pilar flexivel\\nmantem a torre firme,\\nmesmo durante terremotos!$"
       ],
       "SproutTower_Text_SageEdmond_Seen": [
-        "... como folhas ao vento...$"
+        "Assim como folhas ao vento,\\nprecisamos aprender a ceder...$"
       ],
       "SproutTower_Text_SageEdmond_Beaten": [
-        "Sou fraco!$"
+        "Ainda preciso treinar!$"
       ],
       "SproutTower_Text_2F_Statue": [
-        "Uma estatua Pokemon...\\pParece muito distinto.$"
+        "Uma estatua de POKEMON...\\pEla parece muito antiga!$"
       ]
     },
     "data/maps/SproutTower_3F/scripts.inc": {
       "SproutTower_Text_SageLi_Seen": [
-        "Que bom que vieste!\\pSPROUT TOWER e um local de\\ntreinamento.\\pPessoas e POKEMON testam suas\\nligacoes para construir um\\lfuturo brilhante juntos.\\pEu sou o teste final.\\pPermita-me verificar as\\nligacoes entre o seu Pokemon e\\lvoce!$"
+        "Bem-vindo a SPROUT TOWER!\\pAqui treinamos juntos,\\npessoas e POKEMON.\\pBuscamos criar um futuro melhor\\npor meio da confianca.\\pSou o ultimo desafio da torre!\\pMostre a forca do vinculo\\nentre voce e seus POKEMON!$"
       ],
       "SproutTower_Text_SageLi_Beaten": [
-        "Excelente!$"
+        "Excelente batalha!$"
       ],
       "SproutTower_Text_SageLi_TakeFlash": [
-        "Voce e o seu POKEMON nao devem\\nter problemas em utilizar esta\\ljogada.\\pToma esta FLASH HM.$"
+        "Voce e seus POKEMON\\nestao bem preparados!\\pAceite esta HM FLASH!$"
       ],
       "SproutTower_Text_SageLi_AfterBattle": [
-        "Espero que aprendas e crescas\\ncom a tua jornada.$"
+        "Espero que sua jornada\\ntraga muitos aprendizados!$"
       ],
       "SproutTower_Text_SageJin_Seen": [
-        "Treino para encontrar a\\niluminacao em POKEMON!$"
+        "Treino todos os dias\\npara compreender os POKEMON!$"
       ],
       "SproutTower_Text_SageJin_Beaten": [
-        "O meu treino esta incompleto...$"
+        "Meu treino ainda\\nnao foi suficiente...$"
       ],
       "SproutTower_Text_SageJin_AfterBattle": [
-        "A medida que o POKEMON se\\nfortalece, o treinador tambem\\lse fortalece.\\pNao, espera. A medida que o\\ntreinador fica mais forte, o\\lPOKEMON tambem fica.$"
+        "Quando um POKEMON\\nfica mais forte,\\nseu TREINADOR tambem evolui.\\pOu sera o contrario?\\pTalvez os dois\\ncrescam juntos!$"
       ],
       "SproutTower_Text_SageTroy_Seen": [
-        "Deixa-me ver o quanto confias\\nno teu Pokemon.$"
+        "Quero ver quanto\\nvoce confia nos seus POKEMON!$"
       ],
       "SproutTower_Text_SageTroy_Beaten": [
-        "Sim, a tua confianca e real!$"
+        "Sua confianca\\ne verdadeira!$"
       ],
       "SproutTower_Text_SageNeal_Beaten": [
-        "E a minha cabeca que brilha!$"
+        "Minha cabeca esta brilhando!$"
       ],
       "SproutTower_Text_SageNeal_AfterBattle": [
-        "Que haja luz na vossa jornada.$"
+        "Que a luz ilumine\\nsua jornada!$"
       ]
     },
     "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc": {
