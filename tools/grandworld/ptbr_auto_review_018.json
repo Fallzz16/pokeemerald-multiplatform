@@ -452,74 +452,74 @@
     },
     "data/maps/RuinsOfAlph_B1F/scripts.inc": {
       "RuinsOfAlph_B1F_Text_Presence": [
-        "Ha uma estranha presenca aqui.$"
+        "Ha uma presenca\\nmisteriosa neste lugar...$"
       ],
       "RuinsOfAlph_B1F_Text_Hiker": [
-        "Este quarto e grande, mas nao\\nha nada aqui.$"
+        "Esta sala e enorme!\\nMas parece estar vazia...$"
       ],
       "RuinsOfAlph_B1F_Text_Teacher": [
-        "Este lugar tem uma qualidade\\nmistica.\\pAte parece eterea.$"
+        "Ha algo misterioso\\naqui nas ruinas.\\pO ambiente parece magico!$"
       ],
       "RuinsOfAlph_B1F_Text_Gramps": [
-        "Os edificios antigos sao muitas\\nvezes tumulos de reis.\\pComo as piramides, por exemplo.$"
+        "Construcoes antigas\\npodem guardar muitos segredos.\\pComo as piramides!$"
       ]
     },
     "data/maps/RuinsOfAlph_Outside/scripts.inc": {
       "RuinsOfAlph_Outside_Text_SuperNerdStan_Seen": [
-        "O que queres? Estou a\\nestudar... Nao me perturbe!$"
+        "Estou pesquisando!\\pPor favor,\\nnao me interrompa!$"
       ],
       "RuinsOfAlph_Outside_Text_SuperNerdStan_Beaten": [
-        "Desculpa... Estou frustrado com\\na nossa falta de\\pA verdadeira compreensao...$"
+        "Desculpe...\\pAinda nao entendemos\\no misterio destas ruinas...$"
       ],
       "RuinsOfAlph_Outside_Text_PsychicNathan_Seen": [
-        "Hmmm... Este e um lugar\\nestranho.$"
+        "Hmm...\\nQue lugar estranho!$"
       ],
       "RuinsOfAlph_Outside_Text_PsychicNathan_After": [
-        "Gosto de pensar aqui.$"
+        "Gosto de vir aqui\\npara pensar em paz.$"
       ],
       "RuinsOfAlph_Outside_Text_Youngster1": [
-        "Ha muitos tipos de UNOWN, entao\\nnos os usamos para nossos\\lcodigos secretos.$"
+        "Existem muitos tipos\\nde UNOWN!\\pUsamos as letras deles\\npara criar mensagens secretas!$"
       ],
       "RuinsOfAlph_Outside_Text_Youngster2": [
-        "A... H... E... A... D...\\pO que?\\pEstou a descodificar esta\\nmensagem!$"
+        "A... H... E... A... D...\\pO que?\\pEstou tentando\\ndecifrar esta mensagem!$"
       ]
     },
     "data/maps/RuinsOfAlph_PuzzleAndRewardChambers/scripts.inc": {
       "RuinsOfAlph_PuzzleAndRewardChambers_Text_Reward": [
-        "A camara reage! O caminho esta\\naberto.$"
+        "A sala reagiu!\\pUma passagem se abriu!$"
       ],
       "RuinsOfAlph_PuzzleAndRewardChambers_Text_Mon": [
-        "Algum tipo de sensor antigo. O\\nque procura?$"
+        "Um sensor muito antigo...\\nO que ele detecta?$"
       ],
       "RuinsOfAlph_PuzzleAndRewardChambers_Text_Solved": [
-        "O caminho esta aberto.$"
+        "A passagem esta aberta!$"
       ],
       "RuinsOfAlph_PuzzleAndRewardChambers_Text_Receptionist1": [
-        "Bem-vindo a esta camara.\\pHa paineis deslizantes que\\nretratam um POKEMON desenhado\\lpelos antigos.\\pDeslize os paineis para formar\\na imagem.\\pA esquerda esta uma descricao\\ndo POKEMON.\\pOs cientistas do laboratorio\\nestao a examinar alguns padroes\\lrecentemente encontrados.$"
+        "Bem-vindo a esta sala!\\pOs paineis deslizantes\\nformam um POKEMON antigo.\\pMova as partes\\npara completar a imagem!\\pA esquerda ha uma descricao\\ndo POKEMON.\\pOs cientistas estudam\\nnovos desenhos encontrados!$"
       ],
       "RuinsOfAlph_PuzzleAndRewardChambers_Text_Receptionist2": [
-        "Abriu-se um buraco no chao! E\\nmelhor contar aos outros.$"
+        "Um buraco se abriu no chao!\\pPreciso avisar os outros!$"
       ],
       "RuinsOfAlph_PuzzleAndRewardChambers_Text_Receptionist3": [
-        "Agora um buraco na parede\\ntambem?! Isto esta a ficar\\lassustador.$"
+        "Agora um buraco na parede?!\\pEste lugar esta estranho...$"
       ],
       "RuinsOfAlph_PuzzleAndRewardChambers_Text_Kabuto": [
-        "Um Pokemon que se escondeu no\\nfundo do mar. Os olhos nas\\lcostas escanearam a area.$"
+        "Um POKEMON antigo\\nque vivia no fundo do mar.\\pSeus olhos observavam\\no ambiente ao redor.$"
       ],
       "RuinsOfAlph_PuzzleAndRewardChambers_Text_UnownText": [
-        "E mensagem UNOWN!$"
+        "Uma mensagem escrita\\ncom letras UNOWN!$"
       ],
       "RuinsOfAlph_PuzzleAndRewardChambers_Text_Statue": [
-        "E uma replica de um antigo\\nPokemon.$"
+        "Uma replica\\nde um POKEMON antigo.$"
       ],
       "RuinsOfAlph_PuzzleAndRewardChambers_Text_Aerodactyl": [
-        "Este POKEMON voador atacou sua\\npresa com presas de serra.$"
+        "Este POKEMON voador\\natacava com dentes afiados.$"
       ],
       "RuinsOfAlph_PuzzleAndRewardChambers_Text_Omanyte": [
-        "Este POKEMON vagueava no mar,\\ntorcendo seus dez tentaculos.$"
+        "Este POKEMON nadava\\ncom seus dez tentaculos.$"
       ],
       "RuinsOfAlph_PuzzleAndRewardChambers_Text_Hooh": [
-        "Um Pokemon que voou\\ngraciosamente em asas de cor\\larco-iris.$"
+        "Um POKEMON que voava\\ncom asas das cores\\ndo arco-iris.$"
       ]
     },
     "data/maps/RustboroCity/scripts.inc": {
@@ -695,28 +695,28 @@
     },
     "data/maps/RusturfTunnel/scripts.inc": {
       "RusturfTunnel_Text_ComeAndGetSome": [
-        "Vens? Entao, vem buscar!$"
+        "Vai me enfrentar?\\nEntao venha!$"
       ],
       "RusturfTunnel_Text_GruntIntro": [
-        "Eh, keelhaul tudo!\\pO refem Pokemon acabou por ser\\ninutil!\\pE pensar que fugi... Neste\\ntunel para lado nenhum!\\pHey! Voce! Queres lutar comigo?$"
+        "Que azar!\\pO POKEMON que capturei\\nnao serviu para nada!\\pE agora estou preso\\nneste tunel sem saida!\\pEi, voce!\\nQuer batalhar?$"
       ],
       "RusturfTunnel_Text_GruntDefeat": [
-        "Urrrggh! A minha carreira no\\ncrime chega a um beco sem\\lsaida!$"
+        "Argh! Minha carreira\\nna EQUIPE AQUA acabou!$"
       ],
       "RusturfTunnel_Text_YouShatteredBoulderTakeHM": [
-        "Uau! Partiste aquela pedra a\\nbloquear o caminho.\\pPara te mostrar o quanto\\nagradeco, gostava que tivesses\\lesta HM.$"
+        "Uau! Voce quebrou\\naquela pedra do caminho!\\pAceite esta HM\\ncomo agradecimento!$"
       ],
       "RusturfTunnel_Text_BoyfriendOnOtherSideOfRock": [
-        "Do outro lado desta rocha... O\\nmeu namorado esta la.\\pEle... Ele nao esta so a cavar\\no tunel para me vir ver.\\pEle trabalha com as maos cruas\\ne asperas para o beneficio de\\ltodos.$"
+        "Meu namorado esta\\ndo outro lado da rocha...\\pEle cava o tunel\\npara ajudar a todos!\\pE tambem quer\\nme encontrar!$"
       ],
       "RusturfTunnel_Text_MikeIntro": [
-        "Como se chama um selvagem nas\\nmontanhas? Um homem da\\lmontanha, certo?\\pPorque nao chamam Pokemon as\\nmontanhas de Pokemon?$"
+        "Se alguem mora\\nnas montanhas,\\ne chamado de montanhes!\\pE os POKEMON que vivem la?\\nSao POKEMON da montanha?$"
       ],
       "RusturfTunnel_Text_MikeDefeat": [
-        "O meu Pokemon... ficou sem\\nenergia...$"
+        "Meu POKEMON ficou\\nsem energia...$"
       ],
       "RusturfTunnel_Text_MikePostBattle": [
-        "Eles pararam o desenvolvimento\\naqui para proteger POKEMON,\\lcerto? Ha uma boa historia!$"
+        "Pararam as obras do tunel\\npara proteger os POKEMON.\\pFoi uma boa decisao!$"
       ]
     },
     "data/maps/SSAnne_1F_Corridor_Frlg/scripts.inc": {
