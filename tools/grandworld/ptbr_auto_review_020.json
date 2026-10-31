@@ -651,7 +651,7 @@
         "Alguns POKEMON\\nevoluem quando sao trocados.\\pOutros precisam segurar\\num item especial na troca!$"
       ],
       "SixIsland_PokemonCenter_1F_Text_RivalImpossibleToGetAllMonsAroundHere": [
-        "{RIVAL}Ola.{PLAYER}Como esta o\\nteu POKEDEX a encher-se?\\pParece que e impossivel\\nconseguir todo o POKEMON por\\landar por aqui.\\pTalvez haja Pokemon que nao\\nsaibamos algures longe...\\p... ... ... ... ... ... ... ...\\n...\\pSe eu nao conseguir, nao ha\\nmaneira de o conseguires.\\pNao vou ficar desesperado por\\ncausa disto.\\pVou continuar a recolher\\nPOKEMON ao meu proprio ritmo\\lenquanto os treino.\\pE o que vou fazer. Entao, nao\\nvale a pena ficar aqui. Mais\\lvale ir para casa.\\pEntao e isso! Cheira-te mais\\ntarde!$"
+        "{RIVAL}Ola.{PLAYER}Como esta o\\nteu POKEDEX a encher-se?\\pParece que e impossivel\\nconseguir todo o POKEMON por\\landar por aqui.\\pTalvez haja POKEMON que nao\\nsaibamos algures longe...\\p... ... ... ... ... ... ... ...\\n...\\pSe eu nao conseguir, nao ha\\nmaneira de o conseguires.\\pNao vou ficar desesperado por\\ncausa disto.\\pVou continuar a recolher\\nPOKEMON ao meu proprio ritmo\\lenquanto os treino.\\pE o que vou fazer. Entao, nao\\nvale a pena ficar aqui. Mais\\lvale ir para casa.\\pEntao e isso! Cheira-te mais\\ntarde!$"
       ]
     },
     "data/maps/SixIsland_RuinValley_Frlg/scripts.inc": {
