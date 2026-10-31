@@ -448,73 +448,73 @@
     },
     "data/maps/OneIsland_PokemonCenter_1F_Frlg/scripts.inc": {
       "OneIsland_PokemonCenter_1F_Text_PlayerIsRisingPokemonChamp": [
-        "CELIO, aqui e{PLAYER}, um\\ncandidato em ascensao como o\\lCHAMP POKEMON!$"
+        "CELIO, este e {PLAYER}!\\pEle esta se tornando\\num grande TREINADOR POKEMON!$"
       ],
       "OneIsland_PokemonCenter_1F_Text_AcceptedMeteoriteFromBill": [
-        "{PLAYER}aceitou o METEORITE de\\nBILL.$"
+        "{PLAYER} recebeu\\no METEORITE de BILL!$"
       ],
       "OneIsland_PokemonCenter_1F_Text_ReceivedExtraPageForTownMap": [
-        "{PLAYER}recebeu uma pagina\\nextra para o MAP da TOWN!$"
+        "{PLAYER} recebeu\\numa nova pagina do TOWN MAP!$"
       ],
       "OneIsland_PokemonCenter_1F_Text_HmmHowAboutLikeThis": [
-        "Hmm...\\pQue tal tentarmos assim...$"
+        "Hmm...\\pTalvez funcione assim...$"
       ],
       "OneIsland_PokemonCenter_1F_Text_GotPCWorkingStrollAWhileMore": [
-        "Ola.{PLAYER}!\\pViste? Temos o PC a funcionar!\\pTenho algumas coisas para\\nmostrar ao CELIO.\\pPodes ir dar um passeio mais um\\npouco?$"
+        "Ola, {PLAYER}!\\pOs PCs estao funcionando!\\pPreciso mostrar\\nalgo para CELIO.\\pPode passear\\nmais um pouco?$"
       ],
       "OneIsland_PokemonCenter_1F_Text_UsualPCServicesUnavailable": [
-        "Os servicos de PC habituais nao\\nestao disponiveis...$"
+        "Os servicos normais\\ndo PC estao indisponiveis...$"
       ],
       "OneIsland_PokemonCenter_1F_Text_YoullBeTradingFromTrainersFarAway": [
-        "Estou a modificar a Maquina de\\nRede.\\pEstou a muda-lo para que possa\\nlidar com negocios a longas\\ldistancias.\\pQuando eu terminar, estaras a\\ntrocar por POKEMON exotico de\\lTRAiners muito longe.$"
+        "Estou melhorando\\na maquina de rede!\\pQuando terminar, voce\\npodera trocar POKEMON\\ncom pessoas de longe!$"
       ],
       "OneIsland_PokemonCenter_1F_Text_TryingToFindGem": [
-        "Estava a tentar encontrar a\\njoia mesmo enquanto estudava.\\pComo resultado, nao fiz nenhum\\nprogresso na minha busca e\\lestudos...\\pSe eu confiasse no BILL, tenho\\na certeza que a minha pesquisa\\lprogrediria.\\pMas desta vez, quero tentar\\nfazer as coisas sozinha.$"
+        "Estou procurando\\numa pedra muito rara.\\pMas minha pesquisa\\nnao avancou muito...\\pBILL poderia me ajudar,\\nmas quero tentar sozinho!$"
       ],
       "OneIsland_PokemonCenter_1F_Text_OhThats": [
         "Oh! Isso e...$"
       ],
       "OneIsland_PokemonCenter_1F_Text_MayIAskOneMoreFavor": [
-        "Obrigado!{PLAYER}Es\\nsimplesmente incrivel.\\p... ... ... ... ... ...\\pHum... Posso pedir-te mais um\\nfavor gigante?$"
+        "Obrigado, {PLAYER}!\\nVoce e incrivel!\\pHmm...\\pPosso pedir\\nmais um grande favor?$"
       ],
       "OneIsland_PokemonCenter_1F_Text_PleaseINeedYourHelp": [
-        "Nao e nada estranho. Por favor,\\npreciso da tua ajuda.$"
+        "Por favor!\\nPreciso muito da sua ajuda!$"
       ],
       "OneIsland_PokemonCenter_1F_Text_HandedSapphireToCelio": [
-        "{PLAYER}Entreguei o SAPPHIRE ao\\nCELIO.$"
+        "{PLAYER} entregou\\nSAPPHIRE para CELIO!$"
       ],
       "OneIsland_PokemonCenter_1F_Text_OkayThisIsGood": [
-        "Esta bem, isto e bom...$"
+        "Pronto! Assim esta bom...$"
       ],
       "OneIsland_PokemonCenter_1F_Text_WishYouBestOfLuck": [
-        "Nao estou a chorar.\\pJa chega de falar de mim!\\p{PLAYER}Vais continuar a\\nprocura de Pokemon exotico,\\lcerto?\\pDesejo-lhe boa sorte!$"
+        "Nao estou chorando!\\pChega de falar de mim!\\p{PLAYER}, voce vai procurar\\nmais POKEMON raros, nao vai?\\pDesejo boa sorte!$"
       ],
       "OneIsland_PokemonCenter_1F_Text_BillsFirstMonWasAbra": [
-        "{PLAYER}Qual e o teu tipo\\nfavorito de Pokemon?\\pO BILL e um POKeMANIAC, por\\nisso adora todos os tipos.\\pAparentemente, o primeiro que\\nele apanhou foi um ABRA.$"
+        "{PLAYER}, qual e seu\\ntipo favorito de POKEMON?\\pBILL gosta de todos!\\pSeu primeiro POKEMON\\nfoi um ABRA!$"
       ],
       "OneIsland_PokemonCenter_1F_Text_BillCantStomachMilk": [
-        "{PLAYER}Ha alguma coisa que nao\\nsuportas?\\pAparentemente, o BILL nao\\nconsegue comer leite.$"
+        "{PLAYER}, tem algum alimento\\nque voce nao suporta?\\pBILL nao gosta de leite!$"
       ],
       "OneIsland_PokemonCenter_1F_Text_EnormousVolcanoOnIsland": [
-        "Nesta ilha, ha um enorme\\nvulcao.\\pNao entrou em erupcao\\nultimamente, entao porque nao\\ldesfrutar de uma caminhada?$"
+        "Esta ilha tem\\num vulcao enorme!\\pComo esta tranquilo,\\nvale a pena passear!$"
       ],
       "OneIsland_PokemonCenter_1F_Text_WishICouldTradeWithBoyfriend": [
-        "Quem me dera poder trocar\\nPOKEMON com o meu namorado que\\lmora longe...$"
+        "Queria trocar POKEMON\\ncom meu namorado\\nque mora muito longe...$"
       ],
       "OneIsland_PokemonCenter_1F_Text_TradedWithFarAwayBoyfriend": [
-        "Troquei o POKEMON com o meu\\nnamorado de longe!\\pTodos dizem que podemos\\nagradecer-lhe e ao CELIO.\\pEntao, obrigado!$"
+        "Consegui trocar POKEMON\\ncom meu namorado distante!\\pGracas a voce e CELIO!\\nMuito obrigada!$"
       ],
       "OneIsland_PokemonCenter_1F_Text_MachineUnderAdjustment": [
-        "Nivel 0 da ligacao da maquina\\nde rede\\p...Sistema de armazenamento\\nPOKEMON em ajuste...$"
+        "MAQUINA DE REDE: NIVEL 0\\pO armazenamento de POKEMON\\nesta em manutencao...$"
       ],
       "OneIsland_PokemonCenter_1F_Text_MachineLinkedWithKanto": [
-        "Maquina de rede Link Nivel 1\\pLigacao estabelecida com a\\nregiao KANTO.$"
+        "MAQUINA DE REDE: NIVEL 1\\pConectada a regiao de KANTO!$"
       ],
       "OneIsland_PokemonCenter_1F_Text_MachineLinkedWithKantoAndHoenn": [
-        "Maquina de rede Link Nivel 2\\pLigacao estabelecida com as\\nregioes KANTO e HOENN.$"
+        "MAQUINA DE REDE: NIVEL 2\\pConectada a KANTO e HOENN!$"
       ],
       "OneIsland_PokemonCenter_1F_Text_ObtainedTriPass": [
-        "Obtive o TRI-PASS!$"
+        "Voce recebeu TRI-PASS!$"
       ]
     },
     "data/maps/OneIsland_TreasureBeach_Frlg/scripts.inc": {
