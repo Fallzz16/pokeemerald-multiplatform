@@ -352,7 +352,7 @@
     },
     "data/maps/Route15_WestEntrance_2F_Frlg/scripts.inc": {
       "Route15_WestEntrance_2F_Text_GreatHereYouGo": [
-        "Optimo! Capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
+        "Otimo! Capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
       ],
       "Route15_WestEntrance_2F_Text_ReceivedItemFromAide": [
         "{PLAYER}Recebido o{STR_VAR_2}Da\\nAIDE.$"
@@ -456,7 +456,7 @@
         "Vamos ver o que os binoculos\\ntem para mostrar...\\pHa um longo caminho sobre a\\nagua muito longe.$"
       ],
       "Route16_NorthEntrance_2F_Text_GreatHereYouGo": [
-        "Optimo! Capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
+        "Otimo! Capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
       ]
     },
     "data/maps/Route17_Frlg/scripts.inc": {
@@ -625,7 +625,7 @@
         "Oh! Perdi!$"
       ],
       "Route19_Text_AliceIntro": [
-        "Nadar e optimo! As queimaduras\\nde sol nao sao!$"
+        "Nadar e otimo! As queimaduras\\nde sol nao sao!$"
       ],
       "Route19_Text_AliceDefeat": [
         "Chocante!$"
@@ -711,7 +711,7 @@
         "Minhas perolas vao crescer\\ndentro do CLOYSTER?$"
       ],
       "Route20_Text_MissyDefeat": [
-        "Estou tao desiludida!$"
+        "Estou tao decepcionada!$"
       ],
       "Route20_Text_MelissaIntro": [
         "CINNABAR, no oeste, tem um LAB\\npara POKEMON.\\pMeu pai trabalha la.$"
