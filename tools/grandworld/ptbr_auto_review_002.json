@@ -80,7 +80,7 @@
         "Nao vai chegar ate o fim!\\nNao enquanto eu estiver aqui!$"
       ],
       "MossdeepCity_Gym_Text_MaceyDefeat": [
-        "Como voce consegue\\nser tao forte?$"
+        "Como voce Consegue\\nser tao forte?$"
       ],
       "MossdeepCity_Gym_Text_MaceyPostBattle": [
         "Hmph! Voce e forte,\\nmas seu estilo e bruto!\\pAinda tem muito a aprender\\nsobre o tipo PSYCHIC!$"
@@ -543,7 +543,7 @@
         "O que pensa que esta fazendo?!$"
       ],
       "FiveIsland_RocketWarehouse_Text_Grunt1Intro": [
-        "Agora o seu Pokemon parece\\nforte. Estas disposto a\\lvende-los?\\pA serio? Querias lutar?$"
+        "Agora o seu POKEMON parece\\nforte. Estas disposto a\\lvende-los?\\pA serio? Querias lutar?$"
       ],
       "FiveIsland_RocketWarehouse_Text_Grunt1Defeat": [
         "Mas... Demasiado!$"
@@ -608,7 +608,7 @@
         "Este e um excelente ambiente\\npara a criacao de POKEMON.$"
       ],
       "FiveIsland_WaterLabyrinth_Text_AlizeDefeat": [
-        "Seu Pokemon esta crescendo\\nadmiravelmente bem!$"
+        "Seu POKEMON esta crescendo\\nadmiravelmente bem!$"
       ],
       "FiveIsland_WaterLabyrinth_Text_AlizePostBattle": [
         "sabe, acho que tem talento\\npara ser um bom BREEDER.$"
@@ -639,7 +639,7 @@
         "O meu amigo estava a dormir,\\ncerto? O que e que eu disse?$"
       ],
       "Route35GoldenrodGate_Text_PokefanF_TreeBlocking": [
-        "Uma arvore estranha esta a\\nbloquear a estrada.\\pSe falares, contorce-te.\\pOuvi dizer que ficou selvagem\\nquando alguem o regou com um\\lSQUIRTBOTTLE.$"
+        "Uma arvore estranha esta\\nbloquear a estrada.\\pSe falares, contorce-te.\\pOuvi dizer que ficou selvagem\\nquando alguem o regou com um\\lSQUIRTBOTTLE.$"
       ],
       "Route35GoldenrodGate_Text_PokefanF_Lullaby": [
         "Gosto da cancao de ninar\\nPokemon que tocam no radio.$"
@@ -669,7 +669,7 @@
         "Ola! Visitaste o SPROUT TOWER?$"
       ],
       "Gate_Route31_VioletCity_Text_CooltrainerF": [
-        "Eu vi o Pokemon mais bonito la\\nfora.\\pParecia muito com PIKACHU!$"
+        "Eu vi o POKEMON mais bonito la\\nfora.\\pParecia muito com PIKACHU!$"
       ]
     },
     "data/maps/Gate_Route43/scripts.inc": {
@@ -776,7 +776,7 @@
         "Fui derrotado de novo!$"
       ],
       "RocketHideout_B4F_Text_Grunt3Intro": [
-        "Como nao consegue ver\\na grandeza dos nossos planos?$"
+        "Como nao Consegue ver\\na grandeza dos nossos planos?$"
       ],
       "RocketHideout_B4F_Text_Grunt1Defeat": [
         "Nao! Que derrota!$"
