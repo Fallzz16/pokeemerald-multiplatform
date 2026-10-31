@@ -123,9 +123,7 @@ def build(root=ROOT):
                     "issues": issues,
                     "text": value,
                 })
-    if len(result) != index["added_entries"] or seen != (
-        human | set(key for key in seen if key not in human)
-    ):
+    if len(result) != index["added_entries"] or not (human | assisted | editorial).issubset(seen):
         raise ValueError("draft count drift")
     pending = [r for r in result if r["status"] != "previously_reviewed"]
     pending.sort(key=lambda item: (-item["priority"], item["source"], item["symbol"]))
