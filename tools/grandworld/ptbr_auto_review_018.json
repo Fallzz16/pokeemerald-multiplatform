@@ -524,7 +524,7 @@
     },
     "data/maps/RustboroCity/scripts.inc": {
       "RustboroCity_Text_YouCanHave2On2Battle": [
-        "Sabias disto?\\pVoce pode ter uma batalha 2\\ncontra 2, mesmo se voce nao\\lestiver com outro treinador.\\pSe voce pegar os olhos de dois\\nTRAiners quando voce tem dois\\lou mais POKEMON, ambos vao\\ldesafiar voce.\\pNao achas que seria fixe se\\nconseguisses vencer dois\\ltreinadores sozinho?$"
+        "Sabias disto?\\pVoce pode ter uma batalha 2\\ncontra 2, mesmo se voce nao\\lestiver com outro treinador.\\pSe voce pegar os olhos de dois\\nTRAiners quando voce tem dois\\lou mais POKEMON, ambos vao\\ldesafiar voce.\\pNao achas que seria legal se\\nconseguisses vencer dois\\ltreinadores sozinho?$"
       ]
     },
     "data/maps/RustboroCity_CuttersHouse/scripts.inc": {
@@ -560,22 +560,22 @@
         "Eu fiz o POKeNAV!\\pComo engenheiro, sinto-me\\nabencoado por ter feito algo\\ltao grande!$"
       ],
       "RustboroCity_DevonCorp_2F_Text_DeviceToVisualizePokemonDreams": [
-        "Estou a tentar desenvolver um\\ndispositivo que reproduz\\lvisualmente os sonhos de\\lPOKEMON...\\pMas nao esta a correr bem.$"
+        "estou tentando desenvolver um\\ndispositivo que reproduz\\lvisualmente os sonhos de\\lPOKEMON...\\pMas nao esta a correr bem.$"
       ],
       "RustboroCity_DevonCorp_2F_Text_DevelopDeviceToResurrectFossils": [
         "Tenho tentado desenvolver um\\ndispositivo que ressuscite\\lPokemon de fosseis...\\pE esta a funcionar!$"
       ],
       "RustboroCity_DevonCorp_2F_Text_TwoFossilsPickOne": [
-        "Que surpresa! Nao tens um, mas\\ndois, fosseis?\\pInfelizmente, a minha maquina\\nso pode regenerar um POKEMON de\\lcada vez.\\pGostaria de escolher um dos\\nseus fosseis para regeneracao?$"
+        "Que surpresa! Nao tem um, mas\\ndois, fosseis?\\pInfelizmente, a minha maquina\\nso pode regenerar um POKEMON de\\lcada vez.\\pGostaria de escolher um dos\\nseus fosseis para regeneracao?$"
       ],
       "RustboroCity_DevonCorp_2F_Text_FossilizedMonBroughtBackToLife": [
         "Obrigado por esperares!\\pO seu POKEMON fossilizado foi\\ntrazido de volta a vida!\\pO fossil era um antigo\\nPokemon.{STR_VAR_2}Foi!$"
       ],
       "RustboroCity_DevonCorp_2F_Text_TooManyPokemon": [
-        "Tens muitos Pokemon. Nao tens\\nespaco para este.$"
+        "tem muitos Pokemon. Nao tem\\nespaco para este.$"
       ],
       "RustboroCity_DevonCorp_2F_Text_DevelopNewPokenavFeature": [
-        "Estou a tentar desenvolver uma\\nnova funcionalidade para o\\lPOKeNAV...\\pMas nao esta a correr bem.$"
+        "estou tentando desenvolver uma\\nnova funcionalidade para o\\lPOKeNAV...\\pMas nao esta a correr bem.$"
       ],
       "RustboroCity_DevonCorp_2F_Text_WhatToWorkOnNext": [
         "Bem, agora o que devo trabalhar\\nem desenvolver a seguir?\\pNossa empresa nos permite fazer\\nnossas inspiracoes em\\lrealidade.\\pNao se pode pedir um ambiente\\nmelhor como engenheiro.$"
@@ -599,7 +599,7 @@
     },
     "data/maps/RustboroCity_Flat1_2F/scripts.inc": {
       "RustboroCity_Flat1_2F_Text_ComingUpWithMealsIsHard": [
-        "E tao dificil todos os dias...\\pO que e dificil? Precisas de\\nperguntar?\\pEsta a tentar descobrir o que\\nfazer para as refeicoes todos\\los dias.\\pNao e facil arranjar refeicoes\\ntodos os dias.$"
+        "E tao dificil todos os dias...\\pO que e dificil? precisa de\\nperguntar?\\pEsta a tentar descobrir o que\\nfazer para as refeicoes todos\\los dias.\\pNao e facil arranjar refeicoes\\ntodos os dias.$"
       ],
       "RustboroCity_Flat1_2F_Text_HelloDoYouKnowFunnyPhrase": [
         "Ola! Bem-vindo a casa PEPPER.\\pTenho uma pergunta para ti. Ja\\nalguma vez tomaste conta de\\lbebes?\\pSou um novo pai, por isso criar\\num filho e novo para mim.\\pE tenho um problema. A minha\\nfilha WALDA nao se ri o\\lsuficiente.\\pAcho que ela riria por mim se\\nlhe dissesse algo engracado.\\pConheces alguma palavra ou\\nfrase engracada que me possas\\ldizer?$"
@@ -629,7 +629,7 @@
         "{STR_VAR_1}. {STR_VAR_1}.\\pHmmm... Ela nao esta a sorrir.\\nTalvez o WALDA seja uma crianca\\lseria...$"
       ],
       "RustboroCity_Flat1_2F_Text_OhYouDontKnowAny": [
-        "Entao nao sabes nada de bom.\\nAcho que vou tentar diverti-la\\lcom o ditado que usei antes.\\pSeja como for, se tiveres uma\\nboa sugestao, nao hesites em\\ldizer-me, esta bem?$"
+        "Entao nao sabe nada de bom.\\nAcho que vou tentar diverti-la\\lcom o ditado que usei antes.\\pSeja como for, se tiveres uma\\nboa sugestao, nao hesites em\\ldizer-me, esta bem?$"
       ]
     },
     "data/maps/RustboroCity_Flat2_2F/scripts.inc": {
@@ -648,7 +648,7 @@
         "Huh? Isso nao se parece nada\\ncom um{STR_VAR_1}para mim.$"
       ],
       "RustboroCity_House1_Text_YouDontWantToThatsOkay": [
-        "Se nao quiseres, tudo bem. Mas\\no meu Pokemon e giro, sabes...$"
+        "Se nao quiseres, tudo bem. Mas\\no meu Pokemon e giro, sabe...$"
       ],
       "RustboroCity_House1_Text_AnyPokemonCanBeCute": [
         "Qualquer POKEMON pode ser\\nbonito se voce cria-lo com\\lcuidado e bondade.$"
@@ -687,7 +687,7 @@
         "POKEMON pode segurar itens, mas\\neles nao sabem o que fazer com\\litens feitos pelo homem como\\lPOTION e ANTIDOTE.$"
       ],
       "RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself": [
-        "Sabes como alguns movimentos\\nPOKEMON podem confundir um\\lPOKEMON?\\pPor vezes, um POKEMON confuso\\nataca-se sem querer.\\pMas assim que sair da batalha,\\nvoltara ao normal.$"
+        "sabe como alguns movimentos\\nPOKEMON podem confundir um\\lPOKEMON?\\pPor vezes, um POKEMON confuso\\nataca-se sem querer.\\pMas assim que sair da batalha,\\nvoltara ao normal.$"
       ],
       "RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry": [
         "Um Pokemon segurando um BERRY\\nvai se curar...\\pHa muitos tipos de itens que\\nPOKEMON pode segurar...\\pE dificil anotar...$"
@@ -735,7 +735,7 @@
         "Uau! Es fantastico!$"
       ],
       "SSAnne_1F_Room2_Text_TylerPostBattle": [
-        "Ouve, ouve! Deixa-me ser tua\\namiga, esta bem?\\pDepois podemos trocar POKEMON e\\nfazer coisas.$"
+        "Ouve, ouve! Deixa-me ser sua\\namiga, esta bem?\\pDepois podemos trocar POKEMON e\\nfazer coisas.$"
       ],
       "SSAnne_1F_Room2_Text_AnnIntro": [
         "Eu recolhi estes POKEMON de\\ntodo o mundo!$"
@@ -776,7 +776,7 @@
     },
     "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc": {
       "SSAnne_1F_Room6_Text_TakeAShortRest": [
-        "Pareces cansado. Queres\\ndescansar um pouco?$"
+        "Pareces cansado. quer\\ndescansar um pouco?$"
       ],
       "SSAnne_1F_Room6_Text_GladEveryoneIsRefreshed": [
         "Fico feliz por ver que todos\\nparecem revigorados e felizes.$"
@@ -796,7 +796,7 @@
         "Meus, meus amigos...$"
       ],
       "SSAnne_1F_Room7_Text_ThomasPostBattle": [
-        "Devias ser simpatico com os\\namigos!$"
+        "devia ser simpatico com os\\namigos!$"
       ]
     },
     "data/maps/SSAnne_2F_Corridor_Frlg/scripts.inc": {
@@ -804,10 +804,10 @@
         "Este navio e um navio de luxo\\npara os TRAiners do mundo!\\pEm todos os portos, fazemos\\nfestas com os TRAiners\\lconvidados.$"
       ],
       "SSAnne_2F_Corridor_Text_RivalIntro": [
-        "{RIVAL}Bonjour!{PLAYER}!\\pImagina ver-te\\naqui!{PLAYER}Foste mesmo\\lconvidado?\\pEntao, como vai o teu POKEDEX?\\pJa apanhei 40 tipos, amigo. Ha\\ntipos diferentes em todo o\\llado.\\pRasteje em areas gramadas, e\\nprocure por elas.$"
+        "{RIVAL}Bonjour!{PLAYER}!\\pImagina ver-te\\naqui!{PLAYER}Foste mesmo\\lconvidado?\\pEntao, como vai o seu POKEDEX?\\pJa apanhei 40 tipos, amigo. Ha\\ntipos diferentes em todo o\\llado.\\pRasteje em areas gramadas, e\\nprocure por elas.$"
       ],
       "SSAnne_2F_Corridor_Text_RivalDefeat": [
-        "Humph!\\pPelo menos estas a criar o teu\\nPokemon!$"
+        "Humph!\\pPelo menos estas a criar o seu\\nPokemon!$"
       ],
       "SSAnne_2F_Corridor_Text_RivalPostBattle": [
         "{RIVAL}Ouvi dizer que havia um\\nmestre CUT a bordo.\\pMas ele era apenas um velho\\nenjoado!\\pCUT em si e realmente util.\\nSim, vai ser util.\\pDevias ir ve-lo tambem.\\nCheira-te!$"
