@@ -154,7 +154,7 @@
         "Vejo veneno...\\pE, eu vejo seu POKEMON\\nsofrendo dos efeitos do\\lveneno...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintBurn": [
-        "Vejo chamas vermelhas\\nbrilhantes...\\pE vejo seu POKEMON a sofrer\\nde queimaduras...$"
+        "Vejo chama vermelhas\\nbrilhantes...\\pE vejo seu POKEMON a sofrer\\nde queimaduras...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintLevitate": [
         "Vejo POKEMON a voar...\\p...e, eu vejo seu POKEMON\\nfrustrado por movimentos\\limpotentes do tipo GROUND...$"
@@ -328,7 +328,7 @@
         "Quais sao seus sentimentos\\nquando estas prestes a comecar\\lum jogo?$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouveWon": [
-        "O que sentes quando ganhas um\\njogo?$"
+        "O que sentes quando ganha um\\njogo?$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouveLost": [
         "Posso ouvir seus sentimentos\\nquando perdeu um fosforo?$"
@@ -668,7 +668,7 @@
         "{STR_VAR_3}disse-me o que\\nfazer. Entao, um...{STR_VAR_1}-\\lusando{STR_VAR_2}$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice13Mon2Ask": [
-        "E um{STR_VAR_1}-\\nusando{STR_VAR_2}Eu escolhi.\\pEntao, o que me dizes? Va la,\\nfaz meu dia!\\pPor favor, estou implorando-te!\\nDeixa-me juntar-me a ti, nao me\\ldeixes triste!$"
+        "E um{STR_VAR_1}-\\nusando{STR_VAR_2}Eu escolhi.\\pEntao, o que me diz? Va la,\\nfaz meu dia!\\pPor favor, estou implorando-te!\\nDeixa-me juntar-me a ti, nao me\\ldeixes triste!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice13Accept": [
         "Sim! A sorte esta comigo!\\nFaz-me feliz!\\pAntes de nos juntarmos a batalha,\\nvou registar-me imediatamente!$"
