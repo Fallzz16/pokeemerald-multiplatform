@@ -207,7 +207,7 @@
         "Que chatice!$"
       ],
       "Route14_Text_BeckPostBattle": [
-        "Tente ensinar a POKEMON um\\nmovimento que seja do mesmo\\ltipo.\\pIsso aparentemente aumenta o\\npoder da mudanca.$"
+        "Ensine a seus POKEMON um\\ngolpe do mesmo\\ltipo deles.\\pIsso aumenta a forca\\ndo golpe usado!$"
       ],
       "Route14_Text_MarlonDefeat": [
         "Fui consumido pelas chamas!$"
@@ -246,7 +246,7 @@
         "O que? Voce!$"
       ],
       "Route14_Text_IsaacPostBattle": [
-        "Criar POKEMON e uma seca, meu.$"
+        "Treinar POKEMON cansa, cara!$"
       ],
       "Route14_Text_GeraldIntro": [
         "Viemos ate aqui por causa dos\\nespacos abertos.$"
@@ -314,7 +314,7 @@
         "POKEMON nao e sobre ganhar ou\\nperder para mim.$"
       ],
       "Route15_Text_OliviaPostBattle": [
-        "Adoro ter meu POKEMON a\\ncumprimentar-me quando chego a\\lcasa.\\pE tao reconfortante.$"
+        "Adoro quando meus POKEMON\\nvem me receber quando chego\\lem casa.\\pE muito reconfortante!$"
       ],
       "Route15_Text_ErnestIntro": [
         "Garoto! Vamos! Acabei de tirar\\nisto de um falhado!$"
@@ -414,7 +414,7 @@
         "Nao me chateies!$"
       ],
       "Route16_Text_RubenPostBattle": [
-        "Gosto de assediar as pessoas\\ncom meu POKEMON.\\pSao optimos para pessoas\\nsurpreendentes. E tambem\\lmordem.$"
+        "Gosto de assustar as pessoas\\ncom meus POKEMON.\\pEles sao bons em pregar\\npecas nos outros. E\\ltambem podem morder!$"
       ],
       "Route16_Text_MonSprawledOutInSlumber": [
         "Um POKEMON e espalhado num sono\\nprofundo e confortavel.$"
@@ -470,7 +470,7 @@
         "Estou muito orgulhoso do meu\\ncorpo, garoto. Vamos!$"
       ],
       "Route17_Text_IsaiahPostBattle": [
-        "Podia tirar-te daqui!$"
+        "Eu poderia derrubar voce!$"
       ],
       "Route17_Text_VirgilIntro": [
         "Vai para a FUCHSIA?$"
