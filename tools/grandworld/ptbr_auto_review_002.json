@@ -549,7 +549,7 @@
         "Mas... Demasiado!$"
       ],
       "FiveIsland_RocketWarehouse_Text_Grunt1PostBattle": [
-        "Podemos dar-lhe um otimo preco.\\nVende-nos o teu Pokemon!$"
+        "Pagamos muito bem.\\nVenda seu POKEMON para nos!$"
       ],
       "FiveIsland_RocketWarehouse_Text_Grunt3Defeat": [
         "Nao... voce...$"
@@ -582,7 +582,7 @@
         "Se nao posso vende-lo, e\\ninutil! Vai em frente, toma!$"
       ],
       "FiveIsland_RocketWarehouse_Text_GetLostLeaveMeBe": [
-        "O que queres agora? Va,\\ndesaparece, deixa-me em paz.$"
+        "O que voce quer agora?\\nVa embora e me deixe em paz!$"
       ]
     },
     "data/maps/FiveIsland_WaterLabyrinth_Frlg/scripts.inc": {
