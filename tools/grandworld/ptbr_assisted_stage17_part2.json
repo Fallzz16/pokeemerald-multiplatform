@@ -1,0 +1,742 @@
+{
+  "status": "machine_assisted_pending_contextual_review_not_human_approved",
+  "base_commit": "d7bcdba02bc7c23255a1a2f9e1a6f758fb97a7ad",
+  "stage": 17,
+  "shards": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "modified_entries": 505,
+  "changed_labels_by_shard_and_source": {
+    "tools/grandworld/ptbr_auto_review_008.json": {
+      "data/maps/BattleFrontier_BattleFactoryPreBattleRoom/scripts.inc": [
+        "BattleFrontier_BattleFactoryPreBattleRoom_Text_InvestigatedUpcomingOpponent",
+        "BattleFrontier_BattleFactoryPreBattleRoom_Text_RecordLatestBattle"
+      ],
+      "data/maps/BattleFrontier_BattlePalaceBattleRoom/scripts.inc": [
+        "BattleFrontier_BattlePalaceBattleRoom_Text_RecordLastMatch"
+      ],
+      "data/maps/BattleFrontier_BattlePalaceCorridor/scripts.inc": [
+        "BattleFrontier_BattlePalaceCorridor_Text_HeartfeltBondBetweenYouAndMons"
+      ],
+      "data/maps/BattleFrontier_BattlePalaceLobby/scripts.inc": [
+        "BattleFrontier_BattlePalaceLobby_Text_ReturnWhenFortified",
+        "BattleFrontier_BattlePalaceLobby_Text_NowSelectThreeMons",
+        "BattleFrontier_BattlePalaceLobby_Text_FollowMe",
+        "BattleFrontier_BattlePalaceLobby_Text_WeHaveBeenWaiting",
+        "BattleFrontier_BattlePalaceLobby_Text_FailedToSaveBeforeEndingChallenge",
+        "BattleFrontier_BattlePalaceLobby_Text_NatureAndMovesKeyHere",
+        "BattleFrontier_BattlePalaceLobby_Text_PresentYouWithBattlePoints",
+        "BattleFrontier_BattlePalaceLobby_Text_LikeToRecordMatch",
+        "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesBasics",
+        "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesNature"
+      ],
+      "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc": [
+        "BattleFrontier_BattlePikeLobby_Text_SaveBeforeChallenge",
+        "BattleFrontier_BattlePikeLobby_Text_ChallengeEndedRecordResults",
+        "BattleFrontier_BattlePikeLobby_Text_PossessLuckInAbundance",
+        "BattleFrontier_BattlePikeLobby_Text_ShallRecordResults",
+        "BattleFrontier_BattlePikeLobby_Text_AwardYouTheseBattlePoints2",
+        "BattleFrontier_BattlePikeLobby_Text_AwardYouTheseBattlePoints",
+        "BattleFrontier_BattlePikeLobby_Text_NeverHadToBattleTrainer",
+        "BattleFrontier_BattlePikeLobby_Text_ExplainMonOrderRules"
+      ],
+      "data/maps/BattleFrontier_BattlePikeRoomNormal/scripts.inc": [
+        "BattleFrontier_BattlePikeRoomNormal_Text_EnjoyRestOfChallenge",
+        "BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreOneMon",
+        "BattleFrontier_BattlePikeRoomNormal_Text_BestOfLuckFarewell",
+        "BattleFrontier_BattlePikeRoomNormal_Text_CareForBattleWillRestoreMons",
+        "BattleFrontier_BattlePikeRoomNormal_Text_BestOfLuckFarewell2",
+        "BattleFrontier_BattlePikeRoomNormal_Text_AttacksWhenStartled",
+        "BattleFrontier_BattlePikeRoomNormal_Text_BattleSomewhatToughTrainer",
+        "BattleFrontier_BattlePikeRoomNormal_Text_RestoreToFullHealth",
+        "BattleFrontier_BattlePikeRoomNormal_Text_EnjoyRestOfChallenge2",
+        "BattleFrontier_BattlePikeRoomNormal_Text_HopeYouDidntUseUpLuck",
+        "BattleFrontier_BattlePikeRoomNormal_Text_IWontForget",
+        "BattleFrontier_BattlePikeRoomNormal_Text_ChoseRoomNoHeal",
+        "BattleFrontier_BattlePikeRoomNormal_Text_ShallFetchOurMaster",
+        "BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreTwoMons"
+      ],
+      "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc": [
+        "BattleFrontier_BattlePikeThreePathRoom_Text_ContinueWithChallenge",
+        "BattleFrontier_BattlePikeThreePathRoom_Text_AwaitingReturnSaveBeforeResume",
+        "BattleFrontier_BattlePikeThreePathRoom_Text_SavingYourData",
+        "BattleFrontier_BattlePikeThreePathRoom_Text_ApologizeForImpertinence",
+        "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutRightPath",
+        "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutCenterPath",
+        "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutLeftPath",
+        "BattleFrontier_BattlePikeThreePathRoom_Text_PresenceOfPeople"
+      ],
+      "data/maps/BattleFrontier_BattlePyramidFloor/scripts.inc": [
+        "gText_BattlePyramidConfirmRetire",
+        "BattlePyramid_Text_EightItemsRemaining3",
+        "BattlePyramid_Text_SevenItemsRemaining3",
+        "BattlePyramid_Text_SixItemsRemaining3",
+        "BattlePyramid_Text_FiveItemsRemaining3",
+        "BattlePyramid_Text_FourItemsRemaining3",
+        "BattlePyramid_Text_ThreeItemsRemaining3",
+        "BattlePyramid_Text_TwoItemsRemaining3",
+        "BattlePyramid_Text_OneItemRemaining3",
+        "BattlePyramid_Text_ZeroItemsRemaining3",
+        "BattlePyramid_Text_EightItemsRemaining4",
+        "BattlePyramid_Text_SevenItemsRemaining4",
+        "BattlePyramid_Text_SixItemsRemaining4",
+        "BattlePyramid_Text_FiveItemsRemaining4",
+        "BattlePyramid_Text_FourItemsRemaining4",
+        "BattlePyramid_Text_ThreeItemsRemaining4",
+        "BattlePyramid_Text_TwoItemsRemaining4",
+        "BattlePyramid_Text_OneItemRemaining4",
+        "BattlePyramid_Text_ZeroItemsRemaining4",
+        "BattlePyramid_Text_SevenTrainersRemaining1",
+        "BattlePyramid_Text_SixTrainersRemaining1",
+        "BattlePyramid_Text_FiveTrainersRemaining1",
+        "BattlePyramid_Text_FourTrainersRemaining1",
+        "BattlePyramid_Text_ThreeTrainersRemaining1",
+        "BattlePyramid_Text_TwoTrainersRemaining1",
+        "BattlePyramid_Text_OneTrainersRemaining1",
+        "BattlePyramid_Text_ZeroTrainersRemaining1",
+        "BattlePyramid_Text_OneTrainersRemaining2",
+        "BattlePyramid_Text_ZeroTrainersRemaining2",
+        "BattlePyramid_Text_SevenTrainersRemaining3",
+        "BattlePyramid_Text_SixTrainersRemaining3",
+        "BattlePyramid_Text_FiveTrainersRemaining3"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_009.json": {
+      "data/maps/BattleFrontier_BattlePyramidFloor/scripts.inc": [
+        "BattlePyramid_Text_FourTrainersRemaining3",
+        "BattlePyramid_Text_ThreeTrainersRemaining3",
+        "BattlePyramid_Text_TwoTrainersRemaining3",
+        "BattlePyramid_Text_SevenTrainersRemaining5",
+        "BattlePyramid_Text_SixTrainersRemaining5",
+        "BattlePyramid_Text_ThreeTrainersRemaining5",
+        "BattlePyramid_Text_ZeroTrainersRemaining5",
+        "BattlePyramid_Text_SixTrainersRemaining6",
+        "BattlePyramid_Text_ThreeTrainersRemaining6",
+        "BattlePyramid_Text_OneTrainersRemaining6",
+        "BattlePyramid_Text_ZeroTrainersRemaining6"
+      ],
+      "data/maps/BattleFrontier_BattlePyramidLobby/scripts.inc": [
+        "BattleFrontier_BattlePyramidLobby_Text_WeWillHoldBagForSafekeeping",
+        "BattleFrontier_BattlePyramidLobby_Text_DidntSaveBeforeQuittingTakeBag",
+        "BattleFrontier_BattlePyramidLobby_Text_RecordResultsWait",
+        "BattleFrontier_BattlePyramidLobby_Text_DisappointingHereIsBag",
+        "BattleFrontier_BattlePyramidLobby_Text_HereIsPrize",
+        "BattleFrontier_BattlePyramidLobby_Text_HintParalysis",
+        "BattleFrontier_BattlePyramidLobby_Text_HintPoison",
+        "BattleFrontier_BattlePyramidLobby_Text_HintBurn",
+        "BattleFrontier_BattlePyramidLobby_Text_HintTrapAbility",
+        "BattleFrontier_BattlePyramidLobby_Text_HintIce",
+        "BattleFrontier_BattlePyramidLobby_Text_HintExplosion",
+        "BattleFrontier_BattlePyramidLobby_Text_HintBug",
+        "BattleFrontier_BattlePyramidLobby_Text_HintStoneEvolve",
+        "BattleFrontier_BattlePyramidLobby_Text_TrainersNoticeRunning",
+        "BattleFrontier_BattlePyramidLobby_Text_ExplainMazeRules"
+      ],
+      "data/maps/BattleFrontier_BattlePyramidTop/scripts.inc": [
+        "BattleFrontier_BattlePyramidTop_Text_BringCourageToOurBattle",
+        "BattleFrontier_BattlePyramidTop_Text_LookForwardToNextMeeting",
+        "BattleFrontier_BattlePyramidTop_Text_BrandonYouveReturned",
+        "BattleFrontier_BattlePyramidTop_Text_MyCourageIsOffMeter",
+        "BattleFrontier_BattlePyramidTop_Text_FarewellForNow"
+      ],
+      "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.inc": [
+        "BattleFrontier_BattleTowerBattleRoom_Text_RestoreMonsToFullHealth",
+        "BattleFrontier_BattleTowerBattleRoom_Text_SalonMaidenOnHerWay",
+        "BattleFrontier_BattleTowerBattleRoom_Text_LetMeSeeYourTalent",
+        "BattleFrontier_BattleTowerBattleRoom_Text_UntilNextTime",
+        "BattleFrontier_BattleTowerBattleRoom_Text_WishICouldBattleYouAgain"
+      ],
+      "data/maps/BattleFrontier_BattleTowerLobby/scripts.inc": [
+        "BattleFrontier_BattleTowerLobby_Text_CongratsBeatenSeven",
+        "BattleFrontier_BattleTowerLobby_Text_RecordWillBeSaved",
+        "BattleFrontier_BattleTowerLobby_Text_WeveBeenWaitingForYou",
+        "BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouBegin",
+        "BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouveWon",
+        "BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouveLost",
+        "BattleFrontier_BattleTowerLobby_Text_DontThinkMuchAboutIt",
+        "BattleFrontier_BattleTowerLobby_Text_ChangedYourMind",
+        "BattleFrontier_BattleTowerLobby_Text_ChoseSameMonAsFriend",
+        "BattleFrontier_BattleTowerLobby_Text_FriendAlsoSelectedMon",
+        "BattleFrontier_BattleTowerLobby_Text_FriendAlsoSelectedMons",
+        "BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlMode",
+        "BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlModeSameMon",
+        "BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlModeSameMons"
+      ],
+      "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc": [
+        "BattleFrontier_BattleTowerMultiBattleRoom_Text_2ndOpponentSetNext",
+        "BattleFrontier_BattleTowerMultiBattleRoom_Text_4thOpponentSetNext",
+        "BattleFrontier_BattleTowerMultiBattleRoom_Text_6thOpponentSetNext",
+        "BattleFrontier_BattleTowerMultiBattleRoom_Text_7thOpponentSetNext"
+      ],
+      "data/maps/BattleFrontier_BattleTowerMultiPartnerRoom/scripts.inc": [
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice1Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice1Accept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice1Reject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice2Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice1Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice1Accept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice2Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice2Accept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice3Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice3Accept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice3Reject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice4Mon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice4Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice5Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice5Accept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice6Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice7Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice7Accept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice7Reject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice8Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice8Accept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice9Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice9Accept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice10Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice10Accept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice10Reject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice11Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice11Accept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice12Mon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice12Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice13Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice13Accept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice14Mon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice14Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice15Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice15Accept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice16Mon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice16Accept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_LassMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_LassAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_YoungsterMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_YoungsterMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_YoungsterAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_YoungsterReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_HikerMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_HikerMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_HikerAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_HikerReject"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_010.json": {
+      "data/maps/BattleFrontier_BattleTowerMultiPartnerRoom/scripts.inc": [
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BeautyMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BeautyMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_FishermanMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_FishermanMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_FishermanAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_LadyMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_LadyAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_LadyReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteFMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteFAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugCatcherMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugCatcherAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugCatcherReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidMMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidMAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidMReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RichBoyMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RichBoyReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BlackBeltMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BlackBeltAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberFMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberFAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederMMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederMMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederMAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteFMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteFMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteFReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteMMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteMMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteMAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteMReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BattleGirlMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BattleGirlAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BattleGirlReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteMMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteMAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberMMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberMAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberMReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_GuitaristMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_GuitaristMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_GuitaristReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_GentlemanMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_GentlemanAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokefanMMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokefanMAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokefanMReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertMMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertMAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertMReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertFMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertFMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertFAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_DragonTamerMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_DragonTamerMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_DragonTamerAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BirdKeeperMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BirdKeeperAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BirdKeeperReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_NinjaBoyMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_NinjaBoyMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_NinjaBoyAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_NinjaBoyReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_ParasolLadyMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_ParasolLadyAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_ParasolLadyReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugManiacMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugManiacMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugManiacAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SailorMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SailorMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CollectorMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CollectorReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerMMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerMAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerFMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerFMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerFAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_AromaLadyMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_AromaLadyAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_AromaLadyReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RuinManiacIntro",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RuinManiacMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RuinManiacAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RuinManiacReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokemaniacMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokemaniacAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokemaniacReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_KindlerMon1",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_KindlerMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CamperAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CamperReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PicnickerMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PicnickerAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PsychicMMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PsychicMAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PsychicFMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidFMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidFAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederFMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederFAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederFReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokefanFMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokefanFReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerFMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerFAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerFReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmingTriathleteMMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmingTriathleteMReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmingTriathleteFMon2Ask",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmingTriathleteFAccept",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmingTriathleteFReject",
+        "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerMMon2Ask"
+      ],
+      "data/maps/BattleFrontier_ExchangeServiceCorner/scripts.inc": [
+        "BattleFrontier_ExchangeServiceCorner_Text_HereIsYourPrize",
+        "BattleFrontier_ExchangeServiceCorner_Text_PCIsFull",
+        "BattleFrontier_ExchangeServiceCorner_Text_GetYouAnythingYouWant",
+        "BattleFrontier_ExchangeServiceCorner_Text_ItemsWillGetMonTougher",
+        "BattleFrontier_ExchangeServiceCorner_Text_MoreBattlePointsForRecord"
+      ],
+      "data/maps/BattleFrontier_Lounge1/scripts.inc": [
+        "BattleFrontier_Lounge1_Text_BestAspectHP",
+        "BattleFrontier_Lounge1_Text_BestAspectAtk",
+        "BattleFrontier_Lounge1_Text_SaidMyMonIsOutstanding",
+        "BattleFrontier_Lounge1_Text_DidntDoAnythingSpecialRaisingIt"
+      ],
+      "data/maps/BattleFrontier_Lounge2/scripts.inc": [
+        "BattleFrontier_Lounge2_Text_NewsGatheringPower",
+        "BattleFrontier_Lounge2_Text_AmazingPowersOfObservation",
+        "BattleFrontier_Lounge2_Text_AmazingPowerOfPersuasion",
+        "BattleFrontier_Lounge2_Text_ThisPlaceIsScaringMe"
+      ],
+      "data/maps/BattleFrontier_Lounge3/scripts.inc": [
+        "BattleFrontier_Lounge3_Text_HowMuchCanYouSpot",
+        "BattleFrontier_Lounge3_Text_NiceTryCantReturnPoints",
+        "BattleFrontier_Lounge3_Text_HelloChampHeresYourPoints"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_011.json": {
+      "data/maps/BattleFrontier_Lounge3/scripts.inc": [
+        "BattleFrontier_Lounge3_Text_BackedWrongTrainer",
+        "BattleFrontier_Lounge3_Text_TrainerGoodButRattled",
+        "BattleFrontier_Lounge3_Text_ShouldBeTakingChallenges"
+      ],
+      "data/maps/BattleFrontier_Lounge4/scripts.inc": [
+        "BattleFrontier_Lounge4_Text_WonderIfInterviewsAiring"
+      ],
+      "data/maps/BattleFrontier_Lounge5/scripts.inc": [
+        "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow",
+        "BattleFrontier_Lounge5_Text_NatureGirlAttackHighDefenseLow",
+        "BattleFrontier_Lounge5_Text_NatureGirlAttackHighSupportLow",
+        "BattleFrontier_Lounge5_Text_GirlSayingSomethingProfound"
+      ],
+      "data/maps/BattleFrontier_Lounge7/scripts.inc": [
+        "BattleFrontier_Lounge7_Text_IllTakeBattlePoints",
+        "BattleFrontier_Lounge7_Text_RightTutorIntro",
+        "BattleFrontier_Lounge7_Text_SwordsDanceDesc",
+        "BattleFrontier_Lounge7_Text_MudSlapDesc"
+      ],
+      "data/maps/BattleFrontier_Lounge8/scripts.inc": [
+        "BattleFrontier_Lounge8_Text_WhatATrainerNeeds"
+      ],
+      "data/maps/BattleFrontier_OutsideEast/scripts.inc": [
+        "BattleFrontier_OutsideEast_Text_ConquerLeagueAndFrontier",
+        "BattleFrontier_OutsideEast_Text_BetterThanDaddyAtPokemon",
+        "BattleFrontier_OutsideEast_Text_GoRackUpSomeWinsForDaddy",
+        "BattleFrontier_OutsideEast_Text_CanDoAnythingWithYou",
+        "BattleFrontier_OutsideEast_Text_OddTreeHereSeemsToWiggle"
+      ],
+      "data/maps/BattleFrontier_OutsideWest/scripts.inc": [
+        "BattleFrontier_OutsideWest_Text_LostIllPutOffPikeChallenge",
+        "BattleFrontier_OutsideWest_Text_ChooseFishingOverBattling",
+        "BattleFrontier_OutsideWest_Text_KeepBattlingUntilIGetSymbol",
+        "BattleFrontier_OutsideWest_Text_YoureOffToChallengeDome",
+        "BattleFrontier_OutsideWest_Text_FansOverThereUsedToBeTrainers"
+      ],
+      "data/maps/BattleFrontier_RankingHall/scripts.inc": [
+        "BattleFrontier_RankingHall_Text_IsYourNameOnThisList",
+        "BattleFrontier_RankingHall_Text_MyNamesNotUpThere"
+      ],
+      "data/maps/BattleFrontier_ReceptionGate/scripts.inc": [
+        "BattleFrontier_ReceptionGate_Text_FirstTimeHereThisWay",
+        "BattleFrontier_ReceptionGate_Text_IfItIsntPlayerYouCame",
+        "BattleFrontier_ReceptionGate_Text_YourGuideToRules"
+      ],
+      "data/maps/BattleFrontier_ScottsHouse/scripts.inc": [
+        "BattleFrontier_ScottsHouse_Text_HaveThisAsMementoOfOurPathsCrossing",
+        "BattleFrontier_ScottsHouse_Text_ExpectingGreatThings",
+        "BattleFrontier_ScottsHouse_Text_SoGladIBroughtYouHere"
+      ],
+      "data/maps/BlackthornCity/scripts.inc": [
+        "BlackthornGrampsRefusesEntryText",
+        "BlackBeltText_VoicesInMyHead",
+        "BlackthornCooltrainerF1Text",
+        "BlackthornCity_SantosGivesGiftText"
+      ],
+      "data/maps/BlackthornCity_House2/scripts.inc": [
+        "BlackthornCity_House2_Text_After"
+      ],
+      "data/maps/BurnedTower_1F/scripts.inc": [
+        "BurnedTowerSilver_BeforeText",
+        "BurnedTowerSilver_WinText",
+        "BurnedTowerSilver_LossText",
+        "BurnedTower_Text_NardAfter"
+      ],
+      "data/maps/CeladonCity_Condominiums_3F_Frlg/scripts.inc": [
+        "CeladonCity_Condominiums_3F_Text_ImGameDesignerShowMeFinishedPokedex",
+        "CeladonCity_Condominiums_3F_Text_SomeonesPlayingGame"
+      ],
+      "data/maps/CeladonCity_DepartmentStore_3F_Frlg/scripts.inc": [
+        "CeladonCity_DepartmentStore_3F_Text_FightingGame"
+      ],
+      "data/maps/CeladonCity_DepartmentStore_Roof_Frlg/scripts.inc": [
+        "CeladonCity_DepartmentStore_Roof_Text_MySisterIsImmature"
+      ],
+      "data/maps/CeladonCity_GameCorner_Frlg/scripts.inc": [
+        "CeladonCity_GameCorner_Text_DoYouWantToPlay",
+        "CeladonCity_GameCorner_Text_GruntIntro",
+        "CeladonCity_GameCorner_Text_SlotMachineWantToPlay"
+      ],
+      "data/maps/CeladonCity_Hotel_Frlg/scripts.inc": [
+        "CeladonCity_Hotel_Text_OnVacationWithBrotherAndBoyfriend"
+      ],
+      "data/maps/CeladonCity_PokemonCenter_1F_Frlg/scripts.inc": [
+        "CeladonCity_PokemonCenter_1F_Text_PokeFluteAwakensSleepingMons"
+      ],
+      "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc": [
+        "CeladonCity_Restaurant_Text_TakingBreakRightNow"
+      ],
+      "data/maps/CeruleanCity_BikeShop_Frlg/scripts.inc": [
+        "CeruleanCity_BikeShop_Text_WelcomeToBikeShop",
+        "CeruleanCity_BikeShop_Text_WowYourBikeIsCool"
+      ],
+      "data/maps/CeruleanCity_Frlg/scripts.inc": [
+        "CeruleanCity_Text_RivalIntro",
+        "CeruleanCity_Text_OhRightLittlePresentAsFavor",
+        "CeruleanCity_Text_ExplainFameCheckerSmellYa",
+        "CeruleanCity_Text_TrainerLifeIsToughIsntIt",
+        "CeruleanCity_Text_SlowbroLoafingAround"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_012.json": {
+      "data/maps/CeruleanCity_House1_Frlg/scripts.inc": [
+        "CeruleanCity_House1_Text_BadgesHaveAmazingSecrets"
+      ],
+      "data/maps/CeruleanCity_House3_Frlg/scripts.inc": [
+        "CeruleanCity_House3_Text_PleaseTradeWithMyHusband"
+      ],
+      "data/maps/CeruleanCity_House4_Frlg/scripts.inc": [
+        "CeruleanCity_House4_Text_NothingEntertaining",
+        "CeruleanCity_House4_Text_EnjoyingMyselfWithAllSortsOfNews"
+      ],
+      "data/maps/CeruleanCity_House5_Frlg/scripts.inc": [
+        "CeruleanCity_House1_Text_HaveJustTheThing",
+        "CeruleanCity_House1_Text_WhyMustYouLieNoBerries"
+      ],
+      "data/maps/CherrygroveCity_House1/scripts.inc": [
+        "CherrygroveCity_GymSpeechHouse_Text_PokefanM"
+      ],
+      "data/maps/CherrygroveCity_House2/scripts.inc": [
+        "CherrygroveCity_GuideHouse_Text_GuideGent"
+      ],
+      "data/maps/CherrygroveCity_PokemonCenter/scripts.inc": [
+        "CherryGrove_Pokecenter_Text_Gentleman"
+      ],
+      "data/maps/CianwoodCity/scripts.inc": [
+        "CianwoodCity_Text_ChucksWifeChubby",
+        "CianwoodCity_Text_EusineAfter"
+      ],
+      "data/maps/CianwoodHouse3/scripts.inc": [
+        "CianwoodCity_Text_ManiacPartyFull",
+        "CianwoodCity_Text_ManiacHowsdoing",
+        "CianwoodCity_Text_ManiacAskReturn",
+        "CianwoodCity_Text_ManiacShuckleNotThere",
+        "CianwoodCity_Text_ManiacShuckleLikesYou",
+        "CianwoodCity_Text_ManiacLastMon"
+      ],
+      "data/maps/CianwoodPokecenter/scripts.inc": [
+        "CianwoodCity_Text_GymGuideWin"
+      ],
+      "data/maps/CinnabarIsland_PokemonCenter_1F_Frlg/scripts.inc": [
+        "CinnabarIsland_PokemonCenter_1F_Text_VisitUnionRoom",
+        "CinnabarIsland_PokemonCenter_1F_Text_OhNotDoneYet"
+      ],
+      "data/maps/CliffEdgeGate/scripts.inc": [
+        "CliffEdgeGate_Text_Expectations"
+      ],
+      "data/maps/DewfordTown_Hall/scripts.inc": [
+        "DewfordTown_Hall_Text_TeachingMonAboutTrend",
+        "DewfordTown_Hall_Text_MyHunchWasRight"
+      ],
+      "data/maps/DewfordTown_House1/scripts.inc": [
+        "DewfordTown_House1_Text_LifeGoesSlowlyOnIsland"
+      ],
+      "data/maps/DragonsDen_Cavern/scripts.inc": [
+        "DragonsDen_Cavern_Text_SilverTraining1",
+        "DragonsDen_Cavern_Text_TwinsLeaandPia2Seen"
+      ],
+      "data/maps/DragonsDen_Shrine/scripts.inc": [
+        "DragonsDen_Shrine_Text_Question3",
+        "DragonsDen_Shrine_Text_PassedTest",
+        "DragonsDen_Shrine_Text_RisingBadgeExplanation",
+        "DragonsDen_Shrine_Text_TakeThisDratini"
+      ],
+      "data/maps/EcruteakCity/scripts.inc": [
+        "EcruteakCity_Text_Gramps3"
+      ],
+      "data/maps/EcruteakCity_House2/scripts.inc": [
+        "Ecruteak_Text_ItemfinderTrueSpirit"
+      ],
+      "data/maps/EcruteakCity_Theater/scripts.inc": [
+        "EcruteakCity_Theater_Text_RocketSeen",
+        "EcruteakCity_Theater_Text_KimonoRocket3",
+        "EcruteakCity_Theater_Text_SurfGuyGiveSurf",
+        "EcruteakCity_Theater_Text_KimonoDone"
+      ],
+      "data/maps/EverGrandeCity_GlaciasRoom/scripts.inc": [
+        "EverGrandeCity_GlaciasRoom_Text_Defeat"
+      ],
+      "data/maps/EverGrandeCity_PhoebesRoom/scripts.inc": [
+        "EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech"
+      ],
+      "data/maps/EverGrandeCity_PokemonLeague_1F/scripts.inc": [
+        "EverGrandeCity_PokemonLeague_1F_Text_GoForth"
+      ],
+      "data/maps/EverGrandeCity_SidneysRoom/scripts.inc": [
+        "EverGrandeCity_SidneysRoom_Text_PostBattleSpeech"
+      ],
+      "data/maps/FallarborTown/scripts.inc": [
+        "FallarborTown_Text_MyPreciousAzurill"
+      ],
+      "data/maps/FallarborTown_BattleTentCorridor/scripts.inc": [
+        "FallarborTown_ContestHall_Text_DoAllRightInPreliminary"
+      ],
+      "data/maps/FallarborTown_BattleTentLobby/scripts.inc": [
+        "FallarborTown_BattleTentLobby_Text_CameToCampOut"
+      ],
+      "data/maps/FiveIsland_House1_Frlg/scripts.inc": [
+        "FiveIsland_House1_Text_HusbandWentOffFishing"
+      ],
+      "data/maps/FiveIsland_LostCave_Room1_Frlg/scripts.inc": [
+        "FiveIsland_LostCave_Room1_Text_LawsonPostBattle"
+      ],
+      "data/maps/FiveIsland_Meadow_Frlg/scripts.inc": [
+        "FiveIsland_Meadow_Text_Rocket2PostBattle",
+        "FiveIsland_Meadow_Text_Rocket3Defeat"
+      ],
+      "data/maps/FiveIsland_MemorialPillar_Frlg/scripts.inc": [
+        "FiveIsland_MemorialPillar_Text_YourMonsLookHealthy",
+        "FiveIsland_MemorialPillar_Text_StillHaveThingAsMyThanks"
+      ],
+      "data/maps/FiveIsland_PokemonCenter_1F_Frlg/scripts.inc": [
+        "FiveIsland_PokemonCenter_1F_Text_YoureOnQuestToCatchEveryMon"
+      ],
+      "data/maps/FiveIsland_ResortGorgeous_Frlg/scripts.inc": [
+        "FiveIsland_ResortGorgeous_Text_DaisyPostBattle",
+        "FiveIsland_ResortGorgeous_Text_CelinaIntro",
+        "FiveIsland_ResortGorgeous_Text_RaynaDefeat",
+        "FiveIsland_ResortGorgeous_Text_JackiIntro",
+        "FiveIsland_ResortGorgeous_Text_JackiPostBattle",
+        "FiveIsland_ResortGorgeous_Text_GillianIntro"
+      ],
+      "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc": [
+        "FiveIsland_ResortGorgeous_House_Text_WishToSeeMonPlease",
+        "FiveIsland_ResortGorgeous_House_Text_ButlerBagAppearsToBeFull"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_013.json": {
+      "data/maps/FortreeCity_House1/scripts.inc": [
+        "FortreeCity_House1_Text_YouWillTradeWontYou",
+        "FortreeCity_House1_Text_YouWontTradeMe"
+      ],
+      "data/maps/FortreeCity_House2/scripts.inc": [
+        "FortreeCity_House2_Text_CoinInWhichHand",
+        "FortreeCity_House2_Text_YourHiddenPowerHasAwoken"
+      ],
+      "data/maps/FortreeCity_House3/scripts.inc": [
+        "FortreeCity_House3_Text_OhYouHavePokedex"
+      ],
+      "data/maps/FourIsland_IcefallCave_Back_Frlg/scripts.inc": [
+        "FourIsland_IcefallCave_Back_Text_ShutItLadyLeaveUsBe"
+      ],
+      "data/maps/FuchsiaCity_House1_Frlg/scripts.inc": [
+        "FuchsiaCity_House1_Text_BillFilesHisOwnMonData"
+      ],
+      "data/maps/FuchsiaCity_House2_Frlg/scripts.inc": [
+        "FuchsiaCity_House2_Text_YouHaveNoRoomForGift"
+      ],
+      "data/maps/FuchsiaCity_SafariZone_Entrance_Frlg/scripts.inc": [
+        "FuchsiaCity_SafariZone_Entrance_Text_CatchFairShareComeAgain",
+        "FuchsiaCity_SafariZone_Entrance_Text_SorryYoureARegularHere"
+      ],
+      "data/maps/Gate_NationalPark/scripts.inc": [
+        "Route35NationalParkGate_Text_OfficerAskToParticipate",
+        "Route35NationalParkGate_Text_OfficerHoldYourMon",
+        "Route35NationalParkGate_Text_FirstMonCantBattle",
+        "Route35NationalParkGate_Text_MakeRoom",
+        "Route35NationalParkGate_Text_NoRoomForBalls",
+        "Route35NationalParkGate_Text_ContestExplanation"
+      ],
+      "data/maps/GoldenrodCity_BikeShop/scripts.inc": [
+        "GoldenrodCity_BikeShop_Text_Mainshop"
+      ],
+      "data/maps/GoldenrodCity_BillsHouse/scripts.inc": [
+        "BillHouse_Text_SisterUsefulNumber",
+        "BillHouse_Text_SisterStorageSystem"
+      ],
+      "data/maps/GoldenrodCity_DepartmentStoreBasement/scripts.inc": [
+        "GoldenrodDeptStore_Text_B1FBlackBelt1",
+        "GoldenrodDeptStore_Text_B1FBlackBelt2"
+      ],
+      "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.inc": [
+        "GoldenrodDeptStore_Text_5FReceptionistOhYourMon",
+        "GoldenrodDeptStore_Text_5FReceptionistThereAreTMsPerfectForMon",
+        "GoldenrodDeptStore_Text_5FPokefanM"
+      ],
+      "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.inc": [
+        "GoldenrodCity_DepartmentStore_6F_Text_After"
+      ],
+      "data/maps/GoldenrodCity_DepartmentStore_7F/scripts.inc": [
+        "GoldenrodDeptStore_Text_RoofSuperNerdQuitBotheringMe"
+      ],
+      "data/maps/GoldenrodCity_GameCorner/scripts.inc": [
+        "GoldenrodCity_GameCorner_Text_PrizeVendorNeedMoreCoins"
+      ],
+      "data/maps/GoldenrodCity_House1/scripts.inc": [
+        "GoldenrodCity_NameRatersHouse_Text_DoVisitAgain"
+      ],
+      "data/maps/GoldenrodCity_House3/scripts.inc": [
+        "GoldenrodHappinessRater_Text_PokefanM"
+      ],
+      "data/maps/GoldenrodCity_PokemonCenter/scripts.inc": [
+        "GoldenrodCity_PokemonCenter_GrannyText",
+        "GoldenrodCity_PokemonCenter_PokefanFDoYouHaveEonMailText",
+        "GoldenrodCity_PokemonCenter_PokefanFThisIsForYouText",
+        "GoldenrodCity_PokemonCenter_PokefanFDaughterWillBeDelightedText"
+      ],
+      "data/maps/GoldenrodCity_RadioTower_1F/scripts.inc": [
+        "RadioTower1F_Text_QuizWin",
+        "RadioTower1F_Text_DeclineQuiz",
+        "RadioTower1F_Text_GruntM3After",
+        "GoldenrodCity_RadioTower_1F_Text_TwoDigitsMatched",
+        "GoldenrodCity_RadioTower_1F_Text_ThreeDigitsMatched",
+        "GoldenrodCity_RadioTower_1F_Text_FourDigitsMatched",
+        "GoldenrodCity_RadioTower_1F_Text_PrizeWeveBeenHolding"
+      ],
+      "data/maps/GoldenrodCity_RadioTower_2F/scripts.inc": [
+        "GoldenrodCity_RadioTower_2F_Text_SuperNerd",
+        "GoldenrodCity_RadioTower_2F_Text_GruntM4Seen",
+        "GoldenrodCity_RadioTower_2F_Text_GruntM5Beaten",
+        "GoldenrodCity_RadioTower_2F_Text_GruntF2Beaten"
+      ],
+      "data/maps/GoldenrodCity_RadioTower_3F/scripts.inc": [
+        "GoldenrodCity_RadioTower_3F_Text_GymGuide",
+        "GoldenrodCity_RadioTower_3F_Text_CooltrainerFHeroGift",
+        "GoldenrodCity_RadioTower_3F_Text_ScientistMarcSeen"
+      ],
+      "data/maps/GoldenrodCity_RadioTower_4F/scripts.inc": [
+        "GoldenrodCity_RadioTower_4F4_Text_ExecutiveM2After",
+        "GoldenrodCity_RadioTower_4F4_Text_GruntF4Seen",
+        "GoldenrodCity_RadioTower_4F4_Text_GruntF4After"
+      ],
+      "data/maps/GoldenrodCity_RadioTower_5F/scripts.inc": [
+        "GoldenrodCity_RadioTower_5F_Text_FakeDirector1",
+        "GoldenrodCity_RadioTower_5F_Text_ExecutiveF1After"
+      ],
+      "data/maps/GoldenrodCity_UndergroundEntrance/scripts.inc": [
+        "GoldenrodUnderground1_Text_Teacher"
+      ],
+      "data/maps/GoldenrodCity_UndergroundStorage/scripts.inc": [
+        "RadioTowerBasement_Text_GruntM24Seen",
+        "RadioTowerBasement_Text_GruntM15After",
+        "RadioTowerBasement_Text_DirectorAfter"
+      ],
+      "data/maps/GoldenrodCity_UndergroundSwitches/scripts.inc": [
+        "GoldenrodUnderground_Text_BurglarDuncanSeen"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_014.json": {
+      "data/maps/LilycoveCity/scripts.inc": [
+        "LilycoveCity_Text_MayYouGoingToCollectBadges",
+        "LilycoveCity_Text_MayYouGoingToPokemonLeague",
+        "LilycoveCity_Text_BrendanDefeat",
+        "LilycoveCity_Text_BrendanYouGoingToPokemonLeague",
+        "LilycoveCity_Text_DontGoNearCaveInCove",
+        "LilycoveCity_Text_StrangeCaveInCove",
+        "LilycoveCity_Text_ImFromKanto",
+        "LilycoveCity_Text_MissingPokemonCameBack",
+        "LilycoveCity_Text_FasterSpinBetterPokeblocks"
+      ],
+      "data/maps/LilycoveCity_ContestHall/scripts.inc": [
+        "LilycoveCity_ContestHall_Text_IfMonPullsSmartMoveNext",
+        "LilycoveCity_ContestHall_Text_YoureBeautifulGrandpa",
+        "LilycoveCity_ContestHall_Text_EyesWillBeGluedToMyBeauty",
+        "LilycoveCity_ContestHall_Text_PokemonLooksLikeYoungerMe",
+        "LilycoveCity_ContestHall_Text_CantWinOnBeautyAlone",
+        "LilycoveCity_ContestHall_Text_MyAzurillWasDistracted",
+        "LilycoveCity_ContestHall_Text_MyMonAppealSoMuchCuter",
+        "LilycoveCity_ContestHall_Text_ThatGirlThereIsCutest",
+        "LilycoveCity_ContestHall_Text_WantCuteMonOfMyOwn"
+      ]
+    }
+  }
+}

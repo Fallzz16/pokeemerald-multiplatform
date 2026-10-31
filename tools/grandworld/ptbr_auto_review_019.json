@@ -496,7 +496,7 @@
     },
     "data/maps/SafariZoneGate_SafariZoneEntrance/scripts.inc": {
       "SafariZoneGate_SafariZoneEntrance_Text_BaobaCaveDone": [
-        "Obrigado.{PLAYER}E tudo o que\\npreciso de ver.\\pAgora que sei o que o DEVON\\nesta a tramar, serei capaz de\\lmanter o meu SAFARI\\lcompetitivo. Toma, toma isto\\lcomo recompensa pelos seus\\lproblemas.$"
+        "Obrigado.{PLAYER}E tudo o que\\npreciso de ver.\\pAgora que sei o que o DEVON\\nesta a tramar, serei capaz de\\lmanter meu SAFARI\\lcompetitivo. Toma, toma isto\\lcomo recompensa pelos seus\\lproblemas.$"
       ],
       "SafariZoneGate_SafariZoneEntrance_Text_BaobaWrong": [
         "Isso nao pode estar certo!$"
@@ -508,7 +508,7 @@
         "Nao consigo vencer seu ultimo\\nPOKEMON!$"
       ],
       "SafariZoneGate_SafariZoneEntrance_Text_Boy": [
-        "Ouvi dizer que a nova zona em\\nque estao a trabalhar tem\\ldragoes!$"
+        "Ouvi dizer que a nova zona em\\nque estao trabalhando tem\\ldragoes!$"
       ],
       "SafariZoneGate_SafariZoneEntrance_Text_Engineer": [
         "Desculpe, TREINADOR. Esta area\\nainda esta em obras. Volte\\lmais tarde!$"
@@ -823,7 +823,7 @@
     },
     "data/maps/SeafoamIslands_B4F_Frlg/scripts.inc": {
       "Text_RockSlideTeach": [
-        "Quando estamos numa montanha\\nrochosa como esta, os\\ldeslizamentos de rochas sao uma\\lameaca.\\pConsegues imaginar? Os Boulders\\ncairam em cima de ti?\\pIsso seria, tipo, waaaaaaaaaah!\\nTerror total!\\pNao pareces ter medo. Quer\\ntentar usar ROCK SLIDE?$"
+        "Quando estamos numa montanha\\nrochosa como esta, os\\ldeslizamentos de rochas sao uma\\lameaca.\\pConsegues imaginar? Os Boulders\\ncairam em cima de voce?\\pIsso seria, tipo, waaaaaaaaaah!\\nTerror total!\\pNao parece ter medo. Quer\\ntentar usar ROCK SLIDE?$"
       ],
       "Text_RockSlideDeclined": [
         "Entao ficou com medo.$"

@@ -398,10 +398,10 @@
     },
     "data/maps/FortreeCity_Gym/scripts.inc": {
       "FortreeCity_Gym_Text_RematchDefeat": [
-        "O meu POKEMON e eu estamos de\\ncastigo... Muito bem feito.$"
+        "Meu POKEMON e eu estamos de\\ncastigo... Muito bem feito.$"
       ],
       "FortreeCity_Gym_Text_GymGuidePostVictory": [
-        "conseguiu! conseguiu\\ndescolagem!$"
+        "Conseguiu! Conseguiu\\ndescolagem!$"
       ],
       "FortreeCity_Gym_Text_JaredIntro": [
         "Contemplem o elegante estilo de\\nbatalha de BIRD POKEMON!$"
@@ -428,13 +428,13 @@
         "Urk! Nao te consegui impedir.$"
       ],
       "FortreeCity_Gym_Text_DariusDefeat": [
-        "Pareces saber as suas coisas!$"
+        "Parece saber suas coisas!$"
       ],
       "FortreeCity_Gym_Text_WinonaDefeat": [
-        "Nunca antes vi um TREiner\\ncomandar POKEMON com mais graca\\ldo que eu...\\pEm reconhecimento as suas\\nproezas, apresento-lhe este\\lGINASIO INSIGNIA.$"
+        "Nunca antes vi um TREINADOR\\ncomandar POKEMON com mais graca\\ldo que eu...\\pEm reconhecimento as suas\\nproezas, apresento-lhe este\\lGINASIO INSIGNIA.$"
       ],
       "FortreeCity_Gym_Text_ExplainAerialAce": [
-        "TM40 contem ACE AERIAL.\\pA sua velocidade... Nenhum\\nPOKEMON devera ser capaz de o\\levitar.\\p... ... ... ... ... ...$"
+        "TM40 contem ACE AERIAL.\\pSua velocidade... Nenhum\\nPOKEMON devera ser capaz de o\\levitar.\\p... ... ... ... ... ...$"
       ],
       "FortreeCity_Gym_Text_RegisteredWinona": [
         "GINASIO LEADER WINONA registado\\nno POKENAV.$"
@@ -443,7 +443,7 @@
         "Embora me tenha apaixonado por\\nti, vou continuar devotado ao\\lBIRD POKEMON.$"
       ],
       "FortreeCity_Gym_Text_WinonaRematchDefeat": [
-        "Nao cheguei a sua altura outra\\nvez...$"
+        "Nao cheguei sua altura outra\\nvez...$"
       ]
     },
     "data/maps/FuchsiaCity_Gym_Frlg/scripts.inc": {
@@ -563,7 +563,7 @@
     },
     "data/maps/LavaridgeTown_Gym_1F/scripts.inc": {
       "LavaridgeTown_Gym_1F_Text_RematchDefeat": [
-        "As minhas chamas foram\\napagadas... Queimas mais\\lbrilhante do que eu.$"
+        "Minhas chamas foram\\napagadas... Queimas mais\\lbrilhante do que eu.$"
       ],
       "LavaridgeTown_Gym_1F_Text_GymGuidePostVictory": [
         "Yow! Foi uma batalha\\nescaldante!$"
@@ -593,10 +593,10 @@
         "Brincar com fogo, e ser\\nqueimado...$"
       ],
       "LavaridgeTown_Gym_B1F_Text_KeeganPostBattle": [
-        "A sua habilidade e real... Mas\\no nosso LEADER FLANNERY e\\lforte.\\pSe nao te cuidares, seras\\nseriamente queimado.$"
+        "Sua habilidade e real... Mas\\nNosso LEADER FLANNERY e\\lforte.\\pSe nao te cuidares, seras\\nseriamente queimado.$"
       ],
       "LavaridgeTown_Gym_1F_Text_GeraldIntro": [
-        "O seu POKEMON aguenta calor de\\n392 graus?$"
+        "Seu POKEMON aguenta calor de\\n392 graus?$"
       ],
       "LavaridgeTown_Gym_1F_Text_GeraldDefeat": [
         "Nao queimou suficientemente\\nquente...$"
@@ -605,13 +605,13 @@
         "A temperatura do magma e de 392\\ngraus.\\pSeu POKEMON me venceu,\\nentao deve aguentar\\lfacilmente o calor.$"
       ],
       "LavaridgeTown_Gym_1F_Text_DanielleIntro": [
-        "Hum... Esta bem, vou lutar\\ncontigo.$"
+        "Hum... Esta bem, vou lutar\\ncom voce.$"
       ],
       "LavaridgeTown_Gym_1F_Text_DanielleDefeat": [
-        "Mas es demasiado forte.$"
+        "Mas e demasiado forte.$"
       ],
       "LavaridgeTown_Gym_B1F_Text_JaceIntro": [
-        "Va la, despacha-te! Vamos antes\\nque os meus sentimentos\\lesfriem!$"
+        "Va la, despacha-te! Vamos antes\\nque meus sentimentos\\lesfriem!$"
       ],
       "LavaridgeTown_Gym_B1F_Text_JaceDefeat": [
         "Esta tao quente, mas o meu\\ncoracao esta agarrado ao\\lgelo...$"
@@ -708,13 +708,13 @@
     },
     "data/maps/MauvilleCity_Gym/scripts.inc": {
       "MauvilleCity_Gym_Text_RematchDefeat": [
-        "Wah! Tornaste-te eletrizante! O\\nmeu velho coracao mal aguenta!$"
+        "Wah! Tornou-te eletrizante! O\\nmeu velho coracao mal aguenta!$"
       ],
       "MauvilleCity_Gym_Text_GymGuidePostVictory": [
-        "Es eletrizante! Abriste a\\nporta!$"
+        "E eletrizante! Abriste a\\nporta!$"
       ],
       "MauvilleCity_Gym_Text_KirkIntro": [
-        "A minha alma electrica vai\\ndestruir os seus sonhos.$"
+        "Minha alma electrica vai\\ndestruir seus sonhos.$"
       ],
       "MauvilleCity_Gym_Text_KirkDefeat": [
         "Isso foi ligado, empolgado, com\\nexcesso de energia electrica,\\lmeu!$"
@@ -738,22 +738,22 @@
         "Seu poder me deixou chocado!$"
       ],
       "MauvilleCity_Gym_Text_VivianPostBattle": [
-        "Ouvi dizer que a MAUVILLE foi\\nfundada pela WATTSON.\\pEle era treinador muito antes\\nde nos tornarmos treinadores.\\lEle deve saber todo o tipo de\\lcoisas!$"
+        "Ouvi dizer que a MAUVILLE foi\\nfundada pela WATTSON.\\pEle era TREINADOR muito antes\\nde nos tornarmos TREINADORES.\\lEle deve saber todo o tipo de\\lcoisas!$"
       ],
       "MauvilleCity_Gym_Text_AngeloIntro": [
         "Adoro coisas brilhantes!$"
       ],
       "MauvilleCity_Gym_Text_AngeloDefeat": [
-        "Oh... Os meus olhos estao\\npartidos...$"
+        "Oh... Meus olhos estao\\npartidos...$"
       ],
       "MauvilleCity_Gym_Text_WattsonDefeat": [
-        "Wahahahah! Esta bem, eu perdi!\\pAcabaste por me dar uma emocao!\\nToma isto!$"
+        "Wahahahah! Esta bem, eu perdi!\\pAcabou por me dar uma emocao!\\nToma isto!$"
       ],
       "MauvilleCity_Gym_Text_ReceivedDynamoBadge": [
-        "{PLAYER}recebeu o DYNAMO\\nINSIGNIA de WATTSON.$"
+        "{PLAYER}Recebeu o DYNAMO\\nINSIGNIA de WATTSON.$"
       ],
       "MauvilleCity_Gym_Text_ExplainShockWave": [
-        "Aquele TM34 ali contem SHOCK\\nWAVE.\\pE uma jogada de confianca que\\nnunca falha! pode contar com\\lisso!\\p... ... ... ... ... ...$"
+        "Aquele TM34 ali contem SHOCK\\nWAVE.\\pE uma jogada de confianca que\\nnunca falha! Pode contar com\\lisso!\\p... ... ... ... ... ...$"
       ],
       "MauvilleCity_Gym_Text_RegisteredWattson": [
         "GINASIO LEADER WATTSON\\nregistado no POKENAV.$"
@@ -765,12 +765,12 @@
         "Wahahahah! Vai em frente e\\nesforca-te, jovem!$"
       ],
       "MauvilleCity_Gym_Text_WattsonRematchDefeat": [
-        "Oof... As nossas baterias\\nsecaram...$"
+        "Oof... Nossas baterias\\nsecaram...$"
       ]
     },
     "data/maps/MossdeepCity_Gym/scripts.inc": {
       "MossdeepCity_Gym_Text_GymGuidePostVictory": [
-        "Uau, voce e surpreendente! Es\\num grande treinador!$"
+        "Uau, voce e surpreendente! E\\num grande TREINADOR!$"
       ],
       "MossdeepCity_Gym_Text_PrestonIntro": [
         "As batalhas dependem da forca\\ndo seu espirito! Os fracos\\lnunca vencerao!$"

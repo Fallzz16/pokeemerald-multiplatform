@@ -15,7 +15,7 @@
     },
     "data/maps/FortreeCity_House1/scripts.inc": {
       "FortreeCity_House1_Text_YouWillTradeWontYou": [
-        "Escreveu! Preciso dele! Tenho\\nde arranjar um{STR_VAR_1}Faco\\lqualquer coisa por isso!\\pOuviste aquilo? O meu grito do\\nfundo do coracao?\\pTendo ouvido isso, voce vai\\ntrocar o seu{STR_VAR_1}para a\\lminha{STR_VAR_2}Nao vai?$"
+        "Escreveu! Preciso dele! Tenho\\nde arranjar um{STR_VAR_1}Faco\\lqualquer coisa por isso!\\pOuviste aquilo? Meu grito do\\nfundo do coracao?\\pTendo ouvido isso, voce vai\\ntrocar o seu{STR_VAR_1}para a\\lminha{STR_VAR_2}Nao vai?$"
       ],
       "FortreeCity_House1_Text_MonYouTakeCare": [
         "Sim, isso mesmo!\\p{STR_VAR_1}Bem-vindos!{STR_VAR_2}Cuida-te!$"
@@ -24,7 +24,7 @@
         "Nao, acho que nao. Isso nao\\ne...{STR_VAR_1}.$"
       ],
       "FortreeCity_House1_Text_YouWontTradeMe": [
-        "Nao? Nao me vai trocar? Mesmo\\ndepois de ter aberto o meu\\lcoracao para ti?$"
+        "Nao? Nao me vai trocar? Mesmo\\ndepois de ter aberto o meu\\lcoracao para voce?$"
       ],
       "FortreeCity_House1_Text_GoingToMakeVolbeatStrong": [
         "Vou tornar o VOLBEAT super\\nforte a partir de agora!\\pEspero que facas o mesmo com o\\nPLUSLE!$"
@@ -38,7 +38,7 @@
         "Pessoas... POKEMON...\\pSeus poderes ocultos sao\\ndespertados por viver em\\lambientes naturais...$"
       ],
       "FortreeCity_House2_Text_CoinInWhichHand": [
-        "Deixa esta velha ver se o seu\\npoder oculto acordou...\\pTenho uma moeda na mao.\\pAgora, diz-me, dei-lhe a mao\\ndireita? Ou a esquerda?$"
+        "Deixa esta velha ver se o seu\\npoder oculto acordou...\\pTenho uma moeda na mao.\\pAgora, me diga, dei-lhe a mao\\ndireita? Ou a esquerda?$"
       ],
       "FortreeCity_House2_Text_CorrectTryAgainWhichHand": [
         "Oh! Sim, correcto!\\pVamos tentar de novo.\\pEm que mao dei a moeda? A\\ndireita ou a esquerda?$"
@@ -47,7 +47,7 @@
         "Oh! Sim, correcto!\\pVamos tentar de novo.\\pEm que mao dei a moeda? A\\ndireita ou a esquerda?$"
       ],
       "FortreeCity_House2_Text_YourHiddenPowerHasAwoken": [
-        "Oh! Esplendido! O seu poder\\noculto despertou!\\pToma, toma isto e desperta o\\npoder oculto do seu POKEMON.$"
+        "Oh! Esplendido! Seu poder\\noculto despertou!\\pToma, toma isto e desperta o\\npoder oculto do seu POKEMON.$"
       ],
       "FortreeCity_House2_Text_YouGuessedWrong": [
         "Nao, que pena. Adivinhou mal.$"
@@ -55,7 +55,7 @@
     },
     "data/maps/FortreeCity_House3/scripts.inc": {
       "FortreeCity_House3_Text_OhYouHavePokedex": [
-        "O que e aquilo que tem ai?\\p... ... ... ... ... ...\\pChama-se Pokedex? E incrivel!$"
+        "O que e aquilo que tem ai?\\p... ... ... ... ... ...\\pChama-se POKEDEX? E incrivel!$"
       ]
     },
     "data/maps/FortreeCity_House4/scripts.inc": {
@@ -105,7 +105,7 @@
     },
     "data/maps/FourIsland_IcefallCave_Back_Frlg/scripts.inc": {
       "FourIsland_IcefallCave_Back_Text_ShutItLadyLeaveUsBe": [
-        "Cala-te, senhora, e deixa-nos\\nem paz.\\pNao deixes que os seus oculos\\nse enfurecam!$"
+        "Cala-te, senhora, e deixa-nos\\nem paz.\\pNao deixes que seus oculos\\nse enfurecam!$"
       ],
       "FourIsland_IcefallCave_Back_Text_GruntIntro": [
         "O que?\\pQuem disse que nao podemos\\nfazer o que queremos com o\\lPOKEMON que apanhamos?$"
@@ -158,7 +158,7 @@
     },
     "data/maps/FuchsiaCity_House1_Frlg/scripts.inc": {
       "FuchsiaCity_House1_Text_BillFilesHisOwnMonData": [
-        "O BILL regista os seus dados\\nPOKEMON no seu PC.\\pEle mostrou-te?$"
+        "O BILL regista seus dados\\nPOKEMON no seu PC.\\pEle mostrou-te?$"
       ]
     },
     "data/maps/FuchsiaCity_House2_Frlg/scripts.inc": {
@@ -172,7 +172,7 @@
         "Ola.{PLAYER}!\\pComo estao os peixes a morder?$"
       ],
       "FuchsiaCity_House2_Text_YouHaveNoRoomForGift": [
-        "Nao!\\pTinha um presente para ti, mas\\nnao tem espaco para isso!$"
+        "Nao!\\pTinha um presente para voce, mas\\nnao tem espaco para isso!$"
       ]
     },
     "data/maps/FuchsiaCity_House3_Frlg/scripts.inc": {
@@ -214,10 +214,10 @@
         "Boa sorte!$"
       ],
       "FuchsiaCity_SafariZone_Entrance_Text_CatchFairShareComeAgain": [
-        "capturou a sua parte? Volta\\noutra vez!$"
+        "Capturou sua parte? Volta\\noutra vez!$"
       ],
       "FuchsiaCity_SafariZone_Entrance_Text_SorryYoureARegularHere": [
-        "Desculpa, es cliente habitual\\naqui!$"
+        "Desculpa, e cliente habitual\\naqui!$"
       ]
     },
     "data/maps/FuchsiaCity_SafariZone_Office_Frlg/scripts.inc": {
@@ -252,7 +252,7 @@
     },
     "data/maps/Gate_NationalPark/scripts.inc": {
       "Route35NationalParkGate_Text_OfficerAskToParticipate": [
-        "Ola Trainer! O Concurso de\\nApanhar Insectos e hoje.\\pAs regras sao simples.\\pUsando um de seu POKEMON, pegar\\num bug POKEMON para ser\\ljulgado.\\pQueres tentar?$"
+        "Ola TREINADOR! O Concurso de\\nApanhar Insectos e hoje.\\pAs regras sao simples.\\pUsando um de seu POKEMON, pegar\\num bug POKEMON para ser\\ljulgado.\\pQueres tentar?$"
       ],
       "Route35NationalParkGate_Text_ReceivedParkBalls": [
         "{PLAYER}recebeu SAFARI BALLS.$"
@@ -261,7 +261,7 @@
         "Se voce tem mais de um POKEMON,\\nvoce tera que usar o primeiro\\lPOKEMON em seu partido.\\pNao te importas?$"
       ],
       "Route35NationalParkGate_Text_OfficerHoldYourMon": [
-        "Esta bem, seguramos o seu outro\\nPokemon enquanto competes.$"
+        "Esta bem, seguramos seu outro\\nPokemon enquanto competes.$"
       ],
       "Route35NationalParkGate_Text_ChooseMonAndComeBack": [
         "Por favor, escolha o POKEMON\\npara ser usado no Concurso e\\ldepois venha falar comigo.$"
@@ -270,10 +270,10 @@
         "Esta bem. Esperamos que\\nparticipe no futuro.$"
       ],
       "Route35NationalParkGate_Text_FirstMonCantBattle": [
-        "Uh-oh... O primeiro POKEMON do\\nteu partido nao pode lutar.\\pPor favor, troque-o com o\\nPOKEMON que voce quer usar,\\lentao venha me ver.$"
+        "Uh-oh... O primeiro POKEMON do\\nteu partido nao pode batalhar.\\pPor favor, troque-o com o\\nPOKEMON que voce quer usar,\\lentao venha me ver.$"
       ],
       "Route35NationalParkGate_Text_MakeRoom": [
-        "Uh-oh... Tanto a sua festa como\\no seu PC BOX estao cheios.\\pNao tem espaco para por o\\ninsecto POKEMON que apanha.\\pPor favor, arranjem espaco na\\nvossa festa ou no vosso PC BOX\\le venham ter comigo.$"
+        "Uh-oh... Tanto sua festa como\\no seu PC BOX estao cheios.\\pNao tem espaco para por o\\ninsecto POKEMON que apanha.\\pPor favor, arranjem espaco na\\nvossa festa ou no seu PC BOX\\le venham ter comigo.$"
       ],
       "Route35NationalParkGate_Text_EggAsFirstMon": [
         "Uh-oh... tem um EGG como o\\nprimeiro POKEMON na sua festa.\\pPor favor, troque-o com o\\nPOKEMON que voce quer usar,\\lentao venha me ver.$"
@@ -282,7 +282,7 @@
         "O Concurso de hoje acabou.\\nEsperamos que participem no\\lfuturo.$"
       ],
       "Route35NationalParkGate_Text_NoRoomForBalls": [
-        "Uh-oh... O vosso BAG nao tem\\nespaco para o concurso SAFARI\\lBALLS.\\pPor favor, arranjem espaco no\\nvosso BAG e venham ter comigo.$"
+        "Uh-oh... Seu BAG nao tem\\nespaco para o concurso SAFARI\\lBALLS.\\pPor favor, arranjem espaco no\\nvosso BAG e venham ter comigo.$"
       ],
       "Route35NationalParkGate_Text_Rocker": [
         "Adoro passaros POKEMON!\\nEncontrei um passaro do tipo\\lDARK no parque ontem a noite!$"
@@ -297,12 +297,12 @@
         "Quando sera o proximo Concurso\\nde Apanha de Insectos?$"
       ],
       "Route35NationalParkGate_Text_ContestExplanation": [
-        "O Concurso de Apanha de\\nInsectos acontece na\\lterca-feira, quinta-feira e\\lsabado.\\pNao so ganhas um premio por\\nparticipar,\\pvoce tambem pode manter o bug\\nPOKEMON que voce pode ter no\\lfinal do concurso.$"
+        "O Concurso de Apanha de\\nInsectos acontece na\\lterca-feira, quinta-feira e\\lsabado.\\pNao so ganhas um premio por\\nparticipar,\\pVoce tambem pode manter o bug\\nPOKEMON que voce pode ter no\\lfinal do concurso.$"
       ]
     },
     "data/maps/GoldenrodCity_BikeShop/scripts.inc": {
       "GoldenrodCity_BikeShop_Text_Mainshop": [
-        "Os negocios tem sido dificeis\\ndesde que nos mudamos da KANTO.\\lAgradecemos a sua ajuda!\\pPode mostrar a nossa tecnologia\\npatenteada?\\pE tao simples como pressionar R\\nquando voce e parado em seu\\lBIKE.\\pCuidado! Entao vai mais\\nrapido!$"
+        "Os negocios tem sido dificeis\\ndesde que nos mudamos da KANTO.\\lAgradecemos sua ajuda!\\pPode mostrar nossa tecnologia\\npatenteada?\\pE tao simples como pressionar R\\nquando voce e parado em seu\\lBIKE.\\pCuidado! Entao vai mais\\nrapido!$"
       ],
       "GoldenrodCity_BikeShop_Text_Refused": [
         "...suspiro... Oh, pela bondade\\ndas pessoas...$"
@@ -322,13 +322,13 @@
         "Oh... O que fazer agora?$"
       ],
       "BillHouse_Text_SisterUsefulNumber": [
-        "Es treinador?\\pTenho um numero de telefone\\nutil para ti.$"
+        "E TREINADOR?\\pTenho um numero de telefone\\nutil para voce.$"
       ],
       "BillHouse_Text_SisterPhoneFull": [
         "Nao pode gravar mais numeros.$"
       ],
       "BillHouse_Text_SisterStorageSystem": [
-        "O meu irmao mais velho BILL fez\\no sistema de armazenamento PC\\lPOKEMON.$"
+        "Meu irmao mais velho BILL fez\\no sistema de armazenamento PC\\lPOKEMON.$"
       ]
     },
     "data/maps/GoldenrodCity_DepartmentStoreBasement/scripts.inc": {
@@ -336,10 +336,10 @@
         "MACHOKE, ajuda-nos a mover essa\\npedra!$"
       ],
       "GoldenrodDeptStore_Text_B1FBlackBelt1": [
-        "garoto! Estas a atrasar-nos!\\pNossa politica e trabalhar nos\\nbastidores onde ninguem pode\\lnos ver!$"
+        "Garoto! Estas a atrasar-nos!\\pNossa politica e trabalhar nos\\nbastidores onde ninguem pode\\lnos ver!$"
       ],
       "GoldenrodDeptStore_Text_B1FBlackBelt2": [
-        "Perco a minha paixao pelo\\ntrabalho se alguem esta a ver.\\pVa la, garoto, vai-te embora!$"
+        "Perco minha paixao pelo\\ntrabalho se alguem esta vendo.\\pVa la, garoto, vai-te embora!$"
       ],
       "GoldenrodDeptStore_Text_B1FBlackBelt3": [
         "Oohah! Oohah!\\pDo que precisa, garoto? Estou a\\ntrabalhar aqui!$"
@@ -369,7 +369,7 @@
     },
     "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.inc": {
       "GoldenrodDeptStore_Text_5FReceptionistOhYourMon": [
-        "Ola. O seu POKEMON...$"
+        "Ola. Seu POKEMON...$"
       ],
       "GoldenrodDeptStore_Text_5FReceptionistWait": [
         "Espera, ja te dei aquele TM!$"
@@ -384,13 +384,13 @@
         "Parece mau. Que tal este TM\\npara ele?$"
       ],
       "GoldenrodDeptStore_Text_5FReceptionistThereAreTMsPerfectForMon": [
-        "Ha certeza de ser TMs que sao\\nperfeitos para o seu POKEMON.$"
+        "Ha certeza de ser TMs que sao\\nperfeitos para seu POKEMON.$"
       ],
       "GoldenrodDeptStore_Text_5FLass": [
         "Durante o dia, uma senhora vem\\nvisitar POKEMON.\\pEla ate da TMs!$"
       ],
       "GoldenrodDeptStore_Text_5FPokefanM": [
-        "Nao se pode mudar o nome de um\\nPokemon.\\pO nome e um reflexo dos\\nsentimentos do treinador\\loriginal por ele.$"
+        "Nao se pode mudar o nome de um\\nPokemon.\\pO nome e um reflexo dos\\nsentimentos do TREINADOR\\loriginal por ele.$"
       ],
       "GoldenrodDeptStore_Text_5FDirectory": [
         "Personalize seu POKEMON\\p5F TM CORNER$"
@@ -410,7 +410,7 @@
         "Nao quer trocar? Aww...$"
       ],
       "GoldenrodCity_DepartmentStore_6F_Text_After": [
-        "Ola, como esta a minha antiga\\nMACHOP?$"
+        "Ola, como esta minha antiga\\nMACHOP?$"
       ],
       "GoldenrodDeptStore_Text_6FSuperNerd": [
         "Se estas cansado, experimenta\\nas bebidas da maquina.\\pO seu POKEMON tambem os vai\\nadorar.$"
@@ -430,7 +430,7 @@
         "Oh, uau!$"
       ],
       "GoldenrodDeptStore_Text_RoofSuperNerdQuitBotheringMe": [
-        "quer parar de me incomodar?$"
+        "Quer parar de me incomodar?$"
       ],
       "GoldenrodDeptStore_Text_RoofPokefanM": [
         "Ha algo que eu realmente quero,\\nmas nao tenho o dinheiro\\lnecessario...\\pTalvez eu venda as BERRIES que\\nrecolhi...$"
@@ -467,7 +467,7 @@
         "Aqui esta!$"
       ],
       "GoldenrodCity_GameCorner_Text_PrizeVendorNeedMoreCoins": [
-        "Desculpa! precisa de mais\\nmoedas.$"
+        "Desculpa! Precisa de mais\\nmoedas.$"
       ],
       "GoldenrodCity_GameCorner_Text_PrizeVendorNoMoreRoom": [
         "Desculpa. Nao pode carregar\\nmais.$"
@@ -517,7 +517,7 @@
         "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pE um nome melhor do que antes!\\nQue sorte a sua!$"
       ],
       "GoldenrodCity_NameRatersHouse_Text_DoVisitAgain": [
-        "Estou a ver. Vem visitar-me\\noutra vez.$"
+        "Estou vendo. Vem visitar-me\\noutra vez.$"
       ],
       "GoldenrodCity_NameRatersHouse_Text_NameNoDifferentYetSuperior": [
         "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pNao parece diferente de antes,\\ne no entanto, isto e muito\\lsuperior!\\pQue sorte a sua!$"
@@ -531,7 +531,7 @@
     },
     "data/maps/GoldenrodCity_House3/scripts.inc": {
       "GoldenrodHappinessRater_Text_PokefanM": [
-        "Continuo a perder em batalhas,\\ne o meu POKEMON acaba por\\ldesmaiar...\\pTalvez seja por isso que o meu\\nPokemon nao gosta muito de\\lmim...$"
+        "Continuo a perder em batalhas,\\ne meu POKEMON acaba por\\ldesmaiar...\\pTalvez seja por isso que o meu\\nPokemon nao gosta muito de\\lmim...$"
       ],
       "GoldenrodHappinessRater_Text_Twin": [
         "Quando eu uso um item no meu\\nPOKEMON, ele age muito feliz!$"
@@ -539,7 +539,7 @@
     },
     "data/maps/GoldenrodCity_PokemonCenter/scripts.inc": {
       "GoldenrodCity_PokemonCenter_GrannyText": [
-        "Adoro viver na cidade grande!\\nMudei-me para ca quando era\\ljovem, como tu!$"
+        "Adoro viver na cidade grande!\\nMudei-me para ca quando era\\ljovem, como voce!$"
       ],
       "GoldenrodCity_PokemonCenter_GameboyKidText2": [
         "Disse ao meu irmao que o\\ntelhado e feito de ouro\\lverdadeiro. Ele vai acreditar\\lem tudo!$"
@@ -551,16 +551,16 @@
         "Por favor, volte outra vez!$"
       ],
       "GoldenrodCity_PokemonCenter_PokefanFDoYouHaveEonMailText": [
-        "Meu Deus, a sua mochila parece\\ntao pesada!\\pOh! Tem alguma coisa chamada\\nEON MAIL?\\pA minha filha esta atras de um.\\pPodes separar-te de um, nao\\npodes?$"
+        "Meu Deus, sua mochila parece\\ntao pesada!\\pOh! Tem alguma coisa chamada\\nEON MAIL?\\pA minha filha esta atras de um.\\pPodes separar-te de um, nao\\npodes?$"
       ],
       "GoldenrodCity_PokemonCenter_AskGiveAwayAnEonMailText": [
         "Dar um EON MAIL?$"
       ],
       "GoldenrodCity_PokemonCenter_PokefanFThisIsForYouText": [
-        "Isso e optimo! Obrigado,\\nquerida!\\pToma, isto e para ti em troca!$"
+        "Isso e optimo! Obrigado,\\nquerida!\\pToma, isto e para voce em troca!$"
       ],
       "GoldenrodCity_PokemonCenter_PokefanFDaughterWillBeDelightedText": [
-        "A minha filha ficara encantada!$"
+        "Minha filha ficara encantada!$"
       ],
       "GoldenrodCity_PokemonCenter_PokefanFTooBadText": [
         "A serio? Nao tem um? Que pena.$"
@@ -586,13 +586,13 @@
         "Em cheio! Pergunta 3:\\pKURT, o criador de POKeBALL,\\nusa apricornios como\\lingredientes?$"
       ],
       "RadioTower1F_Text_QuizWin": [
-        "Bingo! conseguiu! Parabens!\\pSabes mesmo as suas coisas!\\nAplaudam os nossos ouvintes!$"
+        "Bingo! Conseguiu! Parabens!\\pSabes mesmo suas coisas!\\nAplaudam nossos ouvintes!$"
       ],
       "RadioTower1F_Text_WrongAnswer": [
         "Meu Deus. Desculpa, mas\\npercebeste mal.\\pPor favor, tente novamente!$"
       ],
       "RadioTower1F_Text_DeclineQuiz": [
-        "Oh, sim. Estou a ver. Por\\nfavor, fale comigo se mudar de\\lideias.$"
+        "Oh, sim. Estou vendo. Por\\nfavor, fale comigo se mudar de\\lideias.$"
       ],
       "RadioTower1F_Text_Lass": [
         "O BEN e um DJ fabuloso.\\pA sua doce voz faz-me derreter!$"
@@ -601,7 +601,7 @@
         "Demasiado forte! Desculpe,\\nchefe...$"
       ],
       "RadioTower1F_Text_GruntM3After": [
-        "Es demasiado forte.\\pO nosso plano pode estar\\narruinado. Devo avisar os\\loutros...$"
+        "E demasiado forte.\\pO nosso plano pode estar\\narruinado. Devo avisar os\\loutros...$"
       ],
       "GoldenrodCity_RadioTower_1F_Text_ComeBackTomorrow": [
         "Por favor, volta amanha.$"
@@ -613,13 +613,13 @@
         "Desculpa. Nenhum dos numeros\\ncorresponde.$"
       ],
       "GoldenrodCity_RadioTower_1F_Text_TwoDigitsMatched": [
-        "Dois digitos correspondem,\\nentao voce ganha o terceiro\\lpremio! venceu o{STR_VAR_1}!$"
+        "Dois digitos correspondem,\\nentao voce ganha o terceiro\\lpremio! Venceu o{STR_VAR_1}!$"
       ],
       "GoldenrodCity_RadioTower_1F_Text_ThreeDigitsMatched": [
-        "Tres digitos correspondem,\\nentao voce ganha o segundo\\lpremio! venceu o{STR_VAR_1}!$"
+        "Tres digitos correspondem,\\nentao voce ganha o segundo\\lpremio! Venceu o{STR_VAR_1}!$"
       ],
       "GoldenrodCity_RadioTower_1F_Text_FourDigitsMatched": [
-        "Quatro digitos correspondem,\\nentao voce ganha o primeiro\\lpremio! venceu o{STR_VAR_1}!$"
+        "Quatro digitos correspondem,\\nentao voce ganha o primeiro\\lpremio! Venceu o{STR_VAR_1}!$"
       ],
       "GoldenrodCity_RadioTower_1F_Text_AllFiveDigitsMatched": [
         "Meu Deus, todos os cinco\\ndigitos correspondem!\\pGanhaste o premio do jackpot!\\nGanhaste o{STR_VAR_1}!$"
@@ -628,7 +628,7 @@
         "A serio? Parece que nao tem\\nespaco para isto.\\pPor favor, abra espaco no seu\\nBAG e avise-me.$"
       ],
       "GoldenrodCity_RadioTower_1F_Text_PrizeWeveBeenHolding": [
-        "{PLAYER}Sim, estava a sua\\nespera.\\pEste e o premio que temos\\nguardado para ti.$"
+        "{PLAYER}Sim, estava a sua\\nespera.\\pEste e o premio que temos\\nguardado para voce.$"
       ],
       "GoldenrodCity_RadioTower_1F_Text_PleaseVisitAgain2": [
         "Por favor, visite novamente.$"
@@ -636,7 +636,7 @@
     },
     "data/maps/GoldenrodCity_RadioTower_2F/scripts.inc": {
       "GoldenrodCity_RadioTower_2F_Text_SuperNerd": [
-        "pode ouvir o radio em qualquer\\nlugar. Afinar!$"
+        "Pode ouvir o radio em qualquer\\nlugar. Afinar!$"
       ],
       "GoldenrodCity_RadioTower_2F_Text_Policeman": [
         "Acesso restrito alem deste\\nponto.$"
@@ -648,7 +648,7 @@
         "Porque e que eles iriam querer\\nassumir o RADIO TOWER?$"
       ],
       "GoldenrodCity_RadioTower_2F_Text_GruntM4Seen": [
-        "Ha tres anos, o TEAM ROCKET foi\\nforcado a dissolver-se.\\pMas estamos a voltar aqui!$"
+        "Ha tres anos, o TEAM ROCKET foi\\nforcado a dissolver-se.\\pMas estamos voltando aqui!$"
       ],
       "GoldenrodCity_RadioTower_2F_Text_GruntM4Beaten": [
         "Gwah! Nao sejas engracadinho!$"
@@ -657,7 +657,7 @@
         "Nao vamos deixar que estragues\\nos nossos planos de regresso!$"
       ],
       "GoldenrodCity_RadioTower_2F_Text_GruntM5Beaten": [
-        "Achas que es um heroi?$"
+        "Achas que e um heroi?$"
       ],
       "GoldenrodCity_RadioTower_2F_Text_GruntM5After": [
         "Nem sempre somos maus. Fazemos\\no que quisermos.$"
@@ -672,7 +672,7 @@
         "Hahaha!\\pQue chato. Foi muito facil\\ntomar conta deste lugar!\\pVa la, diverte-me!$"
       ],
       "GoldenrodCity_RadioTower_2F_Text_GruntF2Beaten": [
-        "Quem es tu?$"
+        "Quem e voce?$"
       ],
       "GoldenrodCity_RadioTower_2F_Text_GruntF2After": [
         "Se me bateres, nao me esqueco!$"
@@ -689,10 +689,10 @@
         "Temos gravacoes dos gritos de\\ntodos os POKEMON que foram\\lencontrados.\\pDevemos ter cerca de 400 tipos.$"
       ],
       "GoldenrodCity_RadioTower_3F_Text_GymGuide": [
-        "Corremos 24 horas por dia para\\ntransmitir programas\\ldivertidos.\\pTambem farei o meu melhor para\\ncorrer sem parar!$"
+        "Corremos 24 horas por dia para\\ntransmitir programas\\ldivertidos.\\pTambem farei meu melhor para\\ncorrer sem parar!$"
       ],
       "GoldenrodCity_RadioTower_3F_Text_CooltrainerFHeroGift": [
-        "Obrigado! Es o meu heroi!\\pIsto e um sinal da minha\\ngratidao.$"
+        "Obrigado! E meu heroi!\\pIsto e um sinal da minha\\ngratidao.$"
       ],
       "GoldenrodCity_RadioTower_3F_Text_CooltrainerFMarvelous": [
         "Voce foi simplesmente\\nmaravilhoso!$"
@@ -719,7 +719,7 @@
         "Estou acabado!$"
       ],
       "GoldenrodCity_RadioTower_3F_Text_ScientistMarcSeen": [
-        "Uma crianca desconhecida a\\nvaguear aqui?\\pQuem es tu?$"
+        "Uma crianca desconhecida a\\nvaguear aqui?\\pQuem e voce?$"
       ],
       "GoldenrodCity_RadioTower_3F_Text_ScientistMarcBeaten": [
         "Tch! Levei-te demasiado a\\nserio!$"
@@ -742,16 +742,16 @@
         "A fortaleza caiu!$"
       ],
       "GoldenrodCity_RadioTower_4F4_Text_ExecutiveM2After": [
-        "Mereceste o meu respeito, por\\nisso, aqui tem um conselho.\\pNao e tarde demais. Ainda pode\\nvoltar atras.$"
+        "Mereceste meu respeito, por\\nisso, aqui tem um conselho.\\pNao e tarde demais. Ainda pode\\nvoltar atras.$"
       ],
       "GoldenrodCity_RadioTower_4F4_Text_GruntF4Seen": [
-        "Nao acho o POKEMON giro?\\pVou achar o meu POKEMON giro...\\pDepois de baterem na sua!$"
+        "Nao acho o POKEMON giro?\\pVou achar meu POKEMON giro...\\pDepois de baterem na sua!$"
       ],
       "GoldenrodCity_RadioTower_4F4_Text_GruntF4Beaten": [
         "Nao! Sao tao inuteis!$"
       ],
       "GoldenrodCity_RadioTower_4F4_Text_GruntF4After": [
-        "Eu amo o meu belo eu!\\pQuem se importa com o POKEMON?$"
+        "Eu amo meu belo eu!\\pQuem se importa com o POKEMON?$"
       ],
       "GoldenrodCity_RadioTower_4F4_Text_ScientistRichSeen": [
         "Excelente.\\pEste RADIO TOWER vai cumprir o\\nnosso grande projeto.$"
@@ -765,13 +765,13 @@
     },
     "data/maps/GoldenrodCity_RadioTower_5F/scripts.inc": {
       "GoldenrodCity_RadioTower_5F_Text_FakeDirector1": [
-        "Voce! veio salvar-me?$"
+        "Voce! Veio salvar-me?$"
       ],
       "GoldenrodCity_RadioTower_5F_Text_FakeDirectorWin": [
         "Esta bem, esta bem. Eu digo-te\\nonde ele esta.$"
       ],
       "GoldenrodCity_RadioTower_5F_Text_ExecutiveF1After": [
-        "{PLAYER}Nao e?\\pUm pirralho como tu nao vai\\napreciar a magnificencia do\\lTEAM ROCKET.\\pQue pena. Admiro o seu poder.$"
+        "{PLAYER}Nao e?\\pUm pirralho como voce nao vai\\napreciar a magnificencia do\\lTEAM ROCKET.\\pQue pena. Admiro seu poder.$"
       ]
     },
     "data/maps/GoldenrodCity_TrainStation/scripts.inc": {
@@ -787,12 +787,12 @@
         "Fui desafiado para uma batalha\\nla em baixo.\\pE dificil la em baixo. E melhor\\nteres cuidado.$"
       ],
       "GoldenrodUnderground1_Text_Teacher": [
-        "Ha algumas lojas la em baixo...\\nMas tambem ha treinadores.\\pTenho medo de ir la.$"
+        "Ha algumas lojas la em baixo...\\nMas tambem ha TREINADORES.\\pTenho medo de ir la.$"
       ]
     },
     "data/maps/GoldenrodCity_UndergroundStorage/scripts.inc": {
       "RadioTowerBasement_Text_GruntM24Seen": [
-        "Como chegaste tao longe?\\pAcho que nao se pode evitar.\\nVou livrar-me de ti.$"
+        "Como chegaste tao longe?\\pAcho que nao se pode evitar.\\nVou livrar-me de voce.$"
       ],
       "RadioTowerBasement_Text_GruntM24Beaten": [
         "Eu livrei-me...$"
@@ -807,10 +807,10 @@
         "Hyuck-hyuck-hyuck! Olha quem e!\\pPronto? Agora sou mesmo durona!$"
       ],
       "RadioTowerBasement_Text_GruntM15After": [
-        "Hyuck-hyuck-hyuck! Foi uma\\nexplosao! Vou lembrar-me de ti!$"
+        "Hyuck-hyuck-hyuck! Foi uma\\nexplosao! Vou lembrar-me de voce!$"
       ],
       "RadioTowerBasement_Text_DirectorAfter": [
-        "Estou a implorar-te para\\najudares.\\pNao sabemos o que farao se\\ncontrolarem o transmissor.\\pEles podem ate ser capazes de\\ncontrolar POKEMON usando um\\lsinal especial!\\pEs o unico que posso chamar.\\pPor favor, salve o RADIO\\nTOWER...\\pE todos os POKEMON em todo o\\npais!$"
+        "Estou implorando-te para\\najudares.\\pNao sabemos o que farao se\\ncontrolarem o transmissor.\\pEles podem ate ser capazes de\\ncontrolar POKEMON usando um\\lsinal especial!\\pEs o unico que posso chamar.\\pPor favor, salve o RADIO\\nTOWER...\\pE todos os POKEMON em todo o\\npais!$"
       ]
     },
     "data/maps/GoldenrodCity_UndergroundSwitches/scripts.inc": {
@@ -836,7 +836,7 @@
         "Esta bem. Uma dica!\\pMude a ordem de mudanca.\\pIsso vai mudar as formas como\\nas persianas abrem e fecham.$"
       ],
       "GoldenrodUnderground_Text_BurglarDuncanSeen": [
-        "Agarra as suas guloseimas!$"
+        "Agarra suas guloseimas!$"
       ],
       "GoldenrodUnderground_Text_BurglarDuncanBeaten": [
         "Misericordia!$"

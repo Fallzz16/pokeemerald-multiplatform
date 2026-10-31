@@ -1,0 +1,198 @@
+{
+  "status": "machine_assisted_pending_contextual_review_not_human_approved",
+  "base_commit": "d7bcdba02bc7c23255a1a2f9e1a6f758fb97a7ad",
+  "stage": 17,
+  "shards": [
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "modified_entries": 91,
+  "changed_labels_by_shard_and_source": {
+    "tools/grandworld/ptbr_auto_review_015.json": {
+      "data/maps/LilycoveCity_House3/scripts.inc": [
+        "LilycoveCity_House3_Text_LearnFromMasterOfPokeblocks",
+        "LilycoveCity_House3_Text_OhAreYouSure",
+        "LilycoveCity_House3_Text_ExplainPokeblocks",
+        "LilycoveCity_House3_Text_HappyToHaveQuadruplets"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_016.json": {
+      "data/maps/MauvilleCity_PokemonCenter_2F/scripts.inc": [
+        "MauvilleCity_PokemonCenter_2F_Text_Youngster"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_017.json": {
+      "data/maps/NewBarkTown_House2/scripts.inc": [
+        "NewBarkTown_House2_Text_ElmsWife"
+      ],
+      "data/maps/OldaleTown_House2/scripts.inc": [
+        "OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon"
+      ],
+      "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc": [
+        "OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC"
+      ],
+      "data/maps/PacifidlogTown_House2/scripts.inc": [
+        "PacifidlogTown_House2_Text_AhYourPokemon",
+        "PacifidlogTown_House2_Text_AdoringPokemonTakeThis",
+        "PacifidlogTown_House2_Text_GetGoodTMInXDays"
+      ],
+      "data/maps/PacifidlogTown_House3/scripts.inc": [
+        "PacifidlogTown_House3_Text_WillingToTradeIt",
+        "PacifidlogTown_House3_Text_IsThatAPokedex"
+      ],
+      "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc": [
+        "PalletTown_PlayersHouse_1F_Text_MovieOnTVGirlOnBrickRoad"
+      ],
+      "data/maps/PetalburgCity_PokemonCenter_1F/scripts.inc": [
+        "PetalburgCity_PokemonCenter_1F_Text_OranBerryRegainedHP"
+      ],
+      "data/maps/PetalburgCity_WallysHouse/scripts.inc": [
+        "PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing",
+        "PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces"
+      ],
+      "data/maps/PewterCity_Museum_1F_Frlg/scripts.inc": [
+        "PewterCity_Museum_1F_Text_DoYouKnowWhatAmberIs"
+      ],
+      "data/maps/PokemonLeague_AgathasRoom_Frlg/scripts.inc": [
+        "PokemonLeague_AgathasRoom_Text_Defeat",
+        "PokemonLeague_AgathasRoom_Text_PostBattle"
+      ],
+      "data/maps/PokemonLeague_BrunosRoom_Frlg/scripts.inc": [
+        "PokemonLeague_BrunosRoom_Text_PostBattle"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_018.json": {
+      "data/maps/RustboroCity/scripts.inc": [
+        "RustboroCity_Text_YouCanHave2On2Battle"
+      ],
+      "data/maps/RustboroCity_DevonCorp_1F/scripts.inc": [
+        "RustboroCity_DevonCorp_1F_Text_YoureAlwaysWelcomeHere"
+      ],
+      "data/maps/RustboroCity_DevonCorp_2F/scripts.inc": [
+        "RustboroCity_DevonCorp_2F_Text_DeviceForTalkingToPokemon",
+        "RustboroCity_DevonCorp_2F_Text_DeviceToVisualizePokemonDreams",
+        "RustboroCity_DevonCorp_2F_Text_DevelopDeviceToResurrectFossils",
+        "RustboroCity_DevonCorp_2F_Text_TwoFossilsPickOne",
+        "RustboroCity_DevonCorp_2F_Text_FossilizedMonBroughtBackToLife",
+        "RustboroCity_DevonCorp_2F_Text_TooManyPokemon",
+        "RustboroCity_DevonCorp_2F_Text_DevelopNewPokenavFeature"
+      ],
+      "data/maps/RustboroCity_Flat1_2F/scripts.inc": [
+        "RustboroCity_Flat1_2F_Text_ComingUpWithMealsIsHard",
+        "RustboroCity_Flat1_2F_Text_HelloDoYouKnowFunnyPhrase",
+        "RustboroCity_Flat1_2F_Text_WonderfulLetsHearSuggestion",
+        "RustboroCity_Flat1_2F_Text_LetsGiveItATry2",
+        "RustboroCity_Flat1_2F_Text_OhShesLaughing",
+        "RustboroCity_Flat1_2F_Text_LetsGiveItATry",
+        "RustboroCity_Flat1_2F_Text_ShesNotSmilingAtAll",
+        "RustboroCity_Flat1_2F_Text_ShesNotSmilingAtAll2"
+      ],
+      "data/maps/RustboroCity_House1/scripts.inc": [
+        "RustboroCity_House1_Text_IllTradeIfYouWant",
+        "RustboroCity_House1_Text_PleaseBeGoodToMyPokemon"
+      ],
+      "data/maps/RustboroCity_House3/scripts.inc": [
+        "RustboroCity_House3_Text_IGivePerfectlySuitedNicknames"
+      ],
+      "data/maps/RustboroCity_PokemonSchool/scripts.inc": [
+        "RustboroCity_PokemonSchool_Text_TradingRightNow",
+        "RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself"
+      ],
+      "data/maps/SSAnne_1F_Room2_Frlg/scripts.inc": [
+        "SSAnne_1F_Room2_Text_TylerIntro",
+        "SSAnne_1F_Room2_Text_TylerDefeat",
+        "SSAnne_1F_Room2_Text_TylerPostBattle"
+      ],
+      "data/maps/SSAnne_1F_Room6_Frlg/scripts.inc": [
+        "SSAnne_1F_Room6_Text_TakeAShortRest",
+        "SSAnne_1F_Room6_Text_SorryYouLookLikeMyBrother",
+        "SSAnne_1F_Room6_Text_SorryYouLookLikeMySister"
+      ],
+      "data/maps/SSAnne_1F_Room7_Frlg/scripts.inc": [
+        "SSAnne_1F_Room7_Text_ThomasPostBattle"
+      ],
+      "data/maps/SSAnne_2F_Corridor_Frlg/scripts.inc": [
+        "SSAnne_2F_Corridor_Text_RivalIntro",
+        "SSAnne_2F_Corridor_Text_RivalDefeat"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_019.json": {
+      "data/maps/SafariZoneGate_SafariZoneEntrance/scripts.inc": [
+        "SafariZoneGate_SafariZoneEntrance_Text_BaobaCaveDone",
+        "SafariZoneGate_SafariZoneEntrance_Text_Boy"
+      ],
+      "data/maps/SeafoamIslands_B4F_Frlg/scripts.inc": [
+        "Text_RockSlideTeach"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_020.json": {
+      "data/maps/SixIsland_PokemonCenter_1F_Frlg/scripts.inc": [
+        "SixIsland_PokemonCenter_1F_Text_RivalImpossibleToGetAllMonsAroundHere"
+      ],
+      "data/maps/SlateportCity/scripts.inc": [
+        "SlateportCity_Text_GoForItLittleHarder"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_021.json": {
+      "data/maps/SlateportCity/scripts.inc": [
+        "SlateportCity_Text_DontButtIn",
+        "SlateportCity_Text_WhyAreWeLiningUp",
+        "SlateportCity_Text_IllReadSignForYou",
+        "SlateportCity_Text_ShouldveBroughtMyGameBoy",
+        "SlateportCity_Text_HotSpringsAfterOperation",
+        "SlateportCity_Text_CaptSternBeingInterviewed",
+        "SlateportCity_Text_FromHarborTryingToTakeSub"
+      ],
+      "data/maps/SlateportCity_BattleTentCorridor/scripts.inc": [
+        "SlateportCity_ContestHall_Text_MCStepUpTakePartInContest",
+        "SlateportCity_ContestHall_Text_RewardWithSageAdvice",
+        "SlateportCity_ContestHall_Text_MoreFreakedOutThanMon",
+        "SlateportCity_ContestHall_Text_GetUrgeToMoveWithMon"
+      ],
+      "data/maps/SlateportCity_BattleTentLobby/scripts.inc": [
+        "SlateportCity_BattleTentLobby_Text_CouldntFindMonForMe",
+        "SlateportCity_BattleTentLobby_Text_BattleEvenWithoutToughMons"
+      ],
+      "data/maps/SlateportCity_NameRatersHouse/scripts.inc": [
+        "SlateportCity_NameRatersHouse_Text_MonShallBeKnownAsName",
+        "SlateportCity_NameRatersHouse_Text_DoVisitAgain",
+        "SlateportCity_NameRatersHouse_Text_NameNoDifferentYetSuperior"
+      ],
+      "data/maps/SlateportCity_PokemonCenter_1F/scripts.inc": [
+        "SlateportCity_PokemonCenter_1F_Text_RaiseDifferentTypesOfPokemon",
+        "SlateportCity_PokemonCenter_1F_Text_TradedMonWithFriend"
+      ],
+      "data/maps/SlateportCity_PokemonFanClub/scripts.inc": [
+        "SlateportCity_PokemonFanClub_Text_HowIsYourPokemonGrowing",
+        "SlateportCity_PokemonFanClub_Text_HmHmISee",
+        "SlateportCity_PokemonFanClub_Text_GiveMonMorePokeblocks",
+        "SlateportCity_PokemonFanClub_Text_ShowMePokemonThatLoveYou",
+        "SlateportCity_PokemonFanClub_Text_PokemonAdoresYou",
+        "SlateportCity_PokemonFanClub_Text_TreatPokemonWithLove"
+      ],
+      "data/maps/SootopolisCity_LotadAndSeedotHouse/scripts.inc": [
+        "SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull1",
+        "SootopolisCity_LotadAndSeedotHouse_Text_WowMightBeBiggerThanSeedot",
+        "SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull2"
+      ],
+      "data/maps/SootopolisCity_MysteryEventsHouse_1F/scripts.inc": [
+        "SootopolisCity_MysteryEventsHouse_1F_Text_OnlyAmusementWatchingBattles",
+        "SootopolisCity_MysteryEventsHouse_1F_Text_YouWontBattle",
+        "SootopolisCity_MysteryEventsHouse_1F_Text_KeepItTo3On3",
+        "SootopolisCity_MysteryEventsHouse_1F_Text_SaveProgressBeforeBattle",
+        "SootopolisCity_MysteryEventsHouse_1F_Text_TooBadForYou"
+      ],
+      "data/maps/ThreeIsland_BerryForest_Frlg/scripts.inc": [
+        "ThreeIsland_BerryForest_Text_HereItComesAgain"
+      ],
+      "data/maps/ThreeIsland_BondBridge_Frlg/scripts.inc": [
+        "ThreeIsland_BondBridge_Text_AmiraIntro"
+      ]
+    }
+  }
+}
