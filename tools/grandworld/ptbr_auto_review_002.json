@@ -286,90 +286,90 @@
     },
     "data/maps/SootopolisCity_Gym_1F/scripts.inc": {
       "SootopolisCity_Gym_1F_Text_RematchDefeat": [
-        "Soberbo... A tua arte\\nultrapassa ate a minha melhor\\lilusao.$"
+        "Maravilhoso!\\pSua tecnica supera\\nate minhas melhores ilusoes!$"
       ],
       "SootopolisCity_Gym_1F_Text_JuanDefeat": [
-        "Excelente! Muito bem, voce e o\\nvencedor.\\pDe ti, sinto o brilho brilhante\\nda habilidade que vai superar\\ltudo.\\pNo entanto, comparado comigo ou\\nmesmo WALLACE, voce esta\\lfaltando em elegancia.\\pTalvez deva fazer-te um\\nemprestimo da minha roupa?\\p... ... ... ... ... ... ... ...\\n... ... ... ...\\pHahaha, estou apenas brincando!\\pEm vez das minhas roupas, vou\\nrecompensa-lo com isto, o RAIN\\lINSIGNIA!$"
+        "Excelente! Voce venceu!\\pTem um talento\\nverdadeiramente brilhante!\\pMas ainda falta a elegancia\\nque eu e WALLACE temos!\\pQuer emprestada\\numa das minhas roupas?\\pHa ha ha! Brincadeira!\\pEm vez disso, receba\\na RAINBADGE!$"
       ],
       "SootopolisCity_Gym_1F_Text_ExplainRainBadgeTakeThis": [
-        "Ter o RAIN INSIGNIA\\nassegurar-lhe-a a total\\lobediencia de todos os seus\\lPOKEMON a todos os seus\\lcomandos.\\pO RAIN INSIGNIA tambem permite\\no uso do HM mover WATERFALL\\lpara escalar paredes de agua em\\lcascata.\\pE, para que nunca te esquecas\\nda batalha que partilhamos,\\ltoma isto...$"
+        "Com a RAINBADGE,\\ntodos os POKEMON\\nvao obedecer suas ordens!\\pEla tambem permite\\nusar WATERFALL fora da batalha.\\pE para lembrar da nossa luta,\\naceite este presente!$"
       ],
       "SootopolisCity_Gym_1F_Text_RegisteredJuan": [
-        "GINASIO LEADER JUAN registado\\nno POKeNAV.$"
+        "JUAN foi registrado\\nno POKENAV!$"
       ],
       "SootopolisCity_Gym_1F_Text_JuanPostBattle": [
-        "Os TRAiners que reuniram todos\\nos GINASIO INSIGNIAS de HOENN\\ldevem abrir caminho ao destino\\lfinal.\\pA LEAGUE POKEMON.\\pViaje para o extremo leste de\\nHOENN, para a ilha EVER GRANDE.\\pAli encontraras a LEAGUE\\nPOKEMON.$"
+        "Quem ganha todas\\nas INSIGNIAS de HOENN\\npode desafiar a LIGA POKEMON!\\pEla fica em EVER GRANDE,\\nno extremo leste de HOENN.$"
       ],
       "SootopolisCity_Gym_1F_Text_GoGetFortreeBadge": [
-        "Resta apenas um INSIGNIA para\\nobter em HOENN.\\pSe voce deseja desafiar a\\nLEAGUE POKEMON, voce deve obter\\lo ultimo INSIGNIA do Gym em\\lFORTREE.$"
+        "Falta apenas uma INSIGNIA\\npara completar HOENN!\\pConsiga a do GINASIO\\nde FORTREE antes de seguir!$"
       ],
       "SootopolisCity_Gym_1F_Text_JuanRematchDefeat": [
-        "Ahahaha, voce e o vencedor!\\nDerrotaste-me outra vez!$"
+        "Ha ha ha!\\nVoce me venceu de novo!$"
       ]
     },
     "data/maps/SootopolisCity_Gym_B1F/scripts.inc": {
       "SootopolisCity_Gym_B1F_Text_AndreaIntro": [
-        "Vou mostrar-te as tecnicas\\nsublimes que aprendi com o\\lnosso LEADER JUAN!$"
+        "Vou mostrar as tecnicas\\nque JUAN me ensinou!$"
       ],
       "SootopolisCity_Gym_B1F_Text_AndreaPostBattle": [
-        "Veja o que acontece se voce\\nquebrar todas as telhas do\\lchao.$"
+        "Veja o que acontece\\nse quebrar todas\\nas placas do piso!$"
       ],
       "SootopolisCity_Gym_B1F_Text_CrissyDefeat": [
-        "Es forte! Fui enganado pela tua\\nbeleza!$"
+        "Voce e forte!\\nMe deixou sem reacao!$"
       ],
       "SootopolisCity_Gym_B1F_Text_DaphneDefeat": [
-        "Lutaste com mais beleza do que\\neu conseguia...$"
+        "Seu estilo e mais elegante\\nque o meu...$"
       ],
       "SootopolisCity_Gym_B1F_Text_DaphnePostBattle": [
-        "A graca que trazes para a\\nbatalha e fabulosa.\\pOh... Tenho tanta sorte por ter\\nencontrado o Pokemon.$"
+        "Seu jeito de lutar\\ne realmente elegante!\\pTenho sorte de treinar\\njunto dos meus POKEMON!$"
       ],
       "SootopolisCity_Gym_B1F_Text_ConnieIntro": [
-        "Devia ensinar-te como as\\nbatalhas podem ser duras.$"
+        "Vou mostrar como\\numa batalha pode ser dificil!$"
       ],
       "SootopolisCity_Gym_B1F_Text_ConnieDefeat": [
-        "Oh, sim. Es forte.$"
+        "Ah! Voce e forte!$"
       ],
       "SootopolisCity_Gym_B1F_Text_ConniePostBattle": [
-        "Vou dizer-te uma coisa boa.\\pSe voce quiser chegar JUAN,\\nvoce precisa andar em cada piso\\lazulejo uma vez.$"
+        "Vou dar uma dica!\\pPara chegar ate JUAN,\\npise uma vez em cada placa!$"
       ],
       "SootopolisCity_Gym_B1F_Text_BridgetIntro": [
-        "O GINASIO POKEMON do mais alto\\nnivel na regiao de HOENN...\\pE o GINASIO SOOTOPOLIS.$"
+        "O GINASIO de SOOTOPOLIS\\ne um dos melhores de HOENN!$"
       ],
       "SootopolisCity_Gym_B1F_Text_BridgetDefeat": [
-        "Que alto nivel voce e!$"
+        "Que nivel impressionante!$"
       ],
       "SootopolisCity_Gym_B1F_Text_BridgetPostBattle": [
-        "Em vez de estar satisfeito por\\nestar em um GINASIO forte,\\limagino que treinar em outros\\llugares ira torna-lo mais\\lforte. Mas acima de tudo,\\lparece mais divertido.$"
+        "Treinar aqui e otimo,\\nmas conhecer outros lugares\\ntorna os POKEMON mais fortes!\\pE muito mais divertido!$"
       ],
       "SootopolisCity_Gym_B1F_Text_OliviaDefeat": [
-        "Fui derrotado...$"
+        "Fui derrotada...$"
       ],
       "SootopolisCity_Gym_B1F_Text_OliviaPostBattle": [
-        "Acho que tens potencial. Porque\\nnao ficas e treinas connosco?$"
+        "Voce tem muito potencial!\\pQue tal treinar aqui\\ncom a gente?$"
       ],
       "SootopolisCity_Gym_B1F_Text_TiffanyIntro": [
-        "Um gracioso deslizar atraves do\\ngelo enquanto cruzando\\llinhas...\\pUm TREINADOR colocar essa\\nperformance seria elegantemente\\lbonito!$"
+        "Deslizar sobre o gelo\\ne uma arte elegante!\\pUma batalha POKEMON\\ntambem pode ser assim!$"
       ],
       "SootopolisCity_Gym_B1F_Text_TiffanyDefeat": [
-        "Bem, desculpe-me!$"
+        "Oh! Me desculpe!$"
       ],
       "SootopolisCity_Gym_B1F_Text_TiffanyPostBattle": [
-        "Isso e realmente obvio, mas\\nquao forte voce e como um\\lTRAiner nao tem nada a ver com\\lquao jovem ou velho voce e.$"
+        "A idade nao determina\\na forca de um TREINADOR!\\pO que importa e o treino!$"
       ],
       "SootopolisCity_Gym_B1F_Text_AnnikaIntro": [
-        "Posso lutar com POKEMON muito\\nraro, se quiseres.$"
+        "Vou enfrentar voce\\ncom meus POKEMON raros!$"
       ],
       "SootopolisCity_Gym_B1F_Text_AnnikaDefeat": [
-        "Pronto! Viste bem o meu\\nPokemon?$"
+        "Viu como meus POKEMON\\nsao especiais?$"
       ],
       "SootopolisCity_Gym_B1F_Text_BriannaIntro": [
-        "Riso... O teu olhar sombrio e\\ntao encantador.$"
+        "He he... Seu olhar serio\\ne tao interessante!$"
       ],
       "SootopolisCity_Gym_B1F_Text_BriannaDefeat": [
-        "Meu Deus. Fui demasiado brando\\ncontigo.$"
+        "Acho que fui\\nmuito boazinha com voce!$"
       ],
       "SootopolisCity_Gym_B1F_Text_BriannaPostBattle": [
-        "Nao podias por um dedo no JUAN,\\ntenho a certeza. Riso...$"
+        "Nao acho que voce\\nconsiga vencer JUAN!\\pHe he he!$"
       ]
     },
     "data/maps/VermilionCity_Gym_Frlg/scripts.inc": {
@@ -421,58 +421,58 @@
     },
     "data/maps/ViridianCity_Gym_Frlg/scripts.inc": {
       "ViridianCity_Gym_Text_GiovanniPostBattle": [
-        "Tendo perdido desta forma, nao\\nposso enfrentar os meus\\lseguidores. Trai a confianca\\ldeles.\\pA partir de hoje, o TEAM ROCKET\\nesta terminado para sempre!\\pQuanto a mim, dedicarei minha\\nvida ao treinamento novamente.\\pVamos encontrar-nos novamente\\num dia! Adeus!$"
+        "Perdi para voce...\\pNao posso encarar\\naqueles que confiaram em mim.\\pA partir de hoje,\\na EQUIPE ROCKET acabou!\\pVou me dedicar a treinar\\nnovamente do zero.\\pQuem sabe nos encontremos\\nde novo um dia... Adeus!$"
       ],
       "ViridianCity_Gym_Text_ReceivedTM26FromGiovanni": [
-        "{PLAYER}recebeu TM26 de\\nGIOVANNI.$"
+        "{PLAYER} recebeu TM26\\nde GIOVANNI!$"
       ],
       "ViridianCity_Gym_Text_YouDoNotHaveSpace": [
-        "Nao tens espaco para isto!$"
+        "Nao ha espaco\\nna sua BOLSA!$"
       ],
       "ViridianCity_Gym_Text_YujiIntro": [
-        "Heh! Ja deves estar a ficar sem\\nvapor!$"
+        "He he! Voce ja\\ndeve estar cansado!$"
       ],
       "ViridianCity_Gym_Text_YujiDefeat": [
-        "Fiquei sem gasolina!$"
+        "Minha energia acabou!$"
       ],
       "ViridianCity_Gym_Text_AtsushiIntro": [
-        "Rrrroar! Estou a ficar furioso!$"
+        "Grrr!\\nEstou ficando furioso!$"
       ],
       "ViridianCity_Gym_Text_AtsushiPostBattle": [
-        "Ainda nao sou digno!$"
+        "Ainda nao estou\\npronto para este nivel...$"
       ],
       "ViridianCity_Gym_Text_JasonIntro": [
-        "POKEMON e eu fazemos uma musica\\nmaravilhosa juntos!$"
+        "Eu e meus POKEMON\\nlutamos em perfeita harmonia!$"
       ],
       "ViridianCity_Gym_Text_JasonDefeat": [
-        "Estas em perfeita harmonia!$"
+        "Seu ritmo e perfeito!$"
       ],
       "ViridianCity_Gym_Text_KiyoIntro": [
-        "Karate e a melhor forma de\\nartes marciais!$"
+        "O KARATE e a melhor\\narte marcial de todas!$"
       ],
       "ViridianCity_Gym_Text_KiyoPostBattle": [
-        "Se o meu Pokemon fosse tao bom\\nem karate como eu...$"
+        "Queria que meus POKEMON\\nfossem bons de KARATE como eu!$"
       ],
       "ViridianCity_Gym_Text_WarrenIntro": [
-        "A vitoria verdadeiramente\\ntalentosa com estilo.$"
+        "Os melhores TREINADORES\\nvencem com estilo!$"
       ],
       "ViridianCity_Gym_Text_WarrenDefeat": [
         "Perdi o controle!$"
       ],
       "ViridianCity_Gym_Text_ColeIntro": [
-        "O teu Pokemon vai acobardar-se\\nao meu chicote!$"
+        "Seus POKEMON vao tremer\\ndiante da minha equipe!$"
       ],
       "ViridianCity_Gym_Text_ColePostBattle": [
-        "Espera! Fui descuidado!$"
+        "Fui descuidado demais!$"
       ],
       "ViridianCity_Gym_Text_SamuelDefeat": [
-        "Fui espancado?$"
+        "Eu fui derrotado?$"
       ],
       "ViridianCity_Gym_Text_RematchDefeat": [
-        "Fwahaha! Ainda nao esta a\\naltura do GIOVANNI!$"
+        "Ha ha ha!\\nVoce ainda nao pode\\nenfrentar GIOVANNI!$"
       ],
       "ViridianCity_Gym_Text_RematchDecline": [
-        "Covarde. Nao perca mais tempo.$"
+        "Vai desistir?\\nVolte quando estiver pronto!$"
       ]
     },
     "data/maps/CinnabarIsland_PokemonLab_Entrance_Frlg/scripts.inc": {
