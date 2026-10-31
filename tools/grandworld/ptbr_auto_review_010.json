@@ -35,7 +35,7 @@
         "Agradeco-lhe sinceramente. Eu\\ntrato do registo.$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_LadyReject": [
-        "Tenho a certeza que se\\narrependera de nao me ter como\\lseu parceiro.$"
+        "Tenho certeza que se\\narrependera de nao me ter como\\lseu parceiro.$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteFMon1": [
         "O que eu tenho...\\nUma{STR_VAR_2}com{STR_VAR_1}e$"
@@ -242,7 +242,7 @@
         "O POKEMON que eu endureci e\\num{STR_VAR_2}com{STR_VAR_1}e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertMMon2Ask": [
-        "Um{STR_VAR_2}com{STR_VAR_1}!\\pO que dizes a uma equipe\\ncomigo?$"
+        "Um{STR_VAR_2}com{STR_VAR_1}!\\pO que diz a uma equipe\\ncomigo?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertMAccept": [
         "Hm! Vou registar-nos\\nimediatamente! Vamos fazer o\\lnosso melhor!$"
@@ -443,7 +443,7 @@
         "Sabe o que meu treino\\npreparou?\\lUma{STR_VAR_2}com{STR_VAR_1}e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_KindlerMon2Ask": [
-        "Um{STR_VAR_2}com{STR_VAR_1}!\\pO que me dizes? Quer formar\\numa equipe de etiquetas?$"
+        "Um{STR_VAR_2}com{STR_VAR_1}!\\pO que me diz? Quer formar\\numa equipe de etiquetas?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_KindlerAccept": [
         "Muito bem! Vou continuar com o\\nregisto.$"
