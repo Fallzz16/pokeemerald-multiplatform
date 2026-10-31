@@ -78,7 +78,7 @@ class PTBREditorialStage18Tests(unittest.TestCase):
         cache = {}
         for (source, symbol), shard in self.editorial.items():
             if shard not in cache:
-                cache[shard] = load(shard)["asm"]
+                cache[shard] = load(Path(shard).name)["asm"]
             text = "".join(cache[shard][source][symbol])
             self.assertTrue(text.isascii(), (source, symbol))
             self.assertEqual(text.count("$"), 1, (source, symbol))
