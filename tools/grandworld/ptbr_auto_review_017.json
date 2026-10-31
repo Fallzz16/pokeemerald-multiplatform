@@ -347,103 +347,103 @@
     },
     "data/maps/OneIsland_KindleRoad_Frlg/scripts.inc": {
       "OneIsland_KindleRoad_Text_MariaIntro": [
-        "O tempo esta lindo! Perfeito\\npara uma batalha!$"
+        "Que dia lindo!\\nPerfeito para uma batalha!$"
       ],
       "OneIsland_KindleRoad_Text_MariaPostBattle": [
-        "Por favor, nao me salpicos a\\ncara! Vais estragar a\\lmaquilhagem.$"
+        "Nao jogue agua no meu rosto!\\pVai estragar\\nminha maquiagem!$"
       ],
       "OneIsland_KindleRoad_Text_AbigailIntro": [
-        "Estou a comecar a ter uma\\nqueimadura de sol...$"
+        "Acho que estou\\nficando queimada de sol...$"
       ],
       "OneIsland_KindleRoad_Text_AbigailDefeat": [
-        "Es tao horrivel.$"
+        "Voce e muito forte!$"
       ],
       "OneIsland_KindleRoad_Text_AbigailPostBattle": [
-        "Gosto desse bone que tens.\\nTalvez eu devesse usar um\\ltambem...$"
+        "Gostei do seu bone!\\pTalvez eu devesse\\nusar um tambem!$"
       ],
       "OneIsland_KindleRoad_Text_FinnDefeat": [
-        "Bem, nao es durona?$"
+        "Voce luta muito bem!$"
       ],
       "OneIsland_KindleRoad_Text_FinnPostBattle": [
-        "O ceu e imenso por aqui.$"
+        "O ceu daqui\\nparece nao ter fim!$"
       ],
       "OneIsland_KindleRoad_Text_GarrettIntro": [
-        "Fiz uma pausa para nadar, so\\npara me desafiares?$"
+        "Parei para nadar,\\ne voce quer batalhar?$"
       ],
       "OneIsland_KindleRoad_Text_GarrettDefeat": [
-        "Mas que... Tu es bom!$"
+        "Uau! Voce e bom!$"
       ],
       "OneIsland_KindleRoad_Text_GarrettPostBattle": [
-        "Em vez de usar SURF o tempo\\ntodo, voce deve nadar um pouco.$"
+        "Em vez de usar SURF,\\nexperimente nadar um pouco!$"
       ],
       "OneIsland_KindleRoad_Text_TommyIntro": [
-        "Espera! Espera um segundo! Acho\\nque apanhei uma grande!$"
+        "Espere! Um instante!\\pAcho que fisguei\\num POKEMON enorme!$"
       ],
       "OneIsland_KindleRoad_Text_TommyDefeat": [
-        "Perdi tudo outra vez...$"
+        "Perdi tudo de novo...$"
       ],
       "OneIsland_KindleRoad_Text_TommyPostBattle": [
-        "Nao so perdi, como tambem o\\ngrandalhao fugiu de mim!$"
+        "Perdi a batalha\\ne minha pesca escapou!$"
       ],
       "OneIsland_KindleRoad_Text_SharonIntro": [
-        "Podes ajudar-me com o meu\\ntreino?$"
+        "Quer me ajudar\\ncom meu treinamento?$"
       ],
       "OneIsland_KindleRoad_Text_SharonDefeat": [
-        "Foste um corte acima de mim.$"
+        "Voce foi melhor do que eu!$"
       ],
       "OneIsland_KindleRoad_Text_SharonPostBattle": [
-        "Esta claro que es habilidoso.\\nGosto de ti!$"
+        "Voce tem talento!\\nGostei muito da batalha!$"
       ],
       "OneIsland_KindleRoad_Text_TanyaIntro": [
-        "Nao ha um dia em que nao\\ntreinemos!$"
+        "Treinamos todos os dias!\\nNao perdemos um unico dia!$"
       ],
       "OneIsland_KindleRoad_Text_TanyaDefeat": [
-        "Sou tao idiota!$"
+        "Que vacilo da minha parte!$"
       ],
       "OneIsland_KindleRoad_Text_TanyaPostBattle": [
-        "Vou treinar ainda mais a partir\\nde agora!$"
+        "Vou treinar ainda mais\\npara ficar forte!$"
       ],
       "OneIsland_KindleRoad_Text_SheaIntro": [
-        "Todas as manhas, antes do\\npequeno-almoco, nado por esta\\lilha.$"
+        "Todas as manhas\\nnado ao redor da ilha!$"
       ],
       "OneIsland_KindleRoad_Text_SheaPostBattle": [
-        "Perdi porque estou cansado de\\ntoda a corrida que fiz...$"
+        "Nadei tanto hoje\\nque fiquei cansado demais!$"
       ],
       "OneIsland_KindleRoad_Text_HughIntro": [
-        "Veste-te apropriadamente para a\\nbatalha! Tira essa roupa\\lfrivola!$"
+        "Vista uma roupa adequada!\\pVamos batalhar\\ncom disciplina!$"
       ],
       "OneIsland_KindleRoad_Text_HughDefeat": [
-        "Porque eu?!$"
+        "Por que eu perdi?$"
       ],
       "OneIsland_KindleRoad_Text_HughPostBattle": [
-        "Ate os artistas marciais estao\\na tornar-se conscientes da\\lmoda...$"
+        "Ate os lutadores\\nse preocupam com a moda!$"
       ],
       "OneIsland_KindleRoad_Text_BryceIntro": [
-        "Sabes, tudo sabe bem quando\\nestamos na selva.$"
+        "Comer ao ar livre\\ndeixa tudo mais gostoso!$"
       ],
       "OneIsland_KindleRoad_Text_BryceDefeat": [
-        "Awww, estourou!$"
+        "Ah! Voce venceu!$"
       ],
       "OneIsland_KindleRoad_Text_BrycePostBattle": [
-        "A agua nas regioes vulcanicas e\\ndeliciosa.$"
+        "A agua perto dos vulcoes\\ntem um sabor especial!$"
       ],
       "OneIsland_KindleRoad_Text_ClaireIntro": [
-        "O meu almoco encheu-nos, por\\nisso vais lutar connosco por\\lalgum exercicio?$"
+        "Acabamos de almocar!\\pVamos batalhar\\npara fazer exercicio?$"
       ],
       "OneIsland_KindleRoad_Text_ClaireDefeat": [
-        "Isso deixou-me toda suada.$"
+        "Fiquei toda suada!$"
       ],
       "OneIsland_KindleRoad_Text_ClairePostBattle": [
-        "O que devo fazer? Sinto-me\\nfaminto outra vez.$"
+        "Ja estou com fome\\nde novo! Que coisa!$"
       ],
       "OneIsland_KindleRoad_Text_KiaIntro": [
-        "KIA: Meu irmao mais velho e eu\\nfazemos uma combinacao\\lincrivel!$"
+        "KIA: Eu e meu irmao\\nlutamos muito bem juntos!$"
       ],
       "OneIsland_KindleRoad_Text_MikPostBattle": [
-        "MIK: Como minha combinacao com\\na KIA pode falhar?$"
+        "MIK: Como perdemos\\nlutando em dupla?$"
       ],
       "OneIsland_KindleRoad_Text_EmberSpaSign": [
-        "Acenda o fogo em seu coracao!\\nSPA EMBER$"
+        "AQUECA SEU CORACAO!\\nSPA EMBER$"
       ]
     },
     "data/maps/OneIsland_PokemonCenter_1F_Frlg/scripts.inc": {
