@@ -477,59 +477,59 @@
     },
     "data/maps/CinnabarIsland_PokemonLab_Entrance_Frlg/scripts.inc": {
       "CinnabarIsland_PokemonLab_Entrance_Text_StudyMonsExtensively": [
-        "Estudamos muito POKEMON todos\\nos dias.\\pAs pessoas muitas vezes nos\\ntrazem raros POKEMON para\\lexame.$"
+        "Estudamos POKEMON\\ntodos os dias!\\pMuitos TREINADORES\\nnos trazem especies raras\\npara pesquisar.$"
       ],
       "CinnabarIsland_PokemonLab_Entrance_Text_MeetingRoomSign": [
-        "Sala de reuniao POKEMON LAB$"
+        "LAB. POKEMON\\nSALA DE REUNIOES$"
       ],
       "CinnabarIsland_PokemonLab_Entrance_Text_RAndDRoomSign": [
-        "Sala de R & D POKEMON LAB$"
+        "LAB. POKEMON\\nPESQUISA E DESENVOLVIMENTO$"
       ],
       "CinnabarIsland_PokemonLab_Entrance_Text_TestingRoomSign": [
-        "Sala de testes POKEMON LAB$"
+        "LAB. POKEMON\\nSALA DE EXPERIMENTOS$"
       ]
     },
     "data/maps/CinnabarIsland_PokemonLab_ExperimentRoom_Frlg/scripts.inc": {
       "Text_MetronomeTeach": [
-        "Tch-tch-tch! Vou ensinar-te uma\\nboa jogada.\\pEnsine - o a um POKEMON, e veja\\na diversao se desenrolar!\\pE uma jogada chamada METRONOME.\\nParece-te bem?$"
+        "He he! Conheco\\num golpe divertido!\\pMETRONOME pode causar\\nmuitas surpresas!\\pQuer ensinar esse golpe\\na um dos seus POKEMON?$"
       ],
       "Text_MetronomeDeclined": [
-        "Digo-te, e muito divertido!$"
+        "Mas e um golpe\\ntaao divertido!$"
       ],
       "Text_MetronomeWhichMon": [
-        "Esta bem! Que Pokemon devo\\nensinar?$"
+        "Muito bem!\\nQual POKEMON vai aprender?$"
       ],
       "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe": [
-        "Ola!\\pSou um medico importante. Sim,\\nmuito mesmo.\\pAqui, estudo fosseis raros de\\nPokemon. Estou sempre a\\lestudar.\\pVoce! Tens um fossil para mim?$"
+        "Ola! Sou um cientista\\nmuito importante!\\pEstudo fosseis antigos\\nde POKEMON!\\pVoce tem algum fossil\\npara me mostrar?$"
       ],
       "CinnabarIsland_PokemonLab_ExperimentRoom_Text_NoIsTooBad": [
-        "Nao! E uma pena!$"
+        "Nao? Que pena!$"
       ],
       "CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife": [
-        "Estas atrasado. Onde estavas?\\pO teu fossil voltou a vida!\\nFoi.{STR_VAR_1}Como eu penso!$"
+        "Demorou para voltar!\\pO fossil ganhou vida!\\nE {STR_VAR_1}!$"
       ],
       "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ReceivedMonFromDoctor": [
-        "{PLAYER}recebido o{STR_VAR_1}do\\nmedico.$"
+        "{PLAYER} recebeu\\n{STR_VAR_1} do cientista!$"
       ],
       "CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain": [
-        "Oh! Isto e...{STR_VAR_2}E\\nmesmo!\\pE fossil de{STR_VAR_1}, um\\nPOKEMON que ja esta extinto!\\pA minha Maquina de Ressurreicao\\nfara com que o POKEMON viva\\lnovamente!$"
+        "Ah! Isto e {STR_VAR_2}!\\pUm fossil de {STR_VAR_1},\\num POKEMON extinto!\\pMinha maquina pode\\ntraze-lo de volta a vida!$"
       ],
       "CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor": [
-        "Entao! Despacha-te e da-me\\nisso!\\p{FONT_NORMAL}{PLAYER}entregue\\na{STR_VAR_2}ao medico\\lesquisito.$"
+        "Otimo! Me entregue o fossil!\\p{FONT_NORMAL}{PLAYER} entregou\\n{STR_VAR_2} ao cientista!$"
       ],
       "CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk": [
-        "Demoro um pouco! Vai dar uma\\nvolta!$"
+        "Vai demorar um pouco!\\nDe uma volta por ai!$"
       ],
       "CinnabarIsland_PokemonLab_ExperimentRoom_Text_YouComeAgain": [
-        "Aiyah! Voltas outra vez!$"
+        "Opa! Voce voltou!$"
       ]
     },
     "data/maps/CinnabarIsland_PokemonLab_ResearchRoom_Frlg/scripts.inc": {
       "CinnabarIsland_PokemonLab_ResearchRoom_Text_EeveeCanEvolveIntroThreeMons": [
-        "A EEVEE pode evoluir para um\\ndos tres tipos de POKEMON.$"
+        "EEVEE pode evoluir\\npara tres POKEMON diferentes!$"
       ],
       "CinnabarIsland_PokemonLab_ResearchRoom_Text_AnAmberPipe": [
-        "Um cachimbo de ambar!$"
+        "Um cachimbo feito de ambar!$"
       ]
     },
     "data/maps/FiveIsland_RocketWarehouse_Frlg/scripts.inc": {
@@ -722,69 +722,69 @@
     },
     "data/maps/RocketHideout_B1F_Frlg/scripts.inc": {
       "RocketHideout_B1F_Text_Grunt1Intro": [
-        "Quem es tu? Como chegaste aqui?$"
+        "Quem e voce?\\nComo entrou aqui?$"
       ],
       "RocketHideout_B1F_Text_Grunt1Defeat": [
-        "Oww! Espancado!$"
+        "Ai! Fui derrotado!$"
       ],
       "RocketHideout_B1F_Text_Grunt2PostBattle": [
-        "Nao te vais safar desta,\\npirralho!$"
+        "Nao vai escapar dessa,\\npirralho!$"
       ],
       "RocketHideout_B1F_Text_Grunt3Intro": [
-        "Alerta de intruso!$"
+        "Alerta! Temos um intruso!$"
       ],
       "RocketHideout_B1F_Text_Grunt3Defeat": [
-        "Nao consigo!$"
+        "Nao acredito!$"
       ],
       "RocketHideout_B1F_Text_Grunt4Intro": [
-        "Porque vieste aqui?$"
+        "Por que voce veio aqui?$"
       ],
       "RocketHideout_B1F_Text_Grunt4Defeat": [
-        "Isto nao serve!$"
+        "Isso nao pode ser!$"
       ],
       "RocketHideout_B1F_Text_Grunt5Intro": [
-        "Estas perdido, ratinho?$"
+        "Se perdeu, pirralho?$"
       ],
       "RocketHideout_B1F_Text_Grunt5Defeat": [
-        "Porque...?$"
+        "Mas por que...?$"
       ],
       "RocketHideout_B1F_Text_Grunt5PostBattle": [
-        "Aquela confusao abriu a porta!$"
+        "A confusao abriu a porta!$"
       ]
     },
     "data/maps/RocketHideout_B2F_Frlg/scripts.inc": {
       "RocketHideout_B2F_Text_GruntDefeat": [
-        "Eu rendo-me!$"
+        "Eu me rendo!$"
       ]
     },
     "data/maps/RocketHideout_B3F_Frlg/scripts.inc": {
       "RocketHideout_B3F_Text_Grunt1Defeat": [
-        "Oof! Derrubado!$"
+        "Argh! Fui derrotado!$"
       ],
       "RocketHideout_B3F_Text_Grunt2Intro": [
-        "Soubemos la de cima que vinhas!$"
+        "Ja avisaram que voce vinha!$"
       ],
       "RocketHideout_B3F_Text_Grunt2Defeat": [
-        "O que? Perdi? Nao!$"
+        "O que? Eu perdi? Nao!$"
       ]
     },
     "data/maps/RocketHideout_B4F_Frlg/scripts.inc": {
       "RocketHideout_B4F_Text_GiovanniPostBattle": [
-        "Vejo que crias POKEMON com todo\\no cuidado.\\pUma crianca como voce nunca\\nentenderia o que eu espero\\lalcancar.\\pVou afastar-me desta vez!\\pEspero voltar a\\nencontrar-nos...$"
+        "Voce cuida muito bem\\ndos seus POKEMON.\\pMas ainda e jovem demais\\npara entender meus objetivos.\\pVou me retirar por enquanto.\\pTalvez nos encontremos\\nnovamente...$"
       ],
       "RocketHideout_B4F_Text_Grunt2Defeat": [
-        "Queimado outra vez!$"
+        "Fui derrotado de novo!$"
       ],
       "RocketHideout_B4F_Text_Grunt3Intro": [
-        "Como podes nao ver a beleza do\\nnosso mal?$"
+        "Como nao consegue ver\\na grandeza dos nossos planos?$"
       ],
       "RocketHideout_B4F_Text_Grunt1Defeat": [
-        "Nao!$"
+        "Nao! Que derrota!$"
       ]
     },
     "data/maps/RocketHideout_Elevator_Frlg/scripts.inc": {
       "RocketHideout_Elevator_Text_AppearsToNeedAKey": [
-        "Parece precisar de uma chave.$"
+        "Parece que precisa\\nde uma chave!$"
       ]
     },
     "data/maps/Route105/scripts.inc": {
