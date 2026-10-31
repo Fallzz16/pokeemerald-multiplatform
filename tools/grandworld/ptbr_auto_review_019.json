@@ -554,94 +554,94 @@
     },
     "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc": {
       "SaffronCity_CopycatsHouse_1F_Text_DaughterIsSelfCentered": [
-        "A minha filha e tao\\negocentrica. Ela tem apenas\\lalguns amigos.$"
+        "Minha filha e muito\\ncentrada em si mesma.\\pEla quase nao tem amigos!$"
       ],
       "SaffronCity_CopycatsHouse_1F_Text_DaughterLikesToMimicPeople": [
-        "A minha filha gosta de imitar\\nas pessoas. E muito irritante.\\pA imitacao dela deu-lhe o\\napelido de COPYCAT por aqui.$"
+        "Minha filha adora\\nimitar outras pessoas.\\pPor isso todos aqui\\nchamam ela de COPYCAT!$"
       ]
     },
     "data/maps/SaffronCity_CopycatsHouse_2F_Frlg/scripts.inc": {
       "Text_MimicDeclined": [
-        "Nao gostas de MIMIC?$"
+        "Nao quer aprender MIMIC?$"
       ],
       "Text_MimicWhichMon": [
-        "Eu realmente amo MIMIC! Quem\\nvai aprender?$"
+        "Eu adoro o golpe MIMIC!\\pQual POKEMON\\nvai aprende-lo?$"
       ],
       "SaffronCity_CopycatsHouse_2F_Text_RareMonOnlyDoll": [
-        "Este e um POKEMON raro! Huh? E\\nso uma boneca!$"
+        "Um POKEMON muito raro!\\pO que? E apenas uma boneca!$"
       ],
       "SaffronCity_CopycatsHouse_2F_Text_MarioWearingABucket": [
-        "Um jogo com o MARIO a usar um\\nbalde na cabeca!$"
+        "Um jogo do MARIO\\ncom um balde na cabeca!$"
       ]
     },
     "data/maps/SaffronCity_Dojo_Frlg/scripts.inc": {
       "SaffronCity_Dojo_Text_MasterKoichiDefeat": [
-        "Hwa! Arrgh! Espancado!$"
+        "Argh! Fui derrotado!$"
       ],
       "SaffronCity_Dojo_Text_StayAndTrainWithUs": [
-        "Grunt! Fica e treina karate\\nconnosco!$"
+        "Fique aqui!\\nTreine KARATE com a gente!$"
       ],
       "SaffronCity_Dojo_Text_MikeIntro": [
-        "Hoargh! Tira os sapatos!$"
+        "Ei! Tire os sapatos\\nantes de entrar!$"
       ],
       "SaffronCity_Dojo_Text_MikeDefeat": [
-        "Desisto!$"
+        "Tudo bem! Eu desisto!$"
       ],
       "SaffronCity_Dojo_Text_HidekiIntro": [
-        "Ouvi dizer que es bom!\\nMostra-me!$"
+        "Dizem que voce e forte!\\nMostre seu talento!$"
       ],
       "SaffronCity_Dojo_Text_HidekiDefeat": [
-        "Juiz! Um ponto!$"
+        "Argh! Ponto para voce!$"
       ],
       "SaffronCity_Dojo_Text_AaronIntro": [
-        "Ola! Nao tenho medo de nada\\nduro!\\pParto pedras para treinar todos\\nos dias!$"
+        "Eu treino todos os dias!\\pQuebro pedras\\ncom as proprias maos!$"
       ],
       "SaffronCity_Dojo_Text_AaronDefeat": [
-        "Yow! Dedos espetados!$"
+        "Ai! Meus dedos!$"
       ],
       "SaffronCity_Dojo_Text_AaronPostBattle": [
-        "A unica coisa que nos assusta e\\no poder psiquico!$"
+        "Tememos apenas\\nos poderes psiquicos!$"
       ],
       "SaffronCity_Dojo_Text_HitoshiDefeat": [
-        "Oof! Desisto!$"
+        "Ufa! Eu desisto!$"
       ],
       "SaffronCity_Dojo_Text_HitoshiPostBattle": [
-        "Os principais cacas do outro\\nlado do comboio terrestre.$"
+        "O GINASIO fica\\ndo outro lado da cidade!$"
       ],
       "SaffronCity_Dojo_Text_YouWantHitmonchan": [
-        "Queres o HITMONCHAN que bate\\nnos pistoes?$"
+        "Quer escolher HITMONCHAN,\\no POKEMON que soca?$"
       ],
       "SaffronCity_Dojo_Text_BetterNotGetGreedy": [
-        "Ja levaste esta.$"
+        "Nao seja ganancioso!\\nJa escolheu seu POKEMON!$"
       ],
       "SaffronCity_Dojo_Text_EnemiesOnEverySide": [
-        "Inimigos de todos os lados!$"
+        "Inimigos por todos os lados!$"
       ],
       "SaffronCity_Dojo_Text_GoesAroundComesAround": [
-        "O que vai, volta.$"
+        "O que vai, volta!$"
       ]
     },
     "data/maps/SaffronCity_Frlg/scripts.inc": {
       "SaffronCity_Text_WhatDoYouWantGetLost": [
-        "O que queres? Desaparece!$"
+        "O que voce quer?\\nSaia daqui!$"
       ],
       "SaffronCity_Text_DontGetDefiantOrIllHurtYou": [
-        "Nao sejas desafiante! Ou terei\\nde te magoar!$"
+        "Nao desafie a EQUIPE ROCKET!\\nE melhor sair!$"
       ],
       "SaffronCity_Text_CriminalLifeMakesMeFeelAlive": [
-        "A minha vida como criminoso\\nfaz-me sentir tao vivo!$"
+        "Adoro a vida de criminoso!\\nHa ha ha!$"
       ],
       "SaffronCity_Text_WatchWhereYoureWalking": [
-        "Ow! Olha por onde andas!$"
+        "Ei! Olhe por onde anda!$"
       ],
       "SaffronCity_Text_WeCanExploitMonsAroundWorld": [
-        "Com o SILPH sob controle,\\npodemos explorar POKEMON em\\ltodo o mundo!\\pVamos ficar ricos, sim!$"
+        "Com a SILPH sob controle,\\npodemos explorar POKEMON\\ndo mundo inteiro!\\pVamos ficar ricos!$"
       ],
       "SaffronCity_Text_ImASecurityGuard": [
-        "Sou seguranca.\\pCriancas suspeitas que nao\\npermito!$"
+        "Sou o seguranca daqui!\\pNao deixo criancas\\nsuspeitas entrarem!$"
       ],
       "SaffronCity_Text_HesTakingASnooze": [
-        "Ronca...\\pHah! Ele esta a dormir!$"
+        "Zzz...\\pHa ha! Ele esta dormindo!$"
       ]
     },
     "data/maps/SaffronCity_House_Frlg/scripts.inc": {
@@ -659,13 +659,13 @@
     },
     "data/maps/SaffronCity_MrPsychicsHouse_Frlg/scripts.inc": {
       "SaffronCity_MrPsychicsHouse_Text_YouWantedThis": [
-        "Espera! Nao digas nada!\\pTu querias isto!$"
+        "Espere! Nao diga nada!\\pSei exatamente\\no que voce quer!$"
       ],
       "SaffronCity_MrPsychicsHouse_Text_ReceivedTM29FromMrPsychic": [
-        "{PLAYER}recebeu TM29 de MR.\\nPSYCHIC.$"
+        "{PLAYER} recebeu TM29\\nde MR. PSYCHIC!$"
       ],
       "SaffronCity_MrPsychicsHouse_Text_YouveNoRoom": [
-        "Onde pensas por isto? Nao tens\\nespaco.$"
+        "Sua BOLSA esta cheia!\\nAbra espaco primeiro!$"
       ]
     },
     "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc": {
