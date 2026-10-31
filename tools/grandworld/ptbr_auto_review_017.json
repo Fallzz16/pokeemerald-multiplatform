@@ -575,7 +575,7 @@
     },
     "data/maps/PacifidlogTown_House3/scripts.inc": {
       "PacifidlogTown_House3_Text_WillingToTradeIt": [
-        "Olha para isto.{STR_VAR_2}!\\pE o{STR_VAR_2}que apanhei ontem\\npara celebrar meu\\laniversario!\\pPosso ver que tu quer!\\nAfinal, e inestimavel!\\pFazemos assim. Eu poderia estar\\ndisposto a troca-lo por\\lum{STR_VAR_1}.$"
+        "Olha para isto.{STR_VAR_2}!\\pE o{STR_VAR_2}que apanhei ontem\\npara celebrar meu\\laniversario!\\pPosso ver que voce quer!\\nAfinal, e inestimavel!\\pFazemos assim. Eu poderia estar\\ndisposto a troca-lo por\\lum{STR_VAR_1}.$"
       ],
       "PacifidlogTown_House3_Text_ItsSubtlyDifferentThankYou": [
         "Entao isto e...{STR_VAR_1}?\\pE uma especie de...{STR_VAR_2},\\ne ainda assim e sutilmente\\ldiferente.\\pObrigado!$"
@@ -587,7 +587,7 @@
         "Entao, nao vai continuar com\\nisto?\\pFixe. Nao estou desesperado\\npara fazer uma troca.$"
       ],
       "PacifidlogTown_House3_Text_IsThatAPokedex": [
-        "Isso e um POKEDEX?\\pConheceste muitos POKEMON\\ndiferentes?\\pQuem me dera ser como tu.$"
+        "Isso e um POKEDEX?\\pConheceste muitos POKEMON\\ndiferentes?\\pQuem me dera ser como voce.$"
       ]
     },
     "data/maps/PacifidlogTown_House4/scripts.inc": {
