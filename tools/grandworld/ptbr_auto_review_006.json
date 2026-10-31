@@ -384,7 +384,7 @@
         "Nao consigo encontrar uma\\nmaneira de ganhar!\\pContinua!\\pE toma isto. E o presente que\\nnao podias aceitar quando nos\\lconhecemos.$"
       ],
       "Route45_Text_BlackbeltKenjiSeen": [
-        "Estava treinando aqui sozinha.\\pEis os frutos do meu trabalho!$"
+        "Estava treinando aqui sozinho.\\pVeja o resultado do meu treino!$"
       ],
       "Route45_Text_BlackbeltKenjiAfter": [
         "Isto exige medidas extremas.\\pTenho de ir para as colinas e\\ntreinar em solidao.$"
@@ -419,7 +419,7 @@
     },
     "data/maps/Route46/scripts.inc": {
       "Route46_Text_HikerBaileySeen": [
-        "Certo! Vou mostrar-te o poder\\nda montanha POKEMON!$"
+        "Vou mostrar o poder\\ndos POKEMON das montanhas!$"
       ],
       "Route46_Text_HikerBaileyBeaten": [
         "Misericordia! Mostraste-me o\\nteu poder!$"
@@ -512,7 +512,7 @@
     },
     "data/maps/Route4_PokemonCenter_1F_Frlg/scripts.inc": {
       "Route4_PokemonCenter_1F_Text_OnlyDoingThisAsFavorToYou": [
-        "Nao? Diz que nao? So estou a\\nfazer-te um favor!$"
+        "Nao? Voce vai recusar?\\nSo quero ajudar voce!$"
       ],
       "Route4_PokemonCenter_1F_Text_NoRoomForMorePokemon": [
         "Parece que nao ha mais espaco\\npara mais POKEMON.$"
@@ -626,7 +626,7 @@
         "E bom demais!$"
       ],
       "Route6_Text_ElijahPostBattle": [
-        "Meu POKEMON e fraco? Ou sou\\napenas ma? Qual achas que e?$"
+        "Meus POKEMON sao fracos?\\nOu sera que eu sou ruim?$"
       ]
     },
     "data/maps/Route6_NorthEntrance_Frlg/scripts.inc": {
