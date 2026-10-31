@@ -24,7 +24,10 @@ def flags(value):
         result.append("possible_pt_europeu")
     if ENGLISH.search(value):
         result.append("possible_english_residue")
-    if GLUED.search(value):
+    # A plural after {POKEBLOCK} is intentional game text. Do not
+    # classify it as the broken {PLAYER}recebeu / {STR_VAR_1}item pattern.
+    without_legitimate_plural = re.sub(r"\{POKEBLOCK\}S\b", "POKEBLOCKS", value)
+    if GLUED.search(without_legitimate_plural):
         result.append("placeholder_joined_to_word")
     if "SEED BULLET" in value:
         result.append("move_name_order")
@@ -38,9 +41,18 @@ def audit(root, example_limit=150):
     root = Path(root)
     index = json.loads((root / "ptbr_auto_review_index.json").read_text())
     registry = json.loads((root / "ptbr_reviewed_auto7.json").read_text())
+    stage8 = json.loads((root / "ptbr_reviewed_stage8.json").read_text())
     reviewed = {(source, symbol)
                 for source, labels in registry["reviewed_labels_by_source"].items()
                 for symbol in labels}
+    new_reviewed = {(source, symbol)
+                    for source, labels in stage8["reviewed_labels_by_source"].items()
+                    for symbol in labels}
+    if reviewed & new_reviewed:
+        raise ValueError("stage8 review overlaps stage7 review labels")
+    if len(new_reviewed) != stage8["reviewed_entries"]:
+        raise ValueError("stage8 human review registry count drift")
+    reviewed |= new_reviewed
     found = set()
     issues = Counter()
     by_file = defaultdict(Counter)
@@ -55,6 +67,13 @@ def audit(root, example_limit=150):
                     raise ValueError("duplicate draft label: " + repr(key))
                 found.add(key)
                 entries += 1
+                if key in new_reviewed:
+                    text = "".join(parts)
+                    if not text.isascii() or not text.endswith("$"):
+                        raise ValueError("stage8 reviewed text must be ASCII and complete: " + repr(key))
+                    mistakes = flags(text)
+                    if mistakes:
+                        raise ValueError("stage8 reviewed text has quality warning: " + repr((key, mistakes)))
                 if key in reviewed:
                     continue
                 for kind in flags("".join(parts)):
@@ -70,12 +89,13 @@ def audit(root, example_limit=150):
     if entries != index["added_entries"]:
         raise ValueError("draft count drift: %d != %d" %
                          (entries, index["added_entries"]))
-    if len(reviewed) != registry["reviewed_auto_entries"]:
+    if len(reviewed) != registry["reviewed_auto_entries"] + stage8["reviewed_entries"]:
         raise ValueError("review registry count drift")
     return {
         "review_status": "diagnostic_only_no_gameplay_certification",
         "automated_draft_entries": entries,
         "human_language_reviewed": len(reviewed),
+        "human_reviewed_stage8": len(new_reviewed),
         "pending_human_language_review": entries - len(reviewed),
         "heuristic_warnings": dict(issues),
         "warning_counts_by_file": {k: dict(v) for k, v in by_file.items()},

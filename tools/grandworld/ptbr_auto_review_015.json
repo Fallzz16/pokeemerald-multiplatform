@@ -2,156 +2,156 @@
   "asm": {
     "data/maps/LilycoveCity_ContestLobby/scripts.inc": {
       "LilycoveCity_ContestLobby_Text_TakeMementoOfPainting": [
-        "Isso mesmo!\\pComo lembranca de eu pintar o\\nteu Pokemon, por favor toma\\listo.$"
+        "Isso mesmo!\\pComo lembranca por ter\\npintado seu POKEMON,\\laceite este presente!$"
       ],
       "LilycoveCity_ContestLobby_Text_ReceivedARibbon": [
-        "{PLAYER}recebeu um RIBBON.$"
+        "{PLAYER} recebeu uma RIBBON!$"
       ],
       "LilycoveCity_ContestLobby_Text_PutTheRibbonOnMon": [
-        "{PLAYER}Poe o RIBBON\\nno{STR_VAR_1}.$"
+        "{PLAYER} colocou a RIBBON\\nem {STR_VAR_1}!$"
       ],
       "LilycoveCity_ContestLobby_Text_OkaySeeYou": [
-        "Esta bem, ate logo!$"
+        "Tudo bem! Ate mais!$"
       ],
       "LilycoveCity_ContestLobby_Text_TakeHomeButIdLikeToTakeToMuseum": [
-        "Oh... Entao, acho que vou levar\\nisto para casa comigo...\\pMas gostava de levar isto ao\\nmuseu de arte... Esta bem?$"
+        "Entao vou levar\\nesta pintura para casa...\\pMas queria muito ve-la\\nexposta no museu de arte!$"
       ],
       "LilycoveCity_ContestLobby_Text_FineThatsTheWayItIs": [
-        "Esta bem, e assim que e. Vou\\npendurar isto na minha propria\\lcasa.\\pVou ter de me esforcar mais da\\nproxima vez. Vemo-nos por ai.$"
+        "Tudo bem. Vou pendurar\\na pintura na minha casa.\\pNa proxima vez,\\nvou me esforcar mais!\\pAte logo!$"
       ],
       "LilycoveCity_ContestLobby_Text_MasterRankHereICome": [
-        "Hoo, rapaz... Master Rank\\nCONTESTS, aqui vou eu.\\pO mundo sabera que o meu\\nquerido Pokemon e o ser mais\\lbonito de toda a existencia.\\lChegou a hora! Uheheheh.$"
+        "Ah, que emocao!\\pVou entrar no CONTEST\\nde MASTER RANK!\\pTodos vao descobrir\\ncomo meu POKEMON e lindo!\\pHe he he!$"
       ],
       "LilycoveCity_ContestLobby_Text_WholeVarietyOfPokemonHere": [
-        "Voce pode ver toda uma\\nvariedade de POKEMON aqui.\\pE por isso que faco deste lugar\\numa parte regular do meu\\lpasseio diario.$"
+        "Ha muitos POKEMON\\ndiferentes por aqui!\\pPor isso sempre venho\\npassear neste lugar.$"
       ],
       "LilycoveCity_ContestLobby_Text_ContestFeastForEyes": [
-        "Wow, sair para um CONTEST e um\\nbanquete para estes olhos!\\pOlha para todos os Pokemon que\\ngritam para serem pintados?$"
+        "Um CONTEST e um\\nespetaculo para os olhos!\\pQueria pintar todos\\nesses POKEMON lindos!$"
       ],
       "LilycoveCity_ContestLobby_Text_LavishedCareOnMon": [
-        "Dia apos dia, dei os meus\\ncuidados a este Pokemon.\\pA sua condicao esta a aumentar.\\nHoje, a vitoria e minha!$"
+        "Cuido do meu POKEMON\\ntodos os dias.\\pEle esta em otima forma.\\nHoje a vitoria sera nossa!$"
       ],
       "LilycoveCity_ContestLobby_Text_MadePokeblocksWithFamily": [
-        "Eu fiz.{POKEBLOCK}S com a mae,\\no pai e a irma mais velha. Eles\\lficaram optimos!\\pAposto que podes tornar mais\\nsuave, melhor.{POKEBLOCK}Se\\ltiveres mais pessoas.$"
+        "Fiz {POKEBLOCK}S com\\nminha familia!\\pFicaram muito bons!\\pCom mais pessoas, voce\\npode fazer {POKEBLOCK}S\\nmuito melhores!$"
       ]
     },
     "data/maps/LilycoveCity_CoveLilyMotel_1F/scripts.inc": {
       "LilycoveCity_CoveLilyMotel_1F_Text_GuestsDoubledByMascot": [
-        "Entao eles duplicaram os\\nconvidados usando POKEMON como\\latracoes?\\pBem, talvez eu devesse fazer\\numa bela mascote da nossa\\lpousada.\\pSera que isso atraira mais\\nconvidados para ficarem\\lconnosco?$"
+        "Um POKEMON como mascote\\natraiu mais hospedes?\\pTalvez eu devesse achar\\num mascote para o hotel!\\pSera que os visitantes\\ngostariam da ideia?$"
       ],
       "LilycoveCity_CoveLilyMotel_1F_Text_CantSeeTheTV": [
-        "Para a frente! Nao consigo ver\\na televisao!$"
+        "Saia da frente!\\nNao consigo ver a TV!$"
       ],
       "LilycoveCity_CoveLilyMotel_1F_Text_MonFoundLostItem": [
-        "Incrivel! Esta a dizer-me que\\num Pokemon encontrou o item\\lperdido de alguem?\\pJa e alguma coisa. Se\\ntivessemos um POKEMON assim...\\pPodemos recuperar qualquer\\ncoisa que os nossos convidados\\ltenham perdido...$"
+        "Um POKEMON encontrou\\num item perdido?\\pIncrivel!\\pSe tivessemos um assim,\\najudaria a encontrar\\nobjetos dos hospedes!$"
       ],
       "LilycoveCity_CoveLilyMotel_1F_Text_HouseSittingMonCaughtBurglar": [
-        "Incrivel! Um Pokemon que cuida\\nda casa apanhou um ladrao?\\pJa e alguma coisa. Se\\ntivessemos um POKEMON duro como\\lseguranca...\\pSeriamos capazes de\\nproporcionar aos nossos\\lconvidados maior seguranca.$"
+        "Um POKEMON pegou\\num ladrao em flagrante?\\pQue noticia incrivel!\\pUm mascote assim poderia\\ndeixar nosso hotel\\nmuito mais seguro!$"
       ]
     },
     "data/maps/LilycoveCity_CoveLilyMotel_2F/scripts.inc": {
       "LilycoveCity_CoveLilyMotel_2F_Text_FilledPokedexGiveYouThis": [
-        "Uau! Isso e fantastico! Sim, e\\nfantastico!\\pEste POKEDEX esta completamente\\ncheio! Voce realmente deve amar\\lPOKEMON!\\pEstou tao impressionada!\\pDeixe-me dar-lhe algo em\\nreconhecimento do seu feito!$"
+        "Uau! Sua POKEDEX\\nesta completa!\\pVoce deve amar\\nmesmo os POKEMON!\\pEstou impressionado!\\nAceite este presente\\npelo seu esforco!$"
       ],
       "LilycoveCity_CoveLilyMotel_2F_Text_GirlsAreCute": [
-        "A miuda TUBERS e gira, nao e?\\nPara lutar contra um bonito\\lTUBER...\\pE incrivel!\\pE os TWINS! Nao sao giros? Uma\\nbatalha 2 contra 2 contra o\\lTWINS...\\pE insuportavelmente divertido!$"
+        "As garotas TUBER\\nsao uma gracinha!\\pE as duplas TWINS?\\pUma batalha em dupla\\ncontra elas seria demais!$"
       ],
       "LilycoveCity_CoveLilyMotel_2F_Text_SeaBreezeTicklesHeart": [
-        "A brisa do mar faz-me cocegas\\nno coracao. E maravilhoso aqui!$"
+        "A brisa do mar me deixa\\ncom o coracao leve.\\pEste lugar e maravilhoso!$"
       ]
     },
     "data/maps/LilycoveCity_DepartmentStoreRooftop/scripts.inc": {
       "LilycoveCity_DepartmentStoreRooftop_Text_SetDatesForClearOutSales": [
-        "Eles nao marcaram datas para as\\nvendas?\\pVejo televisao, mas nunca\\nmostram anuncios.$"
+        "Quando sera a proxima\\nliquidacao?\\pVejo TV todo dia,\\nmas nao anunciam nada!$"
       ],
       "LilycoveCity_DepartmentStoreRooftop_Text_BeenWaitingForClearOutSale": [
-        "Sim! Estou a espera ha muito\\ntempo desta venda.\\pEles tem itens que voce so pode\\nobter aqui. Vou carregar, e o\\lque vou fazer!$"
+        "Estou esperando esta\\nliquidacao faz tempo!\\pHa itens que so\\nvendem aqui.\\pVou comprar bastante!$"
       ],
       "LilycoveCity_DepartmentStoreRooftop_Text_BoneDryThirsty": [
-        "Estou com sede!$"
+        "Que sede!$"
       ],
       "LilycoveCity_DepartmentStoreRooftop_Text_CanOfDrinkDroppedDown": [
-        "Clang!\\pUma lata de{STR_VAR_1}Caiu.$"
+        "Clanc!\\pCaiu uma lata de\\n{STR_VAR_1}!$"
       ],
       "LilycoveCity_DepartmentStoreRooftop_Text_ExtraCanOfDrinkDroppedDown": [
-        "Clang!\\pPonto! Uma lata extra\\nde{STR_VAR_1}Largado!$"
+        "Clanc!\\pCaiu uma lata extra\\nde {STR_VAR_1}!$"
       ],
       "LilycoveCity_DepartmentStoreRooftop_Text_NotEnoughMoney": [
-        "Nao ha dinheiro suficiente...$"
+        "Dinheiro insuficiente...$"
       ],
       "LilycoveCity_DepartmentStoreRooftop_Text_DecidedAgainstBuyingDrink": [
-        "Decidiu nao pagar uma bebida.$"
+        "Voce desistiu\\nde comprar a bebida.$"
       ]
     },
     "data/maps/LilycoveCity_DepartmentStore_1F/scripts.inc": {
       "LilycoveCity_DepartmentStore_1F_Text_MomBuyingMeFurniture": [
-        "Hoje, a minha mae vai\\ncomprar-me uns moveis bonitos.$"
+        "Minha mae vai comprar\\nmoveis para mim hoje!$"
       ],
       "LilycoveCity_DepartmentStore_1F_Text_BuyingSomethingForAzumarill": [
-        "Estou a comprar algo para o meu\\nAZUMARILL como recompensa por\\lganhar um CONTEST.$"
+        "Vou comprar um presente\\npara meu AZUMARILL.\\pEle venceu um CONTEST!$"
       ],
       "LilycoveCity_DepartmentStore_1F_Text_WirelessCommIsFun": [
-        "Comunicacao sem fios e muito\\ndivertido, nao e?\\pAcho que te deixa fazer coisas\\nque antes nao eram possiveis.\\pPor exemplo, agora pode\\nnegociar com pessoas que nao\\lpodia antes.\\pAcho que vai ser emocionante!$"
+        "A comunicacao sem fio\\ne muito divertida!\\pAgora podemos fazer coisas\\nque antes eram impossiveis.\\pComo trocar POKEMON\\ncom mais pessoas!$"
       ],
       "LilycoveCity_DepartmentStore_1F_Text_SpreadWordAboutWirelessComm": [
-        "Quero espalhar a noticia sobre\\ncomo a comunicacao sem fios\\lpode ser divertida.$"
+        "Quero contar a todos\\ncomo a comunicacao sem fio\\ne divertida!$"
       ]
     },
     "data/maps/LilycoveCity_DepartmentStore_2F/scripts.inc": {
       "LilycoveCity_DepartmentStore_2F_Text_LearnToUseItemsProperly": [
-        "Aprenda a usar os itens\\ncorretamente. Isso e basico, na\\lverdade.$"
+        "Aprender a usar itens\\nna hora certa e essencial!$"
       ],
       "LilycoveCity_DepartmentStore_2F_Text_GoodGiftForHusband": [
-        "O meu marido esta a espera em\\ncasa. O que lhe daria um bom\\lpresente?$"
+        "Meu marido esta em casa...\\pQual presente sera\\nque ele vai gostar?$"
       ],
       "LilycoveCity_DepartmentStore_2F_Text_StockUpOnItems": [
-        "Vou partir numa longa viagem em\\nbreve. Preciso de encher os\\litens.$"
+        "Vou fazer uma longa viagem.\\nPreciso levar muitos itens!$"
       ]
     },
     "data/maps/LilycoveCity_DepartmentStore_4F/scripts.inc": {
       "LilycoveCity_DepartmentStore_4F_Text_AttackOrDefenseTM": [
-        "Hmm...\\pUm ataque... Ou uma jogada\\ndefensiva...\\pNao e facil decidir quais\\nmovimentos TM devem ser\\lensinados a POKEMON...$"
+        "Hmm... Escolho um golpe\\nofensivo ou defensivo?\\pE dificil decidir\\nquais TMs ensinar!$"
       ],
       "LilycoveCity_DepartmentStore_4F_Text_FiftyDifferentTMs": [
-        "Ha tantos tipos diferentes de\\nmovimentos TM.\\pUm catalogo que li dizia que ha\\ncinquenta tipos diferentes.$"
+        "Existem muitas TMs!\\pLi que existem pelo menos\\ncinquenta tipos diferentes.$"
       ],
       "LilycoveCity_DepartmentStore_4F_Text_PokemonOnlyHaveFourMoves": [
-        "Eu gostaria de obter todos os\\ndiferentes TMs, mas um POKEMON\\laprende apenas quatro\\lmovimentos.$"
+        "Queria ter todas as TMs!\\pMas cada POKEMON so pode\\nconhecer quatro golpes.$"
       ]
     },
     "data/maps/LilycoveCity_DepartmentStore_5F/scripts.inc": {
       "LilycoveCity_DepartmentStore_5F_Text_SellManyCuteMatsHere": [
-        "Eles vendem muitos MATS bonitos\\naqui.\\pPergunto-me qual devo comprar?\\nTalvez os compre a todos...$"
+        "Vendem muitos TAPETES\\nbonitos aqui!\\pQual sera que eu compro?\\nTalvez todos!$"
       ],
       "LilycoveCity_DepartmentStore_5F_Text_ClosedRooftopForWeather": [
-        "Acho que fecharam o telhado\\nporque o tempo esta selvagem\\lhoje.$"
+        "Acho que fecharam\\no terraco por causa\\ndo mau tempo.$"
       ]
     },
     "data/maps/LilycoveCity_Harbor/scripts.inc": {
       "LilycoveCity_Harbor_Text_FerryUnavailable": [
-        "Desculpe? Estas a procura de\\numa nave?\\pLamento, o servico de ferry nao\\nesta disponivel no momento...$"
+        "Esta procurando o ferry?\\pDesculpe, mas o servico\\nesta suspenso por enquanto.$"
       ],
       "LilycoveCity_Harbor_Text_SailAnotherTime": [
-        "Por favor, naveguem connosco\\nnoutra altura!$"
+        "Esperamos voce em\\numa proxima viagem!$"
       ],
       "LilycoveCity_Harbor_Text_PleaseBoard": [
-        "Por favor embarque no ferry e\\naguarde a partida.$"
+        "Por favor, embarque no ferry\\ne aguarde a partida.$"
       ],
       "LilycoveCity_Harbor_Text_WhereWouldYouLikeToGo": [
-        "Entao, para onde queres ir?$"
+        "Para onde deseja viajar?$"
       ]
     },
     "data/maps/LilycoveCity_House1/scripts.inc": {
       "LilycoveCity_House1_Text_PokemonPartnersNotTools": [
-        "POKEMON sao parceiros de\\npessoas. Nao sao as nossas\\lferramentas.\\pInfelizmente, ha algumas\\npessoas que nao compreendem\\lque...$"
+        "POKEMON sao parceiros,\\nnao ferramentas!\\pInfelizmente, nem todos\\nentendem isso...$"
       ]
     },
     "data/maps/LilycoveCity_House2/scripts.inc": {
       "LilycoveCity_House2_Text_NotAwakeYetHaveThis": [
-        "Huh? O que? O que e isso?\\pAinda nao estou quase\\nacordado... Podes ficar com\\listo...$"
+        "Ha? O que foi?\\pAinda estou meio dormindo...\\nPode ficar com isto...$"
       ],
       "LilycoveCity_House2_Text_SleepIsEssential": [
-        "Yawn...\\pO sono e essencial para a boa\\nsaude... Dorme e recupera a\\lsaude...$"
+        "Aaah... Que sono...\\pDormir bem e essencial\\npara recuperar a energia!$"
       ]
     },
     "data/maps/LilycoveCity_House3/scripts.inc": {
@@ -179,10 +179,10 @@
     },
     "data/maps/LilycoveCity_House4/scripts.inc": {
       "LilycoveCity_House4_Text_MysteriesAtBottomOfSea": [
-        "Os maiores misterios deste\\nplaneta estao no fundo do mar.\\pAlguem disse isso, mas nao\\nsei...$"
+        "Dizem que os maiores\\nmisterios do mundo\\nestao no fundo do mar...\\pSera verdade?$"
       ],
       "LilycoveCity_House4_Text_UnderwaterTrenchMossdeepSootopolis": [
-        "Ha uma profunda trincheira\\nsubaquatica entre MOSSDEEP e\\lSOOTOPOLIS.\\pFoi o que me disseram.$"
+        "Existe uma fossa submarina\\nentre MOSSDEEP e SOOTOPOLIS.\\pFoi o que me contaram!$"
       ]
     },
     "data/maps/LilycoveCity_LilycoveMuseum_1F/scripts.inc": {
@@ -480,263 +480,263 @@
     },
     "data/maps/MagmaHideout_1F/scripts.inc": {
       "MagmaHideout_1F_Text_Grunt1Intro": [
-        "Quando a TEAM MAGMA tem chamada\\nnominal, recebemos importantes\\ltarefas de guarda na ordem em\\lque nos alinhamos.\\pE por isso que estou preso\\nneste canto. Estou sempre\\latrasado para a chamada!$"
+        "Na EQUIPE MAGMA, as tarefas\\nsao dadas por ordem de chegada.\\pEu sempre chego atrasado!\\nPor isso guardo este canto...$"
       ],
       "MagmaHideout_1F_Text_Grunt1Defeat": [
-        "Tambem estou sempre atrasado\\npara as sessoes de treino!\\pDetesto dize-lo, mas sou\\nfraco...$"
+        "Tambem me atraso\\npara os treinos!\\pAcho que sou meio fraco...$"
       ],
       "MagmaHideout_1F_Text_Grunt1PostBattle": [
-        "Vou tentar esforcar-me um pouco\\nmais...$"
+        "Preciso me dedicar\\nmais aos treinos...$"
       ],
       "MagmaHideout_1F_Text_Grunt2Defeat": [
-        "Arrgh! Derrubado!$"
+        "Argh! Fui derrotado!$"
       ],
       "MagmaHideout_1F_Text_Grunt2PostBattle": [
-        "Afinal, nao te vou dizer. Vais\\ndescobrir quando la chegares!\\pSeria melhor guardares\\nsurpresas ate ao fim, nao\\lachas?$"
+        "Nao vou contar nada!\\pVoce vai descobrir\\no que vem pela frente!\\pNao quero estragar a surpresa!$"
       ]
     },
     "data/maps/MagmaHideout_2F_1R/scripts.inc": {
       "MagmaHideout_2F_1R_Text_Grunt14PostBattle": [
-        "Se sofre de arrepios, deve\\njuntar-se a TEAM MAGMA.$"
+        "Gosta de sentir arrepios?\\pEntao entre para\\na EQUIPE MAGMA!$"
       ],
       "MagmaHideout_2F_1R_Text_Grunt3Intro": [
-        "Alto ai!\\pNao esperas que mantenha a boca\\nfechada e te deixe passar por\\lmim?$"
+        "Alto la!\\pAcha mesmo que vou\\nte deixar passar assim?$"
       ],
       "MagmaHideout_2F_1R_Text_Grunt3Defeat": [
-        "Ooh uau! Eu admito!$"
+        "Uau! Voce me pegou!$"
       ],
       "MagmaHideout_2F_1R_Text_Grunt3PostBattle": [
-        "Talvez tivesse sido melhor se\\nte deixasse ir sem desafios...$"
+        "Talvez fosse melhor\\nter deixado voce passar...$"
       ],
       "MagmaHideout_2F_1R_Text_Grunt4Intro": [
-        "Ahah! Um intruso!$"
+        "Ah ha! Um intruso!$"
       ],
       "MagmaHideout_2F_1R_Text_Grunt4PostBattle": [
-        "Ja perdi.\\pPreciso mesmo de continuar a\\nandar em circulos?$"
+        "Ja perdi a batalha...\\pAinda tenho que\\ncontinuar patrulhando?$"
       ],
       "MagmaHideout_2F_1R_Text_Grunt5Intro": [
-        "Oh, oh! Um intruso!$"
+        "Ei! Tem um intruso aqui!$"
       ],
       "MagmaHideout_2F_1R_Text_Grunt5PostBattle": [
-        "Na verdade, nao sou\\nespecialista em lutar...$"
+        "Lutar nunca foi\\no meu ponto forte...$"
       ]
     },
     "data/maps/MagmaHideout_2F_2R/scripts.inc": {
       "MagmaHideout_2F_2R_Text_Grunt15Intro": [
-        "Nao tenho nada a ver contigo.\\nSo estou a seguir ordens!$"
+        "Nao tenho nada contra voce.\\nSo estou seguindo ordens!$"
       ],
       "MagmaHideout_2F_2R_Text_Grunt15Defeat": [
-        "Posso ter perdido, mas...$"
+        "Eu perdi, mas...$"
       ],
       "MagmaHideout_2F_2R_Text_Grunt6PostBattle": [
-        "Nao te sentes so por o mar\\nestar num lugar como este?$"
+        "Nao acha estranho\\npensar no mar estando\\naqui dentro do vulcao?$"
       ],
       "MagmaHideout_2F_2R_Text_Grunt7Intro": [
-        "As vezes ouve-se tremores aqui.\\pPode ser o vulcao a bater? Ou e\\nGROU...\\pOpa! Nao, nao, esquece!$"
+        "As vezes o chao treme aqui.\\pSera culpa do vulcao?\\nOu sera GROU...\\pOpa! Esqueca o que eu disse!$"
       ],
       "MagmaHideout_2F_2R_Text_Grunt7Defeat": [
-        "Es um lutador de fogo. Como um\\nvulcao!$"
+        "Voce luta com a forca\\nde um vulcao!$"
       ],
       "MagmaHideout_2F_2R_Text_Grunt8Intro": [
-        "Um dos nossos estava a\\npassar-se porque perdeu o seu\\lEMBLEM MAGMA...\\pEspera um minuto! Foi voce que\\no encontrou?$"
+        "Um dos nossos perdeu\\no MAGMA EMBLEM e surtou!\\pEspere... Foi voce\\nque encontrou o emblema?$"
       ],
       "MagmaHideout_2F_2R_Text_Grunt8Defeat": [
-        "Estou com dificuldade em\\nacreditar nisto...$"
+        "Nao acredito nisso...$"
       ],
       "MagmaHideout_2F_2R_Text_Grunt8PostBattle": [
-        "Sinto que o nosso plano vai\\nacabar em fracasso...$"
+        "Estou achando que\\nnosso plano vai fracassar...$"
       ]
     },
     "data/maps/MagmaHideout_3F_1R/scripts.inc": {
       "MagmaHideout_3F_1R_Text_Grunt9Intro": [
-        "O que fiz para merecer este\\nposto de guarda?\\pA minha orelha esquerda esta a\\narder!$"
+        "Por que me deram\\nessa tarefa de vigiar?\\pMinha orelha esquerda\\nesta queimando de calor!$"
       ],
       "MagmaHideout_3F_1R_Text_Grunt9Defeat": [
-        "Estou a ficar exausto...$"
+        "Estou exausto...$"
       ],
       "MagmaHideout_3F_1R_Text_Grunt9PostBattle": [
-        "Achas estranho estarmos a usar\\ncapuzes neste vulcao cheio de\\lmagma?$"
+        "Nao acha estranho\\nusarmos capuzes dentro\\nde um vulcao quente?$"
       ],
       "MagmaHideout_3F_1R_Text_Grunt16Defeat": [
-        "Nao! Nao se pode confiar em ti!$"
+        "Nao! Isso nao pode ser!$"
       ]
     },
     "data/maps/MagmaHideout_3F_2R/scripts.inc": {
       "MagmaHideout_3F_2R_Text_Grunt10Intro": [
-        "Compreendo tudo o que o nosso\\nlider diz. Mas sabes que mais?\\pFazer coisas como desenterrar\\num super-antigo Pokemon e\\lroubar o METEORITE de alguem...\\pAcho que estamos a ir longe\\ndemais. O que achas?$"
+        "Entendo o que nosso lider quer.\\pMas acordar um POKEMON\\nancestral e roubar\\num METEORITE...\\pNao estamos indo longe demais?\\nO que voce acha?$"
       ],
       "MagmaHideout_3F_2R_Text_Grunt10Defeat": [
-        "Acho que estamos a fazer algo\\nde errado.$"
+        "Acho que fizemos\\nalgo muito errado...$"
       ],
       "MagmaHideout_3F_2R_Text_Grunt10PostBattle": [
-        "Sabes, perder para ti\\nesclareceu-me.\\pDa proxima vez que vir o nosso\\nlider, vou perguntar-lhe o que\\lfazemos.$"
+        "Perder para voce\\nme fez pensar.\\pDa proxima vez, vou\\nquestionar nosso lider!$"
       ]
     },
     "data/maps/MagmaHideout_4F/scripts.inc": {
       "MagmaHideout_4F_Text_Grunt11Intro": [
-        "Tambem quero ver o GROUDON, mas\\nnao me deixam ver a cauda...\\pSinto-me muito frustrado.\\pNao! Eu falei sobre GROUDON!$"
+        "Eu tambem quero\\nver GROUDON!\\pMas nao me deixam chegar\\nnem perto da cauda!\\pOpa! Eu falei de GROUDON!\\nFinja que nao ouviu!$"
       ],
       "MagmaHideout_4F_Text_Grunt11Defeat": [
-        "Acho que e impossivel ganhar se\\nnao tivermos uma mente calma...$"
+        "Sem calma, nao da\\npara vencer uma batalha...$"
       ],
       "MagmaHideout_4F_Text_Grunt11PostBattle": [
-        "Sera que o GROUDON tem uma\\ncauda?$"
+        "Sera que GROUDON\\ntem uma cauda?$"
       ],
       "MagmaHideout_4F_Text_Grunt12Intro": [
-        "Fuhahaha! Em breve! Muito em\\nbreve! Nosso grande objetivo\\lsera alcancado!$"
+        "Ha ha ha!\\nFalta muito pouco!\\pNosso grande objetivo\\nesta quase realizado!$"
       ],
       "MagmaHideout_4F_Text_Grunt12Defeat": [
-        "Cheguei tao longe, mas agora\\nisto?$"
+        "Depois de chegar tao longe...\\nNao acredito!$"
       ],
       "MagmaHideout_4F_Text_Grunt13Intro": [
-        "Ainda nao acabaste! Nao vais\\npassar por mim facilmente!$"
+        "Nao acabou ainda!\\pVoce nao vai passar\\npor mim tao facilmente!$"
       ],
       "MagmaHideout_4F_Text_Grunt13Defeat": [
-        "Fui assim tao facil de\\nderrubar?$"
+        "Fui derrotado\\ntao facilmente assim?$"
       ],
       "MagmaHideout_4F_Text_Grunt13PostBattle": [
-        "Va la, mais uma partida...$"
+        "Que tal mais uma batalha?$"
       ],
       "MagmaHideout_4F_Text_TabithaDefeat": [
-        "Derrubado outra vez... Hehe...$"
+        "Perdi de novo...\\nHe he he...$"
       ],
       "MagmaHideout_4F_Text_MaxieDefeat": [
-        "O que o torna tao habil em\\nlidar com POKEMON?$"
+        "Como voce consegue\\ncontrolar tao bem\\nseus POKEMON?$"
       ]
     },
     "data/maps/MahoganyHideout_B1F/scripts.inc": {
       "MahoganyHideout_B1F_Text_CameraGrunt1Seen": [
-        "Hey! Alerta de intruso!$"
+        "Ei! Um intruso!\\nAlerta!$"
       ],
       "MahoganyHideout_B1F_Text_CameraGrunt1Beaten": [
-        "Bolas... eu falhei...$"
+        "Droga! Eu falhei!$"
       ],
       "MahoganyHideout_B1F_Text_CameraGrunt2Seen": [
-        "E a minha vez! Nao ha\\nescapatoria!$"
+        "Agora e minha vez!\\nNao vai escapar!$"
       ],
       "MahoganyHideout_B1F_Text_CameraGrunt2Beaten": [
-        "As camaras de vigilancia estao\\nnas estatuas POKEMON.\\pContinuaremos a aparecer ate\\nteres um interruptor secreto.$"
+        "As estatuas de PERSIAN\\ntem cameras escondidas!\\pVamos continuar aparecendo\\nate voce achar o interruptor!$"
       ],
       "MahoganyHideout_B1F_Text_ScientistJedSeen": [
-        "Isto ja foi um esconderijo\\nninja.\\pHa armadilhas para confundir\\nintrusos como tu.$"
+        "Este lugar ja foi\\num esconderijo ninja.\\pEsta cheio de armadilhas\\npara intrusos como voce!$"
       ],
       "MahoganyHideout_B1F_Text_ScientistJedBeaten": [
-        "Ja percebi...$"
+        "Entendi... Voce venceu.$"
       ],
       "MahoganyHideout_B1F_Text_ScientistJedAfter": [
-        "Esta bem. Vou divulgar um\\nsegredo sobre o nosso\\lesconderijo.\\pAquela coisa no chao a frente e\\num painel warp.\\pSe pisares, vais voltar para a\\nentrada.$"
+        "Vou contar um segredo.\\pAquele painel no chao\\ne um teletransporte.\\pSe pisar nele, vai\\nvoltar para a entrada!$"
       ],
       "MahoganyHideout_B1F_Text_GruntM16Seen": [
-        "Heheh. Estas com sorte, punk?$"
+        "He he! Esta com sorte\\nhoje, pirralho?$"
       ],
       "MahoganyHideout_B1F_Text_GruntM16After": [
-        "Nem sei onde estao as\\narmadilhas.\\pTeras de recolher a tua coragem\\ne andar.$"
+        "Nem eu sei onde ficam\\ntodas as armadilhas.\\pVoce vai ter que\\narriscar e seguir!$"
       ],
       "MahoganyHideout_B1F_Text_SecurityCameraStatue": [
-        "E uma estatua PERSIAN...$"
+        "E uma estatua de PERSIAN...$"
       ],
       "MahoganyHideout_B1F_Text_NothingThere": [
-        "Um painel estranho... Nada\\naqui.$"
+        "Um painel estranho...\\nNao ha nada aqui.$"
       ],
       "MahoganyHideout_B1F_Text_SecretSwitch": [
-        "Um interruptor secreto! E\\nmelhor premir.$"
+        "Um interruptor secreto!\\nMelhor apertar!$"
       ],
       "MahoganyHideout_B1F_Text_SwitchOff": [
-        "O interruptor esta desligado.$"
+        "O interruptor foi desligado.$"
       ]
     },
     "data/maps/MahoganyHideout_B2F/scripts.inc": {
       "MahoganyHideout_B2F_Text_ArianaLoss": [
-        "Tu es mesmo forte. E uma pena.\\pSe te juntasses a Equipa\\nRocket, podias tornar-te um\\lExecutivo.$"
+        "Voce e muito forte...\\pQue desperdicio!\\pSe entrasse para\\na EQUIPE ROCKET,\\npoderia virar um executivo!$"
       ],
       "MahoganyHideout_B2F_Text_LanceStepBack": [
-        "Desculpa.{PLAYER}Vi como\\nestavas bem, por isso fiquei\\lpara tras.\\pAgora tudo o que resta fazer e\\ndesligar esse estranho sinal de\\lradio.$"
+        "Desculpe, {PLAYER}.\\pVi que voce estava indo bem,\\nentao fiquei para tras.\\pAgora precisamos desligar\\naquele sinal de radio!$"
       ],
       "MahoganyHideout_B2F_Text_LanceWhirlpool": [
-        "E o HM DIVE. Ensine-o a um\\nPOKEMON para explorar aguas\\lprofundas.\\pMas tenha isto em mente.\\pVoce pode usar isso fora de\\nbatalha apenas uma vez que voce\\lganhou o GINASIO INSIGNIA\\lcerto.$"
+        "Esta e a HM DIVE.\\pEnsine-a a um POKEMON\\npara explorar aguas profundas.\\pMas lembre-se:\\pVoce so podera usar\\nfora das batalhas depois\\nde ganhar a INSIGNIA certa!$"
       ],
       "MahoganyHideout_B2F_Text_LanceMonMaster": [
-        "{PLAYER}...\\pA jornada para se tornar o\\nMASTER POKEMON e longa e\\ldificil.\\pSabendo disso, vai continuar?\\p...\\pEstou a ver. Nao, tens razao.\\pSe desistisses assim tao\\nfacilmente, nunca terias\\lperseguido aquele sonho.\\pEstou ansioso para ve-lo\\nnovamente!$"
+        "{PLAYER}...\\pO caminho ate se tornar\\nMESTRE POKEMON e longo.\\pMesmo sabendo disso,\\nvoce vai continuar?\\p...\\pEntendi.\\pQuem desiste facilmente\\nnem chega a ter esse sonho.\\pQuero encontrar voce\\nde novo um dia!$"
       ],
       "MahoganyHideout_B2F_Text_B2FTransmitter": [
-        "E o transmissor de radio que\\nesta a enviar o sinal sinistro.\\pEsta a funcionar em plena\\ncapacidade.$"
+        "Este transmissor envia\\no misterioso sinal de radio.\\pEsta funcionando\\ncom potencia maxima!$"
       ],
       "MahoganyHideout_B2F_Text_B2FDeactivateTransmitter": [
-        "O transmissor de radio\\nfinalmente parou a transmissao\\ldo mal.$"
+        "O transmissor de radio\\nparou de enviar\\no sinal maligno!$"
       ],
       "MahoganyHideout_B2F_Text_LanceHeals2": [
-        "LANCE:{PLAYER}Vamos dar o nosso\\nmelhor pelo Pokemon.$"
+        "LANCE: {PLAYER}, vamos\\najudar os POKEMON!$"
       ],
       "MahoganyHideout_B2F_Text_GruntM17Seen": [
-        "A porta nao abre?\\pBem... Tem de ter uma senha que\\nso o TEAM ROCKET sabe.$"
+        "A porta nao abre?\\pClaro que nao!\\nSo a EQUIPE ROCKET\\nconhece a senha!$"
       ],
       "MahoganyHideout_B2F_Text_GruntM17Beaten": [
-        "O que? Perdi?$"
+        "O que? Eu perdi?$"
       ],
       "MahoganyHideout_B2F_Text_GruntM18Seen": [
-        "Um miudo? Nao gosto disto, mas\\ntenho de te eliminar.$"
+        "Uma crianca aqui?\\pNao gosto disso,\\nmas vou te derrotar!$"
       ],
       "MahoganyHideout_B2F_Text_GruntM18Beaten": [
-        "Eu sabia que ia perder...$"
+        "Eu sabia que perderia...$"
       ],
       "MahoganyHideout_B2F_Text_GruntM18After": [
-        "Tambem fui exterminado na\\nultima missao por um miudo.\\pQuando estavamos a raptar o\\nPokemon, um miudo com cabelos\\lruivos e olhos feios deu-me uma\\lcoca...$"
+        "Na ultima missao,\\num garoto me derrotou.\\pEstavamos roubando POKEMON.\\pEle tinha cabelos ruivos\\ne um olhar assustador!$"
       ],
       "MahoganyHideout_B2F_Text_GruntM19Seen": [
-        "Sua peste podre!$"
+        "Seu pestinha!$"
       ],
       "MahoganyHideout_B2F_Text_GruntM19After": [
-        "So o chefe sabe a senha daquela\\nporta.\\pOnde esta o chefe? Quem sabe?\\nVai procurar por ti mesmo.$"
+        "So o chefe sabe\\na senha daquela porta.\\pOnde ele esta?\\nDescubra por conta propria!$"
       ]
     },
     "data/maps/MahoganyHideout_B3F/scripts.inc": {
       "MahoganyHideout_B3F_Text_B3FRocket": [
-        "Urrggh... O tipo da capa e\\nincrivelmente duro...$"
+        "Argh... O homem de capa\\ne forte demais...$"
       ],
       "MahoganyHideout_B3F_Text_B3FLockedDoorNeedsPassword": [
-        "A porta esta fechada...\\pPrecisa de duas senhas para\\nabrir.$"
+        "A porta esta trancada...\\pVoce precisa de duas senhas.$"
       ],
       "MahoganyHideout_B3F_Text_B3FLockedDoorOpenSesame": [
-        "A porta esta fechada...\\p{PLAYER}inseriu as duas senhas.\\pA porta abriu-se!$"
+        "A porta esta trancada...\\p{PLAYER} digitou\\nas duas senhas.\\pA porta se abriu!$"
       ],
       "MahoganyHideout_B3F_Text_PetrelDisbelief": [
-        "...Huh? Nao pareco nada com o\\nGIOVANNI?\\pNem me pareco com o GIOVANNI?\\nPorque? Trabalhei tanto para o\\limitar!$"
+        "O que? Nao pareco\\ncom GIOVANNI?\\pMas me esforcei tanto\\npara imitar o chefe!$"
       ],
       "MahoganyHideout_B3F_Text_MurkrowMimic": [
-        "MURKROW esta imitando a voz de\\nPETREL!\\pVoce pode ser capaz de...?$"
+        "MURKROW esta imitando\\na voz de PETREL!\\pTalvez voce consiga...$"
       ],
       "MahoganyHideout_B3F_Text_GruntF5Seen": [
-        "Eu sei a senha?\\pTalvez.\\pMas nenhum fracote vai\\nconseguir!$"
+        "Sei a senha?\\pTalvez eu saiba!\\pMas nao vou contar\\nao primeiro fracote!$"
       ],
       "MahoganyHideout_B3F_Text_GruntF5Beaten": [
-        "Esta bem. Para. Eu digo-te.$"
+        "Tudo bem! Eu conto!$"
       ],
       "MahoganyHideout_B3F_Text_GruntF5After": [
-        "A senha do quarto do chefe e\\nSLOWPOKETAIL.\\pMas e inutil a menos que tenhas\\nduas senhas.$"
+        "Uma das senhas\\ne SLOWPOKETAIL.\\pMas precisa das duas\\npara abrir a porta!$"
       ],
       "MahoganyHideout_B3F_Text_GruntM28Seen": [
-        "Hyuck-hyuck-hyuck!\\pLembro-me de ti do poco!\\pEstas a desafiar-me outra vez?\\pHah! Es doido, mas tens\\ncoragem!\\pVou avisar-te, melhorei!\\pSe me venceres, digo-te uma\\nsenha para o quarto do chefe!$"
+        "He he he!\\pLembro de voce do poco!\\nQuer me enfrentar de novo?\\pQue coragem!\\pEu fiquei mais forte!\\pSe me vencer,\\nconto uma das senhas!$"
       ],
       "MahoganyHideout_B3F_Text_GruntM28Beaten": [
-        "Hyuck-hyuck-hyuck! Es bom!$"
+        "He he he! Voce e bom!$"
       ],
       "MahoganyHideout_B3F_Text_ScientistRossSeen": [
-        "Eu trabalhava para o SILPH, mas\\nagora faco pesquisa para o TEAM\\lROCKET.\\pUma crianca intrometida como tu\\nprecisa de ser punida.$"
+        "Eu trabalhava na SILPH,\\nmas agora sou da ROCKET.\\pCriancas intrometidas\\nprecisam de uma licao!$"
       ],
       "MahoganyHideout_B3F_Text_ScientistRossBeaten": [
-        "Um mero erro tatico\\ncustou-me...$"
+        "Foi um erro de estrategia...$"
       ],
       "MahoganyHideout_B3F_Text_ScientistRossAfter": [
-        "Um sinal de radio que deixa\\nPokemon louco...\\pA minha experiencia e um\\nsucesso completo.\\pA minha promocao esta\\ngarantida. Esta perda nao\\lsignifica absolutamente nada.$"
+        "Meu sinal de radio\\ndeixa os POKEMON furiosos!\\pO experimento foi um sucesso!\\pMinha promocao esta garantida.\\nEssa derrota nao importa!$"
       ],
       "MahoganyHideout_B3F_Text_ScientistMitchSeen": [
-        "Nao me interessa que o POKEMON\\nseja magoado pela nossa\\lexperiencia.$"
+        "Nao me importa se\\nos POKEMON se machucam\\nnos nossos experimentos!$"
       ],
       "MahoganyHideout_B3F_Text_ScientistMitchBeaten": [
-        "Pensar e o meu forte, nao\\nlutar.$"
+        "Sou bom em pensar,\\nnao em batalhar...$"
       ],
       "MahoganyHideout_B3F_Text_ScientistMitchAfter": [
-        "Se aumentarmos a potencia do\\nnosso sinal de radio para\\ltransmissao nacional...\\pO pensamento me excita!$"
+        "E se aumentarmos\\no alcance do sinal\\npara todo o pais?\\pQue ideia empolgante!$"
       ]
     },
     "data/maps/MahoganyTown_House1/scripts.inc": {
