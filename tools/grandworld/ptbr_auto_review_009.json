@@ -2,19 +2,19 @@
   "asm": {
     "data/maps/BattleFrontier_BattlePyramidFloor/scripts.inc": {
       "BattlePyramid_Text_FourTrainersRemaining3": [
-        "Impressionante!\\pMas ha mais quatro treinadores\\nneste andar. consegue\\lvence-los a todos?$"
+        "Impressionante!\\pMas ha mais quatro treinadores\\nneste andar. Consegue\\lvence-los a todos?$"
       ],
       "BattlePyramid_Text_ThreeTrainersRemaining3": [
-        "Impressionante!\\pMas ha mais tres treinadores\\nneste andar. consegue\\lvence-los a todos?$"
+        "Impressionante!\\pMas ha mais tres treinadores\\nneste andar. Consegue\\lvence-los a todos?$"
       ],
       "BattlePyramid_Text_TwoTrainersRemaining3": [
-        "Impressionante!\\pMas ha mais dois treinadores\\nneste andar. consegue vencer\\los dois?$"
+        "Impressionante!\\pMas ha mais dois treinadores\\nneste andar. Consegue vencer\\los dois?$"
       ],
       "BattlePyramid_Text_OneTrainersRemaining3": [
-        "Impressionante!\\pMas ainda ha mais um TRAiner\\nneste andar. consegue vencer?$"
+        "Impressionante!\\pMas ainda ha mais um TREINADOR\\nneste andar. Consegue vencer?$"
       ],
       "BattlePyramid_Text_ZeroTrainersRemaining3": [
-        "Impressionante!\\pPassaste por todos os TRAiners\\ndeste andar.$"
+        "Impressionante!\\pPassaste por todos os TREINADORES\\ndeste andar.$"
       ],
       "BattlePyramid_Text_SevenTrainersRemaining4": [
         "Talvez possa varrer os sete\\nTRAiners que restam neste\\landar.$"
@@ -65,22 +65,22 @@
         "Suas habilidades sao\\nirrepreensiveis.\\pNao ha mais treinadores aqui\\nque tenham alguma hipotese de\\lte vencer.$"
       ],
       "BattlePyramid_Text_SevenTrainersRemaining6": [
-        "Pode continuar a ganhar contra\\nos sete TRAiners restantes?$"
+        "Pode continuar a ganhar contra\\nos sete TREINADORES restantes?$"
       ],
       "BattlePyramid_Text_SixTrainersRemaining6": [
-        "pode continuar a ganhar contra\\nos seis TRAiners restantes?$"
+        "pode continuar a ganhar contra\\nos seis TREINADORES restantes?$"
       ],
       "BattlePyramid_Text_FiveTrainersRemaining6": [
-        "Pode continuar a ganhar contra\\nos cinco TRAiners restantes?$"
+        "Pode continuar a ganhar contra\\nos cinco TREINADORES restantes?$"
       ],
       "BattlePyramid_Text_FourTrainersRemaining6": [
         "Voce pode continuar ganhando\\ncontra os quatro TREiners\\lrestantes?$"
       ],
       "BattlePyramid_Text_ThreeTrainersRemaining6": [
-        "pode continuar a ganhar contra\\nos tres TRAiners restantes?$"
+        "pode continuar a ganhar contra\\nos tres TREINADORES restantes?$"
       ],
       "BattlePyramid_Text_TwoTrainersRemaining6": [
-        "Voce pode continuar ganhando\\ncontra os dois TRAiners\\lrestantes?$"
+        "Voce pode continuar ganhando\\ncontra os dois TREINADORES\\lrestantes?$"
       ],
       "BattlePyramid_Text_OneTrainersRemaining6": [
         "Pode continuar a ganhar contra\\no ultimo TREiner restante?$"
@@ -103,7 +103,7 @@
         "Muito bem. Agora, por favor,\\nselecione os tres POKEMON que\\lvoce deseja acompanha-lo.$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_NotEnoughValidMonsEnd": [
-        "Quando estiveres pronto, por\\nfavor, fala comigo.$"
+        "Quando estiver pronto, por\\nfavor, fale comigo.$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_ShowYouIntoPyramid": [
         "Muito bem. Vou agora\\nmostrar-lhe o PYRAMID BATTLE.$"
@@ -148,40 +148,40 @@
         "Bem-vindo...\\pTerei o prazer de vos dizer que\\ndesgracas esperam no PYRAMID...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintParalysis": [
-        "Vejo uma chuva de faiscas...\\pE nele, vejo o seu Pokemon a\\nlutar com paralisia...$"
+        "Vejo uma chuva de faiscas...\\pE nele, vejo o seu POKEMON a\\nlutar com paralisia...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintPoison": [
         "Vejo veneno...\\pE, eu vejo o seu POKEMON\\nsofrendo dos efeitos do\\lveneno...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintBurn": [
-        "Vejo chamas vermelhas\\nbrilhantes...\\pE vejo o seu Pokemon a sofrer\\nde queimaduras...$"
+        "Vejo chamas vermelhas\\nbrilhantes...\\pE vejo o seu POKEMON a sofrer\\nde queimaduras...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintLevitate": [
-        "Vejo Pokemon a voar...\\p...e, eu vejo seu POKEMON\\nfrustrado por movimentos\\limpotentes do tipo GROUND...$"
+        "Vejo POKEMON a voar...\\p...e, eu vejo seu POKEMON\\nfrustrado por movimentos\\limpotentes do tipo GROUND...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintTrapAbility": [
         "Sinto uma energia fantastica a\\nsubir do chao...\\pE, vejo o seu POKEMON incapaz\\nde escapar das garras da\\lenergia...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintIce": [
-        "Vejo Pokemon tipo ICE...\\pE vejo o seu Pokemon a combater\\nos efeitos de gelo...$"
+        "Vejo POKEMON tipo ICE...\\pE vejo o seu POKEMON a combater\\nos efeitos de gelo...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintExplosion": [
-        "Vejo uma onda de movimentos que\\npoem em perigo o utilizador...\\pE, vejo o seu Pokemon a\\ncair-lhes...$"
+        "Vejo uma onda de movimentos que\\npoem em perigo o utilizador...\\pE, vejo o seu POKEMON a\\ncair-lhes...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintBug": [
-        "Vejo um Pokemon tipo BUG...\\pE, eu vejo o seu POKEMON\\nsofrendo de diferentes tipos de\\lataques...$"
+        "Vejo um POKEMON tipo BUG...\\pE, eu vejo o seu POKEMON\\nsofrendo de diferentes tipos de\\lataques...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintFlyingDragon": [
-        "Vejo Pokemon a voar...\\p...e, eu vejo seu POKEMON\\nsofrendo de movimentos\\lextremamente poderosos...$"
+        "Vejo POKEMON a voar...\\p...e, eu vejo seu POKEMON\\nsofrendo de movimentos\\lextremamente poderosos...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintStoneEvolve": [
-        "Vejo aqueles que evoluiram do\\npoder das pedras...\\pTambem sinto fogo, agua e\\nelectricidade...\\pE, vejo que o seu Pokemon sofre\\ndaqueles tres poderes...$"
+        "Vejo aqueles que evoluiram do\\npoder das pedras...\\pTambem sinto fogo, agua e\\nelectricidade...\\pE, vejo que o seu POKEMON sofre\\ndaqueles tres poderes...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_BelieveMyFortunesOrNot": [
         "Quer acredites na minha sorte\\nou nao, a escolha e sua...\\pO futuro pode ser mudado a\\nqualquer momento... Desejo-lhe\\luma passagem segura...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_TrainersNoticeRunning": [
-        "Sabias?\\pSe correr rapido, os TRAiners\\npodem notar e vir atras de voce\\lpara uma batalha.\\pEntao, se voce quiser evitar\\nTREiners, nao pegue seus olhos,\\lmas sorrateiramente e\\lsilenciosamente passar por\\leles.$"
+        "Sabias?\\pSe correr rapido, os TREINADORES\\npodem notar e vir atras de voce\\lpara uma batalha.\\pEntao, se voce quiser evitar\\nTREiners, nao pegue seus olhos,\\lmas sorrateiramente e\\lsilenciosamente passar por\\leles.$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_LostLotOfItems": [
         "Awaaaaaaarrrrgh!\\pTinha muitos itens, mas\\nperdi-os todos quando perdi!\\pAwaaaaaaarrrrgh!$"
@@ -204,10 +204,10 @@
     },
     "data/maps/BattleFrontier_BattlePyramidTop/scripts.inc": {
       "BattleFrontier_BattlePyramidTop_Text_ExplorationsAreGrandestAdventure": [
-        "Jovem aventureiro...\\pNao concordas que as\\nexploracoes sao as maiores das\\laventuras?\\pA sua propria inteligencia!\\pA sua propria forca!\\pO seu proprio Pokemon!\\pE, acima de tudo, apenas a sua\\npropria coragem para\\lconduzir-te atraves de mundos\\ldesconhecidos...$"
+        "Jovem aventureiro...\\pNao concorda que as\\nexploracoes sao as maiores das\\laventuras?\\pA sua propria inteligencia!\\pA sua propria forca!\\pO seu proprio POKEMON!\\pE, acima de tudo, apenas a sua\\npropria coragem para\\lconduzir-te atraves de mundos\\ldesconhecidos...$"
       ],
       "BattleFrontier_BattlePyramidTop_Text_BringCourageToOurBattle": [
-        "Agora! Traz a sua coragem para\\na nossa batalha!$"
+        "Agora! traga sua coragem para\\na nossa batalha!$"
       ],
       "BattleFrontier_BattlePyramidTop_Text_ReceivedBraveSymbol": [
         "O Simbolo Bravo foi gravado no\\nPASS FRONTIER!$"
@@ -216,7 +216,7 @@
         "Jovem explorador! Estou ansioso\\npara o nosso proximo encontro!$"
       ],
       "BattleFrontier_BattlePyramidTop_Text_BrandonYouveReturned": [
-        "BRANDON: ... Finalmente\\nregressaste, jovem\\lexplorador...\\pO seu amor pela aventura parece\\nvir de dentro do seu coracao...\\pSim... Es exactamente como eu\\nera na minha juventude...\\p...... ...Ah...\\pO apaixonado!\\pO perigoso!\\pOs desesperados!\\pAqueles dias de aventuras que\\ndesafiam a morte e reafirmam a\\lvida voltaram...$"
+        "BRANDON: ... Finalmente\\nregressaste, jovem\\lexplorador...\\pO seu amor pela aventura parece\\nvir de dentro do seu coracao...\\pSim... Es exatamente como eu\\nera na minha juventude...\\p...... ...Ah...\\pO apaixonado!\\pO perigoso!\\pOs desesperados!\\pAqueles dias de aventuras que\\ndesafiam a morte e reafirmam a\\lvida voltaram...$"
       ],
       "BattleFrontier_BattlePyramidTop_Text_MyCourageIsOffMeter": [
         "Agora!\\pSinto que a minha propria\\ncoragem esta fora do\\lparquimetro!$"
@@ -316,10 +316,10 @@
         "Estavamos a sua espera!\\p$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_AboutToFace50thTrainer": [
-        "Finalmente vai enfrentar o 50o\\nTRAiner.\\pA partir de agora, cada vez que\\nvencer sete TRAiners seguidos,\\lo seu POKEMON recebera um\\lRIBBON comemorativo.\\pBoa sorte!$"
+        "Finalmente vai enfrentar o 50o\\nTRAiner.\\pA partir de agora, cada vez que\\nvencer sete TREINADORES seguidos,\\lo seu POKEMON recebera um\\lRIBBON comemorativo.\\pBoa sorte!$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_PutRibbonOnMons": [
-        "{PLAYER}Coloque os RIBBONS no\\ndesafiante Pokemon.$"
+        "{PLAYER}Coloque os RIBBONS no\\ndesafiante POKEMON.$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_DescribeFeelingsAboutBattleTower": [
         "Desculpe, tem um momento?\\pVoce pode descrever seus\\nsentimentos quando voce esta\\lprestes a comecar uma partida\\lde BATTLE TOWER, ou quando voce\\lganhou ou perdeu uma partida?$"
@@ -452,13 +452,13 @@
     },
     "data/maps/BattleFrontier_BattleTowerMultiPartnerRoom/scripts.inc": {
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PleaseFindPartner": [
-        "Por favor, encontre um parceiro\\nde fora dos TRAiners reunidos\\laqui.$"
+        "Por favor, encontre um parceiro\\nde fora dos TREINADORES reunidos\\laqui.$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_QuitLookingForPartner": [
         "{PLAYER}, voce nao encontrou um\\nparceiro para sua equipe tag.\\pQuer parar de procurar e voltar\\npara o balcao da recepcao?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PleaseFindPartner2": [
-        "Entao, por favor, encontre um\\nparceiro dos TRAiners reunidos\\laqui.$"
+        "Entao, por favor, encontre um\\nparceiro dos TREINADORES reunidos\\laqui.$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice1Intro": [
         "Eu\\nsou...{STR_VAR_1}Nao.{STR_VAR_2}aprendiz.\\lPodes ligar-me.{STR_VAR_3}!$"
@@ -644,7 +644,7 @@
         "{STR_VAR_2}com{STR_VAR_1}Tenho\\ndez de cada tipo! Na verdade,\\lso um de cada!\\pQue tal? quer tentar lutar\\ncomigo?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice11Accept": [
-        "Yippee! Dou-te um Pokemon como\\nagradecimento!\\pEstava a brincar! Mas vou fazer\\no registo, esta bem?$"
+        "Yippee! Dou-te um POKEMON como\\nagradecimento!\\pEstava a brincar! Mas vou fazer\\no registo, esta bem?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice11Reject": [
         "Que frio! Vou ter de destruir a\\nBATTLE TOWER por isso!\\pClaro que nao!$"
@@ -677,7 +677,7 @@
         "Estas a\\nrecusar-me?{PLAYER}Estas a\\lfazer-me carrancudo!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice14Intro": [
-        "Tosse!\\pDesculpa, estou constipada. Mas\\no meu Pokemon esta bem.\\pO meu nome e{STR_VAR_3},\\n{STR_VAR_1}Nao.{STR_VAR_2}aprendiz.\\lTosse!$"
+        "Tosse!\\pDesculpa, estou constipada. Mas\\no meu POKEMON esta bem.\\pO meu nome e{STR_VAR_3},\\n{STR_VAR_1}Nao.{STR_VAR_2}aprendiz.\\lTosse!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice14Mon1": [
         "Eu tirei.{STR_VAR_3}E um\\nconselho para o coracao e\\ljuntar a minha equipa de\\lum{STR_VAR_2}com{STR_VAR_1}e$"
