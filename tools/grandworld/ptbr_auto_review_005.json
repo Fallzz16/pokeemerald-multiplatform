@@ -27,7 +27,7 @@
         "{PLAYER}recebeu um NUGGET do\\nmisterioso TREINADOR!$"
       ],
       "Route24_Text_YouDontHaveAnyRoom": [
-        "Nao tens espaco!$"
+        "Voce esta sem espaco!$"
       ],
       "Route24_Text_RocketDefeat": [
         "Arrgh! Tu es bom!$"
@@ -125,7 +125,7 @@
         "Eu sabia que tambem ia perder!$"
       ],
       "Route25_Text_ChadPostBattle": [
-        "Se o teu POKEMON ficar confuso,\\nmuda-o.\\pE uma boa tactica.$"
+        "Se seu POKEMON ficar confuso,\\ntroque-o.\\pEssa e uma boa estrategia.$"
       ],
       "Route25_Text_HaleyIntro": [
         "O meu amigo tem muitos Pokemon\\ngiros. Estou com tanta inveja!$"
