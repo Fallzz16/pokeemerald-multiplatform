@@ -7,7 +7,7 @@
     },
     "data/maps/CeruleanCity_House1_Frlg/scripts.inc": {
       "CeruleanCity_House1_Text_BadgesHaveAmazingSecrets": [
-        "Somente os formadores\\nqualificados podem coletar BADS\\lPOKEMON.\\pVejo que tens pelo menos uma.\\pAqueles INSIGNIAS tem segredos\\nincriveis, sabias?$"
+        "Somente os formadores\\nqualificados podem coletar BADS\\lPOKEMON.\\pVejo que tem pelo menos uma.\\pAqueles INSIGNIAS tem segredos\\nincriveis, sabias?$"
       ],
       "CeruleanCity_House1_Text_DescribeWhichBadge": [
         "Agora...\\pQual dos oito INSIGNIAS devo\\ndescrever?$"
@@ -38,7 +38,7 @@
     },
     "data/maps/CeruleanCity_House3_Frlg/scripts.inc": {
       "CeruleanCity_House3_Text_PleaseTradeWithMyHusband": [
-        "O meu marido gosta de negociar\\nPOKEMON.\\pEstas a coleccionar Pokemon\\npara o teu Pokedex, nao estas?\\pImportas-te de trocar com ele?$"
+        "O meu marido gosta de negociar\\nPOKEMON.\\pEstas a coleccionar Pokemon\\npara o seu Pokedex, nao estas?\\pImportas-te de trocar com ele?$"
       ]
     },
     "data/maps/CeruleanCity_House4_Frlg/scripts.inc": {
@@ -69,13 +69,13 @@
         "Optimo! Para ti, entao, tenho a\\ncoisa certa.$"
       ],
       "CeruleanCity_House1_Text_WhyMustYouLieNoBerries": [
-        "Porque me tens de mentir?\\pQuantos BERRIES tens? Nenhum!$"
+        "Porque me tem de mentir?\\pQuantos BERRIES tem? Nenhum!$"
       ],
       "CeruleanCity_House1_Text_TakeInterestInAllSortsOfThings": [
         "Nao tem interesse em BERRIES?\\pJovem, e importante\\ninteressar-se por todo o tipo\\lde coisas.$"
       ],
       "CeruleanCity_House5_Text_ExchangeWithWhat": [
-        "Com o que queres troca-lo?$"
+        "Com o que quer troca-lo?$"
       ],
       "CeruleanCity_House1_Text_HopeToSeeYouAgain": [
         "Tudo bem, entao. Espero voltar\\na ver-te.$"
@@ -123,7 +123,7 @@
         "Se voce usar FLY, voce pode\\nvoltar para OLIVINE\\linstantaneamente.$"
       ],
       "CianwoodCity_Text_EusineBeaten": [
-        "Detesto admitir, mas ganhaste.$"
+        "Detesto admitir, mas venceu.$"
       ],
       "CianwoodCity_Text_EusineAfter": [
         "Es incrivel.{PLAYER}!\\pNao admira que Pokemon gravite\\npara ti.\\pJa percebi.\\pVou continuar a procura da\\nSUICUNE.\\pTenho a certeza que voltaremos\\na ver-nos.\\pVemo-nos por ai!$"
@@ -147,7 +147,7 @@
     },
     "data/maps/CianwoodHouse3/scripts.inc": {
       "CianwoodCity_Text_ManiacAskShuckle": [
-        "Estou em choque!\\pUm tipo da tua idade com olhos\\npenetrantes e cabelo comprido\\lentrou.\\pEle assustou-me para lhe dar o\\nmeu precioso Pokemon!\\pAinda tenho um, mas e se ele\\nvoltar?\\pPareces forte. Podes tomar\\nconta do meu Pokemon por uns\\ltempos?$"
+        "Estou em choque!\\pUm tipo da sua idade com olhos\\npenetrantes e cabelo comprido\\lentrou.\\pEle assustou-me para lhe dar o\\nmeu precioso Pokemon!\\pAinda tenho um, mas e se ele\\nvoltar?\\pPareces forte. pode tomar\\nconta do meu Pokemon por uns\\ltempos?$"
       ],
       "CianwoodCity_Text_ManiacTakeCareShuckle": [
         "Obrigado!\\pCuide bem dele, por favor!$"
@@ -156,7 +156,7 @@
         "{PLAYER}Recebeu um POKEMON.$"
       ],
       "CianwoodCity_Text_ManiacPartyFull": [
-        "A tua festa esta cheia.$"
+        "A sua festa esta cheia.$"
       ],
       "CianwoodCity_Text_ManiacIfHeComesBack": [
         "Oh, nao... O que faco se ele\\nvoltar?$"
@@ -171,10 +171,10 @@
         "Obrigado!$"
       ],
       "CianwoodCity_Text_ManiacShuckleNotThere": [
-        "Nao tens o meu Pokemon contigo.$"
+        "Nao tem o meu Pokemon contigo.$"
       ],
       "CianwoodCity_Text_ManiacShuckleLikesYou": [
-        "O meu Pokemon gostou de ti.\\pEsta bem, devias ficar com ele.\\pMas promete ser bom para ele!$"
+        "O meu Pokemon gostou de ti.\\pEsta bem, devia ficar com ele.\\pMas promete ser bom para ele!$"
       ],
       "CianwoodCity_Text_ManiacRobbed": [
         "Alguma coisa nao esta bem.$"
@@ -186,7 +186,7 @@
         "Para POKEMON, felicidade e\\nestar com uma pessoa que os\\ltrata bem.$"
       ],
       "CianwoodCity_Text_ManiacLastMon": [
-        "Se eu levar o meu POKEMON de\\nvolta, o que vais usar na\\lbatalha?$"
+        "Se eu levar o meu POKEMON de\\nvolta, o que vai usar na\\lbatalha?$"
       ],
       "CianwoodCity_Text_ManiacReturnedMon": [
         "{PLAYER}voltou SHUCKIE.$"
@@ -194,7 +194,7 @@
     },
     "data/maps/CianwoodPokecenter/scripts.inc": {
       "CianwoodPokemoncenter_Text_Fisher2": [
-        "Parece que precisas de um\\nPOKEMON de agua.\\pToma, toma esta, tenho\\nbastante.$"
+        "Parece que precisa de um\\nPOKEMON de agua.\\pToma, toma esta, tenho\\nbastante.$"
       ],
       "CianwoodPokemoncenter_Text_ReceivedTentacool": [
         "{PLAYER}recebeu TENTACOOL.$"
@@ -203,7 +203,7 @@
         "Conheceu o POKeMANIAC?\\pEsta sempre a gabar-se do seu\\nraro Pokemon.$"
       ],
       "CianwoodCity_Text_GymGuideWin": [
-        "{PLAYER}Ganhaste! Da para ver\\nolhando para ti!$"
+        "{PLAYER}venceu! Da para ver\\nolhando para ti!$"
       ],
       "CianwoodCity_Text_PokecenterSuperNerd": [
         "Adoro exibir o POKEMON que\\ncriei.\\pNao achas?\\pVou entrar num monte de\\nbatalhas e mostrar o meu\\lPokemon!$"
@@ -236,7 +236,7 @@
     },
     "data/maps/CinnabarIsland_PokemonCenter_1F_Frlg/scripts.inc": {
       "CinnabarIsland_PokemonCenter_1F_Text_VisitUnionRoom": [
-        "Tens muitos amigos?\\pLutar com os amigos habituais e\\ndivertido, claro.\\pMas que tal o TERMINAL BATTLE\\nNET de vez em quando?\\pQuem sabe, voce pode acabar com\\numa nova estrategia.\\pAcho que valeria a pena\\nverificar a BATTLE NET.$"
+        "tem muitos amigos?\\pLutar com os amigos habituais e\\ndivertido, claro.\\pMas que tal o TERMINAL BATTLE\\nNET de vez em quando?\\pQuem sabe, voce pode acabar com\\numa nova estrategia.\\pAcho que valeria a pena\\nverificar a BATTLE NET.$"
       ],
       "CinnabarIsland_PokemonCenter_1F_Text_EvolutionCanWaitForNewMoves": [
         "POKEMON ainda pode aprender\\ntecnicas apos cancelar a\\levolucao.\\pA evolucao pode esperar ate que\\nnovos movimentos sejam\\laprendidos.$"
@@ -280,7 +280,7 @@
         "Tudo isto\\nsobre...{STR_VAR_1}Nao tem um\\lprograma de TV?$"
       ],
       "DewfordTown_Hall_Text_SawTrendCoolestThing": [
-        "Eu vi.{STR_VAR_1}Fixe, nao e?\\pE, tipo, a coisa mais fixe!\\pFoi fantastico! Foi a serio,\\nsim!$"
+        "Eu vi.{STR_VAR_1}legal, nao e?\\pE, tipo, a coisa mais legal!\\pFoi fantastico! Foi a serio,\\nsim!$"
       ],
       "DewfordTown_Hall_Text_GiveYouSludgeBomb": [
         "Para mim, SLUDGE BOMB esta no\\nauge da popularidade. E o tal.\\pHunh? Estas a dizer-me que nao\\nsabes sobre o SLUDGE BOMB?\\pIsso e absolutamente\\nlamentavel. Eu dou-te uma.$"
@@ -296,7 +296,7 @@
     },
     "data/maps/DewfordTown_House2/scripts.inc": {
       "DewfordTown_House2_Text_NoRoom": [
-        "Nao tens espaco?\\pOuve bem, este SCARF e um...\\nPorque, eu venderia todos os\\lmeus itens para obte-lo!$"
+        "Nao tem espaco?\\pOuve bem, este SCARF e um...\\nPorque, eu venderia todos os\\lmeus itens para obte-lo!$"
       ],
       "DewfordTown_House2_Text_ExplainSilkScarf": [
         "O SILK SCARF eleva o poder dos\\nmovimentos do tipo NORMAL.\\pE um SCARF maravilhoso que vai\\ncom quase todos POKEMON!$"
@@ -326,10 +326,10 @@
         "Forte!$"
       ],
       "DragonsDen_Cavern_Text_CooltrainermDarinAfter": [
-        "O SHRINE a frente e o lar do\\nMASTER do nosso cla de\\lutilizadores de dragoes.\\pNao podes simplesmente entrar!$"
+        "O SHRINE a frente e o lar do\\nMASTER do nosso cla de\\lutilizadores de dragoes.\\pNao pode simplesmente entrar!$"
       ],
       "DragonsDen_Cavern_Text_CooltrainerfCaraSeen": [
-        "Nao devias estar aqui!$"
+        "Nao devia estar aqui!$"
       ],
       "DragonsDen_Cavern_Text_CooltrainerfCaraBeaten": [
         "Meu Deus, perdi!$"
@@ -400,7 +400,7 @@
         "Volta outra vez, se quiseres.$"
       ],
       "DragonsDen_Shrine_Text_SilverIsInTraining": [
-        "Um rapaz da tua idade esta a\\ntreinar aqui.\\pEle e muito parecido com a\\nCLAIR quando ela era mais nova.\\lE um pouco preocupante...$"
+        "Um rapaz da sua idade esta a\\ntreinar aqui.\\pEle e muito parecido com a\\nCLAIR quando ela era mais nova.\\lE um pouco preocupante...$"
       ],
       "DragonsDen_Shrine_Text_TakeThisDratini": [
         "Hm... E bom ver-te aqui.\\pA sua chegada foi muito\\nafortunada.\\pTenho uma coisa para ti.\\pTome este DRATINI como prova de\\nque reconheci o seu valor.$"
@@ -511,7 +511,7 @@
         "Deves ser.{PLAYER}Correcto?\\nIsso foi realmente excelente.\\pGentil e forte... Bom em criar\\nPOKEMON tambem...\\pEssa pessoa sabe o que procurar\\nnas pessoas...\\pOhoho! Era so eu a falar\\nsozinho. Esquece.$"
       ],
       "EcruteakCity_Theater_Text_SurfGuyGiveSurf": [
-        "Maravilhoso! Foste tao corajoso\\npara a tua idade!\\pFoi uma visao rara! Quero que\\nfiques com isto.\\pNao sejas timido, toma!$"
+        "Maravilhoso! Foste tao corajoso\\npara a sua idade!\\pFoi uma visao rara! Quero que\\nfiques com isto.\\pNao sejas timido, toma!$"
       ],
       "EcruteakCity_Theater_Text_SurfGuyGaveSurf": [
         "Isso e SURF. E um movimento que\\npermite POKEMON nadar atraves\\lda agua com facilidade.$"
@@ -560,7 +560,7 @@
     },
     "data/maps/EverGrandeCity_GlaciasRoom/scripts.inc": {
       "EverGrandeCity_GlaciasRoom_Text_Defeat": [
-        "Tu e o teu Pokemon... Que calor\\nardem os vossos espiritos!\\pO calor todo consome.\\pNao e surpresa que as minhas\\nhabilidades geladas nao te\\ltenham feito mal.$"
+        "Tu e o seu Pokemon... Que calor\\nardem os vossos espiritos!\\pO calor todo consome.\\pNao e surpresa que as minhas\\nhabilidades geladas nao te\\ltenham feito mal.$"
       ],
       "EverGrandeCity_GlaciasRoom_Text_PostBattleSpeech": [
         "Avancem para o quarto ao lado.\\pE la, confirme o lado\\nverdadeiramente temivel da\\lLEAGUE POKEMON.$"
@@ -571,7 +571,7 @@
         "Bolas. Perdi-me.$"
       ],
       "EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech": [
-        "Ha uma ligacao definitiva entre\\nti e o teu Pokemon, tambem.\\pNao o reconheci, por isso e\\nnatural que tenha perdido.\\pSim, gostaria de ver ate onde o\\nteu laco te levara.\\pVai para o quarto ao lado.$"
+        "Ha uma ligacao definitiva entre\\nti e o seu Pokemon, tambem.\\pNao o reconheci, por isso e\\nnatural que tenha perdido.\\pSim, gostaria de ver ate onde o\\nteu laco te levara.\\pVai para o quarto ao lado.$"
       ]
     },
     "data/maps/EverGrandeCity_PokemonLeague_1F/scripts.inc": {
@@ -605,7 +605,7 @@
     },
     "data/maps/FallarborTown_BattleTentLobby/scripts.inc": {
       "FallarborTown_BattleTentLobby_Text_MakeThinkImJustKid": [
-        "Fufufufu.\\pVou fazer todos pensarem que\\nsou apenas uma crianca e\\ldeixa-los brincar.\\pEntao, vou choca-los e apanhar\\no titulo!$"
+        "Fufufufu.\\pVou fazer todos pensarem que\\nsou apenas uma crianca e\\ldeixa-los brincar.\\pEntao, vou choca-los e capturar\\no titulo!$"
       ],
       "FallarborTown_BattleTentLobby_Text_CameToCampOut": [
         "Ouvi algo sobre uma tenda e vim\\nacampar.\\pNao sabia que as tendas hoje em\\ndia sao tao luxuosas!\\pJa que estou aqui, mais vale\\ntentar lutar!$"
@@ -688,7 +688,7 @@
         "Aiyeeeeh! Misericordia!$"
       ],
       "FiveIsland_LostCave_Room1_Text_LawsonPostBattle": [
-        "Estou a tentar sair daqui, mas\\nacabo sempre no mesmo sitio.\\pTalvez o numero de pedras seja\\numa pista...$"
+        "estou tentando sair daqui, mas\\nacabo sempre no mesmo sitio.\\pTalvez o numero de pedras seja\\numa pista...$"
       ]
     },
     "data/maps/FiveIsland_LostCave_Room4_Frlg/scripts.inc": {
@@ -710,7 +710,7 @@
         "Isto e a serio?$"
       ],
       "FiveIsland_Meadow_Text_Rocket1PostBattle": [
-        "Nao tens nada que fazer aqui!\\nVai para casa!$"
+        "Nao tem nada que fazer aqui!\\nVai para casa!$"
       ],
       "FiveIsland_Meadow_Text_Rocket2Intro": [
         "Nao ha nada alem do nosso\\nWAREHOUSE.\\pEntao, o que te traz aqui?$"
@@ -719,7 +719,7 @@
         "Nao era suposto isso\\nacontecer...$"
       ],
       "FiveIsland_Meadow_Text_Rocket2PostBattle": [
-        "Queres saber o que esta dentro\\ndeste WAREHOUSE?\\pE melhor nao saberes. Para o\\nteu proprio bem, quero dizer.$"
+        "quer saber o que esta dentro\\ndeste WAREHOUSE?\\pE melhor nao saberes. Para o\\nteu proprio bem, quero dizer.$"
       ],
       "FiveIsland_Meadow_Text_Rocket3Intro": [
         "Estarias a perder tempo mesmo\\nque passasses por mim.$"
@@ -748,7 +748,7 @@
         "Esfrega, esfrega...$"
       ],
       "FiveIsland_MemorialPillar_Text_YourMonsLookHealthy": [
-        "Ola... O teu Pokemon parece\\nsaudavel...$"
+        "Ola... O seu Pokemon parece\\nsaudavel...$"
       ],
       "FiveIsland_MemorialPillar_Text_ThisIsWhereIBuriedMyOnix": [
         "Foi aqui que enterrei o meu\\nONIX... Chamava-se TECTONIX...$"
@@ -760,10 +760,10 @@
         "{PLAYER}colocou uma lata de\\nLEMONADE em frente ao tumulo.$"
       ],
       "FiveIsland_MemorialPillar_Text_BeGoodToYourMonsToo": [
-        "Por favor, se bom para o teu\\nPokemon, tambem.$"
+        "Por favor, se bom para o seu\\nPokemon, tambem.$"
       ],
       "FiveIsland_MemorialPillar_Text_DontHaveRoomForIt": [
-        "Se nao tens espaco para isso,\\nfico com ele ate a proxima vez.$"
+        "Se nao tem espaco para isso,\\nfico com ele ate a proxima vez.$"
       ],
       "FiveIsland_MemorialPillar_Text_StillHaveThingAsMyThanks": [
         "Oh, es tu daquela altura...\\pAinda tenho aquilo que queria\\nque tivesses como\\lagradecimento.$"
@@ -777,7 +777,7 @@
         "Vou preparar uma refeicao para\\numa pessoa de alta sociedade.$"
       ],
       "FiveIsland_PokemonCenter_1F_Text_YoureOnQuestToCatchEveryMon": [
-        "Estas numa missao para apanhar\\ntodos os tipos de Pokemon?\\pQue incrivel. Por favor, diz-me\\nse apanhares um forte!$"
+        "Estas numa missao para capturar\\ntodos os tipos de Pokemon?\\pQue incrivel. Por favor, diz-me\\nse apanhares um forte!$"
       ]
     },
     "data/maps/FiveIsland_ResortGorgeous_Frlg/scripts.inc": {
@@ -791,7 +791,7 @@
         "Os meus tubos de tinta\\nespalharam-se por todo o lado!$"
       ],
       "FiveIsland_ResortGorgeous_Text_CelinaIntro": [
-        "Com licenca! Estou a tentar\\npintar. Por favor, fica fora da\\lminha vista!$"
+        "Com licenca! estou tentando\\npintar. Por favor, fica fora da\\lminha vista!$"
       ],
       "FiveIsland_ResortGorgeous_Text_CelinaDefeat": [
         "Esta perda... Sinto-me como se\\nestivesse...$"
@@ -806,7 +806,7 @@
         "O ceu e o mar... Sao tao\\ninconstantes.\\pSuas expressoes em mudanca os\\ntornam dificeis de capturar.$"
       ],
       "FiveIsland_ResortGorgeous_Text_JackiIntro": [
-        "Estou a visitar o retiro do meu\\namigo, se queres saber.$"
+        "Estou a visitar o retiro do meu\\namigo, se quer saber.$"
       ],
       "FiveIsland_ResortGorgeous_Text_JackiDefeat": [
         "Meu Deus, tao forte.$"
