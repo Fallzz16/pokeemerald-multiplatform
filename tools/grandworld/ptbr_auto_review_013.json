@@ -5,7 +5,7 @@
         "Algo inviavel esta no caminho.$"
       ],
       "FortreeCity_Text_GymSign": [
-        "FORTREE CITY POKEMON GINASIO\\nLEADER: WINONA\\pO utilizador de passaros a voar\\npara o mundo.$"
+        "GINASIO POKEMON DE FORTREE\\nLIDER: WINONA\\pMestra dos POKEMON voadores\\ne das alturas!$"
       ]
     },
     "data/maps/FortreeCity_DecorationShop/scripts.inc": {
@@ -30,7 +30,7 @@
         "Vou tornar o VOLBEAT super\\nforte a partir de agora!\\pEspero que facas o mesmo com o\\nPLUSLE!$"
       ],
       "FortreeCity_House1_Text_TradingMemoriesWithOthers": [
-        "Negociar POKEMON com outros...\\pE como se estivesses a trocar\\nas suas memorias com outras\\lpessoas.$"
+        "Trocar POKEMON com alguem...\\pE como compartilhar\\nas lembrancas deles\\lcom outras pessoas.$"
       ]
     },
     "data/maps/FortreeCity_House2/scripts.inc": {
@@ -47,7 +47,7 @@
         "Oh! Sim, correcto!\\pVamos tentar de novo.\\pEm que mao dei a moeda? A\\ndireita ou a esquerda?$"
       ],
       "FortreeCity_House2_Text_YourHiddenPowerHasAwoken": [
-        "Oh! Esplendido! Seu poder\\noculto despertou!\\pToma, toma isto e desperta o\\npoder oculto do seu POKEMON.$"
+        "Nossa! Seu poder\\noculto finalmente despertou!\\pAceite isto e desperte\\no poder dos seus POKEMON!$"
       ],
       "FortreeCity_House2_Text_YouGuessedWrong": [
         "Nao, que pena. Adivinhou mal.$"
@@ -71,10 +71,10 @@
     },
     "data/maps/FortreeCity_House5/scripts.inc": {
       "FortreeCity_House5_Text_TreeHousesAreGreat": [
-        "As casas de arvores de FORTREE\\nsao grandes!\\pAcho que e a cidade numero um\\npara viver com o POKEMON.$"
+        "As casas nas arvores de\\nFORTREE sao incriveis!\\pAcho que esta e a melhor\\ncidade para viver com POKEMON!$"
       ],
       "FortreeCity_House5_Text_AdaptedToNature": [
-        "POKEMON e pessoas adaptaram-se\\na natureza para sobreviver.\\pNao ha necessidade de fazer a\\nnatureza conformar-se com a\\lforma como queremos viver.$"
+        "Pessoas e POKEMON aprenderam\\na conviver com a natureza.\\pNao precisamos mudar\\no ambiente para viver\\ldo jeito que queremos.$"
       ]
     },
     "data/maps/FortreeCity_Mart/scripts.inc": {
@@ -125,7 +125,7 @@
         "Nao sei o que vai acontecer no\\nfuturo, mas...\\pFarei o que puder aqui e agora.\\nE tudo o que posso fazer.$"
       ],
       "FourIsland_LoreleisHouse_Text_StuffedMonDollsGalore": [
-        "Bonecas POKEMON recheadas em\\nabundancia!$"
+        "Ha bonecas de POKEMON\\nespalhadas por todo canto!$"
       ]
     },
     "data/maps/FourIsland_PokemonCenter_1F_Frlg/scripts.inc": {
@@ -133,7 +133,7 @@
         "Volta outra vez! Boing!$"
       ],
       "FourIsland_PokemonCenter_1F_Text_RareIceMonsInCave": [
-        "Ha um tipo raro de POKEMON ICE\\nque vive na caverna.\\pTemos muitos visitantes a\\nespera de ver o POKEMON.$"
+        "Um POKEMON raro do tipo ICE\\nvive naquela caverna.\\pMuita gente visita o lugar\\npara tentar encontra-lo!$"
       ]
     },
     "data/maps/FuchsiaCity_Frlg/scripts.inc": {
@@ -177,7 +177,7 @@
     },
     "data/maps/FuchsiaCity_House3_Frlg/scripts.inc": {
       "FuchsiaCity_House3_Text_WhichMonShouldForgetMove": [
-        "Que POKEMON deve esquecer uma\\njogada?$"
+        "Qual POKEMON deve\\nesquecer um golpe?$"
       ],
       "FuchsiaCity_House3_Text_WhichMoveShouldBeForgotten": [
         "Que movimento deve ser\\nesquecido?$"
@@ -197,7 +197,7 @@
     },
     "data/maps/FuchsiaCity_PokemonCenter_1F_Frlg/scripts.inc": {
       "FuchsiaCity_PokemonCenter_1F_Text_CantBecomeGoodTrainerWithOneMon": [
-        "Voce nao pode se tornar um bom\\ntreinador com apenas um POKEMON\\lforte.\\pMas criar muitos POKEMON\\nuniformemente tambem nao e\\ltarefa facil.$"
+        "Nao basta ter apenas\\num POKEMON muito\\lforte para ser um TREINADOR.\\pTreinar varios POKEMON\\nde modo equilibrado\\ltambem exige esforco.$"
       ]
     },
     "data/maps/FuchsiaCity_SafariZone_Entrance_Frlg/scripts.inc": {
@@ -222,7 +222,7 @@
     },
     "data/maps/FuchsiaCity_SafariZone_Office_Frlg/scripts.inc": {
       "FuchsiaCity_SafariZone_Office_Text_WardenIsVeryKnowledgeable": [
-        "WARDEN SLOWPOKE e muito\\nconhecedor de POKEMON.\\pEle ate tem alguns fosseis de\\nPOKEMON raros e extintos.$"
+        "O DIRETOR da SAFARI ZONE\\nentende muito de POKEMON.\\pEle ate guarda fosseis de\\nPOKEMON raros e extintos.$"
       ]
     },
     "data/maps/FuchsiaCity_WardensHouse_Frlg/scripts.inc": {
@@ -236,7 +236,7 @@
         "{PLAYER}recebeu HM04 do WARDEN.$"
       ],
       "FuchsiaCity_WardensHouse_Text_MonPhotosFossilsOnDisplay": [
-        "Fotos e fosseis POKEMON estao\\nem exposicao.$"
+        "Fotos e fosseis de POKEMON\\nestao em exposicao.$"
       ],
       "FuchsiaCity_WardensHouse_Text_OldMonMerchandiseOnDisplay": [
         "A velha mercadoria POKEMON esta\\nem exposicao.$"
