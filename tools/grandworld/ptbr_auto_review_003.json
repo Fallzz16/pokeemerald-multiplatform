@@ -8,7 +8,7 @@
         "Que calor!$"
       ],
       "Route109_SeashoreHouse_Text_SimonIntro": [
-        "Vou mostrar-vos como o meu\\nPOKEMON e fantastico, mas nao\\lchorem!$"
+        "Vou mostrar como meus\\nPOKEMON sao incriveis! Nao\\lprecisam chorar!$"
       ],
       "Route109_SeashoreHouse_Text_SimonDefeated": [
         "Perdi, mas nao vou chorar...$"
@@ -58,10 +58,10 @@
         "Isso limpou-me a cabeca!$"
       ],
       "Route10_Text_TrentPostBattle": [
-        "Sinto-me inchado no ar da\\nmontanha!$"
+        "O ar da montanha me faz\\nsentir cheio de energia!$"
       ],
       "Route10_Text_CarolIntro": [
-        "Estou sentindo-me um pouco\\nfraco. Ja nao caminho ha algum\\ltempo.$"
+        "Estou me sentindo um pouco\\nfraco. Nao caminho ha\\lmuito tempo.$"
       ],
       "Route10_Text_CarolDefeat": [
         "Estou muito cansada. Nao estava\\npreparado para isso.$"
@@ -131,7 +131,7 @@
         "Tira esse sorriso presuncoso da\\ntua cara! E muito cedo para\\lpensar que venceu!\\pFarei novos truques para te\\nenganar. So pode gozar comigo\\lquando acabares.\\pVolte para a proxima parcela\\nemocionante!$"
       ],
       "Route110_TrickHouseEnd_Text_YoureIgnoringMe": [
-        "Agora, agora! Estas a\\nignorar-me agora? Agora isso,\\leu considero de partir o\\lcoracao!$"
+        "Ei! Voce esta tentando\\nme ignorar? Isso parte\\lmeu pobre\\lcoracao!$"
       ]
     },
     "data/maps/Route110_TrickHouseEntrance/scripts.inc": {
@@ -198,7 +198,7 @@
         "Porque estas a falar tao a\\nserio?$"
       ],
       "Route110_TrickHousePuzzle1_Text_SallyPostBattle": [
-        "Nunca me canso de hackear e\\ncortar!$"
+        "Nunca me canso de cortar\\nas arvores pelo caminho!$"
       ],
       "Route110_TrickHousePuzzle1_Text_EddieIntro": [
         "Entrei numa casa estranha por\\nacidente...$"
@@ -436,13 +436,13 @@
         "Hmmm... Nao ha cinzas\\nsuficientes aqui. Nao consigo\\lfazer vidro com isto.\\pVejamos...{STR_VAR_1}E o numero\\nde passos que vai precisar de\\landar para eu te fazer um BLUE\\lFLUTE, buff-puff.$"
       ],
       "Route113_GlassWorkshop_Text_WhichGlassItemWoudYouLike": [
-        "Oh! Tem um monte de cinzas!\\pVou fazer-te uma peca de vidro.\\nQual deles gostaria de beber?$"
+        "Oh! Tem um monte de cinzas!\\pVou fazer uma peca de vidro.\\nQual delas voce quer?$"
       ],
       "Route113_GlassWorkshop_Text_IsThatTheItemForYou": [
         "A{STR_VAR_1}, buff-puff? E esse\\npara voce?$"
       ],
       "Route113_GlassWorkshop_Text_WhichWouldYouLike": [
-        "Qual deles gostaria de beber?$"
+        "Qual deles voce quer?$"
       ],
       "Route113_GlassWorkshop_Text_IllMakeItemForYou": [
         "A{STR_VAR_1}E, entao,\\nbuff-puff!\\pEsta bem! Eu faco-o para voce.\\nEspera so um pouco.$"
