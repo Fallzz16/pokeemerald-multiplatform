@@ -2,57 +2,57 @@
   "asm": {
     "data/maps/MauvilleCity_BikeShop/scripts.inc": {
       "MauvilleCity_BikeShop_Text_SandySlopes": [
-        "Existem pequenas encostas\\narenosas em toda a regiao\\lHOENN.\\pA areia solta torna impossivel\\nsubir normalmente.\\pMas se voce tem um MACH BIKE,\\nvoce pode fechar uma inclinacao\\larenosa.\\pQuer ler uma pagina diferente?$"
+        "Existem rampas de areia\\npor toda HOENN!\\pNao da para subir andando.\\pMas com a MACH BIKE,\\nvoce consegue passar!\\pQuer ler outra pagina?$"
       ],
       "MauvilleCity_BikeShop_Text_Wheelies": [
-        "Pressione o botao B enquanto\\nmonta, e a roda dianteira\\llevanta.\\pVoce pode fechar com a roda\\ndianteira para cima usando o +\\lControl Pad.\\pEsta tecnica e chamada de roda.\\pQuer ler uma pagina diferente?$"
+        "Aperte B na ACRO BIKE\\npara levantar a roda da frente.\\pUse o DIRECIONAL\\npara se mover empinando!\\pQuer ler outra pagina?$"
       ],
       "MauvilleCity_BikeShop_Text_BunnyHops": [
-        "Mantendo o botao B pressionado,\\nseu BIKE pode saltar no local.\\pEsta tecnica e chamada de salto\\nde coelho.\\pTambem podes montar enquanto\\nsaltas.\\pQuer ler uma pagina diferente?$"
+        "Segure B na ACRO BIKE\\npara pular no mesmo lugar.\\pTambem pode se mover\\nenquanto pula!\\pQuer ler outra pagina?$"
       ],
       "MauvilleCity_BikeShop_Text_Jumps": [
-        "Pressione o botao B e o painel\\nde controle + ao mesmo tempo\\lpara saltar.\\pPressione o + Control Pad para\\no lado para saltar de lado.\\pPressione para tras para fazer\\no BIKE mudar de direcao\\lenquanto salta.\\pQuer ler uma pagina diferente?$"
+        "Aperte B e DIRECIONAL\\npara saltar com a ACRO BIKE.\\pUse esquerda e direita\\npara saltar de lado.\\pAperte para tras\\npara mudar a direcao!\\pQuer ler outra pagina?$"
       ]
     },
     "data/maps/MauvilleCity_GameCorner/scripts.inc": {
       "MauvilleCity_GameCorner_Text_DontHaveEnoughMoney": [
-        "Hum... Nao pareces ter dinheiro\\nsuficiente...$"
+        "Hmm... Parece que voce\\nnao tem dinheiro suficiente...$"
       ],
       "MauvilleCity_GameCorner_Text_WhichPrize": [
-        "Que premio gostarias?$"
+        "Qual premio voce quer?$"
       ],
       "MauvilleCity_GameCorner_Text_SoYourChoiceIsTheTMX": [
-        "Entao a sua escolha e\\na{STR_VAR_1} {STR_VAR_2}?$"
+        "Voce escolheu\\n{STR_VAR_1} {STR_VAR_2}?$"
       ],
       "MauvilleCity_GameCorner_Text_SendToYourHomePC": [
-        "Obrigado! Vamos envia-lo para o\\nseu PC em casa.$"
+        "Obrigado!\\nEnviaremos para seu PC!$"
       ],
       "MauvilleCity_GameCorner_Text_NoRoomForPlacingDecor": [
-        "Nao ha espaco disponivel para\\ncolocacao.{STR_VAR_1}.$"
+        "Nao ha espaco para\\ncolocar {STR_VAR_1}!$"
       ],
       "MauvilleCity_GameCorner_Text_SoYourChoiceIsX": [
-        "Entao a tua escolha\\ne{STR_VAR_1}?$"
+        "Voce escolheu\\n{STR_VAR_1}?$"
       ],
       "MauvilleCity_GameCorner_Text_HereYouGo": [
         "Aqui esta!$"
       ],
       "MauvilleCity_GameCorner_Text_CantCarryAnyMore": [
-        "Nao podes carregar mais do que\\nisso.$"
+        "Voce nao pode carregar\\nmais do que isso!$"
       ],
       "MauvilleCity_GameCorner_Text_HereYouGo2": [
         "Aqui esta!$"
       ],
       "MauvilleCity_GameCorner_Text_YouWantItButNotNow": [
-        "Huh? Queres, mas nao agora?$"
+        "Quer o premio,\\nmas nao agora?$"
       ],
       "MauvilleCity_GameCorner_Text_DontBeNegative": [
-        "Nao sejas tao negativo! Podes\\nficar com isto!$"
+        "Nao desista!\\nPode ficar com isto!$"
       ],
       "MauvilleCity_GameCorner_Text_CantWinJackpot": [
-        "Quero um premio, mas nao posso\\nganhar o jackpot.$"
+        "Quero ganhar um premio,\\nmas nao tenho sorte!$"
       ],
       "MauvilleCity_GameCorner_Text_EasyToLoseTrackOfTime": [
-        "E facil perder a nocao do tempo\\naqui. Tenho de voltar ao\\ltrabalho.$"
+        "Perdi a nocao do tempo!\\nPreciso voltar ao trabalho!$"
       ]
     },
     "data/maps/MauvilleCity_House1/scripts.inc": {
@@ -130,34 +130,34 @@
     },
     "data/maps/MossdeepCity_GameCorner_1F/scripts.inc": {
       "RS_MysteryEventsHouse_Text_OldManGreeting": [
-        "Quando era jovem, viajei pelo\\nmundo como instrutor de\\lPokemon.\\pAgora que me tornei um velho\\nabutre, a minha unica diversao\\le ver jovens treinadores a\\llutar.$"
+        "Quando era jovem,\\nviajei com meus POKEMON.\\pAgora gosto de assistir\\nbatalhas de TREINADORES\\nque estao comecando!$"
       ],
       "RS_MysteryEventsHouse_Text_DoorIsLocked": [
-        "A porta parece estar trancada.$"
+        "A porta esta trancada.$"
       ],
       "RS_MysteryEventsHouse_Text_ChallengeVisitingTrainer": [
-        "UMA FORMACAO\\nCHAMADA{STR_VAR_1}esta\\lvisitando minha casa.\\pGostaria de\\ndesafiar{STR_VAR_1}?$"
+        "O TREINADOR {STR_VAR_1}\\nesta visitando minha casa!\\pQuer enfrentar\\n{STR_VAR_1}?$"
       ],
       "RS_MysteryEventsHouse_Text_YouWontBattle": [
-        "Nao vais lutar? Estou\\ndesiludido por nao te poder ver\\la lutar...$"
+        "Nao quer batalhar?\\pQue pena! Eu queria\\nver a disputa!$"
       ],
       "RS_MysteryEventsHouse_Text_KeepItToA3On3": [
-        "Optimo, optimo!\\pMas a minha casa nao e assim\\ntao resistente.\\pPosso pedir-lhe para baixar\\npara um jogo de 3 contra 3?$"
+        "Otimo! Excelente!\\pMas minha casa e pequena.\\pQue tal uma batalha\\ncom tres POKEMON de cada lado?$"
       ],
       "RS_MysteryEventsHouse_Text_SaveYourProgress": [
-        "Antes de lutarem, devem salvar\\no vosso progresso.$"
+        "Salve seu progresso\\nantes de comecar a batalha!$"
       ],
       "RS_MysteryEventsHouse_Text_HopeToSeeAGoodMatch": [
-        "Espero ver um bom jogo!$"
+        "Espero ver\\numa grande batalha!$"
       ],
       "RS_MysteryEventsHouse_Text_BattleTie": [
-        "Entao, tornou-se um impasse.\\pFoi uma partida brilhante em\\nque nenhum dos lados concedeu\\lum passo!$"
+        "A batalha terminou empatada!\\pOs dois TREINADORES\\nforam incriveis!$"
       ],
       "RS_MysteryEventsHouse_Text_BattleWon": [
-        "Isso foi superlativo!\\pOra, foi como ver-me novamente\\nna minha juventude!$"
+        "Que batalha maravilhosa!\\pMe lembrou\\nmeus tempos de juventude!$"
       ],
       "RS_MysteryEventsHouse_Text_BattleLost": [
-        "Que pena para ti!\\pMas foi uma boa combinacao.\\nEspero que ganhes da proxima\\lvez.$"
+        "Que pena que perdeu!\\pMas foi uma otima batalha.\\nBoa sorte na proxima!$"
       ]
     },
     "data/maps/MossdeepCity_House1/scripts.inc": {
