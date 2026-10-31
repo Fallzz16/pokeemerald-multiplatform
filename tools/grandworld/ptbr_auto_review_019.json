@@ -258,147 +258,147 @@
     },
     "data/maps/SSAqua_RoomNE/scripts.inc": {
       "SSAqua_RoomNE_Text_HikerNolandSeen": [
-        "Estas sozinho? Entao vamos\\nlutar!$"
+        "Esta sozinho? Entao vamos\\nbatalhar!$"
       ],
       "SSAqua_RoomNE_Text_HikerNolandBeaten": [
-        "Isso e demais para lidar!$"
+        "Essa foi dificil de aceitar!$"
       ],
       "SSAqua_RoomNE_Text_HikerNolandAfterBattle": [
-        "Sera que ha alguma montanha que\\nvalha a pena escalar em KANTO?$"
+        "Sera que existe uma montanha\\nboa para escalar em KANTO?$"
       ]
     },
     "data/maps/SSAqua_RoomNNE/scripts.inc": {
       "SSAqua_RoomNNE_Text_CooltrainermSeanSeen": [
-        "Vou ao KANTO testar as minhas\\nhabilidades.$"
+        "Vou a KANTO testar minhas\\nhabilidades.$"
       ],
       "SSAqua_RoomNNE_Text_CooltrainermSeanBeaten": [
         "Eu queria ganhar!$"
       ],
       "SSAqua_RoomNNE_Text_CooltrainerfCarolSeen": [
-        "Estou a treinar para me tornar\\no CHAMP!$"
+        "Estou treinando para me tornar\\nCAMPEA!$"
       ],
       "SSAqua_RoomNNE_Text_CooltrainerfCarolBeaten": [
-        "O que ha de tao diferente entre\\nnos?$"
+        "O que voce tem de diferente\\nde mim?$"
       ],
       "SSAqua_RoomNNE_Text_CooltrainerfCarolAfterBattle": [
-        "Um dia vou vencer-te!$"
+        "Um dia vou vencer voce!$"
       ]
     },
     "data/maps/SSAqua_RoomNW/scripts.inc": {
       "SSAqua_RoomNW_Text_SailorStanlySeen": [
-        "Sim, sou marinheiro.\\pNao estava a brincar!\\pEsta cabana estava vazia, por\\nisso tirei uma sesta!\\pEsquece! Vamos lutar!$"
+        "Sim, sou marinheiro.\\pNao estava brincando!\\pA cabine estava vazia,\\nentao resolvi descansar!\\pEsquece! Vamos batalhar!$"
       ],
       "SSAqua_RoomNW_Text_SailorStanlyBeaten": [
-        "Desculpa! A culpa e toda minha!$"
+        "Desculpe! A culpa foi minha!$"
       ],
       "SSAqua_RoomNW_Text_SailorStanlyAfterBattle": [
-        "Sendo marinheiro, tenho de\\nfazer trabalho fisico. E\\lcansativo!$"
+        "Ser marinheiro exige\\nmuito esforco fisico. E\\lcansativo!$"
       ],
       "SSAqua_RoomNW_Text_GentlemanEdwardSeen": [
-        "Oh, nao. Perdi uma coisa muito\\nimportante.$"
+        "Ah, nao! Perdi algo muito\\nimportante.$"
       ],
       "SSAqua_RoomNW_Text_GentlemanEdwardBeaten": [
-        "Nao consigo encontra-lo.$"
+        "Nao consigo achar...$"
       ],
       "SSAqua_RoomNW_Text_GentlemanEdwardAfterBattle": [
-        "Desisto. Nao precisas de olhar.\\pEsquece isso!$"
+        "Desisto. Nao precisa procurar.\\pDeixe isso para la!$"
       ],
       "SSAqua_RoomNW_Text_BurglarCoreyBeaten": [
         "Que azar! Perdi!$"
       ],
       "SSAqua_RoomNW_Text_BurglarCoreyAfterBattle": [
-        "Encontrei uma bela moeda aqui.\\pAlguem deve te-lo perdido...$"
+        "Achei uma bela moeda aqui.\\pAlguem deve ter perdido...$"
       ]
     },
     "data/maps/SSAqua_RoomSE/scripts.inc": {
       "SSAqua_RoomSE_Text_PokefanmColinSeen": [
-        "Miudo! Queres lutar comigo?$"
+        "Ei, garoto! Quer batalhar?$"
       ],
       "SSAqua_RoomSE_Text_PokefanmColinBeaten": [
-        "Es forte!$"
+        "Voce e forte!$"
       ],
       "SSAqua_RoomSE_Text_PokefanmColinAfter": [
-        "Viajas sozinho? A tua mae nao\\nesta preocupada?$"
+        "Viaja sozinho? Sua mae nao\\nfica preocupada?$"
       ],
       "SSAqua_RoomSE_Text_TwinsMegandpeg1Seen": [
-        "Achas que sou um bebe? Isso nao\\ne justo!$"
+        "Acha que sou um bebe? Isso nao\\ne justo!$"
       ],
       "SSAqua_RoomSE_Text_TwinsMegandpeg1Beaten": [
         "Oh! Perdemos!$"
       ],
       "SSAqua_RoomSE_Text_TwinsMegandpeg1After": [
-        "O bebe e um nome rude para nos\\nchamar meninas!$"
+        "Chamar a gente de bebe\\ne muita falta de educacao!$"
       ],
       "SSAqua_RoomSE_Text_TwinsMegandpeg2Seen": [
-        "Nao sou um bebe! Nao e bom\\ndizer isso a uma senhora!$"
+        "Nao sou um bebe! Nao e certo\\nfalar assim com uma mocinha!$"
       ],
       "SSAqua_RoomSE_Text_TwinsMegandpeg2Beaten": [
         "Oh! Perdemos!$"
       ],
       "SSAqua_RoomSE_Text_TwinsMegandpeg2After": [
-        "As vezes, os miudos sao mais\\nespertos que os adultos!$"
+        "As vezes, as criancas sao mais\\nespertas que os adultos!$"
       ]
     },
     "data/maps/SSAqua_RoomSSE/scripts.inc": {
       "SSAqua_RoomSSE_Text_CantFindGranddaughter": [
-        "Ola...\\pAinda nao consigo encontrar a\\nminha neta.\\pSe ela estiver na nave, tudo\\nbem.\\pEla e uma crianca energica, por\\nisso pode estar a incomodar\\lalguem que me preocupa...$"
+        "Ola...\\pAinda nao encontrei\\nminha netinha.\\pSe ela estiver no navio,\\nesta tudo bem.\\pMas ela e tao agitada\\nque pode estar incomodando\\lalguem... Isso me preocupa!$"
       ],
       "SSAqua_RoomSSE_Text_EntertainedGranddaughter": [
-        "{PLAYER}Foi? Ouvi dizer que\\nentreteve a minha neta.\\pQuero agradecer-lhe por isso.$"
+        "{PLAYER}Foi? Soube que\\nbrincou com minha neta.\\pQuero agradecer por isso.$"
       ],
       "SSAqua_RoomSSE_Text_GrandpaHaveThis": [
-        "Eu sei! Gostava que ficasses\\ncom isto!$"
+        "Ja sei! Quero que fique\\ncom isto!$"
       ],
       "SSAqua_RoomSSE_Text_GrandpaTravelling": [
-        "Estamos a viajar pelo mundo.$"
+        "Estamos viajando pelo mundo.$"
       ],
       "SSAqua_RoomSSE_Text_GranddaughterHadFun": [
-        "Diverti-me muito a jogar!$"
+        "Adorei brincar com voce!$"
       ]
     },
     "data/maps/SSAqua_RoomSSW/scripts.inc": {
       "SSAqua_RoomSSW_Text_FirebreatherLyleSeen": [
-        "Vou a KANTO por espectaculos de\\ncuspir fogo!$"
+        "Vou a KANTO apresentar\\nmeu show de fogo!$"
       ],
       "SSAqua_RoomSSW_Text_FirebreatherLyleBeaten": [
-        "Falha... A chama e pequena...$"
+        "Falhei... Minha chama apagou...$"
       ],
       "SSAqua_RoomSSW_Text_FirebreatherLyleAfterBattle": [
-        "Acho que o fogo esta fraco no\\nmar. Nao importa? A serio?$"
+        "Acho que o fogo enfraquece\\nno mar. Nao acha? Serio?$"
       ],
       "SSAqua_RoomSSW_Text_BugCatcherKenSeen": [
-        "Vou visitar a minha avo para\\napanhar uns insectos!$"
+        "Vou visitar minha avo\\ne capturar insetos!$"
       ],
       "SSAqua_RoomSSW_Text_BugCatcherKenBeaten": [
-        "Ooh, wow. Es forte!$"
+        "Nossa! Voce e forte!$"
       ],
       "SSAqua_RoomSSW_Text_BugCatcherKenAfterBattle": [
-        "Voce pode encontrar muitos\\nPOKEMON nas arvores de JOHTO!$"
+        "Ha muitos POKEMON nas\\narvores de JOHTO!$"
       ]
     },
     "data/maps/SSAqua_RoomSW/scripts.inc": {
       "SSAqua_RoomSW_Text_BeautyCassieSeen": [
-        "Estou a tentar esquecer os meus\\nproblemas. Vamos lutar!$"
+        "Estou tentando esquecer\\nmeus problemas. Vamos batalhar!$"
       ],
       "SSAqua_RoomSW_Text_BeautyCassieBeaten": [
-        "O meu coracao chora...$"
+        "Meu coracao esta partido...$"
       ],
       "SSAqua_RoomSW_Text_GuitaristClydeBeaten": [
-        "Yowza! Distorcao total!$"
+        "Uau! Que distorcao!$"
       ],
       "SSAqua_RoomSW_Text_GuitaristClydeAfterBattleMobile": [
-        "Eu ia fazer a minha estreia no\\nBATTLE TOWER...\\pDevia voltar a VERMILION e\\nrefazer o meu treino...$"
+        "Eu ia estrear na\\nBATTLE TOWER...\\pTalvez deva voltar a VERMILION\\ne treinar mais...$"
       ]
     },
     "data/maps/SSTidalCorridor/scripts.inc": {
       "SSTidal_Text_FastCurrentsHopeYouEnjoyVoyage": [
-        "Este ferry foi construido para\\natravessar correntes rapidas.\\pEsperamos que aproveite a sua\\nviagem connosco. Sinta-se a\\lvontade para explorar a nave.$"
+        "Este navio foi feito para\\nenfrentar correntes fortes.\\pEsperamos que aproveite\\na viagem conosco. Sinta-se\\la vontade para explorar.$"
       ],
       "SSTidal_Text_HopeYouEnjoyVoyage": [
-        "Esperamos que aproveite a sua\\nviagem no nosso ferry.$"
+        "Esperamos que aproveite\\nsua viagem de navio.$"
       ],
       "SSTidalCorridor_Text_CanRestInCabin2": [
-        "Vai levar algum tempo ate\\nchegarmos a terra, acho eu.\\pPodes descansar na tua cabana,\\nse quiseres. A tua cabana e no\\l2.\\pA cama e macia e macia. Posso\\natestar quao confortavel e!$"
+        "Ainda falta um tempo para\\nchegarmos ao destino.\\pPode descansar em sua cabine,\\nse quiser. Ela e a de numero\\l2.\\pA cama e muito macia. Posso\\ngarantir que e confortavel!$"
       ],
       "SSTidalCorridor_Text_WeveArrived": [
         "Chegamos!$"
@@ -407,10 +407,10 @@
         "Vai visitar outras cabanas.\\nTREINADORES entediado da viagem\\lde barco vai estar ansioso para\\la batalha.$"
       ],
       "SSTidalCorridor_Text_EnjoyYourCruise": [
-        "Aproveitem o cruzeiro!$"
+        "Aproveite o cruzeiro!$"
       ],
       "SSTidalCorridor_Text_HorizonSpreadsBeyondPorthole": [
-        "O horizonte espalha-se para\\nalem da porta.$"
+        "O horizonte se estende\\nalem da janela.$"
       ],
       "SSTidalCorridor_Text_Cabin1": [
         "Cabine 1$"
@@ -427,16 +427,16 @@
     },
     "data/maps/SSTidalLowerDeck/scripts.inc": {
       "SSTidalLowerDeck_Text_PhillipIntro": [
-        "Arrrgh! Estou farto de limpar\\neste lugar enorme!\\pVamos ter uma batalha rapida!$"
+        "Argh! Cansei de limpar\\neste lugar enorme!\\pVamos ter uma batalha rapida!$"
       ],
       "SSTidalLowerDeck_Text_PhillipDefeat": [
-        "Irmaozinho, eu perdi!$"
+        "Argh! Eu perdi!$"
       ],
       "SSTidalLowerDeck_Text_LeonardIntro": [
-        "Este e o fundo do casco da\\nnave. Ha muito espaco. Vai\\lficar tudo bem para uma batalha\\lPOKEMON.$"
+        "Estamos no fundo do\\nnavio. Aqui tem espaco. Vai\\lser otimo para uma batalha\\lde POKEMON!$"
       ],
       "SSTidalLowerDeck_Text_LeonardDefeat": [
-        "Grande mano, eu perdi!$"
+        "Argh! Fui derrotado!$"
       ]
     },
     "data/maps/SSTidalRooms/scripts.inc": {
@@ -444,54 +444,54 @@
         "Ha uma cama... Vamos descansar.$"
       ],
       "SSTidalRooms_Text_ColtonDefeat": [
-        "Foi uma partida agradavel!$"
+        "Foi uma boa batalha!$"
       ],
       "SSTidalRooms_Text_ColtonPostBattle": [
-        "Fico tao entusiasmada\\nimaginando que tipo de POKEMON\\lvou ver no proximo CONTEST. A\\lantecipacao dele emociona!$"
+        "Fico tao animado\\nimaginando os POKEMON\\lque verei no proximo CONTEST!\\lMal posso esperar!$"
       ],
       "SSTidalRooms_Text_MicahIntro": [
-        "Os teus amigos sao fortes?$"
+        "Seus amigos sao fortes?$"
       ],
       "SSTidalRooms_Text_MicahDefeat": [
-        "Os teus amigos sao, de facto,\\nfortes.$"
+        "Seus amigos sao fortes\\nde verdade!$"
       ],
       "SSTidalRooms_Text_MicahPostBattle": [
-        "Os amigos nao precisam ser\\nhumanos. Para mim, POKEMON sao\\lamigos preciosos!$"
+        "Amigos nao precisam ser\\nhumanos. Para mim, POKEMON sao\\lamigos muito especiais!$"
       ],
       "SSTidalRooms_Text_ThomasIntro": [
         "Crianca... Bateste a porta?$"
       ],
       "SSTidalRooms_Text_ThomasDefeat": [
-        "Uma perda deve ser aceita sem\\npressa ou panico.$"
+        "E preciso aceitar uma derrota\\ncom calma.$"
       ],
       "SSTidalRooms_Text_GarretIntro": [
-        "Chegaste mesmo a tempo.\\pEstou entediada. Podes\\nentreter-me.$"
+        "Chegou na hora certa.\\pEstou entediado. Pode\\nme distrair um pouco?$"
       ],
       "SSTidalRooms_Text_GarretDefeat": [
-        "Isso serve.$"
+        "Isso esta bom.$"
       ],
       "SSTidalRooms_Text_GarretPostBattle": [
-        "Talvez consiga um iate para o\\nmeu pai. Um iate para mim e\\lpara Pokemon!$"
+        "Talvez meu pai me de um iate.\\nUm iate para mim e\\lmeus POKEMON!$"
       ],
       "SSTidalRooms_Text_NaomiIntro": [
-        "Es tao adoravel. Gostaria de\\ntomar um cha? Ou preferes\\llutar?$"
+        "Voce e uma gracinha!\\nQuer tomar um cha? Ou prefere\\lbatalhar?$"
       ],
       "SSTidalRooms_Text_NaomiDefeat": [
-        "Estou a ver. Tu es do tipo\\nactivo.$"
+        "Entendi. Voce gosta\\nde agito.$"
       ],
       "SSTidalRooms_Text_NaomiPostBattle": [
-        "Um cruzeiro mundial num navio\\nde luxo tem os seus encantos,\\ldevo dizer...\\pMas, admito que ha um lado\\natraente para visitar o HOENN\\lpelo ferry.$"
+        "Viajar pelo mundo num navio\\nde luxo tem suas vantagens,\\lsem duvida...\\pMas tambem adoro a ideia\\nde visitar HOENN\\lcom uma balsa.$"
       ]
     },
     "data/maps/SafariZoneGate/scripts.inc": {
       "SafariZone_Text_SilentNPC": [
-        "..................\\pEu nao sou um falador.$"
+        "..................\\pNao sou muito de conversar.$"
       ],
       "SafariZone_Text_Kangaskhan": [
         "KANGASKHAN:..................$"
       ],
       "SafariZone_Text_SlowpokeFan": [
-        "Ha muitos POKEMON para\\nescolher, mas nada supera a\\lbeleza de SLOWPOKE.\\pAs pessoas costumam dizer que\\neu pareco um!$"
+        "Ha muitos POKEMON para\\nescolher, mas nada supera\\la beleza de SLOWPOKE.\\pAs pessoas dizem que\\neu pareco com ele!$"
       ]
     },
     "data/maps/SafariZoneGate_SafariZoneEntrance/scripts.inc": {
@@ -502,54 +502,54 @@
         "Isso nao pode estar certo!$"
       ],
       "SafariZoneGate_SafariZoneEntrance_Text_BaobaDeclined": [
-        "O que vou fazer agora? Nunca\\nvamos acompanhar o DEVON!$"
+        "O que farei agora? Nunca\\nvamos superar a DEVON!$"
       ],
       "SafariZoneGate_SafariZoneEntrance_Text_BaobaLastMon": [
-        "Nao aguento o teu ultimo\\nPOKEMON!$"
+        "Nao consigo vencer seu ultimo\\nPOKEMON!$"
       ],
       "SafariZoneGate_SafariZoneEntrance_Text_Boy": [
         "Ouvi dizer que a nova zona em\\nque estao a trabalhar tem\\ldragoes!$"
       ],
       "SafariZoneGate_SafariZoneEntrance_Text_Engineer": [
-        "Desculpe Trainer, esta area\\nainda esta em construcao. Volta\\lmais tarde!$"
+        "Desculpe, TREINADOR. Esta area\\nainda esta em obras. Volte\\lmais tarde!$"
       ]
     },
     "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc": {
       "SafariZone_Center_Text_CatchingMonsAsGifts": [
-        "Vou apanhar o Pokemon para\\nlevar para casa como prendas.$"
+        "Vou capturar POKEMON\\npara dar de presente.$"
       ]
     },
     "data/maps/SafariZone_East_RestHouse_Frlg/scripts.inc": {
       "SafariZone_East_Text_HowManyDidYouCatch": [
-        "Quantos apanhaste? Estou farto\\ndo esforco!$"
+        "Quantos capturou? Estou\\nexausto de tanto procurar!$"
       ],
       "SafariZone_East_Text_CaughtChanseyAllWorthwhile": [
         "Apanhei um CHANSEY!\\pIsso faz com que tudo valha a\\npena.$"
       ],
       "SafariZone_East_Text_TiredFromAllTheFun": [
-        "Ufa! Estou cansado de toda a\\ndiversao!$"
+        "Ufa! Me diverti tanto\\nque fiquei cansado!$"
       ]
     },
     "data/maps/SafariZone_SecretHouse_Frlg/scripts.inc": {
       "SafariZone_SecretHouse_Text_ReceivedHM03FromAttendant": [
-        "{PLAYER}recebeu HM03 do\\natendente!$"
+        "{PLAYER} recebeu HM03\\ndo atendente!$"
       ],
       "SafariZone_SecretHouse_Text_ExplainSurf": [
         "HM03 e SURF.\\pPOKEMON sera capaz de\\ntransportar voce atraves da\\lagua usando-o.\\pE, este HM nao e descartavel,\\nentao voce pode usa-lo\\lrepetidamente.\\pTens muita sorte em ganhar este\\npremio fabuloso!$"
       ],
       "SafariZone_SecretHouse_Text_DontHaveRoomForPrize": [
-        "Nao tens espaco para este\\npremio fabuloso!$"
+        "Voce esta sem espaco\\npara esse premio!$"
       ]
     },
     "data/maps/SafariZone_West_RestHouse_Frlg/scripts.inc": {
       "SafariZone_West_Text_RocksMakeMonRunButEasierCatch": [
-        "Jogar ROCKS em Pokemon pode\\nfaze-los correr, mas sera mais\\lfacil de apanhar.$"
+        "Jogar ROCKS em POKEMON pode\\nfaze-los fugir, mas fica mais\\lfacil captura-los.$"
       ],
       "SafariZone_West_Text_BaitMakesMonStickAround": [
-        "Usar BAIT tornara POKEMON mais\\nprovavel ficar por perto se\\leles comecarem a comer.$"
+        "Usar BAIT faz os POKEMON\\nficarem por perto enquanto\\lcomem.$"
       ],
       "SafariZone_West_Text_HikedLotsDidntSeeMonIWanted": [
-        "Caminhei muito, mas nao vi\\nnenhum Pokemon que quisesse.$"
+        "Andei muito, mas nao vi\\no POKEMON que queria.$"
       ]
     },
     "data/maps/SaffronCity_CopycatsHouse_1F_Frlg/scripts.inc": {
@@ -646,15 +646,15 @@
     },
     "data/maps/SaffronCity_House_Frlg/scripts.inc": {
       "SaffronCity_House_Text_DontLookAtMyLetter": [
-        "...Obrigado por escrever.\\nEspero ver-te em breve!\\pOla! Nao olhes para a minha\\ncarta!$"
+        "...Obrigado pela carta.\\nEspero ver voce em breve!\\pEi! Nao leia minha\\ncarta!$"
       ]
     },
     "data/maps/SaffronCity_Mart_Frlg/scripts.inc": {
       "SaffronCity_Mart_Text_MaxRepelMoreEffectiveThanSuper": [
-        "MAX REPEL impede que o Pokemon\\nmais fraco apareca.\\pMAX REPEL mantem-se eficaz mais\\ndo que SUPER REPEL.$"
+        "MAX REPEL afasta POKEMON\\nmais fracos que o lider.\\pEle dura mais tempo do\\nque SUPER REPEL.$"
       ],
       "SaffronCity_Mart_Text_ReviveIsCostly": [
-        "REVIVE e caro, mas revive\\nPOKEMON desmaiado!$"
+        "REVIVE e caro, mas recupera\\nPOKEMON desmaiados!$"
       ]
     },
     "data/maps/SaffronCity_MrPsychicsHouse_Frlg/scripts.inc": {
@@ -670,10 +670,10 @@
     },
     "data/maps/SaffronCity_PokemonCenter_1F_Frlg/scripts.inc": {
       "SaffronCity_PokemonCenter_1F_Text_GrowthRatesDifferBySpecies": [
-        "As taxas de crescimento de\\nPOKEMON diferem de especies\\lpara especies.$"
+        "A velocidade de crescimento\\ndos POKEMON varia de especie\\lpara especie.$"
       ],
       "SaffronCity_PokemonCenter_1F_Text_SilphCoVictimOfFame": [
-        "SILPH CO. e amplamente\\nconhecido por todos.\\pE uma vitima da sua propria\\nfama - atraiu o TEAM ROCKET.$"
+        "SILPH CO. e famosa\\nno mundo inteiro.\\pMas essa fama atraiu\\na EQUIPE ROCKET.$"
       ]
     },
     "data/maps/SaffronCity_PokemonTrainerFanClub_Frlg/scripts.inc": {
@@ -826,18 +826,18 @@
         "Quando estamos numa montanha\\nrochosa como esta, os\\ldeslizamentos de rochas sao uma\\lameaca.\\pConsegues imaginar? Os Boulders\\ncairam em cima de ti?\\pIsso seria, tipo, waaaaaaaaaah!\\nTerror total!\\pNao pareces ter medo. Quer\\ntentar usar ROCK SLIDE?$"
       ],
       "Text_RockSlideDeclined": [
-        "Afinal, estas com medo.$"
+        "Entao ficou com medo.$"
       ],
       "Text_RockSlideTaught": [
-        "Pode ser assustador usa-lo\\nneste tunel...$"
+        "Pode ser perigoso usar\\nesse golpe aqui no tunel...$"
       ],
       "SeafoamIslands_B4F_Text_BouldersMightChangeWaterFlow": [
-        "Dica: Os bulders podem mudar o\\nfluxo de agua.$"
+        "Dica: As rochas podem\\nmudar o fluxo da agua.$"
       ]
     },
     "data/maps/SevenIsland_Frlg/scripts.inc": {
       "Text_SwordsDanceDeclined": [
-        "Bem, isso tambem e bom.$"
+        "Tudo bem, fica para outra hora.$"
       ]
     }
   },
