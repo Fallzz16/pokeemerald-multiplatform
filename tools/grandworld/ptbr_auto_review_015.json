@@ -741,89 +741,89 @@
     },
     "data/maps/MahoganyTown_House1/scripts.inc": {
       "MahoganyRedGyaradosHouse_Text_Teacher_Rockets": [
-        "Tenho ouvido risos no radio...\\pE assustador.$"
+        "Ouvi uma risada estranha\\npelo radio...\\pQue coisa assustadora!$"
       ]
     },
     "data/maps/MahoganyTown_PokemonCenter/scripts.inc": {
       "MahoganyTown_PokemonCenter_Text_Youngster": [
-        "Impeco o meu POKEMON de evoluir\\ndemasiado cedo.\\pFaco-os aprender certos\\nmovimentos antes de os deixar\\levoluir.$"
+        "Nao deixo meus POKEMON\\nevoluirem muito cedo.\\pQuero que aprendam\\ngolpes importantes antes!$"
       ],
       "MahoganyTown_PokemonCenter_Text_CooltrainerF": [
-        "POKEMON torna-se mais forte\\nquando evoluem,\\pmas tambem aprendem movimentos\\nmais lentos.$"
+        "POKEMON ficam mais fortes\\nquando evoluem.\\pMas as vezes aprendem\\ngolpes mais devagar!$"
       ]
     },
     "data/maps/MahoganyTown_Shop/scripts.inc": {
       "MahoganyTown_Shop_Text_Granny": [
-        "Por favor, volte noutra altura.\\nA loja esta... fechada neste\\lmomento.$"
+        "Por favor, volte mais tarde.\\pA loja esta fechada\\nno momento...$"
       ],
       "MahoganyMart1F_Text_BlackBelt": [
-        "Heheh! A experiencia funcionou\\nmuito bem.\\pMAGIKARP sao apenas inuteis,\\nmas GYARADOS sao grandes\\lfabricantes de dinheiro.$"
+        "He he! O experimento\\ndeu muito certo!\\pMAGIKARP sao baratos,\\nmas GYARADOS valem muito!$"
       ],
       "MahoganyMart1F_Text_BlackBelt_Lance": [
-        "Urrgh...\\pO Pokemon daquele tipo e\\nduro...$"
+        "Argh...\\pO POKEMON daquele sujeito\\ne muito forte...$"
       ],
       "MahoganyMart1F_Text_Lance_Radio": [
-        "O que te levou,{PLAYER}?\\pTal como pensavamos, o estranho\\nsinal de radio vem daqui.$"
+        "O que trouxe voce aqui,\\n{PLAYER}?\\pComo suspeitavamos,\\no sinal de radio vem daqui!$"
       ],
       "MahoganyMart1F_Text_Lance_Stairs": [
-        "Excelente trabalho para\\nencontrar as escadas,\\lDRAGONITE!$"
+        "Muito bem, DRAGONITE!\\pVoce encontrou a escada!$"
       ],
       "MahoganyMart1F_Text_Lance_SplitUp": [
-        "LANCE:{PLAYER}Deviamos\\nseparar-nos para verificar este\\llugar.\\pEu vou primeiro.$"
+        "LANCE: {PLAYER},\\nvamos nos separar!\\pPrecisamos investigar\\ntodo este lugar.\\pEu vou primeiro!$"
       ]
     },
     "data/maps/Mahoganytown/scripts.inc": {
       "MahoganyTown_Text_RageCandyBarMerchantSavorIt": [
-        "Optimo! Saboreiem!$"
+        "Otimo! Aproveite o doce!$"
       ],
       "MahoganyTown_Text_RageCandyBarMerchantNotEnoughMoney": [
-        "Nao tens dinheiro suficiente.$"
+        "Voce nao tem dinheiro\\nsuficiente.$"
       ],
       "MahoganyTown_Text_RageCandyBarMerchantRefused": [
-        "Esta bem, entao...$"
+        "Tudo bem, entao...$"
       ],
       "MahoganyTown_Text_GrampsClearedRocketHideout": [
-        "MAGIKARP voltou para LAKE OF\\nRAGE.\\pDeve ser uma boa noticia para\\nos pescadores.$"
+        "Os MAGIKARP voltaram\\nao LAGO DA FURIA!\\pOs pescadores devem\\nestar muito felizes!$"
       ],
       "MahoganyTown_Text_Fisher": [
-        "Desde que chegaste ate aqui,\\ntira tempo para passear.\\pDevias ir para norte e\\nverificar o LAKE OF RAGE agora.$"
+        "Ja que veio ate aqui,\\nconheca os arredores!\\pVisite o LAGO DA FURIA,\\nao norte da cidade!$"
       ],
       "MahoganyTown_Text_Lass": [
-        "Visite a loja da avo. Ela vende\\ncoisas que mais ninguem tem.$"
+        "Visite a loja da senhora!\\nEla vende coisas raras!$"
       ]
     },
     "data/maps/MauvilleCity/scripts.inc": {
       "MauvilleCity_Text_ThankYouNotEnoughToBattle": [
-        "{PLAYER}Obrigado. Ser um\\ntreinador e dificil, nao e?\\pNao basta ter Pokemon e\\nfaze-los lutar. Nao e disso que\\lse trata ser um verdadeiro\\ltreinador.$"
+        "{PLAYER}, obrigado!\\pSer TREINADOR nao e facil.\\nNao basta ter POKEMON\\ne mandar eles lutarem.\\pPrecisamos cuidar deles!$"
       ],
       "MauvilleCity_Text_RegisteredWally": [
-        "WALLY registado no POKeNAV.$"
+        "WALLY foi registrado\\nno POKENAV!$"
       ],
       "MauvilleCity_Text_NurseHurtMonBackToHealth": [
-        "Sabes, e fixe ter batalhas\\nPOKEMON e assim...\\pMas se o teu POKEMON se magoar,\\ntens de o curar.$"
+        "Batalhar e divertido,\\nmas pode cansar os POKEMON.\\pQuando estiverem feridos,\\ncuide deles primeiro!$"
       ],
       "MauvilleCity_Text_AllSortsOfPeopleComeThrough": [
-        "As estradas desta cidade\\nestendem-se a norte e a sul, e\\la leste e a oeste.\\pPor causa disso, temos todo o\\ntipo de pessoas a passar.$"
+        "As estradas de MAUVILLE\\nligam norte, sul,\\nleste e oeste.\\pPor isso vem muita gente\\nde todos os lugares!$"
       ],
       "MauvilleCity_Text_ExplainTV": [
-        "Ola, ves televisao?\\pEles adicionaram um monte de\\nnovos shows recentemente.\\pA televisao e tao fixe. Vi os\\nmeus amigos na televisao do\\lnada.\\pE, as vezes, ate te colocam na\\ntelevisao sem te dizerem.\\pQuem me dera aparecer na\\ntelevisao.\\pE por isso que acho que devias\\nir ver TVs sempre que puderes.$"
+        "Voce gosta de ver TV?\\pEstao passando muitos\\nprogramas novos!\\pOutro dia vi meus amigos\\naparecerem do nada!\\pAte voce pode aparecer\\nna TV sem perceber!\\pPor isso sempre assisto\\nquando tenho tempo!$"
       ],
       "MauvilleCity_Text_BeenCheckingOutTV": [
-        "Ola, estiveste a ver televisao?$"
+        "Voce tem assistido TV?$"
       ]
     },
     "data/maps/MauvilleCity_BikeShop/scripts.inc": {
       "MauvilleCity_BikeShop_Text_ChoseMachBike": [
-        "{PLAYER}Escolheu o MACH BIKE.$"
+        "{PLAYER} escolheu MACH BIKE!$"
       ],
       "MauvilleCity_BikeShop_Text_ChoseAcroBike": [
-        "{PLAYER}Escolheu o ACRO BIKE.$"
+        "{PLAYER} escolheu ACRO BIKE!$"
       ],
       "MauvilleCity_BikeShop_Text_HandbooksAreInBack": [
-        "Estou a aprender sobre BIKES\\nenquanto trabalho aqui.\\pSe precisares de conselhos\\nsobre como andar no teu BIKE,\\lha alguns manuais atras.$"
+        "Trabalho aqui e ainda\\nestou aprendendo sobre BIKES!\\pSe precisar de dicas,\\nhouve manuais la no fundo!$"
       ],
       "MauvilleCity_BikeShop_Text_HowToRideMachBike": [
-        "Um BIKE se move na direcao que\\no + Control Pad e pressionado.\\pVai acelerar assim que comecar\\na rodar.\\pPara parar, solte o + Control\\nPad. O BIKE vai parar\\llentamente.\\pQuer ler uma pagina diferente?$"
+        "Use o DIRECIONAL para\\nmover a MACH BIKE.\\pEla acelera enquanto\\nvoce pedala.\\pSolte o DIRECIONAL\\npara diminuir a velocidade.\\pQuer ler outra pagina?$"
       ]
     }
   },
