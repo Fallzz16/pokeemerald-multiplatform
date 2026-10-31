@@ -2,10 +2,11 @@
   "status": "human_reviewed_text_ready; ARM_GBA_mGBA_QA_pending",
   "scope": "Only newly reviewed labels not present in stages 7-15; previously reviewed improvements excluded",
   "source_shards": [
+    "ptbr_auto_review_018.json",
     "ptbr_auto_review_019.json"
   ],
   "source_diff_against": "feature/grandworld-ptbr-human-review-stage15-20261031",
-  "reviewed_entries": 121,
+  "reviewed_entries": 125,
   "reviewed_labels_by_source": {
     "data/maps/SSAnne_2F_Room3_Frlg/scripts.inc": [
       "SSAnne_2F_Room3_Text_SeenMonsFerryPeople",
@@ -189,6 +190,12 @@
     ],
     "data/maps/SevenIsland_Frlg/scripts.inc": [
       "Text_SwordsDanceDeclined"
+    ],
+    "data/maps/RustboroCity_DevonCorp_1F/scripts.inc": [
+      "RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp",
+      "RustboroCity_DevonCorp_1F_Text_StaffGotRobbed",
+      "RustboroCity_DevonCorp_1F_Text_RobberWasntVeryBright",
+      "RustboroCity_DevonCorp_1F_Text_HowCouldWeGetRobbed"
     ]
   },
   "release_approved": false,
