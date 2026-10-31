@@ -512,7 +512,7 @@
     },
     "data/maps/Route4_PokemonCenter_1F_Frlg/scripts.inc": {
       "Route4_PokemonCenter_1F_Text_OnlyDoingThisAsFavorToYou": [
-        "Nao? Dizes que nao? So estou a\\nfazer-te um favor!$"
+        "Nao? Diz que nao? So estou a\\nfazer-te um favor!$"
       ],
       "Route4_PokemonCenter_1F_Text_NoRoomForMorePokemon": [
         "Parece que nao ha mais espaco\\npara mais POKEMON.$"
@@ -647,7 +647,7 @@
     },
     "data/maps/Route8_Frlg/scripts.inc": {
       "Route8_Text_AidanIntro": [
-        "Ficas bem no POKEMON, mas como\\nesta seu nivel de quimica?$"
+        "Fica bem no POKEMON, mas como\\nesta seu nivel de quimica?$"
       ],
       "Route8_Text_AidanDefeat": [
         "Ow! Derreter!$"
@@ -774,7 +774,7 @@
         "Continua!\\pEspera. Estou sem POKEMON!$"
       ],
       "Route9_Text_JeremyPostBattle": [
-        "Tiveste coragem de me\\nenfrentar, nao foi?$"
+        "Teve coragem de me\\nenfrentar, nao foi?$"
       ],
       "Route9_Text_BriceIntro": [
         "Hahaha! Nao e um pouco duro?$"
