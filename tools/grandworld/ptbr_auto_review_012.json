@@ -7,7 +7,7 @@
     },
     "data/maps/CeruleanCity_House1_Frlg/scripts.inc": {
       "CeruleanCity_House1_Text_BadgesHaveAmazingSecrets": [
-        "Somente os formadores\\nqualificados podem coletar BADS\\lPOKEMON.\\pVejo que tem pelo menos uma.\\pAqueles INSIGNIAS tem segredos\\nincriveis, sabia?$"
+        "Somente os TREINADORES\\nqualificados podem coletar BADS\\lPOKEMON.\\pVejo que tem pelo menos uma.\\pAqueles INSIGNIAS tem segredos\\nincriveis, sabia?$"
       ],
       "CeruleanCity_House1_Text_DescribeWhichBadge": [
         "Agora...\\pQual dos oito INSIGNIAS devo\\ndescrever?$"
@@ -69,7 +69,7 @@
         "Optimo! Para voce, entao, tenho a\\ncoisa certa.$"
       ],
       "CeruleanCity_House1_Text_WhyMustYouLieNoBerries": [
-        "Porque me tem de mentir?\\pQuantos BERRIES tem? Nenhum!$"
+        "Porque me precisa mentir?\\pQuantos BERRIES tem? Nenhum!$"
       ],
       "CeruleanCity_House1_Text_TakeInterestInAllSortsOfThings": [
         "Nao tem interesse em BERRIES?\\pJovem, e importante\\ninteressar-se por todo o tipo\\lde coisas.$"
@@ -314,7 +314,7 @@
     },
     "data/maps/DragonsDen_Cavern/scripts.inc": {
       "DragonsDen_Cavern_Text_SilverTraining1": [
-        "O que?{PLAYER}?\\pNao, nao vou lutar com voce\\nagora...\\pO meu POKEMON nao esta pronto\\npara te vencer.\\pNao posso forca-los muito.\\pEu tenho que ser disciplinado\\npara me tornar o maior\\ltreinador POKEMON...$"
+        "O que?{PLAYER}?\\pNao, nao vou batalhar com voce\\nagora...\\pO meu POKEMON nao esta pronto\\npara te vencer.\\pNao posso forca-los muito.\\pEu tenho que ser disciplinado\\npara me tornar o maior\\ltreinador POKEMON...$"
       ],
       "DragonsDen_Cavern_Text_SilverTraining2": [
         "...\\pUfa...\\pAprende a ficar fora do meu\\ncaminho...$"
@@ -338,7 +338,7 @@
         "E um estranho que nao\\nconhecemos.$"
       ],
       "DragonsDen_Cavern_Text_TwinsLeaandPia2Seen": [
-        "Quem e tu?$"
+        "Quem e voce?$"
       ],
       "DragonsDen_Cavern_Text_TwinsLeaandPia2Beaten": [
         "Malvada.$"
@@ -502,13 +502,13 @@
         "Entao vou mostrar-te como se\\ndanca. Vou mostrar-te uma\\lgrande.\\pWahahaha!$"
       ],
       "EcruteakCity_Theater_Text_RocketSeen": [
-        "Huh? Quem e tu? Atreves-te a\\nmeter-te no meu caminho?$"
+        "Huh? Quem e voce? Atreves-te a\\nmeter-te no meu caminho?$"
       ],
       "EcruteakCity_Theater_Text_RocketBeaten": [
         "Nao! Fazes-me parecer um vilao!$"
       ],
       "EcruteakCity_Theater_Text_KimonoRocket3": [
-        "Deves ser.{PLAYER}Correcto?\\nIsso foi realmente excelente.\\pGentil e forte... Bom em criar\\nPOKEMON tambem...\\pEssa pessoa sabe o que procurar\\nnas pessoas...\\pOhoho! Era so eu a falar\\nsozinho. Esquece.$"
+        "Deve ser.{PLAYER}Correcto?\\nIsso foi realmente excelente.\\pGentil e forte... Bom em criar\\nPOKEMON tambem...\\pEssa pessoa sabe o que procurar\\nnas pessoas...\\pOhoho! Era so eu a falar\\nsozinho. Esquece.$"
       ],
       "EcruteakCity_Theater_Text_SurfGuyGiveSurf": [
         "Maravilhoso! Foi tao corajoso\\npara sua idade!\\pFoi uma visao rara! Quero que\\nfiques com isto.\\pNao sejas timido, toma!$"
@@ -560,7 +560,7 @@
     },
     "data/maps/EverGrandeCity_GlaciasRoom/scripts.inc": {
       "EverGrandeCity_GlaciasRoom_Text_Defeat": [
-        "Tu e seu POKEMON... Que calor\\nardem os vossos espiritos!\\pO calor todo consome.\\pNao e surpresa que as minhas\\nhabilidades geladas nao te\\ltenham feito mal.$"
+        "Voce e seu POKEMON... Que calor\\nardem os vossos espiritos!\\pO calor todo consome.\\pNao e surpresa que as minhas\\nhabilidades geladas nao te\\ltenham feito mal.$"
       ],
       "EverGrandeCity_GlaciasRoom_Text_PostBattleSpeech": [
         "Avancem para o quarto ao lado.\\pE la, confirme o lado\\nverdadeiramente temivel da\\lLEAGUE POKEMON.$"
@@ -600,7 +600,7 @@
     },
     "data/maps/FallarborTown_BattleTentCorridor/scripts.inc": {
       "FallarborTown_ContestHall_Text_DoAllRightInPreliminary": [
-        "Estamos bem na fase preliminar,\\nmas nunca podemos ganhar os\\lrecursos...\\pTalvez signifique que tenho de\\nver o que os outros\\lconcorrentes estao fazendo...$"
+        "Estamos bem na fase preliminar,\\nmas nunca podemos ganhar os\\lrecursos...\\pTalvez signifique que preciso\\nver o que os outros\\lconcorrentes estao fazendo...$"
       ]
     },
     "data/maps/FallarborTown_BattleTentLobby/scripts.inc": {
@@ -608,7 +608,7 @@
         "Fufufufu.\\pVou fazer todos pensarem que\\nsou apenas uma crianca e\\ldeixa-los brincar.\\pEntao, vou choca-los e capturar\\no titulo!$"
       ],
       "FallarborTown_BattleTentLobby_Text_CameToCampOut": [
-        "Ouvi algo sobre uma tenda e vim\\nacampar.\\pNao sabia que as tendas hoje em\\ndia sao tao luxuosas!\\pJa que estou aqui, mais vale\\ntentar lutar!$"
+        "Ouvi algo sobre uma tenda e vim\\nacampar.\\pNao sabia que as tendas hoje em\\ndia sao tao luxuosas!\\pJa que estou aqui, mais vale\\ntentar batalhar!$"
       ]
     },
     "data/maps/FallarborTown_CozmosHouse/scripts.inc": {
@@ -766,7 +766,7 @@
         "Se nao tem espaco para isso,\\nfico com ele ate a proxima vez.$"
       ],
       "FiveIsland_MemorialPillar_Text_StillHaveThingAsMyThanks": [
-        "Oh, e tu daquela altura...\\pAinda tenho aquilo que queria\\nque tivesses como\\lagradecimento.$"
+        "Oh, e voce daquela altura...\\pAinda tenho aquilo que queria\\nque tivesses como\\lagradecimento.$"
       ],
       "FiveIsland_MemorialPillar_Text_ScrubScrubTectonix": [
         "Esfrega, esfrega...\\p... TECTONIX...$"
@@ -777,7 +777,7 @@
         "Vou preparar uma refeicao para\\numa pessoa de alta sociedade.$"
       ],
       "FiveIsland_PokemonCenter_1F_Text_YoureOnQuestToCatchEveryMon": [
-        "Estas numa missao para capturar\\ntodos os tipos de POKEMON?\\pQue incrivel. Por favor, me diga\\nse apanhares um forte!$"
+        "Estas numa missao para capturar\\ntodos os tipos de POKEMON?\\pQue incrivel. Por favor, me diga\\nse capturar um forte!$"
       ]
     },
     "data/maps/FiveIsland_ResortGorgeous_Frlg/scripts.inc": {
@@ -812,7 +812,7 @@
         "Meu Deus, tao forte.$"
       ],
       "FiveIsland_ResortGorgeous_Text_JackiPostBattle": [
-        "Acho agradavel lutar com a\\nsuave brisa do mar.$"
+        "Acho agradavel batalhar com a\\nsuave brisa do mar.$"
       ],
       "FiveIsland_ResortGorgeous_Text_GillianIntro": [
         "Estou pensando fazer uma\\npiscina especialmente para o\\lPOKEMON.$"
