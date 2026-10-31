@@ -160,7 +160,7 @@
         "Pergunto-me o que e mais forte,\\nmasculino ou feminino POKEMON?$"
       ],
       "Route13_Text_SheilaIntro": [
-        "Quer lutar comigo?$"
+        "Quer batalhar comigo?$"
       ],
       "Route13_Text_SheilaDefeat": [
         "Ja acabou?$"
@@ -240,7 +240,7 @@
         "O que? O que ainda quer?$"
       ],
       "Route14_Text_IsaacIntro": [
-        "Preciso de me queimar algum\\ntempo. Cala-te e luta.$"
+        "Preciso de me queimar algum\\ntempo. Cala-te e batalha.$"
       ],
       "Route14_Text_IsaacDefeat": [
         "O que? Voce!$"
@@ -255,7 +255,7 @@
         "Toalhita!$"
       ],
       "Route14_Text_GeraldPostBattle": [
-        "E legal teres tornado o seu\\nPOKEMON tao forte.\\pO poder esta certo! E tu sabe\\ndisso!$"
+        "E legal teres tornado o seu\\nPOKEMON tao forte.\\pO poder esta certo! E voce sabe\\ndisso!$"
       ],
       "Route14_Text_MalikIntro": [
         "Batalha POKEMON? Legal! Rumble!$"
@@ -264,7 +264,7 @@
         "Explodiu!$"
       ],
       "Route14_Text_MalikPostBattle": [
-        "Sabe quem ganharia, tu e eu a\\nsos!$"
+        "Sabe quem ganharia, voce e eu a\\nsos!$"
       ]
     },
     "data/maps/Route15_Frlg/scripts.inc": {
@@ -358,7 +358,7 @@
         "{PLAYER}Recebido o{STR_VAR_2}Da\\nAIDE.$"
       ],
       "Route15_WestEntrance_2F_Text_ExplainExpShare": [
-        "EXP. SHARE e um item a ser\\nmantido por um POKEMON.\\pO POKEMON recebera uma parte da\\nEXP. Pontos sem ter de lutar.$"
+        "EXP. SHARE e um item a ser\\nmantido por um POKEMON.\\pO POKEMON recebera uma parte da\\nEXP. Pontos sem ter de batalhar.$"
       ],
       "Route15_WestEntrance_2F_Text_LargeShiningBird": [
         "Vamos ver o que os binoculos\\ntem para mostrar...\\pUm passaro grande e brilhante\\nesta voando em direcao ao mar.$"
@@ -393,7 +393,7 @@
         "Odeio perder! Sai da minha\\nfrente!$"
       ],
       "Route16_Text_HideoIntro": [
-        "Ei, tu bateste-me!$"
+        "Ei, voce bateste-me!$"
       ],
       "Route16_Text_HideoPostBattle": [
         "Estaremos sempre por aqui,\\nmesmo que nao gostes.\\pVoce pode desviar para\\nVERMILION de FUCHSIA ao longo\\lda costa.$"
@@ -461,7 +461,7 @@
     },
     "data/maps/Route17_Frlg/scripts.inc": {
       "Route17_Text_RaulIntro": [
-        "Nao ha como ficar rico a lutar\\ncontra criancas.$"
+        "Nao ha como ficar rico a batalhar\\ncontra criancas.$"
       ],
       "Route17_Text_RaulDefeat": [
         "Queimado!$"
@@ -500,7 +500,7 @@
         "Eu nivelei meu POKEMON, mas\\nnao vai evoluir. Porque?$"
       ],
       "Route17_Text_ZeekDefeat": [
-        "Ora, tu!$"
+        "Ora, voce!$"
       ],
       "Route17_Text_JamalIntro": [
         "Preciso de um pouco de\\nexercicio!$"
@@ -515,7 +515,7 @@
         "Se um rebelde!$"
       ],
       "Route17_Text_CoreyPostBattle": [
-        "Esteja pronto para lutar por\\nsuas crencas!$"
+        "Esteja pronto para batalhar por\\nsuas crencas!$"
       ],
       "Route17_Text_JaxonDefeat": [
         "Atire!$"
@@ -571,7 +571,7 @@
     },
     "data/maps/Route19_Frlg/scripts.inc": {
       "Route19_Text_RichardIntro": [
-        "Tenho de me exercitar e aquecer\\nantes de ir nadar.$"
+        "Preciso me exercitar e aquecer\\nantes de ir nadar.$"
       ],
       "Route19_Text_RichardDefeat": [
         "Tudo aquecido!$"
@@ -586,7 +586,7 @@
         "Ooh! Que frio!$"
       ],
       "Route19_Text_MatthewIntro": [
-        "Adoro nadar! E tu?$"
+        "Adoro nadar! E voce?$"
       ],
       "Route19_Text_MatthewDefeat": [
         "Barriga flop!$"
