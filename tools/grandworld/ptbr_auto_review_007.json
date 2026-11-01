@@ -37,7 +37,7 @@
         "Que surpresa! Tem mais de um\\nfossil?\\pInfelizmente, minha maquina\\nso pode regenerar um POKEMON de\\lcada vez.\\pQue fossil gostaria de\\nregenerar?$"
       ],
       "RuinsOfAlph_Lab_Text_FossilizedMonBroughtBackToLife": [
-        "Obrigado por esperar!\\pO seu POKEMON fossilizado foi\\ntrazido de volta a vida!\\pO fossil era um antigo\\nPokemon.{STR_VAR_2}Foi!$"
+        "Obrigado por esperar!\\pO seu POKEMON fossilizado foi\\ntrazido de volta a vida!\\pO fossil era um antigo\\nPokemon.{STR_VAR_2} Foi!$"
       ],
       "RuinsOfAlph_Lab_Text_TooManyPokemon": [
         "Sua equipe esta cheia.\\nNao ha espaco para este POKEMON.$"
@@ -353,7 +353,7 @@
         "Por suas sete vitorias,\\noferecemos este\\lpremio especial!$"
       ],
       "BattleFrontier_BattleArenaLobby_Text_ReceivedPrize": [
-        "{PLAYER}recebeu o\\npremio{STR_VAR_1}.$"
+        "{PLAYER} recebeu o\\npremio {STR_VAR_1}.$"
       ],
       "BattleFrontier_BattleArenaLobby_Text_BagFullReturnForPrize": [
         "A serio? Seu BAG parece estar\\ncheio.\\pPeco-lhe que abra espaco e\\nretorne para seu premio.$"
@@ -391,25 +391,25 @@
     },
     "data/maps/BattleFrontier_BattleDomeBattleRoom/scripts.inc": {
       "BattleFrontier_BattleDomeBattleRoom_Text_PlayerVersusTrainer": [
-        "{STR_VAR_1}Combina!\\p{PLAYER}versus{STR_VAR_2}!\\pQue comece a batalha!$"
+        "{STR_VAR_1} Combina!\\p {PLAYER} versus {STR_VAR_2}!\\pQue comece a batalha!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsWinner": [
-        "{PLAYER}e o vencedor! Parabens!$"
+        "{PLAYER} e o vencedor! Parabens!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_TrainerIsWinner": [
-        "{STR_VAR_2}e o vencedor!\\nParabens!$"
+        "{STR_VAR_2} e o vencedor!\\nParabens!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsLv50Champ": [
-        "{PLAYER}e o Campeao do Torneio\\nde Batalha Nivel 50!\\pParabens!$"
+        "{PLAYER} e o Campeao do Torneio\\nde Batalha Nivel 50!\\pParabens!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsLvOpenChamp": [
-        "{PLAYER}e o campeao do torneio\\nde batalha de nivel aberto!\\pParabens!$"
+        "{PLAYER} e o campeao do torneio\\nde batalha de nivel aberto!\\pParabens!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_RefereesDecidedWinnerTrainer": [
-        "Os REFEREES chegaram a uma\\ndecisao!\\pO vencedor e... Meu Deus! O\\nvencedor e{STR_VAR_1}Parabens!$"
+        "Os REFEREES chegaram a uma\\ndecisao!\\pO vencedor e... Meu Deus! O\\nvencedor e {STR_VAR_1} Parabens!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_RefereesDecidedWinnerPlayer": [
-        "Os REFEREES chegaram a uma\\ndecisao!\\pO vencedor e... Meu Deus! O\\nvencedor e{PLAYER}Parabens!$"
+        "Os REFEREES chegaram a uma\\ndecisao!\\pO vencedor e... Meu Deus! O\\nvencedor e {PLAYER} Parabens!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_BrightNewHope": [
         "A nova esperanca brilhante!\\p$"
@@ -469,7 +469,7 @@
         "Sua estrategia! Vamos ver!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_IncredibleVictorIsPlayer": [
-        "Inacreditavel! E incrivel! O\\nvencedor e{PLAYER}!$"
+        "Inacreditavel! E incrivel! O\\nvencedor e {PLAYER}!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_ReceivedTacticsSymbol": [
         "O simbolo tactico foi gravado\\nno PASS FRONTIER!$"
@@ -493,13 +493,13 @@
         "Voce e muito forte\\ne tem um estilo unico!\\pVejo em voce o potencial\\nde uma verdadeira estrela.\\lAssim como eu!\\pEspero nossa proxima\\nbatalha!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsLv50Champ2": [
-        "{PLAYER}e o Campeao do Torneio\\nde Batalha Nivel 50!\\pParabens!$"
+        "{PLAYER} e o Campeao do Torneio\\nde Batalha Nivel 50!\\pParabens!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsLvOpenChamp2": [
-        "{PLAYER}e o campeao do torneio\\nde batalha de nivel aberto!\\pParabens!$"
+        "{PLAYER} e o campeao do torneio\\nde batalha de nivel aberto!\\pParabens!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_PlayerVersusTucker": [
-        "O jogo final!\\p{PLAYER}contra o ACE DOME,\\nTUCKER!\\pQue comece a batalha!$"
+        "O jogo final!\\p {PLAYER} contra o ACE DOME,\\nTUCKER!\\pQue comece a batalha!$"
       ]
     },
     "data/maps/BattleFrontier_BattleDomeLobby/scripts.inc": {
@@ -528,7 +528,7 @@
         "Aqui esta seu premio para a\\nsua vitoria no Torneio de\\lBatalha.$"
       ],
       "BattleFrontier_BattleDomeLobby_Text_ReceivedPrize": [
-        "{PLAYER}recebeu o\\npremio{STR_VAR_1}.$"
+        "{PLAYER} recebeu o\\npremio {STR_VAR_1}.$"
       ],
       "BattleFrontier_BattleDomeLobby_Text_ThankYouForPlaying": [
         "Obrigado por jogar!$"
@@ -543,7 +543,7 @@
         "Antes de iniciar o\\nBATTLE DOME, preciso salvar\\los dados. Tudo bem?$"
       ],
       "BattleFrontier_BattleDomeLobby_Text_LastWinnerWasTough": [
-        "Viu? O ultimo torneio de\\nbatalha?\\pO vencedor,{STR_VAR_1}Foi muito\\ndificil.\\pVoce deve verificar os\\nresultados no monitor ao lado\\ldo PC.$"
+        "Viu? O ultimo torneio de\\nbatalha?\\pO vencedor,{STR_VAR_1} Foi muito\\ndificil.\\pVoce deve verificar os\\nresultados no monitor ao lado\\ldo PC.$"
       ],
       "BattleFrontier_OutsideWest_Text_QuestionMarkUnderConstruction": [
         "O que? Em construcao!$"
@@ -623,7 +623,7 @@
         "Parabens por avancar para o\\njogo final.\\pEs uma vitoria do campeonato.\\nEstas pronto?$"
       ],
       "BattleFrontier_BattleDomePreBattleRoom_Text_PlayersNextOpponentIsTrainer": [
-        "{PLAYER}O proximo oponente e\\neste TREINADOR.$"
+        "{PLAYER} O proximo oponente e\\neste TREINADOR.$"
       ],
       "BattleFrontier_BattleDomePreBattleRoom_Text_TourneyInRound1": [
         "O torneio esta na 1a rodada.$"
@@ -720,7 +720,7 @@
         "Devolveremos seu POKEMON\\npessoal.$"
       ],
       "BattleFrontier_BattleFactoryLobby_Text_ReceivedPrizeItem": [
-        "{PLAYER}recebeu o\\npremio{STR_VAR_1}.$"
+        "{PLAYER} recebeu o\\npremio {STR_VAR_1}.$"
       ],
       "BattleFrontier_BattleFactoryLobby_Text_TakeDoublesChallenge": [
         "Voce gostaria de enfrentar o\\ndesafio Dupla Troca de Batalha?$"
