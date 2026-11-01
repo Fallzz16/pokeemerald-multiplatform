@@ -10,7 +10,7 @@
     20,
     21
   ],
-  "changed_entries": 34,
+  "changed_entries": 42,
   "changed_labels_by_shard_and_source": {
     "tools/grandworld/ptbr_auto_review_017.json": {
       "data/maps/MtSilver_PokemonCenter/scripts.inc": [
@@ -78,11 +78,21 @@
       ]
     },
     "tools/grandworld/ptbr_auto_review_021.json": {
+      "data/maps/SlateportCity/scripts.inc": [
+        "SlateportCity_Text_SeaweedFullOfLife",
+        "SlateportCity_Text_SlateportWonderfulPlace",
+        "SlateportCity_Text_EveryoneCallsHimCaptStern",
+        "SlateportCity_Text_WhatsLongLineOverThere",
+        "SlateportCity_Text_QuitPushing",
+        "SlateportCity_Text_AquaHasPolicy",
+        "SlateportCity_Text_IllReadSignForYou"
+      ],
       "data/maps/SlateportCity_BattleTentCorridor/scripts.inc": [
         "SlateportCity_ContestHall_Text_ExplainTorment"
       ],
       "data/maps/SlateportCity_BattleTentLobby/scripts.inc": [
-        "SlateportCity_BattleTentLobby_Text_ExplainTorment"
+        "SlateportCity_BattleTentLobby_Text_ExplainTorment",
+        "SlateportCity_BattleTentLobby_Text_BattleEvenWithoutToughMons"
       ],
       "data/maps/SlateportCity_NameRatersHouse/scripts.inc": [
         "SlateportCity_NameRatersHouse_Text_FineNameSuggestBetterOne",
