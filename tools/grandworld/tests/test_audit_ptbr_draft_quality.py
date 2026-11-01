@@ -41,6 +41,10 @@ class PTBRDraftQualityTests(unittest.TestCase):
         self.assertEqual(report["stage18_editorial_upgraded_from_assisted"], 65)
         self.assertEqual(report["stage18_newly_touched_drafts"], 70)
         self.assertEqual(report["still_without_assisted_or_editorial_touch"], 2115)
+        self.assertEqual(report["stage19_changed_pending_editorial_approval"], 604)
+        self.assertEqual(report["stage19_newly_touched_drafts"], 342)
+        self.assertEqual(report["stage19_earlier_assisted_refinements"], 262)
+        self.assertEqual(report["still_without_assisted_or_editorial_touch_after_stage19"], 1773)
         self.assertLessEqual(len(report["sample_unreviewed_warnings"]), 4)
         self.assertEqual(report["review_status"],
                          "diagnostic_only_no_gameplay_certification")
