@@ -15,7 +15,7 @@
     },
     "data/maps/FortreeCity_House1/scripts.inc": {
       "FortreeCity_House1_Text_YouWillTradeWontYou": [
-        "Escreveu! Preciso dele! Tenho\\nde arranjar um{STR_VAR_1}Faco\\lqualquer coisa por isso!\\pOuviste aquilo? Meu grito do\\nfundo do coracao?\\pTendo ouvido isso, voce vai\\ntrocar o seu{STR_VAR_1}para a\\lminha{STR_VAR_2}Nao vai?$"
+        "Escreveu! Preciso dele! Tenho\\nde arranjar um {STR_VAR_1} Faco\\lqualquer coisa por isso!\\pOuviste aquilo? Meu grito do\\nfundo do coracao?\\pTendo ouvido isso, voce vai\\ntrocar o seu {STR_VAR_1} para a\\lminha {STR_VAR_2} Nao vai?$"
       ],
       "FortreeCity_House1_Text_MonYouTakeCare": [
         "Sim, isso mesmo!\\p{STR_VAR_1}Bem-vindos!{STR_VAR_2}Cuida-te!$"
@@ -117,7 +117,7 @@
         "Nem pensar! Nao te vou dizer\\nisso!$"
       ],
       "FourIsland_IcefallCave_Back_Text_ThankYouThisIsAwful": [
-        "{PLAYER}Obrigado. Mas isto e\\nhorrivel...\\pNasci e cresci aqui nestas\\nilhas.\\pNao fazia ideia que aqueles\\ncriminosos horriveis estavam\\lsoltos aqui...$"
+        "{PLAYER} Obrigado. Mas isto e\\nhorrivel...\\pNasci e cresci aqui nestas\\nilhas.\\pNao fazia ideia que aqueles\\ncriminosos horriveis estavam\\lsoltos aqui...$"
       ]
     },
     "data/maps/FourIsland_LoreleisHouse_Frlg/scripts.inc": {
@@ -183,7 +183,7 @@
         "Que golpe deve ser\\nesquecido?$"
       ],
       "FuchsiaCity_House3_Text_MonOnlyKnowsOneMove": [
-        "{STR_VAR_1}Parece saber apenas\\num golpe...$"
+        "{STR_VAR_1} Parece saber apenas\\num golpe...$"
       ],
       "FuchsiaCity_House3_Text_MonHasForgottenMoveCompletely": [
         "Funcionou perfeitamente!\\p{STR_VAR_1}esqueceu-se{STR_VAR_2}Completamente.$"
@@ -202,7 +202,7 @@
     },
     "data/maps/FuchsiaCity_SafariZone_Entrance_Frlg/scripts.inc": {
       "FuchsiaCity_SafariZone_Entrance_Text_PlayerReceived30SafariBalls": [
-        "{PLAYER}recebeu 30 SAFARI BALLS\\ndo atendente.$"
+        "{PLAYER} recebeu 30 SAFARI BALLS\\ndo atendente.$"
       ],
       "FuchsiaCity_SafariZone_Entrance_Text_OkayPleaseComeAgain": [
         "Esta bem. Por favor, volta\\noutra vez!$"
@@ -233,7 +233,7 @@
         "Ha? Ele ohay heh ha hoo ee\\nhaheh!$"
       ],
       "FuchsiaCity_WardensHouse_Text_ReceivedHM04FromWarden": [
-        "{PLAYER}recebeu HM04 do WARDEN.$"
+        "{PLAYER} recebeu HM04 do WARDEN.$"
       ],
       "FuchsiaCity_WardensHouse_Text_MonPhotosFossilsOnDisplay": [
         "Fotos e fosseis de POKEMON\\nestao em exposicao.$"
@@ -255,7 +255,7 @@
         "Ola TREINADOR! O Concurso de\\nApanhar Insectos e hoje.\\pAs regras sao simples.\\pUsando um de seu POKEMON, pegar\\num bug POKEMON para ser\\ljulgado.\\pQueres tentar?$"
       ],
       "Route35NationalParkGate_Text_ReceivedParkBalls": [
-        "{PLAYER}recebeu SAFARI BALLS.$"
+        "{PLAYER} recebeu SAFARI BALLS.$"
       ],
       "Route35NationalParkGate_Text_OfficerAskToUseFirstMon": [
         "Se voce tem mais de um POKEMON,\\nvoce tera que usar o primeiro\\lPOKEMON em seu partido.\\pNao te importas?$"
@@ -310,7 +310,7 @@
     },
     "data/maps/GoldenrodCity_BillsHouse/scripts.inc": {
       "BillHouse_Text_ReceivedEevee": [
-        "{PLAYER}Recebido EEVEE!$"
+        "{PLAYER} Recebido EEVEE!$"
       ],
       "BillHouse_Text_EeveeMayEvolve": [
         "BILL: PROF.ELM afirma que EEVEE\\npode evoluir de formas novas e\\ldesconhecidas.$"
@@ -398,10 +398,10 @@
     },
     "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.inc": {
       "GoldenrodCity_DepartmentStore_6F_Text_YouWillTradeWontYou": [
-        "Coleciono POKEMON! Voce tem\\num{STR_VAR_1}?\\pQuero troca-lo pela\\nminha{STR_VAR_2}?$"
+        "Coleciono POKEMON! Voce tem\\num {STR_VAR_1}?\\pQuero troca-lo pela\\nminha {STR_VAR_2}?$"
       ],
       "GoldenrodCity_DepartmentStore_6F_Text_MonYouTakeCare": [
-        "Boa! Consegui-me.{STR_VAR_1}!\\p{STR_VAR_2}Cuida-te!$"
+        "Boa! Consegui-me.{STR_VAR_1}!\\p{STR_VAR_2} Cuida-te!$"
       ],
       "GoldenrodCity_DepartmentStore_6F_Text_ThisIsntAMon": [
         "Nao, acho que nao. Isso nao\\ne...{STR_VAR_1}.$"
@@ -449,13 +449,13 @@
     },
     "data/maps/GoldenrodCity_GameCorner/scripts.inc": {
       "GoldenrodCity_GameCorner_PrizeRoom_Text_YouWantPrize": [
-        "{STR_VAR_1}E isso que quer?$"
+        "{STR_VAR_1} E isso que quer?$"
       ],
       "GoldenrodCity_GameCorner_Text_PlayerObtainedTheMon": [
-        "{PLAYER}tem{STR_VAR_1}!$"
+        "{PLAYER} tem {STR_VAR_1}!$"
       ],
       "GoldenrodGamecorner_Text_GiveNicknameToThisMon": [
-        "Apelido{STR_VAR_1}?$"
+        "Apelido {STR_VAR_1}?$"
       ],
       "GoldenrodCity_GameCorner_Text_PrizeVendorIntro": [
         "Bem-vindos!\\pNos trocamos suas moedas de\\njogo por premios fabulosos!$"
@@ -508,22 +508,22 @@
         "Gostaria de alternar a\\nconfiguracao de Cores\\lBrilhantes Unicas?$"
       ],
       "GoldenrodCity_NameRatersHouse_Text_FineNameSuggestBetterOne": [
-        "Hmmm...{STR_VAR_1}E mesmo? E um\\nbelo nome que me deste.\\pMas! Que dizes, se eu sugerisse\\num nome um pouco melhor?$"
+        "Hmmm...{STR_VAR_1} E mesmo? E um\\nbelo nome que me deste.\\pMas! Que dizes, se eu sugerisse\\num nome um pouco melhor?$"
       ],
       "GoldenrodCity_NameRatersHouse_Text_WhatShallNewNameBe": [
         "Ainda bem. Entao, qual sera o\\nnovo apelido?$"
       ],
       "GoldenrodCity_NameRatersHouse_Text_MonShallBeKnownAsName": [
-        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pE um nome melhor do que antes!\\nQue sorte a sua!$"
+        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo {STR_VAR_1}!\\pE um nome melhor do que antes!\\nQue sorte a sua!$"
       ],
       "GoldenrodCity_NameRatersHouse_Text_DoVisitAgain": [
         "Estou vendo. Vem visitar-me\\noutra vez.$"
       ],
       "GoldenrodCity_NameRatersHouse_Text_NameNoDifferentYetSuperior": [
-        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pNao parece diferente de antes,\\ne no entanto, isto e muito\\lsuperior!\\pQue sorte a sua!$"
+        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo {STR_VAR_1}!\\pNao parece diferente de antes,\\ne no entanto, isto e muito\\lsuperior!\\pQue sorte a sua!$"
       ],
       "GoldenrodCity_NameRatersHouse_Text_MagnificentName": [
-        "Hmmm...{STR_VAR_1}E e!\\pE uma alcunha magnifica! E\\nimpecavelmente irrepreensivel!\\pVais fazer bem em apreciar o\\nteu{STR_VAR_1}agora e alem.$"
+        "Hmmm...{STR_VAR_1} E e!\\pE uma alcunha magnifica! E\\nimpecavelmente irrepreensivel!\\pVais fazer bem em apreciar o\\nteu {STR_VAR_1} agora e alem.$"
       ],
       "GoldenrodCity_NameRatersHouse_Text_ThatIsMerelyAnEgg": [
         "Agora, agora. Isso e apenas um\\nEGG!$"
@@ -569,7 +569,7 @@
         "Oh... Bem, noutra altura,\\nentao.$"
       ],
       "GoldenrodCity_PokemonCenter_PlayerGaveAwayTheEonMailText": [
-        "{PLAYER}Doou o EON MAIL.$"
+        "{PLAYER} Doou o EON MAIL.$"
       ]
     },
     "data/maps/GoldenrodCity_RadioTower_1F/scripts.inc": {
@@ -613,22 +613,22 @@
         "Desculpa. Nenhum dos numeros\\ncorresponde.$"
       ],
       "GoldenrodCity_RadioTower_1F_Text_TwoDigitsMatched": [
-        "Dois digitos correspondem,\\nentao voce ganha o terceiro\\lpremio! Venceu o{STR_VAR_1}!$"
+        "Dois digitos correspondem,\\nentao voce ganha o terceiro\\lpremio! Venceu o {STR_VAR_1}!$"
       ],
       "GoldenrodCity_RadioTower_1F_Text_ThreeDigitsMatched": [
-        "Tres digitos correspondem,\\nentao voce ganha o segundo\\lpremio! Venceu o{STR_VAR_1}!$"
+        "Tres digitos correspondem,\\nentao voce ganha o segundo\\lpremio! Venceu o {STR_VAR_1}!$"
       ],
       "GoldenrodCity_RadioTower_1F_Text_FourDigitsMatched": [
-        "Quatro digitos correspondem,\\nentao voce ganha o primeiro\\lpremio! Venceu o{STR_VAR_1}!$"
+        "Quatro digitos correspondem,\\nentao voce ganha o primeiro\\lpremio! Venceu o {STR_VAR_1}!$"
       ],
       "GoldenrodCity_RadioTower_1F_Text_AllFiveDigitsMatched": [
-        "Meu Deus, todos os cinco\\ndigitos correspondem!\\pGanhaste o premio do jackpot!\\nGanhaste o{STR_VAR_1}!$"
+        "Meu Deus, todos os cinco\\ndigitos correspondem!\\pGanhaste o premio do jackpot!\\nGanhaste o {STR_VAR_1}!$"
       ],
       "GoldenrodCity_RadioTower_1F_Text_NoRoomForThis": [
         "A serio? Parece que nao tem\\nespaco para isto.\\pPor favor, abra espaco no seu\\nBAG e avise-me.$"
       ],
       "GoldenrodCity_RadioTower_1F_Text_PrizeWeveBeenHolding": [
-        "{PLAYER}Sim, estava a sua\\nespera.\\pEste e o premio que temos\\nguardado para voce.$"
+        "{PLAYER} Sim, estava a sua\\nespera.\\pEste e o premio que temos\\nguardado para voce.$"
       ],
       "GoldenrodCity_RadioTower_1F_Text_PleaseVisitAgain2": [
         "Por favor, visite novamente.$"
@@ -771,7 +771,7 @@
         "Esta bem, esta bem. Eu digo-te\\nonde ele esta.$"
       ],
       "GoldenrodCity_RadioTower_5F_Text_ExecutiveF1After": [
-        "{PLAYER}Nao e?\\pUm pirralho como voce nao vai\\napreciar a magnificencia do\\lTEAM ROCKET.\\pQue pena. Admiro seu poder.$"
+        "{PLAYER} Nao e?\\pUm pirralho como voce nao vai\\napreciar a magnificencia do\\lTEAM ROCKET.\\pQue pena. Admiro seu poder.$"
       ]
     },
     "data/maps/GoldenrodCity_TrainStation/scripts.inc": {
