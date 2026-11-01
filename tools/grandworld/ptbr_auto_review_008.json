@@ -200,7 +200,7 @@
         "Para um tipo duro como eu,\\nPOKEMON e o melhor.\\pO ataque e a melhor defesa! Um\\nataque implacavel e o maximo!\\pMas nao era sobre isso que eu\\nqueria falar.\\pDe vez em quando passa por aqui\\numa senhora muito gira.\\pEla diz que pode dizer o que\\nPokemon esta pensando.\\pNao sei, mas ela e muito gira.\\pHuh? Porque estas a olhar para\\nmim assim?$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_NatureAndMovesKeyHere": [
-        "Hmm...\\pParece que a natureza de\\nPOKEMON e os movimentos que\\llhes foram ensinados sao as\\lchaves para batalhar aqui.\\pPara ser mais preciso, e o quao\\nbem os movimentos correspondem\\la natureza do POKEMON.\\pSe seu POKEMON estiver em\\nperigo e nao puder fazer jus ao\\lseu potencial, podera ter de\\lexaminar a forma como os seus\\lmovimentos correspondem a sua\\lnatureza.$"
+        "Hmm...\\pParece que a natureza de\\nPOKEMON e os golpes que\\llhes foram ensinados sao as\\lchaves para batalhar aqui.\\pPara ser mais preciso, e o quao\\nbem os golpes correspondem\\la natureza do POKEMON.\\pSe seu POKEMON estiver em\\nperigo e nao puder fazer jus ao\\lseu potencial, podera ter de\\lexaminar a forma como os seus\\lmovimentos correspondem a sua\\lnatureza.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_WhatNatureFavorsChippingAway": [
         "Pergunto-me que tipo de\\nnatureza um POKEMON teria se\\lfavorecesse a fraude dos seus\\ladversarios e a lapidacao\\llentamente.\\pFicaria surpreendido se fosse\\numa natureza LAX.\\pMas isso nao pode estar certo.$"
@@ -224,13 +224,13 @@
         "Aqui, POKEMON sao obrigados a\\npensar e batalhar sozinhos.\\pAo contrario na natureza,\\nPOKEMON que vivem com as\\lpessoas comportam-se de forma\\ldiferente, dependendo de sua\\lnatureza.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesNature": [
-        "Dependendo da sua natureza, um\\nPOKEMON pode preferir atacar,\\laconteca o que acontecer.\\pOutro POKEMON pode preferir\\nproteger-se de qualquer dano.\\pNo entanto, outro pode gostar\\nde aborrecer ou confundir seus\\linimigos.\\pDevido sua natureza, um\\nPOKEMON tera movimentos\\lfavoritos que e bom em usar.\\pPode tambem nao gostar de\\ncertos movimentos que tem\\ldificuldade em usar.$"
+        "Dependendo da sua natureza, um\\nPOKEMON pode preferir atacar,\\laconteca o que acontecer.\\pOutro POKEMON pode preferir\\nproteger-se de qualquer dano.\\pNo entanto, outro pode gostar\\nde aborrecer ou confundir seus\\linimigos.\\pDevido sua natureza, um\\nPOKEMON tera golpes\\lfavoritos que e bom em usar.\\pPode tambem nao gostar de\\ncertos golpes que tem\\ldificuldade em usar.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesMoves": [
-        "Ha movimentos ofensivos que\\ncausam danos diretos ao\\linimigo.\\pHa movimentos defensivos que\\nsao usados para se preparar\\lpara ataques inimigos ou usados\\lpara curar HP e assim por\\ldiante.\\pHa tambem outros movimentos um\\npouco estranhos que podem\\lafetar os inimigos com\\lproblemas de estado, incluindo\\lveneno e paralisia.\\pPOKEMON considerara a\\nutilizacao de movimentos nestas\\ltres categorias.$"
+        "Ha golpes ofensivos que\\ncausam danos diretos ao\\linimigo.\\pHa golpes defensivos que\\nsao usados para se preparar\\lpara ataques inimigos ou usados\\lpara curar HP e assim por\\ldiante.\\pHa tambem outros golpes um\\npouco estranhos que podem\\lafetar os inimigos com\\lproblemas de estado, incluindo\\lveneno e paralisia.\\pPOKEMON considerara a\\nutilizacao de golpes nestas\\ltres categorias.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesUnderpowered": [
-        "Quando nao estiver sob o\\ncomando do seu TREINADOR, um\\lPOKEMON pode nao ser capaz de\\lutilizar eficazmente certos\\lmovimentos.\\pUM POKEMON nao e bom em usar\\nqualquer movimento que nao\\lgoste.\\pSe um POKEMON so conhece\\nmovimentos que nao correspondem\\la sua natureza, muitas vezes\\lsera incapaz de cumprir o seu\\lpotencial.$"
+        "Quando nao estiver sob o\\ncomando do seu TREINADOR, um\\lPOKEMON pode nao ser capaz de\\lutilizar eficazmente certos\\lmovimentos.\\pUM POKEMON nao e bom em usar\\nqualquer golpe que nao\\lgoste.\\pSe um POKEMON so conhece\\nmovimentos que nao correspondem\\la sua natureza, muitas vezes\\lsera incapaz de cumprir o seu\\lpotencial.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesWhenInDanger": [
         "Dependendo da sua natureza, um\\nPOKEMON pode comecar a usar\\lmovimentos que nao correspondem\\la sua natureza quando esta em\\lapuros.\\pSe um POKEMON comecar a\\ncomportar-se de forma estranha,\\lobserve- o cuidadosamente.$"
@@ -506,28 +506,28 @@
         "Tem certeza que quer\\ndeixar sua missao PYRAMID?$"
       ],
       "BattlePyramid_Text_ExitHintUp1": [
-        "A saida deste andar e nessa\\ndireccao.{UP_ARROW}$"
+        "A saida deu andar e nessa\\ndireccao.{UP_ARROW}$"
       ],
       "BattlePyramid_Text_ExitHintLeft1": [
-        "A saida deste andar e nessa\\ndireccao.{LEFT_ARROW}$"
+        "A saida deu andar e nessa\\ndireccao.{LEFT_ARROW}$"
       ],
       "BattlePyramid_Text_ExitHintRight1": [
-        "A saida deste andar e nessa\\ndireccao.{RIGHT_ARROW}$"
+        "A saida deu andar e nessa\\ndireccao.{RIGHT_ARROW}$"
       ],
       "BattlePyramid_Text_ExitHintDown1": [
-        "A saida deste andar e nessa\\ndireccao.{DOWN_ARROW}$"
+        "A saida deu andar e nessa\\ndireccao.{DOWN_ARROW}$"
       ],
       "BattlePyramid_Text_ExitHintUp2": [
-        "A saida deste andar e\\nno{UP_ARROW}Direccao.$"
+        "A saida deu andar e\\nno{UP_ARROW}Direccao.$"
       ],
       "BattlePyramid_Text_ExitHintLeft2": [
-        "A saida deste andar e\\nno{LEFT_ARROW}Direccao.$"
+        "A saida deu andar e\\nno{LEFT_ARROW}Direccao.$"
       ],
       "BattlePyramid_Text_ExitHintRight2": [
-        "A saida deste andar e\\nno{RIGHT_ARROW}Direccao.$"
+        "A saida deu andar e\\nno{RIGHT_ARROW}Direccao.$"
       ],
       "BattlePyramid_Text_ExitHintDown2": [
-        "A saida deste andar e\\nno{DOWN_ARROW}Direccao.$"
+        "A saida deu andar e\\nno{DOWN_ARROW}Direccao.$"
       ],
       "BattlePyramid_Text_ExitHintUp3": [
         "A saida e por\\nali.{UP_ARROW}Muito bem.$"
