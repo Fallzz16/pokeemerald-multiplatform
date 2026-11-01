@@ -10,7 +10,7 @@
     },
     "data/maps/FortreeCity_DecorationShop/scripts.inc": {
       "FortreeCity_DecorationShop_Text_MerchandiseSentToPC": [
-        "Merchandise que voce comprar\\naqui e enviado para o seu\\lproprio PC.\\pFantastico! Quem me dera que\\ntambem me pudessem levar para\\lcasa assim.$"
+        "As compras que voce fizer\\naqui serao enviadas\\lpara seu PC.\\pQue pratico! Queria\\nque me levassem para\\lcasa assim tambem!$"
       ]
     },
     "data/maps/FortreeCity_House1/scripts.inc": {
@@ -21,13 +21,13 @@
         "Sim, isso mesmo!\\p{STR_VAR_1}Bem-vindos!{STR_VAR_2}Cuida-te!$"
       ],
       "FortreeCity_House1_Text_ThisIsntAMon": [
-        "Nao, acho que nao. Isso nao\\ne...{STR_VAR_1}.$"
+        "Nao, espere! Esse nao\\ne {STR_VAR_1}.$"
       ],
       "FortreeCity_House1_Text_YouWontTradeMe": [
-        "Nao? Nao me vai trocar? Mesmo\\ndepois de ter aberto o meu\\lcoracao para voce?$"
+        "Nao vai trocar comigo?\\nMesmo depois de eu\\laberir meu coracao?$"
       ],
       "FortreeCity_House1_Text_GoingToMakeVolbeatStrong": [
-        "Vou tornar o VOLBEAT super\\nforte a partir de agora!\\pEspero que facas o mesmo com o\\nPLUSLE!$"
+        "Vou treinar meu VOLBEAT\\npara ficar mais forte!\\pEspero que voce cuide\\nbem do PLUSLE tambem!$"
       ],
       "FortreeCity_House1_Text_TradingMemoriesWithOthers": [
         "Trocar POKEMON com alguem...\\pE como compartilhar\\nas lembrancas deles\\lcom outras pessoas.$"
@@ -38,32 +38,32 @@
         "Pessoas... POKEMON...\\pSeus poderes ocultos sao\\ndespertados por viver em\\lambientes naturais...$"
       ],
       "FortreeCity_House2_Text_CoinInWhichHand": [
-        "Deixa esta velha ver se o seu\\npoder oculto acordou...\\pTenho uma moeda na mao.\\pAgora, me diga, dei-lhe a mao\\ndireita? Ou a esquerda?$"
+        "Quero ver se seu poder\\noculto ja despertou...\\pTenho uma moeda em uma mao.\\pQual delas eu mostrei?\\nDireita ou esquerda?$"
       ],
       "FortreeCity_House2_Text_CorrectTryAgainWhichHand": [
-        "Oh! Sim, correcto!\\pVamos tentar de novo.\\pEm que mao dei a moeda? A\\ndireita ou a esquerda?$"
+        "Isso! Voce acertou!\\pVamos tentar outra vez.\\pEm qual mao esta a moeda?\\nDireita ou esquerda?$"
       ],
       "FortreeCity_House2_Text_CorrectTryAgainWhichHand2": [
-        "Oh! Sim, correcto!\\pVamos tentar de novo.\\pEm que mao dei a moeda? A\\ndireita ou a esquerda?$"
+        "Isso! Voce acertou!\\pVamos tentar outra vez.\\pEm qual mao esta a moeda?\\nDireita ou esquerda?$"
       ],
       "FortreeCity_House2_Text_YourHiddenPowerHasAwoken": [
         "Nossa! Seu poder\\noculto finalmente despertou!\\pAceite isto e desperte\\no poder dos seus POKEMON!$"
       ],
       "FortreeCity_House2_Text_YouGuessedWrong": [
-        "Nao, que pena. Adivinhou mal.$"
+        "Ah, que pena. Errou!$"
       ]
     },
     "data/maps/FortreeCity_House3/scripts.inc": {
       "FortreeCity_House3_Text_OhYouHavePokedex": [
-        "O que e aquilo que tem ai?\\p... ... ... ... ... ...\\pChama-se POKEDEX? E incrivel!$"
+        "O que voce tem ai?\\p... ... ... ... ... ...\\pUma POKEDEX? Que incrivel!$"
       ]
     },
     "data/maps/FortreeCity_House4/scripts.inc": {
       "FortreeCity_House4_Text_BringsWorldCloserTogether": [
-        "Ao estarem juntos com POKEMON,\\nas pessoas fazem cada vez mais\\lamigos.\\pE isso aproxima o mundo. Acho\\nque e maravilhoso!$"
+        "POKEMON aproximam\\nas pessoas e criam\\lbelas amizades.\\pAcho que isso ajuda\\na unir o mundo todo!$"
       ],
       "FortreeCity_House4_Text_AskedWingullToRunErrand": [
-        "Pedi ao meu WINGULL para fazer\\num recado.$"
+        "Pedi ao meu WINGULL\\npara fazer uma entrega.$"
       ],
       "FortreeCity_House4_Text_FriendsFarAwayThanksToWingull": [
         "Gracas ao meu WINGULL, tenho\\namigos que vivem longe.$"
@@ -79,7 +79,7 @@
     },
     "data/maps/FortreeCity_Mart/scripts.inc": {
       "FortreeCity_Mart_Text_SuperRepelBetter": [
-        "SUPER REPEL dura muito tempo, e\\nfaz o trabalho feito.\\pE muito melhor que um REPEL\\ncomum.$"
+        "SUPER REPEL dura mais\\ne funciona muito bem.\\pE bem melhor que\\num REPEL comum.$"
       ],
       "FortreeCity_Mart_Text_StockUpOnItems": [
         "Tenho sempre mais coisas do que\\ntenho a certeza que vou\\lprecisar.\\pNunca se sabe o que pode\\nacontecer. E melhor prevenir do\\lque remediar!$"
@@ -87,34 +87,34 @@
     },
     "data/maps/FortreeCity_PokemonCenter_1F/scripts.inc": {
       "FortreeCity_PokemonCenter_1F_Text_BattleNetIsNeat": [
-        "Viu o TERMINAL BATTLE NET ao\\nlado do PC?\\pE muito legal. Simula batalhas\\ninteiras a pedido.\\pNao sei bem como funciona, mas\\ne legal. Ate e excitante!$"
+        "Viu o terminal BATTLE NET\\nao lado do PC?\\pEle simula batalhas\\ncompletas para voce.\\pNao sei como funciona,\\nmas parece divertido!$"
       ]
     },
     "data/maps/FourIsland_Frlg/scripts.inc": {
       "FourIsland_Text_LoreleiHasReturned": [
-        "O LORELEI voltou.\\pSera que ela achou a vida da\\ncidade demasiado stressante?$"
+        "LORELEI voltou para a ilha.\\pSera que cansou da vida\\nagitada na cidade?$"
       ],
       "FourIsland_Text_MadeSlushieUsingIcefallCaveIce": [
-        "Frio!\\pEu fiz um slushie usando gelo\\nEu barbeei dentro ICEFALL CAVE.\\pEsta frio e saboroso!$"
+        "Que delicia!\\pFiz uma bebida gelada\\ncom gelo da ICEFALL CAVE.\\pFicou bem fresquinha!$"
       ]
     },
     "data/maps/FourIsland_House1_Frlg/scripts.inc": {
       "FourIsland_House1_Text_YoureAwfullyHeavy": [
-        "Ali! Boing! Estas muito pesado!$"
+        "Ah! Boing! Voce e pesado!$"
       ]
     },
     "data/maps/FourIsland_IcefallCave_Back_Frlg/scripts.inc": {
       "FourIsland_IcefallCave_Back_Text_ShutItLadyLeaveUsBe": [
-        "Cala-te, senhora, e deixa-nos\\nem paz.\\pNao deixes que seus oculos\\nse enfurecam!$"
+        "Cale a boca, senhora!\\nDeixe a gente em paz!\\pNao se meta onde nao\\nfoi chamada!$"
       ],
       "FourIsland_IcefallCave_Back_Text_GruntIntro": [
-        "O que?\\pQuem disse que nao podemos\\nfazer o que queremos com o\\lPOKEMON que apanhamos?$"
+        "O que?\\pQuem disse que nao\\npodemos fazer o que\\lquisermos com os POKEMON?$"
       ],
       "FourIsland_IcefallCave_Back_Text_GruntDefeat": [
-        "Nao planeamos isto!$"
+        "Isso nao estava nos planos!$"
       ],
       "FourIsland_IcefallCave_Back_Text_NotTellingYouThat": [
-        "Nem pensar! Nao te vou dizer\\nisso!$"
+        "Nem pensar! Nao vou\\ncontar nada para voce!$"
       ],
       "FourIsland_IcefallCave_Back_Text_ThankYouThisIsAwful": [
         "{PLAYER} Obrigado. Mas isto e\\nhorrivel...\\pNasci e cresci aqui nestas\\nilhas.\\pNao fazia ideia que aqueles\\ncriminosos horriveis estavam\\lsoltos aqui...$"
@@ -138,27 +138,27 @@
     },
     "data/maps/FuchsiaCity_Frlg/scripts.inc": {
       "FuchsiaCity_Text_ItemBallInThere": [
-        "Aquela bola ali dentro...\\nQuerias isso?\\pEu tambem! ...Huh? Isso e um\\nPokemon?$"
+        "Aquela bola ali...\\nVoce queria pega-la?\\pEu tambem! Espere...\\nAquilo e um POKEMON?$"
       ],
       "FuchsiaCity_Text_ChanseySign": [
-        "Nome: CHANSEY capturar um e uma\\noportunidade.$"
+        "Nome: CHANSEY. Capturar\\num e uma raridade.$"
       ],
       "FuchsiaCity_Text_KangaskhanSign": [
-        "Nome: KANGASKHAN\\pUm POKEMON materno que levanta\\nseus filhotes numa bolsa na\\lbarriga.$"
+        "Nome: KANGASKHAN\\pEsse POKEMON carrega\\no filhote numa bolsa\\lna barriga.$"
       ],
       "FuchsiaCity_Text_SlowpokeSign": [
-        "Nome: SLOWPOKE Amigavel e muito\\nlento.$"
+        "Nome: SLOWPOKE.\\nMuito amigavel e lento.$"
       ],
       "FuchsiaCity_Text_OmanyteSign": [
-        "Nome: OMANYTE Um POKEMON\\nextremamente raro que foi\\lregenerado de um fossil.$"
+        "Nome: OMANYTE, um POKEMON\\nraro que foi revivido\\lde um fossil.$"
       ],
       "FuchsiaCity_Text_KabutoSign": [
-        "Nome: KABUTO Um POKEMON\\nextremamente raro que foi\\lregenerado de um fossil.$"
+        "Nome: KABUTO, um POKEMON\\nraro que foi revivido\\lde um fossil.$"
       ]
     },
     "data/maps/FuchsiaCity_House1_Frlg/scripts.inc": {
       "FuchsiaCity_House1_Text_BillFilesHisOwnMonData": [
-        "O BILL regista seus dados\\nPOKEMON no seu PC.\\pEle mostrou-te?$"
+        "BILL guarda os dados\\nde seus POKEMON no PC.\\pJa viu como funciona?$"
       ]
     },
     "data/maps/FuchsiaCity_House2_Frlg/scripts.inc": {
@@ -169,7 +169,7 @@
         "Oh... Isso e tao\\ndecepcionante...$"
       ],
       "FuchsiaCity_House2_Text_HowAreTheFishBiting": [
-        "Ola.{PLAYER}!\\pComo estao os peixes a morder?$"
+        "Ola, {PLAYER}!\\pOs peixes estao mordendo?$"
       ],
       "FuchsiaCity_House2_Text_YouHaveNoRoomForGift": [
         "Nao!\\pTinha um presente para voce, mas\\nnao tem espaco para isso!$"
@@ -183,7 +183,7 @@
         "Que golpe deve ser\\nesquecido?$"
       ],
       "FuchsiaCity_House3_Text_MonOnlyKnowsOneMove": [
-        "{STR_VAR_1} Parece saber apenas\\num golpe...$"
+        "{STR_VAR_1} parece conhecer\\napenas um golpe...$"
       ],
       "FuchsiaCity_House3_Text_MonHasForgottenMoveCompletely": [
         "Funcionou perfeitamente!\\p{STR_VAR_1}esqueceu-se{STR_VAR_2}Completamente.$"
@@ -192,7 +192,7 @@
         "Volte novamente se houver\\noutros golpes a serem\\lesquecidos.$"
       ],
       "FuchsiaCity_House3_Text_NoEggShouldKnowMoves": [
-        "O que? Nenhum EGG deve saber de\\nmovimentos.$"
+        "Mas um EGG ainda\\nnao pode aprender golpes!$"
       ]
     },
     "data/maps/FuchsiaCity_PokemonCenter_1F_Frlg/scripts.inc": {
@@ -205,7 +205,7 @@
         "{PLAYER} recebeu 30 SAFARI BALLS\\ndo atendente.$"
       ],
       "FuchsiaCity_SafariZone_Entrance_Text_OkayPleaseComeAgain": [
-        "Esta bem. Por favor, volta\\noutra vez!$"
+        "Tudo bem. Volte\\noutra oportunidade!$"
       ],
       "FuchsiaCity_SafariZone_Entrance_Text_OopsNotEnoughMoney": [
         "Oops! Nao ha dinheiro\\nsuficiente!$"
@@ -214,10 +214,10 @@
         "Boa sorte!$"
       ],
       "FuchsiaCity_SafariZone_Entrance_Text_CatchFairShareComeAgain": [
-        "Capturou sua parte? Volta\\noutra vez!$"
+        "Conseguiu boas capturas?\\nVolte para jogar de novo!$"
       ],
       "FuchsiaCity_SafariZone_Entrance_Text_SorryYoureARegularHere": [
-        "Desculpa, e cliente habitual\\naqui!$"
+        "Ora, voce ja e\\ncliente daqui!$"
       ]
     },
     "data/maps/FuchsiaCity_SafariZone_Office_Frlg/scripts.inc": {
@@ -239,62 +239,62 @@
         "Fotos e fosseis de POKEMON\\nestao em exposicao.$"
       ],
       "FuchsiaCity_WardensHouse_Text_OldMonMerchandiseOnDisplay": [
-        "A velha mercadoria POKEMON esta\\nem exposicao.$"
+        "Produtos antigos de POKEMON\\nestao em exposicao.$"
       ]
     },
     "data/maps/Gate_AzaleaTown_IlexForest/scripts.inc": {
       "Gate_AzaleaTown_IlexForest_Text_Officer": [
-        "ILEX FOREST e grande. Cuidado!\\nNao te percas.$"
+        "A ILEX FOREST e grande.\\nCuidado para nao se perder!$"
       ],
       "Gate_AzaleaTown_IlexForest_Text_Granny": [
-        "O ILEX FOREST e vigiado pelo\\nseu protector.\\pNao te metas em travessuras!$"
+        "O protetor da ILEX FOREST\\nprotege toda a floresta.\\pNao provoque problemas!$"
       ]
     },
     "data/maps/Gate_NationalPark/scripts.inc": {
       "Route35NationalParkGate_Text_OfficerAskToParticipate": [
-        "Ola TREINADOR! O Concurso de\\nApanhar Insectos e hoje.\\pAs regras sao simples.\\pUsando um de seu POKEMON, pegar\\num bug POKEMON para ser\\ljulgado.\\pQueres tentar?$"
+        "Ola, TREINADOR! Hoje tem\\nCONCURSO DE INSETOS!\\pAs regras sao simples.\\pUse um dos seus POKEMON\\npara capturar um inseto\\lque sera avaliado.\\pQuer participar?$"
       ],
       "Route35NationalParkGate_Text_ReceivedParkBalls": [
         "{PLAYER} recebeu SAFARI BALLS.$"
       ],
       "Route35NationalParkGate_Text_OfficerAskToUseFirstMon": [
-        "Se voce tem mais de um POKEMON,\\nvoce tera que usar o primeiro\\lPOKEMON em seu partido.\\pNao te importas?$"
+        "Se tiver mais de um POKEMON,\\nprecisara usar o primeiro\\lda equipe.\\pTudo bem para voce?$"
       ],
       "Route35NationalParkGate_Text_OfficerHoldYourMon": [
         "Esta bem, seguramos seu outro\\nPokemon enquanto competes.$"
       ],
       "Route35NationalParkGate_Text_ChooseMonAndComeBack": [
-        "Por favor, escolha o POKEMON\\npara ser usado no Concurso e\\ldepois venha falar comigo.$"
+        "Escolha o POKEMON que\\nquer usar no concurso\\le depois volte aqui.$"
       ],
       "Route35NationalParkGate_Text_TakePartInFuture": [
-        "Esta bem. Esperamos que\\nparticipe no futuro.$"
+        "Tudo bem. Esperamos\\nque participe depois!$"
       ],
       "Route35NationalParkGate_Text_FirstMonCantBattle": [
-        "Uh-oh... O primeiro POKEMON do\\nteu partido nao pode batalhar.\\pPor favor, troque-o com o\\nPOKEMON que voce quer usar,\\lentao venha me ver.$"
+        "Ops! O primeiro POKEMON\\nda equipe nao pode batalhar.\\pColoque outro POKEMON\\nna primeira posicao\\le volte a falar comigo.$"
       ],
       "Route35NationalParkGate_Text_MakeRoom": [
         "Uh-oh... Tanto sua festa como\\no seu PC BOX estao cheios.\\pNao tem espaco para por o\\ninsecto POKEMON que apanha.\\pPor favor, arranjem espaco na\\nvossa festa ou no seu PC BOX\\le venham ter comigo.$"
       ],
       "Route35NationalParkGate_Text_EggAsFirstMon": [
-        "Uh-oh... tem um EGG como o\\nprimeiro POKEMON na sua festa.\\pPor favor, troque-o com o\\nPOKEMON que voce quer usar,\\lentao venha me ver.$"
+        "Ops! Seu primeiro\\nPOKEMON e um EGG.\\pColoque outro POKEMON\\nna primeira posicao\\le volte a falar comigo.$"
       ],
       "Route35NationalParkGate_Text_ContestIsOver": [
-        "O Concurso de hoje acabou.\\nEsperamos que participem no\\lfuturo.$"
+        "O concurso de hoje\\nja terminou.\\lVolte na proxima vez!$"
       ],
       "Route35NationalParkGate_Text_NoRoomForBalls": [
         "Uh-oh... Seu BAG nao tem\\nespaco para o concurso SAFARI\\lBALLS.\\pPor favor, arranjem espaco no\\nvosso BAG e venham ter comigo.$"
       ],
       "Route35NationalParkGate_Text_Rocker": [
-        "Adoro passaros POKEMON!\\nEncontrei um passaro do tipo\\lDARK no parque ontem a noite!$"
+        "Eu adoro POKEMON voadores!\\nOntem encontrei um\\lPOKEMON DARK no parque!$"
       ],
       "Route35NationalParkGate_Text_Beauty": [
-        "Ele ganha sempre estes\\nconcursos!$"
+        "Ele sempre vence\\nesses concursos!$"
       ],
       "Route35NationalParkGate_Text_WeHoldContests": [
-        "Realizamos competicoes\\nregularmente no PARK. devia\\ltentar.$"
+        "Fazemos concursos\\nregularmente no parque.\\lVoce deveria tentar!$"
       ],
       "Route35NationalParkGate_Text_YoungsterWonders": [
-        "Quando sera o proximo Concurso\\nde Apanha de Insectos?$"
+        "Quando sera o proximo\\nCONCURSO DE INSETOS?$"
       ],
       "Route35NationalParkGate_Text_ContestExplanation": [
         "O Concurso de Apanha de\\nInsectos acontece na\\lterca-feira, quinta-feira e\\lsabado.\\pNao so ganhas um premio por\\nparticipar,\\pVoce tambem pode manter o bug\\nPOKEMON que voce pode ter no\\lfinal do concurso.$"
@@ -305,30 +305,30 @@
         "Os negocios tem sido dificeis\\ndesde que nos mudamos da KANTO.\\lAgradecemos sua ajuda!\\pPode mostrar nossa tecnologia\\npatenteada?\\pE tao simples como pressionar R\\nquando voce e parado em seu\\lBIKE.\\pCuidado! Entao vai mais\\nrapido!$"
       ],
       "GoldenrodCity_BikeShop_Text_Refused": [
-        "...suspiro... Oh, pela bondade\\ndas pessoas...$"
+        "Ah... Queria mesmo\\numa ajudinha...$"
       ]
     },
     "data/maps/GoldenrodCity_BillsHouse/scripts.inc": {
       "BillHouse_Text_ReceivedEevee": [
-        "{PLAYER} Recebido EEVEE!$"
+        "{PLAYER} recebeu EEVEE!$"
       ],
       "BillHouse_Text_EeveeMayEvolve": [
         "BILL: PROF.ELM afirma que EEVEE\\npode evoluir de formas novas e\\ldesconhecidas.$"
       ],
       "BillHouse_Text_PartyFull": [
-        "Espera. Nao pode carregar mais\\nPokemon.$"
+        "Espere! Sua equipe\\nesta cheia de POKEMON.$"
       ],
       "BillHouse_Text_NoEevee": [
         "Oh... O que fazer agora?$"
       ],
       "BillHouse_Text_SisterUsefulNumber": [
-        "E TREINADOR?\\pTenho um numero de telefone\\nutil para voce.$"
+        "Voce e TREINADOR?\\pTenho um numero de telefone\\nque pode ser util!$"
       ],
       "BillHouse_Text_SisterPhoneFull": [
         "Nao pode gravar mais numeros.$"
       ],
       "BillHouse_Text_SisterStorageSystem": [
-        "Meu irmao mais velho BILL fez\\no sistema de armazenamento PC\\lPOKEMON.$"
+        "Meu irmao BILL criou\\no sistema de armazenamento\\lde POKEMON no PC.$"
       ]
     },
     "data/maps/GoldenrodCity_DepartmentStoreBasement/scripts.inc": {
@@ -336,13 +336,13 @@
         "MACHOKE, ajuda-nos a mover essa\\npedra!$"
       ],
       "GoldenrodDeptStore_Text_B1FBlackBelt1": [
-        "Garoto! Estas a atrasar-nos!\\pNossa politica e trabalhar nos\\nbastidores onde ninguem pode\\lnos ver!$"
+        "Ei, garoto! Nao atrapalhe!\\pNos preferimos trabalhar\\nlonge dos olhares\\ldas outras pessoas!$"
       ],
       "GoldenrodDeptStore_Text_B1FBlackBelt2": [
-        "Perco minha paixao pelo\\ntrabalho se alguem esta vendo.\\pVa la, garoto, vai-te embora!$"
+        "Nao consigo me concentrar\\nquando tem alguem olhando.\\pVa embora, garoto!$"
       ],
       "GoldenrodDeptStore_Text_B1FBlackBelt3": [
-        "Oohah! Oohah!\\pDo que precisa, garoto? Estou a\\ntrabalhar aqui!$"
+        "Oohah! Oohah!\\pO que quer, garoto?\\nEstou trabalhando aqui!$"
       ],
       "GoldenrodDeptStore_Text_B1FBlackBelt3After": [
         "Oohah! Oohah!\\pO material no chao e lixo.\\pLeva-o se quiseres!$"
@@ -361,7 +361,7 @@
     },
     "data/maps/GoldenrodCity_DepartmentStore_2F/scripts.inc": {
       "GoldenrodDeptStore_Text_2FYoungster": [
-        "POKENAV pode armazenar ate 25\\nnumeros de telefone.\\pE dificil decidir quais numeros\\nmanter.$"
+        "O POKENAV guarda ate\\n25 numeros de telefone.\\pE dificil decidir\\nquais manter!$"
       ],
       "GoldenrodDeptStore_Text_2FGentleman": [
         "Este DEPT.STORE faz-me perceber\\nque o GOLDENROD e uma cidade\\lgrande.\\pA selecao aqui e incomparavel\\nem qualquer outro lugar.$"
@@ -375,13 +375,13 @@
         "Espera, ja te dei aquele TM!$"
       ],
       "GoldenrodDeptStore_Text_5FReceptionistPutInSomeMoreEffort": [
-        "Hmm... Nao e mau, mas tambem\\nnao e bom.\\pVoce, como instrutor, precisa\\nse esforcar mais.$"
+        "Hmm... Nao esta mal,\\nmas poderia ser melhor.\\pVoce precisa treinar\\nmais seus POKEMON.$"
       ],
       "GoldenrodDeptStore_Text_5FReceptionistThisMoveShouldBePerfect": [
         "Esta muito ligado a ti.\\pEste golpe deve ser\\nperfeito para um casal como\\lvoce.$"
       ],
       "GoldenrodDeptStore_Text_5FReceptionistItLooksEvilHowAboutThisTM": [
-        "Parece mau. Que tal este TM\\npara ele?$"
+        "Ele parece bem malvado...\\nQue tal essa TM?$"
       ],
       "GoldenrodDeptStore_Text_5FReceptionistThereAreTMsPerfectForMon": [
         "Ha certeza de ser TMs que sao\\nperfeitos para seu POKEMON.$"
@@ -404,7 +404,7 @@
         "Boa! Consegui-me.{STR_VAR_1}!\\p{STR_VAR_2} Cuida-te!$"
       ],
       "GoldenrodCity_DepartmentStore_6F_Text_ThisIsntAMon": [
-        "Nao, acho que nao. Isso nao\\ne...{STR_VAR_1}.$"
+        "Nao, espere! Esse nao\\ne {STR_VAR_1}.$"
       ],
       "GoldenrodCity_DepartmentStore_6F_Text_YouWontTradeMe": [
         "Nao quer trocar? Aww...$"
