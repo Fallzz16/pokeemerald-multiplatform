@@ -17,7 +17,7 @@
         "Nao!\\pTenho um presente para voce,\\nmas falta espaco na sua BOLSA.$"
       ],
       "Route12_FishingHouse_Text_MostGiganticMagikarpXSize": [
-        "O MAGIKARP mais gigantesco que\\nja testemunhei...\\p {STR_VAR_3}!$"
+        "O MAGIKARP mais gigantesco que\\nja testemunhei...\\p{STR_VAR_3}!$"
       ],
       "Route12_FishingHouse_Text_BlankChartOfSomeSort": [
         "E algum tipo de grafico em\\nbranco.\\pTem espacos para escrever em\\nregistros de algum tipo.$"
