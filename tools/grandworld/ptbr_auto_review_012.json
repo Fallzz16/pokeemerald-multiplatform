@@ -2,7 +2,7 @@
   "asm": {
     "data/maps/CeruleanCity_Frlg/scripts.inc": {
       "CeruleanCity_Text_BikeShopSign": [
-        "Grama e cavernas manuseadas\\nfacilmente! BIKE SHOP$"
+        "Atravesse grama e cavernas\\ncom facilidade! BIKE SHOP$"
       ]
     },
     "data/maps/CeruleanCity_House1_Frlg/scripts.inc": {
@@ -10,7 +10,7 @@
         "So TREINADORES experientes\\npodem conseguir INSIGNIAS\\lde GINASIO.\\pVejo que ja tem uma!\\pEssas INSIGNIAS guardam\\nsegredos incriveis, sabia?$"
       ],
       "CeruleanCity_House1_Text_DescribeWhichBadge": [
-        "Agora...\\pQual dos oito INSIGNIAS devo\\ndescrever?$"
+        "Muito bem...\\pQual das oito INSIGNIAS\\nvoce quer conhecer?$"
       ],
       "CeruleanCity_House1_Text_ComeVisitAnytime": [
         "Venha visitar-me quando quiser.$"
@@ -25,7 +25,7 @@
         "POKEMON ate o nivel 70\\nobedecem a voce.\\pIsso vale ate para\\nPOKEMON recebidos em\\ltrocas.\\pPOKEMON acima desse nivel\\npodem desobedecer,\\lno entanto.\\pVoce tambem pode usar\\nROCK SMASH fora\\ldas batalhas.$"
       ],
       "CeruleanCity_House1_Text_SpStatsWaterfall": [
-        "O SP. ATK e SP. DEF\\nestatisticas de todos os seus\\lPOKEMON subir um pouco.\\pTambem permite que voce use o\\nmovimento WATERFALL fora da\\lbatalha.$"
+        "Os atributos SP. ATK e SP. DEF\\nde seus POKEMON aumentam\\lum pouco.\\pVoce tambem pode usar\\nWATERFALL fora\\ldas batalhas.$"
       ],
       "CeruleanCity_House1_Text_AllMonsWillObeyYou": [
         "Todos os POKEMON te obedecerao!$"
@@ -49,7 +49,7 @@
         "Ah! Uma novidade!\\pHmm...\\pMuito interessante!\\nObrigado por me contar!\\pE otimo ver jovens\\nque acompanham as\\lnoticias do mundo.\\pEm agradecimento,\\naceite este pequeno\\lpresente!$"
       ],
       "CeruleanCity_House4_Text_IncredibleNewsHaveBerries": [
-        "Oh, oh! Esta noticia!\\pHmm...\\pIncrivel! Que noticia incrivel!\\pNao vejo uma noticia tao\\nincrivel ha muito tempo!\\pObrigado por partilhar esta\\nnoticia fantastica. Come um\\lmonte de BERRIES!$"
+        "Nossa! Que noticia!\\pHmm...\\pIsso e incrivel!\\pFazia tempo que nao\\nouvia algo tao interessante!\\pObrigado por dividir\\nessa novidade comigo.\\lPegue algumas BERRIES!$"
       ],
       "CeruleanCity_House4_Text_WishCouldShareNewsWithOthers": [
         "E uma pena nao partilhar esta\\nnoticia com outras pessoas...\\pGostava de poder dizer a\\nalguem... Avisar os outros...$"
@@ -58,10 +58,10 @@
         "Uma noticia nova?\\pBoas noticias ficam melhores\\nquando todo mundo\\las compartilha!\\pObrigado por me contar.\\nAceite este\\lpresente!$"
       ],
       "CeruleanCity_House4_Text_MagnificentNewsSpreadHaveBerries": [
-        "Espalhou mais noticias?\\nMagnifico!\\pEssa noticia deve estar\\nencantada por ser transmitida.\\pSim, de fato!\\pConsidere isso uma demonstracao\\nde apreco de mim e das\\lnoticias.\\pDou-te mais BERRIES do que\\ncostumo fazer.$"
+        "Voce contou mais novidades?\\nMaravilhoso!\\pBoas noticias merecem\\nser compartilhadas!\\pSem duvida!\\pAceite estas BERRIES\\ncomo agradecimento\\lpela sua ajuda!\\pVou dar ainda mais BERRIES\\ndesta vez!$"
       ],
       "CeruleanCity_House4_Text_EnjoyingMyselfWithAllSortsOfNews": [
-        "Estou divertindo-me com todo o\\ntipo de noticias.\\pSim, estou satisfeito! Nao vou\\nficar aborrecido por algum\\ltempo.$"
+        "Adoro ouvir noticias\\nde todos os tipos!\\pEstou tao satisfeito\\nque nao vou ficar\\lentediado tao cedo.$"
       ]
     },
     "data/maps/CeruleanCity_House5_Frlg/scripts.inc": {
@@ -78,7 +78,7 @@
         "Com o que quer troca-lo?$"
       ],
       "CeruleanCity_House1_Text_HopeToSeeYouAgain": [
-        "Tudo bem, entao. Espero voltar\\na ver-te.$"
+        "Tudo bem, entao. Espero\\nver voce novamente.$"
       ]
     },
     "data/maps/CeruleanCity_PokemonCenter_1F_Frlg/scripts.inc": {
@@ -120,7 +120,7 @@
         "Meu marido perdeu para si,\\npor isso precisa de treinar\\lmais.\\pIsso e bom, ja que ele estava a\\nficar um pouco gordo.$"
       ],
       "CianwoodCity_Text_Youngster": [
-        "Se voce usar FLY, voce pode\\nvoltar para OLIVINE\\linstantaneamente.$"
+        "Com FLY, voce pode\\nvoltar para OLIVINE\\lrapidamente.$"
       ],
       "CianwoodCity_Text_EusineBeaten": [
         "Detesto admitir, mas venceu.$"
@@ -131,7 +131,7 @@
     },
     "data/maps/CianwoodHouse1/scripts.inc": {
       "CianwoodCity_Text_OldManIntro": [
-        "Nao me lembro da ultima vez que\\nalguem me visitou.\\pQuando era jovem, tambem era\\ninstrutor de POKEMON. Tentei\\lchegar a torre e mergulhar no\\loceano.\\pEsforcei-me muito em muitas\\ncoisas.\\pBem, agora vou com calma, a\\nouvir as ondas e os ventos\\lnesta praia.$"
+        "Nem lembro a ultima vez\\nque alguem me visitou.\\pQuando era jovem,\\ntambem treinava POKEMON.\\lTentei escalar torres\\le mergulhar no mar.\\pEu me esforcava muito\\nnaquela epoca.\\pAgora prefiro relaxar\\nouvindo o vento e as\\londas nesta praia.$"
       ],
       "CianwoodCity_Text_BellTowerStory": [
         "Ja ouviu falar do TIN TOWER em\\nECRUTEAK?\\pHa o que chamam de Sino Limpo\\nno topo da torre.\\pNao fazem nenhum barulho com\\nventos fortes.\\pSo ha uma maneira de faze-los\\ntocar.\\pE para obter outro BELL CLEAR\\ncomo aqueles no topo da torre.\\pFui atras dele quando era\\njovem. Mas nunca recebi um...$"
@@ -156,10 +156,10 @@
         "{PLAYER} Recebeu um POKEMON.$"
       ],
       "CianwoodCity_Text_ManiacPartyFull": [
-        "Sua festa esta cheia.$"
+        "Sua equipe esta cheia.$"
       ],
       "CianwoodCity_Text_ManiacIfHeComesBack": [
-        "Oh, nao... O que faco se ele\\nvoltar?$"
+        "Ai, ai... E se aquele\\ngaroto voltar?$"
       ],
       "CianwoodCity_Text_ManiacHowsdoing": [
         "Ola! Como esta meu POKEMON?$"
@@ -177,19 +177,19 @@
         "Meu POKEMON gostou de voce.\\pEsta bem, devia ficar com ele.\\pMas promete ser bom para ele!$"
       ],
       "CianwoodCity_Text_ManiacRobbed": [
-        "Alguma coisa nao esta bem.$"
+        "Tem alguma coisa errada...$"
       ],
       "CianwoodCity_Text_ManiacRobbed2": [
-        "Nao, nao... E o mesmo que ser\\nroubado.$"
+        "Nao, nao... E quase\\ncomo ser roubado de novo!$"
       ],
       "CianwoodCity_Text_ManiacHappinessSpeech": [
-        "Para POKEMON, felicidade e\\nestar com uma pessoa que os\\ltrata bem.$"
+        "A felicidade de um POKEMON\\ne ficar com alguem que\\lo trata com carinho.$"
       ],
       "CianwoodCity_Text_ManiacLastMon": [
-        "Se eu levar meu POKEMON de\\nvolta, o que vai usar na\\lbatalha?$"
+        "Se eu pegar meu POKEMON\\nde volta, qual voce\\lusara nas batalhas?$"
       ],
       "CianwoodCity_Text_ManiacReturnedMon": [
-        "{PLAYER} voltou SHUCKIE.$"
+        "{PLAYER} devolveu SHUCKIE.$"
       ]
     },
     "data/maps/CianwoodPokecenter/scripts.inc": {
@@ -200,13 +200,13 @@
         "{PLAYER} recebeu TENTACOOL.$"
       ],
       "CianwoodCity_Text_PokecenterLass": [
-        "Conheceu o POKeMANIAC?\\pEsta sempre a gabar-se do seu\\nraro POKEMON.$"
+        "Conheceu aquele POKEMANIACO?\\pEle vive se gabando\\ndo POKEMON raro que tem.$"
       ],
       "CianwoodCity_Text_GymGuideWin": [
         "{PLAYER} venceu! Da para ver\\nolhando para voce!$"
       ],
       "CianwoodCity_Text_PokecenterSuperNerd": [
-        "Adoro exibir o POKEMON que\\ncriei.\\pNao achas?\\pVou entrar num monte de\\nbatalhas e mostrar o meu\\lPokemon!$"
+        "Adoro mostrar os POKEMON\\nque treinei.\\pVoce tambem, nao e?\\pVou entrar em varios\\ndesafios para mostrar\\lmeus POKEMON!$"
       ]
     },
     "data/maps/CinnabarIsland_Frlg/scripts.inc": {
@@ -217,10 +217,10 @@
         "LAB POKEMON$"
       ],
       "CinnabarIsland_Text_GymSign": [
-        "CINNABAR ISLAND POKEMON GINASIO\\nLEADER: BLAINE O Mestre do\\lQuestionario Quente!$"
+        "GINASIO DE CINNABAR ISLAND\\nLIDER: BLAINE, MESTRE\\lDOS QUIZZES ARDENTES!$"
       ],
       "CinnabarIsland_Text_HeyIfItIsntPlayer": [
-        "Huh? Ei, se nao e {PLAYER}!$"
+        "Hein? Ora, se nao e {PLAYER}!$"
       ],
       "CinnabarIsland_Text_AllRightLetsGo": [
         "Esta bem, entao. Vamos!$"
@@ -239,7 +239,7 @@
         "Tem muitos amigos?\\pLutar com os amigos habituais e\\ndivertido, claro.\\pMas que tal o TERMINAL BATTLE\\nNET de vez em quando?\\pQuem sabe, voce pode acabar com\\numa nova estrategia.\\pAcho que valeria a pena\\nverificar a BATTLE NET.$"
       ],
       "CinnabarIsland_PokemonCenter_1F_Text_EvolutionCanWaitForNewMoves": [
-        "POKEMON ainda pode aprender\\ntecnicas apos cancelar a\\levolucao.\\pA evolucao pode esperar ate que\\nnovos golpes sejam\\laprendidos.$"
+        "POKEMON podem aprender\\nnovos golpes mesmo\\lsem evoluir.\\pAs vezes, e melhor\\nesperar antes de\\levolui-los.$"
       ],
       "CinnabarIsland_PokemonCenter_1F_Text_OhNotDoneYet": [
         "Ainda nao acabou?$"
@@ -255,15 +255,15 @@
     },
     "data/maps/CliffEdgeGate/scripts.inc": {
       "CliffEdgeGate_Text_Expectations": [
-        "Agradeco que todos estejam\\nansiosos por isso.\\pMas a senhora da recepcao\\nparece um pouco dramatica...\\pNao tenha expectativas muito\\naltas!$"
+        "Sei que todos estao\\nansiosos para isso.\\pMas a atendente parece\\num pouco dramatica...\\pNao crie expectativas\\nexageradas!$"
       ]
     },
     "data/maps/DesertUnderpass/scripts.inc": {
       "DesertUnderpass_Text_FoundRootFossil": [
-        "{PLAYER} Encontrei o FOSSIL\\nROOT.$"
+        "{PLAYER} encontrou o\\nROOT FOSSIL.$"
       ],
       "DesertUnderpass_Text_FoundClawFossil": [
-        "{PLAYER} Encontrei o FOSSIL\\nCLAW.$"
+        "{PLAYER} encontrou o\\nCLAW FOSSIL.$"
       ]
     },
     "data/maps/DewfordTown_Hall/scripts.inc": {
@@ -283,7 +283,7 @@
         "Eu vi.{STR_VAR_1} legal, nao e?\\pE, tipo, a coisa mais legal!\\pFoi fantastico! Foi a serio,\\nsim!$"
       ],
       "DewfordTown_Hall_Text_GiveYouSludgeBomb": [
-        "Para mim, SLUDGE BOMB esta no\\nauge da popularidade. E o tal.\\pHunh? Estas a dizer-me que nao\\nsabes sobre o SLUDGE BOMB?\\pIsso e absolutamente\\nlamentavel. Eu dou-te uma.$"
+        "Para mim, SLUDGE BOMB\\ne um golpe muito popular!\\pComo assim? Voce nunca\\nouviu falar nele?\\pEntao vou dar uma TM\\npara voce aprender!$"
       ]
     },
     "data/maps/DewfordTown_House1/scripts.inc": {
@@ -296,15 +296,15 @@
     },
     "data/maps/DewfordTown_House2/scripts.inc": {
       "DewfordTown_House2_Text_NoRoom": [
-        "Nao tem espaco?\\pOuve bem, este SCARF e um...\\nPorque, eu venderia todos os\\lmeus itens para obte-lo!$"
+        "Sua BOLSA esta cheia?\\pMas olhe! Este SCARF\\ne tao valioso que eu\\lvenderia tudo para compra-lo!$"
       ],
       "DewfordTown_House2_Text_ExplainSilkScarf": [
-        "O SILK SCARF eleva o poder dos\\nmovimentos do tipo NORMAL.\\pE um SCARF maravilhoso que vai\\ncom quase todos POKEMON!$"
+        "O SILK SCARF aumenta\\no poder de golpes NORMAL.\\pEle e muito util\\npara varios POKEMON!$"
       ]
     },
     "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc": {
       "DewfordTown_PokemonCenter_1F_Text_StoneCavern": [
-        "Ha uma caverna de pedra na\\nextremidade da cidade.\\pOuvi dizer que encontra pedras\\nraras la.$"
+        "Ha uma caverna de pedra\\nna ponta da cidade.\\pOuvi dizer que existem\\npedras raras por la.$"
       ]
     },
     "data/maps/DiglettsCave_NorthEntrance_Frlg/scripts.inc": {
@@ -314,13 +314,13 @@
     },
     "data/maps/DragonsDen_Cavern/scripts.inc": {
       "DragonsDen_Cavern_Text_SilverTraining1": [
-        "O que?{PLAYER}?\\pNao, nao vou batalhar com voce\\nagora...\\pO meu POKEMON nao esta pronto\\npara te vencer.\\pNao posso forca-los muito.\\pEu tenho que ser disciplinado\\npara me tornar o maior\\ltreinador POKEMON...$"
+        "O que? {PLAYER}?\\pNao vou batalhar com voce\\nagora...\\pMeus POKEMON ainda\\nnao estao preparados.\\pNao posso forca-los demais.\\pPreciso de disciplina\\npara me tornar um\\lgrande TREINADOR!$"
       ],
       "DragonsDen_Cavern_Text_SilverTraining2": [
-        "...\\pUfa...\\pAprende a ficar fora do meu\\ncaminho...$"
+        "...\\pUfa...\\pAprenda a nao ficar\\nno meu caminho!$"
       ],
       "DragonsDen_Cavern_Text_CooltrainermDarinSeen": [
-        "Voce! Como ousa entrar sem ser\\nconvidado?$"
+        "Ei, voce! Como ousa\\nentrar aqui sem convite?$"
       ],
       "DragonsDen_Cavern_Text_CooltrainermDarinBeaten": [
         "Forte!$"
@@ -332,19 +332,19 @@
         "Nao devia estar aqui!$"
       ],
       "DragonsDen_Cavern_Text_CooltrainerfCaraBeaten": [
-        "Meu Deus, perdi!$"
+        "Nossa! Eu perdi!$"
       ],
       "DragonsDen_Cavern_Text_TwinsLeaandPia1Seen": [
-        "E um estranho que nao\\nconhecemos.$"
+        "Voce e um estranho\\npara nos!$"
       ],
       "DragonsDen_Cavern_Text_TwinsLeaandPia2Seen": [
         "Quem e voce?$"
       ],
       "DragonsDen_Cavern_Text_TwinsLeaandPia2Beaten": [
-        "Malvada.$"
+        "Que maldade!$"
       ],
       "DragonsDen_Cavern_Text_TwinsLeaandPia2After": [
-        "Vamos denuncia-lo.\\pO MASTER vai ficar zangado\\ncontigo.$"
+        "Vamos contar ao MESTRE!\\pEle vai ficar muito\\nbravo com voce.$"
       ]
     },
     "data/maps/DragonsDen_Shrine/scripts.inc": {
@@ -352,16 +352,16 @@
         "O que e POKEMON para si?$"
       ],
       "DragonsDen_Shrine_Text_Question2": [
-        "O que o ajuda a vencer\\nbatalhas?$"
+        "O que ajuda voce\\na vencer batalhas?$"
       ],
       "DragonsDen_Shrine_Text_Question3": [
-        "Que tipo de TREINADOR deseja\\nlutar?$"
+        "Que tipo de TREINADOR\\nvoce quer enfrentar?$"
       ],
       "DragonsDen_Shrine_Text_Question4": [
-        "O que e mais importante para a\\ncriacao de POKEMON?$"
+        "O que e mais importante\\npara treinar POKEMON?$"
       ],
       "DragonsDen_Shrine_Text_Question5": [
-        "POKEMON forte. POKEMON fraco. O\\nque e mais importante?$"
+        "POKEMON fortes e fracos.\\nO que importa mais?$"
       ],
       "DragonsDen_Shrine_Text_WrongAnswer1": [
         "Hah? Nao percebi bem...$"
@@ -376,13 +376,13 @@
         "Estou vendo...\\pGosta muito de POKEMON.\\pMuito louvavel.\\pEssa conviccao e o que importa!\\p{PLAYER} Nao percas essa crenca.\\pEle vai leva-lo ate a LEAGUE\\nPOKEMON.$"
       ],
       "DragonsDen_Shrine_Text_ClairYouPassed": [
-        "Entao, como correu?\\pAcho que nao vale a pena\\nperguntar. Falhaste?\\p..................................\\pO que? Passou?$"
+        "Entao, como foi?\\pAcho que nem preciso\\nperguntar. Voce falhou!\\p..................................\\pO que?! Voce passou?$"
       ],
       "DragonsDen_Shrine_Text_ClairThatCantBe": [
         "Nao pode ser!$"
       ],
       "DragonsDen_Shrine_Text_ClairYoureLying": [
-        "Estas a mentir!\\pNem eu fui aprovado!$"
+        "Esta mentindo!\\pNem eu passei nesse teste!$"
       ],
       "DragonsDen_Shrine_Text_IUnderstand": [
         "Eu entendo...$"
