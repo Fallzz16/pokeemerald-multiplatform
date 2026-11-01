@@ -11,7 +11,7 @@
         "Maravilhoso! Vou fazer o\\nregisto agora!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BeautyReject": [
-        "Que desilusao!\\pTeriamos sido os melhores!$"
+        "Que decepcao!\\pTeriamos sido os melhores!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_FishermanMon1": [
         "Tenho comigo uma equipe de\\num{STR_VAR_1}-\\lusando{STR_VAR_2}e$"
@@ -65,7 +65,7 @@
         "O que tenho vindo a criar e\\num{STR_VAR_2}que\\lutiliza{STR_VAR_1}$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidMMon2Ask": [
-        "E um{STR_VAR_2}que\\nutiliza{STR_VAR_1}.\\pNada mal, nao acha? Quer\\nformar uma equipe de etiquetas?$"
+        "E um{STR_VAR_2}que\\nutiliza{STR_VAR_1}.\\pNada mal, nao acha? Quer\\nformar uma equipe de batalhas?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidMAccept": [
         "Muito obrigado! Vou acabar com\\no registro.$"
@@ -80,7 +80,7 @@
         "Um{STR_VAR_2}com{STR_VAR_1}!\\pEstou disposto a oferecer-te a\\noportunidade de estares numa\\lequipa comigo.$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RichBoyAccept": [
-        "Boa jogada!\\pVou terminar o processo de\\nregisto rapido!$"
+        "Boa golpe!\\pVou terminar o processo de\\nregisto rapido!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_RichBoyReject": [
         "Como ousa me recusar?\\nVoce vai se arrepender\\ldessa decisao!$"
@@ -119,7 +119,7 @@
         "Eu tenho um comigo{STR_VAR_1}-\\nusando{STR_VAR_2}juntamente com\\lum$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacMon2Ask": [
-        "{STR_VAR_1}-\\nusando{STR_VAR_2}...\\pSuplico-lhe... Junta-te a mim\\nnuma equipe de etiquetas...$"
+        "{STR_VAR_1}-\\nusando{STR_VAR_2}...\\pSuplico-lhe... Junta-te a mim\\nnuma equipe de batalhas...$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacAccept": [
         "Obrigado... Vou registrar-nos...$"
@@ -284,7 +284,7 @@
         "Otimo, obrigado! Eu cuido do\\nregisto!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BirdKeeperReject": [
-        "Meu POKEMON e eu somos\\nfortes. Que desilusao.$"
+        "Meu POKEMON e eu somos\\nfortes. Que decepcao.$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_NinjaBoyMon1": [
         "Minha equipe POKEMON e\\ncomposta por\\lum{STR_VAR_2}com{STR_VAR_1}e$"
@@ -317,7 +317,7 @@
         "Encontrei meu POKEMON, sim.\\nUma{STR_VAR_2}com{STR_VAR_1}e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugManiacMon2Ask": [
-        "Um{STR_VAR_2}com{STR_VAR_1}-\\nEles sao o que eu encontrei.\\pPosso interessa-lo em formar\\numa equipe de etiquetas?$"
+        "Um{STR_VAR_2}com{STR_VAR_1}-\\nEles sao o que eu encontrei.\\pPosso interessa-lo em formar\\numa equipe de batalhas?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugManiacAccept": [
         "Esta bem! Entendido!\\pNao demoro com o registro!$"
@@ -431,7 +431,7 @@
         "O que tem um tipo como eu?\\nUma{STR_VAR_2}com{STR_VAR_1}e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokemaniacMon2Ask": [
-        "Um{STR_VAR_2}com{STR_VAR_1}E\\nisso mesmo!\\pVamos a isso! Vamos andar como\\numa equipe de etiquetas!$"
+        "Um{STR_VAR_2}com{STR_VAR_1}E\\nisso mesmo!\\pVamos a isso! Vamos andar como\\numa equipe de batalhas!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokemaniacAccept": [
         "Boa ideia! Vou registrar os\\ndois!$"
@@ -443,7 +443,7 @@
         "Sabe o que meu treino\\npreparou?\\lUma{STR_VAR_2}com{STR_VAR_1}e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_KindlerMon2Ask": [
-        "Um{STR_VAR_2}com{STR_VAR_1}!\\pO que me diz? Quer formar\\numa equipe de etiquetas?$"
+        "Um{STR_VAR_2}com{STR_VAR_1}!\\pO que me diz? Quer formar\\numa equipe de batalhas?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_KindlerAccept": [
         "Muito bem! Vou continuar com o\\nregisto.$"
@@ -649,7 +649,7 @@
         "Um item de retencao que lanca\\num brilho para reduzir a\\lprecisao.$"
       ],
       "BattleFrontier_ExchangeServiceCorner_Text_ChoiceBandDesc": [
-        "Eleva o poder de um movimento,\\nmas so permite esse movimento.$"
+        "Eleva o poder de um golpe,\\nmas so permite esse golpe.$"
       ],
       "BattleFrontier_ExchangeServiceCorner_Text_KingsRockDesc": [
         "Um item de retencao que pode\\ncausar hesitacao quando o\\linimigo e atingido.$"
