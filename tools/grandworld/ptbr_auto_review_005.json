@@ -24,7 +24,7 @@
         "Parabens! Venceu os nossos\\ncinco TREINADORES do concurso!\\pAcabou de ganhar um premio\\nfabuloso!$"
       ],
       "Route24_Text_ReceivedNuggetFromMysteryTrainer": [
-        "{PLAYER}Recebeu um NUGGET do\\nmisterioso TREINADOR!$"
+        "{PLAYER} Recebeu um NUGGET do\\nmisterioso TREINADOR!$"
       ],
       "Route24_Text_YouDontHaveAnyRoom": [
         "Voce esta sem espaco!$"
@@ -192,7 +192,7 @@
         "Derrotei oito GINASIO LEADERS,\\npor isso estava confiante.\\pVou ter de me esforcar mais da\\nproxima vez.$"
       ],
       "Route26_Text_CooltrainerfBethSeen": [
-        "Perdi para um TREINADOR\\nchamado{RIVAL}.\\pEle era muito forte, mas...\\pEra como se ele tivesse de\\nganhar a qualquer custo.\\pSenti pena do seu POKEMON.$"
+        "Perdi para um TREINADOR\\nchamado {RIVAL}.\\pEle era muito forte, mas...\\pEra como se ele tivesse de\\nganhar a qualquer custo.\\pSenti pena do seu POKEMON.$"
       ],
       "Route26_Text_CooltrainerfBethBeaten": [
         "POKEMON nao sao ferramentas de\\nguerra.$"
@@ -306,10 +306,10 @@
     },
     "data/maps/Route2_EastBuilding_Frlg/scripts.inc": {
       "Route2_EastBuilding_Text_GreatHereYouGo": [
-        "Otimo! Capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
+        "Otimo! Capturou ou\\npossuiste {STR_VAR_3} Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
       ],
       "Route2_EastBuilding_Text_ReceivedHM05FromAide": [
-        "{PLAYER}Recebeu HM05 da AIDE.$"
+        "{PLAYER} Recebeu HM05 da AIDE.$"
       ],
       "Route2_EastBuilding_Text_ExplainHM05": [
         "HM05 contem o movimento oculto\\nFLASH.\\pFLASH ilumina ate mesmo a mais\\nescura das cavernas e\\lmasmorras.$"
@@ -364,10 +364,10 @@
         "A vida e deliciosa! Sempre,\\nnovas descobertas a serem\\lfeitas.$"
       ],
       "MrPokemonHouse_Text_GetDex": [
-        "{PLAYER}Recebeu POKEDEX!$"
+        "{PLAYER} Recebeu POKEDEX!$"
       ],
       "MrPokemonHouse_Text_OakParting": [
-        "Va conhecer muitos tipos de\\npOKEMON e completar que\\lPOKEDEX!\\pSeu DEXNAV ira ajuda-lo a\\nProcura-los.\\pMas fiquei muito tempo.\\pTenho de ir ao GOLDENROD para o\\nmeu programa de radio habitual.\\p{PLAYER}Estou contando com voce!$"
+        "Va conhecer muitos tipos de\\npOKEMON e completar que\\lPOKEDEX!\\pSeu DEXNAV ira ajuda-lo a\\nProcura-los.\\pMas fiquei muito tempo.\\pTenho de ir ao GOLDENROD para o\\nmeu programa de radio habitual.\\p {PLAYER} Estou contando com voce!$"
       ],
       "MrPokemonHouse_Text_Disappointed": [
         "Isso e decepcionante. Isso e\\nmuito raro.$"
@@ -471,7 +471,7 @@
     },
     "data/maps/Route34_DayCare/scripts.inc": {
       "Route34_DayCare_Text_Bookshelf2": [
-        "Um livro sobre POKEMON!\\p{PLAYER}Revirou o livro.\\pDeve ter a palavra POKEMON\\nescrita em cada pagina.\\p{PLAYER}Guarda o livro.$"
+        "Um livro sobre POKEMON!\\p {PLAYER} Revirou o livro.\\pDeve ter a palavra POKEMON\\nescrita em cada pagina.\\p {PLAYER} Guarda o livro.$"
       ],
       "Route34_DayCare_Text_ClerkNoRoom": [
         "Parece que nao Consegue\\ncarregar outro POKEMON.$"
@@ -483,7 +483,7 @@
         "Acho que este EGG nao e para\\nti.\\pSeria irresponsavel da minha\\nparte dar um EGG precioso como\\leste a alguem que nao seja tao\\lbem lido sobre o tema da\\lcriacao de POKEMON!$"
       ],
       "Route34_DayCare_Text_ReceivedOddEgg": [
-        "{PLAYER}Recebi o ODD EGG.$"
+        "{PLAYER} Recebi o ODD EGG.$"
       ],
       "Route34_DayCare_Text_TakeCare": [
         "Eu sabia que era o TREINADOR\\ncerto para o trabalho. Trata\\lbem disso!$"
@@ -495,7 +495,7 @@
         "Ah, e voce!\\pEstavamos criando o seu\\nPOKEMON, e meu Deus, ficamos\\lsurpreendidos!\\pSeu POKEMON tinha um EGG!\\pNao sabemos como foi parar la,\\nmas seu POKEMON tinha-o.\\pQueres, sim?$"
       ],
       "Route34_Text_YourMonIsDoingFine": [
-        "Ah, e voce! E bom ver-te.\\nSua{STR_VAR_1}Esta tudo bem.$"
+        "Ah, e voce! E bom ver-te.\\nSua {STR_VAR_1} Esta tudo bem.$"
       ],
       "Route34_Text_IllKeepIt": [
         "Entao, fico com ele. Obrigado!$"
@@ -504,7 +504,7 @@
         "Nao tem espaco para isso...\\nVolta quando tiveres espaco.$"
       ],
       "Route34_Text_ReceivedEgg": [
-        "{PLAYER}Recebi o EGG do\\nDAY-CARE MAN.$"
+        "{PLAYER} Recebi o EGG do\\nDAY-CARE MAN.$"
       ],
       "Route34_Text_TakeGoodCareOfIt": [
         "Trata bem disso.$"
@@ -513,7 +513,7 @@
         "Se quer ir buscar o seu\\nPOKEMON, fala com a minha\\lmulher.$"
       ],
       "Route34_Text_YourMonsAreDoingFine": [
-        "Ah, e voce!\\nSua{STR_VAR_1}E{STR_VAR_2}Estao\\la ir bem.$"
+        "Ah, e voce!\\nSua {STR_VAR_1} E {STR_VAR_2} Estao\\la ir bem.$"
       ],
       "Route34_Text_IWillKeepDoYouWantIt": [
         "Vou ficar com ele. quer isto,\\nsim?$"
@@ -522,7 +522,7 @@
         "Que POKEMON devemos levantar\\npara voce?$"
       ],
       "Route34_DayCare_Text_WellRaiseYourMon": [
-        "Esta bem, vamos aumentar o\\nteu{STR_VAR_1}Durante algum\\ltempo.\\pVolta mais tarde.$"
+        "Esta bem, vamos aumentar o\\nteu {STR_VAR_1} Durante algum\\ltempo.\\pVolta mais tarde.$"
       ],
       "Route34_DayCare_Text_WeCanRaiseOneMore": [
         "Podemos levantar dois dos seus\\nPOKEMON. Quer que levantemos\\lmais um?$"
@@ -546,7 +546,7 @@
         "Ah, e voce! E bom ver-te. Seu\\nPOKEMON so pode estar fazendo o\\lbem!$"
       ],
       "Route34_DayCare_Text_YourMonHasGrownXLevels": [
-        "Por nivel, o\\nseu{STR_VAR_1}Cresceu\\lpor{STR_VAR_2}.$"
+        "Por nivel, o\\nseu {STR_VAR_1} Cresceu\\lpor {STR_VAR_2}.$"
       ],
       "Route34_DayCare_Text_YourTeamIsFull": [
         "Sua equipe esta cheia. Abram\\nespaco e venham ver-me.$"
@@ -652,7 +652,7 @@
         "Usar o SQUIRTBOTTLE?$"
       ],
       "Route36_Text_UsedSquirtbottle": [
-        "{PLAYER}Usou o SQUIRTBOTTLE.$"
+        "{PLAYER} Usou o SQUIRTBOTTLE.$"
       ],
       "Route36_Text_SudowoodoAttacked": [
         "A arvore estranha nao gosta do\\nSQUIRTBOTTLE!\\pA arvore estranha atacou!$"
@@ -801,7 +801,7 @@
     },
     "data/maps/Route39_Barn/scripts.inc": {
       "Route39_Text_BarnGaveBerry": [
-        "{PLAYER}Deu um ORAN BERRY ao\\nMILTANK.$"
+        "{PLAYER} Deu um ORAN BERRY ao\\nMILTANK.$"
       ]
     }
   },
