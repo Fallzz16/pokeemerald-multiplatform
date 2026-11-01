@@ -238,112 +238,112 @@
     },
     "data/maps/BattleFrontier_BattlePikeCorridor/scripts.inc": {
       "BattleFrontier_BattlePikeCorridor_Text_YourChallengeHasBegun": [
-        "Seu desafio de escolha de\\nbatalha comecou agora...$"
+        "Seu desafio da BATTLE PIKE\\ncomecou agora...$"
       ]
     },
     "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc": {
       "BattleFrontier_BattlePikeLobby_Text_TakeChallenge": [
-        "Gostaria de aceitar o desafio\\nda Escolha de Batalha?$"
+        "Quer participar do\\ndesafio da BATTLE PIKE?$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ExplainBattlePike": [
         "Aqui conduzimos um evento que\\nchamamos de Escolha de Batalha.\\pAs regras da Battle Choice sao\\nmuito simples...\\pEscolha um de tres caminhos e\\nva para a sala de gols no final\\lda PIKE BATTLE. E simples\\lassim.\\pNo entanto, o que acontece no\\ncaminho escolhido depende\\linteiramente da sorte do\\ldesafiante...\\pSe atingir o objetivo, sera\\nrecompensado com Pontos de\\lBatalha.\\pSe quiser interromper o seu\\ndesafio, por favor, fale com o\\lnosso pessoal nas salas grandes\\la caminho.\\pSe voce nao salvar antes de\\ninterromper, voce sera\\ldesqualificado.$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_LookForwardToSeeingYou": [
-        "Esperamos ve-lo noutra\\nocasiao...$"
+        "Esperamos ver voce\\noutra vez...$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_WhichChallengeMode": [
-        "Voce tem a escolha de dois\\ncursos, Nivel 50 e Nivel\\lAberto. Qual vai desafiar?$"
+        "Existem dois modos de desafio:\\nLEVEL 50 e OPEN LEVEL.\\lQual deseja escolher?$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsEnd": [
-        "Por favor, venha ver-me quando\\nestiver pronto...$"
+        "Por favor, volte quando\\nestiver preparado...$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_PleaseChooseThreeMons": [
-        "Por favor escolha os tres\\nPOKEMON que voce deseja entrar\\lno desafio...$"
+        "Escolha os tres POKEMON\\nque deseja levar para\\lo desafio...$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_SaveBeforeChallenge": [
-        "Antes de comecar seu desafio\\nBattle Choice, eu devo salvar o\\ljogo. Isso e aceitavel?$"
+        "Antes de comecar a BATTLE\\nPIKE, preciso salvar\\lo jogo. Tudo bem?$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_StepThisWay": [
         "Por favor, por aqui...$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ChallengeEndedRecordResults": [
-        "Seu desafio terminou...\\pVou registrar os seus\\nresultados. Por favor,\\lespera...$"
+        "Seu desafio terminou...\\pVou registrar os\\nresultados. Aguarde\\lum instante...$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_PossessLuckInAbundance": [
-        "Voce completou o desafio...\\pDevo dizer... Parece ter sorte\\nem abundancia...$"
+        "Voce concluiu o desafio...\\pPreciso admitir que\\nsua sorte e incrivel...$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ShallRecordResults": [
-        "Vou registrar os seus\\nresultados. Por favor,\\lespera...$"
+        "Vou registrar seus\\nresultados. Aguarde\\lum instante...$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_AwardYouTheseBattlePoints2": [
-        "Para comemorar sua conclusao\\ndo desafio Battle Choice, nos\\lpremiamos-lhe estes Pontos de\\lBatalha...$"
+        "Parabens por concluir\\no desafio da BATTLE PIKE!\\lReceba estes\\lBATTLE POINTS!$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ReachedBattlePointLimit": [
         "Parece que chegou ao limite\\npara os Pontos de Batalha...\\pPor favor, troque alguns Pontos\\nde Batalha por premios e...$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_FailedToSaveBeforeQuitting": [
-        "Peco desculpa, mas...\\pVoce falhou em salvar antes de\\nsair do seu desafio da ultima\\lvez.\\pPor causa disso, seu desafio\\nate agora foi desqualificado.\\lDesculpa...$"
+        "Sinto muito, mas...\\pVoce nao salvou o jogo\\nantes de sair do desafio\\lda ultima vez.\\pPor isso, seu resultado\\nfoi desclassificado.\\lQue pena...$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_AwardYouTheseBattlePoints": [
-        "Em reconhecimento sua sorte\\nincrivel, nos lhe damos estes\\lPontos de Batalha...$"
+        "Em reconhecimento\\na sua sorte incrivel,\\lreceba estes BATTLE POINTS.$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_OneRoomAwayFromGoal": [
-        "Arrgh! Estraguei a minha\\noportunidade! Eu estava a um\\lquarto do golo!\\pNeste lugar, e melhor teres\\ncuidado com o veneno, o\\lcongelamento, e assim por\\ldiante.$"
+        "Argh! Perdi minha\\nchance! Eu estava a uma\\lsala da chegada!\\pAqui e preciso tomar\\ncuidado com veneno,\\lcongelamento e outras\\lcondicoes de status.$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_NeverHadToBattleTrainer": [
-        "Ja completei o desafio 10\\nvezes, mas nunca tive de batalhar\\lcontra um TREINADOR.$"
+        "Ja conclui o desafio\\ndez vezes, mas nunca\\lenfrentei um TREINADOR!$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ThinkAbilitiesUsefulHere": [
-        "Ouve! Ouve!\\pNao acha que as habilidades\\nespeciais de POKEMON serao\\luteis aqui?$"
+        "Ei, escute!\\pAs habilidades dos POKEMON\\npodem ajudar muito\\lneste lugar, nao acha?$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_TrainersWhicheverPathIChoose": [
-        "Que sitio e este? Nao consigo\\nperceber nada!\\pJa enfrentei o desafio varias\\nvezes, mas tudo o que faco e\\lencontrar os TREINADORES onde eu\\lescolher.$"
+        "Que lugar estranho!\\nNao entendo nada!\\pJa tentei varias vezes,\\nmas encontro TREINADORES\\lem todo caminho\\lque escolho!$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_RulesAreListed": [
-        "As regras da Escolha de Batalha\\nestao listadas.$"
+        "As regras da BATTLE PIKE\\nestao explicadas aqui.$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ReadWhichHeading": [
-        "Que rumo quer ler?$"
+        "Sobre o que deseja ler?$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ExplainPokenavBagRules": [
-        "O BAG e o POKENAV nao podem ser\\nusados durante um desafio\\lBattle Choice.$"
+        "Nao e permitido usar\\na BOLSA ou o POKENAV\\ldurante a BATTLE PIKE.$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ExplainHeldItemRules": [
-        "Durante um desafio de Battle\\nChoice, qualquer BERRY ou HERB\\lmantido por POKEMON sera eficaz\\lapenas uma vez.$"
+        "Na BATTLE PIKE, os\\nPOKEMON podem usar BERRIES\\le HERBS apenas uma\\lvez por desafio.$"
       ],
       "BattleFrontier_BattlePikeLobby_Text_ExplainMonOrderRules": [
-        "Durante um desafio Battle\\nChoice, a sequencia de POKEMON\\lnao pode ser alterada.\\pA sequencia deve ser definida\\nantes de iniciar seu desafio.$"
+        "Na BATTLE PIKE, a ordem\\ndos POKEMON escolhidos\\lnao pode ser alterada.\\pOrganize sua equipe\\nantes de comecar.$"
       ]
     },
     "data/maps/BattleFrontier_BattlePikeRoomFinal/scripts.inc": {
       "BattleFrontier_BattlePikeRoomFinal_Text_CongratsThisWayPlease": [
-        "Parabens... Por aqui, por\\nfavor...$"
+        "Parabens... Siga por\\naqui, por favor...$"
       ]
     },
     "data/maps/BattleFrontier_BattlePikeRoomNormal/scripts.inc": {
       "BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreToFullHealth": [
-        "Bem-vindo... Deve ser elogiado\\npela sua sorte...\\pO seu POKEMON sera restaurado a\\nplena saude...$"
+        "Bem-vindo... Sua sorte\\ne admiravel...\\pSeus POKEMON serao\\nrecuperados totalmente...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_EnjoyRestOfChallenge": [
-        "Peco-vos que aproveitem o resto\\ndo seu desafio de Escolha de\\lBatalha...$"
+        "Espero que aproveite\\no restante do desafio\\lda BATTLE PIKE...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreOneMon": [
-        "E um sortudo. Estou de bom\\nhumor agora.\\pVou restaurar um dos seus\\nPOKEMON a plena saude.$"
+        "Que sorte! Hoje estou\\nde bom humor.\\pVou recuperar um\\nde seus POKEMON!$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_BestOfLuckFarewell": [
         "Boa sorte para voce. Adeus.$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_CareForBattleWillRestoreMons": [
-        "Com licenca...\\pGostaria de uma batalha?\\nRecupero seu POKEMON se\\lganhares.$"
+        "Com licenca...\\pQue tal uma batalha?\\nSe vencer, recuperarei\\lseus POKEMON.$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_NowShallWe": [
         "Muito bem... Vamos?$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_HowUnsportingOfYou": [
-        "Entendo... Que desportivo da\\ntua parte...$"
+        "Entendo... Que falta\\nde esportividade...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreMonsAsPromised": [
-        "Magnifico...\\pComo prometido, restaurarei o\\nvosso POKEMON a plena saude.$"
+        "Excelente...\\pComo prometi, vou\\nrecuperar seus POKEMON.$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_BestOfLuckFarewell2": [
         "Boa sorte para voce. Adeus.$"
@@ -352,7 +352,7 @@
         "Meu Deus!\\pCuidado!$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_KirliaStop": [
-        "Agora, agora! KIRLIA, para com\\nisso!$"
+        "Ei, KIRLIA! Pare\\ncom isso agora!$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_KirliaUsedWillOWisp": [
         "KIRLIA usou WILL-O-WISP!$"
@@ -361,7 +361,7 @@
         "DUSCLOPS usou WILL-O-WISP!$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ThatsEnough": [
-        "Olha aqui! Ja chega!$"
+        "Ei! Ja chega disso!$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ApologizeForKirlia": [
         "Quero pedir desculpas...\\pMinha KIRLIA tem uma\\nnatureza TIMID...$"
@@ -370,123 +370,123 @@
         "Quero pedir desculpas...\\pMeu DUSCLOPS tem uma\\nnatureza TIMID...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_AttacksWhenStartled": [
-        "Ataca sem aviso se for\\nsurpreendido por outra\\lpessoa...\\pTu e seu POKEMON estao bem?$"
+        "Ele ataca quando\\nalguma coisa o assusta.\\lQue susto, nao e?\\pVoce e seus POKEMON estao bem?$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ApologizeHopeMonsAreFine": [
         "Peco desculpa pelo que\\naconteceu... Espero que o seu\\lPokemon esteja bem.$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_BattleSomewhatToughTrainer": [
-        "Bem-vindo...\\pAqui, vamos fazer com que lutes\\ncom um TREINADOR um pouco\\lduro...$"
+        "Bem-vindo...\\pVoce tera que enfrentar\\num TREINADOR um pouco\\lmais forte...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_RestoreToFullHealth": [
-        "Que maravilha...\\pPara honrar sua vitoria, o\\nvosso POKEMON sera restaurado a\\lplena saude...$"
+        "Excelente trabalho...\\pPela sua vitoria,\\nseus POKEMON serao\\ltotalmente recuperados...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_EnjoyRestOfChallenge2": [
         "Peco-vos que aproveitem o resto\\ndo seu desafio de Escolha de\\lBatalha...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_HopeYouDidntUseUpLuck": [
-        "Sua sorte... Espero que nao\\ntenhas usado tudo aqui...$"
+        "Que sorte a sua... Espero\\nque ainda tenha um pouco...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_AllThereIsDisappear": [
-        "...E tudo o que ha...\\nDesaparecer ja...$"
+        "...E so isso...\\nAgora desapareca...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_NowComeOn": [
         "Agora! Vamos!$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_LuckSymbolTookGoldenShine": [
-        "O simbolo da sorte ganhou um\\nbrilho dourado!$"
+        "O LUCK SYMBOL ganhou\\num brilho dourado!$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_IWontForget": [
         "Nao me esquecerei de voce.$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ChoseRoomNoHeal": [
-        "Bem-vindos...\\pRiso... Parece estar sem\\nsorte...\\pSe nao tivesses escolhido esta\\nsala, seu POKEMON podia ter\\lsido curado...$"
+        "Bem-vindo...\\pAh... Parece que\\na sorte nao ajudou...\\pSe tivesse escolhido\\noutra sala, seus POKEMON\\lseriam recuperados...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ChoseRoomHealOne": [
-        "Bem-vindos...\\pJa que escolheste esta sala,\\nvou restaurar um POKEMON a\\lplena saude...$"
+        "Bem-vindo...\\pComo escolheu esta sala,\\nvou recuperar um POKEMON\\lpara voce...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ChoseRoomHealTwo": [
-        "Bem-vindos...\\pJa que escolheste esta sala,\\nvou restaurar dois POKEMON a\\lplena saude...$"
+        "Bem-vindo...\\pComo escolheu esta sala,\\nvou recuperar dois POKEMON\\lpara voce...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreAllMons": [
-        "Bem-vindos...\\pRiso... devia agradecer as\\ntuas estrelas da sorte...\\pJa que escolheu esta sala, todo\\no seu POKEMON sera\\lrestaurado...$"
+        "Bem-vindo...\\pVoce deve agradecer\\na sua sorte...\\pComo escolheu esta sala,\\ntodos os seus POKEMON\\lserao recuperados...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_ShallFetchOurMaster": [
         "Vou buscar nosso mestre...$"
       ],
       "BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreTwoMons": [
-        "E um sortudo! Agora estou de\\nbom humor.\\pVou restaurar dois dos vossos\\nPOKEMON a plena saude!$"
+        "Hoje voce esta com sorte!\\nEstou de bom humor.\\pVou recuperar dois\\nde seus POKEMON!$"
       ]
     },
     "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc": {
       "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom1": [
-        "Voce esta atualmente no 1o\\nquarto...$"
+        "Voce esta na primeira\\nsala do desafio...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom3": [
-        "Voce esta atualmente no\\nterceiro quarto...$"
+        "Voce chegou a\\nterceira sala...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom5": [
-        "Voce esta atualmente no quinto\\nquarto...$"
+        "Voce chegou a quinta\\nsala do desafio...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom7": [
-        "Voce esta atualmente no setimo\\nquarto...$"
+        "Voce chegou a setima\\nsala do desafio...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom9": [
-        "Voce esta atualmente no 9o\\nquarto...$"
+        "Voce chegou a nona\\nsala do desafio...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom11": [
-        "Esta no 11o quarto...$"
+        "Voce chegou a sala onze...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_CurrentlyInRoom13": [
-        "Esta no quarto 13...$"
+        "Voce chegou a sala treze...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_ContinueWithChallenge": [
-        "Continuara com seu desafio?$"
+        "Quer continuar o desafio?$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_SaveChallengeAndQuit": [
-        "Voce gostaria de salvar seu\\ndesafio e sair do jogo por\\lagora?$"
+        "Quer salvar o desafio\\ne sair do jogo\\lpor enquanto?$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_RetireFromChallenge": [
-        "Deseja retirar-se do seu\\ndesafio de Battle Choice?$"
+        "Deseja desistir do\\ndesafio da BATTLE PIKE?$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_AwaitingReturnSaveBeforeResume": [
-        "Esperavamos seu volta...\\pAntes de retomar seu desafio\\nBattle Choice, deixe-me salvar\\lo jogo...$"
+        "Estavamos esperando voce...\\pAntes de continuar\\no desafio da BATTLE PIKE,\\lvou salvar o jogo...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_PleaseEnjoyChallenge": [
-        "Por favor, aproveite o seu\\ndesafio de Battle Choice...$"
+        "Aproveite seu desafio\\nda BATTLE PIKE...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_SavingYourData": [
-        "Estou guardando os seus\\ndados... Um pouco de tempo, por\\lfavor...$"
+        "Salvando seus dados...\\nAguarde so mais\\lum instante...$"
       ],
       "BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack": [
-        "O caminho esta bloqueado! E nao\\nha como voltar atras...$"
+        "O caminho foi bloqueado!\\nNao e possivel voltar...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_FindingItDifficultToChoose": [
-        "Peco desculpa, mas...\\pAcha dificil escolher o seu\\ncaminho?$"
+        "Me desculpe, mas...\\pEsta com dificuldade\\npara escolher o caminho?$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_ApologizeForImpertinence": [
-        "Estou vendo... peco desculpa\\npela minha impertinencia...$"
+        "Entendo... Desculpe\\nminha intromissao...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutRightPath": [
-        "Me deixe ver... Ha algo no\\ncaminho a direita...$"
+        "Deixe-me ver... Tem algo\\nno caminho da direita...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutCenterPath": [
-        "Me deixe ver... Ha algo sobre o\\ncaminho no centro...$"
+        "Deixe-me ver... Tem algo\\nno caminho do meio...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_SomethingAboutLeftPath": [
-        "Me deixe ver... Ha algo no\\ncaminho a esquerda...$"
+        "Deixe-me ver... Tem algo\\nno caminho da esquerda...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_AromaOfPokemon": [
-        "Parece ter o aroma distinto de\\nPOKEMON...$"
+        "Sinto um cheiro\\ndiferente de POKEMON...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_PresenceOfPeople": [
         "E... um TREINADOR? Sinto a\\npresenca das pessoas...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_HeardWhispering": [
-        "Parece que ouvi algo... Pode\\nter estado a sussurrar...$"
+        "Acho que ouvi alguma coisa...\\nParecia alguem sussurrando...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_WaveOfNostaliga": [
-        "Por alguma razao estranha,\\nsenti uma onda de nostalgia...$"
+        "De repente, senti uma\\nsaudade inexplicavel...$"
       ],
       "BattleFrontier_BattlePikeThreePathRoom_Text_TerrifyingEvent": [
         "Lamento dizer...\\pUm acontecimento assustador,\\nsim, horrivel, esta prestes a\\lacontecer-te...\\pPeco-lhe que pague o maximo de\\ncuidado e prepare-se para o\\lpior...$"
