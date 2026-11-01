@@ -70,12 +70,12 @@
     },
     "data/maps/NewBarkTown_PlayersHouse_1F/scripts.inc": {
       "NewBarkTown_PlayersHouse_1F_Text_ObtainedPokeGear": [
-        "{PLAYER}obteve o POKENAV.$"
+        "{PLAYER} obteve o POKENAV.$"
       ]
     },
     "data/maps/NewBarkTown_PlayersHouse_2F/scripts.inc": {
       "NewBarkTown_PlayersHouse_2F_Text_NES": [
-        "{PLAYER}Brincava com o NES.\\pEsta bem! Esta na hora de ir!$"
+        "{PLAYER} Brincava com o NES.\\pEsta bem! Esta na hora de ir!$"
       ]
     },
     "data/maps/NewMauville_Entrance/scripts.inc": {
@@ -91,7 +91,7 @@
         "O gerador acalmou.$"
       ],
       "NewMauville_Inside_Text_SteppedOnSwitchGeneratorStopped": [
-        "{PLAYER}Pisei no interruptor.\\pClique...\\p... ... ... ... ... ... ... ...\\n... ... ... ... ... ... ... ...\\pO gerador parece ter parado...$"
+        "{PLAYER} Pisei no interruptor.\\pClique...\\p... ... ... ... ... ... ... ...\\n... ... ... ... ... ... ... ...\\pO gerador parece ter parado...$"
       ]
     },
     "data/maps/OldaleTown_House1/scripts.inc": {
@@ -564,7 +564,7 @@
         "Tem um aspecto cruel.\\pUm POKEMON assustador como esse\\nmerece um TM como este.$"
       ],
       "PacifidlogTown_House2_Text_GetGoodTMInXDays": [
-        "Sim. Em cerca de{STR_VAR_1}ou\\nassim dias, eu deveria estar\\lrecebendo um bom TM ou dois.\\pEntao devia vir ver-me. Dou-te\\num TM adequado para seu\\lPOKEMON.$"
+        "Sim. Em cerca de {STR_VAR_1} ou\\nassim dias, eu deveria estar\\lrecebendo um bom TM ou dois.\\pEntao devia vir ver-me. Dou-te\\num TM adequado para seu\\lPOKEMON.$"
       ],
       "PacifidlogTown_House2_Text_VeryFriendlyWithTrainer": [
         "Parece ser muito amigavel com o\\nTRAiner.$"
@@ -575,13 +575,13 @@
     },
     "data/maps/PacifidlogTown_House3/scripts.inc": {
       "PacifidlogTown_House3_Text_WillingToTradeIt": [
-        "Olha para isto.{STR_VAR_2}!\\pE o{STR_VAR_2}que apanhei ontem\\npara celebrar meu\\laniversario!\\pPosso ver que voce quer!\\nAfinal, e inestimavel!\\pFazemos assim. Eu poderia estar\\ndisposto a troca-lo por\\lum{STR_VAR_1}.$"
+        "Olha para isto.{STR_VAR_2}!\\pE o {STR_VAR_2} que apanhei ontem\\npara celebrar meu\\laniversario!\\pPosso ver que voce quer!\\nAfinal, e inestimavel!\\pFazemos assim. Eu poderia estar\\ndisposto a troca-lo por\\lum {STR_VAR_1}.$"
       ],
       "PacifidlogTown_House3_Text_ItsSubtlyDifferentThankYou": [
         "Entao isto e...{STR_VAR_1}?\\pE uma especie de...{STR_VAR_2},\\ne ainda assim e sutilmente\\ldiferente.\\pObrigado!$"
       ],
       "PacifidlogTown_House3_Text_WontAcceptAnyLessThanRealMon": [
-        "Nao! Nao aceitarei menos do que\\num verdadeiro{STR_VAR_1}!$"
+        "Nao! Nao aceitarei menos do que\\num verdadeiro {STR_VAR_1}!$"
       ],
       "PacifidlogTown_House3_Text_NotDesperateOrAnything": [
         "Entao, nao vai continuar com\\nisto?\\pFixe. Nao estou desesperado\\npara fazer uma troca.$"
@@ -625,7 +625,7 @@
     },
     "data/maps/PalletTown_PlayersHouse_2F_Frlg/scripts.inc": {
       "PalletTown_PlayersHouse_2F_Text_PlayedWithNES": [
-        "{PLAYER}Brincava com o NES.\\pEsta bem! Esta na hora de ir!$"
+        "{PLAYER} Brincava com o NES.\\pEsta bem! Esta na hora de ir!$"
       ]
     },
     "data/maps/PalletTown_RivalsHouse_Frlg/scripts.inc": {
