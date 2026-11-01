@@ -261,7 +261,7 @@
         "Oh! E mesmo forte!$"
       ],
       "Route27_Text_CooltrainerfMeganAfter": [
-        "Estou verificando POKEMON antes\\ne depois da evolucao.\\pA evolucao realmente torna\\nPOKEMON mais forte.\\pMas formas evoluidas tambem\\naprendem movimentos mais tarde.$"
+        "Estou verificando POKEMON antes\\ne depois da evolucao.\\pA evolucao realmente torna\\nPOKEMON mais forte.\\pMas formas evoluidas tambem\\naprendem golpes mais tarde.$"
       ],
       "Route27_Text_PsychicGilbertSeen": [
         "Nao digas nada!\\pDeixa-me adivinhar o que estas\\na pensar.\\pMmmmmmm...\\pConsegui! Estas no desafio da\\nLEAGUE POKEMON!$"
@@ -317,7 +317,7 @@
     },
     "data/maps/Route2_House_Frlg/scripts.inc": {
       "Route2_House_Text_FaintedMonsCanUseFieldMoves": [
-        "Um POKEMON desmaiado nao tem\\nmais energia para batalhar.\\pEle ainda pode usar movimentos\\ncomo CUT fora da batalha.$"
+        "Um POKEMON desmaiado nao tem\\nmais energia para batalhar.\\pEle ainda pode usar golpes\\ncomo CUT fora da batalha.$"
       ]
     },
     "data/maps/Route2_ViridianForest_NorthEntrance_Frlg/scripts.inc": {
@@ -325,7 +325,7 @@
         "Muitos POKEMON vivem apenas em\\nflorestas e cavernas.\\pVoce precisa ser persistente e\\nolhar em todos os lugares para\\lobter tipos diferentes.$"
       ],
       "Route2_ViridianForest_NorthEntrance_Text_CanCutSkinnyTrees": [
-        "Ja reparaste nas arvores finas\\na beira da estrada?\\pOuvi dizer que podem ser\\ncortados por um movimento\\lespecial POKEMON.$"
+        "Ja reparaste nas arvores finas\\na beira da estrada?\\pOuvi dizer que podem ser\\ncortados por um golpe\\lespecial POKEMON.$"
       ],
       "Route2_ViridianForest_NorthEntrance_Text_CanCancelEvolution": [
         "Conhece a tecnica da evolucao?\\pQuando um POKEMON esta\\nevoluir, pode parar o processo.\\pE uma tecnica para criar\\nPOKEMON como eles sao.$"
@@ -796,7 +796,7 @@
         "Voce veio na hora certa.\\pVamos batalhar.$"
       ],
       "Route39_Text_PokefanFJaimeBeaten": [
-        "Que desilusao...$"
+        "Que decepcao...$"
       ]
     },
     "data/maps/Route39_Barn/scripts.inc": {
