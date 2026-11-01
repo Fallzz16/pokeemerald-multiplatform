@@ -248,7 +248,7 @@
     },
     "data/maps/AzaleaTown_PokemonCenter/scripts.inc": {
       "AzaleaPokecenter_Text_Gentleman": [
-        "Seu POKEMON conhece os\\nmovimentos HM?\\pEstes movimentos podem ser\\nutilizados mesmo que o seu\\lPOKEMON tenha desmaiado.$"
+        "Seu POKEMON conhece os\\nmovimentos HM?\\pEstes golpes podem ser\\nutilizados mesmo que o seu\\lPOKEMON tenha desmaiado.$"
       ]
     },
     "data/maps/BattleFrontier_BattleArenaBattleRoom/scripts.inc": {
@@ -371,7 +371,7 @@
         "Nossa partida foi declarada\\nempate.\\pQuando ficamos sem tempo, tanto\\no meu POKEMON como o adversario\\ltiveram a mesma quantidade de\\lHP esquerda.$"
       ],
       "BattleFrontier_BattleArenaLobby_Text_OrderOfMonsImportant": [
-        "Na BATTLE ARENA, a ordem de\\nPokemon e totalmente\\limportante.\\pPor exemplo, se seu primeiro\\nPOKEMON tem certas desvantagens\\lde tipo, tente fazer o seu\\lsegundo POKEMON com movimentos\\lque sao super eficazes contra o\\lprimeiro.\\pAcho que sera uma boa forma de\\nformar uma equipe eficaz.$"
+        "Na BATTLE ARENA, a ordem de\\nPokemon e totalmente\\limportante.\\pPor exemplo, se seu primeiro\\nPOKEMON tem certas desvantagens\\lde tipo, tente fazer o seu\\lsegundo POKEMON com golpes\\lque sao super eficazes contra o\\lprimeiro.\\pAcho que sera uma boa forma de\\nformar uma equipe eficaz.$"
       ],
       "BattleFrontier_BattleArenaLobby_Text_RulesAreListed": [
         "As regras do Set KO Tourney\\nestao listadas.$"
