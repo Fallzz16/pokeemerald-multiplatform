@@ -83,7 +83,7 @@
     },
     "data/maps/BattleFrontier_Lounge6/scripts.inc": {
       "BattleFrontier_Lounge6_Text_WouldYouLikeToTrade": [
-        "Meu POKEMON e\\num{STR_VAR_2}Conheces? E\\lbastante bonito e bastante\\lagradavel.\\pEste pequeno, eu poderia trocar\\ncom orgulho!\\pGostaria de me trocar\\num{STR_VAR_1}para a\\lminha{STR_VAR_2}?$"
+        "Meu POKEMON e\\num{STR_VAR_2}Conhece? E\\lbastante bonito e bastante\\lagradavel.\\pEste pequeno, eu poderia trocar\\ncom orgulho!\\pGostaria de me trocar\\num{STR_VAR_1}para a\\lminha{STR_VAR_2}?$"
       ],
       "BattleFrontier_Lounge6_Text_PromiseIllBeGoodToIt": [
         "E adoravel! Obrigado! Prometo\\nque serei boazinha!\\pOh! Espero que sejas bom para a\\nminha{STR_VAR_2}Tambem!$"
@@ -103,10 +103,10 @@
         "Buhahaha!\\pVoltou para ensinar\\ngolpes especiais aos\\lseus POKEMON?$"
       ],
       "BattleFrontier_Lounge7_Text_TeachWhichMove": [
-        "Esta bem, esta bem, olha aqui!\\nQue movimento devo dar?$"
+        "Esta bem, esta bem, olha aqui!\\nQue golpe devo dar?$"
       ],
       "BattleFrontier_Lounge7_Text_MoveWillBeXBattlePoints": [
-        "A jogada{STR_VAR_1}E mesmo?\\nIsso sera{STR_VAR_2}Pontos de\\lBatalha, esta bem?$"
+        "A golpe{STR_VAR_1}E mesmo?\\nIsso sera{STR_VAR_2}Pontos de\\lBatalha, esta bem?$"
       ],
       "BattleFrontier_Lounge7_Text_TeachMoveToWhichMon": [
         "Esta bem, agora escolhe o\\nPokemon para o qual devo\\lensinar.$"
@@ -121,7 +121,7 @@
         "O que e isso? Nao quer...\\pSe quer ver como sou\\nhabilidoso, vem ter comigo a\\lqualquer hora!$"
       ],
       "BattleFrontier_Lounge7_Text_RightTutorIntro": [
-        "Ihihihi!\\pEu sei que e dificil de ver\\nagora, mas eu costumava ser um\\ltreinador fantastico.\\pEu tinha uma reputacao como o\\nmais invencivel SWIMMER por\\lperto, eu lhe digo!\\p... ... ... ... ... ...\\pO que se passa? Nao acreditas\\nem mim.\\pNao sou como aquela mulher\\nidiota ali. Na verdade, tenho\\lexperiencia!\\pPosso prova-lo. Posso ensinar\\nos seus movimentos POKEMON.\\pMas minhas licoes nao sao de\\ngraca. Que tal pagar pelos\\lmovimentos que dou com um pouco\\lde Pontos de Batalha?$"
+        "Ihihihi!\\pEu sei que e dificil de ver\\nagora, mas eu costumava ser um\\ltreinador fantastico.\\pEu tinha uma reputacao como o\\nmais invencivel SWIMMER por\\lperto, eu lhe digo!\\p... ... ... ... ... ...\\pO que se passa? Nao acreditas\\nem mim.\\pNao sou como aquela mulher\\nidiota ali. Na verdade, tenho\\lexperiencia!\\pPosso prova-lo. Posso ensinar\\nos seus golpes POKEMON.\\pMas minhas licoes nao sao de\\ngraca. Que tal pagar pelos\\lmovimentos que dou com um pouco\\lde Pontos de Batalha?$"
       ],
       "BattleFrontier_Lounge7_Text_RightTutorWelcomeBack": [
         "Ihihihi!\\pVeio aprender novos\\ngolpes para seus POKEMON?$"
@@ -391,7 +391,7 @@
     },
     "data/maps/BlackthornCity/scripts.inc": {
       "BlackthornCity_Text_ClairIsBeaten": [
-        "Derrotaste o CLAIR?\\pIsso e incrivel!\\pNunca ouvi falar dela perder\\npara ninguem alem de LANCE.$"
+        "Derrotou o CLAIR?\\pIsso e incrivel!\\pNunca ouvi falar dela perder\\npara ninguem alem de LANCE.$"
       ],
       "BlackthornGrampsRefusesEntryText": [
         "Nao. So os TREINADORES\\nescolhidos podem treinar aqui.\\pPor favor, saia.$"
@@ -437,7 +437,7 @@
         "Que POKEMON deve esquecer uma\\njogada?$"
       ],
       "BlackthornCity_MoveDeletersHouse_Text_WhichMoveShouldBeForgotten": [
-        "Que movimento deve ser\\nesquecido?$"
+        "Que golpe deve ser\\nesquecido?$"
       ],
       "BlackthornCity_MoveDeletersHouse_Text_MonOnlyKnowsOneMove": [
         "{STR_VAR_1}Sabe apenas um\\nmovimento para que nao possa\\lser esquecido...$"
@@ -461,13 +461,13 @@
         "Que POKEMON precisa de\\nexplicacoes?$"
       ],
       "BlackthornCity_MoveRelearnersHouse_Text_TeachWhichMove": [
-        "Que movimento devo dar?$"
+        "Que golpe devo dar?$"
       ],
       "BlackthornCity_MoveRelearnersHouse_Text_DontHaveMoveToTeachPokemon": [
         "Desculpa...\\pNao parece que eu tenha alguma\\njogada que possa ensinar ao\\lPokemon.$"
       ],
       "BlackthornCity_MoveRelearnersHouse_Text_CantTeachEgg": [
-        "Hunh? Nao ha um unico movimento\\nque eu possa ensinar um EGG.$"
+        "Hunh? Nao ha um unico golpe\\nque eu possa ensinar um EGG.$"
       ]
     },
     "data/maps/BurnedTower_1F/scripts.inc": {
@@ -562,7 +562,7 @@
     },
     "data/maps/CeladonCity_DepartmentStore_3F_Frlg/scripts.inc": {
       "CeladonCity_DepartmentStore_3F_Text_CanIdentifyTradeMonsByID": [
-        "Voce pode identificar POKEMON\\nvoce comeca em comercios por\\lseus numeros de identificacao.$"
+        "Voce pode identificar POKEMON\\nvoce comeca em trocas por\\lseus numeros de identificacao.$"
       ],
       "CeladonCity_DepartmentStore_3F_Text_ItsSuperNES": [
         "E um Super NES.$"
@@ -605,10 +605,10 @@
         "{PLAYER}recebeu\\numa{STR_VAR_2}Da menina.$"
       ],
       "CeladonCity_DepartmentStore_Roof_Text_ExplainTM20": [
-        "TM20 contem SAFEGUARD.\\pE uma jogada que evita\\nproblemas de status entre os\\lseus POKEMON.$"
+        "TM20 contem SAFEGUARD.\\pE uma golpe que evita\\nproblemas de status entre os\\lseus POKEMON.$"
       ],
       "CeladonCity_DepartmentStore_Roof_Text_ExplainTM33": [
-        "TM33 contem REFLECT.\\pE um movimento que enfraquece o\\npoder dos ataques fisicos do\\lteu inimigo.$"
+        "TM33 contem REFLECT.\\pE um golpe que enfraquece o\\npoder dos ataques fisicos do\\lteu inimigo.$"
       ],
       "CeladonCity_DepartmentStore_Roof_Text_DontHaveSpaceForThis": [
         "Nao tem espaco para isto!$"
@@ -649,7 +649,7 @@
         "Ola!\\pJa te vi, mas nunca tive\\noportunidade de conversar.\\pDeve ter sido sorte ter-nos\\nunido finalmente.\\pGostaria de celebrar\\nensinando-lhe a mudanca\\lSOFTBOILED.$"
       ],
       "Text_SoftboiledDeclined": [
-        "Estarei sempre de olho em ti.\\pEspero que possamos conversar\\nnovamente.$"
+        "Estarei sempre de olho em voce.\\pEspero que possamos conversar\\nnovamente.$"
       ],
       "Text_SoftboiledTaught": [
         "Desejo-lhe boa sorte!$"
@@ -770,7 +770,7 @@
     },
     "data/maps/CeruleanCity_Frlg/scripts.inc": {
       "CeruleanCity_Text_RivalIntro": [
-        "{RIVAL}Yo!{PLAYER}!\\pAinda estas a batalhar aqui atras?\\pEstou optimo! Apanhei um monte\\nde POKEMON fortes e\\linteligentes!\\pDeixa-me ver o que\\napanhaste.{PLAYER}!$"
+        "{RIVAL}Yo!{PLAYER}!\\pAinda estas a batalhar aqui atras?\\pEstou otimo! Apanhei um monte\\nde POKEMON fortes e\\linteligentes!\\pDeixa-me ver o que\\napanhaste.{PLAYER}!$"
       ],
       "CeruleanCity_Text_RivalDefeat": [
         "Hey! Calma! Ja venceu!$"
