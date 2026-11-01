@@ -8,7 +8,7 @@
         "Huh?{STR_VAR_2}?\\pEste e do mesmo tamanho que eu\\nvi antes.$"
       ],
       "Route12_FishingHouse_Text_HmmXSizeDoesntMeasureUp": [
-        "Hmm... Esta\\ne...{STR_VAR_2}Muito tempo.\\pNao esta altura\\ndo{STR_VAR_3}Uma que trouxe\\lantes.$"
+        "Hmm... Esta\\ne...{STR_VAR_2} Muito tempo.\\pNao esta altura\\ndo {STR_VAR_3} Uma que trouxe\\lantes.$"
       ],
       "Route12_FishingHouse_Text_DoesntLookLikeMagikarp": [
         "Uh... Isso nao se parece muito\\ncom um MAGIKARP.$"
@@ -17,7 +17,7 @@
         "Nao!\\pTenho um presente para voce,\\nmas falta espaco na sua BOLSA.$"
       ],
       "Route12_FishingHouse_Text_MostGiganticMagikarpXSize": [
-        "O MAGIKARP mais gigantesco que\\nja testemunhei...\\p{STR_VAR_3}!$"
+        "O MAGIKARP mais gigantesco que\\nja testemunhei...\\p {STR_VAR_3}!$"
       ],
       "Route12_FishingHouse_Text_BlankChartOfSomeSort": [
         "E algum tipo de grafico em\\nbranco.\\pTem espacos para escrever em\\nregistros de algum tipo.$"
@@ -37,7 +37,7 @@
         "Quer usar a POKE FLUTE?$"
       ],
       "Text_PlayedPokeFlute": [
-        "{PLAYER}Tocava o POKe FLUTE.$"
+        "{PLAYER} Tocava o POKe FLUTE.$"
       ],
       "Route12_Text_NedIntro": [
         "Sim! Tenho aqui uma mordidela!$"
@@ -98,7 +98,7 @@
     },
     "data/maps/Route12_NorthEntrance_2F_Frlg/scripts.inc": {
       "Route12_NorthEntrance_2F_Text_ReceivedTM27FromLittleGirl": [
-        "{PLAYER}Recebeu TM27 da menina.$"
+        "{PLAYER} Recebeu TM27 da menina.$"
       ],
       "Route12_NorthEntrance_2F_Text_DontHaveRoomForThis": [
         "Nao ha espaco para isso.$"
@@ -352,10 +352,10 @@
     },
     "data/maps/Route15_WestEntrance_2F_Frlg/scripts.inc": {
       "Route15_WestEntrance_2F_Text_GreatHereYouGo": [
-        "Otimo! Capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
+        "Otimo! Capturou ou\\npossuiste {STR_VAR_3} Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
       ],
       "Route15_WestEntrance_2F_Text_ReceivedItemFromAide": [
-        "{PLAYER}Recebido o{STR_VAR_2}Da\\nAIDE.$"
+        "{PLAYER} Recebido o {STR_VAR_2} Da\\nAIDE.$"
       ],
       "Route15_WestEntrance_2F_Text_ExplainExpShare": [
         "EXP. SHARE e um item a ser\\nmantido por um POKEMON.\\pO POKEMON recebera uma parte da\\nEXP. Pontos sem ter de batalhar.$"
@@ -428,7 +428,7 @@
         "Nossa! Voce descobriu\\nmeu esconderijo secreto.\\pPor favor, nao conte a\\nninguem que estou aqui.\\lAceite isto como agradecimento!$"
       ],
       "Route16_House_Text_ReceivedHM02FromGirl": [
-        "{PLAYER}Recebeu HM02 da menina.$"
+        "{PLAYER} Recebeu HM02 da menina.$"
       ],
       "Route16_House_Text_ExplainHM02": [
         "HM02 e FLY. E uma jogada\\nmaravilhosamente conveniente.\\pPor favor, use-o bem.$"
@@ -456,7 +456,7 @@
         "Vamos ver o que os binoculos\\ntem para mostrar...\\pHa um longo caminho sobre a\\nagua muito longe.$"
       ],
       "Route16_NorthEntrance_2F_Text_GreatHereYouGo": [
-        "Otimo! Capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
+        "Otimo! Capturou ou\\npossuiste {STR_VAR_3} Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
       ]
     },
     "data/maps/Route17_Frlg/scripts.inc": {
