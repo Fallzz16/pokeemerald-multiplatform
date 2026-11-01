@@ -153,7 +153,7 @@
         "Obrigado!\\pCuide bem dele, por favor!$"
       ],
       "CianwoodCity_Text_ManiacGotShuckle": [
-        "{PLAYER}Recebeu um POKEMON.$"
+        "{PLAYER} Recebeu um POKEMON.$"
       ],
       "CianwoodCity_Text_ManiacPartyFull": [
         "Sua festa esta cheia.$"
@@ -189,7 +189,7 @@
         "Se eu levar meu POKEMON de\\nvolta, o que vai usar na\\lbatalha?$"
       ],
       "CianwoodCity_Text_ManiacReturnedMon": [
-        "{PLAYER}voltou SHUCKIE.$"
+        "{PLAYER} voltou SHUCKIE.$"
       ]
     },
     "data/maps/CianwoodPokecenter/scripts.inc": {
@@ -197,13 +197,13 @@
         "Parece que precisa de um\\nPOKEMON de agua.\\pToma, toma esta, tenho\\nbastante.$"
       ],
       "CianwoodPokemoncenter_Text_ReceivedTentacool": [
-        "{PLAYER}recebeu TENTACOOL.$"
+        "{PLAYER} recebeu TENTACOOL.$"
       ],
       "CianwoodCity_Text_PokecenterLass": [
         "Conheceu o POKeMANIAC?\\pEsta sempre a gabar-se do seu\\nraro POKEMON.$"
       ],
       "CianwoodCity_Text_GymGuideWin": [
-        "{PLAYER}venceu! Da para ver\\nolhando para voce!$"
+        "{PLAYER} venceu! Da para ver\\nolhando para voce!$"
       ],
       "CianwoodCity_Text_PokecenterSuperNerd": [
         "Adoro exibir o POKEMON que\\ncriei.\\pNao achas?\\pVou entrar num monte de\\nbatalhas e mostrar o meu\\lPokemon!$"
@@ -220,7 +220,7 @@
         "CINNABAR ISLAND POKEMON GINASIO\\nLEADER: BLAINE O Mestre do\\lQuestionario Quente!$"
       ],
       "CinnabarIsland_Text_HeyIfItIsntPlayer": [
-        "Huh? Ei, se nao e{PLAYER}!$"
+        "Huh? Ei, se nao e {PLAYER}!$"
       ],
       "CinnabarIsland_Text_AllRightLetsGo": [
         "Esta bem, entao. Vamos!$"
@@ -260,15 +260,15 @@
     },
     "data/maps/DesertUnderpass/scripts.inc": {
       "DesertUnderpass_Text_FoundRootFossil": [
-        "{PLAYER}Encontrei o FOSSIL\\nROOT.$"
+        "{PLAYER} Encontrei o FOSSIL\\nROOT.$"
       ],
       "DesertUnderpass_Text_FoundClawFossil": [
-        "{PLAYER}Encontrei o FOSSIL\\nCLAW.$"
+        "{PLAYER} Encontrei o FOSSIL\\nCLAW.$"
       ]
     },
     "data/maps/DewfordTown_Hall/scripts.inc": {
       "DewfordTown_Hall_Text_TeachingMonAboutTrend": [
-        "Estou ensinando o meu\\nPOKEMON{STR_VAR_1}Mas nao esta\\la correr bem.\\pAcho que e demais.$"
+        "Estou ensinando o meu\\nPOKEMON {STR_VAR_1} Mas nao esta\\la correr bem.\\pAcho que e demais.$"
       ],
       "DewfordTown_Hall_Text_MyHunchWasRight": [
         "Oh! Entao, meu palpite estava\\ncerto!\\pEstou um passo mais perto de\\nser hip e acontecer, yowza!$"
@@ -277,10 +277,10 @@
         "O que? E mesmo?!\\pNao e facil para um velho como\\neu acompanhar as tendencias!$"
       ],
       "DewfordTown_Hall_Text_TVShowAboutTrend": [
-        "Tudo isto\\nsobre...{STR_VAR_1}Nao tem um\\lprograma de TV?$"
+        "Tudo isto\\nsobre...{STR_VAR_1} Nao tem um\\lprograma de TV?$"
       ],
       "DewfordTown_Hall_Text_SawTrendCoolestThing": [
-        "Eu vi.{STR_VAR_1}legal, nao e?\\pE, tipo, a coisa mais legal!\\pFoi fantastico! Foi a serio,\\nsim!$"
+        "Eu vi.{STR_VAR_1} legal, nao e?\\pE, tipo, a coisa mais legal!\\pFoi fantastico! Foi a serio,\\nsim!$"
       ],
       "DewfordTown_Hall_Text_GiveYouSludgeBomb": [
         "Para mim, SLUDGE BOMB esta no\\nauge da popularidade. E o tal.\\pHunh? Estas a dizer-me que nao\\nsabes sobre o SLUDGE BOMB?\\pIsso e absolutamente\\nlamentavel. Eu dou-te uma.$"
@@ -373,7 +373,7 @@
         "Entendo...$"
       ],
       "DragonsDen_Shrine_Text_PassedTest": [
-        "Estou vendo...\\pGosta muito de POKEMON.\\pMuito louvavel.\\pEssa conviccao e o que importa!\\p{PLAYER}Nao percas essa crenca.\\pEle vai leva-lo ate a LEAGUE\\nPOKEMON.$"
+        "Estou vendo...\\pGosta muito de POKEMON.\\pMuito louvavel.\\pEssa conviccao e o que importa!\\p{PLAYER} Nao percas essa crenca.\\pEle vai leva-lo ate a LEAGUE\\nPOKEMON.$"
       ],
       "DragonsDen_Shrine_Text_ClairYouPassed": [
         "Entao, como correu?\\pAcho que nao vale a pena\\nperguntar. Falhaste?\\p..................................\\pO que? Passou?$"
@@ -391,7 +391,7 @@
         "Aqui, este e o RISINGBADGE...\\pDepressa! Toma!$"
       ],
       "DragonsDen_Shrine_Text_PlayerReceivedRisingBadge": [
-        "{PLAYER}Recebeu RISINGBADGE.$"
+        "{PLAYER} Recebeu RISINGBADGE.$"
       ],
       "DragonsDen_Shrine_Text_RisingBadgeExplanation": [
         "RISINGBADGE permitira que seu\\nPOKEMON use o golpe para\\lescalar cachoeiras.\\pAlem disso, todos POKEMON ira\\nreconhece-lo como um TREINADOR\\le obedecer a todos os seus\\lcomandos, sem duvida.$"
@@ -508,7 +508,7 @@
         "Nao! Fazes-me parecer um vilao!$"
       ],
       "EcruteakCity_Theater_Text_KimonoRocket3": [
-        "Deve ser.{PLAYER}Correcto?\\nIsso foi realmente excelente.\\pGentil e forte... Bom em criar\\nPOKEMON tambem...\\pEssa pessoa sabe o que procurar\\nnas pessoas...\\pOhoho! Era so eu a falar\\nsozinho. Esquece.$"
+        "Deve ser.{PLAYER} Correcto?\\nIsso foi realmente excelente.\\pGentil e forte... Bom em criar\\nPOKEMON tambem...\\pEssa pessoa sabe o que procurar\\nnas pessoas...\\pOhoho! Era so eu a falar\\nsozinho. Esquece.$"
       ],
       "EcruteakCity_Theater_Text_SurfGuyGiveSurf": [
         "Maravilhoso! Foi tao corajoso\\npara sua idade!\\pFoi uma visao rara! Quero que\\nfiques com isto.\\pNao sejas timido, toma!$"
@@ -541,7 +541,7 @@
         "Irmas grandes! Acabei de ver a\\ngrande sombra de um POKEMON\\lsobre o TIN TOWER!\\pPode ser...$"
       ],
       "EcruteakCity_Theater_Text_ZukiHooh": [
-        "ZUKI:{PLAYER}Estaremos no TIN\\nTOWER. Vemo-nos la!$"
+        "ZUKI:{PLAYER} Estaremos no TIN\\nTOWER. Vemo-nos la!$"
       ],
       "EcruteakCity_Theater_Text_KimonoDone": [
         "Estamos ensaiando uma danca.$"
@@ -757,7 +757,7 @@
         "Gostaria de deixar outro\\nLEMONADE como oferenda?$"
       ],
       "FiveIsland_MemorialPillar_Text_PlacedCanOfLemonade": [
-        "{PLAYER}colocou uma lata de\\nLEMONADE em frente ao tumulo.$"
+        "{PLAYER} colocou uma lata de\\nLEMONADE em frente ao tumulo.$"
       ],
       "FiveIsland_MemorialPillar_Text_BeGoodToYourMonsToo": [
         "Por favor, se bom para o seu\\nPokemon, tambem.$"
