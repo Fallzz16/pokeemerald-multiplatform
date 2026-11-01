@@ -41,7 +41,7 @@
         "O que eu tenho...\\nUma {STR_VAR_2} com {STR_VAR_1} e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteFMon2Ask": [
-        "Um{STR_VAR_2}com{STR_VAR_1}Esse\\ne meu par!\\pPor favor? Formas uma equipe de\\nidentificacao comigo?$"
+        "Um {STR_VAR_2} com {STR_VAR_1} Esse\\ne meu par!\\pPor favor? Formas uma equipe de\\nidentificacao comigo?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteFAccept": [
         "Obrigado! Vou me registrar no\\nbalcao.$"
@@ -595,7 +595,7 @@
         "Por favor escolha um premio\\nnesta lista.$"
       ],
       "BattleFrontier_ExchangeServiceCorner_Text_ConfirmPurchase": [
-        "Escolheste\\no{STR_VAR_1}Correcto?$"
+        "Escolheste\\no {STR_VAR_1} Correcto?$"
       ],
       "BattleFrontier_ExchangeServiceCorner_Text_WellSendItToPC": [
         "Obrigado! Vamos envia-lo para o\\nseu PC em casa.$"
@@ -716,10 +716,10 @@
         "Entao? Entao? Entao?\\pTenho a certeza que as minhas\\ninformacoes foram muito uteis\\lpara ti, certo?$"
       ],
       "BattleFrontier_Lounge2_Text_FacilityIsHottest": [
-        "Vejamos...\\pParece que...{STR_VAR_1}E o\\nlugar mais quente que vai.$"
+        "Vejamos...\\pParece que...{STR_VAR_1} E o\\nlugar mais quente que vai.$"
       ],
       "BattleFrontier_Lounge2_Text_BattleTowerIsHottest": [
-        "Vejamos...\\pSoa como BATTLE\\nTOWER{STR_VAR_1}e o mais\\lquente.$"
+        "Vejamos...\\pSoa como BATTLE\\nTOWER {STR_VAR_1} e o mais\\lquente.$"
       ],
       "BattleFrontier_Lounge2_Text_NewsGatheringPower": [
         "Que incrivel poder de recolha\\nde noticias! Meu mentor e\\lcomo nenhum outro!$"
