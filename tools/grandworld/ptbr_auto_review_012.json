@@ -576,7 +576,7 @@
     },
     "data/maps/EverGrandeCity_PokemonLeague_1F/scripts.inc": {
       "EverGrandeCity_PokemonLeague_1F_Text_MustHaveAllGymBadges": [
-        "Alem deu ponto, apenas\\naqueles que recolheram todos os\\lBADS Gym estao autorizados a\\lentrar.\\pTREINADOR, confirmemos que tem\\ntodos os GINASIO INSIGNIAS.$"
+        "Alem deste ponto, apenas\\naqueles que recolheram todos os\\lBADS Gym estao autorizados a\\lentrar.\\pTREINADOR, confirmemos que tem\\ntodos os GINASIO INSIGNIAS.$"
       ],
       "EverGrandeCity_PokemonLeague_1F_Text_HaventObtainedAllBadges": [
         "Voce nao obteve todos os\\nINSIGNIAS.\\pSe voce esta destinado para a\\nLEAGUE POKEMON, voce deve\\lvoltar com eles.$"
