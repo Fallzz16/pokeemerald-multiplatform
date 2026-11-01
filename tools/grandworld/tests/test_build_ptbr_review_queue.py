@@ -30,9 +30,10 @@ class PTBRReviewQueueTests(unittest.TestCase):
         result = queue.build()
         self.assertEqual(result["total_drafts"], 5200)
         self.assertEqual(result["status_counts"]["previously_reviewed"], 1962)
-        self.assertEqual(result["status_counts"]["editorial_ai_pending_approval"], 135)
-        self.assertEqual(result["status_counts"]["assisted_pending_editorial"], 988)
-        self.assertEqual(result["status_counts"]["untouched_by_stages_17_18"], 2115)
+        self.assertEqual(result["status_counts"]["stage19_ai_assisted_pending_approval"], 604)
+        self.assertEqual(result["status_counts"]["editorial_ai_pending_approval"], 131)
+        self.assertEqual(result["status_counts"]["assisted_pending_editorial"], 730)
+        self.assertEqual(result["status_counts"]["untouched_by_stages_17_19"], 1773)
         self.assertEqual(len(result["pending_queue"]), 3238)
         priorities = [item["priority"] for item in result["pending_queue"]]
         self.assertEqual(priorities, sorted(priorities, reverse=True))
