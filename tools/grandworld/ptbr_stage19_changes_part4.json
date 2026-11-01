@@ -1,0 +1,106 @@
+{
+  "stage": 19,
+  "status": "ai_assisted_draft_changes_pending_independent_linguistic_and_gameplay_review",
+  "baseline_commit": "9a23c3b5884bc1ab812c39393f8d2859b7a4300a",
+  "shards": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "changed_entries": 34,
+  "changed_labels_by_shard_and_source": {
+    "tools/grandworld/ptbr_auto_review_017.json": {
+      "data/maps/MtSilver_PokemonCenter/scripts.inc": [
+        "MtSilver_PokemonCenter_Text_Meara"
+      ],
+      "data/maps/NewBarkTown_PlayersHouse_1F/scripts.inc": [
+        "NewBarkTown_PlayersHouse_1F_Text_ObtainedPokeGear"
+      ],
+      "data/maps/NewBarkTown_PlayersHouse_2F/scripts.inc": [
+        "NewBarkTown_PlayersHouse_2F_Text_NES"
+      ],
+      "data/maps/NewMauville_Inside/scripts.inc": [
+        "NewMauville_Inside_Text_SteppedOnSwitchGeneratorStopped"
+      ],
+      "data/maps/PacifidlogTown_House2/scripts.inc": [
+        "PacifidlogTown_House2_Text_GetGoodTMInXDays"
+      ],
+      "data/maps/PacifidlogTown_House3/scripts.inc": [
+        "PacifidlogTown_House3_Text_WillingToTradeIt",
+        "PacifidlogTown_House3_Text_WontAcceptAnyLessThanRealMon"
+      ],
+      "data/maps/PalletTown_PlayersHouse_2F_Frlg/scripts.inc": [
+        "PalletTown_PlayersHouse_2F_Text_PlayedWithNES"
+      ],
+      "data/maps/PewterCity_House2_Frlg/scripts.inc": [
+        "PewterCity_House2_Text_MonsLearnTechniquesAsTheyGrow"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_018.json": {
+      "data/maps/RustboroCity_DevonCorp_2F/scripts.inc": [
+        "RustboroCity_DevonCorp_2F_Text_FossilizedMonBroughtBackToLife"
+      ],
+      "data/maps/RustboroCity_DevonCorp_3F/scripts.inc": [
+        "RustboroCity_DevonCorp_3F_Text_ReceivedPokenav"
+      ],
+      "data/maps/RustboroCity_Flat1_2F/scripts.inc": [
+        "RustboroCity_Flat1_2F_Text_BeenSayingXDoYouKnowBetterPhrase"
+      ],
+      "data/maps/RustboroCity_House1/scripts.inc": [
+        "RustboroCity_House1_Text_IllTradeIfYouWant",
+        "RustboroCity_House1_Text_DoesntLookLikeMonToMe"
+      ],
+      "data/maps/RustboroCity_PokemonSchool/scripts.inc": [
+        "RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself"
+      ],
+      "data/maps/SSAnne_2F_Corridor_Frlg/scripts.inc": [
+        "SSAnne_2F_Corridor_Text_RivalIntro",
+        "SSAnne_2F_Corridor_Text_RivalPostBattle"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_019.json": {
+      "data/maps/SafariZoneGate_SafariZoneEntrance/scripts.inc": [
+        "SafariZoneGate_SafariZoneEntrance_Text_BaobaCaveDone"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_020.json": {
+      "data/maps/SixIsland_PokemonCenter_1F_Frlg/scripts.inc": [
+        "SixIsland_PokemonCenter_1F_Text_RivalImpossibleToGetAllMonsAroundHere"
+      ],
+      "data/maps/SlateportCity/scripts.inc": [
+        "SlateportCity_Text_OhYourPokemon",
+        "SlateportCity_Text_ReceivedEffortRibbon",
+        "SlateportCity_Text_PutEffortRibbonOnMon",
+        "SlateportCity_Text_EffortRibbonLooksGoodOnIt"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_021.json": {
+      "data/maps/SlateportCity_BattleTentCorridor/scripts.inc": [
+        "SlateportCity_ContestHall_Text_ExplainTorment"
+      ],
+      "data/maps/SlateportCity_BattleTentLobby/scripts.inc": [
+        "SlateportCity_BattleTentLobby_Text_ExplainTorment"
+      ],
+      "data/maps/SlateportCity_NameRatersHouse/scripts.inc": [
+        "SlateportCity_NameRatersHouse_Text_FineNameSuggestBetterOne",
+        "SlateportCity_NameRatersHouse_Text_MonShallBeKnownAsName",
+        "SlateportCity_NameRatersHouse_Text_NameNoDifferentYetSuperior",
+        "SlateportCity_NameRatersHouse_Text_MagnificentName"
+      ],
+      "data/maps/SlateportCity_PokemonFanClub/scripts.inc": [
+        "SlateportCity_PokemonFanClub_Text_MonMostImpressiveGiveItThis"
+      ],
+      "data/maps/SootopolisCity_LotadAndSeedotHouse/scripts.inc": [
+        "SootopolisCity_LotadAndSeedotHouse_Text_SeenBiggerSeedot",
+        "SootopolisCity_LotadAndSeedotHouse_Text_WowMightBeBiggerThanSeedot"
+      ],
+      "data/maps/SootopolisCity_MysteryEventsHouse_1F/scripts.inc": [
+        "SootopolisCity_MysteryEventsHouse_1F_Text_ChallengeVisitingTrainer",
+        "SootopolisCity_MysteryEventsHouse_1F_Text_KeepItTo3On3"
+      ]
+    }
+  }
+}
