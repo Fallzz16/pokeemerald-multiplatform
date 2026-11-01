@@ -2,13 +2,13 @@
   "asm": {
     "data/maps/Route39_Barn/scripts.inc": {
       "Route39_Text_BarnLittleHealthier": [
-        "MILTANK tornou-se um pouco mais\\nsaudavel!$"
+        "MILTANK esta um pouco\\nmais saudavel!$"
       ],
       "Route39_Text_BarnQuiteHealthy": [
-        "MILTANK tornou-se bastante\\nsaudavel!$"
+        "MILTANK esta bem\\nmais saudavel agora!$"
       ],
       "Route39_Text_BarnTotallyHealthy": [
-        "MILTANK tornou-se totalmente\\nsaudavel!$"
+        "MILTANK esta completamente\\nrecuperado!$"
       ],
       "Route39_Text_BarnNoBerries": [
         "{PLAYER} Nao tem ORAN BERRIES...$"
@@ -16,10 +16,10 @@
     },
     "data/maps/Route39_FarmHouse/scripts.inc": {
       "Route39_Text_FarmerMGotMilk": [
-        "Aqui esta! Bebe!$"
+        "Aqui esta! Pode beber!$"
       ],
       "Route39_Text_FarmerMNoMoney": [
-        "Desculpa. Sem dinheiro, sem\\nvenda!$"
+        "Desculpa. Sem dinheiro,\\nnao posso vender!$"
       ],
       "Route39_Text_FarmerMNoSale": [
         "Nao quer? Tem certeza?$"
@@ -28,10 +28,10 @@
         "Que tal outro?$"
       ],
       "Route39_Text_FarmerMMilking": [
-        "E melhor ir ordenhar.$"
+        "Preciso ir tirar leite agora.$"
       ],
       "Route39_Text_FarmerFInTrouble": [
-        "Nosso leite ate vai para a\\nKANTO.\\pSe nosso MILTANK nao nos der\\nleite, estamos em apuros.$"
+        "Nosso leite e vendido ate\\nem KANTO!\\pSem leite de MILTANK,\\nvamos ter problemas!$"
       ]
     },
     "data/maps/Route3_Frlg/scripts.inc": {
@@ -39,37 +39,37 @@
         "Ufa... Preciso descansar...\\nAi, ai...\\pAquele tunel de CERULEAN\\ne muito cansativo!$"
       ],
       "Route3_Text_ColtonDefeat": [
-        "Bateste-me outra vez!$"
+        "Voce me venceu de novo!$"
       ],
       "Route3_Text_ColtonPostBattle": [
-        "Existem outros tipos de POKEMON\\nque voce encontra em florestas.$"
+        "Ha varios tipos de POKEMON\\nque vivem nas florestas.$"
       ],
       "Route3_Text_BenIntro": [
-        "Ola! Eu gosto de calcoes!\\pSao deliciosamente confortaveis\\ne faceis de usar!$"
+        "Ola! Eu adoro SHORTS!\\pSao confortaveis\\ne faceis de usar!$"
       ],
       "Route3_Text_BenDefeat": [
         "Nao acredito!$"
       ],
       "Route3_Text_JaniceIntro": [
-        "Com licenca! Olhou para mim,\\nnao olhou?$"
+        "Ei! Voce olhou para mim,\\nnao olhou?$"
       ],
       "Route3_Text_JaniceDefeat": [
         "Voce e mau!$"
       ],
       "Route3_Text_JanicePostBattle": [
-        "Nao devia estar a olhar se nao\\nqueres batalhar!$"
+        "Nao olhe para mim se nao\\nquiser batalhar!$"
       ],
       "Route3_Text_GregIntro": [
-        "E TREINADOR? Vamos tratar\\ndisso imediatamente!$"
+        "E um TREINADOR? Entao\\nvamos batalhar agora!$"
       ],
       "Route3_Text_GregDefeat": [
-        "Se eu tivesse novo POKEMON, eu\\nteria ganho!$"
+        "Se eu tivesse um POKEMON novo,\\nteria vencido!$"
       ],
       "Route3_Text_SallyIntro": [
-        "Aquele olhar que me deste... E\\ntao intrigante!$"
+        "Aquele olhar que voce me deu...\\ne tao misterioso!$"
       ],
       "Route3_Text_SallyDefeat": [
-        "Se simpatico!$"
+        "Ei! Seja gentil!$"
       ],
       "Route3_Text_SallyPostBattle": [
         "Voce pode evitar batalhas nao\\ndeixando TREINADORES ve-lo.$"
@@ -87,13 +87,13 @@
         "Vou batalhar com o POKEMON\\nque acabei de capturar.$"
       ],
       "Route3_Text_JamesDefeat": [
-        "Feito como um jantar!$"
+        "Essa foi facil demais!$"
       ],
       "Route3_Text_JamesPostBattle": [
-        "POKEMON treinado sao mais\\nfortes do que os selvagens.$"
+        "POKEMON treinados sao\\nmais fortes que os selvagens.$"
       ],
       "Route3_Text_RobinIntro": [
-        "Eek! Tocaste-me?$"
+        "Ah! Voce me tocou?$"
       ],
       "Route3_Text_RobinDefeat": [
         "So isso?$"
@@ -101,10 +101,10 @@
     },
     "data/maps/Route40/scripts.inc": {
       "Route40_Text_SwimmermSimonSeen": [
-        "Voce tem que aquecer antes de\\nir para a agua.\\pIsso e basico.$"
+        "Aqueça o corpo antes de\\nentrar na agua.\\pIsso e muito importante!$"
       ],
       "Route40_Text_SwimmermSimonBeaten": [
-        "Esta bem! Tio! Eu desisto!$"
+        "Tudo bem! Eu desisto!$"
       ],
       "Route40_Text_SwimmermSimonAfter": [
         "CIANWOOD CITY e uma boa\\ndistancia daqui.$"
@@ -116,25 +116,25 @@
         "Uh-oh. Perdi...$"
       ],
       "Route40_Text_SwimmermRandallAfter": [
-        "Natacao exercita todo o seu\\ncorpo. E saudavel.$"
+        "Nadar trabalha todos os\\nmusculos do corpo. Faz bem!$"
       ],
       "Route40_Text_SwimmerfElaineBeaten": [
         "Perdi essa!$"
       ],
       "Route40_Text_SwimmerfElaineAfter": [
-        "Diria que sou melhor nadador do\\nque voce. Sim!$"
+        "Aposto que nado melhor\\ndo que voce! Isso mesmo!$"
       ],
       "Route40_Text_SwimmerfPaulaSeen": [
-        "Sem tubo interior para mim.\\pEstou a agarrar-me a um POKEMON\\ndo mar!$"
+        "Nada de boias para mim!\\pEstou sendo carregada\\npor um POKEMON aquatico!$"
       ],
       "Route40_Text_SwimmerfPaulaBeaten": [
         "Estou ficando tonta!$"
       ],
       "Route40_Text_SwimmerfPaulaAfter": [
-        "Enquanto flutuo assim, as ondas\\nlevam-me.$"
+        "Enquanto flutuo assim,\\nas ondas me carregam.$"
       ],
       "Route40_Text_Lass1": [
-        "Embora nao consigas ver daqui,\\no CIANWOOD esta do outro lado\\ldo mar.$"
+        "Voce nao consegue ver daqui,\\nmas CIANWOOD fica do\\loutro lado do mar.$"
       ],
       "Route40_Text_Lass2": [
         "Vim a OLIVINE de navio para ver\\nas vistas e absorver a\\latmosfera.\\pSendo um porto, parece tao\\ndiferente de uma cidade grande.$"
@@ -157,7 +157,7 @@
         "Nao e relaxante flutuar assim?$"
       ],
       "Route41_Text_SwimmermGeorgeSeen": [
-        "Estou um pouco cansado. Se eu\\nganhar, empresta-me o seu\\lPOKEMON.$"
+        "Estou meio cansado. Se eu\\nvencer, voce me empresta\\lseu POKEMON?$"
       ],
       "Route41_Text_SwimmermGeorgeAfter": [
         "E tao longe de CIANWOOD.\\pMas tambem nao e facil voltar\\npara OLIVINE.\\pO que devo fazer?$"
@@ -166,7 +166,7 @@
         "Qual e o segredo da sua forca?$"
       ],
       "Route41_Text_SwimmermBerkeAfter": [
-        "Era uma noite escura e\\ntempestuosa...\\pVi um POKEMON gigante a voar\\ndas ilhas.\\pEstava a espalhar penas das\\nsuas asas de prata.$"
+        "Era uma noite escura\\ne tempestuosa...\\pVi um POKEMON enorme voando\\npor cima das ilhas.\\pPenas prateadas caiam\\ndas asas dele!$"
       ],
       "Route41_Text_SwimmermKirkSeen": [
         "As ondas sao selvagens aqui.\\pCansam-nos enquanto nadamos.$"
@@ -175,37 +175,37 @@
         "Estou exausto!$"
       ],
       "Route41_Text_SwimmermKirkAfter": [
-        "As correntes impedem-me de\\nchegar aquela ilha.$"
+        "A correnteza me impede\\nde chegar ate aquela ilha.$"
       ],
       "Route41_Text_SwimmermMathewBeaten": [
-        "Tem uma grande resistencia!$"
+        "Voce tem muita resistencia!$"
       ],
       "Route41_Text_SwimmerfKayleeBeaten": [
         "E assim que se faz?$"
       ],
       "Route41_Text_SwimmerfSusieSeen": [
-        "Estas tao elegante, a montar o\\nteu POKEMON.$"
+        "Voce fica tao elegante\\nmontado em seu POKEMON!$"
       ],
       "Route41_Text_SwimmerfSusieBeaten": [
-        "Estou arrasado...$"
+        "Fui completamente derrotada...$"
       ],
       "Route41_Text_SwimmerfSusieAfter": [
-        "Nao havia uma cancao de sucesso\\nsobre um rapaz montado num\\lLAPRAS?$"
+        "Nao existia uma musica\\nsobre um garoto montado\\lnum LAPRAS?$"
       ],
       "Route41_Text_SwimmerfDeniseSeen": [
-        "O tempo esta tao bonito, estou\\natordoado!$"
+        "O tempo esta tao bonito\\nque fico ate tonta!$"
       ],
       "Route41_Text_SwimmerfDeniseAfter": [
-        "Uma queimadura solar e o pior\\npara a pele.\\pMas nao uso protector solar.\\pNao vou poluir a agua.$"
+        "Tomar sol demais faz\\nmal para a pele.\\pMas nao uso protetor solar.\\pNao quero poluir a agua.$"
       ],
       "Route41_Text_SwimmerfKaraSeen": [
-        "Se precisares de descansar, e\\nso ires pela agua.\\pVais recuperar o folego, para\\ncontinuares forte.$"
+        "Se precisar descansar,\\nflutue um pouco.\\pAssim recupera o folego\\ne continua nadando!$"
       ],
       "Route41_Text_SwimmerfKaraBeaten": [
         "Oh! Tem mais energia do que\\neu.$"
       ],
       "Route41_Text_SwimmerfWendySeen": [
-        "A noite, STARYU se reunem perto\\nda superficie da agua.$"
+        "A noite, STARYU se juntam\\nperto da superficie da agua.$"
       ],
       "Route41_Text_SwimmerfWendyBeaten": [
         "Meu Deus...$"
@@ -219,16 +219,16 @@
     },
     "data/maps/Route42/scripts.inc": {
       "Route42_Text_FisherTullySeen": [
-        "Deixem-me demonstrar o poder do\\nPOKEMON que apanhei!$"
+        "Deixe-me mostrar o poder\\ndo POKEMON que pesquei!$"
       ],
       "Route42_Text_FisherTullyBeaten": [
-        "O que? Isso nao esta certo. Nao\\nacredito nisto!$"
+        "O que?! Nao pode ser!\\nNao acredito nisso!$"
       ],
       "Route42_Text_FisherTullyAfter": [
         "Quero tornar-me o TREINADOR\\nCHAMP usando o POKEMON que me\\lapanhei.\\pEssa e a melhor parte da pesca!$"
       ],
       "Route42_Text_HikerBenjaminSeen": [
-        "E bom estar la fora! Sinto-me\\ntao livre!$"
+        "E tao bom estar ao ar livre!\\nSinto uma liberdade enorme!$"
       ],
       "Route42_Text_HikerBenjaminBeaten": [
         "Gahahah! Foi uma boa batalha!$"
@@ -242,10 +242,10 @@
     },
     "data/maps/Route43/scripts.inc": {
       "Route43_Text_PokemaniacBenSeen": [
-        "Adoro POKEMON!\\pE por isso que eu comecei - e\\npor isso eu vou continuar a\\lrecolher POKEMON!$"
+        "Eu adoro POKEMON!\\pE por isso que comecei\\nminha jornada e continuo\\lcolecionando!$"
       ],
       "Route43_Text_PokemaniacBenBeaten": [
-        "Como pudeste fazer-me isto?$"
+        "Como pode fazer isso comigo?$"
       ],
       "Route43_Text_PokemaniacBrentSeen": [
         "Hey! Tem algum POKEMON raro?$"
@@ -260,13 +260,13 @@
         "Meu NIDOKING batalhou\\nmuito bem!$"
       ],
       "Route43_Text_PokemaniacRonAfter": [
-        "As pessoas podem gostar de\\ntipos diferentes de POKEMON.\\pPOKEMON nao e apenas sobre ter\\no mais poderoso.$"
+        "Cada pessoa gosta de\\num tipo de POKEMON.\\pNao importa apenas\\nquem e o mais forte!$"
       ],
       "Route43_Text_FisherMarvinSeen": [
         "Acho que estou numa fase ruim.\\pTalvez seja o equipamento\\nque estou usando.\\pQue tal uma batalha para\\nmudar o ritmo?$"
       ],
       "Route43_Text_FisherMarvinBeaten": [
-        "Perdi, mas sinto-me melhor.$"
+        "Perdi, mas me sinto melhor!$"
       ],
       "Route43_Text_CamperSpencerSeen": [
         "Me divirto muito\\ncom meus POKEMON!$"
@@ -281,7 +281,7 @@
         "Tambem vai para LAKE DE RAGE?\\pVamos brincar um pouco!$"
       ],
       "Route43_Text_PicnickerTiffanyBeaten": [
-        "Eu joguei demais!$"
+        "Acho que exagerei!$"
       ],
       "Route43_Text_PicnickerTiffanyWantsPicnic": [
         "Vou fazer um piquenique\\ncom meus POKEMON.\\pQuer vir com a gente?$"
@@ -289,61 +289,61 @@
     },
     "data/maps/Route44/scripts.inc": {
       "Route44_Text_FisherWilton1Seen": [
-        "Aack!\\pFizeste-me perder um POLIWAG! O\\nque vai fazer?$"
+        "Argh!\\pVoce me fez perder\\num POLIWAG! E agora?$"
       ],
       "Route44_Text_FisherWilton1Beaten": [
         "Esquece isso.$"
       ],
       "Route44_Text_FisherWiltonHugePoliwag": [
-        "O POLIWAG que escapou... foi\\nenorme.\\pEu juro que devia ter 16 pes de\\ncomprimento!$"
+        "O POLIWAG que escapou\\nera enorme!\\pJuro que tinha uns 16 pes\\nde comprimento!$"
       ],
       "Route44_Text_FisherEdgarSeen": [
         "Pesco ate nao aguentar mais.\\pE batalho ate ficar exausto.\\pEssa e minha vida\\ncom os POKEMON.$"
       ],
       "Route44_Text_FisherEdgarBeaten": [
-        "Hmmmm... Isto nao esta certo.$"
+        "Hmm... Algo deu errado.$"
       ],
       "Route44_Text_FisherEdgarAfter": [
-        "Sao 100 vitorias para 101\\nderrotas.\\pNao voltarei a batalhar durante\\nalgum tempo.$"
+        "Tenho 100 vitorias\\ne 101 derrotas!\\pVou ficar um tempo\\nsem batalhar.$"
       ],
       "Route44_Text_BirdKeeperVance1Seen": [
-        "Sabe sobre o lendario passaro\\nPOKEMON?$"
+        "Voce conhece os POKEMON\\npassaros lendarios?$"
       ],
       "Route44_Text_BirdKeeperVance1Beaten": [
         "Ufa! E uma brasa.$"
       ],
       "Route44_Text_BirdKeeperVanceBirds": [
-        "ARTICUNO, ZAPDOS e MOLTRES sao\\nos tres passaros lendarios\\lPokemon.\\pMas ouvi dizer que ha outros\\npassaros lendarios.$"
+        "ARTICUNO, ZAPDOS e MOLTRES\\nsao os tres POKEMON\\lpassaros lendarios.\\pMas ouvi falar de outros\\npassaros lendarios!$"
       ],
       "Route44_Text_PsychicPhilSeen": [
         "Vou ganhar, de certeza!$"
       ],
       "Route44_Text_PsychicPhilBeaten": [
-        "Arrgh... Que perda chocante...$"
+        "Argh... Que derrota dolorosa!$"
       ],
       "Route44_Text_PsychicPhilAfter": [
         "E importante ter conviccao do\\nseu lado.$"
       ],
       "Route44_Text_PokemaniacZachSeen": [
-        "Faco qualquer coisa para por as\\nmaos no raro POKEMON!$"
+        "Faria qualquer coisa para\\nconseguir um POKEMON raro!$"
       ],
       "Route44_Text_PokemaniacZachBeaten": [
-        "Seu POKEMON e tao atraente.$"
+        "Seus POKEMON sao incriveis!$"
       ],
       "Route44_Text_PokemaniacZachAfter": [
-        "Se um POKEMON tem cores\\ndiferentes das habituais, e\\lmais valioso.\\pO que? Isso nao e verdade?$"
+        "Se um POKEMON tiver\\ncores diferentes, ele\\lpode ser ainda mais raro.\\pHein? Nao e bem assim?$"
       ],
       "Route44_Text_CooltrainermAllenSeen": [
-        "Vejo que e um bom TREINADOR ao\\nolhar para voce.\\pSou bom em POKEMON, e vejo que\\ntu tambem e.$"
+        "So de olhar, ja percebo\\nque voce e bom TREINADOR.\\pEu sou forte, e acho\\nque voce tambem e!$"
       ],
       "Route44_Text_CooltrainermAllenBeaten": [
-        "Tch! E uma perda total da minha\\nparte.$"
+        "Tch! Essa derrota\\nfoi culpa minha!$"
       ],
       "Route44_Text_CooltrainerfCybilSeen": [
-        "Parece forte.\\pBons TREINADORES procuram\\nadversarios duros\\linstintivamente.$"
+        "Voce parece forte.\\pBons TREINADORES procuram\\nadversarios desafiadores\\linstintivamente.$"
       ],
       "Route44_Text_CooltrainerfCybilBeaten": [
-        "Nao! Isto nao vai servir.$"
+        "Nao! Isso nao pode ser!$"
       ],
       "Route44_Text_CooltrainerfCybilAfter": [
         "Todos melhoramos experimentando\\nmuitas batalhas.\\pLutei muito para me tornar o\\nque sou hoje. Uma elite.$"
