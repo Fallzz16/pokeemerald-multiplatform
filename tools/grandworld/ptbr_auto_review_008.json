@@ -506,28 +506,28 @@
         "Tem certeza que quer\\ndeixar sua missao PYRAMID?$"
       ],
       "BattlePyramid_Text_ExitHintUp1": [
-        "A saida deu andar e nessa\\ndireccao.{UP_ARROW}$"
+        "A saida deste andar e nessa\\ndireccao.{UP_ARROW}$"
       ],
       "BattlePyramid_Text_ExitHintLeft1": [
-        "A saida deu andar e nessa\\ndireccao.{LEFT_ARROW}$"
+        "A saida deste andar e nessa\\ndireccao.{LEFT_ARROW}$"
       ],
       "BattlePyramid_Text_ExitHintRight1": [
-        "A saida deu andar e nessa\\ndireccao.{RIGHT_ARROW}$"
+        "A saida deste andar e nessa\\ndireccao.{RIGHT_ARROW}$"
       ],
       "BattlePyramid_Text_ExitHintDown1": [
-        "A saida deu andar e nessa\\ndireccao.{DOWN_ARROW}$"
+        "A saida deste andar e nessa\\ndireccao.{DOWN_ARROW}$"
       ],
       "BattlePyramid_Text_ExitHintUp2": [
-        "A saida deu andar e\\nno{UP_ARROW}Direccao.$"
+        "A saida deste andar e\\nno{UP_ARROW}Direccao.$"
       ],
       "BattlePyramid_Text_ExitHintLeft2": [
-        "A saida deu andar e\\nno{LEFT_ARROW}Direccao.$"
+        "A saida deste andar e\\nno{LEFT_ARROW}Direccao.$"
       ],
       "BattlePyramid_Text_ExitHintRight2": [
-        "A saida deu andar e\\nno{RIGHT_ARROW}Direccao.$"
+        "A saida deste andar e\\nno{RIGHT_ARROW}Direccao.$"
       ],
       "BattlePyramid_Text_ExitHintDown2": [
-        "A saida deu andar e\\nno{DOWN_ARROW}Direccao.$"
+        "A saida deste andar e\\nno{DOWN_ARROW}Direccao.$"
       ],
       "BattlePyramid_Text_ExitHintUp3": [
         "A saida e por\\nali.{UP_ARROW}Muito bem.$"
