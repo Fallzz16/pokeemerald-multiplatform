@@ -139,22 +139,22 @@
     },
     "data/maps/SlateportCity_NameRatersHouse/scripts.inc": {
       "SlateportCity_NameRatersHouse_Text_FineNameSuggestBetterOne": [
-        "Hmmm...{STR_VAR_1}E mesmo? E um\\nbelo nome que me deste.\\pMas! Que dizes, se eu sugerisse\\num nome um pouco melhor?$"
+        "Hmmm...{STR_VAR_1} E mesmo? E um\\nbelo nome que me deste.\\pMas! Que dizes, se eu sugerisse\\num nome um pouco melhor?$"
       ],
       "SlateportCity_NameRatersHouse_Text_WhatShallNewNameBe": [
         "Ainda bem. Entao, qual sera o\\nnovo apelido?$"
       ],
       "SlateportCity_NameRatersHouse_Text_MonShallBeKnownAsName": [
-        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pE um nome melhor do que antes!\\nQue sorte sua!$"
+        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo {STR_VAR_1}!\\pE um nome melhor do que antes!\\nQue sorte sua!$"
       ],
       "SlateportCity_NameRatersHouse_Text_DoVisitAgain": [
         "Estou vendo. Vem visitar-me\\noutra vez.$"
       ],
       "SlateportCity_NameRatersHouse_Text_NameNoDifferentYetSuperior": [
-        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pNao parece diferente de antes,\\ne no entanto, isto e muito\\lsuperior!\\pQue sorte sua!$"
+        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo {STR_VAR_1}!\\pNao parece diferente de antes,\\ne no entanto, isto e muito\\lsuperior!\\pQue sorte sua!$"
       ],
       "SlateportCity_NameRatersHouse_Text_MagnificentName": [
-        "Hmmm...{STR_VAR_1}E e!\\pE uma alcunha magnifica! E\\nimpecavelmente irrepreensivel!\\pVais fazer bem em apreciar o\\nteu{STR_VAR_1}agora e alem.$"
+        "Hmmm...{STR_VAR_1} E e!\\pE uma alcunha magnifica! E\\nimpecavelmente irrepreensivel!\\pVais fazer bem em apreciar o\\nteu {STR_VAR_1} agora e alem.$"
       ],
       "SlateportCity_NameRatersHouse_Text_ThatIsMerelyAnEgg": [
         "Agora, agora. Isso e apenas um\\nEGG!$"
@@ -261,7 +261,7 @@
         "Nossa!\\pSeu POKEMON esta crescendo\\nmuito bem. Voce merece\\luma recompensa!\\pMas nao tem espaco\\npara ela na BOLSA.$"
       ],
       "SlateportCity_PokemonFanClub_Text_MonMostImpressiveGiveItThis": [
-        "Sua{STR_VAR_1}, esta crescendo\\nde uma maneira muito\\limpressionante! E um belo\\lespecime!\\pMas! Se lhe desse isto, ficaria\\nainda melhor! E verdade!$"
+        "Sua {STR_VAR_1}, esta crescendo\\nde uma maneira muito\\limpressionante! E um belo\\lespecime!\\pMas! Se lhe desse isto, ficaria\\nainda melhor! E verdade!$"
       ],
       "SlateportCity_PokemonFanClub_Text_NothingElseToGiveYou": [
         "Desculpa, mas nao tenho mais\\nnada para te dar! Nenhuma!\\pAfinal, voce e abencoado com o\\ndom de criar POKEMON sem\\lrecorrer a quaisquer itens!$"
@@ -479,7 +479,7 @@
         "Hunh? Seu BAG esta cheio.$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_SeenBiggerSeedot": [
-        "{STR_VAR_2}E mesmo?\\pHmm... Ja vi um SEEDOT maior do\\nque este.$"
+        "{STR_VAR_2} E mesmo?\\pHmm... Ja vi um SEEDOT maior do\\nque este.$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_ThatsNotSeedot": [
         "Oh, isto e uma grande coisa...\\nMas nao e um SEEDOT!$"
@@ -488,7 +488,7 @@
         "Nao tem um SEEDOT grande? Que\\npena...\\pSe tiveres um SEEDOT grande,\\nvem mostrar-me.$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_WowMightBeBiggerThanSeedot": [
-        "{STR_VAR_2}Isso e grande!\\pPode ser ainda maior do que o\\nenorme SEEDOT que meu irmao\\lmais velho viu.\\pObrigado por me mostrares! Este\\ne meu agradecimento!$"
+        "{STR_VAR_2} Isso e grande!\\pPode ser ainda maior do que o\\nenorme SEEDOT que meu irmao\\lmais velho viu.\\pObrigado por me mostrares! Este\\ne meu agradecimento!$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull2": [
         "Hunh? Seu BAG esta cheio.$"
@@ -513,7 +513,7 @@
         "A porta parece estar trancada.$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_ChallengeVisitingTrainer": [
-        "UMA FORMACAO\\nCHAMADA{STR_VAR_1}esta\\lvisitando minha casa.\\pGostaria de\\ndesafiar{STR_VAR_1}?$"
+        "UMA FORMACAO\\nCHAMADA {STR_VAR_1} esta\\lvisitando minha casa.\\pGostaria de\\ndesafiar {STR_VAR_1}?$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_YouWontBattle": [
         "Nao vai batalhar? Estou\\ndesiludido por nao te poder ver\\la batalhar...$"
