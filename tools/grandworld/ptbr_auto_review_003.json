@@ -75,10 +75,10 @@
         "Os tipos de POKEMON combinam de\\nforma diferente entre si.\\pCada tipo e mais forte do que\\nalguns tipos e mais fraco do\\lque outros.$"
       ],
       "Route10_PokemonCenter_1F_Text_GreatHereYouGo": [
-        "Otimo! Capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
+        "Otimo! Capturou ou\\npossuiste {STR_VAR_3} Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
       ],
       "Route10_PokemonCenter_1F_Text_ReceivedEverstoneFromAide": [
-        "{PLAYER}Recebeu o EVERSTONE da\\nAIDE.$"
+        "{PLAYER} Recebeu o EVERSTONE da\\nAIDE.$"
       ],
       "Route10_PokemonCenter_1F_Text_ExplainEverstone": [
         "Fazer o POKEMON evoluir\\ncertamente pode adicionar ao\\lPOKEDEX.\\pNo entanto, as vezes, voce pode\\nnao querer que um determinado\\lPOKEMON evolua.\\pNesse caso, de o EVERSTONE\\naquele POKEMON.\\pImpedira a evolucao de acordo\\ncom o PROFESSOR.$"
@@ -181,10 +181,10 @@
         "Hah? Nao veio pedir a sua\\nrecompensa?$"
       ],
       "Route110_TrickHousePuzzle_Text_FoundAScroll": [
-        "{PLAYER}Encontrei um\\npergaminho.$"
+        "{PLAYER} Encontrei um\\npergaminho.$"
       ],
       "Route110_TrickHousePuzzle_Text_MemorizedSecretCode": [
-        "{PLAYER}Memorizado o codigo\\nsecreto escrito no pergaminho.$"
+        "{PLAYER} Memorizado o codigo\\nsecreto escrito no pergaminho.$"
       ],
       "Route110_TrickHousePuzzle_Text_SecretCodeWrittenOnIt": [
         "Um codigo secreto esta escrito\\nnele.$"
@@ -433,28 +433,28 @@
         "Coleccionaste cinzas? Deixa-me\\nver.$"
       ],
       "Route113_GlassWorkshop_Text_NotEnoughAshNeedX": [
-        "Hmmm... Nao ha cinzas\\nsuficientes aqui. Nao consigo\\lfazer vidro com isto.\\pVejamos...{STR_VAR_1}E o numero\\nde passos que vai precisar de\\landar para eu te fazer um BLUE\\lFLUTE, buff-puff.$"
+        "Hmmm... Nao ha cinzas\\nsuficientes aqui. Nao consigo\\lfazer vidro com isto.\\pVejamos...{STR_VAR_1} E o numero\\nde passos que vai precisar de\\landar para eu te fazer um BLUE\\lFLUTE, buff-puff.$"
       ],
       "Route113_GlassWorkshop_Text_WhichGlassItemWoudYouLike": [
         "Oh! Tem um monte de cinzas!\\pVou fazer uma peca de vidro.\\nQual delas voce quer?$"
       ],
       "Route113_GlassWorkshop_Text_IsThatTheItemForYou": [
-        "A{STR_VAR_1}, buff-puff? E esse\\npara voce?$"
+        "A {STR_VAR_1}, buff-puff? E esse\\npara voce?$"
       ],
       "Route113_GlassWorkshop_Text_WhichWouldYouLike": [
         "Qual deles voce quer?$"
       ],
       "Route113_GlassWorkshop_Text_IllMakeItemForYou": [
-        "A{STR_VAR_1}E, entao,\\nbuff-puff!\\pEsta bem! Eu faco-o para voce.\\nEspera so um pouco.$"
+        "A {STR_VAR_1} E, entao,\\nbuff-puff!\\pEsta bem! Eu faco-o para voce.\\nEspera so um pouco.$"
       ],
       "Route113_GlassWorkshop_Text_NotEnoughAshToMakeItem": [
-        "A{STR_VAR_1}, buff-puff?\\pMas nao ha cinzas suficientes\\npara fazer isso.\\pVejamos...{STR_VAR_2}E o numero\\nde passos que vai precisar de\\landar atraves de cinzas\\lvulcanicas para eu fazer esse\\litem, buff-puff.\\pQue item prefere que faca em\\nvez disso?$"
+        "A {STR_VAR_1}, buff-puff?\\pMas nao ha cinzas suficientes\\npara fazer isso.\\pVejamos...{STR_VAR_2} E o numero\\nde passos que vai precisar de\\landar atraves de cinzas\\lvulcanicas para eu fazer esse\\litem, buff-puff.\\pQue item prefere que faca em\\nvez disso?$"
       ],
       "Route113_GlassWorkshop_Text_AllThatAshButDontWantAnything": [
         "Coleccionaste todas essas\\ncinzas, mas nao quer nada,\\lbuff-puff?$"
       ],
       "Route113_GlassWorkshop_Text_IveFinishedGlassItem": [
-        "Ah, eu terminei o\\nseu{STR_VAR_1}Toma-o, bufa.$"
+        "Ah, eu terminei o\\nseu {STR_VAR_1} Toma-o, bufa.$"
       ],
       "Route113_GlassWorkshop_Text_NoRoomInBag": [
         "A serio? Nao tem espaco no seu\\nBAG.\\pEu guardo-o, por isso volta\\nmais tarde.$"
@@ -493,7 +493,7 @@
         "Deve ser adicionado um sistema\\nde marcacao para facilitar a\\lorganizacao do POKEMON.\\pO nome e design de papel de\\nparede de cada BOX sera feito\\lmutavel para agradar o POKEMON\\larmazenado.\\pContinuar a ler?$"
       ],
       "Route114_LanettesHouse_Text_ClosedTheNotebook": [
-        "{PLAYER}Fecha o caderno.$"
+        "{PLAYER} Fecha o caderno.$"
       ]
     },
     "data/maps/Route116/scripts.inc": {
@@ -618,16 +618,16 @@
         "Hm? Parece que nao tem espaco\\npara este POKEMON.$"
       ],
       "Route119_WeatherInstitute_2F_Text_PlayerReceivedCastform": [
-        "{PLAYER}Recebido CASTFORM!$"
+        "{PLAYER} Recebido CASTFORM!$"
       ],
       "Route119_WeatherInstitute_2F_Text_ChangingWeatherRidiculous": [
         "Tenho pesquisado chuva durante\\nmuitos anos, mas e ridiculo\\lpensar que os humanos podem\\lmudar livremente o tempo.$"
       ],
       "Route119_WeatherInstitute_2F_Text_GroudonWeather": [
-        "Rastreio padroes meteorologicos\\nna regiao de HOENN.\\pActualmente, foi registada uma\\nseca em{STR_VAR_1}.\\pIsso pode significar, algures\\nperto{STR_VAR_1}...$"
+        "Rastreio padroes meteorologicos\\nna regiao de HOENN.\\pActualmente, foi registada uma\\nseca em {STR_VAR_1}.\\pIsso pode significar, algures\\nperto {STR_VAR_1}...$"
       ],
       "Route119_WeatherInstitute_2F_Text_KyogreWeather": [
-        "Rastreio padroes meteorologicos\\nna regiao de HOENN.\\pAtualmente, chuvas fortes foram\\nregistradas ao\\llongo{STR_VAR_1}.\\pIsso pode significar, algures\\nperto{STR_VAR_1}...$"
+        "Rastreio padroes meteorologicos\\nna regiao de HOENN.\\pAtualmente, chuvas fortes foram\\nregistradas ao\\llongo {STR_VAR_1}.\\pIsso pode significar, algures\\nperto {STR_VAR_1}...$"
       ],
       "Route119_WeatherInstitute_2F_Text_NoAbnormalWeather": [
         "As condicoes meteorologicas\\nanormais ja nao sao relatadas.\\pAs chuvas ocasionais sao uma\\nbencao.$"
@@ -635,10 +635,10 @@
     },
     "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc": {
       "Route11_EastEntrance_2F_Text_GreatHereYouGo": [
-        "Otimo! Capturou ou\\npossuiste{STR_VAR_3}Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
+        "Otimo! Capturou ou\\npossuiste {STR_VAR_3} Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
       ],
       "Route11_EastEntrance_2F_Text_ReceivedItemfinderFromAide": [
-        "{PLAYER}Recebido o{STR_VAR_2}Da\\nAIDE.$"
+        "{PLAYER} Recebido o {STR_VAR_2} Da\\nAIDE.$"
       ],
       "Route11_EastEntrance_2F_Text_ExplainItemfinder": [
         "Ha itens no chao que podem\\nestar escondidos da vista.\\pUse o ITEMFINDER para detectar\\nquaisquer itens ocultos perto\\lde voce.\\pA maquina e um pouco limitada.\\nNao Consegue localizar o item.\\pO que ele faz e mostrar a\\ndirecao onde o item esta.\\pUse-o para se orientar, e\\ndepois procure a area suspeita\\la mao.$"
@@ -777,7 +777,7 @@
         "O que quer trocar?$"
       ],
       "Route124_DivingTreasureHuntersHouse_Text_YoullTradeShardForStone": [
-        "Vai trocar o\\nteu{STR_VAR_1}Para a\\lminha{STR_VAR_2}Entao?$"
+        "Vai trocar o\\nteu {STR_VAR_1} Para a\\lminha {STR_VAR_2} Entao?$"
       ],
       "Route124_DivingTreasureHuntersHouse_Text_ItsADeal": [
         "Esta feito! Usa isso com\\nsabedoria!$"
@@ -811,10 +811,10 @@
         "Oh... Isso e tao\\ndecepcionante...$"
       ],
       "Route12_FishingHouse_Text_TryFishingBringMeMagikarp": [
-        "Ola.{PLAYER}Andaste a pescar?\\pTente pescar com o SUPER ROD em\\nqualquer corpo de agua.\\pVoce encontrara POKEMON\\ndiferente em diferentes\\llugares.\\pE nao te esquecas de me trazer\\no gigantesco MAGIKARP.$"
+        "Ola.{PLAYER} Andaste a pescar?\\pTente pescar com o SUPER ROD em\\nqualquer corpo de agua.\\pVoce encontrara POKEMON\\ndiferente em diferentes\\llugares.\\pE nao te esquecas de me trazer\\no gigantesco MAGIKARP.$"
       ],
       "Route12_FishingHouse_Text_OhMagikarpAllowMeToSee": [
-        "A serio?{PLAYER}Ora, se nao e\\num MAGIKARP!\\pDeixe-me ve-lo, rapido!$"
+        "A serio?{PLAYER} Ora, se nao e\\num MAGIKARP!\\pDeixe-me ve-lo, rapido!$"
       ],
       "Route12_FishingHouse_Text_WhoaXSizeTakeThis": [
         "Uau!{STR_VAR_2}!\\pVoce tem uma apreciacao rara\\npara os aspectos finos,\\lpoeticos da pesca!\\pTens de levar isto. Eu insisto!$"
