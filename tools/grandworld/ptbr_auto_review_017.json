@@ -2,7 +2,7 @@
   "asm": {
     "data/maps/MtSilver_PokemonCenter/scripts.inc": {
       "MtSilver_PokemonCenter_Text_Meara": [
-        "Sou investigadora do museu\\nPEWTER CITY.\\pUma quantidade invulgar de\\nartefactos foi descoberta nesta\\larea, por isso vim aqui para\\linvestigar.\\pNao ha registros de uma\\ncivilizacao ao redor da\\lmontanha, mas os artefatos sao\\lquase certamente feitos pelo\\lhomem.\\pE realmente muito misterioso.$"
+        "Sou investigadora do museu\\nPEWTER CITY.\\pUma quantidade incomum de\\nartefactos foi descoberta nesta\\larea, por isso vim aqui para\\linvestigar.\\pNao ha registros de uma\\ncivilizacao ao redor da\\lmontanha, mas os artefatos sao\\lquase certamente feitos pelo\\lhomem.\\pE realmente muito misterioso.$"
       ]
     },
     "data/maps/NationalPark_BugContest/scripts.inc": {
@@ -760,7 +760,7 @@
     },
     "data/maps/PewterCity_House2_Frlg/scripts.inc": {
       "PewterCity_House2_Text_MonsLearnTechniquesAsTheyGrow": [
-        "POKEMON aprende novas tecnicas\\na medida que crescem.\\pMas alguns movimentos devem ser\\nensinados as pessoas.$"
+        "POKEMON aprende novas tecnicas\\na medida que crescem.\\pMas alguns golpes devem ser\\nensinados as pessoas.$"
       ],
       "PewterCity_House2_Text_MonsEasierCatchIfStatused": [
         "Um POKEMON torna-se mais facil\\nde capturar se tiver um problema\\lde estado.\\pSono, veneno, queimadura ou\\nparalisia... Sao todas\\leficazes.\\pMas capturar o POKEMON nunca e\\numa coisa certa!$"
