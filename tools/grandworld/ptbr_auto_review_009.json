@@ -2,88 +2,88 @@
   "asm": {
     "data/maps/BattleFrontier_BattlePyramidFloor/scripts.inc": {
       "BattlePyramid_Text_FourTrainersRemaining3": [
-        "Impressionante!\\pMas ha mais quatro TREINADORES\\nneste andar. Consegue\\lvence-los a todos?$"
+        "Impressionante!\\pAinda ha quatro TREINADORES\\nneste andar. Consegue\\lvencer todos eles?$"
       ],
       "BattlePyramid_Text_ThreeTrainersRemaining3": [
-        "Impressionante!\\pMas ha mais tres TREINADORES\\nneste andar. Consegue\\lvence-los a todos?$"
+        "Impressionante!\\pAinda ha tres TREINADORES\\nneste andar. Consegue\\lvencer todos eles?$"
       ],
       "BattlePyramid_Text_TwoTrainersRemaining3": [
-        "Impressionante!\\pMas ha mais dois TREINADORES\\nneste andar. Consegue vencer\\los dois?$"
+        "Impressionante!\\pAinda ha dois TREINADORES\\nneste andar. Consegue\\lvencer os dois?$"
       ],
       "BattlePyramid_Text_OneTrainersRemaining3": [
-        "Impressionante!\\pMas ainda ha mais um TREINADOR\\nneste andar. Consegue vencer?$"
+        "Impressionante!\\pFalta apenas um TREINADOR\\nneste andar. Consegue vencer?$"
       ],
       "BattlePyramid_Text_ZeroTrainersRemaining3": [
         "Impressionante!\\pVoce venceu todos os\\nTREINADORES deste andar!$"
       ],
       "BattlePyramid_Text_SevenTrainersRemaining4": [
-        "Talvez possa varrer os sete\\nTRAiners que restam neste\\landar.$"
+        "Talvez consiga derrotar os\\nsete TREINADORES que ainda\\lestao neste andar.$"
       ],
       "BattlePyramid_Text_SixTrainersRemaining4": [
-        "Talvez possa varrer os seis\\nTRAiners que restam neste\\landar.$"
+        "Talvez consiga derrotar os\\nseis TREINADORES que ainda\\lestao neste andar.$"
       ],
       "BattlePyramid_Text_FiveTrainersRemaining4": [
-        "Talvez possas varrer os cinco\\nTRAiners que restam neste\\landar.$"
+        "Talvez consiga derrotar os\\ncinco TREINADORES que ainda\\lestao neste andar.$"
       ],
       "BattlePyramid_Text_FourTrainersRemaining4": [
-        "Talvez possa varrer os quatro\\nTRAiners que restam neste\\landar.$"
+        "Talvez consiga derrotar os\\nquatro TREINADORES que ainda\\lestao neste andar.$"
       ],
       "BattlePyramid_Text_ThreeTrainersRemaining4": [
-        "Talvez possa varrer os tres\\nTRAiners que restam neste\\landar.$"
+        "Talvez consiga derrotar os\\ntres TREINADORES que ainda\\lestao neste andar.$"
       ],
       "BattlePyramid_Text_TwoTrainersRemaining4": [
-        "Talvez possa varrer os dois\\nTRAiners que restam neste\\landar.$"
+        "Talvez consiga derrotar os\\ndois TREINADORES que ainda\\lestao neste andar.$"
       ],
       "BattlePyramid_Text_OneTrainersRemaining4": [
-        "Talvez possas completar a sua\\nbusca com o que resta neste\\landar.$"
+        "Voce pode derrotar o\\nultimo TREINADOR que\\lresta neste andar.$"
       ],
       "BattlePyramid_Text_ZeroTrainersRemaining4": [
-        "Nao resta ninguem que te possa\\nderrotar agora...$"
+        "Nao resta ninguem\\npara desafiar voce aqui...$"
       ],
       "BattlePyramid_Text_SevenTrainersRemaining5": [
-        "Voce pode ter o que e preciso\\npara vencer os sete TREINADORES\\lespecialistas que permanecem.$"
+        "Voce pode derrotar\\nos sete TREINADORES\\lque ainda faltam.$"
       ],
       "BattlePyramid_Text_SixTrainersRemaining5": [
-        "Voce pode ter o que e preciso\\npara vencer os seis TREINADORES\\lespecialistas que permanecem.$"
+        "Voce pode derrotar\\nos seis TREINADORES\\lque ainda faltam.$"
       ],
       "BattlePyramid_Text_FiveTrainersRemaining5": [
-        "Voce pode ter o que e preciso\\npara vencer os cinco\\ltreinadores especialistas que\\lpermanecem.$"
+        "Voce e capaz de vencer\\nos cinco\\lTREINADORES experientes\\lque ainda estao aqui.$"
       ],
       "BattlePyramid_Text_FourTrainersRemaining5": [
-        "Voce pode ter o que e preciso\\npara vencer os quatro\\ltreinadores especialistas que\\lpermanecem.$"
+        "Voce e capaz de vencer\\nos quatro\\lTREINADORES experientes\\lque ainda estao aqui.$"
       ],
       "BattlePyramid_Text_ThreeTrainersRemaining5": [
-        "Voce pode ter o que e preciso\\npara vencer os tres TREINADORES\\lespecialistas que permanecem.$"
+        "Voce pode derrotar\\nos tres TREINADORES\\lque ainda faltam.$"
       ],
       "BattlePyramid_Text_TwoTrainersRemaining5": [
-        "Voce pode ter o que e preciso\\npara vencer os dois TREiners\\lperitos que permanecem.$"
+        "Voce pode derrotar\\nos dois TREINADORES\\lque ainda faltam.$"
       ],
       "BattlePyramid_Text_OneTrainersRemaining5": [
-        "Voce pode ter o que e preciso\\npara vencer o unico\\lespecialista que permanece.$"
+        "Voce tem capacidade\\npara vencer o ultimo\\lTREINADOR deste andar.$"
       ],
       "BattlePyramid_Text_ZeroTrainersRemaining5": [
         "Suas habilidades sao\\nimpressionantes!\\pNao restou nenhum\\nTREINADOR capaz de\\lencarar voce!$"
       ],
       "BattlePyramid_Text_SevenTrainersRemaining6": [
-        "Pode continuar a ganhar contra\\nos sete TREINADORES restantes?$"
+        "Consegue continuar vencendo\\nos sete TREINADORES daqui?$"
       ],
       "BattlePyramid_Text_SixTrainersRemaining6": [
-        "Pode continuar a ganhar contra\\nos seis TREINADORES restantes?$"
+        "Consegue continuar vencendo\\nos seis TREINADORES daqui?$"
       ],
       "BattlePyramid_Text_FiveTrainersRemaining6": [
-        "Pode continuar a ganhar contra\\nos cinco TREINADORES restantes?$"
+        "Consegue continuar vencendo\\nos cinco TREINADORES daqui?$"
       ],
       "BattlePyramid_Text_FourTrainersRemaining6": [
-        "Voce pode continuar ganhando\\ncontra os quatro TREiners\\lrestantes?$"
+        "Consegue continuar vencendo\\nos quatro TREINADORES\\lrestantes?$"
       ],
       "BattlePyramid_Text_ThreeTrainersRemaining6": [
-        "Pode continuar a ganhar contra\\nos tres TREINADORES restantes?$"
+        "Consegue continuar vencendo\\nos tres TREINADORES daqui?$"
       ],
       "BattlePyramid_Text_TwoTrainersRemaining6": [
-        "Voce pode continuar ganhando\\ncontra os dois TREINADORES\\lrestantes?$"
+        "Consegue continuar vencendo\\nos dois TREINADORES\\lrestantes?$"
       ],
       "BattlePyramid_Text_OneTrainersRemaining6": [
-        "Pode continuar a ganhar contra\\no ultimo TREINADOR restante?$"
+        "Consegue continuar vencendo\\no ultimo TREINADOR daqui?$"
       ],
       "BattlePyramid_Text_ZeroTrainersRemaining6": [
         "Nao ha mais TREINADORES\\npara desafiar voce aqui!$"
