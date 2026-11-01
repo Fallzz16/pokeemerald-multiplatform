@@ -2,7 +2,7 @@
   "asm": {
     "data/maps/BattleFrontier_Lounge3/scripts.inc": {
       "BattleFrontier_Lounge3_Text_ObtainedBattlePoints": [
-        "{PLAYER}obtido{STR_VAR_1}Pontos\\nde Batalha.$"
+        "{PLAYER} obtido {STR_VAR_1} Pontos\\nde Batalha.$"
       ],
       "BattleFrontier_Lounge3_Text_ThinkOfMeForAnotherChallenge": [
         "Se quiseres outro desafio, por\\nfavor, pensa em mim!$"
@@ -83,13 +83,13 @@
     },
     "data/maps/BattleFrontier_Lounge6/scripts.inc": {
       "BattleFrontier_Lounge6_Text_WouldYouLikeToTrade": [
-        "Meu POKEMON e\\num{STR_VAR_2}Conhece? E\\lbastante bonito e bastante\\lagradavel.\\pEste pequeno, eu poderia trocar\\ncom orgulho!\\pGostaria de me trocar\\num{STR_VAR_1}para a\\lminha{STR_VAR_2}?$"
+        "Meu POKEMON e\\num {STR_VAR_2} Conhece? E\\lbastante bonito e bastante\\lagradavel.\\pEste pequeno, eu poderia trocar\\ncom orgulho!\\pGostaria de me trocar\\num {STR_VAR_1} para a\\lminha {STR_VAR_2}?$"
       ],
       "BattleFrontier_Lounge6_Text_PromiseIllBeGoodToIt": [
-        "E adoravel! Obrigado! Prometo\\nque serei boazinha!\\pOh! Espero que sejas bom para a\\nminha{STR_VAR_2}Tambem!$"
+        "E adoravel! Obrigado! Prometo\\nque serei boazinha!\\pOh! Espero que sejas bom para a\\nminha {STR_VAR_2} Tambem!$"
       ],
       "BattleFrontier_Lounge6_Text_DontTradeForAnythingButMon": [
-        "Desculpa! Eu nao pretendo\\ntrocar por nada alem de\\lum{STR_VAR_1}.$"
+        "Desculpa! Eu nao pretendo\\ntrocar por nada alem de\\lum {STR_VAR_1}.$"
       ],
       "BattleFrontier_Lounge6_Text_WellThatsFineToo": [
         "Nao vai? Bem, isso tambem e\\nbom. Por favor, venha\\lvisitar-nos novamente.$"
@@ -106,7 +106,7 @@
         "Esta bem, esta bem, olha aqui!\\nQue golpe devo dar?$"
       ],
       "BattleFrontier_Lounge7_Text_MoveWillBeXBattlePoints": [
-        "O golpe{STR_VAR_1}E mesmo?\\nIsso sera{STR_VAR_2}Pontos de\\lBatalha, esta bem?$"
+        "O golpe {STR_VAR_1} E mesmo?\\nIsso sera {STR_VAR_2} Pontos de\\lBatalha, esta bem?$"
       ],
       "BattleFrontier_Lounge7_Text_TeachMoveToWhichMon": [
         "Esta bem, agora escolhe o\\nPokemon para o qual devo\\lensinar.$"
@@ -336,7 +336,7 @@
         "Esperamos que voce aproveite\\ntudo o que o BATTLE FRONTIER\\ltem para oferecer!$"
       ],
       "BattleFrontier_ReceptionGate_Text_IfItIsntPlayerYouCame": [
-        "??: Bem, se nao\\ne{PLAYER}{KUN}Voce veio aqui!$"
+        "??: Bem, se nao\\ne {PLAYER}{KUN}Voce veio aqui!$"
       ],
       "BattleFrontier_ReceptionGate_Text_LearnAboutWhich2": [
         "Sobre o que gostaria de\\naprender?$"
@@ -374,7 +374,7 @@
         "Mas isso e tudo passado. Nao\\nvale a pena pensar nisso!\\pTudo o que quero e que gostes\\nde batalhar ao seu coracao.\\p{PLAYER}{KUN}Quero que tenha\\nisto como recordacao para\\lsempre nossos caminhos\\lcruzados nas nossas viagens.$"
       ],
       "BattleFrontier_ScottsHouse_Text_ObtainedXBattlePoints": [
-        "{PLAYER}obtido{STR_VAR_1}Pontos\\nde batalha.$"
+        "{PLAYER} obtido {STR_VAR_1} Pontos\\nde batalha.$"
       ],
       "BattleFrontier_ScottsHouse_Text_ExpectingGreatThings": [
         "Estou a espera de grandes\\ncoisas de voce!$"
@@ -417,10 +417,10 @@
     },
     "data/maps/BlackthornCity_House2/scripts.inc": {
       "BlackthornCity_House2_Text_YouWillTradeWontYou": [
-        "Coleciono POKEMON! Voce tem\\num{STR_VAR_1}?\\pQuero troca-lo pela\\nminha{STR_VAR_2}?$"
+        "Coleciono POKEMON! Voce tem\\num {STR_VAR_1}?\\pQuero troca-lo pela\\nminha {STR_VAR_2}?$"
       ],
       "BlackthornCity_House2_Text_MonYouTakeCare": [
-        "Boa! Consegui-me.{STR_VAR_1}!\\p{STR_VAR_2}Cuida-te!$"
+        "Boa! Consegui-me.{STR_VAR_1}!\\p{STR_VAR_2} Cuida-te!$"
       ],
       "BlackthornCity_House2_Text_ThisIsntAMon": [
         "Nao, acho que nao. Isso nao\\ne...{STR_VAR_1}.$"
@@ -440,7 +440,7 @@
         "Que golpe deve ser\\nesquecido?$"
       ],
       "BlackthornCity_MoveDeletersHouse_Text_MonOnlyKnowsOneMove": [
-        "{STR_VAR_1}Sabe apenas um\\nmovimento para que nao possa\\lser esquecido...$"
+        "{STR_VAR_1} Sabe apenas um\\nmovimento para que nao possa\\lser esquecido...$"
       ],
       "BlackthornCity_MoveDeletersHouse_Text_MonHasForgottenMove": [
         "Funcionou perfeitamente!\\p{STR_VAR_1}esqueceu-se{STR_VAR_2}Completamente.$"
@@ -452,7 +452,7 @@
         "O que? Nenhum EGG deve saber de\\nmovimentos.$"
       ],
       "BlackthornCity_MoveDeletersHouse_Text_CantForgetSurf": [
-        "Hm!\\pSua{STR_VAR_1}Nao parece\\ndisposto a esquecer o SURF.$"
+        "Hm!\\pSua {STR_VAR_1} Nao parece\\ndisposto a esquecer o SURF.$"
       ],
       "BlackthornCity_MoveRelearnersHouse_Text_SorryCantHelp": [
         "Desculpa, nao te posso ajudar.$"
@@ -540,7 +540,7 @@
     },
     "data/maps/CeladonCity_Condominiums_RoofRoom_Frlg/scripts.inc": {
       "CeladonCity_Condominiums_RoofRoom_Text_ObtainedAnEevee": [
-        "{PLAYER}Consegui um EEVEE!$"
+        "{PLAYER} Consegui um EEVEE!$"
       ],
       "CeladonCity_Condominiums_RoofRoom_Text_WirelessAdapterLecture": [
         "Palestra POKEMON\\pJogando com o adaptador sem fio$"
@@ -602,7 +602,7 @@
         "Dar-lhe que bebida?$"
       ],
       "Text_ReceivedItemFromLittleGirl": [
-        "{PLAYER}recebeu\\numa{STR_VAR_2}Da menina.$"
+        "{PLAYER} recebeu\\numa {STR_VAR_2} Da menina.$"
       ],
       "CeladonCity_DepartmentStore_Roof_Text_ExplainTM20": [
         "TM20 contem SAFEGUARD.\\pE um golpe que evita\\nproblemas de status entre os\\lseus POKEMON.$"
@@ -629,7 +629,7 @@
         "Nao ha dinheiro suficiente!$"
       ],
       "CeladonCity_DepartmentStore_Roof_Text_DrinkCanPoppedOut": [
-        "Uma lata de{STR_VAR_1}Saiu!$"
+        "Uma lata de {STR_VAR_1} Saiu!$"
       ],
       "CeladonCity_DepartmentStore_Roof_Text_NoMoreRoomForStuff": [
         "Nao ha mais espaco para coisas!$"
@@ -701,10 +701,10 @@
         "Que premio gostarias?$"
       ],
       "CeladonCity_GameCorner_PrizeRoom_Text_YouWantPrize": [
-        "Entao, voce quer o{STR_VAR_1}?$"
+        "Entao, voce quer o {STR_VAR_1}?$"
       ],
       "CeladonCity_GameCorner_PrizeRoom_Text_YouWantTM": [
-        "Esta bem, um TM de{STR_VAR_2}E\\nisso que quer?$"
+        "Esta bem, um TM de {STR_VAR_2} E\\nisso que quer?$"
       ]
     },
     "data/maps/CeladonCity_Hotel_Frlg/scripts.inc": {
@@ -770,7 +770,7 @@
     },
     "data/maps/CeruleanCity_Frlg/scripts.inc": {
       "CeruleanCity_Text_RivalIntro": [
-        "{RIVAL}Yo!{PLAYER}!\\pAinda estas a batalhar aqui atras?\\pEstou otimo! Apanhei um monte\\nde POKEMON fortes e\\linteligentes!\\pDeixa-me ver o que\\napanhaste.{PLAYER}!$"
+        "{RIVAL} Yo!{PLAYER}!\\pAinda estas a batalhar aqui atras?\\pEstou otimo! Apanhei um monte\\nde POKEMON fortes e\\linteligentes!\\pDeixa-me ver o que\\napanhaste.{PLAYER}!$"
       ],
       "CeruleanCity_Text_RivalDefeat": [
         "Hey! Calma! Ja venceu!$"
