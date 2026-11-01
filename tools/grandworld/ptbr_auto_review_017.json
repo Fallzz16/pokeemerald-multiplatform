@@ -211,7 +211,7 @@
         "Preciso treinar mais...$"
       ],
       "OlivineLighthouse_Text_GentlemanPrestonAfter": [
-        "JASMINE usava POKEMON\\nROCK, como ONIX!$"
+        "JASMINE costumava usar\\nPOKEMON ROCK, como ONIX!$"
       ],
       "OlivineLighthouse_Text_SailorKentSeen": [
         "JASMINE esta preocupada\\ncom aquele POKEMON.\\pFaz tempo que\\nnao vejo ela sorrir...$"
@@ -281,7 +281,7 @@
         "Quantas varas de pesca\\nfaltam na sua colecao?\\pCada vara pode atrair\\nPOKEMON diferentes!$"
       ],
       "OlivinePort_Text_Youngster": [
-        "A S.S. AQUA usa jatos\\npara cortar as ondas!$"
+        "POKEMON ficam mais fortes\\nquando treinam bastante!$"
       ],
       "OlivinePort_Text_CooltrainerF": [
         "Ha tantos POKEMON\\nna regiao de KANTO!\\pQueria conhecer todos!$"
@@ -564,13 +564,13 @@
         "Tem um aspecto cruel.\\pUm POKEMON assustador como esse\\nmerece um TM como este.$"
       ],
       "PacifidlogTown_House2_Text_GetGoodTMInXDays": [
-        "Sim. Em cerca de {STR_VAR_1} ou\\nassim dias, eu deveria estar\\lrecebendo um bom TM ou dois.\\pEntao devia vir ver-me. Dou-te\\num TM adequado para seu\\lPOKEMON.$"
+        "Acho que em uns {STR_VAR_1}\\ndias vou receber\\lalgumas TMs novas.\\pVolte para me visitar.\\nTalvez eu tenha uma TM\\lideal para seu POKEMON.$"
       ],
       "PacifidlogTown_House2_Text_VeryFriendlyWithTrainer": [
-        "Parece ser muito amigavel com o\\nTRAiner.$"
+        "Parece gostar bastante\\nde seu TREINADOR.$"
       ],
       "PacifidlogTown_House2_Text_DoesntLikeTrainerVeryMuch": [
-        "Nao parece gostar muito do\\nTRAiner.$"
+        "Nao parece gostar muito\\nde seu TREINADOR.$"
       ]
     },
     "data/maps/PacifidlogTown_House3/scripts.inc": {
@@ -592,7 +592,7 @@
     },
     "data/maps/PacifidlogTown_House4/scripts.inc": {
       "PacifidlogTown_House4_Text_PeopleSawHighFlyingPokemon": [
-        "As pessoas diziam que viram um\\nPokemon a voar alto sobre o\\lHOENN.\\pEsta sempre a voar? Nao precisa\\nde descansar?$"
+        "Dizem que viram um\\nPOKEMON voando bem alto\\lsobre HOENN.\\pSera que ele nunca\\nprecisa descansar?$"
       ],
       "PacifidlogTown_House4_Text_SkyPokemon": [
         "Um POKEMON do ceu! Um POKEMON\\ndo ceu!$"
