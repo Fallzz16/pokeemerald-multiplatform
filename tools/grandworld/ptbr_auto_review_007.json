@@ -391,7 +391,7 @@
     },
     "data/maps/BattleFrontier_BattleDomeBattleRoom/scripts.inc": {
       "BattleFrontier_BattleDomeBattleRoom_Text_PlayerVersusTrainer": [
-        "{STR_VAR_1} Combina!\\p {PLAYER} versus {STR_VAR_2}!\\pQue comece a batalha!$"
+        "{STR_VAR_1} Combina!\\p{PLAYER} versus {STR_VAR_2}!\\pQue comece a batalha!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_PlayerIsWinner": [
         "{PLAYER} e o vencedor! Parabens!$"
@@ -499,7 +499,7 @@
         "{PLAYER} e o campeao do torneio\\nde batalha de nivel aberto!\\pParabens!$"
       ],
       "BattleFrontier_BattleDomeBattleRoom_Text_PlayerVersusTucker": [
-        "O jogo final!\\p {PLAYER} contra o ACE DOME,\\nTUCKER!\\pQue comece a batalha!$"
+        "O jogo final!\\p{PLAYER} contra o ACE DOME,\\nTUCKER!\\pQue comece a batalha!$"
       ]
     },
     "data/maps/BattleFrontier_BattleDomeLobby/scripts.inc": {
