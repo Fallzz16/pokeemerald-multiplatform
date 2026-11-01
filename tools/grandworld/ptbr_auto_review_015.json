@@ -162,7 +162,7 @@
         "A serio? Tem a certeza?\\pNem sempre devia tentar fazer\\ntudo sozinho, querida!$"
       ],
       "LilycoveCity_House3_Text_ExplainPokeblocks": [
-        "Optimo! E uma alma\\ninteligente! Isto e um pouco\\llongo, por isso ouve!\\pEstas pronto?\\pSe olhares{POKEBLOCK}S, voce\\ndeve ver que eles sao avaliados\\lem como se sentem.\\pQuanto menor a classificacao,\\nmelhor. Nao te esquecas disto!\\pUm bom.{POKEBLOCK}tem uma baixa\\nclassificacao e um alto nivel.\\pUm POKEMON pode comer mais\\nbem{POKEBLOCK}S do que os\\lcomuns, tambem.\\pE isto e importante.\\pSe voce quiser fazer\\nsuave{POKEBLOCK}S, use\\ldiferentes tipos de BERRIES.\\pNao seja mesquinho - os tipos\\nde BERRIES afetam a suavidade\\lde{POKEBLOCK}S.\\pE outra coisa.\\pQuanto mais pessoas misturando\\nBERRIES, mais suave\\lo{POKEBLOCK}S.\\pE por isso que devia falar com\\noutras pessoas e\\lfazer{POKEBLOCK}S juntos.\\pE tudo o que precisa de saber\\npara fazeres o\\lbem.{POKEBLOCK}S.\\pSe todos tivessem POKEMON que\\neles amam, suave{POKEBLOCK}S, e\\luma familia amorosa, o mundo\\lseria um lugar mais feliz.\\pNao desistas, querida!$"
+        "Otimo! E uma alma\\ninteligente! Isto e um pouco\\llongo, por isso ouve!\\pEstas pronto?\\pSe olhares{POKEBLOCK}S, voce\\ndeve ver que eles sao avaliados\\lem como se sentem.\\pQuanto menor a classificacao,\\nmelhor. Nao te esquecas disto!\\pUm bom.{POKEBLOCK}tem uma baixa\\nclassificacao e um alto nivel.\\pUm POKEMON pode comer mais\\nbem{POKEBLOCK}S do que os\\lcomuns, tambem.\\pE isto e importante.\\pSe voce quiser fazer\\nsuave{POKEBLOCK}S, use\\ldiferentes tipos de BERRIES.\\pNao seja mesquinho - os tipos\\nde BERRIES afetam a suavidade\\lde{POKEBLOCK}S.\\pE outra coisa.\\pQuanto mais pessoas misturando\\nBERRIES, mais suave\\lo{POKEBLOCK}S.\\pE por isso que devia falar com\\noutras pessoas e\\lfazer{POKEBLOCK}S juntos.\\pE tudo o que precisa de saber\\npara fazeres o\\lbem.{POKEBLOCK}S.\\pSe todos tivessem POKEMON que\\neles amam, suave{POKEBLOCK}S, e\\luma familia amorosa, o mundo\\lseria um lugar mais feliz.\\pNao desistas, querida!$"
       ],
       "LilycoveCity_House3_Text_HappyToHaveQuadruplets": [
         "Quando minha mulher deu a luz\\nquadruplos, aposto que fiquei\\lchocado.\\pMas, agora, ve-los jogar\\njuntos, faz-me feliz.$"
@@ -322,7 +322,7 @@
     },
     "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc": {
       "LilycoveCity_PokemonCenter_1F_Text_HowManyKindsOfPokemon": [
-        "Pergunto-me quantos tipos de\\nPOKEMON existem no mundo.\\pSeria optimo atravessar mares e\\ntrocar POKEMON com pessoas de\\llonge.$"
+        "Pergunto-me quantos tipos de\\nPOKEMON existem no mundo.\\pSeria otimo atravessar mares e\\ntrocar POKEMON com pessoas de\\llonge.$"
       ],
       "LilycoveCity_PokemonCenter_1F_Text_HeardAboutRottenScoundrels": [
         "Ouvi falar de uns canalhas\\npodres que roubam POKEMON e\\lroubam METEORITES.$"
