@@ -2,13 +2,13 @@
   "asm": {
     "data/maps/Route109_SeashoreHouse/scripts.inc": {
       "Route109_SeashoreHouse_Text_JohannaIntro": [
-        "Batalhas chatas nao valem o\\nesforco.\\pBatalhas ardentes sao o que\\nendurece TREINADORES e POKEMON!$"
+        "Batalhas sem emocao\\nnao valem o esforco.\\pBatalhas intensas fazem\\nTREINADORES e POKEMON crescer!$"
       ],
       "Route109_SeashoreHouse_Text_JohannaDefeated": [
         "Que calor!$"
       ],
       "Route109_SeashoreHouse_Text_SimonIntro": [
-        "Vou mostrar como meus\\nPOKEMON sao incriveis! Nao\\lprecisam chorar!$"
+        "Vou mostrar o poder\\ndos meus POKEMON! Nao\\lprecisam ficar assustados!$"
       ],
       "Route109_SeashoreHouse_Text_SimonDefeated": [
         "Perdi, mas nao vou chorar...$"
@@ -19,13 +19,13 @@
     },
     "data/maps/Route10_Frlg/scripts.inc": {
       "Route10_Text_MarkIntro": [
-        "Veio ate aqui? Talvez tambem\\nsejas um POKeMANIAC? Quer ver\\lMinha colecao?$"
+        "Chegou ate aqui? Voce tambem\\ne POKEMANIACO? Quer ver\\lminha colecao?$"
       ],
       "Route10_Text_MarkDefeat": [
-        "Humph. Nao estou zangado!$"
+        "Humph! Nem fiquei bravo!$"
       ],
       "Route10_Text_MarkPostBattle": [
-        "Tenho mais POKEMON raros em\\ncasa!$"
+        "Tenho ainda mais POKEMON\\nraros em casa!$"
       ],
       "Route10_Text_ClarkDefeat": [
         "Ha-haha! Nao ria! Febre ha-hay!\\nHaha-ha-choo!$"
@@ -40,22 +40,22 @@
         "Nao! Meu POKEMON!$"
       ],
       "Route10_Text_HermanPostBattle": [
-        "Nao gosto de voce. Nao gosto de\\nninguem melhor do que eu!$"
+        "Nao gosto de voce! Odeio\\nperder para alguem melhor!$"
       ],
       "Route10_Text_HeidiIntro": [
-        "Ja estive num ginasio POKEMON\\nalgumas vezes.\\pMas perco sempre.$"
+        "Ja desafiei varios GINASIOS\\nPOKEMON antes.\\pMas sempre acabo perdendo.$"
       ],
       "Route10_Text_HeidiDefeat": [
         "Ah! Mesmo depois de tanto\\ntreino!$"
       ],
       "Route10_Text_HeidiPostBattle": [
-        "Reparei em alguns POKEMANIACS a\\nrondar por ai.\\pConsegues imaginar? Eles? Aqui\\nnas montanhas?$"
+        "Vi alguns POKEMANIACOS\\npasseando por aqui.\\pImagine so! Bem aqui\\nnestas montanhas?$"
       ],
       "Route10_Text_TrentIntro": [
         "Ah! Este ar da montanha e\\ndelicioso!$"
       ],
       "Route10_Text_TrentDefeat": [
-        "Isso limpou-me a cabeca!$"
+        "Ufa! Isso me despertou!$"
       ],
       "Route10_Text_TrentPostBattle": [
         "O ar da montanha me faz\\nsentir cheio de energia!$"
@@ -64,7 +64,7 @@
         "Estou me sentindo um pouco\\nfraco. Nao caminho ha\\lmuito tempo.$"
       ],
       "Route10_Text_CarolDefeat": [
-        "Estou muito cansada. Nao estava\\npreparado para isso.$"
+        "Estou tao cansada...\\nNao estava preparada!$"
       ],
       "Route10_Text_CarolPostBattle": [
         "Os POKEMON aqui nas montanhas\\nsao tao gordos...\\pGostaria que houvesse um\\nPOKEMON rosa com um padrao\\lfloral!$"
@@ -72,60 +72,60 @@
     },
     "data/maps/Route10_PokemonCenter_1F_Frlg/scripts.inc": {
       "Route10_PokemonCenter_1F_Text_EveryTypeStrongerThanOthers": [
-        "Os tipos de POKEMON combinam de\\nforma diferente entre si.\\pCada tipo e mais forte do que\\nalguns tipos e mais fraco do\\lque outros.$"
+        "Cada tipo de POKEMON tem\\nvantagens diferentes.\\pAlguns tipos sao fortes\\ncontra certos adversarios,\\lmas fracos contra outros.$"
       ],
       "Route10_PokemonCenter_1F_Text_GreatHereYouGo": [
-        "Otimo! Capturou ou\\npossuiste {STR_VAR_3} Tipos de\\lPOKEMON!\\pParabens! Aqui esta!$"
+        "Otimo! Voce encontrou\\n{STR_VAR_3} tipos diferentes\\lde POKEMON!\\pParabens! Aceite isto!$"
       ],
       "Route10_PokemonCenter_1F_Text_ReceivedEverstoneFromAide": [
-        "{PLAYER} Recebeu o EVERSTONE da\\nAIDE.$"
+        "{PLAYER} recebeu uma EVERSTONE\\ndo assistente!$"
       ],
       "Route10_PokemonCenter_1F_Text_ExplainEverstone": [
-        "Fazer o POKEMON evoluir\\ncertamente pode adicionar ao\\lPOKEDEX.\\pNo entanto, as vezes, voce pode\\nnao querer que um determinado\\lPOKEMON evolua.\\pNesse caso, de o EVERSTONE\\naquele POKEMON.\\pImpedira a evolucao de acordo\\ncom o PROFESSOR.$"
+        "Evoluir POKEMON ajuda\\na completar a POKEDEX.\\lMas nem sempre e o melhor.\\pAs vezes voce pode querer\\nimpedir a evolucao de\\lalgum POKEMON.\\pDe uma EVERSTONE\\npara ele segurar.\\pAssim, ele nao evoluira\\nenquanto estiver com ela.$"
       ]
     },
     "data/maps/Route110_TrickHouseEnd/scripts.inc": {
       "Route110_TrickHouseEnd_Text_YouveMadeItToMe": [
-        "Aak! Conseguiu? Hmmm... E\\nesperto!$"
+        "Ah! Voce me encontrou?\\nQue esperteza!$"
       ],
       "Route110_TrickHouseEnd_Text_AllNightToPlantTrees": [
-        "Levei a noite toda a plantar\\naquelas arvores...\\pVoce e quase igual em grandeza\\npor um, dois, tres, quatro,\\lcinco, seis lugares!$"
+        "Passei a noite plantando\\ntodas aquelas arvores...\\pVoce esta quase chegando\\nperto da minha genialidade!\\lFaltam so seis niveis!$"
       ],
       "Route110_TrickHouseEnd_Text_AllNightToMakeMaze": [
-        "Levei a noite toda a fazer o\\nlabirinto...\\pVoce e quase igual em grandeza\\npor um, dois, tres, quatro,\\lcinco lugares!$"
+        "Passei a noite criando\\neste labirinto...\\pVoce chegou mais perto\\nda minha genialidade!\\lSo faltam cinco niveis!$"
       ],
       "Route110_TrickHouseEnd_Text_AllNightToPreparePanels": [
-        "Levei a noite toda a preparar\\nos paineis...\\pE quase igual em grandeza por\\num, dois, tres, quatro lugares!$"
+        "Passei a noite preparando\\ntodos aqueles paineis...\\pVoce esta a apenas\\nquatro niveis da minha genialidade!$"
       ],
       "Route110_TrickHouseEnd_Text_AllNightToShoveBoulders": [
-        "Levei a noite toda a enfiar\\naquelas pedras...\\pE quase igual em grandeza por\\num, dois, tres lugares!$"
+        "Passei a noite empurrando\\ntodas aquelas pedras...\\pVoce ainda esta tres\\nniveis abaixo da minha genialidade!$"
       ],
       "Route110_TrickHouseEnd_Text_AllNightToMakeMechadolls": [
-        "Levei a noite toda para fazer\\nMECHADOLLS e outro para pensar\\lno teste...\\pE quase igual em grandeza por\\num, dois lugares!$"
+        "Passei a noite criando\\nos MECHADOLLS e planejando\\lo desafio...\\pVoce esta so dois\\nniveis abaixo da minha genialidade!$"
       ],
       "Route110_TrickHouseEnd_Text_AllNightToInstallDoors": [
-        "Levei a noite toda a instalar\\nas portas...\\pE quase igual a minha\\ngrandeza!$"
+        "Passei a noite instalando\\ntodas aquelas portas...\\pVoce quase chegou a\\nminha genialidade!$"
       ],
       "Route110_TrickHouseEnd_Text_AllNightSettingUpArrows": [
         "Passei a noite colocando\\nas setas...\\pVoce e tao esperto quanto eu!$"
       ],
       "Route110_TrickHouseEnd_Text_AllNightPolishingFloors": [
-        "Levei toda a noite a polir\\npisos...\\pEstas acima de mim em grandeza!\\nPossivelmente...$"
+        "Passei a noite polindo\\nos pisos...\\pParece que voce me superou!\\nQuem diria...$"
       ],
       "Route110_TrickHouseEnd_Text_FountainOfIdeasRunDry": [
-        "O que devo fazer? Minha fonte\\nde ideias para truques secou...\\pTalvez esteja na hora de fazer\\numa viagem pelo pais numa\\lmissao para criar novos\\ltruques...$"
+        "Minhas ideias acabaram!\\nO que vou fazer agora?\\pTalvez eu devesse viajar\\npelo pais em busca\\lde novos desafios\\lpara criar...$"
       ],
       "Route110_TrickHouseEnd_Text_NoRoomInPC": [
-        "O que? Nao ha espaco no seu PC?\\nO que devo fazer com isso?\\pEu gostaria de poder dizer\\nisso, mas eu sou muito gentil e\\lcarinhoso, entao volte mais\\ltarde!$"
+        "O que? Seu PC esta cheio?\\nE agora, o que eu faco?\\pEu poderia ficar bravo,\\nmas sou muito gentil!\\lVolte aqui mais\\ltarde para receber o premio!$"
       ],
       "Route110_TrickHouseEnd_Text_LeavingOnJourney": [
         "... ... ... ... ... ...\\pVou partir numa viagem de\\ndescoberta. Uma busca em busca\\lde novos truques.\\pDesejo que um dia me visites e\\nme entretenhas novamente.\\pE agora, adeus!$"
       ],
       "Route110_TrickHouseEnd_Text_YouHaveEarnedThisReward": [
-        "Esta bem! Mereceste esta\\nrecompensa!$"
+        "Muito bem! Voce merece\\nessa recompensa!$"
       ],
       "Route110_TrickHouseEnd_Text_NoRoomForThis": [
-        "O que? Nao tem espaco para\\nisto? Que tipo de itens\\lcarrega?\\pMas tudo bem, ja que me\\ncontactaste, sua recompensa\\lestara comigo ate mais tarde.$"
+        "O que? Voce nao tem\\nespaco para este premio?\\lO que carrega na BOLSA?\\pTudo bem, vou guardar\\nsua recompensa\\late voce voltar.$"
       ],
       "Route110_TrickHouseEnd_Text_MakeNewTricksToStumpYou": [
         "Tire esse sorriso do rosto!\\nAinda nao venceu de verdade!\\lNao se ache tao esperto!\\pVou preparar novos truques\\npara enganar voce. So podera\\lrir de mim depois de vencer!\\pVolte para o proximo\\ngrande desafio!$"
@@ -136,10 +136,10 @@
     },
     "data/maps/Route110_TrickHouseEntrance/scripts.inc": {
       "Route110_TrickHouseEntrance_Text_YoureBeingWatched": [
-        "Estas a ser vigiado...$"
+        "Alguem esta observando voce...$"
       ],
       "Route110_TrickHouseEntrance_Text_ConcealedBeneathDesk": [
-        "Hah? Grrr...\\pComo sabia que me escondi\\ndebaixo desta secretaria? E\\lesperto!$"
+        "Ah! Como voce descobriu?\\pEu estava escondido\\ndebaixo daquela mesa!\\lVoce e esperto!$"
       ],
       "Route110_TrickHouseEntrance_Text_ConcealedBehindTree": [
         "Hah? Grrr...\\pComo sabia que me escondi\\natras desta arvore? E esperto!$"
@@ -160,31 +160,31 @@
         "Hah? Grrr...\\pComo sabia que me escondi\\natras desta janela? E esperto!$"
       ],
       "Route110_TrickHouseEntrance_Text_ConcealedBeneathCushion": [
-        "Hah? Grrr...\\pComo sabia que me escondi\\ndebaixo desta almofada? E\\lesperto!$"
+        "Ah! Como descobriu?\\pEu me escondi\\ndebaixo da almofada!\\lVoce e esperto!$"
       ],
       "Route110_TrickHouseEntrance_Text_ItsAScroll": [
         "E um pergaminho.$"
       ],
       "Route110_TrickHouseEntrance_Text_GoInHoleBehindScroll": [
-        "Ha um grande buraco atras do\\npergaminho!\\pQueres entrar?$"
+        "Existe um buraco enorme\\natras do pergaminho!\\pQuer entrar?$"
       ],
       "Route110_TrickHouseEntrance_Text_NextTimeUseThisTrick": [
-        "Para a proxima, vou usar este\\ntruque, e aquele esquema, e\\laquelas rusas...\\pMufufufu... Se me permite\\ndizer, e brilhantemente\\ldificil, ate para mim!$"
+        "Da proxima vez vou tentar\\noutro truque e um desafio\\lainda mais complicado!\\pMuahahaha! Vai ser tao\\ndificil que ate eu\\lvou me surpreender!$"
       ],
       "Route110_TrickHouseEntrance_Text_InMidstOfDevisingNewChallenges": [
-        "Hah? O que? Oh, e voce!\\pEstou no meio de novos desafios\\ncomplicados!\\pNao e pedir mais tempo para\\npensar, pois nao? Nao me\\llamentarias por isso? Volta\\ldaqui a pouco!$"
+        "Ah, e voce!\\pEstou preparando desafios\\nnovos e ainda mais dificeis!\\pPreciso de um pouco mais\\nde tempo para terminar.\\lVolte depois para\\ltentar de novo!$"
       ],
       "Route110_TrickHouseEntrance_Text_YoureHereToAcceptReward": [
         "Ah, e voce! Estas aqui para\\naceitar a recompensa de antes,\\lnao e verdade? Sim, estou!\\pAqui! Eu dou-to agora!$"
       ],
       "Route110_TrickHouseEntrance_Text_DidYouNotComeToClaimReward": [
-        "Hah? Nao veio pedir a sua\\nrecompensa?$"
+        "Ue? Voce nao veio\\nbuscar seu premio?$"
       ],
       "Route110_TrickHousePuzzle_Text_FoundAScroll": [
-        "{PLAYER} Encontrei um\\npergaminho.$"
+        "{PLAYER} encontrou um\\npergaminho.$"
       ],
       "Route110_TrickHousePuzzle_Text_MemorizedSecretCode": [
-        "{PLAYER} Memorizado o codigo\\nsecreto escrito no pergaminho.$"
+        "{PLAYER} memorizou o codigo\\nsecreto do pergaminho.$"
       ],
       "Route110_TrickHousePuzzle_Text_SecretCodeWrittenOnIt": [
         "Um codigo secreto esta escrito\\nnele.$"
@@ -195,7 +195,7 @@
         "Vou abrir meu caminho\\nate a vitoria usando o\\lgolpe CUT!$"
       ],
       "Route110_TrickHousePuzzle1_Text_SallyDefeat": [
-        "Porque estas a falar tao a\\nserio?$"
+        "Por que voce esta\\nlevando isso tao a serio?$"
       ],
       "Route110_TrickHousePuzzle1_Text_SallyPostBattle": [
         "Nunca me canso de cortar\\nas arvores pelo caminho!$"
@@ -218,10 +218,10 @@
     },
     "data/maps/Route110_TrickHousePuzzle2/scripts.inc": {
       "Route110_TrickHousePuzzle2_Text_TedIntro": [
-        "Que interruptor fecha que\\nburaco?$"
+        "Qual interruptor fecha\\nqual passagem?$"
       ],
       "Route110_TrickHousePuzzle2_Text_TedDefeat": [
-        "Depois daquela batalha, ainda\\nestou mais confuso!$"
+        "Depois daquela batalha\\nestou ainda mais confuso!$"
       ],
       "Route110_TrickHousePuzzle2_Text_TedPostBattle": [
         "Pode apertar todos os botoes\\npor mim?$"
@@ -233,7 +233,7 @@
         "Quero fazer meu proprio\\nGINASIO um dia. Estou estudando\\lcomo montar armadilhas.$"
       ],
       "Route110_TrickHousePuzzle2_Text_GeorgiaDefeat": [
-        "Nao estudei a batalhar o\\nsuficiente!$"
+        "Ainda preciso estudar\\nmais sobre batalhas!$"
       ]
     },
     "data/maps/Route110_TrickHousePuzzle3/scripts.inc": {
@@ -241,25 +241,25 @@
         "Continuo a voltar para este\\nmesmo lugar!$"
       ],
       "Route110_TrickHousePuzzle3_Text_JustinDefeat": [
-        "Ja estou com problemas, e\\ndepois precisa me vencer? Nao e\\ljusto!$"
+        "Ja estou cheio de problemas\\ne voce ainda me venceu?\\lIsso nao e justo!$"
       ],
       "Route110_TrickHousePuzzle3_Text_JustinPostBattle": [
-        "Esta cheio de portas aqui! Esta\\nmuito pequeno e escuro aqui!\\lSocorro!$"
+        "Ha portas em todo lugar!\\nE tao pequeno e escuro aqui!\\lSocorro!$"
       ],
       "Route110_TrickHousePuzzle3_Text_MarthaIntro": [
-        "Nao sei o que se passa aqui.\\nEstou comecando a sentir-me\\ltriste...$"
+        "Nao sei o que esta\\nacontecendo aqui. Estou\\lficando preocupada...$"
       ],
       "Route110_TrickHousePuzzle3_Text_MarthaDefeat": [
         "Voce... E horrivel!$"
       ],
       "Route110_TrickHousePuzzle3_Text_MarthaPostBattle": [
-        "Eu sei que sou fraco! E nao\\ntenho sentido de direccao!$"
+        "Sou fraca e ainda por cima\\nnao tenho senso de direcao!$"
       ],
       "Route110_TrickHousePuzzle3_Text_AlanIntro": [
         "Nao percebo. Para que quereria\\nalguem uma casa tao bizarra?$"
       ],
       "Route110_TrickHousePuzzle3_Text_AlanDefeat": [
-        "Nao percebo. Como e que eu\\nperdi?$"
+        "Nao acredito! Como\\nfoi que eu perdi?$"
       ],
       "Route110_TrickHousePuzzle3_Text_AlanPostBattle": [
         "Nao percebo. Quantas armadilhas\\nha nesta casa?\\pPodes ser voce a resolver isso.$"
