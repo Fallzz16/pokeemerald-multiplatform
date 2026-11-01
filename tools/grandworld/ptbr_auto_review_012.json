@@ -38,7 +38,7 @@
     },
     "data/maps/CeruleanCity_House3_Frlg/scripts.inc": {
       "CeruleanCity_House3_Text_PleaseTradeWithMyHusband": [
-        "Meu marido gosta de negociar\\nPOKEMON.\\pEstas a coleccionar POKEMON\\npara seu POKEDEX, nao estas?\\pImportas-te de trocar com ele?$"
+        "Meu marido gosta de trocar\\nPOKEMON.\\pEstas a colecionar POKEMON\\npara seu POKEDEX, nao estas?\\pImportas-te de trocar com ele?$"
       ]
     },
     "data/maps/CeruleanCity_House4_Frlg/scripts.inc": {
@@ -66,7 +66,7 @@
     },
     "data/maps/CeruleanCity_House5_Frlg/scripts.inc": {
       "CeruleanCity_House1_Text_HaveJustTheThing": [
-        "Optimo! Para voce, entao, tenho a\\ncoisa certa.$"
+        "Otimo! Para voce, entao, tenho a\\ncoisa certa.$"
       ],
       "CeruleanCity_House1_Text_WhyMustYouLieNoBerries": [
         "Por que precisa mentir para mim?\\pQuantas BERRIES tem? Nenhuma!$"
@@ -239,7 +239,7 @@
         "Tem muitos amigos?\\pLutar com os amigos habituais e\\ndivertido, claro.\\pMas que tal o TERMINAL BATTLE\\nNET de vez em quando?\\pQuem sabe, voce pode acabar com\\numa nova estrategia.\\pAcho que valeria a pena\\nverificar a BATTLE NET.$"
       ],
       "CinnabarIsland_PokemonCenter_1F_Text_EvolutionCanWaitForNewMoves": [
-        "POKEMON ainda pode aprender\\ntecnicas apos cancelar a\\levolucao.\\pA evolucao pode esperar ate que\\nnovos movimentos sejam\\laprendidos.$"
+        "POKEMON ainda pode aprender\\ntecnicas apos cancelar a\\levolucao.\\pA evolucao pode esperar ate que\\nnovos golpes sejam\\laprendidos.$"
       ],
       "CinnabarIsland_PokemonCenter_1F_Text_OhNotDoneYet": [
         "Ainda nao acabou?$"
@@ -367,7 +367,7 @@
         "Hah? Nao percebi bem...$"
       ],
       "DragonsDen_Shrine_Text_WrongAnswer2": [
-        "O que foi que disseste?$"
+        "O que foi que disse?$"
       ],
       "DragonsDen_Shrine_Text_RightAnswer": [
         "Entendo...$"
@@ -394,7 +394,7 @@
         "{PLAYER}Recebeu RISINGBADGE.$"
       ],
       "DragonsDen_Shrine_Text_RisingBadgeExplanation": [
-        "RISINGBADGE permitira que seu\\nPOKEMON use o movimento para\\lescalar cachoeiras.\\pAlem disso, todos POKEMON ira\\nreconhece-lo como um TREINADOR\\le obedecer a todos os seus\\lcomandos, sem duvida.$"
+        "RISINGBADGE permitira que seu\\nPOKEMON use o golpe para\\lescalar cachoeiras.\\pAlem disso, todos POKEMON ira\\nreconhece-lo como um TREINADOR\\le obedecer a todos os seus\\lcomandos, sem duvida.$"
       ],
       "DragonsDen_Shrine_Text_ComeAgain": [
         "Volta outra vez, se quiseres.$"
@@ -451,7 +451,7 @@
         "Ah. Estas numa aventura com o\\nteu POKEMON?\\pO que e uma aventura sem cacar\\ntesouros?\\pEstou certo, ou estou certo?$"
       ],
       "Ecruteak_Text_ItemfinderTrueSpirit": [
-        "Optimo! Compreendes o\\nverdadeiro espirito de\\laventura.\\pGosto disso! Leva isto com voce.$"
+        "Otimo! Compreendes o\\nverdadeiro espirito de\\laventura.\\pGosto disso! Leva isto com voce.$"
       ],
       "Ecruteak_Text_ItemfinderToEachHisOwn": [
         "Oh... Cada um dos seus,\\nsuponho...$"
@@ -514,7 +514,7 @@
         "Maravilhoso! Foi tao corajoso\\npara sua idade!\\pFoi uma visao rara! Quero que\\nfiques com isto.\\pNao sejas timido, toma!$"
       ],
       "EcruteakCity_Theater_Text_SurfGuyGaveSurf": [
-        "Isso e SURF. E um movimento que\\npermite POKEMON nadar atraves\\lda agua com facilidade.$"
+        "Isso e SURF. E um golpe que\\npermite POKEMON nadar atraves\\lda agua com facilidade.$"
       ],
       "EcruteakCity_Theater_Text_GrannyBefore": [
         "Ouch...! Esta dor de estomago!\\pNao deixaria este tipo agir\\nassim se nao fosse por esta\\ldor...!$"
@@ -576,13 +576,13 @@
     },
     "data/maps/EverGrandeCity_PokemonLeague_1F/scripts.inc": {
       "EverGrandeCity_PokemonLeague_1F_Text_MustHaveAllGymBadges": [
-        "Alem deste ponto, apenas\\naqueles que recolheram todos os\\lBADS Gym estao autorizados a\\lentrar.\\pTREINADOR, confirmemos que tem\\ntodos os GINASIO INSIGNIAS.$"
+        "Alem deu ponto, apenas\\naqueles que recolheram todos os\\lBADS Gym estao autorizados a\\lentrar.\\pTREINADOR, confirmemos que tem\\ntodos os GINASIO INSIGNIAS.$"
       ],
       "EverGrandeCity_PokemonLeague_1F_Text_HaventObtainedAllBadges": [
         "Voce nao obteve todos os\\nINSIGNIAS.\\pSe voce esta destinado para a\\nLEAGUE POKEMON, voce deve\\lvoltar com eles.$"
       ],
       "EverGrandeCity_PokemonLeague_1F_Text_GoForth": [
-        "TREINADOR! Acredita em ti e no\\nteu POKEMON, e vai em frente!$"
+        "TREINADOR! Acredita em voce e no\\nteu POKEMON, e vai em frente!$"
       ]
     },
     "data/maps/EverGrandeCity_SidneysRoom/scripts.inc": {
@@ -629,13 +629,13 @@
         "Que POKEMON precisa de\\nexplicacoes?$"
       ],
       "FallarborTown_MoveRelearnersHouse_Text_TeachWhichMove": [
-        "Que movimento devo dar?$"
+        "Que golpe devo dar?$"
       ],
       "FallarborTown_MoveRelearnersHouse_Text_DontHaveMoveToTeachPokemon": [
         "Desculpa...\\pNao parece que eu tenha alguma\\njogada que possa ensinar ao\\lPokemon.$"
       ],
       "FallarborTown_MoveRelearnersHouse_Text_CantTeachEgg": [
-        "Hunh? Nao ha um unico movimento\\nque eu possa ensinar um EGG.$"
+        "Hunh? Nao ha um unico golpe\\nque eu possa ensinar um EGG.$"
       ]
     },
     "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc": {
@@ -862,7 +862,7 @@
         "Seu BAG parece estar,\\ninfelizmente, cheio.$"
       ],
       "FiveIsland_ResortGorgeous_House_Text_OhHowDisappointing": [
-        "Oh... Que desilusao.$"
+        "Oh... Que decepcao.$"
       ]
     },
     "data/maps/FortreeCity/scripts.inc": {
