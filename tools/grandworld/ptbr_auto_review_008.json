@@ -2,76 +2,76 @@
   "asm": {
     "data/maps/BattleFrontier_BattleFactoryPreBattleRoom/scripts.inc": {
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_SaveAndQuitGame": [
-        "Gostaria de salvar e deixar o\\njogo?$"
+        "Quer salvar e sair\\ndo jogo?$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_RetireFromChallenge": [
-        "Gostaria de se retirar do seu\\ndesafio de troca de batalha?$"
+        "Deseja desistir do\\ndesafio da BATTLE FACTORY?$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_InvestigatedUpcomingOpponent": [
-        "Fiz uma pequena investigacao\\nsobre seu proximo adversario.$"
+        "Pesquisei um pouco sobre\\nseu proximo adversario.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInNormalType": [
-        "O TREINADOR e aparentemente habil\\nno manuseio do tipo NORMAL.$"
+        "O TREINADOR domina\\nPOKEMON do tipo NORMAL.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInElectricType": [
-        "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lELECTRIC.$"
+        "O TREINADOR se destaca\\ncom POKEMON do tipo\\lELECTRIC.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInGrassType": [
-        "O TREINADOR e aparentemente habil\\nno manuseio do tipo GRASS.$"
+        "O TREINADOR domina\\nPOKEMON do tipo GRASS.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInIceType": [
-        "O TREINADOR e aparentemente habil\\nna manipulacao do tipo ICE.$"
+        "O TREINADOR domina\\nPOKEMON do tipo ICE.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInPoisonType": [
-        "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lPOISON.$"
+        "O TREINADOR se destaca\\ncom POKEMON do tipo\\lPOISON.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInGroundType": [
-        "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lGROUND.$"
+        "O TREINADOR se destaca\\ncom POKEMON do tipo\\lGROUND.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInPsychicType": [
-        "O TREINADOR e aparentemente habil\\nna manipulacao do tipo PSYCHIC.$"
+        "O TREINADOR domina\\nPOKEMON do tipo PSYCHIC.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInBugType": [
-        "O TREINADOR e aparentemente habil\\nna manipulacao do tipo BUG.$"
+        "O TREINADOR domina\\nPOKEMON do tipo BUG.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInRockType": [
-        "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lROCK.$"
+        "O TREINADOR se destaca\\ncom POKEMON do tipo\\lROCK.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInGhostType": [
-        "O TREINADOR e aparentemente habil\\nna manipulacao do tipo GHOST.$"
+        "O TREINADOR domina\\nPOKEMON do tipo GHOST.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInDragonType": [
-        "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lDRAGON.$"
+        "O TREINADOR se destaca\\ncom POKEMON do tipo\\lDRAGON.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInDarkType": [
-        "O TREINADOR e aparentemente\\nhabil na manipulacao do tipo\\lDARK.$"
+        "O TREINADOR se destaca\\ncom POKEMON do tipo\\lDARK.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerSkilledInSteelType": [
-        "O TREINADOR e aparentemente habil\\nna manipulacao do tipo STEEL.$"
+        "O TREINADOR domina\\nPOKEMON do tipo STEEL.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_TrainerHasNoClearFavorite": [
-        "O TREINADOR parece nao ter\\nfavoritos claros quando se\\ltrata de tipo.$"
+        "O TREINADOR nao parece\\npreferir nenhum\\ltipo em especial.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_StyleSlowAndSteady": [
-        "O estilo de batalha favorito\\nparece ser lento e estavel.$"
+        "Esse TREINADOR prefere\\nbatalhar com calma e paciencia.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_StyleEndurance": [
-        "O estilo de batalha favorito\\nparece ser de resistencia.$"
+        "Seu estilo de batalha\\ne focado em resistencia.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_StyleHighRisk": [
-        "O estilo de batalha favorito\\nparece ser alto risco, alto\\lretorno.$"
+        "Ele gosta de arriscar\\ntudo por uma grande\\lrecompensa.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_StyleDependsOnFlow": [
-        "O estilo de batalha favorito\\nparece depender do fluxo da\\lbatalha.$"
+        "Seu estilo de batalha\\nmuda conforme o\\lritmo do combate.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_StyleTotalPreparation": [
-        "O estilo de batalha favorito\\nparece ser um baseado na\\lpreparacao total.$"
+        "Ele gosta de planejar\\ncada etapa da batalha\\lcom antecedencia.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_StyleWeakenFoe": [
-        "O estilo de batalha favorito\\nparece estar enfraquecendo o\\linimigo para comecar.$"
+        "Ele prefere enfraquecer\\no adversario logo\\lno comeco da batalha.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_StyleFlexible": [
-        "O estilo de batalha favorito\\nparece ser flexivel e adaptavel\\la situacao.$"
+        "Seu estilo e flexivel\\ne se adapta bem\\la cada situacao.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_StyleImpossibleToPredict": [
         "O estilo de batalha favorito\\nparece ser impossivel de\\lprever.$"
@@ -80,10 +80,10 @@
         "O estilo de batalha favorito\\nparece ser espirito livre e sem\\lrestricoes.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_LikeToSwapMon": [
-        "Antes de comecar a batalha,\\ngostaria de trocar um POKEMON?$"
+        "Quer trocar um POKEMON\\nantes da batalha?$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_YourSwapIsComplete": [
-        "Obrigado! A troca de POKEMON\\nesta completa.$"
+        "Pronto! A troca de POKEMON\\nfoi concluida.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_RightThisWay": [
         "Por aqui, por favor!$"
@@ -92,10 +92,10 @@
         "Estou salvando seus dados.\\nAguarde um instante.$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_RecordLatestBattle": [
-        "Gostaria de gravar sua ultima\\nbatalha no seu PASS FRONTIER?$"
+        "Quer registrar sua ultima\\nbatalha no FRONTIER PASS?$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_WaitFewMoments": [
-        "Com licenca! Com licenca, por\\nfavor! Posso fazer com que\\lesperes alguns momentos?$"
+        "Com licenca!\\nPode aguardar\\lum instante, por favor?$"
       ],
       "BattleFrontier_BattleFactoryPreBattleRoom_Text_UnderstoodSirWillDo": [
         "...Uh-huh? O que? Uau!\\nEntendido, senhor! Farei isso!$"
@@ -106,43 +106,43 @@
         "Muito bem... Vou recuperar\\nseus POKEMON.$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor2ndOpponent": [
-        "O 2o oponente e o proximo.\\nEstas preparado?$"
+        "Seu segundo adversario\\nesta pronto. E voce?$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor3rdOpponent": [
-        "O terceiro oponente e o\\nproximo. Estas preparado?$"
+        "Seu terceiro adversario\\nesta pronto. E voce?$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor4thOpponent": [
-        "O 4o oponente e o proximo.\\nEstas preparado?$"
+        "Seu quarto adversario\\nesta pronto. E voce?$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor5thOpponent": [
-        "O quinto oponente e o proximo.\\nEstas preparado?$"
+        "Seu quinto adversario\\nesta pronto. E voce?$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor6thOpponent": [
-        "O 6o oponente e o proximo.\\nEstas preparado?$"
+        "Seu sexto adversario\\nesta pronto. E voce?$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor7thOpponent": [
-        "O 7o oponente e o proximo.\\nEstas preparado?$"
+        "Seu setimo adversario\\nesta pronto. E voce?$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_SaveAndQuitGame": [
-        "Gostaria de salvar e deixar o\\njogo?$"
+        "Quer salvar e sair\\ndo jogo?$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_WishToQuitChallenge": [
         "Deseja desistir do seu desafio?$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_SavingData": [
-        "A salvar os dados. Tem\\npaciencia...$"
+        "Salvando os dados.\\nAguarde um momento...$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_RecordLastMatch": [
-        "Deseja gravar sua ultima\\npartida no seu PASS FRONTIER?$"
+        "Quer registrar sua ultima\\nbatalha no FRONTIER PASS?$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_ChallengingPalaceMaven": [
-        "E agora...\\pAo ganhar consistentemente,\\nvoce ganhou o privilegio de\\ldesafiar nosso mestre, o PALACE\\lMAVEN...$"
+        "E agora...\\pSuas vitorias seguidas\\nrenderam a chance de\\lenfrentar o lider do\\lBATTLE PALACE!$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_ReadyForPalaceMaven": [
-        "Mandarei chamar o PALACE MAVEN.\\nEstas pronto?$"
+        "Vou chamar o PALACE MAVEN.\\nEsta pronto?$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_AnnounceArrivalOfSpenser": [
-        "Que grande fanfarra anuncie a\\nchegada do PALACE MAVEN,\\lSPENSER!$"
+        "Uma grande salva de palmas\\npara receber o PALACE\\lMAVEN SPENSER!$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_ProveYourBondWithMons": [
         "A ligacao que partilha com o\\nseu POKEMON! Prova-mo aqui!$"
@@ -151,7 +151,7 @@
         "Kaaah!$"
       ],
       "BattleFrontier_BattlePalaceBattleRoom_Text_SpiritsSymbolTookGoldenShine": [
-        "O Simbolo dos Espiritos tomou\\num brilho dourado!$"
+        "O SPIRITS SYMBOL ganhou\\num brilho dourado!$"
       ]
     },
     "data/maps/BattleFrontier_BattlePalaceCorridor/scripts.inc": {
@@ -164,25 +164,25 @@
     },
     "data/maps/BattleFrontier_BattlePalaceLobby/scripts.inc": {
       "BattleFrontier_BattlePalaceLobby_Text_ReturnWhenFortified": [
-        "Quando tiver fortalecido o seu\\ncoracao e POKEMON, precisa\\lregressar.$"
+        "Volte quando voce\\ne seus POKEMON estiverem\\lmais preparados.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_NotEnoughValidMonsEnd": [
-        "Volta quando tiveres feito os\\nteus preparativos.$"
+        "Volte quando tiver\\nconcluido os preparativos.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_NowSelectThreeMons": [
-        "Otimo. Agora, voce deve\\nselecionar seus tres POKEMON.$"
+        "Certo. Escolha seus\\ntres POKEMON para o desafio.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_FollowMe": [
-        "Otimo. Agora, sigam-me.$"
+        "Muito bem. Venha comigo.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_FirmTrueBondsFor7WinStreak": [
         "Para alcancar uma mare de 7\\nvitorias...\\pOs lacos que ligam seu coracao\\ncom seu POKEMON parecem firmes\\le verdadeiros.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_FeatWillBeRecorded": [
-        "Seu feito sera gravado.\\nPeco-lhe que espere brevemente.$"
+        "Seu resultado sera registrado.\\nAguarde um momento.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_BattlePointsFor7WinStreak": [
-        "Para o feito de sua serie de 7\\nvitorias, apresentamos-lhe com\\lBattle Point(s).$"
+        "Pelas sete vitorias\\nconsecutivas, voce recebeu\\lBATTLE POINTS!$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_NoSpaceForPrize": [
         "Parece que voce nao tem\\nespaco para o premio.\\pVolte depois de organizar\\nsua BOLSA.$"
@@ -191,7 +191,7 @@
         "Estavamos sua espera...$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_FailedToSaveBeforeEndingChallenge": [
-        "Suspiro...\\pVoce falhou em salvar antes de\\nterminar seu desafio da\\lultima vez.\\pComo resultado, seu desafio foi\\ndesqualificado. E uma pena.$"
+        "Que pena...\\pVoce nao salvou\\nantes de encerrar o\\ldesafio anterior.\\pPor isso, seu resultado\\nfoi desclassificado.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ReceivedPrize": [
         "{PLAYER} recebeu o\\npremio {STR_VAR_1}.$"
@@ -206,19 +206,19 @@
         "Pergunto-me que tipo de\\nnatureza um POKEMON teria se\\lfavorecesse a fraude dos seus\\ladversarios e a lapidacao\\llentamente.\\pFicaria surpreendido se fosse\\numa natureza LAX.\\pMas isso nao pode estar certo.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ToDefeatMavenAnd7Trainers": [
-        "Para derrotar o PALACE MAVEN e\\nsete TREINADORES seguidos...$"
+        "Vencer o PALACE MAVEN e\\nsete TREINADORES seguidos...$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_PresentYouWithBattlePoints": [
         "Em honra do vinculo que\\npartilhas com seu POKEMON,\\lapresentamos-te estes Pontos de\\lBatalha.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_LikeToRecordMatch": [
-        "Gostaria de gravar o seu\\nultimo batalha BATTLE PALACE no\\lteu PASS FRONTIER?$"
+        "Quer registrar sua\\nultima batalha do PALACE\\lno FRONTIER PASS?$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_RulesAreListed": [
-        "As regras do BATTLE HALL estao\\nlistadas.$"
+        "As regras do BATTLE PALACE\\nestao descritas aqui.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ReadWhichHeading": [
-        "Que rumo quer ler?$"
+        "Qual assunto deseja ler?$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ExplainRulesBasics": [
         "Aqui, POKEMON sao obrigados a\\npensar e batalhar sozinhos.\\pAo contrario na natureza,\\nPOKEMON que vivem com as\\lpessoas comportam-se de forma\\ldiferente, dependendo de sua\\lnatureza.$"
