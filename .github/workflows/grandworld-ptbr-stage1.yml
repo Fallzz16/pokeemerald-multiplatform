@@ -31,6 +31,9 @@ on:
       - 'tools/grandworld/audit_ptbr_draft_quality.py'
       - 'tools/grandworld/build_ptbr_review_queue.py'
       - 'tools/grandworld/ptbr_editorial_stage18_part*.json'
+      - 'tools/grandworld/ptbr_stage19_changes_part*.json'
+      - 'tools/grandworld/ptbr_stage19_prior_review_lock.json'
+      - 'tools/grandworld/tests/test_ptbr_stage19_changes.py'
       - 'tools/grandworld/tests/test_ptbr_editorial_stage18.py'
       - 'tools/grandworld/tests/test_build_ptbr_review_queue.py'
       - 'tools/grandworld/ptbr_reviewed_auto7.json'
@@ -131,6 +134,10 @@ jobs:
           assert d['human_reviewed_stage15']==154
           assert d['human_reviewed_stage16']==125
           assert d['pending_human_language_review']==3238
+          assert d['stage19_changed_pending_editorial_approval']==604
+          assert d['stage19_newly_touched_drafts']==342
+          assert d['stage19_earlier_assisted_refinements']==262
+          assert d['still_without_assisted_or_editorial_touch_after_stage19']==1773
           print('Human-reviewed stage16 125/125, 1962/5200 reviewed drafts, 3238 still pending; release not certified')
           PY
           python3 - <<'PY'
