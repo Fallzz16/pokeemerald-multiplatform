@@ -106,7 +106,7 @@
         "Esta bem, esta bem, olha aqui!\\nQue golpe devo dar?$"
       ],
       "BattleFrontier_Lounge7_Text_MoveWillBeXBattlePoints": [
-        "A golpe{STR_VAR_1}E mesmo?\\nIsso sera{STR_VAR_2}Pontos de\\lBatalha, esta bem?$"
+        "O golpe{STR_VAR_1}E mesmo?\\nIsso sera{STR_VAR_2}Pontos de\\lBatalha, esta bem?$"
       ],
       "BattleFrontier_Lounge7_Text_TeachMoveToWhichMon": [
         "Esta bem, agora escolhe o\\nPokemon para o qual devo\\lensinar.$"
@@ -605,7 +605,7 @@
         "{PLAYER}recebeu\\numa{STR_VAR_2}Da menina.$"
       ],
       "CeladonCity_DepartmentStore_Roof_Text_ExplainTM20": [
-        "TM20 contem SAFEGUARD.\\pE uma golpe que evita\\nproblemas de status entre os\\lseus POKEMON.$"
+        "TM20 contem SAFEGUARD.\\pE um golpe que evita\\nproblemas de status entre os\\lseus POKEMON.$"
       ],
       "CeladonCity_DepartmentStore_Roof_Text_ExplainTM33": [
         "TM33 contem REFLECT.\\pE um golpe que enfraquece o\\npoder dos ataques fisicos do\\lteu inimigo.$"
