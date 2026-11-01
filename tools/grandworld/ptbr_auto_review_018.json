@@ -529,7 +529,7 @@
     },
     "data/maps/RustboroCity_CuttersHouse/scripts.inc": {
       "RustboroCity_CuttersHouse_Text_DadHelpedClearLandOfTrees": [
-        "Quando eles estavam expandindo\\na cidade de RUSTBORO, meu pai\\lajudou.\\pEle fez seu POKEMON usar CUT\\npara limpar a terra das\\larvores.$"
+        "Quando RUSTBORO cresceu,\\nmeu pai ajudou a cidade\\lcortando arvores.\\pEle ensinou CUT aos\\nseus POKEMON para\\llimpar o terreno.$"
       ]
     },
     "data/maps/RustboroCity_DevonCorp_1F/scripts.inc": {
@@ -554,7 +554,7 @@
     },
     "data/maps/RustboroCity_DevonCorp_2F/scripts.inc": {
       "RustboroCity_DevonCorp_2F_Text_DeviceForTalkingToPokemon": [
-        "Estamos desenvolvendo um\\ndispositivo para falar com o\\lPOKEMON.\\pMas nao tivemos muito\\nsucesso...$"
+        "Estamos criando um aparelho\\nque permita conversar\\lcom os POKEMON.\\pMas ainda nao conseguimos\\nfazer funcionar...$"
       ],
       "RustboroCity_DevonCorp_2F_Text_IMadePokenav": [
         "Eu fiz o POKENAV!\\pComo engenheiro, sinto-me\\nabencoado por ter feito algo\\ltao grande!$"
@@ -566,13 +566,13 @@
         "Tenho tentado desenvolver um\\ndispositivo que ressuscite\\lPokemon de fosseis...\\pE esta funcionando!$"
       ],
       "RustboroCity_DevonCorp_2F_Text_TwoFossilsPickOne": [
-        "Que surpresa! Nao tem um, mas\\ndois, fosseis?\\pInfelizmente, minha maquina\\nso pode regenerar um POKEMON de\\lcada vez.\\pGostaria de escolher um dos\\nseus fosseis para regeneracao?$"
+        "O que? Voce tem dois\\nfosseis diferentes?\\pMinha maquina so consegue\\nreviver um POKEMON\\lde cada vez.\\pQual fossil quer\\nreviver primeiro?$"
       ],
       "RustboroCity_DevonCorp_2F_Text_FossilizedMonBroughtBackToLife": [
-        "Obrigado por esperar!\\pO seu POKEMON fossilizado foi\\ntrazido de volta a vida!\\pO fossil era um antigo\\nPokemon.{STR_VAR_2} Foi!$"
+        "Muito obrigado por esperar!\\pSeu POKEMON fossilizado\\nvoltou a vida!\\pEra um antigo POKEMON:\\n{STR_VAR_2}!$"
       ],
       "RustboroCity_DevonCorp_2F_Text_TooManyPokemon": [
-        "Tem muitos POKEMON. Nao tem\\nespaco para este.$"
+        "Sua equipe esta cheia.\\nNao ha espaco para ele.$"
       ],
       "RustboroCity_DevonCorp_2F_Text_DevelopNewPokenavFeature": [
         "Estou tentando desenvolver uma\\nnova funcionalidade para o\\lPOKeNAV...\\pMas nao esta correndo bem.$"
@@ -591,10 +591,10 @@
     },
     "data/maps/RustboroCity_Flat1_1F/scripts.inc": {
       "RustboroCity_Flat1_1F_Text_EveryPokemonHasAbility": [
-        "Cada POKEMON tem uma habilidade\\nespecial que pode usar.$"
+        "Cada POKEMON tem uma\\nhabilidade especial.$"
       ],
       "RustboroCity_Flat1_1F_Text_PokemonStrange": [
-        "POKEMON sao criaturas tao\\nestranhas.$"
+        "POKEMON sao criaturas\\ncheias de misterios.$"
       ]
     },
     "data/maps/RustboroCity_Flat1_2F/scripts.inc": {
@@ -634,7 +634,7 @@
     },
     "data/maps/RustboroCity_Flat2_2F/scripts.inc": {
       "RustboroCity_Flat2_2F_Text_DevonWasTinyInOldDays": [
-        "Antigamente, o DEVON era apenas\\numa pequena companhia.$"
+        "Antigamente, a DEVON era\\numa empresa pequena.$"
       ]
     },
     "data/maps/RustboroCity_House1/scripts.inc": {
@@ -642,7 +642,7 @@
         "Huh? Meu POKEMON e giro?\\nClaro, eu sabia disso.\\pMas se realmente quiseres,\\nestou disposto a troca-lo por\\lti.\\pVou trocar-te o\\nmeu {STR_VAR_2} para\\luma {STR_VAR_1} Se quiseres.$"
       ],
       "RustboroCity_House1_Text_PleaseBeGoodToMyPokemon": [
-        "Eheheh... Por favor, se bom\\npara meu POKEMON.$"
+        "Hehehe... Cuide bem\\ndo meu POKEMON, viu?$"
       ],
       "RustboroCity_House1_Text_DoesntLookLikeMonToMe": [
         "Huh? Isso nao se parece nada\\ncom um {STR_VAR_1} para mim.$"
@@ -651,10 +651,10 @@
         "Se nao quiseres, tudo bem. Mas\\no meu POKEMON e giro, sabe...$"
       ],
       "RustboroCity_House1_Text_AnyPokemonCanBeCute": [
-        "Qualquer POKEMON pode ser\\nbonito se voce cria-lo com\\lcuidado e bondade.$"
+        "Qualquer POKEMON pode ser\\nadoravel quando e criado\\lcom amor e carinho.$"
       ],
       "RustboroCity_House1_Text_AllSortsOfPlaces": [
-        "Em todos os tipos de lugares,\\nha todos os tipos de POKEMON e\\lpessoas.\\pAcho isso fascinante, por isso\\nvou a todos os tipos de sitios.$"
+        "Existem pessoas e POKEMON\\nde todos os tipos\\lem muitos lugares.\\pGosto tanto dessa variedade\\nque viajo por todo canto!$"
       ]
     },
     "data/maps/RustboroCity_House3/scripts.inc": {
@@ -667,7 +667,7 @@
     },
     "data/maps/RustboroCity_PokemonCenter_1F/scripts.inc": {
       "RustboroCity_PokemonCenter_1F_Text_MaleAndFemalePokemon": [
-        "Assim como as pessoas, ha\\nhomens e mulheres POKEMON.\\pMas ninguem faz ideia de como\\nsao diferentes.$"
+        "Assim como as pessoas,\\nha POKEMON machos e femeas.\\pMas ainda sabemos pouco\\nsobre suas diferencas.$"
       ]
     },
     "data/maps/RustboroCity_PokemonSchool/scripts.inc": {
@@ -678,13 +678,13 @@
         "Que topico voce quer ler?$"
       ],
       "RustboroCity_PokemonSchool_Text_TradingRightNow": [
-        "Estou trocando o POKEMON com o\\nmeu amigo.$"
+        "Estou trocando POKEMON\\ncom meu amigo agora.$"
       ],
       "RustboroCity_PokemonSchool_Text_AlwaysWantedSeedot": [
         "Eu sempre quis um SEEDOT, e\\nestou finalmente recebendo um!$"
       ],
       "RustboroCity_PokemonSchool_Text_PokemontCantUseManMadeItems": [
-        "POKEMON pode segurar itens, mas\\neles nao sabem o que fazer com\\litens feitos pelo homem como\\lPOTION e ANTIDOTE.$"
+        "POKEMON podem segurar itens,\\nmas nao sabem usar\\lprodutos feitos para pessoas,\\lcomo POTION e ANTIDOTE.$"
       ],
       "RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself": [
         "Sabe como alguns golpes\\nPOKEMON podem confundir um\\lPOKEMON?\\pPor vezes, um POKEMON confuso\\nataca-se sem querer.\\pMas assim que sair da batalha,\\nvoltara ao normal.$"
@@ -698,7 +698,7 @@
         "Vai me enfrentar?\\nEntao venha!$"
       ],
       "RusturfTunnel_Text_GruntIntro": [
-        "Que azar!\\pO POKEMON que capturei\\nnao serviu para nada!\\pE agora estou preso\\nneste tunel sem saida!\\pEi, voce!\\nQuer batalhar?$"
+        "Que azar!\\pO POKEMON que capturei\\nnao me ajudou em nada!\\pAgora estou preso\\nneste tunel sem saida!\\pEi, voce! Que tal\\numa batalha?$"
       ],
       "RusturfTunnel_Text_GruntDefeat": [
         "Argh! Minha carreira\\nna EQUIPE AQUA acabou!$"
@@ -713,7 +713,7 @@
         "Se alguem mora\\nnas montanhas,\\ne chamado de montanhes!\\pE os POKEMON que vivem la?\\nSao POKEMON da montanha?$"
       ],
       "RusturfTunnel_Text_MikeDefeat": [
-        "Meu POKEMON ficou\\nsem energia...$"
+        "Meu POKEMON ficou\\nsem forcas...$"
       ],
       "RusturfTunnel_Text_MikePostBattle": [
         "Pararam as obras do tunel\\npara proteger os POKEMON.\\pFoi uma boa decisao!$"
@@ -735,13 +735,13 @@
         "Uau! E fantastico!$"
       ],
       "SSAnne_1F_Room2_Text_TylerPostBattle": [
-        "Ouve, ouve! Me deixe ser sua\\namiga, esta bem?\\pDepois podemos trocar POKEMON e\\nfazer coisas.$"
+        "Ei, escute! Podemos\\nser amigos, tudo bem?\\pAssim podemos trocar POKEMON\\ne fazer muitas coisas!$"
       ],
       "SSAnne_1F_Room2_Text_AnnIntro": [
-        "Eu recolhi estes POKEMON de\\ntodo o mundo!$"
+        "Colecionei estes POKEMON\\nviajando pelo mundo todo!$"
       ],
       "SSAnne_1F_Room2_Text_AnnDefeat": [
-        "Nao! Eu dei a volta ao mundo\\npor isto!$"
+        "Nao! Viajei o mundo\\ninteiro para isso!$"
       ],
       "SSAnne_1F_Room2_Text_CruisingAroundWorld": [
         "Estamos viajando pelo mundo,\\nmeus filhos e eu.$"
@@ -765,7 +765,7 @@
     },
     "data/maps/SSAnne_1F_Room5_Frlg/scripts.inc": {
       "SSAnne_1F_Room5_Text_ArthurIntro": [
-        "Seu filhote insolente! Como te\\natreves a entrar?$"
+        "Que crianca atrevida!\\nComo ousa entrar aqui?$"
       ],
       "SSAnne_1F_Room5_Text_ArthurDefeat": [
         "Humph! Sua crianca rude! Nao\\ntens sentido de cortesia!$"
@@ -782,7 +782,7 @@
         "Fico feliz por ver que todos\\nparecem revigorados e felizes.$"
       ],
       "SSAnne_1F_Room6_Text_SorryYouLookLikeMyBrother": [
-        "Desculpa ter-te incomodado.\\nPareces meu irmaozinho...$"
+        "Desculpe incomodar voce.\\nParecia meu irmaozinho...$"
       ],
       "SSAnne_1F_Room6_Text_SorryYouLookLikeMySister": [
         "Desculpa ter-te incomodado.\\nPareces minha irma mais\\lnova...$"
