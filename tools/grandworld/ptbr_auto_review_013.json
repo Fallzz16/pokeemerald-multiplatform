@@ -180,16 +180,16 @@
         "Qual POKEMON deve\\nesquecer um golpe?$"
       ],
       "FuchsiaCity_House3_Text_WhichMoveShouldBeForgotten": [
-        "Que movimento deve ser\\nesquecido?$"
+        "Que golpe deve ser\\nesquecido?$"
       ],
       "FuchsiaCity_House3_Text_MonOnlyKnowsOneMove": [
-        "{STR_VAR_1}Parece saber apenas\\num movimento...$"
+        "{STR_VAR_1}Parece saber apenas\\num golpe...$"
       ],
       "FuchsiaCity_House3_Text_MonHasForgottenMoveCompletely": [
         "Funcionou perfeitamente!\\p{STR_VAR_1}esqueceu-se{STR_VAR_2}Completamente.$"
       ],
       "FuchsiaCity_House3_Text_ComeAgainToForgetOtherMoves": [
-        "Volte novamente se houver\\noutros movimentos a serem\\lesquecidos.$"
+        "Volte novamente se houver\\noutros golpes a serem\\lesquecidos.$"
       ],
       "FuchsiaCity_House3_Text_NoEggShouldKnowMoves": [
         "O que? Nenhum EGG deve saber de\\nmovimentos.$"
@@ -378,7 +378,7 @@
         "Hmm... Nao e mau, mas tambem\\nnao e bom.\\pVoce, como instrutor, precisa\\nse esforcar mais.$"
       ],
       "GoldenrodDeptStore_Text_5FReceptionistThisMoveShouldBePerfect": [
-        "Esta muito ligado a ti.\\pEste movimento deve ser\\nperfeito para um casal como\\lvoce.$"
+        "Esta muito ligado a ti.\\pEste golpe deve ser\\nperfeito para um casal como\\lvoce.$"
       ],
       "GoldenrodDeptStore_Text_5FReceptionistItLooksEvilHowAboutThisTM": [
         "Parece mau. Que tal este TM\\npara ele?$"
@@ -508,7 +508,7 @@
         "Gostaria de alternar a\\nconfiguracao de Cores\\lBrilhantes Unicas?$"
       ],
       "GoldenrodCity_NameRatersHouse_Text_FineNameSuggestBetterOne": [
-        "Hmmm...{STR_VAR_1}E mesmo? E um\\nbelo nome que me deste.\\pMas! Que dizes, se eu sugerisse\\num nome um pouco melhor?$"
+        "Hmmm...{STR_VAR_1}E mesmo? E um\\nbelo nome que me deu.\\pMas! Que dizes, se eu sugerisse\\num nome um pouco melhor?$"
       ],
       "GoldenrodCity_NameRatersHouse_Text_WhatShallNewNameBe": [
         "Ainda bem. Entao, qual sera o\\nnovo apelido?$"
@@ -557,7 +557,7 @@
         "Dar um EON MAIL?$"
       ],
       "GoldenrodCity_PokemonCenter_PokefanFThisIsForYouText": [
-        "Isso e optimo! Obrigado,\\nquerida!\\pToma, isto e para voce em troca!$"
+        "Isso e otimo! Obrigado,\\nquerida!\\pToma, isto e para voce em troca!$"
       ],
       "GoldenrodCity_PokemonCenter_PokefanFDaughterWillBeDelightedText": [
         "Minha filha ficara encantada!$"
@@ -639,7 +639,7 @@
         "Pode ouvir o radio em qualquer\\nlugar. Afinar!$"
       ],
       "GoldenrodCity_RadioTower_2F_Text_Policeman": [
-        "Acesso restrito alem deste\\nponto.$"
+        "Acesso restrito alem deu\\nponto.$"
       ],
       "GoldenrodCity_RadioTower_2F_Text_Teacher": [
         "Lulabios no radio podem fazer\\nPOKEMON dormir.$"
@@ -669,7 +669,7 @@
         "Argh. Desisto.$"
       ],
       "GoldenrodCity_RadioTower_2F_Text_GruntF2Seen": [
-        "Hahaha!\\pQue chato. Foi muito facil\\ntomar conta deste lugar!\\pVa la, diverte-me!$"
+        "Hahaha!\\pQue chato. Foi muito facil\\ntomar conta deu lugar!\\pVa la, diverte-me!$"
       ],
       "GoldenrodCity_RadioTower_2F_Text_GruntF2Beaten": [
         "Quem e voce?$"
@@ -779,7 +779,7 @@
         "O comboio nao chegou...\\pEu sei! Eu carrego os\\npassageiros nas minhas costas!\\pIsso nao vai funcionar.$"
       ],
       "GoldenrodCity_TrainStation_Text_Psychic": [
-        "Pensei que tinhas conseguido!$"
+        "Pensei que tinha conseguido!$"
       ]
     },
     "data/maps/GoldenrodCity_UndergroundEntrance/scripts.inc": {
@@ -792,7 +792,7 @@
     },
     "data/maps/GoldenrodCity_UndergroundStorage/scripts.inc": {
       "RadioTowerBasement_Text_GruntM24Seen": [
-        "Como chegaste tao longe?\\pAcho que nao se pode evitar.\\nVou livrar-me de voce.$"
+        "Como chegou tao longe?\\pAcho que nao se pode evitar.\\nVou livrar-me de voce.$"
       ],
       "RadioTowerBasement_Text_GruntM24Beaten": [
         "Eu livrei-me...$"
