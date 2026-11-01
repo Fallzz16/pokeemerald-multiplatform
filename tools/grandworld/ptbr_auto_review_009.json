@@ -112,10 +112,10 @@
         "Vamos manter seu BAG em\\nseguranca,{PLAYER}, enquanto\\lvoce esta explorando.$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_ExchangedBagForBattleBag": [
-        "{PLAYER}Trocou o BAG pelo BATLE\\nBATTLE BAG.$"
+        "{PLAYER} Trocou o BAG pelo BATLE\\nBATTLE BAG.$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_DidntSaveBeforeQuittingTakeBag": [
-        "Um grande problema, explorador!\\pVoce nao salvou antes de\\nterminar seu desafio da ultima\\lvez.\\pConsequentemente, seu desafio\\nfoi desqualificado, lamento\\ldizer.\\pAqui esta o BAG que temos\\nguardado para si.\\p{PLAYER}Tenho o BAG de volta.$"
+        "Um grande problema, explorador!\\pVoce nao salvou antes de\\nterminar seu desafio da ultima\\lvez.\\pConsequentemente, seu desafio\\nfoi desqualificado, lamento\\ldizer.\\pAqui esta o BAG que temos\\nguardado para si.\\p{PLAYER} Tenho o BAG de volta.$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_MonHoldingItemCannotTake": [
         "Um pequeno problema.\\pPelo menos um POKEMON esta\\nsegurando um item.\\pLamento dizer que os itens\\nobtidos no PYRAMID nao podem\\lser retirados.$"
@@ -124,7 +124,7 @@
         "Pelo menos um POKEMON ainda tem\\num item.$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_ReturnedEverythingMonsHeld": [
-        "{PLAYER}Devolveu tudo o que o\\nPokemon tinha.$"
+        "{PLAYER} Devolveu tudo o que o\\nPokemon tinha.$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_RecordResultsWait": [
         "Preciso registrar os seus\\nresultados. Por favor, espere.$"
@@ -133,10 +133,10 @@
         "Como lembranca para conquistar\\no PYRAMID BATTLE, por favor,\\ltome isto.$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_ReceivedPrizeItem": [
-        "{PLAYER}recebeu o\\npremio{STR_VAR_1}.$"
+        "{PLAYER} recebeu o\\npremio {STR_VAR_1}.$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_DisappointingHereIsBag": [
-        "Que decepcao para voce...\\pAqui esta o BAG que temos\\nguardado para si.\\p{PLAYER}Tenho o BAG de volta.$"
+        "Que decepcao para voce...\\pAqui esta o BAG que temos\\nguardado para si.\\p{PLAYER} Tenho o BAG de volta.$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_LookForwardToNextChallenge": [
         "Estamos ansiosos para o seu\\nproximo desafio!$"
@@ -239,7 +239,7 @@
         "Vamos restaurar seu POKEMON a\\nplena saude.$"
       ],
       "BattleFrontier_BattleTowerBattleRoom_Text_ReadyForOpponent": [
-        "Voce vai enfrentar o oponente\\nnao.{STR_VAR_1}Estas pronto?$"
+        "Voce vai enfrentar o oponente\\nnao.{STR_VAR_1} Estas pronto?$"
       ],
       "BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor2ndOpponent": [
         "Voce vai enfrentar o oponente\\nnao. 2. Voce esta pronto?$"
@@ -304,7 +304,7 @@
         "Por bater sete TREINADORES em\\numa linha, voce ganhou este\\lpremio fabuloso!\\p$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_ReceivedPrize": [
-        "{PLAYER}recebeu o\\npremio{STR_VAR_1}.$"
+        "{PLAYER} recebeu o\\npremio {STR_VAR_1}.$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_ThankYouForPlaying": [
         "Obrigado por jogar!\\p$"
@@ -319,7 +319,7 @@
         "Finalmente vai enfrentar o 50o\\nTRAiner.\\pA partir de agora, cada vez que\\nvencer sete TREINADORES seguidos,\\lo seu POKEMON recebera um\\lRIBBON comemorativo.\\pBoa sorte!$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_PutRibbonOnMons": [
-        "{PLAYER}Coloque os RIBBONS no\\ndesafiante POKEMON.$"
+        "{PLAYER} Coloque os RIBBONS no\\ndesafiante POKEMON.$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_DescribeFeelingsAboutBattleTower": [
         "Desculpe, tem um momento?\\pVoce pode descrever seus\\nsentimentos quando voce esta\\lprestes a comecar uma partida\\lde BATTLE TOWER, ou quando voce\\lganhou ou perdeu uma partida?$"
@@ -373,19 +373,19 @@
         "Escolheste o mesmo tipo de\\nPOKEMON que seu amigo.\\pPor favor, escolha dois POKEMON\\ndiferentes do seu amigo,\\lcombine o nivel que deseja\\lentrar e registre-se novamente.$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_FriendAlsoSelectedMon": [
-        "Seu amigo tambem selecionou o\\nPOKEMON{STR_VAR_1}.$"
+        "Seu amigo tambem selecionou o\\nPOKEMON {STR_VAR_1}.$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_FriendAlsoSelectedMons": [
-        "Seu amigo tambem selecionou o\\nPOKEMON{STR_VAR_1}e{STR_VAR_2}.$"
+        "Seu amigo tambem selecionou o\\nPOKEMON {STR_VAR_1} e {STR_VAR_2}.$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlMode": [
         "Seu amigo escolheu um nivel\\nde batalha diferente.$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlModeSameMon": [
-        "Seu amigo escolheu um nivel\\nde batalha diferente.\\pO seu amigo tambem selecionou o\\nPOKEMON{STR_VAR_1}.$"
+        "Seu amigo escolheu um nivel\\nde batalha diferente.\\pO seu amigo tambem selecionou o\\nPOKEMON {STR_VAR_1}.$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlModeSameMons": [
-        "Seu amigo escolheu um nivel\\nde batalha diferente.\\pO seu amigo tambem selecionou o\\nPOKEMON{STR_VAR_1}e{STR_VAR_2}.$"
+        "Seu amigo escolheu um nivel\\nde batalha diferente.\\pO seu amigo tambem selecionou o\\nPOKEMON {STR_VAR_1} e {STR_VAR_2}.$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_ChooseDifferentMonsMatchLvlMode": [
         "Por favor, escolha dois POKEMON\\ndiferentes do seu amigo,\\lcombine o nivel que deseja\\lentrar e registre-se novamente.$"
@@ -400,7 +400,7 @@
         "Em reconhecimento ao seu\\ntalento infinito, nos lhe\\lpremiamos estes Pontos de\\lBatalha.$"
       ],
       "BattleFrontier_Text_ObtainedXBattlePoints": [
-        "{PLAYER}obtido{STR_VAR_1}Pontos\\nde batalha.$"
+        "{PLAYER} obtido {STR_VAR_1} Pontos\\nde batalha.$"
       ],
       "BattleFrontier_BattleTowerLobby_Text_ReadWhichHeading": [
         "Que rumo quer ler?$"
@@ -467,7 +467,7 @@
         "Ligado{STR_VAR_1}Eu trouxe um\\nconselho.{STR_VAR_3}com{STR_VAR_2}e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice1Mon2Ask": [
-        "Um{STR_VAR_2}com{STR_VAR_1}.\\pPor favor, me deixe juntar-te a\\nti como uma equipe de\\letiquetas.$"
+        "Um {STR_VAR_2} com {STR_VAR_1}.\\pPor favor, me deixe juntar-te a\\nti como uma equipe de\\letiquetas.$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice1Accept": [
         "Obrigado! Vou me registrar\\nagora.$"
@@ -479,25 +479,25 @@
         "Eu\\nsou.{STR_VAR_1}Nao.{STR_VAR_2}aprendiz.\\lO meu nome e{STR_VAR_3}.$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice2Mon1": [
-        "Recebi conselhos de{STR_VAR_1}e\\nescolheu\\lum{STR_VAR_3}com{STR_VAR_2}e$"
+        "Recebi conselhos de {STR_VAR_1} e\\nescolheu\\lum {STR_VAR_3} com {STR_VAR_2} e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice2Mon2Ask": [
-        "Um{STR_VAR_2}com{STR_VAR_1}.\\pPor favor, vamos formar uma\\nequipa de etiquetas!$"
+        "Um {STR_VAR_2} com {STR_VAR_1}.\\pPor favor, vamos formar uma\\nequipa de etiquetas!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice2Accept": [
         "Muito obrigado! Vou acabar o\\nregisto rapidamente!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice2Reject": [
-        "{PLAYER}Esperava poder\\njuntar-me a ti...$"
+        "{PLAYER} Esperava poder\\njuntar-me a ti...$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice1Intro": [
         "O meu nome e...{STR_VAR_3}E eu\\nsou{STR_VAR_1}Nao.{STR_VAR_2}aprendiz.\\pSnivel...\\pDesculpa! Esta tensao faz-me\\nchorar...$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice1Mon1": [
-        "{STR_VAR_3}aconselhou-me, entao\\neu tenho\\lum{STR_VAR_2}com{STR_VAR_1}e$"
+        "{STR_VAR_3} aconselhou-me, entao\\neu tenho\\lum {STR_VAR_2} com {STR_VAR_1} e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice1Mon2Ask": [
-        "Um{STR_VAR_2}com{STR_VAR_1}.\\pSnivel... Por favor, juntem-se\\na mim!$"
+        "Um {STR_VAR_2} com {STR_VAR_1}.\\pSnivel... Por favor, juntem-se\\na mim!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice1Accept": [
         "A serio? Vai? Fantastico!\\nMalvada! Awooh!\\pDesculpa... Estou tao feliz,\\nestou a chorar...\\pVou ja me registrar. Por favor,\\nnao vas embora!$"
@@ -509,10 +509,10 @@
         "Ola! Eu sou...{STR_VAR_3}Eu\\nsou...{STR_VAR_1}Nao.{STR_VAR_2}aprendiz!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice2Mon1": [
-        "{STR_VAR_3}recomendou a minha\\ntripulacao.\\lUma{STR_VAR_2}com{STR_VAR_1}e$"
+        "{STR_VAR_3} recomendou a minha\\ntripulacao.\\lUma {STR_VAR_2} com {STR_VAR_1} e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice2Mon2Ask": [
-        "Um{STR_VAR_2}com{STR_VAR_1}E o\\nque eu tenho! Legal, nao e?\\pVamos! Vamos formar uma equipe\\nde etiquetas!$"
+        "Um {STR_VAR_2} com {STR_VAR_1} E o\\nque eu tenho! Legal, nao e?\\pVamos! Vamos formar uma equipe\\nde etiquetas!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice2Accept": [
         "Boa! Otimo! Vou me registrar,\\nesta bem?$"
@@ -521,28 +521,28 @@
         "Porque? Eu queria\\njuntar-me,{PLAYER}!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice3Intro": [
-        "Eu sou...{STR_VAR_3}O\\nnao.{STR_VAR_2}aprendiz do\\lfamoso{STR_VAR_1}!$"
+        "Eu sou...{STR_VAR_3} O\\nnao.{STR_VAR_2} aprendiz do\\lfamoso {STR_VAR_1}!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice3Mon1": [
-        "Eu olhei para{STR_VAR_3}para\\naconselhamento. Uma{STR_VAR_1}-\\lusando{STR_VAR_2}$"
+        "Eu olhei para {STR_VAR_3} para\\naconselhamento. Uma {STR_VAR_1}-\\lusando {STR_VAR_2}$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice3Mon2Ask": [
-        "E um{STR_VAR_2}com{STR_VAR_1}E\\no meu par.\\pJuntas-te a mim numa equipe de\\netiquetas?$"
+        "E um {STR_VAR_2} com {STR_VAR_1} E\\no meu par.\\pJuntas-te a mim numa equipe de\\netiquetas?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice3Accept": [
         "Obrigado! Vou me registrar\\nimediatamente!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice3Reject": [
-        "{PLAYER}Esperava juntar-me a ti\\nnuma equipe...$"
+        "{PLAYER} Esperava juntar-me a ti\\nnuma equipe...$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice4Intro": [
         "Hum... Estou sinceramente feliz\\nque tenha tido tempo para falar\\lcomigo.\\pEu sou...{STR_VAR_3}Eu\\nsou{STR_VAR_1}Nao.{STR_VAR_2}aprendiz...$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice4Mon1": [
-        "{STR_VAR_3}deu-me conselhos.\\nEstou muito grato por isso.\\pTenho uma equipe de\\num.{STR_VAR_2}com{STR_VAR_1}e$"
+        "{STR_VAR_3} deu-me conselhos.\\nEstou muito grato por isso.\\pTenho uma equipe de\\num.{STR_VAR_2} com {STR_VAR_1} e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice4Mon2Ask": [
-        "Um{STR_VAR_2}com{STR_VAR_1}Sei\\nque estou pedindo muito...\\pAcho que nao vai querer, mas\\nposso juntar-me a ti como\\lsocio?$"
+        "Um {STR_VAR_2} com {STR_VAR_1} Sei\\nque estou pedindo muito...\\pAcho que nao vai querer, mas\\nposso juntar-me a ti como\\lsocio?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice4Accept": [
         "A serio? Nao acredito! Nao\\nacredito que me vai deixar\\ljuntar a ti! Nao te vou\\ldesiludir!\\pHum... Se estiver tudo bem, vou\\nregistar-me imediatamente!$"
@@ -554,10 +554,10 @@
         "Ola, eu...{STR_VAR_3}Eu\\nsou{STR_VAR_1}Nao.{STR_VAR_2}aprendiz!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice5Mon1": [
-        "{STR_VAR_3}Disse-me que seria\\nbom fazer esta\\lequipa:{STR_VAR_1}-\\lusando{STR_VAR_2}$"
+        "{STR_VAR_3} Disse-me que seria\\nbom fazer esta\\lequipa:{STR_VAR_1}-\\lusando {STR_VAR_2}$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice5Mon2Ask": [
-        "E um{STR_VAR_2}que sabe como\\nutilizar{STR_VAR_1}.\\pNada mal, nao e? Quer que me\\njunte a ti?$"
+        "E um {STR_VAR_2} que sabe como\\nutilizar {STR_VAR_1}.\\pNada mal, nao e? Quer que me\\njunte a ti?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice5Accept": [
         "Ok, e um prazer juntar-me a\\nvoces! Espero que nao me\\lestragues as coisas! Vou fazer\\lo meu registro agora.$"
@@ -566,10 +566,10 @@
         "Huh? Porque me recusaste? Nao\\njulgas o caracter!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice6Mon1": [
-        "Isto e o\\nque{STR_VAR_3}recomendado.\\lUma{STR_VAR_1}-\\lusando{STR_VAR_2}$"
+        "Isto e o\\nque {STR_VAR_3} recomendado.\\lUma {STR_VAR_1}-\\lusando {STR_VAR_2}$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice6Mon2Ask": [
-        "E um{STR_VAR_1}-\\nusando{STR_VAR_2}.\\pEsforcei-me muito para\\ncria-los, apesar de estar\\locupado.\\pVamos formar uma equipe de\\netiquetas e tentar!$"
+        "E um {STR_VAR_1}-\\nusando {STR_VAR_2}.\\pEsforcei-me muito para\\ncria-los, apesar de estar\\locupado.\\pVamos formar uma equipe de\\netiquetas e tentar!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice6Accept": [
         "Obrigado, esse e o espirito!\\nAguenta-te enquanto vou\\lregistar-me, esta bem?$"
@@ -581,7 +581,7 @@
         "Ola! Como vai isso?\\pEu sou...{STR_VAR_3},\\n{STR_VAR_1}Nao.{STR_VAR_2}aprendiz.\\lPrazer em conhece-lo!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice7Mon1": [
-        "Ouve, ouve! Voce tem que ouvir\\nsobre o\\lPOKEMON{STR_VAR_3}recomendado.\\lUma{STR_VAR_2}com{STR_VAR_1}e$"
+        "Ouve, ouve! Voce tem que ouvir\\nsobre o\\lPOKEMON {STR_VAR_3} recomendado.\\lUma {STR_VAR_2} com {STR_VAR_1} e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice7Mon2Ask": [
         "Um{STR_VAR_2}com{STR_VAR_1}Claro\\nque os criei soberbamente!\\pEntao, quer juntar-te? Tenho\\na certeza que vai ser uma\\loptima combinacao!$"
@@ -596,10 +596,10 @@
         "Por favor, deixe-me\\napresentar-me. Eu\\lsou.{STR_VAR_3}.\\pEu sirvo\\ncomo{STR_VAR_1}Nao.{STR_VAR_2}aprendiz.$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice8Mon1": [
-        "Eu procurei o sabio conselho\\nde{STR_VAR_3}e elevou minha\\lequipe de\\lum{STR_VAR_2}com{STR_VAR_1}$"
+        "Eu procurei o sabio conselho\\nde {STR_VAR_3} e elevou minha\\lequipe de\\lum {STR_VAR_2} com {STR_VAR_1}$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice8Mon2Ask": [
-        "E um{STR_VAR_2}com{STR_VAR_1}.\\pPor favor, concordem com uma\\nequipa comigo!$"
+        "E um {STR_VAR_2} com {STR_VAR_1}.\\pPor favor, concordem com uma\\nequipa comigo!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice8Accept": [
         "Estou encantada! Prometo dar-te\\no meu melhor!\\pClaro que vou registrar-nos! Por\\nfavor, espera!$"
@@ -611,10 +611,10 @@
         "Eek! Falaste comigo! Estou\\nmuito contente!\\pEu sou...{STR_VAR_3}Eu\\nsou...{STR_VAR_1}Nao.{STR_VAR_2}aprendiz!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice9Mon1": [
-        "Ligado{STR_VAR_3}E um conselho,\\neu treinei um.{STR_VAR_1}-\\lusando{STR_VAR_2}$"
+        "Ligado {STR_VAR_3} E um conselho,\\neu treinei um.{STR_VAR_1}-\\lusando {STR_VAR_2}$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice9Mon2Ask": [
-        "E um{STR_VAR_1}-\\nusando{STR_VAR_2}.\\pPor favor, pode conceder-me o\\nmeu desejo? Quero ser o seu\\lparceiro!$"
+        "E um {STR_VAR_1}-\\nusando {STR_VAR_2}.\\pPor favor, pode conceder-me o\\nmeu desejo? Quero ser o seu\\lparceiro!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice9Accept": [
         "Eek! Sinto-me tonto! Muito\\nobrigado! Vou registrar-nos\\limediatamente!$"
@@ -629,7 +629,7 @@
         "Meu\\nmentor{STR_VAR_3}recomendado{STR_VAR_1}-\\lMestre.{STR_VAR_2}$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice10Mon2Ask": [
-        "E um{STR_VAR_1}-\\nMestre.{STR_VAR_2}.\\pCoisa boa, nao e? Vai ser\\nminha parceira, nao vai?$"
+        "E um {STR_VAR_1}-\\nMestre.{STR_VAR_2}.\\pCoisa boa, nao e? Vai ser\\nminha parceira, nao vai?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice10Accept": [
         "Excelente! Vou fazer o registro\\nrapido!$"
@@ -641,7 +641,7 @@
         "{STR_VAR_3}deu-me um\\nconselho.{STR_VAR_2}com{STR_VAR_1}e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice11Mon2Ask": [
-        "{STR_VAR_2}com{STR_VAR_1}Tenho\\ndez de cada tipo! Na verdade,\\lso um de cada!\\pQue tal? Quer tentar batalhar\\ncomigo?$"
+        "{STR_VAR_2} com {STR_VAR_1} Tenho\\ndez de cada tipo! Na verdade,\\lso um de cada!\\pQue tal? Quer tentar batalhar\\ncomigo?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice11Accept": [
         "Yippee! Dou-te um POKEMON como\\nagradecimento!\\pEstava a brincar! Mas vou fazer\\no registro, esta bem?$"
@@ -650,55 +650,55 @@
         "Que frio! Vou ter de destruir a\\nBATTLE TOWER por isso!\\pClaro que nao!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice12Mon1": [
-        "Com o conselho de{STR_VAR_3}Eu\\npermaneci, reuni minha equipe\\lde orgulho! Uma{STR_VAR_1}-\\lusando{STR_VAR_2}$"
+        "Com o conselho de {STR_VAR_3} Eu\\npermaneci, reuni minha equipe\\lde orgulho! Uma {STR_VAR_1}-\\lusando {STR_VAR_2}$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice12Mon2Ask": [
-        "E um{STR_VAR_1}-\\nusando{STR_VAR_2}!\\pO nosso encontro devemos\\ncomemorar, com uma vitoria da\\lequipa de etiquetas para\\lcelebrar!$"
+        "E um {STR_VAR_1}-\\nusando {STR_VAR_2}!\\pO nosso encontro devemos\\ncomemorar, com uma vitoria da\\lequipa de etiquetas para\\lcelebrar!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice12Accept": [
         "Gosto do seu estilo! O nosso\\nregisto, eu vou arquivar!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice12Reject": [
-        "Ola.{PLAYER}Que frio! Se me\\npermite ser tao ousado!$"
+        "Ola.{PLAYER} Que frio! Se me\\npermite ser tao ousado!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice13Intro": [
         "Yippee-yahoo! Nao corras!\\nEstava so a divertir-me!\\pOla! Eu sou...{STR_VAR_3}Eu\\nsou...{STR_VAR_1}Nao.{STR_VAR_2}aprendiz!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice13Mon1": [
-        "{STR_VAR_3}disse-me o que\\nfazer. Entao, um...{STR_VAR_1}-\\lusando{STR_VAR_2}$"
+        "{STR_VAR_3} disse-me o que\\nfazer. Entao, um...{STR_VAR_1}-\\lusando {STR_VAR_2}$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice13Mon2Ask": [
-        "E um{STR_VAR_1}-\\nusando{STR_VAR_2}Eu escolhi.\\pEntao, o que me diz? Va la,\\nfaz meu dia!\\pPor favor, estou implorando-te!\\nDeixa-me juntar-me a ti, nao me\\ldeixes triste!$"
+        "E um {STR_VAR_1}-\\nusando {STR_VAR_2} Eu escolhi.\\pEntao, o que me diz? Va la,\\nfaz meu dia!\\pPor favor, estou implorando-te!\\nDeixa-me juntar-me a ti, nao me\\ldeixes triste!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice13Accept": [
         "Sim! A sorte esta comigo!\\nFaz-me feliz!\\pAntes de nos juntarmos a batalha,\\nvou me registrar imediatamente!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice13Reject": [
-        "Estas a\\nrecusar-me?{PLAYER}Estas a\\lfazer-me carrancudo!$"
+        "Estas a\\nrecusar-me?{PLAYER} Estas a\\lfazer-me carrancudo!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice14Intro": [
         "Tosse!\\pDesculpa, estou constipada. Mas\\no meu POKEMON esta bem.\\pO meu nome e{STR_VAR_3},\\n{STR_VAR_1}Nao.{STR_VAR_2}aprendiz.\\lTosse!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice14Mon1": [
-        "Eu tirei.{STR_VAR_3}E um\\nconselho para o coracao e\\ljuntar minha equipe de\\lum{STR_VAR_2}com{STR_VAR_1}e$"
+        "Eu tirei.{STR_VAR_3} E um\\nconselho para o coracao e\\ljuntar minha equipe de\\lum {STR_VAR_2} com {STR_VAR_1} e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice14Mon2Ask": [
-        "Um{STR_VAR_2}com{STR_VAR_1}.\\pTreinei-os todos os dias, mesmo\\ncom vento e chuva.\\pE por isso que tenho este frio,\\nacho eu.\\pE disso que eu sou. quer ser\\no meu parceiro?$"
+        "Um {STR_VAR_2} com {STR_VAR_1}.\\pTreinei-os todos os dias, mesmo\\ncom vento e chuva.\\pE por isso que tenho este frio,\\nacho eu.\\pE disso que eu sou. quer ser\\no meu parceiro?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice14Accept": [
         "Obrigado, agradeco-te! Tosse,\\ntosse! Espera enquanto vou\\lregistar-me.$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice14Reject": [
-        "Nao vai?{PLAYER}Acho que\\ndariamos um bom par.$"
+        "Nao vai?{PLAYER} Acho que\\ndariamos um bom par.$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice15Intro": [
-        "Ola! Isto e enervante.\\pEu sou...{STR_VAR_3}Eu sou o\\nnao.{STR_VAR_2}aprendiz\\lde{STR_VAR_1}.$"
+        "Ola! Isto e enervante.\\pEu sou...{STR_VAR_3} Eu sou o\\nnao.{STR_VAR_2} aprendiz\\lde {STR_VAR_1}.$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice15Mon1": [
-        "{STR_VAR_3}Disse que esta\\nequipa seria\\lboa...{STR_VAR_2}com{STR_VAR_1}e$"
+        "{STR_VAR_3} Disse que esta\\nequipa seria\\lboa...{STR_VAR_2} com {STR_VAR_1} e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice15Mon2Ask": [
-        "Um{STR_VAR_2}com{STR_VAR_1}.\\pEstou a sentir-me\\nautoconsciente sobre isto, mas\\ldeixas-me juntar a ti?$"
+        "Um {STR_VAR_2} com {STR_VAR_1}.\\pEstou a sentir-me\\nautoconsciente sobre isto, mas\\ldeixas-me juntar a ti?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice15Accept": [
         "Obrigado! Sinto-me timido, mas\\nfarei meu melhor!\\pVou fazer o registro.$"
@@ -710,10 +710,10 @@
         "Eu sou.{STR_VAR_3}E isso nao e\\nmentira. Eu\\lsou.{STR_VAR_1}Nao.{STR_VAR_2}aprendiz.$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice16Mon1": [
-        "{STR_VAR_3}recomendou a minha\\nequipa.\\pVisto que os conselhos pareciam\\nsinceros, decidi trazer\\lcomigo{STR_VAR_1}-\\lusando{STR_VAR_2}e$"
+        "{STR_VAR_3} recomendou a minha\\nequipa.\\pVisto que os conselhos pareciam\\nsinceros, decidi trazer\\lcomigo {STR_VAR_1}-\\lusando {STR_VAR_2} e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice16Mon2Ask": [
-        "Minha{STR_VAR_1}-\\nusando{STR_VAR_2}.\\pSe possivel, gostaria que me\\naceitasse como seu parceiro.$"
+        "Minha {STR_VAR_1}-\\nusando {STR_VAR_2}.\\pSe possivel, gostaria que me\\naceitasse como seu parceiro.$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice16Accept": [
         "Vai mesmo aceitar-me? Senao,\\nseria demasiado terrivel.\\pMas ja que concordaste, esta\\ntudo bem. Vou registrar-nos aos\\ldois.$"
@@ -722,13 +722,13 @@
         "Hm? Por que recusaria? Esta e a\\ntua ideia de piada?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_LassIntro": [
-        "Eu sou...{STR_VAR_1}E eu sou\\numa LASS!$"
+        "Eu sou...{STR_VAR_1} E eu sou\\numa LASS!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_LassMon1": [
-        "O que eu tenho e\\num{STR_VAR_2}que\\lutiliza{STR_VAR_1}e um$"
+        "O que eu tenho e\\num {STR_VAR_2} que\\lutiliza {STR_VAR_1} e um$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_LassMon2Ask": [
-        "{STR_VAR_2}que\\nutiliza{STR_VAR_1}E o que tenho\\lcomigo.\\pQueres ser meu parceiro?$"
+        "{STR_VAR_2} que\\nutiliza {STR_VAR_1} E o que tenho\\lcomigo.\\pQueres ser meu parceiro?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_LassAccept": [
         "Obrigado! Vou fazer o registro!$"
@@ -737,10 +737,10 @@
         "Nao quer ser meu parceiro?\\nVais arrepender-te mais tarde!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_YoungsterMon1": [
-        "Quer saber o que tenho?\\nUma{STR_VAR_2}com{STR_VAR_1}e$"
+        "Quer saber o que tenho?\\nUma {STR_VAR_2} com {STR_VAR_1} e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_YoungsterMon2Ask": [
-        "Um{STR_VAR_2}com{STR_VAR_1}!\\pVais ser meu parceiro, nao\\nvais?$"
+        "Um {STR_VAR_2} com {STR_VAR_1}!\\pVais ser meu parceiro, nao\\nvais?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_YoungsterAccept": [
         "Boa! Vou me registrar, esta bem?$"
@@ -752,10 +752,10 @@
         "Yahoo! Sou o HIKER.{STR_VAR_1}!$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_HikerMon1": [
-        "Sabe o que tenho comigo?\\nMeu{STR_VAR_1}-\\lusando{STR_VAR_2}e$"
+        "Sabe o que tenho comigo?\\nMeu {STR_VAR_1}-\\lusando {STR_VAR_2} e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_HikerMon2Ask": [
-        "Minha{STR_VAR_1}-\\nusando{STR_VAR_2}!\\pParece-me bem, nao? Quer\\nformar uma equipe de batalhas?$"
+        "Minha {STR_VAR_1}-\\nusando {STR_VAR_2}!\\pParece-me bem, nao? Quer\\nformar uma equipe de batalhas?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_HikerAccept": [
         "Yahoo! Vou fazer o registro,\\nentao.$"
