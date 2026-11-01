@@ -367,7 +367,7 @@
         "{PLAYER} Recebeu POKEDEX!$"
       ],
       "MrPokemonHouse_Text_OakParting": [
-        "Va conhecer muitos tipos de\\npOKEMON e completar que\\lPOKEDEX!\\pSeu DEXNAV ira ajuda-lo a\\nProcura-los.\\pMas fiquei muito tempo.\\pTenho de ir ao GOLDENROD para o\\nmeu programa de radio habitual.\\p {PLAYER} Estou contando com voce!$"
+        "Va conhecer muitos tipos de\\npOKEMON e completar que\\lPOKEDEX!\\pSeu DEXNAV ira ajuda-lo a\\nProcura-los.\\pMas fiquei muito tempo.\\pTenho de ir ao GOLDENROD para o\\nmeu programa de radio habitual.\\p{PLAYER} Estou contando com voce!$"
       ],
       "MrPokemonHouse_Text_Disappointed": [
         "Isso e decepcionante. Isso e\\nmuito raro.$"
@@ -471,7 +471,7 @@
     },
     "data/maps/Route34_DayCare/scripts.inc": {
       "Route34_DayCare_Text_Bookshelf2": [
-        "Um livro sobre POKEMON!\\p {PLAYER} Revirou o livro.\\pDeve ter a palavra POKEMON\\nescrita em cada pagina.\\p {PLAYER} Guarda o livro.$"
+        "Um livro sobre POKEMON!\\p{PLAYER} Revirou o livro.\\pDeve ter a palavra POKEMON\\nescrita em cada pagina.\\p{PLAYER} Guarda o livro.$"
       ],
       "Route34_DayCare_Text_ClerkNoRoom": [
         "Parece que nao Consegue\\ncarregar outro POKEMON.$"
