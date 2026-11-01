@@ -11,7 +11,7 @@
         "MILTANK tornou-se totalmente\\nsaudavel!$"
       ],
       "Route39_Text_BarnNoBerries": [
-        "{PLAYER}Nao tem ORAN BERRIES...$"
+        "{PLAYER} Nao tem ORAN BERRIES...$"
       ]
     },
     "data/maps/Route39_FarmHouse/scripts.inc": {
@@ -538,16 +538,16 @@
         "Esta bem. Vem quando quiseres.$"
       ],
       "Route5_PokemonDayCare_Text_LookAfterMonForAWhile": [
-        "Esta bem, eu tomo conta do\\nteu.{STR_VAR_1}durante algum\\ltempo.$"
+        "Esta bem, eu tomo conta do\\nteu.{STR_VAR_1} durante algum\\ltempo.$"
       ],
       "Route5_PokemonDayCare_Text_ComeSeeMeInAWhile": [
         "Vem ver-me daqui a pouco.$"
       ],
       "Route5_PokemonDayCare_Text_MonNeedsToSpendMoreTime": [
-        "Ja voltou?\\pSua{STR_VAR_1}Precisa passar\\nmais tempo comigo.$"
+        "Ja voltou?\\pSua {STR_VAR_1} Precisa passar\\nmais tempo comigo.$"
       ],
       "Route5_PokemonDayCare_Text_OweMeXForMonsReturn": [
-        "Deve-me uma.{STR_VAR_2}para o\\nregresso deste POKEMON.$"
+        "Deve-me uma.{STR_VAR_2} para o\\nregresso deste POKEMON.$"
       ],
       "Route5_PokemonDayCare_Text_ThankYouHeresMon": [
         "Obrigado! Aqui esta o seu\\nPokemon.$"
@@ -559,7 +559,7 @@
         "Se me deixares aquele POKEMON,\\ncom o que lutaras?$"
       ],
       "Route5_PokemonDayCare_Text_MonHasGrownByXLevels": [
-        "Sua{STR_VAR_1}cresceu muito.\\nSim, muito, eu diria.\\pDeixa-me ver... Por nivel, e\\ncultivada por{STR_VAR_2}.\\pNao sou fantastico?$"
+        "Sua {STR_VAR_1} cresceu muito.\\nSim, muito, eu diria.\\pDeixa-me ver... Por nivel, e\\ncultivada por {STR_VAR_2}.\\pNao sou fantastico?$"
       ],
       "Route5_PokemonDayCare_Text_YouveGotNoRoomForIt": [
         "Nao pode levar este POKEMON de\\nvolta se nao tiver espaco para\\lele.$"
