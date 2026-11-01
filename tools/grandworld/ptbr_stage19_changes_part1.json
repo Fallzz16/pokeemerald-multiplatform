@@ -1,0 +1,319 @@
+{
+  "stage": 19,
+  "status": "ai_assisted_draft_changes_pending_independent_linguistic_and_gameplay_review",
+  "baseline_commit": "9a23c3b5884bc1ab812c39393f8d2859b7a4300a",
+  "shards": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "changed_entries": 194,
+  "changed_labels_by_shard_and_source": {
+    "tools/grandworld/ptbr_auto_review_001.json": {
+      "data/maps/FortreeCity_Gym/scripts.inc": [
+        "FortreeCity_Gym_Text_RegisteredWinona"
+      ],
+      "data/maps/LavaridgeTown_Gym_1F/scripts.inc": [
+        "LavaridgeTown_Gym_B1F_Text_KeeganIntro",
+        "LavaridgeTown_Gym_1F_Text_DanielleIntro",
+        "LavaridgeTown_Gym_1F_Text_ExplainOverheat"
+      ],
+      "data/maps/MauvilleCity_Gym/scripts.inc": [
+        "MauvilleCity_Gym_Text_ReceivedDynamoBadge",
+        "MauvilleCity_Gym_Text_ExplainShockWave"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_002.json": {
+      "data/maps/FiveIsland_RocketWarehouse_Frlg/scripts.inc": [
+        "FiveIsland_RocketWarehouse_Text_Grunt1Intro"
+      ],
+      "data/maps/FiveIsland_WaterLabyrinth_Frlg/scripts.inc": [
+        "FiveIsland_WaterLabyrinth_Text_ReceivedEggFromMan"
+      ],
+      "data/maps/Gate_GoldenrodCity_Route35/scripts.inc": [
+        "Route35GoldenrodGate_Text_ReceivedMonWithMail"
+      ],
+      "data/maps/Gate_Route43/scripts.inc": [
+        "Gate_Route43_Text_ReceivedTM30"
+      ],
+      "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.inc": [
+        "LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex"
+      ],
+      "data/maps/PalletTown_ProfessorOaksLab_Frlg/scripts.inc": [
+        "Text_RivalVictory"
+      ],
+      "data/maps/Route105/scripts.inc": [
+        "Route104_Text_RegisteredDadInPokenav"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_003.json": {
+      "data/maps/Route109_SeashoreHouse/scripts.inc": [
+        "Route109_SeashoreHouse_Text_JohannaIntro",
+        "Route109_SeashoreHouse_Text_SimonIntro"
+      ],
+      "data/maps/Route10_Frlg/scripts.inc": [
+        "Route10_Text_MarkIntro",
+        "Route10_Text_MarkDefeat",
+        "Route10_Text_MarkPostBattle",
+        "Route10_Text_HermanPostBattle",
+        "Route10_Text_HeidiIntro",
+        "Route10_Text_HeidiPostBattle",
+        "Route10_Text_TrentDefeat",
+        "Route10_Text_CarolDefeat"
+      ],
+      "data/maps/Route10_PokemonCenter_1F_Frlg/scripts.inc": [
+        "Route10_PokemonCenter_1F_Text_EveryTypeStrongerThanOthers",
+        "Route10_PokemonCenter_1F_Text_GreatHereYouGo",
+        "Route10_PokemonCenter_1F_Text_ReceivedEverstoneFromAide",
+        "Route10_PokemonCenter_1F_Text_ExplainEverstone"
+      ],
+      "data/maps/Route110_TrickHouseEnd/scripts.inc": [
+        "Route110_TrickHouseEnd_Text_YouveMadeItToMe",
+        "Route110_TrickHouseEnd_Text_AllNightToPlantTrees",
+        "Route110_TrickHouseEnd_Text_AllNightToMakeMaze",
+        "Route110_TrickHouseEnd_Text_AllNightToPreparePanels",
+        "Route110_TrickHouseEnd_Text_AllNightToShoveBoulders",
+        "Route110_TrickHouseEnd_Text_AllNightToMakeMechadolls",
+        "Route110_TrickHouseEnd_Text_AllNightToInstallDoors",
+        "Route110_TrickHouseEnd_Text_AllNightPolishingFloors",
+        "Route110_TrickHouseEnd_Text_FountainOfIdeasRunDry",
+        "Route110_TrickHouseEnd_Text_NoRoomInPC",
+        "Route110_TrickHouseEnd_Text_YouHaveEarnedThisReward",
+        "Route110_TrickHouseEnd_Text_NoRoomForThis"
+      ],
+      "data/maps/Route110_TrickHouseEntrance/scripts.inc": [
+        "Route110_TrickHouseEntrance_Text_YoureBeingWatched",
+        "Route110_TrickHouseEntrance_Text_ConcealedBeneathDesk",
+        "Route110_TrickHouseEntrance_Text_ConcealedBeneathCushion",
+        "Route110_TrickHouseEntrance_Text_GoInHoleBehindScroll",
+        "Route110_TrickHouseEntrance_Text_NextTimeUseThisTrick",
+        "Route110_TrickHouseEntrance_Text_InMidstOfDevisingNewChallenges",
+        "Route110_TrickHouseEntrance_Text_DidYouNotComeToClaimReward",
+        "Route110_TrickHousePuzzle_Text_FoundAScroll",
+        "Route110_TrickHousePuzzle_Text_MemorizedSecretCode"
+      ],
+      "data/maps/Route110_TrickHousePuzzle1/scripts.inc": [
+        "Route110_TrickHousePuzzle1_Text_SallyDefeat"
+      ],
+      "data/maps/Route110_TrickHousePuzzle2/scripts.inc": [
+        "Route110_TrickHousePuzzle2_Text_TedIntro",
+        "Route110_TrickHousePuzzle2_Text_TedDefeat",
+        "Route110_TrickHousePuzzle2_Text_GeorgiaDefeat"
+      ],
+      "data/maps/Route110_TrickHousePuzzle3/scripts.inc": [
+        "Route110_TrickHousePuzzle3_Text_JustinDefeat",
+        "Route110_TrickHousePuzzle3_Text_JustinPostBattle",
+        "Route110_TrickHousePuzzle3_Text_MarthaIntro",
+        "Route110_TrickHousePuzzle3_Text_MarthaPostBattle",
+        "Route110_TrickHousePuzzle3_Text_AlanDefeat"
+      ],
+      "data/maps/Route113_GlassWorkshop/scripts.inc": [
+        "Route113_GlassWorkshop_Text_NotEnoughAshNeedX",
+        "Route113_GlassWorkshop_Text_IsThatTheItemForYou",
+        "Route113_GlassWorkshop_Text_IllMakeItemForYou",
+        "Route113_GlassWorkshop_Text_NotEnoughAshToMakeItem",
+        "Route113_GlassWorkshop_Text_IveFinishedGlassItem"
+      ],
+      "data/maps/Route114_LanettesHouse/scripts.inc": [
+        "Route114_LanettesHouse_Text_ClosedTheNotebook"
+      ],
+      "data/maps/Route119_WeatherInstitute_2F/scripts.inc": [
+        "Route119_WeatherInstitute_2F_Text_PlayerReceivedCastform",
+        "Route119_WeatherInstitute_2F_Text_GroudonWeather",
+        "Route119_WeatherInstitute_2F_Text_KyogreWeather"
+      ],
+      "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc": [
+        "Route11_EastEntrance_2F_Text_GreatHereYouGo",
+        "Route11_EastEntrance_2F_Text_ReceivedItemfinderFromAide"
+      ],
+      "data/maps/Route124_DivingTreasureHuntersHouse/scripts.inc": [
+        "Route124_DivingTreasureHuntersHouse_Text_YoullTradeShardForStone"
+      ],
+      "data/maps/Route12_FishingHouse_Frlg/scripts.inc": [
+        "Route12_FishingHouse_Text_TryFishingBringMeMagikarp",
+        "Route12_FishingHouse_Text_OhMagikarpAllowMeToSee"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_004.json": {
+      "data/maps/Route12_FishingHouse_Frlg/scripts.inc": [
+        "Route12_FishingHouse_Text_LookForwardToGreaterRecords",
+        "Route12_FishingHouse_Text_HuhXSizeSameSizeAsLast",
+        "Route12_FishingHouse_Text_HmmXSizeDoesntMeasureUp",
+        "Route12_FishingHouse_Text_DoesntLookLikeMagikarp",
+        "Route12_FishingHouse_Text_MostGiganticMagikarpXSize",
+        "Route12_FishingHouse_Text_BlankChartOfSomeSort"
+      ],
+      "data/maps/Route12_Frlg/scripts.inc": [
+        "Route12_Text_MonSprawledOutInSlumber",
+        "Text_PlayedPokeFlute",
+        "Route12_Text_NedIntro",
+        "Route12_Text_NedDefeat",
+        "Route12_Text_ChipDefeat",
+        "Route12_Text_ChipPostBattle",
+        "Route12_Text_LucaIntro",
+        "Route12_Text_LucaPostBattle",
+        "Route12_Text_HankDefeat",
+        "Route12_Text_HankPostBattle",
+        "Route12_Text_ElliotIntro",
+        "Route12_Text_AndrewIntro",
+        "Route12_Text_AndrewDefeat",
+        "Route12_Text_AndrewPostBattle"
+      ],
+      "data/maps/Route12_NorthEntrance_2F_Frlg/scripts.inc": [
+        "Route12_NorthEntrance_2F_Text_ReceivedTM27FromLittleGirl"
+      ],
+      "data/maps/Route13_Frlg/scripts.inc": [
+        "Route13_Text_SusieIntro",
+        "Route13_Text_ValerieIntro",
+        "Route13_Text_ValerieDefeat",
+        "Route13_Text_GwenDefeat",
+        "Route13_Text_AlmaIntro",
+        "Route13_Text_AlmaDefeat",
+        "Route13_Text_PerryIntro",
+        "Route13_Text_LolaIntro",
+        "Route13_Text_LolaPostBattle",
+        "Route13_Text_SheilaPostBattle",
+        "Route13_Text_JaredIntro",
+        "Route13_Text_JaredDefeat",
+        "Route13_Text_JaredPostBattle",
+        "Route13_Text_RobertIntro"
+      ],
+      "data/maps/Route14_Frlg/scripts.inc": [
+        "Route14_Text_CarterIntro",
+        "Route14_Text_CarterDefeat",
+        "Route14_Text_CarterPostBattle",
+        "Route14_Text_DonaldDefeat",
+        "Route14_Text_BennyIntro",
+        "Route14_Text_BennyPostBattle",
+        "Route14_Text_LukasDefeat",
+        "Route14_Text_GeraldDefeat",
+        "Route14_Text_GeraldPostBattle",
+        "Route14_Text_MalikPostBattle"
+      ],
+      "data/maps/Route15_Frlg/scripts.inc": [
+        "Route15_Text_KindraDefeat",
+        "Route15_Text_BeckyDefeat"
+      ],
+      "data/maps/Route15_WestEntrance_2F_Frlg/scripts.inc": [
+        "Route15_WestEntrance_2F_Text_GreatHereYouGo",
+        "Route15_WestEntrance_2F_Text_ReceivedItemFromAide"
+      ],
+      "data/maps/Route16_House_Frlg/scripts.inc": [
+        "Route16_House_Text_ReceivedHM02FromGirl"
+      ],
+      "data/maps/Route16_NorthEntrance_2F_Frlg/scripts.inc": [
+        "Route16_NorthEntrance_2F_Text_GreatHereYouGo"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_005.json": {
+      "data/maps/Route21_South_Frlg/scripts.inc": [
+        "Route21_South_Text_NolanDefeat",
+        "Route21_South_Text_NolanPostBattle"
+      ],
+      "data/maps/Route22_Frlg/scripts.inc": [
+        "Route22_Text_EarlyRivalDefeat",
+        "Route22_Text_LateRivalDefeat"
+      ],
+      "data/maps/Route24_Frlg/scripts.inc": [
+        "Route24_Text_JustEarnedFabulousPrize",
+        "Route24_Text_ReceivedNuggetFromMysteryTrainer",
+        "Route24_Text_RocketDefeat",
+        "Route24_Text_ShaneIntro",
+        "Route24_Text_ShaneDefeat",
+        "Route24_Text_EthanDefeat",
+        "Route24_Text_ReliIntro",
+        "Route24_Text_TimmyIntro",
+        "Route24_Text_TimmyDefeat",
+        "Route24_Text_AliIntro",
+        "Route24_Text_CaleDefeat"
+      ],
+      "data/maps/Route25_Frlg/scripts.inc": [
+        "Route25_Text_JoeyIntro",
+        "Route25_Text_JoeyDefeat",
+        "Route25_Text_DanDefeat",
+        "Route25_Text_FlintIntro",
+        "Route25_Text_FlintPostBattle",
+        "Route25_Text_KelseyPostBattle",
+        "Route25_Text_ChadIntro",
+        "Route25_Text_ChadDefeat",
+        "Route25_Text_FranklinDefeat",
+        "Route25_Text_FranklinPostBattle",
+        "Route25_Text_NobIntro",
+        "Route25_Text_NobDefeat",
+        "Route25_Text_NobPostBattle",
+        "Route25_Text_WayneDefeat"
+      ],
+      "data/maps/Route25_SeaCottage_Frlg/scripts.inc": [
+        "Route25_SeaCottage_Text_NoPleaseChief",
+        "Route25_SeaCottage_Text_NoPleaseBeautiful",
+        "Route25_SeaCottage_Text_YouveGotTooMuchStuff",
+        "Route25_SeaCottage_Text_TeleporterIsDisplayed"
+      ],
+      "data/maps/Route26/scripts.inc": [
+        "Route26_Text_CooltrainermGavenSeen",
+        "Route26_Text_CooltrainermGavenBeaten",
+        "Route26_Text_CooltrainerfJoyceSeen",
+        "Route26_Text_CooltrainerfJoyceBeaten",
+        "Route26_Text_CooltrainerfJoyceAfter",
+        "Route26_Text_CooltrainerfBethSeen",
+        "Route26_Text_CooltrainerfBethBeaten",
+        "Route26_Text_PsychicRichardSeen"
+      ],
+      "data/maps/Route26_House1/scripts.inc": [
+        "Route26_Text_HealHouseRest",
+        "Route26_Text_HealHouseKeepAtIt"
+      ],
+      "data/maps/Route26_House2/scripts.inc": [
+        "DayOfWeekSiblingsHouse_Text_Pokedex2"
+      ],
+      "data/maps/Route27/scripts.inc": [
+        "Route27_Text_FisherMessage",
+        "Route27_Text_CooltrainermBlakeSeen",
+        "Route27_Text_CooltrainermBrianSeen",
+        "Route27_Text_CooltrainermBrianBeaten",
+        "Route27_Text_CooltrainerfReenaBeaten",
+        "Route27_Text_CooltrainerfReenaAfter",
+        "Route27_Text_CooltrainerfMeganSeen",
+        "Route27_Text_CooltrainerfMeganBeaten",
+        "Route27_Text_CooltrainerfMeganAfter",
+        "Route27_Text_PsychicGilbertSeen",
+        "Route27_Text_PsychicGilbertBeaten",
+        "Route27_Text_FisherScottSeen"
+      ],
+      "data/maps/Route2_EastBuilding_Frlg/scripts.inc": [
+        "Route2_EastBuilding_Text_GreatHereYouGo",
+        "Route2_EastBuilding_Text_ReceivedHM05FromAide"
+      ],
+      "data/maps/Route2_House_Frlg/scripts.inc": [
+        "Route2_House_Text_FaintedMonsCanUseFieldMoves"
+      ],
+      "data/maps/Route2_ViridianForest_NorthEntrance_Frlg/scripts.inc": [
+        "Route2_ViridianForest_NorthEntrance_Text_CanCutSkinnyTrees"
+      ],
+      "data/maps/Route30_MrPokemonsHouse/scripts.inc": [
+        "MrPokemonHouse_Text_GetDex",
+        "MrPokemonHouse_Text_OakParting"
+      ],
+      "data/maps/Route34_DayCare/scripts.inc": [
+        "Route34_DayCare_Text_Bookshelf2",
+        "Route34_DayCare_Text_ReceivedOddEgg",
+        "Route34_Text_YourMonIsDoingFine",
+        "Route34_Text_ReceivedEgg",
+        "Route34_Text_YourMonsAreDoingFine",
+        "Route34_DayCare_Text_WellRaiseYourMon",
+        "Route34_DayCare_Text_YourMonHasGrownXLevels"
+      ],
+      "data/maps/Route36/scripts.inc": [
+        "Route36_Text_UsedSquirtbottle"
+      ],
+      "data/maps/Route39/scripts.inc": [
+        "Route39_Text_PokefanFJaimeBeaten"
+      ],
+      "data/maps/Route39_Barn/scripts.inc": [
+        "Route39_Text_BarnGaveBerry"
+      ]
+    }
+  }
+}
