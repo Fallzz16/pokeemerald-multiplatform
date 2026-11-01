@@ -543,7 +543,7 @@
         "O que pensa que esta fazendo?!$"
       ],
       "FiveIsland_RocketWarehouse_Text_Grunt1Intro": [
-        "Agora seu POKEMON parece\\nforte. Estas disposto a\\lvende-los?\\pA serio? Queria lutar?$"
+        "Agora seu POKEMON parece\\nforte. Estas disposto a\\lvende-los?\\pA serio? Queria batalhar?$"
       ],
       "FiveIsland_RocketWarehouse_Text_Grunt1Defeat": [
         "Mas... Demasiado!$"
@@ -717,7 +717,7 @@
     },
     "data/maps/PalletTown_ProfessorOaksLab_Frlg/scripts.inc": {
       "Text_RivalVictory": [
-        "{RIVAL}Sim! Sou optima ou que?$"
+        "{RIVAL}Sim! Sou otima ou que?$"
       ]
     },
     "data/maps/RocketHideout_B1F_Frlg/scripts.inc": {
@@ -789,7 +789,7 @@
     },
     "data/maps/Route105/scripts.inc": {
       "Route104_Text_RegisteredDadInPokenav": [
-        "Esta registado o DAD NORMAN no\\nPOKeNAV.$"
+        "Esta registrado o DAD NORMAN no\\nPOKeNAV.$"
       ]
     },
     "data/maps/Route109_SeashoreHouse/scripts.inc": {
