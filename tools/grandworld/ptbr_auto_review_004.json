@@ -58,7 +58,7 @@
         "Com um ROD melhor, eu poderia\\npegar melhor POKEMON...$"
       ],
       "Route12_Text_LucaIntro": [
-        "A electricidade e a minha\\nespecialidade.\\pMas nao sei nada sobre POKEMON\\ndo mar.$"
+        "A eletricidade e a minha\\nespecialidade.\\pMas nao sei nada sobre POKEMON\\ndo mar.$"
       ],
       "Route12_Text_LucaDefeat": [
         "Desligado!$"
@@ -186,13 +186,13 @@
     },
     "data/maps/Route14_Frlg/scripts.inc": {
       "Route14_Text_CarterIntro": [
-        "Voce precisa usar TMs para\\nensinar bons movimentos para\\lPOKEMON.$"
+        "Voce precisa usar TMs para\\nensinar bons golpes para\\lPOKEMON.$"
       ],
       "Route14_Text_CarterDefeat": [
         "Ainda nao chega.$"
       ],
       "Route14_Text_CarterPostBattle": [
-        "Tem HMs, certo? POKEMON nao\\npode esquecer esses movimentos\\lfacilmente.$"
+        "Tem HMs, certo? POKEMON nao\\npode esquecer esses golpes\\lfacilmente.$"
       ],
       "Route14_Text_MitchIntro": [
         "Meu POKEMON voador ja deve\\n estar pronto para batalhar.$"
