@@ -54,7 +54,8 @@ def labels_from_parts(root, prefix, count):
                         raise ValueError("duplicate assisted/editorial entry: " + repr(key))
                     result.add(key)
                     per_part += 1
-        expected = entry["modified_entries" if "assisted" in prefix else "entries"]
+        expected = entry["changed_entries" if prefix == "ptbr_stage19_changes" else
+                         "modified_entries" if "assisted" in prefix else "entries"]
         if per_part != expected:
             raise ValueError("manifest count mismatch: " + prefix)
     return result
@@ -94,9 +95,10 @@ def build(root=ROOT):
     )
     assisted = labels_from_parts(root, "ptbr_assisted_stage17", 3)
     editorial = labels_from_parts(root, "ptbr_editorial_stage18", 3)
-    if human & (assisted | editorial):
+    stage19 = labels_from_parts(root, "ptbr_stage19_changes", 4)
+    if human & (assisted | editorial | stage19):
         raise ValueError("review status overlap")
-    if len(human) != 1962 or len(assisted) != 1053 or len(editorial) != 135:
+    if len(human) != 1962 or len(assisted) != 1053 or len(editorial) != 135 or len(stage19) != 604:
         raise ValueError("unexpected historical translation registry counts")
     result = []
     seen = set()
@@ -110,9 +112,10 @@ def build(root=ROOT):
                 seen.add(key)
                 value = "".join(fragments)
                 status = ("previously_reviewed" if key in human else
+                          "stage19_ai_assisted_pending_approval" if key in stage19 else
                           "editorial_ai_pending_approval" if key in editorial else
                           "assisted_pending_editorial" if key in assisted else
-                          "untouched_by_stages_17_18")
+                          "untouched_by_stages_17_19")
                 issues, severity = classify(value, src, symbol)
                 result.append({
                     "source": src,
@@ -123,7 +126,7 @@ def build(root=ROOT):
                     "issues": issues,
                     "text": value,
                 })
-    if len(result) != index["added_entries"] or not (human | assisted | editorial).issubset(seen):
+    if len(result) != index["added_entries"] or not (human | assisted | editorial | stage19).issubset(seen):
         raise ValueError("draft count drift")
     pending = [r for r in result if r["status"] != "previously_reviewed"]
     pending.sort(key=lambda item: (-item["priority"], item["source"], item["symbol"]))
@@ -131,9 +134,10 @@ def build(root=ROOT):
     warnings = Counter(flag for item in pending for flag in item["issues"])
     expected = {
         "previously_reviewed": 1962,
-        "editorial_ai_pending_approval": 135,
-        "assisted_pending_editorial": 988,
-        "untouched_by_stages_17_18": 2115,
+        "stage19_ai_assisted_pending_approval": 604,
+        "editorial_ai_pending_approval": 131,
+        "assisted_pending_editorial": 730,
+        "untouched_by_stages_17_19": 1773,
     }
     if dict(counts) != expected:
         raise ValueError("review queue classification drift: " + repr(counts))
