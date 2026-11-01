@@ -569,7 +569,7 @@
         "Que surpresa! Nao tem um, mas\\ndois, fosseis?\\pInfelizmente, minha maquina\\nso pode regenerar um POKEMON de\\lcada vez.\\pGostaria de escolher um dos\\nseus fosseis para regeneracao?$"
       ],
       "RustboroCity_DevonCorp_2F_Text_FossilizedMonBroughtBackToLife": [
-        "Obrigado por esperar!\\pO seu POKEMON fossilizado foi\\ntrazido de volta a vida!\\pO fossil era um antigo\\nPokemon.{STR_VAR_2}Foi!$"
+        "Obrigado por esperar!\\pO seu POKEMON fossilizado foi\\ntrazido de volta a vida!\\pO fossil era um antigo\\nPokemon.{STR_VAR_2} Foi!$"
       ],
       "RustboroCity_DevonCorp_2F_Text_TooManyPokemon": [
         "Tem muitos POKEMON. Nao tem\\nespaco para este.$"
@@ -583,7 +583,7 @@
     },
     "data/maps/RustboroCity_DevonCorp_3F/scripts.inc": {
       "RustboroCity_DevonCorp_3F_Text_ReceivedPokenav": [
-        "{PLAYER}recebeu um POKENAV.$"
+        "{PLAYER} recebeu um POKENAV.$"
       ],
       "RustboroCity_DevonCorp_3F_Text_PleaseGoAhead": [
         "Por favor, va em frente.$"
@@ -605,7 +605,7 @@
         "Ola! Bem-vindo a casa PEPPER.\\pTenho uma pergunta para voce. Ja\\nalguma vez tomaste conta de\\lbebes?\\pSou um novo pai, por isso criar\\num filho e novo para mim.\\pE tenho um problema. Minha\\nfilha WALDA nao se ri o\\lsuficiente.\\pAcho que ela riria por mim se\\nlhe dissesse algo engracado.\\pConheces alguma palavra ou\\nfrase engracada que me possas\\ldizer?$"
       ],
       "RustboroCity_Flat1_2F_Text_BeenSayingXDoYouKnowBetterPhrase": [
-        "Tenho estado a\\ndizer...{STR_VAR_1}Para a\\ldivertir ultimamente.\\pConhece uma palavra melhor ou\\numa frase que possa funcionar?$"
+        "Tenho estado a\\ndizer...{STR_VAR_1} Para a\\ldivertir ultimamente.\\pConhece uma palavra melhor ou\\numa frase que possa funcionar?$"
       ],
       "RustboroCity_Flat1_2F_Text_WonderfulLetsHearSuggestion": [
         "Isso e maravilhoso. Entao,\\nvamos ouvir, sua sugestao.$"
@@ -639,13 +639,13 @@
     },
     "data/maps/RustboroCity_House1/scripts.inc": {
       "RustboroCity_House1_Text_IllTradeIfYouWant": [
-        "Huh? Meu POKEMON e giro?\\nClaro, eu sabia disso.\\pMas se realmente quiseres,\\nestou disposto a troca-lo por\\lti.\\pVou trocar-te o\\nmeu{STR_VAR_2}para\\luma{STR_VAR_1}Se quiseres.$"
+        "Huh? Meu POKEMON e giro?\\nClaro, eu sabia disso.\\pMas se realmente quiseres,\\nestou disposto a troca-lo por\\lti.\\pVou trocar-te o\\nmeu {STR_VAR_2} para\\luma {STR_VAR_1} Se quiseres.$"
       ],
       "RustboroCity_House1_Text_PleaseBeGoodToMyPokemon": [
         "Eheheh... Por favor, se bom\\npara meu POKEMON.$"
       ],
       "RustboroCity_House1_Text_DoesntLookLikeMonToMe": [
-        "Huh? Isso nao se parece nada\\ncom um{STR_VAR_1}para mim.$"
+        "Huh? Isso nao se parece nada\\ncom um {STR_VAR_1} para mim.$"
       ],
       "RustboroCity_House1_Text_YouDontWantToThatsOkay": [
         "Se nao quiseres, tudo bem. Mas\\no meu POKEMON e giro, sabe...$"
@@ -804,13 +804,13 @@
         "Este navio e um navio de luxo\\npara os TREINADORES do mundo!\\pEm todos os portos, fazemos\\nfestas com os TREINADORES\\lconvidados.$"
       ],
       "SSAnne_2F_Corridor_Text_RivalIntro": [
-        "{RIVAL}Bonjour!{PLAYER}!\\pImagina ver-te\\naqui!{PLAYER}Foi mesmo\\lconvidado?\\pEntao, como vai seu POKEDEX?\\pJa apanhei 40 tipos, amigo. Ha\\ntipos diferentes em todo o\\llado.\\pRasteje em areas gramadas, e\\nprocure por elas.$"
+        "{RIVAL} Bonjour!{PLAYER}!\\pImagina ver-te\\naqui!{PLAYER} Foi mesmo\\lconvidado?\\pEntao, como vai seu POKEDEX?\\pJa apanhei 40 tipos, amigo. Ha\\ntipos diferentes em todo o\\llado.\\pRasteje em areas gramadas, e\\nprocure por elas.$"
       ],
       "SSAnne_2F_Corridor_Text_RivalDefeat": [
         "Humph!\\pPelo menos estas a criar seu\\nPokemon!$"
       ],
       "SSAnne_2F_Corridor_Text_RivalPostBattle": [
-        "{RIVAL}Ouvi dizer que havia um\\nmestre CUT a bordo.\\pMas ele era apenas um velho\\nenjoado!\\pCUT em si e realmente util.\\nSim, vai ser util.\\pDevias ir ve-lo tambem.\\nCheira-te!$"
+        "{RIVAL} Ouvi dizer que havia um\\nmestre CUT a bordo.\\pMas ele era apenas um velho\\nenjoado!\\pCUT em si e realmente util.\\nSim, vai ser util.\\pDevias ir ve-lo tambem.\\nCheira-te!$"
       ]
     },
     "data/maps/SSAnne_2F_Room1_Frlg/scripts.inc": {
