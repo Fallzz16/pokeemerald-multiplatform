@@ -194,7 +194,7 @@
         "Suspiro...\\pVoce falhou em salvar antes de\\nterminar seu desafio da\\lultima vez.\\pComo resultado, seu desafio foi\\ndesqualificado. E uma pena.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_ReceivedPrize": [
-        "{PLAYER}recebeu o\\npremio{STR_VAR_1}.$"
+        "{PLAYER} recebeu o\\npremio {STR_VAR_1}.$"
       ],
       "BattleFrontier_BattlePalaceLobby_Text_LadyCanTellWhatMonsThink": [
         "Para um tipo duro como eu,\\nPOKEMON e o melhor.\\pO ataque e a melhor defesa! Um\\nataque implacavel e o maximo!\\pMas nao era sobre isso que eu\\nqueria falar.\\pDe vez em quando passa por aqui\\numa senhora muito gira.\\pEla diz que pode dizer o que\\nPokemon esta pensando.\\pNao sei, mas ela e muito gira.\\pHuh? Porque estas a olhar para\\nmim assim?$"
