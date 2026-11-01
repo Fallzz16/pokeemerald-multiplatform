@@ -14,7 +14,7 @@
         "Impressionante!\\pMas ainda ha mais um TREINADOR\\nneste andar. Consegue vencer?$"
       ],
       "BattlePyramid_Text_ZeroTrainersRemaining3": [
-        "Impressionante!\\pVoce venceu todos os\\nTREINADORES deste andar!$"
+        "Impressionante!\\pVoce venceu todos os\\nTREINADORES deu andar!$"
       ],
       "BattlePyramid_Text_SevenTrainersRemaining4": [
         "Talvez possa varrer os sete\\nTRAiners que restam neste\\landar.$"
@@ -136,7 +136,7 @@
         "{PLAYER}recebeu o\\npremio{STR_VAR_1}.$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_DisappointingHereIsBag": [
-        "Que desilusao para voce...\\pAqui esta o BAG que temos\\nguardado para si.\\p{PLAYER}Tenho o BAG de volta.$"
+        "Que decepcao para voce...\\pAqui esta o BAG que temos\\nguardado para si.\\p{PLAYER}Tenho o BAG de volta.$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_LookForwardToNextChallenge": [
         "Estamos ansiosos para o seu\\nproximo desafio!$"
@@ -157,7 +157,7 @@
         "Vejo chamas vermelhas\\nbrilhantes...\\pE vejo seu POKEMON a sofrer\\nde queimaduras...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintLevitate": [
-        "Vejo POKEMON a voar...\\p...e, eu vejo seu POKEMON\\nfrustrado por movimentos\\limpotentes do tipo GROUND...$"
+        "Vejo POKEMON a voar...\\p...e, eu vejo seu POKEMON\\nfrustrado por golpes\\limpotentes do tipo GROUND...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintTrapAbility": [
         "Sinto uma energia fantastica a\\nsubir do chao...\\pE, vejo seu POKEMON incapaz\\nde escapar das garras da\\lenergia...$"
@@ -166,13 +166,13 @@
         "Vejo POKEMON tipo ICE...\\pE vejo seu POKEMON a batalhar\\nos efeitos de gelo...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintExplosion": [
-        "Vejo uma onda de movimentos que\\npoem em perigo o utilizador...\\pE, vejo seu POKEMON a\\ncair-lhes...$"
+        "Vejo uma onda de golpes que\\npoem em perigo o utilizador...\\pE, vejo seu POKEMON a\\ncair-lhes...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintBug": [
         "Vejo um POKEMON tipo BUG...\\pE, eu vejo seu POKEMON\\nsofrendo de diferentes tipos de\\lataques...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintFlyingDragon": [
-        "Vejo POKEMON a voar...\\p...e, eu vejo seu POKEMON\\nsofrendo de movimentos\\lextremamente poderosos...$"
+        "Vejo POKEMON a voar...\\p...e, eu vejo seu POKEMON\\nsofrendo de golpes\\lextremamente poderosos...$"
       ],
       "BattleFrontier_BattlePyramidLobby_Text_HintStoneEvolve": [
         "Vejo aqueles que evoluiram do\\npoder das pedras...\\pTambem sinto fogo, agua e\\nelectricidade...\\pE, vejo que seu POKEMON sofre\\ndaqueles tres poder...$"
@@ -755,7 +755,7 @@
         "Sabe o que tenho comigo?\\nMeu{STR_VAR_1}-\\lusando{STR_VAR_2}e$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_HikerMon2Ask": [
-        "Minha{STR_VAR_1}-\\nusando{STR_VAR_2}!\\pParece-me bem, nao? Quer\\nformar uma equipe de etiquetas?$"
+        "Minha{STR_VAR_1}-\\nusando{STR_VAR_2}!\\pParece-me bem, nao? Quer\\nformar uma equipe de batalhas?$"
       ],
       "BattleFrontier_BattleTowerMultiPartnerRoom_Text_HikerAccept": [
         "Yahoo! Vou fazer o registro,\\nentao.$"
