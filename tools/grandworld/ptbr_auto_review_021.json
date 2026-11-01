@@ -5,25 +5,25 @@
         "A luz do farol chega a dezenas\\nde quilometros de distancia.\\pSera que nao assusta POKEMON no\\nmar?$"
       ],
       "SlateportCity_Text_SeaweedFullOfLife": [
-        "Olha para isto!\\pA alga marinha que se Consegue\\ncontornar por estas bandas e\\lfresca e cheia de vida.\\pOra, parece que pode ate se\\nlevantar e atacar!$"
+        "Olhe estas algas!\\pAs algas que crescem aqui\\nsao fresquinhas e\\lcheias de vida.\\pParece ate que vao\\nlevantar e atacar!$"
       ],
       "SlateportCity_Text_HowTownIsBornAndGrows": [
         "Onde a agua esta limpa, os\\nfrutos da colheita abundante\\lrecolhem.\\pE onde as pessoas se reunem, um\\nmercado logo comeca.\\pE assim que uma cidade nasce e\\ncresce.$"
       ],
       "SlateportCity_Text_SlateportWonderfulPlace": [
-        "Compras onde voce pode respirar\\no cheiro do oceano...\\pSLATEPORT e um lugar\\nmaravilhoso!$"
+        "Fazer compras sentindo\\na brisa do mar...\\pSLATEPORT e mesmo\\num lugar maravilhoso!$"
       ],
       "SlateportCity_Text_EveryoneCallsHimCaptStern": [
-        "STERN, o sujeito que construiu\\no MUSEUM, tambem e lider de uma\\lequipe de exploracao submarina.\\pEntao, todos o chamam de CAPT.\\nSTERN.$"
+        "STERN construiu o MUSEUM\\ne tambem lidera uma\\lequipe de exploracao submarina.\\pPor isso todos o chamam\\nde CAPT. STERN.$"
       ],
       "SlateportCity_Text_WhatsLongLineOverThere": [
-        "O que e aquilo ali? Aquela\\nlonga fila...$"
+        "O que e aquela\\nfila enorme ali?$"
       ],
       "SlateportCity_Text_QuitPushing": [
-        "Ola! Para de empurrar! Esta e a\\nlinha, nao ves?$"
+        "Ei! Pare de empurrar!\\nTem uma fila aqui, sabia?$"
       ],
       "SlateportCity_Text_AquaHasPolicy": [
-        "A TEAM AQUA tem uma politica de\\nmontagem e dispersao no local\\lda operacao.$"
+        "A EQUIPE AQUA tem suas regras.\\nNos reunimos e nos separamos\\lconforme a missao.$"
       ],
       "SlateportCity_Text_DontButtIn": [
         "Ei, voce! Nao se meta!$"
@@ -38,7 +38,7 @@
         "O que? O que quer?$"
       ],
       "SlateportCity_Text_IllReadSignForYou": [
-        "Quer ler essa placa?\\nEu posso ler para voce!$"
+        "Quer ler esta placa?\\nPosso ler para voce!$"
       ],
       "SlateportCity_Text_ShouldveBroughtMyGameBoy": [
         "Grumble...\\pDevia ter trazido meu Game\\nBoy Advance para nao me\\laborrecer na fila...\\pGrumble...$"
@@ -114,7 +114,7 @@
         "TM41 ensina TORMENT.\\nJa ouviu falar?\\pEsse golpe impede que o alvo\\nrepita o mesmo golpe.\\pMas nao estou aqui\\npara atormentar voce!$"
       ],
       "SlateportCity_BattleTentLobby_Text_BattleEvenWithoutToughMons": [
-        "Pode participar quantas\\nvezes quiser, mesmo sem\\lPOKEMON muito fortes.$"
+        "Voce pode batalhar sempre\\nque quiser, mesmo sem\\lPOKEMON muito fortes.$"
       ],
       "SlateportCity_BattleTentLobby_Text_NiceIfMoreSelection": [
         "Nao seria bom se tivessem mais\\numa seleccao?$"
@@ -139,7 +139,7 @@
     },
     "data/maps/SlateportCity_NameRatersHouse/scripts.inc": {
       "SlateportCity_NameRatersHouse_Text_FineNameSuggestBetterOne": [
-        "Hmmm...{STR_VAR_1} E mesmo? E um\\nbelo nome que me deste.\\pMas! Que dizes, se eu sugerisse\\num nome um pouco melhor?$"
+        "Hmm... {STR_VAR_1}, nao e?\\nEsse nome ja e muito bom!\\pMas o que acha se eu\\nsugerir outro melhor?$"
       ],
       "SlateportCity_NameRatersHouse_Text_WhatShallNewNameBe": [
         "Ainda bem. Entao, qual sera o\\nnovo apelido?$"
