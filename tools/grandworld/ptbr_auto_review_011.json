@@ -2,22 +2,22 @@
   "asm": {
     "data/maps/BattleFrontier_Lounge3/scripts.inc": {
       "BattleFrontier_Lounge3_Text_ObtainedBattlePoints": [
-        "{PLAYER} obtido {STR_VAR_1} Pontos\\nde Batalha.$"
+        "{PLAYER} recebeu {STR_VAR_1}\\nBATTLE POINTS.$"
       ],
       "BattleFrontier_Lounge3_Text_ThinkOfMeForAnotherChallenge": [
-        "Se quiseres outro desafio, por\\nfavor, pensa em mim!$"
+        "Se quiser outro desafio,\\nlembre-se de mim!$"
       ],
       "BattleFrontier_Lounge3_Text_NotInterested": [
-        "Nao esta interessado?! Nao\\ndevias ter tanto medo de\\larriscar!$"
+        "Nao tem interesse? Nao\\ntenha medo de\\larriscar um pouco!$"
       ],
       "BattleFrontier_Lounge3_Text_BackedWrongTrainer": [
         "Apoiei o TREINADOR errado\\nmais uma vez!\\pAcho que eu deveria\\nparticipar dos desafios,\\lem vez de ficar assistindo...$"
       ],
       "BattleFrontier_Lounge3_Text_TrainerGoodButRattled": [
-        "Aquele TREINADOR...\\pEle e bom, mas ele fica agitado\\ndemasiado facilmente para\\lsobreviver ao DOME BATTLE...$"
+        "Aquele TREINADOR...\\pEle e bom, mas perde\\no controle com muita\\lfacilidade no BATTLE DOME...$"
       ],
       "BattleFrontier_Lounge3_Text_KnowWinnerWhenISeeOne": [
-        "Riso! Reconheco um vencedor\\nquando vejo um!$"
+        "Hehe! Sei reconhecer\\num vencedor de longe!$"
       ],
       "BattleFrontier_Lounge3_Text_ShouldBeTakingChallenges": [
         "Aqueles TREINADORES... O que\\nestao a fazer? Deviam estar a\\lenfrentar desafios.$"
@@ -28,7 +28,7 @@
         "Sera que vao passar entrevistas\\ncom os TREINADORES hoje?$"
       ],
       "BattleFrontier_Lounge4_Text_IfIOpenedRestaurantHere": [
-        "Se abrisse um restaurante aqui,\\nganharia dinheiro.$"
+        "Se eu abrisse um restaurante\\naqui, ganharia muito dinheiro!$"
       ],
       "BattleFrontier_Lounge4_Text_NeedBreatherAfterBattles": [
         "Ufa...\\pPreciso de respirar fundo\\ndepois de algumas batalhas\\lintensas...\\pMas mesmo agora, nunca faco uma\\npausa de planear estrategias e\\lcombos.$"
@@ -36,10 +36,10 @@
     },
     "data/maps/BattleFrontier_Lounge5/scripts.inc": {
       "BattleFrontier_Lounge5_Text_NatureGirlGreeting": [
-        "Ehehe! Posso dizer o que\\nPokemon esta pensando!\\pPor favor! Posso ver o seu\\nPokemon?$"
+        "Ehehe! Sei dizer o que\\num POKEMON esta pensando!\\pPosso ver seu POKEMON,\\npor favor?$"
       ],
       "BattleFrontier_Lounge5_Text_NatureGirlNoneShown": [
-        "Boo! Barato!$"
+        "Ah, que pena!$"
       ],
       "BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow": [
         "Hmhm...\\pEste diz que gosta de batalhar!\\nVai batalhar mesmo que tenha\\lmuitos ouchies!$"
@@ -72,27 +72,27 @@
         "Que bobagem! Esse EGG\\nesta dormindo!\\lNao consigo falar com ele!$"
       ],
       "BattleFrontier_Lounge5_Text_LadyClaimsSheUnderstandsPokemon": [
-        "Que encantador! Aquela senhora\\ndiz que Consegue entender\\lPokemon!$"
+        "Que interessante! Aquela senhora\\ndiz que entende\\los POKEMON!$"
       ],
       "BattleFrontier_Lounge5_Text_GirlSayingSomethingProfound": [
-        "Tenho a sensacao de que a\\nmenina esta dizendo algo\\lprofundo.$"
+        "Tenho a impressao de que\\na menina esta dizendo\\lalgo muito profundo.$"
       ],
       "BattleFrontier_Lounge5_Text_GirlPlaysAtRedHouseALot": [
-        "Eu sei uma coisa!\\pAquela menina brinca muito na\\ncasa vermelha!$"
+        "Eu sei uma coisa!\\pAquela menina brinca\\nmuito na casa vermelha!$"
       ]
     },
     "data/maps/BattleFrontier_Lounge6/scripts.inc": {
       "BattleFrontier_Lounge6_Text_WouldYouLikeToTrade": [
-        "Meu POKEMON e\\num {STR_VAR_2} Conhece? E\\lbastante bonito e bastante\\lagradavel.\\pEste pequeno, eu poderia trocar\\ncom orgulho!\\pGostaria de me trocar\\num {STR_VAR_1} para a\\lminha {STR_VAR_2}?$"
+        "Meu POKEMON e\\num {STR_VAR_2}. Conhece? Ele\\le muito bonito e\\ladoravel!\\pTenho orgulho deste\\npequeno companheiro!\\pVoce troca comigo\\num {STR_VAR_1} pelo\\lmeu {STR_VAR_2}?$"
       ],
       "BattleFrontier_Lounge6_Text_PromiseIllBeGoodToIt": [
-        "E adoravel! Obrigado! Prometo\\nque serei boazinha!\\pOh! Espero que sejas bom para a\\nminha {STR_VAR_2} Tambem!$"
+        "Que gracinha! Obrigada!\\nPrometo cuidar bem dele!\\pEspero que cuide bem\\ndo meu {STR_VAR_2} tambem!$"
       ],
       "BattleFrontier_Lounge6_Text_DontTradeForAnythingButMon": [
-        "Desculpa! Eu nao pretendo\\ntrocar por nada alem de\\lum {STR_VAR_1}.$"
+        "Desculpe! Eu so quero\\ntrocar por um\\l{STR_VAR_1}.$"
       ],
       "BattleFrontier_Lounge6_Text_WellThatsFineToo": [
-        "Nao vai? Bem, isso tambem e\\nbom. Por favor, venha\\lvisitar-nos novamente.$"
+        "Nao quer? Tudo bem.\\nVolte para me visitar\\loutra hora.$"
       ],
       "BattleFrontier_Lounge6_Text_SkittySoMuchCuterThanImagined": [
         "Riso! Um SKITTY e muito mais\\nbonito do que eu imaginava.\\lEstou encantado!$"
@@ -103,19 +103,19 @@
         "Buhahaha!\\pVoltou para ensinar\\ngolpes especiais aos\\lseus POKEMON?$"
       ],
       "BattleFrontier_Lounge7_Text_TeachWhichMove": [
-        "Esta bem, esta bem, olha aqui!\\nQue golpe devo dar?$"
+        "Certo! Entao me diga:\\nqual golpe deseja ensinar?$"
       ],
       "BattleFrontier_Lounge7_Text_MoveWillBeXBattlePoints": [
-        "O golpe {STR_VAR_1} E mesmo?\\nIsso sera {STR_VAR_2} Pontos de\\lBatalha, esta bem?$"
+        "O golpe {STR_VAR_1}, certo?\\nIsso vai custar {STR_VAR_2}\\lBATTLE POINTS. Tudo bem?$"
       ],
       "BattleFrontier_Lounge7_Text_TeachMoveToWhichMon": [
-        "Esta bem, agora escolhe o\\nPokemon para o qual devo\\lensinar.$"
+        "Agora escolha o\\nPOKEMON que vai\\laprender o golpe.$"
       ],
       "BattleFrontier_Lounge7_Text_HaventGotEnoughPoints": [
-        "Mas que... Nao tem pontos de\\nbatalha suficientes!$"
+        "Como assim? Voce nao tem\\nBATTLE POINTS suficientes!$"
       ],
       "BattleFrontier_Lounge7_Text_IllTakeBattlePoints": [
-        "Ves como sou habilidoso agora?\\nEu fico com seus Pontos de\\lBatalha, obrigado!$"
+        "Viu como sou talentosa?\\nVou ficar com seus\\lBATTLE POINTS. Obrigada!$"
       ],
       "BattleFrontier_Lounge7_Text_YouDontWantTo": [
         "O que e isso? Nao quer...\\pSe quer ver como sou\\nhabilidoso, vem ter comigo a\\lqualquer hora!$"
@@ -127,37 +127,37 @@
         "Ihihihi!\\pVeio aprender novos\\ngolpes para seus POKEMON?$"
       ],
       "BattleFrontier_Lounge7_Text_ThinkLadiesDontGetAlong": [
-        "Aquelas senhoras, a maneira\\ncomo se falam mal, devem achar\\lque nao se dao bem.\\pMas se isso fosse verdade, eles\\nnao ficariam aqui juntos, pois\\lnao?$"
+        "Essas senhoras vivem\\ndiscutindo uma com a outra.\\lParece que nao se dao bem.\\pMas, se fosse verdade,\\npor que estariam\\laqui juntas?$"
       ],
       "BattleFrontier_Lounge7_Text_SoftboiledDesc": [
-        "Recupera ate metade da HP\\nmaxima do usuario.$"
+        "Recupera ate metade\\ndo HP maximo do usuario.$"
       ],
       "BattleFrontier_Lounge7_Text_SeismicTossDesc": [
-        "Inflige danos identicos ao\\nnivel do usuario.$"
+        "Causa dano igual ao\\nnivel do usuario.$"
       ],
       "BattleFrontier_Lounge7_Text_DreamEaterDesc": [
-        "Recupera metade dos danos\\ninfligidos a um inimigo\\ladormecido.$"
+        "Absorve metade do dano\\ncausado a um alvo\\ladormecido.$"
       ],
       "BattleFrontier_Lounge7_Text_MegaPunchDesc": [
-        "Um forte soco lancado com um\\npoder incrivel.$"
+        "Um soco muito poderoso\\nque atinge o adversario.$"
       ],
       "BattleFrontier_Lounge7_Text_MegaKickDesc": [
-        "Um chute extremamente poderoso\\ncom forca intensa.$"
+        "Um chute devastador\\ncom muita forca.$"
       ],
       "BattleFrontier_Lounge7_Text_BodySlamDesc": [
-        "Uma batida de corpo inteiro que\\npode causar paralisia.$"
+        "Um golpe com o corpo\\nque pode causar paralisia.$"
       ],
       "BattleFrontier_Lounge7_Text_RockSlideDesc": [
         "Grandes pedras sao lancadas.\\nPode causar hesitacao.$"
       ],
       "BattleFrontier_Lounge7_Text_CounterDesc": [
-        "Retalia qualquer ataque fisico\\ncom o dobro da potencia.$"
+        "Devolve o dobro do dano\\nde ataques fisicos.$"
       ],
       "BattleFrontier_Lounge7_Text_ThunderWaveDesc": [
-        "Um fraco choque de eletricidade\\nque paralisa o inimigo.$"
+        "Um choque eletrico\\nque paralisa o alvo.$"
       ],
       "BattleFrontier_Lounge7_Text_SwordsDanceDesc": [
-        "Uma danca de batalha que aumenta\\nfortemente ATTACK.$"
+        "Uma danca que aumenta\\nmuito o ATTACK.$"
       ],
       "BattleFrontier_Lounge7_Text_SnoreDesc": [
         "Um ataque alto que so pode ser\\nusado enquanto dorme.$"
@@ -166,22 +166,22 @@
         "Da lama na cara do inimigo para\\nre-duzir sua precisao.$"
       ],
       "BattleFrontier_Lounge7_Text_SwiftDesc": [
-        "Pulveriza raios em forma de\\nestrela que nunca falham.$"
+        "Dispara estrelas brilhantes\\nque nunca erram.$"
       ],
       "BattleFrontier_Lounge7_Text_EndureDesc": [
-        "Dura qualquer coisa durante 1\\nturno, deixando 1HP.$"
+        "Aguenta um ataque por\\num turno, mantendo 1 HP.$"
       ],
       "BattleFrontier_Lounge7_Text_PsychUpDesc": [
-        "Copia o efeito do inimigo e da\\nao utilizador.$"
+        "Copia as mudancas de\\natributos do adversario.$"
       ],
       "BattleFrontier_Lounge7_Text_IcePunchDesc": [
-        "Um soco gelado que pode\\ncongelar o inimigo.$"
+        "Um soco gelado que\\npode congelar o alvo.$"
       ],
       "BattleFrontier_Lounge7_Text_ThunderPunchDesc": [
-        "Um soco eletrificado que pode\\nparalisar o inimigo.$"
+        "Um soco eletrico que\\npode paralisar o alvo.$"
       ],
       "BattleFrontier_Lounge7_Text_FirePunchDesc": [
-        "Um soco ardente que pode\\nqueimar o inimigo.$"
+        "Um soco flamejante que\\npode queimar o alvo.$"
       ]
     },
     "data/maps/BattleFrontier_Lounge8/scripts.inc": {
@@ -194,7 +194,7 @@
         "Viemos acompanhar\\nnosso neto.\\pMas, ja que estamos aqui,\\nvamos comprar umas\\llembrancinhas!$"
       ],
       "BattleFrontier_Mart_Text_ProteinMakeNiceGift": [
-        "Querida, o que achas disto?\\nIsto nao daria um bom presente?\\pE... PRO... TE... IN? Parece\\ndelicioso, nao parece?$"
+        "Querida, olhe isso!\\nNao daria um bom presente?\\pPRO... TE... IN?\\nParece ate gostoso!$"
       ]
     },
     "data/maps/BattleFrontier_OutsideEast/scripts.inc": {
@@ -205,7 +205,7 @@
         "Eu prospero na escuridao...\\nSim... O que e digno de mim?\\lNinguem mais que o PYRAMID\\lBATTLE...\\pQue dizes a vaguear na\\nescuridao e em total e total\\ldesespero?$"
       ],
       "BattleFrontier_OutsideEast_Text_ZigzagoonLooksVacant": [
-        "ZIGZAGOON parece vago...$"
+        "ZIGZAGOON parece distraido...$"
       ],
       "BattleFrontier_OutsideEast_Text_PeopleCallMeBusybody": [
         "As pessoas chamam-me\\nintrometida, mas nao consigo\\levitar.\\pO seu chapeu esta torto! Nao,\\nlixo no chao! Esta quase na\\lhora do jantar!\\pNao sei se posso ficar a ver no\\nBATTLE PALACE...$"
@@ -214,7 +214,7 @@
         "Eu sou rapido no meu BIKE, e\\nisso vale para a maneira como\\leu luto, tambem.\\pGanhei jogos num piscar de\\nolhos!$"
       ],
       "BattleFrontier_OutsideEast_Text_BetterThanDaddyAtPokemon": [
-        "Sou melhor que meu pai em\\nPokemon.$"
+        "Sou melhor que papai\\nnas batalhas POKEMON!$"
       ],
       "BattleFrontier_OutsideEast_Text_GoRackUpSomeWinsForDaddy": [
         "Va la, querida! Vai acumular\\nalgumas vitorias para o papa!\\pEs como sua mae, por isso\\nvais dominar!$"
@@ -223,36 +223,36 @@
         "As vezes vejo um velho muito\\nimportante a entrar ali.\\pEle tem um POKEMON fantastico.\\nMas ele parece muito simpatico.$"
       ],
       "BattleFrontier_OutsideEast_Text_GotWipedOut": [
-        "Meu! Meu Deus! Nunca perdi uma\\nvez!\\pMas fui exterminado sem nenhuma\\ngraca salvadora!\\pE entao me disseram que eu nao\\ntenho nenhum talento?! Meu!$"
+        "Nossa! Nunca tinha perdido\\numa batalha!\\pMas acabei sendo\\nderrotado facilmente!\\pE ainda disseram que\\nnao tenho talento?!$"
       ],
       "BattleFrontier_OutsideEast_Text_LikeToHaveNameRecordedHere": [
         "Sim, esta bem! Entao este e o\\nRANKING HALL!\\pGostaria de entrar na historia\\ncomo um super campeao e ter o\\lmeu nome gravado aqui para a\\lposteridade.$"
       ],
       "BattleFrontier_OutsideEast_Text_CanDoAnythingWithYou": [
-        "Com voce ao meu lado, posso\\nfazer qualquer coisa.$"
+        "Com voce ao meu lado,\\nconsigo fazer qualquer coisa.$"
       ],
       "BattleFrontier_OutsideEast_Text_OddTreeHereSeemsToWiggle": [
-        "Com licenca, jovem. tem boa\\nvisao?\\pHa uma arvore estranha por\\naqui, e para meus olhos\\lcansados parece mexer.$"
+        "Com licenca, jovem.\\nVoce enxerga bem?\\pHa uma arvore estranha\\naqui e parece que\\lesta se mexendo!$"
       ],
       "BattleFrontier_OutsideEast_Text_OnceAnOddTreePastHere": [
-        "Com licenca, jovem. tem boa\\nmemoria?\\pTenho a sensacao de que ja\\nhouve uma arvore estranha aqui.$"
+        "Com licenca, jovem.\\nVoce tem boa memoria?\\pAcho que havia uma\\narvore estranha aqui antes.$"
       ],
       "BattleFrontier_OutsideEast_Text_StickyMonWithLongTail": [
-        "Eu... eu vi!\\pHavia um tipo pegajoso de um\\nPOKEMON com uma longa cauda a\\lfrente!\\pEstava escondido debaixo de uma\\npedra, e continuava a olhar\\lpara mim!$"
+        "Eu... eu vi!\\pUm POKEMON estranho,\\npegajoso e com uma\\lcauda comprida!\\pEle se escondia sob\\numa pedra e ficava\\lolhando para mim!$"
       ]
     },
     "data/maps/BattleFrontier_OutsideWest/scripts.inc": {
       "BattleFrontier_OutsideWest_Text_FerryNotRunning": [
-        "Lamento muito.\\pO ferry para SLATEPORT e\\nLILYCOVE serve apenas LEAGUE\\lCHAMPIONS.$"
+        "Sinto muito.\\pO navio para SLATEPORT\\ne LILYCOVE so atende\\lCAMPEOES DA LIGA.$"
       ],
       "BattleFrontier_OutsideWest_Text_SailWithUsAnotherTime": [
-        "Por favor, naveguem conosco\\nnoutra altura!$"
+        "Por favor, navegue conosco\\noutra oportunidade!$"
       ],
       "BattleFrontier_OutsideWest_Text_PleaseBoardFerry": [
-        "Por favor embarque no ferry e\\naguarde a partida.$"
+        "Embarque no navio\\ne aguarde a partida.$"
       ],
       "BattleFrontier_OutsideWest_Text_ThenWhereWouldYouLikeToGo": [
-        "Entao, para onde quer ir?$"
+        "Para onde deseja viajar?$"
       ],
       "BattleFrontier_OutsideWest_Text_BestOutOfAllMyFriends": [
         "Sou o melhor de todos os meus\\namigos. Mas aqui... Fui inutil!$"
@@ -264,16 +264,16 @@
         "Queria aceitar um desafio assim\\nque chegasse aqui.\\pMas no caminho, enjoei...\\nUrrrrp...$"
       ],
       "BattleFrontier_OutsideWest_Text_SureWeCanChallengeWithNoMons": [
-        "Ei, mano...\\pTens a certeza que podemos\\nfazer desafios mesmo que nao\\ltenhamos nenhum POKEMON?$"
+        "Ei, cara...\\pTem certeza que da\\npara participar dos desafios\\lsem nenhum POKEMON?$"
       ],
       "BattleFrontier_OutsideWest_Text_LetsPlayRockPaperScissors": [
-        "Vamos jogar rock, papel,\\ntesoura! Um, dois, tres!\\p... ... ... ... ... ...$"
+        "Vamos jogar pedra, papel\\ne tesoura! Um, dois, tres!\\p... ... ... ... ... ...$"
       ],
       "BattleFrontier_OutsideWest_Text_WonIllTakePikeChallenge": [
-        "Boa! Ganhei! Vou aceitar o\\ndesafio BATTLE PIKE!$"
+        "Isso! Eu ganhei!\\nVou desafiar a BATTLE PIKE!$"
       ],
       "BattleFrontier_OutsideWest_Text_LostIllPutOffPikeChallenge": [
-        "Nao, perdi.\\pAcho que hoje nao tenho muita\\nsorte. Vou adiar meu desafio\\lda BATTLE PIKE ate amanha.$"
+        "Ah, perdi...\\pAcho que hoje estou\\nsem sorte. Melhor\\ltentar a BATTLE PIKE amanha.$"
       ],
       "BattleFrontier_OutsideWest_Text_ChooseFishingOverBattling": [
         "Acho que sou a unica pessoa\\naqui que, por alguma razao\\ldesconhecida, escolheria pescar\\lem vez de batalhar.\\pHuh? Nao Consegue capturar nada\\naqui? Isso e decepcionante...$"
@@ -288,10 +288,10 @@
         "Avo, aqui! O DOME BATTLE esta\\naqui! Vai busca-los, avo!$"
       ],
       "BattleFrontier_OutsideWest_Text_NothingHereNotLongAgo": [
-        "Nao havia nada aqui nem ha\\nmuito tempo.\\pMas, agora olha para este\\nlugar! Incrivel! Vou trazer a\\lminha mae para ver isto.$"
+        "Ha pouco tempo nao\\nhavia nada aqui.\\pMas olhe como ficou!\\nVou trazer minha mae\\lpara conhecer!$"
       ],
       "BattleFrontier_OutsideWest_Text_SquareFilledWithToughPeople": [
-        "Munch, munch...\\pParece que esta praca esta\\ncheia de gente dura.\\pMunch, munch...$"
+        "Mastiga, mastiga...\\pEsta praca esta cheia\\nde gente forte!\\pMastiga, mastiga...$"
       ],
       "BattleFrontier_OutsideWest_Text_LastTimeOurEyesMet": [
         "Huh? Estas a ouvir-te? Isso nao\\ne nada!\\pDa ultima vez que o vi, os\\nnossos olhos encontraram-se e\\las faiscas voaram!$"
@@ -313,10 +313,10 @@
     },
     "data/maps/BattleFrontier_RankingHall/scripts.inc": {
       "BattleFrontier_RankingHall_Text_IsYourNameOnThisList": [
-        "Ola, seu nome esta nesta\\nlista?$"
+        "Ola! Seu nome aparece\\nnessa lista?$"
       ],
       "BattleFrontier_RankingHall_Text_WowThatsSuper": [
-        "Uau, isso e demais! Tambem\\nterei de me esforcar mais!$"
+        "Uau! Isso e incrivel!\\nPreciso treinar mais!$"
       ],
       "BattleFrontier_RankingHall_Text_WorkHarderIfYouSawFriendsName": [
         "Ai sim?\\pSe visses o nome do seu amigo\\naqui, aposto que te faria\\ltrabalhar mais!$"
