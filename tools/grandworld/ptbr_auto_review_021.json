@@ -85,7 +85,7 @@
     },
     "data/maps/SlateportCity_BattleTentCorridor/scripts.inc": {
       "SlateportCity_ContestHall_Text_ExplainTorment": [
-        "TM41 ensina TORMENT.\\nJa ouviu falar?\\pEsse golpe impede que o alvo\\nrepita o mesmo movimento.\\pMas nao estou aqui\\npara atormentar voce!$"
+        "TM41 ensina TORMENT.\\nJa ouviu falar?\\pEsse golpe impede que o alvo\\nrepita o mesmo golpe.\\pMas nao estou aqui\\npara atormentar voce!$"
       ],
       "SlateportCity_ContestHall_Text_MCStepUpTakePartInContest": [
         "Nossa! Que POKEMON\\nelegante!\\pVenham conhecer e participar\\nde nossos maravilhosos\\lCONTESTS!\\pVoce pode vencer! Eu\\ntenho certeza disso!\\lMeus olhos nao falham!$"
@@ -111,7 +111,7 @@
         "Nao achei nenhum\\nPOKEMON que combinasse comigo.\\pPensei em reclamar\\ncom o funcionario daqui.\\pMas ele nao quis ouvir!\\nQue coisa chata!\\pEi, voce! Pegue\\nisto de uma vez!$"
       ],
       "SlateportCity_BattleTentLobby_Text_ExplainTorment": [
-        "TM41 ensina TORMENT.\\nJa ouviu falar?\\pEsse golpe impede que o alvo\\nrepita o mesmo movimento.\\pMas nao estou aqui\\npara atormentar voce!$"
+        "TM41 ensina TORMENT.\\nJa ouviu falar?\\pEsse golpe impede que o alvo\\nrepita o mesmo golpe.\\pMas nao estou aqui\\npara atormentar voce!$"
       ],
       "SlateportCity_BattleTentLobby_Text_BattleEvenWithoutToughMons": [
         "Pode participar quantas\\nvezes quiser, mesmo sem\\lPOKEMON muito fortes.$"
@@ -519,7 +519,7 @@
         "Nao vai batalhar? Estou\\ndesiludido por nao te poder ver\\la batalhar...$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_KeepItTo3On3": [
-        "Optimo, optimo!\\pMas minha casa nao e assim\\ntao resistente.\\pPosso pedir-lhe para baixar\\npara um jogo de 3 contra 3?$"
+        "Otimo, otimo!\\pMas minha casa nao e assim\\ntao resistente.\\pPosso pedir-lhe para baixar\\npara um jogo de 3 contra 3?$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_SaveProgressBeforeBattle": [
         "Antes de lutarem, devem salvar\\no seu progresso.$"
