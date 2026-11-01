@@ -5,25 +5,25 @@
         "A luz do farol chega a dezenas\\nde quilometros de distancia.\\pSera que nao assusta POKEMON no\\nmar?$"
       ],
       "SlateportCity_Text_SeaweedFullOfLife": [
-        "Olha para isto!\\pA alga marinha que se Consegue\\ncontornar por estas bandas e\\lfresca e cheia de vida.\\pOra, parece que pode ate se\\nlevantar e atacar!$"
+        "Olhe estas algas!\\pAs algas que crescem aqui\\nsao fresquinhas e\\lcheias de vida.\\pParece ate que vao\\nlevantar e atacar!$"
       ],
       "SlateportCity_Text_HowTownIsBornAndGrows": [
         "Onde a agua esta limpa, os\\nfrutos da colheita abundante\\lrecolhem.\\pE onde as pessoas se reunem, um\\nmercado logo comeca.\\pE assim que uma cidade nasce e\\ncresce.$"
       ],
       "SlateportCity_Text_SlateportWonderfulPlace": [
-        "Compras onde voce pode respirar\\no cheiro do oceano...\\pSLATEPORT e um lugar\\nmaravilhoso!$"
+        "Fazer compras sentindo\\na brisa do mar...\\pSLATEPORT e mesmo\\num lugar maravilhoso!$"
       ],
       "SlateportCity_Text_EveryoneCallsHimCaptStern": [
-        "STERN, o sujeito que construiu\\no MUSEUM, tambem e lider de uma\\lequipe de exploracao submarina.\\pEntao, todos o chamam de CAPT.\\nSTERN.$"
+        "STERN construiu o MUSEUM\\ne tambem lidera uma\\lequipe de exploracao submarina.\\pPor isso todos o chamam\\nde CAPT. STERN.$"
       ],
       "SlateportCity_Text_WhatsLongLineOverThere": [
-        "O que e aquilo ali? Aquela\\nlonga fila...$"
+        "O que e aquela\\nfila enorme ali?$"
       ],
       "SlateportCity_Text_QuitPushing": [
-        "Ola! Para de empurrar! Esta e a\\nlinha, nao ves?$"
+        "Ei! Pare de empurrar!\\nTem uma fila aqui, sabia?$"
       ],
       "SlateportCity_Text_AquaHasPolicy": [
-        "A TEAM AQUA tem uma politica de\\nmontagem e dispersao no local\\lda operacao.$"
+        "A EQUIPE AQUA tem suas regras.\\nNos reunimos e nos separamos\\lconforme a missao.$"
       ],
       "SlateportCity_Text_DontButtIn": [
         "Ei, voce! Nao se meta!$"
@@ -38,7 +38,7 @@
         "O que? O que quer?$"
       ],
       "SlateportCity_Text_IllReadSignForYou": [
-        "Quer ler essa placa?\\nEu posso ler para voce!$"
+        "Quer ler esta placa?\\nPosso ler para voce!$"
       ],
       "SlateportCity_Text_ShouldveBroughtMyGameBoy": [
         "Grumble...\\pDevia ter trazido meu Game\\nBoy Advance para nao me\\laborrecer na fila...\\pGrumble...$"
@@ -85,7 +85,7 @@
     },
     "data/maps/SlateportCity_BattleTentCorridor/scripts.inc": {
       "SlateportCity_ContestHall_Text_ExplainTorment": [
-        "TM41 ensina TORMENT.\\nJa ouviu falar?\\pEsse golpe impede que o alvo\\nrepita o mesmo movimento.\\pMas nao estou aqui\\npara atormentar voce!$"
+        "TM41 ensina TORMENT.\\nJa ouviu falar?\\pEsse golpe impede que o alvo\\nrepita o mesmo golpe.\\pMas nao estou aqui\\npara atormentar voce!$"
       ],
       "SlateportCity_ContestHall_Text_MCStepUpTakePartInContest": [
         "Nossa! Que POKEMON\\nelegante!\\pVenham conhecer e participar\\nde nossos maravilhosos\\lCONTESTS!\\pVoce pode vencer! Eu\\ntenho certeza disso!\\lMeus olhos nao falham!$"
@@ -111,10 +111,10 @@
         "Nao achei nenhum\\nPOKEMON que combinasse comigo.\\pPensei em reclamar\\ncom o funcionario daqui.\\pMas ele nao quis ouvir!\\nQue coisa chata!\\pEi, voce! Pegue\\nisto de uma vez!$"
       ],
       "SlateportCity_BattleTentLobby_Text_ExplainTorment": [
-        "TM41 ensina TORMENT.\\nJa ouviu falar?\\pEsse golpe impede que o alvo\\nrepita o mesmo movimento.\\pMas nao estou aqui\\npara atormentar voce!$"
+        "TM41 ensina TORMENT.\\nJa ouviu falar?\\pEsse golpe impede que o alvo\\nrepita o mesmo golpe.\\pMas nao estou aqui\\npara atormentar voce!$"
       ],
       "SlateportCity_BattleTentLobby_Text_BattleEvenWithoutToughMons": [
-        "Pode participar quantas\\nvezes quiser, mesmo sem\\lPOKEMON muito fortes.$"
+        "Voce pode batalhar sempre\\nque quiser, mesmo sem\\lPOKEMON muito fortes.$"
       ],
       "SlateportCity_BattleTentLobby_Text_NiceIfMoreSelection": [
         "Nao seria bom se tivessem mais\\numa seleccao?$"
@@ -139,22 +139,22 @@
     },
     "data/maps/SlateportCity_NameRatersHouse/scripts.inc": {
       "SlateportCity_NameRatersHouse_Text_FineNameSuggestBetterOne": [
-        "Hmmm...{STR_VAR_1}E mesmo? E um\\nbelo nome que me deste.\\pMas! Que dizes, se eu sugerisse\\num nome um pouco melhor?$"
+        "Hmm... {STR_VAR_1}, nao e?\\nEsse nome ja e muito bom!\\pMas o que acha se eu\\nsugerir outro melhor?$"
       ],
       "SlateportCity_NameRatersHouse_Text_WhatShallNewNameBe": [
         "Ainda bem. Entao, qual sera o\\nnovo apelido?$"
       ],
       "SlateportCity_NameRatersHouse_Text_MonShallBeKnownAsName": [
-        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pE um nome melhor do que antes!\\nQue sorte sua!$"
+        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo {STR_VAR_1}!\\pE um nome melhor do que antes!\\nQue sorte sua!$"
       ],
       "SlateportCity_NameRatersHouse_Text_DoVisitAgain": [
         "Estou vendo. Vem visitar-me\\noutra vez.$"
       ],
       "SlateportCity_NameRatersHouse_Text_NameNoDifferentYetSuperior": [
-        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo{STR_VAR_1}!\\pNao parece diferente de antes,\\ne no entanto, isto e muito\\lsuperior!\\pQue sorte sua!$"
+        "Feito! A partir de agora, este\\nPOKEMON sera conhecido\\lcomo {STR_VAR_1}!\\pNao parece diferente de antes,\\ne no entanto, isto e muito\\lsuperior!\\pQue sorte sua!$"
       ],
       "SlateportCity_NameRatersHouse_Text_MagnificentName": [
-        "Hmmm...{STR_VAR_1}E e!\\pE uma alcunha magnifica! E\\nimpecavelmente irrepreensivel!\\pVais fazer bem em apreciar o\\nteu{STR_VAR_1}agora e alem.$"
+        "Hmmm...{STR_VAR_1} E e!\\pE uma alcunha magnifica! E\\nimpecavelmente irrepreensivel!\\pVais fazer bem em apreciar o\\nteu {STR_VAR_1} agora e alem.$"
       ],
       "SlateportCity_NameRatersHouse_Text_ThatIsMerelyAnEgg": [
         "Agora, agora. Isso e apenas um\\nEGG!$"
@@ -261,7 +261,7 @@
         "Nossa!\\pSeu POKEMON esta crescendo\\nmuito bem. Voce merece\\luma recompensa!\\pMas nao tem espaco\\npara ela na BOLSA.$"
       ],
       "SlateportCity_PokemonFanClub_Text_MonMostImpressiveGiveItThis": [
-        "Sua{STR_VAR_1}, esta crescendo\\nde uma maneira muito\\limpressionante! E um belo\\lespecime!\\pMas! Se lhe desse isto, ficaria\\nainda melhor! E verdade!$"
+        "Sua {STR_VAR_1}, esta crescendo\\nde uma maneira muito\\limpressionante! E um belo\\lespecime!\\pMas! Se lhe desse isto, ficaria\\nainda melhor! E verdade!$"
       ],
       "SlateportCity_PokemonFanClub_Text_NothingElseToGiveYou": [
         "Desculpa, mas nao tenho mais\\nnada para te dar! Nenhuma!\\pAfinal, voce e abencoado com o\\ndom de criar POKEMON sem\\lrecorrer a quaisquer itens!$"
@@ -479,7 +479,7 @@
         "Hunh? Seu BAG esta cheio.$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_SeenBiggerSeedot": [
-        "{STR_VAR_2}E mesmo?\\pHmm... Ja vi um SEEDOT maior do\\nque este.$"
+        "{STR_VAR_2} E mesmo?\\pHmm... Ja vi um SEEDOT maior do\\nque este.$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_ThatsNotSeedot": [
         "Oh, isto e uma grande coisa...\\nMas nao e um SEEDOT!$"
@@ -488,7 +488,7 @@
         "Nao tem um SEEDOT grande? Que\\npena...\\pSe tiveres um SEEDOT grande,\\nvem mostrar-me.$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_WowMightBeBiggerThanSeedot": [
-        "{STR_VAR_2}Isso e grande!\\pPode ser ainda maior do que o\\nenorme SEEDOT que meu irmao\\lmais velho viu.\\pObrigado por me mostrares! Este\\ne meu agradecimento!$"
+        "{STR_VAR_2} Isso e grande!\\pPode ser ainda maior do que o\\nenorme SEEDOT que meu irmao\\lmais velho viu.\\pObrigado por me mostrares! Este\\ne meu agradecimento!$"
       ],
       "SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull2": [
         "Hunh? Seu BAG esta cheio.$"
@@ -513,13 +513,13 @@
         "A porta parece estar trancada.$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_ChallengeVisitingTrainer": [
-        "UMA FORMACAO\\nCHAMADA{STR_VAR_1}esta\\lvisitando minha casa.\\pGostaria de\\ndesafiar{STR_VAR_1}?$"
+        "UMA FORMACAO\\nCHAMADA {STR_VAR_1} esta\\lvisitando minha casa.\\pGostaria de\\ndesafiar {STR_VAR_1}?$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_YouWontBattle": [
         "Nao vai batalhar? Estou\\ndesiludido por nao te poder ver\\la batalhar...$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_KeepItTo3On3": [
-        "Optimo, optimo!\\pMas minha casa nao e assim\\ntao resistente.\\pPosso pedir-lhe para baixar\\npara um jogo de 3 contra 3?$"
+        "Otimo, otimo!\\pMas minha casa nao e assim\\ntao resistente.\\pPosso pedir-lhe para baixar\\npara um jogo de 3 contra 3?$"
       ],
       "SootopolisCity_MysteryEventsHouse_1F_Text_SaveProgressBeforeBattle": [
         "Antes de lutarem, devem salvar\\no seu progresso.$"

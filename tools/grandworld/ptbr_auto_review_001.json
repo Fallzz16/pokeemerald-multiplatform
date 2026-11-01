@@ -437,7 +437,7 @@
         "TM40 contem ACE AERIAL.\\pSua velocidade... Nenhum\\nPOKEMON devera ser capaz de o\\levitar.\\p... ... ... ... ... ...$"
       ],
       "FortreeCity_Gym_Text_RegisteredWinona": [
-        "GINASIO LEADER WINONA registado\\nno POKENAV.$"
+        "GINASIO LEADER WINONA registrado\\nno POKENAV.$"
       ],
       "FortreeCity_Gym_Text_WinonaPostBattle": [
         "Embora me tenha apaixonado por\\nti, vou continuar devotado ao\\lBIRD POKEMON.$"
@@ -587,7 +587,7 @@
         "Haaah... Ufa...\\pSe passares muito tempo\\nenterrado em areia quente, isso\\ldeixa-te inconsciente...$"
       ],
       "LavaridgeTown_Gym_B1F_Text_KeeganIntro": [
-        "Ja deves estar a ficar cansado.\\nGostaria de descansar na areia\\lquente, nao gostaria?\\pMas voce deve saber que manter\\nsua forca de vontade e uma\\lhabilidade importante para\\ltodos os TREINADORES.$"
+        "Ja deve estar a ficar cansado.\\nGostaria de descansar na areia\\lquente, nao gostaria?\\pMas voce deve saber que manter\\nsua forca de vontade e uma\\lhabilidade importante para\\ltodos os TREINADORES.$"
       ],
       "LavaridgeTown_Gym_B1F_Text_KeeganDefeat": [
         "Brincar com fogo, e ser\\nqueimado...$"
@@ -605,7 +605,7 @@
         "A temperatura do magma e de 392\\ngraus.\\pSeu POKEMON me venceu,\\nentao deve aguentar\\lfacilmente o calor.$"
       ],
       "LavaridgeTown_Gym_1F_Text_DanielleIntro": [
-        "Hum... Esta bem, vou lutar\\ncom voce.$"
+        "Hum... Esta bem, vou batalhar\\ncom voce.$"
       ],
       "LavaridgeTown_Gym_1F_Text_DanielleDefeat": [
         "Mas e demasiado forte.$"
@@ -632,7 +632,7 @@
         "Parece-me que perdi sem estar\\nno controlo.$"
       ],
       "LavaridgeTown_Gym_1F_Text_ExplainOverheat": [
-        "Essa TM50 contem OVERHEAT.\\pEsse movimento causa serios\\ndanos ao oponente.\\pMas tambem corta fortemente o\\nSP. ATK do POKEMON a utilizar.\\lPode nao ser adequado para\\lbatalhas mais longas.$"
+        "Essa TM50 contem OVERHEAT.\\pEsse golpe causa serios\\ndanos ao oponente.\\pMas tambem corta fortemente o\\nSP. ATK do POKEMON a utilizar.\\lPode nao ser adequado para\\lbatalhas mais longas.$"
       ],
       "LavaridgeTown_Gym_1F_Text_RegisteredFlannery": [
         "GINASIO LEADER FLANNERY\\nregistado no POKENAV.$"
@@ -750,10 +750,10 @@
         "Wahahahah! Esta bem, eu perdi!\\pAcabou por me dar uma emocao!\\nToma isto!$"
       ],
       "MauvilleCity_Gym_Text_ReceivedDynamoBadge": [
-        "{PLAYER}Recebeu o DYNAMO\\nINSIGNIA de WATTSON.$"
+        "{PLAYER} Recebeu o DYNAMO\\nINSIGNIA de WATTSON.$"
       ],
       "MauvilleCity_Gym_Text_ExplainShockWave": [
-        "Aquele TM34 ali contem SHOCK\\nWAVE.\\pE uma jogada de confianca que\\nnunca falha! Pode contar com\\lisso!\\p... ... ... ... ... ...$"
+        "Aquele TM34 ali contem SHOCK\\nWAVE.\\pE uma golpe de confianca que\\nnunca falha! Pode contar com\\lisso!\\p... ... ... ... ... ...$"
       ],
       "MauvilleCity_Gym_Text_RegisteredWattson": [
         "GINASIO LEADER WATTSON\\nregistado no POKENAV.$"

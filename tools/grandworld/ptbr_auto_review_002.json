@@ -543,7 +543,7 @@
         "O que pensa que esta fazendo?!$"
       ],
       "FiveIsland_RocketWarehouse_Text_Grunt1Intro": [
-        "Agora seu POKEMON parece\\nforte. Estas disposto a\\lvende-los?\\pA serio? Queria lutar?$"
+        "Agora seu POKEMON parece\\nforte. Estas disposto a\\lvende-los?\\pA serio? Queria batalhar?$"
       ],
       "FiveIsland_RocketWarehouse_Text_Grunt1Defeat": [
         "Mas... Demasiado!$"
@@ -596,7 +596,7 @@
         "Impressionante. Trata bem o seu\\nPOKEMON.\\pAcho que pode confiar-lhe isto.\\pPor favor, gostava que ficasses\\ncom isto.$"
       ],
       "FiveIsland_WaterLabyrinth_Text_ReceivedEggFromMan": [
-        "{PLAYER}Recebi um EGG do homem!$"
+        "{PLAYER} Recebi um EGG do homem!$"
       ],
       "FiveIsland_WaterLabyrinth_Text_DontHaveSpaceInYourParty": [
         "...Infelizmente, nao tem\\nespaco para isto na sua festa.\\pE melhor voltar noutra\\naltura.$"
@@ -624,7 +624,7 @@
         "Vai? Perfeito! Obrigado,\\nmiudo!\\pMeu amigo e um tipo gordinho\\nque esta sempre a dormir.\\pVai reconhece-lo imediatamente!$"
       ],
       "Route35GoldenrodGate_Text_ReceivedMonWithMail": [
-        "{PLAYER}Recebeu um POKEMON com\\nMAIL.$"
+        "{PLAYER} Recebeu um POKEMON com\\nMAIL.$"
       ],
       "Route35GoldenrodGate_Text_CantCarryMoreMon": [
         "Nao pode carregar outro\\nPOKEMON...$"
@@ -689,7 +689,7 @@
         "Fui perseguido pelo meu posto\\npor uns bandidos de preto.\\pDeixaram isto para tras.\\pDeixa-me desconfortavel. pode\\ntira-lo?$"
       ],
       "Gate_Route43_Text_ReceivedTM30": [
-        "{PLAYER}Recebeu TM36.$"
+        "{PLAYER} Recebeu TM36.$"
       ],
       "Gate_Route43_Text_OfficerAvoidGrass": [
         "Use este portao para evitar\\nandar na grama.$"
@@ -707,7 +707,7 @@
     },
     "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.inc": {
       "LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex": [
-        "PROF. BIRCH: O POKEDEX e uma\\nferramenta de alta tecnologia\\lque automaticamente faz um\\lregistro de qualquer POKEMON\\lque voce encontrar ou pegar.\\pMeu filho,{RIVAL}, vai para\\ntodo o lado com ele.\\pSempre que meu filho apanha\\num POKEMON raro e regista os\\lseus dados no POKEDEX,\\lporque,{RIVAL}Procura-me\\lenquanto faco o trabalho de\\lcampo e mostra-me.$"
+        "PROF. BIRCH: O POKEDEX e uma\\nferramenta de alta tecnologia\\lque automaticamente faz um\\lregistro de qualquer POKEMON\\lque voce encontrar ou pegar.\\pMeu filho,{RIVAL}, vai para\\ntodo o lado com ele.\\pSempre que meu filho apanha\\num POKEMON raro e regista os\\lseus dados no POKEDEX,\\lporque,{RIVAL} Procura-me\\lenquanto faco o trabalho de\\lcampo e mostra-me.$"
       ]
     },
     "data/maps/NewBarkTown_Lab/scripts.inc": {
@@ -717,7 +717,7 @@
     },
     "data/maps/PalletTown_ProfessorOaksLab_Frlg/scripts.inc": {
       "Text_RivalVictory": [
-        "{RIVAL}Sim! Sou optima ou que?$"
+        "{RIVAL} Sim! Sou otima ou que?$"
       ]
     },
     "data/maps/RocketHideout_B1F_Frlg/scripts.inc": {
@@ -789,7 +789,7 @@
     },
     "data/maps/Route105/scripts.inc": {
       "Route104_Text_RegisteredDadInPokenav": [
-        "Esta registado o DAD NORMAN no\\nPOKeNAV.$"
+        "Esta registrado o DAD NORMAN no\\nPOKeNAV.$"
       ]
     },
     "data/maps/Route109_SeashoreHouse/scripts.inc": {

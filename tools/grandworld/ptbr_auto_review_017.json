@@ -2,7 +2,7 @@
   "asm": {
     "data/maps/MtSilver_PokemonCenter/scripts.inc": {
       "MtSilver_PokemonCenter_Text_Meara": [
-        "Sou investigadora do museu\\nPEWTER CITY.\\pUma quantidade invulgar de\\nartefactos foi descoberta nesta\\larea, por isso vim aqui para\\linvestigar.\\pNao ha registros de uma\\ncivilizacao ao redor da\\lmontanha, mas os artefatos sao\\lquase certamente feitos pelo\\lhomem.\\pE realmente muito misterioso.$"
+        "Sou investigadora do museu\\nPEWTER CITY.\\pUma quantidade incomum de\\nartefactos foi descoberta nesta\\larea, por isso vim aqui para\\linvestigar.\\pNao ha registros de uma\\ncivilizacao ao redor da\\lmontanha, mas os artefatos sao\\lquase certamente feitos pelo\\lhomem.\\pE realmente muito misterioso.$"
       ]
     },
     "data/maps/NationalPark_BugContest/scripts.inc": {
@@ -70,12 +70,12 @@
     },
     "data/maps/NewBarkTown_PlayersHouse_1F/scripts.inc": {
       "NewBarkTown_PlayersHouse_1F_Text_ObtainedPokeGear": [
-        "{PLAYER}obteve o POKENAV.$"
+        "{PLAYER} obteve o POKENAV.$"
       ]
     },
     "data/maps/NewBarkTown_PlayersHouse_2F/scripts.inc": {
       "NewBarkTown_PlayersHouse_2F_Text_NES": [
-        "{PLAYER}Brincava com o NES.\\pEsta bem! Esta na hora de ir!$"
+        "{PLAYER} Brincava com o NES.\\pEsta bem! Esta na hora de ir!$"
       ]
     },
     "data/maps/NewMauville_Entrance/scripts.inc": {
@@ -91,7 +91,7 @@
         "O gerador acalmou.$"
       ],
       "NewMauville_Inside_Text_SteppedOnSwitchGeneratorStopped": [
-        "{PLAYER}Pisei no interruptor.\\pClique...\\p... ... ... ... ... ... ... ...\\n... ... ... ... ... ... ... ...\\pO gerador parece ter parado...$"
+        "{PLAYER} Pisei no interruptor.\\pClique...\\p... ... ... ... ... ... ... ...\\n... ... ... ... ... ... ... ...\\pO gerador parece ter parado...$"
       ]
     },
     "data/maps/OldaleTown_House1/scripts.inc": {
@@ -211,7 +211,7 @@
         "Preciso treinar mais...$"
       ],
       "OlivineLighthouse_Text_GentlemanPrestonAfter": [
-        "JASMINE usava POKEMON\\nROCK, como ONIX!$"
+        "JASMINE costumava usar\\nPOKEMON ROCK, como ONIX!$"
       ],
       "OlivineLighthouse_Text_SailorKentSeen": [
         "JASMINE esta preocupada\\ncom aquele POKEMON.\\pFaz tempo que\\nnao vejo ela sorrir...$"
@@ -281,7 +281,7 @@
         "Quantas varas de pesca\\nfaltam na sua colecao?\\pCada vara pode atrair\\nPOKEMON diferentes!$"
       ],
       "OlivinePort_Text_Youngster": [
-        "A S.S. AQUA usa jatos\\npara cortar as ondas!$"
+        "POKEMON ficam mais fortes\\nquando treinam bastante!$"
       ],
       "OlivinePort_Text_CooltrainerF": [
         "Ha tantos POKEMON\\nna regiao de KANTO!\\pQueria conhecer todos!$"
@@ -564,24 +564,24 @@
         "Tem um aspecto cruel.\\pUm POKEMON assustador como esse\\nmerece um TM como este.$"
       ],
       "PacifidlogTown_House2_Text_GetGoodTMInXDays": [
-        "Sim. Em cerca de{STR_VAR_1}ou\\nassim dias, eu deveria estar\\lrecebendo um bom TM ou dois.\\pEntao devia vir ver-me. Dou-te\\num TM adequado para seu\\lPOKEMON.$"
+        "Acho que em uns {STR_VAR_1}\\ndias vou receber\\lalgumas TMs novas.\\pVolte para me visitar.\\nTalvez eu tenha uma TM\\lideal para seu POKEMON.$"
       ],
       "PacifidlogTown_House2_Text_VeryFriendlyWithTrainer": [
-        "Parece ser muito amigavel com o\\nTRAiner.$"
+        "Parece gostar bastante\\nde seu TREINADOR.$"
       ],
       "PacifidlogTown_House2_Text_DoesntLikeTrainerVeryMuch": [
-        "Nao parece gostar muito do\\nTRAiner.$"
+        "Nao parece gostar muito\\nde seu TREINADOR.$"
       ]
     },
     "data/maps/PacifidlogTown_House3/scripts.inc": {
       "PacifidlogTown_House3_Text_WillingToTradeIt": [
-        "Olha para isto.{STR_VAR_2}!\\pE o{STR_VAR_2}que apanhei ontem\\npara celebrar meu\\laniversario!\\pPosso ver que voce quer!\\nAfinal, e inestimavel!\\pFazemos assim. Eu poderia estar\\ndisposto a troca-lo por\\lum{STR_VAR_1}.$"
+        "Olha para isto.{STR_VAR_2}!\\pE o {STR_VAR_2} que apanhei ontem\\npara celebrar meu\\laniversario!\\pPosso ver que voce quer!\\nAfinal, e inestimavel!\\pFazemos assim. Eu poderia estar\\ndisposto a troca-lo por\\lum {STR_VAR_1}.$"
       ],
       "PacifidlogTown_House3_Text_ItsSubtlyDifferentThankYou": [
         "Entao isto e...{STR_VAR_1}?\\pE uma especie de...{STR_VAR_2},\\ne ainda assim e sutilmente\\ldiferente.\\pObrigado!$"
       ],
       "PacifidlogTown_House3_Text_WontAcceptAnyLessThanRealMon": [
-        "Nao! Nao aceitarei menos do que\\num verdadeiro{STR_VAR_1}!$"
+        "Nao! Nao aceitarei menos do que\\num verdadeiro {STR_VAR_1}!$"
       ],
       "PacifidlogTown_House3_Text_NotDesperateOrAnything": [
         "Entao, nao vai continuar com\\nisto?\\pFixe. Nao estou desesperado\\npara fazer uma troca.$"
@@ -592,7 +592,7 @@
     },
     "data/maps/PacifidlogTown_House4/scripts.inc": {
       "PacifidlogTown_House4_Text_PeopleSawHighFlyingPokemon": [
-        "As pessoas diziam que viram um\\nPokemon a voar alto sobre o\\lHOENN.\\pEsta sempre a voar? Nao precisa\\nde descansar?$"
+        "Dizem que viram um\\nPOKEMON voando bem alto\\lsobre HOENN.\\pSera que ele nunca\\nprecisa descansar?$"
       ],
       "PacifidlogTown_House4_Text_SkyPokemon": [
         "Um POKEMON do ceu! Um POKEMON\\ndo ceu!$"
@@ -625,7 +625,7 @@
     },
     "data/maps/PalletTown_PlayersHouse_2F_Frlg/scripts.inc": {
       "PalletTown_PlayersHouse_2F_Text_PlayedWithNES": [
-        "{PLAYER}Brincava com o NES.\\pEsta bem! Esta na hora de ir!$"
+        "{PLAYER} Brincava com o NES.\\pEsta bem! Esta na hora de ir!$"
       ]
     },
     "data/maps/PalletTown_RivalsHouse_Frlg/scripts.inc": {
@@ -760,7 +760,7 @@
     },
     "data/maps/PewterCity_House2_Frlg/scripts.inc": {
       "PewterCity_House2_Text_MonsLearnTechniquesAsTheyGrow": [
-        "POKEMON aprende novas tecnicas\\na medida que crescem.\\pMas alguns movimentos devem ser\\nensinados as pessoas.$"
+        "POKEMON aprende novas tecnicas\\na medida que crescem.\\pMas alguns golpes devem ser\\nensinados as pessoas.$"
       ],
       "PewterCity_House2_Text_MonsEasierCatchIfStatused": [
         "Um POKEMON torna-se mais facil\\nde capturar se tiver um problema\\lde estado.\\pSono, veneno, queimadura ou\\nparalisia... Sao todas\\leficazes.\\pMas capturar o POKEMON nunca e\\numa coisa certa!$"

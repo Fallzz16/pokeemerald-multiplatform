@@ -158,6 +158,28 @@ def audit(root, example_limit=150):
         raise ValueError("assisted/editorial registry total drift")
     if len(editorial18 - assisted17) != 70:
         raise ValueError("editorial genuinely new coverage drift")
+    stage19 = set()
+    for number in range(1, 5):
+        path = root / f"ptbr_stage19_changes_part{number}.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        local = 0
+        for sources in data["changed_labels_by_shard_and_source"].values():
+            for source, symbols in sources.items():
+                for symbol in symbols:
+                    entry = (source, symbol)
+                    if entry in stage19:
+                        raise ValueError("duplicate stage19 changed dialogue: " + repr(entry))
+                    stage19.add(entry)
+                    local += 1
+        if local != data["changed_entries"]:
+            raise ValueError("stage19 manifest count drift: " + str(path))
+    if len(stage19) != 604:
+        raise ValueError("stage19 changed count drift")
+    if stage19 & reviewed:
+        raise ValueError("stage19 touched a previously reviewed symbol")
+    earlier_assisted = assisted17 | editorial18
+    if len(stage19 - earlier_assisted) != 342:
+        raise ValueError("stage19 new coverage drift")
     found = set()
     issues = Counter()
     by_file = defaultdict(Counter)
@@ -219,6 +241,10 @@ def audit(root, example_limit=150):
         "stage18_editorial_upgraded_from_assisted": len(editorial18 & assisted17),
         "stage18_newly_touched_drafts": len(editorial18 - assisted17),
         "still_without_assisted_or_editorial_touch": entries - len(reviewed | assisted17 | editorial18),
+        "stage19_changed_pending_editorial_approval": len(stage19),
+        "stage19_newly_touched_drafts": len(stage19 - earlier_assisted),
+        "stage19_earlier_assisted_refinements": len(stage19 & earlier_assisted),
+        "still_without_assisted_or_editorial_touch_after_stage19": entries - len(reviewed | assisted17 | editorial18 | stage19),
         "heuristic_warnings": dict(issues),
         "warning_counts_by_file": {k: dict(v) for k, v in by_file.items()},
         "sample_unreviewed_warnings": examples,

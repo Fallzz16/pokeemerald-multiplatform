@@ -1,0 +1,211 @@
+{
+  "stage": 19,
+  "status": "ai_assisted_draft_changes_pending_independent_linguistic_and_gameplay_review",
+  "baseline_commit": "9a23c3b5884bc1ab812c39393f8d2859b7a4300a",
+  "shards": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "changed_entries": 88,
+  "changed_labels_by_shard_and_source": {
+    "tools/grandworld/ptbr_auto_review_011.json": {
+      "data/maps/BattleFrontier_Lounge3/scripts.inc": [
+        "BattleFrontier_Lounge3_Text_ObtainedBattlePoints"
+      ],
+      "data/maps/BattleFrontier_Lounge6/scripts.inc": [
+        "BattleFrontier_Lounge6_Text_WouldYouLikeToTrade",
+        "BattleFrontier_Lounge6_Text_PromiseIllBeGoodToIt",
+        "BattleFrontier_Lounge6_Text_DontTradeForAnythingButMon"
+      ],
+      "data/maps/BattleFrontier_Lounge7/scripts.inc": [
+        "BattleFrontier_Lounge7_Text_TeachWhichMove",
+        "BattleFrontier_Lounge7_Text_MoveWillBeXBattlePoints",
+        "BattleFrontier_Lounge7_Text_RightTutorIntro"
+      ],
+      "data/maps/BattleFrontier_ReceptionGate/scripts.inc": [
+        "BattleFrontier_ReceptionGate_Text_IfItIsntPlayerYouCame"
+      ],
+      "data/maps/BattleFrontier_ScottsHouse/scripts.inc": [
+        "BattleFrontier_ScottsHouse_Text_ObtainedXBattlePoints"
+      ],
+      "data/maps/BlackthornCity/scripts.inc": [
+        "BlackthornCity_Text_ClairIsBeaten"
+      ],
+      "data/maps/BlackthornCity_House2/scripts.inc": [
+        "BlackthornCity_House2_Text_YouWillTradeWontYou",
+        "BlackthornCity_House2_Text_MonYouTakeCare"
+      ],
+      "data/maps/BlackthornCity_House3/scripts.inc": [
+        "BlackthornCity_MoveDeletersHouse_Text_WhichMoveShouldBeForgotten",
+        "BlackthornCity_MoveDeletersHouse_Text_MonOnlyKnowsOneMove",
+        "BlackthornCity_MoveDeletersHouse_Text_CantForgetSurf",
+        "BlackthornCity_MoveRelearnersHouse_Text_TeachWhichMove",
+        "BlackthornCity_MoveRelearnersHouse_Text_CantTeachEgg"
+      ],
+      "data/maps/CeladonCity_Condominiums_RoofRoom_Frlg/scripts.inc": [
+        "CeladonCity_Condominiums_RoofRoom_Text_ObtainedAnEevee"
+      ],
+      "data/maps/CeladonCity_DepartmentStore_3F_Frlg/scripts.inc": [
+        "CeladonCity_DepartmentStore_3F_Text_CanIdentifyTradeMonsByID"
+      ],
+      "data/maps/CeladonCity_DepartmentStore_Roof_Frlg/scripts.inc": [
+        "Text_ReceivedItemFromLittleGirl",
+        "CeladonCity_DepartmentStore_Roof_Text_ExplainTM20",
+        "CeladonCity_DepartmentStore_Roof_Text_ExplainTM33",
+        "CeladonCity_DepartmentStore_Roof_Text_DrinkCanPoppedOut"
+      ],
+      "data/maps/CeladonCity_Frlg/scripts.inc": [
+        "Text_SoftboiledDeclined"
+      ],
+      "data/maps/CeladonCity_GameCorner_PrizeRoom_Frlg/scripts.inc": [
+        "CeladonCity_GameCorner_PrizeRoom_Text_YouWantPrize",
+        "CeladonCity_GameCorner_PrizeRoom_Text_YouWantTM"
+      ],
+      "data/maps/CeruleanCity_Frlg/scripts.inc": [
+        "CeruleanCity_Text_RivalIntro"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_012.json": {
+      "data/maps/CeruleanCity_House3_Frlg/scripts.inc": [
+        "CeruleanCity_House3_Text_PleaseTradeWithMyHusband"
+      ],
+      "data/maps/CeruleanCity_House5_Frlg/scripts.inc": [
+        "CeruleanCity_House1_Text_HaveJustTheThing"
+      ],
+      "data/maps/CianwoodHouse3/scripts.inc": [
+        "CianwoodCity_Text_ManiacGotShuckle",
+        "CianwoodCity_Text_ManiacReturnedMon"
+      ],
+      "data/maps/CianwoodPokecenter/scripts.inc": [
+        "CianwoodPokemoncenter_Text_ReceivedTentacool",
+        "CianwoodCity_Text_GymGuideWin"
+      ],
+      "data/maps/CinnabarIsland_Frlg/scripts.inc": [
+        "CinnabarIsland_Text_HeyIfItIsntPlayer"
+      ],
+      "data/maps/CinnabarIsland_PokemonCenter_1F_Frlg/scripts.inc": [
+        "CinnabarIsland_PokemonCenter_1F_Text_EvolutionCanWaitForNewMoves"
+      ],
+      "data/maps/DesertUnderpass/scripts.inc": [
+        "DesertUnderpass_Text_FoundRootFossil",
+        "DesertUnderpass_Text_FoundClawFossil"
+      ],
+      "data/maps/DewfordTown_Hall/scripts.inc": [
+        "DewfordTown_Hall_Text_TeachingMonAboutTrend",
+        "DewfordTown_Hall_Text_TVShowAboutTrend",
+        "DewfordTown_Hall_Text_SawTrendCoolestThing"
+      ],
+      "data/maps/DragonsDen_Shrine/scripts.inc": [
+        "DragonsDen_Shrine_Text_WrongAnswer2",
+        "DragonsDen_Shrine_Text_PassedTest",
+        "DragonsDen_Shrine_Text_PlayerReceivedRisingBadge",
+        "DragonsDen_Shrine_Text_RisingBadgeExplanation"
+      ],
+      "data/maps/EcruteakCity_House2/scripts.inc": [
+        "Ecruteak_Text_ItemfinderTrueSpirit"
+      ],
+      "data/maps/EcruteakCity_Theater/scripts.inc": [
+        "EcruteakCity_Theater_Text_KimonoRocket3",
+        "EcruteakCity_Theater_Text_SurfGuyGaveSurf",
+        "EcruteakCity_Theater_Text_ZukiHooh"
+      ],
+      "data/maps/EverGrandeCity_PokemonLeague_1F/scripts.inc": [
+        "EverGrandeCity_PokemonLeague_1F_Text_GoForth"
+      ],
+      "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc": [
+        "FallarborTown_MoveRelearnersHouse_Text_TeachWhichMove",
+        "FallarborTown_MoveRelearnersHouse_Text_CantTeachEgg"
+      ],
+      "data/maps/FiveIsland_MemorialPillar_Frlg/scripts.inc": [
+        "FiveIsland_MemorialPillar_Text_PlacedCanOfLemonade"
+      ],
+      "data/maps/FiveIsland_ResortGorgeous_House_Frlg/scripts.inc": [
+        "FiveIsland_ResortGorgeous_House_Text_OhHowDisappointing"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_013.json": {
+      "data/maps/FortreeCity_House1/scripts.inc": [
+        "FortreeCity_House1_Text_YouWillTradeWontYou"
+      ],
+      "data/maps/FourIsland_IcefallCave_Back_Frlg/scripts.inc": [
+        "FourIsland_IcefallCave_Back_Text_ThankYouThisIsAwful"
+      ],
+      "data/maps/FuchsiaCity_House3_Frlg/scripts.inc": [
+        "FuchsiaCity_House3_Text_WhichMoveShouldBeForgotten",
+        "FuchsiaCity_House3_Text_MonOnlyKnowsOneMove",
+        "FuchsiaCity_House3_Text_ComeAgainToForgetOtherMoves"
+      ],
+      "data/maps/FuchsiaCity_SafariZone_Entrance_Frlg/scripts.inc": [
+        "FuchsiaCity_SafariZone_Entrance_Text_PlayerReceived30SafariBalls"
+      ],
+      "data/maps/FuchsiaCity_WardensHouse_Frlg/scripts.inc": [
+        "FuchsiaCity_WardensHouse_Text_ReceivedHM04FromWarden"
+      ],
+      "data/maps/Gate_NationalPark/scripts.inc": [
+        "Route35NationalParkGate_Text_ReceivedParkBalls"
+      ],
+      "data/maps/GoldenrodCity_BillsHouse/scripts.inc": [
+        "BillHouse_Text_ReceivedEevee"
+      ],
+      "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.inc": [
+        "GoldenrodDeptStore_Text_5FReceptionistThisMoveShouldBePerfect"
+      ],
+      "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.inc": [
+        "GoldenrodCity_DepartmentStore_6F_Text_YouWillTradeWontYou",
+        "GoldenrodCity_DepartmentStore_6F_Text_MonYouTakeCare"
+      ],
+      "data/maps/GoldenrodCity_GameCorner/scripts.inc": [
+        "GoldenrodCity_GameCorner_PrizeRoom_Text_YouWantPrize",
+        "GoldenrodCity_GameCorner_Text_PlayerObtainedTheMon",
+        "GoldenrodGamecorner_Text_GiveNicknameToThisMon"
+      ],
+      "data/maps/GoldenrodCity_House1/scripts.inc": [
+        "GoldenrodCity_NameRatersHouse_Text_FineNameSuggestBetterOne",
+        "GoldenrodCity_NameRatersHouse_Text_MonShallBeKnownAsName",
+        "GoldenrodCity_NameRatersHouse_Text_NameNoDifferentYetSuperior",
+        "GoldenrodCity_NameRatersHouse_Text_MagnificentName"
+      ],
+      "data/maps/GoldenrodCity_PokemonCenter/scripts.inc": [
+        "GoldenrodCity_PokemonCenter_PokefanFThisIsForYouText",
+        "GoldenrodCity_PokemonCenter_PlayerGaveAwayTheEonMailText"
+      ],
+      "data/maps/GoldenrodCity_RadioTower_1F/scripts.inc": [
+        "GoldenrodCity_RadioTower_1F_Text_TwoDigitsMatched",
+        "GoldenrodCity_RadioTower_1F_Text_ThreeDigitsMatched",
+        "GoldenrodCity_RadioTower_1F_Text_FourDigitsMatched",
+        "GoldenrodCity_RadioTower_1F_Text_AllFiveDigitsMatched",
+        "GoldenrodCity_RadioTower_1F_Text_PrizeWeveBeenHolding"
+      ],
+      "data/maps/GoldenrodCity_RadioTower_5F/scripts.inc": [
+        "GoldenrodCity_RadioTower_5F_Text_ExecutiveF1After"
+      ],
+      "data/maps/GoldenrodCity_TrainStation/scripts.inc": [
+        "GoldenrodCity_TrainStation_Text_Psychic"
+      ],
+      "data/maps/GoldenrodCity_UndergroundStorage/scripts.inc": [
+        "RadioTowerBasement_Text_GruntM24Seen"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_014.json": {
+      "data/maps/LilycoveCity/scripts.inc": [
+        "LilycoveCity_Text_BrendanDefeat",
+        "LilycoveCity_Text_BrendanYouGoingToCollectBadges",
+        "LilycoveCity_Text_BrendanYouGoingToPokemonLeague"
+      ],
+      "data/maps/LilycoveCity_ContestLobby/scripts.inc": [
+        "LilycoveCity_ContestLobby_Text_ShouldITakePaintingToMuseum"
+      ]
+    },
+    "tools/grandworld/ptbr_auto_review_015.json": {
+      "data/maps/LilycoveCity_House3/scripts.inc": [
+        "LilycoveCity_House3_Text_ExplainPokeblocks"
+      ],
+      "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc": [
+        "LilycoveCity_PokemonCenter_1F_Text_HowManyKindsOfPokemon"
+      ]
+    }
+  }
+}
